@@ -189,7 +189,7 @@ def generate_cosine_rule(tier: Tier, rng: random.Random) -> Question:
         steps = [
             "Use the cosine rule: cos(A) = (b² + c² - a²) ÷ (2bc)",
             f"cos(A) = ({b}² + {c}² - {a}²) ÷ (2×{b}×{c}) = {cos_a_str}",
-            f"A = cos⁻¹({cos_a_str}) = {_fmt_dec(rounded)}° (1 d.p.)",
+            f"A = cos^-1({cos_a_str}) = {_fmt_dec(rounded)}° (1 d.p.)",
         ]
         prompt = (
             f"In triangle ABC, side a = {a} cm, side b = {b} cm, and side c = {c} cm. "

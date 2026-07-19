@@ -48,6 +48,35 @@ def _fmt_factor(p) -> str:
     return f"x + {p}" if p > 0 else f"x - {abs(p)}"
 
 
+def _fmt_cubic(a, b, c, d) -> str:
+    parts: list[str] = []
+    if a != 0:
+        if a == 1:
+            parts.append("x^3")
+        elif a == -1:
+            parts.append("-x^3")
+        else:
+            parts.append(f"{a}x^3")
+    if b != 0:
+        term = "x^2" if abs(b) == 1 else f"{abs(b)}x^2"
+        if parts:
+            parts.append(f"{'+' if b > 0 else '-'} {term}")
+        else:
+            parts.append(f"-{term}" if b < 0 else term)
+    if c != 0:
+        term = "x" if abs(c) == 1 else f"{abs(c)}x"
+        if parts:
+            parts.append(f"{'+' if c > 0 else '-'} {term}")
+        else:
+            parts.append(f"-{term}" if c < 0 else term)
+    if d != 0 or not parts:
+        if parts:
+            parts.append(f"{'+' if d > 0 else '-'} {abs(d)}")
+        else:
+            parts.append(str(d))
+    return " ".join(parts)
+
+
 def generate_expand_single(tier: Tier, rng: random.Random):
     a = _rand_nonzero(rng, -9, 9)
     b = _rand_nonzero(rng, -9, 9)
@@ -173,6 +202,47 @@ def generate_expand_double_foundation(tier: Tier, rng: random.Random):
     )
 
 
+def generate_expand_triple(tier: Tier, rng: random.Random):
+    a, b = _rand_nonzero(rng, -4, 4), _rand_nonzero(rng, -4, 4)
+    c, d = _rand_nonzero(rng, -4, 4), _rand_nonzero(rng, -4, 4)
+    e, f = _rand_nonzero(rng, -4, 4), _rand_nonzero(rng, -4, 4)
+
+    expanded = sp.expand((a * X + b) * (c * X + d) * (e * X + f))
+    poly = sp.Poly(expanded, X)
+    coeffs = poly.all_coeffs()
+    coeffs = [0] * (4 - len(coeffs)) + coeffs
+    qa, qb, qc, qd = (int(v) for v in coeffs)
+
+    residual = sp.expand((a * X + b) * (c * X + d) * (e * X + f) - (qa * X**3 + qb * X**2 + qc * X + qd))
+    if residual != 0:
+        raise ValueError("Expansion verification failed: triple bracket")
+
+    # Independent verification: evaluate both the original product and the claimed
+    # cubic at a couple of concrete x values and check they agree numerically - a
+    # different method than the symbolic Poly coefficient extraction above.
+    for test_x in (2, -3):
+        lhs = (a * test_x + b) * (c * test_x + d) * (e * test_x + f)
+        rhs = qa * test_x**3 + qb * test_x**2 + qc * test_x + qd
+        if lhs != rhs:
+            raise ValueError("Expansion verification failed: triple bracket numeric cross-check")
+
+    mid_a, mid_b, mid_c = a * c, a * d + b * c, b * d
+    prompt = f"Expand and simplify: ({fmt_linear(a, b)})({fmt_linear(c, d)})({fmt_linear(e, f)})"
+    steps = [
+        f"First expand two of the brackets: ({fmt_linear(a, b)})({fmt_linear(c, d)}) = {_fmt_quadratic(mid_a, mid_b, mid_c)}",
+        f"Multiply the result by ({fmt_linear(e, f)}) and collect like terms",
+        f"= {_fmt_cubic(qa, qb, qc, qd)}",
+    ]
+    return Question(
+        topic_id="expand_triple_brackets",
+        tier=Tier.HIGHER,
+        prompt=prompt,
+        solution_steps=tuple(steps),
+        final_answer=_fmt_cubic(qa, qb, qc, qd),
+        dedup_key=f"expand_triple:{a}:{b}:{c}:{d}:{e}:{f}",
+    )
+
+
 def _find_factor_pair(b: int, c: int) -> tuple[int, int]:
     """Find integers p, q with p + q == b and p * q == c, by searching the
     actual factor pairs of c (mirrors the standard manual method)."""
@@ -268,6 +338,16 @@ TOPIC_EXPAND_DOUBLE = TopicDefinition(
     display_name="Double Brackets",
     description="Expand two brackets into a quadratic expression, including negative coefficients.",
     generate=generate_expand_double,
+    section=SECTION,
+    group=GROUP_EXPAND,
+    fixed_tier=Tier.HIGHER,
+)
+
+TOPIC_EXPAND_TRIPLE = TopicDefinition(
+    id="expand_triple_brackets",
+    display_name="Triple Brackets",
+    description="Expand three linear brackets into a cubic expression.",
+    generate=generate_expand_triple,
     section=SECTION,
     group=GROUP_EXPAND,
     fixed_tier=Tier.HIGHER,

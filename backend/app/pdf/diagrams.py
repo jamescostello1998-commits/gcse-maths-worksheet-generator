@@ -1,4 +1,5 @@
-"""Small, dependency-free ReportLab diagrams for Geometry worksheet questions.
+"""Small, dependency-free ReportLab diagrams for Geometry (and some Algebra
+graph) worksheet questions.
 
 Each `draw_xxx(params)` function renders one diagram *kind* to a fixed-size
 `Drawing` using the exact numeric values already used to build the matching
@@ -9,7 +10,7 @@ a `DiagramSpec` (see app/core/models.py) to the matching renderer.
 import math
 from typing import Callable
 
-from reportlab.graphics.shapes import Circle, Drawing, Group, Line, Polygon, Rect, String, Wedge
+from reportlab.graphics.shapes import Circle, Drawing, Group, Line, PolyLine, Polygon, Rect, String, Wedge
 from reportlab.pdfbase.pdfmetrics import stringWidth
 
 from app.core.models import DiagramSpec
@@ -417,6 +418,54 @@ def draw_circle_two_tangents(params: dict) -> Drawing:
     return d
 
 
+def _draw_axes(d: Drawing, ox: float, oy: float, axis_len_x: float, axis_len_y: float) -> None:
+    d.add(Line(ox, oy, ox + axis_len_x, oy, strokeColor=INK, strokeWidth=1))
+    d.add(Line(ox, oy, ox, oy + axis_len_y, strokeColor=INK, strokeWidth=1))
+    d.add(_label(ox + axis_len_x + 6, oy - 2, "x", anchor="start", size=8))
+    d.add(_label(ox - 6, oy + axis_len_y + 4, "y", anchor="end", size=8))
+
+
+def draw_parabola(params: dict) -> Drawing:
+    """A schematic upward parabola (not to scale) with its turning point marked."""
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    ox, oy = 25, 20
+    axis_len_x, axis_len_y = DIAGRAM_WIDTH - 45, DIAGRAM_HEIGHT - 35
+    _draw_axes(d, ox, oy, axis_len_x, axis_len_y)
+
+    vx, vy = ox + axis_len_x * 0.55, oy + 16
+    half_width, max_rise = axis_len_x * 0.42, axis_len_y * 0.85
+    n = 16
+    points: list[float] = []
+    for i in range(-n, n + 1):
+        t = i / n
+        x = vx + t * half_width
+        y = min(vy + max_rise * (t**2), oy + axis_len_y)
+        points.extend([x, y])
+    d.add(PolyLine(points, strokeColor=INK, strokeWidth=1.2))
+    d.add(Circle(vx, vy, 2, strokeColor=INK, fillColor=INK))
+    d.add(_label(vx, vy - 12, params["vertex_label"], size=8))
+    _not_to_scale(d)
+    return d
+
+
+def draw_linear_graph_pair(params: dict) -> Drawing:
+    """Two schematic straight lines (not to scale) crossing at a marked point."""
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    ox, oy = 25, 20
+    axis_len_x, axis_len_y = DIAGRAM_WIDTH - 45, DIAGRAM_HEIGHT - 35
+    _draw_axes(d, ox, oy, axis_len_x, axis_len_y)
+
+    ix, iy = ox + axis_len_x * 0.55, oy + axis_len_y * 0.55
+    d.add(Line(ox + 5, oy + axis_len_y * 0.15, ox + axis_len_x - 5, oy + axis_len_y * 0.75, strokeColor=INK, strokeWidth=1.2))
+    d.add(Line(ox + 5, oy + axis_len_y * 0.85, ox + axis_len_x - 15, oy + 5, strokeColor=INK, strokeWidth=1.2))
+    d.add(Circle(ix, iy, 2, strokeColor=INK, fillColor=INK))
+    d.add(_label(ix + 10, iy + 6, params["intersection_label"], anchor="start", size=8))
+    d.add(_label(ox + axis_len_x * 0.88, oy + axis_len_y * 0.7, params["label1"], size=8))
+    d.add(_label(ox + axis_len_x * 0.25, oy + axis_len_y * 0.92, params["label2"], size=8))
+    _not_to_scale(d)
+    return d
+
+
 _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "rectangle": draw_rectangle,
     "triangle_area": draw_triangle_area,
@@ -436,6 +485,8 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "circle_semicircle": draw_circle_semicircle,
     "circle_cyclic_quad": draw_circle_cyclic_quad,
     "circle_two_tangents": draw_circle_two_tangents,
+    "parabola": draw_parabola,
+    "linear_graph_pair": draw_linear_graph_pair,
 }
 
 

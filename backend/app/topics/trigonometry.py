@@ -157,7 +157,7 @@ def _trig_angle_question(rng: random.Random, *, side_lo, side_hi, topic_id, tier
     steps = [
         f"Use {ratio}, since we know two of the three sides.",
         f"{ratio}(x) = {ratio_arg}",
-        f"x = {ratio}⁻¹({ratio_arg}) = {_fmt_dec(rounded)}° (1 d.p.)",
+        f"x = {ratio}^-1({ratio_arg}) = {_fmt_dec(rounded)}° (1 d.p.)",
     ]
     return Question(
         topic_id=topic_id,
