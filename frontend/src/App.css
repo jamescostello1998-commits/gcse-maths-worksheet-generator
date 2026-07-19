@@ -106,6 +106,54 @@
   color: var(--text-muted);
 }
 
+.section-view__tier {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+/* Tier picker (Foundation / Higher sub-menu within a section) */
+
+.tier-picker {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  max-width: 520px;
+}
+
+.tier-picker__option {
+  text-align: left;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.tier-picker__option:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.tier-picker__option--empty,
+.tier-picker__option:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.tier-picker__name {
+  display: block;
+  margin: 0 0 6px;
+  font-size: 17px;
+  color: var(--text-heading);
+}
+
+.tier-picker__count {
+  display: block;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
 .topic-group {
   margin-bottom: 28px;
 }
