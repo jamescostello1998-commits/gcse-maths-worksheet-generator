@@ -110,7 +110,7 @@ def generate_shorter_leg(tier: Tier, rng: random.Random) -> Question:
     ]
     return Question(
         topic_id="pythagoras_shorter_leg",
-        tier=Tier.HIGHER,
+        tier=Tier.FOUNDATION,
         prompt=(
             f"A right-angled triangle has hypotenuse {hyp} cm and one leg {leg_known} cm. "
             "Find the length of the other leg."
@@ -238,7 +238,7 @@ TOPIC_SHORTER_LEG = TopicDefinition(
     generate=generate_shorter_leg,
     section=SECTION,
     group=GROUP,
-    fixed_tier=Tier.HIGHER,
+    fixed_tier=Tier.FOUNDATION,
 )
 
 TOPIC_SURD_HYPOTENUSE = TopicDefinition(

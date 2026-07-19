@@ -136,6 +136,43 @@ def generate_expand_double(tier: Tier, rng: random.Random):
     )
 
 
+def generate_expand_double_foundation(tier: Tier, rng: random.Random):
+    # Same shape as generate_expand_double but with all-positive coefficients, so
+    # a Foundation student only ever expands (x + p)(x + q) - no negative signs to
+    # track - matching how double-bracket expansion is introduced on the real specs.
+    a = rng.randint(1, 4)
+    b = rng.randint(1, 9)
+    c = rng.randint(1, 4)
+    d = rng.randint(1, 9)
+
+    expanded = sp.expand((a * X + b) * (c * X + d))
+    poly = sp.Poly(expanded, X)
+    coeffs = poly.all_coeffs()
+    coeffs = [0] * (3 - len(coeffs)) + coeffs
+    qa, qb, qc = (int(v) for v in coeffs)
+
+    residual = sp.expand((a * X + b) * (c * X + d) - (qa * X**2 + qb * X + qc))
+    if residual != 0:
+        raise ValueError("Expansion verification failed: double bracket (foundation)")
+
+    prompt = f"Expand: ({fmt_linear(a, b)})({fmt_linear(c, d)})"
+    steps = [
+        f"First: {a}x × {c}x = {a * c}x^2",
+        f"Outer: {a}x × {d} = {a * d}x",
+        f"Inner: {b} × {c}x = {b * c}x",
+        f"Last: {b} × {d} = {b * d}",
+        f"Combine like terms: {_fmt_quadratic(qa, qb, qc)}",
+    ]
+    return Question(
+        topic_id="expand_double_brackets_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=prompt,
+        solution_steps=tuple(steps),
+        final_answer=_fmt_quadratic(qa, qb, qc),
+        dedup_key=f"expand_double_f:{a}:{b}:{c}:{d}",
+    )
+
+
 def _find_factor_pair(b: int, c: int) -> tuple[int, int]:
     """Find integers p, q with p + q == b and p * q == c, by searching the
     actual factor pairs of c (mirrors the standard manual method)."""
@@ -178,6 +215,34 @@ def generate_factorise_quadratic(tier: Tier, rng: random.Random):
     )
 
 
+def generate_factorise_quadratic_foundation(tier: Tier, rng: random.Random):
+    # Same shape as generate_factorise_quadratic but restricted to two positive
+    # factors, so b and c in x^2 + bx + c are always positive - the simplest,
+    # sign-free factorising pattern, matching Foundation-tier content on the specs.
+    p = rng.randint(1, 9)
+    q = rng.randint(1, 9)
+    b = p + q
+    c = p * q
+
+    residual = sp.expand((X + p) * (X + q) - (X**2 + b * X + c))
+    if residual != 0:
+        raise ValueError("Factorise-quadratic verification failed (foundation)")
+
+    prompt = f"Factorise: {_fmt_quadratic(1, b, c)}"
+    steps = [
+        f"Find two numbers that multiply to {c} and add to {b}: {p} and {q}",
+        f"Write as two brackets: ({_fmt_factor(p)})({_fmt_factor(q)})",
+    ]
+    return Question(
+        topic_id="factorise_quadratics_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=prompt,
+        solution_steps=tuple(steps),
+        final_answer=f"({_fmt_factor(p)})({_fmt_factor(q)})",
+        dedup_key=f"factorise_quadratic_f:{p}:{q}",
+    )
+
+
 TOPIC_EXPAND_SINGLE = TopicDefinition(
     id="expand_single_bracket",
     display_name="Single Bracket",
@@ -188,10 +253,20 @@ TOPIC_EXPAND_SINGLE = TopicDefinition(
     fixed_tier=Tier.FOUNDATION,
 )
 
+TOPIC_EXPAND_DOUBLE_FOUNDATION = TopicDefinition(
+    id="expand_double_brackets_foundation",
+    display_name="Double Brackets",
+    description="Expand two brackets into a quadratic expression.",
+    generate=generate_expand_double_foundation,
+    section=SECTION,
+    group=GROUP_EXPAND,
+    fixed_tier=Tier.FOUNDATION,
+)
+
 TOPIC_EXPAND_DOUBLE = TopicDefinition(
     id="expand_double_brackets",
     display_name="Double Brackets",
-    description="Expand two brackets into a quadratic expression.",
+    description="Expand two brackets into a quadratic expression, including negative coefficients.",
     generate=generate_expand_double,
     section=SECTION,
     group=GROUP_EXPAND,
@@ -208,10 +283,20 @@ TOPIC_FACTORISE_COMMON = TopicDefinition(
     fixed_tier=Tier.FOUNDATION,
 )
 
+TOPIC_FACTORISE_QUADRATIC_FOUNDATION = TopicDefinition(
+    id="factorise_quadratics_foundation",
+    display_name="Quadratics",
+    description="Factorise a quadratic expression with two positive integer roots.",
+    generate=generate_factorise_quadratic_foundation,
+    section=SECTION,
+    group=GROUP_FACTORISE,
+    fixed_tier=Tier.FOUNDATION,
+)
+
 TOPIC_FACTORISE_QUADRATIC = TopicDefinition(
     id="factorise_quadratics",
     display_name="Quadratics",
-    description="Factorise a quadratic expression with integer roots.",
+    description="Factorise a quadratic expression with integer roots, including negative roots.",
     generate=generate_factorise_quadratic,
     section=SECTION,
     group=GROUP_FACTORISE,

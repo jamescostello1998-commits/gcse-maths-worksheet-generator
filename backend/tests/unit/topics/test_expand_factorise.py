@@ -8,6 +8,8 @@ TRIALS = 200
 GENERATORS = [
     (expand_factorise.generate_expand_single, Tier.FOUNDATION),
     (expand_factorise.generate_factorise_common, Tier.FOUNDATION),
+    (expand_factorise.generate_expand_double_foundation, Tier.FOUNDATION),
+    (expand_factorise.generate_factorise_quadratic_foundation, Tier.FOUNDATION),
     (expand_factorise.generate_expand_double, Tier.HIGHER),
     (expand_factorise.generate_factorise_quadratic, Tier.HIGHER),
 ]
@@ -40,12 +42,14 @@ def test_dedup_keys_vary_per_generator():
 def test_topic_definitions_have_expected_metadata():
     topics = [
         expand_factorise.TOPIC_EXPAND_SINGLE,
+        expand_factorise.TOPIC_EXPAND_DOUBLE_FOUNDATION,
         expand_factorise.TOPIC_EXPAND_DOUBLE,
         expand_factorise.TOPIC_FACTORISE_COMMON,
+        expand_factorise.TOPIC_FACTORISE_QUADRATIC_FOUNDATION,
         expand_factorise.TOPIC_FACTORISE_QUADRATIC,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 4
+    assert len(ids) == 6
     for t in topics:
         assert t.section == "algebra"
         assert t.group in ("Expanding Brackets", "Factorising")

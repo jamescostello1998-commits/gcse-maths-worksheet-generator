@@ -4,6 +4,7 @@ from app.core.errors import TopicNotFoundError
 from app.topics import (
     angles,
     area_perimeter,
+    circle_theorems,
     decimals,
     estimation,
     expand_factorise,
@@ -14,6 +15,9 @@ from app.topics import (
     pythagoras,
     ratio,
     standard_form,
+    triangle_rules,
+    trigonometry,
+    vectors,
 )
 from app.topics import statistics as statistics_topics
 from app.topics.base import TopicDefinition
@@ -49,11 +53,15 @@ _TOPIC_LIST: list[TopicDefinition] = [
     linear_equations.TOPIC_ONE_STEP,
     linear_equations.TOPIC_TWO_STEP,
     linear_equations.TOPIC_MULTI_STEP,
+    linear_equations.TOPIC_BOTH_SIDES_FOUNDATION,
     linear_equations.TOPIC_BOTH_SIDES,
+    linear_equations.TOPIC_BRACKETS_FOUNDATION,
     linear_equations.TOPIC_BRACKETS,
     expand_factorise.TOPIC_EXPAND_SINGLE,
+    expand_factorise.TOPIC_EXPAND_DOUBLE_FOUNDATION,
     expand_factorise.TOPIC_EXPAND_DOUBLE,
     expand_factorise.TOPIC_FACTORISE_COMMON,
+    expand_factorise.TOPIC_FACTORISE_QUADRATIC_FOUNDATION,
     expand_factorise.TOPIC_FACTORISE_QUADRATIC,
     # Ratio & Proportion
     percentages.TOPIC_OF_AMOUNT,
@@ -82,6 +90,18 @@ _TOPIC_LIST: list[TopicDefinition] = [
     pythagoras.TOPIC_SHORTER_LEG,
     pythagoras.TOPIC_SURD_HYPOTENUSE,
     pythagoras.TOPIC_LADDER_CONTEXT,
+    trigonometry.TOPIC_MISSING_SIDE_FOUNDATION,
+    trigonometry.TOPIC_MISSING_SIDE_HIGHER,
+    trigonometry.TOPIC_MISSING_ANGLE_FOUNDATION,
+    trigonometry.TOPIC_MISSING_ANGLE_HIGHER,
+    trigonometry.TOPIC_MIXED,
+    triangle_rules.TOPIC_SINE_RULE,
+    triangle_rules.TOPIC_COSINE_RULE,
+    triangle_rules.TOPIC_TRIANGLE_AREA,
+    vectors.TOPIC_VECTORS_ARITHMETIC_FOUNDATION,
+    vectors.TOPIC_VECTORS_ARITHMETIC_HIGHER,
+    vectors.TOPIC_GEOMETRIC_VECTORS,
+    circle_theorems.TOPIC_CIRCLE_THEOREMS,
     # Probability
     probability.TOPIC_SINGLE_EVENT,
     probability.TOPIC_COMPLEMENT,

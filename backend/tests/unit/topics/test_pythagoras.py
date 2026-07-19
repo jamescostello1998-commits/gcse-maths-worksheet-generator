@@ -8,7 +8,7 @@ TRIALS = 200
 GENERATORS = [
     (pythagoras.generate_hypotenuse_triple, Tier.FOUNDATION),
     (pythagoras.generate_hypotenuse_decimal, Tier.FOUNDATION),
-    (pythagoras.generate_shorter_leg, Tier.HIGHER),
+    (pythagoras.generate_shorter_leg, Tier.FOUNDATION),
     (pythagoras.generate_surd_hypotenuse, Tier.HIGHER),
     (pythagoras.generate_ladder_context, Tier.HIGHER),
 ]

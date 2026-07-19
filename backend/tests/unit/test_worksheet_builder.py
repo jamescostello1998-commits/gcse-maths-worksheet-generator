@@ -20,7 +20,7 @@ def test_all_topics_produce_20_distinct_questions_at_their_fixed_tier():
     from app.core.registry import list_topics
 
     topics = list_topics()
-    assert len(topics) == 59
+    assert len(topics) == 75
     for topic in topics:
         tier = topic.fixed_tier or Tier.FOUNDATION
         worksheet = builder.build_worksheet(topic.id, tier, rng=random.Random(42))

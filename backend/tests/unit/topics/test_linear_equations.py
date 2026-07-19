@@ -11,6 +11,8 @@ GENERATORS = [
     (linear_equations.generate_one_step, Tier.FOUNDATION),
     (linear_equations.generate_two_step, Tier.FOUNDATION),
     (linear_equations.generate_multi_step, Tier.FOUNDATION),
+    (linear_equations.generate_both_sides_foundation, Tier.FOUNDATION),
+    (linear_equations.generate_brackets_foundation, Tier.FOUNDATION),
     (linear_equations.generate_both_sides, Tier.HIGHER),
     (linear_equations.generate_brackets, Tier.HIGHER),
 ]
@@ -56,11 +58,13 @@ def test_topic_definitions_have_expected_metadata():
         linear_equations.TOPIC_ONE_STEP,
         linear_equations.TOPIC_TWO_STEP,
         linear_equations.TOPIC_MULTI_STEP,
+        linear_equations.TOPIC_BOTH_SIDES_FOUNDATION,
+        linear_equations.TOPIC_BRACKETS_FOUNDATION,
         linear_equations.TOPIC_BOTH_SIDES,
         linear_equations.TOPIC_BRACKETS,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 5
+    assert len(ids) == 7
     for t in topics:
         assert t.section == "algebra"
         assert t.group == "Solving Linear Equations"

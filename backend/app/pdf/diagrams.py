@@ -273,6 +273,150 @@ def draw_right_triangle(params: dict) -> Drawing:
     return d
 
 
+def _not_to_scale(d: Drawing, x: float = DIAGRAM_WIDTH / 2, y: float = 10) -> None:
+    d.add(_label(x, y, "Diagram NOT accurately drawn", color=MUTED, size=6.5))
+
+
+def draw_trig_triangle(params: dict) -> Drawing:
+    """Right triangle for SOH CAH TOA questions: right angle at A (bottom-left),
+    marked angle at B (bottom-right). Opposite/adjacent are relative to that angle."""
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    A, B, C = (40, 25), (165, 25), (40, 105)
+    d.add(Polygon([A[0], A[1], B[0], B[1], C[0], C[1]], strokeColor=INK, fillColor=None, strokeWidth=1.2))
+
+    s = 8
+    d.add(Rect(A[0], A[1], s, s, strokeColor=INK, fillColor=None, strokeWidth=1))
+    if params.get("adjacent_label"):
+        d.add(_label((A[0] + B[0]) / 2, A[1] - 14, params["adjacent_label"]))
+    if params.get("opposite_label"):
+        d.add(_label(A[0] - 10, (A[1] + C[1]) / 2, params["opposite_label"], anchor="end"))
+    if params.get("hyp_label"):
+        d.add(_label((B[0] + C[0]) / 2 + 12, (B[1] + C[1]) / 2 + 6, params["hyp_label"], anchor="start"))
+    d.add(_label(B[0] - 20, B[1] + 9, params["angle_label"], size=8))
+    return d
+
+
+def draw_general_triangle(params: dict) -> Drawing:
+    """Scalene triangle (not to scale) for sine rule / cosine rule / area
+    questions, with any combination of the three sides and three angles
+    labelled by the caller."""
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    A, B, C = (30, 28), (172, 28), (95, 108)
+    d.add(Polygon([A[0], A[1], B[0], B[1], C[0], C[1]], strokeColor=INK, fillColor=None, strokeWidth=1.2))
+
+    def midpoint(p, q):
+        return ((p[0] + q[0]) / 2, (p[1] + q[1]) / 2)
+
+    mid_bc, mid_ac, mid_ab = midpoint(B, C), midpoint(A, C), midpoint(A, B)
+    if params.get("side_a_label"):
+        d.add(_label(mid_bc[0] + 14, mid_bc[1] + 2, params["side_a_label"], anchor="start", size=8))
+    if params.get("side_b_label"):
+        d.add(_label(mid_ac[0] - 12, mid_ac[1] + 2, params["side_b_label"], anchor="end", size=8))
+    if params.get("side_c_label"):
+        d.add(_label(mid_ab[0], mid_ab[1] - 12, params["side_c_label"], size=8))
+
+    centroid = ((A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3)
+
+    def inset(v, factor=0.4):
+        return (v[0] + (centroid[0] - v[0]) * factor, v[1] + (centroid[1] - v[1]) * factor)
+
+    for vertex, key in ((A, "angle_A_label"), (B, "angle_B_label"), (C, "angle_C_label")):
+        if params.get(key):
+            px, py = inset(vertex)
+            d.add(_label(px, py, params[key], size=8))
+
+    _not_to_scale(d)
+    return d
+
+
+def draw_vector_triangle(params: dict) -> Drawing:
+    """Triangle OAB with position vectors a = OA, b = OB, and a point P on AB
+    at a given ratio AP:PB, for geometric-vector questions."""
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    O, A, B = (30, 25), (65, 108), (175, 25)
+    d.add(Line(O[0], O[1], A[0], A[1], strokeColor=INK, strokeWidth=1.2))
+    d.add(Line(O[0], O[1], B[0], B[1], strokeColor=INK, strokeWidth=1.2))
+    d.add(Line(A[0], A[1], B[0], B[1], strokeColor=INK, strokeWidth=1.2))
+
+    m, n = params["ratio"]
+    t = m / (m + n)
+    P = (A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t)
+    d.add(Circle(P[0], P[1], 1.8, strokeColor=INK, fillColor=INK))
+    d.add(_label(P[0], P[1] + 8, params["point_label"], size=8))
+
+    d.add(_label((O[0] + A[0]) / 2 - 10, (O[1] + A[1]) / 2, params["a_label"], anchor="end", size=9))
+    d.add(_label((O[0] + B[0]) / 2, O[1] - 14, params["b_label"], size=9))
+    d.add(_label(O[0] - 8, O[1] - 10, params["origin_label"], size=8, anchor="end"))
+    return d
+
+
+def _circle_point(cx: float, cy: float, r: float, deg: float) -> tuple[float, float]:
+    rad = math.radians(deg)
+    return (cx + r * math.cos(rad), cy + r * math.sin(rad))
+
+
+def draw_circle_angle_centre(params: dict) -> Drawing:
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    cx, cy, r = 100, 74, 42
+    d.add(Circle(cx, cy, r, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    A, B, C = _circle_point(cx, cy, r, 200), _circle_point(cx, cy, r, 340), _circle_point(cx, cy, r, 90)
+    d.add(Line(cx, cy, A[0], A[1], strokeColor=INK, strokeWidth=1))
+    d.add(Line(cx, cy, B[0], B[1], strokeColor=INK, strokeWidth=1))
+    d.add(Line(C[0], C[1], A[0], A[1], strokeColor=INK, strokeWidth=1))
+    d.add(Line(C[0], C[1], B[0], B[1], strokeColor=INK, strokeWidth=1))
+    d.add(Circle(cx, cy, 1.5, strokeColor=INK, fillColor=INK))
+    d.add(_label(cx, cy - 16, params["centre_label"], size=8))
+    d.add(_label(C[0], C[1] - 16, params["circumference_label"], size=8))
+    _not_to_scale(d)
+    return d
+
+
+def draw_circle_semicircle(params: dict) -> Drawing:
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    cx, cy, r = 100, 76, 42
+    d.add(Circle(cx, cy, r, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    A, B = (cx - r, cy), (cx + r, cy)
+    C = _circle_point(cx, cy, r, 125)
+    d.add(Line(A[0], A[1], B[0], B[1], strokeColor=INK, strokeWidth=1.2))
+    d.add(Line(A[0], A[1], C[0], C[1], strokeColor=INK, strokeWidth=1))
+    d.add(Line(B[0], B[1], C[0], C[1], strokeColor=INK, strokeWidth=1))
+    d.add(_label(C[0], C[1] + 10, params["apex_label"], size=8))
+    d.add(_label(A[0] + 4, A[1] + 8, params["angle_a_label"], size=7, anchor="start"))
+    d.add(_label(B[0] - 4, B[1] + 8, params["angle_b_label"], size=7, anchor="end"))
+    _not_to_scale(d)
+    return d
+
+
+def draw_circle_cyclic_quad(params: dict) -> Drawing:
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    cx, cy, r = 100, 70, 42
+    d.add(Circle(cx, cy, r, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    A, B = _circle_point(cx, cy, r, 150), _circle_point(cx, cy, r, 60)
+    C, Dp = _circle_point(cx, cy, r, -40), _circle_point(cx, cy, r, 220)
+    for p, q in ((A, B), (B, C), (C, Dp), (Dp, A)):
+        d.add(Line(p[0], p[1], q[0], q[1], strokeColor=INK, strokeWidth=1))
+    d.add(_label(A[0] - 8, A[1] + 4, params["angle_A_label"], size=7, anchor="end"))
+    d.add(_label(C[0] + 8, C[1] - 6, params["angle_C_label"], size=7, anchor="start"))
+    _not_to_scale(d)
+    return d
+
+
+def draw_circle_two_tangents(params: dict) -> Drawing:
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    cx, cy, r = 100, 60, 34
+    d.add(Circle(cx, cy, r, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    A, B = _circle_point(cx, cy, r, 145), _circle_point(cx, cy, r, 35)
+    T = (cx, cy + r + 38)
+    d.add(Line(cx, cy, A[0], A[1], strokeColor=INK, strokeWidth=1))
+    d.add(Line(cx, cy, B[0], B[1], strokeColor=INK, strokeWidth=1))
+    d.add(Line(T[0], T[1], A[0], A[1], strokeColor=INK, strokeWidth=1.2))
+    d.add(Line(T[0], T[1], B[0], B[1], strokeColor=INK, strokeWidth=1.2))
+    d.add(_label(T[0], T[1] + 12, params["external_label"], size=8))
+    d.add(_label(cx, cy - 14, params["centre_label"], size=8))
+    _not_to_scale(d)
+    return d
+
+
 _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "rectangle": draw_rectangle,
     "triangle_area": draw_triangle_area,
@@ -285,6 +429,13 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "exterior_triangle": draw_exterior_triangle,
     "polygon": draw_polygon,
     "right_triangle": draw_right_triangle,
+    "trig_triangle": draw_trig_triangle,
+    "general_triangle": draw_general_triangle,
+    "vector_triangle": draw_vector_triangle,
+    "circle_angle_centre": draw_circle_angle_centre,
+    "circle_semicircle": draw_circle_semicircle,
+    "circle_cyclic_quad": draw_circle_cyclic_quad,
+    "circle_two_tangents": draw_circle_two_tangents,
 }
 
 
