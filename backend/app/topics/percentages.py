@@ -1,48 +1,30 @@
 import random
-from fractions import Fraction
 
 import sympy as sp
 
 from app.core.models import Question, Tier
 from app.topics.base import TopicDefinition
+from app.topics.number_format import fmt_money, to_fraction
 
-TOPIC_ID = "percentages"
+SECTION = "ratio_proportion"
+GROUP = "Percentages"
 
 FOUNDATION_PERCENTS = ["10", "20", "25", "50"]
 HIGHER_PERCENTS = ["12", "15", "17.5", "24", "30", "35", "42.5", "60"]
-
-
-def _to_fraction(value: sp.Rational) -> Fraction:
-    r = sp.Rational(value)
-    return Fraction(int(r.p), int(r.q))
-
-
-def fmt_money(value) -> str:
-    r = sp.Rational(value)
-    if r.is_Integer:
-        return str(int(r))
-    denom = int(sp.fraction(r)[1])
-    while denom % 2 == 0:
-        denom //= 2
-    while denom % 5 == 0:
-        denom //= 5
-    if denom == 1:
-        return f"{float(r):.2f}"
-    return f"{r.p}/{r.q}"
 
 
 def _multiplier(percent: sp.Rational, increase: bool) -> sp.Rational:
     return sp.Integer(1) + percent / 100 if increase else sp.Integer(1) - percent / 100
 
 
-def _generate_of_amount(rng: random.Random):
+def generate_of_amount(tier: Tier, rng: random.Random) -> Question:
     percent = sp.Rational(rng.choice(FOUNDATION_PERCENTS))
     amount = rng.randrange(20, 501, 20)
     value = percent / 100 * amount
 
     # Independent verification via Python's Fraction (separate implementation path).
-    frac_check = (_to_fraction(percent) / 100) * amount
-    if frac_check != _to_fraction(value):
+    frac_check = (to_fraction(percent) / 100) * amount
+    if frac_check != to_fraction(value):
         raise ValueError("Percentage-of-amount verification failed")
 
     steps = [
@@ -50,7 +32,7 @@ def _generate_of_amount(rng: random.Random):
         f"Multiply: {percent}/100 × {amount} = {fmt_money(value)}",
     ]
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="percentage_of_amount",
         tier=Tier.FOUNDATION,
         prompt=f"Find {percent}% of {amount}.",
         solution_steps=tuple(steps),
@@ -59,7 +41,7 @@ def _generate_of_amount(rng: random.Random):
     )
 
 
-def _generate_change(rng: random.Random):
+def generate_change(tier: Tier, rng: random.Random) -> Question:
     percent = sp.Rational(rng.choice(FOUNDATION_PERCENTS))
     amount = rng.randrange(20, 501, 20)
     increase = rng.choice([True, False])
@@ -72,7 +54,7 @@ def _generate_change(rng: random.Random):
         f"Multiply: {amount} × {fmt_money(multiplier)} = {fmt_money(result)}",
     ]
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="percentage_change",
         tier=Tier.FOUNDATION,
         prompt=f"{verb} {amount} by {percent}%.",
         solution_steps=tuple(steps),
@@ -81,7 +63,7 @@ def _generate_change(rng: random.Random):
     )
 
 
-def _generate_reverse(rng: random.Random):
+def generate_reverse(tier: Tier, rng: random.Random) -> Question:
     percent = sp.Rational(rng.choice(HIGHER_PERCENTS))
     original = rng.randrange(20, 401, 4)
     increase = rng.choice([True, False])
@@ -89,8 +71,8 @@ def _generate_reverse(rng: random.Random):
     result = original * multiplier
 
     # Independent verification via Python's Fraction (separate implementation path).
-    recovered = _to_fraction(result) / _to_fraction(multiplier)
-    if recovered != Fraction(original, 1):
+    recovered = to_fraction(result) / to_fraction(multiplier)
+    if recovered != to_fraction(sp.Integer(original)):
         raise ValueError("Reverse-percentage verification failed")
 
     verb = "increase" if increase else "decrease"
@@ -99,7 +81,7 @@ def _generate_reverse(rng: random.Random):
         f"Divide the new value by the multiplier: {fmt_money(result)} ÷ {fmt_money(multiplier)} = {fmt_money(original)}",
     ]
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="reverse_percentage",
         tier=Tier.HIGHER,
         prompt=f"After a {percent}% {verb}, an item costs £{fmt_money(result)}. Find the original price.",
         solution_steps=tuple(steps),
@@ -108,7 +90,7 @@ def _generate_reverse(rng: random.Random):
     )
 
 
-def _generate_compound(rng: random.Random):
+def generate_compound(tier: Tier, rng: random.Random) -> Question:
     original = rng.randrange(20, 401, 4)
     percent1 = sp.Rational(rng.choice(HIGHER_PERCENTS))
     percent2 = sp.Rational(rng.choice(HIGHER_PERCENTS))
@@ -119,8 +101,8 @@ def _generate_compound(rng: random.Random):
     intermediate = original * mult1
     final = intermediate * mult2
 
-    expected = _to_fraction(original) * _to_fraction(mult1) * _to_fraction(mult2)
-    if expected != _to_fraction(final):
+    expected = to_fraction(sp.Integer(original)) * to_fraction(mult1) * to_fraction(mult2)
+    if expected != to_fraction(final):
         raise ValueError("Compound-percentage verification failed")
 
     verb1 = "increases" if increase1 else "decreases"
@@ -130,7 +112,7 @@ def _generate_compound(rng: random.Random):
         f"After the second change: {fmt_money(intermediate)} × {fmt_money(mult2)} = {fmt_money(final)}",
     ]
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="compound_percentage",
         tier=Tier.HIGHER,
         prompt=(
             f"A price of £{original} {verb1} by {percent1}%, then {verb2} by {percent2}%. "
@@ -142,17 +124,42 @@ def _generate_compound(rng: random.Random):
     )
 
 
-def generate(tier: Tier, rng: random.Random) -> Question:
-    if tier == Tier.FOUNDATION:
-        shape = rng.choice(["of_amount", "change"])
-        return _generate_of_amount(rng) if shape == "of_amount" else _generate_change(rng)
-    shape = rng.choice(["reverse", "compound"])
-    return _generate_reverse(rng) if shape == "reverse" else _generate_compound(rng)
+TOPIC_OF_AMOUNT = TopicDefinition(
+    id="percentage_of_amount",
+    display_name="Percentage of an Amount",
+    description="Find a percentage of a given amount.",
+    generate=generate_of_amount,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+)
 
+TOPIC_CHANGE = TopicDefinition(
+    id="percentage_change",
+    display_name="Percentage Change",
+    description="Increase or decrease an amount by a percentage.",
+    generate=generate_change,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+)
 
-TOPIC = TopicDefinition(
-    id=TOPIC_ID,
-    display_name="Percentages",
-    description="Percentages of amounts, percentage change, reverse percentages, and compound changes.",
-    generate=generate,
+TOPIC_REVERSE = TopicDefinition(
+    id="reverse_percentage",
+    display_name="Reverse Percentage",
+    description="Find the original amount given a value after a percentage change.",
+    generate=generate_reverse,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+)
+
+TOPIC_COMPOUND = TopicDefinition(
+    id="compound_percentage",
+    display_name="Compound Percentage Change",
+    description="Apply two successive percentage changes to an amount.",
+    generate=generate_compound,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
 )

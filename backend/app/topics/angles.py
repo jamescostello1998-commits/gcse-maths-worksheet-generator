@@ -2,14 +2,15 @@ import random
 
 import sympy as sp
 
-from app.core.models import Question, Tier
+from app.core.models import DiagramSpec, Question, Tier
 from app.topics.algebra_utils import X, fmt_linear, solve_linear_with_steps
 from app.topics.base import TopicDefinition
 
-TOPIC_ID = "angles"
+SECTION = "geometry"
+GROUP = "Angles"
 
 
-def _generate_straight_line(rng: random.Random) -> Question:
+def generate_straight_line(tier: Tier, rng: random.Random) -> Question:
     n = rng.choice([2, 3])
     given: list[int] = []
     remaining = 180
@@ -28,16 +29,24 @@ def _generate_straight_line(rng: random.Random) -> Question:
         f"x = 180 - ({' + '.join(str(a) for a in given)}) = 180 - {sum(given)} = {missing}",
     ]
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="angles_straight_line",
         tier=Tier.FOUNDATION,
         prompt=f"The angles {given_str} and x° lie on a straight line. Find x.",
         solution_steps=tuple(steps),
         final_answer=str(missing),
         dedup_key=f"straight_line:{given}",
+        diagram=DiagramSpec(
+            kind="angle_line",
+            params={
+                "angle_values": given + [missing],
+                "labels": [f"{a}°" for a in given] + ["x"],
+                "around_point": False,
+            },
+        ),
     )
 
 
-def _generate_around_point(rng: random.Random) -> Question:
+def generate_around_point(tier: Tier, rng: random.Random) -> Question:
     n = rng.choice([3, 4])
     given: list[int] = []
     remaining = 360
@@ -56,16 +65,24 @@ def _generate_around_point(rng: random.Random) -> Question:
         f"x = 360 - ({' + '.join(str(a) for a in given)}) = 360 - {sum(given)} = {missing}",
     ]
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="angles_around_point",
         tier=Tier.FOUNDATION,
         prompt=f"The angles {given_str} and x° are angles around a point. Find x.",
         solution_steps=tuple(steps),
         final_answer=str(missing),
         dedup_key=f"around_point:{given}",
+        diagram=DiagramSpec(
+            kind="angle_line",
+            params={
+                "angle_values": given + [missing],
+                "labels": [f"{a}°" for a in given] + ["x"],
+                "around_point": True,
+            },
+        ),
     )
 
 
-def _generate_triangle_angles(rng: random.Random) -> Question:
+def generate_triangle_angles(tier: Tier, rng: random.Random) -> Question:
     a = rng.randint(20, 120)
     b = rng.randint(20, min(120, 160 - a))
     missing = 180 - a - b
@@ -77,16 +94,17 @@ def _generate_triangle_angles(rng: random.Random) -> Question:
         f"x = 180 - ({a} + {b}) = 180 - {a + b} = {missing}",
     ]
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="angles_triangle",
         tier=Tier.FOUNDATION,
         prompt=f"A triangle has angles {a}°, {b}°, and x°. Find x.",
         solution_steps=tuple(steps),
         final_answer=str(missing),
         dedup_key=f"triangle_angles:{a}:{b}",
+        diagram=DiagramSpec(kind="triangle_angles", params={"angle_labels": [f"{a}°", f"{b}°", "x"]}),
     )
 
 
-def _generate_parallel_lines(rng: random.Random) -> Question:
+def generate_parallel_lines(tier: Tier, rng: random.Random) -> Question:
     fact = rng.choice(["corresponding", "alternate", "co_interior"])
     known = rng.randint(30, 150)
     target = known if fact in ("corresponding", "alternate") else 180 - known
@@ -116,16 +134,20 @@ def _generate_parallel_lines(rng: random.Random) -> Question:
     )
     steps = [fact_text] + solve_steps
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="angles_parallel_lines",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
         final_answer=str(solution),
         dedup_key=f"parallel_lines:{fact}:{known}:{coeff}:{const}",
+        diagram=DiagramSpec(
+            kind="parallel_lines",
+            params={"known_label": f"{known}°", "unknown_label": "x", "relation": fact},
+        ),
     )
 
 
-def _generate_exterior_angle(rng: random.Random) -> Question:
+def generate_exterior_angle(tier: Tier, rng: random.Random) -> Question:
     known_interior = rng.randint(20, 70)
     coeff = rng.choice([2, 3, 4, 5])
     x_sol = rng.randint(1, 20)
@@ -148,16 +170,24 @@ def _generate_exterior_angle(rng: random.Random) -> Question:
         "The exterior angle of a triangle equals the sum of the two remote interior angles.",
     ] + solve_steps
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="angles_exterior",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
         final_answer=str(solution),
         dedup_key=f"exterior_angle:{known_interior}:{coeff}:{const}:{exterior}",
+        diagram=DiagramSpec(
+            kind="exterior_triangle",
+            params={
+                "interior1_label": f"{known_interior}°",
+                "interior2_label": f"({fmt_linear(coeff, const)})°",
+                "exterior_label": f"{exterior}°",
+            },
+        ),
     )
 
 
-def _generate_polygon_interior(rng: random.Random) -> Question:
+def generate_polygon_interior(tier: Tier, rng: random.Random) -> Question:
     for _ in range(200):
         n = rng.randint(5, 8)
         total = (n - 2) * 180
@@ -188,34 +218,75 @@ def _generate_polygon_interior(rng: random.Random) -> Question:
         f"Remaining angle = {total} - {remaining_total} = {algebraic_value}°",
     ] + solve_steps
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="angles_polygon_interior",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
         final_answer=str(solution),
         dedup_key=f"polygon_interior:{n}:{other_angle_value}:{coeff}:{const}",
+        diagram=DiagramSpec(
+            kind="polygon",
+            params={"n_sides": n, "marked_angle_label": f"({fmt_linear(coeff, const)})°"},
+        ),
     )
 
 
-def generate(tier: Tier, rng: random.Random) -> Question:
-    if tier == Tier.FOUNDATION:
-        shape = rng.choice(["straight_line", "around_point", "triangle_angles"])
-        if shape == "straight_line":
-            return _generate_straight_line(rng)
-        if shape == "around_point":
-            return _generate_around_point(rng)
-        return _generate_triangle_angles(rng)
-    shape = rng.choice(["parallel_lines", "exterior_angle", "polygon_interior"])
-    if shape == "parallel_lines":
-        return _generate_parallel_lines(rng)
-    if shape == "exterior_angle":
-        return _generate_exterior_angle(rng)
-    return _generate_polygon_interior(rng)
+TOPIC_STRAIGHT_LINE = TopicDefinition(
+    id="angles_straight_line",
+    display_name="On a Straight Line",
+    description="Find a missing angle on a straight line (angles sum to 180°).",
+    generate=generate_straight_line,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+)
 
+TOPIC_AROUND_POINT = TopicDefinition(
+    id="angles_around_point",
+    display_name="Around a Point",
+    description="Find a missing angle around a point (angles sum to 360°).",
+    generate=generate_around_point,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+)
 
-TOPIC = TopicDefinition(
-    id=TOPIC_ID,
-    display_name="Angles",
-    description="Angle facts on lines and points, triangle and polygon angle sums, and parallel-line angle rules.",
-    generate=generate,
+TOPIC_TRIANGLE = TopicDefinition(
+    id="angles_triangle",
+    display_name="In a Triangle",
+    description="Find a missing angle in a triangle (angles sum to 180°).",
+    generate=generate_triangle_angles,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+)
+
+TOPIC_PARALLEL_LINES = TopicDefinition(
+    id="angles_parallel_lines",
+    display_name="Parallel Lines",
+    description="Use corresponding, alternate, and co-interior angle facts to solve for x.",
+    generate=generate_parallel_lines,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+)
+
+TOPIC_EXTERIOR = TopicDefinition(
+    id="angles_exterior",
+    display_name="Exterior Angle",
+    description="Use the exterior angle theorem to solve for x.",
+    generate=generate_exterior_angle,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+)
+
+TOPIC_POLYGON_INTERIOR = TopicDefinition(
+    id="angles_polygon_interior",
+    display_name="Polygon Interior Angles",
+    description="Use the polygon interior angle sum formula to solve for x.",
+    generate=generate_polygon_interior,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
 )

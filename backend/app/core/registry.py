@@ -1,25 +1,94 @@
+from dataclasses import dataclass
+
 from app.core.errors import TopicNotFoundError
 from app.topics import (
     angles,
     area_perimeter,
+    decimals,
     expand_factorise,
+    fractions,
     linear_equations,
     percentages,
     probability,
     pythagoras,
     ratio,
+    standard_form,
 )
+from app.topics import statistics as statistics_topics
 from app.topics.base import TopicDefinition
 
+SECTIONS: list[tuple[str, str]] = [
+    ("number", "Number"),
+    ("algebra", "Algebra"),
+    ("ratio_proportion", "Ratio & Proportion"),
+    ("geometry", "Geometry"),
+    ("probability", "Probability"),
+    ("statistics", "Statistics"),
+]
+
 _TOPIC_LIST: list[TopicDefinition] = [
-    linear_equations.TOPIC,
-    expand_factorise.TOPIC,
-    percentages.TOPIC,
-    ratio.TOPIC,
-    area_perimeter.TOPIC,
-    angles.TOPIC,
-    pythagoras.TOPIC,
-    probability.TOPIC,
+    # Number
+    fractions.TOPIC_SIMPLIFY,
+    fractions.TOPIC_ADD_SUBTRACT,
+    fractions.TOPIC_MULTIPLY,
+    fractions.TOPIC_DIVIDE,
+    fractions.TOPIC_MIXED_NUMBER_ARITHMETIC,
+    decimals.TOPIC_ROUND_DP,
+    decimals.TOPIC_ROUND_SF,
+    decimals.TOPIC_ORDERING,
+    decimals.TOPIC_RECURRING_TO_FRACTION,
+    standard_form.TOPIC_TO_STANDARD_FORM,
+    standard_form.TOPIC_FROM_STANDARD_FORM,
+    standard_form.TOPIC_MULTIPLY_DIVIDE,
+    standard_form.TOPIC_ADD_SUBTRACT,
+    # Algebra
+    linear_equations.TOPIC_ONE_STEP,
+    linear_equations.TOPIC_TWO_STEP,
+    linear_equations.TOPIC_MULTI_STEP,
+    linear_equations.TOPIC_BOTH_SIDES,
+    linear_equations.TOPIC_BRACKETS,
+    expand_factorise.TOPIC_EXPAND_SINGLE,
+    expand_factorise.TOPIC_EXPAND_DOUBLE,
+    expand_factorise.TOPIC_FACTORISE_COMMON,
+    expand_factorise.TOPIC_FACTORISE_QUADRATIC,
+    # Ratio & Proportion
+    percentages.TOPIC_OF_AMOUNT,
+    percentages.TOPIC_CHANGE,
+    percentages.TOPIC_REVERSE,
+    percentages.TOPIC_COMPOUND,
+    ratio.TOPIC_SHARE_TWO,
+    ratio.TOPIC_FIND_SHARE,
+    ratio.TOPIC_SHARE_THREE,
+    ratio.TOPIC_COMBINE,
+    # Geometry
+    area_perimeter.TOPIC_RECTANGLE,
+    area_perimeter.TOPIC_TRIANGLE,
+    area_perimeter.TOPIC_COMPOSITE_RECTANGLES,
+    area_perimeter.TOPIC_CIRCLE,
+    area_perimeter.TOPIC_SEMICIRCLE_COMPOUND,
+    area_perimeter.TOPIC_SUBTRACT_COMPOUND,
+    angles.TOPIC_STRAIGHT_LINE,
+    angles.TOPIC_AROUND_POINT,
+    angles.TOPIC_TRIANGLE,
+    angles.TOPIC_PARALLEL_LINES,
+    angles.TOPIC_EXTERIOR,
+    angles.TOPIC_POLYGON_INTERIOR,
+    pythagoras.TOPIC_HYPOTENUSE_TRIPLE,
+    pythagoras.TOPIC_HYPOTENUSE_DECIMAL,
+    pythagoras.TOPIC_SHORTER_LEG,
+    pythagoras.TOPIC_SURD_HYPOTENUSE,
+    pythagoras.TOPIC_LADDER_CONTEXT,
+    # Probability
+    probability.TOPIC_SINGLE_EVENT,
+    probability.TOPIC_COMPLEMENT,
+    probability.TOPIC_COMBINED_DICE,
+    probability.TOPIC_CONDITIONAL,
+    # Statistics
+    statistics_topics.TOPIC_MEAN_AND_RANGE,
+    statistics_topics.TOPIC_MEDIAN_AND_MODE,
+    statistics_topics.TOPIC_MEAN_FREQUENCY_TABLE,
+    statistics_topics.TOPIC_MEAN_GROUPED_FREQUENCY_TABLE,
+    statistics_topics.TOPIC_REVERSE_MEAN,
 ]
 
 TOPICS: dict[str, TopicDefinition] = {t.id: t for t in _TOPIC_LIST}
@@ -34,3 +103,38 @@ def get_topic(topic_id: str) -> TopicDefinition:
 
 def list_topics() -> list[TopicDefinition]:
     return list(_TOPIC_LIST)
+
+
+@dataclass(frozen=True)
+class GroupNode:
+    name: str
+    topics: tuple[TopicDefinition, ...]
+
+
+@dataclass(frozen=True)
+class SectionNode:
+    id: str
+    name: str
+    groups: tuple[GroupNode, ...]
+
+
+def sections_tree() -> list[SectionNode]:
+    """Group all topics by section then by group, preserving the declared
+    order in SECTIONS and _TOPIC_LIST (not alphabetical). Sections with no
+    topics yet (e.g. Number) are still included, with an empty groups tuple.
+    """
+    nodes: list[SectionNode] = []
+    for section_id, section_name in SECTIONS:
+        section_topics = [t for t in _TOPIC_LIST if t.section == section_id]
+
+        group_order: list[str] = []
+        group_topics: dict[str, list[TopicDefinition]] = {}
+        for t in section_topics:
+            if t.group not in group_topics:
+                group_topics[t.group] = []
+                group_order.append(t.group)
+            group_topics[t.group].append(t)
+
+        groups = tuple(GroupNode(name=g, topics=tuple(group_topics[g])) for g in group_order)
+        nodes.append(SectionNode(id=section_id, name=section_name, groups=groups))
+    return nodes

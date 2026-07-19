@@ -5,12 +5,13 @@ from fractions import Fraction
 from app.core.models import Question, Tier
 from app.topics.base import TopicDefinition
 
-TOPIC_ID = "probability"
+SECTION = "probability"
+GROUP = "Probability"
 
 COLOURS = ["red", "blue", "green", "yellow", "purple"]
 
 
-def _generate_single_event(rng: random.Random) -> Question:
+def generate_single_event(tier: Tier, rng: random.Random) -> Question:
     n_colours = rng.randint(2, 4)
     colours = rng.sample(COLOURS, n_colours)
     counts = [rng.randint(2, 8) for _ in colours]
@@ -33,7 +34,7 @@ def _generate_single_event(rng: random.Random) -> Question:
         f"P({target_colour}) = {favourable}/{total} = {formula_prob.numerator}/{formula_prob.denominator}",
     ]
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="probability_single_event",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A bag contains {bag_desc} counters. A counter is picked at random. "
@@ -45,7 +46,7 @@ def _generate_single_event(rng: random.Random) -> Question:
     )
 
 
-def _generate_complement(rng: random.Random) -> Question:
+def generate_complement(tier: Tier, rng: random.Random) -> Question:
     n_colours = rng.randint(2, 4)
     colours = rng.sample(COLOURS, n_colours)
     counts = [rng.randint(2, 8) for _ in colours]
@@ -69,7 +70,7 @@ def _generate_complement(rng: random.Random) -> Question:
         f"{p_complement.numerator}/{p_complement.denominator}",
     ]
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="probability_complement",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A bag contains {bag_desc} counters. A counter is picked at random. "
@@ -81,7 +82,7 @@ def _generate_complement(rng: random.Random) -> Question:
     )
 
 
-def _generate_combined_dice(rng: random.Random) -> Question:
+def generate_combined_dice(tier: Tier, rng: random.Random) -> Question:
     event = rng.choice(["both_specific", "sum_equals", "at_least_one"])
     sample = list(itertools.product(range(1, 7), range(1, 7)))
 
@@ -126,7 +127,7 @@ def _generate_combined_dice(rng: random.Random) -> Question:
         raise ValueError(f"combined_dice verification failed for event={event}")
 
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="probability_combined_dice",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -135,7 +136,7 @@ def _generate_combined_dice(rng: random.Random) -> Question:
     )
 
 
-def _generate_conditional_without_replacement(rng: random.Random) -> Question:
+def generate_conditional_without_replacement(tier: Tier, rng: random.Random) -> Question:
     colours = rng.sample(COLOURS, 2)
     counts = [rng.randint(3, 7) for _ in colours]
     total = sum(counts)
@@ -161,7 +162,7 @@ def _generate_conditional_without_replacement(rng: random.Random) -> Question:
         f"= {formula_prob.numerator}/{formula_prob.denominator}",
     ]
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="probability_conditional",
         tier=Tier.HIGHER,
         prompt=(
             f"A bag contains {n1} {c1} and {n2} {c2} counters. Two counters are picked at random "
@@ -173,17 +174,42 @@ def _generate_conditional_without_replacement(rng: random.Random) -> Question:
     )
 
 
-def generate(tier: Tier, rng: random.Random) -> Question:
-    if tier == Tier.FOUNDATION:
-        shape = rng.choice(["single_event", "complement"])
-        return _generate_single_event(rng) if shape == "single_event" else _generate_complement(rng)
-    shape = rng.choice(["combined_dice", "conditional"])
-    return _generate_combined_dice(rng) if shape == "combined_dice" else _generate_conditional_without_replacement(rng)
+TOPIC_SINGLE_EVENT = TopicDefinition(
+    id="probability_single_event",
+    display_name="Single Event",
+    description="Find the probability of a single equally-likely outcome.",
+    generate=generate_single_event,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+)
 
+TOPIC_COMPLEMENT = TopicDefinition(
+    id="probability_complement",
+    display_name="Complement",
+    description="Use the complement rule: P(not A) = 1 - P(A).",
+    generate=generate_complement,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+)
 
-TOPIC = TopicDefinition(
-    id=TOPIC_ID,
-    display_name="Probability",
-    description="Single and combined events, the complement rule, and probability without replacement.",
-    generate=generate,
+TOPIC_COMBINED_DICE = TopicDefinition(
+    id="probability_combined_dice",
+    display_name="Combined Dice",
+    description="Find the probability of combined outcomes when rolling two dice.",
+    generate=generate_combined_dice,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+)
+
+TOPIC_CONDITIONAL = TopicDefinition(
+    id="probability_conditional",
+    display_name="Conditional (Without Replacement)",
+    description="Find the probability of picking two items of the same type without replacement.",
+    generate=generate_conditional_without_replacement,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
 )

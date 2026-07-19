@@ -1,31 +1,31 @@
 import { useEffect, useState } from 'react'
-import { fetchTopics } from '../api/client'
-import type { Topic } from '../api/types'
+import { fetchSections } from '../api/client'
+import type { Section } from '../api/types'
 
-interface UseTopicsResult {
-  topics: Topic[]
+interface UseSectionsResult {
+  sections: Section[]
   loading: boolean
   error: string | null
 }
 
-export function useTopics(): UseTopicsResult {
-  const [topics, setTopics] = useState<Topic[]>([])
+export function useSections(): UseSectionsResult {
+  const [sections, setSections] = useState<Section[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     let cancelled = false
 
-    fetchTopics()
+    fetchSections()
       .then((result) => {
         if (!cancelled) {
-          setTopics(result)
+          setSections(result)
           setLoading(false)
         }
       })
       .catch((err: unknown) => {
         if (!cancelled) {
-          setError(err instanceof Error ? err.message : 'Failed to load topics')
+          setError(err instanceof Error ? err.message : 'Failed to load sections')
           setLoading(false)
         }
       })
@@ -35,5 +35,5 @@ export function useTopics(): UseTopicsResult {
     }
   }, [])
 
-  return { topics, loading, error }
+  return { sections, loading, error }
 }

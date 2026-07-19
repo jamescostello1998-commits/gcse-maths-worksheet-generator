@@ -5,28 +5,75 @@ from app.topics import angles
 
 TRIALS = 200
 
-
-def test_foundation_generates_valid_questions():
-    rng = random.Random(50)
-    for _ in range(TRIALS):
-        q = angles.generate(Tier.FOUNDATION, rng)
-        assert q.tier == Tier.FOUNDATION
-        assert q.prompt
-        assert q.solution_steps
-        assert q.final_answer
-
-
-def test_higher_generates_valid_questions():
-    rng = random.Random(51)
-    for _ in range(TRIALS):
-        q = angles.generate(Tier.HIGHER, rng)
-        assert q.tier == Tier.HIGHER
-        assert q.prompt
-        assert q.solution_steps
-        assert q.final_answer
+GENERATORS = [
+    (angles.generate_straight_line, Tier.FOUNDATION),
+    (angles.generate_around_point, Tier.FOUNDATION),
+    (angles.generate_triangle_angles, Tier.FOUNDATION),
+    (angles.generate_parallel_lines, Tier.HIGHER),
+    (angles.generate_exterior_angle, Tier.HIGHER),
+    (angles.generate_polygon_interior, Tier.HIGHER),
+]
 
 
-def test_dedup_keys_vary():
-    rng = random.Random(52)
-    keys = {angles.generate(Tier.FOUNDATION, rng).dedup_key for _ in range(100)}
-    assert len(keys) > 50
+EXPECTED_DIAGRAM_KINDS = {
+    angles.generate_straight_line: "angle_line",
+    angles.generate_around_point: "angle_line",
+    angles.generate_triangle_angles: "triangle_angles",
+    angles.generate_parallel_lines: "parallel_lines",
+    angles.generate_exterior_angle: "exterior_triangle",
+    angles.generate_polygon_interior: "polygon",
+}
+
+
+def test_all_generators_produce_valid_questions():
+    for generate, tier in GENERATORS:
+        rng = random.Random(50)
+        for _ in range(TRIALS):
+            q = generate(tier, rng)
+            assert q.tier == tier
+            assert q.prompt
+            assert q.solution_steps
+            assert q.final_answer
+
+
+def test_all_generators_attach_a_matching_diagram():
+    for generate, tier in GENERATORS:
+        rng = random.Random(51)
+        q = generate(tier, rng)
+        assert q.diagram is not None
+        assert q.diagram.kind == EXPECTED_DIAGRAM_KINDS[generate]
+
+
+def test_straight_line_and_around_point_diagram_angles_sum_correctly():
+    rng = random.Random(53)
+    q = angles.generate_straight_line(Tier.FOUNDATION, rng)
+    assert sum(q.diagram.params["angle_values"]) == 180
+    assert q.diagram.params["around_point"] is False
+
+    q2 = angles.generate_around_point(Tier.FOUNDATION, rng)
+    assert sum(q2.diagram.params["angle_values"]) == 360
+    assert q2.diagram.params["around_point"] is True
+
+
+def test_dedup_keys_vary_per_generator():
+    for generate, tier in GENERATORS:
+        rng = random.Random(52)
+        keys = {generate(tier, rng).dedup_key for _ in range(100)}
+        assert len(keys) > 50
+
+
+def test_topic_definitions_have_expected_metadata():
+    topics = [
+        angles.TOPIC_STRAIGHT_LINE,
+        angles.TOPIC_AROUND_POINT,
+        angles.TOPIC_TRIANGLE,
+        angles.TOPIC_PARALLEL_LINES,
+        angles.TOPIC_EXTERIOR,
+        angles.TOPIC_POLYGON_INTERIOR,
+    ]
+    ids = {t.id for t in topics}
+    assert len(ids) == 6
+    for t in topics:
+        assert t.section == "geometry"
+        assert t.group == "Angles"
+        assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)

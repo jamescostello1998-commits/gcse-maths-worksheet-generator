@@ -5,25 +5,23 @@ from app.topics import expand_factorise
 
 TRIALS = 200
 
-
-def test_foundation_generates_valid_questions():
-    rng = random.Random(10)
-    for _ in range(TRIALS):
-        q = expand_factorise.generate(Tier.FOUNDATION, rng)
-        assert q.tier == Tier.FOUNDATION
-        assert q.prompt
-        assert q.solution_steps
-        assert q.final_answer
+GENERATORS = [
+    (expand_factorise.generate_expand_single, Tier.FOUNDATION),
+    (expand_factorise.generate_factorise_common, Tier.FOUNDATION),
+    (expand_factorise.generate_expand_double, Tier.HIGHER),
+    (expand_factorise.generate_factorise_quadratic, Tier.HIGHER),
+]
 
 
-def test_higher_generates_valid_questions():
-    rng = random.Random(11)
-    for _ in range(TRIALS):
-        q = expand_factorise.generate(Tier.HIGHER, rng)
-        assert q.tier == Tier.HIGHER
-        assert q.prompt
-        assert q.solution_steps
-        assert q.final_answer
+def test_all_generators_produce_valid_questions():
+    for generate, tier in GENERATORS:
+        rng = random.Random(10)
+        for _ in range(TRIALS):
+            q = generate(tier, rng)
+            assert q.tier == tier
+            assert q.prompt
+            assert q.solution_steps
+            assert q.final_answer
 
 
 def test_factorise_quadratic_pair_search_matches_roots():
@@ -32,7 +30,23 @@ def test_factorise_quadratic_pair_search_matches_roots():
     assert expand_factorise._find_factor_pair(5, 0) == (0, 5)
 
 
-def test_dedup_keys_vary():
-    rng = random.Random(12)
-    keys = {expand_factorise.generate(Tier.HIGHER, rng).dedup_key for _ in range(100)}
-    assert len(keys) > 50
+def test_dedup_keys_vary_per_generator():
+    for generate, tier in GENERATORS:
+        rng = random.Random(12)
+        keys = {generate(tier, rng).dedup_key for _ in range(100)}
+        assert len(keys) > 50
+
+
+def test_topic_definitions_have_expected_metadata():
+    topics = [
+        expand_factorise.TOPIC_EXPAND_SINGLE,
+        expand_factorise.TOPIC_EXPAND_DOUBLE,
+        expand_factorise.TOPIC_FACTORISE_COMMON,
+        expand_factorise.TOPIC_FACTORISE_QUADRATIC,
+    ]
+    ids = {t.id for t in topics}
+    assert len(ids) == 4
+    for t in topics:
+        assert t.section == "algebra"
+        assert t.group in ("Expanding Brackets", "Factorising")
+        assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)

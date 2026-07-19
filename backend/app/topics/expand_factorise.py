@@ -7,7 +7,9 @@ from app.core.models import Question, Tier
 from app.topics.algebra_utils import X, fmt_linear, fmt_num
 from app.topics.base import TopicDefinition
 
-TOPIC_ID = "expand_factorise"
+SECTION = "algebra"
+GROUP_EXPAND = "Expanding Brackets"
+GROUP_FACTORISE = "Factorising"
 
 
 def _rand_nonzero(rng: random.Random, lo: int, hi: int) -> int:
@@ -46,7 +48,7 @@ def _fmt_factor(p) -> str:
     return f"x + {p}" if p > 0 else f"x - {abs(p)}"
 
 
-def _generate_expand_single(rng: random.Random):
+def generate_expand_single(tier: Tier, rng: random.Random):
     a = _rand_nonzero(rng, -9, 9)
     b = _rand_nonzero(rng, -9, 9)
     c = rng.randint(-9, 9)
@@ -63,7 +65,7 @@ def _generate_expand_single(rng: random.Random):
         f"Combine: {fmt_linear(expanded_coeff, expanded_const)}",
     ]
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="expand_single_bracket",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -72,7 +74,7 @@ def _generate_expand_single(rng: random.Random):
     )
 
 
-def _generate_factorise_common(rng: random.Random):
+def generate_factorise_common(tier: Tier, rng: random.Random):
     k = rng.randint(2, 9)
     a = _rand_nonzero(rng, -9, 9)
     b = _rand_nonzero(rng, -9, 9)
@@ -91,7 +93,7 @@ def _generate_factorise_common(rng: random.Random):
         f"Factorise: {k}({fmt_linear(a, b)})",
     ]
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="factorise_common_factor",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -100,7 +102,7 @@ def _generate_factorise_common(rng: random.Random):
     )
 
 
-def _generate_expand_double(rng: random.Random):
+def generate_expand_double(tier: Tier, rng: random.Random):
     a = _rand_nonzero(rng, -6, 6)
     b = _rand_nonzero(rng, -6, 6)
     c = _rand_nonzero(rng, -6, 6)
@@ -125,7 +127,7 @@ def _generate_expand_double(rng: random.Random):
         f"Combine like terms: {_fmt_quadratic(qa, qb, qc)}",
     ]
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="expand_double_brackets",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -149,7 +151,7 @@ def _find_factor_pair(b: int, c: int) -> tuple[int, int]:
     raise ValueError(f"No integer factor pair found for b={b}, c={c}")
 
 
-def _generate_factorise_quadratic(rng: random.Random):
+def generate_factorise_quadratic(tier: Tier, rng: random.Random):
     r1 = _rand_nonzero(rng, -9, 9)
     r2 = _rand_nonzero(rng, -9, 9)
     b = -(r1 + r2)
@@ -167,7 +169,7 @@ def _generate_factorise_quadratic(rng: random.Random):
         f"Write as two brackets: ({_fmt_factor(p)})({_fmt_factor(q)})",
     ]
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="factorise_quadratics",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -176,22 +178,42 @@ def _generate_factorise_quadratic(rng: random.Random):
     )
 
 
-def generate(tier: Tier, rng: random.Random) -> Question:
-    if tier == Tier.FOUNDATION:
-        shape = rng.choice(["expand_single", "factorise_common"])
-        if shape == "expand_single":
-            return _generate_expand_single(rng)
-        return _generate_factorise_common(rng)
-    else:
-        shape = rng.choice(["expand_double", "factorise_quadratic"])
-        if shape == "expand_double":
-            return _generate_expand_double(rng)
-        return _generate_factorise_quadratic(rng)
+TOPIC_EXPAND_SINGLE = TopicDefinition(
+    id="expand_single_bracket",
+    display_name="Single Bracket",
+    description="Expand a single bracket, e.g. a(bx + c).",
+    generate=generate_expand_single,
+    section=SECTION,
+    group=GROUP_EXPAND,
+    fixed_tier=Tier.FOUNDATION,
+)
 
+TOPIC_EXPAND_DOUBLE = TopicDefinition(
+    id="expand_double_brackets",
+    display_name="Double Brackets",
+    description="Expand two brackets into a quadratic expression.",
+    generate=generate_expand_double,
+    section=SECTION,
+    group=GROUP_EXPAND,
+    fixed_tier=Tier.HIGHER,
+)
 
-TOPIC = TopicDefinition(
-    id=TOPIC_ID,
-    display_name="Expanding & Factorising",
-    description="Expand brackets and factorise expressions, from single brackets to quadratics.",
-    generate=generate,
+TOPIC_FACTORISE_COMMON = TopicDefinition(
+    id="factorise_common_factor",
+    display_name="Common Factor",
+    description="Factorise an expression by taking out the highest common factor.",
+    generate=generate_factorise_common,
+    section=SECTION,
+    group=GROUP_FACTORISE,
+    fixed_tier=Tier.FOUNDATION,
+)
+
+TOPIC_FACTORISE_QUADRATIC = TopicDefinition(
+    id="factorise_quadratics",
+    display_name="Quadratics",
+    description="Factorise a quadratic expression with integer roots.",
+    generate=generate_factorise_quadratic,
+    section=SECTION,
+    group=GROUP_FACTORISE,
+    fixed_tier=Tier.HIGHER,
 )

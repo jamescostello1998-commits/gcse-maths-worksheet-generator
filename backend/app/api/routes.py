@@ -1,12 +1,27 @@
 from fastapi import APIRouter, Response
 
-from app.api.schemas import GenerateWorksheetRequest, TopicSummary
+from app.api.schemas import (
+    GenerateWorksheetRequest,
+    GroupSchema,
+    SectionSchema,
+    TopicSummary,
+)
 from app.core.models import Tier
-from app.core.registry import list_topics
+from app.core.registry import list_topics, sections_tree
 from app.pdf.renderer import render_worksheet
+from app.topics.base import TopicDefinition
 from app.worksheet.builder import build_worksheet
 
 router = APIRouter()
+
+
+def _to_topic_summary(t: TopicDefinition) -> TopicSummary:
+    return TopicSummary(
+        id=t.id,
+        name=t.display_name,
+        description=t.description,
+        fixed_tier=t.fixed_tier,
+    )
 
 
 @router.get("/health")
@@ -16,9 +31,24 @@ def health() -> dict[str, str]:
 
 @router.get("/topics", response_model=list[TopicSummary])
 def get_topics() -> list[TopicSummary]:
+    return [_to_topic_summary(t) for t in list_topics()]
+
+
+@router.get("/sections", response_model=list[SectionSchema])
+def get_sections() -> list[SectionSchema]:
     return [
-        TopicSummary(id=t.id, name=t.display_name, description=t.description)
-        for t in list_topics()
+        SectionSchema(
+            id=section.id,
+            name=section.name,
+            groups=[
+                GroupSchema(
+                    name=group.name,
+                    topics=[_to_topic_summary(t) for t in group.topics],
+                )
+                for group in section.groups
+            ],
+        )
+        for section in sections_tree()
     ]
 
 

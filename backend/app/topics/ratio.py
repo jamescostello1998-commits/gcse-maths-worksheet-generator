@@ -5,14 +5,15 @@ from fractions import Fraction
 from app.core.models import Question, Tier
 from app.topics.base import TopicDefinition
 
-TOPIC_ID = "ratio"
+SECTION = "ratio_proportion"
+GROUP = "Ratio"
 
 
 def _rand_part(rng: random.Random) -> int:
     return rng.randint(1, 9)
 
 
-def _generate_share_two(rng: random.Random) -> Question:
+def generate_share_two(tier: Tier, rng: random.Random) -> Question:
     a, b = _rand_part(rng), _rand_part(rng)
     k = rng.randint(2, 20)
     total = k * (a + b)
@@ -28,7 +29,7 @@ def _generate_share_two(rng: random.Random) -> Question:
         f"Share 2 = {b} × {k} = {share_b}",
     ]
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="ratio_share_two_part",
         tier=Tier.FOUNDATION,
         prompt=f"Share {total} in the ratio {a}:{b}.",
         solution_steps=tuple(steps),
@@ -37,7 +38,7 @@ def _generate_share_two(rng: random.Random) -> Question:
     )
 
 
-def _generate_find_share(rng: random.Random) -> Question:
+def generate_find_share(tier: Tier, rng: random.Random) -> Question:
     a, b = _rand_part(rng), _rand_part(rng)
     while b == a:
         b = _rand_part(rng)
@@ -68,7 +69,7 @@ def _generate_find_share(rng: random.Random) -> Question:
         steps = base_steps + [f"Total = {share_a} + {share_b} = {share_a + share_b}"]
 
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="ratio_find_missing_share",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -77,7 +78,7 @@ def _generate_find_share(rng: random.Random) -> Question:
     )
 
 
-def _generate_share_three(rng: random.Random) -> Question:
+def generate_share_three(tier: Tier, rng: random.Random) -> Question:
     a, b, c = _rand_part(rng), _rand_part(rng), _rand_part(rng)
     k = rng.randint(2, 15)
     total = k * (a + b + c)
@@ -94,7 +95,7 @@ def _generate_share_three(rng: random.Random) -> Question:
         f"Share 3 = {c} × {k} = {share_c}",
     ]
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="ratio_share_three_part",
         tier=Tier.HIGHER,
         prompt=f"Share {total} in the ratio {a}:{b}:{c}.",
         solution_steps=tuple(steps),
@@ -103,7 +104,7 @@ def _generate_share_three(rng: random.Random) -> Question:
     )
 
 
-def _generate_combine_ratios(rng: random.Random) -> Question:
+def generate_combine_ratios(tier: Tier, rng: random.Random) -> Question:
     p, q = _rand_part(rng), _rand_part(rng)
     r, s = _rand_part(rng), _rand_part(rng)
 
@@ -127,7 +128,7 @@ def _generate_combine_ratios(rng: random.Random) -> Question:
         f"Simplify by dividing by {g}: a:b:c = {sa}:{sb}:{sc}",
     ]
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="ratio_combine",
         tier=Tier.HIGHER,
         prompt=f"Given that a:b = {p}:{q} and b:c = {r}:{s}, find a:b:c in its simplest form.",
         solution_steps=tuple(steps),
@@ -136,17 +137,42 @@ def _generate_combine_ratios(rng: random.Random) -> Question:
     )
 
 
-def generate(tier: Tier, rng: random.Random) -> Question:
-    if tier == Tier.FOUNDATION:
-        shape = rng.choice(["share_two", "find_share"])
-        return _generate_share_two(rng) if shape == "share_two" else _generate_find_share(rng)
-    shape = rng.choice(["share_three", "combine_ratios"])
-    return _generate_share_three(rng) if shape == "share_three" else _generate_combine_ratios(rng)
+TOPIC_SHARE_TWO = TopicDefinition(
+    id="ratio_share_two_part",
+    display_name="Share a Two-Part Ratio",
+    description="Share an amount between two parties in a given ratio.",
+    generate=generate_share_two,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+)
 
+TOPIC_FIND_SHARE = TopicDefinition(
+    id="ratio_find_missing_share",
+    display_name="Find a Missing Share",
+    description="Given one share and the ratio, find the other share or the total.",
+    generate=generate_find_share,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+)
 
-TOPIC = TopicDefinition(
-    id=TOPIC_ID,
-    display_name="Ratio",
-    description="Share amounts in a given ratio, find missing shares, and combine ratios.",
-    generate=generate,
+TOPIC_SHARE_THREE = TopicDefinition(
+    id="ratio_share_three_part",
+    display_name="Share a Three-Part Ratio",
+    description="Share an amount between three parties in a given ratio.",
+    generate=generate_share_three,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+)
+
+TOPIC_COMBINE = TopicDefinition(
+    id="ratio_combine",
+    display_name="Combine Ratios",
+    description="Combine two linked ratios (a:b and b:c) into a single a:b:c ratio.",
+    generate=generate_combine_ratios,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
 )

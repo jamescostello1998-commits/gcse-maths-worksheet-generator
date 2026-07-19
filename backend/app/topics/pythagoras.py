@@ -1,10 +1,11 @@
 import math
 import random
 
-from app.core.models import Question, Tier
+from app.core.models import DiagramSpec, Question, Tier
 from app.topics.base import TopicDefinition
 
-TOPIC_ID = "pythagoras"
+SECTION = "geometry"
+GROUP = "Pythagoras' Theorem"
 
 PRIMITIVE_TRIPLES = [
     (3, 4, 5),
@@ -37,7 +38,7 @@ def _fmt_surd(m: int, r: int) -> str:
     return f"{m}√{r}"
 
 
-def _generate_hypotenuse_triple(rng: random.Random) -> Question:
+def generate_hypotenuse_triple(tier: Tier, rng: random.Random) -> Question:
     a, b, c = rng.choice(PRIMITIVE_TRIPLES)
     k = rng.randint(1, 4)
     leg1, leg2, hyp = a * k, b * k, c * k
@@ -50,16 +51,20 @@ def _generate_hypotenuse_triple(rng: random.Random) -> Question:
         f"c = √{sum_sq} = {hyp}",
     ]
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="pythagoras_hypotenuse_triple",
         tier=Tier.FOUNDATION,
         prompt=f"A right-angled triangle has legs {leg1} cm and {leg2} cm. Find the length of the hypotenuse.",
         solution_steps=tuple(steps),
         final_answer=f"{hyp} cm",
         dedup_key=f"hyp_triple:{leg1}:{leg2}",
+        diagram=DiagramSpec(
+            kind="right_triangle",
+            params={"leg1_label": f"{leg1} cm", "leg2_label": f"{leg2} cm", "hyp_label": "?"},
+        ),
     )
 
 
-def _generate_hypotenuse_decimal(rng: random.Random) -> Question:
+def generate_hypotenuse_decimal(tier: Tier, rng: random.Random) -> Question:
     for _ in range(100):
         a, b = rng.randint(5, 20), rng.randint(5, 20)
         s = a * a + b * b
@@ -75,7 +80,7 @@ def _generate_hypotenuse_decimal(rng: random.Random) -> Question:
         f"c = √{s} ≈ {rounded} cm (1 d.p.)",
     ]
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="pythagoras_hypotenuse_decimal",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A right-angled triangle has legs {a} cm and {b} cm. Find the length of the "
@@ -84,10 +89,14 @@ def _generate_hypotenuse_decimal(rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=f"{rounded} cm",
         dedup_key=f"hyp_decimal:{a}:{b}",
+        diagram=DiagramSpec(
+            kind="right_triangle",
+            params={"leg1_label": f"{a} cm", "leg2_label": f"{b} cm", "hyp_label": "?"},
+        ),
     )
 
 
-def _generate_shorter_leg(rng: random.Random) -> Question:
+def generate_shorter_leg(tier: Tier, rng: random.Random) -> Question:
     a, b, c = rng.choice(PRIMITIVE_TRIPLES)
     k = rng.randint(1, 4)
     leg_known, hyp, leg_missing = a * k, c * k, b * k
@@ -100,7 +109,7 @@ def _generate_shorter_leg(rng: random.Random) -> Question:
         f"b = √{diff} = {leg_missing}",
     ]
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="pythagoras_shorter_leg",
         tier=Tier.HIGHER,
         prompt=(
             f"A right-angled triangle has hypotenuse {hyp} cm and one leg {leg_known} cm. "
@@ -109,10 +118,14 @@ def _generate_shorter_leg(rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=f"{leg_missing} cm",
         dedup_key=f"shorter_leg:{leg_known}:{hyp}",
+        diagram=DiagramSpec(
+            kind="right_triangle",
+            params={"leg1_label": f"{leg_known} cm", "leg2_label": "?", "hyp_label": f"{hyp} cm"},
+        ),
     )
 
 
-def _generate_surd_hypotenuse(rng: random.Random) -> Question:
+def generate_surd_hypotenuse(tier: Tier, rng: random.Random) -> Question:
     for _ in range(100):
         a, b = rng.randint(4, 15), rng.randint(4, 15)
         s = a * a + b * b
@@ -131,7 +144,7 @@ def _generate_surd_hypotenuse(rng: random.Random) -> Question:
         f"c = √{s} = {surd_str} cm (exact form)",
     ]
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="pythagoras_surd_hypotenuse",
         tier=Tier.HIGHER,
         prompt=(
             f"A right-angled triangle has legs {a} cm and {b} cm. Find the exact length of the "
@@ -140,10 +153,14 @@ def _generate_surd_hypotenuse(rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=f"{surd_str} cm",
         dedup_key=f"surd_hyp:{a}:{b}",
+        diagram=DiagramSpec(
+            kind="right_triangle",
+            params={"leg1_label": f"{a} cm", "leg2_label": f"{b} cm", "hyp_label": "?"},
+        ),
     )
 
 
-def _generate_ladder_context(rng: random.Random) -> Question:
+def generate_ladder_context(tier: Tier, rng: random.Random) -> Question:
     use_triple = rng.random() < 0.5
     if use_triple:
         a, b, c = rng.choice(PRIMITIVE_TRIPLES)
@@ -178,7 +195,7 @@ def _generate_ladder_context(rng: random.Random) -> Question:
         answer_str = f"{surd_str} m"
 
     return Question(
-        topic_id=TOPIC_ID,
+        topic_id="pythagoras_ladder_context",
         tier=Tier.HIGHER,
         prompt=(
             f"A ladder of length {ladder} m leans against a vertical wall with its base {base} m "
@@ -187,24 +204,59 @@ def _generate_ladder_context(rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=answer_str,
         dedup_key=f"ladder:{use_triple}:{base}:{ladder}",
+        diagram=DiagramSpec(
+            kind="right_triangle",
+            params={"leg1_label": f"{base} m", "leg2_label": "?", "hyp_label": f"{ladder} m"},
+        ),
     )
 
 
-def generate(tier: Tier, rng: random.Random) -> Question:
-    if tier == Tier.FOUNDATION:
-        shape = rng.choice(["hypotenuse_triple", "hypotenuse_decimal"])
-        return _generate_hypotenuse_triple(rng) if shape == "hypotenuse_triple" else _generate_hypotenuse_decimal(rng)
-    shape = rng.choice(["shorter_leg", "surd_hypotenuse", "ladder_context"])
-    if shape == "shorter_leg":
-        return _generate_shorter_leg(rng)
-    if shape == "surd_hypotenuse":
-        return _generate_surd_hypotenuse(rng)
-    return _generate_ladder_context(rng)
+TOPIC_HYPOTENUSE_TRIPLE = TopicDefinition(
+    id="pythagoras_hypotenuse_triple",
+    display_name="Hypotenuse (Triple)",
+    description="Find the hypotenuse of a right-angled triangle, resulting in a whole number.",
+    generate=generate_hypotenuse_triple,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+)
 
+TOPIC_HYPOTENUSE_DECIMAL = TopicDefinition(
+    id="pythagoras_hypotenuse_decimal",
+    display_name="Hypotenuse (Decimal)",
+    description="Find the hypotenuse of a right-angled triangle, rounded to 1 decimal place.",
+    generate=generate_hypotenuse_decimal,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+)
 
-TOPIC = TopicDefinition(
-    id=TOPIC_ID,
-    display_name="Pythagoras' Theorem",
-    description="Find missing sides in right-angled triangles, including exact surd answers.",
-    generate=generate,
+TOPIC_SHORTER_LEG = TopicDefinition(
+    id="pythagoras_shorter_leg",
+    display_name="Shorter Leg",
+    description="Find a missing leg given the hypotenuse and the other leg.",
+    generate=generate_shorter_leg,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+)
+
+TOPIC_SURD_HYPOTENUSE = TopicDefinition(
+    id="pythagoras_surd_hypotenuse",
+    display_name="Exact Surd Hypotenuse",
+    description="Find the hypotenuse as an exact, simplified surd.",
+    generate=generate_surd_hypotenuse,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+)
+
+TOPIC_LADDER_CONTEXT = TopicDefinition(
+    id="pythagoras_ladder_context",
+    display_name="Ladder Context",
+    description="Apply Pythagoras' theorem to a worded ladder-against-a-wall problem.",
+    generate=generate_ladder_context,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
 )

@@ -5,7 +5,7 @@ from pypdf import PdfReader
 import io
 
 from app.core.errors import PdfRenderError
-from app.core.models import Question, Tier, Worksheet
+from app.core.models import DiagramSpec, Question, Tier, Worksheet
 from app.pdf.renderer import render_worksheet
 
 
@@ -47,6 +47,30 @@ def test_contains_worked_solutions_heading_and_all_question_numbers():
     assert "Q1." in full_text
     assert "Q20" in full_text
     assert worksheet.topic_name in full_text
+
+
+def test_renders_worksheet_with_a_diagram_bearing_question():
+    diagram_question = Question(
+        topic_id="area_rectangle",
+        tier=Tier.FOUNDATION,
+        prompt="A rectangle has length 10 cm and width 6 cm. Find its area.",
+        solution_steps=("Area = length × width = 10 × 6 = 60 cm²",),
+        final_answer="60 cm²",
+        dedup_key="diagram-test",
+        diagram=DiagramSpec(
+            kind="rectangle",
+            params={"width": 10, "height": 6, "width_label": "10 cm", "height_label": "6 cm"},
+        ),
+    )
+    worksheet = Worksheet(
+        topic_id="area_rectangle",
+        topic_name="Rectangles",
+        tier=Tier.FOUNDATION,
+        questions=(diagram_question,) + tuple(_make_worksheet(19).questions),
+    )
+    pdf_bytes = render_worksheet(worksheet)
+    assert len(pdf_bytes) > 0
+    assert pdf_bytes.startswith(b"%PDF-")
 
 
 def test_pdf_render_error_wraps_unexpected_failures(monkeypatch):

@@ -12,6 +12,7 @@ from reportlab.platypus import (
 
 from app.core.errors import PdfRenderError
 from app.core.models import Question, Worksheet
+from app.pdf.diagrams import render_diagram
 from app.pdf.styles import MARGIN, RULE, build_styles
 
 
@@ -20,9 +21,12 @@ def _escape(text: str) -> str:
 
 
 def _question_block(number: int, question: Question, styles: dict) -> KeepTogether:
-    return KeepTogether(
-        [Paragraph(f"<b>Q{number}.</b> {_escape(question.prompt)}", styles["QuestionText"])]
-    )
+    elements = [Paragraph(f"<b>Q{number}.</b> {_escape(question.prompt)}", styles["QuestionText"])]
+    if question.diagram is not None:
+        elements.append(Spacer(1, 4))
+        elements.append(render_diagram(question.diagram))
+        elements.append(Spacer(1, 6))
+    return KeepTogether(elements)
 
 
 def _solution_block(number: int, question: Question, styles: dict) -> KeepTogether:

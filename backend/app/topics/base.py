@@ -1,5 +1,5 @@
 import random
-from typing import Callable, NamedTuple
+from typing import Callable, NamedTuple, Optional
 
 from app.core.models import Question, Tier
 
@@ -11,3 +11,6 @@ class TopicDefinition(NamedTuple):
     display_name: str
     description: str
     generate: GenerateFn
+    section: str
+    group: str
+    fixed_tier: Optional[Tier] = None

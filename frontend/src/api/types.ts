@@ -4,6 +4,18 @@ export interface Topic {
   id: string
   name: string
   description: string
+  fixedTier: Tier | null
+}
+
+export interface Group {
+  name: string
+  topics: Topic[]
+}
+
+export interface Section {
+  id: string
+  name: string
+  groups: Group[]
 }
 
 export class ApiError extends Error {

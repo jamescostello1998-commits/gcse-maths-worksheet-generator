@@ -1,40 +1,46 @@
 import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { TopicSearch } from './TopicSearch'
+import type { Section } from '../api/types'
 
-const topics = [
-  { id: 'percentages', name: 'Percentages', description: 'desc1' },
-  { id: 'ratio', name: 'Ratio', description: 'desc2' },
+const sections: Section[] = [
+  {
+    id: 'ratio_proportion',
+    name: 'Ratio & Proportion',
+    groups: [
+      {
+        name: 'Percentages',
+        topics: [
+          { id: 'percentage_of_amount', name: 'Percentage of an Amount', description: 'desc1', fixedTier: 'foundation' },
+        ],
+      },
+      {
+        name: 'Ratio',
+        topics: [
+          { id: 'ratio_share_two_part', name: 'Share a Two-Part Ratio', description: 'desc2', fixedTier: 'foundation' },
+        ],
+      },
+    ],
+  },
 ]
 
 describe('TopicSearch', () => {
-  it('renders all topics by default', () => {
-    render(<TopicSearch topics={topics} selectedTopicId={null} onSelect={vi.fn()} />)
-    expect(screen.getByText('Percentages')).toBeInTheDocument()
-    expect(screen.getByText('Ratio')).toBeInTheDocument()
+  it('shows all topics with breadcrumbs when query is empty', () => {
+    render(<TopicSearch sections={sections} query="" />)
+    expect(screen.getByText('Percentage of an Amount')).toBeInTheDocument()
+    expect(screen.getByText('Share a Two-Part Ratio')).toBeInTheDocument()
+    expect(screen.getByText('Ratio & Proportion › Percentages')).toBeInTheDocument()
+    expect(screen.getByText('Ratio & Proportion › Ratio')).toBeInTheDocument()
   })
 
-  it('filters topics by search query', async () => {
-    const user = userEvent.setup()
-    render(<TopicSearch topics={topics} selectedTopicId={null} onSelect={vi.fn()} />)
-    await user.type(screen.getByLabelText('Search for a topic'), 'perce')
-    expect(screen.getByText('Percentages')).toBeInTheDocument()
-    expect(screen.queryByText('Ratio')).not.toBeInTheDocument()
+  it('filters topics by query', () => {
+    render(<TopicSearch sections={sections} query="percentage" />)
+    expect(screen.getByText('Percentage of an Amount')).toBeInTheDocument()
+    expect(screen.queryByText('Share a Two-Part Ratio')).not.toBeInTheDocument()
   })
 
-  it('calls onSelect when a topic is clicked', async () => {
-    const user = userEvent.setup()
-    const onSelect = vi.fn()
-    render(<TopicSearch topics={topics} selectedTopicId={null} onSelect={onSelect} />)
-    await user.click(screen.getByText('Ratio'))
-    expect(onSelect).toHaveBeenCalledWith('ratio')
-  })
-
-  it('shows an empty state when nothing matches', async () => {
-    const user = userEvent.setup()
-    render(<TopicSearch topics={topics} selectedTopicId={null} onSelect={vi.fn()} />)
-    await user.type(screen.getByLabelText('Search for a topic'), 'zzz')
+  it('shows an empty state when nothing matches', () => {
+    render(<TopicSearch sections={sections} query="zzz" />)
     expect(screen.getByText(/No topics match/)).toBeInTheDocument()
   })
 })

@@ -4,54 +4,64 @@ import sympy as sp
 
 from app.core.models import Tier
 from app.topics import linear_equations
-from app.topics.algebra_utils import X
 
 TRIALS = 200
 
-
-def test_foundation_generates_valid_verified_questions():
-    rng = random.Random(1)
-    for _ in range(TRIALS):
-        q = linear_equations.generate(Tier.FOUNDATION, rng)
-        assert q.topic_id == "linear_equations"
-        assert q.tier == Tier.FOUNDATION
-        assert q.prompt
-        assert len(q.solution_steps) >= 2
-        assert q.final_answer
+GENERATORS = [
+    (linear_equations.generate_one_step, Tier.FOUNDATION),
+    (linear_equations.generate_two_step, Tier.FOUNDATION),
+    (linear_equations.generate_multi_step, Tier.FOUNDATION),
+    (linear_equations.generate_both_sides, Tier.HIGHER),
+    (linear_equations.generate_brackets, Tier.HIGHER),
+]
 
 
-def test_higher_generates_valid_verified_questions():
-    rng = random.Random(2)
-    for _ in range(TRIALS):
-        q = linear_equations.generate(Tier.HIGHER, rng)
-        assert q.topic_id == "linear_equations"
-        assert q.tier == Tier.HIGHER
-        assert q.prompt
-        assert len(q.solution_steps) >= 2
-        assert q.final_answer
+def test_all_generators_produce_valid_verified_questions():
+    for generate, tier in GENERATORS:
+        rng = random.Random(1)
+        for _ in range(TRIALS):
+            q = generate(tier, rng)
+            assert q.tier == tier
+            assert q.prompt
+            assert len(q.solution_steps) >= 2
+            assert q.final_answer
 
 
-def test_final_answer_matches_sympy_solve_independently():
-    # Independent check: re-parse the prompt-free structural info isn't available,
-    # so instead we regenerate many samples and verify the *reported* answer
-    # actually solves an equation with the same shape via a fresh sympy solve.
+def test_final_answer_always_parses_as_rational():
     rng = random.Random(3)
-    for _ in range(TRIALS):
-        q = linear_equations.generate(Tier.HIGHER, rng)
-        # final_answer is a string like "-7" or "5/2"; must parse cleanly as a sympy Rational
-        parsed = sp.Rational(q.final_answer) if "/" in q.final_answer else sp.Integer(q.final_answer)
-        assert parsed.is_rational
+    for generate, tier in GENERATORS:
+        for _ in range(TRIALS):
+            q = generate(tier, rng)
+            parsed = sp.Rational(q.final_answer) if "/" in q.final_answer else sp.Integer(q.final_answer)
+            assert parsed.is_rational
 
 
-def test_dedup_keys_vary_across_many_generations():
-    rng = random.Random(4)
-    keys = {linear_equations.generate(Tier.FOUNDATION, rng).dedup_key for _ in range(100)}
-    # With a large parameter space, 100 draws should produce many distinct keys
-    assert len(keys) > 50
+def test_dedup_keys_vary_per_generator():
+    for generate, tier in GENERATORS:
+        rng = random.Random(4)
+        keys = {generate(tier, rng).dedup_key for _ in range(100)}
+        assert len(keys) > 50
 
 
-def test_foundation_never_produces_negative_coefficient():
+def test_foundation_generators_never_produce_negative_coefficient():
     rng = random.Random(5)
-    for _ in range(TRIALS):
-        q = linear_equations.generate(Tier.FOUNDATION, rng)
-        assert "-" not in q.prompt.split("=")[0]
+    for generate in (linear_equations.generate_one_step, linear_equations.generate_two_step):
+        for _ in range(TRIALS):
+            q = generate(Tier.FOUNDATION, rng)
+            assert "-" not in q.prompt.split("=")[0]
+
+
+def test_topic_definitions_have_expected_metadata():
+    topics = [
+        linear_equations.TOPIC_ONE_STEP,
+        linear_equations.TOPIC_TWO_STEP,
+        linear_equations.TOPIC_MULTI_STEP,
+        linear_equations.TOPIC_BOTH_SIDES,
+        linear_equations.TOPIC_BRACKETS,
+    ]
+    ids = {t.id for t in topics}
+    assert len(ids) == 5
+    for t in topics:
+        assert t.section == "algebra"
+        assert t.group == "Solving Linear Equations"
+        assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)

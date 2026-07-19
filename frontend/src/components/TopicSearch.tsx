@@ -1,50 +1,47 @@
-import { useMemo, useState } from 'react'
-import type { Topic } from '../api/types'
+import { useMemo } from 'react'
+import type { Section, Topic } from '../api/types'
+import { TopicCard } from './TopicCard'
 
 interface TopicSearchProps {
-  topics: Topic[]
-  selectedTopicId: string | null
-  onSelect: (topicId: string) => void
+  sections: Section[]
+  query: string
 }
 
-export function TopicSearch({ topics, selectedTopicId, onSelect }: TopicSearchProps) {
-  const [query, setQuery] = useState('')
+interface FlatResult {
+  topic: Topic
+  breadcrumb: string
+}
+
+export function TopicSearch({ sections, query }: TopicSearchProps) {
+  const allResults = useMemo<FlatResult[]>(() => {
+    const results: FlatResult[] = []
+    for (const section of sections) {
+      for (const group of section.groups) {
+        for (const topic of group.topics) {
+          results.push({ topic, breadcrumb: `${section.name} › ${group.name}` })
+        }
+      }
+    }
+    return results
+  }, [sections])
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
-    if (!q) return topics
-    return topics.filter((topic) => topic.name.toLowerCase().includes(q))
-  }, [topics, query])
+    if (!q) return allResults
+    return allResults.filter((r) => r.topic.name.toLowerCase().includes(q))
+  }, [allResults, query])
 
   return (
-    <div className="topic-search">
-      <input
-        type="text"
-        className="topic-search__input"
-        placeholder="Search for a topic..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        aria-label="Search for a topic"
-      />
-      <ul className="topic-search__list">
-        {filtered.map((topic) => (
-          <li key={topic.id}>
-            <button
-              type="button"
-              className={
-                topic.id === selectedTopicId
-                  ? 'topic-search__item topic-search__item--selected'
-                  : 'topic-search__item'
-              }
-              onClick={() => onSelect(topic.id)}
-            >
-              <span className="topic-search__item-name">{topic.name}</span>
-              <span className="topic-search__item-description">{topic.description}</span>
-            </button>
-          </li>
-        ))}
-        {filtered.length === 0 && <li className="topic-search__empty">No topics match "{query}"</li>}
-      </ul>
+    <div className="topic-search-results">
+      {filtered.map(({ topic, breadcrumb }) => (
+        <div key={topic.id} className="topic-search-results__item">
+          <p className="topic-search-results__breadcrumb">{breadcrumb}</p>
+          <TopicCard topic={topic} />
+        </div>
+      ))}
+      {filtered.length === 0 && (
+        <p className="topic-search-results__empty">No topics match &quot;{query}&quot;</p>
+      )}
     </div>
   )
 }

@@ -1,53 +1,47 @@
 import { useState } from 'react'
 import { ErrorBanner } from './components/ErrorBanner'
-import { GenerateButton } from './components/GenerateButton'
-import { TierToggle } from './components/TierToggle'
+import { HomeScreen } from './components/HomeScreen'
+import { SectionView } from './components/SectionView'
 import { TopicSearch } from './components/TopicSearch'
-import { useGenerateWorksheet } from './hooks/useGenerateWorksheet'
-import { useTopics } from './hooks/useTopics'
-import type { Tier } from './api/types'
+import { useSections } from './hooks/useSections'
 import './App.css'
 
 function App() {
-  const { topics, loading: topicsLoading, error: topicsError } = useTopics()
-  const [selectedTopicId, setSelectedTopicId] = useState<string | null>(null)
-  const [tier, setTier] = useState<Tier>('foundation')
-  const { status, error: generateError, generate } = useGenerateWorksheet()
+  const { sections, loading, error } = useSections()
+  const [selectedSectionId, setSelectedSectionId] = useState<string | null>(null)
+  const [query, setQuery] = useState('')
 
-  const selectedTopic = topics.find((t) => t.id === selectedTopicId) ?? null
+  const selectedSection = sections.find((s) => s.id === selectedSectionId) ?? null
+  const isSearching = query.trim().length > 0
 
   return (
     <div className="page">
       <header className="page__header">
         <h1>GCSE Maths Worksheet Generator</h1>
         <p className="page__subtitle">
-          Search for a topic, choose a tier, and download a 20-question worksheet with worked solutions.
+          Browse by topic, or search directly, then download a 20-question worksheet with worked solutions.
         </p>
       </header>
 
-      <ErrorBanner message={topicsError ?? generateError} />
+      <input
+        type="text"
+        className="page__search"
+        placeholder="Search for a topic..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        aria-label="Search for a topic"
+      />
 
-      {topicsLoading ? (
+      <ErrorBanner message={error} />
+
+      {loading ? (
         <p className="page__loading">Loading topics…</p>
+      ) : isSearching ? (
+        <TopicSearch sections={sections} query={query} />
+      ) : selectedSection ? (
+        <SectionView section={selectedSection} onBack={() => setSelectedSectionId(null)} />
       ) : (
-        <>
-          <TopicSearch topics={topics} selectedTopicId={selectedTopicId} onSelect={setSelectedTopicId} />
-
-          <div className="page__controls">
-            <TierToggle tier={tier} onChange={setTier} />
-            <GenerateButton
-              disabled={!selectedTopic}
-              loading={status === 'loading'}
-              onClick={() => selectedTopic && generate(selectedTopic.id, tier)}
-            />
-          </div>
-
-          {selectedTopic && (
-            <p className="page__selection">
-              Selected: <strong>{selectedTopic.name}</strong> ({tier === 'foundation' ? 'Foundation' : 'Higher'})
-            </p>
-          )}
-        </>
+        <HomeScreen sections={sections} onSelectSection={setSelectedSectionId} />
       )}
     </div>
   )
