@@ -1,0 +1,155 @@
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+}
+
+.page__header h1 {
+  font-size: 28px;
+  margin: 0 0 8px;
+}
+
+.page__subtitle {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin: 0 0 32px;
+  line-height: 1.5;
+}
+
+.page__loading {
+  color: var(--text-muted);
+}
+
+.page__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.page__selection {
+  margin-top: 16px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.error-banner {
+  background: var(--error-bg);
+  color: var(--error-text);
+  border: 1px solid var(--error-border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+/* Topic search */
+
+.topic-search__input {
+  width: 100%;
+  font-size: 15px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.topic-search__input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.topic-search__list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.topic-search__item {
+  width: 100%;
+  text-align: left;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.topic-search__item:hover {
+  border-color: var(--accent);
+}
+
+.topic-search__item--selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.topic-search__item-name {
+  font-weight: 600;
+  color: var(--text-heading);
+  font-size: 14.5px;
+}
+
+.topic-search__item-description {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.topic-search__empty {
+  color: var(--text-muted);
+  font-size: 14px;
+  padding: 8px 2px;
+}
+
+/* Tier toggle */
+
+.tier-toggle {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tier-toggle__option {
+  padding: 10px 18px;
+  font-size: 14px;
+  border: none;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.tier-toggle__option--active {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+/* Generate button */
+
+.generate-button {
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  cursor: pointer;
+}
+
+.generate-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
