@@ -14,3 +14,4 @@ class TopicDefinition(NamedTuple):
     section: str
     group: str
     fixed_tier: Optional[Tier] = None
+    question_count: Optional[int] = None

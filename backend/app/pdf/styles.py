@@ -7,6 +7,8 @@ INK = colors.HexColor("#1a1a1a")
 MUTED = colors.HexColor("#6b6b6b")
 ACCENT = colors.HexColor("#2f6f4f")
 RULE = colors.HexColor("#dddddd")
+GRID = colors.HexColor("#dcdcdc")
+HIGHLIGHT = colors.HexColor("#fdf0d5")
 
 MARGIN = 22 * mm
 

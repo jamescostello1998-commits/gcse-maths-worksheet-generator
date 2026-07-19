@@ -38,6 +38,10 @@ def _solution_block(number: int, question: Question, styles: dict) -> KeepTogeth
     elements = [Paragraph(f"Q{number}", styles["SolutionHeading"])]
     for step in question.solution_steps:
         elements.append(Paragraph(_fmt(step), styles["SolutionStep"]))
+    if question.solution_diagram is not None:
+        elements.append(Spacer(1, 4))
+        elements.append(render_diagram(question.solution_diagram))
+        elements.append(Spacer(1, 4))
     elements.append(Paragraph(f"Answer: {_fmt(question.final_answer)}", styles["FinalAnswer"]))
     return KeepTogether(elements)
 

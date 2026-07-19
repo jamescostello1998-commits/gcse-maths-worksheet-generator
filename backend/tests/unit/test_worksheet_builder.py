@@ -16,16 +16,17 @@ def test_happy_path_produces_20_distinct_questions():
     assert worksheet.tier == Tier.FOUNDATION
 
 
-def test_all_topics_produce_20_distinct_questions_at_their_fixed_tier():
+def test_all_topics_produce_their_full_distinct_question_count_at_their_fixed_tier():
     from app.core.registry import list_topics
 
     topics = list_topics()
-    assert len(topics) == 89
+    assert len(topics) == 108
     for topic in topics:
         tier = topic.fixed_tier or Tier.FOUNDATION
-        worksheet = builder.build_worksheet(topic.id, tier, rng=random.Random(42))
-        assert len(worksheet.questions) == 20, f"{topic.id}/{tier} failed to produce 20 questions"
-        assert len({q.dedup_key for q in worksheet.questions}) == 20
+        count = topic.question_count or 20
+        worksheet = builder.build_worksheet(topic.id, tier, count=count, rng=random.Random(42))
+        assert len(worksheet.questions) == count, f"{topic.id}/{tier} failed to produce {count} questions"
+        assert len({q.dedup_key for q in worksheet.questions}) == count
 
 
 def test_unknown_topic_raises_topic_not_found():

@@ -7,10 +7,10 @@ from app.api.schemas import (
     TopicSummary,
 )
 from app.core.models import Tier
-from app.core.registry import list_topics, sections_tree
+from app.core.registry import get_topic, list_topics, sections_tree
 from app.pdf.renderer import render_worksheet
 from app.topics.base import TopicDefinition
-from app.worksheet.builder import build_worksheet
+from app.worksheet.builder import DEFAULT_COUNT, build_worksheet
 
 router = APIRouter()
 
@@ -55,7 +55,8 @@ def get_sections() -> list[SectionSchema]:
 @router.post("/worksheets")
 def create_worksheet(payload: GenerateWorksheetRequest) -> Response:
     tier = Tier(payload.tier.value)
-    worksheet = build_worksheet(payload.topic_id, tier)
+    topic = get_topic(payload.topic_id)
+    worksheet = build_worksheet(payload.topic_id, tier, count=topic.question_count or DEFAULT_COUNT)
     pdf_bytes = render_worksheet(worksheet)
     filename = f"{payload.topic_id}-{tier.value}-worksheet.pdf"
     return Response(

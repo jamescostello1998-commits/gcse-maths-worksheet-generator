@@ -28,6 +28,7 @@ class Question:
     final_answer: str
     dedup_key: str
     diagram: Optional[DiagramSpec] = None
+    solution_diagram: Optional[DiagramSpec] = None
 
 
 @dataclass(frozen=True)

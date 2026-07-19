@@ -12,21 +12,51 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Current state (as of this session)
 
-**89 topics across 6 sections**, all procedurally generated with independent
+**108 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.).
-Full backend suite: **114/114 passing**. Frontend suite: **23/23 passing**
+Full backend suite: **142/142 passing**. Frontend suite: **23/23 passing**
 (unaffected this session).
 
 | Section | Groups | Topics |
 |---|---|---|
 | Number | Fractions, Decimals, Standard Form, Estimation & Bounds | 16 |
-| Algebra | Solving Linear Equations, Expanding Brackets, Factorising, Completing the Square, Turning Point of a Graph, Functions, Simultaneous Equations, Sequences | 27 |
+| Algebra | Solving Linear Equations, Expanding Brackets, Factorising, Completing the Square, Turning Point of a Graph, Functions, Simultaneous Equations, Sequences, Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 38 |
 | Ratio & Proportion | Percentages, Ratio | 8 |
 | Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems | 29 |
-| Probability | Probability | 4 |
+| Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams | 12 |
 | Statistics | Averages from a List, Frequency Tables, Working Backwards | 5 |
+
+**Per-topic question count**: `TopicDefinition.question_count` (default `None` = 20,
+via `worksheet.builder.DEFAULT_COUNT`) lets a topic override the usual 20-question
+worksheet — used by the 5 "Plotting Graphs" topics and `tree_diagram_drawing` (all
+`question_count=5`, since a worksheet of 20 near-identical "plot this graph"/"draw
+this tree" questions isn't useful). `routes.py`'s `create_worksheet` reads
+`topic.question_count or DEFAULT_COUNT` when calling `build_worksheet`.
+
+**Two-diagram questions**: `Question.solution_diagram` (alongside the original
+`Question.diagram`) lets a question show a *different* diagram on the worked-solution
+page than on the question page — `renderer.py`'s `_solution_block` renders it if
+present. Used by every "plot this graph" topic (blank gridded axes on the question,
+the same axes with the curve/line plotted on the solution) and `tree_diagram_drawing`
+(no diagram at all on the question — the student draws it — full tree on the
+solution).
+
+**To-scale gridded graphs vs schematic diagrams**: `diagrams.py` now has two families.
+The original family (`draw_parabola`, `draw_linear_graph_pair`, `draw_general_triangle`,
+etc.) is deliberately schematic/"not to scale", for questions where the numbers are
+given in the text. The new `_draw_scaled_axes` helper (used by `draw_function_graph`
+and `draw_piecewise_graph`) draws real gridded, numbered axes and returns an
+`(x, y) -> pixel` transform, for questions where the student must *read exact values
+off the graph* (e.g. `line_equation_from_graph`) or *plot exact points onto it* (the
+Plotting Graphs group) — get the scale wrong here and the maths becomes unreadable,
+so these are never "not to scale". `draw_function_graph` takes `kind` ∈
+`linear`/`quadratic`/`cubic`/`reciprocal` plus a `blank: bool` flag (blank axes only,
+vs. axes + curve) so one renderer covers both the question and solution diagram of
+every plotting topic. `draw_piecewise_graph` is the same idea for distance-time/
+velocity-time graphs (a straight-line-segment polyline through explicit `points`,
+axis-labelled e.g. "Time (minutes)"/"Distance (km)").
 
 Every Geometry topic and a handful of Algebra topics (parabola for turning point,
 line-pair for simultaneous-graphically) render an actual ReportLab-drawn figure
@@ -78,6 +108,23 @@ fine as literal Unicode — only `⁻` specifically is the problem.)
    (4 sub-topics) — plus 2 new diagram kinds (parabola, line pair). Found and fixed the
    `⁻` glyph bug (see Gotcha above) during visual verification; it also affected two
    topics from step 6 (cosine rule, trig missing angle). (89 topics)
+8. Added an Algebra "Graphs" cluster (11 topics: 5 plotting topics — straight line,
+   quadratic, cubic, reciprocal, distance-time, each fixed at 5 questions per
+   worksheet with blank gridded axes always provided on the question page — plus
+   equation-of-a-line-from-a-graph, parallel lines, perpendicular lines, interpreting
+   distance-time graphs, interpreting velocity-time graphs, and transformations of
+   graphs) and a Probability cluster (8 topics: tree diagrams — independent,
+   dependent, and a 5-question "drawing" variant — plus set notation, product rule
+   for counting, relative frequency, two-way tables, and sample space diagrams).
+   Introduced `TopicDefinition.question_count` (per-topic worksheet-size override,
+   for the 5-question topics) and `Question.solution_diagram` (a second diagram
+   shown only on the worked-solution page, for "plot the graph"/"draw the tree"
+   questions where the question page must show blank axes / no diagram and the
+   *solution* shows the completed figure). Built a new to-scale gridded-axes
+   diagram engine (`_draw_scaled_axes`, `draw_function_graph`, `draw_piecewise_graph`)
+   alongside the existing schematic one, plus `draw_graph_transformation`,
+   `draw_tree_diagram`, `draw_two_way_table`, and `draw_sample_space_diagram`.
+   (108 topics)
 
 Everything above is committed and pushed (see `git log`).
 
@@ -249,8 +296,10 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
   `geometric_vectors` (only 9 ratio pairs → capped at 9 unique questions) and was
   fixed by widening the ratio list to 19 and adding a second "target vector" axis of
   variation (57 total combinations). When adding a topic with a bounded/curated choice
-  set, sanity-check `len({distinct dedup_keys}) >> 20` before considering it done —
-  `test_all_topics_produce_20_distinct_questions_at_their_fixed_tier` in
+  set, sanity-check `len({distinct dedup_keys}) >> 20` (or `>> question_count` for a
+  topic with a smaller override, e.g. the 5-question Plotting Graphs topics just need
+  `>> 5`) before considering it done —
+  `test_all_topics_produce_their_full_distinct_question_count_at_their_fixed_tier` in
   `test_worksheet_builder.py` will catch it, but better to catch it while writing the
   generator (a quick 300-trial loop counting `set()` size, as used throughout this
   session, works fine as a manual check).
@@ -269,10 +318,12 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
 - Extend `mathtext.py`/`diagrams.py` italics beyond `x` to other single-letter
   variables (`n` in sequences, `a`/`b` in vectors) for full standard-typesetting
   consistency — noted above as a reasonable but currently out-of-scope enhancement.
-- Diagrams for Probability (dice/spinner/bag illustrations) — explicitly out of scope
-  so far (user asked for Geometry diagrams specifically, then later Algebra graphs).
-- Adjustable question count (currently fixed at 20), answer-only PDF mode, saved
-  worksheet history, mixed-topic revision papers, user accounts.
+- Dice/spinner/bag *illustrations* (actual pictures of a die or spinner, as opposed to
+  the tree/table/sample-space diagrams added this session) are still out of scope.
+- User-facing adjustable question count (the backend now supports a per-topic fixed
+  override via `question_count`, but there's no UI control for the user to pick their
+  own count), answer-only PDF mode, saved worksheet history, mixed-topic revision
+  papers, user accounts.
 - Deploying this somewhere instead of local-only dev servers.
 
 Don't start any of these without checking with the user first — this list is just

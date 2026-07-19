@@ -50,10 +50,76 @@ SAMPLE_SPECS = [
     ),
     DiagramSpec(kind="polygon", params={"n_sides": 6, "marked_angle_label": "x"}),
     DiagramSpec(kind="right_triangle", params={"leg1_label": "6 cm", "leg2_label": "8 cm", "hyp_label": "x"}),
+    DiagramSpec(
+        kind="function_graph",
+        params={"kind": "linear", "m": 2, "c": -1, "x_min": -4, "x_max": 4, "y_min": -6, "y_max": 8, "blank": True},
+    ),
+    DiagramSpec(
+        kind="function_graph",
+        params={
+            "kind": "quadratic", "a": 1, "b": 0, "c": -4,
+            "x_min": -4, "x_max": 4, "y_min": -5, "y_max": 13,
+            "table_points": [(-3, 5), (0, -4), (3, 5)],
+        },
+    ),
+    DiagramSpec(
+        kind="function_graph",
+        params={"kind": "cubic", "a": 1, "b": -3, "x_min": -3, "x_max": 3, "y_min": -10, "y_max": 10},
+    ),
+    DiagramSpec(
+        kind="function_graph",
+        params={
+            "kind": "reciprocal", "a": 12,
+            "x_min": -4, "x_max": 4, "y_min": -13, "y_max": 13,
+            "table_points": [(1, 12), (4, 3), (-4, -3)],
+        },
+    ),
+    DiagramSpec(
+        kind="piecewise_graph",
+        params={
+            "points": [(0, 0), (20, 5), (30, 5), (50, 0)],
+            "x_max": 50, "y_max": 6, "x_label": "Time (min)", "y_label": "Distance (km)",
+        },
+    ),
+    DiagramSpec(
+        kind="graph_transformation",
+        params={"transform": "translate_up", "shift": 3, "original_label": "y = f(x)", "transformed_label": "y = f(x) + 3"},
+    ),
+    DiagramSpec(
+        kind="tree_diagram",
+        params={
+            "stage1": [("Red", "2/5"), ("Blue", "3/5")],
+            "stage2": [[("Red", "1/4"), ("Blue", "3/4")], [("Red", "2/4"), ("Blue", "2/4")]],
+            "leaf_probs": [["2/20", "6/20"], ["6/20", "6/20"]],
+        },
+    ),
+    DiagramSpec(
+        kind="two_way_table",
+        params={
+            "row_labels": ["Boys", "Girls", "Total"],
+            "col_labels": ["Football", "Tennis", "Total"],
+            "cells": [["12", "8", "20"], ["5", "15", "20"], ["17", "23", "40"]],
+        },
+    ),
+    DiagramSpec(
+        kind="sample_space_diagram",
+        params={
+            "row_values": [1, 2, 3, 4, 5, 6], "col_values": [1, 2, 3, 4, 5, 6],
+            "cells": [[str(r + c) for c in range(1, 7)] for r in range(1, 7)],
+            "highlight": [[0, 5]],
+        },
+    ),
 ]
 
 
-@pytest.mark.parametrize("spec", SAMPLE_SPECS, ids=lambda s: f"{s.kind}:{s.params.get('notch') or s.params.get('relation') or s.params.get('around_point') or ''}")
+@pytest.mark.parametrize(
+    "spec",
+    SAMPLE_SPECS,
+    ids=lambda s: (
+        f"{s.kind}:{s.params.get('kind') or s.params.get('notch') or s.params.get('relation') or ''}"
+        f"{s.params.get('around_point') or s.params.get('transform') or ''}"
+    ),
+)
 def test_render_diagram_produces_valid_drawing(spec):
     drawing = render_diagram(spec)
     assert isinstance(drawing, Drawing)

@@ -12,11 +12,11 @@ def test_health():
     assert response.json() == {"status": "ok"}
 
 
-def test_topics_returns_all_89_topics():
+def test_topics_returns_all_108_topics():
     response = client.get("/api/topics")
     assert response.status_code == 200
     data = response.json()
-    assert len(data) == 89
+    assert len(data) == 108
     for topic in data:
         assert set(topic.keys()) == {"id", "name", "description", "fixed_tier"}
 
@@ -38,7 +38,7 @@ def test_sections_returns_six_sections_in_declared_order():
     assert len(number_section["groups"]) == 4
 
     total_topics = sum(len(g["topics"]) for s in data for g in s["groups"])
-    assert total_topics == 89
+    assert total_topics == 108
 
 
 def test_valid_worksheet_request_returns_pdf():
@@ -49,6 +49,14 @@ def test_valid_worksheet_request_returns_pdf():
     assert response.headers["content-type"] == "application/pdf"
     assert response.content.startswith(b"%PDF-")
     assert "reverse_percentage-higher-worksheet.pdf" in response.headers["content-disposition"]
+
+
+def test_worksheet_request_respects_per_topic_question_count():
+    response = client.post(
+        "/api/worksheets", json={"topic_id": "plot_straight_line", "tier": "foundation"}
+    )
+    assert response.status_code == 200
+    assert response.content.startswith(b"%PDF-")
 
 
 def test_invalid_topic_returns_404():

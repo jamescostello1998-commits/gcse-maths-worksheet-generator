@@ -14,7 +14,7 @@ from reportlab.graphics.shapes import Circle, Drawing, Group, Line, PolyLine, Po
 from reportlab.pdfbase.pdfmetrics import stringWidth
 
 from app.core.models import DiagramSpec
-from app.pdf.styles import INK, MUTED
+from app.pdf.styles import ACCENT, GRID, HIGHLIGHT, INK, MUTED
 
 DIAGRAM_WIDTH = 200
 DIAGRAM_HEIGHT = 130
@@ -466,6 +466,321 @@ def draw_linear_graph_pair(params: dict) -> Drawing:
     return d
 
 
+GRAPH_WIDTH = 230
+GRAPH_HEIGHT = 175
+
+_GRAPH_MARGIN_L = 26
+_GRAPH_MARGIN_R = 10
+_GRAPH_MARGIN_T = 10
+_GRAPH_MARGIN_B = 22
+
+
+def _nice_tick_step(lo: float, hi: float) -> float:
+    span = hi - lo
+    if span <= 10:
+        return 1
+    if span <= 20:
+        return 2
+    if span <= 50:
+        return 5
+    return 10
+
+
+def _draw_scaled_axes(
+    d: Drawing, x_min: float, x_max: float, y_min: float, y_max: float,
+    x_axis_label: str = "x", y_axis_label: str = "y",
+) -> Callable[[float, float], tuple[float, float]]:
+    """Draw a real-scale, gridded, numbered pair of axes into `d` and return
+    the (x, y) -> (pixel_x, pixel_y) transform so callers can plot points/
+    curves on the same scale."""
+    plot_w = d.width - _GRAPH_MARGIN_L - _GRAPH_MARGIN_R
+    plot_h = d.height - _GRAPH_MARGIN_T - _GRAPH_MARGIN_B
+
+    def to_px(x: float, y: float) -> tuple[float, float]:
+        px = _GRAPH_MARGIN_L + (x - x_min) / (x_max - x_min) * plot_w
+        py = _GRAPH_MARGIN_B + (y - y_min) / (y_max - y_min) * plot_h
+        return px, py
+
+    # Fine unit gridlines.
+    x = math.ceil(x_min)
+    while x <= x_max + 1e-9:
+        px, y0 = to_px(x, y_min)
+        _, y1 = to_px(x, y_max)
+        d.add(Line(px, y0, px, y1, strokeColor=GRID, strokeWidth=0.4))
+        x += 1
+    y = math.ceil(y_min)
+    while y <= y_max + 1e-9:
+        x0, py = to_px(x_min, y)
+        x1, _ = to_px(x_max, y)
+        d.add(Line(x0, py, x1, py, strokeColor=GRID, strokeWidth=0.4))
+        y += 1
+
+    # Bold axis lines through 0 (or the nearest edge, if 0 is out of range).
+    axis_x0 = 0 if x_min <= 0 <= x_max else x_min
+    axis_y0 = 0 if y_min <= 0 <= y_max else y_min
+    ax0, ay0 = to_px(x_min, axis_y0)
+    ax1, _ = to_px(x_max, axis_y0)
+    d.add(Line(ax0, ay0, ax1, ay0, strokeColor=INK, strokeWidth=1.1))
+    bx0, by0 = to_px(axis_x0, y_min)
+    _, by1 = to_px(axis_x0, y_max)
+    d.add(Line(bx0, by0, bx0, by1, strokeColor=INK, strokeWidth=1.1))
+
+    # Numbered ticks, spaced out to avoid clutter on wide ranges.
+    x_step = _nice_tick_step(x_min, x_max)
+    xt = math.ceil(x_min / x_step) * x_step
+    while xt <= x_max + 1e-9:
+        if abs(xt) > 1e-9:
+            px, py = to_px(xt, axis_y0)
+            d.add(_label(px, py - 9, str(int(xt)), size=6.5))
+        xt += x_step
+    y_step = _nice_tick_step(y_min, y_max)
+    yt = math.ceil(y_min / y_step) * y_step
+    while yt <= y_max + 1e-9:
+        if abs(yt) > 1e-9:
+            px, py = to_px(axis_x0, yt)
+            d.add(_label(px - 6, py - 2, str(int(yt)), anchor="end", size=6.5))
+        yt += y_step
+
+    d.add(_label(ax1 + 4, ay0 - 2, x_axis_label, anchor="start", size=8))
+    d.add(_label(bx0 - 4, by1 + 6, y_axis_label, anchor="end", size=8))
+    return to_px
+
+
+def _fn_value(kind: str, x: float, params: dict) -> float:
+    if kind == "linear":
+        return params["m"] * x + params["c"]
+    if kind == "quadratic":
+        return params["a"] * x**2 + params["b"] * x + params["c"]
+    if kind == "cubic":
+        return params["a"] * x**3 + params["b"] * x
+    if kind == "reciprocal":
+        return params["a"] / x
+    raise ValueError(f"unknown function graph kind: {kind!r}")
+
+
+def draw_function_graph(params: dict) -> Drawing:
+    """A real-scale, gridded plot of a linear/quadratic/cubic/reciprocal
+    function. If params['blank'] is True, only the axes are drawn (used for
+    the question page of a 'plot this graph' question, so the axes are
+    always provided); otherwise the curve (and any table_points) are drawn
+    too (used for that same question's worked solution, or as the stimulus
+    diagram for a 'read this graph' question)."""
+    d = Drawing(GRAPH_WIDTH, GRAPH_HEIGHT)
+    kind = params["kind"]
+    x_min, x_max = params["x_min"], params["x_max"]
+    y_min, y_max = params["y_min"], params["y_max"]
+    to_px = _draw_scaled_axes(d, x_min, x_max, y_min, y_max, params.get("x_label", "x"), params.get("y_label", "y"))
+
+    if not params.get("blank", False):
+        if kind == "reciprocal":
+            gap = 0.2
+            branches = [(x_min, -gap), (gap, x_max)] if x_min < 0 < x_max else [(x_min, x_max)]
+        else:
+            branches = [(x_min, x_max)]
+
+        for lo, hi in branches:
+            n = 40
+            pts: list[float] = []
+            for i in range(n + 1):
+                x = lo + (hi - lo) * i / n
+                y = max(min(_fn_value(kind, x, params), y_max), y_min)
+                px, py = to_px(x, y)
+                pts.extend([px, py])
+            d.add(PolyLine(pts, strokeColor=INK, strokeWidth=1.3))
+
+        for tx, ty in params.get("table_points", []):
+            px, py = to_px(tx, ty)
+            d.add(Circle(px, py, 2, strokeColor=INK, fillColor=INK))
+
+    return d
+
+
+def draw_piecewise_graph(params: dict) -> Drawing:
+    """A real-scale, gridded time-series graph (distance-time / velocity-time)
+    made of straight segments through params['points'] (a list of (time,
+    value) pairs starting at t=0). Blank axes only if params['blank']."""
+    d = Drawing(GRAPH_WIDTH, GRAPH_HEIGHT)
+    x_max, y_max = params["x_max"], params["y_max"]
+    to_px = _draw_scaled_axes(d, 0, x_max, 0, y_max, params.get("x_label", "Time"), params.get("y_label", "Value"))
+
+    if not params.get("blank", False):
+        pts: list[float] = []
+        for t, v in params["points"]:
+            px, py = to_px(t, v)
+            pts.extend([px, py])
+        d.add(PolyLine(pts, strokeColor=INK, strokeWidth=1.3))
+        for t, v in params["points"]:
+            px, py = to_px(t, v)
+            d.add(Circle(px, py, 1.8, strokeColor=INK, fillColor=INK))
+
+    return d
+
+
+_TRANSFORM_BASE_SHAPE = [(-3, 3), (-2, 0.5), (-1, -1), (0, -1.5), (1, -1), (2, 0.5), (3, 3)]
+
+
+def _apply_transform(kind: str, shift: float, pt: tuple[float, float]) -> tuple[float, float]:
+    x, y = pt
+    if kind == "translate_up":
+        return (x, y + shift)
+    if kind == "translate_down":
+        return (x, y - shift)
+    if kind == "translate_left":
+        return (x - shift, y)
+    if kind == "translate_right":
+        return (x + shift, y)
+    if kind == "reflect_x":
+        return (x, -y)
+    if kind == "reflect_y":
+        return (-x, y)
+    raise ValueError(f"unknown graph transform: {kind!r}")
+
+
+def draw_graph_transformation(params: dict) -> Drawing:
+    """A schematic (not to scale) generic curve y = f(x), dashed, alongside
+    its transformed image, solid, on the same axes."""
+    d = Drawing(GRAPH_WIDTH, GRAPH_HEIGHT)
+    x_min, x_max, y_min, y_max = -6, 6, -6, 8
+    to_px = _draw_scaled_axes(d, x_min, x_max, y_min, y_max)
+
+    def clamp(pt: tuple[float, float]) -> tuple[float, float]:
+        x, y = pt
+        return (max(min(x, x_max), x_min), max(min(y, y_max), y_min))
+
+    orig_pts: list[float] = []
+    for pt in _TRANSFORM_BASE_SHAPE:
+        px, py = to_px(*clamp(pt))
+        orig_pts.extend([px, py])
+    d.add(PolyLine(orig_pts, strokeColor=MUTED, strokeWidth=1.1, strokeDashArray=[3, 2]))
+
+    trans_pts: list[float] = []
+    for pt in _TRANSFORM_BASE_SHAPE:
+        tpt = _apply_transform(params["transform"], params.get("shift", 0), pt)
+        px, py = to_px(*clamp(tpt))
+        trans_pts.extend([px, py])
+    d.add(PolyLine(trans_pts, strokeColor=INK, strokeWidth=1.3))
+
+    d.add(_label(8, GRAPH_HEIGHT - 10, params.get("original_label", "y = f(x)"), anchor="start", color=MUTED, size=7))
+    d.add(_label(8, GRAPH_HEIGHT - 20, params.get("transformed_label", ""), anchor="start", color=INK, size=7))
+    _not_to_scale(d, x=GRAPH_WIDTH / 2, y=6)
+    return d
+
+
+def draw_tree_diagram(params: dict) -> Drawing:
+    """A two-stage probability tree. stage1 = [(label, prob_str), ...];
+    stage2 = one list of (label, prob_str) branches per stage1 node;
+    leaf_probs (optional) = matching nested list of combined-outcome
+    probability strings shown at each leaf."""
+    stage1: list[tuple[str, str]] = params["stage1"]
+    stage2: list[list[tuple[str, str]]] = params["stage2"]
+    leaf_probs: list[list[str]] | None = params.get("leaf_probs")
+
+    branch_counts = [len(b) for b in stage2]
+    total_leaves = sum(branch_counts)
+    width = 260
+    height = max(120, total_leaves * 24 + 16)
+    d = Drawing(width, height)
+
+    root_x, root_y = 12.0, height / 2
+    x1 = width * 0.32
+    x2 = width * 0.62
+    x3 = width * 0.86
+
+    leaf_ys: list[list[float]] = []
+    cursor = 8.0
+    for count in branch_counts:
+        ys = [cursor + i * 22 + 11 for i in range(count)]
+        leaf_ys.append(ys)
+        cursor += count * 22 + 8
+
+    node1_ys = [sum(ys) / len(ys) for ys in leaf_ys]
+
+    for i, ((label1, prob1), y1) in enumerate(zip(stage1, node1_ys)):
+        d.add(Line(root_x, root_y, x1, y1, strokeColor=INK, strokeWidth=1.1))
+        d.add(_label((root_x + x1) / 2, (root_y + y1) / 2 + 6, prob1, size=7))
+        d.add(_label(x1 + 4, y1 + 3, label1, anchor="start", size=7.5))
+
+        for j, ((label2, prob2), y2) in enumerate(zip(stage2[i], leaf_ys[i])):
+            d.add(Line(x1, y1, x2, y2, strokeColor=INK, strokeWidth=1.1))
+            d.add(_label((x1 + x2) / 2, (y1 + y2) / 2 + 6, prob2, size=7))
+            d.add(_label(x2 + 4, y2 + 3, label2, anchor="start", size=7.5))
+            if leaf_probs is not None:
+                d.add(Line(x2, y2, x3, y2, strokeColor=MUTED, strokeWidth=0.5, strokeDashArray=[2, 2]))
+                d.add(_label(x3 + 4, y2 + 3, leaf_probs[i][j], anchor="start", color=ACCENT, size=7))
+
+    d.add(Circle(root_x, root_y, 1.8, strokeColor=INK, fillColor=INK))
+    return d
+
+
+def draw_two_way_table(params: dict) -> Drawing:
+    """A grid table with row_labels down the side and col_labels across the
+    top (typically including a trailing 'Total' row/column), filled with
+    params['cells'] (a row_labels x col_labels 2D list of strings; blank
+    entries render as empty cells for a 'complete the table' question)."""
+    row_labels: list[str] = params["row_labels"]
+    col_labels: list[str] = params["col_labels"]
+    cells: list[list[str]] = params["cells"]
+
+    header_w, cell_w, cell_h = 66, 44, 22
+    n_rows, n_cols = len(row_labels), len(col_labels)
+    width = header_w + cell_w * n_cols
+    height = cell_h * (n_rows + 1)
+    d = Drawing(width, height)
+
+    top_y = height - cell_h
+    d.add(Rect(0, top_y, header_w, cell_h, strokeColor=INK, fillColor=None, strokeWidth=0.8))
+    for j, col_label in enumerate(col_labels):
+        x0 = header_w + j * cell_w
+        d.add(Rect(x0, top_y, cell_w, cell_h, strokeColor=INK, fillColor=None, strokeWidth=0.8))
+        d.add(_label(x0 + cell_w / 2, top_y + cell_h / 2 - 3, col_label, size=7.5))
+
+    for i, row_label in enumerate(row_labels):
+        y0 = top_y - cell_h * (i + 1)
+        d.add(Rect(0, y0, header_w, cell_h, strokeColor=INK, fillColor=None, strokeWidth=0.8))
+        d.add(_label(header_w / 2, y0 + cell_h / 2 - 3, row_label, size=7.5))
+        for j in range(n_cols):
+            x0 = header_w + j * cell_w
+            d.add(Rect(x0, y0, cell_w, cell_h, strokeColor=INK, fillColor=None, strokeWidth=0.8))
+            d.add(_label(x0 + cell_w / 2, y0 + cell_h / 2 - 3, str(cells[i][j]), size=8))
+
+    return d
+
+
+def draw_sample_space_diagram(params: dict) -> Drawing:
+    """A grid of row_values x col_values (e.g. two dice), filled with
+    params['cells'] outcome text; params['highlight'] is an optional list of
+    [row_index, col_index] pairs to shade (the favourable outcomes)."""
+    row_values: list = params["row_values"]
+    col_values: list = params["col_values"]
+    cells: list[list[str]] = params["cells"]
+    highlight = {tuple(p) for p in params.get("highlight", [])}
+
+    header, cell = 24, 22
+    n_rows, n_cols = len(row_values), len(col_values)
+    width = header + cell * n_cols
+    height = header + cell * n_rows
+    d = Drawing(width, height)
+
+    top_y = height - header
+    d.add(Rect(0, top_y, header, header, strokeColor=INK, fillColor=None, strokeWidth=0.8))
+    for j, cv in enumerate(col_values):
+        x0 = header + j * cell
+        d.add(Rect(x0, top_y, cell, header, strokeColor=INK, fillColor=None, strokeWidth=0.8))
+        d.add(_label(x0 + cell / 2, top_y + header / 2 - 3, str(cv), size=7.5))
+
+    for i, rv in enumerate(row_values):
+        y0 = top_y - cell * (i + 1)
+        d.add(Rect(0, y0, header, cell, strokeColor=INK, fillColor=None, strokeWidth=0.8))
+        d.add(_label(header / 2, y0 + cell / 2 - 3, str(rv), size=7.5))
+        for j in range(n_cols):
+            x0 = header + j * cell
+            fill = HIGHLIGHT if (i, j) in highlight else None
+            d.add(Rect(x0, y0, cell, cell, strokeColor=INK, fillColor=fill, strokeWidth=0.6))
+            d.add(_label(x0 + cell / 2, y0 + cell / 2 - 3, str(cells[i][j]), size=7.5))
+
+    return d
+
+
 _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "rectangle": draw_rectangle,
     "triangle_area": draw_triangle_area,
@@ -487,6 +802,12 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "circle_two_tangents": draw_circle_two_tangents,
     "parabola": draw_parabola,
     "linear_graph_pair": draw_linear_graph_pair,
+    "function_graph": draw_function_graph,
+    "piecewise_graph": draw_piecewise_graph,
+    "graph_transformation": draw_graph_transformation,
+    "tree_diagram": draw_tree_diagram,
+    "two_way_table": draw_two_way_table,
+    "sample_space_diagram": draw_sample_space_diagram,
 }
 
 
