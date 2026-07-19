@@ -5,6 +5,7 @@ from app.topics import (
     angles,
     area_perimeter,
     decimals,
+    estimation,
     expand_factorise,
     fractions,
     linear_equations,
@@ -41,6 +42,9 @@ _TOPIC_LIST: list[TopicDefinition] = [
     standard_form.TOPIC_FROM_STANDARD_FORM,
     standard_form.TOPIC_MULTIPLY_DIVIDE,
     standard_form.TOPIC_ADD_SUBTRACT,
+    estimation.TOPIC_ESTIMATION,
+    estimation.TOPIC_ERROR_INTERVAL,
+    estimation.TOPIC_BOUNDS,
     # Algebra
     linear_equations.TOPIC_ONE_STEP,
     linear_equations.TOPIC_TWO_STEP,

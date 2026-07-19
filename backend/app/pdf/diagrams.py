@@ -9,7 +9,8 @@ a `DiagramSpec` (see app/core/models.py) to the matching renderer.
 import math
 from typing import Callable
 
-from reportlab.graphics.shapes import Circle, Drawing, Line, Polygon, Rect, String, Wedge
+from reportlab.graphics.shapes import Circle, Drawing, Group, Line, Polygon, Rect, String, Wedge
+from reportlab.pdfbase.pdfmetrics import stringWidth
 
 from app.core.models import DiagramSpec
 from app.pdf.styles import INK, MUTED
@@ -18,10 +19,44 @@ DIAGRAM_WIDTH = 200
 DIAGRAM_HEIGHT = 130
 
 _LABEL_SIZE = 9
+_LABEL_FONT = "Helvetica"
+_LABEL_FONT_ITALIC = "Helvetica-Oblique"
 
 
-def _label(x: float, y: float, text: str, anchor: str = "middle", color=INK, size: int = _LABEL_SIZE) -> String:
-    return String(x, y, str(text), textAnchor=anchor, fontSize=size, fillColor=color, fontName="Helvetica")
+def _math_runs(text: str) -> list[tuple[str, str]]:
+    """Split label text into (substring, fontName) runs, italicising the
+    algebraic variable x so diagram labels match standard maths typesetting
+    (mirrors app/pdf/mathtext.py's handling of Paragraph text)."""
+    runs: list[tuple[str, str]] = []
+    buf = ""
+    for ch in text:
+        if ch == "x":
+            if buf:
+                runs.append((buf, _LABEL_FONT))
+                buf = ""
+            runs.append((ch, _LABEL_FONT_ITALIC))
+        else:
+            buf += ch
+    if buf:
+        runs.append((buf, _LABEL_FONT))
+    return runs
+
+
+def _label(x: float, y: float, text: str, anchor: str = "middle", color=INK, size: int = _LABEL_SIZE) -> Group:
+    runs = _math_runs(str(text))
+    total_width = sum(stringWidth(t, font, size) for t, font in runs)
+    if anchor == "middle":
+        cursor = x - total_width / 2
+    elif anchor == "end":
+        cursor = x - total_width
+    else:
+        cursor = x
+
+    group = Group()
+    for t, font in runs:
+        group.add(String(cursor, y, t, textAnchor="start", fontSize=size, fillColor=color, fontName=font))
+        cursor += stringWidth(t, font, size)
+    return group
 
 
 def draw_rectangle(params: dict) -> Drawing:
