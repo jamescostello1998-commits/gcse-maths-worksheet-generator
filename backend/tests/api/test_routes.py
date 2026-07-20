@@ -84,7 +84,16 @@ def test_modelled_example_request_returns_pdf_for_pilot_topic():
     assert "linear_two_step-foundation-modelled-example.pdf" in response.headers["content-disposition"]
 
 
-def test_modelled_example_request_returns_404_for_topic_without_one():
+def test_modelled_example_request_returns_404_for_topic_without_one(monkeypatch):
+    # Every real topic now has a modelled example, so this exercises the 404 branch
+    # in routes.py via a stand-in topic rather than relying on real data for it.
+    import app.api.routes as routes_module
+    from app.core.registry import get_topic
+
+    real_topic = get_topic("linear_one_step")
+    topic_without_example = real_topic._replace(generate_modelled_example=None)
+    monkeypatch.setattr(routes_module, "get_topic", lambda topic_id: topic_without_example)
+
     response = client.post(
         "/api/modelled-examples", json={"topic_id": "linear_one_step", "tier": "foundation"}
     )
