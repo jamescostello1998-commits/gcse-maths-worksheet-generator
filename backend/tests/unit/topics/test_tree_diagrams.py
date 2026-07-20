@@ -64,3 +64,49 @@ def test_topic_definitions_have_expected_metadata():
     assert tree_diagrams.TOPIC_TREE_DRAWING.question_count == 5
     assert tree_diagrams.TOPIC_TREE_INDEPENDENT.question_count is None
     assert tree_diagrams.TOPIC_TREE_DEPENDENT.question_count is None
+
+
+def test_modelled_example_topics_are_wired_up():
+    for t in (
+        tree_diagrams.TOPIC_TREE_INDEPENDENT,
+        tree_diagrams.TOPIC_TREE_DEPENDENT,
+        tree_diagrams.TOPIC_TREE_DRAWING,
+    ):
+        assert t.generate_modelled_example is not None
+
+
+def test_modelled_example_tree_diagram_independent_produces_verified_examples():
+    rng = random.Random(340)
+    for _ in range(TRIALS):
+        example = tree_diagrams.generate_modelled_example_tree_diagram_independent(Tier.FOUNDATION, rng)
+        assert example.topic_id == "tree_diagram_independent"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+        assert example.diagram is not None and example.diagram.kind == "tree_diagram"
+
+
+def test_modelled_example_tree_diagram_dependent_produces_verified_examples():
+    rng = random.Random(341)
+    for _ in range(TRIALS):
+        example = tree_diagrams.generate_modelled_example_tree_diagram_dependent(Tier.HIGHER, rng)
+        assert example.topic_id == "tree_diagram_dependent"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+        assert example.diagram is not None and example.diagram.kind == "tree_diagram"
+        assert "leaf_probs" in example.diagram.params
+
+
+def test_modelled_example_tree_diagram_drawing_produces_verified_examples():
+    rng = random.Random(342)
+    for _ in range(TRIALS):
+        example = tree_diagrams.generate_modelled_example_tree_diagram_drawing(Tier.FOUNDATION, rng)
+        assert example.topic_id == "tree_diagram_drawing"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+        assert example.diagram is not None and example.diagram.kind == "tree_diagram"

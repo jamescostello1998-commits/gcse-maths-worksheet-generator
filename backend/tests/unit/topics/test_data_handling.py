@@ -82,3 +82,71 @@ def test_topic_definitions_have_expected_metadata():
     assert data_handling.TOPIC_RELATIVE_FREQUENCY.group == "Tables and Diagrams"
     assert data_handling.TOPIC_TWO_WAY_TABLES.group == "Tables and Diagrams"
     assert data_handling.TOPIC_SAMPLE_SPACE_DIAGRAMS.group == "Tables and Diagrams"
+
+
+def test_modelled_example_topics_are_wired_up():
+    for t in (
+        data_handling.TOPIC_SET_NOTATION,
+        data_handling.TOPIC_PRODUCT_RULE_COUNTING,
+        data_handling.TOPIC_RELATIVE_FREQUENCY,
+        data_handling.TOPIC_TWO_WAY_TABLES,
+        data_handling.TOPIC_SAMPLE_SPACE_DIAGRAMS,
+    ):
+        assert t.generate_modelled_example is not None
+
+
+def test_modelled_example_set_notation_produces_verified_examples():
+    rng = random.Random(440)
+    for _ in range(TRIALS):
+        example = data_handling.generate_modelled_example_set_notation(Tier.HIGHER, rng)
+        assert example.topic_id == "set_notation"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+
+
+def test_modelled_example_product_rule_counting_produces_verified_examples():
+    rng = random.Random(441)
+    for _ in range(TRIALS):
+        example = data_handling.generate_modelled_example_product_rule_counting(Tier.HIGHER, rng)
+        assert example.topic_id == "product_rule_counting"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+
+
+def test_modelled_example_relative_frequency_produces_verified_examples():
+    rng = random.Random(442)
+    for _ in range(TRIALS):
+        example = data_handling.generate_modelled_example_relative_frequency(Tier.FOUNDATION, rng)
+        assert example.topic_id == "relative_frequency"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+
+
+def test_modelled_example_two_way_tables_produces_verified_examples():
+    rng = random.Random(443)
+    for _ in range(TRIALS):
+        example = data_handling.generate_modelled_example_two_way_tables(Tier.FOUNDATION, rng)
+        assert example.topic_id == "two_way_tables"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+        assert example.diagram is not None and example.diagram.kind == "two_way_table"
+
+
+def test_modelled_example_sample_space_diagrams_produces_verified_examples():
+    rng = random.Random(444)
+    for _ in range(TRIALS):
+        example = data_handling.generate_modelled_example_sample_space_diagrams(Tier.FOUNDATION, rng)
+        assert example.topic_id == "sample_space_diagrams"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+        assert example.diagram is not None and example.diagram.kind == "sample_space_diagram"
