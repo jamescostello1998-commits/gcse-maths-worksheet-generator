@@ -271,7 +271,11 @@ def generate_parallel_lines(tier: Tier, rng: random.Random) -> Question:
         dedup_key=f"parallel_lines:{fact}:{known}:{coeff}:{const}",
         diagram=DiagramSpec(
             kind="parallel_lines",
-            params={"known_label": f"{known}°", "unknown_label": "x", "relation": fact},
+            params={
+                "known_label": f"{known}°",
+                "unknown_label": f"({fmt_linear(coeff, const)})°",
+                "relation": fact,
+            },
         ),
     )
 
@@ -330,7 +334,11 @@ def generate_modelled_example_parallel_lines(tier: Tier, rng: random.Random) -> 
         final_answer=str(solution),
         diagram=DiagramSpec(
             kind="parallel_lines",
-            params={"known_label": f"{known}°", "unknown_label": "x", "relation": fact},
+            params={
+                "known_label": f"{known}°",
+                "unknown_label": f"({fmt_linear(coeff, const)})°",
+                "relation": fact,
+            },
         ),
     )
 

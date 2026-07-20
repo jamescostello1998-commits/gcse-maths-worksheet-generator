@@ -156,7 +156,7 @@ def draw_l_shape(params: dict) -> Drawing:
 
     d.add(_label(x0 + ow_s / 2, y0 - 14, params["outer_labels"][0]))
     d.add(_label(x0 - 10, y0 + oh_s / 2, params["outer_labels"][1], anchor="end"))
-    inner_text = f"{params['inner_labels'][0]} x {params['inner_labels'][1]}"
+    inner_text = f"{params['inner_labels'][0]} × {params['inner_labels'][1]}"
     d.add(_label(x0 + ow_s / 2, y0 + oh_s + 12, inner_text, color=MUTED, size=8))
     return d
 
@@ -183,8 +183,8 @@ def draw_rectangle_semicircle(params: dict) -> Drawing:
 
     d.add(Rect(x0, y0, rw, rh, strokeColor=INK, fillColor=None, strokeWidth=1.2))
     d.add(Wedge(x0 + rw / 2, y0 + rh, rr, 0, 180, strokeColor=INK, fillColor=None, strokeWidth=1.2))
-    d.add(_label(x0 + rw / 2, y0 - 14, params["width"]))
-    d.add(_label(x0 - 10, y0 + rh / 2, params["height"], anchor="end"))
+    d.add(_label(x0 + rw / 2, y0 - 14, params["width_label"]))
+    d.add(_label(x0 - 10, y0 + rh / 2, params["height_label"], anchor="end"))
     return d
 
 
@@ -271,8 +271,14 @@ def draw_parallel_lines(params: dict) -> Drawing:
     (kx, ky), (ux2, uy2) = offsets[params["relation"]]
     d.add(_sector_arc_for_label(ix_top, y_top, ray_angles, kx, ky, radius=10))
     d.add(_sector_arc_for_label(ix_bottom, y_bottom, ray_angles, ux2, uy2, radius=10))
-    d.add(_label(ix_top + kx, y_top + ky, params["known_label"], anchor="start", size=8))
-    d.add(_label(ix_bottom + ux2, y_bottom + uy2, params["unknown_label"], anchor="start", size=8))
+    # Anchor away from the vertex based on which side of it the label sits, so a
+    # wide algebraic label (e.g. "(5x + 39)°") grows further from the transversal
+    # instead of extending back across it - a fixed anchor="start" only worked
+    # while every label was as short as "x".
+    known_anchor = "start" if kx >= 0 else "end"
+    unknown_anchor = "start" if ux2 >= 0 else "end"
+    d.add(_label(ix_top + kx, y_top + ky, params["known_label"], anchor=known_anchor, size=8))
+    d.add(_label(ix_bottom + ux2, y_bottom + uy2, params["unknown_label"], anchor=unknown_anchor, size=8))
     return d
 
 

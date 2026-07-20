@@ -220,7 +220,7 @@ def generate_composite_rectangles(tier: Tier, rng: random.Random) -> Question:
                 "outer_w": outer_w, "outer_h": outer_h, "inner_w": inner_w, "inner_h": inner_h,
                 "notch": "corner",
                 "outer_labels": [f"{outer_w} cm", f"{outer_h} cm"],
-                "inner_labels": [inner_w, inner_h],
+                "inner_labels": [f"{inner_w} cm", f"{inner_h} cm"],
             },
         ),
     )
@@ -281,7 +281,7 @@ def generate_modelled_example_composite_rectangles(tier: Tier, rng: random.Rando
                 "outer_w": outer_w, "outer_h": outer_h, "inner_w": inner_w, "inner_h": inner_h,
                 "notch": "corner",
                 "outer_labels": [f"{outer_w} cm", f"{outer_h} cm"],
-                "inner_labels": [inner_w, inner_h],
+                "inner_labels": [f"{inner_w} cm", f"{inner_h} cm"],
             },
         ),
     )
@@ -503,7 +503,13 @@ def generate_semicircle_compound(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=f"≈ {approx_total} cm²",
         dedup_key=f"semicircle_compound:{width}:{height}",
-        diagram=DiagramSpec(kind="rectangle_semicircle", params={"width": width, "height": height, "radius": radius}),
+        diagram=DiagramSpec(
+            kind="rectangle_semicircle",
+            params={
+                "width": width, "height": height, "radius": radius,
+                "width_label": f"{width} cm", "height_label": f"{height} cm",
+            },
+        ),
     )
 
 
@@ -555,7 +561,13 @@ def generate_modelled_example_semicircle_compound(tier: Tier, rng: random.Random
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"≈ {approx_total} cm²",
-        diagram=DiagramSpec(kind="rectangle_semicircle", params={"width": width, "height": height, "radius": radius}),
+        diagram=DiagramSpec(
+            kind="rectangle_semicircle",
+            params={
+                "width": width, "height": height, "radius": radius,
+                "width_label": f"{width} cm", "height_label": f"{height} cm",
+            },
+        ),
     )
 
 
@@ -595,7 +607,7 @@ def generate_subtract_compound(tier: Tier, rng: random.Random) -> Question:
                 "outer_w": outer_w, "outer_h": outer_h, "inner_w": inner_w, "inner_h": inner_h,
                 "notch": "center",
                 "outer_labels": [f"{outer_w} cm", f"{outer_h} cm"],
-                "inner_labels": [inner_w, inner_h],
+                "inner_labels": [f"{inner_w} cm", f"{inner_h} cm"],
             },
         ),
     )
@@ -657,7 +669,7 @@ def generate_modelled_example_subtract_compound(tier: Tier, rng: random.Random) 
                 "outer_w": outer_w, "outer_h": outer_h, "inner_w": inner_w, "inner_h": inner_h,
                 "notch": "center",
                 "outer_labels": [f"{outer_w} cm", f"{outer_h} cm"],
-                "inner_labels": [inner_w, inner_h],
+                "inner_labels": [f"{inner_w} cm", f"{inner_h} cm"],
             },
         ),
     )

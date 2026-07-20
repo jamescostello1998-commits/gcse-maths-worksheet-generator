@@ -22,7 +22,10 @@ SAMPLE_SPECS = [
         },
     ),
     DiagramSpec(kind="circle", params={"radius": 7, "label": "7 cm"}),
-    DiagramSpec(kind="rectangle_semicircle", params={"width": 10, "height": 8, "radius": 5}),
+    DiagramSpec(
+        kind="rectangle_semicircle",
+        params={"width": 10, "height": 8, "radius": 5, "width_label": "10 cm", "height_label": "8 cm"},
+    ),
     DiagramSpec(
         kind="angle_line",
         params={"angle_values": [60, 70, 50], "labels": ["60°", "70°", "x"], "around_point": False},
