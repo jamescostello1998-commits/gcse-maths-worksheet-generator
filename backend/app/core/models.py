@@ -34,13 +34,17 @@ class Question:
 @dataclass(frozen=True)
 class ModelledExample:
     """A single, richly-narrated worked example for the 'modelled example'
-    teaching page - as opposed to Question.solution_steps, which are terse
-    and calculation-only, `teaching_steps` are meant to be read like a
-    teacher talking through the reasoning, one idea per line."""
+    teaching page. `worked_calculation` is the terse line-by-line numeric
+    working - shown boxed at the top of the page, right under the prompt, so
+    the student can see the calculation in full before reading about it.
+    `teaching_steps` are the prose explanation that follows underneath: read
+    like a teacher talking through the reasoning, one idea per line, rather
+    than just restating the numbers."""
 
     topic_id: str
     tier: Tier
     prompt: str
+    worked_calculation: tuple[str, ...]
     teaching_steps: tuple[str, ...]
     final_answer: str
     diagram: Optional[DiagramSpec] = None

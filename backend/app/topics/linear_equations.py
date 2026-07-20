@@ -78,10 +78,16 @@ def generate_modelled_example_two_step(tier: Tier, rng: random.Random) -> Modell
         f"Check by substituting x = {sol} back into the original equation: "
         f"{a}×({sol}) + {b} = {a * sol} + {b} = {c}. That matches the right-hand side, so x = {sol} is correct.",
     ]
+    worked_calculation = [
+        f"{fmt_linear(a, b)} = {c}",
+        f"{fmt_linear(a, 0)} = {c - b}",
+        f"x = {sol}",
+    ]
     return ModelledExample(
         topic_id="linear_two_step",
         tier=Tier.FOUNDATION,
         prompt=f"Solve: {fmt_linear(a, b)} = {fmt_num(c)}",
+        worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=fmt_num(sol),
     )

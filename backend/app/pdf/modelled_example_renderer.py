@@ -17,13 +17,17 @@ from reportlab.platypus import (
     Paragraph,
     SimpleDocTemplate,
     Spacer,
+    Table,
+    TableStyle,
 )
 
 from app.core.errors import PdfRenderError
 from app.core.models import ModelledExample, Question, Tier
 from app.pdf.diagrams import render_diagram
 from app.pdf.mathtext import to_markup
-from app.pdf.styles import MARGIN, RULE, build_styles
+from app.pdf.styles import ACCENT, HIGHLIGHT, MARGIN, RULE, build_styles
+
+_PAGE_WIDTH = A4[0] - 2 * MARGIN
 
 _FADE_BLANK = "_" * 46
 _ANSWER_BLANK = "_" * 22
@@ -54,6 +58,25 @@ def _steps_shown_count(index: int, n_steps: int) -> int:
     return 0
 
 
+def _worked_calculation_box(lines: tuple[str, ...], styles: dict) -> Table:
+    cell = [Paragraph(_fmt(line), styles["WorkedCalcLine"]) for line in lines]
+    box = Table([[cell]], colWidths=[_PAGE_WIDTH])
+    box.setStyle(
+        TableStyle(
+            [
+                ("BACKGROUND", (0, 0), (-1, -1), HIGHLIGHT),
+                ("BOX", (0, 0), (-1, -1), 0.75, ACCENT),
+                ("TOPPADDING", (0, 0), (-1, -1), 12),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 12),
+                ("LEFTPADDING", (0, 0), (-1, -1), 16),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 16),
+                ("VALIGN", (0, 0), (-1, -1), "TOP"),
+            ]
+        )
+    )
+    return box
+
+
 def _worked_example_elements(topic_name: str, tier: Tier, example: ModelledExample, styles: dict) -> list:
     tier_label = tier.value.title()
     elements = [
@@ -66,6 +89,8 @@ def _worked_example_elements(topic_name: str, tier: Tier, example: ModelledExamp
         elements.append(Spacer(1, 4))
         elements.append(render_diagram(example.diagram))
         elements.append(Spacer(1, 10))
+    elements.append(_worked_calculation_box(example.worked_calculation, styles))
+    elements.append(Paragraph("How it works", styles["TeachingHeading"]))
     for i, step in enumerate(example.teaching_steps, start=1):
         elements.append(Paragraph(f"<b>{i}.</b> {_fmt(step)}", styles["TeachingStep"]))
     elements.append(Spacer(1, 8))

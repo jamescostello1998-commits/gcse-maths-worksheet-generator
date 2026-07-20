@@ -249,10 +249,19 @@ def generate_modelled_example_add_subtract(tier: Tier, rng: random.Random) -> Mo
             "is already in its simplest form."
         ),
     ]
+    worked_calculation = [
+        f"{a}/{b} {op} {c}/{d}",
+        f"= {num1_scaled}/{lcm_val} {op} {num2_scaled}/{lcm_val}",
+        f"= {combined_num}/{lcm_val}",
+    ]
+    if common_gcd > 1:
+        worked_calculation.append(f"= {_fmt_fraction(result)}")
+
     return ModelledExample(
         topic_id="fractions_add_subtract",
         tier=Tier.FOUNDATION,
         prompt=f"Work out {a}/{b} {op} {c}/{d}. Give your answer as a fraction in its simplest form.",
+        worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=_fmt_fraction(result),
     )

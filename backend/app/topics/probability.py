@@ -76,6 +76,13 @@ def generate_modelled_example_single_event(tier: Tier, rng: random.Random) -> Mo
         f"Count how many of those are {target_colour}: {favourable}. This is the number of favourable outcomes.",
         f"P({target_colour}) = favourable outcomes ÷ total outcomes = {favourable}/{total}{simplify_note}.",
     ]
+    worked_calculation = [
+        f"Total outcomes = {' + '.join(str(c) for c in counts)} = {total}",
+        f"P({target_colour}) = {favourable}/{total}",
+    ]
+    if simplify_note:
+        worked_calculation.append(f"= {formula_prob.numerator}/{formula_prob.denominator}")
+
     return ModelledExample(
         topic_id="probability_single_event",
         tier=Tier.FOUNDATION,
@@ -83,6 +90,7 @@ def generate_modelled_example_single_event(tier: Tier, rng: random.Random) -> Mo
             f"A bag contains {bag_desc} counters. A counter is picked at random. "
             f"Find the probability that it is {target_colour}."
         ),
+        worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{formula_prob.numerator}/{formula_prob.denominator}",
     )

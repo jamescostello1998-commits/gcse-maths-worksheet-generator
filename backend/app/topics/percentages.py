@@ -59,10 +59,17 @@ def generate_modelled_example_of_amount(tier: Tier, rng: random.Random) -> Model
         f"Then divide by 100: {product} ÷ 100 = {fmt_money(value)}.",
         f"So {percent}% of {amount} is {fmt_money(value)}.",
     ]
+    worked_calculation = [
+        f"{percent}% of {amount}",
+        f"= {percent}/100 × {amount}",
+        f"= {product} ÷ 100",
+        f"= {fmt_money(value)}",
+    ]
     return ModelledExample(
         topic_id="percentage_of_amount",
         tier=Tier.FOUNDATION,
         prompt=f"Find {percent}% of {amount}.",
+        worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=fmt_money(value),
     )

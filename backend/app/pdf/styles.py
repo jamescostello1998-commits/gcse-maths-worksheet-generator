@@ -49,6 +49,14 @@ def build_styles() -> dict[str, ParagraphStyle]:
             "WorkedPrompt", fontName=FONT_BOLD, fontSize=13.5, leading=19, textColor=INK,
             spaceAfter=16,
         ),
+        "WorkedCalcLine": ParagraphStyle(
+            "WorkedCalcLine", fontName=FONT_BOLD, fontSize=12.5, leading=19, textColor=INK,
+            spaceAfter=2,
+        ),
+        "TeachingHeading": ParagraphStyle(
+            "TeachingHeading", fontName=FONT_BOLD, fontSize=11.5, leading=14, textColor=MUTED,
+            spaceBefore=16, spaceAfter=10,
+        ),
         "TeachingStep": ParagraphStyle(
             "TeachingStep", fontName=FONT, fontSize=11.5, textColor=INK,
             leftIndent=16, leading=17, spaceAfter=14,

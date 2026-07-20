@@ -57,10 +57,16 @@ def generate_modelled_example_mean_and_range(tier: Tier, rng: random.Random) -> 
         f"The range measures how spread out the data is: it's the largest value minus the smallest "
         f"value. Largest = {max(data)}, smallest = {min(data)}, so range = {max(data)} - {min(data)} = {data_range}.",
     ]
+    worked_calculation = [
+        f"Mean = ({' + '.join(str(v) for v in data)}) ÷ {n}",
+        f"= {total} ÷ {n} = {fmt_money(mean)}",
+        f"Range = {max(data)} - {min(data)} = {data_range}",
+    ]
     return ModelledExample(
         topic_id="stats_mean_and_range",
         tier=Tier.FOUNDATION,
         prompt=f"Find the mean and range of this list of numbers: {data_str}.",
+        worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"Mean = {fmt_money(mean)}, Range = {data_range}",
     )

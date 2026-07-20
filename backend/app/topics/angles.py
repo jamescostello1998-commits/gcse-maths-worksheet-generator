@@ -121,10 +121,17 @@ def generate_modelled_example_triangle_angles(tier: Tier, rng: random.Random) ->
         f"Check by adding all three together: {a} + {b} + {missing} = {a + b + missing}°, "
         "which is 180° as expected.",
     ]
+    worked_calculation = [
+        f"{a} + {b} + x = 180",
+        f"{a + b} + x = 180",
+        f"x = 180 - {a + b}",
+        f"x = {missing}",
+    ]
     return ModelledExample(
         topic_id="angles_triangle",
         tier=Tier.FOUNDATION,
         prompt=f"A triangle has angles {a}°, {b}°, and x°. Find x.",
+        worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=str(missing),
         diagram=DiagramSpec(kind="triangle_angles", params={"angle_labels": [f"{a}°", f"{b}°", "x"]}),
