@@ -83,7 +83,7 @@ export function SectionView({ section, onBack }: SectionViewProps) {
           <h3 className="topic-group__name">{group.name}</h3>
           <div className="topic-grid">
             {group.topics.map((topic) => (
-              <TopicCard key={topic.id} topic={topic} />
+              <TopicCard key={topic.id} topic={topic} showTierBadge={false} />
             ))}
           </div>
         </div>

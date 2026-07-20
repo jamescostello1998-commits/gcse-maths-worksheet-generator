@@ -41,6 +41,11 @@ describe('TopicCard', () => {
     expect(screen.queryByRole('radiogroup')).not.toBeInTheDocument()
   })
 
+  it('hides the tier badge when showTierBadge is false', () => {
+    render(<TopicCard topic={fixedTopic} showTierBadge={false} />)
+    expect(screen.queryByText('Foundation')).not.toBeInTheDocument()
+  })
+
   it('shows a tier toggle when fixedTier is null', () => {
     render(<TopicCard topic={flexibleTopic} />)
     expect(screen.getByRole('radiogroup')).toBeInTheDocument()
@@ -55,7 +60,7 @@ describe('TopicCard', () => {
 
     const user = userEvent.setup()
     render(<TopicCard topic={fixedTopic} />)
-    await user.click(screen.getByText('Generate Worksheet'))
+    await user.click(screen.getByText('Worksheet'))
 
     expect(fetchMock).toHaveBeenCalledWith(
       expect.stringContaining('/api/worksheets'),
@@ -75,7 +80,7 @@ describe('TopicCard', () => {
     const user = userEvent.setup()
     render(<TopicCard topic={flexibleTopic} />)
     await user.click(screen.getByText('H'))
-    await user.click(screen.getByText('Generate Worksheet'))
+    await user.click(screen.getByText('Worksheet'))
 
     expect(fetchMock).toHaveBeenCalledWith(
       expect.stringContaining('/api/worksheets'),
@@ -87,7 +92,7 @@ describe('TopicCard', () => {
 
   it('does not show a modelled example button when hasModelledExample is false', () => {
     render(<TopicCard topic={fixedTopic} />)
-    expect(screen.queryByText('Generate Modelled Example')).not.toBeInTheDocument()
+    expect(screen.queryByText('Modelled Example')).not.toBeInTheDocument()
   })
 
   it('shows and generates a modelled example when hasModelledExample is true', async () => {
@@ -99,7 +104,7 @@ describe('TopicCard', () => {
 
     const user = userEvent.setup()
     render(<TopicCard topic={modelledTopic} />)
-    await user.click(screen.getByText('Generate Modelled Example'))
+    await user.click(screen.getByText('Modelled Example'))
 
     expect(fetchMock).toHaveBeenCalledWith(
       expect.stringContaining('/api/modelled-examples'),

@@ -5,9 +5,10 @@ import { useGenerateWorksheet } from '../hooks/useGenerateWorksheet'
 
 interface TopicCardProps {
   topic: Topic
+  showTierBadge?: boolean
 }
 
-export function TopicCard({ topic }: TopicCardProps) {
+export function TopicCard({ topic, showTierBadge = true }: TopicCardProps) {
   const [selectedTier, setSelectedTier] = useState<Tier>(topic.fixedTier ?? 'foundation')
   const { status, error, generate } = useGenerateWorksheet()
   const {
@@ -23,9 +24,11 @@ export function TopicCard({ topic }: TopicCardProps) {
       <div className="topic-card__header">
         <h4 className="topic-card__name">{topic.name}</h4>
         {topic.fixedTier ? (
-          <span className={`tier-badge tier-badge--${topic.fixedTier}`}>
-            {topic.fixedTier === 'foundation' ? 'Foundation' : 'Higher'}
-          </span>
+          showTierBadge && (
+            <span className={`tier-badge tier-badge--${topic.fixedTier}`}>
+              {topic.fixedTier === 'foundation' ? 'Foundation' : 'Higher'}
+            </span>
+          )
         ) : (
           <div className="tier-mini-toggle" role="radiogroup" aria-label={`Tier for ${topic.name}`}>
             {(['foundation', 'higher'] as const).map((option) => (
@@ -55,7 +58,7 @@ export function TopicCard({ topic }: TopicCardProps) {
           disabled={status === 'loading'}
           onClick={() => generate(topic.id, effectiveTier)}
         >
-          {status === 'loading' ? 'Generating…' : 'Generate Worksheet'}
+          {status === 'loading' ? 'Generating…' : 'Worksheet'}
         </button>
         {topic.hasModelledExample && (
           <button
@@ -64,7 +67,7 @@ export function TopicCard({ topic }: TopicCardProps) {
             disabled={modelledStatus === 'loading'}
             onClick={() => generateModelled(topic.id, effectiveTier)}
           >
-            {modelledStatus === 'loading' ? 'Generating…' : 'Generate Modelled Example'}
+            {modelledStatus === 'loading' ? 'Generating…' : 'Modelled Example'}
           </button>
         )}
       </div>
