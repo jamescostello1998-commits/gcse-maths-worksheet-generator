@@ -44,3 +44,55 @@ def test_topic_definitions_have_expected_metadata():
         assert t.section == "ratio_proportion"
         assert t.group == "Ratio"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
+
+
+def test_modelled_example_topics_have_generator_wired():
+    for t in (
+        ratio.TOPIC_SHARE_TWO, ratio.TOPIC_FIND_SHARE,
+        ratio.TOPIC_SHARE_THREE, ratio.TOPIC_COMBINE,
+    ):
+        assert t.generate_modelled_example is not None
+
+
+def test_modelled_example_share_two_produces_verified_examples():
+    rng = random.Random(302)
+    for _ in range(TRIALS):
+        example = ratio.generate_modelled_example_share_two(Tier.FOUNDATION, rng)
+        assert example.topic_id == "ratio_share_two_part"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+
+
+def test_modelled_example_find_share_produces_verified_examples():
+    rng = random.Random(303)
+    for _ in range(TRIALS):
+        example = ratio.generate_modelled_example_find_share(Tier.FOUNDATION, rng)
+        assert example.topic_id == "ratio_find_missing_share"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+
+
+def test_modelled_example_share_three_produces_verified_examples():
+    rng = random.Random(304)
+    for _ in range(TRIALS):
+        example = ratio.generate_modelled_example_share_three(Tier.HIGHER, rng)
+        assert example.topic_id == "ratio_share_three_part"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+
+
+def test_modelled_example_combine_ratios_produces_verified_examples():
+    rng = random.Random(305)
+    for _ in range(TRIALS):
+        example = ratio.generate_modelled_example_combine_ratios(Tier.HIGHER, rng)
+        assert example.topic_id == "ratio_combine"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer

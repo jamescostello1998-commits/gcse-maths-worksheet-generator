@@ -56,13 +56,13 @@ def test_topic_definitions_have_expected_metadata():
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
 
 
-def test_modelled_example_pilot_scope():
-    assert percentages.TOPIC_OF_AMOUNT.generate_modelled_example is not None
+def test_modelled_example_topics_have_generator_wired():
     for t in (
-        percentages.TOPIC_CHANGE, percentages.TOPIC_REVERSE_FOUNDATION,
-        percentages.TOPIC_REVERSE, percentages.TOPIC_COMPOUND,
+        percentages.TOPIC_OF_AMOUNT, percentages.TOPIC_CHANGE,
+        percentages.TOPIC_REVERSE_FOUNDATION, percentages.TOPIC_REVERSE,
+        percentages.TOPIC_COMPOUND,
     ):
-        assert t.generate_modelled_example is None
+        assert t.generate_modelled_example is not None
 
 
 def test_modelled_example_of_amount_produces_verified_examples():
@@ -71,5 +71,50 @@ def test_modelled_example_of_amount_produces_verified_examples():
         example = percentages.generate_modelled_example_of_amount(Tier.FOUNDATION, rng)
         assert example.topic_id == "percentage_of_amount"
         assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+
+
+def test_modelled_example_change_produces_verified_examples():
+    rng = random.Random(203)
+    for _ in range(TRIALS):
+        example = percentages.generate_modelled_example_change(Tier.FOUNDATION, rng)
+        assert example.topic_id == "percentage_change"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+
+
+def test_modelled_example_reverse_foundation_produces_verified_examples():
+    rng = random.Random(204)
+    for _ in range(TRIALS):
+        example = percentages.generate_modelled_example_reverse_foundation(Tier.FOUNDATION, rng)
+        assert example.topic_id == "reverse_percentage_foundation"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+
+
+def test_modelled_example_reverse_produces_verified_examples():
+    rng = random.Random(205)
+    for _ in range(TRIALS):
+        example = percentages.generate_modelled_example_reverse(Tier.HIGHER, rng)
+        assert example.topic_id == "reverse_percentage"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+
+
+def test_modelled_example_compound_produces_verified_examples():
+    rng = random.Random(206)
+    for _ in range(TRIALS):
+        example = percentages.generate_modelled_example_compound(Tier.HIGHER, rng)
+        assert example.topic_id == "compound_percentage"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
         assert example.final_answer
