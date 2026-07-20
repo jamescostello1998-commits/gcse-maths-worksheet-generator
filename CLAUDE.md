@@ -69,6 +69,21 @@ every plotting topic. `draw_piecewise_graph` is the same idea for distance-time/
 velocity-time graphs (a straight-line-segment polyline through explicit `points`,
 axis-labelled e.g. "Time (minutes)"/"Distance (km)").
 
+**Gridded graph axes always cross at the true origin**: `_draw_scaled_axes` clamps
+its incoming `x_min`/`x_max`/`y_min`/`y_max` to always include 0 before computing
+anything, so the axis lines are never drawn at a data-range edge instead of at (0, 0)
+— this was a real bug (found via user report) affecting `plot_straight_line`,
+`plot_quadratic`, and `line_equation_from_graph` whenever their y-range happened to
+be entirely positive or entirely negative (e.g. y = x² + 4 over x = -3..3 never
+touches y = 0).
+
+**Angle arcs**: every diagram kind that labels an angle now draws a small arc between
+the two rays forming it (standard exam-diagram convention), via `_angle_arc`/
+`_vertex_angle_arc`/`_sector_arc_for_label` helpers (ReportLab `ArcPath`) in
+`diagrams.py`. Side-length-only diagrams (`right_triangle`, `vector_triangle`) are
+unaffected — right angles keep their square marker instead. New diagram kinds that
+label an angle should add an arc too.
+
 Every Geometry topic and a handful of Algebra topics (parabola for turning point,
 line-pair for simultaneous-graphically) render an actual ReportLab-drawn figure
 matching that question's real generated values — see `backend/app/pdf/diagrams.py`.

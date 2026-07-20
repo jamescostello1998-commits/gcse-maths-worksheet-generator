@@ -10,7 +10,7 @@ a `DiagramSpec` (see app/core/models.py) to the matching renderer.
 import math
 from typing import Callable
 
-from reportlab.graphics.shapes import Circle, Drawing, Group, Line, PolyLine, Polygon, Rect, String, Wedge
+from reportlab.graphics.shapes import ArcPath, Circle, Drawing, Group, Line, PolyLine, Polygon, Rect, String, Wedge
 from reportlab.pdfbase.pdfmetrics import stringWidth
 
 from app.core.models import DiagramSpec
@@ -58,6 +58,46 @@ def _label(x: float, y: float, text: str, anchor: str = "middle", color=INK, siz
         group.add(String(cursor, y, t, textAnchor="start", fontSize=size, fillColor=color, fontName=font))
         cursor += stringWidth(t, font, size)
     return group
+
+
+def _angle_arc(cx: float, cy: float, angle1_deg: float, angle2_deg: float, radius: float = 12, color=INK) -> ArcPath:
+    """An unfilled arc marking the (non-reflex) angle swept between two rays
+    from (cx, cy) at angle1_deg and angle2_deg - standard maths convention,
+    degrees measured counterclockwise from the positive x-axis."""
+    diff = (angle2_deg - angle1_deg) % 360
+    start, sweep = (angle1_deg, diff) if diff <= 180 else (angle2_deg, 360 - diff)
+    arc = ArcPath(strokeColor=color, fillColor=None, strokeWidth=0.9)
+    arc.addArc(cx, cy, radius, start, start + sweep, moveTo=True)
+    return arc
+
+
+def _vertex_angle_arc(vertex: tuple, other1: tuple, other2: tuple, radius: float = 12, color=INK) -> ArcPath:
+    """The arc marking the angle at `vertex` between the two rays
+    vertex->other1 and vertex->other2 (e.g. two sides of a triangle, or two
+    radii/chords, meeting at that vertex)."""
+    angle1 = math.degrees(math.atan2(other1[1] - vertex[1], other1[0] - vertex[0]))
+    angle2 = math.degrees(math.atan2(other2[1] - vertex[1], other2[0] - vertex[0]))
+    return _angle_arc(vertex[0], vertex[1], angle1, angle2, radius=radius, color=color)
+
+
+def _sector_arc_for_label(
+    cx: float, cy: float, ray_angles_deg: list[float], label_dx: float, label_dy: float,
+    radius: float = 12, color=INK,
+) -> ArcPath:
+    """Given several rays from (cx, cy) and a label placed at offset
+    (label_dx, label_dy) from that point, find which angular sector (the gap
+    between two consecutive rays) the label sits in and return its arc -
+    used where the labelled angle isn't one simple vertex-to-vertex pair
+    (e.g. a transversal crossing two parallel lines)."""
+    label_angle = math.degrees(math.atan2(label_dy, label_dx)) % 360
+    sorted_angles = sorted(a % 360 for a in ray_angles_deg)
+    for i in range(len(sorted_angles)):
+        a1 = sorted_angles[i]
+        a2 = sorted_angles[(i + 1) % len(sorted_angles)]
+        span = (a2 - a1) % 360 or 360
+        if (label_angle - a1) % 360 <= span:
+            return _angle_arc(cx, cy, a1, a2, radius=radius, color=color)
+    return _angle_arc(cx, cy, sorted_angles[0], sorted_angles[1], radius=radius, color=color)
 
 
 def draw_rectangle(params: dict) -> Drawing:
@@ -168,6 +208,7 @@ def draw_angle_line(params: dict) -> Drawing:
 
     running = 0.0
     for v, lbl in zip(angle_values, labels):
+        d.add(_angle_arc(cx, cy, running, running + v, radius=22))
         mid_rad = math.radians(running + v / 2)
         lx, ly = cx + (radius * 0.55) * math.cos(mid_rad), cy + (radius * 0.55) * math.sin(mid_rad)
         d.add(_label(lx, ly, lbl))
@@ -189,7 +230,11 @@ def draw_triangle_angles(params: dict) -> Drawing:
     pts = [coord for vertex in vertices for coord in vertex]
     d.add(Polygon(pts, strokeColor=INK, fillColor=None, strokeWidth=1.2))
 
-    for (vx, vy), lbl in zip(vertices, params["angle_labels"]):
+    n = len(vertices)
+    for i, (vertex, lbl) in enumerate(zip(vertices, params["angle_labels"])):
+        other1, other2 = vertices[(i - 1) % n], vertices[(i + 1) % n]
+        d.add(_vertex_angle_arc(vertex, other1, other2, radius=12))
+        vx, vy = vertex
         lx, ly = vx + (cx - vx) * 0.45, vy + (cy - vy) * 0.45
         d.add(_label(lx, ly, lbl))
     return d
@@ -209,12 +254,17 @@ def draw_parallel_lines(params: dict) -> Drawing:
     ext = 15
     d.add(Line(ix_top - ux * ext, y_top - uy * ext, ix_bottom + ux * ext, y_bottom + uy * ext, strokeColor=INK, strokeWidth=1.2))
 
+    trans_angle = math.degrees(math.atan2(dy, dx))
+    ray_angles = [0, 180, trans_angle, trans_angle + 180]
+
     offsets = {
         "corresponding": ((10, 8), (10, 8)),
         "alternate": ((10, -14), (-24, 10)),
         "co_interior": ((10, -14), (10, 10)),
     }
     (kx, ky), (ux2, uy2) = offsets[params["relation"]]
+    d.add(_sector_arc_for_label(ix_top, y_top, ray_angles, kx, ky, radius=13))
+    d.add(_sector_arc_for_label(ix_bottom, y_bottom, ray_angles, ux2, uy2, radius=13))
     d.add(_label(ix_top + kx, y_top + ky, params["known_label"], anchor="start", size=8))
     d.add(_label(ix_bottom + ux2, y_bottom + uy2, params["unknown_label"], anchor="start", size=8))
     return d
@@ -227,7 +277,12 @@ def draw_exterior_triangle(params: dict) -> Drawing:
 
     ext_x = B[0] + (B[0] - A[0]) * 0.4
     ext_y = B[1] + (B[1] - A[1]) * 0.4
+    ext_point = (ext_x, ext_y)
     d.add(Line(B[0], B[1], ext_x, ext_y, strokeColor=INK, strokeWidth=1.2))
+
+    d.add(_vertex_angle_arc(A, B, C, radius=11))
+    d.add(_vertex_angle_arc(B, A, C, radius=11))
+    d.add(_vertex_angle_arc(B, C, ext_point, radius=17))
 
     centroid = ((A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3)
 
@@ -255,6 +310,7 @@ def draw_polygon(params: dict) -> Drawing:
     pts = [coord for vertex in vertices for coord in vertex]
     d.add(Polygon(pts, strokeColor=INK, fillColor=None, strokeWidth=1.2))
 
+    d.add(_vertex_angle_arc(vertices[0], vertices[-1], vertices[1], radius=10))
     vx, vy = vertices[0]
     lx, ly = vx + (cx - vx) * 0.3, vy + (cy - vy) * 0.3
     d.add(_label(lx, ly, params["marked_angle_label"]))
@@ -293,6 +349,7 @@ def draw_trig_triangle(params: dict) -> Drawing:
         d.add(_label(A[0] - 10, (A[1] + C[1]) / 2, params["opposite_label"], anchor="end"))
     if params.get("hyp_label"):
         d.add(_label((B[0] + C[0]) / 2 + 12, (B[1] + C[1]) / 2 + 6, params["hyp_label"], anchor="start"))
+    d.add(_vertex_angle_arc(B, A, C, radius=11))
     d.add(_label(B[0] - 20, B[1] + 9, params["angle_label"], size=8))
     return d
 
@@ -321,8 +378,11 @@ def draw_general_triangle(params: dict) -> Drawing:
     def inset(v, factor=0.4):
         return (v[0] + (centroid[0] - v[0]) * factor, v[1] + (centroid[1] - v[1]) * factor)
 
-    for vertex, key in ((A, "angle_A_label"), (B, "angle_B_label"), (C, "angle_C_label")):
+    for vertex, other1, other2, key in (
+        (A, B, C, "angle_A_label"), (B, A, C, "angle_B_label"), (C, A, B, "angle_C_label"),
+    ):
         if params.get(key):
+            d.add(_vertex_angle_arc(vertex, other1, other2, radius=10))
             px, py = inset(vertex)
             d.add(_label(px, py, params[key], size=8))
 
@@ -366,6 +426,8 @@ def draw_circle_angle_centre(params: dict) -> Drawing:
     d.add(Line(C[0], C[1], A[0], A[1], strokeColor=INK, strokeWidth=1))
     d.add(Line(C[0], C[1], B[0], B[1], strokeColor=INK, strokeWidth=1))
     d.add(Circle(cx, cy, 1.5, strokeColor=INK, fillColor=INK))
+    d.add(_vertex_angle_arc((cx, cy), A, B, radius=14))
+    d.add(_vertex_angle_arc(C, A, B, radius=10))
     d.add(_label(cx, cy - 16, params["centre_label"], size=8))
     d.add(_label(C[0], C[1] - 16, params["circumference_label"], size=8))
     _not_to_scale(d)
@@ -381,6 +443,9 @@ def draw_circle_semicircle(params: dict) -> Drawing:
     d.add(Line(A[0], A[1], B[0], B[1], strokeColor=INK, strokeWidth=1.2))
     d.add(Line(A[0], A[1], C[0], C[1], strokeColor=INK, strokeWidth=1))
     d.add(Line(B[0], B[1], C[0], C[1], strokeColor=INK, strokeWidth=1))
+    d.add(_vertex_angle_arc(C, A, B, radius=10))
+    d.add(_vertex_angle_arc(A, B, C, radius=11))
+    d.add(_vertex_angle_arc(B, A, C, radius=11))
     d.add(_label(C[0], C[1] + 10, params["apex_label"], size=8))
     d.add(_label(A[0] + 4, A[1] + 8, params["angle_a_label"], size=7, anchor="start"))
     d.add(_label(B[0] - 4, B[1] + 8, params["angle_b_label"], size=7, anchor="end"))
@@ -396,6 +461,8 @@ def draw_circle_cyclic_quad(params: dict) -> Drawing:
     C, Dp = _circle_point(cx, cy, r, -40), _circle_point(cx, cy, r, 220)
     for p, q in ((A, B), (B, C), (C, Dp), (Dp, A)):
         d.add(Line(p[0], p[1], q[0], q[1], strokeColor=INK, strokeWidth=1))
+    d.add(_vertex_angle_arc(A, Dp, B, radius=10))
+    d.add(_vertex_angle_arc(C, B, Dp, radius=10))
     d.add(_label(A[0] - 8, A[1] + 4, params["angle_A_label"], size=7, anchor="end"))
     d.add(_label(C[0] + 8, C[1] - 6, params["angle_C_label"], size=7, anchor="start"))
     _not_to_scale(d)
@@ -412,6 +479,8 @@ def draw_circle_two_tangents(params: dict) -> Drawing:
     d.add(Line(cx, cy, B[0], B[1], strokeColor=INK, strokeWidth=1))
     d.add(Line(T[0], T[1], A[0], A[1], strokeColor=INK, strokeWidth=1.2))
     d.add(Line(T[0], T[1], B[0], B[1], strokeColor=INK, strokeWidth=1.2))
+    d.add(_vertex_angle_arc(T, A, B, radius=14))
+    d.add(_vertex_angle_arc((cx, cy), A, B, radius=14))
     d.add(_label(T[0], T[1] + 12, params["external_label"], size=8))
     d.add(_label(cx, cy - 14, params["centre_label"], size=8))
     _not_to_scale(d)
@@ -493,6 +562,13 @@ def _draw_scaled_axes(
     """Draw a real-scale, gridded, numbered pair of axes into `d` and return
     the (x, y) -> (pixel_x, pixel_y) transform so callers can plot points/
     curves on the same scale."""
+    # The axes must always cross at the true origin, so the visible window
+    # always includes x=0 and y=0 - otherwise a curve/table that happens to
+    # sit entirely on one side of an axis (e.g. y = x^2 + 4, never negative)
+    # would have that axis drawn at the data's edge instead of at 0.
+    x_min, x_max = min(x_min, 0), max(x_max, 0)
+    y_min, y_max = min(y_min, 0), max(y_max, 0)
+
     plot_w = d.width - _GRAPH_MARGIN_L - _GRAPH_MARGIN_R
     plot_h = d.height - _GRAPH_MARGIN_T - _GRAPH_MARGIN_B
 
@@ -515,9 +591,9 @@ def _draw_scaled_axes(
         d.add(Line(x0, py, x1, py, strokeColor=GRID, strokeWidth=0.4))
         y += 1
 
-    # Bold axis lines through 0 (or the nearest edge, if 0 is out of range).
-    axis_x0 = 0 if x_min <= 0 <= x_max else x_min
-    axis_y0 = 0 if y_min <= 0 <= y_max else y_min
+    # Bold axis lines through the origin (guaranteed in range by the clamp above).
+    axis_x0 = 0
+    axis_y0 = 0
     ax0, ay0 = to_px(x_min, axis_y0)
     ax1, _ = to_px(x_max, axis_y0)
     d.add(Line(ax0, ay0, ax1, ay0, strokeColor=INK, strokeWidth=1.1))
