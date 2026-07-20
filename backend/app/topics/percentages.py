@@ -2,7 +2,7 @@ import random
 
 import sympy as sp
 
-from app.core.models import Question, Tier
+from app.core.models import ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
 from app.topics.number_format import fmt_money, to_fraction
 
@@ -38,6 +38,33 @@ def generate_of_amount(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=fmt_money(value),
         dedup_key=f"of_amount:{percent}:{amount}",
+    )
+
+
+def generate_modelled_example_of_amount(tier: Tier, rng: random.Random) -> ModelledExample:
+    percent = sp.Rational(rng.choice(FOUNDATION_PERCENTS))
+    amount = rng.randrange(20, 501, 20)
+    value = percent / 100 * amount
+
+    frac_check = (to_fraction(percent) / 100) * amount
+    if frac_check != to_fraction(value):
+        raise ValueError("modelled example of_amount verification failed")
+
+    product = int(amount * percent)
+    teaching_steps = [
+        f"To find {percent}% of {amount}, it helps to first turn the percentage into a fraction: "
+        f"{percent}% means {percent} out of every 100, so {percent}% = {percent}/100.",
+        f"In maths, 'of' means multiply, so {percent}% of {amount} = {percent}/100 × {amount}.",
+        f"Multiply {amount} by {percent} first: {amount} × {percent} = {product}. "
+        f"Then divide by 100: {product} ÷ 100 = {fmt_money(value)}.",
+        f"So {percent}% of {amount} is {fmt_money(value)}.",
+    ]
+    return ModelledExample(
+        topic_id="percentage_of_amount",
+        tier=Tier.FOUNDATION,
+        prompt=f"Find {percent}% of {amount}.",
+        teaching_steps=tuple(teaching_steps),
+        final_answer=fmt_money(value),
     )
 
 
@@ -159,6 +186,7 @@ TOPIC_OF_AMOUNT = TopicDefinition(
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_of_amount,
 )
 
 TOPIC_CHANGE = TopicDefinition(

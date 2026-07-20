@@ -9,6 +9,7 @@ const fixedTopic: Topic = {
   name: 'One-Step Equations',
   description: 'Solve simple equations.',
   fixedTier: 'foundation',
+  hasModelledExample: false,
 }
 
 const flexibleTopic: Topic = {
@@ -16,6 +17,15 @@ const flexibleTopic: Topic = {
   name: 'Future Topic',
   description: 'Supports both tiers.',
   fixedTier: null,
+  hasModelledExample: false,
+}
+
+const modelledTopic: Topic = {
+  id: 'linear_two_step',
+  name: 'Two-Step Equations',
+  description: 'Solve equations of the form ax + b = c.',
+  fixedTier: 'foundation',
+  hasModelledExample: true,
 }
 
 describe('TopicCard', () => {
@@ -71,6 +81,30 @@ describe('TopicCard', () => {
       expect.stringContaining('/api/worksheets'),
       expect.objectContaining({
         body: JSON.stringify({ topic_id: 'some_future_topic', tier: 'higher' }),
+      }),
+    )
+  })
+
+  it('does not show a modelled example button when hasModelledExample is false', () => {
+    render(<TopicCard topic={fixedTopic} />)
+    expect(screen.queryByText('Generate Modelled Example')).not.toBeInTheDocument()
+  })
+
+  it('shows and generates a modelled example when hasModelledExample is true', async () => {
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      blob: async () => new Blob(['%PDF-'], { type: 'application/pdf' }),
+    })
+    vi.stubGlobal('fetch', fetchMock)
+
+    const user = userEvent.setup()
+    render(<TopicCard topic={modelledTopic} />)
+    await user.click(screen.getByText('Generate Modelled Example'))
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      expect.stringContaining('/api/modelled-examples'),
+      expect.objectContaining({
+        body: JSON.stringify({ topic_id: 'linear_two_step', tier: 'foundation' }),
       }),
     )
   })

@@ -12,7 +12,15 @@ const sections: Section[] = [
     groups: [
       {
         name: 'Solving Linear Equations',
-        topics: [{ id: 'linear_one_step', name: 'One-Step Equations', description: 'desc', fixedTier: 'foundation' }],
+        topics: [
+          {
+            id: 'linear_one_step',
+            name: 'One-Step Equations',
+            description: 'desc',
+            fixedTier: 'foundation',
+            hasModelledExample: false,
+          },
+        ],
       },
     ],
   },

@@ -44,3 +44,19 @@ def test_topic_definitions_have_expected_metadata():
         assert t.section == "probability"
         assert t.group == "Probability"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
+
+
+def test_modelled_example_pilot_scope():
+    assert probability.TOPIC_SINGLE_EVENT.generate_modelled_example is not None
+    for t in (probability.TOPIC_COMPLEMENT, probability.TOPIC_COMBINED_DICE, probability.TOPIC_CONDITIONAL):
+        assert t.generate_modelled_example is None
+
+
+def test_modelled_example_single_event_produces_verified_examples():
+    rng = random.Random(204)
+    for _ in range(TRIALS):
+        example = probability.generate_modelled_example_single_event(Tier.FOUNDATION, rng)
+        assert example.topic_id == "probability_single_event"
+        assert example.prompt
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer

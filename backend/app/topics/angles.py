@@ -2,7 +2,7 @@ import random
 
 import sympy as sp
 
-from app.core.models import DiagramSpec, Question, Tier
+from app.core.models import DiagramSpec, ModelledExample, Question, Tier
 from app.topics.algebra_utils import X, fmt_linear, solve_linear_with_steps
 from app.topics.base import TopicDefinition
 
@@ -100,6 +100,33 @@ def generate_triangle_angles(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=str(missing),
         dedup_key=f"triangle_angles:{a}:{b}",
+        diagram=DiagramSpec(kind="triangle_angles", params={"angle_labels": [f"{a}°", f"{b}°", "x"]}),
+    )
+
+
+def generate_modelled_example_triangle_angles(tier: Tier, rng: random.Random) -> ModelledExample:
+    a = rng.randint(20, 120)
+    b = rng.randint(20, min(120, 160 - a))
+    missing = 180 - a - b
+    if missing < 10:
+        raise ValueError("modelled example triangle_angles generation produced an invalid missing angle")
+
+    teaching_steps = [
+        "Every triangle's three interior angles always add up to 180° - this is a fixed geometric "
+        "fact that's true for every triangle, no matter its shape or size.",
+        f"Here we're told two of the three angles: {a}° and {b}°. Add them together first: "
+        f"{a} + {b} = {a + b}°.",
+        f"Since all three angles must total 180°, the missing angle is whatever is left over: "
+        f"x = 180 - {a + b} = {missing}°.",
+        f"Check by adding all three together: {a} + {b} + {missing} = {a + b + missing}°, "
+        "which is 180° as expected.",
+    ]
+    return ModelledExample(
+        topic_id="angles_triangle",
+        tier=Tier.FOUNDATION,
+        prompt=f"A triangle has angles {a}°, {b}°, and x°. Find x.",
+        teaching_steps=tuple(teaching_steps),
+        final_answer=str(missing),
         diagram=DiagramSpec(kind="triangle_angles", params={"angle_labels": [f"{a}°", f"{b}°", "x"]}),
     )
 
@@ -374,6 +401,7 @@ TOPIC_TRIANGLE = TopicDefinition(
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_triangle_angles,
 )
 
 TOPIC_PARALLEL_LINES_FOUNDATION = TopicDefinition(

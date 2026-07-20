@@ -32,6 +32,21 @@ class Question:
 
 
 @dataclass(frozen=True)
+class ModelledExample:
+    """A single, richly-narrated worked example for the 'modelled example'
+    teaching page - as opposed to Question.solution_steps, which are terse
+    and calculation-only, `teaching_steps` are meant to be read like a
+    teacher talking through the reasoning, one idea per line."""
+
+    topic_id: str
+    tier: Tier
+    prompt: str
+    teaching_steps: tuple[str, ...]
+    final_answer: str
+    diagram: Optional[DiagramSpec] = None
+
+
+@dataclass(frozen=True)
 class Worksheet:
     topic_id: str
     topic_name: str

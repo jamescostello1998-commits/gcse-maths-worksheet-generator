@@ -2,7 +2,7 @@ import math
 import random
 from fractions import Fraction
 
-from app.core.models import Question, Tier
+from app.core.models import ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
 
 SECTION = "number"
@@ -207,6 +207,57 @@ def generate_fraction_of_amount(tier: Tier, rng: random.Random) -> Question:
     )
 
 
+def generate_modelled_example_add_subtract(tier: Tier, rng: random.Random) -> ModelledExample:
+    b = rng.randint(2, 12)
+    a = rng.randint(1, b - 1)
+    d = rng.randint(2, 12)
+    c = rng.randint(1, d - 1)
+    op = rng.choice(["+", "-"])
+
+    frac1, frac2 = Fraction(a, b), Fraction(c, d)
+    if op == "-" and frac1 < frac2:
+        a, b, c, d = c, d, a, b
+        frac1, frac2 = Fraction(a, b), Fraction(c, d)
+
+    result = frac1 + frac2 if op == "+" else frac1 - frac2
+    independent = (a / b) + (c / d) if op == "+" else (a / b) - (c / d)
+    if abs(independent - float(result)) > 1e-9:
+        raise ValueError("modelled example add_subtract_fractions verification failed")
+
+    lcm_val = b * d // math.gcd(b, d)
+    scale1, scale2 = lcm_val // b, lcm_val // d
+    num1_scaled, num2_scaled = a * scale1, c * scale2
+    combined_num = num1_scaled + num2_scaled if op == "+" else num1_scaled - num2_scaled
+    common_gcd = math.gcd(abs(combined_num), lcm_val)
+
+    verb = "add" if op == "+" else "subtract"
+    teaching_steps = [
+        f"We want to {verb} {a}/{b} {op} {c}/{d}. Fractions can only be added or subtracted once "
+        "they share the same denominator, so the first job is always to find a common one.",
+        f"The lowest common denominator of {b} and {d} is their LCM: {lcm_val}.",
+        f"Convert each fraction to an equivalent fraction with denominator {lcm_val}: multiply "
+        f"{a}/{b} by {scale1}/{scale1} to get {num1_scaled}/{lcm_val}, and multiply {c}/{d} by "
+        f"{scale2}/{scale2} to get {num2_scaled}/{lcm_val}.",
+        f"Now that the denominators match, {verb} the numerators and keep the denominator the same: "
+        f"{num1_scaled}/{lcm_val} {op} {num2_scaled}/{lcm_val} = {combined_num}/{lcm_val}.",
+        "Finally, check whether the fraction can be simplified: "
+        + (
+            f"dividing both {combined_num} and {lcm_val} by their highest common factor, "
+            f"{common_gcd}, gives {_fmt_fraction(result)}."
+            if common_gcd > 1
+            else f"{combined_num} and {lcm_val} share no common factor, so {_fmt_fraction(result)} "
+            "is already in its simplest form."
+        ),
+    ]
+    return ModelledExample(
+        topic_id="fractions_add_subtract",
+        tier=Tier.FOUNDATION,
+        prompt=f"Work out {a}/{b} {op} {c}/{d}. Give your answer as a fraction in its simplest form.",
+        teaching_steps=tuple(teaching_steps),
+        final_answer=_fmt_fraction(result),
+    )
+
+
 TOPIC_SIMPLIFY = TopicDefinition(
     id="fractions_simplify",
     display_name="Simplifying Fractions",
@@ -225,6 +276,7 @@ TOPIC_ADD_SUBTRACT = TopicDefinition(
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_add_subtract,
 )
 
 TOPIC_MULTIPLY = TopicDefinition(

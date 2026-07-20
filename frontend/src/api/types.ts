@@ -5,6 +5,7 @@ export interface Topic {
   name: string
   description: string
   fixedTier: Tier | null
+  hasModelledExample: boolean
 }
 
 export interface Group {

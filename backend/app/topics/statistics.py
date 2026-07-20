@@ -2,7 +2,7 @@ import random
 import statistics
 from fractions import Fraction
 
-from app.core.models import Question, Tier
+from app.core.models import ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
 from app.topics.number_format import fmt_money
 
@@ -35,6 +35,34 @@ def generate_mean_and_range(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=f"Mean = {fmt_money(mean)}, Range = {data_range}",
         dedup_key=f"mean_range:{data}",
+    )
+
+
+def generate_modelled_example_mean_and_range(tier: Tier, rng: random.Random) -> ModelledExample:
+    n = rng.randint(5, 8)
+    data = [rng.randint(1, 30) for _ in range(n)]
+    total = sum(data)
+    mean = Fraction(total, n)
+    data_range = max(data) - min(data)
+
+    if abs(float(mean) - statistics.mean(data)) > 1e-9:
+        raise ValueError("modelled example mean_and_range verification failed")
+
+    data_str = ", ".join(str(v) for v in data)
+    teaching_steps = [
+        "The mean is the everyday 'average': add up every value, then share that total equally "
+        "across however many values there are.",
+        f"Add up all {n} numbers: {' + '.join(str(v) for v in data)} = {total}.",
+        f"Divide that total by how many numbers there are: {total} ÷ {n} = {fmt_money(mean)}. That's the mean.",
+        f"The range measures how spread out the data is: it's the largest value minus the smallest "
+        f"value. Largest = {max(data)}, smallest = {min(data)}, so range = {max(data)} - {min(data)} = {data_range}.",
+    ]
+    return ModelledExample(
+        topic_id="stats_mean_and_range",
+        tier=Tier.FOUNDATION,
+        prompt=f"Find the mean and range of this list of numbers: {data_str}.",
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"Mean = {fmt_money(mean)}, Range = {data_range}",
     )
 
 
@@ -204,6 +232,7 @@ TOPIC_MEAN_AND_RANGE = TopicDefinition(
     section=SECTION,
     group=GROUP_AVERAGES,
     fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_mean_and_range,
 )
 
 TOPIC_MEDIAN_AND_MODE = TopicDefinition(

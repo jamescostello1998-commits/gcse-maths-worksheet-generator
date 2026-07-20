@@ -204,6 +204,12 @@
   flex-grow: 1;
 }
 
+.topic-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .topic-card__generate {
   padding: 8px 14px;
   font-size: 13.5px;
@@ -218,6 +224,12 @@
 .topic-card__generate:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.topic-card__generate--secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
 }
 
 .topic-card__error {

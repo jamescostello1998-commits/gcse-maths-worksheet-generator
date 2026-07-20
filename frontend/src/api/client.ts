@@ -7,6 +7,7 @@ interface RawTopic {
   name: string
   description: string
   fixed_tier: Tier | null
+  has_modelled_example: boolean
 }
 
 interface RawGroup {
@@ -26,6 +27,7 @@ function toTopic(raw: RawTopic): Topic {
     name: raw.name,
     description: raw.description,
     fixedTier: raw.fixed_tier,
+    hasModelledExample: raw.has_modelled_example,
   }
 }
 
@@ -87,6 +89,28 @@ export async function generateWorksheet(topicId: string, tier: Tier): Promise<Bl
   if (!response.ok) {
     const detail = await parseErrorDetail(response)
     console.error('API error generating worksheet:', detail)
+    throw new ApiError(detail, response.status)
+  }
+
+  return response.blob()
+}
+
+export async function generateModelledExample(topicId: string, tier: Tier): Promise<Blob> {
+  let response: Response
+  try {
+    response = await fetch(`${API_BASE_URL}/api/modelled-examples`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ topic_id: topicId, tier }),
+    })
+  } catch (err) {
+    console.error('Network error generating modelled example:', err)
+    throw new NetworkError()
+  }
+
+  if (!response.ok) {
+    const detail = await parseErrorDetail(response)
+    console.error('API error generating modelled example:', detail)
     throw new ApiError(detail, response.status)
   }
 

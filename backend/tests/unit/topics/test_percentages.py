@@ -54,3 +54,22 @@ def test_topic_definitions_have_expected_metadata():
         assert t.section == "ratio_proportion"
         assert t.group == "Percentages"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
+
+
+def test_modelled_example_pilot_scope():
+    assert percentages.TOPIC_OF_AMOUNT.generate_modelled_example is not None
+    for t in (
+        percentages.TOPIC_CHANGE, percentages.TOPIC_REVERSE_FOUNDATION,
+        percentages.TOPIC_REVERSE, percentages.TOPIC_COMPOUND,
+    ):
+        assert t.generate_modelled_example is None
+
+
+def test_modelled_example_of_amount_produces_verified_examples():
+    rng = random.Random(202)
+    for _ in range(TRIALS):
+        example = percentages.generate_modelled_example_of_amount(Tier.FOUNDATION, rng)
+        assert example.topic_id == "percentage_of_amount"
+        assert example.prompt
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer

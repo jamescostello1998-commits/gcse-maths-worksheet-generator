@@ -97,3 +97,27 @@ def test_topic_definitions_have_expected_metadata():
         assert t.section == "geometry"
         assert t.group == "Angles"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
+
+
+def test_modelled_example_pilot_scope():
+    assert angles.TOPIC_TRIANGLE.generate_modelled_example is not None
+    other_topics = [
+        angles.TOPIC_STRAIGHT_LINE, angles.TOPIC_AROUND_POINT,
+        angles.TOPIC_PARALLEL_LINES_FOUNDATION, angles.TOPIC_PARALLEL_LINES,
+        angles.TOPIC_EXTERIOR_FOUNDATION, angles.TOPIC_EXTERIOR,
+        angles.TOPIC_POLYGON_INTERIOR_FOUNDATION, angles.TOPIC_POLYGON_INTERIOR,
+    ]
+    for t in other_topics:
+        assert t.generate_modelled_example is None
+
+
+def test_modelled_example_triangle_angles_produces_verified_examples():
+    rng = random.Random(203)
+    for _ in range(TRIALS):
+        example = angles.generate_modelled_example_triangle_angles(Tier.FOUNDATION, rng)
+        assert example.topic_id == "angles_triangle"
+        assert example.prompt
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+        assert example.diagram is not None
+        assert example.diagram.kind == "triangle_angles"

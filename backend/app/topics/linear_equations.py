@@ -2,7 +2,7 @@ import random
 
 import sympy as sp
 
-from app.core.models import Question, Tier
+from app.core.models import ModelledExample, Question, Tier
 from app.topics.algebra_utils import X, fmt_linear, fmt_num, solve_linear_with_steps
 from app.topics.base import TopicDefinition
 
@@ -55,6 +55,35 @@ def generate_two_step(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=fmt_num(solution),
         dedup_key=f"two_step:{a}:{b}:{c}",
+    )
+
+
+def generate_modelled_example_two_step(tier: Tier, rng: random.Random) -> ModelledExample:
+    a = _rand_nonzero(rng, 2, 9)
+    b = rng.randint(1, 15)
+    sol = rng.randint(1, 12)
+    c = a * sol + b
+
+    orig_lhs = a * X + b
+    residual = sp.simplify(orig_lhs.subs(X, sol) - c)
+    if residual != 0:
+        raise ValueError("modelled example two_step verification failed")
+
+    teaching_steps = [
+        f"The equation {fmt_linear(a, b)} = {c} has two things attached to x: it's multiplied by "
+        f"{a}, and then {b} is added. To get x on its own, undo those operations in the opposite "
+        "order to how they were applied - undo the addition first, then the multiplication.",
+        f"Subtract {b} from both sides to undo the '+ {b}': {fmt_linear(a, 0)} = {c} - {b} = {c - b}.",
+        f"Divide both sides by {a} to undo the multiplication: x = {c - b} ÷ {a} = {sol}.",
+        f"Check by substituting x = {sol} back into the original equation: "
+        f"{a}×({sol}) + {b} = {a * sol} + {b} = {c}. That matches the right-hand side, so x = {sol} is correct.",
+    ]
+    return ModelledExample(
+        topic_id="linear_two_step",
+        tier=Tier.FOUNDATION,
+        prompt=f"Solve: {fmt_linear(a, b)} = {fmt_num(c)}",
+        teaching_steps=tuple(teaching_steps),
+        final_answer=fmt_num(sol),
     )
 
 
@@ -220,6 +249,7 @@ TOPIC_TWO_STEP = TopicDefinition(
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_two_step,
 )
 
 TOPIC_MULTI_STEP = TopicDefinition(

@@ -45,3 +45,23 @@ def test_topic_definitions_have_expected_metadata():
     for t in topics:
         assert t.section == "statistics"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
+
+
+def test_modelled_example_pilot_scope():
+    assert stats_topic.TOPIC_MEAN_AND_RANGE.generate_modelled_example is not None
+    other_topics = [
+        stats_topic.TOPIC_MEDIAN_AND_MODE, stats_topic.TOPIC_MEAN_FREQUENCY_TABLE,
+        stats_topic.TOPIC_MEAN_GROUPED_FREQUENCY_TABLE, stats_topic.TOPIC_REVERSE_MEAN,
+    ]
+    for t in other_topics:
+        assert t.generate_modelled_example is None
+
+
+def test_modelled_example_mean_and_range_produces_verified_examples():
+    rng = random.Random(205)
+    for _ in range(TRIALS):
+        example = stats_topic.generate_modelled_example_mean_and_range(Tier.FOUNDATION, rng)
+        assert example.topic_id == "stats_mean_and_range"
+        assert example.prompt
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer

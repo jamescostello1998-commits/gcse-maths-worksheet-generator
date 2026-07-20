@@ -18,7 +18,7 @@ def test_topics_returns_all_129_topics():
     data = response.json()
     assert len(data) == 129
     for topic in data:
-        assert set(topic.keys()) == {"id", "name", "description", "fixed_tier"}
+        assert set(topic.keys()) == {"id", "name", "description", "fixed_tier", "has_modelled_example"}
 
 
 def test_sections_returns_six_sections_in_declared_order():
@@ -72,6 +72,31 @@ def test_invalid_tier_returns_422():
         "/api/worksheets", json={"topic_id": "reverse_percentage", "tier": "expert"}
     )
     assert response.status_code == 422
+
+
+def test_modelled_example_request_returns_pdf_for_pilot_topic():
+    response = client.post(
+        "/api/modelled-examples", json={"topic_id": "linear_two_step", "tier": "foundation"}
+    )
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "application/pdf"
+    assert response.content.startswith(b"%PDF-")
+    assert "linear_two_step-foundation-modelled-example.pdf" in response.headers["content-disposition"]
+
+
+def test_modelled_example_request_returns_404_for_topic_without_one():
+    response = client.post(
+        "/api/modelled-examples", json={"topic_id": "linear_one_step", "tier": "foundation"}
+    )
+    assert response.status_code == 404
+    assert "detail" in response.json()
+
+
+def test_modelled_example_request_returns_404_for_unknown_topic():
+    response = client.post(
+        "/api/modelled-examples", json={"topic_id": "not_a_real_topic", "tier": "foundation"}
+    )
+    assert response.status_code == 404
 
 
 def test_worksheet_generation_error_returns_500(monkeypatch):

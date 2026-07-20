@@ -14,6 +14,7 @@ class TopicSummary(BaseModel):
     name: str
     description: str
     fixed_tier: Optional[TierEnum] = None
+    has_modelled_example: bool = False
 
 
 class GroupSchema(BaseModel):

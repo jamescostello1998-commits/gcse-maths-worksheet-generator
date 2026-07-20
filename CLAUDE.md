@@ -16,8 +16,33 @@ solutions, searchable/browsable across 6 curriculum sections.
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.).
-Full backend suite: **157/157 passing**. Frontend suite: **23/23 passing**
-(unaffected this session).
+Full backend suite: **177/177 passing**. Frontend suite: **25/25 passing**.
+
+**Modelled Example feature (pilot, this session)**: a second button, "Generate
+Modelled Example," now sits next to "Generate Worksheet" on topic cards — but
+only for topics that opt in (`TopicDefinition.generate_modelled_example` is set).
+Clicking it downloads a separate 2-page PDF via `POST /api/modelled-examples`:
+page 1 is a single, richly-narrated worked example (`ModelledExample` in
+`core/models.py` — `teaching_steps` are meant to read like a teacher talking
+through the *why*, not just the terse calculation-only `Question.solution_steps`
+used everywhere else); page 2 is 5 practice questions generated the normal way
+(via `build_worksheet(..., count=5)`, so they get the topic's real generator and
+dedup logic) but rendered with **backward fading**
+(`app/pdf/modelled_example_renderer.py`'s `_steps_shown_count`) — Q1 shows nearly
+the whole worked solution with just the answer blanked, each later question shows
+progressively less, and Q5 is fully independent (and deliberately does *not* show
+a blank line per hidden step, so the blank-line count doesn't leak how many steps
+the real solution has — see the `shown == 0` branch in `_practice_block`). No
+answers are ever revealed on the practice page. Piloted on exactly 6 topics, one
+per section, chosen to cover a range of content types (arithmetic, algebra,
+percentages, geometry-with-diagram, probability, statistics):
+`fractions_add_subtract`, `linear_two_step`, `percentage_of_amount`,
+`angles_triangle`, `probability_single_event`, `stats_mean_and_range`. Each has
+its own `generate_modelled_example_xxx(tier, rng) -> ModelledExample` function
+living alongside its normal `generate_xxx`, with genuinely new, more verbose
+explanatory text (not just the existing terse steps re-laid-out) — verified the
+same way as every other generator (independent second computation path).
+Deliberately **not** rolled out to the other 123 topics yet — see "Ideas" below.
 
 | Section | Groups | Topics |
 |---|---|---|
@@ -67,7 +92,17 @@ so these are never "not to scale". `draw_function_graph` takes `kind` ∈
 vs. axes + curve) so one renderer covers both the question and solution diagram of
 every plotting topic. `draw_piecewise_graph` is the same idea for distance-time/
 velocity-time graphs (a straight-line-segment polyline through explicit `points`,
-axis-labelled e.g. "Time (minutes)"/"Distance (km)").
+axis-labelled e.g. "Time (minutes)"/"Distance (km)"). `GRAPH_WIDTH`/`GRAPH_HEIGHT` are
+both 210 (square, not the old 230×175 rectangle) — user-reported visual feedback.
+
+**Angle-label spacing**: after adding arcs (above), a follow-up user report found labels
+overlapping rays/arcs, worst for algebraic labels like `(3x + 12)°` (wide text, centered
+anchor pulls half the string back toward the vertex) and for narrow angles (a small
+wedge has little lateral room even far from the vertex). Fixed per-diagram by pushing
+label radius/inset further from the vertex than the arc radius (with headroom for the
+widest realistic label string — check via `stringWidth` if adding a new one), and for
+`draw_angle_line` specifically, placing labels for angles under 20° just beyond the ray
+tips entirely rather than cramming them into the narrow wedge.
 
 **Gridded graph axes always cross at the true origin**: `_draw_scaled_axes` clamps
 its incoming `x_min`/`x_max`/`y_min`/`y_max` to always include 0 before computing
@@ -162,6 +197,23 @@ fine as literal Unicode — only `⁻` specifically is the problem.)
    `reverse_percentage_foundation`, three Foundation `angles.py` siblings
    (`parallel_lines`/`exterior`/`polygon_interior`, pure-numeric, no algebraic
    solve), and `area_circle_foundation` (decimal/calculator-π answer). (129 topics)
+10. Visual-feedback fixes from user testing, plus a new "Modelled Example" pilot
+    feature (topic count unchanged at 129 — no new practice topics this step).
+    Added angle arcs (`_angle_arc`/`_vertex_angle_arc`/`_sector_arc_for_label`
+    in `diagrams.py`) to every angle-labelling diagram kind, then a follow-up
+    fix once arcs revealed label/line overlap (worst for wide algebraic labels
+    like `(3x + 12)°` and for narrow angles) by pushing label radius/inset
+    further from the vertex than the arc, with an extra rule in
+    `draw_angle_line` to place labels for angles under 20° just beyond the ray
+    tips. Made `GRAPH_WIDTH`/`GRAPH_HEIGHT` square (210×210, was 230×175).
+    Fixed a real bug where `_draw_scaled_axes` could draw the x/y axis at a
+    data-range edge instead of at the true origin whenever a curve's values
+    sat entirely on one side of an axis (now clamps the visible range to
+    always include 0). Then built the Modelled Example pilot described above
+    in "Current state" — new `ModelledExample` model,
+    `TopicDefinition.generate_modelled_example` opt-in field,
+    `app/pdf/modelled_example_renderer.py`, `POST /api/modelled-examples`,
+    and a second frontend button — piloted on 6 topics, one per section.
 
 Everything above is committed and pushed (see `git log`).
 
@@ -343,6 +395,12 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
 
 ## Ideas for a future session (not started, no commitment made)
 
+- Roll the Modelled Example feature out beyond the 6-topic pilot. This means, per
+  topic: writing a genuinely new `generate_modelled_example_xxx` (richer teaching
+  narration, not a relabelled copy of `solution_steps`) and wiring it onto that
+  topic's `TopicDefinition`. Explicitly piloted narrow this session so the
+  format/pedagogy could be checked before committing to writing this content for
+  all 129 topics — get sign-off on the pilot's 6 before expanding.
 - A full fresh curriculum audit of all 129 existing topics for further missing
   Foundation/Higher dual-tier siblings (beyond the specific candidates already
   resolved in steps 6 and 9) was explicitly deferred as out of scope this session —

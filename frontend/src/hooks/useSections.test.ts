@@ -17,7 +17,13 @@ describe('useSections', () => {
           {
             name: 'Solving Linear Equations',
             topics: [
-              { id: 'linear_one_step', name: 'One-Step Equations', description: 'desc', fixed_tier: 'foundation' },
+              {
+                id: 'linear_one_step',
+                name: 'One-Step Equations',
+                description: 'desc',
+                fixed_tier: 'foundation',
+                has_modelled_example: false,
+              },
             ],
           },
         ],
@@ -42,6 +48,7 @@ describe('useSections', () => {
       name: 'One-Step Equations',
       description: 'desc',
       fixedTier: 'foundation',
+      hasModelledExample: false,
     })
     expect(result.current.error).toBeNull()
   })

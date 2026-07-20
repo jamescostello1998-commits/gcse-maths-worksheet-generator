@@ -2,7 +2,7 @@ import itertools
 import random
 from fractions import Fraction
 
-from app.core.models import Question, Tier
+from app.core.models import ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
 
 SECTION = "probability"
@@ -43,6 +43,48 @@ def generate_single_event(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=f"{formula_prob.numerator}/{formula_prob.denominator}",
         dedup_key=f"single:{colours}:{counts}:{target_colour}",
+    )
+
+
+def generate_modelled_example_single_event(tier: Tier, rng: random.Random) -> ModelledExample:
+    n_colours = rng.randint(2, 4)
+    colours = rng.sample(COLOURS, n_colours)
+    counts = [rng.randint(2, 8) for _ in colours]
+    total = sum(counts)
+    target_idx = rng.randrange(n_colours)
+    target_colour = colours[target_idx]
+    favourable = counts[target_idx]
+    formula_prob = Fraction(favourable, total)
+
+    items = [c for c, cnt in zip(colours, counts) for _ in range(cnt)]
+    brute_count = sum(1 for it in items if it == target_colour)
+    brute_prob = Fraction(brute_count, len(items))
+    if brute_prob != formula_prob:
+        raise ValueError("modelled example single_event verification failed")
+
+    bag_desc = ", ".join(f"{cnt} {c}" for c, cnt in zip(colours, counts))
+    simplify_note = (
+        f", which simplifies to {formula_prob.numerator}/{formula_prob.denominator}"
+        if favourable != formula_prob.numerator or total != formula_prob.denominator
+        else ""
+    )
+    teaching_steps = [
+        "Probability compares how many ways an event CAN happen to how many outcomes are possible "
+        "in total, as long as every outcome is equally likely.",
+        f"Count the total number of counters in the bag: {' + '.join(str(c) for c in counts)} = {total}. "
+        "This is the total number of equally likely outcomes.",
+        f"Count how many of those are {target_colour}: {favourable}. This is the number of favourable outcomes.",
+        f"P({target_colour}) = favourable outcomes ÷ total outcomes = {favourable}/{total}{simplify_note}.",
+    ]
+    return ModelledExample(
+        topic_id="probability_single_event",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"A bag contains {bag_desc} counters. A counter is picked at random. "
+            f"Find the probability that it is {target_colour}."
+        ),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"{formula_prob.numerator}/{formula_prob.denominator}",
     )
 
 
@@ -182,6 +224,7 @@ TOPIC_SINGLE_EVENT = TopicDefinition(
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_single_event,
 )
 
 TOPIC_COMPLEMENT = TopicDefinition(

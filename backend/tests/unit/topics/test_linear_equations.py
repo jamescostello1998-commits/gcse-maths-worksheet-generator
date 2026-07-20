@@ -69,3 +69,26 @@ def test_topic_definitions_have_expected_metadata():
         assert t.section == "algebra"
         assert t.group == "Solving Linear Equations"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
+
+
+def test_modelled_example_pilot_scope():
+    assert linear_equations.TOPIC_TWO_STEP.generate_modelled_example is not None
+    for t in (
+        linear_equations.TOPIC_ONE_STEP,
+        linear_equations.TOPIC_MULTI_STEP,
+        linear_equations.TOPIC_BOTH_SIDES_FOUNDATION,
+        linear_equations.TOPIC_BRACKETS_FOUNDATION,
+        linear_equations.TOPIC_BOTH_SIDES,
+        linear_equations.TOPIC_BRACKETS,
+    ):
+        assert t.generate_modelled_example is None
+
+
+def test_modelled_example_two_step_produces_verified_examples():
+    rng = random.Random(201)
+    for _ in range(TRIALS):
+        example = linear_equations.generate_modelled_example_two_step(Tier.FOUNDATION, rng)
+        assert example.topic_id == "linear_two_step"
+        assert example.prompt
+        assert len(example.teaching_steps) >= 4
+        assert example.final_answer

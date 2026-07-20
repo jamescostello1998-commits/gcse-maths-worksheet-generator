@@ -208,10 +208,16 @@ def draw_angle_line(params: dict) -> Drawing:
 
     running = 0.0
     for v, lbl in zip(angle_values, labels):
-        d.add(_angle_arc(cx, cy, running, running + v, radius=22))
+        d.add(_angle_arc(cx, cy, running, running + v, radius=15))
+        if v < 20:
+            label_radius = radius + 13  # narrow wedges: place the label just beyond the ray tips
+        elif v < 35:
+            label_radius = radius * 0.85
+        else:
+            label_radius = radius * 0.78
         mid_rad = math.radians(running + v / 2)
-        lx, ly = cx + (radius * 0.55) * math.cos(mid_rad), cy + (radius * 0.55) * math.sin(mid_rad)
-        d.add(_label(lx, ly, lbl))
+        lx, ly = cx + label_radius * math.cos(mid_rad), cy + label_radius * math.sin(mid_rad)
+        d.add(_label(lx, ly, lbl, size=7.5))
         running += v
 
     d.add(Circle(cx, cy, 2, strokeColor=INK, fillColor=INK))
@@ -233,10 +239,10 @@ def draw_triangle_angles(params: dict) -> Drawing:
     n = len(vertices)
     for i, (vertex, lbl) in enumerate(zip(vertices, params["angle_labels"])):
         other1, other2 = vertices[(i - 1) % n], vertices[(i + 1) % n]
-        d.add(_vertex_angle_arc(vertex, other1, other2, radius=12))
+        d.add(_vertex_angle_arc(vertex, other1, other2, radius=9))
         vx, vy = vertex
-        lx, ly = vx + (cx - vx) * 0.45, vy + (cy - vy) * 0.45
-        d.add(_label(lx, ly, lbl))
+        lx, ly = vx + (cx - vx) * 0.58, vy + (cy - vy) * 0.58
+        d.add(_label(lx, ly, lbl, size=7.5))
     return d
 
 
@@ -258,13 +264,13 @@ def draw_parallel_lines(params: dict) -> Drawing:
     ray_angles = [0, 180, trans_angle, trans_angle + 180]
 
     offsets = {
-        "corresponding": ((10, 8), (10, 8)),
-        "alternate": ((10, -14), (-24, 10)),
-        "co_interior": ((10, -14), (10, 10)),
+        "corresponding": ((16, 12), (16, 12)),
+        "alternate": ((16, -20), (-34, 14)),
+        "co_interior": ((16, -20), (16, 14)),
     }
     (kx, ky), (ux2, uy2) = offsets[params["relation"]]
-    d.add(_sector_arc_for_label(ix_top, y_top, ray_angles, kx, ky, radius=13))
-    d.add(_sector_arc_for_label(ix_bottom, y_bottom, ray_angles, ux2, uy2, radius=13))
+    d.add(_sector_arc_for_label(ix_top, y_top, ray_angles, kx, ky, radius=10))
+    d.add(_sector_arc_for_label(ix_bottom, y_bottom, ray_angles, ux2, uy2, radius=10))
     d.add(_label(ix_top + kx, y_top + ky, params["known_label"], anchor="start", size=8))
     d.add(_label(ix_bottom + ux2, y_bottom + uy2, params["unknown_label"], anchor="start", size=8))
     return d
@@ -280,20 +286,20 @@ def draw_exterior_triangle(params: dict) -> Drawing:
     ext_point = (ext_x, ext_y)
     d.add(Line(B[0], B[1], ext_x, ext_y, strokeColor=INK, strokeWidth=1.2))
 
-    d.add(_vertex_angle_arc(A, B, C, radius=11))
-    d.add(_vertex_angle_arc(B, A, C, radius=11))
-    d.add(_vertex_angle_arc(B, C, ext_point, radius=17))
+    d.add(_vertex_angle_arc(A, B, C, radius=9))
+    d.add(_vertex_angle_arc(B, A, C, radius=9))
+    d.add(_vertex_angle_arc(B, C, ext_point, radius=14))
 
     centroid = ((A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3)
 
-    def _inset(vertex, factor=0.5):
+    def _inset(vertex, factor=0.7):
         return (vertex[0] + (centroid[0] - vertex[0]) * factor, vertex[1] + (centroid[1] - vertex[1]) * factor)
 
     ax, ay = _inset(A)
     bx, by = _inset(B)
     d.add(_label(ax, ay, params["interior1_label"], size=8))
     d.add(_label(bx, by, params["interior2_label"], size=8))
-    d.add(_label(B[0] + 16, B[1] + 8, params["exterior_label"], anchor="start", size=8))
+    d.add(_label(B[0] + 20, B[1] + 10, params["exterior_label"], anchor="start", size=8))
     return d
 
 
@@ -310,10 +316,10 @@ def draw_polygon(params: dict) -> Drawing:
     pts = [coord for vertex in vertices for coord in vertex]
     d.add(Polygon(pts, strokeColor=INK, fillColor=None, strokeWidth=1.2))
 
-    d.add(_vertex_angle_arc(vertices[0], vertices[-1], vertices[1], radius=10))
+    d.add(_vertex_angle_arc(vertices[0], vertices[-1], vertices[1], radius=8))
     vx, vy = vertices[0]
-    lx, ly = vx + (cx - vx) * 0.3, vy + (cy - vy) * 0.3
-    d.add(_label(lx, ly, params["marked_angle_label"]))
+    lx, ly = vx + (cx - vx) * 0.45, vy + (cy - vy) * 0.45
+    d.add(_label(lx, ly, params["marked_angle_label"], size=7.5))
     return d
 
 
@@ -349,7 +355,7 @@ def draw_trig_triangle(params: dict) -> Drawing:
         d.add(_label(A[0] - 10, (A[1] + C[1]) / 2, params["opposite_label"], anchor="end"))
     if params.get("hyp_label"):
         d.add(_label((B[0] + C[0]) / 2 + 12, (B[1] + C[1]) / 2 + 6, params["hyp_label"], anchor="start"))
-    d.add(_vertex_angle_arc(B, A, C, radius=11))
+    d.add(_vertex_angle_arc(B, A, C, radius=9))
     d.add(_label(B[0] - 20, B[1] + 9, params["angle_label"], size=8))
     return d
 
@@ -375,14 +381,14 @@ def draw_general_triangle(params: dict) -> Drawing:
 
     centroid = ((A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3)
 
-    def inset(v, factor=0.4):
+    def inset(v, factor=0.55):
         return (v[0] + (centroid[0] - v[0]) * factor, v[1] + (centroid[1] - v[1]) * factor)
 
     for vertex, other1, other2, key in (
         (A, B, C, "angle_A_label"), (B, A, C, "angle_B_label"), (C, A, B, "angle_C_label"),
     ):
         if params.get(key):
-            d.add(_vertex_angle_arc(vertex, other1, other2, radius=10))
+            d.add(_vertex_angle_arc(vertex, other1, other2, radius=8))
             px, py = inset(vertex)
             d.add(_label(px, py, params[key], size=8))
 
@@ -535,8 +541,8 @@ def draw_linear_graph_pair(params: dict) -> Drawing:
     return d
 
 
-GRAPH_WIDTH = 230
-GRAPH_HEIGHT = 175
+GRAPH_WIDTH = 210
+GRAPH_HEIGHT = 210
 
 _GRAPH_MARGIN_L = 26
 _GRAPH_MARGIN_R = 10
