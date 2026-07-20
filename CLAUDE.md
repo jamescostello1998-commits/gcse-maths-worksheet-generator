@@ -18,33 +18,37 @@ solutions, searchable/browsable across 6 curriculum sections.
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.).
-Full backend suite: **177/177 passing**. Frontend suite: **25/25 passing**.
+Full backend suite: **244/244 passing**. Frontend suite: **25/25 passing**.
 
-**Modelled Example feature (pilot only, not rolled out)**: a second button, "Generate
-Modelled Example," now sits next to "Generate Worksheet" on topic cards — but
-only for topics that opt in (`TopicDefinition.generate_modelled_example` is set).
+**Modelled Example feature (rolled out to all 129 topics)**: a second button, "Generate
+Modelled Example," sits next to "Generate Worksheet" on every topic card
+(`TopicDefinition.generate_modelled_example` is set on every topic — the field
+still exists as an `Optional` opt-in mechanically, but nothing is opted out).
 Clicking it downloads a separate 2-page PDF via `POST /api/modelled-examples`:
 page 1 is a single, richly-narrated worked example (`ModelledExample` in
-`core/models.py` — `teaching_steps` are meant to read like a teacher talking
-through the *why*, not just the terse calculation-only `Question.solution_steps`
-used everywhere else); page 2 is 5 practice questions generated the normal way
-(via `build_worksheet(..., count=5)`, so they get the topic's real generator and
+`core/models.py`) — `worked_calculation` is a terse, boxed, numbers-only
+calculation shown right under the prompt (so the student sees the numeric answer
+path first), and `teaching_steps` is the prose underneath, meant to read like a
+teacher talking through the *why* (not just the terse calculation-only
+`Question.solution_steps` used everywhere else, and not just a relabelling of
+it); page 2 is 5 practice questions generated the normal way (via
+`build_worksheet(..., count=5)`, so they get the topic's real generator and
 dedup logic) but rendered with **backward fading**
 (`app/pdf/modelled_example_renderer.py`'s `_steps_shown_count`) — Q1 shows nearly
 the whole worked solution with just the answer blanked, each later question shows
 progressively less, and Q5 is fully independent (and deliberately does *not* show
 a blank line per hidden step, so the blank-line count doesn't leak how many steps
 the real solution has — see the `shown == 0` branch in `_practice_block`). No
-answers are ever revealed on the practice page. Piloted on exactly 6 topics, one
-per section, chosen to cover a range of content types (arithmetic, algebra,
-percentages, geometry-with-diagram, probability, statistics):
+answers are ever revealed on the practice page. Every topic has its own
+`generate_modelled_example_xxx(tier, rng) -> ModelledExample` function living
+alongside its normal `generate_xxx`, with genuinely new, more verbose explanatory
+text — verified the same way as every other generator (independent second
+computation path). Piloted first on 6 topics (one per section —
 `fractions_add_subtract`, `linear_two_step`, `percentage_of_amount`,
-`angles_triangle`, `probability_single_event`, `stats_mean_and_range`. Each has
-its own `generate_modelled_example_xxx(tier, rng) -> ModelledExample` function
-living alongside its normal `generate_xxx`, with genuinely new, more verbose
-explanatory text (not just the existing terse steps re-laid-out) — verified the
-same way as every other generator (independent second computation path).
-Deliberately **not** rolled out to the other 123 topics yet — see "Ideas" below.
+`angles_triangle`, `probability_single_event`, `stats_mean_and_range`) to check
+the format/pedagogy before committing to writing this content for all 129 topics,
+then rolled out to the remaining 123 in one session (see Chronology step 11) once
+that pilot was approved.
 
 | Section | Groups | Topics |
 |---|---|---|
@@ -216,6 +220,26 @@ fine as literal Unicode — only `⁻` specifically is the problem.)
     `TopicDefinition.generate_modelled_example` opt-in field,
     `app/pdf/modelled_example_renderer.py`, `POST /api/modelled-examples`,
     and a second frontend button — piloted on 6 topics, one per section.
+11. Two follow-up requests on the Modelled Example pilot, in the same session.
+    First, a layout fix: added `ModelledExample.worked_calculation` (terse
+    numeric-only lines) and reordered the page so the boxed calculation now sits
+    directly under the prompt, with the prose `teaching_steps` ("How it works")
+    following underneath — previously the prose came first with no separate
+    numeric summary. Retrofitted `worked_calculation` onto all 6 pilot topics'
+    existing `generate_modelled_example_xxx` functions. Second, per the user's
+    go-ahead, rolled the feature out to the other 123 topics: every topic across
+    all 6 sections now has a `generate_modelled_example_xxx` function (verified
+    independently, same conventions as every other generator) wired onto its
+    `TopicDefinition`, done section-by-section (mostly via parallel subagents,
+    one per topic-module cluster) with a full-suite check and a commit+push after
+    each section. Finished by replacing the old "pilot scope" gate tests
+    (`test_modelled_example_renderer.py`'s `PILOT_TOPIC_IDS`-based tests,
+    `test_routes.py`'s 404-for-topic-without-one test) with full-coverage
+    equivalents — the 404 branch is still tested, now via a monkeypatched
+    stand-in topic rather than a real topic lacking a modelled example, since
+    none do anymore. Backend suite grew from 177 to 244 tests, all passing;
+    frontend unaffected (its "Generate Modelled Example" button was already
+    driven by a per-topic API flag, so no frontend changes were needed).
 
 Everything above is committed and pushed (see `git log`).
 
@@ -397,12 +421,6 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
 
 ## Ideas for a future session (not started, no commitment made)
 
-- Roll the Modelled Example feature out beyond the 6-topic pilot. This means, per
-  topic: writing a genuinely new `generate_modelled_example_xxx` (richer teaching
-  narration, not a relabelled copy of `solution_steps`) and wiring it onto that
-  topic's `TopicDefinition`. Explicitly piloted narrow this session so the
-  format/pedagogy could be checked before committing to writing this content for
-  all 129 topics — get sign-off on the pilot's 6 before expanding.
 - A full fresh curriculum audit of all 129 existing topics for further missing
   Foundation/Higher dual-tier siblings (beyond the specific candidates already
   resolved in steps 6 and 9) was explicitly deferred as out of scope this session —
