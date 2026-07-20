@@ -46,6 +46,54 @@ def generate_straight_line(tier: Tier, rng: random.Random) -> Question:
     )
 
 
+def generate_modelled_example_straight_line(tier: Tier, rng: random.Random) -> ModelledExample:
+    n = rng.choice([2, 3])
+    given: list[int] = []
+    remaining = 180
+    for i in range(n - 1):
+        max_for_this = remaining - 10 * (n - 1 - i)
+        angle = rng.randint(10, max(10, min(150, max_for_this)))
+        given.append(angle)
+        remaining -= angle
+    missing = 180 - sum(given)
+    if missing < 10:
+        raise ValueError("modelled example straight_line generation produced an invalid missing angle")
+
+    given_str = ", ".join(f"{a}°" for a in given)
+    teaching_steps = [
+        "Whenever a set of angles sit together on a single straight line, they always add up "
+        "to exactly 180° - this is one of the basic angle facts, because a straight line is "
+        "itself a 180° angle.",
+        f"Here we're given {n - 1} of the angles: {given_str}. Add those together first: "
+        f"{' + '.join(str(a) for a in given)} = {sum(given)}.",
+        f"Since the whole straight line totals 180°, whatever is left over must be the missing "
+        f"angle: x = 180 - {sum(given)} = {missing}.",
+        f"Check it makes sense: {given_str} and {missing}° together give "
+        f"{sum(given) + missing}°, which is 180° as required.",
+    ]
+    worked_calculation = [
+        f"{' + '.join(str(a) for a in given)} + x = 180",
+        f"{sum(given)} + x = 180",
+        f"x = 180 - {sum(given)} = {missing}",
+    ]
+    return ModelledExample(
+        topic_id="angles_straight_line",
+        tier=Tier.FOUNDATION,
+        prompt=f"The angles {given_str} and x° lie on a straight line. Find x.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=str(missing),
+        diagram=DiagramSpec(
+            kind="angle_line",
+            params={
+                "angle_values": given + [missing],
+                "labels": [f"{a}°" for a in given] + ["x"],
+                "around_point": False,
+            },
+        ),
+    )
+
+
 def generate_around_point(tier: Tier, rng: random.Random) -> Question:
     n = rng.choice([3, 4])
     given: list[int] = []
@@ -71,6 +119,53 @@ def generate_around_point(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=str(missing),
         dedup_key=f"around_point:{given}",
+        diagram=DiagramSpec(
+            kind="angle_line",
+            params={
+                "angle_values": given + [missing],
+                "labels": [f"{a}°" for a in given] + ["x"],
+                "around_point": True,
+            },
+        ),
+    )
+
+
+def generate_modelled_example_around_point(tier: Tier, rng: random.Random) -> ModelledExample:
+    n = rng.choice([3, 4])
+    given: list[int] = []
+    remaining = 360
+    for i in range(n - 1):
+        max_for_this = remaining - 10 * (n - 1 - i)
+        angle = rng.randint(10, max(10, min(150, max_for_this)))
+        given.append(angle)
+        remaining -= angle
+    missing = 360 - sum(given)
+    if missing < 10:
+        raise ValueError("modelled example around_point generation produced an invalid missing angle")
+
+    given_str = ", ".join(f"{a}°" for a in given)
+    teaching_steps = [
+        "Angles that meet at a single point and go all the way around it always add up to "
+        "360° - a full turn - because going all the way round a point is one complete rotation.",
+        f"We're given {n - 1} of the angles: {given_str}. Add these together: "
+        f"{' + '.join(str(a) for a in given)} = {sum(given)}.",
+        f"The full set of angles must total 360°, so subtract the sum of the known angles from "
+        f"360 to find the missing one: x = 360 - {sum(given)} = {missing}.",
+        f"As a check, all the angles together give {sum(given) + missing}°, which is a full "
+        "turn as expected.",
+    ]
+    worked_calculation = [
+        f"{' + '.join(str(a) for a in given)} + x = 360",
+        f"{sum(given)} + x = 360",
+        f"x = 360 - {sum(given)} = {missing}",
+    ]
+    return ModelledExample(
+        topic_id="angles_around_point",
+        tier=Tier.FOUNDATION,
+        prompt=f"The angles {given_str} and x° are angles around a point. Find x.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=str(missing),
         diagram=DiagramSpec(
             kind="angle_line",
             params={
@@ -181,6 +276,65 @@ def generate_parallel_lines(tier: Tier, rng: random.Random) -> Question:
     )
 
 
+def generate_modelled_example_parallel_lines(tier: Tier, rng: random.Random) -> ModelledExample:
+    fact = rng.choice(["corresponding", "alternate", "co_interior"])
+    known = rng.randint(30, 150)
+    target = known if fact in ("corresponding", "alternate") else 180 - known
+    coeff = rng.choice([2, 3, 4, 5])
+    x_sol = rng.randint(1, 20)
+    const = target - coeff * x_sol
+
+    fact_text = {
+        "corresponding": "Corresponding angles are equal - they sit in the same position at "
+        "each intersection, like two Fs stacked on top of each other.",
+        "alternate": "Alternate angles are equal - they sit on opposite sides of the crossing "
+        "line, between the two parallel lines, forming a Z shape.",
+        "co_interior": "Co-interior angles sum to 180° - they sit on the same side of the "
+        "crossing line, between the two parallel lines, forming a C or U shape.",
+    }[fact]
+    relation = {
+        "corresponding": "are corresponding angles",
+        "alternate": "are alternate angles",
+        "co_interior": "are co-interior angles",
+    }[fact]
+
+    solve_steps, solution = solve_linear_with_steps(coeff, const, 0, target)
+    residual = sp.simplify((coeff * X + const).subs(X, solution) - target)
+    if residual != 0:
+        raise ValueError("modelled example parallel_lines verification failed")
+
+    teaching_steps = [
+        "When a line crosses a pair of parallel lines, it creates several pairs of equal or "
+        "related angles - which pair applies here depends on the two angles' positions "
+        "relative to the parallel lines and the crossing line.",
+        fact_text,
+        f"That means {known}° and ({fmt_linear(coeff, const)})° {relation}, so we can set up an "
+        f"equation: {fmt_linear(coeff, const)} = {target}.",
+        f"Solve that equation for x the usual way, isolating x on one side, to get x = {solution}.",
+    ]
+    worked_calculation = [
+        f"{fmt_linear(coeff, const)} = {target}",
+        f"{fmt_linear(coeff, 0)} = {target - const}",
+        f"x = {solution}",
+    ]
+    prompt = (
+        f"A line crosses two parallel lines. The angle {known}° and the angle "
+        f"({fmt_linear(coeff, const)})° {relation}. Find x."
+    )
+    return ModelledExample(
+        topic_id="angles_parallel_lines",
+        tier=Tier.HIGHER,
+        prompt=prompt,
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=str(solution),
+        diagram=DiagramSpec(
+            kind="parallel_lines",
+            params={"known_label": f"{known}°", "unknown_label": "x", "relation": fact},
+        ),
+    )
+
+
 def generate_exterior_angle(tier: Tier, rng: random.Random) -> Question:
     known_interior = rng.randint(20, 70)
     coeff = rng.choice([2, 3, 4, 5])
@@ -210,6 +364,60 @@ def generate_exterior_angle(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=str(solution),
         dedup_key=f"exterior_angle:{known_interior}:{coeff}:{const}:{exterior}",
+        diagram=DiagramSpec(
+            kind="exterior_triangle",
+            params={
+                "interior1_label": f"{known_interior}°",
+                "interior2_label": f"({fmt_linear(coeff, const)})°",
+                "exterior_label": f"{exterior}°",
+            },
+        ),
+    )
+
+
+def generate_modelled_example_exterior_angle(tier: Tier, rng: random.Random) -> ModelledExample:
+    known_interior = rng.randint(20, 70)
+    coeff = rng.choice([2, 3, 4, 5])
+    x_sol = rng.randint(1, 20)
+    other_interior_value = rng.randint(10, 70)
+    const = other_interior_value - coeff * x_sol
+    exterior = known_interior + other_interior_value
+    if exterior >= 180:
+        raise ValueError("modelled example exterior_angle generated a non-physical exterior angle")
+
+    solve_steps, solution = solve_linear_with_steps(coeff, const, 0, exterior - known_interior)
+    residual = sp.simplify((coeff * X + const).subs(X, solution) - other_interior_value)
+    if residual != 0:
+        raise ValueError("modelled example exterior_angle verification failed")
+
+    teaching_steps = [
+        "If you extend one side of a triangle beyond a vertex, the angle formed outside the "
+        "triangle is called an exterior angle - and there's a useful shortcut for finding it: "
+        "it always equals the sum of the two interior angles that are NOT next to it (the "
+        "'remote' interior angles).",
+        f"Here the exterior angle is {exterior}° and one of the remote interior angles is "
+        f"{known_interior}°, so the other remote interior angle, ({fmt_linear(coeff, const)})°, "
+        f"must make up the rest: {exterior} - {known_interior} = {exterior - known_interior}.",
+        f"Set up the equation ({fmt_linear(coeff, const)}) = {exterior - known_interior} and "
+        "solve it the usual way to isolate x.",
+        f"That gives x = {solution}.",
+    ]
+    worked_calculation = [
+        f"{fmt_linear(coeff, const)} = {exterior - known_interior}",
+        f"{fmt_linear(coeff, 0)} = {exterior - known_interior - const}",
+        f"x = {solution}",
+    ]
+    prompt = (
+        f"An exterior angle of a triangle is {exterior}°. The two remote interior angles are "
+        f"{known_interior}° and ({fmt_linear(coeff, const)})°. Find x."
+    )
+    return ModelledExample(
+        topic_id="angles_exterior",
+        tier=Tier.HIGHER,
+        prompt=prompt,
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=str(solution),
         diagram=DiagramSpec(
             kind="exterior_triangle",
             params={
@@ -257,6 +465,59 @@ def generate_parallel_lines_foundation(tier: Tier, rng: random.Random) -> Questi
     )
 
 
+def generate_modelled_example_parallel_lines_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
+    fact = rng.choice(["corresponding", "alternate", "co_interior"])
+    known = rng.randint(30, 150)
+    target = known if fact in ("corresponding", "alternate") else 180 - known
+
+    # Independent check: the target angle must be a valid angle (a sanity
+    # bound distinct from the direct lookup used to compute it above).
+    if not (0 < target < 180):
+        raise ValueError("modelled example parallel_lines_foundation verification failed: angle out of range")
+
+    fact_text = {
+        "corresponding": "Corresponding angles are equal - they sit in the same position at "
+        "each intersection, like two Fs stacked on top of each other.",
+        "alternate": "Alternate angles are equal - they sit on opposite sides of the crossing "
+        "line, between the two parallel lines, forming a Z shape.",
+        "co_interior": "Co-interior angles sum to 180° - they sit on the same side of the "
+        "crossing line, between the two parallel lines, forming a C or U shape.",
+    }[fact]
+    relation = {
+        "corresponding": "are corresponding angles",
+        "alternate": "are alternate angles",
+        "co_interior": "are co-interior angles",
+    }[fact]
+
+    if fact == "co_interior":
+        final_step = f"Since the two angles sum to 180°, x = 180 - {known} = {target}."
+        worked_calculation = [f"x + {known} = 180", f"x = {target}"]
+    else:
+        final_step = f"Since the two angles are equal, x = {target}."
+        worked_calculation = [f"x = {known}", f"x = {target}"]
+
+    teaching_steps = [
+        "When a line crosses a pair of parallel lines, it creates several pairs of related "
+        "angles - spotting which pair you have tells you exactly how the two angles are linked.",
+        fact_text,
+        f"Here x° and {known}° {relation}, so we can use that fact directly without any "
+        "algebra.",
+        final_step,
+    ]
+    return ModelledExample(
+        topic_id="angles_parallel_lines_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=f"A line crosses two parallel lines. The angle {known}° and the angle x° {relation}. Find x.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=str(target),
+        diagram=DiagramSpec(
+            kind="parallel_lines",
+            params={"known_label": f"{known}°", "unknown_label": "x", "relation": fact},
+        ),
+    )
+
+
 def generate_exterior_foundation(tier: Tier, rng: random.Random) -> Question:
     a = rng.randint(20, 70)
     b = rng.randint(20, 70)
@@ -284,6 +545,51 @@ def generate_exterior_foundation(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=str(exterior),
         dedup_key=f"exterior_f:{a}:{b}",
+        diagram=DiagramSpec(
+            kind="exterior_triangle",
+            params={"interior1_label": f"{a}°", "interior2_label": f"{b}°", "exterior_label": "x"},
+        ),
+    )
+
+
+def generate_modelled_example_exterior_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
+    a = rng.randint(20, 70)
+    b = rng.randint(20, 70)
+    exterior = a + b
+    if exterior >= 180:
+        raise ValueError("modelled example exterior_foundation generated a non-physical exterior angle")
+
+    # Independent check: the exterior angle also equals 180 minus the third
+    # (remote) interior angle of the triangle - a different derivation than
+    # the direct sum-of-remote-angles theorem used above.
+    third_interior = 180 - a - b
+    if third_interior <= 0:
+        raise ValueError("modelled example exterior_foundation verification failed: non-physical triangle")
+    if 180 - third_interior != exterior:
+        raise ValueError("modelled example exterior_foundation verification failed")
+
+    teaching_steps = [
+        "If you extend one side of a triangle beyond a vertex, the angle formed outside is "
+        "called an exterior angle. There's a handy rule: it always equals the sum of the two "
+        "interior angles that aren't next to it (the 'remote' interior angles).",
+        f"Here the two remote interior angles are {a}° and {b}°, so add them together: "
+        f"{a} + {b} = {exterior}.",
+        f"That sum, {exterior}°, is exactly the exterior angle x - no rearranging needed, "
+        "just apply the rule directly.",
+        f"As a check: the third interior angle of the triangle is 180 - {a} - {b} = "
+        f"{third_interior}°, and 180 - {third_interior} = {exterior} too, confirming the answer.",
+    ]
+    worked_calculation = [
+        f"x = {a} + {b}",
+        f"x = {exterior}",
+    ]
+    return ModelledExample(
+        topic_id="angles_exterior_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=f"An exterior angle of a triangle is x°. The two remote interior angles are {a}° and {b}°. Find x.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=str(exterior),
         diagram=DiagramSpec(
             kind="exterior_triangle",
             params={"interior1_label": f"{a}°", "interior2_label": f"{b}°", "exterior_label": "x"},
@@ -336,6 +642,83 @@ def generate_polygon_interior_foundation(tier: Tier, rng: random.Random) -> Ques
     )
 
 
+def generate_modelled_example_polygon_interior_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
+    n = rng.choice(_REGULAR_POLYGON_SIDES)
+    measure = rng.choice(["interior_sum", "interior_angle", "exterior_angle"])
+    total = (n - 2) * 180
+
+    # Independent check: the interior angle via total ÷ n must match 180
+    # minus the exterior angle (360 ÷ n) - a different derivation (the
+    # exterior-angle-sum method) than the direct division used above.
+    if total % n != 0 or 360 % n != 0:
+        raise ValueError("modelled example polygon_interior_foundation verification failed: n does not divide evenly")
+    interior = total // n
+    exterior = 360 // n
+    if 180 - exterior != interior:
+        raise ValueError("modelled example polygon_interior_foundation verification failed")
+
+    if measure == "interior_sum":
+        prompt = f"A polygon has {n} sides. Find the sum of its interior angles."
+        teaching_steps = [
+            "Any polygon can be split into triangles by drawing diagonals from one vertex - and "
+            "since every triangle's angles sum to 180°, counting those triangles tells us the "
+            f"total for the whole polygon.",
+            f"A polygon with n sides can always be split into (n - 2) triangles. Here n = {n}, "
+            f"so that's {n} - 2 = {n - 2} triangles.",
+            f"Each triangle contributes 180°, so multiply: {n - 2} × 180 = {total}.",
+            f"So the interior angles of this {n}-sided polygon sum to {total}°.",
+        ]
+        worked_calculation = [
+            f"Sum = (n - 2) × 180",
+            f"= ({n} - 2) × 180",
+            f"= {total}°",
+        ]
+        answer = f"{total}°"
+    elif measure == "interior_angle":
+        prompt = f"A regular polygon has {n} sides. Find the size of one interior angle."
+        teaching_steps = [
+            "First find the total of all the interior angles, then - because this polygon is "
+            "regular, meaning every angle is identical - share that total equally between the "
+            "sides.",
+            f"Sum of interior angles = (n - 2) × 180 = ({n} - 2) × 180 = {total}°.",
+            f"Since all {n} interior angles are equal, divide the total by {n}: "
+            f"{total} ÷ {n} = {interior}.",
+            f"So each interior angle of this regular {n}-sided polygon is {interior}°.",
+        ]
+        worked_calculation = [
+            f"Sum = ({n} - 2) × 180 = {total}°",
+            f"One angle = {total} ÷ {n}",
+            f"= {interior}°",
+        ]
+        answer = f"{interior}°"
+    else:
+        prompt = f"A regular polygon has {n} sides. Find the size of one exterior angle."
+        teaching_steps = [
+            "The exterior angles of any polygon - the angles you'd turn through walking around "
+            "the outside - always add up to exactly 360°, a full turn, no matter how many sides "
+            "the polygon has.",
+            f"Since this polygon is regular, all {n} exterior angles are equal, so share the "
+            f"360° equally between them.",
+            f"Divide: 360 ÷ {n} = {exterior}.",
+            f"So each exterior angle of this regular {n}-sided polygon is {exterior}°.",
+        ]
+        worked_calculation = [
+            f"One exterior angle = 360 ÷ {n}",
+            f"= {exterior}°",
+        ]
+        answer = f"{exterior}°"
+
+    return ModelledExample(
+        topic_id="angles_polygon_interior_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=prompt,
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=answer,
+        diagram=DiagramSpec(kind="polygon", params={"n_sides": min(n, 12), "marked_angle_label": "?"}),
+    )
+
+
 def generate_polygon_interior(tier: Tier, rng: random.Random) -> Question:
     for _ in range(200):
         n = rng.randint(5, 8)
@@ -380,6 +763,59 @@ def generate_polygon_interior(tier: Tier, rng: random.Random) -> Question:
     )
 
 
+def generate_modelled_example_polygon_interior(tier: Tier, rng: random.Random) -> ModelledExample:
+    for _ in range(200):
+        n = rng.randint(5, 8)
+        total = (n - 2) * 180
+        other_angle_value = rng.randint(100, 150)
+        remaining_total = other_angle_value * (n - 1)
+        algebraic_value = total - remaining_total
+        if 20 <= algebraic_value <= 170:
+            break
+    else:
+        raise ValueError("modelled example polygon_interior could not find valid parameters")
+
+    coeff = rng.choice([2, 3, 4, 5])
+    x_sol = rng.randint(1, 20)
+    const = algebraic_value - coeff * x_sol
+
+    solve_steps, solution = solve_linear_with_steps(coeff, const, 0, algebraic_value)
+    total_check = other_angle_value * (n - 1) + int((coeff * X + const).subs(X, solution))
+    if total_check != total:
+        raise ValueError("modelled example polygon_interior verification failed")
+
+    teaching_steps = [
+        "For any polygon, the interior angles always add up to (n - 2) × 180°, where n is the "
+        f"number of sides. Here n = {n}, so the total is ({n} - 2) × 180 = {total}°.",
+        f"We're told {n - 1} of the angles are each {other_angle_value}°, so together they "
+        f"account for {n - 1} × {other_angle_value} = {remaining_total}° of that total.",
+        f"Whatever is left over must belong to the final angle: {total} - {remaining_total} = "
+        f"{algebraic_value}°, so ({fmt_linear(coeff, const)})° = {algebraic_value}°.",
+        f"Solve that equation for x the usual way to get x = {solution}.",
+    ]
+    worked_calculation = [
+        f"({fmt_linear(coeff, const)}) = {total} - {remaining_total} = {algebraic_value}",
+        f"{fmt_linear(coeff, 0)} = {algebraic_value - const}",
+        f"x = {solution}",
+    ]
+    prompt = (
+        f"A polygon has {n} sides. {n - 1} of its interior angles are each {other_angle_value}°, "
+        f"and the remaining interior angle is ({fmt_linear(coeff, const)})°. Find x."
+    )
+    return ModelledExample(
+        topic_id="angles_polygon_interior",
+        tier=Tier.HIGHER,
+        prompt=prompt,
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=str(solution),
+        diagram=DiagramSpec(
+            kind="polygon",
+            params={"n_sides": n, "marked_angle_label": f"({fmt_linear(coeff, const)})°"},
+        ),
+    )
+
+
 TOPIC_STRAIGHT_LINE = TopicDefinition(
     id="angles_straight_line",
     display_name="On a Straight Line",
@@ -388,6 +824,7 @@ TOPIC_STRAIGHT_LINE = TopicDefinition(
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_straight_line,
 )
 
 TOPIC_AROUND_POINT = TopicDefinition(
@@ -398,6 +835,7 @@ TOPIC_AROUND_POINT = TopicDefinition(
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_around_point,
 )
 
 TOPIC_TRIANGLE = TopicDefinition(
@@ -419,6 +857,7 @@ TOPIC_PARALLEL_LINES_FOUNDATION = TopicDefinition(
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_parallel_lines_foundation,
 )
 
 TOPIC_PARALLEL_LINES = TopicDefinition(
@@ -429,6 +868,7 @@ TOPIC_PARALLEL_LINES = TopicDefinition(
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_parallel_lines,
 )
 
 TOPIC_EXTERIOR_FOUNDATION = TopicDefinition(
@@ -439,6 +879,7 @@ TOPIC_EXTERIOR_FOUNDATION = TopicDefinition(
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_exterior_foundation,
 )
 
 TOPIC_EXTERIOR = TopicDefinition(
@@ -449,6 +890,7 @@ TOPIC_EXTERIOR = TopicDefinition(
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_exterior_angle,
 )
 
 TOPIC_POLYGON_INTERIOR_FOUNDATION = TopicDefinition(
@@ -459,6 +901,7 @@ TOPIC_POLYGON_INTERIOR_FOUNDATION = TopicDefinition(
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_polygon_interior_foundation,
 )
 
 TOPIC_POLYGON_INTERIOR = TopicDefinition(
@@ -469,4 +912,5 @@ TOPIC_POLYGON_INTERIOR = TopicDefinition(
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_polygon_interior,
 )

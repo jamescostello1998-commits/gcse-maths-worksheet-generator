@@ -99,18 +99,6 @@ def test_topic_definitions_have_expected_metadata():
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
 
 
-def test_modelled_example_pilot_scope():
-    assert angles.TOPIC_TRIANGLE.generate_modelled_example is not None
-    other_topics = [
-        angles.TOPIC_STRAIGHT_LINE, angles.TOPIC_AROUND_POINT,
-        angles.TOPIC_PARALLEL_LINES_FOUNDATION, angles.TOPIC_PARALLEL_LINES,
-        angles.TOPIC_EXTERIOR_FOUNDATION, angles.TOPIC_EXTERIOR,
-        angles.TOPIC_POLYGON_INTERIOR_FOUNDATION, angles.TOPIC_POLYGON_INTERIOR,
-    ]
-    for t in other_topics:
-        assert t.generate_modelled_example is None
-
-
 def test_modelled_example_triangle_angles_produces_verified_examples():
     rng = random.Random(203)
     for _ in range(TRIALS):
@@ -121,3 +109,61 @@ def test_modelled_example_triangle_angles_produces_verified_examples():
         assert example.final_answer
         assert example.diagram is not None
         assert example.diagram.kind == "triangle_angles"
+
+
+MODELLED_EXAMPLE_GENERATORS = [
+    (angles.generate_modelled_example_straight_line, Tier.FOUNDATION, "angles_straight_line", "angle_line"),
+    (angles.generate_modelled_example_around_point, Tier.FOUNDATION, "angles_around_point", "angle_line"),
+    (
+        angles.generate_modelled_example_parallel_lines_foundation,
+        Tier.FOUNDATION,
+        "angles_parallel_lines_foundation",
+        "parallel_lines",
+    ),
+    (angles.generate_modelled_example_parallel_lines, Tier.HIGHER, "angles_parallel_lines", "parallel_lines"),
+    (
+        angles.generate_modelled_example_exterior_foundation,
+        Tier.FOUNDATION,
+        "angles_exterior_foundation",
+        "exterior_triangle",
+    ),
+    (angles.generate_modelled_example_exterior_angle, Tier.HIGHER, "angles_exterior", "exterior_triangle"),
+    (
+        angles.generate_modelled_example_polygon_interior_foundation,
+        Tier.FOUNDATION,
+        "angles_polygon_interior_foundation",
+        "polygon",
+    ),
+    (angles.generate_modelled_example_polygon_interior, Tier.HIGHER, "angles_polygon_interior", "polygon"),
+]
+
+
+def test_topic_definitions_have_modelled_examples_wired_up():
+    topics = [
+        angles.TOPIC_STRAIGHT_LINE,
+        angles.TOPIC_AROUND_POINT,
+        angles.TOPIC_TRIANGLE,
+        angles.TOPIC_PARALLEL_LINES_FOUNDATION,
+        angles.TOPIC_PARALLEL_LINES,
+        angles.TOPIC_EXTERIOR_FOUNDATION,
+        angles.TOPIC_EXTERIOR,
+        angles.TOPIC_POLYGON_INTERIOR_FOUNDATION,
+        angles.TOPIC_POLYGON_INTERIOR,
+    ]
+    for t in topics:
+        assert t.generate_modelled_example is not None
+
+
+def test_modelled_examples_produce_verified_examples_with_diagrams():
+    for generate_example, tier, topic_id, diagram_kind in MODELLED_EXAMPLE_GENERATORS:
+        rng = random.Random(403)
+        for _ in range(TRIALS):
+            example = generate_example(tier, rng)
+            assert example.topic_id == topic_id
+            assert example.tier == tier
+            assert example.prompt
+            assert len(example.worked_calculation) >= 2
+            assert len(example.teaching_steps) >= 3
+            assert example.final_answer
+            assert example.diagram is not None
+            assert example.diagram.kind == diagram_kind

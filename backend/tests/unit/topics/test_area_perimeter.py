@@ -79,3 +79,63 @@ def test_topic_definitions_have_expected_metadata():
         assert t.section == "geometry"
         assert t.group == "Area & Perimeter"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
+
+
+MODELLED_EXAMPLE_GENERATORS = [
+    (area_perimeter.generate_modelled_example_rectangle, Tier.FOUNDATION, "area_rectangle", "rectangle"),
+    (area_perimeter.generate_modelled_example_triangle, Tier.FOUNDATION, "area_triangle", "triangle_area"),
+    (
+        area_perimeter.generate_modelled_example_composite_rectangles,
+        Tier.FOUNDATION,
+        "area_composite_rectangles",
+        "l_shape",
+    ),
+    (
+        area_perimeter.generate_modelled_example_circle_foundation,
+        Tier.FOUNDATION,
+        "area_circle_foundation",
+        "circle",
+    ),
+    (area_perimeter.generate_modelled_example_circle, Tier.HIGHER, "area_circle", "circle"),
+    (
+        area_perimeter.generate_modelled_example_semicircle_compound,
+        Tier.HIGHER,
+        "area_semicircle_compound",
+        "rectangle_semicircle",
+    ),
+    (
+        area_perimeter.generate_modelled_example_subtract_compound,
+        Tier.HIGHER,
+        "area_subtract_compound",
+        "l_shape",
+    ),
+]
+
+
+def test_topic_definitions_have_modelled_examples_wired_up():
+    topics = [
+        area_perimeter.TOPIC_RECTANGLE,
+        area_perimeter.TOPIC_TRIANGLE,
+        area_perimeter.TOPIC_COMPOSITE_RECTANGLES,
+        area_perimeter.TOPIC_CIRCLE_FOUNDATION,
+        area_perimeter.TOPIC_CIRCLE,
+        area_perimeter.TOPIC_SEMICIRCLE_COMPOUND,
+        area_perimeter.TOPIC_SUBTRACT_COMPOUND,
+    ]
+    for t in topics:
+        assert t.generate_modelled_example is not None
+
+
+def test_modelled_examples_produce_verified_examples_with_diagrams():
+    for generate_example, tier, topic_id, diagram_kind in MODELLED_EXAMPLE_GENERATORS:
+        rng = random.Random(303)
+        for _ in range(TRIALS):
+            example = generate_example(tier, rng)
+            assert example.topic_id == topic_id
+            assert example.tier == tier
+            assert example.prompt
+            assert len(example.worked_calculation) >= 2
+            assert len(example.teaching_steps) >= 3
+            assert example.final_answer
+            assert example.diagram is not None
+            assert example.diagram.kind == diagram_kind
