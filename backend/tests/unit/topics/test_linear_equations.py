@@ -71,24 +71,46 @@ def test_topic_definitions_have_expected_metadata():
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
 
 
-def test_modelled_example_pilot_scope():
-    assert linear_equations.TOPIC_TWO_STEP.generate_modelled_example is not None
-    for t in (
+def test_all_topics_have_modelled_example_wired():
+    topics = [
         linear_equations.TOPIC_ONE_STEP,
+        linear_equations.TOPIC_TWO_STEP,
         linear_equations.TOPIC_MULTI_STEP,
         linear_equations.TOPIC_BOTH_SIDES_FOUNDATION,
         linear_equations.TOPIC_BRACKETS_FOUNDATION,
         linear_equations.TOPIC_BOTH_SIDES,
         linear_equations.TOPIC_BRACKETS,
-    ):
-        assert t.generate_modelled_example is None
+    ]
+    for t in topics:
+        assert t.generate_modelled_example is not None
 
 
-def test_modelled_example_two_step_produces_verified_examples():
-    rng = random.Random(201)
-    for _ in range(TRIALS):
-        example = linear_equations.generate_modelled_example_two_step(Tier.FOUNDATION, rng)
-        assert example.topic_id == "linear_two_step"
-        assert example.prompt
-        assert len(example.teaching_steps) >= 4
-        assert example.final_answer
+MODELLED_EXAMPLE_GENERATORS = [
+    (linear_equations.generate_modelled_example_one_step, Tier.FOUNDATION, "linear_one_step"),
+    (linear_equations.generate_modelled_example_two_step, Tier.FOUNDATION, "linear_two_step"),
+    (linear_equations.generate_modelled_example_multi_step, Tier.FOUNDATION, "linear_multi_step"),
+    (
+        linear_equations.generate_modelled_example_both_sides_foundation,
+        Tier.FOUNDATION,
+        "linear_both_sides_foundation",
+    ),
+    (
+        linear_equations.generate_modelled_example_brackets_foundation,
+        Tier.FOUNDATION,
+        "linear_brackets_foundation",
+    ),
+    (linear_equations.generate_modelled_example_both_sides, Tier.HIGHER, "linear_both_sides"),
+    (linear_equations.generate_modelled_example_brackets, Tier.HIGHER, "linear_brackets"),
+]
+
+
+def test_modelled_example_generators_produce_verified_examples():
+    for generate_modelled_example, tier, topic_id in MODELLED_EXAMPLE_GENERATORS:
+        rng = random.Random(201)
+        for _ in range(TRIALS):
+            example = generate_modelled_example(tier, rng)
+            assert example.topic_id == topic_id
+            assert example.prompt
+            assert len(example.worked_calculation) >= 2
+            assert len(example.teaching_steps) >= 3
+            assert example.final_answer
