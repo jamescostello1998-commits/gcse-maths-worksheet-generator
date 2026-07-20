@@ -9,8 +9,11 @@ GENERATORS = [
     (angles.generate_straight_line, Tier.FOUNDATION),
     (angles.generate_around_point, Tier.FOUNDATION),
     (angles.generate_triangle_angles, Tier.FOUNDATION),
+    (angles.generate_parallel_lines_foundation, Tier.FOUNDATION),
     (angles.generate_parallel_lines, Tier.HIGHER),
+    (angles.generate_exterior_foundation, Tier.FOUNDATION),
     (angles.generate_exterior_angle, Tier.HIGHER),
+    (angles.generate_polygon_interior_foundation, Tier.FOUNDATION),
     (angles.generate_polygon_interior, Tier.HIGHER),
 ]
 
@@ -19,8 +22,11 @@ EXPECTED_DIAGRAM_KINDS = {
     angles.generate_straight_line: "angle_line",
     angles.generate_around_point: "angle_line",
     angles.generate_triangle_angles: "triangle_angles",
+    angles.generate_parallel_lines_foundation: "parallel_lines",
     angles.generate_parallel_lines: "parallel_lines",
+    angles.generate_exterior_foundation: "exterior_triangle",
     angles.generate_exterior_angle: "exterior_triangle",
+    angles.generate_polygon_interior_foundation: "polygon",
     angles.generate_polygon_interior: "polygon",
 }
 
@@ -56,10 +62,21 @@ def test_straight_line_and_around_point_diagram_angles_sum_correctly():
 
 
 def test_dedup_keys_vary_per_generator():
+    # generate_polygon_interior_foundation's parameter space is small (19 valid
+    # side-counts x 3 question kinds = 57 max distinct keys), so it uses a
+    # lower bar - see test_dedup_keys_vary_for_polygon_interior_foundation.
     for generate, tier in GENERATORS:
+        if generate is angles.generate_polygon_interior_foundation:
+            continue
         rng = random.Random(52)
         keys = {generate(tier, rng).dedup_key for _ in range(100)}
         assert len(keys) > 50
+
+
+def test_dedup_keys_vary_for_polygon_interior_foundation():
+    rng = random.Random(54)
+    keys = {angles.generate_polygon_interior_foundation(Tier.FOUNDATION, rng).dedup_key for _ in range(100)}
+    assert len(keys) > 25
 
 
 def test_topic_definitions_have_expected_metadata():
@@ -67,12 +84,15 @@ def test_topic_definitions_have_expected_metadata():
         angles.TOPIC_STRAIGHT_LINE,
         angles.TOPIC_AROUND_POINT,
         angles.TOPIC_TRIANGLE,
+        angles.TOPIC_PARALLEL_LINES_FOUNDATION,
         angles.TOPIC_PARALLEL_LINES,
+        angles.TOPIC_EXTERIOR_FOUNDATION,
         angles.TOPIC_EXTERIOR,
+        angles.TOPIC_POLYGON_INTERIOR_FOUNDATION,
         angles.TOPIC_POLYGON_INTERIOR,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 6
+    assert len(ids) == 9
     for t in topics:
         assert t.section == "geometry"
         assert t.group == "Angles"

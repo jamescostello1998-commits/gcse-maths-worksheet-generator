@@ -11,6 +11,7 @@ GENERATORS = [
     (fractions.generate_multiply_fractions, Tier.FOUNDATION),
     (fractions.generate_divide_fractions, Tier.HIGHER),
     (fractions.generate_mixed_number_arithmetic, Tier.HIGHER),
+    (fractions.generate_fraction_of_amount, Tier.FOUNDATION),
 ]
 
 
@@ -39,9 +40,10 @@ def test_topic_definitions_have_expected_metadata():
         fractions.TOPIC_MULTIPLY,
         fractions.TOPIC_DIVIDE,
         fractions.TOPIC_MIXED_NUMBER_ARITHMETIC,
+        fractions.TOPIC_OF_AMOUNT,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 5
+    assert len(ids) == 6
     for t in topics:
         assert t.section == "number"
         assert t.group == "Fractions"

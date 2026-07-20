@@ -187,6 +187,89 @@ def generate_recurring_decimal_to_fraction(tier: Tier, rng: random.Random) -> Qu
     )
 
 
+def generate_dividing_decimals(tier: Tier, rng: random.Random) -> Question:
+    shape = rng.choice(["by_integer", "by_decimal"])
+
+    if shape == "by_integer":
+        divisor = rng.randint(2, 12)
+        quotient = Decimal(f"{rng.randint(2, 20)}.{rng.randint(0, 9)}")
+        dividend = quotient * divisor
+
+        # Independent check via exact Fraction arithmetic (a different path than Decimal multiplication).
+        check = Fraction(str(dividend)) / Fraction(divisor)
+        if check != Fraction(str(quotient)):
+            raise ValueError("dividing_decimals verification failed")
+
+        steps = [f"{dividend} ÷ {divisor} = {quotient}"]
+        dedup_key = f"div_int:{dividend}:{divisor}"
+    else:
+        dp = rng.choice([1, 2])
+        scale = 10**dp
+        divisor_int = rng.randint(2, 9)
+        quotient = rng.randint(2, 15)
+        dividend_int = quotient * divisor_int
+        divisor = Decimal(divisor_int) / Decimal(scale)
+        dividend = Decimal(dividend_int) / Decimal(scale)
+
+        # Independent check via exact Fraction arithmetic on the original (unscaled) decimals.
+        check = Fraction(str(dividend)) / Fraction(str(divisor))
+        if check != Fraction(quotient):
+            raise ValueError("dividing_decimals verification failed")
+
+        steps = [
+            f"Multiply both numbers by {scale} so the divisor becomes a whole number: "
+            f"{dividend} × {scale} = {dividend_int}, {divisor} × {scale} = {divisor_int}",
+            f"{dividend_int} ÷ {divisor_int} = {quotient}",
+        ]
+        dedup_key = f"div_dec:{dividend}:{divisor}"
+
+    return Question(
+        topic_id="decimals_divide",
+        tier=Tier.FOUNDATION,
+        prompt=f"Work out {dividend} ÷ {divisor}.",
+        solution_steps=tuple(steps),
+        final_answer=str(quotient),
+        dedup_key=dedup_key,
+    )
+
+
+_POWER_OF_TEN_SHIFT = {10: 1, 100: 2, 1000: 3}
+
+
+def generate_powers_of_ten(tier: Tier, rng: random.Random) -> Question:
+    power = rng.choice([10, 100, 1000])
+    shift = _POWER_OF_TEN_SHIFT[power]
+    op = rng.choice(["multiply", "divide"])
+    if rng.choice([True, False]):
+        value = Decimal(f"{rng.randint(1, 99)}.{rng.randint(1, 99):02d}")
+    else:
+        value = Decimal(rng.randint(1, 999))
+
+    result = value.scaleb(shift if op == "multiply" else -shift)
+
+    # Independent check via exact Fraction arithmetic (a different path than Decimal.scaleb).
+    frac_result = Fraction(str(value)) * power if op == "multiply" else Fraction(str(value)) / power
+    if frac_result != Fraction(str(result)):
+        raise ValueError("powers_of_ten verification failed")
+
+    sign = "×" if op == "multiply" else "÷"
+    direction = "right" if op == "multiply" else "left"
+    plural = "s" if shift != 1 else ""
+    steps = [
+        f"{'Multiplying' if op == 'multiply' else 'Dividing'} by {power} moves the decimal point "
+        f"{shift} place{plural} to the {direction}.",
+        f"{_fmt_decimal_fixed(value)} {sign} {power} = {_fmt_decimal_fixed(result)}",
+    ]
+    return Question(
+        topic_id="number_powers_of_ten",
+        tier=Tier.FOUNDATION,
+        prompt=f"Work out {_fmt_decimal_fixed(value)} {sign} {power}.",
+        solution_steps=tuple(steps),
+        final_answer=_fmt_decimal_fixed(result),
+        dedup_key=f"pow10:{value}:{power}:{op}",
+    )
+
+
 TOPIC_ROUND_DP = TopicDefinition(
     id="decimals_round_dp",
     display_name="Rounding to Decimal Places",
@@ -225,4 +308,24 @@ TOPIC_RECURRING_TO_FRACTION = TopicDefinition(
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.HIGHER,
+)
+
+TOPIC_DIVIDE = TopicDefinition(
+    id="decimals_divide",
+    display_name="Dividing Decimals",
+    description="Divide a decimal by a whole number, or by another decimal.",
+    generate=generate_dividing_decimals,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+)
+
+TOPIC_POWERS_OF_TEN = TopicDefinition(
+    id="number_powers_of_ten",
+    display_name="Multiplying & Dividing by Powers of 10",
+    description="Multiply or divide a number by 10, 100, or 1000.",
+    generate=generate_powers_of_ten,
+    section=SECTION,
+    group="Multiplying & Dividing by Powers of 10",
+    fixed_tier=Tier.FOUNDATION,
 )

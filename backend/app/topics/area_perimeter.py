@@ -1,3 +1,4 @@
+import math
 import random
 
 import sympy as sp
@@ -151,6 +152,46 @@ def generate_circle(tier: Tier, rng: random.Random) -> Question:
     )
 
 
+def generate_circle_foundation(tier: Tier, rng: random.Random) -> Question:
+    radius = rng.randint(3, 15)
+    measure = rng.choice(["area", "circumference"])
+
+    if measure == "area":
+        exact_expr = sp.pi * radius**2
+        decimal_answer = sp.N(exact_expr, 3)
+        steps = [
+            f"Area = π × r² = π × {radius}² = π × {radius**2}",
+            f"= {decimal_answer} cm² (3 s.f., using a calculator value of π)",
+        ]
+        independent = math.pi * radius**2
+    else:
+        exact_expr = 2 * sp.pi * radius
+        decimal_answer = sp.N(exact_expr, 3)
+        steps = [
+            f"Circumference = 2 × π × r = 2 × π × {radius}",
+            f"= {decimal_answer} cm (3 s.f., using a calculator value of π)",
+        ]
+        independent = 2 * math.pi * radius
+
+    # Independent check via Python's math.pi - a different π source/implementation
+    # than sympy's symbolic pi used above. Tolerance is relative, since rounding
+    # to 3 s.f. can shift the absolute value by more than a fixed small amount
+    # once the magnitude grows (e.g. area for larger radii).
+    if abs(float(decimal_answer) - independent) / independent > 0.01:
+        raise ValueError("area_circle_foundation verification failed")
+
+    unit = "cm²" if measure == "area" else "cm"
+    return Question(
+        topic_id="area_circle_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=f"A circle has radius {radius} cm. Find its {measure}, correct to 3 significant figures.",
+        solution_steps=tuple(steps),
+        final_answer=f"{decimal_answer} {unit}",
+        dedup_key=f"circle_f:{radius}:{measure}",
+        diagram=DiagramSpec(kind="circle", params={"radius": radius, "label": f"{radius} cm"}),
+    )
+
+
 def generate_semicircle_compound(tier: Tier, rng: random.Random) -> Question:
     width = rng.randrange(6, 21, 2)  # even, so the radius is a whole number
     height = rng.randint(5, 20)
@@ -264,6 +305,16 @@ TOPIC_CIRCLE = TopicDefinition(
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.HIGHER,
+)
+
+TOPIC_CIRCLE_FOUNDATION = TopicDefinition(
+    id="area_circle_foundation",
+    display_name="Circles (Calculator)",
+    description="Find the area or circumference of a circle, giving a decimal answer.",
+    generate=generate_circle_foundation,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
 )
 
 TOPIC_SEMICIRCLE_COMPOUND = TopicDefinition(

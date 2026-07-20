@@ -9,6 +9,7 @@ GENERATORS = [
     (area_perimeter.generate_rectangle, Tier.FOUNDATION),
     (area_perimeter.generate_triangle, Tier.FOUNDATION),
     (area_perimeter.generate_composite_rectangles, Tier.FOUNDATION),
+    (area_perimeter.generate_circle_foundation, Tier.FOUNDATION),
     (area_perimeter.generate_circle, Tier.HIGHER),
     (area_perimeter.generate_semicircle_compound, Tier.HIGHER),
     (area_perimeter.generate_subtract_compound, Tier.HIGHER),
@@ -19,6 +20,7 @@ EXPECTED_DIAGRAM_KINDS = {
     area_perimeter.generate_rectangle: "rectangle",
     area_perimeter.generate_triangle: "triangle_area",
     area_perimeter.generate_composite_rectangles: "l_shape",
+    area_perimeter.generate_circle_foundation: "circle",
     area_perimeter.generate_circle: "circle",
     area_perimeter.generate_semicircle_compound: "rectangle_semicircle",
     area_perimeter.generate_subtract_compound: "l_shape",
@@ -66,12 +68,13 @@ def test_topic_definitions_have_expected_metadata():
         area_perimeter.TOPIC_RECTANGLE,
         area_perimeter.TOPIC_TRIANGLE,
         area_perimeter.TOPIC_COMPOSITE_RECTANGLES,
+        area_perimeter.TOPIC_CIRCLE_FOUNDATION,
         area_perimeter.TOPIC_CIRCLE,
         area_perimeter.TOPIC_SEMICIRCLE_COMPOUND,
         area_perimeter.TOPIC_SUBTRACT_COMPOUND,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 6
+    assert len(ids) == 7
     for t in topics:
         assert t.section == "geometry"
         assert t.group == "Area & Perimeter"

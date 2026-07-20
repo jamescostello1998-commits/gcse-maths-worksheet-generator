@@ -11,6 +11,7 @@ TRIALS = 200
 GENERATORS = [
     (percentages.generate_of_amount, Tier.FOUNDATION),
     (percentages.generate_change, Tier.FOUNDATION),
+    (percentages.generate_reverse_foundation, Tier.FOUNDATION),
     (percentages.generate_reverse, Tier.HIGHER),
     (percentages.generate_compound, Tier.HIGHER),
 ]
@@ -43,11 +44,12 @@ def test_topic_definitions_have_expected_metadata():
     topics = [
         percentages.TOPIC_OF_AMOUNT,
         percentages.TOPIC_CHANGE,
+        percentages.TOPIC_REVERSE_FOUNDATION,
         percentages.TOPIC_REVERSE,
         percentages.TOPIC_COMPOUND,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 4
+    assert len(ids) == 5
     for t in topics:
         assert t.section == "ratio_proportion"
         assert t.group == "Percentages"

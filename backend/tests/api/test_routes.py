@@ -12,11 +12,11 @@ def test_health():
     assert response.json() == {"status": "ok"}
 
 
-def test_topics_returns_all_108_topics():
+def test_topics_returns_all_129_topics():
     response = client.get("/api/topics")
     assert response.status_code == 200
     data = response.json()
-    assert len(data) == 108
+    assert len(data) == 129
     for topic in data:
         assert set(topic.keys()) == {"id", "name", "description", "fixed_tier"}
 
@@ -35,10 +35,10 @@ def test_sections_returns_six_sections_in_declared_order():
     ]
 
     number_section = next(s for s in data if s["id"] == "number")
-    assert len(number_section["groups"]) == 4
+    assert len(number_section["groups"]) == 8
 
     total_topics = sum(len(g["topics"]) for s in data for g in s["groups"])
-    assert total_topics == 108
+    assert total_topics == 129
 
 
 def test_valid_worksheet_request_returns_pdf():

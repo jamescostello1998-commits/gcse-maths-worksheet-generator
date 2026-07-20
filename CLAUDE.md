@@ -12,21 +12,32 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Current state (as of this session)
 
-**108 topics across 6 sections**, all procedurally generated with independent
+**129 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.).
-Full backend suite: **142/142 passing**. Frontend suite: **23/23 passing**
+Full backend suite: **157/157 passing**. Frontend suite: **23/23 passing**
 (unaffected this session).
 
 | Section | Groups | Topics |
 |---|---|---|
-| Number | Fractions, Decimals, Standard Form, Estimation & Bounds | 16 |
+| Number | Fractions, Decimals, Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 32 |
 | Algebra | Solving Linear Equations, Expanding Brackets, Factorising, Completing the Square, Turning Point of a Graph, Functions, Simultaneous Equations, Sequences, Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 38 |
-| Ratio & Proportion | Percentages, Ratio | 8 |
-| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems | 29 |
+| Ratio & Proportion | Percentages, Ratio | 9 |
+| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems | 33 |
 | Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams | 12 |
 | Statistics | Averages from a List, Frequency Tables, Working Backwards | 5 |
+
+**Curriculum-audit dual-tier siblings** (this session): added Foundation-difficulty
+siblings for three previously-Higher-only topics flagged in an earlier session's audit
+and deliberately deferred at the time — `reverse_percentage_foundation` (friendlier
+numbers), `angles_parallel_lines_foundation`/`angles_exterior_foundation` (pure-numeric,
+no algebraic solve, unlike their Higher counterparts which embed a linear equation), and
+`angles_polygon_interior_foundation` (numeric only; also covers exterior-angle and
+interior-angle-sum sub-questions, needed for dedup-key variety since "regular polygon
+with n sides" alone only has ~19 valid n — see `_REGULAR_POLYGON_SIDES`, divisors of
+360). Also added `area_circle_foundation`, a Foundation sibling of `area_circle` that
+gives a decimal (calculator-π) answer instead of exact form in terms of π.
 
 **Per-topic question count**: `TopicDefinition.question_count` (default `None` = 20,
 via `worksheet.builder.DEFAULT_COUNT`) lets a topic override the usual 20-question
@@ -125,6 +136,17 @@ fine as literal Unicode — only `⁻` specifically is the problem.)
    alongside the existing schematic one, plus `draw_graph_transformation`,
    `draw_tree_diagram`, `draw_two_way_table`, and `draw_sample_space_diagram`.
    (108 topics)
+9. Added 16 new Number topics — dividing decimals, multiplying/dividing by powers of
+   10, negative number arithmetic, prime numbers, multiples, factors, prime factor
+   decomposition (Foundation product form + Higher index form), LCM/HCF by listing,
+   HCF & LCM via prime factorisation, fractions of an amount, powers & laws of
+   indices (Foundation positive-integer + Higher negative/zero/fractional), and
+   square/cube roots plus simplifying surds — across 4 new Number groups. Also
+   completed the 3 previously-flagged-but-deferred curriculum-audit dual-tier
+   siblings from step 6 (see "Ideas" below, now resolved):
+   `reverse_percentage_foundation`, three Foundation `angles.py` siblings
+   (`parallel_lines`/`exterior`/`polygon_interior`, pure-numeric, no algebraic
+   solve), and `area_circle_foundation` (decimal/calculator-π answer). (129 topics)
 
 Everything above is committed and pushed (see `git log`).
 
@@ -306,15 +328,13 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
 
 ## Ideas for a future session (not started, no commitment made)
 
-- Further curriculum-audit dual-tier candidates identified but **not yet built**
-  (flagged during this session's audit, deliberately left for later so as not to keep
-  expanding scope unprompted): `percentages.generate_reverse` — Foundation version
-  with friendlier numbers; `angles.py`'s `parallel_lines`/`exterior`/`polygon_interior`
-  — a pure-numeric (no algebra/no solving-for-x) Foundation version of each, since the
-  existing ones embed an algebraic solve which is more Higher-flavoured;
-  `area_perimeter.generate_circle` — a Foundation version giving a decimal answer
-  (calculator π) rather than the current "exact form in terms of π".
-  If asked to continue the audit, start there.
+- A full fresh curriculum audit of all 129 existing topics for further missing
+  Foundation/Higher dual-tier siblings (beyond the specific candidates already
+  resolved in steps 6 and 9) was explicitly deferred as out of scope this session —
+  the user chose to build only the already-flagged candidates plus the new Number
+  topics, not a from-scratch audit of everything. If asked to do this, it would mean
+  reviewing every topic module for genuine Foundation+Higher overlap content on the
+  real AQA/Edexcel specs, not just the ones already touched.
 - Extend `mathtext.py`/`diagrams.py` italics beyond `x` to other single-letter
   variables (`n` in sequences, `a`/`b` in vectors) for full standard-typesetting
   consistency — noted above as a reasonable but currently out-of-scope enhancement.

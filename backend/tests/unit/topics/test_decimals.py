@@ -10,6 +10,8 @@ GENERATORS = [
     (decimals.generate_round_to_significant_figures, Tier.FOUNDATION),
     (decimals.generate_ordering, Tier.FOUNDATION),
     (decimals.generate_recurring_decimal_to_fraction, Tier.HIGHER),
+    (decimals.generate_dividing_decimals, Tier.FOUNDATION),
+    (decimals.generate_powers_of_ten, Tier.FOUNDATION),
 ]
 
 
@@ -60,10 +62,13 @@ def test_topic_definitions_have_expected_metadata():
         decimals.TOPIC_ROUND_SF,
         decimals.TOPIC_ORDERING,
         decimals.TOPIC_RECURRING_TO_FRACTION,
+        decimals.TOPIC_DIVIDE,
+        decimals.TOPIC_POWERS_OF_TEN,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 4
+    assert len(ids) == 6
     for t in topics:
         assert t.section == "number"
-        assert t.group == "Decimals"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
+    assert decimals.TOPIC_DIVIDE.group == "Decimals"
+    assert decimals.TOPIC_POWERS_OF_TEN.group == "Multiplying & Dividing by Powers of 10"

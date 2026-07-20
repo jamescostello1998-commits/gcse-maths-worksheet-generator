@@ -180,6 +180,33 @@ def generate_mixed_number_arithmetic(tier: Tier, rng: random.Random) -> Question
     )
 
 
+def generate_fraction_of_amount(tier: Tier, rng: random.Random) -> Question:
+    b = rng.randint(2, 10)
+    a = rng.randint(1, b - 1)
+    amount = b * rng.randint(2, 40)
+    unit = amount // b
+    result = unit * a
+
+    # Independent check via exact Fraction arithmetic (a different path than the
+    # integer divide-then-multiply used to build the steps above).
+    check = Fraction(a, b) * amount
+    if check != result:
+        raise ValueError("fraction_of_amount verification failed")
+
+    steps = [
+        f"Divide by the denominator: {amount} ÷ {b} = {unit}",
+        f"Multiply by the numerator: {unit} × {a} = {result}",
+    ]
+    return Question(
+        topic_id="fractions_of_amount",
+        tier=Tier.FOUNDATION,
+        prompt=f"Find {a}/{b} of {amount}.",
+        solution_steps=tuple(steps),
+        final_answer=str(result),
+        dedup_key=f"frac_of_amount:{a}:{b}:{amount}",
+    )
+
+
 TOPIC_SIMPLIFY = TopicDefinition(
     id="fractions_simplify",
     display_name="Simplifying Fractions",
@@ -228,4 +255,14 @@ TOPIC_MIXED_NUMBER_ARITHMETIC = TopicDefinition(
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.HIGHER,
+)
+
+TOPIC_OF_AMOUNT = TopicDefinition(
+    id="fractions_of_amount",
+    display_name="Fractions of an Amount",
+    description="Find a fraction of a given amount.",
+    generate=generate_fraction_of_amount,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
 )

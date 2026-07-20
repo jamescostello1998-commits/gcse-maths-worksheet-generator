@@ -90,6 +90,33 @@ def generate_reverse(tier: Tier, rng: random.Random) -> Question:
     )
 
 
+def generate_reverse_foundation(tier: Tier, rng: random.Random) -> Question:
+    percent = sp.Rational(rng.choice(FOUNDATION_PERCENTS))
+    original = rng.randrange(20, 401, 20)
+    increase = rng.choice([True, False])
+    multiplier = _multiplier(percent, increase)
+    result = original * multiplier
+
+    # Independent verification via Python's Fraction (separate implementation path).
+    recovered = to_fraction(result) / to_fraction(multiplier)
+    if recovered != to_fraction(sp.Integer(original)):
+        raise ValueError("Reverse-percentage (foundation) verification failed")
+
+    verb = "increase" if increase else "decrease"
+    steps = [
+        f"Convert {percent}% to a multiplier: {fmt_money(multiplier)} (original × multiplier = new value)",
+        f"Divide the new value by the multiplier: {fmt_money(result)} ÷ {fmt_money(multiplier)} = {fmt_money(original)}",
+    ]
+    return Question(
+        topic_id="reverse_percentage_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=f"After a {percent}% {verb}, an item costs £{fmt_money(result)}. Find the original price.",
+        solution_steps=tuple(steps),
+        final_answer=f"£{fmt_money(original)}",
+        dedup_key=f"reverse_f:{percent}:{original}:{increase}",
+    )
+
+
 def generate_compound(tier: Tier, rng: random.Random) -> Question:
     original = rng.randrange(20, 401, 4)
     percent1 = sp.Rational(rng.choice(HIGHER_PERCENTS))
@@ -152,6 +179,16 @@ TOPIC_REVERSE = TopicDefinition(
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.HIGHER,
+)
+
+TOPIC_REVERSE_FOUNDATION = TopicDefinition(
+    id="reverse_percentage_foundation",
+    display_name="Reverse Percentage (Foundation)",
+    description="Find the original amount given a value after a simple percentage change.",
+    generate=generate_reverse_foundation,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
 )
 
 TOPIC_COMPOUND = TopicDefinition(

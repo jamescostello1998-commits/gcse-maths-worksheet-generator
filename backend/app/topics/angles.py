@@ -187,6 +187,121 @@ def generate_exterior_angle(tier: Tier, rng: random.Random) -> Question:
     )
 
 
+def generate_parallel_lines_foundation(tier: Tier, rng: random.Random) -> Question:
+    fact = rng.choice(["corresponding", "alternate", "co_interior"])
+    known = rng.randint(30, 150)
+    target = known if fact in ("corresponding", "alternate") else 180 - known
+
+    # Independent check: the target angle must be a valid angle (a sanity
+    # bound distinct from the direct lookup used to compute it above).
+    if not (0 < target < 180):
+        raise ValueError("parallel_lines_foundation verification failed: angle out of range")
+
+    fact_text = {
+        "corresponding": "Corresponding angles are equal.",
+        "alternate": "Alternate angles are equal.",
+        "co_interior": "Co-interior angles sum to 180°.",
+    }[fact]
+    relation = {
+        "corresponding": "are corresponding angles",
+        "alternate": "are alternate angles",
+        "co_interior": "are co-interior angles",
+    }[fact]
+
+    steps = [fact_text, f"x = {target}"]
+    return Question(
+        topic_id="angles_parallel_lines_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=f"A line crosses two parallel lines. The angle {known}° and the angle x° {relation}. Find x.",
+        solution_steps=tuple(steps),
+        final_answer=str(target),
+        dedup_key=f"parallel_lines_f:{fact}:{known}",
+        diagram=DiagramSpec(
+            kind="parallel_lines",
+            params={"known_label": f"{known}°", "unknown_label": "x", "relation": fact},
+        ),
+    )
+
+
+def generate_exterior_foundation(tier: Tier, rng: random.Random) -> Question:
+    a = rng.randint(20, 70)
+    b = rng.randint(20, 70)
+    exterior = a + b
+    if exterior >= 180:
+        raise ValueError("exterior_foundation generated a non-physical exterior angle")
+
+    # Independent check: the exterior angle also equals 180 minus the third
+    # (remote) interior angle of the triangle - a different derivation than
+    # the direct sum-of-remote-angles theorem used above.
+    third_interior = 180 - a - b
+    if third_interior <= 0:
+        raise ValueError("exterior_foundation verification failed: non-physical triangle")
+    if 180 - third_interior != exterior:
+        raise ValueError("exterior_foundation verification failed")
+
+    steps = [
+        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+        f"x = {a} + {b} = {exterior}",
+    ]
+    return Question(
+        topic_id="angles_exterior_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=f"An exterior angle of a triangle is x°. The two remote interior angles are {a}° and {b}°. Find x.",
+        solution_steps=tuple(steps),
+        final_answer=str(exterior),
+        dedup_key=f"exterior_f:{a}:{b}",
+        diagram=DiagramSpec(
+            kind="exterior_triangle",
+            params={"interior1_label": f"{a}°", "interior2_label": f"{b}°", "exterior_label": "x"},
+        ),
+    )
+
+
+_REGULAR_POLYGON_SIDES = [n for n in range(3, 91) if 360 % n == 0]
+
+
+def generate_polygon_interior_foundation(tier: Tier, rng: random.Random) -> Question:
+    n = rng.choice(_REGULAR_POLYGON_SIDES)
+    measure = rng.choice(["interior_sum", "interior_angle", "exterior_angle"])
+    total = (n - 2) * 180
+
+    # Independent check: the interior angle via total ÷ n must match 180
+    # minus the exterior angle (360 ÷ n) - a different derivation (the
+    # exterior-angle-sum method) than the direct division used above.
+    if total % n != 0 or 360 % n != 0:
+        raise ValueError("polygon_interior_foundation verification failed: n does not divide evenly")
+    interior = total // n
+    exterior = 360 // n
+    if 180 - exterior != interior:
+        raise ValueError("polygon_interior_foundation verification failed")
+
+    if measure == "interior_sum":
+        prompt = f"A polygon has {n} sides. Find the sum of its interior angles."
+        steps = [f"Sum of interior angles = (n - 2) × 180 = ({n} - 2) × 180 = {total}°"]
+        answer = f"{total}°"
+    elif measure == "interior_angle":
+        prompt = f"A regular polygon has {n} sides. Find the size of one interior angle."
+        steps = [
+            f"Sum of interior angles = (n - 2) × 180 = ({n} - 2) × 180 = {total}°",
+            f"This is a regular polygon, so each interior angle = {total} ÷ {n} = {interior}°",
+        ]
+        answer = f"{interior}°"
+    else:
+        prompt = f"A regular polygon has {n} sides. Find the size of one exterior angle."
+        steps = [f"Exterior angles of a regular polygon sum to 360°: each exterior angle = 360 ÷ {n} = {exterior}°"]
+        answer = f"{exterior}°"
+
+    return Question(
+        topic_id="angles_polygon_interior_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=prompt,
+        solution_steps=tuple(steps),
+        final_answer=answer,
+        dedup_key=f"polygon_interior_f:{n}:{measure}",
+        diagram=DiagramSpec(kind="polygon", params={"n_sides": min(n, 12), "marked_angle_label": "?"}),
+    )
+
+
 def generate_polygon_interior(tier: Tier, rng: random.Random) -> Question:
     for _ in range(200):
         n = rng.randint(5, 8)
@@ -261,6 +376,16 @@ TOPIC_TRIANGLE = TopicDefinition(
     fixed_tier=Tier.FOUNDATION,
 )
 
+TOPIC_PARALLEL_LINES_FOUNDATION = TopicDefinition(
+    id="angles_parallel_lines_foundation",
+    display_name="Parallel Lines (Foundation)",
+    description="Use corresponding, alternate, and co-interior angle facts to find a missing angle directly.",
+    generate=generate_parallel_lines_foundation,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+)
+
 TOPIC_PARALLEL_LINES = TopicDefinition(
     id="angles_parallel_lines",
     display_name="Parallel Lines",
@@ -271,6 +396,16 @@ TOPIC_PARALLEL_LINES = TopicDefinition(
     fixed_tier=Tier.HIGHER,
 )
 
+TOPIC_EXTERIOR_FOUNDATION = TopicDefinition(
+    id="angles_exterior_foundation",
+    display_name="Exterior Angle (Foundation)",
+    description="Use the exterior angle theorem to find a missing angle directly.",
+    generate=generate_exterior_foundation,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+)
+
 TOPIC_EXTERIOR = TopicDefinition(
     id="angles_exterior",
     display_name="Exterior Angle",
@@ -279,6 +414,16 @@ TOPIC_EXTERIOR = TopicDefinition(
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.HIGHER,
+)
+
+TOPIC_POLYGON_INTERIOR_FOUNDATION = TopicDefinition(
+    id="angles_polygon_interior_foundation",
+    display_name="Polygon Angles (Foundation)",
+    description="Find the sum of interior angles, one interior angle, or one exterior angle of a regular polygon.",
+    generate=generate_polygon_interior_foundation,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
 )
 
 TOPIC_POLYGON_INTERIOR = TopicDefinition(
