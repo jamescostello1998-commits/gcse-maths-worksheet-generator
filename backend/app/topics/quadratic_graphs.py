@@ -2,7 +2,7 @@ import random
 
 import sympy as sp
 
-from app.core.models import DiagramSpec, Question, Tier
+from app.core.models import DiagramSpec, ModelledExample, Question, Tier
 from app.topics.algebra_utils import X
 from app.topics.base import TopicDefinition
 
@@ -107,6 +107,86 @@ def generate_turning_point(tier: Tier, rng: random.Random) -> Question:
     )
 
 
+def generate_modelled_example_completing_the_square(tier: Tier, rng: random.Random) -> ModelledExample:
+    p = _rand_nonzero(rng, -9, 9)
+    b = 2 * p
+    c = rng.randint(-15, 15)
+    q = c - p * p
+
+    residual = sp.expand((X + p) ** 2 + q - (X**2 + b * X + c))
+    if residual != 0:
+        raise ValueError("modelled example completing_the_square verification failed")
+
+    answer = _fmt_completed_square(p, q)
+    teaching_steps = [
+        f"Any quadratic x^2 + bx + c can be rewritten in the form (x + p)^2 + q - this is called "
+        "completing the square, and it works because (x + p)^2 always expands to give back the same "
+        "x^2 and bx terms, as long as p is chosen correctly.",
+        f"Expanding (x + p)^2 gives x^2 + 2px + p^2, so matching the x term to our {b}x tells us "
+        f"2p = {b}, meaning p = {p} (half of {b}).",
+        f"Now check what (x {'+' if p >= 0 else '-'} {abs(p)})^2 actually expands to: "
+        f"x^2 {'+' if b >= 0 else '-'} {abs(b)}x + {p * p}. Our original expression has {c} as the "
+        f"constant, not {p * p}, so we need to add on the difference: {c} - {p * p} = {q}.",
+        f"Putting it together: x^2 {'+' if b >= 0 else '-'} {abs(b)}x + {c} = {answer}.",
+    ]
+    worked_calculation = [
+        f"{_fmt_quadratic(b, c)}",
+        f"p = {b} ÷ 2 = {p}",
+        f"= {_fmt_square_term(p)}^2 + ({c} - {p * p})",
+        f"= {answer}",
+    ]
+    return ModelledExample(
+        topic_id="completing_the_square",
+        tier=Tier.HIGHER,
+        prompt=f"Write {_fmt_quadratic(b, c)} in the form (x + p)^2 + q.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=answer,
+    )
+
+
+def generate_modelled_example_turning_point(tier: Tier, rng: random.Random) -> ModelledExample:
+    p = _rand_nonzero(rng, -9, 9)
+    b = 2 * p
+    c = rng.randint(-15, 15)
+    q = c - p * p
+    vertex_x, vertex_y = -p, q
+
+    def y_at(x_val: int) -> int:
+        return x_val * x_val + b * x_val + c
+
+    left, centre, right = y_at(vertex_x - 1), y_at(vertex_x), y_at(vertex_x + 1)
+    if left != right or centre != vertex_y or centre > left:
+        raise ValueError("modelled example turning_point verification failed")
+
+    answer = f"({vertex_x}, {vertex_y})"
+    teaching_steps = [
+        "A quadratic graph y = x^2 + bx + c is a symmetric U-shape, and its turning point (the very "
+        "bottom of the U) sits exactly on the graph's line of symmetry. Completing the square finds "
+        "that point directly.",
+        f"Write the quadratic in completed-square form: x^2 {'+' if b >= 0 else '-'} {abs(b)}x + {c} "
+        f"= {_fmt_completed_square(p, q)}.",
+        f"In the form (x + p)^2 + q, the squared term (x + p)^2 can never be negative, so the smallest "
+        f"it can ever be is 0 - and that happens exactly when x = {vertex_x}. At that point, "
+        f"y = 0 + {q} = {q}.",
+        f"So the turning point is where x = {vertex_x} and y = {q}, giving {answer}.",
+    ]
+    worked_calculation = [
+        f"{_fmt_quadratic(b, c)}",
+        f"= {_fmt_completed_square(p, q)}",
+        f"Turning point = (-p, q) = {answer}",
+    ]
+    return ModelledExample(
+        topic_id="turning_point_of_graph",
+        tier=Tier.HIGHER,
+        prompt=f"Find the coordinates of the turning point of the curve y = {_fmt_quadratic(b, c)}.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=answer,
+        diagram=DiagramSpec(kind="parabola", params={"vertex_label": answer}),
+    )
+
+
 TOPIC_COMPLETING_THE_SQUARE = TopicDefinition(
     id="completing_the_square",
     display_name="Completing the Square",
@@ -115,6 +195,7 @@ TOPIC_COMPLETING_THE_SQUARE = TopicDefinition(
     section=SECTION,
     group=GROUP_SQUARE,
     fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_completing_the_square,
 )
 
 TOPIC_TURNING_POINT = TopicDefinition(
@@ -125,4 +206,5 @@ TOPIC_TURNING_POINT = TopicDefinition(
     section=SECTION,
     group=GROUP_TURNING_POINT,
     fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_turning_point,
 )

@@ -47,3 +47,35 @@ def test_topic_definitions_have_expected_metadata():
         assert t.fixed_tier == Tier.HIGHER
     assert quadratic_graphs.TOPIC_COMPLETING_THE_SQUARE.group == "Completing the Square"
     assert quadratic_graphs.TOPIC_TURNING_POINT.group == "Turning Point of a Graph"
+
+
+MODELLED_EXAMPLE_GENERATORS = [
+    (quadratic_graphs.generate_modelled_example_completing_the_square, Tier.HIGHER, "completing_the_square"),
+    (quadratic_graphs.generate_modelled_example_turning_point, Tier.HIGHER, "turning_point_of_graph"),
+]
+
+
+def test_all_topics_have_modelled_example_wired():
+    for t in (quadratic_graphs.TOPIC_COMPLETING_THE_SQUARE, quadratic_graphs.TOPIC_TURNING_POINT):
+        assert t.generate_modelled_example is not None
+
+
+def test_modelled_example_generators_produce_verified_examples():
+    for generate, tier, topic_id in MODELLED_EXAMPLE_GENERATORS:
+        rng = random.Random(230)
+        for _ in range(TRIALS):
+            example = generate(tier, rng)
+            assert example.topic_id == topic_id
+            assert example.prompt
+            assert len(example.worked_calculation) >= 2
+            assert len(example.teaching_steps) >= 3
+            assert example.final_answer
+
+
+def test_modelled_example_turning_point_has_a_parabola_diagram():
+    rng = random.Random(231)
+    for _ in range(TRIALS):
+        example = quadratic_graphs.generate_modelled_example_turning_point(Tier.HIGHER, rng)
+        assert example.diagram is not None
+        assert example.diagram.kind == "parabola"
+        assert example.diagram.params["vertex_label"] == example.final_answer

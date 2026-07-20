@@ -133,3 +133,62 @@ def test_topic_definitions_have_expected_metadata():
     non_plotting_topics = [t for t in topics if t not in plotting_topics]
     for t in non_plotting_topics:
         assert t.question_count is None
+
+
+MODELLED_EXAMPLE_GENERATORS = [
+    (graphs.generate_modelled_example_plot_straight_line, Tier.FOUNDATION, "plot_straight_line"),
+    (graphs.generate_modelled_example_plot_quadratic, Tier.FOUNDATION, "plot_quadratic"),
+    (graphs.generate_modelled_example_plot_cubic, Tier.HIGHER, "plot_cubic"),
+    (graphs.generate_modelled_example_plot_reciprocal, Tier.HIGHER, "plot_reciprocal"),
+    (graphs.generate_modelled_example_plot_distance_time, Tier.FOUNDATION, "plot_distance_time"),
+    (graphs.generate_modelled_example_line_equation_from_graph, Tier.FOUNDATION, "line_equation_from_graph"),
+    (graphs.generate_modelled_example_parallel_lines_equation, Tier.FOUNDATION, "parallel_lines_equation"),
+    (graphs.generate_modelled_example_perpendicular_lines_equation, Tier.HIGHER, "perpendicular_lines_equation"),
+    (graphs.generate_modelled_example_distance_time_interpret, Tier.FOUNDATION, "distance_time_interpret"),
+    (graphs.generate_modelled_example_velocity_time_interpret, Tier.HIGHER, "velocity_time_interpret"),
+    (graphs.generate_modelled_example_graph_transformations, Tier.HIGHER, "graph_transformations"),
+]
+
+
+def test_all_topics_have_modelled_example_wired():
+    topics = [
+        graphs.TOPIC_PLOT_STRAIGHT_LINE,
+        graphs.TOPIC_PLOT_QUADRATIC,
+        graphs.TOPIC_PLOT_CUBIC,
+        graphs.TOPIC_PLOT_RECIPROCAL,
+        graphs.TOPIC_PLOT_DISTANCE_TIME,
+        graphs.TOPIC_LINE_EQUATION_FROM_GRAPH,
+        graphs.TOPIC_PARALLEL_LINES_EQUATION,
+        graphs.TOPIC_PERPENDICULAR_LINES_EQUATION,
+        graphs.TOPIC_DISTANCE_TIME_INTERPRET,
+        graphs.TOPIC_VELOCITY_TIME_INTERPRET,
+        graphs.TOPIC_GRAPH_TRANSFORMATIONS,
+    ]
+    for t in topics:
+        assert t.generate_modelled_example is not None
+
+
+_NO_DIAGRAM_TOPIC_IDS = {"parallel_lines_equation", "perpendicular_lines_equation"}
+
+
+def test_modelled_example_generators_produce_verified_examples():
+    for generate, tier, topic_id in MODELLED_EXAMPLE_GENERATORS:
+        rng = random.Random(330)
+        for _ in range(TRIALS):
+            example = generate(tier, rng)
+            assert example.topic_id == topic_id
+            assert example.prompt
+            assert len(example.worked_calculation) >= 2
+            assert len(example.teaching_steps) >= 3
+            assert example.final_answer
+            if topic_id not in _NO_DIAGRAM_TOPIC_IDS:
+                assert example.diagram is not None
+
+
+def test_modelled_example_plotting_diagrams_are_never_blank():
+    plotting_generators = MODELLED_EXAMPLE_GENERATORS[:5]
+    for generate, tier, _ in plotting_generators:
+        rng = random.Random(331)
+        for _ in range(20):
+            example = generate(tier, rng)
+            assert not example.diagram.params.get("blank", False)

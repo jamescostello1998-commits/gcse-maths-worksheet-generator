@@ -37,3 +37,26 @@ def test_topic_definitions_have_expected_metadata():
         assert t.section == "algebra"
         assert t.group == "Functions"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
+
+
+MODELLED_EXAMPLE_GENERATORS = [
+    (functions.generate_modelled_example_functions_evaluate, Tier.FOUNDATION, "functions_evaluate"),
+    (functions.generate_modelled_example_functions_composite_inverse, Tier.HIGHER, "functions_composite_inverse"),
+]
+
+
+def test_all_topics_have_modelled_example_wired():
+    for t in (functions.TOPIC_FUNCTIONS_EVALUATE, functions.TOPIC_FUNCTIONS_COMPOSITE_INVERSE):
+        assert t.generate_modelled_example is not None
+
+
+def test_modelled_example_generators_produce_verified_examples():
+    for generate, tier, topic_id in MODELLED_EXAMPLE_GENERATORS:
+        rng = random.Random(220)
+        for _ in range(TRIALS):
+            example = generate(tier, rng)
+            assert example.topic_id == topic_id
+            assert example.prompt
+            assert len(example.worked_calculation) >= 2
+            assert len(example.teaching_steps) >= 3
+            assert example.final_answer
