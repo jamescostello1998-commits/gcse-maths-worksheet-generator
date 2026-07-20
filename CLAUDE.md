@@ -5,12 +5,14 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 - **Backend**: `backend/` — Python 3.12, FastAPI, sympy (symbolic math), ReportLab (PDF + diagrams)
 - **Frontend**: `frontend/` — React + Vite + TypeScript
-- **Repo**: https://github.com/jamescostello1998-commits/gcse-maths-worksheet-generator (pushed, `master` up to date as of this session)
+- **Repo**: https://github.com/jamescostello1998-commits/gcse-maths-worksheet-generator (`master` is up to date — every session's work has been committed and pushed before ending)
 
 `first-pr-practice/` in this same folder is an **unrelated** git-practice repo (its own
 `.git`) — ignored via the root `.gitignore`. Don't touch it when working on this app.
 
-## Current state (as of this session)
+## Current state
+
+*(For a session-by-session history of how it got here, see the Chronology section below.)*
 
 **129 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
@@ -18,7 +20,7 @@ cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.).
 Full backend suite: **177/177 passing**. Frontend suite: **25/25 passing**.
 
-**Modelled Example feature (pilot, this session)**: a second button, "Generate
+**Modelled Example feature (pilot only, not rolled out)**: a second button, "Generate
 Modelled Example," now sits next to "Generate Worksheet" on topic cards — but
 only for topics that opt in (`TopicDefinition.generate_modelled_example` is set).
 Clicking it downloads a separate 2-page PDF via `POST /api/modelled-examples`:
@@ -53,9 +55,9 @@ Deliberately **not** rolled out to the other 123 topics yet — see "Ideas" belo
 | Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams | 12 |
 | Statistics | Averages from a List, Frequency Tables, Working Backwards | 5 |
 
-**Curriculum-audit dual-tier siblings** (this session): added Foundation-difficulty
-siblings for three previously-Higher-only topics flagged in an earlier session's audit
-and deliberately deferred at the time — `reverse_percentage_foundation` (friendlier
+**Curriculum-audit dual-tier siblings**: Foundation-difficulty siblings for three
+previously-Higher-only topics, flagged by an earlier audit and deliberately deferred
+at the time, were later completed — `reverse_percentage_foundation` (friendlier
 numbers), `angles_parallel_lines_foundation`/`angles_exterior_foundation` (pure-numeric,
 no algebraic solve, unlike their Higher counterparts which embed a linear equation), and
 `angles_polygon_interior_foundation` (numeric only; also covers exterior-angle and
@@ -126,9 +128,9 @@ matching that question's real generated values — see `backend/app/pdf/diagrams
 Nothing is a stub/placeholder — every topic has real generation logic, a real
 independent verification check, and a real test file with ~200–400-trial seeded runs.
 
-**Frontend**: each section now has a Foundation/Higher tier-picker sub-menu (added
-this session) before showing its topic groups — see `SectionView.tsx`. Topics with
-`fixed_tier=None` (currently unused) would show under both.
+**Frontend**: each section has a Foundation/Higher tier-picker sub-menu before showing
+its topic groups — see `SectionView.tsx`. Topics with `fixed_tier=None` (currently
+unused) would show under both.
 
 **Typesetting**: `backend/app/pdf/mathtext.py` centrally converts plain-ASCII math in
 generator output (`x`, `x^2`, `10^-3`) into real PDF typesetting — the variable `x` is
