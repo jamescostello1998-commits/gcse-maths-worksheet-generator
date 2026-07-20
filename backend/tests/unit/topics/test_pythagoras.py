@@ -13,6 +13,14 @@ GENERATORS = [
     (pythagoras.generate_ladder_context, Tier.HIGHER),
 ]
 
+MODELLED_EXAMPLE_GENERATORS = [
+    (pythagoras.generate_modelled_example_hypotenuse_triple, Tier.FOUNDATION, "pythagoras_hypotenuse_triple"),
+    (pythagoras.generate_modelled_example_hypotenuse_decimal, Tier.FOUNDATION, "pythagoras_hypotenuse_decimal"),
+    (pythagoras.generate_modelled_example_shorter_leg, Tier.FOUNDATION, "pythagoras_shorter_leg"),
+    (pythagoras.generate_modelled_example_surd_hypotenuse, Tier.HIGHER, "pythagoras_surd_hypotenuse"),
+    (pythagoras.generate_modelled_example_ladder_context, Tier.HIGHER, "pythagoras_ladder_context"),
+]
+
 
 def test_all_generators_produce_valid_questions():
     for generate, tier in GENERATORS:
@@ -65,3 +73,36 @@ def test_topic_definitions_have_expected_metadata():
         assert t.section == "geometry"
         assert t.group == "Pythagoras' Theorem"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
+
+
+def test_topic_definitions_have_modelled_examples_wired_up():
+    topics = [
+        pythagoras.TOPIC_HYPOTENUSE_TRIPLE,
+        pythagoras.TOPIC_HYPOTENUSE_DECIMAL,
+        pythagoras.TOPIC_SHORTER_LEG,
+        pythagoras.TOPIC_SURD_HYPOTENUSE,
+        pythagoras.TOPIC_LADDER_CONTEXT,
+    ]
+    for t in topics:
+        assert t.generate_modelled_example is not None
+
+
+def test_modelled_examples_produce_valid_verified_examples():
+    for generate, tier, topic_id in MODELLED_EXAMPLE_GENERATORS:
+        rng = random.Random(63)
+        for _ in range(TRIALS):
+            example = generate(tier, rng)
+            assert example.topic_id == topic_id
+            assert example.tier == tier
+            assert example.prompt
+            assert len(example.worked_calculation) >= 2
+            assert len(example.teaching_steps) >= 3
+            assert example.final_answer
+            assert example.diagram is not None
+            assert example.diagram.kind == "right_triangle"
+            labels = [
+                example.diagram.params["leg1_label"],
+                example.diagram.params["leg2_label"],
+                example.diagram.params["hyp_label"],
+            ]
+            assert labels.count("?") == 1

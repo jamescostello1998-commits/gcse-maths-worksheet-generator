@@ -46,3 +46,36 @@ def test_topic_definitions_have_expected_metadata():
     assert triangle_rules.TOPIC_SINE_RULE.group == "Sine Rule"
     assert triangle_rules.TOPIC_COSINE_RULE.group == "Cosine Rule"
     assert triangle_rules.TOPIC_TRIANGLE_AREA.group == "Area of a Triangle"
+
+
+MODELLED_TOPICS = [
+    triangle_rules.TOPIC_SINE_RULE,
+    triangle_rules.TOPIC_COSINE_RULE,
+    triangle_rules.TOPIC_TRIANGLE_AREA,
+]
+
+MODELLED_GENERATORS = [
+    (triangle_rules.generate_modelled_example_sine_rule, Tier.HIGHER, "sine_rule"),
+    (triangle_rules.generate_modelled_example_cosine_rule, Tier.HIGHER, "cosine_rule"),
+    (triangle_rules.generate_modelled_example_triangle_area, Tier.HIGHER, "triangle_area_sine_rule"),
+]
+
+
+def test_topics_have_a_modelled_example_generator_wired_up():
+    for t in MODELLED_TOPICS:
+        assert t.generate_modelled_example is not None
+
+
+def test_modelled_examples_are_valid():
+    for generate, tier, topic_id in MODELLED_GENERATORS:
+        rng = random.Random(200)
+        for _ in range(TRIALS):
+            ex = generate(tier, rng)
+            assert ex.topic_id == topic_id
+            assert ex.tier == tier
+            assert ex.prompt
+            assert len(ex.worked_calculation) >= 2
+            assert len(ex.teaching_steps) >= 3
+            assert ex.final_answer
+            assert ex.diagram is not None
+            assert ex.diagram.kind == "general_triangle"

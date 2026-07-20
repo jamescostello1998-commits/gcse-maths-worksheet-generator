@@ -44,3 +44,31 @@ def test_topic_definition_has_expected_metadata():
     assert t.section == "geometry"
     assert t.group == "Circle Theorems"
     assert t.fixed_tier == Tier.HIGHER
+
+
+def test_topic_has_a_modelled_example_generator_wired_up():
+    assert circle_theorems.TOPIC_CIRCLE_THEOREMS.generate_modelled_example is not None
+
+
+def test_modelled_examples_are_valid():
+    rng = random.Random(210)
+    for _ in range(TRIALS):
+        ex = circle_theorems.generate_modelled_example_circle_theorem(Tier.HIGHER, rng)
+        assert ex.topic_id == "circle_theorems"
+        assert ex.tier == Tier.HIGHER
+        assert ex.prompt
+        assert len(ex.worked_calculation) >= 2
+        assert len(ex.teaching_steps) >= 3
+        assert ex.final_answer
+        assert ex.diagram is not None
+
+
+def test_modelled_example_all_four_theorem_shapes_appear():
+    rng = random.Random(211)
+    kinds = {circle_theorems.generate_modelled_example_circle_theorem(Tier.HIGHER, rng).diagram.kind for _ in range(TRIALS)}
+    assert kinds == {
+        "circle_angle_centre",
+        "circle_semicircle",
+        "circle_cyclic_quad",
+        "circle_two_tangents",
+    }

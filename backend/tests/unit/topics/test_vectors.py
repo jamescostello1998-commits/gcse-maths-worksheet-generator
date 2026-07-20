@@ -69,3 +69,47 @@ def test_topic_definitions_have_expected_metadata():
     assert vectors.TOPIC_VECTORS_ARITHMETIC_FOUNDATION.group == "Vectors"
     assert vectors.TOPIC_VECTORS_ARITHMETIC_HIGHER.group == "Vectors"
     assert vectors.TOPIC_GEOMETRIC_VECTORS.group == "Geometric Vectors"
+
+
+MODELLED_TOPICS = [
+    vectors.TOPIC_VECTORS_ARITHMETIC_FOUNDATION,
+    vectors.TOPIC_VECTORS_ARITHMETIC_HIGHER,
+    vectors.TOPIC_GEOMETRIC_VECTORS,
+]
+
+
+def test_topics_have_a_modelled_example_generator_wired_up():
+    for t in MODELLED_TOPICS:
+        assert t.generate_modelled_example is not None
+
+
+def test_modelled_example_vectors_arithmetic_is_valid():
+    generators = [
+        (vectors.generate_modelled_example_vectors_arithmetic_foundation, Tier.FOUNDATION, "vectors_arithmetic_foundation"),
+        (vectors.generate_modelled_example_vectors_arithmetic_higher, Tier.HIGHER, "vectors_arithmetic_higher"),
+    ]
+    for generate, tier, topic_id in generators:
+        rng = random.Random(201)
+        for _ in range(TRIALS):
+            ex = generate(tier, rng)
+            assert ex.topic_id == topic_id
+            assert ex.tier == tier
+            assert ex.prompt
+            assert len(ex.worked_calculation) >= 2
+            assert len(ex.teaching_steps) >= 3
+            assert ex.final_answer
+            assert ex.diagram is None
+
+
+def test_modelled_example_geometric_vectors_is_valid():
+    rng = random.Random(202)
+    for _ in range(TRIALS):
+        ex = vectors.generate_modelled_example_geometric_vectors(Tier.HIGHER, rng)
+        assert ex.topic_id == "geometric_vectors"
+        assert ex.tier == Tier.HIGHER
+        assert ex.prompt
+        assert len(ex.worked_calculation) >= 2
+        assert len(ex.teaching_steps) >= 3
+        assert ex.final_answer
+        assert ex.diagram is not None
+        assert ex.diagram.kind == "vector_triangle"

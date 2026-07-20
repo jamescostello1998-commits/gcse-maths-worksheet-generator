@@ -13,6 +13,14 @@ GENERATORS = [
     (trigonometry.generate_mixed, Tier.HIGHER),
 ]
 
+MODELLED_EXAMPLE_GENERATORS = [
+    (trigonometry.generate_modelled_example_missing_side_foundation, Tier.FOUNDATION, "trig_missing_side_foundation"),
+    (trigonometry.generate_modelled_example_missing_side_higher, Tier.HIGHER, "trig_missing_side_higher"),
+    (trigonometry.generate_modelled_example_missing_angle_foundation, Tier.FOUNDATION, "trig_missing_angle_foundation"),
+    (trigonometry.generate_modelled_example_missing_angle_higher, Tier.HIGHER, "trig_missing_angle_higher"),
+    (trigonometry.generate_modelled_example_mixed, Tier.HIGHER, "trig_mixed"),
+]
+
 
 def test_all_generators_produce_valid_verified_questions():
     for generate, tier in GENERATORS:
@@ -58,3 +66,30 @@ def test_topic_definitions_have_expected_metadata():
         assert t.section == "geometry"
         assert t.group == "Trigonometry"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
+
+
+def test_topic_definitions_have_modelled_examples_wired_up():
+    topics = [
+        trigonometry.TOPIC_MISSING_SIDE_FOUNDATION,
+        trigonometry.TOPIC_MISSING_SIDE_HIGHER,
+        trigonometry.TOPIC_MISSING_ANGLE_FOUNDATION,
+        trigonometry.TOPIC_MISSING_ANGLE_HIGHER,
+        trigonometry.TOPIC_MIXED,
+    ]
+    for t in topics:
+        assert t.generate_modelled_example is not None
+
+
+def test_modelled_examples_produce_valid_verified_examples():
+    for generate, tier, topic_id in MODELLED_EXAMPLE_GENERATORS:
+        rng = random.Random(73)
+        for _ in range(TRIALS):
+            example = generate(tier, rng)
+            assert example.topic_id == topic_id
+            assert example.tier == tier
+            assert example.prompt
+            assert len(example.worked_calculation) >= 2
+            assert len(example.teaching_steps) >= 3
+            assert example.final_answer
+            assert example.diagram is not None
+            assert example.diagram.kind == "trig_triangle"
