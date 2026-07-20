@@ -72,3 +72,38 @@ def test_topic_definitions_have_expected_metadata():
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
     assert decimals.TOPIC_DIVIDE.group == "Decimals"
     assert decimals.TOPIC_POWERS_OF_TEN.group == "Multiplying & Dividing by Powers of 10"
+
+
+def test_all_decimal_topics_have_modelled_examples():
+    topics = [
+        decimals.TOPIC_ROUND_DP,
+        decimals.TOPIC_ROUND_SF,
+        decimals.TOPIC_ORDERING,
+        decimals.TOPIC_RECURRING_TO_FRACTION,
+        decimals.TOPIC_DIVIDE,
+        decimals.TOPIC_POWERS_OF_TEN,
+    ]
+    for t in topics:
+        assert t.generate_modelled_example is not None
+
+
+MODELLED_EXAMPLE_GENERATORS = [
+    (decimals.generate_modelled_example_round_to_decimal_places, Tier.FOUNDATION, "decimals_round_dp"),
+    (decimals.generate_modelled_example_round_to_significant_figures, Tier.FOUNDATION, "decimals_round_sf"),
+    (decimals.generate_modelled_example_ordering, Tier.FOUNDATION, "decimals_ordering"),
+    (decimals.generate_modelled_example_recurring_decimal_to_fraction, Tier.HIGHER, "decimals_recurring_to_fraction"),
+    (decimals.generate_modelled_example_dividing_decimals, Tier.FOUNDATION, "decimals_divide"),
+    (decimals.generate_modelled_example_powers_of_ten, Tier.FOUNDATION, "number_powers_of_ten"),
+]
+
+
+def test_modelled_examples_produce_verified_examples():
+    for generate, tier, topic_id in MODELLED_EXAMPLE_GENERATORS:
+        rng = random.Random(300)
+        for _ in range(TRIALS):
+            example = generate(tier, rng)
+            assert example.topic_id == topic_id
+            assert example.prompt
+            assert len(example.worked_calculation) >= 2
+            assert len(example.teaching_steps) >= 3
+            assert example.final_answer

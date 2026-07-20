@@ -50,17 +50,36 @@ def test_topic_definitions_have_expected_metadata():
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
 
 
-def test_modelled_example_pilot_scope():
-    assert fractions.TOPIC_ADD_SUBTRACT.generate_modelled_example is not None
-    for t in (fractions.TOPIC_SIMPLIFY, fractions.TOPIC_MULTIPLY, fractions.TOPIC_DIVIDE, fractions.TOPIC_MIXED_NUMBER_ARITHMETIC, fractions.TOPIC_OF_AMOUNT):
-        assert t.generate_modelled_example is None
+def test_all_fraction_topics_have_modelled_examples():
+    topics = [
+        fractions.TOPIC_SIMPLIFY,
+        fractions.TOPIC_ADD_SUBTRACT,
+        fractions.TOPIC_MULTIPLY,
+        fractions.TOPIC_DIVIDE,
+        fractions.TOPIC_MIXED_NUMBER_ARITHMETIC,
+        fractions.TOPIC_OF_AMOUNT,
+    ]
+    for t in topics:
+        assert t.generate_modelled_example is not None
 
 
-def test_modelled_example_add_subtract_produces_verified_examples():
-    rng = random.Random(200)
-    for _ in range(TRIALS):
-        example = fractions.generate_modelled_example_add_subtract(Tier.FOUNDATION, rng)
-        assert example.topic_id == "fractions_add_subtract"
-        assert example.prompt
-        assert len(example.teaching_steps) >= 4
-        assert example.final_answer
+MODELLED_EXAMPLE_GENERATORS = [
+    (fractions.generate_modelled_example_simplify_fraction, Tier.FOUNDATION, "fractions_simplify"),
+    (fractions.generate_modelled_example_add_subtract, Tier.FOUNDATION, "fractions_add_subtract"),
+    (fractions.generate_modelled_example_multiply_fractions, Tier.FOUNDATION, "fractions_multiply"),
+    (fractions.generate_modelled_example_divide_fractions, Tier.HIGHER, "fractions_divide"),
+    (fractions.generate_modelled_example_mixed_number_arithmetic, Tier.HIGHER, "fractions_mixed_number_arithmetic"),
+    (fractions.generate_modelled_example_fraction_of_amount, Tier.FOUNDATION, "fractions_of_amount"),
+]
+
+
+def test_modelled_examples_produce_verified_examples():
+    for generate, tier, topic_id in MODELLED_EXAMPLE_GENERATORS:
+        rng = random.Random(200)
+        for _ in range(TRIALS):
+            example = generate(tier, rng)
+            assert example.topic_id == topic_id
+            assert example.prompt
+            assert len(example.worked_calculation) >= 2
+            assert len(example.teaching_steps) >= 3
+            assert example.final_answer

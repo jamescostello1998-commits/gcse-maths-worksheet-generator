@@ -42,3 +42,24 @@ def test_topic_definitions_have_expected_metadata():
         assert t.section == "number"
         assert t.group == "Negative Numbers"
         assert t.fixed_tier == Tier.FOUNDATION
+
+
+MODELLED_EXAMPLE_GENERATORS = [
+    (negative_numbers.generate_modelled_example_negative_number_arithmetic, Tier.FOUNDATION, "negative_numbers"),
+]
+
+
+def test_topic_definitions_have_modelled_example_generator():
+    assert negative_numbers.TOPIC_NEGATIVE_NUMBERS.generate_modelled_example is not None
+
+
+def test_modelled_examples_produce_valid_content():
+    for generate, tier, topic_id in MODELLED_EXAMPLE_GENERATORS:
+        rng = random.Random(930)
+        for _ in range(200):
+            example = generate(tier, rng)
+            assert example.topic_id == topic_id
+            assert example.prompt
+            assert len(example.worked_calculation) >= 2
+            assert len(example.teaching_steps) >= 3
+            assert example.final_answer

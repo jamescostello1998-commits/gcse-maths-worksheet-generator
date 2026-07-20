@@ -54,3 +54,34 @@ def test_topic_definitions_have_expected_metadata():
         assert t.section == "number"
         assert t.group == "Powers, Roots & Indices"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
+
+
+MODELLED_EXAMPLE_GENERATORS = [
+    (powers_roots.generate_modelled_example_powers_foundation, Tier.FOUNDATION, "powers_foundation"),
+    (powers_roots.generate_modelled_example_powers_higher, Tier.HIGHER, "powers_higher"),
+    (powers_roots.generate_modelled_example_roots_foundation, Tier.FOUNDATION, "roots_foundation"),
+    (powers_roots.generate_modelled_example_roots_higher, Tier.HIGHER, "roots_higher"),
+]
+
+
+def test_topic_definitions_have_modelled_example_generator():
+    topics = [
+        powers_roots.TOPIC_POWERS_FOUNDATION,
+        powers_roots.TOPIC_POWERS_HIGHER,
+        powers_roots.TOPIC_ROOTS_FOUNDATION,
+        powers_roots.TOPIC_ROOTS_HIGHER,
+    ]
+    for t in topics:
+        assert t.generate_modelled_example is not None
+
+
+def test_modelled_examples_produce_valid_content():
+    for generate, tier, topic_id in MODELLED_EXAMPLE_GENERATORS:
+        rng = random.Random(940)
+        for _ in range(200):
+            example = generate(tier, rng)
+            assert example.topic_id == topic_id
+            assert example.prompt
+            assert len(example.worked_calculation) >= 2
+            assert len(example.teaching_steps) >= 3
+            assert example.final_answer

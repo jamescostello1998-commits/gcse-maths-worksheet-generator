@@ -16,6 +16,25 @@ GENERATORS = [
     (number_theory.generate_hcf_lcm_by_prime_factors, Tier.HIGHER),
 ]
 
+MODELLED_EXAMPLE_GENERATORS = [
+    (number_theory.generate_modelled_example_prime_numbers, Tier.FOUNDATION, "prime_numbers"),
+    (number_theory.generate_modelled_example_multiples, Tier.FOUNDATION, "multiples"),
+    (number_theory.generate_modelled_example_factors, Tier.FOUNDATION, "factors"),
+    (
+        number_theory.generate_modelled_example_prime_factors_foundation,
+        Tier.FOUNDATION,
+        "prime_factors_foundation",
+    ),
+    (number_theory.generate_modelled_example_prime_factors_higher, Tier.HIGHER, "prime_factors_higher"),
+    (number_theory.generate_modelled_example_lcm_by_listing, Tier.FOUNDATION, "lcm_by_listing"),
+    (number_theory.generate_modelled_example_hcf_by_listing, Tier.FOUNDATION, "hcf_by_listing"),
+    (
+        number_theory.generate_modelled_example_hcf_lcm_by_prime_factors,
+        Tier.HIGHER,
+        "hcf_lcm_by_prime_factors",
+    ),
+]
+
 
 def test_all_generators_produce_valid_verified_questions():
     for generate, tier in GENERATORS:
@@ -75,3 +94,31 @@ def test_topic_definitions_have_expected_metadata():
         assert t.section == "number"
         assert t.group == "Factors, Multiples & Primes"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
+
+
+def test_topic_definitions_have_modelled_example_generators():
+    topics = [
+        number_theory.TOPIC_PRIME_NUMBERS,
+        number_theory.TOPIC_MULTIPLES,
+        number_theory.TOPIC_FACTORS,
+        number_theory.TOPIC_PRIME_FACTORS_FOUNDATION,
+        number_theory.TOPIC_PRIME_FACTORS_HIGHER,
+        number_theory.TOPIC_LCM_BY_LISTING,
+        number_theory.TOPIC_HCF_BY_LISTING,
+        number_theory.TOPIC_HCF_LCM_BY_PRIME_FACTORS,
+    ]
+    for t in topics:
+        assert t.generate_modelled_example is not None
+
+
+def test_all_modelled_example_generators_produce_valid_examples():
+    for generate, tier, topic_id in MODELLED_EXAMPLE_GENERATORS:
+        rng = random.Random(700)
+        for _ in range(TRIALS):
+            example = generate(tier, rng)
+            assert example.topic_id == topic_id
+            assert example.tier == tier
+            assert example.prompt
+            assert len(example.worked_calculation) >= 2
+            assert len(example.teaching_steps) >= 3
+            assert example.final_answer

@@ -44,3 +44,34 @@ def test_topic_definitions_have_expected_metadata():
         assert t.section == "number"
         assert t.group == "Standard Form"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
+
+
+MODELLED_EXAMPLE_GENERATORS = [
+    (standard_form.generate_modelled_example_to_standard_form, Tier.FOUNDATION, "standard_form_to"),
+    (standard_form.generate_modelled_example_from_standard_form, Tier.FOUNDATION, "standard_form_from"),
+    (standard_form.generate_modelled_example_multiply_divide_standard_form, Tier.HIGHER, "standard_form_multiply_divide"),
+    (standard_form.generate_modelled_example_add_subtract_standard_form, Tier.HIGHER, "standard_form_add_subtract"),
+]
+
+
+def test_topic_definitions_have_modelled_example_generator():
+    topics = [
+        standard_form.TOPIC_TO_STANDARD_FORM,
+        standard_form.TOPIC_FROM_STANDARD_FORM,
+        standard_form.TOPIC_MULTIPLY_DIVIDE,
+        standard_form.TOPIC_ADD_SUBTRACT,
+    ]
+    for t in topics:
+        assert t.generate_modelled_example is not None
+
+
+def test_modelled_examples_produce_valid_content():
+    for generate, tier, topic_id in MODELLED_EXAMPLE_GENERATORS:
+        rng = random.Random(910)
+        for _ in range(200):
+            example = generate(tier, rng)
+            assert example.topic_id == topic_id
+            assert example.prompt
+            assert len(example.worked_calculation) >= 2
+            assert len(example.teaching_steps) >= 3
+            assert example.final_answer

@@ -267,6 +267,245 @@ def generate_modelled_example_add_subtract(tier: Tier, rng: random.Random) -> Mo
     )
 
 
+def generate_modelled_example_simplify_fraction(tier: Tier, rng: random.Random) -> ModelledExample:
+    while True:
+        p = rng.randint(1, 11)
+        q = rng.randint(2, 12)
+        if p < q and math.gcd(p, q) == 1:
+            break
+    k = rng.randint(2, 8)
+    num, den = p * k, q * k
+
+    hcf = math.gcd(num, den)
+    if num // hcf != p or den // hcf != q:
+        raise ValueError("modelled example simplify_fraction verification failed")
+
+    teaching_steps = [
+        f"A fraction is in its simplest form when there's no whole number bigger than 1 that divides "
+        f"exactly into both the numerator and the denominator. To simplify {num}/{den}, we need to find "
+        "the highest common factor (HCF) of the two numbers.",
+        f"The highest common factor of {num} and {den} is {hcf} — the largest number that divides "
+        f"exactly into both of them.",
+        "Dividing the numerator and denominator by the SAME number keeps the fraction's value exactly "
+        f"the same (it's the same as multiplying by {hcf}/{hcf}, which equals 1), so we divide both "
+        f"{num} and {den} by {hcf}.",
+        f"{num} ÷ {hcf} = {p} and {den} ÷ {hcf} = {q}, and since {p} and {q} share no common factor "
+        f"other than 1, {p}/{q} is fully simplified.",
+    ]
+    worked_calculation = [
+        f"{num}/{den}",
+        f"HCF({num}, {den}) = {hcf}",
+        f"= ({num}÷{hcf})/({den}÷{hcf})",
+        f"= {p}/{q}",
+    ]
+    return ModelledExample(
+        topic_id="fractions_simplify",
+        tier=Tier.FOUNDATION,
+        prompt=f"Simplify the fraction {num}/{den} fully.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"{p}/{q}",
+    )
+
+
+def generate_modelled_example_multiply_fractions(tier: Tier, rng: random.Random) -> ModelledExample:
+    a, b = rng.randint(1, 9), rng.randint(2, 12)
+    c, d = rng.randint(1, 9), rng.randint(2, 12)
+    result = Fraction(a, b) * Fraction(c, d)
+
+    if abs((a / b) * (c / d) - float(result)) > 1e-9:
+        raise ValueError("modelled example multiply_fractions verification failed")
+
+    product_num, product_den = a * c, b * d
+    common = math.gcd(product_num, product_den)
+
+    teaching_steps = [
+        "Multiplying fractions is more direct than adding them — there's no need for a common "
+        f"denominator. To work out {a}/{b} × {c}/{d}, multiply the two numerators together and the "
+        "two denominators together separately.",
+        f"Numerators: {a} × {c} = {product_num}. Denominators: {b} × {d} = {product_den}. This gives "
+        f"{product_num}/{product_den}.",
+        "Finally, check whether the fraction can be simplified: "
+        + (
+            f"dividing both {product_num} and {product_den} by their highest common factor, {common}, "
+            f"gives {_fmt_fraction(result)}."
+            if common > 1
+            else f"{product_num} and {product_den} share no common factor, so {_fmt_fraction(result)} "
+            "is already in its simplest form."
+        ),
+        f"So {a}/{b} × {c}/{d} = {_fmt_fraction(result)}.",
+    ]
+    worked_calculation = [
+        f"{a}/{b} × {c}/{d}",
+        f"= ({a}×{c})/({b}×{d})",
+        f"= {product_num}/{product_den}",
+    ]
+    if common > 1:
+        worked_calculation.append(f"= {_fmt_fraction(result)}")
+
+    return ModelledExample(
+        topic_id="fractions_multiply",
+        tier=Tier.FOUNDATION,
+        prompt=f"Work out {a}/{b} × {c}/{d}. Give your answer as a fraction in its simplest form.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=_fmt_fraction(result),
+    )
+
+
+def generate_modelled_example_divide_fractions(tier: Tier, rng: random.Random) -> ModelledExample:
+    a, b = rng.randint(1, 9), rng.randint(2, 12)
+    c, d = rng.randint(1, 9), rng.randint(2, 12)
+    result = Fraction(a, b) / Fraction(c, d)
+
+    if result * Fraction(c, d) != Fraction(a, b):
+        raise ValueError("modelled example divide_fractions verification failed")
+
+    product_num, product_den = a * d, b * c
+    common = math.gcd(product_num, product_den)
+
+    teaching_steps = [
+        "Dividing by a fraction is the same as multiplying by its reciprocal (the fraction flipped "
+        f"upside down). This is often remembered as 'keep, change, flip': keep {a}/{b} as it is, "
+        f"change ÷ to ×, and flip {c}/{d} to become {d}/{c}.",
+        f"So {a}/{b} ÷ {c}/{d} becomes the multiplication {a}/{b} × {d}/{c}.",
+        f"Now multiply straight across: numerators {a} × {d} = {product_num}, denominators "
+        f"{b} × {c} = {product_den}, giving {product_num}/{product_den}.",
+        "Finally, simplify: "
+        + (
+            f"dividing both {product_num} and {product_den} by their highest common factor, {common}, "
+            f"gives {_fmt_fraction(result)}."
+            if common > 1
+            else f"{product_num} and {product_den} share no common factor, so {_fmt_fraction(result)} "
+            "is already in its simplest form."
+        ),
+    ]
+    worked_calculation = [
+        f"{a}/{b} ÷ {c}/{d}",
+        f"= {a}/{b} × {d}/{c}",
+        f"= ({a}×{d})/({b}×{c})",
+        f"= {product_num}/{product_den}",
+    ]
+    if common > 1:
+        worked_calculation.append(f"= {_fmt_fraction(result)}")
+
+    return ModelledExample(
+        topic_id="fractions_divide",
+        tier=Tier.HIGHER,
+        prompt=f"Work out {a}/{b} ÷ {c}/{d}. Give your answer as a fraction in its simplest form.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=_fmt_fraction(result),
+    )
+
+
+def generate_modelled_example_mixed_number_arithmetic(tier: Tier, rng: random.Random) -> ModelledExample:
+    den1 = rng.randint(2, 8)
+    num1 = rng.randint(1, den1 - 1)
+    whole1 = rng.randint(1, 5)
+    den2 = rng.randint(2, 8)
+    num2 = rng.randint(1, den2 - 1)
+    whole2 = rng.randint(1, 5)
+    op = rng.choice(["+", "-"])
+
+    v1 = whole1 + num1 / den1
+    v2 = whole2 + num2 / den2
+    if op == "-" and v1 < v2:
+        whole1, num1, den1, whole2, num2, den2 = whole2, num2, den2, whole1, num1, den1
+        v1 = whole1 + num1 / den1
+        v2 = whole2 + num2 / den2
+
+    raw_num1 = whole1 * den1 + num1
+    raw_num2 = whole2 * den2 + num2
+    lcm_val = den1 * den2 // math.gcd(den1, den2)
+    scale1, scale2 = lcm_val // den1, lcm_val // den2
+    scaled_num1, scaled_num2 = raw_num1 * scale1, raw_num2 * scale2
+    combined_num = scaled_num1 + scaled_num2 if op == "+" else scaled_num1 - scaled_num2
+    result = Fraction(combined_num, lcm_val)
+
+    # Independent verification via plain float arithmetic on the original mixed numbers.
+    independent = v1 + v2 if op == "+" else v1 - v2
+    if abs(independent - float(result)) > 1e-9:
+        raise ValueError("modelled example mixed_number_arithmetic verification failed")
+
+    result_whole = result.numerator // result.denominator
+    result_num = result.numerator % result.denominator
+    mixed_str = str(result_whole) if result_num == 0 else f"{result_whole} {result_num}/{result.denominator}"
+
+    verb = "add" if op == "+" else "subtract"
+    teaching_steps = [
+        "Mixed numbers combine a whole number with a fraction, which makes them awkward to add or "
+        "subtract directly, so the standard method is to first convert both into improper (top-heavy) "
+        "fractions: multiply the whole number by the denominator, then add the numerator, all over the "
+        "same denominator.",
+        f"{whole1} {num1}/{den1} = ({whole1}×{den1}+{num1})/{den1} = {raw_num1}/{den1}, and "
+        f"{whole2} {num2}/{den2} = ({whole2}×{den2}+{num2})/{den2} = {raw_num2}/{den2}.",
+        f"Now it's a normal fraction {verb}, so we need a common denominator: the LCM of {den1} and "
+        f"{den2} is {lcm_val}. Converting: {raw_num1}/{den1} = {scaled_num1}/{lcm_val} and "
+        f"{raw_num2}/{den2} = {scaled_num2}/{lcm_val}.",
+        f"{'Add' if op == '+' else 'Subtract'} the numerators over the common denominator: "
+        f"{scaled_num1}/{lcm_val} {op} {scaled_num2}/{lcm_val} = {combined_num}/{lcm_val}.",
+        f"Finally, convert the improper fraction back to a mixed number by dividing {combined_num} by "
+        f"{lcm_val}: this gives {mixed_str}.",
+    ]
+    worked_calculation = [
+        f"{whole1} {num1}/{den1} {op} {whole2} {num2}/{den2}",
+        f"= {raw_num1}/{den1} {op} {raw_num2}/{den2}",
+        f"= {scaled_num1}/{lcm_val} {op} {scaled_num2}/{lcm_val}",
+        f"= {combined_num}/{lcm_val}",
+        f"= {mixed_str}",
+    ]
+    return ModelledExample(
+        topic_id="fractions_mixed_number_arithmetic",
+        tier=Tier.HIGHER,
+        prompt=(
+            f"Work out {whole1} {num1}/{den1} {op} {whole2} {num2}/{den2}. "
+            "Give your answer as a mixed number."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=mixed_str,
+    )
+
+
+def generate_modelled_example_fraction_of_amount(tier: Tier, rng: random.Random) -> ModelledExample:
+    b = rng.randint(2, 10)
+    a = rng.randint(1, b - 1)
+    amount = b * rng.randint(2, 40)
+    unit = amount // b
+    result = unit * a
+
+    # Independent check via exact Fraction arithmetic (a different path than the
+    # integer divide-then-multiply used to build the steps above).
+    check = Fraction(a, b) * amount
+    if check != result:
+        raise ValueError("modelled example fraction_of_amount verification failed")
+
+    teaching_steps = [
+        f"Finding {a}/{b} of {amount} means splitting {amount} into {b} equal parts (the denominator "
+        f"tells us how many parts to split into), then taking {a} of those parts (the numerator tells "
+        "us how many to take).",
+        f"Divide the amount by the denominator to find the value of one single part: "
+        f"{amount} ÷ {b} = {unit}.",
+        f"Multiply that single part by the numerator to find {a} parts: {unit} × {a} = {result}.",
+        f"So {a}/{b} of {amount} is {result}.",
+    ]
+    worked_calculation = [
+        f"{a}/{b} of {amount}",
+        f"= {amount} ÷ {b} × {a}",
+        f"= {unit} × {a}",
+        f"= {result}",
+    ]
+    return ModelledExample(
+        topic_id="fractions_of_amount",
+        tier=Tier.FOUNDATION,
+        prompt=f"Find {a}/{b} of {amount}.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=str(result),
+    )
+
+
 TOPIC_SIMPLIFY = TopicDefinition(
     id="fractions_simplify",
     display_name="Simplifying Fractions",
@@ -275,6 +514,7 @@ TOPIC_SIMPLIFY = TopicDefinition(
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_simplify_fraction,
 )
 
 TOPIC_ADD_SUBTRACT = TopicDefinition(
@@ -296,6 +536,7 @@ TOPIC_MULTIPLY = TopicDefinition(
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_multiply_fractions,
 )
 
 TOPIC_DIVIDE = TopicDefinition(
@@ -306,6 +547,7 @@ TOPIC_DIVIDE = TopicDefinition(
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_divide_fractions,
 )
 
 TOPIC_MIXED_NUMBER_ARITHMETIC = TopicDefinition(
@@ -316,6 +558,7 @@ TOPIC_MIXED_NUMBER_ARITHMETIC = TopicDefinition(
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_mixed_number_arithmetic,
 )
 
 TOPIC_OF_AMOUNT = TopicDefinition(
@@ -326,4 +569,5 @@ TOPIC_OF_AMOUNT = TopicDefinition(
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_fraction_of_amount,
 )
