@@ -81,4 +81,8 @@ def build_styles() -> dict[str, ParagraphStyle]:
             "ScaffoldBlank", fontName=FONT, fontSize=10.5, textColor=MUTED,
             leftIndent=14, leading=18, spaceAfter=4,
         ),
+        "AnswerRow": ParagraphStyle(
+            "AnswerRow", fontName=FONT, fontSize=10.5, textColor=INK,
+            leading=15, spaceAfter=6,
+        ),
     }

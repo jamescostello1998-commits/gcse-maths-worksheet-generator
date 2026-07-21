@@ -7,6 +7,8 @@ from app.core.registry import get_topic
 
 DEFAULT_COUNT = 20
 DEFAULT_MAX_ATTEMPTS = 400
+MIN_COUNT = 5
+MAX_COUNT = 40
 
 
 def build_worksheet(

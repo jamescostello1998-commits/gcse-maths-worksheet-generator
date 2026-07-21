@@ -1,13 +1,13 @@
 import { useCallback, useState } from 'react'
 import { generateWorksheet } from '../api/client'
-import type { Tier } from '../api/types'
+import type { Tier, WorksheetOptions } from '../api/types'
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
 
 interface UseGenerateWorksheetResult {
   status: Status
   error: string | null
-  generate: (topicId: string, tier: Tier) => Promise<void>
+  generate: (topicId: string, tier: Tier, options?: WorksheetOptions) => Promise<void>
 }
 
 function triggerDownload(blob: Blob, filename: string): void {
@@ -25,12 +25,13 @@ export function useGenerateWorksheet(): UseGenerateWorksheetResult {
   const [status, setStatus] = useState<Status>('idle')
   const [error, setError] = useState<string | null>(null)
 
-  const generate = useCallback(async (topicId: string, tier: Tier) => {
+  const generate = useCallback(async (topicId: string, tier: Tier, options: WorksheetOptions = {}) => {
     setStatus('loading')
     setError(null)
     try {
-      const blob = await generateWorksheet(topicId, tier)
-      triggerDownload(blob, `${topicId}-${tier}-worksheet.pdf`)
+      const blob = await generateWorksheet(topicId, tier, options)
+      const suffix = options.answersOnly ? '-answers-only' : ''
+      triggerDownload(blob, `${topicId}-${tier}-worksheet${suffix}.pdf`)
       setStatus('success')
     } catch (err) {
       console.error('Failed to generate worksheet:', err)

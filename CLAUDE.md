@@ -18,7 +18,7 @@ solutions, searchable/browsable across 6 curriculum sections.
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.).
-Full backend suite: **282/282 passing**. Frontend suite: **26/26 passing**.
+Full backend suite: **287/287 passing**. Frontend suite: **29/29 passing**.
 
 **Modelled Example feature (on every topic, including new ones)**: a second button, "Generate
 Modelled Example," sits next to "Generate Worksheet" on every topic card
@@ -141,7 +141,27 @@ via `worksheet.builder.DEFAULT_COUNT`) lets a topic override the usual 20-questi
 worksheet — used by the 5 "Plotting Graphs" topics and `tree_diagram_drawing` (all
 `question_count=5`, since a worksheet of 20 near-identical "plot this graph"/"draw
 this tree" questions isn't useful). `routes.py`'s `create_worksheet` reads
-`topic.question_count or DEFAULT_COUNT` when calling `build_worksheet`.
+`topic.question_count or DEFAULT_COUNT` when calling `build_worksheet`. This is
+exposed to the user via each `TopicCard`'s collapsed-by-default "Options" panel (see
+below) as the pre-filled default of a `count` override.
+
+**User-facing worksheet options (question count + answers-only)**: every `TopicCard`
+has an "Options ▾" toggle (collapsed by default, to keep the common one-click path
+uncluttered — `TopicCard.test.tsx` covers it) that reveals a question-count number
+input (bounded `worksheet.builder.MIN_COUNT`–`MAX_COUNT` = 5–40, pre-filled from the
+topic's `default_question_count`, a new field on `TopicSummary`/`Topic` computed as
+`t.question_count or DEFAULT_COUNT`) and an "Answers only" checkbox. Both are wired
+through `GenerateWorksheetRequest.count` (`Optional[int]`, pydantic `ge=MIN_COUNT,
+le=MAX_COUNT` — out-of-range returns 422) and `.answers_only` (`bool`) on
+`POST /api/worksheets`; `count` is only sent when changed from the topic default,
+so the common case's request body is unchanged from before. `render_worksheet` grew
+an `answers_only: bool = False` param — when true it renders a compact "Answers"
+page (`Q{n}. {final_answer}`, one line each) instead of the full "Worked Solutions"
+page with steps/diagrams. The count `<input>` deliberately does **not** clamp on
+every keystroke (an early version did, and it mangled typing a two-digit number —
+e.g. typing "10" got clamped to "5" after the first digit, then the second digit
+appended to *that* instead of continuing "10"); it now stores the raw typed string
+and only clamps on blur and on Generate.
 
 **Two-diagram questions**: `Question.solution_diagram` (alongside the original
 `Question.diagram`) lets a question show a *different* diagram on the worked-solution
@@ -355,6 +375,18 @@ fine as literal Unicode — only `⁻` specifically is the problem.)
     `test_routes.py`/`test_modelled_example_renderer.py`/`test_worksheet_builder.py`
     were updated to `160`); frontend unaffected (26/26 — new groups render
     generically, no frontend code changes needed).
+15. Same session, two of the "Ideas for a future session" items from the list below
+    were promoted to real features on user request (after a clarifying question to
+    confirm which two of several candidate ideas were meant): user-facing adjustable
+    question count and answer-only PDF mode — see "User-facing worksheet options"
+    above for the full design. `GenerateWorksheetRequest` gained `count`
+    (bounds-checked, 422 on out-of-range) and `answers_only`; `render_worksheet`
+    gained an `answers_only` branch; `TopicSummary`/`Topic` gained
+    `default_question_count`; `TopicCard` gained a collapsed-by-default "Options"
+    panel. Caught and fixed a real bug during browser verification: clamping the
+    question-count input on every keystroke corrupted multi-digit typing, fixed by
+    only clamping on blur/submit. Backend suite grew from 282 to 287 tests; frontend
+    from 26 to 29.
 
 Everything above is committed and pushed (see `git log`).
 
@@ -560,10 +592,7 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
   consistency — noted above as a reasonable but currently out-of-scope enhancement.
 - Dice/spinner/bag *illustrations* (actual pictures of a die or spinner, as opposed to
   the tree/table/sample-space diagrams added this session) are still out of scope.
-- User-facing adjustable question count (the backend now supports a per-topic fixed
-  override via `question_count`, but there's no UI control for the user to pick their
-  own count), answer-only PDF mode, saved worksheet history, mixed-topic revision
-  papers, user accounts.
+- Saved worksheet history, mixed-topic revision papers, user accounts.
 - Deploying this somewhere instead of local-only dev servers.
 
 Don't start any of these without checking with the user first — this list is just

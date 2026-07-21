@@ -1,7 +1,9 @@
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+
+from app.worksheet.builder import MAX_COUNT, MIN_COUNT
 
 
 class TierEnum(str, Enum):
@@ -15,6 +17,7 @@ class TopicSummary(BaseModel):
     description: str
     fixed_tier: Optional[TierEnum] = None
     has_modelled_example: bool = False
+    default_question_count: int
 
 
 class GroupSchema(BaseModel):
@@ -31,3 +34,5 @@ class SectionSchema(BaseModel):
 class GenerateWorksheetRequest(BaseModel):
     topic_id: str
     tier: TierEnum
+    count: Optional[int] = Field(default=None, ge=MIN_COUNT, le=MAX_COUNT)
+    answers_only: bool = False

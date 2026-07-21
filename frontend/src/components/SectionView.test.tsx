@@ -11,8 +11,8 @@ const populatedSection: Section = {
     {
       name: 'Area & Perimeter',
       topics: [
-        { id: 'area_rectangle', name: 'Rectangles', description: 'desc', fixedTier: 'foundation', hasModelledExample: false },
-        { id: 'area_circle', name: 'Circles', description: 'desc', fixedTier: 'higher', hasModelledExample: false },
+        { id: 'area_rectangle', name: 'Rectangles', description: 'desc', fixedTier: 'foundation', hasModelledExample: false, defaultQuestionCount: 20 },
+        { id: 'area_circle', name: 'Circles', description: 'desc', fixedTier: 'higher', hasModelledExample: false, defaultQuestionCount: 20 },
       ],
     },
   ],
@@ -25,8 +25,8 @@ const singleTierSection: Section = {
     {
       name: 'Solving Linear Equations',
       topics: [
-        { id: 'linear_one_step', name: 'One-Step Equations', description: 'desc', fixedTier: 'foundation', hasModelledExample: false },
-        { id: 'linear_two_step', name: 'Two-Step Equations', description: 'desc', fixedTier: 'foundation', hasModelledExample: false },
+        { id: 'linear_one_step', name: 'One-Step Equations', description: 'desc', fixedTier: 'foundation', hasModelledExample: false, defaultQuestionCount: 20 },
+        { id: 'linear_two_step', name: 'Two-Step Equations', description: 'desc', fixedTier: 'foundation', hasModelledExample: false, defaultQuestionCount: 20 },
       ],
     },
   ],

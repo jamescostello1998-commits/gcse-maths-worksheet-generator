@@ -1,5 +1,8 @@
+import io
+
 import pytest
 from fastapi.testclient import TestClient
+from pypdf import PdfReader
 
 from app.main import app
 
@@ -18,7 +21,9 @@ def test_topics_returns_all_topics():
     data = response.json()
     assert len(data) == 160
     for topic in data:
-        assert set(topic.keys()) == {"id", "name", "description", "fixed_tier", "has_modelled_example"}
+        assert set(topic.keys()) == {
+            "id", "name", "description", "fixed_tier", "has_modelled_example", "default_question_count",
+        }
 
 
 def test_sections_returns_six_sections_in_declared_order():
@@ -57,6 +62,52 @@ def test_worksheet_request_respects_per_topic_question_count():
     )
     assert response.status_code == 200
     assert response.content.startswith(b"%PDF-")
+
+
+def test_worksheet_request_honours_explicit_question_count():
+    response = client.post(
+        "/api/worksheets",
+        json={"topic_id": "reverse_percentage", "tier": "higher", "count": 10},
+    )
+    assert response.status_code == 200
+    reader = PdfReader(io.BytesIO(response.content))
+    full_text = "\n".join(page.extract_text() for page in reader.pages)
+    assert "10 Questions" in full_text
+    assert "Q10." in full_text
+    assert "Q11." not in full_text
+
+
+def test_worksheet_request_count_out_of_range_returns_422():
+    too_few = client.post(
+        "/api/worksheets", json={"topic_id": "reverse_percentage", "tier": "higher", "count": 0}
+    )
+    too_many = client.post(
+        "/api/worksheets", json={"topic_id": "reverse_percentage", "tier": "higher", "count": 41}
+    )
+    assert too_few.status_code == 422
+    assert too_many.status_code == 422
+
+
+def test_worksheet_request_answers_only_returns_compact_answer_key():
+    response = client.post(
+        "/api/worksheets",
+        json={"topic_id": "reverse_percentage", "tier": "higher", "answers_only": True},
+    )
+    assert response.status_code == 200
+    assert "reverse_percentage-higher-worksheet-answers-only.pdf" in response.headers["content-disposition"]
+    reader = PdfReader(io.BytesIO(response.content))
+    full_text = "\n".join(page.extract_text() for page in reader.pages)
+    assert "Answers" in full_text
+    assert "Worked Solutions" not in full_text
+
+
+def test_topics_expose_default_question_count():
+    response = client.get("/api/topics")
+    data = response.json()
+    plot = next(t for t in data if t["id"] == "plot_straight_line")
+    assert plot["default_question_count"] == 5
+    reverse_pct = next(t for t in data if t["id"] == "reverse_percentage")
+    assert reverse_pct["default_question_count"] == 20
 
 
 def test_invalid_topic_returns_404():

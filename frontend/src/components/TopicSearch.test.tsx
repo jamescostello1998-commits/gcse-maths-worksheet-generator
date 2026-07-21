@@ -11,13 +11,13 @@ const sections: Section[] = [
       {
         name: 'Percentages',
         topics: [
-          { id: 'percentage_of_amount', name: 'Percentage of an Amount', description: 'desc1', fixedTier: 'foundation', hasModelledExample: false },
+          { id: 'percentage_of_amount', name: 'Percentage of an Amount', description: 'desc1', fixedTier: 'foundation', hasModelledExample: false, defaultQuestionCount: 20 },
         ],
       },
       {
         name: 'Ratio',
         topics: [
-          { id: 'ratio_share_two_part', name: 'Share a Two-Part Ratio', description: 'desc2', fixedTier: 'foundation', hasModelledExample: false },
+          { id: 'ratio_share_two_part', name: 'Share a Two-Part Ratio', description: 'desc2', fixedTier: 'foundation', hasModelledExample: false, defaultQuestionCount: 20 },
         ],
       },
     ],

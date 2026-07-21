@@ -10,6 +10,7 @@ const fixedTopic: Topic = {
   description: 'Solve simple equations.',
   fixedTier: 'foundation',
   hasModelledExample: false,
+  defaultQuestionCount: 20,
 }
 
 const flexibleTopic: Topic = {
@@ -18,6 +19,7 @@ const flexibleTopic: Topic = {
   description: 'Supports both tiers.',
   fixedTier: null,
   hasModelledExample: false,
+  defaultQuestionCount: 20,
 }
 
 const modelledTopic: Topic = {
@@ -26,6 +28,7 @@ const modelledTopic: Topic = {
   description: 'Solve equations of the form ax + b = c.',
   fixedTier: 'foundation',
   hasModelledExample: true,
+  defaultQuestionCount: 20,
 }
 
 describe('TopicCard', () => {
@@ -86,6 +89,59 @@ describe('TopicCard', () => {
       expect.stringContaining('/api/worksheets'),
       expect.objectContaining({
         body: JSON.stringify({ topic_id: 'some_future_topic', tier: 'higher' }),
+      }),
+    )
+  })
+
+  it('hides the options panel until the toggle is clicked', async () => {
+    const user = userEvent.setup()
+    render(<TopicCard topic={fixedTopic} />)
+    expect(screen.queryByLabelText('Questions')).not.toBeInTheDocument()
+
+    await user.click(screen.getByText('Options ▾'))
+    expect(screen.getByLabelText('Questions')).toBeInTheDocument()
+    expect(screen.getByText('Answers only')).toBeInTheDocument()
+  })
+
+  it('sends an explicit count only once changed from the topic default', async () => {
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      blob: async () => new Blob(['%PDF-'], { type: 'application/pdf' }),
+    })
+    vi.stubGlobal('fetch', fetchMock)
+
+    const user = userEvent.setup()
+    render(<TopicCard topic={fixedTopic} />)
+    await user.click(screen.getByText('Options ▾'))
+    await user.clear(screen.getByLabelText('Questions'))
+    await user.type(screen.getByLabelText('Questions'), '10')
+    await user.click(screen.getByText('Worksheet'))
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      expect.stringContaining('/api/worksheets'),
+      expect.objectContaining({
+        body: JSON.stringify({ topic_id: 'linear_one_step', tier: 'foundation', count: 10 }),
+      }),
+    )
+  })
+
+  it('sends answers_only when the checkbox is checked', async () => {
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      blob: async () => new Blob(['%PDF-'], { type: 'application/pdf' }),
+    })
+    vi.stubGlobal('fetch', fetchMock)
+
+    const user = userEvent.setup()
+    render(<TopicCard topic={fixedTopic} />)
+    await user.click(screen.getByText('Options ▾'))
+    await user.click(screen.getByText('Answers only'))
+    await user.click(screen.getByText('Worksheet'))
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      expect.stringContaining('/api/worksheets'),
+      expect.objectContaining({
+        body: JSON.stringify({ topic_id: 'linear_one_step', tier: 'foundation', answers_only: true }),
       }),
     )
   })

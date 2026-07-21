@@ -27,6 +27,7 @@ def _to_topic_summary(t: TopicDefinition) -> TopicSummary:
         description=t.description,
         fixed_tier=t.fixed_tier,
         has_modelled_example=t.generate_modelled_example is not None,
+        default_question_count=t.question_count or DEFAULT_COUNT,
     )
 
 
@@ -62,9 +63,11 @@ def get_sections() -> list[SectionSchema]:
 def create_worksheet(payload: GenerateWorksheetRequest) -> Response:
     tier = Tier(payload.tier.value)
     topic = get_topic(payload.topic_id)
-    worksheet = build_worksheet(payload.topic_id, tier, count=topic.question_count or DEFAULT_COUNT)
-    pdf_bytes = render_worksheet(worksheet)
-    filename = f"{payload.topic_id}-{tier.value}-worksheet.pdf"
+    count = payload.count or topic.question_count or DEFAULT_COUNT
+    worksheet = build_worksheet(payload.topic_id, tier, count=count)
+    pdf_bytes = render_worksheet(worksheet, answers_only=payload.answers_only)
+    suffix = "-answers-only" if payload.answers_only else ""
+    filename = f"{payload.topic_id}-{tier.value}-worksheet{suffix}.pdf"
     return Response(
         content=pdf_bytes,
         media_type="application/pdf",

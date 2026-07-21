@@ -19,6 +19,7 @@ const sections: Section[] = [
             description: 'desc',
             fixedTier: 'foundation',
             hasModelledExample: false,
+            defaultQuestionCount: 20,
           },
         ],
       },

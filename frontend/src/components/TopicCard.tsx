@@ -3,6 +3,9 @@ import type { Tier, Topic } from '../api/types'
 import { useGenerateModelledExample } from '../hooks/useGenerateModelledExample'
 import { useGenerateWorksheet } from '../hooks/useGenerateWorksheet'
 
+const MIN_QUESTION_COUNT = 5
+const MAX_QUESTION_COUNT = 40
+
 interface TopicCardProps {
   topic: Topic
   showTierBadge?: boolean
@@ -10,6 +13,12 @@ interface TopicCardProps {
 
 export function TopicCard({ topic, showTierBadge = true }: TopicCardProps) {
   const [selectedTier, setSelectedTier] = useState<Tier>(topic.fixedTier ?? 'foundation')
+  const [showOptions, setShowOptions] = useState(false)
+  // Kept as free-typed text (not clamped per keystroke) so typing a two-digit
+  // number doesn't get mangled by an intermediate single-digit value being
+  // clamped mid-entry. Clamped once, on blur and on generate.
+  const [questionCountInput, setQuestionCountInput] = useState(String(topic.defaultQuestionCount))
+  const [answersOnly, setAnswersOnly] = useState(false)
   const { status, error, generate } = useGenerateWorksheet()
   const {
     status: modelledStatus,
@@ -18,6 +27,24 @@ export function TopicCard({ topic, showTierBadge = true }: TopicCardProps) {
   } = useGenerateModelledExample()
 
   const effectiveTier = topic.fixedTier ?? selectedTier
+
+  const clampedQuestionCount = () => {
+    const parsed = Number(questionCountInput)
+    if (Number.isNaN(parsed)) return topic.defaultQuestionCount
+    return Math.min(MAX_QUESTION_COUNT, Math.max(MIN_QUESTION_COUNT, Math.round(parsed)))
+  }
+
+  const handleQuestionCountBlur = () => {
+    setQuestionCountInput(String(clampedQuestionCount()))
+  }
+
+  const handleGenerate = () => {
+    const count = clampedQuestionCount()
+    generate(topic.id, effectiveTier, {
+      count: count !== topic.defaultQuestionCount ? count : undefined,
+      answersOnly,
+    })
+  }
 
   return (
     <div className="topic-card">
@@ -51,12 +78,45 @@ export function TopicCard({ topic, showTierBadge = true }: TopicCardProps) {
         )}
       </div>
       <p className="topic-card__description">{topic.description}</p>
+      <button
+        type="button"
+        className="topic-card__options-toggle"
+        aria-expanded={showOptions}
+        onClick={() => setShowOptions((v) => !v)}
+      >
+        {showOptions ? 'Hide options ▲' : 'Options ▾'}
+      </button>
+      {showOptions && (
+        <div className="topic-card__options">
+          <label className="topic-card__count-label" htmlFor={`count-${topic.id}`}>
+            Questions
+            <input
+              id={`count-${topic.id}`}
+              type="number"
+              className="topic-card__count-input"
+              min={MIN_QUESTION_COUNT}
+              max={MAX_QUESTION_COUNT}
+              value={questionCountInput}
+              onChange={(e) => setQuestionCountInput(e.target.value)}
+              onBlur={handleQuestionCountBlur}
+            />
+          </label>
+          <label className="topic-card__checkbox-label">
+            <input
+              type="checkbox"
+              checked={answersOnly}
+              onChange={(e) => setAnswersOnly(e.target.checked)}
+            />
+            Answers only
+          </label>
+        </div>
+      )}
       <div className="topic-card__actions">
         <button
           type="button"
           className="topic-card__generate"
           disabled={status === 'loading'}
-          onClick={() => generate(topic.id, effectiveTier)}
+          onClick={handleGenerate}
         >
           {status === 'loading' ? 'Generating…' : 'Worksheet'}
         </button>

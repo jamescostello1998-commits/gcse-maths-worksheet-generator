@@ -1,4 +1,4 @@
-import { ApiError, NetworkError, type Section, type Tier, type Topic } from './types'
+import { ApiError, NetworkError, type Section, type Tier, type Topic, type WorksheetOptions } from './types'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000'
 
@@ -8,6 +8,7 @@ interface RawTopic {
   description: string
   fixed_tier: Tier | null
   has_modelled_example: boolean
+  default_question_count: number
 }
 
 interface RawGroup {
@@ -28,6 +29,7 @@ function toTopic(raw: RawTopic): Topic {
     description: raw.description,
     fixedTier: raw.fixed_tier,
     hasModelledExample: raw.has_modelled_example,
+    defaultQuestionCount: raw.default_question_count,
   }
 }
 
@@ -73,13 +75,18 @@ export async function fetchSections(): Promise<Section[]> {
   }))
 }
 
-export async function generateWorksheet(topicId: string, tier: Tier): Promise<Blob> {
+export async function generateWorksheet(topicId: string, tier: Tier, options: WorksheetOptions = {}): Promise<Blob> {
   let response: Response
   try {
     response = await fetch(`${API_BASE_URL}/api/worksheets`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ topic_id: topicId, tier }),
+      body: JSON.stringify({
+        topic_id: topicId,
+        tier,
+        ...(options.count !== undefined ? { count: options.count } : {}),
+        ...(options.answersOnly ? { answers_only: true } : {}),
+      }),
     })
   } catch (err) {
     console.error('Network error generating worksheet:', err)

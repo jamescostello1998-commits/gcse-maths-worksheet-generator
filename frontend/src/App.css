@@ -239,6 +239,60 @@
   color: var(--error-text);
 }
 
+/* Per-topic generation options (question count, answers-only) */
+
+.topic-card__options-toggle {
+  align-self: flex-start;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.topic-card__options-toggle:hover {
+  color: var(--accent);
+}
+
+.topic-card__options {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--accent-bg);
+}
+
+.topic-card__count-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text);
+}
+
+.topic-card__count-input {
+  width: 48px;
+  padding: 2px 4px;
+  font-size: 12px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.topic-card__checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text);
+  cursor: pointer;
+}
+
 /* Tier badge (fixed-tier topics) */
 
 .tier-badge {

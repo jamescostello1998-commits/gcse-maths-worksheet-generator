@@ -6,6 +6,12 @@ export interface Topic {
   description: string
   fixedTier: Tier | null
   hasModelledExample: boolean
+  defaultQuestionCount: number
+}
+
+export interface WorksheetOptions {
+  count?: number
+  answersOnly?: boolean
 }
 
 export interface Group {

@@ -23,6 +23,7 @@ describe('useSections', () => {
                 description: 'desc',
                 fixed_tier: 'foundation',
                 has_modelled_example: false,
+                default_question_count: 20,
               },
             ],
           },
@@ -49,6 +50,7 @@ describe('useSections', () => {
       description: 'desc',
       fixedTier: 'foundation',
       hasModelledExample: false,
+      defaultQuestionCount: 20,
     })
     expect(result.current.error).toBeNull()
   })

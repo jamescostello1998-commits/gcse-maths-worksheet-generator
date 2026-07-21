@@ -73,6 +73,20 @@ def test_renders_worksheet_with_a_diagram_bearing_question():
     assert pdf_bytes.startswith(b"%PDF-")
 
 
+def test_answers_only_renders_compact_answer_key_not_worked_solutions():
+    worksheet = _make_worksheet()
+    pdf_bytes = render_worksheet(worksheet, answers_only=True)
+    reader = PdfReader(io.BytesIO(pdf_bytes))
+    full_text = "\n".join(page.extract_text() for page in reader.pages)
+
+    assert "Answers" in full_text
+    assert "Worked Solutions" not in full_text
+    assert "Q1." in full_text
+    assert "Q20" in full_text
+    # The worked-solution steps text must not leak into the answers-only page.
+    assert "Subtract 1:" not in full_text
+
+
 def test_pdf_render_error_wraps_unexpected_failures(monkeypatch):
     import app.pdf.renderer as renderer_module
 

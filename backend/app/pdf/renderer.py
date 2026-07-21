@@ -46,14 +46,18 @@ def _solution_block(number: int, question: Question, styles: dict) -> KeepTogeth
     return KeepTogether(elements)
 
 
-def render_worksheet(worksheet: Worksheet) -> bytes:
+def _answer_row(number: int, question: Question, styles: dict) -> Paragraph:
+    return Paragraph(f"<b>Q{number}.</b> {_fmt(question.final_answer)}", styles["AnswerRow"])
+
+
+def render_worksheet(worksheet: Worksheet, answers_only: bool = False) -> bytes:
     try:
-        return _render(worksheet)
+        return _render(worksheet, answers_only=answers_only)
     except Exception as exc:
         raise PdfRenderError(exc) from exc
 
 
-def _render(worksheet: Worksheet) -> bytes:
+def _render(worksheet: Worksheet, answers_only: bool = False) -> bytes:
     styles = build_styles()
     buffer = io.BytesIO()
     doc = SimpleDocTemplate(
@@ -81,11 +85,16 @@ def _render(worksheet: Worksheet) -> bytes:
         story.append(_question_block(i, question, styles))
 
     story.append(PageBreak())
-    story.append(Paragraph("Worked Solutions", styles["SectionHeading"]))
-    story.append(HRFlowable(width="100%", thickness=0.75, color=RULE, spaceAfter=16))
-
-    for i, question in enumerate(worksheet.questions, start=1):
-        story.append(_solution_block(i, question, styles))
+    if answers_only:
+        story.append(Paragraph("Answers", styles["SectionHeading"]))
+        story.append(HRFlowable(width="100%", thickness=0.75, color=RULE, spaceAfter=16))
+        for i, question in enumerate(worksheet.questions, start=1):
+            story.append(_answer_row(i, question, styles))
+    else:
+        story.append(Paragraph("Worked Solutions", styles["SectionHeading"]))
+        story.append(HRFlowable(width="100%", thickness=0.75, color=RULE, spaceAfter=16))
+        for i, question in enumerate(worksheet.questions, start=1):
+            story.append(_solution_block(i, question, styles))
 
     doc.build(story)
     return buffer.getvalue()
