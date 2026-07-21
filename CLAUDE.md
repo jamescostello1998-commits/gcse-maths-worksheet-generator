@@ -10,6 +10,17 @@ solutions, searchable/browsable across 6 curriculum sections.
 `first-pr-practice/` in this same folder is an **unrelated** git-practice repo (its own
 `.git`) — ignored via the root `.gitignore`. Don't touch it when working on this app.
 
+## Where to pick up next
+
+Both requested topic-expansion phases — Probability (chronology step 17) and
+Statistics (step 18) — are **complete and pushed**. 188 topics total, backend suite
+383/383, frontend 29/29, no known bugs. There is **no committed next task** right
+now. Before starting anything new:
+1. Check "Ideas for a future session" (bottom of this file) for candidate follow-ups
+   — none are started and none are promised; ask the user which (if any) they want
+   before building.
+2. Otherwise, ask the user directly what they'd like to work on next.
+
 ## Current state
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
@@ -708,14 +719,13 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
   `ROUND_HALF_UP` for display — see `pythagoras.generate_hypotenuse_decimal` or any
   `trigonometry.py` generator.
 - **Math text convention** (see `mathtext.py` in the Current State section above):
-  write plain ASCII in generator strings — bare `x` for the variable, `^n` for
+  write plain ASCII in generator strings — bare `x`/`n` for variables, `^n` for
   exponents (including negative, e.g. `10^-3`), `^-1` for inverse-function/inverse-
-  trig notation. Never hand-write Unicode `²`/`⁻¹`/italics in generator code (with
-  the sole exception of `²`, which IS safe as a literal — see the Gotcha above for
-  exactly what is/isn't). Only `x` gets italicised (not `n`, `a`, `b`, etc. — those
-  are used elsewhere, e.g. `sequences.py`'s `n`, `vectors.py`'s `a`/`b`, and are left
-  upright; extending italics to other variables would be a reasonable but
-  out-of-scope-so-far enhancement to `mathtext.py`/`diagrams.py`).
+  trig notation, `num/den` for fractions (e.g. `3/4`). Never hand-write Unicode
+  `²`/`⁻¹`/italics in generator code (with the sole exception of `²`, which IS safe
+  as a literal — see the Gotcha above for exactly what is/isn't). `x` and `n` are
+  both italicised as of chronology step 16; `a`/`b` (vectors) are NOT — see the
+  "Ideas" list for why that one's deliberately deferred, not just unimplemented.
 - **Diagrams**: a topic that wants one sets `diagram=DiagramSpec(kind=..., params={...})`
   on its returned `Question`, using the exact same random values already used for the
   prompt (see any `area_perimeter.py`/`angles.py`/`pythagoras.py` generator). Add new
