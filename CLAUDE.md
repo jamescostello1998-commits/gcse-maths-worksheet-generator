@@ -780,7 +780,11 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
   can't tell a genuine vector mention from the English article "a" in the same
   sentence). `n` (sequences, angles, ratio) is already done as of step 16.
 - Dice/spinner/bag *illustrations* (actual pictures of a die or spinner, as opposed to
-  the tree/table/sample-space diagrams added this session) are still out of scope.
+  the tree/table/sample-space/Venn diagrams already built) are still out of scope.
+- Stem-and-leaf diagrams, scatter graphs & correlation, and standard deviation are all
+  real GCSE Statistics content not covered by the Probability/Statistics topic list
+  the user supplied (chronology steps 17–18) — never explicitly requested, so not
+  built, but worth flagging if a future session wants to round out Statistics further.
 - Saved worksheet history, mixed-topic revision papers, user accounts.
 - Deploying this somewhere instead of local-only dev servers.
 
