@@ -14,11 +14,11 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**142 topics across 6 sections**, all procedurally generated with independent
+**160 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.).
-Full backend suite: **253/253 passing**. Frontend suite: **26/26 passing**.
+Full backend suite: **282/282 passing**. Frontend suite: **26/26 passing**.
 
 **Modelled Example feature (on every topic, including new ones)**: a second button, "Generate
 Modelled Example," sits next to "Generate Worksheet" on every topic card
@@ -57,7 +57,7 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 |---|---|---|
 | Number | Fractions, Decimals, Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 34 |
 | Algebra | Solving Linear Equations, Expanding Brackets, Factorising, Completing the Square, Turning Point of a Graph, Functions, Simultaneous Equations, Sequences, Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 38 |
-| Ratio & Proportion | Percentages, Ratio | 11 |
+| Ratio & Proportion | Percentages, Ratio, Proportion, Compound Measures | 29 |
 | Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems | 39 |
 | Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams | 13 |
 | Statistics | Averages from a List, Frequency Tables, Working Backwards | 7 |
@@ -329,6 +329,32 @@ fine as literal Unicode — only `⁻` specifically is the problem.)
     bottom-vertex labels growing away from their vertices collided with each other
     in the middle). Backend suite grew from 244 to 253 tests; frontend unaffected
     except +1 test from step 12's `showTierBadge` prop (now 26/26).
+14. New session, a user-requested expansion of Ratio & Proportion (not a curriculum
+    audit — the user supplied the topic list directly, with clarifying questions
+    asked up front on grouping/scope). Split the section's content into two new
+    groups alongside the existing Percentages/Ratio — **Proportion**
+    (`app/topics/proportion.py`, new file) and **Compound Measures**
+    (`app/topics/compound_measures.py`, new file) — since direct/inverse proportion
+    and speed/density/pressure don't fit under "Ratio" on the real specs; groups
+    need no registration beyond the string set on `TopicDefinition.group`, so this
+    was a clean addition. Three already-requested items turned out to already exist
+    (sharing a ratio, ratio given one amount, combining ratios) and were skipped.
+    Built via 3 parallel subagents, one per cluster, each required to independently
+    verify every generator, write its own test file, and self-check dedup-key
+    space — then registry wiring, the full-suite run, and visual PDF/browser
+    verification was done centrally afterward to avoid merge conflicts across the
+    agents. Added 18 new topics (129→142 was step 13; this step is 142→160):
+    `ratio_1_to_n`, `ratio_difference`(`_higher`), `ratio_to_equation`,
+    `ratio_shape_similar_foundation`/`_higher` (Ratio); `direct_proportion`,
+    `inverse_proportion`, `algebraic_direct_proportion`,
+    `algebraic_inverse_proportion` (Proportion); `sdt_mixed`,
+    `speed_with_conversions`, `unit_conversions`(`_higher`), `density`(`_higher`),
+    `pressure`(`_higher`) (Compound Measures). No new diagram kinds — kept
+    deliberately text-only to control scope for a batch this size. Backend suite
+    grew from 253 to 282 tests (the 4 hardcoded `142`-topic-count assertions in
+    `test_routes.py`/`test_modelled_example_renderer.py`/`test_worksheet_builder.py`
+    were updated to `160`); frontend unaffected (26/26 — new groups render
+    generically, no frontend code changes needed).
 
 Everything above is committed and pushed (see `git log`).
 
