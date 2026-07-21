@@ -18,7 +18,7 @@ solutions, searchable/browsable across 6 curriculum sections.
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.).
-Full backend suite: **287/287 passing**. Frontend suite: **29/29 passing**.
+Full backend suite: **304/304 passing**. Frontend suite: **29/29 passing**.
 
 **Modelled Example feature (on every topic, including new ones)**: a second button, "Generate
 Modelled Example," sits next to "Generate Worksheet" on every topic card
@@ -223,16 +223,42 @@ its topic groups — see `SectionView.tsx`. Topics with `fixed_tier=None` (curre
 unused) would show under both.
 
 **Typesetting**: `backend/app/pdf/mathtext.py` centrally converts plain-ASCII math in
-generator output (`x`, `x^2`, `10^-3`) into real PDF typesetting — the variable `x` is
-italicised, and `^n` becomes a real superscript — applied once at render time in
-`renderer.py`, so any topic that follows the ASCII convention gets this for free.
-Diagram labels get the equivalent treatment via `diagrams.py`'s `_label()`/`_math_runs()`.
+generator output (`x`, `n`, `x^2`, `10^-3`, `3/4`) into real PDF typesetting — the
+variables `x` and `n` are italicised, `^n` becomes a real superscript, and a fraction
+gets its numerator raised/denominator lowered (`<super>`/`<sub>`, e.g. `3/4` →
+3-raised/4-lowered) — applied once at render time in `renderer.py` (and
+`modelled_example_renderer.py`, which shares the same `to_markup`), so any topic that
+follows the ASCII convention gets this for free. Only `x`/`n` are italicised, not
+`a`/`b` or other letters — see the "Italicising more variables" bullet below for why a
+blanket rule can't safely cover every single letter (e.g. `a` collides constantly with
+the English indefinite article). The fraction markup is a super/sub approximation, not
+a true stacked vinculum (horizontal bar) — ReportLab's inline `<img>` tag only accepts
+a file-path string and this environment has no working image-rasterisation backend
+(`renderPM` needs Cairo bindings that aren't installed), so a real vinculum in prose
+text would need PNGs rendered via PIL to temp files using a hardcoded font path
+(`C:\Windows\Fonts\arial.ttf`) — judged too fragile for the payoff and deliberately
+not built (see chronology step 16). Diagram labels get the *real* vinculum treatment
+via `diagrams.py`'s `_label()`/`_math_runs()`/`_draw_fraction()`, since diagrams are
+already drawn as vector shapes (`String`/`Line` in a `Group`) and don't need the
+Paragraph-markup workaround — italics there also cover `x` and `n`. No current topic's
+diagram actually shows a fraction label yet, so this path is unexercised by real
+content today; it's built and unit-tested for when one eventually does.
 
-**⚠️ Gotcha (bit us once, see below)**: never use the literal Unicode superscript-minus
-character `⁻` (e.g. in `f⁻¹`, `cos⁻¹`) — Helvetica has no glyph for it in ReportLab and
-it renders as a missing-glyph box. Always write `f^-1(x)`, `cos^-1(...)` etc. and let
-`mathtext.py` superscript it properly. (`²`, `√`, `π`, `≤`, `°`, `×`, `÷`, `£` are all
-fine as literal Unicode — only `⁻` specifically is the problem.)
+**⚠️ Gotchas (bit us, see below)**:
+- Never use the literal Unicode superscript-minus character `⁻` (e.g. in `f⁻¹`,
+  `cos⁻¹`) — Helvetica has no glyph for it in ReportLab and it renders as a
+  missing-glyph box. Always write `f^-1(x)`, `cos^-1(...)` etc. and let `mathtext.py`
+  superscript it properly. (`²`, `√`, `π`, `≤`, `°`, `×`, `÷`, `£` are all fine as
+  literal Unicode — only `⁻` specifically is the problem.)
+- ReportLab renders a comma **glued and raised** to the preceding digit when it
+  immediately follows a closing `</sub>` with no space in between (verified in
+  isolation with a throwaway script — periods, colons, semicolons, question marks and
+  closing parens in the same position are all fine, and so is a comma after
+  `</super>`; only sub+comma with zero gap breaks). Since every fraction here ends in
+  `</sub>`, and prose text very often follows a fraction straight with a comma (e.g.
+  `"...= 20/90, 2/9..."`), `mathtext.py`'s `_replace_fraction` inserts a non-breaking
+  space before such a comma to dodge it. If a future change ever hand-writes
+  `<sub>...</sub>` markup directly (bypassing `to_markup`), watch for this.
 
 ## How this was built (chronology, for context)
 
@@ -387,6 +413,31 @@ fine as literal Unicode — only `⁻` specifically is the problem.)
     question-count input on every keystroke corrupted multi-digit typing, fixed by
     only clamping on blur/submit. Backend suite grew from 282 to 287 tests; frontend
     from 26 to 29.
+16. Same session, two more "Ideas" items promoted on user request (with clarifying
+    questions asked up front, since both had real design decisions hiding in them).
+    First, italics beyond `x`: extended `mathtext.py`/`diagrams.py` to also italicise
+    `n` (safe everywhere it actually appears — `sequences.py`'s nth-term topics,
+    `angles.py`'s polygon-interior topics, `ratio_1_to_n` — verified by grepping every
+    real literal-`n` occurrence in generator output, not just trusting the regex).
+    Vectors' `a`/`b` were explicitly deferred to a separate future session, per the
+    user's choice, since (a) real exam convention prints vectors in **bold**, not
+    italic, and (b) a blanket regex can't safely italicise/bold `a`/`b` without
+    editing every vector prompt string to mark genuine vector mentions apart from the
+    English article "a" (e.g. "OAB is a triangle with OA = a" uses "a" both ways in
+    one sentence). Second, fractions: the user asked for a true vinculum (horizontal
+    bar) everywhere, removing the plain slash. Built the real thing in
+    `diagrams.py` (`_draw_fraction`, vector shapes — cheap and safe, though currently
+    unexercised by any real topic). For prose text, discovered mid-implementation that
+    a true inline vinculum needs PNGs rendered to temp files with a hardcoded Windows
+    font path (ReportLab's own rasteriser isn't installed here) — flagged this new
+    finding back to the user rather than silently building it, and by their choice
+    shipped the lighter `<super>`/`<sub>` approximation in `mathtext.py` instead. That
+    surfaced a genuine, narrow ReportLab rendering bug (comma glued/raised immediately
+    after a closing `</sub>` with zero gap, nothing else affected) caught by rendering
+    an actual PDF and looking closely, not by the unit tests — isolated with a
+    throwaway script, then fixed with a non-breaking-space insertion (see the Gotchas
+    above). Backend suite grew from 287 to 304 tests; frontend unaffected (no
+    frontend-visible change, this was all backend PDF rendering).
 
 Everything above is committed and pushed (see `git log`).
 
@@ -587,9 +638,11 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
   version), `trig_mixed` (a Foundation version combining the already-Foundation
   side/angle topics). Don't build these without discussing first — the audit's
   confidence in each was explicitly lower than the 11 that were built.
-- Extend `mathtext.py`/`diagrams.py` italics beyond `x` to other single-letter
-  variables (`n` in sequences, `a`/`b` in vectors) for full standard-typesetting
-  consistency — noted above as a reasonable but currently out-of-scope enhancement.
+- Bold (not italic) `a`/`b` vector labels in `vectors.py`/`diagrams.py`, matching real
+  exam typesetting convention — deliberately deferred (see chronology step 16): needs
+  every vector prompt/step string marked at the source (not a blanket regex, which
+  can't tell a genuine vector mention from the English article "a" in the same
+  sentence). `n` (sequences, angles, ratio) is already done as of step 16.
 - Dice/spinner/bag *illustrations* (actual pictures of a die or spinner, as opposed to
   the tree/table/sample-space diagrams added this session) are still out of scope.
 - Saved worksheet history, mixed-topic revision papers, user accounts.

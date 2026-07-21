@@ -2,7 +2,7 @@ import pytest
 from reportlab.graphics.shapes import Drawing
 
 from app.core.models import DiagramSpec
-from app.pdf.diagrams import render_diagram
+from app.pdf.diagrams import _LABEL_FONT, _LABEL_FONT_ITALIC, _math_runs, render_diagram
 
 SAMPLE_SPECS = [
     DiagramSpec(kind="rectangle", params={"width": 10, "height": 6, "width_label": "10 cm", "height_label": "6 cm"}),
@@ -134,3 +134,23 @@ def test_render_diagram_produces_valid_drawing(spec):
 def test_unknown_kind_raises_clearly():
     with pytest.raises(ValueError, match="Unknown diagram kind"):
         render_diagram(DiagramSpec(kind="not_a_real_kind", params={}))
+
+
+def test_math_runs_italicises_x_and_n():
+    assert _math_runs("(3x + 12)°") == [
+        ("text", "(3", _LABEL_FONT), ("text", "x", _LABEL_FONT_ITALIC), ("text", " + 12)°", _LABEL_FONT),
+    ]
+    assert _math_runs("n sides") == [("text", "n", _LABEL_FONT_ITALIC), ("text", " sides", _LABEL_FONT)]
+
+
+def test_math_runs_leaves_other_letters_upright():
+    assert _math_runs("10 cm") == [("text", "10 cm", _LABEL_FONT)]
+    assert _math_runs("70°") == [("text", "70°", _LABEL_FONT)]
+
+
+def test_math_runs_detects_fraction_pattern():
+    assert _math_runs("3/4 cm") == [("frac", "", "3", "4"), ("text", " cm", _LABEL_FONT)]
+    assert _math_runs("-3/4 cm") == [("frac", "-", "3", "4"), ("text", " cm", _LABEL_FONT)]
+    assert _math_runs("x = 3/4") == [
+        ("text", "x", _LABEL_FONT_ITALIC), ("text", " = ", _LABEL_FONT), ("frac", "", "3", "4"),
+    ]

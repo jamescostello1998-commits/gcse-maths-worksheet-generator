@@ -8,6 +8,7 @@ a `DiagramSpec` (see app/core/models.py) to the matching renderer.
 """
 
 import math
+import re
 from typing import Callable
 
 from reportlab.graphics.shapes import ArcPath, Circle, Drawing, Group, Line, PolyLine, Polygon, Rect, String, Wedge
@@ -24,14 +25,25 @@ _LABEL_FONT = "Helvetica"
 _LABEL_FONT_ITALIC = "Helvetica-Oblique"
 
 
-def _math_runs(text: str) -> list[tuple[str, str]]:
-    """Split label text into (substring, fontName) runs, italicising the
-    algebraic variable x so diagram labels match standard maths typesetting
-    (mirrors app/pdf/mathtext.py's handling of Paragraph text)."""
+_ITALIC_VARIABLES = ("x", "n")
+
+# A bare numeric fraction like "3/4" or "-3/4" within a label is drawn as a
+# stacked numerator/line/denominator (a vinculum) instead of inline "3/4" -
+# mirrors app/pdf/renderer.py's handling of the same pattern in prose text.
+_FRACTION_RE = re.compile(r"(-?)(\d+)/(\d+)")
+_FRACTION_SCALE = 0.72
+_FRACTION_PAD = 1.5
+
+
+def _text_runs(text: str) -> list[tuple[str, str]]:
+    """Split plain (non-fraction) text into (substring, fontName) runs,
+    italicising the algebraic variables x and n so diagram labels match
+    standard maths typesetting (mirrors app/pdf/mathtext.py's handling of
+    Paragraph text)."""
     runs: list[tuple[str, str]] = []
     buf = ""
     for ch in text:
-        if ch == "x":
+        if ch in _ITALIC_VARIABLES:
             if buf:
                 runs.append((buf, _LABEL_FONT))
                 buf = ""
@@ -43,9 +55,58 @@ def _math_runs(text: str) -> list[tuple[str, str]]:
     return runs
 
 
+def _math_runs(text: str) -> list[tuple]:
+    """Split label text into runs: `("text", substring, font)` for ordinary
+    (x/n-italicised) text, or `("frac", sign, num, den)` for a bare numeric
+    fraction to be drawn as a stacked vinculum."""
+    runs: list[tuple] = []
+    pos = 0
+    for m in _FRACTION_RE.finditer(text):
+        if m.start() > pos:
+            runs.extend(("text", sub, font) for sub, font in _text_runs(text[pos : m.start()]))
+        sign, num, den = m.groups()
+        runs.append(("frac", sign, num, den))
+        pos = m.end()
+    if pos < len(text):
+        runs.extend(("text", sub, font) for sub, font in _text_runs(text[pos:]))
+    return runs
+
+
+def _fraction_width(num: str, den: str, size: float) -> float:
+    frac_size = size * _FRACTION_SCALE
+    return max(stringWidth(num, _LABEL_FONT, frac_size), stringWidth(den, _LABEL_FONT, frac_size)) + 2 * _FRACTION_PAD
+
+
+def _run_width(run: tuple, size: float) -> float:
+    if run[0] == "text":
+        return stringWidth(run[1], run[2], size)
+    _, sign, num, den = run
+    sign_width = stringWidth("-", _LABEL_FONT, size) if sign else 0.0
+    return sign_width + _fraction_width(num, den, size)
+
+
+def _draw_fraction(group: Group, x: float, y: float, sign: str, num: str, den: str, size: float, color) -> None:
+    """Draw a stacked num/line/denom fraction (plus a leading sign, if any)
+    with its left edge at x and its baseline at y."""
+    cursor = x
+    if sign:
+        group.add(String(cursor, y, sign, textAnchor="start", fontSize=size, fillColor=color, fontName=_LABEL_FONT))
+        cursor += stringWidth(sign, _LABEL_FONT, size)
+    frac_size = size * _FRACTION_SCALE
+    width = _fraction_width(num, den, size)
+    mid_x = cursor + width / 2
+    line_y = y + size * 0.32
+    group.add(String(mid_x, line_y + 1.5, num, textAnchor="middle", fontSize=frac_size, fillColor=color, fontName=_LABEL_FONT))
+    group.add(String(mid_x, line_y - frac_size - 0.5, den, textAnchor="middle", fontSize=frac_size, fillColor=color, fontName=_LABEL_FONT))
+    group.add(Line(
+        cursor + _FRACTION_PAD * 0.5, line_y, cursor + width - _FRACTION_PAD * 0.5, line_y,
+        strokeColor=color, strokeWidth=0.7,
+    ))
+
+
 def _label(x: float, y: float, text: str, anchor: str = "middle", color=INK, size: int = _LABEL_SIZE) -> Group:
     runs = _math_runs(str(text))
-    total_width = sum(stringWidth(t, font, size) for t, font in runs)
+    total_width = sum(_run_width(r, size) for r in runs)
     if anchor == "middle":
         cursor = x - total_width / 2
     elif anchor == "end":
@@ -54,9 +115,15 @@ def _label(x: float, y: float, text: str, anchor: str = "middle", color=INK, siz
         cursor = x
 
     group = Group()
-    for t, font in runs:
-        group.add(String(cursor, y, t, textAnchor="start", fontSize=size, fillColor=color, fontName=font))
-        cursor += stringWidth(t, font, size)
+    for run in runs:
+        if run[0] == "text":
+            _, sub, font = run
+            group.add(String(cursor, y, sub, textAnchor="start", fontSize=size, fillColor=color, fontName=font))
+            cursor += stringWidth(sub, font, size)
+        else:
+            _, sign, num, den = run
+            _draw_fraction(group, cursor, y, sign, num, den, size, color)
+            cursor += _run_width(run, size)
     return group
 
 
