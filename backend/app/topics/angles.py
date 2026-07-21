@@ -94,6 +94,83 @@ def generate_modelled_example_straight_line(tier: Tier, rng: random.Random) -> M
     )
 
 
+def generate_straight_line_higher(tier: Tier, rng: random.Random) -> Question:
+    known = rng.randint(20, 150)
+    coeff = rng.choice([2, 3, 4, 5])
+    x_sol = rng.randint(1, 20)
+    target = 180 - known
+    const = target - coeff * x_sol
+
+    solve_steps, solution = solve_linear_with_steps(coeff, const, 0, target)
+    residual = sp.simplify((coeff * X + const).subs(X, solution) - target)
+    if residual != 0:
+        raise ValueError("straight_line_higher verification failed")
+
+    steps = ["Angles on a straight line sum to 180°."] + solve_steps
+    return Question(
+        topic_id="angles_straight_line_higher",
+        tier=Tier.HIGHER,
+        prompt=f"The angles {known}° and ({fmt_linear(coeff, const)})° lie on a straight line. Find x.",
+        solution_steps=tuple(steps),
+        final_answer=str(solution),
+        dedup_key=f"straight_line_h:{known}:{coeff}:{const}",
+        diagram=DiagramSpec(
+            kind="angle_line",
+            params={
+                "angle_values": [known, target],
+                "labels": [f"{known}°", f"({fmt_linear(coeff, const)})°"],
+                "around_point": False,
+            },
+        ),
+    )
+
+
+def generate_modelled_example_straight_line_higher(tier: Tier, rng: random.Random) -> ModelledExample:
+    known = rng.randint(20, 150)
+    coeff = rng.choice([2, 3, 4, 5])
+    x_sol = rng.randint(1, 20)
+    target = 180 - known
+    const = target - coeff * x_sol
+
+    solve_steps, solution = solve_linear_with_steps(coeff, const, 0, target)
+    residual = sp.simplify((coeff * X + const).subs(X, solution) - target)
+    if residual != 0:
+        raise ValueError("modelled example straight_line_higher verification failed")
+
+    teaching_steps = [
+        "Angles on a straight line always add up to 180° - this still holds even when one of "
+        "the angles is written as an algebraic expression instead of a plain number.",
+        f"Here the two angles are {known}° and ({fmt_linear(coeff, const)})°, and together they "
+        f"must total 180°, so we can set up an equation: {known} + {fmt_linear(coeff, const)} = 180, "
+        f"which simplifies to {fmt_linear(coeff, const + known)} = 180.",
+        f"Rearrange and solve for x the usual way, subtracting {const + known} then dividing by "
+        f"{coeff}, to get x = {solution}.",
+        f"Check: substituting x = {solution} back in gives ({fmt_linear(coeff, const)}) = {target}, "
+        f"and {known} + {target} = 180 as required.",
+    ]
+    worked_calculation = [
+        f"{known} + {fmt_linear(coeff, const)} = 180",
+        f"{fmt_linear(coeff, const)} = {target}",
+        f"x = {solution}",
+    ]
+    return ModelledExample(
+        topic_id="angles_straight_line_higher",
+        tier=Tier.HIGHER,
+        prompt=f"The angles {known}° and ({fmt_linear(coeff, const)})° lie on a straight line. Find x.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=str(solution),
+        diagram=DiagramSpec(
+            kind="angle_line",
+            params={
+                "angle_values": [known, target],
+                "labels": [f"{known}°", f"({fmt_linear(coeff, const)})°"],
+                "around_point": False,
+            },
+        ),
+    )
+
+
 def generate_around_point(tier: Tier, rng: random.Random) -> Question:
     n = rng.choice([3, 4])
     given: list[int] = []
@@ -177,6 +254,109 @@ def generate_modelled_example_around_point(tier: Tier, rng: random.Random) -> Mo
     )
 
 
+def generate_around_point_higher(tier: Tier, rng: random.Random) -> Question:
+    n = rng.choice([3, 4])
+    given: list[int] = []
+    remaining = 360
+    for i in range(n - 1):
+        max_for_this = remaining - 10 * (n - 1 - i)
+        angle = rng.randint(10, max(10, min(150, max_for_this)))
+        given.append(angle)
+        remaining -= angle
+    target = 360 - sum(given)
+    if target < 10:
+        raise ValueError("around_point_higher generation produced an invalid target angle")
+
+    coeff = rng.choice([2, 3, 4, 5])
+    x_sol = rng.randint(1, 20)
+    const = target - coeff * x_sol
+
+    solve_steps, solution = solve_linear_with_steps(coeff, const, 0, target)
+    residual = sp.simplify((coeff * X + const).subs(X, solution) - target)
+    if residual != 0:
+        raise ValueError("around_point_higher verification failed")
+
+    given_str = ", ".join(f"{a}°" for a in given)
+    steps = ["Angles around a point sum to 360°."] + solve_steps
+    return Question(
+        topic_id="angles_around_point_higher",
+        tier=Tier.HIGHER,
+        prompt=(
+            f"The angles {given_str} and ({fmt_linear(coeff, const)})° are angles around a "
+            "point. Find x."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=str(solution),
+        dedup_key=f"around_point_h:{given}:{coeff}:{const}",
+        diagram=DiagramSpec(
+            kind="angle_line",
+            params={
+                "angle_values": given + [target],
+                "labels": [f"{a}°" for a in given] + [f"({fmt_linear(coeff, const)})°"],
+                "around_point": True,
+            },
+        ),
+    )
+
+
+def generate_modelled_example_around_point_higher(tier: Tier, rng: random.Random) -> ModelledExample:
+    n = rng.choice([3, 4])
+    given: list[int] = []
+    remaining = 360
+    for i in range(n - 1):
+        max_for_this = remaining - 10 * (n - 1 - i)
+        angle = rng.randint(10, max(10, min(150, max_for_this)))
+        given.append(angle)
+        remaining -= angle
+    target = 360 - sum(given)
+    if target < 10:
+        raise ValueError("modelled example around_point_higher generation produced an invalid target angle")
+
+    coeff = rng.choice([2, 3, 4, 5])
+    x_sol = rng.randint(1, 20)
+    const = target - coeff * x_sol
+
+    solve_steps, solution = solve_linear_with_steps(coeff, const, 0, target)
+    residual = sp.simplify((coeff * X + const).subs(X, solution) - target)
+    if residual != 0:
+        raise ValueError("modelled example around_point_higher verification failed")
+
+    given_str = ", ".join(f"{a}°" for a in given)
+    teaching_steps = [
+        "Angles that meet at a single point and go all the way around it always add up to 360° "
+        "- a full turn - and that's still true even when one of the angles is written "
+        "algebraically instead of as a plain number.",
+        f"Add up the {n - 1} known angles: {' + '.join(str(a) for a in given)} = {sum(given)}.",
+        f"Since everything must total 360°, the algebraic angle must be worth "
+        f"360 - {sum(given)} = {target}: ({fmt_linear(coeff, const)}) = {target}.",
+        f"Solve that equation for x the usual way, isolating x on one side, to get x = {solution}.",
+    ]
+    worked_calculation = [
+        f"{' + '.join(str(a) for a in given)} + ({fmt_linear(coeff, const)}) = 360",
+        f"{fmt_linear(coeff, const)} = {target}",
+        f"x = {solution}",
+    ]
+    return ModelledExample(
+        topic_id="angles_around_point_higher",
+        tier=Tier.HIGHER,
+        prompt=(
+            f"The angles {given_str} and ({fmt_linear(coeff, const)})° are angles around a "
+            "point. Find x."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=str(solution),
+        diagram=DiagramSpec(
+            kind="angle_line",
+            params={
+                "angle_values": given + [target],
+                "labels": [f"{a}°" for a in given] + [f"({fmt_linear(coeff, const)})°"],
+                "around_point": True,
+            },
+        ),
+    )
+
+
 def generate_triangle_angles(tier: Tier, rng: random.Random) -> Question:
     a = rng.randint(20, 120)
     b = rng.randint(20, min(120, 160 - a))
@@ -230,6 +410,80 @@ def generate_modelled_example_triangle_angles(tier: Tier, rng: random.Random) ->
         teaching_steps=tuple(teaching_steps),
         final_answer=str(missing),
         diagram=DiagramSpec(kind="triangle_angles", params={"angle_labels": [f"{a}°", f"{b}°", "x"]}),
+    )
+
+
+def generate_triangle_angles_higher(tier: Tier, rng: random.Random) -> Question:
+    a = rng.randint(20, 100)
+    b = rng.randint(20, min(100, 160 - a))
+    target = 180 - a - b
+    if target < 10:
+        raise ValueError("triangle_angles_higher generated an invalid target angle")
+
+    coeff = rng.choice([2, 3, 4, 5])
+    x_sol = rng.randint(1, 20)
+    const = target - coeff * x_sol
+
+    solve_steps, solution = solve_linear_with_steps(coeff, const, 0, target)
+    residual = sp.simplify((coeff * X + const).subs(X, solution) - target)
+    if residual != 0:
+        raise ValueError("triangle_angles_higher verification failed")
+
+    steps = ["Angles in a triangle sum to 180°."] + solve_steps
+    return Question(
+        topic_id="angles_triangle_higher",
+        tier=Tier.HIGHER,
+        prompt=f"A triangle has angles {a}°, {b}°, and ({fmt_linear(coeff, const)})°. Find x.",
+        solution_steps=tuple(steps),
+        final_answer=str(solution),
+        dedup_key=f"triangle_angles_h:{a}:{b}:{coeff}:{const}",
+        diagram=DiagramSpec(
+            kind="triangle_angles",
+            params={"angle_labels": [f"{a}°", f"{b}°", f"({fmt_linear(coeff, const)})°"]},
+        ),
+    )
+
+
+def generate_modelled_example_triangle_angles_higher(tier: Tier, rng: random.Random) -> ModelledExample:
+    a = rng.randint(20, 100)
+    b = rng.randint(20, min(100, 160 - a))
+    target = 180 - a - b
+    if target < 10:
+        raise ValueError("modelled example triangle_angles_higher generated an invalid target angle")
+
+    coeff = rng.choice([2, 3, 4, 5])
+    x_sol = rng.randint(1, 20)
+    const = target - coeff * x_sol
+
+    solve_steps, solution = solve_linear_with_steps(coeff, const, 0, target)
+    residual = sp.simplify((coeff * X + const).subs(X, solution) - target)
+    if residual != 0:
+        raise ValueError("modelled example triangle_angles_higher verification failed")
+
+    teaching_steps = [
+        "Every triangle's three interior angles always add up to 180° - and that still applies "
+        "even when one of the angles is given as an algebraic expression rather than a number.",
+        f"Add the two known angles together: {a} + {b} = {a + b}°.",
+        f"Since all three angles must total 180°, the algebraic angle must be worth "
+        f"180 - {a + b} = {target}: ({fmt_linear(coeff, const)}) = {target}.",
+        f"Solve that equation for x the usual way, isolating x on one side, to get x = {solution}.",
+    ]
+    worked_calculation = [
+        f"{a} + {b} + ({fmt_linear(coeff, const)}) = 180",
+        f"{fmt_linear(coeff, const)} = {target}",
+        f"x = {solution}",
+    ]
+    return ModelledExample(
+        topic_id="angles_triangle_higher",
+        tier=Tier.HIGHER,
+        prompt=f"A triangle has angles {a}°, {b}°, and ({fmt_linear(coeff, const)})°. Find x.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=str(solution),
+        diagram=DiagramSpec(
+            kind="triangle_angles",
+            params={"angle_labels": [f"{a}°", f"{b}°", f"({fmt_linear(coeff, const)})°"]},
+        ),
     )
 
 
@@ -835,6 +1089,17 @@ TOPIC_STRAIGHT_LINE = TopicDefinition(
     generate_modelled_example=generate_modelled_example_straight_line,
 )
 
+TOPIC_STRAIGHT_LINE_HIGHER = TopicDefinition(
+    id="angles_straight_line_higher",
+    display_name="On a Straight Line (Algebraic)",
+    description="Form and solve a linear equation from angles on a straight line.",
+    generate=generate_straight_line_higher,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_straight_line_higher,
+)
+
 TOPIC_AROUND_POINT = TopicDefinition(
     id="angles_around_point",
     display_name="Around a Point",
@@ -846,6 +1111,17 @@ TOPIC_AROUND_POINT = TopicDefinition(
     generate_modelled_example=generate_modelled_example_around_point,
 )
 
+TOPIC_AROUND_POINT_HIGHER = TopicDefinition(
+    id="angles_around_point_higher",
+    display_name="Around a Point (Algebraic)",
+    description="Form and solve a linear equation from angles around a point.",
+    generate=generate_around_point_higher,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_around_point_higher,
+)
+
 TOPIC_TRIANGLE = TopicDefinition(
     id="angles_triangle",
     display_name="In a Triangle",
@@ -855,6 +1131,17 @@ TOPIC_TRIANGLE = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.FOUNDATION,
     generate_modelled_example=generate_modelled_example_triangle_angles,
+)
+
+TOPIC_TRIANGLE_HIGHER = TopicDefinition(
+    id="angles_triangle_higher",
+    display_name="In a Triangle (Algebraic)",
+    description="Form and solve a linear equation from the angles in a triangle.",
+    generate=generate_triangle_angles_higher,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_triangle_angles_higher,
 )
 
 TOPIC_PARALLEL_LINES_FOUNDATION = TopicDefinition(

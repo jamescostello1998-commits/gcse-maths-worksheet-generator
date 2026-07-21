@@ -246,6 +246,71 @@ def generate_modelled_example_share_three(tier: Tier, rng: random.Random) -> Mod
     )
 
 
+def generate_share_three_foundation(tier: Tier, rng: random.Random) -> Question:
+    a, b, c = _rand_part(rng), _rand_part(rng), _rand_part(rng)
+    k = rng.randint(2, 10)
+    total = k * (a + b + c)
+    share_a, share_b, share_c = a * k, b * k, c * k
+
+    if share_a + share_b + share_c != total:
+        raise ValueError("share_three_foundation verification failed")
+
+    steps = [
+        f"Total parts = {a} + {b} + {c} = {a + b + c}",
+        f"Value of one part = {total} ÷ {a + b + c} = {k}",
+        f"Share 1 = {a} × {k} = {share_a}",
+        f"Share 2 = {b} × {k} = {share_b}",
+        f"Share 3 = {c} × {k} = {share_c}",
+    ]
+    return Question(
+        topic_id="ratio_share_three_part_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=f"Share {total} in the ratio {a}:{b}:{c}.",
+        solution_steps=tuple(steps),
+        final_answer=f"{share_a} : {share_b} : {share_c}",
+        dedup_key=f"share_three_f:{a}:{b}:{c}:{k}",
+    )
+
+
+def generate_modelled_example_share_three_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
+    a, b, c = _rand_part(rng), _rand_part(rng), _rand_part(rng)
+    k = rng.randint(2, 10)
+    total = k * (a + b + c)
+    share_a, share_b, share_c = a * k, b * k, c * k
+
+    # Independent verification via Fraction (separate path from the multiply-out above).
+    if Fraction(share_a, total) != Fraction(a, a + b + c):
+        raise ValueError("modelled example share_three_foundation verification failed")
+    if share_a + share_b + share_c != total:
+        raise ValueError("modelled example share_three_foundation verification failed (total)")
+
+    teaching_steps = [
+        f"With a three-way ratio like {a}:{b}:{c}, the method is exactly the same as sharing between "
+        f"two — just with one extra share. There are {a} + {b} + {c} = {a + b + c} equal parts in "
+        "total.",
+        f"To find the value of one part, divide the total by the total number of parts: "
+        f"{total} ÷ {a + b + c} = {k}.",
+        f"Then multiply each person's number of parts by that value: {a} × {k} = {share_a}, "
+        f"{b} × {k} = {share_b}, and {c} × {k} = {share_c}.",
+        f"As a check, all three shares should add back up to the original total: "
+        f"{share_a} + {share_b} + {share_c} = {share_a + share_b + share_c}, which matches {total}.",
+    ]
+    worked_calculation = [
+        f"Share {total} in the ratio {a}:{b}:{c}",
+        f"Total parts = {a} + {b} + {c} = {a + b + c}",
+        f"1 part = {total} ÷ {a + b + c} = {k}",
+        f"{a} × {k} = {share_a}, {b} × {k} = {share_b}, {c} × {k} = {share_c}",
+    ]
+    return ModelledExample(
+        topic_id="ratio_share_three_part_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=f"Share {total} in the ratio {a}:{b}:{c}.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"{share_a} : {share_b} : {share_c}",
+    )
+
+
 def generate_combine_ratios(tier: Tier, rng: random.Random) -> Question:
     p, q = _rand_part(rng), _rand_part(rng)
     r, s = _rand_part(rng), _rand_part(rng)
@@ -366,6 +431,17 @@ TOPIC_SHARE_THREE = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_share_three,
+)
+
+TOPIC_SHARE_THREE_FOUNDATION = TopicDefinition(
+    id="ratio_share_three_part_foundation",
+    display_name="Share a Three-Part Ratio (Foundation)",
+    description="Share an amount between three parties in a given ratio.",
+    generate=generate_share_three_foundation,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_share_three_foundation,
 )
 
 TOPIC_COMBINE = TopicDefinition(

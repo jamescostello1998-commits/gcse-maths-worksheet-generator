@@ -495,7 +495,7 @@ def generate_semicircle_compound(tier: Tier, rng: random.Random) -> Question:
     ]
     return Question(
         topic_id="area_semicircle_compound",
-        tier=Tier.HIGHER,
+        tier=Tier.FOUNDATION,
         prompt=(
             f"A shape is made from a rectangle {width} cm by {height} cm with a semicircle "
             f"of diameter {width} cm attached to one side. Find the total area, correct to 3 s.f."
@@ -553,7 +553,7 @@ def generate_modelled_example_semicircle_compound(tier: Tier, rng: random.Random
     ]
     return ModelledExample(
         topic_id="area_semicircle_compound",
-        tier=Tier.HIGHER,
+        tier=Tier.FOUNDATION,
         prompt=(
             f"A shape is made from a rectangle {width} cm by {height} cm with a semicircle "
             f"of diameter {width} cm attached to one side. Find the total area, correct to 3 s.f."
@@ -561,6 +561,107 @@ def generate_modelled_example_semicircle_compound(tier: Tier, rng: random.Random
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"≈ {approx_total} cm²",
+        diagram=DiagramSpec(
+            kind="rectangle_semicircle",
+            params={
+                "width": width, "height": height, "radius": radius,
+                "width_label": f"{width} cm", "height_label": f"{height} cm",
+            },
+        ),
+    )
+
+
+def generate_semicircle_compound_higher(tier: Tier, rng: random.Random) -> Question:
+    width = rng.randrange(6, 21, 2)  # even, so the radius is a whole number
+    height = rng.randint(5, 20)
+    radius = width // 2
+
+    if width % 2 != 0:
+        raise ValueError("semicircle_compound_higher requires an even width")
+
+    rect_area = width * height
+    semicircle_coeff = sp.Rational(radius**2, 2)
+
+    # Independent check: a full circle of this radius would have area pi*r^2,
+    # so the semicircle should be exactly half that.
+    full_circle_coeff = sp.Rational(radius**2)
+    if full_circle_coeff / 2 != semicircle_coeff:
+        raise ValueError("semicircle_compound_higher verification failed")
+
+    pi_term = _fmt_pi_term(semicircle_coeff)
+    steps = [
+        f"Area of rectangle = {width} × {height} = {rect_area} cm²",
+        f"Radius of semicircle = {width} ÷ 2 = {radius} cm",
+        f"Area of semicircle = (1/2) × π × {radius}² = {pi_term} cm²",
+        f"Total area = {rect_area} + {pi_term} cm² (exact form)",
+    ]
+    return Question(
+        topic_id="area_semicircle_compound_higher",
+        tier=Tier.HIGHER,
+        prompt=(
+            f"A shape is made from a rectangle {width} cm by {height} cm with a semicircle "
+            f"of diameter {width} cm attached to one side. Find the total area, giving your "
+            "answer in terms of π."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=f"({rect_area} + {pi_term}) cm²",
+        dedup_key=f"semicircle_compound_h:{width}:{height}",
+        diagram=DiagramSpec(
+            kind="rectangle_semicircle",
+            params={
+                "width": width, "height": height, "radius": radius,
+                "width_label": f"{width} cm", "height_label": f"{height} cm",
+            },
+        ),
+    )
+
+
+def generate_modelled_example_semicircle_compound_higher(tier: Tier, rng: random.Random) -> ModelledExample:
+    width = rng.randrange(6, 21, 2)
+    height = rng.randint(5, 20)
+    radius = width // 2
+
+    if width % 2 != 0:
+        raise ValueError("modelled example semicircle_compound_higher requires an even width")
+
+    rect_area = width * height
+    semicircle_coeff = sp.Rational(radius**2, 2)
+
+    full_circle_coeff = sp.Rational(radius**2)
+    if full_circle_coeff / 2 != semicircle_coeff:
+        raise ValueError("modelled example semicircle_compound_higher verification failed")
+
+    pi_term = _fmt_pi_term(semicircle_coeff)
+    teaching_steps = [
+        "This shape is made of a rectangle and a semicircle joined together, so the total area is "
+        "the sum of the two separate areas - and because the question asks for an exact answer, "
+        "π is kept as a symbol throughout rather than rounded to a decimal.",
+        f"The rectangle's area is straightforward: {width} × {height} = {rect_area} cm².",
+        f"The semicircle's diameter matches the rectangle's width, {width} cm, so its radius is "
+        f"half of that: {width} ÷ 2 = {radius} cm. A full circle of that radius would have area "
+        f"π × {radius}² = {_fmt_pi_term(full_circle_coeff)} cm², so the semicircle - being half a "
+        f"circle - has area {pi_term} cm².",
+        f"Add the two areas together, keeping π as a symbol: {rect_area} + {pi_term} cm². Since "
+        "the two terms (a whole number and a multiple of π) can't be combined into one, this exact "
+        "form is the final answer - do not round it to a decimal.",
+    ]
+    worked_calculation = [
+        f"Rectangle area = {width} × {height} = {rect_area} cm²",
+        f"Semicircle radius = {width} ÷ 2 = {radius} cm",
+        f"Semicircle area = (1/2) × π × {radius}² = {pi_term} cm²",
+        f"Total = {rect_area} + {pi_term} cm² (exact form)",
+    ]
+    return ModelledExample(
+        topic_id="area_semicircle_compound_higher",
+        tier=Tier.HIGHER,
+        prompt=(
+            f"A shape is made from a rectangle {width} cm by {height} cm with a semicircle "
+            f"of diameter {width} cm attached to one side. Find the total area, giving your "
+            "answer in terms of π."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"({rect_area} + {pi_term}) cm²",
         diagram=DiagramSpec(
             kind="rectangle_semicircle",
             params={
@@ -675,6 +776,110 @@ def generate_modelled_example_subtract_compound(tier: Tier, rng: random.Random) 
     )
 
 
+def generate_subtract_compound_foundation(tier: Tier, rng: random.Random) -> Question:
+    outer_w = rng.randint(6, 15)
+    outer_h = rng.randint(6, 15)
+    inner_w = rng.randint(2, outer_w - 2)
+    inner_h = rng.randint(2, outer_h - 2)
+
+    if not (inner_w < outer_w and inner_h < outer_h):
+        raise ValueError("subtract_compound_foundation sanity constraint failed")
+
+    outer_area = outer_w * outer_h
+    inner_area = inner_w * inner_h
+    total_area = outer_area - inner_area
+    if total_area <= 0:
+        raise ValueError("subtract_compound_foundation produced non-positive area")
+
+    steps = [
+        f"Area of large rectangle = {outer_w} × {outer_h} = {outer_area} cm²",
+        f"Area of rectangular hole = {inner_w} × {inner_h} = {inner_area} cm²",
+        f"Remaining area = {outer_area} - {inner_area} = {total_area} cm²",
+    ]
+    return Question(
+        topic_id="area_subtract_compound_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"A rectangular sheet of card {outer_w} cm by {outer_h} cm has a rectangular hole "
+            f"{inner_w} cm by {inner_h} cm cut from its centre. Find the remaining area."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=f"{total_area} cm²",
+        dedup_key=f"subtract_compound_f:{outer_w}:{outer_h}:{inner_w}:{inner_h}",
+        diagram=DiagramSpec(
+            kind="l_shape",
+            params={
+                "outer_w": outer_w, "outer_h": outer_h, "inner_w": inner_w, "inner_h": inner_h,
+                "notch": "center",
+                "outer_labels": [f"{outer_w} cm", f"{outer_h} cm"],
+                "inner_labels": [f"{inner_w} cm", f"{inner_h} cm"],
+            },
+        ),
+    )
+
+
+def generate_modelled_example_subtract_compound_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
+    outer_w = rng.randint(6, 15)
+    outer_h = rng.randint(6, 15)
+    inner_w = rng.randint(2, outer_w - 2)
+    inner_h = rng.randint(2, outer_h - 2)
+
+    if not (inner_w < outer_w and inner_h < outer_h):
+        raise ValueError("modelled example subtract_compound_foundation sanity constraint failed")
+
+    outer_area = outer_w * outer_h
+    inner_area = inner_w * inner_h
+    total_area = outer_area - inner_area
+    if total_area <= 0:
+        raise ValueError("modelled example subtract_compound_foundation produced non-positive area")
+
+    # Independent check: re-derive the remaining area by splitting the L-shaped
+    # remainder into a top/bottom band plus a side column, rather than
+    # subtracting the hole's area from the sheet's area directly.
+    band_h = outer_h - inner_h
+    band_area = outer_w * band_h
+    side_w = outer_w - inner_w
+    side_area = side_w * inner_h
+    if band_area + side_area != total_area:
+        raise ValueError("modelled example subtract_compound_foundation cross-check failed")
+
+    teaching_steps = [
+        "When a shape has a hole cut out of it, the remaining area is simply the area of the "
+        "whole sheet minus the area of the piece that's been removed.",
+        f"Start with the full sheet: {outer_w} cm by {outer_h} cm, giving an area of "
+        f"{outer_w} × {outer_h} = {outer_area} cm².",
+        f"The hole is also a rectangle, {inner_w} cm by {inner_h} cm, with area "
+        f"{inner_w} × {inner_h} = {inner_area} cm².",
+        f"Subtract the hole's area from the sheet's area to find what's left: "
+        f"{outer_area} - {inner_area} = {total_area} cm².",
+    ]
+    worked_calculation = [
+        f"Large rectangle = {outer_w} × {outer_h} = {outer_area} cm²",
+        f"Hole = {inner_w} × {inner_h} = {inner_area} cm²",
+        f"Remaining area = {outer_area} - {inner_area} = {total_area} cm²",
+    ]
+    return ModelledExample(
+        topic_id="area_subtract_compound_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"A rectangular sheet of card {outer_w} cm by {outer_h} cm has a rectangular hole "
+            f"{inner_w} cm by {inner_h} cm cut from its centre. Find the remaining area."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"{total_area} cm²",
+        diagram=DiagramSpec(
+            kind="l_shape",
+            params={
+                "outer_w": outer_w, "outer_h": outer_h, "inner_w": inner_w, "inner_h": inner_h,
+                "notch": "center",
+                "outer_labels": [f"{outer_w} cm", f"{outer_h} cm"],
+                "inner_labels": [f"{inner_w} cm", f"{inner_h} cm"],
+            },
+        ),
+    )
+
+
 TOPIC_RECTANGLE = TopicDefinition(
     id="area_rectangle",
     display_name="Rectangles",
@@ -732,13 +937,24 @@ TOPIC_CIRCLE_FOUNDATION = TopicDefinition(
 
 TOPIC_SEMICIRCLE_COMPOUND = TopicDefinition(
     id="area_semicircle_compound",
-    display_name="Semicircle Compound Shapes",
-    description="Find the area of a rectangle with a semicircle attached.",
+    display_name="Semicircle Compound Shapes (Calculator)",
+    description="Find the area of a rectangle with a semicircle attached, giving a decimal answer.",
     generate=generate_semicircle_compound,
     section=SECTION,
     group=GROUP,
-    fixed_tier=Tier.HIGHER,
+    fixed_tier=Tier.FOUNDATION,
     generate_modelled_example=generate_modelled_example_semicircle_compound,
+)
+
+TOPIC_SEMICIRCLE_COMPOUND_HIGHER = TopicDefinition(
+    id="area_semicircle_compound_higher",
+    display_name="Semicircle Compound Shapes",
+    description="Find the area of a rectangle with a semicircle attached, in terms of π.",
+    generate=generate_semicircle_compound_higher,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_semicircle_compound_higher,
 )
 
 TOPIC_SUBTRACT_COMPOUND = TopicDefinition(
@@ -750,4 +966,15 @@ TOPIC_SUBTRACT_COMPOUND = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_subtract_compound,
+)
+
+TOPIC_SUBTRACT_COMPOUND_FOUNDATION = TopicDefinition(
+    id="area_subtract_compound_foundation",
+    display_name="Subtractive Compound Shapes (Foundation)",
+    description="Find the remaining area after a rectangular hole is cut from a larger rectangle.",
+    generate=generate_subtract_compound_foundation,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_subtract_compound_foundation,
 )

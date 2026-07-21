@@ -355,49 +355,36 @@ def generate_modelled_example_surd_hypotenuse(tier: Tier, rng: random.Random) ->
 
 
 def generate_ladder_context(tier: Tier, rng: random.Random) -> Question:
-    use_triple = rng.random() < 0.5
-    if use_triple:
-        a, b, c = rng.choice(PRIMITIVE_TRIPLES)
-        k = rng.randint(1, 3)
-        ladder, base, height = c * k, a * k, b * k
-        if base**2 + height**2 != ladder**2:
-            raise ValueError("ladder_context (triple) verification failed")
-        steps = [
-            f"height² = ladder² - base² = {ladder}² - {base}² = "
-            f"{ladder**2} - {base**2} = {ladder**2 - base**2}",
-            f"height = √{ladder**2 - base**2} = {height} m",
-        ]
-        answer_str = f"{height} m"
+    for _ in range(100):
+        base = rng.randint(3, 10)
+        ladder = base + rng.randint(3, 10)
+        s = ladder**2 - base**2
+        m, r = _simplify_surd(s)
+        if r != 1:
+            break
     else:
-        for _ in range(100):
-            base = rng.randint(3, 10)
-            ladder = base + rng.randint(3, 10)
-            s = ladder**2 - base**2
-            m, r = _simplify_surd(s)
-            if r != 1:
-                break
-        else:
-            raise ValueError("ladder_context (surd) could not find valid parameters")
-        if m * m * r != s:
-            raise ValueError("ladder_context (surd) verification failed")
-        surd_str = _fmt_surd(m, r)
-        steps = [
-            f"height² = ladder² - base² = {ladder}² - {base}² = "
-            f"{ladder**2} - {base**2} = {s}",
-            f"height = √{s} = {surd_str} m (exact form)",
-        ]
-        answer_str = f"{surd_str} m"
+        raise ValueError("ladder_context (surd) could not find valid parameters")
+    if m * m * r != s:
+        raise ValueError("ladder_context (surd) verification failed")
+    surd_str = _fmt_surd(m, r)
+    steps = [
+        f"height² = ladder² - base² = {ladder}² - {base}² = "
+        f"{ladder**2} - {base**2} = {s}",
+        f"height = √{s} = {surd_str} m (exact form)",
+    ]
+    answer_str = f"{surd_str} m"
 
     return Question(
         topic_id="pythagoras_ladder_context",
         tier=Tier.HIGHER,
         prompt=(
             f"A ladder of length {ladder} m leans against a vertical wall with its base {base} m "
-            "from the wall. Find the height the ladder reaches up the wall."
+            "from the wall. Find the height the ladder reaches up the wall, giving your answer "
+            "as a surd in its simplest form."
         ),
         solution_steps=tuple(steps),
         final_answer=answer_str,
-        dedup_key=f"ladder:{use_triple}:{base}:{ladder}",
+        dedup_key=f"ladder:{base}:{ladder}",
         diagram=DiagramSpec(
             kind="right_triangle",
             params={"leg1_label": f"{base} m", "leg2_label": "?", "hyp_label": f"{ladder} m"},
@@ -406,76 +393,119 @@ def generate_ladder_context(tier: Tier, rng: random.Random) -> Question:
 
 
 def generate_modelled_example_ladder_context(tier: Tier, rng: random.Random) -> ModelledExample:
-    use_triple = rng.random() < 0.5
-    if use_triple:
-        a, b, c = rng.choice(PRIMITIVE_TRIPLES)
-        k = rng.randint(1, 3)
-        ladder, base, height = c * k, a * k, b * k
-        if base**2 + height**2 != ladder**2:
-            raise ValueError("modelled example ladder_context (triple) verification failed")
-        diff = ladder**2 - base**2
-        teaching_steps = [
-            "A ladder leaning against a wall forms a right-angled triangle: the ladder itself "
-            "is the hypotenuse (the longest side, opposite the right angle where the wall "
-            "meets the ground), the distance from the wall is one leg, and the height up the "
-            "wall is the other leg.",
-            f"We know the ladder (hypotenuse) = {ladder} m and the base distance = {base} m, "
-            "and we want the height, so rearrange Pythagoras' theorem to make the missing "
-            "leg the subject.",
-            f"height² = ladder² - base² = {ladder}² - {base}² = {ladder**2} - {base**2} = {diff}.",
-            f"height = √{diff} = {height} m. It's worth sanity-checking that the height is "
-            "shorter than the ladder itself, which it is here - a good quick check that the "
-            "answer is sensible.",
-        ]
-        worked_calculation = [
-            f"height² = {ladder}² - {base}²",
-            f"height² = {ladder**2} - {base**2} = {diff}",
-            f"height = √{diff}",
-            f"height = {height} m",
-        ]
-        answer_str = f"{height} m"
+    for _ in range(100):
+        base = rng.randint(3, 10)
+        ladder = base + rng.randint(3, 10)
+        s = ladder**2 - base**2
+        m, r = _simplify_surd(s)
+        if r != 1:
+            break
     else:
-        for _ in range(100):
-            base = rng.randint(3, 10)
-            ladder = base + rng.randint(3, 10)
-            s = ladder**2 - base**2
-            m, r = _simplify_surd(s)
-            if r != 1:
-                break
-        else:
-            raise ValueError("modelled example ladder_context (surd) could not find valid parameters")
-        if m * m * r != s:
-            raise ValueError("modelled example ladder_context (surd) verification failed")
-        surd_str = _fmt_surd(m, r)
-        teaching_steps = [
-            "A ladder against a wall forms a right-angled triangle: the ladder is the "
-            "hypotenuse, the base distance from the wall is one leg, and the height up the "
-            "wall is the other leg we need to find.",
-            f"Rearranged Pythagoras gives height² = ladder² - base² = {ladder}² - {base}² = "
-            f"{ladder**2} - {base**2} = {s}.",
-            f"{s} is not a perfect square, so rather than rounding we leave the answer as an "
-            f"exact surd: height = √{s}, which simplifies to {surd_str} m.",
-            "Leaving the answer as a surd like this keeps it exact - useful whenever the "
-            "question asks for an exact value rather than a decimal approximation.",
-        ]
-        worked_calculation = [
-            f"height² = {ladder}² - {base}²",
-            f"height² = {ladder**2} - {base**2} = {s}",
-            f"height = √{s}",
-            f"height = {surd_str} m",
-        ]
-        answer_str = f"{surd_str} m"
+        raise ValueError("modelled example ladder_context (surd) could not find valid parameters")
+    if m * m * r != s:
+        raise ValueError("modelled example ladder_context (surd) verification failed")
+    surd_str = _fmt_surd(m, r)
+    teaching_steps = [
+        "A ladder against a wall forms a right-angled triangle: the ladder is the "
+        "hypotenuse, the base distance from the wall is one leg, and the height up the "
+        "wall is the other leg we need to find.",
+        f"Rearranged Pythagoras gives height² = ladder² - base² = {ladder}² - {base}² = "
+        f"{ladder**2} - {base**2} = {s}.",
+        f"{s} is not a perfect square, so rather than rounding we leave the answer as an "
+        f"exact surd: height = √{s}, which simplifies to {surd_str} m.",
+        "Leaving the answer as a surd like this keeps it exact - useful whenever the "
+        "question asks for an exact value rather than a decimal approximation.",
+    ]
+    worked_calculation = [
+        f"height² = {ladder}² - {base}²",
+        f"height² = {ladder**2} - {base**2} = {s}",
+        f"height = √{s}",
+        f"height = {surd_str} m",
+    ]
+    answer_str = f"{surd_str} m"
 
     return ModelledExample(
         topic_id="pythagoras_ladder_context",
         tier=Tier.HIGHER,
         prompt=(
             f"A ladder of length {ladder} m leans against a vertical wall with its base {base} m "
-            "from the wall. Find the height the ladder reaches up the wall."
+            "from the wall. Find the height the ladder reaches up the wall, giving your answer "
+            "as a surd in its simplest form."
         ),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer_str,
+        diagram=DiagramSpec(
+            kind="right_triangle",
+            params={"leg1_label": f"{base} m", "leg2_label": "?", "hyp_label": f"{ladder} m"},
+        ),
+    )
+
+
+def generate_ladder_context_foundation(tier: Tier, rng: random.Random) -> Question:
+    a, b, c = rng.choice(PRIMITIVE_TRIPLES)
+    k = rng.randint(1, 3)
+    ladder, base, height = c * k, a * k, b * k
+    if base**2 + height**2 != ladder**2:
+        raise ValueError("ladder_context_foundation verification failed")
+    diff = ladder**2 - base**2
+    steps = [
+        f"height² = ladder² - base² = {ladder}² - {base}² = {ladder**2} - {base**2} = {diff}",
+        f"height = √{diff} = {height} m",
+    ]
+    return Question(
+        topic_id="pythagoras_ladder_context_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"A ladder of length {ladder} m leans against a vertical wall with its base {base} m "
+            "from the wall. Find the height the ladder reaches up the wall."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=f"{height} m",
+        dedup_key=f"ladder_f:{base}:{ladder}",
+        diagram=DiagramSpec(
+            kind="right_triangle",
+            params={"leg1_label": f"{base} m", "leg2_label": "?", "hyp_label": f"{ladder} m"},
+        ),
+    )
+
+
+def generate_modelled_example_ladder_context_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
+    a, b, c = rng.choice(PRIMITIVE_TRIPLES)
+    k = rng.randint(1, 3)
+    ladder, base, height = c * k, a * k, b * k
+    if base**2 + height**2 != ladder**2:
+        raise ValueError("modelled example ladder_context_foundation verification failed")
+    diff = ladder**2 - base**2
+    teaching_steps = [
+        "A ladder leaning against a wall forms a right-angled triangle: the ladder itself "
+        "is the hypotenuse (the longest side, opposite the right angle where the wall "
+        "meets the ground), the distance from the wall is one leg, and the height up the "
+        "wall is the other leg.",
+        f"We know the ladder (hypotenuse) = {ladder} m and the base distance = {base} m, "
+        "and we want the height, so rearrange Pythagoras' theorem to make the missing "
+        "leg the subject.",
+        f"height² = ladder² - base² = {ladder}² - {base}² = {ladder**2} - {base**2} = {diff}.",
+        f"height = √{diff} = {height} m. It's worth sanity-checking that the height is "
+        "shorter than the ladder itself, which it is here - a good quick check that the "
+        "answer is sensible.",
+    ]
+    worked_calculation = [
+        f"height² = {ladder}² - {base}²",
+        f"height² = {ladder**2} - {base**2} = {diff}",
+        f"height = √{diff}",
+        f"height = {height} m",
+    ]
+    return ModelledExample(
+        topic_id="pythagoras_ladder_context_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"A ladder of length {ladder} m leans against a vertical wall with its base {base} m "
+            "from the wall. Find the height the ladder reaches up the wall."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"{height} m",
         diagram=DiagramSpec(
             kind="right_triangle",
             params={"leg1_label": f"{base} m", "leg2_label": "?", "hyp_label": f"{ladder} m"},
@@ -530,10 +560,21 @@ TOPIC_SURD_HYPOTENUSE = TopicDefinition(
 TOPIC_LADDER_CONTEXT = TopicDefinition(
     id="pythagoras_ladder_context",
     display_name="Ladder Context",
-    description="Apply Pythagoras' theorem to a worded ladder-against-a-wall problem.",
+    description="Apply Pythagoras' theorem to a worded ladder-against-a-wall problem, giving an exact surd answer.",
     generate=generate_ladder_context,
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_ladder_context,
+)
+
+TOPIC_LADDER_CONTEXT_FOUNDATION = TopicDefinition(
+    id="pythagoras_ladder_context_foundation",
+    display_name="Ladder Context (Foundation)",
+    description="Apply Pythagoras' theorem to a worded ladder-against-a-wall problem, resulting in a whole number.",
+    generate=generate_ladder_context_foundation,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_ladder_context_foundation,
 )

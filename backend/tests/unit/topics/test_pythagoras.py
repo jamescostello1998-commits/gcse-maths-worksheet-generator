@@ -11,6 +11,7 @@ GENERATORS = [
     (pythagoras.generate_shorter_leg, Tier.FOUNDATION),
     (pythagoras.generate_surd_hypotenuse, Tier.HIGHER),
     (pythagoras.generate_ladder_context, Tier.HIGHER),
+    (pythagoras.generate_ladder_context_foundation, Tier.FOUNDATION),
 ]
 
 MODELLED_EXAMPLE_GENERATORS = [
@@ -19,6 +20,11 @@ MODELLED_EXAMPLE_GENERATORS = [
     (pythagoras.generate_modelled_example_shorter_leg, Tier.FOUNDATION, "pythagoras_shorter_leg"),
     (pythagoras.generate_modelled_example_surd_hypotenuse, Tier.HIGHER, "pythagoras_surd_hypotenuse"),
     (pythagoras.generate_modelled_example_ladder_context, Tier.HIGHER, "pythagoras_ladder_context"),
+    (
+        pythagoras.generate_modelled_example_ladder_context_foundation,
+        Tier.FOUNDATION,
+        "pythagoras_ladder_context_foundation",
+    ),
 ]
 
 
@@ -66,13 +72,15 @@ def test_topic_definitions_have_expected_metadata():
         pythagoras.TOPIC_SHORTER_LEG,
         pythagoras.TOPIC_SURD_HYPOTENUSE,
         pythagoras.TOPIC_LADDER_CONTEXT,
+        pythagoras.TOPIC_LADDER_CONTEXT_FOUNDATION,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 5
+    assert len(ids) == 6
     for t in topics:
         assert t.section == "geometry"
         assert t.group == "Pythagoras' Theorem"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
+    assert pythagoras.TOPIC_LADDER_CONTEXT_FOUNDATION.fixed_tier == Tier.FOUNDATION
 
 
 def test_topic_definitions_have_modelled_examples_wired_up():
@@ -82,9 +90,25 @@ def test_topic_definitions_have_modelled_examples_wired_up():
         pythagoras.TOPIC_SHORTER_LEG,
         pythagoras.TOPIC_SURD_HYPOTENUSE,
         pythagoras.TOPIC_LADDER_CONTEXT,
+        pythagoras.TOPIC_LADDER_CONTEXT_FOUNDATION,
     ]
     for t in topics:
         assert t.generate_modelled_example is not None
+
+
+def test_ladder_context_higher_always_gives_a_surd_answer():
+    rng = random.Random(64)
+    for _ in range(TRIALS):
+        q = pythagoras.generate_ladder_context(Tier.HIGHER, rng)
+        assert "√" in q.final_answer
+
+
+def test_ladder_context_foundation_always_gives_a_whole_number_answer():
+    rng = random.Random(65)
+    for _ in range(TRIALS):
+        q = pythagoras.generate_ladder_context_foundation(Tier.FOUNDATION, rng)
+        value = q.final_answer.replace(" m", "")
+        assert value.isdigit()
 
 
 def test_modelled_examples_produce_valid_verified_examples():

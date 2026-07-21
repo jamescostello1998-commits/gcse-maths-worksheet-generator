@@ -7,8 +7,11 @@ TRIALS = 200
 
 GENERATORS = [
     (angles.generate_straight_line, Tier.FOUNDATION),
+    (angles.generate_straight_line_higher, Tier.HIGHER),
     (angles.generate_around_point, Tier.FOUNDATION),
+    (angles.generate_around_point_higher, Tier.HIGHER),
     (angles.generate_triangle_angles, Tier.FOUNDATION),
+    (angles.generate_triangle_angles_higher, Tier.HIGHER),
     (angles.generate_parallel_lines_foundation, Tier.FOUNDATION),
     (angles.generate_parallel_lines, Tier.HIGHER),
     (angles.generate_exterior_foundation, Tier.FOUNDATION),
@@ -20,8 +23,11 @@ GENERATORS = [
 
 EXPECTED_DIAGRAM_KINDS = {
     angles.generate_straight_line: "angle_line",
+    angles.generate_straight_line_higher: "angle_line",
     angles.generate_around_point: "angle_line",
+    angles.generate_around_point_higher: "angle_line",
     angles.generate_triangle_angles: "triangle_angles",
+    angles.generate_triangle_angles_higher: "triangle_angles",
     angles.generate_parallel_lines_foundation: "parallel_lines",
     angles.generate_parallel_lines: "parallel_lines",
     angles.generate_exterior_foundation: "exterior_triangle",
@@ -82,8 +88,11 @@ def test_dedup_keys_vary_for_polygon_interior_foundation():
 def test_topic_definitions_have_expected_metadata():
     topics = [
         angles.TOPIC_STRAIGHT_LINE,
+        angles.TOPIC_STRAIGHT_LINE_HIGHER,
         angles.TOPIC_AROUND_POINT,
+        angles.TOPIC_AROUND_POINT_HIGHER,
         angles.TOPIC_TRIANGLE,
+        angles.TOPIC_TRIANGLE_HIGHER,
         angles.TOPIC_PARALLEL_LINES_FOUNDATION,
         angles.TOPIC_PARALLEL_LINES,
         angles.TOPIC_EXTERIOR_FOUNDATION,
@@ -92,11 +101,14 @@ def test_topic_definitions_have_expected_metadata():
         angles.TOPIC_POLYGON_INTERIOR,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 9
+    assert len(ids) == 12
     for t in topics:
         assert t.section == "geometry"
         assert t.group == "Angles"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
+    assert angles.TOPIC_STRAIGHT_LINE_HIGHER.fixed_tier == Tier.HIGHER
+    assert angles.TOPIC_AROUND_POINT_HIGHER.fixed_tier == Tier.HIGHER
+    assert angles.TOPIC_TRIANGLE_HIGHER.fixed_tier == Tier.HIGHER
 
 
 def test_modelled_example_triangle_angles_produces_verified_examples():
@@ -113,7 +125,25 @@ def test_modelled_example_triangle_angles_produces_verified_examples():
 
 MODELLED_EXAMPLE_GENERATORS = [
     (angles.generate_modelled_example_straight_line, Tier.FOUNDATION, "angles_straight_line", "angle_line"),
+    (
+        angles.generate_modelled_example_straight_line_higher,
+        Tier.HIGHER,
+        "angles_straight_line_higher",
+        "angle_line",
+    ),
     (angles.generate_modelled_example_around_point, Tier.FOUNDATION, "angles_around_point", "angle_line"),
+    (
+        angles.generate_modelled_example_around_point_higher,
+        Tier.HIGHER,
+        "angles_around_point_higher",
+        "angle_line",
+    ),
+    (
+        angles.generate_modelled_example_triangle_angles_higher,
+        Tier.HIGHER,
+        "angles_triangle_higher",
+        "triangle_angles",
+    ),
     (
         angles.generate_modelled_example_parallel_lines_foundation,
         Tier.FOUNDATION,
@@ -141,8 +171,11 @@ MODELLED_EXAMPLE_GENERATORS = [
 def test_topic_definitions_have_modelled_examples_wired_up():
     topics = [
         angles.TOPIC_STRAIGHT_LINE,
+        angles.TOPIC_STRAIGHT_LINE_HIGHER,
         angles.TOPIC_AROUND_POINT,
+        angles.TOPIC_AROUND_POINT_HIGHER,
         angles.TOPIC_TRIANGLE,
+        angles.TOPIC_TRIANGLE_HIGHER,
         angles.TOPIC_PARALLEL_LINES_FOUNDATION,
         angles.TOPIC_PARALLEL_LINES,
         angles.TOPIC_EXTERIOR_FOUNDATION,

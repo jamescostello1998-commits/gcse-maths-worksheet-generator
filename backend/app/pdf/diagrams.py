@@ -241,7 +241,13 @@ def draw_triangle_angles(params: dict) -> Drawing:
         other1, other2 = vertices[(i - 1) % n], vertices[(i + 1) % n]
         d.add(_vertex_angle_arc(vertex, other1, other2, radius=9))
         vx, vy = vertex
-        lx, ly = vx + (cx - vx) * 0.58, vy + (cy - vy) * 0.58
+        # Pull wide algebraic labels (e.g. "(2x + 98)°") further in toward the
+        # centroid than short ones like "31°" or "x", so they have more clearance
+        # from the two sloped edges either side of the vertex - a fixed 0.58 inset
+        # only worked while every label was short enough to fit near the vertex.
+        width = stringWidth(str(lbl), _LABEL_FONT, 7.5)
+        inset = min(0.8, 0.5 + width / 220)
+        lx, ly = vx + (cx - vx) * inset, vy + (cy - vy) * inset
         d.add(_label(lx, ly, lbl, size=7.5))
     return d
 
