@@ -112,6 +112,19 @@ SAMPLE_SPECS = [
             "highlight": [[0, 5]],
         },
     ),
+    DiagramSpec(kind="venn_diagram", params={"labels": ["A", "B"], "shade": ["a_only"]}),
+    DiagramSpec(kind="venn_diagram", params={"labels": ["A", "B"], "shade": ["b_only"]}),
+    DiagramSpec(kind="venn_diagram", params={"labels": ["A", "B"], "shade": ["both"]}),
+    DiagramSpec(kind="venn_diagram", params={"labels": ["A", "B"], "shade": ["neither"]}),
+    DiagramSpec(kind="venn_diagram", params={"labels": ["A", "B"], "shade": ["a_only", "both"]}),
+    DiagramSpec(kind="venn_diagram", params={"labels": ["A", "B"], "shade": ["b_only", "neither"]}),
+    DiagramSpec(
+        kind="venn_diagram",
+        params={
+            "labels": ["A", "B"],
+            "region_text": {"a_only": "5", "b_only": "7", "both": "3", "neither": "10"},
+        },
+    ),
 ]
 
 
@@ -148,9 +161,52 @@ def test_math_runs_leaves_other_letters_upright():
     assert _math_runs("70°") == [("text", "70°", _LABEL_FONT)]
 
 
+def test_math_runs_does_not_italicise_x_or_n_inside_a_word():
+    # Real words like branch/outcome labels ("Green", "box", "Next") must not
+    # get a stray italic letter glued into the middle of them.
+    assert _math_runs("Green") == [("text", "Green", _LABEL_FONT)]
+    assert _math_runs("box") == [("text", "box", _LABEL_FONT)]
+    assert _math_runs("Next") == [("text", "Next", _LABEL_FONT)]
+
+
 def test_math_runs_detects_fraction_pattern():
     assert _math_runs("3/4 cm") == [("frac", "", "3", "4"), ("text", " cm", _LABEL_FONT)]
     assert _math_runs("-3/4 cm") == [("frac", "-", "3", "4"), ("text", " cm", _LABEL_FONT)]
     assert _math_runs("x = 3/4") == [
         ("text", "x", _LABEL_FONT_ITALIC), ("text", " = ", _LABEL_FONT), ("frac", "", "3", "4"),
     ]
+
+
+def _bbox(path):
+    xs, ys = path.points[0::2], path.points[1::2]
+    return min(xs), max(xs), min(ys), max(ys)
+
+
+def test_venn_region_paths_are_closed_and_geometrically_distinct():
+    from app.pdf.diagrams import (
+        _VENN_CX_A, _VENN_CX_B, _venn_a_only_path, _venn_b_only_path, _venn_lens_path,
+    )
+
+    lens = _venn_lens_path(color=None)
+    a_only = _venn_a_only_path(color=None)
+    b_only = _venn_b_only_path(color=None)
+
+    # Every path must close back to its own starting point (no gap in the boundary).
+    for path in (lens, a_only, b_only):
+        assert path.points[0] == pytest.approx(path.points[-2])
+        assert path.points[1] == pytest.approx(path.points[-1])
+
+    # The lens sits centred on the midline between the two circles, and stays
+    # clear of each circle's own far edge (it must not accidentally trace a
+    # whole circle instead of just the overlap).
+    lens_x0, lens_x1, _, _ = _bbox(lens)
+    midline = (_VENN_CX_A + _VENN_CX_B) / 2
+    assert lens_x0 < midline < lens_x1
+    assert lens_x1 - lens_x0 < (_VENN_CX_B - _VENN_CX_A)  # narrower than the centre-to-centre gap
+
+    # a_only must stay left of the midline-ish and not bulge into b_only's territory.
+    a_x0, a_x1, _, _ = _bbox(a_only)
+    b_x0, b_x1, _, _ = _bbox(b_only)
+    assert a_x1 <= _VENN_CX_B  # never reaches circle B's centre
+    assert b_x0 >= _VENN_CX_A  # never reaches circle A's centre
+    assert a_x0 < midline < b_x1

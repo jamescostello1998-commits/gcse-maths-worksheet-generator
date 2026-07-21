@@ -15,7 +15,7 @@ from reportlab.graphics.shapes import ArcPath, Circle, Drawing, Group, Line, Pol
 from reportlab.pdfbase.pdfmetrics import stringWidth
 
 from app.core.models import DiagramSpec
-from app.pdf.styles import ACCENT, GRID, HIGHLIGHT, INK, MUTED
+from app.pdf.styles import ACCENT, GRID, HIGHLIGHT, INK, MUTED, PAPER
 
 DIAGRAM_WIDTH = 200
 DIAGRAM_HEIGHT = 130
@@ -25,7 +25,9 @@ _LABEL_FONT = "Helvetica"
 _LABEL_FONT_ITALIC = "Helvetica-Oblique"
 
 
-_ITALIC_VARIABLES = ("x", "n")
+# Matches a lone x or n not glued to another letter (so "Green"/"box" are left
+# alone) - mirrors app/pdf/mathtext.py's _VARIABLE_RE exactly.
+_VARIABLE_RE = re.compile(r"(?<![A-Za-z])[xn](?![A-Za-z])")
 
 # A bare numeric fraction like "3/4" or "-3/4" within a label is drawn as a
 # stacked numerator/line/denominator (a vinculum) instead of inline "3/4" -
@@ -37,21 +39,19 @@ _FRACTION_PAD = 1.5
 
 def _text_runs(text: str) -> list[tuple[str, str]]:
     """Split plain (non-fraction) text into (substring, fontName) runs,
-    italicising the algebraic variables x and n so diagram labels match
+    italicising the algebraic variables x and n (as standalone letters only,
+    so words like "Green" or "box" are left alone) so diagram labels match
     standard maths typesetting (mirrors app/pdf/mathtext.py's handling of
     Paragraph text)."""
     runs: list[tuple[str, str]] = []
-    buf = ""
-    for ch in text:
-        if ch in _ITALIC_VARIABLES:
-            if buf:
-                runs.append((buf, _LABEL_FONT))
-                buf = ""
-            runs.append((ch, _LABEL_FONT_ITALIC))
-        else:
-            buf += ch
-    if buf:
-        runs.append((buf, _LABEL_FONT))
+    pos = 0
+    for m in _VARIABLE_RE.finditer(text):
+        if m.start() > pos:
+            runs.append((text[pos : m.start()], _LABEL_FONT))
+        runs.append((m.group(0), _LABEL_FONT_ITALIC))
+        pos = m.end()
+    if pos < len(text):
+        runs.append((text[pos:], _LABEL_FONT))
     return runs
 
 
@@ -942,6 +942,101 @@ def draw_sample_space_diagram(params: dict) -> Drawing:
     return d
 
 
+# Two-circle Venn diagram: fixed equal-radius layout, overlap centred in a
+# bounding "universal set" rectangle. Region keys used throughout:
+# "a_only", "b_only", "both" (the A-cap-B lens), "neither" (inside the
+# rectangle, outside both circles).
+_VENN_CX_A, _VENN_CX_B, _VENN_CY, _VENN_R = 82.0, 138.0, 68.0, 44.0
+_VENN_RECT = (8.0, 8.0, 212.0, 132.0)  # x0, y0, x1, y1
+
+
+def _venn_half_angle() -> float:
+    d = _VENN_CX_B - _VENN_CX_A
+    return math.degrees(math.acos((d / 2) / _VENN_R))
+
+
+def _venn_lens_path(color) -> ArcPath:
+    half = _venn_half_angle()
+    path = ArcPath(fillColor=color, strokeColor=None)
+    path.addArc(_VENN_CX_A, _VENN_CY, _VENN_R, -half, half, moveTo=True)
+    path.addArc(_VENN_CX_B, _VENN_CY, _VENN_R, 180 - half, 180 + half, moveTo=False)
+    path.closePath()
+    return path
+
+
+def _venn_a_only_path(color) -> ArcPath:
+    half = _venn_half_angle()
+    path = ArcPath(fillColor=color, strokeColor=None)
+    path.addArc(_VENN_CX_A, _VENN_CY, _VENN_R, half, 360 - half, moveTo=True)
+    path.addArc(_VENN_CX_B, _VENN_CY, _VENN_R, 180 - half, 180 + half, moveTo=False, reverse=True)
+    path.closePath()
+    return path
+
+
+def _venn_b_only_path(color) -> ArcPath:
+    half = _venn_half_angle()
+    path = ArcPath(fillColor=color, strokeColor=None)
+    path.addArc(_VENN_CX_B, _VENN_CY, _VENN_R, 180 + half, 540 - half, moveTo=True)
+    path.addArc(_VENN_CX_A, _VENN_CY, _VENN_R, -half, half, moveTo=False, reverse=True)
+    path.closePath()
+    return path
+
+
+def draw_venn_diagram(params: dict) -> Drawing:
+    """A two-circle Venn diagram (sets A and B inside a universal-set
+    rectangle). params:
+    - "labels": [name_a, name_b] (default ["A", "B"]) - the circle names.
+    - "universal_label": corner label for the universal set (default "S").
+    - "region_text": dict with optional keys "a_only"/"b_only"/"both"/
+      "neither" -> string shown inside that region (element counts, an
+      algebraic expression, etc.) - used by the notation/algebra/probability
+      Venn topics.
+    - "shade": list of region keys to fill (any of "a_only"/"b_only"/"both"/
+      "neither") - used by the shading topic. Filling is done per-region
+      (not per-name like "A" or "A union B") so any named region from the
+      real specs can be built by shading the right combination of these
+      four atomic regions.
+    """
+    labels = params.get("labels", ["A", "B"])
+    universal_label = params.get("universal_label", "S")
+    region_text: dict = params.get("region_text", {})
+    shade = set(params.get("shade", []))
+
+    x0, y0, x1, y1 = _VENN_RECT
+    d = Drawing(x1 + 8, y1 + 8)
+
+    if "neither" in shade:
+        d.add(Rect(x0, y0, x1 - x0, y1 - y0, fillColor=HIGHLIGHT, strokeColor=None))
+        d.add(Circle(_VENN_CX_A, _VENN_CY, _VENN_R, fillColor=PAPER, strokeColor=None))
+        d.add(Circle(_VENN_CX_B, _VENN_CY, _VENN_R, fillColor=PAPER, strokeColor=None))
+    if "both" in shade:
+        d.add(_venn_lens_path(HIGHLIGHT))
+    if "a_only" in shade:
+        d.add(_venn_a_only_path(HIGHLIGHT))
+    if "b_only" in shade:
+        d.add(_venn_b_only_path(HIGHLIGHT))
+
+    d.add(Rect(x0, y0, x1 - x0, y1 - y0, fillColor=None, strokeColor=INK, strokeWidth=0.9))
+    d.add(Circle(_VENN_CX_A, _VENN_CY, _VENN_R, fillColor=None, strokeColor=INK, strokeWidth=0.9))
+    d.add(Circle(_VENN_CX_B, _VENN_CY, _VENN_R, fillColor=None, strokeColor=INK, strokeWidth=0.9))
+
+    d.add(_label(x0 + 8, y1 - 10, universal_label, anchor="start", size=9))
+    d.add(_label(_VENN_CX_A - 20, _VENN_CY + _VENN_R - 12, str(labels[0]), size=9))
+    d.add(_label(_VENN_CX_B + 20, _VENN_CY + _VENN_R - 12, str(labels[1]), size=9))
+
+    region_positions = {
+        "a_only": (_VENN_CX_A - 22, _VENN_CY - 4),
+        "b_only": (_VENN_CX_B + 22, _VENN_CY - 4),
+        "both": ((_VENN_CX_A + _VENN_CX_B) / 2, _VENN_CY - 4),
+        "neither": ((x0 + x1) / 2, y0 + 8),
+    }
+    for key, (rx, ry) in region_positions.items():
+        if key in region_text:
+            d.add(_label(rx, ry, str(region_text[key]), size=8.5))
+
+    return d
+
+
 _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "rectangle": draw_rectangle,
     "triangle_area": draw_triangle_area,
@@ -969,6 +1064,7 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "tree_diagram": draw_tree_diagram,
     "two_way_table": draw_two_way_table,
     "sample_space_diagram": draw_sample_space_diagram,
+    "venn_diagram": draw_venn_diagram,
 }
 
 

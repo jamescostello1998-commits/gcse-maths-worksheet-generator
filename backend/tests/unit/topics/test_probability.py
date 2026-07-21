@@ -10,6 +10,9 @@ GENERATORS = [
     (probability.generate_complement, Tier.FOUNDATION),
     (probability.generate_combined_dice, Tier.HIGHER),
     (probability.generate_conditional_without_replacement, Tier.HIGHER),
+    (probability.generate_listing_outcomes, Tier.FOUNDATION),
+    (probability.generate_and_or_rule, Tier.FOUNDATION),
+    (probability.generate_expectation, Tier.FOUNDATION),
 ]
 
 
@@ -37,9 +40,12 @@ def test_topic_definitions_have_expected_metadata():
         probability.TOPIC_COMPLEMENT,
         probability.TOPIC_COMBINED_DICE,
         probability.TOPIC_CONDITIONAL,
+        probability.TOPIC_LISTING_OUTCOMES,
+        probability.TOPIC_AND_OR_RULE,
+        probability.TOPIC_EXPECTATION,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 4
+    assert len(ids) == 7
     for t in topics:
         assert t.section == "probability"
         assert t.group == "Probability"
@@ -52,6 +58,9 @@ def test_modelled_example_topics_are_wired_up():
         probability.TOPIC_COMPLEMENT,
         probability.TOPIC_COMBINED_DICE,
         probability.TOPIC_CONDITIONAL,
+        probability.TOPIC_LISTING_OUTCOMES,
+        probability.TOPIC_AND_OR_RULE,
+        probability.TOPIC_EXPECTATION,
     ):
         assert t.generate_modelled_example is not None
 
@@ -94,6 +103,39 @@ def test_modelled_example_conditional_produces_verified_examples():
     for _ in range(TRIALS):
         example = probability.generate_modelled_example_conditional_without_replacement(Tier.HIGHER, rng)
         assert example.topic_id == "probability_conditional"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+
+
+def test_modelled_example_listing_outcomes_produces_verified_examples():
+    rng = random.Random(208)
+    for _ in range(TRIALS):
+        example = probability.generate_modelled_example_listing_outcomes(Tier.FOUNDATION, rng)
+        assert example.topic_id == "probability_listing_outcomes"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+
+
+def test_modelled_example_and_or_rule_produces_verified_examples():
+    rng = random.Random(209)
+    for _ in range(TRIALS):
+        example = probability.generate_modelled_example_and_or_rule(Tier.FOUNDATION, rng)
+        assert example.topic_id == "probability_and_or_rule"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+
+
+def test_modelled_example_expectation_produces_verified_examples():
+    rng = random.Random(210)
+    for _ in range(TRIALS):
+        example = probability.generate_modelled_example_expectation(Tier.FOUNDATION, rng)
+        assert example.topic_id == "probability_expectation"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3

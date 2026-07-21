@@ -30,6 +30,7 @@ from app.topics import (
     triangle_rules,
     trigonometry,
     vectors,
+    venn_diagrams,
 )
 from app.topics import statistics as statistics_topics
 from app.topics.base import TopicDefinition
@@ -193,15 +194,24 @@ _TOPIC_LIST: list[TopicDefinition] = [
     probability.TOPIC_COMPLEMENT,
     probability.TOPIC_COMBINED_DICE,
     probability.TOPIC_CONDITIONAL,
+    probability.TOPIC_LISTING_OUTCOMES,
+    probability.TOPIC_AND_OR_RULE,
+    probability.TOPIC_EXPECTATION,
     tree_diagrams.TOPIC_TREE_INDEPENDENT,
     tree_diagrams.TOPIC_TREE_DEPENDENT,
     tree_diagrams.TOPIC_TREE_DRAWING,
+    tree_diagrams.TOPIC_TREE_ALGEBRAIC,
+    tree_diagrams.TOPIC_TREE_MIXED,
     data_handling.TOPIC_SET_NOTATION,
     data_handling.TOPIC_SET_NOTATION_FOUNDATION,
     data_handling.TOPIC_PRODUCT_RULE_COUNTING,
     data_handling.TOPIC_RELATIVE_FREQUENCY,
     data_handling.TOPIC_TWO_WAY_TABLES,
     data_handling.TOPIC_SAMPLE_SPACE_DIAGRAMS,
+    venn_diagrams.TOPIC_VENN_SHADING,
+    venn_diagrams.TOPIC_VENN_PROBABILITY,
+    venn_diagrams.TOPIC_VENN_NOTATION,
+    venn_diagrams.TOPIC_VENN_ALGEBRA,
     # Statistics
     statistics_topics.TOPIC_MEAN_AND_RANGE,
     statistics_topics.TOPIC_MEDIAN_AND_MODE,

@@ -14,11 +14,11 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**160 topics across 6 sections**, all procedurally generated with independent
+**169 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.).
-Full backend suite: **304/304 passing**. Frontend suite: **29/29 passing**.
+Full backend suite: **335/335 passing**. Frontend suite: **29/29 passing**.
 
 **Modelled Example feature (on every topic, including new ones)**: a second button, "Generate
 Modelled Example," sits next to "Generate Worksheet" on every topic card
@@ -59,7 +59,7 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 | Algebra | Solving Linear Equations, Expanding Brackets, Factorising, Completing the Square, Turning Point of a Graph, Functions, Simultaneous Equations, Sequences, Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 38 |
 | Ratio & Proportion | Percentages, Ratio, Proportion, Compound Measures | 29 |
 | Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems | 39 |
-| Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams | 13 |
+| Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams, Venn Diagrams | 22 |
 | Statistics | Averages from a List, Frequency Tables, Working Backwards | 7 |
 
 **First curriculum-audit dual-tier siblings**: Foundation-difficulty siblings for three
@@ -210,6 +210,39 @@ the two rays forming it (standard exam-diagram convention), via `_angle_arc`/
 `diagrams.py`. Side-length-only diagrams (`right_triangle`, `vector_triangle`) are
 unaffected — right angles keep their square marker instead. New diagram kinds that
 label an angle should add an arc too.
+
+**Venn diagrams** (`draw_venn_diagram`, kind `"venn_diagram"`): a fixed two-circle
+layout (`_VENN_CX_A`/`_VENN_CX_B`/`_VENN_CY`/`_VENN_R`) inside a bounding "universal
+set" rectangle. The four atomic regions (`"a_only"`, `"b_only"`, `"both"`,
+`"neither"`) are each their own closed, independently-fillable shape — `"a_only"`/
+`"b_only"`/`"both"` (the lens) are built from actual circle-circle intersection
+geometry via `ArcPath.addArc` (two arcs meeting at the two intersection points,
+computed analytically since both circles share one radius — see `_venn_lens_path`/
+`_venn_a_only_path`/`_venn_b_only_path`), while `"neither"` uses a simpler
+fill-then-erase trick (fill the rectangle, then paint both circles over it in the
+page background colour). Any named region from the real specs (A, B, A∩B, A∪B, "A
+only", A′, (A∪B)′, etc.) is just the right combination of 1–4 of these atomic
+regions shaded together with the same colour — see the mapping table in
+`venn_diagrams.py`'s topics for exactly which combination each named region needs.
+`params["region_text"]` independently supports showing a count/element-list/
+algebraic-expression string in any region (used by the notation/probability/algebra
+Venn topics), orthogonal to `params["shade"]` (used by the shading topic) — a
+diagram can use either, both, or neither. Getting the lens-shape arc geometry right
+on the very first real render (all four atomic regions plus several combinations)
+was the highest-risk part of this diagram kind; see the chronology for how it was
+verified.
+
+**⚠️ Gotcha (found and fixed via this diagram kind, see chronology)**: `diagrams.py`'s
+old `_text_runs`/`_math_runs` italicised **any** occurrence of the characters `x`/`n`
+in a diagram label, with no word-boundary check at all (unlike `mathtext.py`'s
+prose-text handling, which always had one) — so a label reading "Green" rendered as
+"Gree" plus a stray italic "n". This had been silently shipping since diagram labels
+were originally assumed to always be short numeric/algebraic strings, never English
+words — an assumption the tree-diagram topics (branch labels like "Red"/"Green"/
+"Yellow") had already quietly broken. Fixed by giving `diagrams.py` the same
+word-boundary regex `(?<![A-Za-z])[xn](?![A-Za-z])` that `mathtext.py` already used.
+If you ever add a diagram label containing a real word with an `x` or `n` in it,
+this is already handled — no special-casing needed.
 
 Every Geometry topic and a handful of Algebra topics (parabola for turning point,
 line-pair for simultaneous-graphically) render an actual ReportLab-drawn figure
@@ -438,6 +471,32 @@ content today; it's built and unit-tested for when one eventually does.
     throwaway script, then fixed with a non-breaking-space insertion (see the Gotchas
     above). Backend suite grew from 287 to 304 tests; frontend unaffected (no
     frontend-visible change, this was all backend PDF rendering).
+17. New session, Phase 1 of a large user-supplied Probability + Statistics topic
+    list (explicitly split into two phases after clarifying questions, since the
+    full list needed ~7 brand-new chart-drawing diagram engines and was judged too
+    big for one pass — Statistics is Phase 2, not yet started). This phase covered
+    all of Probability (160→169 topics): `probability_listing_outcomes`,
+    `probability_and_or_rule`, `probability_expectation` (existing "Probability"
+    group); `tree_diagram_algebraic`, `tree_diagram_mixed` (existing "Tree Diagrams"
+    group — `_mixed` reuses the `trig_mixed` 50/50-dispatcher-over-two-existing-
+    generators pattern via `dataclasses.replace`); and 4 new topics in a brand-new
+    "Venn Diagrams" group (`venn_diagrams.py`, new file): `venn_diagram_shading`,
+    `venn_diagram_probability`, `venn_diagram_notation`, `venn_diagram_algebra`.
+    Built via 3 parallel subagents (one per cluster above) plus a new
+    `draw_venn_diagram` diagram kind (see "Venn diagrams" above) built and visually
+    verified directly rather than delegated, since it was the highest-risk new
+    geometry this project has attempted — the circle-circle intersection arc math
+    for the crescent/lens regions worked correctly on the first real render.
+    Resolved several ambiguities via clarifying questions up front (recommended
+    options chosen throughout): retired nothing this phase (no existing topics were
+    superseded); disambiguated exactly what each of the 4 requested Venn topics
+    should test before building any of them. Found and fixed a real pre-existing
+    bug during the Tree Diagrams agent's visual check (flagged rather than fixed,
+    since `diagrams.py` was off-limits for that agent's delegated task) — see the
+    `diagrams.py` word-boundary Gotcha above. Backend suite grew from 304 to 335
+    tests (335 includes the diagrams.py bug-fix test); the 4 hardcoded `160`-topic-
+    count assertions were updated to `169`; frontend unaffected (29/29 — new groups
+    render generically).
 
 Everything above is committed and pushed (see `git log`).
 
@@ -623,6 +682,34 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
   `test_worksheet_builder.py` will catch it, but better to catch it while writing the
   generator (a quick 300-trial loop counting `set()` size, as used throughout this
   session, works fine as a manual check).
+
+## Next session: Statistics Phase 2 (already agreed, not started)
+
+The user supplied a large Probability + Statistics topic list in one request; it was
+explicitly split into two phases after clarifying questions (see chronology step 17).
+Phase 1 (Probability) is done. Phase 2 (Statistics) has **not** been started yet and
+needs its own session — it's larger than Phase 1 and needs several brand-new chart-
+drawing diagram engines (bar chart, composite bar chart, pie chart, time series line
+graph, cumulative frequency curve, box plot, histogram) that don't exist yet. The
+full remaining list, as given by the user:
+- Split the existing combined `stats_mean_and_range`/`stats_median_and_mode` into 4
+  separate single-stat topics (mean, mode, median, range) plus a new "all four
+  combined" topic — retiring the 2 old combined topics once the 5 new ones exist
+  (confirmed with the user: retire, don't keep both).
+- Averages from a frequency table (mode, median, range) — the ungrouped/discrete
+  case, mirroring the existing `stats_mean_frequency_table`.
+- Interquartile range.
+- Constructing bar charts, interpreting bar charts, composite bar charts.
+- Drawing pie charts, interpreting pie charts.
+- Time series graphs.
+- Cumulative frequency (plotting and interpreting).
+- Box plots — split into constructing + interpreting/comparing (confirmed with the
+  user, matching the bar/pie chart construct-vs-interpret split).
+- Plotting histograms, interpreting histograms.
+
+Don't start this without checking with the user first — confirm it's still wanted
+and re-check scope/tiering, the same way Phase 1 started with clarifying questions
+rather than assumptions.
 
 ## Ideas for a future session (not started, no commitment made)
 

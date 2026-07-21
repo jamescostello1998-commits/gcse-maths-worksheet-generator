@@ -9,6 +9,8 @@ GENERATORS = [
     (tree_diagrams.generate_tree_diagram_independent, Tier.FOUNDATION),
     (tree_diagrams.generate_tree_diagram_dependent, Tier.HIGHER),
     (tree_diagrams.generate_tree_diagram_drawing, Tier.FOUNDATION),
+    (tree_diagrams.generate_tree_diagram_algebraic, Tier.HIGHER),
+    (tree_diagrams.generate_tree_diagram_mixed, Tier.HIGHER),
 ]
 
 
@@ -49,14 +51,49 @@ def test_dedup_keys_vary_per_generator():
         assert len(keys) > 40
 
 
+def test_algebraic_generator_shows_algebraic_labels_on_the_question_diagram():
+    rng = random.Random(334)
+    saw_x_label = False
+    for _ in range(TRIALS):
+        q = tree_diagrams.generate_tree_diagram_algebraic(Tier.HIGHER, rng)
+        assert q.diagram is not None and q.diagram.kind == "tree_diagram"
+        stage1 = q.diagram.params["stage1"]
+        assert any("x" in prob_str for _, prob_str in stage1)
+        if any(prob_str != "x" and "x" in prob_str for _, prob_str in stage1):
+            saw_x_label = True
+    # At least one trial should show a coefficient/one-minus form like "2x" or
+    # "1-x", not just the bare "x" - confirms the algebraic label (not a
+    # pre-solved number) genuinely reached the diagram.
+    assert saw_x_label
+
+
+def test_mixed_generator_exercises_both_branches():
+    rng = random.Random(335)
+    independent_like = 0
+    dependent_like = 0
+    for _ in range(TRIALS):
+        q = tree_diagrams.generate_tree_diagram_mixed(Tier.HIGHER, rng)
+        assert q.topic_id == "tree_diagram_mixed"
+        assert q.tier == Tier.HIGHER
+        assert q.diagram is not None and q.diagram.kind == "tree_diagram"
+        if "leaf_probs" in q.diagram.params:
+            dependent_like += 1
+        else:
+            independent_like += 1
+    assert independent_like > 0
+    assert dependent_like > 0
+
+
 def test_topic_definitions_have_expected_metadata():
     topics = [
         tree_diagrams.TOPIC_TREE_INDEPENDENT,
         tree_diagrams.TOPIC_TREE_DEPENDENT,
         tree_diagrams.TOPIC_TREE_DRAWING,
+        tree_diagrams.TOPIC_TREE_ALGEBRAIC,
+        tree_diagrams.TOPIC_TREE_MIXED,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 3
+    assert len(ids) == 5
     for t in topics:
         assert t.section == "probability"
         assert t.group == "Tree Diagrams"
@@ -64,6 +101,8 @@ def test_topic_definitions_have_expected_metadata():
     assert tree_diagrams.TOPIC_TREE_DRAWING.question_count == 5
     assert tree_diagrams.TOPIC_TREE_INDEPENDENT.question_count is None
     assert tree_diagrams.TOPIC_TREE_DEPENDENT.question_count is None
+    assert tree_diagrams.TOPIC_TREE_ALGEBRAIC.fixed_tier == Tier.HIGHER
+    assert tree_diagrams.TOPIC_TREE_MIXED.fixed_tier == Tier.HIGHER
 
 
 def test_modelled_example_topics_are_wired_up():
@@ -71,6 +110,8 @@ def test_modelled_example_topics_are_wired_up():
         tree_diagrams.TOPIC_TREE_INDEPENDENT,
         tree_diagrams.TOPIC_TREE_DEPENDENT,
         tree_diagrams.TOPIC_TREE_DRAWING,
+        tree_diagrams.TOPIC_TREE_ALGEBRAIC,
+        tree_diagrams.TOPIC_TREE_MIXED,
     ):
         assert t.generate_modelled_example is not None
 
@@ -105,6 +146,32 @@ def test_modelled_example_tree_diagram_drawing_produces_verified_examples():
     for _ in range(TRIALS):
         example = tree_diagrams.generate_modelled_example_tree_diagram_drawing(Tier.FOUNDATION, rng)
         assert example.topic_id == "tree_diagram_drawing"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+        assert example.diagram is not None and example.diagram.kind == "tree_diagram"
+
+
+def test_modelled_example_tree_diagram_algebraic_produces_verified_examples():
+    rng = random.Random(343)
+    for _ in range(TRIALS):
+        example = tree_diagrams.generate_modelled_example_tree_diagram_algebraic(Tier.HIGHER, rng)
+        assert example.topic_id == "tree_diagram_algebraic"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+        assert example.diagram is not None and example.diagram.kind == "tree_diagram"
+        assert any("x" in prob_str for _, prob_str in example.diagram.params["stage1"])
+
+
+def test_modelled_example_tree_diagram_mixed_produces_verified_examples():
+    rng = random.Random(344)
+    for _ in range(TRIALS):
+        example = tree_diagrams.generate_modelled_example_tree_diagram_mixed(Tier.HIGHER, rng)
+        assert example.topic_id == "tree_diagram_mixed"
+        assert example.tier == Tier.HIGHER
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3

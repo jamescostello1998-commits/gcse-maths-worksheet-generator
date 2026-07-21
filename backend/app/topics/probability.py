@@ -1,6 +1,8 @@
 import itertools
 import random
+from decimal import Decimal
 from fractions import Fraction
+from typing import Optional
 
 from app.core.models import ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
@@ -397,6 +399,363 @@ def generate_modelled_example_conditional_without_replacement(tier: Tier, rng: r
     )
 
 
+def _spinner_labels(rng: random.Random, sides: int) -> list[str]:
+    """A random label set for an n-sided spinner: either numeric (1..sides)
+    or the initial letters of `sides` distinct colours (all of COLOURS' first
+    letters - R, B, G, Y, P - are distinct, so this never collides)."""
+    style = rng.choice(["numeric", "colour"])
+    if style == "numeric":
+        return [str(i) for i in range(1, sides + 1)]
+    return [c[0].upper() for c in rng.sample(COLOURS, sides)]
+
+
+def _build_listing_outcomes(rng: random.Random):
+    """Shared setup for the two-event listing scenario, used by both the
+    normal generator and its modelled-example twin. Returns (context sentence,
+    vals_a, vals_b, scenario name)."""
+    scenario = rng.choice(
+        ["coin_die", "two_coins", "coin_spinner3", "coin_spinner4", "two_spinner3", "spinner3_spinner4"]
+    )
+    if scenario == "coin_die":
+        vals_a, vals_b = ["H", "T"], [str(i) for i in range(1, 7)]
+        context = "A coin is flipped and a die is rolled."
+    elif scenario == "two_coins":
+        vals_a, vals_b = ["H", "T"], ["H", "T"]
+        context = "Two coins are flipped."
+    elif scenario == "coin_spinner3":
+        vals_a = ["H", "T"]
+        vals_b = _spinner_labels(rng, 3)
+        context = f"A coin is flipped and a 3-sided spinner (labelled {', '.join(vals_b)}) is spun."
+    elif scenario == "coin_spinner4":
+        vals_a = ["H", "T"]
+        vals_b = _spinner_labels(rng, 4)
+        context = f"A coin is flipped and a 4-sided spinner (labelled {', '.join(vals_b)}) is spun."
+    elif scenario == "two_spinner3":
+        vals_a = _spinner_labels(rng, 3)
+        vals_b = _spinner_labels(rng, 3)
+        context = (
+            f"Two 3-sided spinners are spun: one labelled {', '.join(vals_a)} "
+            f"and the other labelled {', '.join(vals_b)}."
+        )
+    else:  # spinner3_spinner4
+        vals_a = _spinner_labels(rng, 3)
+        vals_b = _spinner_labels(rng, 4)
+        context = (
+            f"A 3-sided spinner (labelled {', '.join(vals_a)}) and a 4-sided spinner "
+            f"(labelled {', '.join(vals_b)}) are both spun."
+        )
+
+    total = len(vals_a) * len(vals_b)
+    if not (4 <= total <= 12):
+        raise ValueError("listing_outcomes total outcomes out of expected range")
+
+    return context, vals_a, vals_b, scenario
+
+
+def generate_listing_outcomes(tier: Tier, rng: random.Random) -> Question:
+    context, vals_a, vals_b, scenario = _build_listing_outcomes(rng)
+    total = len(vals_a) * len(vals_b)
+
+    listing = [f"{a}{b}" for a in vals_a for b in vals_b]
+
+    brute = list(itertools.product(vals_a, vals_b))
+    brute_listing = [f"{a}{b}" for a, b in brute]
+    if len(brute_listing) != len(listing) or set(brute_listing) != set(listing):
+        raise ValueError("listing_outcomes verification failed")
+
+    steps = [
+        f"There are {len(vals_a)} possible outcomes for the first event and {len(vals_b)} for the "
+        f"second, so there are {len(vals_a)} × {len(vals_b)} = {total} possible combined outcomes.",
+        "For each outcome of the first event, list every outcome of the second event: " + ", ".join(listing),
+    ]
+    return Question(
+        topic_id="probability_listing_outcomes",
+        tier=Tier.FOUNDATION,
+        prompt=f"{context} List all the possible outcomes.",
+        solution_steps=tuple(steps),
+        final_answer=", ".join(listing),
+        dedup_key=f"listing:{scenario}:{vals_a}:{vals_b}",
+    )
+
+
+def generate_modelled_example_listing_outcomes(tier: Tier, rng: random.Random) -> ModelledExample:
+    context, vals_a, vals_b, scenario = _build_listing_outcomes(rng)
+    total = len(vals_a) * len(vals_b)
+
+    listing = [f"{a}{b}" for a in vals_a for b in vals_b]
+
+    brute = list(itertools.product(vals_a, vals_b))
+    brute_listing = [f"{a}{b}" for a, b in brute]
+    if len(brute_listing) != len(listing) or set(brute_listing) != set(listing):
+        raise ValueError("modelled example listing_outcomes verification failed")
+
+    teaching_steps = [
+        "When two events happen together, every outcome of the first event can be paired with every "
+        "outcome of the second - so the total number of combined outcomes is found by multiplying the "
+        "number of outcomes for each event, not adding them.",
+        f"Here the first event has {len(vals_a)} possible outcomes and the second has {len(vals_b)}, "
+        f"so there are {len(vals_a)} × {len(vals_b)} = {total} combined outcomes altogether.",
+        "The safest way to list every outcome without missing (or repeating) one is to work through the "
+        "first event's outcomes one at a time, and for each one write down every outcome of the second "
+        "event before moving on to the next.",
+        f"Following that method systematically gives: {', '.join(listing)}.",
+    ]
+    worked_calculation = [
+        f"{len(vals_a)} × {len(vals_b)} = {total} outcomes",
+        ", ".join(listing),
+    ]
+
+    return ModelledExample(
+        topic_id="probability_listing_outcomes",
+        tier=Tier.FOUNDATION,
+        prompt=f"{context} List all the possible outcomes.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=", ".join(listing),
+    )
+
+
+def _independent_event(rng: random.Random, exclude_kind: Optional[str] = None):
+    """A single random event for the AND rule: a description, a short name
+    for the target outcome, its probability as an exact Fraction, and a kind
+    tag (used to avoid picking the same physical object twice)."""
+    kinds = [k for k in ("coin", "die", "spinner") if k != exclude_kind]
+    kind = rng.choice(kinds)
+    if kind == "coin":
+        return "a coin is flipped", "heads", Fraction(1, 2), kind
+    if kind == "die":
+        target = rng.randint(1, 6)
+        return "a fair die is rolled", f"rolling a {target}", Fraction(1, 6), kind
+    sides = rng.choice([3, 4, 5, 6, 8, 10])
+    target = rng.randint(1, sides)
+    return f"a {sides}-sided spinner is spun", f"landing on {target}", Fraction(1, sides), kind
+
+
+def _build_or_rule(rng: random.Random):
+    denom = rng.choice([5, 8, 10, 12])
+    colour_a, colour_b = rng.sample(COLOURS, 2)
+    num_a = rng.randint(1, denom - 2)
+    num_b = rng.randint(1, denom - num_a - 1) if denom - num_a - 1 >= 1 else 1
+    p_a = Fraction(num_a, denom)
+    p_b = Fraction(num_b, denom)
+    formula_prob = p_a + p_b
+
+    dec_sum = (Decimal(num_a) / Decimal(denom)) + (Decimal(num_b) / Decimal(denom))
+    dec_formula = Decimal(formula_prob.numerator) / Decimal(formula_prob.denominator)
+    if abs(dec_sum - dec_formula) > Decimal("1e-15"):
+        raise ValueError("and_or_rule (or) verification failed")
+
+    prompt = (
+        f"A bag contains coloured counters. P({colour_a}) = {num_a}/{denom}. "
+        f"P({colour_b}) = {num_b}/{denom}. A counter cannot be both colours. "
+        f"Find P({colour_a} or {colour_b})."
+    )
+    steps = [
+        f"A counter cannot be both {colour_a} and {colour_b}, so these events are mutually exclusive.",
+        "For mutually exclusive events, P(A or B) = P(A) + P(B).",
+        f"P({colour_a} or {colour_b}) = {num_a}/{denom} + {num_b}/{denom} = "
+        f"{formula_prob.numerator}/{formula_prob.denominator}",
+    ]
+    dedup_key = f"or:{colour_a}:{colour_b}:{num_a}:{num_b}:{denom}"
+    return prompt, steps, formula_prob, dedup_key, colour_a, colour_b, num_a, num_b, denom
+
+
+def _build_and_rule(rng: random.Random):
+    desc_a, name_a, p_a, kind_a = _independent_event(rng)
+    desc_b, name_b, p_b, kind_b = _independent_event(rng, exclude_kind=kind_a)
+    formula_prob = p_a * p_b
+
+    dec_product = (Decimal(p_a.numerator) / Decimal(p_a.denominator)) * (
+        Decimal(p_b.numerator) / Decimal(p_b.denominator)
+    )
+    dec_formula = Decimal(formula_prob.numerator) / Decimal(formula_prob.denominator)
+    if abs(dec_product - dec_formula) > Decimal("1e-15"):
+        raise ValueError("and_or_rule (and) verification failed")
+
+    cap_desc_a = desc_a[0].upper() + desc_a[1:]
+    prompt = (
+        f"{cap_desc_a} (P({name_a}) = {p_a.numerator}/{p_a.denominator}) and {desc_b} "
+        f"(P({name_b}) = {p_b.numerator}/{p_b.denominator}). These two events are independent. "
+        f"Find P({name_a} and {name_b})."
+    )
+    steps = [
+        f"P({name_a}) = {p_a.numerator}/{p_a.denominator}",
+        f"P({name_b}) = {p_b.numerator}/{p_b.denominator}",
+        f"These are independent events, so P({name_a} and {name_b}) = P({name_a}) × P({name_b}) = "
+        f"{p_a.numerator}/{p_a.denominator} × {p_b.numerator}/{p_b.denominator} = "
+        f"{formula_prob.numerator}/{formula_prob.denominator}",
+    ]
+    dedup_key = f"and:{kind_a}:{kind_b}:{name_a}:{name_b}:{p_a}:{p_b}"
+    return prompt, steps, formula_prob, dedup_key, name_a, name_b, p_a, p_b
+
+
+def generate_and_or_rule(tier: Tier, rng: random.Random) -> Question:
+    if rng.random() < 0.5:
+        prompt, steps, formula_prob, dedup_key = _build_or_rule(rng)[:4]
+    else:
+        prompt, steps, formula_prob, dedup_key = _build_and_rule(rng)[:4]
+
+    return Question(
+        topic_id="probability_and_or_rule",
+        tier=Tier.FOUNDATION,
+        prompt=prompt,
+        solution_steps=tuple(steps),
+        final_answer=f"{formula_prob.numerator}/{formula_prob.denominator}",
+        dedup_key=dedup_key,
+    )
+
+
+def generate_modelled_example_and_or_rule(tier: Tier, rng: random.Random) -> ModelledExample:
+    if rng.random() < 0.5:
+        prompt, _steps, formula_prob, _key, colour_a, colour_b, num_a, num_b, denom = _build_or_rule(rng)
+        teaching_steps = [
+            "Two events are 'mutually exclusive' if they can never both happen at the same time - here a "
+            "single counter obviously can't be both colours at once.",
+            "For mutually exclusive events, the OR rule says you can simply ADD the individual "
+            "probabilities together to get the probability that either one happens.",
+            f"P({colour_a}) = {num_a}/{denom} and P({colour_b}) = {num_b}/{denom}, so P({colour_a} or "
+            f"{colour_b}) = {num_a}/{denom} + {num_b}/{denom}.",
+            f"Adding the numerators (since the denominators already match) gives "
+            f"{formula_prob.numerator}/{formula_prob.denominator}.",
+        ]
+        worked_calculation = [
+            f"P({colour_a} or {colour_b}) = {num_a}/{denom} + {num_b}/{denom}",
+            f"= {formula_prob.numerator}/{formula_prob.denominator}",
+        ]
+    else:
+        prompt, _steps, formula_prob, _key, name_a, name_b, p_a, p_b = _build_and_rule(rng)
+        teaching_steps = [
+            "Two events are 'independent' if the outcome of one has no effect at all on the outcome of "
+            "the other - here the two events happen on completely separate objects.",
+            "For independent events, the AND rule says you MULTIPLY the individual probabilities together "
+            "to get the probability that both happen.",
+            f"P({name_a}) = {p_a.numerator}/{p_a.denominator} and P({name_b}) = "
+            f"{p_b.numerator}/{p_b.denominator}, so P({name_a} and {name_b}) = "
+            f"{p_a.numerator}/{p_a.denominator} × {p_b.numerator}/{p_b.denominator}.",
+            f"Multiplying numerators together and denominators together gives "
+            f"{formula_prob.numerator}/{formula_prob.denominator}.",
+        ]
+        worked_calculation = [
+            f"P({name_a} and {name_b}) = {p_a.numerator}/{p_a.denominator} × {p_b.numerator}/{p_b.denominator}",
+            f"= {formula_prob.numerator}/{formula_prob.denominator}",
+        ]
+
+    return ModelledExample(
+        topic_id="probability_and_or_rule",
+        tier=Tier.FOUNDATION,
+        prompt=prompt,
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"{formula_prob.numerator}/{formula_prob.denominator}",
+    )
+
+
+_EXPECTATION_DENOMINATORS = [4, 5, 6, 8, 10, 12, 20, 25]
+_EXPECTATION_MULTIPLIERS = [4, 5, 6, 8, 10, 15, 20]
+
+
+def _build_expectation(rng: random.Random):
+    denominator = rng.choice(_EXPECTATION_DENOMINATORS)
+    numerator = rng.randint(1, denominator - 1)
+    trials = denominator * rng.choice(_EXPECTATION_MULTIPLIERS)
+    frac = f"{numerator}/{denominator}"
+
+    context = rng.choice(["die", "spinner", "coin", "batch", "bus"])
+    if context == "die":
+        target = rng.randint(1, 6)
+        prompt = (
+            f"A biased die has P(rolling a {target}) = {frac}. The die is rolled {trials} times. "
+            f"How many times would you expect to get a {target}?"
+        )
+        event_desc = f"get a {target}"
+        ctx_key = f"die:{target}"
+    elif context == "spinner":
+        colour = rng.choice(COLOURS)
+        prompt = (
+            f"A spinner has P(landing on {colour}) = {frac}. The spinner is spun {trials} times. "
+            f"How many times would you expect it to land on {colour}?"
+        )
+        event_desc = f"land on {colour}"
+        ctx_key = f"spinner:{colour}"
+    elif context == "coin":
+        prompt = (
+            f"A biased coin has P(heads) = {frac}. The coin is flipped {trials} times. "
+            "How many times would you expect to get heads?"
+        )
+        event_desc = "get heads"
+        ctx_key = "coin"
+    elif context == "batch":
+        prompt = (
+            f"In a batch of items, the probability that an item is defective is {frac}. "
+            f"{trials} items are checked. How many would you expect to be defective?"
+        )
+        event_desc = "be defective"
+        ctx_key = "batch"
+    else:
+        prompt = (
+            f"The probability that a particular bus is late is {frac}. The bus runs {trials} times. "
+            "On how many occasions would you expect it to be late?"
+        )
+        event_desc = "be late"
+        ctx_key = "bus"
+
+    expected_frac = Fraction(numerator, denominator) * trials
+    if expected_frac.denominator != 1:
+        raise ValueError("expectation did not resolve to a whole number")
+    expected_primary = expected_frac.numerator
+
+    expected_check = (trials // denominator) * numerator
+    if expected_check != expected_primary:
+        raise ValueError("expectation verification failed")
+
+    steps = [
+        f"Expected number of times = probability × number of trials = {frac} × {trials}",
+        f"= {expected_primary}",
+    ]
+    dedup_key = f"expectation:{ctx_key}:{numerator}:{denominator}:{trials}"
+    return prompt, steps, expected_primary, dedup_key, event_desc, numerator, denominator, trials, frac
+
+
+def generate_expectation(tier: Tier, rng: random.Random) -> Question:
+    prompt, steps, expected, dedup_key, *_ = _build_expectation(rng)
+    return Question(
+        topic_id="probability_expectation",
+        tier=Tier.FOUNDATION,
+        prompt=prompt,
+        solution_steps=tuple(steps),
+        final_answer=str(expected),
+        dedup_key=dedup_key,
+    )
+
+
+def generate_modelled_example_expectation(tier: Tier, rng: random.Random) -> ModelledExample:
+    prompt, _steps, expected, _key, event_desc, numerator, denominator, trials, frac = _build_expectation(rng)
+
+    teaching_steps = [
+        "To find an 'expected' frequency, we assume the probability holds exactly and scale it up to the "
+        "number of trials - it's a prediction of what should happen on average, not a guarantee of the "
+        "exact result every time.",
+        f"The probability of the event is {frac}, meaning we expect it roughly {numerator} times out of "
+        f"every {denominator} trials.",
+        f"There are {trials} trials in total, and {trials} ÷ {denominator} = {trials // denominator} "
+        f"complete groups of {denominator}, so we expect {numerator} occurrences in each of those groups.",
+        f"Expected number of times to {event_desc} = {frac} × {trials} = {expected}.",
+    ]
+    worked_calculation = [
+        f"{frac} × {trials}",
+        f"= {expected}",
+    ]
+
+    return ModelledExample(
+        topic_id="probability_expectation",
+        tier=Tier.FOUNDATION,
+        prompt=prompt,
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=str(expected),
+    )
+
+
 TOPIC_SINGLE_EVENT = TopicDefinition(
     id="probability_single_event",
     display_name="Single Event",
@@ -439,4 +798,37 @@ TOPIC_CONDITIONAL = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_conditional_without_replacement,
+)
+
+TOPIC_LISTING_OUTCOMES = TopicDefinition(
+    id="probability_listing_outcomes",
+    display_name="Listing Outcomes",
+    description="Systematically list all the possible outcomes of two combined events.",
+    generate=generate_listing_outcomes,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_listing_outcomes,
+)
+
+TOPIC_AND_OR_RULE = TopicDefinition(
+    id="probability_and_or_rule",
+    display_name="AND / OR Rule",
+    description="Use the OR rule for mutually exclusive events and the AND rule for independent events.",
+    generate=generate_and_or_rule,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_and_or_rule,
+)
+
+TOPIC_EXPECTATION = TopicDefinition(
+    id="probability_expectation",
+    display_name="Expected Frequency",
+    description="Find the expected number of occurrences of an event given its probability and the number of trials.",
+    generate=generate_expectation,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_expectation,
 )

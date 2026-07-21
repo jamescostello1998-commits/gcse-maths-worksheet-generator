@@ -1,6 +1,9 @@
+import dataclasses
 import itertools
 import random
 from fractions import Fraction
+
+import sympy as sp
 
 from app.core.models import DiagramSpec, ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
@@ -11,9 +14,122 @@ GROUP = "Tree Diagrams"
 COLOURS = ["red", "blue", "green", "yellow"]
 TREE_DRAWING_QUESTION_COUNT = 5
 
+ALGEBRAIC_TARGETS = ["both_first", "both_second", "first_then_second", "second_then_first", "at_least_one_first"]
+_X_SYM = sp.symbols("x")
+
 
 def _frac_str(f: Fraction) -> str:
     return f"{f.numerator}/{f.denominator}"
+
+
+def _solve_algebraic_weights(w1: int, w2: int) -> Fraction:
+    """Solve w1*x + w2*x = 1 for x using sympy (primary method - mirrors the
+    genuine equation formed from 'the two branch probabilities sum to 1'),
+    then independently re-verify the result using plain Fraction arithmetic
+    with no sympy involved at all - a completely separate code path from
+    sympy's own solver."""
+    solutions = sp.solve(sp.Eq(w1 * _X_SYM + w2 * _X_SYM, 1), _X_SYM)
+    if len(solutions) != 1:
+        raise ValueError("tree_diagram_algebraic: unexpected sympy solve result")
+    x_sympy = sp.nsimplify(solutions[0])
+    num, den = sp.fraction(x_sympy)
+    x_from_sympy = Fraction(int(num), int(den))
+
+    # Independent check: closed-form x = 1/(w1+w2) via plain Fraction
+    # arithmetic, then substitute back into the original equation and
+    # confirm it equals 1 - never trusting sympy's solve output blindly.
+    x_closed_form = Fraction(1, w1 + w2)
+    if w1 * x_closed_form + w2 * x_closed_form != 1:
+        raise ValueError("tree_diagram_algebraic: closed-form x fails to satisfy the equation")
+    if x_from_sympy != x_closed_form:
+        raise ValueError("tree_diagram_algebraic: sympy solution disagrees with the closed-form check")
+    return x_closed_form
+
+
+def _algebraic_setup(rng: random.Random) -> tuple:
+    """Pick a scenario, style, and coefficients for an algebraic two-outcome
+    tree question. Returns (n1, n2, style, w1, w2, expr1, expr2, equation_desc,
+    setup_text) - the algebraic label strings (expr1/expr2) are what should
+    reach the diagram, never the solved numeric probabilities."""
+    n1, n2 = rng.sample(COLOURS, 2)
+    style = rng.choice(["coeff", "one_minus"])
+
+    if style == "coeff":
+        w1, w2 = rng.sample(range(1, 6), 2)
+        expr1 = "x" if w1 == 1 else f"{w1}x"
+        expr2 = "x" if w2 == 1 else f"{w2}x"
+        equation_desc = f"{expr1} + {expr2} = 1"
+        setup_text = (
+            f"A biased spinner can only land on {n1} or {n2}. The probability that it lands on {n1} is "
+            f"{expr1}, and the probability that it lands on {n2} is {expr2}."
+        )
+    else:
+        w1 = 1
+        w2 = rng.randint(2, 6)
+        expr1 = "x"
+        expr2 = "1-x"
+        equation_desc = f"x + {w2}x = 1"
+        setup_text = (
+            f"A biased spinner can only land on {n1} or {n2}. The probability that it lands on {n1} is x, "
+            f"and the probability that it lands on {n2} is 1 - x. Landing on {n2} is {w2} times as likely "
+            f"as landing on {n1}."
+        )
+
+    return n1, n2, style, w1, w2, expr1, expr2, equation_desc, setup_text
+
+
+def _algebraic_target(rng: random.Random, n1: str, n2: str, p1: Fraction, p2: Fraction) -> tuple:
+    """Pick one combined-outcome target for two spins of the spinner. Returns
+    (target, prompt_event, formula_prob, calc_line)."""
+    target = rng.choice(ALGEBRAIC_TARGETS)
+    if target == "both_first":
+        prompt_event = f"both spins land on {n1}"
+        formula_prob = p1 * p1
+        calc_line = f"P({prompt_event}) = {_frac_str(p1)} × {_frac_str(p1)} = {_frac_str(formula_prob)}"
+    elif target == "both_second":
+        prompt_event = f"both spins land on {n2}"
+        formula_prob = p2 * p2
+        calc_line = f"P({prompt_event}) = {_frac_str(p2)} × {_frac_str(p2)} = {_frac_str(formula_prob)}"
+    elif target == "first_then_second":
+        prompt_event = f"the first spin lands on {n1} and the second lands on {n2}"
+        formula_prob = p1 * p2
+        calc_line = f"P({prompt_event}) = {_frac_str(p1)} × {_frac_str(p2)} = {_frac_str(formula_prob)}"
+    elif target == "second_then_first":
+        prompt_event = f"the first spin lands on {n2} and the second lands on {n1}"
+        formula_prob = p2 * p1
+        calc_line = f"P({prompt_event}) = {_frac_str(p2)} × {_frac_str(p1)} = {_frac_str(formula_prob)}"
+    else:  # at_least_one_first
+        prompt_event = f"at least one of the two spins lands on {n1}"
+        both_second = p2 * p2
+        formula_prob = 1 - both_second
+        calc_line = (
+            f"P({prompt_event}) = 1 - P(both {n2}) = 1 - {_frac_str(both_second)} = {_frac_str(formula_prob)}"
+        )
+    return target, prompt_event, formula_prob, calc_line
+
+
+def _algebraic_brute_force_check(n1: str, n2: str, w1: int, w2: int, target: str, formula_prob: Fraction) -> None:
+    """Independent verification of the target probability: treat w1/w2 as
+    pseudo-counts of a physical bag (P(n1) = w1/(w1+w2) exactly matches a bag
+    with w1 n1-counters and w2 n2-counters out of w1+w2 total) and brute-force
+    enumerate every physically-labelled pair of picks with replacement - a
+    genuinely different method than the p1/p2 Fraction multiplication used to
+    build the solution steps."""
+    items = [n1] * w1 + [n2] * w2
+    sample = list(itertools.product(items, items))
+    if target == "both_first":
+        matches = [o for o in sample if o == (n1, n1)]
+    elif target == "both_second":
+        matches = [o for o in sample if o == (n2, n2)]
+    elif target == "first_then_second":
+        matches = [o for o in sample if o == (n1, n2)]
+    elif target == "second_then_first":
+        matches = [o for o in sample if o == (n2, n1)]
+    else:  # at_least_one_first
+        matches = [o for o in sample if n1 in o]
+    brute_prob = Fraction(len(matches), len(sample))
+    if brute_prob != formula_prob:
+        raise ValueError("tree_diagram_algebraic verification failed")
 
 
 def generate_tree_diagram_independent(tier: Tier, rng: random.Random) -> Question:
@@ -465,6 +581,107 @@ def generate_modelled_example_tree_diagram_drawing(tier: Tier, rng: random.Rando
     )
 
 
+def generate_tree_diagram_algebraic(tier: Tier, rng: random.Random) -> Question:
+    n1, n2, style, w1, w2, expr1, expr2, equation_desc, setup_text = _algebraic_setup(rng)
+    x_val = _solve_algebraic_weights(w1, w2)
+    p1 = w1 * x_val
+    p2 = w2 * x_val
+
+    target, prompt_event, formula_prob, calc_line = _algebraic_target(rng, n1, n2, p1, p2)
+    _algebraic_brute_force_check(n1, n2, w1, w2, target, formula_prob)
+
+    stage1 = [(n1.title(), expr1), (n2.title(), expr2)]
+    stage2 = [
+        [(n1.title(), expr1), (n2.title(), expr2)],
+        [(n1.title(), expr1), (n2.title(), expr2)],
+    ]
+
+    steps = [
+        f"{setup_text} Since the spinner can only land on {n1} or {n2}, the two probabilities must sum to "
+        f"1: {equation_desc}.",
+        f"Solving this equation gives x = {_frac_str(x_val)}.",
+        f"Substituting back: P({n1}) = {_frac_str(p1)}, P({n2}) = {_frac_str(p2)}.",
+        calc_line,
+    ]
+    return Question(
+        topic_id="tree_diagram_algebraic",
+        tier=Tier.HIGHER,
+        prompt=(
+            f"{setup_text} The spinner is spun twice. Find the probability that {prompt_event}."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=_frac_str(formula_prob),
+        dedup_key=f"tree_alg:{style}:{n1}:{n2}:{w1}:{w2}:{target}",
+        diagram=DiagramSpec(kind="tree_diagram", params={"stage1": stage1, "stage2": stage2}),
+    )
+
+
+def generate_modelled_example_tree_diagram_algebraic(tier: Tier, rng: random.Random) -> ModelledExample:
+    n1, n2, style, w1, w2, expr1, expr2, equation_desc, setup_text = _algebraic_setup(rng)
+    x_val = _solve_algebraic_weights(w1, w2)
+    p1 = w1 * x_val
+    p2 = w2 * x_val
+
+    target, prompt_event, formula_prob, calc_line = _algebraic_target(rng, n1, n2, p1, p2)
+    _algebraic_brute_force_check(n1, n2, w1, w2, target, formula_prob)
+
+    stage1 = [(n1.title(), expr1), (n2.title(), expr2)]
+    stage2 = [
+        [(n1.title(), expr1), (n2.title(), expr2)],
+        [(n1.title(), expr1), (n2.title(), expr2)],
+    ]
+
+    worked_calculation = [
+        f"{equation_desc}, so x = {_frac_str(x_val)}",
+        f"P({n1}) = {_frac_str(p1)}, P({n2}) = {_frac_str(p2)}",
+        calc_line,
+    ]
+    teaching_steps = [
+        f"Because this spinner only has two possible outcomes, {n1} and {n2}, their probabilities must add "
+        f"up to exactly 1 - that's what lets us turn the algebraic expressions into a real equation: "
+        f"{equation_desc}.",
+        f"Solving that equation for x gives x = {_frac_str(x_val)}. Once x is known, substitute it back "
+        f"into each expression to get the actual numeric probabilities: P({n1}) = {_frac_str(p1)} and "
+        f"P({n2}) = {_frac_str(p2)}.",
+        "The tree diagram for spinning twice has the same two branches repeated at the second stage, "
+        "since the spinner doesn't change between spins.",
+        "To find the probability of a specific outcome (or combination of outcomes), multiply along the "
+        "branches of the tree that match it, adding several products together if more than one path "
+        "satisfies the event.",
+        f"So {calc_line}.",
+    ]
+
+    return ModelledExample(
+        topic_id="tree_diagram_algebraic",
+        tier=Tier.HIGHER,
+        prompt=(
+            f"{setup_text} The spinner is spun twice. Find the probability that {prompt_event}."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=_frac_str(formula_prob),
+        diagram=DiagramSpec(kind="tree_diagram", params={"stage1": stage1, "stage2": stage2}),
+    )
+
+
+def generate_tree_diagram_mixed(tier: Tier, rng: random.Random) -> Question:
+    if rng.random() < 0.5:
+        q = generate_tree_diagram_independent(Tier.FOUNDATION, rng)
+    else:
+        q = generate_tree_diagram_dependent(Tier.HIGHER, rng)
+    return dataclasses.replace(
+        q, topic_id="tree_diagram_mixed", tier=Tier.HIGHER, dedup_key=f"mixed:{q.dedup_key}"
+    )
+
+
+def generate_modelled_example_tree_diagram_mixed(tier: Tier, rng: random.Random) -> ModelledExample:
+    if rng.random() < 0.5:
+        example = generate_modelled_example_tree_diagram_independent(Tier.FOUNDATION, rng)
+    else:
+        example = generate_modelled_example_tree_diagram_dependent(Tier.HIGHER, rng)
+    return dataclasses.replace(example, topic_id="tree_diagram_mixed", tier=Tier.HIGHER)
+
+
 TOPIC_TREE_INDEPENDENT = TopicDefinition(
     id="tree_diagram_independent",
     display_name="Interpreting Tree Diagrams (Independent Events)",
@@ -497,4 +714,29 @@ TOPIC_TREE_DRAWING = TopicDefinition(
     fixed_tier=Tier.FOUNDATION,
     question_count=TREE_DRAWING_QUESTION_COUNT,
     generate_modelled_example=generate_modelled_example_tree_diagram_drawing,
+)
+
+TOPIC_TREE_ALGEBRAIC = TopicDefinition(
+    id="tree_diagram_algebraic",
+    display_name="Tree Diagrams with Algebraic Probabilities",
+    description=(
+        "Form and solve an equation for x from two algebraic branch probabilities that sum to 1, then use "
+        "a tree diagram to find a combined probability."
+    ),
+    generate=generate_tree_diagram_algebraic,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_tree_diagram_algebraic,
+)
+
+TOPIC_TREE_MIXED = TopicDefinition(
+    id="tree_diagram_mixed",
+    display_name="Mixed Tree Diagrams",
+    description="A mix of independent and dependent tree diagram probability questions.",
+    generate=generate_tree_diagram_mixed,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_tree_diagram_mixed,
 )

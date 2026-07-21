@@ -8,7 +8,7 @@ from app.worksheet.builder import build_worksheet
 def test_every_topic_is_flagged_with_a_modelled_example():
     # The pilot (6 topics) has been rolled out to the full curriculum.
     topics = list_topics()
-    assert len(topics) == 160
+    assert len(topics) == 169
     for t in topics:
         assert t.generate_modelled_example is not None
 
