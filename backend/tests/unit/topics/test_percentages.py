@@ -14,6 +14,7 @@ GENERATORS = [
     (percentages.generate_reverse_foundation, Tier.FOUNDATION),
     (percentages.generate_reverse, Tier.HIGHER),
     (percentages.generate_compound, Tier.HIGHER),
+    (percentages.generate_compound_foundation, Tier.FOUNDATION),
 ]
 
 
@@ -47,20 +48,22 @@ def test_topic_definitions_have_expected_metadata():
         percentages.TOPIC_REVERSE_FOUNDATION,
         percentages.TOPIC_REVERSE,
         percentages.TOPIC_COMPOUND,
+        percentages.TOPIC_COMPOUND_FOUNDATION,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 5
+    assert len(ids) == 6
     for t in topics:
         assert t.section == "ratio_proportion"
         assert t.group == "Percentages"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
+    assert percentages.TOPIC_COMPOUND_FOUNDATION.fixed_tier == Tier.FOUNDATION
 
 
 def test_modelled_example_topics_have_generator_wired():
     for t in (
         percentages.TOPIC_OF_AMOUNT, percentages.TOPIC_CHANGE,
         percentages.TOPIC_REVERSE_FOUNDATION, percentages.TOPIC_REVERSE,
-        percentages.TOPIC_COMPOUND,
+        percentages.TOPIC_COMPOUND, percentages.TOPIC_COMPOUND_FOUNDATION,
     ):
         assert t.generate_modelled_example is not None
 
@@ -114,6 +117,17 @@ def test_modelled_example_compound_produces_verified_examples():
     for _ in range(TRIALS):
         example = percentages.generate_modelled_example_compound(Tier.HIGHER, rng)
         assert example.topic_id == "compound_percentage"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+
+
+def test_modelled_example_compound_foundation_produces_verified_examples():
+    rng = random.Random(207)
+    for _ in range(TRIALS):
+        example = percentages.generate_modelled_example_compound_foundation(Tier.FOUNDATION, rng)
+        assert example.topic_id == "compound_percentage_foundation"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3

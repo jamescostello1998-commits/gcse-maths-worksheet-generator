@@ -10,6 +10,7 @@ GENERATORS = [
     (fractions.generate_add_subtract_fractions, Tier.FOUNDATION),
     (fractions.generate_multiply_fractions, Tier.FOUNDATION),
     (fractions.generate_divide_fractions, Tier.HIGHER),
+    (fractions.generate_divide_fractions_foundation, Tier.FOUNDATION),
     (fractions.generate_mixed_number_arithmetic, Tier.HIGHER),
     (fractions.generate_fraction_of_amount, Tier.FOUNDATION),
 ]
@@ -39,15 +40,17 @@ def test_topic_definitions_have_expected_metadata():
         fractions.TOPIC_ADD_SUBTRACT,
         fractions.TOPIC_MULTIPLY,
         fractions.TOPIC_DIVIDE,
+        fractions.TOPIC_DIVIDE_FOUNDATION,
         fractions.TOPIC_MIXED_NUMBER_ARITHMETIC,
         fractions.TOPIC_OF_AMOUNT,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 6
+    assert len(ids) == 7
     for t in topics:
         assert t.section == "number"
         assert t.group == "Fractions"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
+    assert fractions.TOPIC_DIVIDE_FOUNDATION.fixed_tier == Tier.FOUNDATION
 
 
 def test_all_fraction_topics_have_modelled_examples():
@@ -56,6 +59,7 @@ def test_all_fraction_topics_have_modelled_examples():
         fractions.TOPIC_ADD_SUBTRACT,
         fractions.TOPIC_MULTIPLY,
         fractions.TOPIC_DIVIDE,
+        fractions.TOPIC_DIVIDE_FOUNDATION,
         fractions.TOPIC_MIXED_NUMBER_ARITHMETIC,
         fractions.TOPIC_OF_AMOUNT,
     ]
@@ -68,6 +72,11 @@ MODELLED_EXAMPLE_GENERATORS = [
     (fractions.generate_modelled_example_add_subtract, Tier.FOUNDATION, "fractions_add_subtract"),
     (fractions.generate_modelled_example_multiply_fractions, Tier.FOUNDATION, "fractions_multiply"),
     (fractions.generate_modelled_example_divide_fractions, Tier.HIGHER, "fractions_divide"),
+    (
+        fractions.generate_modelled_example_divide_fractions_foundation,
+        Tier.FOUNDATION,
+        "fractions_divide_foundation",
+    ),
     (fractions.generate_modelled_example_mixed_number_arithmetic, Tier.HIGHER, "fractions_mixed_number_arithmetic"),
     (fractions.generate_modelled_example_fraction_of_amount, Tier.FOUNDATION, "fractions_of_amount"),
 ]

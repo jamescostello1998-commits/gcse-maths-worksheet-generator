@@ -20,7 +20,7 @@ def test_all_topics_produce_their_full_distinct_question_count_at_their_fixed_ti
     from app.core.registry import list_topics
 
     topics = list_topics()
-    assert len(topics) == 136
+    assert len(topics) == 142
     for topic in topics:
         tier = topic.fixed_tier or Tier.FOUNDATION
         count = topic.question_count or 20

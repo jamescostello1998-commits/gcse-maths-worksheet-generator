@@ -47,6 +47,7 @@ _TOPIC_LIST: list[TopicDefinition] = [
     fractions.TOPIC_ADD_SUBTRACT,
     fractions.TOPIC_MULTIPLY,
     fractions.TOPIC_DIVIDE,
+    fractions.TOPIC_DIVIDE_FOUNDATION,
     fractions.TOPIC_MIXED_NUMBER_ARITHMETIC,
     fractions.TOPIC_OF_AMOUNT,
     decimals.TOPIC_ROUND_DP,
@@ -57,6 +58,7 @@ _TOPIC_LIST: list[TopicDefinition] = [
     standard_form.TOPIC_TO_STANDARD_FORM,
     standard_form.TOPIC_FROM_STANDARD_FORM,
     standard_form.TOPIC_MULTIPLY_DIVIDE,
+    standard_form.TOPIC_MULTIPLY_DIVIDE_FOUNDATION,
     standard_form.TOPIC_ADD_SUBTRACT,
     estimation.TOPIC_ESTIMATION,
     estimation.TOPIC_ERROR_INTERVAL,
@@ -120,6 +122,7 @@ _TOPIC_LIST: list[TopicDefinition] = [
     percentages.TOPIC_REVERSE_FOUNDATION,
     percentages.TOPIC_REVERSE,
     percentages.TOPIC_COMPOUND,
+    percentages.TOPIC_COMPOUND_FOUNDATION,
     ratio.TOPIC_SHARE_TWO,
     ratio.TOPIC_FIND_SHARE,
     ratio.TOPIC_SHARE_THREE,
@@ -174,6 +177,7 @@ _TOPIC_LIST: list[TopicDefinition] = [
     tree_diagrams.TOPIC_TREE_DEPENDENT,
     tree_diagrams.TOPIC_TREE_DRAWING,
     data_handling.TOPIC_SET_NOTATION,
+    data_handling.TOPIC_SET_NOTATION_FOUNDATION,
     data_handling.TOPIC_PRODUCT_RULE_COUNTING,
     data_handling.TOPIC_RELATIVE_FREQUENCY,
     data_handling.TOPIC_TWO_WAY_TABLES,
@@ -183,7 +187,9 @@ _TOPIC_LIST: list[TopicDefinition] = [
     statistics_topics.TOPIC_MEDIAN_AND_MODE,
     statistics_topics.TOPIC_MEAN_FREQUENCY_TABLE,
     statistics_topics.TOPIC_MEAN_GROUPED_FREQUENCY_TABLE,
+    statistics_topics.TOPIC_MEAN_GROUPED_FREQUENCY_TABLE_FOUNDATION,
     statistics_topics.TOPIC_REVERSE_MEAN,
+    statistics_topics.TOPIC_REVERSE_MEAN_FOUNDATION,
 ]
 
 TOPICS: dict[str, TopicDefinition] = {t.id: t for t in _TOPIC_LIST}

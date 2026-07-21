@@ -16,7 +16,7 @@ def test_topics_returns_all_topics():
     response = client.get("/api/topics")
     assert response.status_code == 200
     data = response.json()
-    assert len(data) == 136
+    assert len(data) == 142
     for topic in data:
         assert set(topic.keys()) == {"id", "name", "description", "fixed_tier", "has_modelled_example"}
 
@@ -38,7 +38,7 @@ def test_sections_returns_six_sections_in_declared_order():
     assert len(number_section["groups"]) == 8
 
     total_topics = sum(len(g["topics"]) for s in data for g in s["groups"])
-    assert total_topics == 136
+    assert total_topics == 142
 
 
 def test_valid_worksheet_request_returns_pdf():

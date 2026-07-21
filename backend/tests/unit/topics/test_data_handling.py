@@ -8,6 +8,7 @@ TRIALS = 200
 
 GENERATORS = [
     (data_handling.generate_set_notation, Tier.HIGHER),
+    (data_handling.generate_set_notation_foundation, Tier.FOUNDATION),
     (data_handling.generate_product_rule_counting, Tier.HIGHER),
     (data_handling.generate_relative_frequency, Tier.FOUNDATION),
     (data_handling.generate_two_way_tables, Tier.FOUNDATION),
@@ -66,27 +67,39 @@ def test_dedup_keys_vary_per_generator():
 def test_topic_definitions_have_expected_metadata():
     topics = [
         data_handling.TOPIC_SET_NOTATION,
+        data_handling.TOPIC_SET_NOTATION_FOUNDATION,
         data_handling.TOPIC_PRODUCT_RULE_COUNTING,
         data_handling.TOPIC_RELATIVE_FREQUENCY,
         data_handling.TOPIC_TWO_WAY_TABLES,
         data_handling.TOPIC_SAMPLE_SPACE_DIAGRAMS,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 5
+    assert len(ids) == 6
     for t in topics:
         assert t.section == "probability"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
         assert t.question_count is None
     assert data_handling.TOPIC_SET_NOTATION.group == "Sets and Counting"
+    assert data_handling.TOPIC_SET_NOTATION_FOUNDATION.group == "Sets and Counting"
+    assert data_handling.TOPIC_SET_NOTATION_FOUNDATION.fixed_tier == Tier.FOUNDATION
     assert data_handling.TOPIC_PRODUCT_RULE_COUNTING.group == "Sets and Counting"
     assert data_handling.TOPIC_RELATIVE_FREQUENCY.group == "Tables and Diagrams"
     assert data_handling.TOPIC_TWO_WAY_TABLES.group == "Tables and Diagrams"
     assert data_handling.TOPIC_SAMPLE_SPACE_DIAGRAMS.group == "Tables and Diagrams"
 
 
+def test_set_notation_foundation_prompt_avoids_formal_notation():
+    rng = random.Random(434)
+    for _ in range(TRIALS):
+        q = data_handling.generate_set_notation_foundation(Tier.FOUNDATION, rng)
+        for symbol in ("∪", "∩", "'"):
+            assert symbol not in q.prompt
+
+
 def test_modelled_example_topics_are_wired_up():
     for t in (
         data_handling.TOPIC_SET_NOTATION,
+        data_handling.TOPIC_SET_NOTATION_FOUNDATION,
         data_handling.TOPIC_PRODUCT_RULE_COUNTING,
         data_handling.TOPIC_RELATIVE_FREQUENCY,
         data_handling.TOPIC_TWO_WAY_TABLES,
@@ -104,6 +117,19 @@ def test_modelled_example_set_notation_produces_verified_examples():
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
         assert example.final_answer
+
+
+def test_modelled_example_set_notation_foundation_produces_verified_examples():
+    rng = random.Random(445)
+    for _ in range(TRIALS):
+        example = data_handling.generate_modelled_example_set_notation_foundation(Tier.FOUNDATION, rng)
+        assert example.topic_id == "set_notation_foundation"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+        for symbol in ("∪", "∩", "'"):
+            assert symbol not in example.prompt
 
 
 def test_modelled_example_product_rule_counting_produces_verified_examples():

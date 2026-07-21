@@ -368,6 +368,89 @@ def generate_modelled_example_compound(tier: Tier, rng: random.Random) -> Modell
     )
 
 
+def generate_compound_foundation(tier: Tier, rng: random.Random) -> Question:
+    original = rng.randrange(20, 401, 20)
+    percent1 = sp.Rational(rng.choice(FOUNDATION_PERCENTS))
+    percent2 = sp.Rational(rng.choice(FOUNDATION_PERCENTS))
+    increase1 = rng.choice([True, False])
+    increase2 = rng.choice([True, False])
+    mult1 = _multiplier(percent1, increase1)
+    mult2 = _multiplier(percent2, increase2)
+    intermediate = original * mult1
+    final = intermediate * mult2
+
+    expected = to_fraction(sp.Integer(original)) * to_fraction(mult1) * to_fraction(mult2)
+    if expected != to_fraction(final):
+        raise ValueError("Compound-percentage (foundation) verification failed")
+
+    verb1 = "increases" if increase1 else "decreases"
+    verb2 = "increases" if increase2 else "decreases"
+    steps = [
+        f"After the first change: {original} × {fmt_money(mult1)} = {fmt_money(intermediate)}",
+        f"After the second change: {fmt_money(intermediate)} × {fmt_money(mult2)} = {fmt_money(final)}",
+    ]
+    return Question(
+        topic_id="compound_percentage_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"A price of £{original} {verb1} by {percent1}%, then {verb2} by {percent2}%. "
+            "Find the final price."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=f"£{fmt_money(final)}",
+        dedup_key=f"compound_f:{original}:{percent1}:{increase1}:{percent2}:{increase2}",
+    )
+
+
+def generate_modelled_example_compound_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
+    original = rng.randrange(20, 401, 20)
+    percent1 = sp.Rational(rng.choice(FOUNDATION_PERCENTS))
+    percent2 = sp.Rational(rng.choice(FOUNDATION_PERCENTS))
+    increase1 = rng.choice([True, False])
+    increase2 = rng.choice([True, False])
+    mult1 = _multiplier(percent1, increase1)
+    mult2 = _multiplier(percent2, increase2)
+    intermediate = original * mult1
+    final = intermediate * mult2
+
+    expected = to_fraction(sp.Integer(original)) * to_fraction(mult1) * to_fraction(mult2)
+    if expected != to_fraction(final):
+        raise ValueError("modelled example compound_percentage_foundation verification failed")
+
+    verb1 = "increases" if increase1 else "decreases"
+    verb2 = "increases" if increase2 else "decreases"
+    teaching_steps = [
+        "With two successive percentage changes, a very common mistake is to add the two percentages "
+        "together and apply them in one go. That doesn't work here, because the second change is "
+        "applied to the NEW amount after the first change, not to the original amount.",
+        f"So the two changes must be applied one at a time, in order. First, convert each percentage "
+        f"change to a multiplier: a {percent1}% {verb1[:-1]} is ×{fmt_money(mult1)}, and a {percent2}% "
+        f"{verb2[:-1]} is ×{fmt_money(mult2)}.",
+        f"Apply the first multiplier to the original price: £{original} × {fmt_money(mult1)} = "
+        f"£{fmt_money(intermediate)}. This is the price after only the first change.",
+        f"Now apply the second multiplier to THAT new price, not the original: "
+        f"£{fmt_money(intermediate)} × {fmt_money(mult2)} = £{fmt_money(final)}.",
+        f"So after both changes, the final price is £{fmt_money(final)}.",
+    ]
+    worked_calculation = [
+        f"£{original} {verb1} by {percent1}%, then {verb2} by {percent2}%",
+        f"After change 1: {original} × {fmt_money(mult1)} = {fmt_money(intermediate)}",
+        f"After change 2: {fmt_money(intermediate)} × {fmt_money(mult2)} = {fmt_money(final)}",
+        f"= £{fmt_money(final)}",
+    ]
+    return ModelledExample(
+        topic_id="compound_percentage_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"A price of £{original} {verb1} by {percent1}%, then {verb2} by {percent2}%. "
+            "Find the final price."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"£{fmt_money(final)}",
+    )
+
+
 TOPIC_OF_AMOUNT = TopicDefinition(
     id="percentage_of_amount",
     display_name="Percentage of an Amount",
@@ -421,4 +504,15 @@ TOPIC_COMPOUND = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_compound,
+)
+
+TOPIC_COMPOUND_FOUNDATION = TopicDefinition(
+    id="compound_percentage_foundation",
+    display_name="Compound Percentage Change (Foundation)",
+    description="Apply two successive percentage changes to an amount.",
+    generate=generate_compound_foundation,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_compound_foundation,
 )

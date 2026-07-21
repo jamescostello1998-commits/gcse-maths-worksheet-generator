@@ -130,6 +130,30 @@ def generate_divide_fractions(tier: Tier, rng: random.Random) -> Question:
     )
 
 
+def generate_divide_fractions_foundation(tier: Tier, rng: random.Random) -> Question:
+    a, b = rng.randint(1, 6), rng.randint(2, 8)
+    c, d = rng.randint(1, 6), rng.randint(2, 8)
+    result = Fraction(a, b) / Fraction(c, d)
+
+    # Independent verification: re-multiplying by the divisor must reconstruct the dividend exactly.
+    if result * Fraction(c, d) != Fraction(a, b):
+        raise ValueError("divide_fractions_foundation verification failed")
+
+    steps = [
+        f"Keep-change-flip: {a}/{b} ÷ {c}/{d} = {a}/{b} × {d}/{c}",
+        f"Multiply: ({a}×{d})/({b}×{c}) = {a * d}/{b * c}",
+        f"Simplify: {_fmt_fraction(result)}",
+    ]
+    return Question(
+        topic_id="fractions_divide_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=f"Work out {a}/{b} ÷ {c}/{d}. Give your answer as a fraction in its simplest form.",
+        solution_steps=tuple(steps),
+        final_answer=_fmt_fraction(result),
+        dedup_key=f"divide_f:{a}:{b}:{c}:{d}",
+    )
+
+
 def generate_mixed_number_arithmetic(tier: Tier, rng: random.Random) -> Question:
     den1 = rng.randint(2, 8)
     num1 = rng.randint(1, den1 - 1)
@@ -399,6 +423,52 @@ def generate_modelled_example_divide_fractions(tier: Tier, rng: random.Random) -
     )
 
 
+def generate_modelled_example_divide_fractions_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
+    a, b = rng.randint(1, 6), rng.randint(2, 8)
+    c, d = rng.randint(1, 6), rng.randint(2, 8)
+    result = Fraction(a, b) / Fraction(c, d)
+
+    if result * Fraction(c, d) != Fraction(a, b):
+        raise ValueError("modelled example divide_fractions_foundation verification failed")
+
+    product_num, product_den = a * d, b * c
+    common = math.gcd(product_num, product_den)
+
+    teaching_steps = [
+        "Dividing by a fraction is the same as multiplying by its reciprocal (the fraction flipped "
+        f"upside down). This is often remembered as 'keep, change, flip': keep {a}/{b} as it is, "
+        f"change ÷ to ×, and flip {c}/{d} to become {d}/{c}.",
+        f"So {a}/{b} ÷ {c}/{d} becomes the multiplication {a}/{b} × {d}/{c}.",
+        f"Now multiply straight across: numerators {a} × {d} = {product_num}, denominators "
+        f"{b} × {c} = {product_den}, giving {product_num}/{product_den}.",
+        "Finally, simplify: "
+        + (
+            f"dividing both {product_num} and {product_den} by their highest common factor, {common}, "
+            f"gives {_fmt_fraction(result)}."
+            if common > 1
+            else f"{product_num} and {product_den} share no common factor, so {_fmt_fraction(result)} "
+            "is already in its simplest form."
+        ),
+    ]
+    worked_calculation = [
+        f"{a}/{b} ÷ {c}/{d}",
+        f"= {a}/{b} × {d}/{c}",
+        f"= ({a}×{d})/({b}×{c})",
+        f"= {product_num}/{product_den}",
+    ]
+    if common > 1:
+        worked_calculation.append(f"= {_fmt_fraction(result)}")
+
+    return ModelledExample(
+        topic_id="fractions_divide_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=f"Work out {a}/{b} ÷ {c}/{d}. Give your answer as a fraction in its simplest form.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=_fmt_fraction(result),
+    )
+
+
 def generate_modelled_example_mixed_number_arithmetic(tier: Tier, rng: random.Random) -> ModelledExample:
     den1 = rng.randint(2, 8)
     num1 = rng.randint(1, den1 - 1)
@@ -548,6 +618,17 @@ TOPIC_DIVIDE = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_divide_fractions,
+)
+
+TOPIC_DIVIDE_FOUNDATION = TopicDefinition(
+    id="fractions_divide_foundation",
+    display_name="Dividing Fractions (Foundation)",
+    description="Divide two fractions using keep-change-flip.",
+    generate=generate_divide_fractions_foundation,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_divide_fractions_foundation,
 )
 
 TOPIC_MIXED_NUMBER_ARITHMETIC = TopicDefinition(

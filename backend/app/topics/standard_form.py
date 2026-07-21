@@ -125,6 +125,59 @@ def generate_multiply_divide_standard_form(tier: Tier, rng: random.Random) -> Qu
     )
 
 
+def generate_multiply_divide_standard_form_foundation(tier: Tier, rng: random.Random) -> Question:
+    op = rng.choice(["multiply", "divide"])
+    n1 = rng.randint(1, 5)
+    n2 = rng.randint(1, 5)
+
+    if op == "multiply":
+        a1, a2 = rng.randint(1, 9), rng.randint(1, 9)
+        raw_mantissa = Fraction(a1 * a2)
+        raw_exp = n1 + n2
+    else:
+        a2 = rng.choice([1, 2, 4, 5, 8])
+        a1 = rng.randint(1, 9)
+        raw_mantissa = Fraction(a1, a2)
+        raw_exp = n1 - n2
+
+    norm_mantissa, norm_exp = raw_mantissa, raw_exp
+    while norm_mantissa >= 10:
+        norm_mantissa /= 10
+        norm_exp += 1
+    while norm_mantissa < 1:
+        norm_mantissa *= 10
+        norm_exp -= 1
+
+    # Independent verification via exact Fraction arithmetic on the ordinary-number equivalents.
+    val1 = Fraction(a1) * Fraction(10) ** n1
+    val2 = Fraction(a2) * Fraction(10) ** n2
+    combined = val1 * val2 if op == "multiply" else val1 / val2
+    check_val = norm_mantissa * Fraction(10) ** norm_exp
+    if combined != check_val:
+        raise ValueError("multiply_divide_standard_form_foundation verification failed")
+
+    symbol = "×" if op == "multiply" else "÷"
+    raw_mantissa_str = str(int(raw_mantissa)) if raw_mantissa.denominator == 1 else _fmt_decimal_fixed(_fraction_to_decimal(raw_mantissa))
+    steps = [
+        f"{'Multiply' if op == 'multiply' else 'Divide'} the mantissas: {a1} {symbol} {a2} = {raw_mantissa_str}",
+        f"{'Add' if op == 'multiply' else 'Subtract'} the powers of 10: {n1} {'+' if op == 'multiply' else '-'} {n2} = {raw_exp}",
+    ]
+    if (norm_mantissa, norm_exp) != (raw_mantissa, raw_exp):
+        steps.append(
+            f"Renormalize so the mantissa is between 1 and 10: "
+            f"{_fmt_decimal_fixed(_fraction_to_decimal(norm_mantissa))} × 10^{norm_exp}"
+        )
+    final_answer = f"{_fmt_decimal_fixed(_fraction_to_decimal(norm_mantissa))} × 10^{norm_exp}"
+    return Question(
+        topic_id="standard_form_multiply_divide_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=f"Work out ({a1} × 10^{n1}) {symbol} ({a2} × 10^{n2}). Give your answer in standard form.",
+        solution_steps=tuple(steps),
+        final_answer=final_answer,
+        dedup_key=f"muldiv_f:{op}:{a1}:{n1}:{a2}:{n2}",
+    )
+
+
 def generate_add_subtract_standard_form(tier: Tier, rng: random.Random) -> Question:
     n1 = rng.randint(3, 7)
     n2 = n1 - rng.randint(1, 2)
@@ -307,6 +360,84 @@ def generate_modelled_example_multiply_divide_standard_form(tier: Tier, rng: ran
     )
 
 
+def generate_modelled_example_multiply_divide_standard_form_foundation(
+    tier: Tier, rng: random.Random
+) -> ModelledExample:
+    op = rng.choice(["multiply", "divide"])
+    n1 = rng.randint(1, 5)
+    n2 = rng.randint(1, 5)
+
+    if op == "multiply":
+        a1, a2 = rng.randint(1, 9), rng.randint(1, 9)
+        raw_mantissa = Fraction(a1 * a2)
+        raw_exp = n1 + n2
+    else:
+        a2 = rng.choice([1, 2, 4, 5, 8])
+        a1 = rng.randint(1, 9)
+        raw_mantissa = Fraction(a1, a2)
+        raw_exp = n1 - n2
+
+    norm_mantissa, norm_exp = raw_mantissa, raw_exp
+    while norm_mantissa >= 10:
+        norm_mantissa /= 10
+        norm_exp += 1
+    while norm_mantissa < 1:
+        norm_mantissa *= 10
+        norm_exp -= 1
+
+    # Independent verification via exact Fraction arithmetic on the ordinary-number equivalents.
+    val1 = Fraction(a1) * Fraction(10) ** n1
+    val2 = Fraction(a2) * Fraction(10) ** n2
+    combined = val1 * val2 if op == "multiply" else val1 / val2
+    check_val = norm_mantissa * Fraction(10) ** norm_exp
+    if combined != check_val:
+        raise ValueError("modelled example multiply_divide_standard_form_foundation verification failed")
+
+    symbol = "×" if op == "multiply" else "÷"
+    raw_mantissa_str = str(int(raw_mantissa)) if raw_mantissa.denominator == 1 else _fmt_decimal_fixed(_fraction_to_decimal(raw_mantissa))
+    norm_mantissa_str = _fmt_decimal_fixed(_fraction_to_decimal(norm_mantissa))
+    needs_renormalise = (norm_mantissa, norm_exp) != (raw_mantissa, raw_exp)
+
+    teaching_steps = [
+        "Standard form numbers are built from two separate parts - a mantissa and a power of 10 - and "
+        f"multiplying or dividing lets you deal with each part on its own. To {op} "
+        f"({a1} × 10^{n1}) {symbol} ({a2} × 10^{n2}), handle the mantissas ({a1} and {a2}) and the "
+        f"powers of 10 ({n1} and {n2}) separately.",
+        f"{'Multiply' if op == 'multiply' else 'Divide'} the two mantissas together: "
+        f"{a1} {symbol} {a2} = {raw_mantissa_str}.",
+        f"{'Add' if op == 'multiply' else 'Subtract'} the powers of 10, since "
+        + ("multiplying powers of 10 means adding their indices" if op == "multiply" else "dividing powers of 10 means subtracting their indices")
+        + f": {n1} {'+' if op == 'multiply' else '-'} {n2} = {raw_exp}. This gives {raw_mantissa_str} × 10^{raw_exp}.",
+    ]
+    if needs_renormalise:
+        teaching_steps.append(
+            f"This isn't yet in standard form, because the mantissa {raw_mantissa_str} isn't between 1 "
+            f"and 10. Move the decimal point until it is, adjusting the power of 10 to compensate: "
+            f"{norm_mantissa_str} × 10^{norm_exp}."
+        )
+    else:
+        teaching_steps.append(
+            f"The mantissa {raw_mantissa_str} is already between 1 and 10, so this is already in "
+            "standard form - no further adjustment is needed."
+        )
+
+    worked_calculation = [
+        f"({a1} × 10^{n1}) {symbol} ({a2} × 10^{n2})",
+        f"= {raw_mantissa_str} × 10^{raw_exp}",
+    ]
+    if needs_renormalise:
+        worked_calculation.append(f"= {norm_mantissa_str} × 10^{norm_exp}")
+
+    return ModelledExample(
+        topic_id="standard_form_multiply_divide_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=f"Work out ({a1} × 10^{n1}) {symbol} ({a2} × 10^{n2}). Give your answer in standard form.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"{norm_mantissa_str} × 10^{norm_exp}",
+    )
+
+
 def generate_modelled_example_add_subtract_standard_form(tier: Tier, rng: random.Random) -> ModelledExample:
     n1 = rng.randint(3, 7)
     n2 = n1 - rng.randint(1, 2)
@@ -392,6 +523,17 @@ TOPIC_MULTIPLY_DIVIDE = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_multiply_divide_standard_form,
+)
+
+TOPIC_MULTIPLY_DIVIDE_FOUNDATION = TopicDefinition(
+    id="standard_form_multiply_divide_foundation",
+    display_name="Multiplying & Dividing in Standard Form (Foundation)",
+    description="Multiply or divide two numbers given in standard form.",
+    generate=generate_multiply_divide_standard_form_foundation,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_multiply_divide_standard_form_foundation,
 )
 
 TOPIC_ADD_SUBTRACT = TopicDefinition(

@@ -9,6 +9,7 @@ GENERATORS = [
     (standard_form.generate_to_standard_form, Tier.FOUNDATION),
     (standard_form.generate_from_standard_form, Tier.FOUNDATION),
     (standard_form.generate_multiply_divide_standard_form, Tier.HIGHER),
+    (standard_form.generate_multiply_divide_standard_form_foundation, Tier.FOUNDATION),
     (standard_form.generate_add_subtract_standard_form, Tier.HIGHER),
 ]
 
@@ -36,20 +37,27 @@ def test_topic_definitions_have_expected_metadata():
         standard_form.TOPIC_TO_STANDARD_FORM,
         standard_form.TOPIC_FROM_STANDARD_FORM,
         standard_form.TOPIC_MULTIPLY_DIVIDE,
+        standard_form.TOPIC_MULTIPLY_DIVIDE_FOUNDATION,
         standard_form.TOPIC_ADD_SUBTRACT,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 4
+    assert len(ids) == 5
     for t in topics:
         assert t.section == "number"
         assert t.group == "Standard Form"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
+    assert standard_form.TOPIC_MULTIPLY_DIVIDE_FOUNDATION.fixed_tier == Tier.FOUNDATION
 
 
 MODELLED_EXAMPLE_GENERATORS = [
     (standard_form.generate_modelled_example_to_standard_form, Tier.FOUNDATION, "standard_form_to"),
     (standard_form.generate_modelled_example_from_standard_form, Tier.FOUNDATION, "standard_form_from"),
     (standard_form.generate_modelled_example_multiply_divide_standard_form, Tier.HIGHER, "standard_form_multiply_divide"),
+    (
+        standard_form.generate_modelled_example_multiply_divide_standard_form_foundation,
+        Tier.FOUNDATION,
+        "standard_form_multiply_divide_foundation",
+    ),
     (standard_form.generate_modelled_example_add_subtract_standard_form, Tier.HIGHER, "standard_form_add_subtract"),
 ]
 
@@ -59,6 +67,7 @@ def test_topic_definitions_have_modelled_example_generator():
         standard_form.TOPIC_TO_STANDARD_FORM,
         standard_form.TOPIC_FROM_STANDARD_FORM,
         standard_form.TOPIC_MULTIPLY_DIVIDE,
+        standard_form.TOPIC_MULTIPLY_DIVIDE_FOUNDATION,
         standard_form.TOPIC_ADD_SUBTRACT,
     ]
     for t in topics:

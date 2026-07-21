@@ -163,6 +163,135 @@ def generate_modelled_example_set_notation(tier: Tier, rng: random.Random) -> Mo
     )
 
 
+def generate_set_notation_foundation(tier: Tier, rng: random.Random) -> Question:
+    universal = list(range(1, rng.choice([8, 9, 10]) + 1))
+    a_set = set(rng.sample(universal, rng.randint(3, 5)))
+    b_set = set(rng.sample(universal, rng.randint(3, 5)))
+
+    operation = rng.choice(["union", "intersection", "not_a", "in_a_not_b"])
+
+    if operation == "union":
+        result = a_set | b_set
+        question_text = "are in A, in B, or in both"
+    elif operation == "intersection":
+        result = a_set & b_set
+        question_text = "are in both A and B"
+    elif operation == "not_a":
+        result = set(universal) - a_set
+        question_text = "are not in A"
+    else:
+        result = a_set - b_set
+        question_text = "are in A but not in B"
+
+    def manual_member(x: int) -> bool:
+        in_a, in_b = x in a_set, x in b_set
+        if operation == "union":
+            return in_a or in_b
+        if operation == "intersection":
+            return in_a and in_b
+        if operation == "not_a":
+            return not in_a
+        return in_a and not in_b
+
+    # Independent check: rebuild the result by scanning every element of the
+    # universal set and testing membership manually, a different method than
+    # the set-operator expressions used above.
+    manual_result = {x for x in universal if manual_member(x)}
+    if manual_result != result:
+        raise ValueError("set_notation_foundation verification failed")
+
+    ordered = sorted(result)
+    answer = "{" + ", ".join(str(x) for x in ordered) + "}" if ordered else "{ } (none)"
+
+    steps = [
+        f"ξ = {{{', '.join(str(x) for x in universal)}}}",
+        f"A = {{{', '.join(str(x) for x in sorted(a_set))}}}",
+        f"B = {{{', '.join(str(x) for x in sorted(b_set))}}}",
+        f"Check each element of ξ in turn to see whether it {question_text}.",
+        f"Elements that {question_text}: {answer}",
+    ]
+    return Question(
+        topic_id="set_notation_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"ξ = {{{', '.join(str(x) for x in universal)}}}, A = {{{', '.join(str(x) for x in sorted(a_set))}}}, "
+            f"B = {{{', '.join(str(x) for x in sorted(b_set))}}}. List the elements that {question_text}."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=answer,
+        dedup_key=f"set_notation_f:{universal[-1]}:{sorted(a_set)}:{sorted(b_set)}:{operation}",
+    )
+
+
+def generate_modelled_example_set_notation_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
+    universal = list(range(1, rng.choice([8, 9, 10]) + 1))
+    a_set = set(rng.sample(universal, rng.randint(3, 5)))
+    b_set = set(rng.sample(universal, rng.randint(3, 5)))
+
+    operation = rng.choice(["union", "intersection", "not_a", "in_a_not_b"])
+
+    if operation == "union":
+        result = a_set | b_set
+        question_text = "are in A, in B, or in both"
+        why = "an element counts as long as it turns up in at least one of the two sets"
+    elif operation == "intersection":
+        result = a_set & b_set
+        question_text = "are in both A and B"
+        why = "an element only counts if it appears in A AND in B at the same time"
+    elif operation == "not_a":
+        result = set(universal) - a_set
+        question_text = "are not in A"
+        why = "an element counts if it's part of the universal set ξ but wasn't listed inside A"
+    else:
+        result = a_set - b_set
+        question_text = "are in A but not in B"
+        why = "an element has to be in A, but gets excluded if it's also in B"
+
+    def manual_member(x: int) -> bool:
+        in_a, in_b = x in a_set, x in b_set
+        if operation == "union":
+            return in_a or in_b
+        if operation == "intersection":
+            return in_a and in_b
+        if operation == "not_a":
+            return not in_a
+        return in_a and not in_b
+
+    manual_result = {x for x in universal if manual_member(x)}
+    if manual_result != result:
+        raise ValueError("modelled example set_notation_foundation verification failed")
+
+    ordered = sorted(result)
+    answer = "{" + ", ".join(str(x) for x in ordered) + "}" if ordered else "{ } (none)"
+
+    teaching_steps = [
+        "The universal set ξ contains every element being considered, and A and B are just smaller "
+        "collections picked out from it - the question is really asking you to sort every element of "
+        "ξ into 'counts' or 'doesn't count' based on a rule.",
+        f"Here, the rule for which elements count is: they {question_text}. In other words, {why}.",
+        f"Go through ξ = {{{', '.join(str(x) for x in universal)}}} one element at a time, checking "
+        f"whether each one is in A = {{{', '.join(str(x) for x in sorted(a_set))}}} and/or "
+        f"B = {{{', '.join(str(x) for x in sorted(b_set))}}}, and apply the rule.",
+        f"Collecting every element that passes the test gives the answer: {answer}.",
+    ]
+    worked_calculation = [
+        f"ξ = {{{', '.join(str(x) for x in universal)}}}",
+        f"A = {{{', '.join(str(x) for x in sorted(a_set))}}}, B = {{{', '.join(str(x) for x in sorted(b_set))}}}",
+        f"Elements that {question_text}: {answer}",
+    ]
+    return ModelledExample(
+        topic_id="set_notation_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"ξ = {{{', '.join(str(x) for x in universal)}}}, A = {{{', '.join(str(x) for x in sorted(a_set))}}}, "
+            f"B = {{{', '.join(str(x) for x in sorted(b_set))}}}. List the elements that {question_text}."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=answer,
+    )
+
+
 _CATEGORY_CONTEXTS = [
     ("shirts", "pairs of trousers", "pairs of shoes"),
     ("starters", "main courses", "desserts"),
@@ -656,6 +785,17 @@ TOPIC_SET_NOTATION = TopicDefinition(
     group=GROUP_COUNTING,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_set_notation,
+)
+
+TOPIC_SET_NOTATION_FOUNDATION = TopicDefinition(
+    id="set_notation_foundation",
+    display_name="Sets (Foundation)",
+    description="List the elements of a set described in plain English, using a Venn-diagram style rule.",
+    generate=generate_set_notation_foundation,
+    section=SECTION,
+    group=GROUP_COUNTING,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_set_notation_foundation,
 )
 
 TOPIC_PRODUCT_RULE_COUNTING = TopicDefinition(

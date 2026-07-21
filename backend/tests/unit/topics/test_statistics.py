@@ -10,7 +10,9 @@ GENERATORS = [
     (stats_topic.generate_median_and_mode, Tier.FOUNDATION),
     (stats_topic.generate_mean_frequency_table, Tier.FOUNDATION),
     (stats_topic.generate_mean_grouped_frequency_table, Tier.HIGHER),
+    (stats_topic.generate_mean_grouped_frequency_table_foundation, Tier.FOUNDATION),
     (stats_topic.generate_reverse_mean, Tier.HIGHER),
+    (stats_topic.generate_reverse_mean_foundation, Tier.FOUNDATION),
 ]
 
 
@@ -38,13 +40,17 @@ def test_topic_definitions_have_expected_metadata():
         stats_topic.TOPIC_MEDIAN_AND_MODE,
         stats_topic.TOPIC_MEAN_FREQUENCY_TABLE,
         stats_topic.TOPIC_MEAN_GROUPED_FREQUENCY_TABLE,
+        stats_topic.TOPIC_MEAN_GROUPED_FREQUENCY_TABLE_FOUNDATION,
         stats_topic.TOPIC_REVERSE_MEAN,
+        stats_topic.TOPIC_REVERSE_MEAN_FOUNDATION,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 5
+    assert len(ids) == 7
     for t in topics:
         assert t.section == "statistics"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
+    assert stats_topic.TOPIC_MEAN_GROUPED_FREQUENCY_TABLE_FOUNDATION.fixed_tier == Tier.FOUNDATION
+    assert stats_topic.TOPIC_REVERSE_MEAN_FOUNDATION.fixed_tier == Tier.FOUNDATION
 
 
 def test_modelled_example_definitions_are_wired():
@@ -53,7 +59,9 @@ def test_modelled_example_definitions_are_wired():
         stats_topic.TOPIC_MEDIAN_AND_MODE,
         stats_topic.TOPIC_MEAN_FREQUENCY_TABLE,
         stats_topic.TOPIC_MEAN_GROUPED_FREQUENCY_TABLE,
+        stats_topic.TOPIC_MEAN_GROUPED_FREQUENCY_TABLE_FOUNDATION,
         stats_topic.TOPIC_REVERSE_MEAN,
+        stats_topic.TOPIC_REVERSE_MEAN_FOUNDATION,
     ]
     for t in topics:
         assert t.generate_modelled_example is not None
@@ -108,6 +116,30 @@ def test_modelled_example_reverse_mean_produces_verified_examples():
     for _ in range(TRIALS):
         example = stats_topic.generate_modelled_example_reverse_mean(Tier.HIGHER, rng)
         assert example.topic_id == "stats_reverse_mean"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+
+
+def test_modelled_example_mean_grouped_frequency_table_foundation_produces_verified_examples():
+    rng = random.Random(210)
+    for _ in range(TRIALS):
+        example = stats_topic.generate_modelled_example_mean_grouped_frequency_table_foundation(
+            Tier.FOUNDATION, rng
+        )
+        assert example.topic_id == "stats_mean_grouped_frequency_table_foundation"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+
+
+def test_modelled_example_reverse_mean_foundation_produces_verified_examples():
+    rng = random.Random(211)
+    for _ in range(TRIALS):
+        example = stats_topic.generate_modelled_example_reverse_mean_foundation(Tier.FOUNDATION, rng)
+        assert example.topic_id == "stats_reverse_mean_foundation"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
