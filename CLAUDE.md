@@ -14,13 +14,13 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**129 topics across 6 sections**, all procedurally generated with independent
+**142 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.).
-Full backend suite: **244/244 passing**. Frontend suite: **25/25 passing**.
+Full backend suite: **253/253 passing**. Frontend suite: **26/26 passing**.
 
-**Modelled Example feature (rolled out to all 129 topics)**: a second button, "Generate
+**Modelled Example feature (on every topic, including new ones)**: a second button, "Generate
 Modelled Example," sits next to "Generate Worksheet" on every topic card
 (`TopicDefinition.generate_modelled_example` is set on every topic — the field
 still exists as an `Optional` opt-in mechanically, but nothing is opted out).
@@ -46,20 +46,23 @@ text — verified the same way as every other generator (independent second
 computation path). Piloted first on 6 topics (one per section —
 `fractions_add_subtract`, `linear_two_step`, `percentage_of_amount`,
 `angles_triangle`, `probability_single_event`, `stats_mean_and_range`) to check
-the format/pedagogy before committing to writing this content for all 129 topics,
-then rolled out to the remaining 123 in one session (see Chronology step 11) once
-that pilot was approved.
+the format/pedagogy before committing to writing this content for all 129 topics
+that existed at the time, then rolled out to the remaining 123 in one session
+(see Chronology step 11) once that pilot was approved. Writing a
+`generate_modelled_example_xxx` alongside the normal generator is now standard
+practice for any new topic — the 13 topics added in the second curriculum audit
+(step 13) all got one from the start, no separate "rollout" needed.
 
 | Section | Groups | Topics |
 |---|---|---|
-| Number | Fractions, Decimals, Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 32 |
+| Number | Fractions, Decimals, Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 34 |
 | Algebra | Solving Linear Equations, Expanding Brackets, Factorising, Completing the Square, Turning Point of a Graph, Functions, Simultaneous Equations, Sequences, Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 38 |
-| Ratio & Proportion | Percentages, Ratio | 9 |
-| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems | 33 |
-| Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams | 12 |
-| Statistics | Averages from a List, Frequency Tables, Working Backwards | 5 |
+| Ratio & Proportion | Percentages, Ratio | 11 |
+| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems | 39 |
+| Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams | 13 |
+| Statistics | Averages from a List, Frequency Tables, Working Backwards | 7 |
 
-**Curriculum-audit dual-tier siblings**: Foundation-difficulty siblings for three
+**First curriculum-audit dual-tier siblings**: Foundation-difficulty siblings for three
 previously-Higher-only topics, flagged by an earlier audit and deliberately deferred
 at the time, were later completed — `reverse_percentage_foundation` (friendlier
 numbers), `angles_parallel_lines_foundation`/`angles_exterior_foundation` (pure-numeric,
@@ -69,6 +72,69 @@ interior-angle-sum sub-questions, needed for dedup-key variety since "regular po
 with n sides" alone only has ~19 valid n — see `_REGULAR_POLYGON_SIDES`, divisors of
 360). Also added `area_circle_foundation`, a Foundation sibling of `area_circle` that
 gives a decimal (calculator-π) answer instead of exact form in terms of π.
+
+**Second curriculum audit (13 new/retiered topics, 129→142)**: a from-scratch pass
+over every topic against real AQA/Edexcel spec content (not just previously-flagged
+candidates), evidence-checked by reading each generator's actual code before
+building anything. High-confidence fixes: `area_subtract_compound_foundation` (new
+— identical technique to the already-Foundation `area_composite_rectangles`);
+`area_semicircle_compound` retiered Higher→Foundation (it already used
+calculator/decimal π, the Foundation style) with a new `area_semicircle_compound_higher`
+requiring exact π form; `pythagoras_ladder_context` was silently 50/50
+triple-or-surd under one Higher-only label — split into
+`pythagoras_ladder_context_foundation` (triple only) and tightened the Higher
+version to always require a surd; `ratio_share_three_part_foundation` (new —
+identical technique to `ratio_share_two_part`); `angles_straight_line_higher`/
+`angles_around_point_higher`/`angles_triangle_higher` (new — the missing Higher
+algebraic siblings that every *other* angle-fact topic already had). Medium-high
+fixes (new Foundation siblings with friendlier numbers, same pattern as the first
+audit): `compound_percentage_foundation`, `stats_reverse_mean_foundation`,
+`stats_mean_grouped_frequency_table_foundation`, `set_notation_foundation` (same
+Venn-diagram skill, phrased in plain English instead of formal ∪/∩/' notation —
+the notation itself is the genuinely Higher-only part), `fractions_divide_foundation`,
+`standard_form_multiply_divide_foundation`. This exposed two label-overlap
+diagram bugs (see the two bullets below) and one grammar bug in generated teaching
+text, all fixed. A handful of lower-confidence candidates were flagged but
+*not* built — see "Ideas" below.
+
+**Algebraic expressions and units on diagrams, not just bare `x`/numbers**:
+`angles_parallel_lines` (Higher) had hardcoded its diagram's unknown-angle label to
+literal `"x"` even when the real unknown was an algebraic expression like
+`(3x + 50)°` — fixed to show the actual expression, matching how
+`angles_exterior`/`angles_polygon_interior` already did this correctly. Separately,
+`area_composite_rectangles`/`area_subtract_compound`'s L-shape diagram showed its
+inner cut-out dimensions as bare numbers with a literal `x` for multiply (which
+`mathtext.py` then italicised as if it were the algebra variable) while the outer
+rectangle correctly showed units — now both show `"6 cm × 5 cm"` consistently.
+`area_semicircle_compound` showed completely unlabelled bare numbers — now labelled
+with units like every other area diagram. **When adding a diagram, always pass
+pre-formatted label strings with units from the generator (matching the prompt's
+units) — never bare numbers or bare unknowns — and check the draw function doesn't
+silently drop them.**
+
+**Label-anchor-direction diagram bugs (found via the fix above)**: giving
+`angles_parallel_lines` a real algebraic label (much wider than `"x"`) exposed a
+latent overlap bug in `draw_parallel_lines`: the "alternate" angle-pair layout
+anchored the unknown label so long text grew back across the transversal line.
+Fixed by choosing the label's text anchor (`"start"`/`"end"`) based on which side
+of the vertex its offset sits, so text always grows away from the vertex. The same
+fix pattern was needed again in `draw_triangle_angles` once `angles_triangle_higher`
+gave it a wide label for the first time — there, centered-anchor labels at the two
+bottom vertices collided with each other when both were wide, so instead the label's
+*inset toward the centroid* (not its anchor) scales with `stringWidth` — wider
+labels sit further from the vertex, giving more clearance from both sloped edges.
+**When a diagram kind's labels have only ever been short (`"31°"`, `"x"`), adding a
+wider one (algebraic expressions, longer units) can expose an untested overlap —
+render and visually check, don't just trust the unit tests.**
+
+**Frontend topic-card decluttering**: `TopicCard` takes a `showTierBadge` prop
+(default `true`); `SectionView` passes `false` since its topic lists are already
+tier-filtered (the Foundation/Higher pill was repeating the same word on every
+card there) — `TopicSearch` still shows it, since its results span both tiers.
+Action button labels shortened ("Generate Worksheet"/"Generate Modelled Example" →
+"Worksheet"/"Modelled Example") and made `flex: 1` so they sit on one row instead
+of stacking — every card grew a second button once the Modelled Example rollout
+finished, and stacked full-width buttons made every card taller and near-identical.
 
 **Per-topic question count**: `TopicDefinition.question_count` (default `None` = 20,
 via `worksheet.builder.DEFAULT_COUNT`) lets a topic override the usual 20-question
@@ -240,6 +306,29 @@ fine as literal Unicode — only `⁻` specifically is the problem.)
     none do anymore. Backend suite grew from 177 to 244 tests, all passing;
     frontend unaffected (its "Generate Modelled Example" button was already
     driven by a per-topic API flag, so no frontend changes were needed).
+12. New session, three user-reported/requested fixes. First, `angles_parallel_lines`
+    (Higher) was showing its diagram's unknown angle as bare `"x"` instead of the
+    real algebraic expression from the question — fixed, which exposed a label-
+    overlap bug in `draw_parallel_lines` (fixed via anchor-direction-by-offset-sign).
+    Second, units weren't reaching some diagrams even though the prompt had them
+    (L-shape inner cut-out dimensions, semicircle-compound width/height) — fixed by
+    always passing pre-formatted unit strings from the generator. Third, a frontend
+    declutter pass: removed the redundant tier badge from tier-filtered topic lists
+    (`TopicCard`'s new `showTierBadge` prop) and put the two action buttons on one
+    row with shorter labels, since every card had grown a second button since the
+    Modelled Example rollout and looked increasingly stacked/repetitive.
+13. Same session, a second curriculum audit (the first, from step 6/9, was
+    explicitly narrow — only the already-flagged candidates). This one started
+    from scratch: read every topic's actual generator code and checked it against
+    real AQA/Edexcel spec content, rather than assuming the existing Foundation/
+    Higher split was already correct. Found 11 genuine gaps (listed in "Current
+    state" above), resolved as 13 new topic definitions plus a retier and a
+    tightening of two existing ones (129→142 total). Building `angles_triangle_higher`
+    exposed a second label-overlap bug, this time in `draw_triangle_angles` (fixed
+    via width-scaled centroid inset rather than anchor direction, since two wide
+    bottom-vertex labels growing away from their vertices collided with each other
+    in the middle). Backend suite grew from 244 to 253 tests; frontend unaffected
+    except +1 test from step 12's `showTierBadge` prop (now 26/26).
 
 Everything above is committed and pushed (see `git log`).
 
@@ -393,7 +482,14 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
   `draw_circle_angle_centre`, `draw_parabola`, `draw_linear_graph_pair`). A diagram
   whose answer would otherwise be visible in the picture (e.g. "solve graphically")
   should show a placeholder like `"?"` instead of the real value — see
-  `simultaneous_equations.generate_simultaneous_graphically`.
+  `simultaneous_equations.generate_simultaneous_graphically`. Always pass fully
+  pre-formatted label strings (with units, and the real algebraic expression if the
+  value is unknown-but-not-`x`) rather than bare numbers or a hardcoded `"x"` — see
+  the "Algebraic expressions and units on diagrams" bullet above for two real bugs
+  this caught. If a diagram kind's labels have only ever been short, adding a wider
+  one can expose an untested overlap (anchor direction and/or vertex-inset distance
+  may need to scale with `stringWidth`) — see the "Label-anchor-direction" bullet
+  above; render and visually check, don't just trust the unit tests.
 - **Frontend**: `useSections`/`fetchSections` is the single source of truth for the
   nested section→group→topic tree; `TopicCard` handles its own generate/download flow
   per-card via `useGenerateWorksheet`. No router library — view switching in `App.tsx`
@@ -421,13 +517,18 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
 
 ## Ideas for a future session (not started, no commitment made)
 
-- A full fresh curriculum audit of all 129 existing topics for further missing
-  Foundation/Higher dual-tier siblings (beyond the specific candidates already
-  resolved in steps 6 and 9) was explicitly deferred as out of scope this session —
-  the user chose to build only the already-flagged candidates plus the new Number
-  topics, not a from-scratch audit of everything. If asked to do this, it would mean
-  reviewing every topic module for genuine Foundation+Higher overlap content on the
-  real AQA/Edexcel specs, not just the ones already touched.
+- The from-scratch Foundation/Higher curriculum audit (step 13) flagged a handful of
+  **lower-confidence** candidates that were reported but deliberately *not* built,
+  pending more research or a product decision: `probability_combined_dice` (may
+  overlap with the existing Foundation `sample_space_diagrams` — worth checking
+  whether a distinct Foundation sibling adds anything), `velocity_time_interpret`
+  (the gradient/acceleration reading might be Foundation-appropriate; only
+  "area under graph = distance" is clearly Higher-only — could split rather than
+  duplicate), `fractions_mixed_number_arithmetic` (a Foundation sibling with
+  smaller/simpler mixed numbers), `ratio_combine` (a friendlier-number Foundation
+  version), `trig_mixed` (a Foundation version combining the already-Foundation
+  side/angle topics). Don't build these without discussing first — the audit's
+  confidence in each was explicitly lower than the 11 that were built.
 - Extend `mathtext.py`/`diagrams.py` italics beyond `x` to other single-letter
   variables (`n` in sequences, `a`/`b` in vectors) for full standard-typesetting
   consistency — noted above as a reasonable but currently out-of-scope enhancement.
