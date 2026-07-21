@@ -15,7 +15,7 @@ from reportlab.graphics.shapes import ArcPath, Circle, Drawing, Group, Line, Pol
 from reportlab.pdfbase.pdfmetrics import stringWidth
 
 from app.core.models import DiagramSpec
-from app.pdf.styles import ACCENT, GRID, HIGHLIGHT, INK, MUTED, PAPER
+from app.pdf.styles import ACCENT, CHART_COLORS, GRID, HIGHLIGHT, INK, MUTED, PAPER
 
 DIAGRAM_WIDTH = 200
 DIAGRAM_HEIGHT = 130
@@ -1037,6 +1037,351 @@ def draw_venn_diagram(params: dict) -> Drawing:
     return d
 
 
+def _fmt_tick(v: float) -> str:
+    return str(int(round(v))) if abs(v - round(v)) < 1e-9 else f"{v:.1f}"
+
+
+def _draw_stats_axes(
+    d: Drawing, x0: float, y0: float, plot_w: float, plot_h: float,
+    x_min: float, x_max: float, y_min: float, y_max: float,
+    x_label: str = "", y_label: str = "",
+    x_ticks: "list[float] | None" = None, y_ticks: "list[float] | None" = None,
+    y_step: "float | None" = None, show_y_axis: bool = True,
+) -> Callable[[float, float], tuple[float, float]]:
+    """Draw a plain linear pair of axes (bold axis lines, a handful of ticks
+    spaced via `_nice_tick_step` so the tick/gridline count never depends on
+    the data's raw scale - unlike `_draw_scaled_axes`, which is deliberately
+    only used for algebra graphs with small integer ranges) at the given
+    plot-area rectangle, and return the (x, y) -> (pixel_x, pixel_y)
+    transform. `x_ticks`/`y_ticks`, if given, are drawn at those exact
+    positions instead of a computed 'nice' spacing (for class-boundary style
+    x-axes, e.g. histograms and cumulative frequency graphs) - pass `[]` to
+    suppress ticks on that axis entirely. `show_y_axis=False` omits the
+    vertical axis line and all y-axis ticks/labels (for a chart with no
+    meaningful y-scale, e.g. a box plot)."""
+
+    def to_px(x: float, y: float) -> tuple[float, float]:
+        px = x0 + (x - x_min) / (x_max - x_min) * plot_w
+        py = y0 + (y - y_min) / (y_max - y_min) * plot_h
+        return px, py
+
+    ax0, ay0 = to_px(x_min, y_min)
+    ax1, _ = to_px(x_max, y_min)
+    _, ay1 = to_px(x_min, y_max)
+    d.add(Line(ax0, ay0, ax1, ay0, strokeColor=INK, strokeWidth=1.1))
+    if show_y_axis:
+        d.add(Line(ax0, ay0, ax0, ay1, strokeColor=INK, strokeWidth=1.1))
+
+    if x_ticks is not None:
+        for xt in x_ticks:
+            px, py = to_px(xt, y_min)
+            d.add(Line(px, py - 3, px, py, strokeColor=INK, strokeWidth=0.7))
+            d.add(_label(px, py - 11, _fmt_tick(xt), size=6.5))
+    else:
+        step = _nice_tick_step(x_min, x_max)
+        xt = math.ceil(x_min / step) * step
+        while xt <= x_max + 1e-9:
+            px, py = to_px(xt, y_min)
+            d.add(Line(px, py - 3, px, py, strokeColor=INK, strokeWidth=0.7))
+            d.add(_label(px, py - 11, _fmt_tick(xt), size=6.5))
+            xt += step
+
+    if show_y_axis:
+        if y_ticks is not None:
+            for yt in y_ticks:
+                px, py = to_px(x_min, yt)
+                d.add(Line(px - 3, py, px, py, strokeColor=INK, strokeWidth=0.7))
+                d.add(_label(px - 6, py - 2, _fmt_tick(yt), anchor="end", size=6.5))
+                if yt > y_min + 1e-9:
+                    d.add(Line(px, py, to_px(x_max, yt)[0], py, strokeColor=GRID, strokeWidth=0.3))
+        else:
+            step_y = y_step or _nice_tick_step(y_min, y_max)
+            yt = math.ceil(y_min / step_y) * step_y
+            while yt <= y_max + 1e-9:
+                px, py = to_px(x_min, yt)
+                d.add(Line(px - 3, py, px, py, strokeColor=INK, strokeWidth=0.7))
+                d.add(_label(px - 6, py - 2, _fmt_tick(yt), anchor="end", size=6.5))
+                if yt > y_min + 1e-9:
+                    d.add(Line(px, py, to_px(x_max, yt)[0], py, strokeColor=GRID, strokeWidth=0.3))
+                yt += step_y
+
+    if x_label:
+        d.add(_label(ax1 + 4, ay0 - 2, x_label, anchor="start", size=7.5))
+    if y_label and show_y_axis:
+        d.add(_label(ax0 - 4, ay1 + 6, y_label, anchor="end", size=7.5))
+
+    return to_px
+
+
+def draw_bar_chart(params: dict) -> Drawing:
+    """A bar chart. params['categories'] is a list of category labels.
+    params['series'] is either a flat list[number] (a plain bar chart) or a
+    list[list[number]] - one list of segment values per category (a stacked
+    "composite" bar chart) - with params['series_labels'] naming each
+    segment for the legend. params['blank'] (bool) draws axes and category
+    labels only, no bars (for a "construct the chart" question)."""
+    categories: list = params["categories"]
+    series: list = params["series"]
+    series_labels: "list[str] | None" = params.get("series_labels")
+    y_label = params.get("y_label", "Frequency")
+    blank = params.get("blank", False)
+
+    stacked = len(series) > 0 and isinstance(series[0], list)
+    totals = [sum(seg) for seg in series] if stacked else list(series)
+    raw_max = max(totals) if totals else 1
+    y_max = params.get("y_max")
+    if y_max is None:
+        step = _nice_tick_step(0, raw_max * 1.15 or 1)
+        y_max = math.ceil((raw_max * 1.15 or step) / step) * step
+
+    width, height = 230, 150
+    margin_l, margin_r, margin_t, margin_b = 30, 12, 10, 24
+    plot_w, plot_h = width - margin_l - margin_r, height - margin_t - margin_b
+    d = Drawing(width, height + (12 if stacked and series_labels else 0))
+    y0 = margin_b + (12 if stacked and series_labels else 0)
+
+    n = len(categories)
+    bar_slot = plot_w / n
+    bar_w = bar_slot * 0.6
+
+    to_px = _draw_stats_axes(
+        d, margin_l, y0, plot_w, plot_h, 0, n, 0, y_max, y_label=y_label,
+        x_ticks=[],
+    )
+
+    if not blank:
+        for i in range(n):
+            bx = margin_l + i * bar_slot + (bar_slot - bar_w) / 2
+            if stacked:
+                cursor = 0.0
+                for seg_idx, seg_val in enumerate(series[i]):
+                    _, py0 = to_px(0, cursor)
+                    _, py1 = to_px(0, cursor + seg_val)
+                    color = CHART_COLORS[seg_idx % len(CHART_COLORS)]
+                    d.add(Rect(bx, py0, bar_w, py1 - py0, fillColor=color, strokeColor=INK, strokeWidth=0.6))
+                    cursor += seg_val
+            else:
+                _, py0 = to_px(0, 0)
+                _, py1 = to_px(0, series[i])
+                d.add(Rect(bx, py0, bar_w, py1 - py0, fillColor=HIGHLIGHT, strokeColor=INK, strokeWidth=0.6))
+
+    for i, cat in enumerate(categories):
+        cx = margin_l + i * bar_slot + bar_slot / 2
+        d.add(_label(cx, y0 - 10, str(cat), size=7))
+
+    if stacked and series_labels:
+        lx, ly = margin_l, height - 2
+        for idx, lbl in enumerate(series_labels):
+            color = CHART_COLORS[idx % len(CHART_COLORS)]
+            d.add(Rect(lx, ly - 6, 8, 8, fillColor=color, strokeColor=INK, strokeWidth=0.5))
+            d.add(_label(lx + 11, ly - 5, str(lbl), anchor="start", size=6.5))
+            lx += 11 + stringWidth(str(lbl), _LABEL_FONT, 6.5) + 12
+
+    return d
+
+
+def draw_pie_chart(params: dict) -> Drawing:
+    """A pie chart. params['categories']: list of slice names. params['values']:
+    list of numbers (proportional to slice angle). params['show'] controls
+    what's written on each slice: "value" (default), "percentage", or "none"
+    (blank slices with only a legend - for a "construct the chart" question,
+    combined with params['blank']=True to omit the legend colours' meaning
+    from the values shown)."""
+    categories: list = params["categories"]
+    values: list = params["values"]
+    show = params.get("show", "value")
+    blank = params.get("blank", False)
+
+    total = sum(values)
+    cx, cy, r = 90, 75, 60
+    d = Drawing(230, 150)
+
+    cumulative = 0.0
+    for i, v in enumerate(values):
+        start = 90 + cumulative / total * 360
+        cumulative += v
+        end = 90 + cumulative / total * 360
+        color = PAPER if blank else CHART_COLORS[i % len(CHART_COLORS)]
+        d.add(Wedge(cx, cy, r, start, end, fillColor=color, strokeColor=INK, strokeWidth=0.8))
+
+    lx, ly = 170, 130
+    for i, cat in enumerate(categories):
+        color = PAPER if blank else CHART_COLORS[i % len(CHART_COLORS)]
+        d.add(Rect(lx, ly - 6, 8, 8, fillColor=color, strokeColor=INK, strokeWidth=0.5))
+        label_text = str(cat)
+        if not blank and show != "none":
+            if show == "percentage":
+                label_text += f" ({round(values[i] / total * 100)}%)"
+            else:
+                label_text += f" ({values[i]})"
+        d.add(_label(lx + 11, ly - 5, label_text, anchor="start", size=7))
+        ly -= 13
+
+    return d
+
+
+def draw_box_plot(params: dict) -> Drawing:
+    """One or more box plots sharing a numeric axis. params['box_plots'] is a
+    list of {"label": str (optional), "min", "q1", "median", "q3", "max"}."""
+    box_plots: list = params["box_plots"]
+    x_label = params.get("x_label", "")
+
+    all_values = [v for bp in box_plots for v in (bp["min"], bp["max"])]
+    x_min, x_max = min(all_values), max(all_values)
+    span = (x_max - x_min) or 1
+    x_min -= span * 0.08
+    x_max += span * 0.08
+
+    has_labels = any(bp.get("label") for bp in box_plots)
+    label_col_w = 42 if has_labels else 0
+
+    row_h = 34
+    width, height = 230 + label_col_w, 34 + row_h * len(box_plots) + 10
+    margin_l, margin_r = 14 + label_col_w, 14
+    plot_w = width - margin_l - margin_r
+    d = Drawing(width, height)
+
+    axis_y = 24
+    to_px = _draw_stats_axes(
+        d, margin_l, axis_y, plot_w, 1, x_min, x_max, 0, 1, x_label=x_label,
+        show_y_axis=False,
+    )
+
+    for i, bp in enumerate(box_plots):
+        mid_y = axis_y + 30 + i * row_h
+        box_h = 18
+        xmin, _ = to_px(bp["min"], 0)
+        xq1, _ = to_px(bp["q1"], 0)
+        xmed, _ = to_px(bp["median"], 0)
+        xq3, _ = to_px(bp["q3"], 0)
+        xmax, _ = to_px(bp["max"], 0)
+
+        d.add(Line(xmin, mid_y, xq1, mid_y, strokeColor=INK, strokeWidth=1))
+        d.add(Line(xq3, mid_y, xmax, mid_y, strokeColor=INK, strokeWidth=1))
+        d.add(Line(xmin, mid_y - box_h / 4, xmin, mid_y + box_h / 4, strokeColor=INK, strokeWidth=1))
+        d.add(Line(xmax, mid_y - box_h / 4, xmax, mid_y + box_h / 4, strokeColor=INK, strokeWidth=1))
+        d.add(Rect(
+            xq1, mid_y - box_h / 2, xq3 - xq1, box_h,
+            fillColor=HIGHLIGHT, strokeColor=INK, strokeWidth=1,
+        ))
+        d.add(Line(xmed, mid_y - box_h / 2, xmed, mid_y + box_h / 2, strokeColor=INK, strokeWidth=1.3))
+
+        if bp.get("label"):
+            d.add(_label(margin_l - 8, mid_y - 3, str(bp["label"]), anchor="end", size=7.5, color=MUTED))
+
+    return d
+
+
+def draw_histogram(params: dict) -> Drawing:
+    """A histogram: params['boundaries'] is a list of n+1 class boundaries,
+    params['frequency_densities'] is a list of n bar heights (one per
+    class). params['blank'] draws axes only, no bars."""
+    boundaries: list = params["boundaries"]
+    densities: list = params["frequency_densities"]
+    blank = params.get("blank", False)
+    x_label = params.get("x_label", "")
+    y_label = params.get("y_label", "Frequency density")
+
+    x_min, x_max = boundaries[0], boundaries[-1]
+    y_max_raw = max(densities) if densities else 1
+    step = _nice_tick_step(0, y_max_raw * 1.15 or 1)
+    y_max = math.ceil((y_max_raw * 1.15 or step) / step) * step
+
+    width, height = 230, 150
+    margin_l, margin_r, margin_t, margin_b = 34, 12, 10, 24
+    plot_w, plot_h = width - margin_l - margin_r, height - margin_t - margin_b
+    d = Drawing(width, height)
+
+    to_px = _draw_stats_axes(
+        d, margin_l, margin_b, plot_w, plot_h, x_min, x_max, 0, y_max,
+        x_label=x_label, y_label=y_label, x_ticks=boundaries,
+    )
+
+    if not blank:
+        for i in range(len(boundaries) - 1):
+            x0, y0 = to_px(boundaries[i], 0)
+            x1, y1 = to_px(boundaries[i + 1], densities[i])
+            d.add(Rect(x0, y0, x1 - x0, y1 - y0, fillColor=HIGHLIGHT, strokeColor=INK, strokeWidth=0.7))
+
+    return d
+
+
+def draw_cumulative_frequency(params: dict) -> Drawing:
+    """A cumulative frequency curve through params['points'] (a list of
+    (upper_class_boundary, cumulative_frequency) pairs, the first
+    conventionally at cumulative frequency 0). params['blank'] draws axes
+    only, no curve."""
+    points: list = params["points"]
+    blank = params.get("blank", False)
+    x_label = params.get("x_label", "")
+    y_label = params.get("y_label", "Cumulative frequency")
+
+    xs = [p[0] for p in points]
+    ys = [p[1] for p in points]
+    x_min, x_max = min(xs), max(xs)
+    y_max_raw = max(ys) if ys else 1
+    step = _nice_tick_step(0, y_max_raw * 1.1 or 1)
+    y_max = math.ceil((y_max_raw * 1.1 or step) / step) * step
+
+    width, height = 230, 150
+    margin_l, margin_r, margin_t, margin_b = 30, 12, 10, 24
+    plot_w, plot_h = width - margin_l - margin_r, height - margin_t - margin_b
+    d = Drawing(width, height)
+
+    to_px = _draw_stats_axes(
+        d, margin_l, margin_b, plot_w, plot_h, x_min, x_max, 0, y_max,
+        x_label=x_label, y_label=y_label, x_ticks=xs,
+    )
+
+    if not blank:
+        px_points = [to_px(x, y) for x, y in points]
+        d.add(PolyLine(
+            [c for pt in px_points for c in pt], strokeColor=ACCENT, strokeWidth=1.3,
+        ))
+        for px, py in px_points:
+            d.add(Circle(px, py, 1.6, fillColor=ACCENT, strokeColor=None))
+
+    return d
+
+
+def draw_time_series(params: dict) -> Drawing:
+    """A time series line graph through params['points'] (a list of (period,
+    value) pairs, period usually a small integer index). params['blank']
+    draws axes only, no line."""
+    points: list = params["points"]
+    blank = params.get("blank", False)
+    x_label = params.get("x_label", "Time period")
+    y_label = params.get("y_label", "Value")
+
+    xs = [p[0] for p in points]
+    ys = [p[1] for p in points]
+    x_min, x_max = min(xs), max(xs)
+    y_min_raw, y_max_raw = min(ys), max(ys)
+    span = (y_max_raw - y_min_raw) or 1
+    y_min = max(0, y_min_raw - span * 0.15) if y_min_raw >= 0 else y_min_raw - span * 0.15
+    y_max = y_max_raw + span * 0.15
+
+    width, height = 230, 150
+    margin_l, margin_r, margin_t, margin_b = 30, 12, 10, 24
+    plot_w, plot_h = width - margin_l - margin_r, height - margin_t - margin_b
+    d = Drawing(width, height)
+
+    to_px = _draw_stats_axes(
+        d, margin_l, margin_b, plot_w, plot_h, x_min, x_max, y_min, y_max,
+        x_label=x_label, y_label=y_label, x_ticks=sorted(set(xs)),
+    )
+
+    if not blank:
+        px_points = [to_px(x, y) for x, y in points]
+        d.add(PolyLine(
+            [c for pt in px_points for c in pt], strokeColor=ACCENT, strokeWidth=1.3,
+        ))
+        for px, py in px_points:
+            d.add(Circle(px, py, 1.6, fillColor=ACCENT, strokeColor=None))
+
+    return d
+
+
 _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "rectangle": draw_rectangle,
     "triangle_area": draw_triangle_area,
@@ -1065,6 +1410,12 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "two_way_table": draw_two_way_table,
     "sample_space_diagram": draw_sample_space_diagram,
     "venn_diagram": draw_venn_diagram,
+    "bar_chart": draw_bar_chart,
+    "pie_chart": draw_pie_chart,
+    "box_plot": draw_box_plot,
+    "histogram": draw_histogram,
+    "cumulative_frequency": draw_cumulative_frequency,
+    "time_series": draw_time_series,
 }
 
 

@@ -12,67 +12,19 @@ GROUP_FREQUENCY = "Frequency Tables"
 GROUP_REVERSE = "Working Backwards"
 
 
-def generate_mean_and_range(tier: Tier, rng: random.Random) -> Question:
+def _random_stat_list(rng: random.Random) -> list[int]:
+    """A small random integer data set, used by the single-statistic topics
+    (mean/mode/median/range) and their combined variant."""
     n = rng.randint(5, 8)
-    data = [rng.randint(1, 30) for _ in range(n)]
-    total = sum(data)
-    mean = Fraction(total, n)
-    data_range = max(data) - min(data)
-
-    # Independent verification via Python's stdlib statistics module.
-    if abs(float(mean) - statistics.mean(data)) > 1e-9:
-        raise ValueError("mean_and_range verification failed")
-
-    data_str = ", ".join(str(v) for v in data)
-    steps = [
-        f"Mean = sum ÷ count = ({' + '.join(str(v) for v in data)}) ÷ {n} = {total} ÷ {n} = {fmt_money(mean)}",
-        f"Range = largest - smallest = {max(data)} - {min(data)} = {data_range}",
-    ]
-    return Question(
-        topic_id="stats_mean_and_range",
-        tier=Tier.FOUNDATION,
-        prompt=f"Find the mean and range of this list of numbers: {data_str}.",
-        solution_steps=tuple(steps),
-        final_answer=f"Mean = {fmt_money(mean)}, Range = {data_range}",
-        dedup_key=f"mean_range:{data}",
-    )
+    return [rng.randint(1, 30) for _ in range(n)]
 
 
-def generate_modelled_example_mean_and_range(tier: Tier, rng: random.Random) -> ModelledExample:
-    n = rng.randint(5, 8)
-    data = [rng.randint(1, 30) for _ in range(n)]
-    total = sum(data)
-    mean = Fraction(total, n)
-    data_range = max(data) - min(data)
-
-    if abs(float(mean) - statistics.mean(data)) > 1e-9:
-        raise ValueError("modelled example mean_and_range verification failed")
-
-    data_str = ", ".join(str(v) for v in data)
-    teaching_steps = [
-        "The mean is the everyday 'average': add up every value, then share that total equally "
-        "across however many values there are.",
-        f"Add up all {n} numbers: {' + '.join(str(v) for v in data)} = {total}.",
-        f"Divide that total by how many numbers there are: {total} ÷ {n} = {fmt_money(mean)}. That's the mean.",
-        f"The range measures how spread out the data is: it's the largest value minus the smallest "
-        f"value. Largest = {max(data)}, smallest = {min(data)}, so range = {max(data)} - {min(data)} = {data_range}.",
-    ]
-    worked_calculation = [
-        f"Mean = ({' + '.join(str(v) for v in data)}) ÷ {n}",
-        f"= {total} ÷ {n} = {fmt_money(mean)}",
-        f"Range = {max(data)} - {min(data)} = {data_range}",
-    ]
-    return ModelledExample(
-        topic_id="stats_mean_and_range",
-        tier=Tier.FOUNDATION,
-        prompt=f"Find the mean and range of this list of numbers: {data_str}.",
-        worked_calculation=tuple(worked_calculation),
-        teaching_steps=tuple(teaching_steps),
-        final_answer=f"Mean = {fmt_money(mean)}, Range = {data_range}",
-    )
-
-
-def generate_median_and_mode(tier: Tier, rng: random.Random) -> Question:
+def _random_mode_list(rng: random.Random) -> tuple[list[int], int]:
+    """A small random integer data set with a well-defined single mode: one
+    value forced to appear exactly `mode_count` times, with every other value
+    appearing fewer times, then shuffled. Returns the shuffled data alongside
+    the known mode value so callers can cross-check against
+    `statistics.mode` without recomputing it themselves."""
     n = rng.choice([5, 6, 7, 8])
     mode_value = rng.randint(1, 20)
     mode_count = 3
@@ -83,6 +35,116 @@ def generate_median_and_mode(tier: Tier, rng: random.Random) -> Question:
             others.append(v)
     data = [mode_value] * mode_count + others
     rng.shuffle(data)
+    return data, mode_value
+
+
+def generate_mean(tier: Tier, rng: random.Random) -> Question:
+    data = _random_stat_list(rng)
+    n = len(data)
+    total = sum(data)
+    mean = Fraction(total, n)
+
+    # Independent verification via Python's stdlib statistics module.
+    if abs(float(mean) - statistics.mean(data)) > 1e-9:
+        raise ValueError("mean verification failed")
+
+    data_str = ", ".join(str(v) for v in data)
+    steps = [
+        f"Mean = sum ÷ count = ({' + '.join(str(v) for v in data)}) ÷ {n} = {total} ÷ {n} = {fmt_money(mean)}",
+    ]
+    return Question(
+        topic_id="stats_mean",
+        tier=Tier.FOUNDATION,
+        prompt=f"Find the mean of this data set: {data_str}.",
+        solution_steps=tuple(steps),
+        final_answer=fmt_money(mean),
+        dedup_key=f"mean:{data}",
+    )
+
+
+def generate_modelled_example_mean(tier: Tier, rng: random.Random) -> ModelledExample:
+    data = _random_stat_list(rng)
+    n = len(data)
+    total = sum(data)
+    mean = Fraction(total, n)
+
+    if abs(float(mean) - statistics.mean(data)) > 1e-9:
+        raise ValueError("modelled example mean verification failed")
+
+    data_str = ", ".join(str(v) for v in data)
+    teaching_steps = [
+        "The mean is the everyday 'average': add up every value, then share that total equally "
+        "across however many values there are.",
+        f"Add up all {n} numbers: {' + '.join(str(v) for v in data)} = {total}.",
+        f"Divide that total by how many numbers there are: {total} ÷ {n} = {fmt_money(mean)}. That's the mean.",
+    ]
+    worked_calculation = [
+        f"Mean = ({' + '.join(str(v) for v in data)}) ÷ {n}",
+        f"= {total} ÷ {n} = {fmt_money(mean)}",
+    ]
+    return ModelledExample(
+        topic_id="stats_mean",
+        tier=Tier.FOUNDATION,
+        prompt=f"Find the mean of this data set: {data_str}.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=fmt_money(mean),
+    )
+
+
+def generate_mode(tier: Tier, rng: random.Random) -> Question:
+    data, mode_value = _random_mode_list(rng)
+
+    # Independent verification via Python's stdlib statistics module.
+    if statistics.mode(data) != mode_value:
+        raise ValueError("mode verification failed")
+
+    data_str = ", ".join(str(v) for v in data)
+    steps = [
+        f"Count how often each value appears. {mode_value} appears 3 times, more than any other value.",
+        f"Mode = the most frequent value = {mode_value}",
+    ]
+    return Question(
+        topic_id="stats_mode",
+        tier=Tier.FOUNDATION,
+        prompt=f"Find the mode of this data set: {data_str}.",
+        solution_steps=tuple(steps),
+        final_answer=str(mode_value),
+        dedup_key=f"mode:{data}",
+    )
+
+
+def generate_modelled_example_mode(tier: Tier, rng: random.Random) -> ModelledExample:
+    data, mode_value = _random_mode_list(rng)
+
+    if statistics.mode(data) != mode_value:
+        raise ValueError("modelled example mode verification failed")
+
+    data_str = ", ".join(str(v) for v in data)
+    teaching_steps = [
+        "The mode is simply the value that appears most often in the data set - unlike the mean or "
+        "median, it doesn't involve any adding, dividing, or sorting by size.",
+        "Go through the list and count how many times each different value occurs.",
+        f"Here {mode_value} appears 3 times, which is more than any other value appears, so {mode_value} "
+        "is the mode.",
+    ]
+    worked_calculation = [
+        f"{mode_value} appears 3 times (most of any value)",
+        f"Mode = {mode_value}",
+    ]
+    return ModelledExample(
+        topic_id="stats_mode",
+        tier=Tier.FOUNDATION,
+        prompt=f"Find the mode of this data set: {data_str}.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=str(mode_value),
+    )
+
+
+def generate_median(tier: Tier, rng: random.Random) -> Question:
+    data = _random_stat_list(rng)
+    n = len(data)
     sorted_data = sorted(data)
 
     if n % 2 == 1:
@@ -91,10 +153,8 @@ def generate_median_and_mode(tier: Tier, rng: random.Random) -> Question:
         median = Fraction(sorted_data[n // 2 - 1] + sorted_data[n // 2], 2)
 
     # Independent verification via Python's stdlib statistics module.
-    if statistics.mode(data) != mode_value:
-        raise ValueError("median_and_mode verification failed (mode)")
     if abs(float(median) - statistics.median(data)) > 1e-9:
-        raise ValueError("median_and_mode verification failed (median)")
+        raise ValueError("median verification failed")
 
     data_str = ", ".join(str(v) for v in data)
     if n % 2 == 1:
@@ -105,31 +165,20 @@ def generate_median_and_mode(tier: Tier, rng: random.Random) -> Question:
             f"The middle two values are {sorted_data[n // 2 - 1]} and {sorted_data[n // 2]}, "
             f"so the median = ({sorted_data[n // 2 - 1]} + {sorted_data[n // 2]}) ÷ 2 = {fmt_money(median)}."
         )
-    steps = [
-        median_step,
-        f"Mode = the most frequent value = {mode_value} (appears {mode_count} times)",
-    ]
+    steps = [median_step]
     return Question(
-        topic_id="stats_median_and_mode",
+        topic_id="stats_median",
         tier=Tier.FOUNDATION,
-        prompt=f"Find the median and mode of this list of numbers: {data_str}.",
+        prompt=f"Find the median of this data set: {data_str}.",
         solution_steps=tuple(steps),
-        final_answer=f"Median = {fmt_money(median)}, Mode = {mode_value}",
-        dedup_key=f"median_mode:{data}",
+        final_answer=fmt_money(median),
+        dedup_key=f"median:{data}",
     )
 
 
-def generate_modelled_example_median_and_mode(tier: Tier, rng: random.Random) -> ModelledExample:
-    n = rng.choice([5, 6, 7, 8])
-    mode_value = rng.randint(1, 20)
-    mode_count = 3
-    others: list[int] = []
-    while len(others) < n - mode_count:
-        v = rng.randint(1, 20)
-        if v != mode_value and others.count(v) < mode_count - 1:
-            others.append(v)
-    data = [mode_value] * mode_count + others
-    rng.shuffle(data)
+def generate_modelled_example_median(tier: Tier, rng: random.Random) -> ModelledExample:
+    data = _random_stat_list(rng)
+    n = len(data)
     sorted_data = sorted(data)
 
     if n % 2 == 1:
@@ -137,11 +186,8 @@ def generate_modelled_example_median_and_mode(tier: Tier, rng: random.Random) ->
     else:
         median = Fraction(sorted_data[n // 2 - 1] + sorted_data[n // 2], 2)
 
-    # Independent verification via Python's stdlib statistics module.
-    if statistics.mode(data) != mode_value:
-        raise ValueError("modelled example median_and_mode verification failed (mode)")
     if abs(float(median) - statistics.median(data)) > 1e-9:
-        raise ValueError("modelled example median_and_mode verification failed (median)")
+        raise ValueError("modelled example median verification failed")
 
     data_str = ", ".join(str(v) for v in data)
     sorted_str = ", ".join(str(v) for v in sorted_data)
@@ -165,22 +211,298 @@ def generate_modelled_example_median_and_mode(tier: Tier, rng: random.Random) ->
         "The median is the middle value once the data is written in order, so the very first job is "
         "to sort the list from smallest to largest - never read the median off an unsorted list.",
         median_teaching,
-        f"The mode is simply the value that appears most often. Counting occurrences here, {mode_value} "
-        f"appears {mode_count} times, more than any other value, so that's the mode.",
-        "Note the median and the mode measure different things - the median tells you the middle "
-        "position, the mode tells you the most popular value - so it's fine (and common) for them to differ.",
+        "If there's an odd number of values there's a single middle one; if there's an even number, "
+        "the median is the average of the two values either side of the middle.",
     ]
     worked_calculation = [
+        f"Sorted: {sorted_str}",
         median_calc,
-        f"Mode = {mode_value} (appears {mode_count} times, most of any value)",
     ]
     return ModelledExample(
-        topic_id="stats_median_and_mode",
+        topic_id="stats_median",
         tier=Tier.FOUNDATION,
-        prompt=f"Find the median and mode of this list of numbers: {data_str}.",
+        prompt=f"Find the median of this data set: {data_str}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
-        final_answer=f"Median = {fmt_money(median)}, Mode = {mode_value}",
+        final_answer=fmt_money(median),
+    )
+
+
+def generate_range(tier: Tier, rng: random.Random) -> Question:
+    data = _random_stat_list(rng)
+    data_range = max(data) - min(data)
+
+    # Independent verification: sort ascending and take last-minus-first,
+    # a genuinely separate route from calling max()/min() on the raw list.
+    s = sorted(data)
+    check_range = s[-1] - s[0]
+    if data_range != check_range:
+        raise ValueError("range verification failed")
+
+    data_str = ", ".join(str(v) for v in data)
+    steps = [
+        f"Range = largest - smallest = {max(data)} - {min(data)} = {data_range}",
+    ]
+    return Question(
+        topic_id="stats_range",
+        tier=Tier.FOUNDATION,
+        prompt=f"Find the range of this data set: {data_str}.",
+        solution_steps=tuple(steps),
+        final_answer=str(data_range),
+        dedup_key=f"range:{data}",
+    )
+
+
+def generate_modelled_example_range(tier: Tier, rng: random.Random) -> ModelledExample:
+    data = _random_stat_list(rng)
+    data_range = max(data) - min(data)
+
+    s = sorted(data)
+    check_range = s[-1] - s[0]
+    if data_range != check_range:
+        raise ValueError("modelled example range verification failed")
+
+    data_str = ", ".join(str(v) for v in data)
+    teaching_steps = [
+        "The range measures how spread out a data set is - it doesn't involve adding or averaging, "
+        "just the two most extreme values.",
+        f"Find the largest value ({max(data)}) and the smallest value ({min(data)}) in the list.",
+        f"Range = largest - smallest = {max(data)} - {min(data)} = {data_range}.",
+    ]
+    worked_calculation = [
+        f"Largest = {max(data)}, smallest = {min(data)}",
+        f"Range = {max(data)} - {min(data)} = {data_range}",
+    ]
+    return ModelledExample(
+        topic_id="stats_range",
+        tier=Tier.FOUNDATION,
+        prompt=f"Find the range of this data set: {data_str}.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=str(data_range),
+    )
+
+
+def generate_averages_combined(tier: Tier, rng: random.Random) -> Question:
+    data, mode_value = _random_mode_list(rng)
+    n = len(data)
+    total = sum(data)
+    mean = Fraction(total, n)
+    sorted_data = sorted(data)
+    if n % 2 == 1:
+        median = Fraction(sorted_data[n // 2])
+    else:
+        median = Fraction(sorted_data[n // 2 - 1] + sorted_data[n // 2], 2)
+    data_range = max(data) - min(data)
+
+    # Independent verification, each stat cross-checked its own way.
+    if abs(float(mean) - statistics.mean(data)) > 1e-9:
+        raise ValueError("averages_combined verification failed (mean)")
+    if statistics.mode(data) != mode_value:
+        raise ValueError("averages_combined verification failed (mode)")
+    if abs(float(median) - statistics.median(data)) > 1e-9:
+        raise ValueError("averages_combined verification failed (median)")
+    check_range = sorted_data[-1] - sorted_data[0]
+    if data_range != check_range:
+        raise ValueError("averages_combined verification failed (range)")
+
+    data_str = ", ".join(str(v) for v in data)
+    if n % 2 == 1:
+        median_step = f"Sorted: {', '.join(str(v) for v in sorted_data)}. Middle value = {sorted_data[n // 2]}."
+    else:
+        median_step = (
+            f"Sorted: {', '.join(str(v) for v in sorted_data)}. "
+            f"Middle two values are {sorted_data[n // 2 - 1]} and {sorted_data[n // 2]}, "
+            f"so median = ({sorted_data[n // 2 - 1]} + {sorted_data[n // 2]}) ÷ 2 = {fmt_money(median)}."
+        )
+    steps = [
+        f"(a) Mean = ({' + '.join(str(v) for v in data)}) ÷ {n} = {total} ÷ {n} = {fmt_money(mean)}",
+        f"(b) Mode = the most frequent value = {mode_value} (appears 3 times)",
+        f"(c) Median: {median_step}",
+        f"(d) Range = {max(data)} - {min(data)} = {data_range}",
+    ]
+    return Question(
+        topic_id="stats_averages_combined",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            "For this data set, find (a) the mean (b) the mode (c) the median (d) the range: "
+            f"{data_str}."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=f"Mean = {fmt_money(mean)}, Mode = {mode_value}, Median = {fmt_money(median)}, Range = {data_range}",
+        dedup_key=f"averages_combined:{data}",
+    )
+
+
+def generate_modelled_example_averages_combined(tier: Tier, rng: random.Random) -> ModelledExample:
+    data, mode_value = _random_mode_list(rng)
+    n = len(data)
+    total = sum(data)
+    mean = Fraction(total, n)
+    sorted_data = sorted(data)
+    if n % 2 == 1:
+        median = Fraction(sorted_data[n // 2])
+    else:
+        median = Fraction(sorted_data[n // 2 - 1] + sorted_data[n // 2], 2)
+    data_range = max(data) - min(data)
+
+    if abs(float(mean) - statistics.mean(data)) > 1e-9:
+        raise ValueError("modelled example averages_combined verification failed (mean)")
+    if statistics.mode(data) != mode_value:
+        raise ValueError("modelled example averages_combined verification failed (mode)")
+    if abs(float(median) - statistics.median(data)) > 1e-9:
+        raise ValueError("modelled example averages_combined verification failed (median)")
+    check_range = sorted_data[-1] - sorted_data[0]
+    if data_range != check_range:
+        raise ValueError("modelled example averages_combined verification failed (range)")
+
+    data_str = ", ".join(str(v) for v in data)
+    sorted_str = ", ".join(str(v) for v in sorted_data)
+    if n % 2 == 1:
+        median_calc = f"Sorted: {sorted_str}. Middle value = {sorted_data[n // 2]}"
+    else:
+        median_calc = (
+            f"Sorted: {sorted_str}. Median = ({sorted_data[n // 2 - 1]} + {sorted_data[n // 2]}) ÷ 2 = {fmt_money(median)}"
+        )
+
+    teaching_steps = [
+        "This question asks for four different summary statistics from the same data set - it's worth "
+        "keeping them straight, since each measures something different and a mix-up is a common exam slip.",
+        f"Mean: add every value and divide by how many there are - ({' + '.join(str(v) for v in data)}) "
+        f"÷ {n} = {total} ÷ {n} = {fmt_money(mean)}.",
+        f"Mode: the most frequently occurring value - here {mode_value} appears 3 times, more than any "
+        "other value.",
+        "Median: sort the data first, then take the middle value (or the average of the middle two if "
+        f"there's an even count) - {median_calc}.",
+        f"Range: the largest value minus the smallest - {max(data)} - {min(data)} = {data_range}. It "
+        "measures spread, not a 'typical' value like the other three.",
+    ]
+    worked_calculation = [
+        f"Mean = {total} ÷ {n} = {fmt_money(mean)}",
+        f"Mode = {mode_value}",
+        median_calc,
+        f"Range = {max(data)} - {min(data)} = {data_range}",
+    ]
+    return ModelledExample(
+        topic_id="stats_averages_combined",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            "For this data set, find (a) the mean (b) the mode (c) the median (d) the range: "
+            f"{data_str}."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"Mean = {fmt_money(mean)}, Mode = {mode_value}, Median = {fmt_money(median)}, Range = {data_range}",
+    )
+
+
+def generate_interquartile_range(tier: Tier, rng: random.Random) -> Question:
+    n = rng.randint(7, 11)
+    data = [rng.randint(1, 40) for _ in range(n)]
+    sorted_data = sorted(data)
+    mid = n // 2
+    lower_half = sorted_data[:mid]
+    upper_half = sorted_data[mid:] if n % 2 == 0 else sorted_data[mid + 1 :]
+
+    def _median_frac(vals: list[int]) -> Fraction:
+        m = len(vals)
+        if m % 2 == 1:
+            return Fraction(vals[m // 2])
+        return Fraction(vals[m // 2 - 1] + vals[m // 2], 2)
+
+    q1 = _median_frac(lower_half)
+    q3 = _median_frac(upper_half)
+    iqr = q3 - q1
+
+    # Independent verification: recompute the lower/upper halves via a
+    # differently-structured enumerate-based filter (not slicing), then
+    # cross-check the medians via stdlib statistics.median rather than the
+    # hand-rolled _median_frac helper above.
+    upper_start = mid + 1 if n % 2 == 1 else mid
+    lower_check = [v for i, v in enumerate(sorted_data) if i < mid]
+    upper_check = [v for i, v in enumerate(sorted_data) if i >= upper_start]
+    if lower_check != lower_half or upper_check != upper_half:
+        raise ValueError("interquartile_range half-split mismatch")
+    if abs(float(q1) - statistics.median(lower_check)) > 1e-9:
+        raise ValueError("interquartile_range verification failed (q1)")
+    if abs(float(q3) - statistics.median(upper_check)) > 1e-9:
+        raise ValueError("interquartile_range verification failed (q3)")
+
+    data_str = ", ".join(str(v) for v in data)
+    sorted_str = ", ".join(str(v) for v in sorted_data)
+    steps = [
+        f"Sort the data: {sorted_str}.",
+        f"Split into a lower half {lower_half} and an upper half {upper_half} "
+        f"(excluding the overall middle value when {n} is odd).",
+        f"Q1 = median of the lower half = {fmt_money(q1)}",
+        f"Q3 = median of the upper half = {fmt_money(q3)}",
+        f"Interquartile range = Q3 - Q1 = {fmt_money(q3)} - {fmt_money(q1)} = {fmt_money(iqr)}",
+    ]
+    return Question(
+        topic_id="stats_interquartile_range",
+        tier=Tier.HIGHER,
+        prompt=f"Find the interquartile range (IQR) of this data set: {data_str}.",
+        solution_steps=tuple(steps),
+        final_answer=fmt_money(iqr),
+        dedup_key=f"iqr:{data}",
+    )
+
+
+def generate_modelled_example_interquartile_range(tier: Tier, rng: random.Random) -> ModelledExample:
+    n = rng.randint(7, 11)
+    data = [rng.randint(1, 40) for _ in range(n)]
+    sorted_data = sorted(data)
+    mid = n // 2
+    lower_half = sorted_data[:mid]
+    upper_half = sorted_data[mid:] if n % 2 == 0 else sorted_data[mid + 1 :]
+
+    def _median_frac(vals: list[int]) -> Fraction:
+        m = len(vals)
+        if m % 2 == 1:
+            return Fraction(vals[m // 2])
+        return Fraction(vals[m // 2 - 1] + vals[m // 2], 2)
+
+    q1 = _median_frac(lower_half)
+    q3 = _median_frac(upper_half)
+    iqr = q3 - q1
+
+    upper_start = mid + 1 if n % 2 == 1 else mid
+    lower_check = [v for i, v in enumerate(sorted_data) if i < mid]
+    upper_check = [v for i, v in enumerate(sorted_data) if i >= upper_start]
+    if lower_check != lower_half or upper_check != upper_half:
+        raise ValueError("modelled example interquartile_range half-split mismatch")
+    if abs(float(q1) - statistics.median(lower_check)) > 1e-9:
+        raise ValueError("modelled example interquartile_range verification failed (q1)")
+    if abs(float(q3) - statistics.median(upper_check)) > 1e-9:
+        raise ValueError("modelled example interquartile_range verification failed (q3)")
+
+    data_str = ", ".join(str(v) for v in data)
+    sorted_str = ", ".join(str(v) for v in sorted_data)
+    teaching_steps = [
+        "The interquartile range (IQR) measures the spread of the MIDDLE 50% of the data, which makes "
+        "it more resistant to a single extreme outlier than the ordinary range.",
+        f"Start by sorting the data: {sorted_str}. Quartiles only make sense once the data is in order.",
+        f"The median splits the data into a lower half and an upper half - here that's {lower_half} "
+        f"and {upper_half} (the overall middle value is left out of both halves, since {n} is odd)"
+        if n % 2 == 1
+        else f"The median splits the data exactly in half - here that's {lower_half} and {upper_half}.",
+        f"Q1 (the lower quartile) is the median of the lower half = {fmt_money(q1)}. Q3 (the upper "
+        f"quartile) is the median of the upper half = {fmt_money(q3)}.",
+        f"IQR = Q3 - Q1 = {fmt_money(q3)} - {fmt_money(q1)} = {fmt_money(iqr)}.",
+    ]
+    worked_calculation = [
+        f"Sorted: {sorted_str}",
+        f"Q1 = median of {lower_half} = {fmt_money(q1)}",
+        f"Q3 = median of {upper_half} = {fmt_money(q3)}",
+        f"IQR = {fmt_money(q3)} - {fmt_money(q1)} = {fmt_money(iqr)}",
+    ]
+    return ModelledExample(
+        topic_id="stats_interquartile_range",
+        tier=Tier.HIGHER,
+        prompt=f"Find the interquartile range (IQR) of this data set: {data_str}.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=fmt_money(iqr),
     )
 
 
@@ -449,6 +771,236 @@ def generate_modelled_example_mean_grouped_frequency_table_foundation(
     )
 
 
+def _random_frequency_table(rng: random.Random) -> tuple[list[int], list[int]]:
+    """A small values/frequencies parallel-list frequency table, following the
+    same convention as generate_mean_frequency_table but with a randomised
+    starting value (not always 0) to widen the dedup-key space."""
+    n_values = rng.randint(4, 6)
+    start = rng.randint(0, 5)
+    values = list(range(start, start + n_values))
+    frequencies = [rng.randint(2, 10) for _ in values]
+    return values, frequencies
+
+
+def generate_mode_frequency_table(tier: Tier, rng: random.Random) -> Question:
+    for _ in range(200):
+        values, frequencies = _random_frequency_table(rng)
+        max_freq = max(frequencies)
+        if frequencies.count(max_freq) == 1:
+            break
+    else:
+        raise ValueError("mode_frequency_table could not find a unique modal frequency")
+    modal_index = frequencies.index(max_freq)
+    modal_value = values[modal_index]
+
+    # Independent verification: expand to a flat list and recompute via stdlib.
+    flat = [v for v, f in zip(values, frequencies) for _ in range(f)]
+    if statistics.mode(flat) != modal_value:
+        raise ValueError("mode_frequency_table verification failed")
+
+    table_desc = ", ".join(f"{v} ({f} times)" for v, f in zip(values, frequencies))
+    steps = [
+        f"The frequency shows how often each value occurs: {table_desc}.",
+        f"The highest frequency is {max_freq}, for the value {modal_value}.",
+        f"Mode = {modal_value}",
+    ]
+    return Question(
+        topic_id="stats_mode_frequency_table",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            "A survey recorded the number of pets owned by each household: "
+            f"{table_desc}. Find the modal number of pets."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=str(modal_value),
+        dedup_key=f"mode_freq:{values}:{frequencies}",
+    )
+
+
+def generate_modelled_example_mode_frequency_table(tier: Tier, rng: random.Random) -> ModelledExample:
+    for _ in range(200):
+        values, frequencies = _random_frequency_table(rng)
+        max_freq = max(frequencies)
+        if frequencies.count(max_freq) == 1:
+            break
+    else:
+        raise ValueError("modelled example mode_frequency_table could not find a unique modal frequency")
+    modal_index = frequencies.index(max_freq)
+    modal_value = values[modal_index]
+
+    flat = [v for v, f in zip(values, frequencies) for _ in range(f)]
+    if statistics.mode(flat) != modal_value:
+        raise ValueError("modelled example mode_frequency_table verification failed")
+
+    table_desc = ", ".join(f"{v} ({f} times)" for v, f in zip(values, frequencies))
+    teaching_steps = [
+        "The mode of a frequency table is just the value with the highest frequency - you're reading "
+        "the table, not calculating anything from it.",
+        f"Compare every frequency in the table: {', '.join(str(f) for f in frequencies)}. The largest "
+        f"one is {max_freq}.",
+        f"That largest frequency, {max_freq}, belongs to the value {modal_value}, so {modal_value} is "
+        "the modal value - it's the value that occurred most often.",
+    ]
+    worked_calculation = [
+        f"Highest frequency = {max_freq}",
+        f"Value with that frequency = {modal_value}",
+        f"Mode = {modal_value}",
+    ]
+    return ModelledExample(
+        topic_id="stats_mode_frequency_table",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            "A survey recorded the number of pets owned by each household: "
+            f"{table_desc}. Find the modal number of pets."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=str(modal_value),
+    )
+
+
+def generate_median_frequency_table(tier: Tier, rng: random.Random) -> Question:
+    values, frequencies = _random_frequency_table(rng)
+    flat = [v for v, f in zip(values, frequencies) for _ in range(f)]
+    flat_sorted = sorted(flat)
+    total = len(flat_sorted)
+    if total % 2 == 1:
+        median = Fraction(flat_sorted[total // 2])
+    else:
+        median = Fraction(flat_sorted[total // 2 - 1] + flat_sorted[total // 2], 2)
+
+    # Independent verification via Python's stdlib statistics module.
+    if abs(float(median) - statistics.median(flat)) > 1e-9:
+        raise ValueError("median_frequency_table verification failed")
+
+    table_desc = ", ".join(f"{v} ({f} times)" for v, f in zip(values, frequencies))
+    steps = [
+        f"Total frequency = {' + '.join(str(f) for f in frequencies)} = {total} data items.",
+        "Imagine the data written out in full, in order (each value repeated as many times as its "
+        "frequency), then find the middle of that list.",
+        f"Median = {fmt_money(median)}",
+    ]
+    return Question(
+        topic_id="stats_median_frequency_table",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            "A survey recorded the number of pets owned by each household: "
+            f"{table_desc}. Find the median number of pets."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=fmt_money(median),
+        dedup_key=f"median_freq:{values}:{frequencies}",
+    )
+
+
+def generate_modelled_example_median_frequency_table(tier: Tier, rng: random.Random) -> ModelledExample:
+    values, frequencies = _random_frequency_table(rng)
+    flat = [v for v, f in zip(values, frequencies) for _ in range(f)]
+    flat_sorted = sorted(flat)
+    total = len(flat_sorted)
+    if total % 2 == 1:
+        median = Fraction(flat_sorted[total // 2])
+    else:
+        median = Fraction(flat_sorted[total // 2 - 1] + flat_sorted[total // 2], 2)
+
+    if abs(float(median) - statistics.median(flat)) > 1e-9:
+        raise ValueError("modelled example median_frequency_table verification failed")
+
+    table_desc = ", ".join(f"{v} ({f} times)" for v, f in zip(values, frequencies))
+    teaching_steps = [
+        "A frequency table is shorthand for a long list of data - to find the median, it helps to "
+        "picture that full list written out in order, even though you never actually write it all down.",
+        f"There are {total} data items in total (the sum of all the frequencies), so the median sits at "
+        f"the middle position of that imagined list of {total} values.",
+        f"Because the values in the table are already in ascending order, you can find the middle "
+        "position directly without expanding the whole list: work along the frequencies, counting how "
+        "many items have been passed, until you reach the middle.",
+        f"Median = {fmt_money(median)}.",
+    ]
+    worked_calculation = [
+        f"Total frequency = {total}",
+        f"Median = {fmt_money(median)}",
+    ]
+    return ModelledExample(
+        topic_id="stats_median_frequency_table",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            "A survey recorded the number of pets owned by each household: "
+            f"{table_desc}. Find the median number of pets."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=fmt_money(median),
+    )
+
+
+def generate_range_frequency_table(tier: Tier, rng: random.Random) -> Question:
+    values, frequencies = _random_frequency_table(rng)
+    data_range = values[-1] - values[0]
+
+    # Independent verification: expand to a flat list and recompute via
+    # genuine max()/min() over the expanded data, a separate route from
+    # reading the extreme values directly off the values list.
+    flat = [v for v, f in zip(values, frequencies) for _ in range(f)]
+    check_range = max(flat) - min(flat)
+    if data_range != check_range:
+        raise ValueError("range_frequency_table verification failed")
+
+    table_desc = ", ".join(f"{v} ({f} times)" for v, f in zip(values, frequencies))
+    steps = [
+        f"The listed values run from {values[0]} to {values[-1]} (every value in between has a "
+        "frequency of at least 1, so these are the true extremes).",
+        f"Range = largest - smallest = {values[-1]} - {values[0]} = {data_range}",
+    ]
+    return Question(
+        topic_id="stats_range_frequency_table",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            "A survey recorded the number of pets owned by each household: "
+            f"{table_desc}. Find the range of the number of pets."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=str(data_range),
+        dedup_key=f"range_freq:{values}:{frequencies}",
+    )
+
+
+def generate_modelled_example_range_frequency_table(tier: Tier, rng: random.Random) -> ModelledExample:
+    values, frequencies = _random_frequency_table(rng)
+    data_range = values[-1] - values[0]
+
+    flat = [v for v, f in zip(values, frequencies) for _ in range(f)]
+    check_range = max(flat) - min(flat)
+    if data_range != check_range:
+        raise ValueError("modelled example range_frequency_table verification failed")
+
+    table_desc = ", ".join(f"{v} ({f} times)" for v, f in zip(values, frequencies))
+    teaching_steps = [
+        "The range only cares about the smallest and largest values that actually occur - the "
+        "frequencies (how OFTEN each value occurs) don't matter for this one, as long as the frequency "
+        "is at least 1.",
+        f"Reading the table, the smallest value listed is {values[0]} and the largest is {values[-1]}. "
+        "Every value in the table has a frequency of at least 1, so these really are the smallest and "
+        "largest values that occur, not just the smallest and largest rows.",
+        f"Range = largest - smallest = {values[-1]} - {values[0]} = {data_range}.",
+    ]
+    worked_calculation = [
+        f"Largest = {values[-1]}, smallest = {values[0]}",
+        f"Range = {values[-1]} - {values[0]} = {data_range}",
+    ]
+    return ModelledExample(
+        topic_id="stats_range_frequency_table",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            "A survey recorded the number of pets owned by each household: "
+            f"{table_desc}. Find the range of the number of pets."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=str(data_range),
+    )
+
+
 def generate_reverse_mean(tier: Tier, rng: random.Random) -> Question:
     for _ in range(200):
         n = rng.randint(4, 6)
@@ -617,26 +1169,70 @@ def generate_modelled_example_reverse_mean_foundation(tier: Tier, rng: random.Ra
     )
 
 
-TOPIC_MEAN_AND_RANGE = TopicDefinition(
-    id="stats_mean_and_range",
-    display_name="Mean & Range",
-    description="Find the mean and range of a list of numbers.",
-    generate=generate_mean_and_range,
+TOPIC_MEAN = TopicDefinition(
+    id="stats_mean",
+    display_name="Mean",
+    description="Find the mean of a list of numbers.",
+    generate=generate_mean,
     section=SECTION,
     group=GROUP_AVERAGES,
     fixed_tier=Tier.FOUNDATION,
-    generate_modelled_example=generate_modelled_example_mean_and_range,
+    generate_modelled_example=generate_modelled_example_mean,
 )
 
-TOPIC_MEDIAN_AND_MODE = TopicDefinition(
-    id="stats_median_and_mode",
-    display_name="Median & Mode",
-    description="Find the median and mode of a list of numbers.",
-    generate=generate_median_and_mode,
+TOPIC_MODE = TopicDefinition(
+    id="stats_mode",
+    display_name="Mode",
+    description="Find the mode of a list of numbers.",
+    generate=generate_mode,
     section=SECTION,
     group=GROUP_AVERAGES,
     fixed_tier=Tier.FOUNDATION,
-    generate_modelled_example=generate_modelled_example_median_and_mode,
+    generate_modelled_example=generate_modelled_example_mode,
+)
+
+TOPIC_MEDIAN = TopicDefinition(
+    id="stats_median",
+    display_name="Median",
+    description="Find the median of a list of numbers.",
+    generate=generate_median,
+    section=SECTION,
+    group=GROUP_AVERAGES,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_median,
+)
+
+TOPIC_RANGE = TopicDefinition(
+    id="stats_range",
+    display_name="Range",
+    description="Find the range of a list of numbers.",
+    generate=generate_range,
+    section=SECTION,
+    group=GROUP_AVERAGES,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_range,
+)
+
+TOPIC_AVERAGES_COMBINED = TopicDefinition(
+    id="stats_averages_combined",
+    display_name="Mean, Mode, Median & Range",
+    description="Find the mean, mode, median and range of the same list of numbers.",
+    generate=generate_averages_combined,
+    section=SECTION,
+    group=GROUP_AVERAGES,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_averages_combined,
+)
+
+TOPIC_INTERQUARTILE_RANGE = TopicDefinition(
+    id="stats_interquartile_range",
+    display_name="Interquartile Range",
+    description="Find the interquartile range (IQR) of a small raw data set.",
+    generate=generate_interquartile_range,
+    section=SECTION,
+    group=GROUP_AVERAGES,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_interquartile_range,
 )
 
 TOPIC_MEAN_FREQUENCY_TABLE = TopicDefinition(
@@ -670,6 +1266,39 @@ TOPIC_MEAN_GROUPED_FREQUENCY_TABLE_FOUNDATION = TopicDefinition(
     group=GROUP_FREQUENCY,
     fixed_tier=Tier.FOUNDATION,
     generate_modelled_example=generate_modelled_example_mean_grouped_frequency_table_foundation,
+)
+
+TOPIC_MODE_FREQUENCY_TABLE = TopicDefinition(
+    id="stats_mode_frequency_table",
+    display_name="Mode from a Frequency Table",
+    description="Find the modal value of discrete data presented in a frequency table.",
+    generate=generate_mode_frequency_table,
+    section=SECTION,
+    group=GROUP_FREQUENCY,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_mode_frequency_table,
+)
+
+TOPIC_MEDIAN_FREQUENCY_TABLE = TopicDefinition(
+    id="stats_median_frequency_table",
+    display_name="Median from a Frequency Table",
+    description="Find the median of discrete data presented in a frequency table.",
+    generate=generate_median_frequency_table,
+    section=SECTION,
+    group=GROUP_FREQUENCY,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_median_frequency_table,
+)
+
+TOPIC_RANGE_FREQUENCY_TABLE = TopicDefinition(
+    id="stats_range_frequency_table",
+    display_name="Range from a Frequency Table",
+    description="Find the range of discrete data presented in a frequency table.",
+    generate=generate_range_frequency_table,
+    section=SECTION,
+    group=GROUP_FREQUENCY,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_range_frequency_table,
 )
 
 TOPIC_REVERSE_MEAN = TopicDefinition(

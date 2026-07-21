@@ -11,6 +11,17 @@ GRID = colors.HexColor("#dcdcdc")
 HIGHLIGHT = colors.HexColor("#fdf0d5")
 PAPER = colors.white
 
+# A small, print-friendly palette for multi-series charts (stacked bar chart
+# segments, pie chart slices) - reused cyclically if there are more series
+# than colours.
+CHART_COLORS = (
+    colors.HexColor("#2f6f4f"),  # ACCENT green
+    colors.HexColor("#c97b3d"),  # warm orange
+    colors.HexColor("#4a72b0"),  # blue
+    colors.HexColor("#9b6bb0"),  # muted purple
+    colors.HexColor("#c0555f"),  # muted red
+)
+
 MARGIN = 22 * mm
 
 FONT = "Helvetica"

@@ -14,11 +14,11 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**169 topics across 6 sections**, all procedurally generated with independent
+**188 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.).
-Full backend suite: **335/335 passing**. Frontend suite: **29/29 passing**.
+Full backend suite: **383/383 passing**. Frontend suite: **29/29 passing**.
 
 **Modelled Example feature (on every topic, including new ones)**: a second button, "Generate
 Modelled Example," sits next to "Generate Worksheet" on every topic card
@@ -60,7 +60,7 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 | Ratio & Proportion | Percentages, Ratio, Proportion, Compound Measures | 29 |
 | Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems | 39 |
 | Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams, Venn Diagrams | 22 |
-| Statistics | Averages from a List, Frequency Tables, Working Backwards | 7 |
+| Statistics | Averages from a List, Frequency Tables, Working Backwards, Charts and Graphs, Cumulative Frequency & Box Plots, Histograms | 26 |
 
 **First curriculum-audit dual-tier siblings**: Foundation-difficulty siblings for three
 previously-Higher-only topics, flagged by an earlier audit and deliberately deferred
@@ -243,6 +243,36 @@ words — an assumption the tree-diagram topics (branch labels like "Red"/"Green
 word-boundary regex `(?<![A-Za-z])[xn](?![A-Za-z])` that `mathtext.py` already used.
 If you ever add a diagram label containing a real word with an `x` or `n` in it,
 this is already handled — no special-casing needed.
+
+**Statistics chart diagrams** (`draw_bar_chart`, `draw_pie_chart`, `draw_box_plot`,
+`draw_histogram`, `draw_cumulative_frequency`, `draw_time_series`): six new diagram
+kinds built for the Statistics Phase 2 session, all sharing a single new
+`_draw_stats_axes` helper — deliberately a *separate* function from the existing
+`_draw_scaled_axes` (used only by algebra function/piecewise graphs), because
+`_draw_scaled_axes` draws a fine gridline at every integer unit regardless of range,
+which is fine for small algebra ranges (-10 to 10) but would draw hundreds of
+gridlines (or hang) for a statistics chart with a y-axis running into the tens or
+hundreds. `_draw_stats_axes` spaces gridlines/ticks via `_nice_tick_step` instead
+(same helper the algebra axes use for *numbered* ticks, just not for gridline
+density), and supports `x_ticks`/`y_ticks` as explicit position lists (`[]` to
+suppress an axis's ticks entirely, `None` for computed "nice" spacing) plus
+`show_y_axis=False` to omit the y-axis altogether for a chart with no meaningful
+y-scale (`draw_box_plot`, which is 1D). `draw_bar_chart` takes either a flat
+`series` (plain bars) or `list[list[number]]` (a stacked "composite" bar chart, with
+`series_labels` for the legend) — one function serves both, controlled by params,
+not two separate diagram kinds. `draw_pie_chart` uses `Wedge` (imported since the
+original diagram set but never actually used for a filled pie slice until now) with
+cumulative start/end angles computed from each category's proportion of the total.
+`draw_time_series`/`draw_cumulative_frequency` both plot a `points` list via
+`PolyLine` — deliberately two thin separate functions rather than one shared one,
+since they differ in defaults (axis labels, whether x-ticks are auto-spaced vs. at
+exact class boundaries) even though the underlying mechanism is nearly identical.
+**Gotcha found and fixed while building these**: the first `draw_box_plot`
+implementation put row labels (`"Class A"`/`"Class B"`, for the two-box-plot
+comparison view) too close to the axis start, so a long label overlapped the
+leftmost whisker — fixed by reserving a dedicated label-column width on the left
+(shifting the whole plot area right) whenever any box has a `"label"`, rather than
+just nudging the label's x-position, which would only have worked for short labels.
 
 Every Geometry topic and a handful of Algebra topics (parabola for turning point,
 line-pair for simultaneous-graphically) render an actual ReportLab-drawn figure
@@ -497,6 +527,53 @@ content today; it's built and unit-tested for when one eventually does.
     tests (335 includes the diagrams.py bug-fix test); the 4 hardcoded `160`-topic-
     count assertions were updated to `169`; frontend unaffected (29/29 — new groups
     render generically).
+18. New session, Phase 2 (Statistics) of the same user-supplied list — the larger,
+    more diagram-heavy half. Investigated reuse first rather than assuming 7 fully
+    new diagram engines were needed: time series and cumulative frequency graphs
+    turned out to be able to reuse the existing point-plotting mechanism (though
+    ultimately given their own thin functions rather than literally reusing
+    `draw_piecewise_graph`, once it became clear that function's underlying
+    `_draw_scaled_axes` draws a fine gridline every single integer unit — fine for
+    small algebra ranges, but would hang or clutter badly for a statistics chart
+    with a y-axis in the tens/hundreds). Built 6 new diagram kinds (see "Statistics
+    chart diagrams" above) and 21 new topics across 4 new files: `stats_mean`,
+    `stats_mode`, `stats_median`, `stats_range`, `stats_averages_combined` (retiring
+    the old combined `stats_mean_and_range`/`stats_median_and_mode`, confirmed with
+    the user), `stats_mode_frequency_table`, `stats_median_frequency_table`,
+    `stats_range_frequency_table`, `stats_interquartile_range` (all in the existing
+    `statistics.py`); `bar_chart_construct`/`_interpret`, `composite_bar_chart`,
+    `pie_chart_construct`/`_interpret`, `time_series_graph` (new `charts.py`, new
+    "Charts and Graphs" group); `cumulative_frequency_plot`/`_interpret`,
+    `box_plot_construct`/`_interpret` (new `cumulative_frequency.py`, new
+    "Cumulative Frequency & Box Plots" group); `histogram_plot`/`_interpret` (new
+    `histograms.py`, new "Histograms" group). 142→169 was step 17; this step is
+    169→188 (169 + 21 new − 2 retired).
+
+    Dispatched 4 parallel subagents for the 4 clusters (mirroring Phase 1's
+    strategy), but all 4 hit an API session-usage limit mid-task and terminated
+    early — only the statistics.py cluster had actually reached the
+    write-and-test-pass stage before failing (verified independently and kept);
+    the other 3 clusters had produced no file changes at all. Rather than wait
+    for the limit to reset, built the remaining 3 clusters' topics directly
+    (same specs originally written for the subagents), which also surfaced and
+    fixed several real verification bugs a first pass of hasty "independent"
+    checks had introduced — a `sorted(..., reverse=True)` tie-break mismatch
+    against `.index()`'s first-occurrence convention (`bar_chart_interpret`'s
+    "highest/lowest category" question), a Decimal divide-then-multiply-vs-
+    multiply-then-divide rounding mismatch that should have used exact `Fraction`
+    comparison instead (`pie_chart_interpret`'s percentage question), and several
+    modelled examples with only a 1-line `worked_calculation` where the test
+    convention across this codebase requires ≥2 (caught by running the same
+    smoke-test loop the subagent prompts had specified, before writing the
+    official test files). Also found and fixed a real box-plot layout bug during
+    visual verification (not the same one fixed in Phase 1's Venn work): the
+    two-box-plot comparison view's row labels (`"Class A"`/`"Class B"`) sat close
+    enough to the axis start to overlap a long label's whisker line — fixed by
+    reserving a dedicated label-column width on the left whenever any box has a
+    `"label"`, shifting the whole plot area right, rather than just nudging the
+    label position (see "Statistics chart diagrams" above). Backend suite grew
+    from 335 to 383 tests; the 4 hardcoded `169`-topic-count assertions were
+    updated to `188`; frontend unaffected (29/29 — new groups render generically).
 
 Everything above is committed and pushed (see `git log`).
 
@@ -682,34 +759,6 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
   `test_worksheet_builder.py` will catch it, but better to catch it while writing the
   generator (a quick 300-trial loop counting `set()` size, as used throughout this
   session, works fine as a manual check).
-
-## Next session: Statistics Phase 2 (already agreed, not started)
-
-The user supplied a large Probability + Statistics topic list in one request; it was
-explicitly split into two phases after clarifying questions (see chronology step 17).
-Phase 1 (Probability) is done. Phase 2 (Statistics) has **not** been started yet and
-needs its own session — it's larger than Phase 1 and needs several brand-new chart-
-drawing diagram engines (bar chart, composite bar chart, pie chart, time series line
-graph, cumulative frequency curve, box plot, histogram) that don't exist yet. The
-full remaining list, as given by the user:
-- Split the existing combined `stats_mean_and_range`/`stats_median_and_mode` into 4
-  separate single-stat topics (mean, mode, median, range) plus a new "all four
-  combined" topic — retiring the 2 old combined topics once the 5 new ones exist
-  (confirmed with the user: retire, don't keep both).
-- Averages from a frequency table (mode, median, range) — the ungrouped/discrete
-  case, mirroring the existing `stats_mean_frequency_table`.
-- Interquartile range.
-- Constructing bar charts, interpreting bar charts, composite bar charts.
-- Drawing pie charts, interpreting pie charts.
-- Time series graphs.
-- Cumulative frequency (plotting and interpreting).
-- Box plots — split into constructing + interpreting/comparing (confirmed with the
-  user, matching the bar/pie chart construct-vs-interpret split).
-- Plotting histograms, interpreting histograms.
-
-Don't start this without checking with the user first — confirm it's still wanted
-and re-check scope/tiering, the same way Phase 1 started with clarifying questions
-rather than assumptions.
 
 ## Ideas for a future session (not started, no commitment made)
 

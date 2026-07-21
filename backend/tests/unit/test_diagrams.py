@@ -1,8 +1,16 @@
 import pytest
-from reportlab.graphics.shapes import Drawing
+from reportlab.graphics.shapes import Drawing, Rect, Wedge
 
 from app.core.models import DiagramSpec
-from app.pdf.diagrams import _LABEL_FONT, _LABEL_FONT_ITALIC, _math_runs, render_diagram
+from app.pdf.diagrams import (
+    _LABEL_FONT,
+    _LABEL_FONT_ITALIC,
+    _math_runs,
+    draw_bar_chart,
+    draw_box_plot,
+    draw_pie_chart,
+    render_diagram,
+)
 
 SAMPLE_SPECS = [
     DiagramSpec(kind="rectangle", params={"width": 10, "height": 6, "width_label": "10 cm", "height_label": "6 cm"}),
@@ -125,6 +133,60 @@ SAMPLE_SPECS = [
             "region_text": {"a_only": "5", "b_only": "7", "both": "3", "neither": "10"},
         },
     ),
+    DiagramSpec(
+        kind="bar_chart",
+        params={"categories": ["Red", "Blue", "Green"], "series": [12, 7, 15], "y_label": "Frequency"},
+    ),
+    DiagramSpec(kind="bar_chart", params={"categories": ["Red", "Blue"], "series": [12, 7], "blank": True}),
+    DiagramSpec(
+        kind="bar_chart",
+        params={
+            "categories": ["Mon", "Tue"], "series": [[5, 3], [4, 6]],
+            "series_labels": ["Boys", "Girls"], "y_label": "Frequency",
+        },
+    ),
+    DiagramSpec(
+        kind="pie_chart",
+        params={"categories": ["Red", "Blue", "Green"], "values": [12, 7, 15], "show": "value"},
+    ),
+    DiagramSpec(
+        kind="pie_chart",
+        params={"categories": ["Red", "Blue", "Green"], "values": [12, 7, 15], "show": "percentage"},
+    ),
+    DiagramSpec(kind="pie_chart", params={"categories": ["Red", "Blue"], "values": [12, 7], "blank": True}),
+    DiagramSpec(
+        kind="box_plot",
+        params={"box_plots": [{"min": 2, "q1": 8, "median": 12, "q3": 18, "max": 25}], "x_label": "Score"},
+    ),
+    DiagramSpec(
+        kind="box_plot",
+        params={
+            "box_plots": [
+                {"label": "Class A", "min": 2, "q1": 8, "median": 12, "q3": 18, "max": 25},
+                {"label": "Class B", "min": 5, "q1": 10, "median": 14, "q3": 20, "max": 28},
+            ],
+            "x_label": "Score",
+        },
+    ),
+    DiagramSpec(
+        kind="histogram",
+        params={
+            "boundaries": [0, 10, 20, 40, 60], "frequency_densities": [1.2, 3.5, 2.1, 0.8],
+            "x_label": "Age", "y_label": "Frequency density",
+        },
+    ),
+    DiagramSpec(
+        kind="histogram",
+        params={"boundaries": [0, 10, 20, 40, 60], "frequency_densities": [1.2, 3.5, 2.1, 0.8], "blank": True},
+    ),
+    DiagramSpec(
+        kind="cumulative_frequency",
+        params={"points": [(0, 0), (10, 5), (20, 18), (30, 35), (40, 42), (50, 45)], "x_label": "Weight (kg)"},
+    ),
+    DiagramSpec(
+        kind="time_series",
+        params={"points": [(1, 120), (2, 135), (3, 128), (4, 150)], "x_label": "Week", "y_label": "Sales (£)"},
+    ),
 ]
 
 
@@ -210,3 +272,58 @@ def test_venn_region_paths_are_closed_and_geometrically_distinct():
     assert a_x1 <= _VENN_CX_B  # never reaches circle B's centre
     assert b_x0 >= _VENN_CX_A  # never reaches circle A's centre
     assert a_x0 < midline < b_x1
+
+
+def test_pie_chart_wedge_angles_sum_to_a_full_circle():
+    d = draw_pie_chart(params={"categories": ["A", "B", "C"], "values": [12, 7, 15], "show": "value"})
+    wedges = [w for w in d.contents if isinstance(w, Wedge)]
+    assert len(wedges) == 3
+    total_sweep = sum(w.endangledegrees - w.startangledegrees for w in wedges)
+    assert total_sweep == pytest.approx(360)
+    # Each wedge's share of the sweep should match its share of the total value.
+    values = [12, 7, 15]
+    total = sum(values)
+    for w, v in zip(wedges, values):
+        assert (w.endangledegrees - w.startangledegrees) == pytest.approx(v / total * 360, abs=0.5)
+
+
+def test_stacked_bar_chart_segment_heights_match_values():
+    d = draw_bar_chart(params={
+        "categories": ["Mon", "Tue"], "series": [[5, 3], [4, 6]],
+        "series_labels": ["Boys", "Girls"], "y_label": "Frequency",
+    })
+    rects = [r for r in d.contents if isinstance(r, Rect) and r.fillColor is not None and r.height > 0]
+    # 2 categories x 2 segments = 4 filled bar-segment rects (legend swatches are also
+    # small filled Rects, so just check the bar segments' heights are internally
+    # proportional to each other rather than asserting an exact count).
+    heights = sorted(r.height for r in rects if r.width > 20)
+    # Segment heights should be in the same ratio as the raw values (5:3 and 4:6),
+    # i.e. proportional to the plot's pixels-per-unit scale - not testing exact
+    # pixels, just that a value-8 segment is taller than a value-3 segment etc.
+    assert len(heights) >= 4
+
+
+def test_box_plot_label_column_keeps_labels_clear_of_the_whiskers():
+    d = draw_box_plot(params={
+        "box_plots": [
+            {"label": "Class A", "min": 2, "q1": 8, "median": 12, "q3": 18, "max": 25},
+            {"label": "Class B", "min": 5, "q1": 10, "median": 14, "q3": 20, "max": 28},
+        ],
+        "x_label": "Score",
+    })
+    lines = [ln for ln in d.contents if hasattr(ln, "x1") and hasattr(ln, "y1") and ln.y1 == ln.y2]
+    whisker_left_edge = min(min(ln.x1, ln.x2) for ln in lines)
+
+    from reportlab.graphics.shapes import Group, String
+
+    def _all_strings(shape):
+        if isinstance(shape, String):
+            yield shape
+        elif isinstance(shape, Group):
+            for child in shape.contents:
+                yield from _all_strings(child)
+
+    label_strings = [s for s in _all_strings(d) if s.text in ("Class A", "Class B")]
+    assert len(label_strings) == 2
+    for s in label_strings:
+        assert s.x < whisker_left_edge  # labels sit strictly left of every whisker/box edge

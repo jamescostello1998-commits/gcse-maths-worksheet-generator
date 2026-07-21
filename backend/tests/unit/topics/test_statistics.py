@@ -6,9 +6,16 @@ from app.topics import statistics as stats_topic
 TRIALS = 200
 
 GENERATORS = [
-    (stats_topic.generate_mean_and_range, Tier.FOUNDATION),
-    (stats_topic.generate_median_and_mode, Tier.FOUNDATION),
+    (stats_topic.generate_mean, Tier.FOUNDATION),
+    (stats_topic.generate_mode, Tier.FOUNDATION),
+    (stats_topic.generate_median, Tier.FOUNDATION),
+    (stats_topic.generate_range, Tier.FOUNDATION),
+    (stats_topic.generate_averages_combined, Tier.FOUNDATION),
+    (stats_topic.generate_interquartile_range, Tier.HIGHER),
     (stats_topic.generate_mean_frequency_table, Tier.FOUNDATION),
+    (stats_topic.generate_mode_frequency_table, Tier.FOUNDATION),
+    (stats_topic.generate_median_frequency_table, Tier.FOUNDATION),
+    (stats_topic.generate_range_frequency_table, Tier.FOUNDATION),
     (stats_topic.generate_mean_grouped_frequency_table, Tier.HIGHER),
     (stats_topic.generate_mean_grouped_frequency_table_foundation, Tier.FOUNDATION),
     (stats_topic.generate_reverse_mean, Tier.HIGHER),
@@ -36,28 +43,43 @@ def test_dedup_keys_vary_per_generator():
 
 def test_topic_definitions_have_expected_metadata():
     topics = [
-        stats_topic.TOPIC_MEAN_AND_RANGE,
-        stats_topic.TOPIC_MEDIAN_AND_MODE,
+        stats_topic.TOPIC_MEAN,
+        stats_topic.TOPIC_MODE,
+        stats_topic.TOPIC_MEDIAN,
+        stats_topic.TOPIC_RANGE,
+        stats_topic.TOPIC_AVERAGES_COMBINED,
+        stats_topic.TOPIC_INTERQUARTILE_RANGE,
         stats_topic.TOPIC_MEAN_FREQUENCY_TABLE,
+        stats_topic.TOPIC_MODE_FREQUENCY_TABLE,
+        stats_topic.TOPIC_MEDIAN_FREQUENCY_TABLE,
+        stats_topic.TOPIC_RANGE_FREQUENCY_TABLE,
         stats_topic.TOPIC_MEAN_GROUPED_FREQUENCY_TABLE,
         stats_topic.TOPIC_MEAN_GROUPED_FREQUENCY_TABLE_FOUNDATION,
         stats_topic.TOPIC_REVERSE_MEAN,
         stats_topic.TOPIC_REVERSE_MEAN_FOUNDATION,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 7
+    assert len(ids) == 14
     for t in topics:
         assert t.section == "statistics"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
+    assert stats_topic.TOPIC_INTERQUARTILE_RANGE.fixed_tier == Tier.HIGHER
     assert stats_topic.TOPIC_MEAN_GROUPED_FREQUENCY_TABLE_FOUNDATION.fixed_tier == Tier.FOUNDATION
     assert stats_topic.TOPIC_REVERSE_MEAN_FOUNDATION.fixed_tier == Tier.FOUNDATION
 
 
 def test_modelled_example_definitions_are_wired():
     topics = [
-        stats_topic.TOPIC_MEAN_AND_RANGE,
-        stats_topic.TOPIC_MEDIAN_AND_MODE,
+        stats_topic.TOPIC_MEAN,
+        stats_topic.TOPIC_MODE,
+        stats_topic.TOPIC_MEDIAN,
+        stats_topic.TOPIC_RANGE,
+        stats_topic.TOPIC_AVERAGES_COMBINED,
+        stats_topic.TOPIC_INTERQUARTILE_RANGE,
         stats_topic.TOPIC_MEAN_FREQUENCY_TABLE,
+        stats_topic.TOPIC_MODE_FREQUENCY_TABLE,
+        stats_topic.TOPIC_MEDIAN_FREQUENCY_TABLE,
+        stats_topic.TOPIC_RANGE_FREQUENCY_TABLE,
         stats_topic.TOPIC_MEAN_GROUPED_FREQUENCY_TABLE,
         stats_topic.TOPIC_MEAN_GROUPED_FREQUENCY_TABLE_FOUNDATION,
         stats_topic.TOPIC_REVERSE_MEAN,
@@ -67,22 +89,66 @@ def test_modelled_example_definitions_are_wired():
         assert t.generate_modelled_example is not None
 
 
-def test_modelled_example_mean_and_range_produces_verified_examples():
-    rng = random.Random(205)
+def test_modelled_example_mean_produces_verified_examples():
+    rng = random.Random(220)
     for _ in range(TRIALS):
-        example = stats_topic.generate_modelled_example_mean_and_range(Tier.FOUNDATION, rng)
-        assert example.topic_id == "stats_mean_and_range"
+        example = stats_topic.generate_modelled_example_mean(Tier.FOUNDATION, rng)
+        assert example.topic_id == "stats_mean"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
         assert example.final_answer
 
 
-def test_modelled_example_median_and_mode_produces_verified_examples():
-    rng = random.Random(206)
+def test_modelled_example_mode_produces_verified_examples():
+    rng = random.Random(221)
     for _ in range(TRIALS):
-        example = stats_topic.generate_modelled_example_median_and_mode(Tier.FOUNDATION, rng)
-        assert example.topic_id == "stats_median_and_mode"
+        example = stats_topic.generate_modelled_example_mode(Tier.FOUNDATION, rng)
+        assert example.topic_id == "stats_mode"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+
+
+def test_modelled_example_median_produces_verified_examples():
+    rng = random.Random(222)
+    for _ in range(TRIALS):
+        example = stats_topic.generate_modelled_example_median(Tier.FOUNDATION, rng)
+        assert example.topic_id == "stats_median"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+
+
+def test_modelled_example_range_produces_verified_examples():
+    rng = random.Random(223)
+    for _ in range(TRIALS):
+        example = stats_topic.generate_modelled_example_range(Tier.FOUNDATION, rng)
+        assert example.topic_id == "stats_range"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+
+
+def test_modelled_example_averages_combined_produces_verified_examples():
+    rng = random.Random(224)
+    for _ in range(TRIALS):
+        example = stats_topic.generate_modelled_example_averages_combined(Tier.FOUNDATION, rng)
+        assert example.topic_id == "stats_averages_combined"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+
+
+def test_modelled_example_interquartile_range_produces_verified_examples():
+    rng = random.Random(225)
+    for _ in range(TRIALS):
+        example = stats_topic.generate_modelled_example_interquartile_range(Tier.HIGHER, rng)
+        assert example.topic_id == "stats_interquartile_range"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -94,6 +160,39 @@ def test_modelled_example_mean_frequency_table_produces_verified_examples():
     for _ in range(TRIALS):
         example = stats_topic.generate_modelled_example_mean_frequency_table(Tier.FOUNDATION, rng)
         assert example.topic_id == "stats_mean_frequency_table"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+
+
+def test_modelled_example_mode_frequency_table_produces_verified_examples():
+    rng = random.Random(226)
+    for _ in range(TRIALS):
+        example = stats_topic.generate_modelled_example_mode_frequency_table(Tier.FOUNDATION, rng)
+        assert example.topic_id == "stats_mode_frequency_table"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+
+
+def test_modelled_example_median_frequency_table_produces_verified_examples():
+    rng = random.Random(227)
+    for _ in range(TRIALS):
+        example = stats_topic.generate_modelled_example_median_frequency_table(Tier.FOUNDATION, rng)
+        assert example.topic_id == "stats_median_frequency_table"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+
+
+def test_modelled_example_range_frequency_table_produces_verified_examples():
+    rng = random.Random(228)
+    for _ in range(TRIALS):
+        example = stats_topic.generate_modelled_example_range_frequency_table(Tier.FOUNDATION, rng)
+        assert example.topic_id == "stats_range_frequency_table"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
