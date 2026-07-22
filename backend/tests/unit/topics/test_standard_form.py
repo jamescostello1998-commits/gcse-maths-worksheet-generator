@@ -7,10 +7,13 @@ TRIALS = 200
 
 GENERATORS = [
     (standard_form.generate_to_standard_form, Tier.FOUNDATION),
-    (standard_form.generate_from_standard_form, Tier.FOUNDATION),
+    (standard_form.generate_to_standard_form_small, Tier.FOUNDATION),
+    (standard_form.generate_from_standard_form_large, Tier.FOUNDATION),
+    (standard_form.generate_from_standard_form_small, Tier.FOUNDATION),
     (standard_form.generate_multiply_divide_standard_form, Tier.HIGHER),
     (standard_form.generate_multiply_divide_standard_form_foundation, Tier.FOUNDATION),
     (standard_form.generate_add_subtract_standard_form, Tier.HIGHER),
+    (standard_form.generate_standard_form_calculator, Tier.FOUNDATION),
 ]
 
 
@@ -35,23 +38,29 @@ def test_dedup_keys_vary_per_generator():
 def test_topic_definitions_have_expected_metadata():
     topics = [
         standard_form.TOPIC_TO_STANDARD_FORM,
-        standard_form.TOPIC_FROM_STANDARD_FORM,
+        standard_form.TOPIC_TO_STANDARD_FORM_SMALL,
+        standard_form.TOPIC_FROM_STANDARD_FORM_LARGE,
+        standard_form.TOPIC_FROM_STANDARD_FORM_SMALL,
         standard_form.TOPIC_MULTIPLY_DIVIDE,
         standard_form.TOPIC_MULTIPLY_DIVIDE_FOUNDATION,
         standard_form.TOPIC_ADD_SUBTRACT,
+        standard_form.TOPIC_CALCULATOR,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 5
+    assert len(ids) == 8
     for t in topics:
         assert t.section == "number"
         assert t.group == "Standard Form"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
     assert standard_form.TOPIC_MULTIPLY_DIVIDE_FOUNDATION.fixed_tier == Tier.FOUNDATION
+    assert standard_form.TOPIC_CALCULATOR.fixed_tier == Tier.FOUNDATION
 
 
 MODELLED_EXAMPLE_GENERATORS = [
     (standard_form.generate_modelled_example_to_standard_form, Tier.FOUNDATION, "standard_form_to"),
-    (standard_form.generate_modelled_example_from_standard_form, Tier.FOUNDATION, "standard_form_from"),
+    (standard_form.generate_modelled_example_to_standard_form_small, Tier.FOUNDATION, "standard_form_to_small"),
+    (standard_form.generate_modelled_example_from_standard_form_large, Tier.FOUNDATION, "standard_form_from_large"),
+    (standard_form.generate_modelled_example_from_standard_form_small, Tier.FOUNDATION, "standard_form_from_small"),
     (standard_form.generate_modelled_example_multiply_divide_standard_form, Tier.HIGHER, "standard_form_multiply_divide"),
     (
         standard_form.generate_modelled_example_multiply_divide_standard_form_foundation,
@@ -59,16 +68,20 @@ MODELLED_EXAMPLE_GENERATORS = [
         "standard_form_multiply_divide_foundation",
     ),
     (standard_form.generate_modelled_example_add_subtract_standard_form, Tier.HIGHER, "standard_form_add_subtract"),
+    (standard_form.generate_modelled_example_standard_form_calculator, Tier.FOUNDATION, "standard_form_calculator"),
 ]
 
 
 def test_topic_definitions_have_modelled_example_generator():
     topics = [
         standard_form.TOPIC_TO_STANDARD_FORM,
-        standard_form.TOPIC_FROM_STANDARD_FORM,
+        standard_form.TOPIC_TO_STANDARD_FORM_SMALL,
+        standard_form.TOPIC_FROM_STANDARD_FORM_LARGE,
+        standard_form.TOPIC_FROM_STANDARD_FORM_SMALL,
         standard_form.TOPIC_MULTIPLY_DIVIDE,
         standard_form.TOPIC_MULTIPLY_DIVIDE_FOUNDATION,
         standard_form.TOPIC_ADD_SUBTRACT,
+        standard_form.TOPIC_CALCULATOR,
     ]
     for t in topics:
         assert t.generate_modelled_example is not None

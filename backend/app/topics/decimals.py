@@ -187,6 +187,169 @@ def generate_recurring_decimal_to_fraction(tier: Tier, rng: random.Random) -> Qu
     )
 
 
+SINGLE_DIGIT_RECURRING_DENOMINATORS = [3, 9]
+TWO_DIGIT_RECURRING_DENOMINATORS = [11, 33, 99]
+
+
+def generate_recurring_decimal_single_digit(tier: Tier, rng: random.Random) -> Question:
+    for _ in range(50):
+        q = rng.choice(SINGLE_DIGIT_RECURRING_DENOMINATORS)
+        p = rng.randint(1, q - 1)
+        if math.gcd(p, q) != 1:
+            continue
+        non_recurring, recurring = _decimal_expansion(p, q)
+        if recurring is not None and not non_recurring and len(recurring) == 1:
+            break
+    else:
+        raise ValueError("recurring_decimal_single_digit could not find valid parameters")
+
+    digit = recurring[0]
+    display_str = f"0.({digit})"
+
+    # Independent verification: a single purely-recurring digit d means the decimal equals
+    # d/9 exactly - a separate closed-form derivation from the digit-counting expansion above.
+    # Confirm it matches the originally-chosen p/q, then round-trip the reduced fraction back
+    # through the same digit-expansion helper and confirm it reproduces the same single
+    # repeating digit.
+    derived = Fraction(digit, 9)
+    if derived != Fraction(p, q):
+        raise ValueError("recurring_decimal_single_digit verification failed")
+    check_non_recurring, check_recurring = _decimal_expansion(p, q)
+    if check_non_recurring or check_recurring != [digit]:
+        raise ValueError("recurring_decimal_single_digit round-trip verification failed")
+
+    steps = [
+        f"Let x = {display_str}, so 10x = {digit}.{digit}{digit}{digit}... "
+        "(only one digit repeats, so multiply by 10 to shift it one place)",
+        f"Subtract: 10x - x = {digit} - 0, so 9x = {digit}",
+        f"x = {digit}/9 = {p}/{q}",
+    ]
+    return Question(
+        topic_id="recurring_decimal_single_digit",
+        tier=Tier.FOUNDATION,
+        prompt=f"The recurring decimal {display_str} can be written as a fraction. Find this fraction in its simplest form.",
+        solution_steps=tuple(steps),
+        final_answer=f"{p}/{q}",
+        dedup_key=f"recurring_1d:{p}:{q}",
+    )
+
+
+def generate_recurring_decimal_two_digit(tier: Tier, rng: random.Random) -> Question:
+    for _ in range(50):
+        q = rng.choice(TWO_DIGIT_RECURRING_DENOMINATORS)
+        p = rng.randint(1, q - 1)
+        if math.gcd(p, q) != 1:
+            continue
+        non_recurring, recurring = _decimal_expansion(p, q)
+        if recurring is not None and not non_recurring and len(recurring) == 2:
+            break
+    else:
+        raise ValueError("recurring_decimal_two_digit could not find valid parameters")
+
+    block = "".join(map(str, recurring))
+    display_str = f"0.({block})"
+
+    # Independent verification: a purely-recurring two-digit block "ab" means the decimal
+    # equals ab/99 exactly - a separate closed-form derivation from the digit-counting
+    # expansion above. Confirm it matches the originally-chosen p/q, then round-trip the
+    # reduced fraction back through the digit-expansion helper and confirm it reproduces
+    # the same two-digit repeating block.
+    block_value = int(block)
+    derived = Fraction(block_value, 99)
+    if derived != Fraction(p, q):
+        raise ValueError("recurring_decimal_two_digit verification failed")
+    check_non_recurring, check_recurring = _decimal_expansion(p, q)
+    if check_non_recurring or check_recurring != recurring:
+        raise ValueError("recurring_decimal_two_digit round-trip verification failed")
+
+    steps = [
+        f"Let x = {display_str}, so 100x = {block}.{block}{block}... "
+        "(two digits repeat, so multiply by 100 to shift a full block)",
+        f"Subtract: 100x - x = {block_value} - 0, so 99x = {block_value}",
+        f"x = {block_value}/99 = {p}/{q}",
+    ]
+    return Question(
+        topic_id="recurring_decimal_two_digit",
+        tier=Tier.HIGHER,
+        prompt=f"The recurring decimal {display_str} can be written as a fraction. Find this fraction in its simplest form.",
+        solution_steps=tuple(steps),
+        final_answer=f"{p}/{q}",
+        dedup_key=f"recurring_2d:{p}:{q}",
+    )
+
+
+def _rand_decimal(rng: random.Random, dp: int, int_lo: int = 1, int_hi: int = 99) -> Decimal:
+    int_part = rng.randint(int_lo, int_hi)
+    frac_part = rng.randint(0, 10**dp - 1)
+    return Decimal(f"{int_part}.{str(frac_part).zfill(dp)}")
+
+
+def generate_decimals_add_subtract(tier: Tier, rng: random.Random) -> Question:
+    dp1 = rng.choice([1, 2])
+    dp2 = rng.choice([1, 2])
+    v1 = _rand_decimal(rng, dp1)
+    v2 = _rand_decimal(rng, dp2)
+    op = rng.choice(["+", "-"])
+    if op == "-" and v1 < v2:
+        v1, v2 = v2, v1
+
+    result = v1 + v2 if op == "+" else v1 - v2
+
+    # Independent verification via exact Fraction arithmetic - a different exact path than
+    # Decimal's own +/- operators.
+    f1, f2 = Fraction(str(v1)), Fraction(str(v2))
+    check = f1 + f2 if op == "+" else f1 - f2
+    if check != Fraction(str(result)):
+        raise ValueError("decimals_add_subtract verification failed")
+
+    steps = [
+        "Line up the decimal points, padding with a zero so both numbers have the same number of decimal places.",
+        f"{v1} {op} {v2} = {result}",
+    ]
+    return Question(
+        topic_id="decimals_add_subtract",
+        tier=Tier.FOUNDATION,
+        prompt=f"Work out {v1} {op} {v2}.",
+        solution_steps=tuple(steps),
+        final_answer=_fmt_decimal_fixed(result),
+        dedup_key=f"add_sub_dec:{v1}:{v2}:{op}",
+    )
+
+
+def generate_decimals_multiply(tier: Tier, rng: random.Random) -> Question:
+    dp1 = rng.choice([1, 2])
+    dp2 = rng.choice([1, 2])
+    v1 = _rand_decimal(rng, dp1, int_lo=1, int_hi=20)
+    v2 = _rand_decimal(rng, dp2, int_lo=1, int_hi=20)
+
+    result = v1 * v2
+
+    # Independent verification via exact Fraction arithmetic - a different exact path than
+    # Decimal multiplication.
+    check = Fraction(str(v1)) * Fraction(str(v2))
+    if check != Fraction(str(result)):
+        raise ValueError("decimals_multiply verification failed")
+
+    int1 = int(v1 * (10**dp1))
+    int2 = int(v2 * (10**dp2))
+    total_dp = dp1 + dp2
+    product_int = int1 * int2
+
+    steps = [
+        f"Ignore the decimal points and multiply the whole numbers: {int1} × {int2} = {product_int}",
+        f"Count the total decimal places in the question: {dp1} + {dp2} = {total_dp}",
+        f"Place the decimal point {total_dp} place{'s' if total_dp != 1 else ''} from the right: {result}",
+    ]
+    return Question(
+        topic_id="decimals_multiply",
+        tier=Tier.FOUNDATION,
+        prompt=f"Work out {v1} × {v2}.",
+        solution_steps=tuple(steps),
+        final_answer=_fmt_decimal_fixed(result),
+        dedup_key=f"multiply_dec:{v1}:{v2}",
+    )
+
+
 def generate_dividing_decimals(tier: Tier, rng: random.Random) -> Question:
     shape = rng.choice(["by_integer", "by_decimal"])
 
@@ -481,6 +644,199 @@ def generate_modelled_example_recurring_decimal_to_fraction(tier: Tier, rng: ran
     )
 
 
+def generate_modelled_example_recurring_decimal_single_digit(tier: Tier, rng: random.Random) -> ModelledExample:
+    for _ in range(50):
+        q = rng.choice(SINGLE_DIGIT_RECURRING_DENOMINATORS)
+        p = rng.randint(1, q - 1)
+        if math.gcd(p, q) != 1:
+            continue
+        non_recurring, recurring = _decimal_expansion(p, q)
+        if recurring is not None and not non_recurring and len(recurring) == 1:
+            break
+    else:
+        raise ValueError("modelled example recurring_decimal_single_digit could not find valid parameters")
+
+    digit = recurring[0]
+    display_str = f"0.({digit})"
+
+    derived = Fraction(digit, 9)
+    if derived != Fraction(p, q):
+        raise ValueError("modelled example recurring_decimal_single_digit verification failed")
+    check_non_recurring, check_recurring = _decimal_expansion(p, q)
+    if check_non_recurring or check_recurring != [digit]:
+        raise ValueError("modelled example recurring_decimal_single_digit round-trip verification failed")
+
+    teaching_steps = [
+        f"A recurring decimal like {display_str} repeats the same digit forever, and there's a neat "
+        "algebraic trick to turn it into a fraction. Start by calling the whole decimal x, so "
+        f"x = {display_str}.",
+        f"Since only ONE digit repeats, multiply x by 10 - this shifts the decimal point one place, "
+        f"landing it right after the next copy of the repeating digit: 10x = {digit}.{digit}{digit}{digit}...",
+        f"Both x and 10x still have the exact same digit {digit} repeating forever after their decimal "
+        f"point, so subtracting x from 10x cancels the recurring part completely, leaving a normal, "
+        f"finite equation: 10x - x = {digit} - 0, i.e. 9x = {digit}.",
+        f"Divide both sides by 9 to get x on its own: x = {digit}/9, then simplify if possible - here "
+        f"that gives x = {p}/{q}.",
+    ]
+    worked_calculation = [
+        f"x = {display_str}",
+        f"10x - x = {digit}",
+        f"9x = {digit}",
+        f"x = {digit}/9",
+    ]
+    if f"{p}/{q}" != f"{digit}/9":
+        worked_calculation.append(f"= {p}/{q}")
+
+    return ModelledExample(
+        topic_id="recurring_decimal_single_digit",
+        tier=Tier.FOUNDATION,
+        prompt=f"The recurring decimal {display_str} can be written as a fraction. Find this fraction in its simplest form.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"{p}/{q}",
+    )
+
+
+def generate_modelled_example_recurring_decimal_two_digit(tier: Tier, rng: random.Random) -> ModelledExample:
+    for _ in range(50):
+        q = rng.choice(TWO_DIGIT_RECURRING_DENOMINATORS)
+        p = rng.randint(1, q - 1)
+        if math.gcd(p, q) != 1:
+            continue
+        non_recurring, recurring = _decimal_expansion(p, q)
+        if recurring is not None and not non_recurring and len(recurring) == 2:
+            break
+    else:
+        raise ValueError("modelled example recurring_decimal_two_digit could not find valid parameters")
+
+    block = "".join(map(str, recurring))
+    display_str = f"0.({block})"
+    block_value = int(block)
+
+    derived = Fraction(block_value, 99)
+    if derived != Fraction(p, q):
+        raise ValueError("modelled example recurring_decimal_two_digit verification failed")
+    check_non_recurring, check_recurring = _decimal_expansion(p, q)
+    if check_non_recurring or check_recurring != recurring:
+        raise ValueError("modelled example recurring_decimal_two_digit round-trip verification failed")
+
+    teaching_steps = [
+        f"This decimal, {display_str}, repeats a whole BLOCK of two digits ('{block}') forever, rather "
+        f"than just one digit - the same algebraic trick still works, we just need to shift by a full "
+        f"block instead of a single place. Start by calling the decimal x, so x = {display_str}.",
+        f"Multiply x by 100 (not 10) so the decimal point shifts past one entire two-digit block: "
+        f"100x = {block}.{block}{block}...",
+        f"Both x and 100x have the identical two-digit block repeating forever afterwards, so "
+        f"subtracting x from 100x cancels the recurring part completely: 100x - x = {block_value} - 0, "
+        f"i.e. 99x = {block_value}.",
+        f"Divide both sides by 99 to get x on its own: x = {block_value}/99, then simplify - here that "
+        f"gives x = {p}/{q}.",
+    ]
+    worked_calculation = [
+        f"x = {display_str}",
+        f"100x - x = {block_value}",
+        f"99x = {block_value}",
+        f"x = {block_value}/99",
+    ]
+    if f"{p}/{q}" != f"{block_value}/99":
+        worked_calculation.append(f"= {p}/{q}")
+
+    return ModelledExample(
+        topic_id="recurring_decimal_two_digit",
+        tier=Tier.HIGHER,
+        prompt=f"The recurring decimal {display_str} can be written as a fraction. Find this fraction in its simplest form.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"{p}/{q}",
+    )
+
+
+def generate_modelled_example_decimals_add_subtract(tier: Tier, rng: random.Random) -> ModelledExample:
+    dp1 = rng.choice([1, 2])
+    dp2 = rng.choice([1, 2])
+    v1 = _rand_decimal(rng, dp1)
+    v2 = _rand_decimal(rng, dp2)
+    op = rng.choice(["+", "-"])
+    if op == "-" and v1 < v2:
+        v1, v2 = v2, v1
+
+    result = v1 + v2 if op == "+" else v1 - v2
+
+    f1, f2 = Fraction(str(v1)), Fraction(str(v2))
+    check = f1 + f2 if op == "+" else f1 - f2
+    if check != Fraction(str(result)):
+        raise ValueError("modelled example decimals_add_subtract verification failed")
+
+    verb = "add" if op == "+" else "subtract"
+    teaching_steps = [
+        f"To {verb} decimals, the golden rule is to line up the decimal points first, so that digits in "
+        "the same place-value column (ones with ones, tenths with tenths, hundredths with hundredths) "
+        "are combined together.",
+        f"{v1} and {v2} don't have the same number of decimal places, so pad the shorter one with a "
+        "trailing zero - this doesn't change its value at all, it just makes the columns line up neatly.",
+        f"Now {verb} column by column exactly as you would with whole numbers, carrying or borrowing "
+        "between columns as needed, and put the decimal point in the answer directly below the others.",
+        f"{v1} {op} {v2} = {result}.",
+    ]
+    worked_calculation = [
+        f"{v1} {op} {v2}",
+        f"= {result}",
+    ]
+    return ModelledExample(
+        topic_id="decimals_add_subtract",
+        tier=Tier.FOUNDATION,
+        prompt=f"Work out {v1} {op} {v2}.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=_fmt_decimal_fixed(result),
+    )
+
+
+def generate_modelled_example_decimals_multiply(tier: Tier, rng: random.Random) -> ModelledExample:
+    dp1 = rng.choice([1, 2])
+    dp2 = rng.choice([1, 2])
+    v1 = _rand_decimal(rng, dp1, int_lo=1, int_hi=20)
+    v2 = _rand_decimal(rng, dp2, int_lo=1, int_hi=20)
+
+    result = v1 * v2
+
+    check = Fraction(str(v1)) * Fraction(str(v2))
+    if check != Fraction(str(result)):
+        raise ValueError("modelled example decimals_multiply verification failed")
+
+    int1 = int(v1 * (10**dp1))
+    int2 = int(v2 * (10**dp2))
+    total_dp = dp1 + dp2
+    product_int = int1 * int2
+    plural = "s" if total_dp != 1 else ""
+
+    teaching_steps = [
+        f"Multiplying decimals directly is awkward, so the standard trick is to ignore the decimal "
+        f"points completely first and multiply the digits as if they were whole numbers: "
+        f"{int1} × {int2} = {product_int}.",
+        f"While we ignored the decimal points, we didn't lose that information - we just need to put it "
+        f"back at the end. Count the TOTAL number of decimal places across both original numbers: "
+        f"{v1} has {dp1} and {v2} has {dp2}, giving {total_dp} in total.",
+        f"Place the decimal point in {product_int} so that the answer has exactly {total_dp} decimal "
+        f"place{plural} - counting {total_dp} digit{plural} in from the right-hand end.",
+        f"So {v1} × {v2} = {result}.",
+    ]
+    worked_calculation = [
+        f"{v1} × {v2}",
+        f"= {int1} × {int2}",
+        f"= {product_int}",
+        f"= {result}",
+    ]
+    return ModelledExample(
+        topic_id="decimals_multiply",
+        tier=Tier.FOUNDATION,
+        prompt=f"Work out {v1} × {v2}.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=_fmt_decimal_fixed(result),
+    )
+
+
 def generate_modelled_example_dividing_decimals(tier: Tier, rng: random.Random) -> ModelledExample:
     shape = rng.choice(["by_integer", "by_decimal"])
 
@@ -663,4 +1019,54 @@ TOPIC_POWERS_OF_TEN = TopicDefinition(
     group="Multiplying & Dividing by Powers of 10",
     fixed_tier=Tier.FOUNDATION,
     generate_modelled_example=generate_modelled_example_powers_of_ten,
+)
+
+TOPIC_ADD_SUBTRACT = TopicDefinition(
+    id="decimals_add_subtract",
+    display_name="Adding and Subtracting Decimals",
+    description="Add or subtract two decimals with a mixed number of decimal places.",
+    generate=generate_decimals_add_subtract,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_decimals_add_subtract,
+)
+
+TOPIC_MULTIPLY = TopicDefinition(
+    id="decimals_multiply",
+    display_name="Multiplying Decimals",
+    description="Multiply two decimals together.",
+    generate=generate_decimals_multiply,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_decimals_multiply,
+)
+
+# Only 8 distinct (numerator, denominator) pairs exist for a purely-recurring single-digit
+# decimal with no non-recurring prefix (reduced denominator must divide 9 - see the
+# generator's docstring-style comment above), so question_count is capped well below the
+# usual 20-question default, matching the precedent set by the Plotting Graphs topics
+# (see CLAUDE.md's "Watch the dedup-key state space" note).
+TOPIC_RECURRING_SINGLE_DIGIT = TopicDefinition(
+    id="recurring_decimal_single_digit",
+    display_name="Recurring Decimals to Fractions (One Digit)",
+    description="Convert a purely recurring decimal with a single repeating digit to a fraction.",
+    generate=generate_recurring_decimal_single_digit,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    question_count=6,
+    generate_modelled_example=generate_modelled_example_recurring_decimal_single_digit,
+)
+
+TOPIC_RECURRING_TWO_DIGIT = TopicDefinition(
+    id="recurring_decimal_two_digit",
+    display_name="Recurring Decimals to Fractions (Two Digits)",
+    description="Convert a purely recurring decimal with a two-digit repeating block to a fraction.",
+    generate=generate_recurring_decimal_two_digit,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_recurring_decimal_two_digit,
 )

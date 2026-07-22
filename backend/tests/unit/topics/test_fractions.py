@@ -13,6 +13,9 @@ GENERATORS = [
     (fractions.generate_divide_fractions_foundation, Tier.FOUNDATION),
     (fractions.generate_mixed_number_arithmetic, Tier.HIGHER),
     (fractions.generate_fraction_of_amount, Tier.FOUNDATION),
+    (fractions.generate_fractions_equivalent, Tier.FOUNDATION),
+    (fractions.generate_fractions_ordering, Tier.FOUNDATION),
+    (fractions.generate_fractions_improper_mixed, Tier.FOUNDATION),
 ]
 
 
@@ -43,9 +46,12 @@ def test_topic_definitions_have_expected_metadata():
         fractions.TOPIC_DIVIDE_FOUNDATION,
         fractions.TOPIC_MIXED_NUMBER_ARITHMETIC,
         fractions.TOPIC_OF_AMOUNT,
+        fractions.TOPIC_EQUIVALENT,
+        fractions.TOPIC_ORDERING,
+        fractions.TOPIC_IMPROPER_MIXED,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 7
+    assert len(ids) == 10
     for t in topics:
         assert t.section == "number"
         assert t.group == "Fractions"
@@ -62,6 +68,9 @@ def test_all_fraction_topics_have_modelled_examples():
         fractions.TOPIC_DIVIDE_FOUNDATION,
         fractions.TOPIC_MIXED_NUMBER_ARITHMETIC,
         fractions.TOPIC_OF_AMOUNT,
+        fractions.TOPIC_EQUIVALENT,
+        fractions.TOPIC_ORDERING,
+        fractions.TOPIC_IMPROPER_MIXED,
     ]
     for t in topics:
         assert t.generate_modelled_example is not None
@@ -79,6 +88,9 @@ MODELLED_EXAMPLE_GENERATORS = [
     ),
     (fractions.generate_modelled_example_mixed_number_arithmetic, Tier.HIGHER, "fractions_mixed_number_arithmetic"),
     (fractions.generate_modelled_example_fraction_of_amount, Tier.FOUNDATION, "fractions_of_amount"),
+    (fractions.generate_modelled_example_fractions_equivalent, Tier.FOUNDATION, "fractions_equivalent"),
+    (fractions.generate_modelled_example_fractions_ordering, Tier.FOUNDATION, "fractions_ordering"),
+    (fractions.generate_modelled_example_fractions_improper_mixed, Tier.FOUNDATION, "fractions_improper_mixed"),
 ]
 
 

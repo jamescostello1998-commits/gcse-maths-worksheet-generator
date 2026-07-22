@@ -12,13 +12,14 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-The user-supplied Algebra expansion (chronology step 19 — expressions/formulae/
-equations/identities, forming equations, inequalities incl. quadratic and number-line,
-algebraic proof, quadratic formula, algebraic fractions, rationalising surds,
-iteration, plus two clarifying-question-approved extras: changing the subject of a
-formula and algebraic indices) is **complete and pushed**. 208 topics total, backend
-suite 455/455, frontend 29/29, no known bugs. There is **no committed next task**
-right now. Before starting anything new:
+The user-supplied Number expansion (chronology step 20 — equivalent/ordering fractions,
+improper/mixed conversion, decimal arithmetic, split recurring-decimal sheets, BIDMAS,
+split negative-number topics, negative indices/challenging indices/common-base index
+equations, surd arithmetic, split standard form by large/small plus a calculator
+variant, simple interest, best buys, and percentage-change/mixed-percentages topics)
+is **complete and pushed**. 231 topics total, backend suite 487/487, frontend 29/29,
+no known bugs. There is **no committed next task** right now. Before starting anything
+new:
 1. Check "Ideas for a future session" (bottom of this file) for candidate follow-ups
    — none are started and none are promised; ask the user which (if any) they want
    before building.
@@ -28,11 +29,11 @@ right now. Before starting anything new:
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**208 topics across 6 sections**, all procedurally generated with independent
+**231 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.).
-Full backend suite: **455/455 passing**. Frontend suite: **29/29 passing**.
+Full backend suite: **487/487 passing**. Frontend suite: **29/29 passing**.
 
 **Modelled Example feature (on every topic, including new ones)**: a second button, "Generate
 Modelled Example," sits next to "Generate Worksheet" on every topic card
@@ -69,9 +70,9 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 
 | Section | Groups | Topics |
 |---|---|---|
-| Number | Fractions, Decimals, Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 35 |
+| Number | Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 53 |
 | Algebra | Expressions/Formulae/Equations/Identities, Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 57 |
-| Ratio & Proportion | Percentages, Ratio, Proportion, Compound Measures | 29 |
+| Ratio & Proportion | Percentages, Best Buys, Ratio, Proportion, Compound Measures | 34 |
 | Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems | 39 |
 | Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams, Venn Diagrams | 22 |
 | Statistics | Averages from a List, Frequency Tables, Working Backwards, Charts and Graphs, Cumulative Frequency & Box Plots, Histograms | 26 |
@@ -681,6 +682,75 @@ content today; it's built and unit-tested for when one eventually does.
     `x_(n+1)` notation) were all done centrally afterward, per the established
     parallel-subagent pattern. Backend suite grew from 383 to 455 tests; frontend
     unaffected (29/29 — new groups render generically).
+20. New session, a large user-supplied Number topic list (~35 items spanning
+    fractions, decimal arithmetic, recurring decimals, BIDMAS, negative-number
+    arithmetic, indices, surds, standard form, and several percentage/ratio topics).
+    Started with a research pass (2 Explore agents auditing every existing Number
+    and Ratio & Proportion topic file) before asking anything, so the clarifying
+    questions and final report could say precisely what already existed vs. what
+    was genuinely new — several requested items turned out to already exist
+    (dividing decimals, standard form multiply/divide without a calculator,
+    large-number standard form "to", negative indices already inside the Higher
+    "negative & fractional indices" topic, rationalising a conjugate surd
+    denominator, applying a percentage increase/decrease) and were skipped.
+    Asked 4 clarifying questions up front (all resolved to the recommended option):
+    defer "equivalent fractions in diagrams" (a new diagram engine) to a future
+    session and build the numerical version only now; split the existing combined
+    "Negative Number Arithmetic" topic into two (add/subtract, multiply/divide)
+    rather than four or zero; split "recurring decimals to fractions" into 3
+    sheets by length of the recurring block (the existing Higher topic already
+    covers the hardest "mixed" sheet, so only 2 new easier topics were needed);
+    and confirmed "change of base indices" meant solving equations via a common
+    base (e.g. 9^x = 3^5), not logarithms. Also made several lower-stakes
+    judgement calls without a second question round (stated transparently in the
+    session's chat rather than re-asking): retired the old combined negative-number
+    topic in favour of the split pair (matching this app's established pattern
+    elsewhere); interpreted "algebraic surds" as expanding brackets containing
+    surds (FOIL/squared-bracket, e.g. (2+√3)(4-√3)); kept the new percentage/
+    interest/best-buys topics in the existing "Ratio & Proportion" section rather
+    than literally under "Number", matching where percentages already live.
+    Added 25 new topics, retired 2 (net +23, 208→231): `fractions_equivalent`,
+    `fractions_ordering`, `fractions_improper_mixed` (fractions.py);
+    `decimals_add_subtract`, `decimals_multiply`, `recurring_decimal_single_digit`
+    (Foundation), `recurring_decimal_two_digit` (Higher) (decimals.py); `bidmas`
+    (new `order_of_operations.py`, new "Order of Operations (BIDMAS)" group);
+    `negative_add_subtract`, `negative_multiply_divide`, `negative_ordering`
+    (negative_numbers.py, replacing the retired single `negative_numbers` topic);
+    `negative_indices` (Foundation — a genuine tier-accurate gap, since real
+    specs put negative integer indices at Foundation and only fractional indices
+    at Higher), `simplifying_indices_challenging`, `indices_common_base_equations`,
+    `surds_multiply_divide`, `algebraic_surds` (powers_roots.py);
+    `standard_form_to_small`, `standard_form_from_large`, `standard_form_from_small`
+    (split from the retired combined `standard_form_from`), `standard_form_calculator`
+    (standard_form.py); `simple_interest`, `find_percentage_change`,
+    `percentage_increase_decrease_calculator`, `mixed_percentages` (percentages.py);
+    `best_buys` (new `best_buys.py`, new "Best Buys" group). Built via 5 parallel
+    subagents (one per cluster, each also required to update its own existing test
+    file rather than replace it, since most of this batch appended to already-heavily-
+    tested files), then central registry wiring, the full suite, and browser/PDF
+    verification done afterward as usual.
+
+    Three real issues were caught and fixed centrally, none of them by the parallel
+    agents' own unit tests: (1) the `bidmas` topic's four question shapes picked
+    their division operands independently at random, so most questions evaluated
+    to an ugly improper fraction (e.g. "118/3") instead of the clean whole-number
+    answer every real BIDMAS worksheet uses — fixed by picking the divisor first
+    and constructing the dividend as a guaranteed multiple of it in all four shapes
+    (caught only by rendering an actual worksheet and reading the answers, since
+    the unit tests only checked the arithmetic was *correct*, not that it looked
+    like real worksheet content). (2) One of the parallel agents (percentages/
+    best-buys) incidentally discovered and flagged, but correctly left unfixed as
+    out of scope, a pre-existing bug in `percentages.py`: `HIGHER_PERCENTS` includes
+    decimal-string percentages like `"17.5"`, and `sp.Rational("17.5")` prints as
+    the unreduced fraction `"35/2"` rather than `"17.5"` when interpolated into a
+    prompt — this silently affected the already-shipped `reverse_percentage` and
+    `compound_percentage` (Higher) topics (e.g. "After a 35/2% increase..."), fixed
+    centrally by keeping the original decimal string alongside the `Rational`
+    conversion for display purposes only, everywhere `HIGHER_PERCENTS` is used.
+    (3) Confirmed the exact `≥`/`≤` symbol and grouping counts matched across
+    Foundation/Higher tier pickers and section topic counts via the running app,
+    not just the test suite. Backend suite grew from 455 to 487 tests; frontend
+    unaffected (29/29 — new groups render generically).
 
 Everything above is committed and pushed (see `git log`).
 
@@ -895,6 +965,10 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
   built, but worth flagging if a future session wants to round out Statistics further.
 - Saved worksheet history, mixed-topic revision papers, user accounts.
 - Deploying this somewhere instead of local-only dev servers.
+- Equivalent fractions shown via a diagram (shaded bar/circle pairs), alongside the
+  purely numerical `fractions_equivalent` topic built in step 20 — deliberately
+  deferred (per the user's choice) since it needs a new diagram engine, similar
+  effort to the number-line diagram built in step 19.
 
 Don't start any of these without checking with the user first — this list is just
 carried-over context, not a plan.
