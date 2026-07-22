@@ -6,6 +6,12 @@ def test_exponents_become_superscript():
     assert to_markup("10^-3") == "10<super>-3</super>"
 
 
+def test_fractional_exponent_is_raised_as_one_unit():
+    assert to_markup("x^(1/4)") == "<i>x</i><super>(1/4)</super>"
+    assert to_markup("(9x^6)^(1/2)") == "(9<i>x</i><super>6</super>)<super>(1/2)</super>"
+    assert to_markup("x^(-1/2)") == "<i>x</i><super>(-1/2)</super>"
+
+
 def test_bare_x_is_italicised():
     assert to_markup("Solve for x.") == "Solve for <i>x</i>."
     assert to_markup("3x + 1 = 7") == "3<i>x</i> + 1 = 7"

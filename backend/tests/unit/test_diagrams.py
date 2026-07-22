@@ -187,6 +187,31 @@ SAMPLE_SPECS = [
         kind="time_series",
         params={"points": [(1, 120), (2, 135), (3, 128), (4, 150)], "x_label": "Week", "y_label": "Sales (£)"},
     ),
+    DiagramSpec(
+        kind="number_line",
+        params={"range": [-6, 6], "boundaries": [{"value": 2, "closed": True}], "shade": "right"},
+    ),
+    DiagramSpec(
+        kind="number_line",
+        params={"range": [-6, 6], "boundaries": [{"value": -3, "closed": False}], "shade": "left"},
+    ),
+    DiagramSpec(
+        kind="number_line",
+        params={
+            "range": [-8, 8],
+            "boundaries": [{"value": -3, "closed": True}, {"value": 4, "closed": False}],
+            "shade": "between",
+        },
+    ),
+    DiagramSpec(
+        kind="number_line",
+        params={
+            "range": [-8, 8],
+            "boundaries": [{"value": -2, "closed": False}, {"value": 3, "closed": True}],
+            "shade": "outside",
+        },
+    ),
+    DiagramSpec(kind="number_line", params={"range": [-6, 6], "boundaries": [], "blank": True}),
 ]
 
 

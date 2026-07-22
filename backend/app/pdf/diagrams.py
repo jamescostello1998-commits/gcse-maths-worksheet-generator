@@ -1272,6 +1272,81 @@ def draw_box_plot(params: dict) -> Drawing:
     return d
 
 
+def draw_number_line(params: dict) -> Drawing:
+    """A number line showing the solution set of an inequality.
+    params['range'] is [lo, hi] (int bounds for the visible, ticked line).
+    params['boundaries'] is a list of 1 or 2 {"value", "closed"} dicts (an
+    open boundary gets a hollow circle, a closed one a filled circle).
+    params['shade'] says which part of the line is marked: "left"/"right"
+    (one boundary, a ray with an arrowhead extending off the visible range),
+    or - with two boundaries - "between" (a segment joining them) or
+    "outside" (two rays, each with an arrowhead, one off each end).
+    params['blank'] (bool) draws the bare ticked line only, no circles/
+    shading (for a "draw this yourself" question page, matching the
+    question/solution_diagram split used by the Plotting Graphs topics)."""
+    lo, hi = params["range"]
+    boundaries: list = params.get("boundaries", [])
+    shade = params.get("shade")
+    blank = params.get("blank", False)
+
+    width, height = 200, 40
+    margin_l, margin_r = 16, 14
+    plot_w = width - margin_l - margin_r
+    d = Drawing(width, height)
+
+    axis_y = 22
+    to_px = _draw_stats_axes(
+        d, margin_l, axis_y, plot_w, 1, lo, hi, 0, 1,
+        x_ticks=list(range(lo, hi + 1)), show_y_axis=False,
+    )
+    x0, _ = to_px(lo, 0)
+    x1, _ = to_px(hi, 0)
+
+    if blank or not boundaries:
+        return d
+
+    ARROW_LEN, ARROW_HALF_W = 6, 3.5
+
+    def _arrow(tip_x: float, direction: int) -> None:
+        back_x = tip_x - direction * ARROW_LEN
+        d.add(Polygon(
+            [tip_x, axis_y, back_x, axis_y + ARROW_HALF_W, back_x, axis_y - ARROW_HALF_W],
+            fillColor=ACCENT, strokeColor=ACCENT,
+        ))
+
+    def _segment(xa: float, xb: float) -> None:
+        d.add(Line(xa, axis_y, xb, axis_y, strokeColor=ACCENT, strokeWidth=2.8))
+
+    if len(boundaries) == 1:
+        value, closed = boundaries[0]["value"], boundaries[0]["closed"]
+        px, _ = to_px(value, 0)
+        if shade == "right":
+            _segment(px, x1 + ARROW_LEN)
+            _arrow(x1 + ARROW_LEN, 1)
+        else:
+            _segment(x0 - ARROW_LEN, px)
+            _arrow(x0 - ARROW_LEN, -1)
+        d.add(Circle(px, axis_y, 3.2, fillColor=(PAPER if not closed else ACCENT), strokeColor=INK, strokeWidth=1.2))
+    else:
+        v1, c1 = boundaries[0]["value"], boundaries[0]["closed"]
+        v2, c2 = boundaries[1]["value"], boundaries[1]["closed"]
+        lo_val, lo_closed = (v1, c1) if v1 <= v2 else (v2, c2)
+        hi_val, hi_closed = (v2, c2) if v1 <= v2 else (v1, c1)
+        px_lo, _ = to_px(lo_val, 0)
+        px_hi, _ = to_px(hi_val, 0)
+        if shade == "outside":
+            _segment(x0 - ARROW_LEN, px_lo)
+            _arrow(x0 - ARROW_LEN, -1)
+            _segment(px_hi, x1 + ARROW_LEN)
+            _arrow(x1 + ARROW_LEN, 1)
+        else:
+            _segment(px_lo, px_hi)
+        d.add(Circle(px_lo, axis_y, 3.2, fillColor=(PAPER if not lo_closed else ACCENT), strokeColor=INK, strokeWidth=1.2))
+        d.add(Circle(px_hi, axis_y, 3.2, fillColor=(PAPER if not hi_closed else ACCENT), strokeColor=INK, strokeWidth=1.2))
+
+    return d
+
+
 def draw_histogram(params: dict) -> Drawing:
     """A histogram: params['boundaries'] is a list of n+1 class boundaries,
     params['frequency_densities'] is a list of n bar heights (one per
@@ -1416,6 +1491,7 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "histogram": draw_histogram,
     "cumulative_frequency": draw_cumulative_frequency,
     "time_series": draw_time_series,
+    "number_line": draw_number_line,
 }
 
 

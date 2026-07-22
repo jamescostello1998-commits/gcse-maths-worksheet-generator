@@ -10,6 +10,7 @@ GENERATORS = [
     (powers_roots.generate_powers_higher, Tier.HIGHER),
     (powers_roots.generate_roots_foundation, Tier.FOUNDATION),
     (powers_roots.generate_roots_higher, Tier.HIGHER),
+    (powers_roots.generate_rationalise_denominator, Tier.HIGHER),
 ]
 
 
@@ -47,13 +48,23 @@ def test_topic_definitions_have_expected_metadata():
         powers_roots.TOPIC_POWERS_HIGHER,
         powers_roots.TOPIC_ROOTS_FOUNDATION,
         powers_roots.TOPIC_ROOTS_HIGHER,
+        powers_roots.TOPIC_RATIONALISE_DENOMINATOR,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 4
+    assert len(ids) == 5
     for t in topics:
         assert t.section == "number"
         assert t.group == "Powers, Roots & Indices"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
+
+
+def test_rationalise_denominator_never_leaves_a_root_on_the_bottom():
+    rng = random.Random(703)
+    for _ in range(TRIALS):
+        q = powers_roots.generate_rationalise_denominator(Tier.HIGHER, rng)
+        if "/" in q.final_answer:
+            denom = q.final_answer.split("/")[-1]
+            assert "√" not in denom
 
 
 MODELLED_EXAMPLE_GENERATORS = [
@@ -61,6 +72,7 @@ MODELLED_EXAMPLE_GENERATORS = [
     (powers_roots.generate_modelled_example_powers_higher, Tier.HIGHER, "powers_higher"),
     (powers_roots.generate_modelled_example_roots_foundation, Tier.FOUNDATION, "roots_foundation"),
     (powers_roots.generate_modelled_example_roots_higher, Tier.HIGHER, "roots_higher"),
+    (powers_roots.generate_modelled_example_rationalise_denominator, Tier.HIGHER, "rationalise_denominator"),
 ]
 
 
@@ -70,6 +82,7 @@ def test_topic_definitions_have_modelled_example_generator():
         powers_roots.TOPIC_POWERS_HIGHER,
         powers_roots.TOPIC_ROOTS_FOUNDATION,
         powers_roots.TOPIC_ROOTS_HIGHER,
+        powers_roots.TOPIC_RATIONALISE_DENOMINATOR,
     ]
     for t in topics:
         assert t.generate_modelled_example is not None

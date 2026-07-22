@@ -12,10 +12,13 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-Both requested topic-expansion phases — Probability (chronology step 17) and
-Statistics (step 18) — are **complete and pushed**. 188 topics total, backend suite
-383/383, frontend 29/29, no known bugs. There is **no committed next task** right
-now. Before starting anything new:
+The user-supplied Algebra expansion (chronology step 19 — expressions/formulae/
+equations/identities, forming equations, inequalities incl. quadratic and number-line,
+algebraic proof, quadratic formula, algebraic fractions, rationalising surds,
+iteration, plus two clarifying-question-approved extras: changing the subject of a
+formula and algebraic indices) is **complete and pushed**. 208 topics total, backend
+suite 455/455, frontend 29/29, no known bugs. There is **no committed next task**
+right now. Before starting anything new:
 1. Check "Ideas for a future session" (bottom of this file) for candidate follow-ups
    — none are started and none are promised; ask the user which (if any) they want
    before building.
@@ -25,11 +28,11 @@ now. Before starting anything new:
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**188 topics across 6 sections**, all procedurally generated with independent
+**208 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.).
-Full backend suite: **383/383 passing**. Frontend suite: **29/29 passing**.
+Full backend suite: **455/455 passing**. Frontend suite: **29/29 passing**.
 
 **Modelled Example feature (on every topic, including new ones)**: a second button, "Generate
 Modelled Example," sits next to "Generate Worksheet" on every topic card
@@ -66,8 +69,8 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 
 | Section | Groups | Topics |
 |---|---|---|
-| Number | Fractions, Decimals, Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 34 |
-| Algebra | Solving Linear Equations, Expanding Brackets, Factorising, Completing the Square, Turning Point of a Graph, Functions, Simultaneous Equations, Sequences, Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 38 |
+| Number | Fractions, Decimals, Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 35 |
+| Algebra | Expressions/Formulae/Equations/Identities, Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 57 |
 | Ratio & Proportion | Percentages, Ratio, Proportion, Compound Measures | 29 |
 | Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems | 39 |
 | Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams, Venn Diagrams | 22 |
@@ -284,6 +287,45 @@ comparison view) too close to the axis start, so a long label overlapped the
 leftmost whisker — fixed by reserving a dedicated label-column width on the left
 (shifting the whole plot area right) whenever any box has a `"label"`, rather than
 just nudging the label's x-position, which would only have worked for short labels.
+
+**Number line diagrams** (`draw_number_line`, kind `"number_line"`): a ticked
+horizontal axis (reusing the existing `_draw_stats_axes` helper with `x_ticks`
+covering every integer in `params["range"]` and `show_y_axis=False`) plus an open
+(`PAPER`-filled) or closed (`ACCENT`-filled) circle at each of 1–2 boundary values,
+and a thick coloured line marking the solution region — a ray with an arrowhead for
+a single-boundary inequality (`params["shade"] = "left"/"right"`), or for two
+boundaries either the segment between them (`"between"`) or two outward rays
+(`"outside"`, for an "either/or" compound inequality). `params["blank"]` draws the
+bare ticked line only (boundaries omitted), for the question-page half of a
+"draw it yourself" question — the same `diagram`/`solution_diagram` split used by
+the Plotting Graphs topics. Used by `inequalities_number_line_foundation`/`_higher`.
+**Gotcha found and fixed while building this**: the very first version of the
+Higher (compound) generator displayed the lower bound's symbol un-flipped — e.g.
+"Draw the solution set of 3 > x < 6" instead of "3 < x < 6" — because the internal
+`lo_op` variable (meaning "x >= lo_val") was reused directly as the displayed
+symbol between `lo_val` and `x` instead of being flipped first; caught by rendering
+an actual worksheet PDF and reading the prompts, not by the unit tests (which only
+checked the underlying region logic, not the displayed string) — fixed, and a new
+`_check_between_display` independent check was added specifically to verify the
+*displayed* string's meaning against the region, not just the region logic itself.
+
+**Fractional exponents in `mathtext.py`** (e.g. `x^(1/4)`, written by
+`algebraic_indices.py`'s Higher topic): typeset as a single flat raised
+`<super>(1/4)</super>` rather than a nested raised-numerator/lowered-denominator
+fraction inside a superscript — nesting `<super>` inside `<super>` was tried first
+and rendered with the numerator and denominator overlapping each other (verified by
+rendering both side by side in an isolated script before picking one). All three
+numeric patterns `mathtext.py` recognises (fractional exponent, plain integer
+exponent, standalone fraction) are now matched by *one* combined regex in a single
+pass rather than three sequential passes — a fractional exponent's raised "(1/4)"
+is otherwise a bare digit-slash-digit substring indistinguishable from a standalone
+fraction, and a later, separate fraction-matching pass would re-match and mangle it
+into a broken doubly-nested result. **Gotcha found while fixing this**: the unicode
+division slash U+2215 ("∕") was tried as a way to dodge that re-matching risk and
+turned out to have no Helvetica glyph either (same class of issue as the `⁻¹`
+gotcha below) — stick to a plain ASCII "/" for any future math-text character, and
+verify any new non-ASCII character actually renders (not just that it's "a valid
+unicode math symbol") before relying on it.
 
 Every Geometry topic and a handful of Algebra topics (parabola for turning point,
 line-pair for simultaneous-graphically) render an actual ReportLab-drawn figure
@@ -585,6 +627,60 @@ content today; it's built and unit-tested for when one eventually does.
     label position (see "Statistics chart diagrams" above). Backend suite grew
     from 335 to 383 tests; the 4 hardcoded `169`-topic-count assertions were
     updated to `188`; frontend unaffected (29/29 — new groups render generically).
+19. New session, a large user-supplied Algebra topic list (11 items: expressions/
+    formulae/equations/identities, forming and solving equations from words/angles/
+    area-perimeter, solving inequalities, satisfying inequalities, solving quadratic
+    inequalities, algebraic proof, the quadratic formula, algebraic fractions,
+    rationalising surds, iteration, inequalities on a number line), plus two extras
+    the user approved after a clarifying-questions round (changing the subject of a
+    formula, algebraic indices — both genuine AQA/Edexcel gaps spotted while
+    reviewing the existing Algebra section). Also asked up front, per the user's
+    choice: build both directions for the number-line topic (draw *and* read),
+    cover both number-property *and* identity-style proofs... resolved to
+    number-property proofs only (the classic GCSE style), and give
+    `forming_equations` a Foundation+Higher pair matching the existing split-topic
+    convention. Added 20 new topics (188→208): `classify_expressions`;
+    `forming_equations_foundation`/`_higher`; `change_subject_foundation`/`_higher`;
+    `solving_inequalities_foundation`/`_higher`, `satisfying_inequalities_foundation`/
+    `_higher`, `quadratic_inequalities` (new `inequalities.py`);
+    `inequalities_number_line_foundation`/`_higher` (new `inequalities_number_line.py`,
+    same "Inequalities" group, different file); `algebraic_proof` (24-template curated
+    bank, `question_count=24` — the same "fixed pool, not 20 random draws" pattern as
+    the Plotting Graphs topics' `question_count=5`, since a proof is a claim about
+    *all* integers and can't be meaningfully re-randomised per question);
+    `quadratic_formula`; `algebraic_fractions_add_subtract`/`_multiply_divide`;
+    `rationalise_denominator` (appended to the existing `powers_roots.py`/Number
+    section, alongside the pre-existing surd-simplification topic it's a natural
+    sequel to); `algebraic_indices_foundation`/`_higher`; `iteration`. Built via 5
+    parallel subagents (one per cluster of 2–5 related topics) plus the new
+    number-line diagram kind (see "Number line diagrams" above) built and visually
+    verified directly, matching the precedent set by Venn diagrams as the highest-
+    risk new geometry in a batch. One subagent was launched with `isolation:
+    "worktree"` by mistake (a second attempt at worktree isolation for a different
+    agent then failed outright with a directory-already-exists race, so the rest of
+    the batch ran directly in the main working tree instead) — its two files were
+    recovered by copying them out of `.claude/worktrees/<agent-id>/` before removing
+    the worktree, rather than merging a branch, since the agent hadn't committed
+    anything. Two real bugs were caught only through end-to-end visual verification,
+    not the unit tests (both now documented as gotchas above, and both are now
+    genuinely fixed with an added regression test, not just individually patched):
+    the number-line "between" compound inequality showing its lower bound the wrong
+    way round (e.g. "3 > x < 6" instead of "3 < x < 6"), and `x^(1/4)`-style
+    fractional exponents not being raised at all (only the inner "1/4" got the
+    standalone-fraction treatment, leaving a literal "^(" ")" sitting on the
+    baseline) — fixing the second one required restructuring `mathtext.py` from
+    three sequential regex passes into one combined pass (see "Fractional exponents"
+    above) and, along the way, surfaced that a straight rewrite of the file had
+    silently normalised the module's non-breaking-space constant back to a plain
+    ASCII space, un-fixing an older documented ReportLab quirk — caught by the
+    existing regression test for that quirk, not missed. Central registry wiring,
+    the 4 hardcoded `188`-topic-count assertions (updated to `208`), the full
+    backend+frontend suite, and browser-driven end-to-end verification (worksheet
+    *and* modelled-example generation through the real running app, for topics
+    spanning the new diagram kind, fractional-exponent typesetting, and iteration's
+    `x_(n+1)` notation) were all done centrally afterward, per the established
+    parallel-subagent pattern. Backend suite grew from 383 to 455 tests; frontend
+    unaffected (29/29 — new groups render generically).
 
 Everything above is committed and pushed (see `git log`).
 
@@ -721,7 +817,9 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
 - **Math text convention** (see `mathtext.py` in the Current State section above):
   write plain ASCII in generator strings — bare `x`/`n` for variables, `^n` for
   exponents (including negative, e.g. `10^-3`), `^-1` for inverse-function/inverse-
-  trig notation, `num/den` for fractions (e.g. `3/4`). Never hand-write Unicode
+  trig notation, `^(num/den)` for a fractional exponent (e.g. `x^(1/4)`, raised as
+  one flat unit — see "Fractional exponents in mathtext.py" above), `num/den` for
+  standalone fractions (e.g. `3/4`). Never hand-write Unicode
   `²`/`⁻¹`/italics in generator code (with the sole exception of `²`, which IS safe
   as a literal — see the Gotcha above for exactly what is/isn't). `x` and `n` are
   both italicised as of chronology step 16; `a`/`b` (vectors) are NOT — see the

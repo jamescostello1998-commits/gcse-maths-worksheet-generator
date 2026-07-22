@@ -2,6 +2,8 @@ import math
 import random
 from fractions import Fraction
 
+import sympy as sp
+
 from app.core.models import ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
 
@@ -575,6 +577,223 @@ def generate_modelled_example_roots_higher(tier: Tier, rng: random.Random) -> Mo
     )
 
 
+def _fmt_simple_rationalised(a2: int, b: int, b2: int) -> str:
+    """Render a2*sqrt(b)/b2, omitting the denominator entirely when b2 == 1."""
+    term = f"{a2}√{b}" if a2 != 1 else f"√{b}"
+    return term if b2 == 1 else f"{term}/{b2}"
+
+
+def _build_rationalise_simple(rng: random.Random) -> Question:
+    a = rng.randint(2, 20)
+    b = rng.choice(_SQUARE_FREE_FACTORS)
+
+    # Independent check that b is genuinely square-free - a different check
+    # than the curated _SQUARE_FREE_FACTORS list it was drawn from.
+    for p in range(2, int(b**0.5) + 1):
+        if b % (p * p) == 0:
+            raise ValueError("rationalise_denominator verification failed: b is not square-free")
+
+    g = math.gcd(a, b)
+    a2, b2 = a // g, b // g
+
+    # Independent verification: evaluate both the original expression and
+    # the claimed rationalised result to high precision and confirm they
+    # match closely - a different check than the gcd-simplification
+    # arithmetic above (no sp.nsimplify, per project convention).
+    original = sp.Rational(a) / sp.sqrt(b)
+    claimed = sp.Rational(a2, b2) * sp.sqrt(b)
+    if abs(sp.N(original, 30) - sp.N(claimed, 30)) > sp.Float("1e-20"):
+        raise ValueError("rationalise_denominator simple verification failed")
+
+    answer = _fmt_simple_rationalised(a2, b, b2)
+    steps = [f"Multiply the top and bottom by √{b}: {a}/√{b} = {a}√{b}/{b}"]
+    if g > 1:
+        steps.append(f"Simplify {a}/{b} by dividing by {g}: {answer}")
+    else:
+        steps.append(f"= {answer}")
+
+    return Question(
+        topic_id="rationalise_denominator",
+        tier=Tier.HIGHER,
+        prompt=f"Rationalise the denominator of {a}/√{b}, giving your answer in its simplest form.",
+        solution_steps=tuple(steps),
+        final_answer=answer,
+        dedup_key=f"rationalise_simple:{a}:{b}",
+    )
+
+
+def _build_rationalise_conjugate(rng: random.Random) -> Question:
+    for _ in range(300):
+        b = rng.randint(2, 9)
+        c = rng.choice(_SQUARE_FREE_FACTORS)
+        D = b * b - c
+        if D > 0:
+            break
+    else:
+        raise ValueError("rationalise_denominator: could not construct conjugate-shape numbers")
+
+    a = rng.randint(2, 12)
+    sign = rng.choice([1, -1])  # original denominator is (b + sign*root_c)
+    conj_sign = -sign
+
+    denom_str = f"{b} + √{c}" if sign > 0 else f"{b} - √{c}"
+    conj_str = f"{b} - √{c}" if sign > 0 else f"{b} + √{c}"
+
+    raw_numerator_str = f"{a * b} {'+' if conj_sign > 0 else '-'} {a}√{c}"
+
+    g = math.gcd(a, D)
+    a2, D2 = a // g, D // g
+    nc, kc = a2 * b, a2
+    numerator_str = f"{nc} {'+' if conj_sign > 0 else '-'} {kc}√{c}"
+    answer = numerator_str if D2 == 1 else f"({numerator_str})/{D2}"
+
+    # Independent verification: evaluate both the original expression and
+    # the claimed rationalised result to high precision and confirm they
+    # match closely - a different check than the conjugate-multiplication
+    # algebra above (no sp.nsimplify, per project convention).
+    original = sp.Rational(a) / (b + sign * sp.sqrt(c))
+    claimed = (nc + conj_sign * kc * sp.sqrt(c)) / D2
+    if abs(sp.N(original, 30) - sp.N(claimed, 30)) > sp.Float("1e-20"):
+        raise ValueError("rationalise_denominator conjugate verification failed")
+
+    prompt = f"Rationalise the denominator of {a}/({denom_str}), giving your answer in its simplest form."
+    steps = [
+        f"Multiply the numerator and denominator by the conjugate of the denominator, ({conj_str}):",
+        f"{a}/({denom_str}) = {a}({conj_str}) / [({denom_str})({conj_str})]",
+        f"The denominator is a difference of two squares: {b}^2 - {c} = {D}",
+        f"The numerator is {a}({conj_str}) = {raw_numerator_str}",
+    ]
+    if g > 1:
+        steps.append(f"Simplify by dividing numerator and denominator by {g}: {answer}")
+    else:
+        steps.append(f"= {answer}")
+
+    return Question(
+        topic_id="rationalise_denominator",
+        tier=Tier.HIGHER,
+        prompt=prompt,
+        solution_steps=tuple(steps),
+        final_answer=answer,
+        dedup_key=f"rationalise_conj:{a}:{b}:{c}:{sign}",
+    )
+
+
+def generate_rationalise_denominator(tier: Tier, rng: random.Random) -> Question:
+    shape = rng.choice(["simple", "conjugate"])
+    if shape == "simple":
+        return _build_rationalise_simple(rng)
+    return _build_rationalise_conjugate(rng)
+
+
+def generate_modelled_example_rationalise_denominator(tier: Tier, rng: random.Random) -> ModelledExample:
+    shape = rng.choice(["simple", "conjugate"])
+
+    if shape == "simple":
+        a = rng.randint(2, 20)
+        b = rng.choice(_SQUARE_FREE_FACTORS)
+
+        for p in range(2, int(b**0.5) + 1):
+            if b % (p * p) == 0:
+                raise ValueError("modelled example rationalise_denominator verification failed: b is not square-free")
+
+        g = math.gcd(a, b)
+        a2, b2 = a // g, b // g
+
+        original = sp.Rational(a) / sp.sqrt(b)
+        claimed = sp.Rational(a2, b2) * sp.sqrt(b)
+        if abs(sp.N(original, 30) - sp.N(claimed, 30)) > sp.Float("1e-20"):
+            raise ValueError("modelled example rationalise_denominator simple verification failed")
+
+        answer = _fmt_simple_rationalised(a2, b, b2)
+        teaching_steps = [
+            f"A fraction like {a}/√{b} has an irrational (never-terminating, non-repeating) number sitting "
+            "in the denominator - by convention, GCSE answers avoid leaving a root on the bottom, so it "
+            "needs to be moved to the top instead.",
+            f"The trick is to multiply the fraction by √{b}/√{b}, which equals 1, so the value of the "
+            f"fraction doesn't change - but on the bottom, √{b} × √{b} = {b}, a whole number.",
+            f"Applying this: {a}/√{b} = ({a} × √{b})/(√{b} × √{b}) = {a}√{b}/{b}.",
+            (
+                f"The fraction {a}/{b} still shares a common factor of {g}, so dividing both by it gives "
+                f"the fully simplified answer {answer}."
+                if g > 1
+                else f"{a} and {b} share no common factor, so {a}√{b}/{b} is already fully simplified."
+            ),
+            f"So {a}/√{b} rationalises to {answer}.",
+        ]
+        worked_calculation = [
+            f"{a}/√{b}",
+            f"= {a}√{b}/{b}",
+            f"= {answer}",
+        ]
+        return ModelledExample(
+            topic_id="rationalise_denominator",
+            tier=Tier.HIGHER,
+            prompt=f"Rationalise the denominator of {a}/√{b}, giving your answer in its simplest form.",
+            worked_calculation=tuple(worked_calculation),
+            teaching_steps=tuple(teaching_steps),
+            final_answer=answer,
+        )
+
+    for _ in range(300):
+        b = rng.randint(2, 9)
+        c = rng.choice(_SQUARE_FREE_FACTORS)
+        D = b * b - c
+        if D > 0:
+            break
+    else:
+        raise ValueError("modelled example rationalise_denominator: could not construct conjugate-shape numbers")
+
+    a = rng.randint(2, 12)
+    sign = rng.choice([1, -1])
+    conj_sign = -sign
+
+    denom_str = f"{b} + √{c}" if sign > 0 else f"{b} - √{c}"
+    conj_str = f"{b} - √{c}" if sign > 0 else f"{b} + √{c}"
+    raw_numerator_str = f"{a * b} {'+' if conj_sign > 0 else '-'} {a}√{c}"
+
+    g = math.gcd(a, D)
+    a2, D2 = a // g, D // g
+    nc, kc = a2 * b, a2
+    numerator_str = f"{nc} {'+' if conj_sign > 0 else '-'} {kc}√{c}"
+    answer = numerator_str if D2 == 1 else f"({numerator_str})/{D2}"
+
+    original = sp.Rational(a) / (b + sign * sp.sqrt(c))
+    claimed = (nc + conj_sign * kc * sp.sqrt(c)) / D2
+    if abs(sp.N(original, 30) - sp.N(claimed, 30)) > sp.Float("1e-20"):
+        raise ValueError("modelled example rationalise_denominator conjugate verification failed")
+
+    teaching_steps = [
+        f"A denominator like ({denom_str}) can't be rationalised just by multiplying by √{c}/√{c}, since "
+        f"that would leave a mixed term - instead, the trick is to multiply by the 'conjugate', "
+        f"({conj_str}), which has the opposite sign in front of the root.",
+        f"Multiplying a bracket by its conjugate always gives a difference of two squares, which clears "
+        f"the root completely: ({denom_str})({conj_str}) = {b}^2 - {c} = {D}, a whole number.",
+        f"Multiply the numerator by the same conjugate to keep the fraction's value unchanged: "
+        f"{a}({conj_str}) = {raw_numerator_str}.",
+        f"Putting the new numerator over the new denominator gives ({raw_numerator_str})/{D}.",
+        (
+            f"{a} and {D} share a common factor of {g}, so dividing numerator and denominator by it gives "
+            f"the fully simplified answer {answer}."
+            if g > 1
+            else f"{a} and {D} share no common factor, so ({raw_numerator_str})/{D} is already fully "
+            "simplified."
+        ),
+    ]
+    worked_calculation = [
+        f"{a}/({denom_str})",
+        f"= {a}({conj_str}) / ({b}^2 - {c})",
+        f"= {answer}",
+    ]
+    return ModelledExample(
+        topic_id="rationalise_denominator",
+        tier=Tier.HIGHER,
+        prompt=f"Rationalise the denominator of {a}/({denom_str}), giving your answer in its simplest form.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=answer,
+    )
+
+
 TOPIC_POWERS_FOUNDATION = TopicDefinition(
     id="powers_foundation",
     display_name="Powers & Indices",
@@ -617,4 +836,15 @@ TOPIC_ROOTS_HIGHER = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_roots_higher,
+)
+
+TOPIC_RATIONALISE_DENOMINATOR = TopicDefinition(
+    id="rationalise_denominator",
+    display_name="Rationalising the Denominator",
+    description="Rationalise a denominator containing a surd, including conjugate denominators.",
+    generate=generate_rationalise_denominator,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_rationalise_denominator,
 )
