@@ -63,6 +63,7 @@ _TOPIC_LIST: list[TopicDefinition] = [
     # Number
     fractions.TOPIC_SIMPLIFY,
     fractions.TOPIC_EQUIVALENT,
+    fractions.TOPIC_EQUIVALENT_DIAGRAM,
     fractions.TOPIC_ORDERING,
     fractions.TOPIC_ADD_SUBTRACT,
     fractions.TOPIC_MULTIPLY,

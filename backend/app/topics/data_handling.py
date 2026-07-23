@@ -418,6 +418,9 @@ def generate_relative_frequency(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=str(int(expected)),
         dedup_key=f"relfreq:{item}:{event}:{trials}:{frequency}:{future_trials}",
+        diagram=(
+            DiagramSpec(kind="dice", params={"values": [6], "highlight": [0]}) if item == "biased dice" else None
+        ),
     )
 
 
@@ -462,6 +465,9 @@ def generate_modelled_example_relative_frequency(tier: Tier, rng: random.Random)
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=str(int(expected)),
+        diagram=(
+            DiagramSpec(kind="dice", params={"values": [6], "highlight": [0]}) if item == "biased dice" else None
+        ),
     )
 
 

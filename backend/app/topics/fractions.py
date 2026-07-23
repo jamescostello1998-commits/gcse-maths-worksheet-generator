@@ -2,7 +2,7 @@ import math
 import random
 from fractions import Fraction
 
-from app.core.models import ModelledExample, Question, Tier
+from app.core.models import DiagramSpec, ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
 
 SECTION = "number"
@@ -326,6 +326,126 @@ def generate_fractions_equivalent(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=f"{correct_letter}) {correct_num}/{correct_den}",
         dedup_key=f"equiv_id:{a}:{b}:{sorted(candidates)}",
+    )
+
+
+_DIAGRAM_DENOMINATORS = [4, 6, 8, 9, 10, 12]
+
+
+def _proper_divisors(n: int) -> list[int]:
+    return [b for b in range(2, n) if n % b == 0]
+
+
+def generate_fractions_equivalent_diagram(tier: Tier, rng: random.Random) -> Question:
+    shape = rng.choice(["fill_missing_diagram", "identify_equivalent_diagram"])
+
+    if shape == "fill_missing_diagram":
+        d = rng.choice(_DIAGRAM_DENOMINATORS)
+        b = rng.choice(_proper_divisors(d))
+        k = d // b
+        a = rng.randint(1, b - 1)
+        while math.gcd(a, b) != 1:
+            a = rng.randint(1, b - 1)
+        target_shaded = a * k
+
+        # Independent verification via cross-multiplication - same check used
+        # by the numeric fractions_equivalent topic.
+        if a * d != target_shaded * b:
+            raise ValueError("fractions_equivalent_diagram (fill_missing_diagram) verification failed")
+
+        kind = rng.choice(["bar", "circle"])
+        diagram = DiagramSpec(kind="fraction_shapes", params={"shapes": [
+            {"kind": kind, "parts": b, "shaded": a, "label": f"{a}/{b}"},
+            {"kind": kind, "parts": d, "shaded": 0, "label": f"?/{d}"},
+        ]})
+        solution_diagram = DiagramSpec(kind="fraction_shapes", params={"shapes": [
+            {"kind": kind, "parts": b, "shaded": a, "label": f"{a}/{b}"},
+            {"kind": kind, "parts": d, "shaded": target_shaded, "label": f"{target_shaded}/{d}"},
+        ]})
+
+        steps = [
+            f"Shape A shows {a}/{b} shaded; Shape B has {d} equal parts.",
+            f"Find the scale factor between the denominators: {d} ÷ {b} = {k}",
+            f"Multiply the shaded count by the same scale factor: {a} × {k} = {target_shaded}",
+        ]
+        return Question(
+            topic_id="fractions_equivalent_diagram",
+            tier=Tier.FOUNDATION,
+            prompt=(
+                f"Shape A is divided into {b} equal parts, with {a} shaded. Shape B is divided into "
+                f"{d} equal parts. How many parts of Shape B must be shaded to show a fraction "
+                "equivalent to Shape A?"
+            ),
+            solution_steps=tuple(steps),
+            final_answer=str(target_shaded),
+            dedup_key=f"diagram_fill:{a}:{b}:{d}:{kind}",
+            diagram=diagram,
+            solution_diagram=solution_diagram,
+        )
+
+    # identify_equivalent_diagram: one shaded reference shape plus 3 labelled
+    # candidates (A/B/C) - one genuine equivalent, two verified-non-equivalent
+    # distractors - all with denominators capped small for diagram legibility.
+    b = rng.randint(2, 6)
+    a = rng.randint(1, b - 1)
+    while math.gcd(a, b) != 1:
+        a = rng.randint(1, b - 1)
+    d = rng.choice([x for x in _DIAGRAM_DENOMINATORS if x % b == 0 and x != b])
+    k = d // b
+    correct = (a * k, d)
+
+    distractors: set[tuple[int, int]] = set()
+    attempts = 0
+    while len(distractors) < 2 and attempts < 200:
+        attempts += 1
+        den = rng.choice(_DIAGRAM_DENOMINATORS)
+        num = rng.randint(1, den - 1)
+        cand = (num, den)
+        if cand == correct or cand in distractors:
+            continue
+        if a * den == num * b:
+            continue  # accidentally equivalent - reject and try again
+        distractors.add(cand)
+
+    if len(distractors) < 2:
+        raise ValueError("fractions_equivalent_diagram could not build distinct distractors")
+
+    candidates = [correct] + list(distractors)[:2]
+    rng.shuffle(candidates)
+
+    # Independent verification: exactly one candidate must satisfy the cross-multiplication test.
+    equivalent_flags = [a * den == num * b for num, den in candidates]
+    if sum(equivalent_flags) != 1:
+        raise ValueError("fractions_equivalent_diagram (identify_equivalent_diagram) verification failed")
+    correct_index = equivalent_flags.index(True)
+
+    letters = ["A", "B", "C"]
+    correct_letter = letters[correct_index]
+    correct_num, correct_den = candidates[correct_index]
+
+    kind = rng.choice(["bar", "circle"])
+    shapes = [{"kind": kind, "parts": b, "shaded": a, "label": f"{a}/{b}"}]
+    for letter, (num, den) in zip(letters, candidates):
+        shapes.append({"kind": kind, "parts": den, "shaded": num, "label": f"{letter}) {num}/{den}"})
+    diagram = DiagramSpec(kind="fraction_shapes", params={"shapes": shapes})
+
+    steps = [
+        f"Cross-multiply {a}/{b} against each labelled shape: a shape shows an equivalent fraction "
+        f"only if {a} × (its denominator) = (its shaded count) × {b}.",
+        f"Only shape {correct_letter}) {correct_num}/{correct_den} works: "
+        f"{a} × {correct_den} = {correct_num} × {b} = {a * correct_den}.",
+    ]
+    return Question(
+        topic_id="fractions_equivalent_diagram",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"The first shape shows {a}/{b} shaded. Which of the labelled shapes A, B, C shows an "
+            "equivalent fraction?"
+        ),
+        solution_steps=tuple(steps),
+        final_answer=f"{correct_letter}) {correct_num}/{correct_den}",
+        dedup_key=f"diagram_id:{a}:{b}:{sorted(candidates)}:{kind}",
+        diagram=diagram,
     )
 
 
@@ -890,6 +1010,131 @@ def generate_modelled_example_fractions_equivalent(tier: Tier, rng: random.Rando
     )
 
 
+def generate_modelled_example_fractions_equivalent_diagram(tier: Tier, rng: random.Random) -> ModelledExample:
+    shape = rng.choice(["fill_missing_diagram", "identify_equivalent_diagram"])
+
+    if shape == "fill_missing_diagram":
+        d = rng.choice(_DIAGRAM_DENOMINATORS)
+        b = rng.choice(_proper_divisors(d))
+        k = d // b
+        a = rng.randint(1, b - 1)
+        while math.gcd(a, b) != 1:
+            a = rng.randint(1, b - 1)
+        target_shaded = a * k
+
+        if a * d != target_shaded * b:
+            raise ValueError(
+                "modelled example fractions_equivalent_diagram (fill_missing_diagram) verification failed"
+            )
+
+        kind = rng.choice(["bar", "circle"])
+        diagram = DiagramSpec(kind="fraction_shapes", params={"shapes": [
+            {"kind": kind, "parts": b, "shaded": a, "label": f"{a}/{b}"},
+            {"kind": kind, "parts": d, "shaded": target_shaded, "label": f"{target_shaded}/{d}"},
+        ]})
+
+        teaching_steps = [
+            "Two shapes divided into equal parts show equivalent fractions when the SAME scale factor "
+            "connects both their part-counts and their shaded counts - shading more parts of a "
+            "more-finely-divided shape can still represent exactly the same amount.",
+            f"Shape A is divided into {b} parts with {a} shaded. Shape B is divided into {d} parts - "
+            f"find the scale factor between the two denominators first: {d} ÷ {b} = {k}.",
+            f"Apply that same scale factor to the shaded count: {a} × {k} = {target_shaded}. That's how "
+            f"many of Shape B's {d} parts must be shaded.",
+            f"Shape B shaded {target_shaded}/{d} and Shape A shaded {a}/{b} represent exactly the same "
+            "amount of the whole shape, just cut into different numbers of pieces.",
+        ]
+        worked_calculation = [
+            f"{a}/{b} = ?/{d}",
+            f"{d} ÷ {b} = {k}",
+            f"{a} × {k} = {target_shaded}",
+        ]
+        return ModelledExample(
+            topic_id="fractions_equivalent_diagram",
+            tier=Tier.FOUNDATION,
+            prompt=(
+                f"Shape A is divided into {b} equal parts, with {a} shaded. Shape B is divided into "
+                f"{d} equal parts. How many parts of Shape B must be shaded to show a fraction "
+                "equivalent to Shape A?"
+            ),
+            worked_calculation=tuple(worked_calculation),
+            teaching_steps=tuple(teaching_steps),
+            final_answer=str(target_shaded),
+            diagram=diagram,
+        )
+
+    b = rng.randint(2, 6)
+    a = rng.randint(1, b - 1)
+    while math.gcd(a, b) != 1:
+        a = rng.randint(1, b - 1)
+    d = rng.choice([x for x in _DIAGRAM_DENOMINATORS if x % b == 0 and x != b])
+    k = d // b
+    correct = (a * k, d)
+
+    distractors: set[tuple[int, int]] = set()
+    attempts = 0
+    while len(distractors) < 2 and attempts < 200:
+        attempts += 1
+        den = rng.choice(_DIAGRAM_DENOMINATORS)
+        num = rng.randint(1, den - 1)
+        cand = (num, den)
+        if cand == correct or cand in distractors:
+            continue
+        if a * den == num * b:
+            continue
+        distractors.add(cand)
+
+    if len(distractors) < 2:
+        raise ValueError("modelled example fractions_equivalent_diagram could not build distinct distractors")
+
+    candidates = [correct] + list(distractors)[:2]
+    rng.shuffle(candidates)
+
+    equivalent_flags = [a * den == num * b for num, den in candidates]
+    if sum(equivalent_flags) != 1:
+        raise ValueError(
+            "modelled example fractions_equivalent_diagram (identify_equivalent_diagram) verification failed"
+        )
+    correct_index = equivalent_flags.index(True)
+
+    letters = ["A", "B", "C"]
+    correct_letter = letters[correct_index]
+    correct_num, correct_den = candidates[correct_index]
+
+    kind = rng.choice(["bar", "circle"])
+    shapes = [{"kind": kind, "parts": b, "shaded": a, "label": f"{a}/{b}"}]
+    for letter, (num, den) in zip(letters, candidates):
+        shapes.append({"kind": kind, "parts": den, "shaded": num, "label": f"{letter}) {num}/{den}"})
+    diagram = DiagramSpec(kind="fraction_shapes", params={"shapes": shapes})
+
+    teaching_steps = [
+        "Cross-multiplication lets you check whether a shaded shape represents an equivalent fraction "
+        "without having to find a common denominator by hand: for a/b against a candidate p/q, they "
+        "match only if a × q = p × b.",
+        f"Here the reference shape shows {a}/{b}. Test each labelled shape the same way: multiply {a} "
+        f"by its denominator, and its own shaded count by {b}, then compare the two results.",
+        f"Only shape {correct_letter}) {correct_num}/{correct_den} passes: "
+        f"{a} × {correct_den} = {a * correct_den}, and {correct_num} × {b} = {correct_num * b}, which match.",
+    ]
+    worked_calculation = [
+        f"{a}/{b} vs {correct_letter}) {correct_num}/{correct_den}",
+        f"{a} × {correct_den} = {a * correct_den}",
+        f"{correct_num} × {b} = {correct_num * b}  (match)",
+    ]
+    return ModelledExample(
+        topic_id="fractions_equivalent_diagram",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"The first shape shows {a}/{b} shaded. Which of the labelled shapes A, B, C shows an "
+            "equivalent fraction?"
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"{correct_letter}) {correct_num}/{correct_den}",
+        diagram=diagram,
+    )
+
+
 def generate_modelled_example_fractions_ordering(tier: Tier, rng: random.Random) -> ModelledExample:
     n = rng.choice([4, 5])
     fracs: list[Fraction] = []
@@ -1107,6 +1352,17 @@ TOPIC_EQUIVALENT = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.FOUNDATION,
     generate_modelled_example=generate_modelled_example_fractions_equivalent,
+)
+
+TOPIC_EQUIVALENT_DIAGRAM = TopicDefinition(
+    id="fractions_equivalent_diagram",
+    display_name="Equivalent Fractions (Diagrams)",
+    description="Use shaded bar/circle diagrams to find or identify equivalent fractions.",
+    generate=generate_fractions_equivalent_diagram,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_fractions_equivalent_diagram,
 )
 
 TOPIC_ORDERING = TopicDefinition(

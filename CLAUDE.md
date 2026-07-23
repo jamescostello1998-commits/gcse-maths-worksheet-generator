@@ -12,14 +12,11 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-The user-supplied Number expansion (chronology step 20 — equivalent/ordering fractions,
-improper/mixed conversion, decimal arithmetic, split recurring-decimal sheets, BIDMAS,
-split negative-number topics, negative indices/challenging indices/common-base index
-equations, surd arithmetic, split standard form by large/small plus a calculator
-variant, simple interest, best buys, and percentage-change/mixed-percentages topics)
-is **complete and pushed**. 231 topics total, backend suite 487/487, frontend 29/29,
-no known bugs. There is **no committed next task** right now. Before starting anything
-new:
+Two "Ideas for a future session" items (chronology step 21 — equivalent-fractions
+shaded-diagram topic, and dice/spinner/bag illustrations retrofitted onto existing
+Probability topics) are **complete and pushed**. 232 topics total, backend suite
+503/503, frontend 29/29, no known bugs. There is **no committed next task** right now.
+Before starting anything new:
 1. Check "Ideas for a future session" (bottom of this file) for candidate follow-ups
    — none are started and none are promised; ask the user which (if any) they want
    before building.
@@ -29,11 +26,11 @@ new:
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**231 topics across 6 sections**, all procedurally generated with independent
+**232 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.).
-Full backend suite: **487/487 passing**. Frontend suite: **29/29 passing**.
+Full backend suite: **503/503 passing**. Frontend suite: **29/29 passing**.
 
 **Modelled Example feature (on every topic, including new ones)**: a second button, "Generate
 Modelled Example," sits next to "Generate Worksheet" on every topic card
@@ -70,7 +67,7 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 
 | Section | Groups | Topics |
 |---|---|---|
-| Number | Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 53 |
+| Number | Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 54 |
 | Algebra | Expressions/Formulae/Equations/Identities, Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 57 |
 | Ratio & Proportion | Percentages, Best Buys, Ratio, Proportion, Compound Measures | 34 |
 | Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems | 39 |
@@ -327,6 +324,31 @@ turned out to have no Helvetica glyph either (same class of issue as the `⁻¹`
 gotcha below) — stick to a plain ASCII "/" for any future math-text character, and
 verify any new non-ASCII character actually renders (not just that it's "a valid
 unicode math symbol") before relying on it.
+
+**Fraction-shape and dice/spinner/bag diagrams** (`draw_fraction_shapes`, kind
+`"fraction_shapes"`; `draw_dice`, kind `"dice"`; `draw_spinner`, kind `"spinner"`;
+`draw_bag`, kind `"bag_of_counters"`): built in chronology step 21.
+`draw_fraction_shapes` takes `params["shapes"]`, a list of 1–4
+`{"kind": "bar"|"circle", "parts", "shaded", "label"}` dicts laid out left to right —
+a bar is a `Rect` split into `parts` equal vertical segments (leftmost `shaded`
+filled), a circle is `parts` equal `Wedge`s (same cumulative-angle construction as
+`draw_pie_chart`), and each shape's `label` goes through the existing `_label()`
+helper so a bare `"n/d"` string automatically gets the vinculum treatment built (but
+previously unused by any real topic) in step 16. Used by
+`fractions_equivalent_diagram`. `draw_dice` takes `params["values"]` (1–2 die faces,
+standard pip layout) and optional `params["highlight"]` (indices getting an
+`ACCENT`-coloured border). `draw_spinner` takes `params["sectors"]` (equal wedge
+labels) and optional `params["highlight"]` (sector indices filled `HIGHLIGHT`, the
+rest left neutral `PAPER` — deliberately not a full rainbow palette, matching this
+app's existing "shade only the interesting bit" convention) plus a small centre
+pointer. `draw_bag` takes `params["counts"]` (colour name → count) and draws a
+rounded-rect body with a tied neck, small counters packed in rows grouped by colour,
+using a direct colour-name-to-hex map (`_COUNTER_COLOURS`) rather than the abstract
+`CHART_COLORS` palette, since the prompt text names the literal colour. These three
+are retrofitted onto 9 existing Probability topics (see chronology step 21 for the
+exact list and which branches were deliberately left text-only rather than inventing
+unstated values) — illustrative only, never determine the answer, so no new
+verification logic was needed anywhere they were added.
 
 Every Geometry topic and a handful of Algebra topics (parabola for turning point,
 line-pair for simultaneous-graphically) render an actual ReportLab-drawn figure
@@ -751,6 +773,80 @@ content today; it's built and unit-tested for when one eventually does.
     Foundation/Higher tier pickers and section topic counts via the running app,
     not just the test suite. Backend suite grew from 455 to 487 tests; frontend
     unaffected (29/29 — new groups render generically).
+21. New session, two "Ideas for a future session" items the user picked directly from
+    the list (no new topic list this time): the equivalent-fractions shaded-diagram
+    topic deferred in step 20, and dice/spinner/bag illustrations deferred since the
+    Venn/tree/table diagram work. Entered plan mode first given the scope (two new
+    diagram engines plus a topic-list retrofit); researched via 2 parallel Explore
+    agents (one on `fractions.py`/`diagrams.py` conventions, one auditing every
+    Probability topic for die/spinner/bag scenarios and their existing param shapes)
+    before writing the plan, then confirmed two scope decisions with the user up
+    front: the fractions diagram ships as a new sibling topic
+    (`fractions_equivalent_diagram`, matching this app's established sibling-topic
+    pattern) rather than retrofitting the existing numeric topic, and the
+    illustrations retrofit all three shapes onto existing topics rather than a
+    smaller pilot.
+
+    Built 4 new diagram kinds in `diagrams.py`, all visually verified directly by
+    rendering actual PDFs before trusting them (same highest-risk-first precedent as
+    Venn/number-line diagrams): `draw_fraction_shapes` (1-4 bar or circle shapes,
+    each divided into `parts` equal segments with `shaded` of them filled — reuses
+    the existing `_label()` vinculum-fraction helper, built in step 16 but unexercised
+    by any real topic until now, for the "n/d" caption under each shape);
+    `draw_dice` (1-2 die faces with standard pip layouts, optional accent-highlighted
+    target face); `draw_spinner` (equal wedge sectors, kept neutral/`PAPER` except a
+    highlighted target sector, plus a small centre pointer — deliberately not a
+    rainbow palette, matching this app's existing "shade only the interesting bit"
+    convention); `draw_bag` (a rounded-rect body with a tied neck, small counters
+    packed in rows grouped by colour, mapped directly from colour name to a matching
+    hex rather than the abstract `CHART_COLORS` palette since the prompt text names
+    the literal colour).
+
+    Added one new topic (231→232): `fractions_equivalent_diagram` in `fractions.py`
+    (Foundation, same group as its numeric sibling), with two shapes —
+    `fill_missing_diagram` (Shape A given shaded, Shape B shown blank via `diagram=`
+    then shaded via `solution_diagram=`, the same blank-then-revealed split the
+    Plotting Graphs topics use) and `identify_equivalent_diagram` (one reference
+    shape plus 3 labelled A/B/C candidates, reusing the existing numeric topic's
+    verified-non-equivalent-distractor construction). Denominators are deliberately
+    capped at a small "nice" set (4/6/8/9/10/12) rather than reusing the numeric
+    topic's much larger range (up to ~90 in its distractor construction), since a
+    diagram needs legible segment counts where the numeric topic doesn't.
+
+    Retrofitted the dice/spinner/bag diagrams onto 9 existing Probability topics that
+    already described the matching scenario in prose and had no diagram yet — no new
+    topics, no topic-count change, purely additive `diagram=`/`solution_diagram=`
+    wiring using values the generators already compute, so no new verification logic
+    was needed (the diagrams never determine the answer). All 9 targets live in the
+    same file (`probability.py`), so this was done directly in one pass rather than
+    via parallel subagents, to avoid same-file edit conflicts: `probability_single_event`
+    /`probability_complement`/`probability_conditional` always get a bag diagram (with
+    the target colour highlighted on the first two); `probability_combined_dice`
+    always gets two decorative dice (illustration only, not tied to the actual
+    sum/product being asked); `probability_and_or_rule` always gets a diagram of one
+    of the three kinds (bag for the OR branch's mutually-exclusive colours, with a
+    third "other" bag share added when the two given probabilities don't already sum
+    to 1; die or spinner for the AND branch's independent events, die taking priority
+    if both a die and spinner appear since a coin can pair with at most one of them —
+    required extending `_independent_event`'s return tuple with per-event diagram
+    info); `probability_expectation` only gets a die diagram for its `context=="die"`
+    branch (the `spinner` branch has no side-count in the generator, so drawing one
+    would mean inventing a number not actually in the question — left text-only
+    rather than fabricate); `probability_listing_outcomes` only gets a spinner diagram
+    for its two single-spinner scenarios (`coin_spinner3`/`coin_spinner4` — the two
+    two-spinner scenarios were left text-only since `draw_spinner` only draws one
+    spinner and showing just one of two would misrepresent the scenario, not
+    illustrate it). Also retrofitted `relative_frequency` in `data_handling.py` for
+    its `"biased dice"` context specifically (a fixed pairing with the event "shows a
+    six", so highlighting face 6 on a standard die is faithful, not invented) while
+    leaving its `"spinner"` context text-only for the same missing-side-count reason
+    as expectation's spinner branch. This partial/skip pattern was scoped up front in
+    the plan, not discovered as a limitation partway through — no bugs were found
+    while building it, and no diagrams needed reworking after the visual PDF checks.
+
+    Backend suite grew from 487 to 503 tests; frontend unaffected (29/29 — no
+    frontend changes were needed, new groups/topics render generically and the
+    Modelled Example button was already driven by a per-topic API flag).
 
 Everything above is committed and pushed (see `git log`).
 
@@ -957,18 +1053,21 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
   every vector prompt/step string marked at the source (not a blanket regex, which
   can't tell a genuine vector mention from the English article "a" in the same
   sentence). `n` (sequences, angles, ratio) is already done as of step 16.
-- Dice/spinner/bag *illustrations* (actual pictures of a die or spinner, as opposed to
-  the tree/table/sample-space/Venn diagrams already built) are still out of scope.
 - Stem-and-leaf diagrams, scatter graphs & correlation, and standard deviation are all
   real GCSE Statistics content not covered by the Probability/Statistics topic list
   the user supplied (chronology steps 17–18) — never explicitly requested, so not
   built, but worth flagging if a future session wants to round out Statistics further.
 - Saved worksheet history, mixed-topic revision papers, user accounts.
 - Deploying this somewhere instead of local-only dev servers.
-- Equivalent fractions shown via a diagram (shaded bar/circle pairs), alongside the
-  purely numerical `fractions_equivalent` topic built in step 20 — deliberately
-  deferred (per the user's choice) since it needs a new diagram engine, similar
-  effort to the number-line diagram built in step 19.
+- `probability_expectation`'s `spinner` context and `relative_frequency`'s `spinner`
+  context both have no side-count in their generators, so step 21 deliberately left
+  them without a spinner diagram rather than inventing one — could be built by first
+  adding a real side-count to those generators (a small, genuine change to the
+  question content itself, not just a diagram retrofit). Similarly,
+  `probability_listing_outcomes`'s two-spinner scenarios (`two_spinner3`/
+  `spinner3_spinner4`) have no diagram since `draw_spinner` only draws one spinner at
+  a time — would need a second diagram kind (or a `draw_spinner` extension) that lays
+  out two spinners side by side.
 
 Don't start any of these without checking with the user first — this list is just
 carried-over context, not a plan.

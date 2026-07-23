@@ -12,6 +12,7 @@ import re
 from typing import Callable
 
 from reportlab.graphics.shapes import ArcPath, Circle, Drawing, Group, Line, PolyLine, Polygon, Rect, String, Wedge
+from reportlab.lib import colors
 from reportlab.pdfbase.pdfmetrics import stringWidth
 
 from app.core.models import DiagramSpec
@@ -1457,6 +1458,142 @@ def draw_time_series(params: dict) -> Drawing:
     return d
 
 
+def draw_fraction_shapes(params: dict) -> Drawing:
+    """One or more shapes (bar or circle), each divided into `parts` equal
+    segments with `shaded` of them filled - illustrates a fraction shaded/parts.
+    params['shapes']: list of {"kind": "bar"|"circle", "parts": int,
+    "shaded": int, "label": Optional[str]} dicts, laid out left to right."""
+    shapes: list[dict] = params["shapes"]
+    cell_w = 70
+    d = Drawing(cell_w * len(shapes) + 20, 110)
+
+    for i, shape in enumerate(shapes):
+        cx = 20 + cell_w * i + cell_w / 2
+        parts, shaded = shape["parts"], shape["shaded"]
+
+        if shape["kind"] == "circle":
+            cy, r = 60, 32
+            for seg in range(parts):
+                start = 90 + seg * 360 / parts
+                end = 90 + (seg + 1) * 360 / parts
+                fill = HIGHLIGHT if seg < shaded else PAPER
+                d.add(Wedge(cx, cy, r, start, end, fillColor=fill, strokeColor=INK, strokeWidth=0.8))
+        else:
+            bw, bh = 54, 34
+            bx, by = cx - bw / 2, 60 - bh / 2
+            seg_w = bw / parts
+            for seg in range(shaded):
+                d.add(Rect(bx + seg * seg_w, by, seg_w, bh, fillColor=HIGHLIGHT, strokeColor=None))
+            for seg in range(1, parts):
+                d.add(Line(bx + seg * seg_w, by, bx + seg * seg_w, by + bh, strokeColor=GRID, strokeWidth=0.6))
+            d.add(Rect(bx, by, bw, bh, fillColor=None, strokeColor=INK, strokeWidth=1))
+
+        if shape.get("label"):
+            d.add(_label(cx, 12, str(shape["label"]), anchor="middle", size=10))
+
+    return d
+
+
+_PIP_LAYOUTS = {
+    1: [(0, 0)],
+    2: [(-1, -1), (1, 1)],
+    3: [(-1, -1), (0, 0), (1, 1)],
+    4: [(-1, -1), (1, -1), (-1, 1), (1, 1)],
+    5: [(-1, -1), (1, -1), (0, 0), (-1, 1), (1, 1)],
+    6: [(-1, -1), (1, -1), (-1, 0), (1, 0), (-1, 1), (1, 1)],
+}
+
+
+def draw_dice(params: dict) -> Drawing:
+    """One or two die faces with standard pip layouts. params['values']:
+    list of 1-2 ints in 1..6. params['highlight']: optional list of indices
+    (into values) whose face gets an accent-coloured border."""
+    values: list[int] = params["values"]
+    highlight = set(params.get("highlight", []))
+    face, gap = 60, 20
+    d = Drawing(face * len(values) + gap * (len(values) + 1), face + 2 * gap)
+
+    for i, val in enumerate(values):
+        x, y = gap + i * (face + gap), gap
+        border_color = ACCENT if i in highlight else INK
+        border_width = 1.8 if i in highlight else 1
+        d.add(Rect(x, y, face, face, rx=8, ry=8, fillColor=PAPER, strokeColor=border_color, strokeWidth=border_width))
+        cx, cy = x + face / 2, y + face / 2
+        offset, pip_r = face * 0.24, face * 0.07
+        for dx, dy in _PIP_LAYOUTS[val]:
+            d.add(Circle(cx + dx * offset, cy - dy * offset, pip_r, fillColor=INK, strokeColor=None))
+
+    return d
+
+
+def draw_spinner(params: dict) -> Drawing:
+    """A spinner divided into equal sectors, each labelled. params['sectors']:
+    list of label strings (one per equal sector). params['highlight']:
+    optional list of sector indices filled to mark the target outcome(s)."""
+    sectors: list[str] = params["sectors"]
+    highlight = set(params.get("highlight", []))
+    n = len(sectors)
+    cx, cy, r = 75, 65, 50
+    d = Drawing(150, 130)
+
+    for i, label in enumerate(sectors):
+        start = 90 + i * 360 / n
+        end = 90 + (i + 1) * 360 / n
+        fill = HIGHLIGHT if i in highlight else PAPER
+        d.add(Wedge(cx, cy, r, start, end, fillColor=fill, strokeColor=INK, strokeWidth=0.8))
+        mid = math.radians((start + end) / 2)
+        d.add(_label(cx + r * 0.62 * math.cos(mid), cy + r * 0.62 * math.sin(mid) - 3, str(label), size=8))
+
+    d.add(Polygon(points=[cx - 5, cy, cx + 5, cy, cx, cy + r * 0.55], fillColor=ACCENT, strokeColor=None))
+    d.add(Circle(cx, cy, 4, fillColor=INK, strokeColor=None))
+
+    return d
+
+
+_COUNTER_COLOURS = {
+    "red": colors.HexColor("#c0555f"),
+    "blue": colors.HexColor("#4a72b0"),
+    "green": colors.HexColor("#2f6f4f"),
+    "yellow": colors.HexColor("#d9a521"),
+    "purple": colors.HexColor("#9b6bb0"),
+}
+
+
+def draw_bag(params: dict) -> Drawing:
+    """A bag outline containing small filled counters, grouped by colour.
+    params['counts']: dict of colour name -> count. params['highlight']:
+    optional colour name noted as the target, captioned below the bag."""
+    counts: dict[str, int] = params["counts"]
+    highlight = params.get("highlight")
+    width = 160
+    d = Drawing(width, 145)
+
+    body_x, body_y, body_w, body_h = 20, 15, width - 40, 90
+    d.add(Rect(body_x, body_y, body_w, body_h, rx=16, ry=16, fillColor=PAPER, strokeColor=INK, strokeWidth=1.3))
+    neck_y = body_y + body_h
+    d.add(Line(body_x + 10, neck_y, body_x + body_w - 10, neck_y, strokeColor=INK, strokeWidth=1.3))
+    d.add(Circle(width / 2, neck_y + 6, 4, fillColor=None, strokeColor=INK, strokeWidth=1.3))
+
+    r, pad = 4.3, 10
+    x, y = body_x + pad, body_y + body_h - pad
+    row_limit, bottom_limit = body_x + body_w - pad, body_y + pad
+    for colour, count in counts.items():
+        fill = _COUNTER_COLOURS.get(colour, MUTED)
+        for _ in range(count):
+            if y < bottom_limit:
+                break
+            d.add(Circle(x, y, r, fillColor=fill, strokeColor=INK, strokeWidth=0.4))
+            x += r * 2.3
+            if x > row_limit:
+                x = body_x + pad
+                y -= r * 2.3
+
+    if highlight:
+        d.add(_label(width / 2, 3, f"Target colour: {highlight}", size=7.5, color=MUTED))
+
+    return d
+
+
 _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "rectangle": draw_rectangle,
     "triangle_area": draw_triangle_area,
@@ -1492,6 +1629,10 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "cumulative_frequency": draw_cumulative_frequency,
     "time_series": draw_time_series,
     "number_line": draw_number_line,
+    "fraction_shapes": draw_fraction_shapes,
+    "dice": draw_dice,
+    "spinner": draw_spinner,
+    "bag_of_counters": draw_bag,
 }
 
 

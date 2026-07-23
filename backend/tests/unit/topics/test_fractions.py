@@ -14,6 +14,7 @@ GENERATORS = [
     (fractions.generate_mixed_number_arithmetic, Tier.HIGHER),
     (fractions.generate_fraction_of_amount, Tier.FOUNDATION),
     (fractions.generate_fractions_equivalent, Tier.FOUNDATION),
+    (fractions.generate_fractions_equivalent_diagram, Tier.FOUNDATION),
     (fractions.generate_fractions_ordering, Tier.FOUNDATION),
     (fractions.generate_fractions_improper_mixed, Tier.FOUNDATION),
 ]
@@ -47,11 +48,12 @@ def test_topic_definitions_have_expected_metadata():
         fractions.TOPIC_MIXED_NUMBER_ARITHMETIC,
         fractions.TOPIC_OF_AMOUNT,
         fractions.TOPIC_EQUIVALENT,
+        fractions.TOPIC_EQUIVALENT_DIAGRAM,
         fractions.TOPIC_ORDERING,
         fractions.TOPIC_IMPROPER_MIXED,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 10
+    assert len(ids) == 11
     for t in topics:
         assert t.section == "number"
         assert t.group == "Fractions"
@@ -69,6 +71,7 @@ def test_all_fraction_topics_have_modelled_examples():
         fractions.TOPIC_MIXED_NUMBER_ARITHMETIC,
         fractions.TOPIC_OF_AMOUNT,
         fractions.TOPIC_EQUIVALENT,
+        fractions.TOPIC_EQUIVALENT_DIAGRAM,
         fractions.TOPIC_ORDERING,
         fractions.TOPIC_IMPROPER_MIXED,
     ]
@@ -89,6 +92,11 @@ MODELLED_EXAMPLE_GENERATORS = [
     (fractions.generate_modelled_example_mixed_number_arithmetic, Tier.HIGHER, "fractions_mixed_number_arithmetic"),
     (fractions.generate_modelled_example_fraction_of_amount, Tier.FOUNDATION, "fractions_of_amount"),
     (fractions.generate_modelled_example_fractions_equivalent, Tier.FOUNDATION, "fractions_equivalent"),
+    (
+        fractions.generate_modelled_example_fractions_equivalent_diagram,
+        Tier.FOUNDATION,
+        "fractions_equivalent_diagram",
+    ),
     (fractions.generate_modelled_example_fractions_ordering, Tier.FOUNDATION, "fractions_ordering"),
     (fractions.generate_modelled_example_fractions_improper_mixed, Tier.FOUNDATION, "fractions_improper_mixed"),
 ]
@@ -104,3 +112,50 @@ def test_modelled_examples_produce_verified_examples():
             assert len(example.worked_calculation) >= 2
             assert len(example.teaching_steps) >= 3
             assert example.final_answer
+
+
+def test_equivalent_diagram_attaches_a_matching_fraction_shapes_diagram():
+    rng = random.Random(300)
+    for _ in range(TRIALS):
+        q = fractions.generate_fractions_equivalent_diagram(Tier.FOUNDATION, rng)
+        assert q.diagram is not None
+        assert q.diagram.kind == "fraction_shapes"
+        shapes = q.diagram.params["shapes"]
+        assert all(s["kind"] in ("bar", "circle") for s in shapes)
+        assert all(0 <= s["shaded"] <= s["parts"] for s in shapes)
+
+
+def test_equivalent_diagram_fill_missing_shape_blanks_shape_b_until_solution():
+    rng = random.Random(301)
+    found_fill_missing = False
+    for _ in range(TRIALS):
+        q = fractions.generate_fractions_equivalent_diagram(Tier.FOUNDATION, rng)
+        if q.dedup_key.startswith("diagram_fill:"):
+            found_fill_missing = True
+            a, b, d, kind = q.dedup_key.split(":")[1:5]
+            shapes = q.diagram.params["shapes"]
+            assert len(shapes) == 2
+            assert shapes[0] == {"kind": kind, "parts": int(b), "shaded": int(a), "label": f"{a}/{b}"}
+            assert shapes[1]["parts"] == int(d)
+            assert shapes[1]["shaded"] == 0
+            assert q.solution_diagram is not None
+            sol_shapes = q.solution_diagram.params["shapes"]
+            assert sol_shapes[1]["shaded"] == int(q.final_answer)
+            assert sol_shapes[1]["parts"] == int(d)
+    assert found_fill_missing
+
+
+def test_equivalent_diagram_identify_shape_shows_reference_plus_three_candidates():
+    rng = random.Random(302)
+    found_identify = False
+    for _ in range(TRIALS):
+        q = fractions.generate_fractions_equivalent_diagram(Tier.FOUNDATION, rng)
+        if q.dedup_key.startswith("diagram_id:"):
+            found_identify = True
+            shapes = q.diagram.params["shapes"]
+            assert len(shapes) == 4
+            assert shapes[0]["label"] and "/" in shapes[0]["label"] and ")" not in shapes[0]["label"]
+            for letter, shape in zip("ABC", shapes[1:]):
+                assert shape["label"].startswith(f"{letter})")
+            assert q.solution_diagram is None
+    assert found_identify

@@ -212,6 +212,30 @@ SAMPLE_SPECS = [
         },
     ),
     DiagramSpec(kind="number_line", params={"range": [-6, 6], "boundaries": [], "blank": True}),
+    DiagramSpec(
+        kind="fraction_shapes",
+        params={"shapes": [
+            {"kind": "bar", "parts": 4, "shaded": 2, "label": "2/4"},
+            {"kind": "bar", "parts": 8, "shaded": 0, "label": "?/8"},
+        ]},
+    ),
+    DiagramSpec(
+        kind="fraction_shapes",
+        params={"shapes": [
+            {"kind": "circle", "parts": 3, "shaded": 1, "label": "1/3"},
+            {"kind": "circle", "parts": 6, "shaded": 2, "label": "A) 2/6"},
+            {"kind": "circle", "parts": 9, "shaded": 4, "label": "B) 4/9"},
+            {"kind": "circle", "parts": 4, "shaded": 1, "label": "C) 1/4"},
+        ]},
+    ),
+    DiagramSpec(kind="dice", params={"values": [3, 5]}),
+    DiagramSpec(kind="dice", params={"values": [6], "highlight": [0]}),
+    DiagramSpec(kind="spinner", params={"sectors": ["Red", "Blue", "Green", "Yellow"], "highlight": [1]}),
+    DiagramSpec(kind="spinner", params={"sectors": ["1", "2", "3", "4", "5", "6"], "highlight": [2, 4]}),
+    DiagramSpec(
+        kind="bag_of_counters",
+        params={"counts": {"red": 4, "blue": 6, "green": 3}, "highlight": "blue"},
+    ),
 ]
 
 

@@ -154,6 +154,24 @@ def test_modelled_example_relative_frequency_produces_verified_examples():
         assert example.final_answer
 
 
+def test_relative_frequency_attaches_a_dice_diagram_only_for_the_biased_dice_context():
+    rng = random.Random(444)
+    saw_dice_diagram = False
+    saw_no_diagram = False
+    for _ in range(TRIALS):
+        q = data_handling.generate_relative_frequency(Tier.FOUNDATION, rng)
+        if "A biased dice is tested" in q.prompt:
+            assert q.diagram is not None
+            assert q.diagram.kind == "dice"
+            assert q.diagram.params["values"] == [6]
+            saw_dice_diagram = True
+        else:
+            assert q.diagram is None
+            saw_no_diagram = True
+    assert saw_dice_diagram
+    assert saw_no_diagram
+
+
 def test_modelled_example_two_way_tables_produces_verified_examples():
     rng = random.Random(443)
     for _ in range(TRIALS):

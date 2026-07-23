@@ -4,7 +4,7 @@ from decimal import Decimal
 from fractions import Fraction
 from typing import Optional
 
-from app.core.models import ModelledExample, Question, Tier
+from app.core.models import DiagramSpec, ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
 
 SECTION = "probability"
@@ -45,6 +45,9 @@ def generate_single_event(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=f"{formula_prob.numerator}/{formula_prob.denominator}",
         dedup_key=f"single:{colours}:{counts}:{target_colour}",
+        diagram=DiagramSpec(
+            kind="bag_of_counters", params={"counts": dict(zip(colours, counts)), "highlight": target_colour}
+        ),
     )
 
 
@@ -95,6 +98,9 @@ def generate_modelled_example_single_event(tier: Tier, rng: random.Random) -> Mo
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{formula_prob.numerator}/{formula_prob.denominator}",
+        diagram=DiagramSpec(
+            kind="bag_of_counters", params={"counts": dict(zip(colours, counts)), "highlight": target_colour}
+        ),
     )
 
 
@@ -131,6 +137,9 @@ def generate_complement(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=f"{p_complement.numerator}/{p_complement.denominator}",
         dedup_key=f"complement:{colours}:{counts}:{target_colour}",
+        diagram=DiagramSpec(
+            kind="bag_of_counters", params={"counts": dict(zip(colours, counts)), "highlight": target_colour}
+        ),
     )
 
 
@@ -177,6 +186,9 @@ def generate_modelled_example_complement(tier: Tier, rng: random.Random) -> Mode
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{p_complement.numerator}/{p_complement.denominator}",
+        diagram=DiagramSpec(
+            kind="bag_of_counters", params={"counts": dict(zip(colours, counts)), "highlight": target_colour}
+        ),
     )
 
 
@@ -231,6 +243,7 @@ def generate_combined_dice(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=f"{formula_prob.numerator}/{formula_prob.denominator}",
         dedup_key=f"combined_dice:{event}:{key_param}",
+        diagram=DiagramSpec(kind="dice", params={"values": [rng.randint(1, 6), rng.randint(1, 6)]}),
     )
 
 
@@ -306,6 +319,7 @@ def generate_modelled_example_combined_dice(tier: Tier, rng: random.Random) -> M
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{formula_prob.numerator}/{formula_prob.denominator}",
+        diagram=DiagramSpec(kind="dice", params={"values": [rng.randint(1, 6), rng.randint(1, 6)]}),
     )
 
 
@@ -344,6 +358,7 @@ def generate_conditional_without_replacement(tier: Tier, rng: random.Random) -> 
         solution_steps=tuple(steps),
         final_answer=f"{formula_prob.numerator}/{formula_prob.denominator}",
         dedup_key=f"conditional:{colours}:{counts}",
+        diagram=DiagramSpec(kind="bag_of_counters", params={"counts": {c1: n1, c2: n2}}),
     )
 
 
@@ -396,6 +411,7 @@ def generate_modelled_example_conditional_without_replacement(tier: Tier, rng: r
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{formula_prob.numerator}/{formula_prob.denominator}",
+        diagram=DiagramSpec(kind="bag_of_counters", params={"counts": {c1: n1, c2: n2}}),
     )
 
 
@@ -449,11 +465,17 @@ def _build_listing_outcomes(rng: random.Random):
     if not (4 <= total <= 12):
         raise ValueError("listing_outcomes total outcomes out of expected range")
 
-    return context, vals_a, vals_b, scenario
+    # Only single-spinner scenarios get an illustration - the two-spinner scenarios
+    # would need two diagrams shown at once, which draw_spinner doesn't support.
+    diagram = DiagramSpec(kind="spinner", params={"sectors": vals_b}) if scenario in (
+        "coin_spinner3", "coin_spinner4",
+    ) else None
+
+    return context, vals_a, vals_b, scenario, diagram
 
 
 def generate_listing_outcomes(tier: Tier, rng: random.Random) -> Question:
-    context, vals_a, vals_b, scenario = _build_listing_outcomes(rng)
+    context, vals_a, vals_b, scenario, diagram = _build_listing_outcomes(rng)
     total = len(vals_a) * len(vals_b)
 
     listing = [f"{a}{b}" for a in vals_a for b in vals_b]
@@ -475,11 +497,12 @@ def generate_listing_outcomes(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=", ".join(listing),
         dedup_key=f"listing:{scenario}:{vals_a}:{vals_b}",
+        diagram=diagram,
     )
 
 
 def generate_modelled_example_listing_outcomes(tier: Tier, rng: random.Random) -> ModelledExample:
-    context, vals_a, vals_b, scenario = _build_listing_outcomes(rng)
+    context, vals_a, vals_b, scenario, diagram = _build_listing_outcomes(rng)
     total = len(vals_a) * len(vals_b)
 
     listing = [f"{a}{b}" for a in vals_a for b in vals_b]
@@ -512,23 +535,26 @@ def generate_modelled_example_listing_outcomes(tier: Tier, rng: random.Random) -
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=", ".join(listing),
+        diagram=diagram,
     )
 
 
 def _independent_event(rng: random.Random, exclude_kind: Optional[str] = None):
     """A single random event for the AND rule: a description, a short name
-    for the target outcome, its probability as an exact Fraction, and a kind
-    tag (used to avoid picking the same physical object twice)."""
+    for the target outcome, its probability as an exact Fraction, a kind tag
+    (used to avoid picking the same physical object twice), and diagram info
+    for that event (None for a coin - not one of the illustrated diagram
+    kinds; an int target face for a die; a (sides, target) pair for a spinner)."""
     kinds = [k for k in ("coin", "die", "spinner") if k != exclude_kind]
     kind = rng.choice(kinds)
     if kind == "coin":
-        return "a coin is flipped", "heads", Fraction(1, 2), kind
+        return "a coin is flipped", "heads", Fraction(1, 2), kind, None
     if kind == "die":
         target = rng.randint(1, 6)
-        return "a fair die is rolled", f"rolling a {target}", Fraction(1, 6), kind
+        return "a fair die is rolled", f"rolling a {target}", Fraction(1, 6), kind, target
     sides = rng.choice([3, 4, 5, 6, 8, 10])
     target = rng.randint(1, sides)
-    return f"a {sides}-sided spinner is spun", f"landing on {target}", Fraction(1, sides), kind
+    return f"a {sides}-sided spinner is spun", f"landing on {target}", Fraction(1, sides), kind, (sides, target)
 
 
 def _build_or_rule(rng: random.Random):
@@ -557,12 +583,17 @@ def _build_or_rule(rng: random.Random):
         f"{formula_prob.numerator}/{formula_prob.denominator}",
     ]
     dedup_key = f"or:{colour_a}:{colour_b}:{num_a}:{num_b}:{denom}"
-    return prompt, steps, formula_prob, dedup_key, colour_a, colour_b, num_a, num_b, denom
+    counts = {colour_a: num_a, colour_b: num_b}
+    other = denom - num_a - num_b
+    if other > 0:
+        counts["other"] = other
+    diagram = DiagramSpec(kind="bag_of_counters", params={"counts": counts})
+    return prompt, steps, formula_prob, dedup_key, colour_a, colour_b, num_a, num_b, denom, diagram
 
 
 def _build_and_rule(rng: random.Random):
-    desc_a, name_a, p_a, kind_a = _independent_event(rng)
-    desc_b, name_b, p_b, kind_b = _independent_event(rng, exclude_kind=kind_a)
+    desc_a, name_a, p_a, kind_a, info_a = _independent_event(rng)
+    desc_b, name_b, p_b, kind_b, info_b = _independent_event(rng, exclude_kind=kind_a)
     formula_prob = p_a * p_b
 
     dec_product = (Decimal(p_a.numerator) / Decimal(p_a.denominator)) * (
@@ -586,14 +617,30 @@ def _build_and_rule(rng: random.Random):
         f"{formula_prob.numerator}/{formula_prob.denominator}",
     ]
     dedup_key = f"and:{kind_a}:{kind_b}:{name_a}:{name_b}:{p_a}:{p_b}"
-    return prompt, steps, formula_prob, dedup_key, name_a, name_b, p_a, p_b
+
+    # Illustrate whichever non-coin object is present (a die takes priority if
+    # both a die and a spinner appear, since a coin can only pair with at most
+    # one of them).
+    if kind_a == "die" or kind_b == "die":
+        target = info_a if kind_a == "die" else info_b
+        diagram = DiagramSpec(kind="dice", params={"values": [target], "highlight": [0]})
+    elif kind_a == "spinner" or kind_b == "spinner":
+        sides, target = info_a if kind_a == "spinner" else info_b
+        diagram = DiagramSpec(
+            kind="spinner", params={"sectors": [str(i) for i in range(1, sides + 1)], "highlight": [target - 1]}
+        )
+    else:
+        diagram = None
+
+    return prompt, steps, formula_prob, dedup_key, name_a, name_b, p_a, p_b, diagram
 
 
 def generate_and_or_rule(tier: Tier, rng: random.Random) -> Question:
     if rng.random() < 0.5:
-        prompt, steps, formula_prob, dedup_key = _build_or_rule(rng)[:4]
+        result = _build_or_rule(rng)
     else:
-        prompt, steps, formula_prob, dedup_key = _build_and_rule(rng)[:4]
+        result = _build_and_rule(rng)
+    prompt, steps, formula_prob, dedup_key, diagram = result[0], result[1], result[2], result[3], result[-1]
 
     return Question(
         topic_id="probability_and_or_rule",
@@ -602,12 +649,13 @@ def generate_and_or_rule(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=f"{formula_prob.numerator}/{formula_prob.denominator}",
         dedup_key=dedup_key,
+        diagram=diagram,
     )
 
 
 def generate_modelled_example_and_or_rule(tier: Tier, rng: random.Random) -> ModelledExample:
     if rng.random() < 0.5:
-        prompt, _steps, formula_prob, _key, colour_a, colour_b, num_a, num_b, denom = _build_or_rule(rng)
+        prompt, _steps, formula_prob, _key, colour_a, colour_b, num_a, num_b, denom, diagram = _build_or_rule(rng)
         teaching_steps = [
             "Two events are 'mutually exclusive' if they can never both happen at the same time - here a "
             "single counter obviously can't be both colours at once.",
@@ -623,7 +671,7 @@ def generate_modelled_example_and_or_rule(tier: Tier, rng: random.Random) -> Mod
             f"= {formula_prob.numerator}/{formula_prob.denominator}",
         ]
     else:
-        prompt, _steps, formula_prob, _key, name_a, name_b, p_a, p_b = _build_and_rule(rng)
+        prompt, _steps, formula_prob, _key, name_a, name_b, p_a, p_b, diagram = _build_and_rule(rng)
         teaching_steps = [
             "Two events are 'independent' if the outcome of one has no effect at all on the outcome of "
             "the other - here the two events happen on completely separate objects.",
@@ -647,6 +695,7 @@ def generate_modelled_example_and_or_rule(tier: Tier, rng: random.Random) -> Mod
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{formula_prob.numerator}/{formula_prob.denominator}",
+        diagram=diagram,
     )
 
 
@@ -661,6 +710,7 @@ def _build_expectation(rng: random.Random):
     frac = f"{numerator}/{denominator}"
 
     context = rng.choice(["die", "spinner", "coin", "batch", "bus"])
+    diagram = None
     if context == "die":
         target = rng.randint(1, 6)
         prompt = (
@@ -669,6 +719,11 @@ def _build_expectation(rng: random.Random):
         )
         event_desc = f"get a {target}"
         ctx_key = f"die:{target}"
+        # A biased die is still a physical 6-sided die - illustrating a standard
+        # die with the target face highlighted is faithful without inventing
+        # anything. The spinner branch below has no side-count to draw from, so
+        # it's deliberately left without a diagram.
+        diagram = DiagramSpec(kind="dice", params={"values": [target], "highlight": [0]})
     elif context == "spinner":
         colour = rng.choice(COLOURS)
         prompt = (
@@ -713,11 +768,11 @@ def _build_expectation(rng: random.Random):
         f"= {expected_primary}",
     ]
     dedup_key = f"expectation:{ctx_key}:{numerator}:{denominator}:{trials}"
-    return prompt, steps, expected_primary, dedup_key, event_desc, numerator, denominator, trials, frac
+    return prompt, steps, expected_primary, dedup_key, event_desc, numerator, denominator, trials, frac, diagram
 
 
 def generate_expectation(tier: Tier, rng: random.Random) -> Question:
-    prompt, steps, expected, dedup_key, *_ = _build_expectation(rng)
+    prompt, steps, expected, dedup_key, *_, diagram = _build_expectation(rng)
     return Question(
         topic_id="probability_expectation",
         tier=Tier.FOUNDATION,
@@ -725,11 +780,14 @@ def generate_expectation(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=str(expected),
         dedup_key=dedup_key,
+        diagram=diagram,
     )
 
 
 def generate_modelled_example_expectation(tier: Tier, rng: random.Random) -> ModelledExample:
-    prompt, _steps, expected, _key, event_desc, numerator, denominator, trials, frac = _build_expectation(rng)
+    prompt, _steps, expected, _key, event_desc, numerator, denominator, trials, frac, diagram = _build_expectation(
+        rng
+    )
 
     teaching_steps = [
         "To find an 'expected' frequency, we assume the probability holds exactly and scale it up to the "
@@ -753,6 +811,7 @@ def generate_modelled_example_expectation(tier: Tier, rng: random.Random) -> Mod
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=str(expected),
+        diagram=diagram,
     )
 
 
