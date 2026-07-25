@@ -6,6 +6,7 @@ from fastapi.responses import JSONResponse
 
 from app.api.routes import router
 from app.core.errors import PdfRenderError, TopicNotFoundError, WorksheetGenerationError
+from app.practice_tests.loader import PracticeTestNotFoundError
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("gcse_worksheets")
@@ -24,6 +25,11 @@ app.include_router(router, prefix="/api")
 
 @app.exception_handler(TopicNotFoundError)
 async def handle_topic_not_found(request: Request, exc: TopicNotFoundError) -> JSONResponse:
+    return JSONResponse(status_code=404, content={"detail": str(exc)})
+
+
+@app.exception_handler(PracticeTestNotFoundError)
+async def handle_practice_test_not_found(request: Request, exc: PracticeTestNotFoundError) -> JSONResponse:
     return JSONResponse(status_code=404, content={"detail": str(exc)})
 
 

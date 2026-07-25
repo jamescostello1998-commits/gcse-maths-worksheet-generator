@@ -36,3 +36,11 @@ class GenerateWorksheetRequest(BaseModel):
     tier: TierEnum
     count: Optional[int] = Field(default=None, ge=MIN_COUNT, le=MAX_COUNT)
     answers_only: bool = False
+
+
+class PracticeTestSummary(BaseModel):
+    id: str
+    name: str
+    tier: TierEnum
+    total_marks: int
+    question_count: int

@@ -1,0 +1,1083 @@
+{
+  "id": "higher-03",
+  "name": "Higher Practice Test 3",
+  "tier": "higher",
+  "questions": [
+    {
+      "topic_id": "velocity_time_interpret",
+      "prompt": "The velocity-time graph shows a car's journey. Find the distance travelled while the car travels at constant velocity.",
+      "solution_steps": [
+        "Distance = area under the graph = base × height (a rectangle)",
+        "Distance = 20 × 12 = 240 m"
+      ],
+      "final_answer": "240 m",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Distance = area under the graph = base × height (a rectangle)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Distance = 20 × 12 = 240 m",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "240 m oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              8,
+              12
+            ],
+            [
+              28,
+              12
+            ],
+            [
+              36,
+              0
+            ]
+          ],
+          "x_max": 41,
+          "y_max": 17,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "hcf_lcm_by_prime_factors",
+      "prompt": "Using prime factorisation, find the HCF of 56 and 111.",
+      "solution_steps": [
+        "56 = 2^3 × 7",
+        "111 = 3 × 37",
+        "HCF: take the lowest power of each prime that appears in both numbers",
+        "HCF = 1"
+      ],
+      "final_answer": "1",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "56 = 2^3 × 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "111 = 3 × 37",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "HCF: take the lowest power of each prime that appears in both numbers",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "HCF = 1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "standard_form_add_subtract",
+      "prompt": "Work out (2 × 10^5) - (5 × 10^3). Give your answer in standard form.",
+      "solution_steps": [
+        "Write both numbers with the same power of 10: 2×10^5 = 200×10^3, 5×10^3 = 5×10^3",
+        "Subtract the coefficients: 200 - 5 = 195",
+        "Write in standard form: 195 × 10^3 = 1.95 × 10^5"
+      ],
+      "final_answer": "1.95 × 10^5",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Write both numbers with the same power of 10: 2×10^5 = 200×10^3, 5×10^3 = 5×10^3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract the coefficients: 200 - 5 = 195",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write in standard form: 195 × 10^3 = 1.95 × 10^5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1.95 × 10^5 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_divide",
+      "prompt": "Work out 4/8 ÷ 1/9. Give your answer as a fraction in its simplest form.",
+      "solution_steps": [
+        "Keep-change-flip: 4/8 ÷ 1/9 = 4/8 × 9/1",
+        "Multiply: (4×9)/(8×1) = 36/8",
+        "Simplify: 9/2"
+      ],
+      "final_answer": "9/2",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Keep-change-flip: 4/8 ÷ 1/9 = 4/8 × 9/1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply: (4×9)/(8×1) = 36/8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify: 9/2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "9/2 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "rationalise_denominator",
+      "prompt": "Rationalise the denominator of 12/(6 - √11), giving your answer in its simplest form.",
+      "solution_steps": [
+        "Multiply the numerator and denominator by the conjugate of the denominator, (6 + √11):",
+        "12/(6 - √11) = 12(6 + √11) / [(6 - √11)(6 + √11)]",
+        "The denominator is a difference of two squares: 6^2 - 11 = 25",
+        "The numerator is 12(6 + √11) = 72 + 12√11",
+        "= (72 + 12√11)/25"
+      ],
+      "final_answer": "(72 + 12√11)/25",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply the numerator and denominator by the conjugate of the denominator, (6 + √11):",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "12/(6 - √11) = 12(6 + √11) / [(6 - √11)(6 + √11)]",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The denominator is a difference of two squares: 6^2 - 11 = 25",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The numerator is 12(6 + √11) = 72 + 12√11 = (72 + 12√11)/25",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(72 + 12√11)/25 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "surds_multiply_divide",
+      "prompt": "Simplify √504 ÷ √7, giving your answer in the form a√b.",
+      "solution_steps": [
+        "√504 ÷ √7 = √(504/7) = √72",
+        "Find the largest square factor of 72: 6^2 × 2 = 72",
+        "√72 = √(6^2 × 2) = 6√2"
+      ],
+      "final_answer": "6√2",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "√504 ÷ √7 = √(504/7) = √72",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Find the largest square factor of 72: 6^2 × 2 = 72",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√72 = √(6^2 × 2) = 6√2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6√2 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_quadratic",
+      "prompt": "Solve the simultaneous equations: y = x^2 + 4x + 1 and y = 3x + 13",
+      "solution_steps": [
+        "Substitute y = 3x + 13 into y = x^2 + 4x + 1: 3x + 13 = x^2 + 4x + 1",
+        "Rearrange: x^2 + x - 12 = 0",
+        "Factorise: (x - 3)(x + 4) = 0",
+        "x = 3 or x = -4",
+        "When x = 3, y = 22. When x = -4, y = 1."
+      ],
+      "final_answer": "(3, 22) and (-4, 1)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Substitute y = 3x + 13 into y = x^2 + 4x + 1: 3x + 13 = x^2 + 4x + 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rearrange: x^2 + x - 12 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: (x - 3)(x + 4) = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 3 or x = -4 When x = 3, y = 22. When x = -4, y = 1.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(3, 22) and (-4, 1) oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "sequences_quadratic_nth_term",
+      "prompt": "Here are the first four terms of a quadratic sequence: 13, 18, 25, 34. Find an expression for the nth term.",
+      "solution_steps": [
+        "First differences: 5, 7, 9",
+        "Second difference is constant: 2, so the coefficient of n^2 is 2 ÷ 2 = 1",
+        "nth term = n^2 + 2n + 10"
+      ],
+      "final_answer": "n^2 + 2n + 10",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First differences: 5, 7, 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Second difference is constant: 2, so the coefficient of n^2 is 2 ÷ 2 = 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "nth term = n^2 + 2n + 10",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "n^2 + 2n + 10 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "factorise_quadratics",
+      "prompt": "Factorise: x^2 - 18x + 81",
+      "solution_steps": [
+        "Find two numbers that multiply to 81 and add to -18: -9 and -9",
+        "Write as two brackets: (x - 9)(x - 9)"
+      ],
+      "final_answer": "(x - 9)(x - 9)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find two numbers that multiply to 81 and add to -18: -9 and -9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write as two brackets: (x - 9)(x - 9)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(x - 9)(x - 9) oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "forming_equations_higher",
+      "prompt": "A quadrilateral has angles 61°, 32°, (4x + 3)°, and (4x + 120)°. Form an equation and solve it to find x.",
+      "solution_steps": [
+        "Angles in a quadrilateral sum to 360°.",
+        "61 + 32 + (4x + 3) + (4x + 120) = 360",
+        "Collect the x-terms and constants together:",
+        "8x + 123 = 267",
+        "Subtract 123 from both sides:",
+        "8x = 144",
+        "Divide both sides by 8:",
+        "x = 18"
+      ],
+      "final_answer": "18",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles in a quadrilateral sum to 360°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "61 + 32 + (4x + 3) + (4x + 120) = 360",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Collect the x-terms and constants together:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "8x + 123 = 267 Subtract 123 from both sides: 8x = 144 Divide both sides by 8: x = 18",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "18 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_reciprocal",
+      "prompt": "Complete a table of values for y = -48/x for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = -48/x:",
+        "x: -4, -3, -2, -1, 1, 2, 3, 4",
+        "y: 12, 16, 24, 48, -48, -24, -16, -12",
+        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
+      ],
+      "final_answer": "Reciprocal curve: y = -48/x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = -48/x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 12, 16, 24, 48, -48, -24, -16, -12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Reciprocal curve: y = -48/x oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "reciprocal",
+          "a": -48,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -50,
+          "y_max": 50,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "reciprocal",
+          "a": -48,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -50,
+          "y_max": 50,
+          "table_points": [
+            [
+              -4,
+              12
+            ],
+            [
+              -3,
+              16
+            ],
+            [
+              -2,
+              24
+            ],
+            [
+              -1,
+              48
+            ],
+            [
+              1,
+              -48
+            ],
+            [
+              2,
+              -24
+            ],
+            [
+              3,
+              -16
+            ],
+            [
+              4,
+              -12
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "expand_double_brackets",
+      "prompt": "Expand: (4x + 6)(-6x - 6)",
+      "solution_steps": [
+        "First: 4x × -6x = -24x^2",
+        "Outer: 4x × -6 = -24x",
+        "Inner: 6 × -6x = -36x",
+        "Last: 6 × -6 = -36",
+        "Combine like terms: -24x^2 - 60x - 36"
+      ],
+      "final_answer": "-24x^2 - 60x - 36",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First: 4x × -6x = -24x^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Outer: 4x × -6 = -24x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Inner: 6 × -6x = -36x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Last: 6 × -6 = -36 Combine like terms: -24x^2 - 60x - 36",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-24x^2 - 60x - 36 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "expand_triple_brackets",
+      "prompt": "Expand and simplify: (-3x - 3)(-4x + 4)(-2x + 3)",
+      "solution_steps": [
+        "First expand two of the brackets: (-3x - 3)(-4x + 4) = 12x^2 - 12",
+        "Multiply the result by (-2x + 3) and collect like terms",
+        "= -24x^3 + 36x^2 + 24x - 36"
+      ],
+      "final_answer": "-24x^3 + 36x^2 + 24x - 36",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First expand two of the brackets: (-3x - 3)(-4x + 4) = 12x^2 - 12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply the result by (-2x + 3) and collect like terms",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= -24x^3 + 36x^2 + 24x - 36",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-24x^3 + 36x^2 + 24x - 36 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_difference_higher",
+      "prompt": "Amounts are in the ratio 5:7:4. The difference between the largest and smallest amount is 36. Find all three amounts and their total.",
+      "solution_steps": [
+        "Difference in parts = 7 - 4 = 3 parts",
+        "Value of one part = 36 ÷ 3 = 12",
+        "Amount 1 = 5 × 12 = 60",
+        "Amount 2 = 7 × 12 = 84",
+        "Amount 3 = 4 × 12 = 48",
+        "Total = 60 + 84 + 48 = 192"
+      ],
+      "final_answer": "60 : 84 : 48 (total 192)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Difference in parts = 7 - 4 = 3 parts",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Value of one part = 36 ÷ 3 = 12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Amount 1 = 5 × 12 = 60",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Amount 2 = 7 × 12 = 84 Amount 3 = 4 × 12 = 48 Total = 60 + 84 + 48 = 192",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "60 : 84 : 48 (total 192) oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "density_higher",
+      "prompt": "A block of alloy in the shape of a cuboid has dimensions 6 cm × 2 cm × 4 cm and a density of 3 g/cm³. Find its mass.",
+      "solution_steps": [
+        "volume = length × width × height = 6 × 2 × 4 = 48 cm³",
+        "mass = density × volume = 3 × 48 = 144 g"
+      ],
+      "final_answer": "144 g",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "volume = length × width × height = 6 × 2 × 4 = 48 cm³",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "mass = density × volume = 3 × 48 = 144 g",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "144 g oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_combine",
+      "prompt": "Given that a:b = 3:4 and b:c = 5:7, find a:b:c in its simplest form.",
+      "solution_steps": [
+        "Scale a:b = 3:4 by 5 so b = 20: a:b = 15:20",
+        "Scale b:c = 5:7 by 4 so b = 20: b:c = 20:28",
+        "Combine: a:b:c = 15:20:28",
+        "Simplify by dividing by 1: a:b:c = 15:20:28"
+      ],
+      "final_answer": "15 : 20 : 28",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Scale a:b = 3:4 by 5 so b = 20: a:b = 15:20",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Scale b:c = 5:7 by 4 so b = 20: b:c = 20:28",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine: a:b:c = 15:20:28",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify by dividing by 1: a:b:c = 15:20:28",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "15 : 20 : 28 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "product_rule_counting",
+      "prompt": "A shop sells 4 different shirts and 4 different pairs of trousers. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "solution_steps": [
+        "Total combinations = 4 × 4 = 16"
+      ],
+      "final_answer": "16",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total combinations = 4 × 4 = 16",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "16 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_subtract_compound",
+      "prompt": "A rectangular sheet of metal 24 cm by 13 cm has a rectangular hole 17 cm by 8 cm cut from its centre. Find the remaining area.",
+      "solution_steps": [
+        "Area of large rectangle = 24 × 13 = 312 cm²",
+        "Area of rectangular hole = 17 × 8 = 136 cm²",
+        "Remaining area = 312 - 136 = 176 cm²"
+      ],
+      "final_answer": "176 cm²",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area of large rectangle = 24 × 13 = 312 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of rectangular hole = 17 × 8 = 136 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Remaining area = 312 - 136 = 176 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "176 cm² oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "l_shape",
+        "params": {
+          "outer_w": 24,
+          "outer_h": 13,
+          "inner_w": 17,
+          "inner_h": 8,
+          "notch": "center",
+          "outer_labels": [
+            "24 cm",
+            "13 cm"
+          ],
+          "inner_labels": [
+            "17 cm",
+            "8 cm"
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_circle",
+      "prompt": "A circle has radius 7 cm. Find its circumference in terms of π.",
+      "solution_steps": [
+        "Circumference = 2 × π × r = 2 × π × 7 = 14π cm",
+        "≈ 44.0 cm (3 s.f.)"
+      ],
+      "final_answer": "14π cm (≈ 44.0 cm)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Circumference = 2 × π × r = 2 × π × 7 = 14π cm",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "≈ 44.0 cm (3 s.f.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "14π cm (≈ 44.0 cm) oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "circle",
+        "params": {
+          "radius": 7,
+          "label": "7 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "trig_mixed",
+      "prompt": "In the right-angled triangle shown, find the angle x, correct to 1 decimal place.",
+      "solution_steps": [
+        "Use cos, since we know two of the three sides.",
+        "cos(x) = 24 ÷ 32",
+        "x = cos^-1(24 ÷ 32) = 41.4° (1 d.p.)"
+      ],
+      "final_answer": "41.4°",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Use cos, since we know two of the three sides.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "cos(x) = 24 ÷ 32",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = cos^-1(24 ÷ 32) = 41.4° (1 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "41.4° oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "trig_triangle",
+        "params": {
+          "adjacent_label": "24 cm",
+          "opposite_label": null,
+          "hyp_label": "32 cm",
+          "angle_label": "x°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_semicircle_compound_higher",
+      "prompt": "A shape is made from a rectangle 16 cm by 5 cm with a semicircle of diameter 16 cm attached to one side. Find the total area, giving your answer in terms of π.",
+      "solution_steps": [
+        "Area of rectangle = 16 × 5 = 80 cm²",
+        "Radius of semicircle = 16 ÷ 2 = 8 cm",
+        "Area of semicircle = (1/2) × π × 8² = 32π cm²",
+        "Total area = 80 + 32π cm² (exact form)"
+      ],
+      "final_answer": "(80 + 32π) cm²",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area of rectangle = 16 × 5 = 80 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Radius of semicircle = 16 ÷ 2 = 8 cm",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of semicircle = (1/2) × π × 8² = 32π cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total area = 80 + 32π cm² (exact form)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(80 + 32π) cm² oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "rectangle_semicircle",
+        "params": {
+          "width": 16,
+          "height": 5,
+          "radius": 8,
+          "width_label": "16 cm",
+          "height_label": "5 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "venn_diagram_notation",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8}. The Venn diagram shows sets A and B. List the elements of A'.",
+      "solution_steps": [
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8}",
+        "A = {6, 8}, B = {2, 4, 7, 8}",
+        "A' means the elements not in A.",
+        "A' = {1, 2, 3, 4, 5, 7}"
+      ],
+      "final_answer": "{1, 2, 3, 4, 5, 7}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {6, 8}, B = {2, 4, 7, 8}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A' means the elements not in A.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A' = {1, 2, 3, 4, 5, 7}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "{1, 2, 3, 4, 5, 7} oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "S",
+          "region_text": {
+            "a_only": "6",
+            "b_only": "2, 4, 7",
+            "both": "8",
+            "neither": "1, 3, 5"
+          }
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "tree_diagram_algebraic",
+      "prompt": "A biased spinner can only land on yellow or green. The probability that it lands on yellow is x, and the probability that it lands on green is 1 - x. Landing on green is 3 times as likely as landing on yellow. The spinner is spun twice. Find the probability that the first spin lands on yellow and the second lands on green.",
+      "solution_steps": [
+        "A biased spinner can only land on yellow or green. The probability that it lands on yellow is x, and the probability that it lands on green is 1 - x. Landing on green is 3 times as likely as landing on yellow. Since the spinner can only land on yellow or green, the two probabilities must sum to 1: x + 3x = 1.",
+        "Solving this equation gives x = 1/4.",
+        "Substituting back: P(yellow) = 1/4, P(green) = 3/4.",
+        "P(the first spin lands on yellow and the second lands on green) = 1/4 × 3/4 = 3/16"
+      ],
+      "final_answer": "3/16",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A biased spinner can only land on yellow or green. The probability that it lands on yellow is x, and the probability that it lands on green is 1 - x. Landing on green is 3 times as likely as landing on yellow. Since the spinner can only land on yellow or green, the two probabilities must sum to 1: x + 3x = 1.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Solving this equation gives x = 1/4.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substituting back: P(yellow) = 1/4, P(green) = 3/4.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(the first spin lands on yellow and the second lands on green) = 1/4 × 3/4 = 3/16",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3/16 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Yellow",
+              "x"
+            ],
+            [
+              "Green",
+              "1-x"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Yellow",
+                "x"
+              ],
+              [
+                "Green",
+                "1-x"
+              ]
+            ],
+            [
+              [
+                "Yellow",
+                "x"
+              ],
+              [
+                "Green",
+                "1-x"
+              ]
+            ]
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "cumulative_frequency_interpret",
+      "prompt": "The cumulative frequency graph shows the times (in minutes) taken to run a race. Use the graph to estimate the lower quartile.",
+      "solution_steps": [
+        "The lower quartile is at cumulative frequency 6.0 (out of 24 total).",
+        "Reading across from 6.0 to the curve, then down to the axis, gives ≈ 10.0."
+      ],
+      "final_answer": "10.0",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The lower quartile is at cumulative frequency 6.0 (out of 24 total).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Reading across from 6.0 to the curve, then down to the axis, gives ≈ 10.0.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "10.0 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "cumulative_frequency",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              10,
+              6
+            ],
+            [
+              20,
+              14
+            ],
+            [
+              30,
+              18
+            ],
+            [
+              40,
+              22
+            ],
+            [
+              50,
+              24
+            ]
+          ],
+          "x_label": "Time (minutes)"
+        }
+      },
+      "solution_diagram": null
+    }
+  ]
+}

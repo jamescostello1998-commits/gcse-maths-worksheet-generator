@@ -1,0 +1,1167 @@
+{
+  "id": "foundation-09",
+  "name": "Foundation Practice Test 9",
+  "tier": "foundation",
+  "questions": [
+    {
+      "topic_id": "fractions_ordering",
+      "prompt": "Write these fractions in order, largest to smallest: 7/9, 5/6, 2/3, 3/8",
+      "solution_steps": [
+        "Convert every fraction to the same denominator, the LCM of 9, 6, 3, 8: 72",
+        "Rewrite each fraction over 72: 7/9 = 56/72, 5/6 = 60/72, 2/3 = 48/72, 3/8 = 27/72",
+        "Order the numerators from largest to smallest and convert back: 5/6, 7/9, 2/3, 3/8"
+      ],
+      "final_answer": "5/6, 7/9, 2/3, 3/8",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert every fraction to the same denominator, the LCM of 9, 6, 3, 8: 72",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rewrite each fraction over 72: 7/9 = 56/72, 5/6 = 60/72, 2/3 = 48/72, 3/8 = 27/72",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Order the numerators from largest to smallest and convert back: 5/6, 7/9, 2/3, 3/8",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5/6, 7/9, 2/3, 3/8 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "factors",
+      "prompt": "Is 31 a factor of 55?",
+      "solution_steps": [
+        "55 ÷ 31 = 1 remainder 24",
+        "No, 31 is not a factor of 55."
+      ],
+      "final_answer": "No",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "55 ÷ 31 = 1 remainder 24",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "No, 31 is not a factor of 55.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "No oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "standard_form_from_small",
+      "prompt": "Write 8.67 × 10^-5 as an ordinary number.",
+      "solution_steps": [
+        "Multiply 8.67 by 10^-5, which means moving the decimal point 5 place(s) left.",
+        "8.67 × 10^-5 = 0.0000867"
+      ],
+      "final_answer": "0.0000867",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply 8.67 by 10^-5, which means moving the decimal point 5 place(s) left.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "8.67 × 10^-5 = 0.0000867",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "0.0000867 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "standard_form_from_large",
+      "prompt": "Write 1.9 × 10^6 as an ordinary number.",
+      "solution_steps": [
+        "Multiply 1.9 by 10^6, which means moving the decimal point 6 place(s) right.",
+        "1.9 × 10^6 = 1900000"
+      ],
+      "final_answer": "1900000",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply 1.9 by 10^6, which means moving the decimal point 6 place(s) right.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "1.9 × 10^6 = 1900000",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1900000 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "decimals_round_sf",
+      "prompt": "Round 358.037 to 1 significant figure.",
+      "solution_steps": [
+        "Identify the first 1 significant figure of 358.037.",
+        "358.037 rounded to 1 significant figure = 400"
+      ],
+      "final_answer": "400",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Identify the first 1 significant figure of 358.037.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "358.037 rounded to 1 significant figure = 400",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "400 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_multiply",
+      "prompt": "Work out 5/4 × 3/10. Give your answer as a fraction in its simplest form.",
+      "solution_steps": [
+        "Multiply numerators: 5 × 3 = 15",
+        "Multiply denominators: 4 × 10 = 40",
+        "Simplify 15/40 = 3/8"
+      ],
+      "final_answer": "3/8",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply numerators: 5 × 3 = 15",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply denominators: 4 × 10 = 40",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify 15/40 = 3/8",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3/8 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "bidmas",
+      "prompt": "Work out 19 - 10 ÷ 5 × (5 + 9). Use the correct order of operations.",
+      "solution_steps": [
+        "Brackets: (5 + 9) = 14",
+        "Division and multiplication have equal priority, so work left to right: 10 ÷ 5 = 2, then × 14 = 28",
+        "Subtraction: 19 - 28 = -9"
+      ],
+      "final_answer": "-9",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Brackets: (5 + 9) = 14",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Division and multiplication have equal priority, so work left to right: 10 ÷ 5 = 2, then × 14 = 28",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtraction: 19 - 28 = -9",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-9 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "expand_single_bracket",
+      "prompt": "Expand: -2(-x + 4)",
+      "solution_steps": [
+        "Multiply -2 by -x: 2x",
+        "Multiply -2 by 4: -8",
+        "Combine: 2x - 8"
+      ],
+      "final_answer": "2x - 8",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply -2 by -x: 2x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply -2 by 4: -8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine: 2x - 8",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2x - 8 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_brackets_foundation",
+      "prompt": "Solve: 4(3x + 6) = 96",
+      "solution_steps": [
+        "Expand the bracket: 4(3x + 6) = 12x + 24",
+        "12x + 24 = 96",
+        "Subtract 24 from both sides:",
+        "12x = 72",
+        "Divide both sides by 12:",
+        "x = 6"
+      ],
+      "final_answer": "6",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: 4(3x + 6) = 12x + 24",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "12x + 24 = 96",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 24 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "12x = 72 Divide both sides by 12: x = 6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "sequences_next_term",
+      "prompt": "Find the next term in the sequence: 19, 14, 9, 4, ...",
+      "solution_steps": [
+        "Subtract 5 each time.",
+        "Next term = 4 - 5 = -1"
+      ],
+      "final_answer": "-1",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Subtract 5 each time.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Next term = 4 - 5 = -1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-1 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "parallel_lines_equation",
+      "prompt": "A line is parallel to y = 4x - 7 and passes through the point (-4, -5). Find the equation of the line.",
+      "solution_steps": [
+        "Parallel lines have the same gradient, so m = 4.",
+        "Substitute (-4, -5) into y = 4x + c: -5 = 4×(-4) + c, so c = 11",
+        "Equation of the line: y = 4x + 11"
+      ],
+      "final_answer": "y = 4x + 11",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Parallel lines have the same gradient, so m = 4.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute (-4, -5) into y = 4x + c: -5 = 4×(-4) + c, so c = 11",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Equation of the line: y = 4x + 11",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y = 4x + 11 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "sequences_nth_term",
+      "prompt": "Here are the first four terms of a sequence: -7, -2, 3, 8. Find an expression for the nth term.",
+      "solution_steps": [
+        "Common difference = 5",
+        "nth term = 5n - 12",
+        "nth term = 5n - 12"
+      ],
+      "final_answer": "5n - 12",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Common difference = 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "nth term = 5n - 12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "nth term = 5n - 12",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5n - 12 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_quadratic",
+      "prompt": "Complete a table of values for y = x^2 - 2x + 3 for x = -3 to 3, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = x^2 - 2x + 3:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: 18, 11, 6, 3, 2, 3, 6",
+        "Plot each (x, y) point and join them with a single smooth curve."
+      ],
+      "final_answer": "Quadratic curve: y = x^2 - 2x + 3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = x^2 - 2x + 3:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 18, 11, 6, 3, 2, 3, 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Quadratic curve: y = x^2 - 2x + 3 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "quadratic",
+          "a": 1,
+          "b": -2,
+          "c": 3,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": 1,
+          "y_max": 19,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "quadratic",
+          "a": 1,
+          "b": -2,
+          "c": 3,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": 1,
+          "y_max": 19,
+          "table_points": [
+            [
+              -3,
+              18
+            ],
+            [
+              -2,
+              11
+            ],
+            [
+              -1,
+              6
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              6
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "forming_equations_foundation",
+      "prompt": "A triangle has angles 28°, 21°, and (3x + 80)°. Form an equation and solve it to find x.",
+      "solution_steps": [
+        "Angles in a triangle sum to 180°.",
+        "28 + 21 + (3x + 80) = 180",
+        "3x + 80 = 131",
+        "Subtract 80 from both sides:",
+        "3x = 51",
+        "Divide both sides by 3:",
+        "x = 17"
+      ],
+      "final_answer": "17",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles in a triangle sum to 180°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "28 + 21 + (3x + 80) = 180",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3x + 80 = 131",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 80 from both sides: 3x = 51 Divide both sides by 3: x = 17",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "17 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "reverse_percentage_foundation",
+      "prompt": "After a 25% increase, an item costs £250. Find the original price.",
+      "solution_steps": [
+        "Convert 25% to a multiplier: 1.25 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 250 ÷ 1.25 = 200"
+      ],
+      "final_answer": "£200",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 25% to a multiplier: 1.25 (original × multiplier = new value)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide the new value by the multiplier: 250 ÷ 1.25 = 200",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£200 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "inverse_proportion",
+      "prompt": "It takes 9 workers 84 hours to build a wall. Working at the same rate, how long would it take 12 workers?",
+      "solution_steps": [
+        "Constant = 9 × 84 = 756",
+        "Time for 12 workers = 756 ÷ 12 = 63"
+      ],
+      "final_answer": "63 hours",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Constant = 9 × 84 = 756",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Time for 12 workers = 756 ÷ 12 = 63",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "63 hours oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simple_interest",
+      "prompt": "£1200 is invested at a simple interest rate of 3% per year for 2 years. Find the total amount in the account after 2 years.",
+      "solution_steps": [
+        "Simple interest formula: I = P × r × t ÷ 100",
+        "I = 1200 × 3 × 2 ÷ 100 = £72",
+        "Total in the account = P + I = £1200 + £72 = £1272"
+      ],
+      "final_answer": "£1272",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Simple interest formula: I = P × r × t ÷ 100",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "I = 1200 × 3 × 2 ÷ 100 = £72",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total in the account = P + I = £1200 + £72 = £1272",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£1272 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "percentage_of_amount",
+      "prompt": "Find 25% of 320.",
+      "solution_steps": [
+        "Convert 25% to a fraction: 25/100",
+        "Multiply: 25/100 × 320 = 80"
+      ],
+      "final_answer": "80",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 25% to a fraction: 25/100",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply: 25/100 × 320 = 80",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "80 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pressure",
+      "prompt": "A table leg exerts a pressure of 49 N/m² over a contact area of 33 m². Find the force.",
+      "solution_steps": [
+        "force = pressure × area",
+        "force = 49 × 33 = 1617 N"
+      ],
+      "final_answer": "1617 N",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "force = pressure × area",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "force = 49 × 33 = 1617 N",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1617 N oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "trig_missing_side_foundation",
+      "prompt": "In the right-angled triangle shown, find the length of x, correct to 3 significant figures.",
+      "solution_steps": [
+        "We know the hypotenuse and want the opposite, so use sin.",
+        "x = 20 × sin(26°) = 8.77 (to 3 s.f.)"
+      ],
+      "final_answer": "8.77 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "We know the hypotenuse and want the opposite, so use sin.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 20 × sin(26°) = 8.77 (to 3 s.f.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "8.77 cm oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "trig_triangle",
+        "params": {
+          "adjacent_label": null,
+          "opposite_label": "x cm",
+          "hyp_label": "20 cm",
+          "angle_label": "26°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pythagoras_shorter_leg",
+      "prompt": "A right-angled triangle has hypotenuse 68 cm and one leg 32 cm. Find the length of the other leg.",
+      "solution_steps": [
+        "b² = c² - a² = 68² - 32² = 4624 - 1024 = 3600",
+        "b = √3600 = 60"
+      ],
+      "final_answer": "60 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "b² = c² - a² = 68² - 32² = 4624 - 1024 = 3600",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "b = √3600 = 60",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "60 cm oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "right_triangle",
+        "params": {
+          "leg1_label": "32 cm",
+          "leg2_label": "?",
+          "hyp_label": "68 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_triangle",
+      "prompt": "A triangle has angles 52°, 82°, and x°. Find x.",
+      "solution_steps": [
+        "Angles in a triangle sum to 180°.",
+        "x = 180 - (52 + 82) = 180 - 134 = 46"
+      ],
+      "final_answer": "46",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles in a triangle sum to 180°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 180 - (52 + 82) = 180 - 134 = 46",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "46 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "triangle_angles",
+        "params": {
+          "angle_labels": [
+            "52°",
+            "82°",
+            "x"
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_circle_foundation",
+      "prompt": "A circle has radius 9 cm. Find its area, correct to 3 significant figures.",
+      "solution_steps": [
+        "Area = π × r² = π × 9² = π × 81",
+        "= 254 cm² (3 s.f., using a calculator value of π)"
+      ],
+      "final_answer": "254 cm²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area = π × r² = π × 9² = π × 81",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 254 cm² (3 s.f., using a calculator value of π)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "254 cm² oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "circle",
+        "params": {
+          "radius": 9,
+          "label": "9 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_rectangle",
+      "prompt": "A rectangle has length 3 cm and width 15 cm. Find its perimeter.",
+      "solution_steps": [
+        "Perimeter = 2 × (length + width) = 2 × (3 + 15) = 36 cm"
+      ],
+      "final_answer": "36 cm",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Perimeter = 2 × (length + width) = 2 × (3 + 15) = 36 cm",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "36 cm oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "rectangle",
+        "params": {
+          "width": 3,
+          "height": 15,
+          "width_label": "3 cm",
+          "height_label": "15 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pythagoras_hypotenuse_triple",
+      "prompt": "A right-angled triangle has legs 9 cm and 40 cm. Find the length of the hypotenuse.",
+      "solution_steps": [
+        "c² = a² + b² = 9² + 40² = 81 + 1600 = 1681",
+        "c = √1681 = 41"
+      ],
+      "final_answer": "41 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "c² = a² + b² = 9² + 40² = 81 + 1600 = 1681",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "c = √1681 = 41",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "41 cm oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "right_triangle",
+        "params": {
+          "leg1_label": "9 cm",
+          "leg2_label": "40 cm",
+          "hyp_label": "?"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "set_notation_foundation",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9}, A = {2, 3, 5, 8, 9}, B = {1, 4, 5}. List the elements that are in A, in B, or in both.",
+      "solution_steps": [
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9}",
+        "A = {2, 3, 5, 8, 9}",
+        "B = {1, 4, 5}",
+        "Check each element of ξ in turn to see whether it are in A, in B, or in both.",
+        "Elements that are in A, in B, or in both: {1, 2, 3, 4, 5, 8, 9}"
+      ],
+      "final_answer": "{1, 2, 3, 4, 5, 8, 9}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {2, 3, 5, 8, 9}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B = {1, 4, 5}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Check each element of ξ in turn to see whether it are in A, in B, or in both. Elements that are in A, in B, or in both: {1, 2, 3, 4, 5, 8, 9}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "{1, 2, 3, 4, 5, 8, 9} oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "sample_space_diagrams",
+      "prompt": "Two fair spinners, one numbered 1 to 6 and the other numbered 1 to 4, are spun together. Complete the sample space diagram showing the product of the two spinners, and use it to find the probability that the product is even.",
+      "solution_steps": [
+        "The sample space diagram shows every possible product of the two spinners.",
+        "Number of favourable outcomes (the product is even) = 18",
+        "Total number of equally likely outcomes = 24",
+        "P(the product is even) = 3/4"
+      ],
+      "final_answer": "3/4",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The sample space diagram shows every possible product of the two spinners.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Number of favourable outcomes (the product is even) = 18",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total number of equally likely outcomes = 24",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(the product is even) = 3/4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3/4 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "sample_space_diagram",
+        "params": {
+          "row_values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "col_values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "cells": [
+            [
+              "1",
+              "2",
+              "3",
+              "4"
+            ],
+            [
+              "2",
+              "4",
+              "6",
+              "8"
+            ],
+            [
+              "3",
+              "6",
+              "9",
+              "12"
+            ],
+            [
+              "4",
+              "8",
+              "12",
+              "16"
+            ],
+            [
+              "5",
+              "10",
+              "15",
+              "20"
+            ],
+            [
+              "6",
+              "12",
+              "18",
+              "24"
+            ]
+          ],
+          "highlight": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              3
+            ]
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "bar_chart_interpret",
+      "prompt": "The bar chart shows the favourite fruit of a group of students. How many more chose Apple than Orange? (Give a positive answer either way.)",
+      "solution_steps": [
+        "Apple: 19, Orange: 15.",
+        "Difference = |19 - 15| = 4."
+      ],
+      "final_answer": "4",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Apple: 19, Orange: 15.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Difference = |19 - 15| = 4.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "bar_chart",
+        "params": {
+          "categories": [
+            "Banana",
+            "Grape",
+            "Apple",
+            "Orange"
+          ],
+          "series": [
+            18,
+            12,
+            19,
+            15
+          ]
+        }
+      },
+      "solution_diagram": null
+    }
+  ]
+}

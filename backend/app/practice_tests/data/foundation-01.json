@@ -1,0 +1,977 @@
+{
+  "id": "foundation-01",
+  "name": "Foundation Practice Test 1",
+  "tier": "foundation",
+  "questions": [
+    {
+      "topic_id": "standard_form_from_small",
+      "prompt": "Write 9 × 10^-3 as an ordinary number.",
+      "solution_steps": [
+        "Multiply 9 by 10^-3, which means moving the decimal point 3 place(s) left.",
+        "9 × 10^-3 = 0.009"
+      ],
+      "final_answer": "0.009",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply 9 by 10^-3, which means moving the decimal point 3 place(s) left.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "9 × 10^-3 = 0.009",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "0.009 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_add_subtract",
+      "prompt": "Work out 2/10 + 6/7. Give your answer as a fraction in its simplest form.",
+      "solution_steps": [
+        "Find a common denominator: LCM(10, 7) = 70",
+        "Convert: 2/10 = 14/70, 6/7 = 60/70",
+        "Add: 14/70 + 60/70 = 74/70",
+        "Simplify: 37/35"
+      ],
+      "final_answer": "37/35",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find a common denominator: LCM(10, 7) = 70",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Convert: 2/10 = 14/70, 6/7 = 60/70",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add: 14/70 + 60/70 = 74/70",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify: 37/35",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "37/35 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "decimals_round_dp",
+      "prompt": "Round 66.633 to 2 decimal places.",
+      "solution_steps": [
+        "Look at the digit after the 2 decimal places we want: 3, so round down.",
+        "66.633 rounded to 2 decimal places = 66.63"
+      ],
+      "final_answer": "66.63",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Look at the digit after the 2 decimal places we want: 3, so round down.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "66.633 rounded to 2 decimal places = 66.63",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "66.63 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "negative_indices",
+      "prompt": "Work out 3^-2. Give your answer as a fraction.",
+      "solution_steps": [
+        "A negative index means take the reciprocal: 3^-2 = 1/3^2",
+        "3^2 = 9",
+        "3^-2 = 1/9"
+      ],
+      "final_answer": "1/9",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A negative index means take the reciprocal: 3^-2 = 1/3^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3^2 = 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3^-2 = 1/9",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/9 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "decimals_round_sf",
+      "prompt": "Round 373.381 to 3 significant figures.",
+      "solution_steps": [
+        "Identify the first 3 significant figures of 373.381.",
+        "373.381 rounded to 3 significant figures = 373"
+      ],
+      "final_answer": "373",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Identify the first 3 significant figures of 373.381.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "373.381 rounded to 3 significant figures = 373",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "373 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "standard_form_to",
+      "prompt": "Write 74500 in standard form.",
+      "solution_steps": [
+        "Move the decimal point until there is one non-zero digit before it: 7.45",
+        "Count how many places the decimal point moved: 4",
+        "74500 = 7.45 × 10^4"
+      ],
+      "final_answer": "7.45 × 10^4",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Move the decimal point until there is one non-zero digit before it: 7.45",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Count how many places the decimal point moved: 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "74500 = 7.45 × 10^4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "7.45 × 10^4 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "estimation_rounding",
+      "prompt": "Work out an estimate for (27.3 × 9.0) ÷ 8.3 by rounding each number to 1 significant figure.",
+      "solution_steps": [
+        "Round each value to 1 significant figure: 27.3 ≈ 30, 9.0 ≈ 9, 8.3 ≈ 8",
+        "(30 × 9) ÷ 8 = 33.75"
+      ],
+      "final_answer": "33.75",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Round each value to 1 significant figure: 27.3 ≈ 30, 9.0 ≈ 9, 8.3 ≈ 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(30 × 9) ÷ 8 = 33.75",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "33.75 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "multiples",
+      "prompt": "Write down the first 5 multiples of 4.",
+      "solution_steps": [
+        "Multiply 4 by 1, 2, 3, 4, 5: 4, 8, 12, 16, 20"
+      ],
+      "final_answer": "4, 8, 12, 16, 20",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply 4 by 1, 2, 3, 4, 5: 4, 8, 12, 16, 20",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4, 8, 12, 16, 20 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_multi_step",
+      "prompt": "Solve: 4x + 10 + 2x + 6 = 22",
+      "solution_steps": [
+        "Collect like terms: 4x + 2x = 6x, 10 + 6 = 16",
+        "6x + 16 = 22",
+        "Subtract 16 from both sides:",
+        "6x = 6",
+        "Divide both sides by 6:",
+        "x = 1"
+      ],
+      "final_answer": "1",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Collect like terms: 4x + 2x = 6x, 10 + 6 = 16",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "6x + 16 = 22",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 16 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "6x = 6 Divide both sides by 6: x = 1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_common_coefficient",
+      "prompt": "Solve the simultaneous equations: 5x + 4y = 36 and 3x - 4y = -4",
+      "solution_steps": [
+        "5x + 4y = 36  (1)",
+        "3x - 4y = -4  (2)",
+        "Add the equations to eliminate y: 8x = 32, so x = 4",
+        "Substitute x = 4 into (1): 4y = 16, so y = 4"
+      ],
+      "final_answer": "x = 4, y = 4",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "5x + 4y = 36  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3x - 4y = -4  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add the equations to eliminate y: 8x = 32, so x = 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute x = 4 into (1): 4y = 16, so y = 4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 4, y = 4 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "satisfying_inequalities_foundation",
+      "prompt": "Solve the inequality -4 ≤ 3x + 1 < 18, then list the integer values of x that satisfy it.",
+      "solution_steps": [
+        "-4 ≤ 3x + 1 < 18",
+        "Subtract 1 from all three parts:",
+        "-5 ≤ 3x < 17",
+        "Divide all three parts by 3:",
+        "-5/3 ≤ x < 17/3",
+        "The integers satisfying this are: -1, 0, 1, 2, 3, 4, 5"
+      ],
+      "final_answer": "-1, 0, 1, 2, 3, 4, 5",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "-4 ≤ 3x + 1 < 18",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 1 from all three parts:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-5 ≤ 3x < 17",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide all three parts by 3: -5/3 ≤ x < 17/3 The integers satisfying this are: -1, 0, 1, 2, 3, 4, 5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-1, 0, 1, 2, 3, 4, 5 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_forming_and_solving",
+      "prompt": "4 cups and 4 plates cost £3.92 in total. 5 cups and 1 plate cost £3.78 in total. Form and solve a pair of simultaneous equations to find the cost of one cup and one plate.",
+      "solution_steps": [
+        "Let x = cost of one cup (pence), y = cost of one plate (pence).",
+        "4x + 4y = 392  (1)",
+        "5x + 1y = 378  (2)",
+        "Solving simultaneously: x = 70, y = 28"
+      ],
+      "final_answer": "cup = £0.70, plate = £0.28",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let x = cost of one cup (pence), y = cost of one plate (pence).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x + 4y = 392  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x + 1y = 378  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Solving simultaneously: x = 70, y = 28",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "cup = £0.70, plate = £0.28 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_two_step",
+      "prompt": "Solve: 4x + 7 = 51",
+      "solution_steps": [
+        "4x + 7 = 51",
+        "Subtract 7 from both sides:",
+        "4x = 44",
+        "Divide both sides by 4:",
+        "x = 11"
+      ],
+      "final_answer": "11",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "4x + 7 = 51",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 7 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x = 44",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 4: x = 11",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "11 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "forming_equations_foundation",
+      "prompt": "I think of a number, multiply it by 8 and add 10. The result is 170. Form an equation and solve it to find the number.",
+      "solution_steps": [
+        "Let the number be x.",
+        "8x + 10 = 170",
+        "Subtract 10 from both sides:",
+        "8x = 160",
+        "Divide both sides by 8:",
+        "x = 20"
+      ],
+      "final_answer": "20",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let the number be x.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "8x + 10 = 170",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 10 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "8x = 160 Divide both sides by 8: x = 20",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "20 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "percentage_of_amount",
+      "prompt": "Find 20% of 280.",
+      "solution_steps": [
+        "Convert 20% to a fraction: 20/100",
+        "Multiply: 20/100 × 280 = 56"
+      ],
+      "final_answer": "56",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 20% to a fraction: 20/100",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply: 20/100 × 280 = 56",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "56 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "inverse_proportion",
+      "prompt": "It takes 8 pipes 6 hours to fill a tank. Working at the same rate, how long would it take 6 pipes?",
+      "solution_steps": [
+        "Constant = 8 × 6 = 48",
+        "Time for 6 pipes = 48 ÷ 6 = 8"
+      ],
+      "final_answer": "8 hours",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Constant = 8 × 6 = 48",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Time for 6 pipes = 48 ÷ 6 = 8",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "8 hours oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pressure",
+      "prompt": "A brick exerts a pressure of 26 N/cm² over a contact area of 33 cm². Find the force.",
+      "solution_steps": [
+        "force = pressure × area",
+        "force = 26 × 33 = 858 N"
+      ],
+      "final_answer": "858 N",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "force = pressure × area",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "force = 26 × 33 = 858 N",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "858 N oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "sdt_mixed",
+      "prompt": "A runner travels at 30 m/s for 105 seconds. Find the distance travelled.",
+      "solution_steps": [
+        "distance = speed × time",
+        "distance = 30 × 105 = 3150 m"
+      ],
+      "final_answer": "3150 m",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "distance = speed × time",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "distance = 30 × 105 = 3150 m",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3150 m oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "best_buys",
+      "prompt": "A shop sells breakfast cereal in different sizes: A: £4.08 for 600g; B: £16.80 for 700g; C: £14.80 for 500g. Which option is the better value for money? Show your working.",
+      "solution_steps": [
+        "Work out the price per 100g for each option:",
+        "A: £4.08 ÷ 600 × 100 = 68.00p per 100g",
+        "B: £16.80 ÷ 700 × 100 = 240.00p per 100g",
+        "C: £14.80 ÷ 500 × 100 = 296.00p per 100g",
+        "The lowest price per 100g is A at 68.00p per 100g, so A is the best value."
+      ],
+      "final_answer": "A (£4.08 for 600g)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Work out the price per 100g for each option:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A: £4.08 ÷ 600 × 100 = 68.00p per 100g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B: £16.80 ÷ 700 × 100 = 240.00p per 100g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "C: £14.80 ÷ 500 × 100 = 296.00p per 100g The lowest price per 100g is A at 68.00p per 100g, so A is the best value.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "A (£4.08 for 600g) oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_straight_line",
+      "prompt": "The angles 88° and x° lie on a straight line. Find x.",
+      "solution_steps": [
+        "Angles on a straight line sum to 180°.",
+        "x = 180 - (88) = 180 - 88 = 92"
+      ],
+      "final_answer": "92",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles on a straight line sum to 180°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 180 - (88) = 180 - 88 = 92",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "92 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "angle_line",
+        "params": {
+          "angle_values": [
+            88,
+            92
+          ],
+          "labels": [
+            "88°",
+            "x"
+          ],
+          "around_point": false
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pythagoras_hypotenuse_decimal",
+      "prompt": "A right-angled triangle has legs 11 cm and 17 cm. Find the length of the hypotenuse, correct to 1 decimal place.",
+      "solution_steps": [
+        "c² = a² + b² = 11² + 17² = 121 + 289 = 410",
+        "c = √410 ≈ 20.2 cm (1 d.p.)"
+      ],
+      "final_answer": "20.2 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "c² = a² + b² = 11² + 17² = 121 + 289 = 410",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "c = √410 ≈ 20.2 cm (1 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "20.2 cm oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "right_triangle",
+        "params": {
+          "leg1_label": "11 cm",
+          "leg2_label": "17 cm",
+          "hyp_label": "?"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_rectangle",
+      "prompt": "A rectangle has length 14 cm and width 5 cm. Find its perimeter.",
+      "solution_steps": [
+        "Perimeter = 2 × (length + width) = 2 × (14 + 5) = 38 cm"
+      ],
+      "final_answer": "38 cm",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Perimeter = 2 × (length + width) = 2 × (14 + 5) = 38 cm",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "38 cm oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "rectangle",
+        "params": {
+          "width": 14,
+          "height": 5,
+          "width_label": "14 cm",
+          "height_label": "5 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "trig_missing_side_foundation",
+      "prompt": "In the right-angled triangle shown, find the length of x, correct to 3 significant figures.",
+      "solution_steps": [
+        "We know the adjacent and want the opposite, so use tan.",
+        "x = 16 × tan(50°) = 19.1 (to 3 s.f.)"
+      ],
+      "final_answer": "19.1 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "We know the adjacent and want the opposite, so use tan.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 16 × tan(50°) = 19.1 (to 3 s.f.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "19.1 cm oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "trig_triangle",
+        "params": {
+          "adjacent_label": "16 cm",
+          "opposite_label": "x cm",
+          "hyp_label": null,
+          "angle_label": "50°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_composite_rectangles",
+      "prompt": "An L-shaped room is formed by taking a rectangle 25 cm by 10 cm and removing a corner rectangle 11 cm by 7 cm. Find the area of the room.",
+      "solution_steps": [
+        "Area of full rectangle = 25 × 10 = 250 cm²",
+        "Area of the cut-out corner = 11 × 7 = 77 cm²",
+        "Area of the shape = 250 - 77 = 173 cm²"
+      ],
+      "final_answer": "173 cm²",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area of full rectangle = 25 × 10 = 250 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of the cut-out corner = 11 × 7 = 77 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of the shape = 250 - 77 = 173 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "173 cm² oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "l_shape",
+        "params": {
+          "outer_w": 25,
+          "outer_h": 10,
+          "inner_w": 11,
+          "inner_h": 7,
+          "notch": "corner",
+          "outer_labels": [
+            "25 cm",
+            "10 cm"
+          ],
+          "inner_labels": [
+            "11 cm",
+            "7 cm"
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_single_event",
+      "prompt": "A bag contains 3 green, 8 purple, 7 yellow, 2 red counters. A counter is picked at random. Find the probability that it is green.",
+      "solution_steps": [
+        "Total counters = 20",
+        "Number of green counters = 3",
+        "P(green) = 3/20 = 3/20"
+      ],
+      "final_answer": "3/20",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total counters = 20",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Number of green counters = 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(green) = 3/20 = 3/20",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3/20 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "bag_of_counters",
+        "params": {
+          "counts": {
+            "green": 3,
+            "purple": 8,
+            "yellow": 7,
+            "red": 2
+          },
+          "highlight": "green"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "set_notation_foundation",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, A = {3, 4, 5}, B = {3, 6, 8}. List the elements that are in A but not in B.",
+      "solution_steps": [
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+        "A = {3, 4, 5}",
+        "B = {3, 6, 8}",
+        "Check each element of ξ in turn to see whether it are in A but not in B.",
+        "Elements that are in A but not in B: {4, 5}"
+      ],
+      "final_answer": "{4, 5}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {3, 4, 5}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B = {3, 6, 8}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Check each element of ξ in turn to see whether it are in A but not in B. Elements that are in A but not in B: {4, 5}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "{4, 5} oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "stats_range",
+      "prompt": "Find the range of this data set: 28, 22, 17, 5, 6, 8, 2.",
+      "solution_steps": [
+        "Range = largest - smallest = 28 - 2 = 26"
+      ],
+      "final_answer": "26",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Range = largest - smallest = 28 - 2 = 26",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "26 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    }
+  ]
+}

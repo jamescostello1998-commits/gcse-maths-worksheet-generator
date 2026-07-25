@@ -1,17 +1,22 @@
 import random
+from typing import Optional
 
 from fastapi import APIRouter, HTTPException, Response
 
 from app.api.schemas import (
     GenerateWorksheetRequest,
     GroupSchema,
+    PracticeTestSummary,
     SectionSchema,
     TopicSummary,
 )
 from app.core.models import Tier
 from app.core.registry import get_topic, list_topics, sections_tree
 from app.pdf.modelled_example_renderer import render_modelled_example
+from app.pdf.practice_test_renderer import render_mark_scheme, render_practice_test_paper
 from app.pdf.renderer import render_worksheet
+from app.practice_tests.loader import get_practice_test, list_practice_tests
+from app.practice_tests.models import PracticeTestPaper
 from app.topics.base import TopicDefinition
 from app.worksheet.builder import DEFAULT_COUNT, build_worksheet
 
@@ -91,4 +96,44 @@ def create_modelled_example(payload: GenerateWorksheetRequest) -> Response:
         content=pdf_bytes,
         media_type="application/pdf",
         headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
+
+
+def _to_practice_test_summary(paper: PracticeTestPaper) -> PracticeTestSummary:
+    return PracticeTestSummary(
+        id=paper.id,
+        name=paper.name,
+        tier=paper.tier,
+        total_marks=paper.total_marks,
+        question_count=len(paper.questions),
+    )
+
+
+@router.get("/practice-tests", response_model=list[PracticeTestSummary])
+def get_practice_tests(tier: Optional[Tier] = None) -> list[PracticeTestSummary]:
+    papers = list_practice_tests()
+    if tier is not None:
+        papers = [p for p in papers if p.tier == tier]
+    return [_to_practice_test_summary(p) for p in papers]
+
+
+@router.get("/practice-tests/{paper_id}/paper")
+def download_practice_test_paper(paper_id: str) -> Response:
+    paper = get_practice_test(paper_id)
+    pdf_bytes = render_practice_test_paper(paper)
+    return Response(
+        content=pdf_bytes,
+        media_type="application/pdf",
+        headers={"Content-Disposition": f'attachment; filename="{paper_id}-test-paper.pdf"'},
+    )
+
+
+@router.get("/practice-tests/{paper_id}/mark-scheme")
+def download_practice_test_mark_scheme(paper_id: str) -> Response:
+    paper = get_practice_test(paper_id)
+    pdf_bytes = render_mark_scheme(paper)
+    return Response(
+        content=pdf_bytes,
+        media_type="application/pdf",
+        headers={"Content-Disposition": f'attachment; filename="{paper_id}-mark-scheme.pdf"'},
     )

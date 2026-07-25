@@ -25,6 +25,14 @@ export interface Section {
   groups: Group[]
 }
 
+export interface PracticeTestSummary {
+  id: string
+  name: string
+  tier: Tier
+  totalMarks: number
+  questionCount: number
+}
+
 export class ApiError extends Error {
   readonly status: number
 

@@ -12,11 +12,11 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-Two "Ideas for a future session" items (chronology step 21 — equivalent-fractions
-shaded-diagram topic, and dice/spinner/bag illustrations retrofitted onto existing
-Probability topics) are **complete and pushed**. 232 topics total, backend suite
-503/503, frontend 29/29, no known bugs. There is **no committed next task** right now.
-Before starting anything new:
+The Practice Tests feature (chronology step 22 — 20 fixed OCR-style 100-mark papers,
+10 Foundation + 10 Higher, with separate test-paper and mark-scheme PDF downloads) is
+**complete and pushed**. 232 topics total, backend suite 526/526, frontend 45/45, no
+known bugs. There is **no committed next task** right now. Before starting anything
+new:
 1. Check "Ideas for a future session" (bottom of this file) for candidate follow-ups
    — none are started and none are promised; ask the user which (if any) they want
    before building.
@@ -30,7 +30,72 @@ Before starting anything new:
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.).
-Full backend suite: **503/503 passing**. Frontend suite: **29/29 passing**.
+Full backend suite: **526/526 passing**. Frontend suite: **45/45 passing**.
+
+**Practice Tests (fixed/static content, not procedural — the one deliberate exception
+to the paragraph above)**: a 7th homepage section, `backend/app/practice_tests/`,
+holds 20 committed papers (`data/*.json`, `foundation-01`..`10`, `higher-01`..`10`),
+each a 100-mark, OCR-GCSE-styled paper assembled by *freezing* real output from the
+existing 232 generators rather than writing new exam-style content by hand. Built via
+a one-time script (`build.py`, run manually — `python -m app.practice_tests.build` —
+not at request time): `topic_selection.py` picks a spread of topics per paper
+(a curated per-section mark-share target approximating real GCSE weighting, plus a
+`core`/`common`/`niche` per-topic priority tag so frequently-examined skills recur
+across several papers while advanced ones appear less often — see its module
+docstring for the exact numbers), then each chosen topic's `generate_xxx(fixed_tier,
+random.Random(seed))` is called **directly** (bypassing `build_worksheet`) with a seed
+derived deterministically from `(paper_id, topic_id)` via SHA-256 (never Python's
+built-in `hash()`, which is randomised per-process for strings) — confirmed via a
+full-codebase grep that no generator anywhere touches the bare `random` module outside
+its passed-in `rng`, so this is fully reproducible: re-running `build.py` produces
+byte-identical JSON every time, verified by a test. Every paper's marks sum to
+**exactly 100**, enforced by `topic_selection.select_paper_topics`'s fill-then-close
+algorithm (self-restarts with a perturbed seed if it paints itself into a corner) plus
+a `build.py`-level repair pass (`_repair_to_target`) for the handful of topics whose
+`solution_steps` length varies by branch, occasionally drifting the real total from
+the "typical" total the selection was planned against — and a whole-paper retry
+(`MAX_PAPER_RETRIES`) as the final safety net.
+
+The OCR-style mark scheme (`app/practice_tests/mark_scheme.py`) is a **systematic
+approximation**, not lifted from a real OCR mark scheme (no reference papers were
+available to calibrate against — built from general exam-board convention instead,
+per the user's choice): a question's own `solution_steps` become M1 method marks
+(1 per step, capped at 4, with any overflow folded into the last one) followed by one
+A1 accuracy mark quoting the question's own `final_answer` (e.g. `"30 oe (cao)"`);
+a multiple-choice-style `final_answer` (matches `^[A-D]\)`, e.g. `"B) 3/4"`, this app's
+convention for "identify the correct one" questions) gets a single independent B1
+instead, since there's no method to mark. **`PracticeQuestion`/`PracticeTestPaper`
+(`practice_tests/models.py`) are deliberately separate from `core/models.py`'s
+`Question`/`TopicDefinition`** — none of the 232 existing generators or their tests
+were touched to build this feature. Two new PDF renderers
+(`app/pdf/practice_test_renderer.py`) follow the existing `SimpleDocTemplate` +
+flowable-list idiom: `render_practice_test_paper` (an original-wording — not copied
+from any real OCR paper — cover page with candidate-detail boxes and an instructions
+box, then numbered questions with marks shown as `[n]` in a right-aligned column) and
+`render_mark_scheme` (a `Question | Answer | Marks | Guidance` table, one row per
+question, each M1/A1/B1 point stacked in the Guidance cell). Three new GET routes
+(`GET /api/practice-tests`, `.../{id}/paper`, `.../{id}/mark-scheme`) since content is
+fully static per id — no request body needed, unlike the POST-based worksheet/modelled-
+example endpoints. Frontend: `PracticeTestsView`/`PracticeTestCard` mirror
+`SectionView`/`TopicCard`'s two-level tier-picker and two-independent-download-button
+patterns exactly, rendered as a distinct block **underneath** `HomeScreen` in
+`App.tsx` (not folded into the 6-section grid, since a static paper list is
+structurally different from the procedural topic tree).
+
+**Real bug found and fixed while building this** (via this feature's first end-to-end
+visual check, not the existing unit tests — same story as most gotchas in this file):
+`estimation.py`'s `_round_to_1sf` used `Decimal.quantize(Decimal(1).scaleb(exp), ...)`
+to round to 1 significant figure — correct in *value* (which is why the existing
+independent-verification check never caught it), but when the rounded value lands on
+a positive power of ten (e.g. 27.3 → 30), `Decimal.quantize` keeps that exponent
+internally, so plain `str()`/f-string interpolation prints `"3E+1"` instead of `"30"`.
+This had been silently shipping in `estimation_rounding`'s prompt/steps text (and its
+modelled-example twin) since chronology step 5 — never caught because no prior content
+type rendered that generator's raw `solution_steps` text somewhere a human would
+actually read closely enough to notice, until the practice-tests mark scheme did.
+Fixed by reformatting through fixed-point notation (`Decimal(format(quantized, "f"))`)
+inside `_round_to_1sf` itself, so every caller (both the normal generator and the
+modelled example) is fixed by the one change.
 
 **Modelled Example feature (on every topic, including new ones)**: a second button, "Generate
 Modelled Example," sits next to "Generate Worksheet" on every topic card
@@ -847,6 +912,50 @@ content today; it's built and unit-tested for when one eventually does.
     Backend suite grew from 487 to 503 tests; frontend unaffected (29/29 — no
     frontend changes were needed, new groups/topics render generically and the
     Modelled Example button was already driven by a per-topic API flag).
+22. New session, a large user-requested feature with real design decisions up front:
+    "practice tests" underneath the 6 topic sections — a Foundation/Higher picker,
+    10 fixed (not procedural) OCR-GCSE-styled 100-mark papers per tier, each with a
+    separate test-paper and mark-scheme download, the mark scheme in OCR's coded
+    (M1/A1/B1) format. Asked clarifying questions up front per the user's explicit
+    request, resolving: 20 papers total (10 per tier, not 10 total); content built by
+    **freezing real output from the existing 232 generators** rather than hand-
+    authoring new multi-part exam questions (the user's choice, given this app's
+    established "always verify independently" identity doesn't extend to hand-written
+    content); one 100-mark paper per test, not OCR's real 3-paper-per-sitting
+    structure; full OCR marking codes, not a simplified answer-only scheme; and
+    proceeding on general OCR/exam-board convention knowledge rather than real
+    reference papers (none were available). Entered plan mode given the scope (the
+    single largest addition this project has attempted) and researched via 3 parallel
+    Explore agents (backend worksheet/PDF/models architecture, frontend homepage/
+    section structure, full topic inventory + diagram availability + determinism)
+    before writing the plan, then delivered via an explicit pilot-first sequencing
+    matching this project's own established precedent (the Modelled Example feature
+    piloted on 6 topics before the full rollout): built the whole pipeline, generated
+    just 2 pilot papers (1 Foundation + 1 Higher), visually verified both PDFs end to
+    end before generating the remaining 18.
+
+    Built new `backend/app/practice_tests/` package (`models.py`, `mark_scheme.py`,
+    `topic_selection.py`, `build.py`, `loader.py`, `data/*.json` — see "Current state"
+    above for the full design) and `app/pdf/practice_test_renderer.py` (two new
+    renderers), 3 new GET routes, and a new homepage section
+    (`PracticeTestsView`/`PracticeTestCard`, mirroring `SectionView`/`TopicCard`
+    exactly). Two real bugs were caught during the pilot's visual check, not by unit
+    tests: (1) `estimation_rounding` silently printing `"3E+1"` instead of `"30"` in
+    its prompt/solution text whenever a value rounds to a positive power of ten (see
+    "Current state" above for the fix — a genuine multi-session-old bug, first
+    exposed because this was the first content type to render that generator's raw
+    text somewhere worth reading closely); (2) `topic_selection`'s gap-closing repair
+    pass could compute a negative "marks still needed" value when a paper overshot
+    100 (no topic can ever have negative marks, so those attempts silently wasted the
+    whole retry budget) and used a non-randomised, easily-cycling backtrack order —
+    both fixed (skip negative gaps; randomise which question gets swapped), plus a
+    whole-paper retry (`MAX_PAPER_RETRIES`, regenerating with a perturbed seed) added
+    as a final safety net after the fix still left one real paper (out of 20) short.
+    Determinism (re-running `build.py` reproduces byte-identical JSON) and the
+    exactly-100-marks constraint are both covered by dedicated tests, not just
+    asserted once by hand.
+
+    Backend suite grew from 503 to 526 tests; frontend grew from 29 to 45.
 
 Everything above is committed and pushed (see `git log`).
 
@@ -900,6 +1009,16 @@ The backend venv (`backend/.venv`) already has all of `requirements.txt` install
 inspect it — see "Verifying new topics" below).
 The frontend (`frontend/node_modules`) already has all deps installed including
 Vitest + React Testing Library.
+
+**Regenerating the Practice Tests data**: the 20 papers under
+`backend/app/practice_tests/data/*.json` are committed, static content (see "Current
+state") — the API serves them as-is, nothing is generated at request time. Only
+re-run `backend\.venv\Scripts\python.exe -m app.practice_tests.build` (from `backend/`)
+if you deliberately want to regenerate them (e.g. after editing `topic_selection.py`'s
+weighting/priority tables or `mark_scheme.py`'s marking rules) — it overwrites all 20
+files and is fully deterministic (re-running with no code changes reproduces
+byte-identical output). Restart the backend afterward to pick up the new data (the
+loader reads the JSON files once at import time).
 
 ## Testing
 
@@ -1068,6 +1187,14 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
   `spinner3_spinner4`) have no diagram since `draw_spinner` only draws one spinner at
   a time — would need a second diagram kind (or a `draw_spinner` extension) that lays
   out two spinners side by side.
+- Practice Tests (step 22) deliberately deferred a few things, per the user's choices
+  at the time: mimicking OCR's real 3-paper-per-sitting structure (non-calculator +
+  2 calculator papers) instead of one combined 100-mark paper; hand-authored genuine
+  multi-part exam questions (with sub-parts a/b/c combining several skills) instead of
+  frozen single-skill generator output; and calibrating the mark scheme against real
+  OCR specimen papers, which weren't available this session — if the user obtains
+  some later, `mark_scheme.py`'s marks-per-step default rule could be replaced with
+  real per-question-type mark allocations.
 
 Don't start any of these without checking with the user first — this list is just
 carried-over context, not a plan.

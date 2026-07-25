@@ -1,4 +1,12 @@
-import { ApiError, NetworkError, type Section, type Tier, type Topic, type WorksheetOptions } from './types'
+import {
+  ApiError,
+  NetworkError,
+  type PracticeTestSummary,
+  type Section,
+  type Tier,
+  type Topic,
+  type WorksheetOptions,
+} from './types'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000'
 
@@ -63,6 +71,24 @@ async function getJson<T>(path: string, errorContext: string): Promise<T> {
   return response.json()
 }
 
+async function getBlob(path: string, errorContext: string): Promise<Blob> {
+  let response: Response
+  try {
+    response = await fetch(`${API_BASE_URL}${path}`)
+  } catch (err) {
+    console.error(`Network error ${errorContext}:`, err)
+    throw new NetworkError()
+  }
+
+  if (!response.ok) {
+    const detail = await parseErrorDetail(response)
+    console.error(`API error ${errorContext}:`, detail)
+    throw new ApiError(detail, response.status)
+  }
+
+  return response.blob()
+}
+
 export async function fetchSections(): Promise<Section[]> {
   const raw = await getJson<RawSection[]>('/api/sections', 'fetching sections')
   return raw.map((section) => ({
@@ -122,4 +148,35 @@ export async function generateModelledExample(topicId: string, tier: Tier): Prom
   }
 
   return response.blob()
+}
+
+interface RawPracticeTestSummary {
+  id: string
+  name: string
+  tier: Tier
+  total_marks: number
+  question_count: number
+}
+
+function toPracticeTestSummary(raw: RawPracticeTestSummary): PracticeTestSummary {
+  return {
+    id: raw.id,
+    name: raw.name,
+    tier: raw.tier,
+    totalMarks: raw.total_marks,
+    questionCount: raw.question_count,
+  }
+}
+
+export async function fetchPracticeTests(): Promise<PracticeTestSummary[]> {
+  const raw = await getJson<RawPracticeTestSummary[]>('/api/practice-tests', 'fetching practice tests')
+  return raw.map(toPracticeTestSummary)
+}
+
+export async function downloadPracticeTestPaper(paperId: string): Promise<Blob> {
+  return getBlob(`/api/practice-tests/${paperId}/paper`, 'downloading practice test paper')
+}
+
+export async function downloadPracticeTestMarkScheme(paperId: string): Promise<Blob> {
+  return getBlob(`/api/practice-tests/${paperId}/mark-scheme`, 'downloading practice test mark scheme')
 }

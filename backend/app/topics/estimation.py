@@ -32,7 +32,12 @@ def _round_1dp(fr: Fraction) -> Fraction:
 
 def _round_to_1sf(value: Decimal) -> Decimal:
     exp = value.adjusted()
-    return value.quantize(Decimal(1).scaleb(exp), rounding=ROUND_HALF_UP)
+    quantized = value.quantize(Decimal(1).scaleb(exp), rounding=ROUND_HALF_UP)
+    # Decimal.quantize() to a positive-exponent target (e.g. rounding 27.3 to
+    # the tens place) keeps that exponent internally, so str()/f-string
+    # interpolation prints "3E+1" instead of "30" - reformat through
+    # fixed-point notation so every caller always displays normally.
+    return Decimal(format(quantized, "f"))
 
 
 def _round_to_1sf_manual(value: Decimal) -> Fraction:

@@ -85,6 +85,28 @@
   color: var(--text-muted);
 }
 
+/* Practice tests entry (homepage) */
+
+.practice-tests-section {
+  margin-top: 40px;
+}
+
+.practice-tests-section__heading {
+  font-size: 20px;
+  color: var(--text-heading);
+  margin: 0 0 6px;
+}
+
+.practice-tests-section__subtitle {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin: 0 0 16px;
+}
+
+.practice-tests-entry {
+  max-width: 320px;
+}
+
 /* Section view */
 
 .section-view__back {

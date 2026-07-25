@@ -1,0 +1,994 @@
+{
+  "id": "higher-05",
+  "name": "Higher Practice Test 5",
+  "tier": "higher",
+  "questions": [
+    {
+      "topic_id": "bounds_calculation",
+      "prompt": "A rectangle has length 13 cm and width 27 cm, both measured to the nearest cm. Calculate the lower bound for the area of the rectangle.",
+      "solution_steps": [
+        "Length: 13 cm (to the nearest cm) gives 12.5 ≤ length < 13.5",
+        "Width: 27 cm (to the nearest cm) gives 26.5 ≤ width < 27.5",
+        "For the lower bound of the area, use the lower bound of each measurement: 12.5 × 26.5 = 331.25 cm²"
+      ],
+      "final_answer": "331.25 cm²",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Length: 13 cm (to the nearest cm) gives 12.5 ≤ length < 13.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Width: 27 cm (to the nearest cm) gives 26.5 ≤ width < 27.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For the lower bound of the area, use the lower bound of each measurement: 12.5 × 26.5 = 331.25 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "331.25 cm² oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "standard_form_multiply_divide",
+      "prompt": "Work out (7 × 10^1) × (6 × 10^2). Give your answer in standard form.",
+      "solution_steps": [
+        "Multiply the mantissas: 7 × 6 = 42",
+        "Add the powers of 10: 1 + 2 = 3",
+        "Renormalize so the mantissa is between 1 and 10: 4.2 × 10^4"
+      ],
+      "final_answer": "4.2 × 10^4",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply the mantissas: 7 × 6 = 42",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add the powers of 10: 1 + 2 = 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Renormalize so the mantissa is between 1 and 10: 4.2 × 10^4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4.2 × 10^4 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_mixed_number_arithmetic",
+      "prompt": "Work out 3 1/2 - 1 4/6. Give your answer as a mixed number.",
+      "solution_steps": [
+        "Convert to improper fractions: 3 1/2 = 7/2, 1 4/6 = 5/3",
+        "Subtract the improper fractions: 7/2 - 5/3 = 11/6",
+        "Convert back to a mixed number: 1 5/6"
+      ],
+      "final_answer": "1 5/6",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert to improper fractions: 3 1/2 = 7/2, 1 4/6 = 5/3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract the improper fractions: 7/2 - 5/3 = 11/6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Convert back to a mixed number: 1 5/6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1 5/6 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_surds",
+      "prompt": "Expand and simplify (2 + √6)^2, giving your answer in the form p + q√6.",
+      "solution_steps": [
+        "(2 + √6)^2 = (2 + √6)(2 + √6)",
+        "Expand: 4 +4√6 +4√6 + 6",
+        "Combine the whole-number terms: 4 + 6 = 10",
+        "Combine the √6 terms: +4√6 +4√6 = +4√6",
+        "(2 + √6)^2 = 10 + 4√6"
+      ],
+      "final_answer": "10 + 4√6",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "(2 + √6)^2 = (2 + √6)(2 + √6)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand: 4 +4√6 +4√6 + 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine the whole-number terms: 4 + 6 = 10",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine the √6 terms: +4√6 +4√6 = +4√6 (2 + √6)^2 = 10 + 4√6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "10 + 4√6 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "roots_higher",
+      "prompt": "Simplify √72, giving your answer in the form a√b.",
+      "solution_steps": [
+        "Find the largest square factor of 72: 6^2 × 2 = 72",
+        "√72 = √(6^2 × 2) = 6√2"
+      ],
+      "final_answer": "6√2",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find the largest square factor of 72: 6^2 × 2 = 72",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√72 = √(6^2 × 2) = 6√2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6√2 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "decimals_recurring_to_fraction",
+      "prompt": "The recurring decimal 0.1(3) can be written as a fraction. Find this fraction in its simplest form.",
+      "solution_steps": [
+        "Let x = 0.1(3)",
+        "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
+        "This gives x = 12/90",
+        "Simplify: 2/15"
+      ],
+      "final_answer": "2/15",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let x = 0.1(3)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "This gives x = 12/90",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify: 2/15",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2/15 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "quadratic_formula",
+      "prompt": "Solve 2x^2 + 11x - 12 = 0 using the quadratic formula, giving your answers to 2 decimal places.",
+      "solution_steps": [
+        "x = (-b ± √(b^2 - 4ac)) / 2a",
+        "a = 2, b = 11, c = -12",
+        "x = (-11 ± √(11^2 - 4×2×-12)) / (2×2)",
+        "x = (-11 ± √217) / 4",
+        "x = 0.93 or x = -6.43"
+      ],
+      "final_answer": "x = 0.93 or x = -6.43",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "x = (-b ± √(b^2 - 4ac)) / 2a",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "a = 2, b = 11, c = -12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = (-11 ± √(11^2 - 4×2×-12)) / (2×2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = (-11 ± √217) / 4 x = 0.93 or x = -6.43",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 0.93 or x = -6.43 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "expand_triple_brackets",
+      "prompt": "Expand and simplify: (2x + 3)(-3x - 4)(-2x + 2)",
+      "solution_steps": [
+        "First expand two of the brackets: (2x + 3)(-3x - 4) = -6x^2 - 17x - 12",
+        "Multiply the result by (-2x + 2) and collect like terms",
+        "= 12x^3 + 22x^2 - 10x - 24"
+      ],
+      "final_answer": "12x^3 + 22x^2 - 10x - 24",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First expand two of the brackets: (2x + 3)(-3x - 4) = -6x^2 - 17x - 12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply the result by (-2x + 2) and collect like terms",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 12x^3 + 22x^2 - 10x - 24",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "12x^3 + 22x^2 - 10x - 24 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "expand_double_brackets",
+      "prompt": "Expand: (3x - 3)(-x - 5)",
+      "solution_steps": [
+        "First: 3x × -1x = -3x^2",
+        "Outer: 3x × -5 = -15x",
+        "Inner: -3 × -1x = 3x",
+        "Last: -3 × -5 = 15",
+        "Combine like terms: -3x^2 - 12x + 15"
+      ],
+      "final_answer": "-3x^2 - 12x + 15",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First: 3x × -1x = -3x^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Outer: 3x × -5 = -15x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Inner: -3 × -1x = 3x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Last: -3 × -5 = 15 Combine like terms: -3x^2 - 12x + 15",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-3x^2 - 12x + 15 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_different_coefficient",
+      "prompt": "Solve the simultaneous equations: 5x + 2y = 39 and 2x + 4y = 22",
+      "solution_steps": [
+        "5x + 2y = 39  (1)",
+        "2x + 4y = 22  (2)",
+        "(1) × 4: 20x + 8y = 156  (3)",
+        "(2) × 2: 4x + 8y = 44  (4)",
+        "(3) - (4): 16x = 112, so x = 7",
+        "Substitute x = 7 into (1): 2y = 4, so y = 2"
+      ],
+      "final_answer": "x = 7, y = 2",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "5x + 2y = 39  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x + 4y = 22  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(1) × 4: 20x + 8y = 156  (3)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(2) × 2: 4x + 8y = 44  (4) (3) - (4): 16x = 112, so x = 7 Substitute x = 7 into (1): 2y = 4, so y = 2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 7, y = 2 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "forming_equations_higher",
+      "prompt": "A rectangle has one side of length 10 cm and the other side of length (x + 7) cm. The area of the rectangle is 110 cm². Form an equation and solve it to find x.",
+      "solution_steps": [
+        "Area of a rectangle = length × width.",
+        "10(x + 7) = 110",
+        "Expand the bracket:",
+        "10x + 70 = 110",
+        "Subtract 70 from both sides:",
+        "10x = 40",
+        "Divide both sides by 10:",
+        "x = 4"
+      ],
+      "final_answer": "4",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area of a rectangle = length × width.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "10(x + 7) = 110",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand the bracket:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "10x + 70 = 110 Subtract 70 from both sides: 10x = 40 Divide both sides by 10: x = 4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "iteration",
+      "prompt": "The iterative formula x_(n+1) = (22 - x_n^2) / 7 is used with x_0 = 3. Find the values of x_1, x_2 and x_3, giving each answer to 3 decimal places.",
+      "solution_steps": [
+        "Iterative formula: x_(n+1) = (22 - x_n^2) / 7",
+        "x_0 = 3",
+        "x_1 = g(x_0) = (22 - 3^2) / 7 = 1.857",
+        "x_2 = g(x_1) = (22 - 1.857^2) / 7 = 2.650",
+        "x_3 = g(x_2) = (22 - 2.650^2) / 7 = 2.140"
+      ],
+      "final_answer": "x_1 = 1.857, x_2 = 2.650, x_3 = 2.140",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Iterative formula: x_(n+1) = (22 - x_n^2) / 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x_0 = 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x_1 = g(x_0) = (22 - 3^2) / 7 = 1.857",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x_2 = g(x_1) = (22 - 1.857^2) / 7 = 2.650 x_3 = g(x_2) = (22 - 2.650^2) / 7 = 2.140",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x_1 = 1.857, x_2 = 2.650, x_3 = 2.140 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "velocity_time_interpret",
+      "prompt": "The velocity-time graph shows a car's journey. Find the distance travelled while the car travels at constant velocity.",
+      "solution_steps": [
+        "Distance = area under the graph = base × height (a rectangle)",
+        "Distance = 15 × 20 = 300 m"
+      ],
+      "final_answer": "300 m",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Distance = area under the graph = base × height (a rectangle)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Distance = 15 × 20 = 300 m",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "300 m oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              10,
+              20
+            ],
+            [
+              25,
+              20
+            ],
+            [
+              37,
+              0
+            ]
+          ],
+          "x_max": 42,
+          "y_max": 25,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_shape_similar_higher",
+      "prompt": "Shape A and Shape B are similar. A length on shape A is 5 cm and the corresponding length on shape B is 3 cm. The volume of shape A is 500 cm^3. Find the volume of shape B.",
+      "solution_steps": [
+        "Linear scale factor = 3 ÷ 5 = 3/5",
+        "Volume scale factor = (3/5)^3 = 27/125",
+        "Volume of B = 500 × 27/125 = 108 cm^3"
+      ],
+      "final_answer": "108 cm^3",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Linear scale factor = 3 ÷ 5 = 3/5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Volume scale factor = (3/5)^3 = 27/125",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Volume of B = 500 × 27/125 = 108 cm^3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "108 cm^3 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pressure_higher",
+      "prompt": "A concrete block exerts a force of 2909 N over a contact area of 2513 cm². Find the pressure in N/m², correct to 2 decimal places.",
+      "solution_steps": [
+        "Convert area to m²: 2513 cm² = 2513 ÷ 10000 = 0.2513 m²",
+        "pressure = force ÷ area = 2909 ÷ 0.2513 = 11575.81 N/m² (2 d.p.)"
+      ],
+      "final_answer": "11575.81 N/m²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert area to m²: 2513 cm² = 2513 ÷ 10000 = 0.2513 m²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "pressure = force ÷ area = 2909 ÷ 0.2513 = 11575.81 N/m² (2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "11575.81 N/m² oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_difference_higher",
+      "prompt": "Amounts are in the ratio 8:1:5. The difference between the largest and smallest amount is 49. Find all three amounts and their total.",
+      "solution_steps": [
+        "Difference in parts = 8 - 1 = 7 parts",
+        "Value of one part = 49 ÷ 7 = 7",
+        "Amount 1 = 8 × 7 = 56",
+        "Amount 2 = 1 × 7 = 7",
+        "Amount 3 = 5 × 7 = 35",
+        "Total = 56 + 7 + 35 = 98"
+      ],
+      "final_answer": "56 : 7 : 35 (total 98)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Difference in parts = 8 - 1 = 7 parts",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Value of one part = 49 ÷ 7 = 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Amount 1 = 8 × 7 = 56",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Amount 2 = 1 × 7 = 7 Amount 3 = 5 × 7 = 35 Total = 56 + 7 + 35 = 98",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "56 : 7 : 35 (total 98) oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_direct_proportion",
+      "prompt": "y is directly proportional to x^3. When x = 8, y = 2560. Find the value of y when x = 4.",
+      "solution_steps": [
+        "y = kx^3",
+        "2560 = k × 8^3 = k × 512",
+        "k = 2560 ÷ 512 = 5",
+        "y = 5 × 4^3 = 5 × 64 = 320"
+      ],
+      "final_answer": "320",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = kx^3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2560 = k × 8^3 = k × 512",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "k = 2560 ÷ 512 = 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y = 5 × 4^3 = 5 × 64 = 320",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "320 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_indices_higher",
+      "prompt": "Simplify (x)^4",
+      "solution_steps": [
+        "Raising a power to another power: multiply the exponents (this still works when the inner exponent is negative or zero), and raise the coefficient to that power too.",
+        "(x)^4 = 1^4 x^(1×4)",
+        "= x^4"
+      ],
+      "final_answer": "x^4",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Raising a power to another power: multiply the exponents (this still works when the inner exponent is negative or zero), and raise the coefficient to that power too.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(x)^4 = 1^4 x^(1×4)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= x^4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x^4 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "trig_missing_side_higher",
+      "prompt": "In the right-angled triangle shown, find the length of x, correct to 3 significant figures.",
+      "solution_steps": [
+        "We know the adjacent and want the hypotenuse, so use cos.",
+        "x = 28 ÷ cos(30°) = 32.3 (to 3 s.f.)"
+      ],
+      "final_answer": "32.3 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "We know the adjacent and want the hypotenuse, so use cos.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 28 ÷ cos(30°) = 32.3 (to 3 s.f.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "32.3 cm oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "trig_triangle",
+        "params": {
+          "adjacent_label": "28 cm",
+          "opposite_label": null,
+          "hyp_label": "x cm",
+          "angle_label": "30°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_polygon_interior",
+      "prompt": "A polygon has 6 sides. 5 of its interior angles are each 123°, and the remaining interior angle is (3x + 54)°. Find x.",
+      "solution_steps": [
+        "Sum of interior angles = (n - 2) × 180 = (6 - 2) × 180 = 720°",
+        "Sum of the 5 equal angles = 5 × 123 = 615°",
+        "Remaining angle = 720 - 615 = 105°",
+        "3x + 54 = 105",
+        "Subtract 54 from both sides:",
+        "3x = 51",
+        "Divide both sides by 3:",
+        "x = 17"
+      ],
+      "final_answer": "17",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Sum of interior angles = (n - 2) × 180 = (6 - 2) × 180 = 720°",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Sum of the 5 equal angles = 5 × 123 = 615°",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Remaining angle = 720 - 615 = 105°",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3x + 54 = 105 Subtract 54 from both sides: 3x = 51 Divide both sides by 3: x = 17",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "17 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "polygon",
+        "params": {
+          "n_sides": 6,
+          "marked_angle_label": "(3x + 54)°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_triangle_higher",
+      "prompt": "A triangle has angles 77°, 38°, and (3x + 8)°. Find x.",
+      "solution_steps": [
+        "Angles in a triangle sum to 180°.",
+        "3x + 8 = 65",
+        "Subtract 8 from both sides:",
+        "3x = 57",
+        "Divide both sides by 3:",
+        "x = 19"
+      ],
+      "final_answer": "19",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles in a triangle sum to 180°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3x + 8 = 65",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 8 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3x = 57 Divide both sides by 3: x = 19",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "19 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "triangle_angles",
+        "params": {
+          "angle_labels": [
+            "77°",
+            "38°",
+            "(3x + 8)°"
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "tree_diagram_dependent",
+      "prompt": "A bag contains 5 red and 4 blue counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that both counters are the same colour.",
+      "solution_steps": [
+        "After the first counter is picked (without replacement), there are 8 counters left.",
+        "P(red then red) = 5/9 × 1/2 = 5/18",
+        "P(red then blue) = 5/9 × 1/2 = 5/18",
+        "P(blue then red) = 4/9 × 5/8 = 5/18",
+        "P(blue then blue) = 4/9 × 3/8 = 1/6",
+        "P(both counters are the same colour) = 4/9"
+      ],
+      "final_answer": "4/9",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "After the first counter is picked (without replacement), there are 8 counters left.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(red then red) = 5/9 × 1/2 = 5/18",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(red then blue) = 5/9 × 1/2 = 5/18",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(blue then red) = 4/9 × 5/8 = 5/18 P(blue then blue) = 4/9 × 3/8 = 1/6 P(both counters are the same colour) = 4/9",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4/9 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Red",
+              "5/9"
+            ],
+            [
+              "Blue",
+              "4/9"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Red",
+                "1/2"
+              ],
+              [
+                "Blue",
+                "1/2"
+              ]
+            ],
+            [
+              [
+                "Red",
+                "5/8"
+              ],
+              [
+                "Blue",
+                "3/8"
+              ]
+            ]
+          ],
+          "leaf_probs": [
+            [
+              "5/18",
+              "5/18"
+            ],
+            [
+              "5/18",
+              "1/6"
+            ]
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "product_rule_counting",
+      "prompt": "A shop sells 3 different fonts and 6 different colours. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "solution_steps": [
+        "Total combinations = 3 × 6 = 18"
+      ],
+      "final_answer": "18",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total combinations = 3 × 6 = 18",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "18 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "graph_transformations",
+      "prompt": "The graph of y = f(x) is transformed to give the graph of y = f(x) - 3. Describe this transformation fully.",
+      "solution_steps": [
+        "y = f(x) - 3 corresponds to a translation by vector (0, -3)."
+      ],
+      "final_answer": "Translation by vector (0, -3)",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = f(x) - 3 corresponds to a translation by vector (0, -3).",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Translation by vector (0, -3) oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "graph_transformation",
+        "params": {
+          "transform": "translate_down",
+          "shift": 3,
+          "original_label": "y = f(x)",
+          "transformed_label": "y = f(x) - 3"
+        }
+      },
+      "solution_diagram": null
+    }
+  ]
+}

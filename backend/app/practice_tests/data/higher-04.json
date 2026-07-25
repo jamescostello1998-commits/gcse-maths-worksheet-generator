@@ -1,0 +1,1030 @@
+{
+  "id": "higher-04",
+  "name": "Higher Practice Test 4",
+  "tier": "higher",
+  "questions": [
+    {
+      "topic_id": "recurring_decimal_two_digit",
+      "prompt": "The recurring decimal 0.(81) can be written as a fraction. Find this fraction in its simplest form.",
+      "solution_steps": [
+        "Let x = 0.(81), so 100x = 81.8181... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Subtract: 100x - x = 81 - 0, so 99x = 81",
+        "x = 81/99 = 9/11"
+      ],
+      "final_answer": "9/11",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let x = 0.(81), so 100x = 81.8181... (two digits repeat, so multiply by 100 to shift a full block)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract: 100x - x = 81 - 0, so 99x = 81",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 81/99 = 9/11",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "9/11 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_divide",
+      "prompt": "Work out 4/2 ÷ 1/5. Give your answer as a fraction in its simplest form.",
+      "solution_steps": [
+        "Keep-change-flip: 4/2 ÷ 1/5 = 4/2 × 5/1",
+        "Multiply: (4×5)/(2×1) = 20/2",
+        "Simplify: 10"
+      ],
+      "final_answer": "10",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Keep-change-flip: 4/2 ÷ 1/5 = 4/2 × 5/1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply: (4×5)/(2×1) = 20/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify: 10",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "10 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simplifying_indices_challenging",
+      "prompt": "Simplify 25^(3/2) × 25^-2, giving your answer as a fraction where necessary.",
+      "solution_steps": [
+        "25^(1/2) is the square root of 25, which is 5, so 25^(3/2) = 5^3",
+        "25^-2 = 1/25^2 = 1/5^4",
+        "25^(3/2) × 25^-2 = 5^3 × 1/5^4 = 5^(3-4) = 5^-1",
+        "5^-1 = 1/5"
+      ],
+      "final_answer": "1/5",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "25^(1/2) is the square root of 25, which is 5, so 25^(3/2) = 5^3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "25^-2 = 1/25^2 = 1/5^4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "25^(3/2) × 25^-2 = 5^3 × 1/5^4 = 5^(3-4) = 5^-1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5^-1 = 1/5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/5 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_mixed_number_arithmetic",
+      "prompt": "Work out 3 1/2 + 3 3/6. Give your answer as a mixed number.",
+      "solution_steps": [
+        "Convert to improper fractions: 3 1/2 = 7/2, 3 3/6 = 7/2",
+        "Add the improper fractions: 7/2 + 7/2 = 7/1",
+        "Convert back to a mixed number: 7"
+      ],
+      "final_answer": "7",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert to improper fractions: 3 1/2 = 7/2, 3 3/6 = 7/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add the improper fractions: 7/2 + 7/2 = 7/1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Convert back to a mixed number: 7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "7 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "decimals_recurring_to_fraction",
+      "prompt": "The recurring decimal 0.(571428) can be written as a fraction. Find this fraction in its simplest form.",
+      "solution_steps": [
+        "Let x = 0.(571428)",
+        "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
+        "This gives x = 571428/999999",
+        "Simplify: 4/7"
+      ],
+      "final_answer": "4/7",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let x = 0.(571428)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "This gives x = 571428/999999",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify: 4/7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4/7 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "roots_higher",
+      "prompt": "Simplify √117, giving your answer in the form a√b.",
+      "solution_steps": [
+        "Find the largest square factor of 117: 3^2 × 13 = 117",
+        "√117 = √(3^2 × 13) = 3√13"
+      ],
+      "final_answer": "3√13",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find the largest square factor of 117: 3^2 × 13 = 117",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√117 = √(3^2 × 13) = 3√13",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3√13 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_cubic",
+      "prompt": "Complete a table of values for y = -x^3 - x for x = -3 to 3, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = -x^3 - x:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: 30, 10, 2, 0, -2, -10, -30",
+        "Plot each (x, y) point and join them with a single smooth curve."
+      ],
+      "final_answer": "Cubic curve: y = -x^3 - x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = -x^3 - x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 30, 10, 2, 0, -2, -10, -30",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Cubic curve: y = -x^3 - x oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": -1,
+          "b": -1,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -32,
+          "y_max": 32,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": -1,
+          "b": -1,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -32,
+          "y_max": 32,
+          "table_points": [
+            [
+              -3,
+              30
+            ],
+            [
+              -2,
+              10
+            ],
+            [
+              -1,
+              2
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              -2
+            ],
+            [
+              2,
+              -10
+            ],
+            [
+              3,
+              -30
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "simultaneous_different_coefficient",
+      "prompt": "Solve the simultaneous equations: 4x + 5y = 18 and 5x + 4y = 18",
+      "solution_steps": [
+        "4x + 5y = 18  (1)",
+        "5x + 4y = 18  (2)",
+        "(1) × 4: 16x + 20y = 72  (3)",
+        "(2) × 5: 25x + 20y = 90  (4)",
+        "(3) - (4): -9x = -18, so x = 2",
+        "Substitute x = 2 into (1): 5y = 10, so y = 2"
+      ],
+      "final_answer": "x = 2, y = 2",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "4x + 5y = 18  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x + 4y = 18  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(1) × 4: 16x + 20y = 72  (3)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(2) × 5: 25x + 20y = 90  (4) (3) - (4): -9x = -18, so x = 2 Substitute x = 2 into (1): 5y = 10, so y = 2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 2, y = 2 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_reciprocal",
+      "prompt": "Complete a table of values for y = 48/x for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = 48/x:",
+        "x: -4, -3, -2, -1, 1, 2, 3, 4",
+        "y: -12, -16, -24, -48, 48, 24, 16, 12",
+        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
+      ],
+      "final_answer": "Reciprocal curve: y = 48/x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = 48/x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: -12, -16, -24, -48, 48, 24, 16, 12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Reciprocal curve: y = 48/x oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "reciprocal",
+          "a": 48,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -50,
+          "y_max": 50,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "reciprocal",
+          "a": 48,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -50,
+          "y_max": 50,
+          "table_points": [
+            [
+              -4,
+              -12
+            ],
+            [
+              -3,
+              -16
+            ],
+            [
+              -2,
+              -24
+            ],
+            [
+              -1,
+              -48
+            ],
+            [
+              1,
+              48
+            ],
+            [
+              2,
+              24
+            ],
+            [
+              3,
+              16
+            ],
+            [
+              4,
+              12
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "linear_both_sides",
+      "prompt": "Solve: 2x - 9 = -6x - 89",
+      "solution_steps": [
+        "2x - 9 = -6x - 89",
+        "Add 6x to both sides:",
+        "8x - 9 = -89",
+        "Add 9 to both sides:",
+        "8x = -80",
+        "Divide both sides by 8:",
+        "x = -10"
+      ],
+      "final_answer": "-10",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "2x - 9 = -6x - 89",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add 6x to both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "8x - 9 = -89",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add 9 to both sides: 8x = -80 Divide both sides by 8: x = -10",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-10 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "completing_the_square",
+      "prompt": "Write x^2 - 14x + 6 in the form (x + p)^2 + q.",
+      "solution_steps": [
+        "Half the coefficient of x: -14 ÷ 2 = -7",
+        "(x - 7)^2 = x^2 - 14x + 49",
+        "x^2 - 14x + 6 = (x - 7)^2 + (6 - 49) = (x - 7)^2 - 43"
+      ],
+      "final_answer": "(x - 7)^2 - 43",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Half the coefficient of x: -14 ÷ 2 = -7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(x - 7)^2 = x^2 - 14x + 49",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x^2 - 14x + 6 = (x - 7)^2 + (6 - 49) = (x - 7)^2 - 43",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(x - 7)^2 - 43 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_brackets",
+      "prompt": "Solve: 3(4x - 4) = -24",
+      "solution_steps": [
+        "Expand the bracket: 3(4x - 4) = 12x - 12",
+        "12x - 12 = -24",
+        "Add 12 to both sides:",
+        "12x = -12",
+        "Divide both sides by 12:",
+        "x = -1"
+      ],
+      "final_answer": "-1",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: 3(4x - 4) = 12x - 12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "12x - 12 = -24",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add 12 to both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "12x = -12 Divide both sides by 12: x = -1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-1 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "change_subject_higher",
+      "prompt": "Make x the subject of the formula y = 7x + 2x + -1.",
+      "solution_steps": [
+        "y = 7x + 2x + -1",
+        "Add 1 to both sides: y + 1 = 7x + 2x",
+        "Factorise the right-hand side: y + 1 = (9)x",
+        "Divide both sides by 9: x = (y + 1)/9"
+      ],
+      "final_answer": "x = (y + 1)/9",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = 7x + 2x + -1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add 1 to both sides: y + 1 = 7x + 2x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise the right-hand side: y + 1 = (9)x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 9: x = (y + 1)/9",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = (y + 1)/9 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_share_three_part",
+      "prompt": "Share 39 in the ratio 3:5:5.",
+      "solution_steps": [
+        "Total parts = 3 + 5 + 5 = 13",
+        "Value of one part = 39 ÷ 13 = 3",
+        "Share 1 = 3 × 3 = 9",
+        "Share 2 = 5 × 3 = 15",
+        "Share 3 = 5 × 3 = 15"
+      ],
+      "final_answer": "9 : 15 : 15",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total parts = 3 + 5 + 5 = 13",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Value of one part = 39 ÷ 13 = 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 1 = 3 × 3 = 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 2 = 5 × 3 = 15 Share 3 = 5 × 3 = 15",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "9 : 15 : 15 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "density_higher",
+      "prompt": "A sample of liquid in the shape of a cuboid has dimensions 3 cm × 5 cm × 5 cm and a density of 3 g/cm³. Find its mass.",
+      "solution_steps": [
+        "volume = length × width × height = 3 × 5 × 5 = 75 cm³",
+        "mass = density × volume = 3 × 75 = 225 g"
+      ],
+      "final_answer": "225 g",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "volume = length × width × height = 3 × 5 × 5 = 75 cm³",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "mass = density × volume = 3 × 75 = 225 g",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "225 g oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_combine",
+      "prompt": "Given that a:b = 5:7 and b:c = 8:4, find a:b:c in its simplest form.",
+      "solution_steps": [
+        "Scale a:b = 5:7 by 8 so b = 56: a:b = 40:56",
+        "Scale b:c = 8:4 by 7 so b = 56: b:c = 56:28",
+        "Combine: a:b:c = 40:56:28",
+        "Simplify by dividing by 4: a:b:c = 10:14:7"
+      ],
+      "final_answer": "10 : 14 : 7",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Scale a:b = 5:7 by 8 so b = 56: a:b = 40:56",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Scale b:c = 8:4 by 7 so b = 56: b:c = 56:28",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine: a:b:c = 40:56:28",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify by dividing by 4: a:b:c = 10:14:7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "10 : 14 : 7 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "unit_conversions_higher",
+      "prompt": "Convert 38 cm² to mm².",
+      "solution_steps": [
+        "Linear conversion factor: 1 cm = 10 mm, so for area, 1 cm² = 10^2 = 100 mm²",
+        "38 cm² = 38 × 100 = 3800 mm²"
+      ],
+      "final_answer": "3800 mm²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Linear conversion factor: 1 cm = 10 mm, so for area, 1 cm² = 10^2 = 100 mm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "38 cm² = 38 × 100 = 3800 mm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3800 mm² oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pythagoras_surd_hypotenuse",
+      "prompt": "A right-angled triangle has legs 11 cm and 10 cm. Find the exact length of the hypotenuse, giving your answer as a simplified surd.",
+      "solution_steps": [
+        "c² = a² + b² = 11² + 10² = 121 + 100 = 221",
+        "c = √221 = √221 cm (exact form)"
+      ],
+      "final_answer": "√221 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "c² = a² + b² = 11² + 10² = 121 + 100 = 221",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "c = √221 = √221 cm (exact form)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "√221 cm oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "right_triangle",
+        "params": {
+          "leg1_label": "11 cm",
+          "leg2_label": "10 cm",
+          "hyp_label": "?"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_triangle_higher",
+      "prompt": "A triangle has angles 81°, 23°, and (2x + 44)°. Find x.",
+      "solution_steps": [
+        "Angles in a triangle sum to 180°.",
+        "2x + 44 = 76",
+        "Subtract 44 from both sides:",
+        "2x = 32",
+        "Divide both sides by 2:",
+        "x = 16"
+      ],
+      "final_answer": "16",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles in a triangle sum to 180°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x + 44 = 76",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 44 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x = 32 Divide both sides by 2: x = 16",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "16 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "triangle_angles",
+        "params": {
+          "angle_labels": [
+            "81°",
+            "23°",
+            "(2x + 44)°"
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "trig_missing_side_higher",
+      "prompt": "In the right-angled triangle shown, find the length of x, correct to 3 significant figures.",
+      "solution_steps": [
+        "We know the adjacent and want the opposite, so use tan.",
+        "x = 35 × tan(47°) = 37.5 (to 3 s.f.)"
+      ],
+      "final_answer": "37.5 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "We know the adjacent and want the opposite, so use tan.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 35 × tan(47°) = 37.5 (to 3 s.f.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "37.5 cm oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "trig_triangle",
+        "params": {
+          "adjacent_label": "35 cm",
+          "opposite_label": "x cm",
+          "hyp_label": null,
+          "angle_label": "47°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_circle",
+      "prompt": "A circle has radius 10 cm. Find its circumference in terms of π.",
+      "solution_steps": [
+        "Circumference = 2 × π × r = 2 × π × 10 = 20π cm",
+        "≈ 62.8 cm (3 s.f.)"
+      ],
+      "final_answer": "20π cm (≈ 62.8 cm)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Circumference = 2 × π × r = 2 × π × 10 = 20π cm",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "≈ 62.8 cm (3 s.f.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "20π cm (≈ 62.8 cm) oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "circle",
+        "params": {
+          "radius": 10,
+          "label": "10 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "cosine_rule",
+      "prompt": "In triangle ABC, side a = 10 cm, side b = 16 cm, and side c = 21 cm. Find angle A, correct to 1 decimal place.",
+      "solution_steps": [
+        "Use the cosine rule: cos(A) = (b² + c² - a²) ÷ (2bc)",
+        "cos(A) = (16² + 21² - 10²) ÷ (2×16×21) = 0.8884",
+        "A = cos^-1(0.8884) = 27.3° (1 d.p.)"
+      ],
+      "final_answer": "27.3°",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Use the cosine rule: cos(A) = (b² + c² - a²) ÷ (2bc)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "cos(A) = (16² + 21² - 10²) ÷ (2×16×21) = 0.8884",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = cos^-1(0.8884) = 27.3° (1 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "27.3° oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "general_triangle",
+        "params": {
+          "side_a_label": "10 cm",
+          "side_b_label": "16 cm",
+          "side_c_label": "21 cm",
+          "angle_A_label": "x°",
+          "angle_B_label": null,
+          "angle_C_label": null
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "set_notation",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, A = {3, 8, 10}, B = {3, 7, 10}. List the elements of (A ∩ B)'.",
+      "solution_steps": [
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+        "A = {3, 8, 10}",
+        "B = {3, 7, 10}",
+        "(A ∩ B)' means the complement of A intersect B.",
+        "(A ∩ B)' = {1, 2, 4, 5, 6, 7, 8, 9}"
+      ],
+      "final_answer": "{1, 2, 4, 5, 6, 7, 8, 9}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {3, 8, 10}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B = {3, 7, 10}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(A ∩ B)' means the complement of A intersect B. (A ∩ B)' = {1, 2, 4, 5, 6, 7, 8, 9}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "{1, 2, 4, 5, 6, 7, 8, 9} oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "product_rule_counting",
+      "prompt": "A shop sells 5 different shirts, 6 different pairs of trousers and 2 different pairs of shoes. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "solution_steps": [
+        "Total combinations = 5 × 6 × 2 = 60"
+      ],
+      "final_answer": "60",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total combinations = 5 × 6 × 2 = 60",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "60 oe (cao)",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    }
+  ]
+}
