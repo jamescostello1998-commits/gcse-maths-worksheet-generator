@@ -12,25 +12,31 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-The Practice Tests feature (chronology step 22 — 20 fixed OCR-style 100-mark papers,
-10 Foundation + 10 Higher, with separate test-paper and mark-scheme PDF downloads) is
-**complete and pushed**. 232 topics total, backend suite 526/526, frontend 45/45, no
-known bugs. There is **no committed next task** right now. Before starting anything
-new:
-1. Check "Ideas for a future session" (bottom of this file) for candidate follow-ups
-   — none are started and none are promised; ask the user which (if any) they want
-   before building.
-2. Otherwise, ask the user directly what they'd like to work on next.
+Phase 1 of a large user-supplied Geometry expansion (chronology step 23 — 7 new
+Area & Perimeter topics: parallelograms, trapeziums, mixed compound shapes, arc
+length, area of a sector) is **complete and pushed**. 239 topics total, backend
+suite 534/534, frontend 45/45 (unaffected), no known bugs. **Phases 2-4 of the same
+Geometry expansion are NOT started**: Phase 2 (3D shapes — properties, volume &
+surface area of 8 solids, compound 3D shapes), Phase 3 (trig/Pythagoras extensions +
+congruent proof), Phase 4 (transformations, bearings, constructions & loci) — see
+"Ideas for a future session" for the exact scoped item list agreed with the user.
+Before starting anything new:
+1. If continuing the Geometry expansion, confirm with the user which phase to do
+   next (they were agreed as a sequence but not committed to a timeline) rather
+   than assuming Phase 2 is automatically next.
+2. Otherwise check "Ideas for a future session" (bottom of this file) for other
+   candidate follow-ups — none are started and none are promised.
+3. Otherwise, ask the user directly what they'd like to work on next.
 
 ## Current state
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**232 topics across 6 sections**, all procedurally generated with independent
+**239 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.).
-Full backend suite: **526/526 passing**. Frontend suite: **45/45 passing**.
+Full backend suite: **534/534 passing**. Frontend suite: **45/45 passing**.
 
 **Practice Tests (fixed/static content, not procedural — the one deliberate exception
 to the paragraph above)**: a 7th homepage section, `backend/app/practice_tests/`,
@@ -135,7 +141,7 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 | Number | Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 54 |
 | Algebra | Expressions/Formulae/Equations/Identities, Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 57 |
 | Ratio & Proportion | Percentages, Best Buys, Ratio, Proportion, Compound Measures | 34 |
-| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems | 39 |
+| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems | 46 |
 | Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams, Venn Diagrams | 22 |
 | Statistics | Averages from a List, Frequency Tables, Working Backwards, Charts and Graphs, Cumulative Frequency & Box Plots, Histograms | 26 |
 
@@ -956,6 +962,61 @@ content today; it's built and unit-tested for when one eventually does.
     asserted once by hand.
 
     Backend suite grew from 503 to 526 tests; frontend grew from 29 to 45.
+23. New session, a large ~30-item Geometry topic list from the user, split up front
+    into 4 phases after checking the actual code (not memory) for repeats, per the
+    user's explicit request: found 2 genuine repeats (`ratio_shape_similar_foundation`/
+    `_higher` already cover "similar shapes"/"similar areas and volume", just filed
+    under Ratio & Proportion not Geometry; circumference is already a random branch
+    inside `area_circle`/`area_circle_foundation`) and 1 same-name-different-skill
+    false positive (`graph_transformations` transforms *y = f(x)*, not a shape on a
+    grid). Resolved a few scope ambiguities via clarifying questions up front:
+    constructions/loci will be describe-the-method text questions (no meaningful way
+    to "solve" a construction numerically); "cosine rule in bearings" is literally
+    just that one combination; "mixed 2D shapes" is one new topic freely combining
+    rectangle+triangle+circle-parts. Agreed the 4-phase split with the user:
+    **Phase 1** (this step) — 2D area extensions; **Phase 2** — 3D shapes (properties,
+    volume & surface area of cuboid/cube/triangular prism/cylinder/cone/sphere/
+    pyramid/frustum, compound 3D shapes); **Phase 3** — trig/Pythagoras extensions +
+    congruent proof (exact trig values, exact trig values in triangles, 3D
+    Pythagoras, 3D trig, congruent triangle proof); **Phase 4** — transformations,
+    bearings, constructions & loci (line/rotational symmetry, reflections/rotations/
+    translations/enlargements including negative and fractional scale factors both
+    completing and describing, cosine rule in bearings, the three constructions,
+    loci and regions). Phases 2-4 are not started.
+
+    **Phase 1** added 7 new topics to the existing Area & Perimeter group (39→46
+    Geometry topics, 232→239 total) — 5 requested items became 7 because arc length
+    and area of a sector are genuine both-tier content (Foundation calculator/decimal,
+    Higher exact π-fraction form), mirroring the existing `area_circle_foundation`/
+    `area_circle` split: `area_parallelogram`, `area_trapezium` (both Foundation, no
+    real Higher differentiation for these two), `area_mixed_compound` (Higher — a
+    rectangle with a triangular roof added and a quarter-circle cut from one bottom
+    corner, genuinely mixing all three shape types unlike the existing two-shape-only
+    compounds), `arc_length_foundation`/`arc_length`, `area_sector_foundation`/
+    `area_sector`. New verification techniques introduced (both are now precedent for
+    future geometry topics): a shoelace-formula coordinate-geometry cross-check for
+    parallelogram/trapezium (shearing the top edge doesn't change the shoelace area,
+    proven algebraically before coding, so it's a genuine second method); and a
+    cross-formula check between arc length and sector area (`area = ½ × arc × r`,
+    the inverse relation) rather than restating the same formula. Built 4 new diagram
+    kinds (`draw_parallelogram`, `draw_trapezium`, `draw_sector` — shared by all 4
+    arc/sector topics since the picture is identical regardless of which quantity is
+    asked for, only the prompt text differs — and `draw_mixed_compound`, whose
+    quarter-circle corner cut reuses `draw_venn_diagram`'s "neither"-region
+    fill-then-erase trick), all visually verified before wiring into topics, matching
+    this project's highest-risk-first precedent. One real bug caught and fixed via
+    that visual check, not the unit tests: initially let Higher's arc/sector angle be
+    any value 1-359, which produced mathematically-correct but unrealistically ugly
+    exact-form fractions (e.g. `(4901/360)π`) whenever the angle didn't divide 360
+    cleanly — fixed by restricting Higher's angle to multiples of 15° (23 values),
+    which keeps denominators small and exam-realistic while still varying freely
+    (239 distinct dedup keys per topic over 500 trials). A second, purely cosmetic
+    diagram fix: the mixed-compound cut-radius label overlapped the arc when the
+    radius was small — moved it outside the shape entirely rather than scaling its
+    offset with the radius.
+
+    Backend suite grew from 526 to 534 tests; frontend unaffected (45/45 — new
+    topics render generically through the existing section/topic-card UI).
 
 Everything above is committed and pushed (see `git log`).
 
@@ -1155,6 +1216,20 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
 
 ## Ideas for a future session (not started, no commitment made)
 
+- **Geometry expansion Phases 2-4** (agreed with the user in chronology step 23,
+  alongside Phase 1 which is built): **Phase 2** — 3D shapes: properties of 3D
+  shapes (faces/edges/vertices, nets), then volume + surface area for cuboid, cube,
+  triangular prism, cylinder, cone, sphere, pyramid, frustum, plus compound 3D
+  shapes. **Phase 3** — trig/Pythagoras extensions + proof: exact trig values,
+  exact trig values within triangles, 3D Pythagoras, 3D trig, congruent triangle
+  proof. **Phase 4** — transformations, bearings, constructions & loci: line
+  symmetry, rotational symmetry, reflections/rotations/translations/enlargements
+  (including negative and fractional scale factors, both completing and describing),
+  cosine rule in bearings, constructing angle bisectors/perpendicular bisectors/
+  triangles (describe-the-method text questions, per the user's choice — not
+  diagram-based, since there's no way to "solve" a construction numerically), and
+  loci and regions. None of these 3 phases are started — ask the user which to do
+  next rather than assuming Phase 2 by default.
 - The from-scratch Foundation/Higher curriculum audit (step 13) flagged a handful of
   **lower-confidence** candidates that were reported but deliberately *not* built,
   pending more research or a product decision: `probability_combined_dice` (may

@@ -236,6 +236,23 @@ SAMPLE_SPECS = [
         kind="bag_of_counters",
         params={"counts": {"red": 4, "blue": 6, "green": 3}, "highlight": "blue"},
     ),
+    DiagramSpec(
+        kind="parallelogram",
+        params={"base": 12, "height": 7, "base_label": "12 cm", "height_label": "7 cm"},
+    ),
+    DiagramSpec(
+        kind="trapezium",
+        params={"a": 6, "b": 14, "height": 8, "a_label": "6 cm", "b_label": "14 cm", "height_label": "8 cm"},
+    ),
+    DiagramSpec(kind="sector", params={"angle": 60, "radius_label": "9 cm", "angle_label": "60°"}),
+    DiagramSpec(kind="sector", params={"angle": 290, "radius_label": "5 cm", "angle_label": "290°"}),
+    DiagramSpec(
+        kind="mixed_compound",
+        params={
+            "width": 16, "height": 10, "roof_height": 5, "cut_radius": 4,
+            "width_label": "16 cm", "height_label": "10 cm", "roof_label": "5 cm", "cut_label": "4 cm",
+        },
+    ),
 ]
 
 

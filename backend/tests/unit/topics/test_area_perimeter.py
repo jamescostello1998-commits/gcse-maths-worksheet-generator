@@ -15,6 +15,13 @@ GENERATORS = [
     (area_perimeter.generate_semicircle_compound_higher, Tier.HIGHER),
     (area_perimeter.generate_subtract_compound, Tier.HIGHER),
     (area_perimeter.generate_subtract_compound_foundation, Tier.FOUNDATION),
+    (area_perimeter.generate_area_parallelogram, Tier.FOUNDATION),
+    (area_perimeter.generate_area_trapezium, Tier.FOUNDATION),
+    (area_perimeter.generate_area_mixed_compound, Tier.HIGHER),
+    (area_perimeter.generate_arc_length_foundation, Tier.FOUNDATION),
+    (area_perimeter.generate_arc_length, Tier.HIGHER),
+    (area_perimeter.generate_area_sector_foundation, Tier.FOUNDATION),
+    (area_perimeter.generate_area_sector, Tier.HIGHER),
 ]
 
 
@@ -28,6 +35,13 @@ EXPECTED_DIAGRAM_KINDS = {
     area_perimeter.generate_semicircle_compound_higher: "rectangle_semicircle",
     area_perimeter.generate_subtract_compound: "l_shape",
     area_perimeter.generate_subtract_compound_foundation: "l_shape",
+    area_perimeter.generate_area_parallelogram: "parallelogram",
+    area_perimeter.generate_area_trapezium: "trapezium",
+    area_perimeter.generate_area_mixed_compound: "mixed_compound",
+    area_perimeter.generate_arc_length_foundation: "sector",
+    area_perimeter.generate_arc_length: "sector",
+    area_perimeter.generate_area_sector_foundation: "sector",
+    area_perimeter.generate_area_sector: "sector",
 }
 
 
@@ -66,6 +80,31 @@ def test_semicircle_compound_higher_gives_an_exact_pi_answer():
         assert "≈" not in q.final_answer
 
 
+def test_arc_length_and_area_sector_higher_give_exact_pi_answers():
+    for generate in (area_perimeter.generate_arc_length, area_perimeter.generate_area_sector):
+        rng = random.Random(45)
+        for _ in range(TRIALS):
+            q = generate(Tier.HIGHER, rng)
+            assert "π" in q.final_answer
+            assert "≈" not in q.final_answer
+
+
+def test_arc_length_and_area_sector_foundation_give_decimal_answers():
+    for generate in (area_perimeter.generate_arc_length_foundation, area_perimeter.generate_area_sector_foundation):
+        rng = random.Random(46)
+        for _ in range(TRIALS):
+            q = generate(Tier.FOUNDATION, rng)
+            assert "π" not in q.final_answer
+
+
+def test_mixed_compound_gives_a_decimal_answer():
+    rng = random.Random(47)
+    for _ in range(TRIALS):
+        q = area_perimeter.generate_area_mixed_compound(Tier.HIGHER, rng)
+        assert "π" not in q.final_answer
+        assert "cm²" in q.final_answer
+
+
 def test_dedup_keys_vary_per_generator():
     # generate_circle's parameter space is small (13 radii x 2 measures = 26 max
     # distinct keys), so this uses a lower bar than other topic files' equivalent test.
@@ -75,27 +114,43 @@ def test_dedup_keys_vary_per_generator():
         assert len(keys) > 15
 
 
+ALL_TOPICS = [
+    area_perimeter.TOPIC_RECTANGLE,
+    area_perimeter.TOPIC_TRIANGLE,
+    area_perimeter.TOPIC_COMPOSITE_RECTANGLES,
+    area_perimeter.TOPIC_CIRCLE_FOUNDATION,
+    area_perimeter.TOPIC_CIRCLE,
+    area_perimeter.TOPIC_SEMICIRCLE_COMPOUND,
+    area_perimeter.TOPIC_SEMICIRCLE_COMPOUND_HIGHER,
+    area_perimeter.TOPIC_SUBTRACT_COMPOUND,
+    area_perimeter.TOPIC_SUBTRACT_COMPOUND_FOUNDATION,
+    area_perimeter.TOPIC_PARALLELOGRAM,
+    area_perimeter.TOPIC_TRAPEZIUM,
+    area_perimeter.TOPIC_MIXED_COMPOUND,
+    area_perimeter.TOPIC_ARC_LENGTH_FOUNDATION,
+    area_perimeter.TOPIC_ARC_LENGTH,
+    area_perimeter.TOPIC_AREA_SECTOR_FOUNDATION,
+    area_perimeter.TOPIC_AREA_SECTOR,
+]
+
+
 def test_topic_definitions_have_expected_metadata():
-    topics = [
-        area_perimeter.TOPIC_RECTANGLE,
-        area_perimeter.TOPIC_TRIANGLE,
-        area_perimeter.TOPIC_COMPOSITE_RECTANGLES,
-        area_perimeter.TOPIC_CIRCLE_FOUNDATION,
-        area_perimeter.TOPIC_CIRCLE,
-        area_perimeter.TOPIC_SEMICIRCLE_COMPOUND,
-        area_perimeter.TOPIC_SEMICIRCLE_COMPOUND_HIGHER,
-        area_perimeter.TOPIC_SUBTRACT_COMPOUND,
-        area_perimeter.TOPIC_SUBTRACT_COMPOUND_FOUNDATION,
-    ]
-    ids = {t.id for t in topics}
-    assert len(ids) == 9
-    for t in topics:
+    ids = {t.id for t in ALL_TOPICS}
+    assert len(ids) == 16
+    for t in ALL_TOPICS:
         assert t.section == "geometry"
         assert t.group == "Area & Perimeter"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
     assert area_perimeter.TOPIC_SEMICIRCLE_COMPOUND.fixed_tier == Tier.FOUNDATION
     assert area_perimeter.TOPIC_SEMICIRCLE_COMPOUND_HIGHER.fixed_tier == Tier.HIGHER
     assert area_perimeter.TOPIC_SUBTRACT_COMPOUND_FOUNDATION.fixed_tier == Tier.FOUNDATION
+    assert area_perimeter.TOPIC_PARALLELOGRAM.fixed_tier == Tier.FOUNDATION
+    assert area_perimeter.TOPIC_TRAPEZIUM.fixed_tier == Tier.FOUNDATION
+    assert area_perimeter.TOPIC_MIXED_COMPOUND.fixed_tier == Tier.HIGHER
+    assert area_perimeter.TOPIC_ARC_LENGTH_FOUNDATION.fixed_tier == Tier.FOUNDATION
+    assert area_perimeter.TOPIC_ARC_LENGTH.fixed_tier == Tier.HIGHER
+    assert area_perimeter.TOPIC_AREA_SECTOR_FOUNDATION.fixed_tier == Tier.FOUNDATION
+    assert area_perimeter.TOPIC_AREA_SECTOR.fixed_tier == Tier.HIGHER
 
 
 MODELLED_EXAMPLE_GENERATORS = [
@@ -138,22 +193,33 @@ MODELLED_EXAMPLE_GENERATORS = [
         "area_subtract_compound_foundation",
         "l_shape",
     ),
+    (area_perimeter.generate_modelled_example_area_parallelogram, Tier.FOUNDATION, "area_parallelogram", "parallelogram"),
+    (area_perimeter.generate_modelled_example_area_trapezium, Tier.FOUNDATION, "area_trapezium", "trapezium"),
+    (
+        area_perimeter.generate_modelled_example_area_mixed_compound,
+        Tier.HIGHER,
+        "area_mixed_compound",
+        "mixed_compound",
+    ),
+    (
+        area_perimeter.generate_modelled_example_arc_length_foundation,
+        Tier.FOUNDATION,
+        "arc_length_foundation",
+        "sector",
+    ),
+    (area_perimeter.generate_modelled_example_arc_length, Tier.HIGHER, "arc_length", "sector"),
+    (
+        area_perimeter.generate_modelled_example_area_sector_foundation,
+        Tier.FOUNDATION,
+        "area_sector_foundation",
+        "sector",
+    ),
+    (area_perimeter.generate_modelled_example_area_sector, Tier.HIGHER, "area_sector", "sector"),
 ]
 
 
 def test_topic_definitions_have_modelled_examples_wired_up():
-    topics = [
-        area_perimeter.TOPIC_RECTANGLE,
-        area_perimeter.TOPIC_TRIANGLE,
-        area_perimeter.TOPIC_COMPOSITE_RECTANGLES,
-        area_perimeter.TOPIC_CIRCLE_FOUNDATION,
-        area_perimeter.TOPIC_CIRCLE,
-        area_perimeter.TOPIC_SEMICIRCLE_COMPOUND,
-        area_perimeter.TOPIC_SEMICIRCLE_COMPOUND_HIGHER,
-        area_perimeter.TOPIC_SUBTRACT_COMPOUND,
-        area_perimeter.TOPIC_SUBTRACT_COMPOUND_FOUNDATION,
-    ]
-    for t in topics:
+    for t in ALL_TOPICS:
         assert t.generate_modelled_example is not None
 
 

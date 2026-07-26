@@ -880,6 +880,504 @@ def generate_modelled_example_subtract_compound_foundation(tier: Tier, rng: rand
     )
 
 
+def _shoelace_area(vertices: list[tuple[int, int]]) -> int:
+    """Shoelace formula on integer vertex coordinates - an independent
+    coordinate-geometry cross-check (matching the convention already used in
+    vectors.py/triangle_rules.py), distinct from a direct formula restatement."""
+    n = len(vertices)
+    total = sum(
+        vertices[i][0] * vertices[(i + 1) % n][1] - vertices[(i + 1) % n][0] * vertices[i][1]
+        for i in range(n)
+    )
+    return abs(total) // 2
+
+
+def generate_area_parallelogram(tier: Tier, rng: random.Random) -> Question:
+    base = rng.randint(5, 20)
+    height = rng.randint(3, 15)
+    area = base * height
+
+    # Shearing the top edge by any offset doesn't change the shoelace area, so
+    # this is a genuinely different route from the base x height formula below.
+    slant = rng.randint(1, base)
+    if _shoelace_area([(0, 0), (base, 0), (base + slant, height), (slant, height)]) != area:
+        raise ValueError("area_parallelogram verification failed")
+
+    steps = [f"Area = base × height = {base} × {height} = {area} cm²"]
+    return Question(
+        topic_id="area_parallelogram",
+        tier=Tier.FOUNDATION,
+        prompt=f"A parallelogram has a base of {base} cm and a perpendicular height of {height} cm. Find its area.",
+        solution_steps=tuple(steps),
+        final_answer=f"{area} cm²",
+        dedup_key=f"parallelogram:{base}:{height}",
+        diagram=DiagramSpec(
+            kind="parallelogram",
+            params={"base": base, "height": height, "base_label": f"{base} cm", "height_label": f"{height} cm"},
+        ),
+    )
+
+
+def generate_modelled_example_area_parallelogram(tier: Tier, rng: random.Random) -> ModelledExample:
+    base = rng.randint(5, 20)
+    height = rng.randint(3, 15)
+    area = base * height
+
+    slant = rng.randint(1, base)
+    if _shoelace_area([(0, 0), (base, 0), (base + slant, height), (slant, height)]) != area:
+        raise ValueError("modelled example area_parallelogram verification failed")
+
+    teaching_steps = [
+        "A parallelogram's area is the SAME as a rectangle with the same base and perpendicular "
+        "height - imagine slicing a triangle off one slanted end and sliding it across to the "
+        "other end, which turns the parallelogram into a rectangle without changing its area.",
+        f"The base is {base} cm and the perpendicular height (measured straight up from the base, "
+        f"not along the slanted side) is {height} cm.",
+        f"Area = base × height = {base} × {height} = {area} cm².",
+    ]
+    worked_calculation = [f"Area = {base} × {height}", f"= {area} cm²"]
+    return ModelledExample(
+        topic_id="area_parallelogram",
+        tier=Tier.FOUNDATION,
+        prompt=f"A parallelogram has a base of {base} cm and a perpendicular height of {height} cm. Find its area.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"{area} cm²",
+        diagram=DiagramSpec(
+            kind="parallelogram",
+            params={"base": base, "height": height, "base_label": f"{base} cm", "height_label": f"{height} cm"},
+        ),
+    )
+
+
+def generate_area_trapezium(tier: Tier, rng: random.Random) -> Question:
+    a = rng.randint(4, 12)
+    b = rng.randint(a + 2, 20)
+    height = rng.randint(3, 12)
+    while ((a + b) * height) % 2 != 0:
+        height = rng.randint(3, 12)
+    area = (a + b) * height // 2
+
+    slant = rng.randint(0, b - a)
+    if _shoelace_area([(0, 0), (b, 0), (slant + a, height), (slant, height)]) != area:
+        raise ValueError("area_trapezium verification failed")
+
+    steps = [f"Area = ½ × (a + b) × height = ½ × ({a} + {b}) × {height} = {area} cm²"]
+    return Question(
+        topic_id="area_trapezium",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"A trapezium has parallel sides of length {a} cm and {b} cm, and a perpendicular "
+            f"height of {height} cm. Find its area."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=f"{area} cm²",
+        dedup_key=f"trapezium:{a}:{b}:{height}",
+        diagram=DiagramSpec(
+            kind="trapezium",
+            params={"a": a, "b": b, "height": height, "a_label": f"{a} cm", "b_label": f"{b} cm", "height_label": f"{height} cm"},
+        ),
+    )
+
+
+def generate_modelled_example_area_trapezium(tier: Tier, rng: random.Random) -> ModelledExample:
+    a = rng.randint(4, 12)
+    b = rng.randint(a + 2, 20)
+    height = rng.randint(3, 12)
+    while ((a + b) * height) % 2 != 0:
+        height = rng.randint(3, 12)
+    area = (a + b) * height // 2
+
+    slant = rng.randint(0, b - a)
+    if _shoelace_area([(0, 0), (b, 0), (slant + a, height), (slant, height)]) != area:
+        raise ValueError("modelled example area_trapezium verification failed")
+
+    teaching_steps = [
+        "A trapezium has one pair of parallel sides, usually of different lengths - the formula "
+        "averages those two lengths first, then multiplies by the perpendicular height, as if the "
+        "trapezium were a rectangle with that 'average' width.",
+        f"The parallel sides are {a} cm and {b} cm, so their average is ({a} + {b}) ÷ 2.",
+        f"Multiply that average by the perpendicular height, {height} cm: "
+        f"Area = ½ × ({a} + {b}) × {height} = {area} cm².",
+    ]
+    worked_calculation = [f"Area = ½ × ({a} + {b}) × {height}", f"= {area} cm²"]
+    return ModelledExample(
+        topic_id="area_trapezium",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"A trapezium has parallel sides of length {a} cm and {b} cm, and a perpendicular "
+            f"height of {height} cm. Find its area."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"{area} cm²",
+        diagram=DiagramSpec(
+            kind="trapezium",
+            params={"a": a, "b": b, "height": height, "a_label": f"{a} cm", "b_label": f"{b} cm", "height_label": f"{height} cm"},
+        ),
+    )
+
+
+def _mixed_compound_values(rng: random.Random):
+    width = rng.randint(10, 20)
+    height = rng.randint(6, 15)
+    roof_height = rng.randint(3, 10)
+    cut_radius = rng.randint(2, min(width, height) // 2)
+    return width, height, roof_height, cut_radius
+
+
+def generate_area_mixed_compound(tier: Tier, rng: random.Random) -> Question:
+    width, height, roof_height, cut_radius = _mixed_compound_values(rng)
+
+    rect_area = width * height
+    triangle_area = sp.Rational(width * roof_height, 2)
+    cut_area_exact = sp.pi * cut_radius**2 / 4
+    total_exact = rect_area + triangle_area - cut_area_exact
+    decimal_answer = sp.N(total_exact, 3)
+
+    # Independent check: recompute the quarter-circle cut via Python's math.pi -
+    # a different π implementation than sympy's symbolic pi used above.
+    independent_cut = math.pi * cut_radius**2 / 4
+    independent_total = rect_area + float(triangle_area) - independent_cut
+    if abs(float(decimal_answer) - independent_total) / independent_total > 0.01:
+        raise ValueError("area_mixed_compound verification failed")
+
+    cut_area_decimal = sp.N(cut_area_exact, 3)
+    steps = [
+        f"Rectangle area = {width} × {height} = {rect_area} cm²",
+        f"Triangle roof area = ½ × {width} × {roof_height} = {triangle_area} cm²",
+        f"Quarter-circle cut area = (π × {cut_radius}²) ÷ 4 ≈ {cut_area_decimal} cm²",
+        f"Total area = {rect_area} + {triangle_area} - {cut_area_decimal} ≈ {decimal_answer} cm²",
+    ]
+    return Question(
+        topic_id="area_mixed_compound",
+        tier=Tier.HIGHER,
+        prompt=(
+            f"A shape is made from a rectangle {width} cm by {height} cm, with a triangular roof of "
+            f"height {roof_height} cm on top, and a quarter-circle of radius {cut_radius} cm cut from "
+            "one bottom corner. Find the total area, correct to 3 significant figures."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=f"{decimal_answer} cm²",
+        dedup_key=f"mixed_compound:{width}:{height}:{roof_height}:{cut_radius}",
+        diagram=DiagramSpec(
+            kind="mixed_compound",
+            params={
+                "width": width, "height": height, "roof_height": roof_height, "cut_radius": cut_radius,
+                "width_label": f"{width} cm", "height_label": f"{height} cm",
+                "roof_label": f"{roof_height} cm", "cut_label": f"{cut_radius} cm",
+            },
+        ),
+    )
+
+
+def generate_modelled_example_area_mixed_compound(tier: Tier, rng: random.Random) -> ModelledExample:
+    width, height, roof_height, cut_radius = _mixed_compound_values(rng)
+
+    rect_area = width * height
+    triangle_area = sp.Rational(width * roof_height, 2)
+    cut_area_exact = sp.pi * cut_radius**2 / 4
+    total_exact = rect_area + triangle_area - cut_area_exact
+    decimal_answer = sp.N(total_exact, 3)
+
+    independent_cut = math.pi * cut_radius**2 / 4
+    independent_total = rect_area + float(triangle_area) - independent_cut
+    if abs(float(decimal_answer) - independent_total) / independent_total > 0.01:
+        raise ValueError("modelled example area_mixed_compound verification failed")
+
+    cut_area_decimal = sp.N(cut_area_exact, 3)
+    teaching_steps = [
+        "A compound shape like this is split into simple pieces you already know the area of, added "
+        "together where a piece is present, and subtracted where a piece has been removed.",
+        f"The rectangle contributes {width} × {height} = {rect_area} cm².",
+        f"The triangular roof adds ½ × {width} × {roof_height} = {triangle_area} cm² on top.",
+        f"The quarter-circle cut removes (π × {cut_radius}²) ÷ 4 ≈ {cut_area_decimal} cm² from a corner.",
+        f"Total = {rect_area} + {triangle_area} - {cut_area_decimal} ≈ {decimal_answer} cm².",
+    ]
+    worked_calculation = [
+        f"{rect_area} + {triangle_area} - {cut_area_decimal}",
+        f"≈ {decimal_answer} cm²",
+    ]
+    return ModelledExample(
+        topic_id="area_mixed_compound",
+        tier=Tier.HIGHER,
+        prompt=(
+            f"A shape is made from a rectangle {width} cm by {height} cm, with a triangular roof of "
+            f"height {roof_height} cm on top, and a quarter-circle of radius {cut_radius} cm cut from "
+            "one bottom corner. Find the total area, correct to 3 significant figures."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"{decimal_answer} cm²",
+        diagram=DiagramSpec(
+            kind="mixed_compound",
+            params={
+                "width": width, "height": height, "roof_height": roof_height, "cut_radius": cut_radius,
+                "width_label": f"{width} cm", "height_label": f"{height} cm",
+                "roof_label": f"{roof_height} cm", "cut_label": f"{cut_radius} cm",
+            },
+        ),
+    )
+
+
+def _sector_diagram(angle: int, radius: int) -> DiagramSpec:
+    return DiagramSpec(kind="sector", params={"angle": angle, "radius_label": f"{radius} cm", "angle_label": f"{angle}°"})
+
+
+def generate_arc_length_foundation(tier: Tier, rng: random.Random) -> Question:
+    radius = rng.randint(3, 15)
+    angle = rng.randint(10, 350)
+
+    exact_expr = sp.Rational(angle, 360) * 2 * sp.pi * radius
+    decimal_answer = sp.N(exact_expr, 3)
+    independent = (angle / 360) * 2 * math.pi * radius
+    if abs(float(decimal_answer) - independent) / independent > 0.01:
+        raise ValueError("arc_length_foundation verification failed")
+
+    # Independent cross-check via the sector-area formula: sector area = ½ × arc
+    # length × r, so arc length = 2 × sector area ÷ r - a genuinely different
+    # formula route from (θ ÷ 360) × 2 × π × r above.
+    sector_area_exact = sp.Rational(angle, 360) * sp.pi * radius**2
+    arc_from_area = sp.N(2 * sector_area_exact / radius, 6)
+    if abs(float(arc_from_area) - float(sp.N(exact_expr, 6))) / float(sp.N(exact_expr, 6)) > 1e-6:
+        raise ValueError("arc_length_foundation cross-formula verification failed")
+
+    steps = [
+        f"Arc length = (θ ÷ 360) × 2 × π × r = ({angle} ÷ 360) × 2 × π × {radius}",
+        f"= {decimal_answer} cm (3 s.f., using a calculator value of π)",
+    ]
+    return Question(
+        topic_id="arc_length_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"A sector of a circle has radius {radius} cm and angle {angle}°. Find the arc length, "
+            "correct to 3 significant figures."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=f"{decimal_answer} cm",
+        dedup_key=f"arc_f:{radius}:{angle}",
+        diagram=_sector_diagram(angle, radius),
+    )
+
+
+def generate_modelled_example_arc_length_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
+    radius = rng.randint(3, 15)
+    angle = rng.randint(10, 350)
+
+    exact_expr = sp.Rational(angle, 360) * 2 * sp.pi * radius
+    decimal_answer = sp.N(exact_expr, 3)
+    independent = (angle / 360) * 2 * math.pi * radius
+    if abs(float(decimal_answer) - independent) / independent > 0.01:
+        raise ValueError("modelled example arc_length_foundation verification failed")
+
+    teaching_steps = [
+        "An arc is just a fraction of the full circumference - work out what fraction of the full "
+        "360° the sector's angle takes up, then apply that same fraction to the whole circumference.",
+        f"The angle is {angle}°, so the fraction is {angle} ÷ 360.",
+        f"The full circumference would be 2 × π × {radius}. Multiply by the fraction: "
+        f"({angle} ÷ 360) × 2 × π × {radius} ≈ {decimal_answer} cm.",
+    ]
+    worked_calculation = [f"({angle} ÷ 360) × 2 × π × {radius}", f"≈ {decimal_answer} cm"]
+    return ModelledExample(
+        topic_id="arc_length_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"A sector of a circle has radius {radius} cm and angle {angle}°. Find the arc length, "
+            "correct to 3 significant figures."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"{decimal_answer} cm",
+        diagram=_sector_diagram(angle, radius),
+    )
+
+
+def generate_arc_length(tier: Tier, rng: random.Random) -> Question:
+    radius = rng.randint(3, 15)
+    angle = rng.choice(range(15, 360, 15))
+
+    coeff = sp.Rational(angle, 360) * 2 * radius
+    exact_expr = coeff * sp.pi
+
+    sector_area_exact = sp.Rational(angle, 360) * sp.pi * radius**2
+    arc_from_area = sp.simplify(2 * sector_area_exact / radius)
+    if sp.simplify(arc_from_area - exact_expr) != 0:
+        raise ValueError("arc_length verification failed")
+
+    answer = f"{_fmt_pi_term(coeff)} cm"
+    steps = [
+        f"Arc length = (θ ÷ 360) × 2 × π × r = ({angle} ÷ 360) × 2 × π × {radius}",
+        f"= {answer}",
+    ]
+    return Question(
+        topic_id="arc_length",
+        tier=Tier.HIGHER,
+        prompt=f"A sector of a circle has radius {radius} cm and angle {angle}°. Find the exact arc length, in terms of π.",
+        solution_steps=tuple(steps),
+        final_answer=answer,
+        dedup_key=f"arc_h:{radius}:{angle}",
+        diagram=_sector_diagram(angle, radius),
+    )
+
+
+def generate_modelled_example_arc_length(tier: Tier, rng: random.Random) -> ModelledExample:
+    radius = rng.randint(3, 15)
+    angle = rng.choice(range(15, 360, 15))
+
+    coeff = sp.Rational(angle, 360) * 2 * radius
+    exact_expr = coeff * sp.pi
+
+    sector_area_exact = sp.Rational(angle, 360) * sp.pi * radius**2
+    arc_from_area = sp.simplify(2 * sector_area_exact / radius)
+    if sp.simplify(arc_from_area - exact_expr) != 0:
+        raise ValueError("modelled example arc_length verification failed")
+
+    answer = f"{_fmt_pi_term(coeff)} cm"
+    teaching_steps = [
+        "Keeping the answer exact means leaving π in the answer rather than using a calculator "
+        "decimal value for it - work with the fraction of the circle first, then attach π at the end.",
+        f"The angle {angle}° out of 360° gives the fraction {angle}/360.",
+        f"Multiply that fraction by the full circumference 2 × π × {radius}, keeping π symbolic "
+        f"throughout: {answer}.",
+    ]
+    worked_calculation = [f"({angle}/360) × 2 × π × {radius}", f"= {answer}"]
+    return ModelledExample(
+        topic_id="arc_length",
+        tier=Tier.HIGHER,
+        prompt=f"A sector of a circle has radius {radius} cm and angle {angle}°. Find the exact arc length, in terms of π.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=answer,
+        diagram=_sector_diagram(angle, radius),
+    )
+
+
+def generate_area_sector_foundation(tier: Tier, rng: random.Random) -> Question:
+    radius = rng.randint(3, 15)
+    angle = rng.randint(10, 350)
+
+    exact_expr = sp.Rational(angle, 360) * sp.pi * radius**2
+    decimal_answer = sp.N(exact_expr, 3)
+    independent = (angle / 360) * math.pi * radius**2
+    if abs(float(decimal_answer) - independent) / independent > 0.01:
+        raise ValueError("area_sector_foundation verification failed")
+
+    # Independent cross-check via the arc-length formula: area = ½ × arc length × r.
+    arc_length_exact = sp.Rational(angle, 360) * 2 * sp.pi * radius
+    area_from_arc = sp.N(arc_length_exact * radius / 2, 6)
+    if abs(float(area_from_arc) - float(sp.N(exact_expr, 6))) / float(sp.N(exact_expr, 6)) > 1e-6:
+        raise ValueError("area_sector_foundation cross-formula verification failed")
+
+    steps = [
+        f"Area = (θ ÷ 360) × π × r² = ({angle} ÷ 360) × π × {radius}²",
+        f"= {decimal_answer} cm² (3 s.f., using a calculator value of π)",
+    ]
+    return Question(
+        topic_id="area_sector_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"A sector of a circle has radius {radius} cm and angle {angle}°. Find the area of the "
+            "sector, correct to 3 significant figures."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=f"{decimal_answer} cm²",
+        dedup_key=f"sector_f:{radius}:{angle}",
+        diagram=_sector_diagram(angle, radius),
+    )
+
+
+def generate_modelled_example_area_sector_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
+    radius = rng.randint(3, 15)
+    angle = rng.randint(10, 350)
+
+    exact_expr = sp.Rational(angle, 360) * sp.pi * radius**2
+    decimal_answer = sp.N(exact_expr, 3)
+    independent = (angle / 360) * math.pi * radius**2
+    if abs(float(decimal_answer) - independent) / independent > 0.01:
+        raise ValueError("modelled example area_sector_foundation verification failed")
+
+    teaching_steps = [
+        "A sector is a 'slice' of the circle - work out what fraction of the full 360° the sector's "
+        "angle takes up, then apply that same fraction to the whole circle's area.",
+        f"The angle is {angle}°, so the fraction is {angle} ÷ 360.",
+        f"The full circle's area would be π × {radius}². Multiply by the fraction: "
+        f"({angle} ÷ 360) × π × {radius}² ≈ {decimal_answer} cm².",
+    ]
+    worked_calculation = [f"({angle} ÷ 360) × π × {radius}²", f"≈ {decimal_answer} cm²"]
+    return ModelledExample(
+        topic_id="area_sector_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"A sector of a circle has radius {radius} cm and angle {angle}°. Find the area of the "
+            "sector, correct to 3 significant figures."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"{decimal_answer} cm²",
+        diagram=_sector_diagram(angle, radius),
+    )
+
+
+def generate_area_sector(tier: Tier, rng: random.Random) -> Question:
+    radius = rng.randint(3, 15)
+    angle = rng.choice(range(15, 360, 15))
+
+    coeff = sp.Rational(angle, 360) * radius**2
+    exact_expr = coeff * sp.pi
+
+    arc_length_exact = sp.Rational(angle, 360) * 2 * sp.pi * radius
+    area_from_arc = sp.simplify(arc_length_exact * radius / 2)
+    if sp.simplify(area_from_arc - exact_expr) != 0:
+        raise ValueError("area_sector verification failed")
+
+    answer = f"{_fmt_pi_term(coeff)} cm²"
+    steps = [
+        f"Area = (θ ÷ 360) × π × r² = ({angle} ÷ 360) × π × {radius}²",
+        f"= {answer}",
+    ]
+    return Question(
+        topic_id="area_sector",
+        tier=Tier.HIGHER,
+        prompt=f"A sector of a circle has radius {radius} cm and angle {angle}°. Find the exact area of the sector, in terms of π.",
+        solution_steps=tuple(steps),
+        final_answer=answer,
+        dedup_key=f"sector_h:{radius}:{angle}",
+        diagram=_sector_diagram(angle, radius),
+    )
+
+
+def generate_modelled_example_area_sector(tier: Tier, rng: random.Random) -> ModelledExample:
+    radius = rng.randint(3, 15)
+    angle = rng.choice(range(15, 360, 15))
+
+    coeff = sp.Rational(angle, 360) * radius**2
+    exact_expr = coeff * sp.pi
+
+    arc_length_exact = sp.Rational(angle, 360) * 2 * sp.pi * radius
+    area_from_arc = sp.simplify(arc_length_exact * radius / 2)
+    if sp.simplify(area_from_arc - exact_expr) != 0:
+        raise ValueError("modelled example area_sector verification failed")
+
+    answer = f"{_fmt_pi_term(coeff)} cm²"
+    teaching_steps = [
+        "Keeping the answer exact means leaving π in the answer rather than using a calculator "
+        "decimal value for it - work with the fraction of the circle first, then attach π at the end.",
+        f"The angle {angle}° out of 360° gives the fraction {angle}/360.",
+        f"Multiply that fraction by the full circle's area π × {radius}², keeping π symbolic "
+        f"throughout: {answer}.",
+    ]
+    worked_calculation = [f"({angle}/360) × π × {radius}²", f"= {answer}"]
+    return ModelledExample(
+        topic_id="area_sector",
+        tier=Tier.HIGHER,
+        prompt=f"A sector of a circle has radius {radius} cm and angle {angle}°. Find the exact area of the sector, in terms of π.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=answer,
+        diagram=_sector_diagram(angle, radius),
+    )
+
+
 TOPIC_RECTANGLE = TopicDefinition(
     id="area_rectangle",
     display_name="Rectangles",
@@ -977,4 +1475,81 @@ TOPIC_SUBTRACT_COMPOUND_FOUNDATION = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.FOUNDATION,
     generate_modelled_example=generate_modelled_example_subtract_compound_foundation,
+)
+
+TOPIC_PARALLELOGRAM = TopicDefinition(
+    id="area_parallelogram",
+    display_name="Parallelograms",
+    description="Find the area of a parallelogram given its base and perpendicular height.",
+    generate=generate_area_parallelogram,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_area_parallelogram,
+)
+
+TOPIC_TRAPEZIUM = TopicDefinition(
+    id="area_trapezium",
+    display_name="Trapeziums",
+    description="Find the area of a trapezium given its parallel sides and perpendicular height.",
+    generate=generate_area_trapezium,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_area_trapezium,
+)
+
+TOPIC_MIXED_COMPOUND = TopicDefinition(
+    id="area_mixed_compound",
+    display_name="Mixed Compound Shapes",
+    description="Find the area of a shape combining a rectangle, a triangle, and a quarter-circle cut.",
+    generate=generate_area_mixed_compound,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_area_mixed_compound,
+)
+
+TOPIC_ARC_LENGTH_FOUNDATION = TopicDefinition(
+    id="arc_length_foundation",
+    display_name="Arc Length (Calculator)",
+    description="Find the length of an arc of a circle, giving a decimal answer.",
+    generate=generate_arc_length_foundation,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_arc_length_foundation,
+)
+
+TOPIC_ARC_LENGTH = TopicDefinition(
+    id="arc_length",
+    display_name="Arc Length",
+    description="Find the exact length of an arc of a circle, in terms of π.",
+    generate=generate_arc_length,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_arc_length,
+)
+
+TOPIC_AREA_SECTOR_FOUNDATION = TopicDefinition(
+    id="area_sector_foundation",
+    display_name="Area of a Sector (Calculator)",
+    description="Find the area of a sector of a circle, giving a decimal answer.",
+    generate=generate_area_sector_foundation,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_area_sector_foundation,
+)
+
+TOPIC_AREA_SECTOR = TopicDefinition(
+    id="area_sector",
+    display_name="Area of a Sector",
+    description="Find the exact area of a sector of a circle, in terms of π.",
+    generate=generate_area_sector,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_area_sector,
 )

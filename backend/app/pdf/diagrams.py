@@ -256,6 +256,95 @@ def draw_rectangle_semicircle(params: dict) -> Drawing:
     return d
 
 
+def draw_parallelogram(params: dict) -> Drawing:
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    base_val, height_val = params["base"], params["height"]
+    margin = 32
+    slant_frac = 0.3
+    scale = min(
+        (DIAGRAM_WIDTH - 2 * margin) / (base_val * (1 + slant_frac)),
+        (DIAGRAM_HEIGHT - 2 * margin) / height_val,
+    )
+    bw, bh = base_val * scale, height_val * scale
+    slant = bw * slant_frac
+    x0, y0 = (DIAGRAM_WIDTH - (bw + slant)) / 2, (DIAGRAM_HEIGHT - bh) / 2
+
+    d.add(Polygon(
+        [x0, y0, x0 + bw, y0, x0 + bw + slant, y0 + bh, x0 + slant, y0 + bh],
+        strokeColor=INK, fillColor=None, strokeWidth=1.2,
+    ))
+    d.add(Line(x0 + slant, y0 + bh, x0 + slant, y0, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
+    d.add(_label(x0 + bw / 2, y0 - 14, params["base_label"]))
+    d.add(_label(x0 + slant - 8, y0 + bh / 2, params["height_label"], anchor="end"))
+    return d
+
+
+def draw_trapezium(params: dict) -> Drawing:
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    a_val, b_val, height_val = params["a"], params["b"], params["height"]
+    margin = 32
+    scale = min((DIAGRAM_WIDTH - 2 * margin) / max(a_val, b_val), (DIAGRAM_HEIGHT - 2 * margin) / height_val)
+    aw, bw, bh = a_val * scale, b_val * scale, height_val * scale
+    x0, y0 = (DIAGRAM_WIDTH - bw) / 2, (DIAGRAM_HEIGHT - bh) / 2
+    top_x0 = x0 + (bw - aw) / 2
+
+    d.add(Polygon(
+        [x0, y0, x0 + bw, y0, top_x0 + aw, y0 + bh, top_x0, y0 + bh],
+        strokeColor=INK, fillColor=None, strokeWidth=1.2,
+    ))
+    d.add(Line(top_x0, y0 + bh, top_x0, y0, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
+    d.add(_label(top_x0 + aw / 2, y0 + bh + 12, params["a_label"]))
+    d.add(_label(x0 + bw / 2, y0 - 14, params["b_label"]))
+    d.add(_label(top_x0 - 8, y0 + bh / 2, params["height_label"], anchor="end"))
+    return d
+
+
+def draw_sector(params: dict) -> Drawing:
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    cx, cy = DIAGRAM_WIDTH / 2, DIAGRAM_HEIGHT / 2
+    r = min(DIAGRAM_WIDTH, DIAGRAM_HEIGHT) / 2 - 25
+    angle = params["angle"]
+    start, end = 90 - angle, 90
+
+    d.add(Circle(cx, cy, r, strokeColor=GRID, fillColor=None, strokeWidth=0.75, strokeDashArray=[2, 2]))
+    d.add(Wedge(cx, cy, r, start, end, fillColor=HIGHLIGHT, strokeColor=INK, strokeWidth=1.2))
+    d.add(_label(cx + 4, cy + r + 10, params["radius_label"], anchor="start"))
+    mid = math.radians((start + end) / 2)
+    label_r = min(r * 0.55, r - 14)
+    d.add(_label(cx + label_r * math.cos(mid), cy + label_r * math.sin(mid), params["angle_label"], size=8))
+    return d
+
+
+def draw_mixed_compound(params: dict) -> Drawing:
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    w_val, h_val, roof_val, cut_val = (
+        params["width"], params["height"], params["roof_height"], params["cut_radius"],
+    )
+    total_h_val = h_val + roof_val
+    margin = 28
+    scale = min((DIAGRAM_WIDTH - 2 * margin) / w_val, (DIAGRAM_HEIGHT - 2 * margin) / total_h_val)
+    rw, rh, roof_h, cut_r = w_val * scale, h_val * scale, roof_val * scale, cut_val * scale
+    x0, y0 = (DIAGRAM_WIDTH - rw) / 2, (DIAGRAM_HEIGHT - (rh + roof_h)) / 2
+    apex_x = x0 + rw / 2
+
+    d.add(Rect(x0, y0, rw, rh, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    d.add(Polygon(
+        [x0, y0 + rh, x0 + rw, y0 + rh, apex_x, y0 + rh + roof_h],
+        strokeColor=INK, fillColor=None, strokeWidth=1.2,
+    ))
+    # Quarter-circle cut from the bottom-left corner: erase that corner's pie
+    # slice in the page background colour, then stroke the arc as the new
+    # visible boundary - the straight rectangle edges already drawn above
+    # stop cleanly at the two tangent points.
+    d.add(Wedge(x0, y0, cut_r, 0, 90, fillColor=PAPER, strokeColor=None))
+    d.add(Wedge(x0, y0, cut_r, 0, 90, fillColor=None, strokeColor=INK, strokeWidth=1.2))
+    d.add(_label(x0 + rw / 2, y0 - 14, params["width_label"]))
+    d.add(_label(x0 - 10, y0 + rh / 2, params["height_label"], anchor="end"))
+    d.add(_label(apex_x + 6, y0 + rh + roof_h / 2, params["roof_label"], anchor="start"))
+    d.add(_label(x0 - 4, y0 - 2, params["cut_label"], size=7, color=MUTED, anchor="end"))
+    return d
+
+
 def draw_angle_line(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     around_point = params["around_point"]
@@ -1633,6 +1722,10 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "dice": draw_dice,
     "spinner": draw_spinner,
     "bag_of_counters": draw_bag,
+    "parallelogram": draw_parallelogram,
+    "trapezium": draw_trapezium,
+    "sector": draw_sector,
+    "mixed_compound": draw_mixed_compound,
 }
 
 
