@@ -12,18 +12,16 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-Phase 1 of a large user-supplied Geometry expansion (chronology step 23 — 7 new
-Area & Perimeter topics: parallelograms, trapeziums, mixed compound shapes, arc
-length, area of a sector) is **complete and pushed**. 239 topics total, backend
-suite 534/534, frontend 45/45 (unaffected), no known bugs. **Phases 2-4 of the same
-Geometry expansion are NOT started**: Phase 2 (3D shapes — properties, volume &
-surface area of 8 solids, compound 3D shapes), Phase 3 (trig/Pythagoras extensions +
-congruent proof), Phase 4 (transformations, bearings, constructions & loci) — see
-"Ideas for a future session" for the exact scoped item list agreed with the user.
+Phases 1 and 2 of a large user-supplied Geometry expansion (chronology steps 23-24)
+are **complete and pushed**. 251 topics total, backend suite 592/592, frontend 45/45
+(unaffected), no known bugs. **Phases 3-4 of the same Geometry expansion are NOT
+started**: Phase 3 (trig/Pythagoras extensions + congruent proof), Phase 4
+(transformations, bearings, constructions & loci) — see "Ideas for a future session"
+for the exact scoped item list agreed with the user.
 Before starting anything new:
 1. If continuing the Geometry expansion, confirm with the user which phase to do
    next (they were agreed as a sequence but not committed to a timeline) rather
-   than assuming Phase 2 is automatically next.
+   than assuming Phase 3 is automatically next.
 2. Otherwise check "Ideas for a future session" (bottom of this file) for other
    candidate follow-ups — none are started and none are promised.
 3. Otherwise, ask the user directly what they'd like to work on next.
@@ -32,11 +30,11 @@ Before starting anything new:
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**239 topics across 6 sections**, all procedurally generated with independent
+**251 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.).
-Full backend suite: **534/534 passing**. Frontend suite: **45/45 passing**.
+Full backend suite: **592/592 passing**. Frontend suite: **45/45 passing**.
 
 **Practice Tests (fixed/static content, not procedural — the one deliberate exception
 to the paragraph above)**: a 7th homepage section, `backend/app/practice_tests/`,
@@ -141,7 +139,7 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 | Number | Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 54 |
 | Algebra | Expressions/Formulae/Equations/Identities, Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 57 |
 | Ratio & Proportion | Percentages, Best Buys, Ratio, Proportion, Compound Measures | 34 |
-| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems | 46 |
+| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes | 58 |
 | Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams, Venn Diagrams | 22 |
 | Statistics | Averages from a List, Frequency Tables, Working Backwards, Charts and Graphs, Cumulative Frequency & Box Plots, Histograms | 26 |
 
@@ -1017,6 +1015,110 @@ content today; it's built and unit-tested for when one eventually does.
 
     Backend suite grew from 526 to 534 tests; frontend unaffected (45/45 — new
     topics render generically through the existing section/topic-card UI).
+24. New session, Phase 2 (3D Shapes) of the same Geometry expansion, per the user's
+    explicit "start phase 2" — no new clarifying-questions round was needed since the
+    scope was already agreed in step 23. This phase's highest-risk work was a
+    brand-new pseudo-3D diagram engine: `diagrams.py` had **no** 3D/oblique-projection
+    drawing code at all before this session. Entered plan mode given the scope
+    (matching this project's precedent for large features), researched via 2 parallel
+    Explore agents (diagram-primitive/helper conventions in `diagrams.py`; topic/
+    registry/test conventions in `area_perimeter.py`/`registry.py`) before writing the
+    plan.
+
+    Built and **visually verified centrally, before any topic code was written**
+    (matching the established highest-risk-first precedent from Venn/number-line/arc-
+    sector diagrams): 9 new diagram kinds in `diagrams.py` — `draw_cuboid` (also used
+    for cube — same function, equal edge labels), `draw_triangular_prism`,
+    `draw_cylinder`, `draw_cone` (with an optional dashed Pythagoras-helper triangle
+    for the "derive the slant height" question branch), `draw_sphere` (doubles as a
+    hemisphere via a `hemisphere` param), `draw_pyramid`, `draw_frustum`, `draw_net`
+    (dispatches on shape to lay out cuboid/cylinder/cone/triangular-prism/pyramid nets
+    — purely topological, not scaled to real dimensions, since only the layout matters
+    for a "which net" question), and `draw_compound_3d` (3 variants: cylinder+
+    hemisphere "capsule", cone+hemisphere "ice cream", cuboid+pyramid "silo roof" —
+    reuses the standalone functions' coordinate helpers rather than duplicating
+    projection math). New `Ellipse` import (not previously used in this file) for
+    circular faces drawn in perspective. Convention: fixed oblique "depth" offset
+    applied to front-face coordinates for straight-edged solids (cuboid/prism/
+    pyramid), with dashed hidden edges at the one vertex/edge the shared-face-
+    visibility analysis showed was genuinely hidden from the viewing angle; rounded
+    solids (cylinder/cone/sphere/frustum) draw both ellipse boundaries fully solid
+    rather than splitting hidden/visible arcs — a deliberate lower-risk simplification
+    matching how most textbook diagrams actually render these. Caught and fixed
+    several real label-overlap bugs via rendering actual PDFs at high DPI, not just
+    trusting the first render (matching this project's established "render and look
+    closely" precedent): the cone's slant/height labels initially collided when both
+    were shown together (fixed by moving the slant label further down its own line);
+    the pyramid's height label initially crossed the right-hand slant edge, then
+    (after the first fix) was found — via a *second*, higher-DPI zoomed render — to
+    instead cross the dashed back-base edge, finally fixed by placing it just above
+    the diamond's back vertex where it clears both; the sphere/hemisphere/capsule
+    radius labels sat too close to their equator-ellipse curves; and the standalone
+    "silo" compound diagram's base label collided with the "Diagram NOT accurately
+    drawn" caption because its box was drawn too low on the canvas.
+
+    Added 12 new topics (239→251) in a new "3D Shapes" Geometry group, built via 4
+    parallel subagents (one per cluster, each independently verifying its own
+    generators and writing its own test file, per this project's established
+    pattern), across 4 new files rather than one shared file specifically so the
+    agents could run truly in parallel with zero risk of clobbering each other's
+    edits (a deliberate refinement of the original plan's "one new file" wording,
+    made once it was clear 4 agents would otherwise contend for the same file):
+    `solids_properties.py` (`properties_3d_shapes` — faces/edges/vertices curated
+    bank of 9 solids, verified against Euler's formula for the 6 true polyhedra;
+    `nets_3d_shapes` — net-composition curated bank of 6 solids, using the new
+    `draw_net` kind; both Foundation, `question_count=len(TEMPLATES)` per the
+    `algebraic_proof.py` curated-bank precedent), `solids_prisms.py`
+    (`volume_surface_area_cuboid`/`_cube`/`_triangular_prism`, all Foundation, each
+    combining volume+surface-area into one topic via `rng.choice` exactly like the
+    existing `area_rectangle` combines area+perimeter — the triangular prism uses
+    scaled Pythagorean triples so its hypotenuse, needed for surface area, is always
+    a clean integer), `solids_cylinders_cones.py`
+    (`volume_surface_area_cylinder_foundation`/`_cylinder` — a Foundation-decimal/
+    Higher-exact-π sibling pair mirroring `area_circle_foundation`/`area_circle`
+    exactly; `volume_surface_area_cone`, Higher only, randomly either giving the
+    slant height directly or requiring it be derived via Pythagoras from radius+
+    height first), `solids_curved_compound.py`
+    (`volume_surface_area_sphere` — sphere or hemisphere; `volume_surface_area_pyramid`
+    — square-based, slant height of a triangular face via Pythagoras;
+    `frustum_volume_surface_area` — the hardest topic this session, verified via two
+    genuinely different volume formulas, cone-difference-via-similar-triangles vs. the
+    closed-form `(1/3)πh(R²+Rr+r²)`, cross-checked with `sp.simplify`;
+    `compound_3d_volume`, **volume only** — a deliberate scope cut, since correctly
+    excluding a compound solid's internal shared face from a surface-area calculation
+    was judged too much added risk for this first pass — all four Higher only, since
+    cone/sphere/pyramid/frustum/compound-3D are genuinely Higher-only content on the
+    real specs, needing no Foundation sibling). Cone/sphere/pyramid/frustum/compound
+    are Higher-only by design, not an oversight — see the plan's "Scope decisions".
+
+    Two of the four parallel agents independently found and fixed the **same** real
+    bug during their own visual-PDF verification (not caught by unit tests, same
+    story as most gotchas in this file): `sp.N(expr, 3)` — the display pattern
+    copied from `area_perimeter.py`'s Foundation-decimal topics — silently switches
+    to scientific notation (e.g. `"1.41E+4 cm³"`) once a value reaches four digits,
+    which every `area_perimeter.py` topic this pattern was copied from happens to
+    never hit, but cylinder/cone/sphere/frustum/compound volumes and surface areas
+    comfortably do at the top of their ranges. This is the same *class* of bug as
+    `estimation_rounding`'s power-of-ten formatting bug from chronology step 22 (a
+    `Decimal`/`sympy` numeric-formatting edge case that's exact in value but wrong in
+    display), not a repeat of the same bug — each cluster fixed it independently in
+    its own file with its own `_round_to_3sf`/`_fmt_sig3` helper (Decimal-based fixed-
+    point formatting) and added a dedicated regression test. During central review, a
+    fifth issue was caught directly (not by an agent): `volume_surface_area_cube`'s
+    dedup-key space measured at only 26 (13 side-lengths × 2 measures) against the
+    default 20-question worksheet — thin enough to risk retries — widened to
+    `rng.randint(2, 20)` (38 max keys) before integration. A sixth, cosmetic-only
+    issue was caught during this session's own final end-to-end PDF check (not by any
+    agent, and only visible at high DPI): the pyramid diagram's height label crossed
+    the slant edge; see the diagram-fixes paragraph above for how it was resolved.
+
+    Central integration (registry wiring across 4 new imports, the 4 hardcoded
+    `239`-topic-count assertions updated to `251`, full suite, browser/PDF end-to-end
+    verification) was done directly afterward, per the established parallel-subagent
+    pattern. Backend suite grew from 534 to 592 tests (592 includes the cube dedup-
+    space widening and pyramid label fix); frontend unaffected (45/45 — the new group
+    renders generically through the existing section/topic-card UI, confirmed live via
+    the browser preview: Geometry's Foundation/Higher split grew from 23/23 to 29/29).
 
 Everything above is committed and pushed (see `git log`).
 
@@ -1216,20 +1318,22 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
 
 ## Ideas for a future session (not started, no commitment made)
 
-- **Geometry expansion Phases 2-4** (agreed with the user in chronology step 23,
-  alongside Phase 1 which is built): **Phase 2** — 3D shapes: properties of 3D
-  shapes (faces/edges/vertices, nets), then volume + surface area for cuboid, cube,
-  triangular prism, cylinder, cone, sphere, pyramid, frustum, plus compound 3D
-  shapes. **Phase 3** — trig/Pythagoras extensions + proof: exact trig values,
-  exact trig values within triangles, 3D Pythagoras, 3D trig, congruent triangle
-  proof. **Phase 4** — transformations, bearings, constructions & loci: line
+- **Geometry expansion Phases 3-4** (agreed with the user in chronology step 23;
+  Phases 1 and 2 are built — see step 24 for Phase 2's 3D-shapes topics and new
+  diagram engine): **Phase 3** — trig/Pythagoras extensions + proof: exact trig
+  values, exact trig values within triangles, 3D Pythagoras, 3D trig, congruent
+  triangle proof. **Phase 4** — transformations, bearings, constructions & loci: line
   symmetry, rotational symmetry, reflections/rotations/translations/enlargements
   (including negative and fractional scale factors, both completing and describing),
   cosine rule in bearings, constructing angle bisectors/perpendicular bisectors/
   triangles (describe-the-method text questions, per the user's choice — not
   diagram-based, since there's no way to "solve" a construction numerically), and
-  loci and regions. None of these 3 phases are started — ask the user which to do
-  next rather than assuming Phase 2 by default.
+  loci and regions. Neither phase is started — ask the user which to do next rather
+  than assuming Phase 3 by default.
+  - Compound 3D shapes' **surface area** was deliberately left out of Phase 2's
+    `compound_3d_volume` topic (volume only) — excluding a compound solid's internal
+    shared face correctly was judged too much added risk for that session's first
+    pass. Could be added as its own topic later if wanted.
 - The from-scratch Foundation/Higher curriculum audit (step 13) flagged a handful of
   **lower-confidence** candidates that were reported but deliberately *not* built,
   pending more research or a product decision: `probability_combined_dice` (may
