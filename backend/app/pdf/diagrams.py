@@ -11,7 +11,7 @@ import math
 import re
 from typing import Callable
 
-from reportlab.graphics.shapes import ArcPath, Circle, Drawing, Group, Line, PolyLine, Polygon, Rect, String, Wedge
+from reportlab.graphics.shapes import ArcPath, Circle, Drawing, Ellipse, Group, Line, PolyLine, Polygon, Rect, String, Wedge
 from reportlab.lib import colors
 from reportlab.pdfbase.pdfmetrics import stringWidth
 
@@ -1683,6 +1683,341 @@ def draw_bag(params: dict) -> Drawing:
     return d
 
 
+SOLID_WIDTH = 200
+SOLID_HEIGHT = 150
+
+# Fixed oblique "depth" offset applied to a straight-edged solid's front-face
+# coordinates to get its back-face coordinates - gives every 3D sketch below a
+# consistent look. These are schematic ("Diagram NOT accurately drawn")
+# sketches at fixed on-canvas proportions, like draw_general_triangle/
+# draw_right_triangle above, not scaled to the question's real numbers -
+# a scale-accurate oblique projection isn't how real exam papers draw these
+# either.
+_SOLID_DX, _SOLID_DY = 26, 16
+
+
+def _offset(pt: tuple[float, float], dx: float = _SOLID_DX, dy: float = _SOLID_DY) -> tuple[float, float]:
+    return (pt[0] + dx, pt[1] + dy)
+
+
+def draw_cuboid(params: dict) -> Drawing:
+    """A cuboid in oblique projection (front face + visible top/right faces
+    solid; the three edges meeting at the hidden back-bottom-left vertex
+    dashed). A cube is just this same diagram with all three edge labels
+    equal - no separate function needed."""
+    d = Drawing(SOLID_WIDTH, SOLID_HEIGHT)
+    x0, y0, fw, fh = 55, 30, 80, 60
+    FBL, FBR, FTR, FTL = (x0, y0), (x0 + fw, y0), (x0 + fw, y0 + fh), (x0, y0 + fh)
+    BBL, BBR, BTR, BTL = _offset(FBL), _offset(FBR), _offset(FTR), _offset(FTL)
+
+    d.add(Rect(x0, y0, fw, fh, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    d.add(Polygon([*FTL, *FTR, *BTR, *BTL], strokeColor=INK, fillColor=None, strokeWidth=1.1))
+    d.add(Polygon([*FBR, *FTR, *BTR, *BBR], strokeColor=INK, fillColor=None, strokeWidth=1.1))
+    d.add(Line(*FBL, *BBL, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
+    d.add(Line(*BBL, *BBR, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
+    d.add(Line(*BBL, *BTL, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
+
+    d.add(_label(x0 + fw / 2, y0 - 14, params["width_label"]))
+    d.add(_label(x0 - 10, y0 + fh / 2, params["height_label"], anchor="end"))
+    d.add(_label((FBR[0] + BBR[0]) / 2 + 6, (FBR[1] + BBR[1]) / 2 - 4, params["length_label"], anchor="start", size=8))
+    _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
+    return d
+
+
+def draw_triangular_prism(params: dict) -> Drawing:
+    """A right-angled-triangle cross-section prism in oblique projection.
+    Every edge is visible/solid except the far back-bottom edge of the
+    hidden underside face, which is dashed."""
+    d = Drawing(SOLID_WIDTH, SOLID_HEIGHT)
+    A, B, C = (55, 30), (135, 30), (55, 90)  # right angle at A
+    A2, B2, C2 = _offset(A), _offset(B), _offset(C)
+
+    d.add(Polygon([*A, *B, *C], strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    d.add(Line(*A, *A2, strokeColor=INK, strokeWidth=1.1))
+    d.add(Line(*B, *B2, strokeColor=INK, strokeWidth=1.1))
+    d.add(Line(*C, *C2, strokeColor=INK, strokeWidth=1.1))
+    d.add(Line(*B2, *C2, strokeColor=INK, strokeWidth=1.1))
+    d.add(Line(*C2, *A2, strokeColor=INK, strokeWidth=1.1))
+    d.add(Line(*A2, *B2, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
+
+    s = 7
+    d.add(Rect(A[0], A[1], s, s, strokeColor=INK, fillColor=None, strokeWidth=1))
+    d.add(_label((A[0] + B[0]) / 2, A[1] - 14, params["base_label"]))
+    d.add(_label(A[0] - 10, (A[1] + C[1]) / 2, params["triangle_height_label"], anchor="end"))
+    d.add(_label((B[0] + B2[0]) / 2 + 6, (B[1] + B2[1]) / 2 - 4, params["length_label"], anchor="start", size=8))
+    _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
+    return d
+
+
+def _cylinder_edges(cx: float, top_y: float, bottom_y: float, rx: float, ry: float) -> list:
+    """The Drawing primitives for a cylinder body between two ellipse
+    centres - shared by draw_cylinder and the cylinder+hemisphere compound
+    'capsule' variant of draw_compound_3d."""
+    return [
+        Line(cx - rx, top_y, cx - rx, bottom_y, strokeColor=INK, strokeWidth=1.1),
+        Line(cx + rx, top_y, cx + rx, bottom_y, strokeColor=INK, strokeWidth=1.1),
+        Ellipse(cx, bottom_y, rx, ry, strokeColor=INK, fillColor=None, strokeWidth=1.2),
+        Ellipse(cx, top_y, rx, ry, strokeColor=INK, fillColor=None, strokeWidth=1.2),
+    ]
+
+
+def draw_cylinder(params: dict) -> Drawing:
+    """A cylinder: two ellipses (rounded solids draw both end-boundaries
+    fully solid rather than splitting hidden/visible arcs - a deliberate,
+    lower-risk simplification vs. straight-edged solids' dashed hidden
+    edges) plus two vertical tangent side lines."""
+    d = Drawing(SOLID_WIDTH, SOLID_HEIGHT)
+    cx, top_y, bottom_y, rx, ry = 100, 108, 32, 40, 13
+    for shape in _cylinder_edges(cx, top_y, bottom_y, rx, ry):
+        d.add(shape)
+    d.add(Line(cx, top_y, cx + rx, top_y, strokeColor=INK, strokeWidth=0.9))
+    d.add(_label(cx + rx / 2, top_y + 8, params["radius_label"], size=8))
+    d.add(_label(cx + rx + 10, (top_y + bottom_y) / 2, params["height_label"], anchor="start"))
+    _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
+    return d
+
+
+def draw_cone(params: dict) -> Drawing:
+    """A cone: apex point, base ellipse, two slant tangent lines. When
+    params['show_height_triangle'] is set, a dashed vertical height + a
+    dashed horizontal radius are added (the right-angled Pythagoras helper
+    triangle used when a question requires deriving the slant height)."""
+    d = Drawing(SOLID_WIDTH, SOLID_HEIGHT)
+    cx, apex_y, base_y, rx, ry = 100, 122, 32, 42, 13
+    d.add(Ellipse(cx, base_y, rx, ry, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    d.add(Line(cx - rx, base_y, cx, apex_y, strokeColor=INK, strokeWidth=1.2))
+    d.add(Line(cx + rx, base_y, cx, apex_y, strokeColor=INK, strokeWidth=1.2))
+    if params.get("show_height_triangle"):
+        d.add(Line(cx, apex_y, cx, base_y, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
+        d.add(Line(cx, base_y, cx + rx, base_y, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
+        d.add(_label(cx + 6, (apex_y + base_y) / 2, params["height_label"], anchor="start", size=8))
+    if params.get("slant_label"):
+        slant_x, slant_y = cx + rx * 0.62, apex_y + (base_y - apex_y) * 0.62
+        d.add(_label(slant_x + 6, slant_y, params["slant_label"], anchor="start", size=8))
+    d.add(_label(cx - rx / 2, base_y - 10, params["radius_label"], size=8))
+    _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
+    return d
+
+
+def draw_sphere(params: dict) -> Drawing:
+    """A sphere (circle outline + a flattened equator ellipse as the 3D
+    cue), or - when params['hemisphere'] is set - a dome: a flat base
+    ellipse with a semicircular arc rising from its tangent points."""
+    d = Drawing(SOLID_WIDTH, SOLID_HEIGHT)
+    cx, cy, r = 100, 78, 46
+    if params.get("hemisphere"):
+        base_y = cy - r * 0.15
+        d.add(Ellipse(cx, base_y, r, r * 0.3, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+        arc = ArcPath(strokeColor=INK, fillColor=None, strokeWidth=1.2)
+        arc.addArc(cx, base_y, r, 0, 180, moveTo=True)
+        d.add(arc)
+        d.add(Line(cx, base_y, cx + r, base_y, strokeColor=INK, strokeWidth=0.9))
+        d.add(_label(cx + r / 2, base_y + 16, params["radius_label"], size=8))
+    else:
+        d.add(Circle(cx, cy, r, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+        d.add(Ellipse(cx, cy, r, r * 0.3, strokeColor=INK, fillColor=None, strokeWidth=0.9))
+        d.add(Line(cx, cy, cx + r, cy, strokeColor=INK, strokeWidth=0.9))
+        d.add(_label(cx + r / 2, cy + 16, params["radius_label"], size=8))
+    _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
+    return d
+
+
+def draw_pyramid(params: dict) -> Drawing:
+    """A square-based right pyramid: the base drawn as a perspective
+    'diamond', apex above the centre connected to all 4 corners. The two
+    base edges further from the viewer (the diamond's back edges) are
+    dashed; the two nearer edges and all four apex edges are solid."""
+    d = Drawing(SOLID_WIDTH, SOLID_HEIGHT)
+    cx, base_y = 100, 40
+    N, E, S, W = (cx, base_y + 22), (cx + 55, base_y), (cx, base_y - 22), (cx - 55, base_y)
+    apex = (cx, base_y + 85)
+
+    d.add(Line(*S, *E, strokeColor=INK, strokeWidth=1.2))
+    d.add(Line(*S, *W, strokeColor=INK, strokeWidth=1.2))
+    d.add(Line(*N, *E, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
+    d.add(Line(*N, *W, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
+    d.add(Line(*apex, *N, strokeColor=INK, strokeWidth=1.1))
+    d.add(Line(*apex, *E, strokeColor=INK, strokeWidth=1.1))
+    d.add(Line(*apex, *S, strokeColor=INK, strokeWidth=1.1))
+    d.add(Line(*apex, *W, strokeColor=INK, strokeWidth=1.1))
+    d.add(Line(cx, base_y, *apex, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
+
+    d.add(_label((S[0] + E[0]) / 2 + 8, (S[1] + E[1]) / 2 - 2, params["base_label"], anchor="start", size=8))
+    # Placed just above N (the diamond's back vertex) so the label clears
+    # both the dashed N-E back base edge below it and the converging slant
+    # edge to its right - a label at the true midpoint crosses one or the
+    # other (found via high-DPI visual inspection).
+    height_label_y = base_y + (apex[1] - base_y) * 0.28
+    d.add(_label(cx + 6, height_label_y, params["height_label"], anchor="start", size=8))
+    if params.get("slant_label"):
+        slant_x = apex[0] + (E[0] - apex[0]) * 0.65
+        slant_y = apex[1] + (E[1] - apex[1]) * 0.65
+        d.add(_label(slant_x + 6, slant_y, params["slant_label"], anchor="start", size=8))
+    _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
+    return d
+
+
+def draw_frustum(params: dict) -> Drawing:
+    """A cone frustum: like draw_cone but with a smaller top ellipse instead
+    of an apex point, connected by two slant tangent lines."""
+    d = Drawing(SOLID_WIDTH, SOLID_HEIGHT)
+    cx, bottom_y, top_y = 100, 32, 100
+    R, r_ry, r_top, r_top_ry = 46, 14, 24, 8
+
+    d.add(Ellipse(cx, bottom_y, R, r_ry, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    d.add(Ellipse(cx, top_y, r_top, r_top_ry, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    d.add(Line(cx - R, bottom_y, cx - r_top, top_y, strokeColor=INK, strokeWidth=1.2))
+    d.add(Line(cx + R, bottom_y, cx + r_top, top_y, strokeColor=INK, strokeWidth=1.2))
+
+    d.add(_label(cx - R / 2, bottom_y - 10, params["radius_bottom_label"], size=8))
+    d.add(_label(cx + r_top / 2, top_y + 8, params["radius_top_label"], size=8))
+    d.add(_label(cx + R + 6, (bottom_y + top_y) / 2, params["height_label"], anchor="start"))
+    _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
+    return d
+
+
+NET_WIDTH = 220
+NET_HEIGHT = 170
+
+_NET_CELL = 30  # uniform face-cell size for the net layouts below - purely
+# topological (correct face count/arrangement), not scaled to real question
+# values, since a "which net folds into this solid" / "how many rectangles"
+# question only depends on the layout, not exact proportions.
+
+
+def _draw_net_cuboid(params: dict) -> Drawing:
+    d = Drawing(NET_WIDTH, NET_HEIGHT)
+    c = _NET_CELL
+    x0, y0 = 20, 70
+    for i in range(4):
+        d.add(Rect(x0 + i * c, y0, c, c, strokeColor=INK, fillColor=None, strokeWidth=1))
+    d.add(Rect(x0, y0 + c, c, c, strokeColor=INK, fillColor=None, strokeWidth=1))
+    d.add(Rect(x0, y0 - c, c, c, strokeColor=INK, fillColor=None, strokeWidth=1))
+    return d
+
+
+def _draw_net_cylinder(params: dict) -> Drawing:
+    d = Drawing(NET_WIDTH, NET_HEIGHT)
+    rw, rh = 90, 40
+    x0, y0 = (NET_WIDTH - rw) / 2, (NET_HEIGHT - rh) / 2
+    r = 16
+    d.add(Rect(x0, y0, rw, rh, strokeColor=INK, fillColor=None, strokeWidth=1.1))
+    d.add(Circle(x0 + rw / 2, y0 + rh + r, r, strokeColor=INK, fillColor=None, strokeWidth=1))
+    d.add(Circle(x0 + rw / 2, y0 - r, r, strokeColor=INK, fillColor=None, strokeWidth=1))
+    return d
+
+
+def _draw_net_cone(params: dict) -> Drawing:
+    d = Drawing(NET_WIDTH, NET_HEIGHT)
+    cx, cy, r = 70, 85, 30
+    d.add(Circle(cx, cy, r, strokeColor=INK, fillColor=None, strokeWidth=1.1))
+    sector_cx, sector_r = 158, 60
+    d.add(Wedge(sector_cx, cy, sector_r, -125, 125, strokeColor=INK, fillColor=None, strokeWidth=1.1))
+    return d
+
+
+def _draw_net_triangular_prism(params: dict) -> Drawing:
+    d = Drawing(NET_WIDTH, NET_HEIGHT)
+    c = _NET_CELL
+    x0, y0 = 20, 70
+    for i in range(3):
+        d.add(Rect(x0 + i * c, y0, c, c + 10, strokeColor=INK, fillColor=None, strokeWidth=1))
+    tri_top = y0 + c + 10
+    d.add(Polygon([x0, tri_top, x0 + c, tri_top, x0 + c / 2, tri_top + 22], strokeColor=INK, fillColor=None, strokeWidth=1))
+    d.add(Polygon([x0, y0, x0 + c, y0, x0 + c / 2, y0 - 22], strokeColor=INK, fillColor=None, strokeWidth=1))
+    return d
+
+
+def _draw_net_pyramid(params: dict) -> Drawing:
+    d = Drawing(NET_WIDTH, NET_HEIGHT)
+    c = _NET_CELL * 1.4
+    x0, y0 = (NET_WIDTH - c) / 2, (NET_HEIGHT - c) / 2
+    d.add(Rect(x0, y0, c, c, strokeColor=INK, fillColor=None, strokeWidth=1.1))
+    tri_h = c * 0.6
+    d.add(Polygon([x0, y0 + c, x0 + c, y0 + c, x0 + c / 2, y0 + c + tri_h], strokeColor=INK, fillColor=None, strokeWidth=1))
+    d.add(Polygon([x0, y0, x0 + c, y0, x0 + c / 2, y0 - tri_h], strokeColor=INK, fillColor=None, strokeWidth=1))
+    d.add(Polygon([x0, y0, x0, y0 + c, x0 - tri_h, y0 + c / 2], strokeColor=INK, fillColor=None, strokeWidth=1))
+    d.add(Polygon([x0 + c, y0, x0 + c, y0 + c, x0 + c + tri_h, y0 + c / 2], strokeColor=INK, fillColor=None, strokeWidth=1))
+    return d
+
+
+def draw_net(params: dict) -> Drawing:
+    """Dispatches on params['shape'] to lay out that solid's net (cuboid/
+    cube -> 6-rectangle cross, cylinder -> rectangle + 2 circles, cone ->
+    circle + sector, triangular_prism -> 3 rectangles + 2 triangles,
+    pyramid -> square + 4 triangles). Purely topological layouts (see
+    _NET_CELL above), not scaled to real dimensions."""
+    shape = params["shape"]
+    if shape in ("cuboid", "cube"):
+        return _draw_net_cuboid(params)
+    if shape == "cylinder":
+        return _draw_net_cylinder(params)
+    if shape == "cone":
+        return _draw_net_cone(params)
+    if shape == "triangular_prism":
+        return _draw_net_triangular_prism(params)
+    if shape == "pyramid":
+        return _draw_net_pyramid(params)
+    raise ValueError(f"unknown net shape: {shape!r}")
+
+
+def draw_compound_3d(params: dict) -> Drawing:
+    """A compound solid made of two joined parts, selected by
+    params['variant']: 'cylinder_hemisphere' (a capsule), 'cone_hemisphere'
+    (an ice-cream shape), or 'cuboid_pyramid' (a silo roof). Each variant
+    reuses the same coordinate helpers/primitives as the standalone
+    draw_cylinder/draw_sphere/draw_cuboid/draw_pyramid functions above
+    rather than duplicating projection math."""
+    d = Drawing(SOLID_WIDTH, SOLID_HEIGHT)
+    variant = params["variant"]
+
+    if variant == "cylinder_hemisphere":
+        cx, bottom_y, mid_y, rx, ry = 100, 25, 85, 38, 12
+        for shape in _cylinder_edges(cx, mid_y, bottom_y, rx, ry):
+            d.add(shape)
+        arc = ArcPath(strokeColor=INK, fillColor=None, strokeWidth=1.2)
+        arc.addArc(cx, mid_y, rx, 0, 180, moveTo=True)
+        d.add(arc)
+        d.add(Line(cx, mid_y, cx + rx, mid_y, strokeColor=INK, strokeWidth=0.9))
+        d.add(_label(cx + rx / 2, mid_y + 16, params["radius_label"], size=8))
+        d.add(_label(cx + rx + 10, (bottom_y + mid_y) / 2, params["height_label"], anchor="start"))
+
+    elif variant == "cone_hemisphere":
+        cx, apex_y, base_y, rx, ry = 100, 100, 55, 38, 12
+        d.add(Ellipse(cx, base_y, rx, ry, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+        d.add(Line(cx - rx, base_y, cx, apex_y, strokeColor=INK, strokeWidth=1.2))
+        d.add(Line(cx + rx, base_y, cx, apex_y, strokeColor=INK, strokeWidth=1.2))
+        arc = ArcPath(strokeColor=INK, fillColor=None, strokeWidth=1.2)
+        arc.addArc(cx, base_y, rx, 180, 360, moveTo=True)
+        d.add(arc)
+        d.add(_label(cx - rx / 2, base_y + 14, params["radius_label"], size=8))
+        d.add(_label(cx + rx / 2 + 8, (apex_y + base_y) / 2, params["cone_height_label"], anchor="start", size=8))
+
+    elif variant == "cuboid_pyramid":
+        x0, y0, fw, fh = 55, 30, 80, 40
+        FBL, FBR, FTR, FTL = (x0, y0), (x0 + fw, y0), (x0 + fw, y0 + fh), (x0, y0 + fh)
+        BBL, BBR, BTR, BTL = _offset(FBL), _offset(FBR), _offset(FTR), _offset(FTL)
+        d.add(Rect(x0, y0, fw, fh, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+        d.add(Polygon([*FTL, *FTR, *BTR, *BTL], strokeColor=INK, fillColor=None, strokeWidth=1.1))
+        d.add(Polygon([*FBR, *FTR, *BTR, *BBR], strokeColor=INK, fillColor=None, strokeWidth=1.1))
+        d.add(Line(*FBL, *BBL, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
+        d.add(Line(*BBL, *BBR, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
+        d.add(Line(*BBL, *BTL, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
+        roof_apex = ((FTL[0] + BTR[0]) / 2, FTL[1] + 34)
+        for corner in (FTL, FTR, BTR, BTL):
+            d.add(Line(*corner, *roof_apex, strokeColor=INK, strokeWidth=1.1))
+        roof_base_centre = (roof_apex[0], (FTL[1] + BTR[1]) / 2)
+        d.add(Line(*roof_base_centre, *roof_apex, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
+        d.add(_label(x0 + fw / 2, y0 - 14, params["base_label"]))
+        d.add(_label(roof_apex[0] + 6, (roof_base_centre[1] + roof_apex[1]) / 2, params["roof_height_label"], anchor="start", size=8))
+
+    else:
+        raise ValueError(f"unknown compound_3d variant: {variant!r}")
+
+    _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
+    return d
+
+
 _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "rectangle": draw_rectangle,
     "triangle_area": draw_triangle_area,
@@ -1726,6 +2061,15 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "trapezium": draw_trapezium,
     "sector": draw_sector,
     "mixed_compound": draw_mixed_compound,
+    "cuboid": draw_cuboid,
+    "triangular_prism": draw_triangular_prism,
+    "cylinder": draw_cylinder,
+    "cone": draw_cone,
+    "sphere": draw_sphere,
+    "pyramid": draw_pyramid,
+    "frustum": draw_frustum,
+    "net": draw_net,
+    "compound_3d": draw_compound_3d,
 }
 
 
