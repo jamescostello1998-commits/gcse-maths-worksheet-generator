@@ -54,6 +54,16 @@ inserts a non-breaking space (u+00a0) before such a comma to dodge it.
 either (renders as a missing-glyph box, same class of issue as the "⁻¹"
 gotcha documented in CLAUDE.md) - a fractional exponent's "/" must stay a
 plain ASCII slash.
+
+**Surd-over-integer gotcha**: an exact trig value like "√2/2" or "√3/2" (see
+exact_trig_values.py) is a single already-clear unit, deliberately written as
+a flat literal string, not run through the standalone-fraction path - but the
+fraction regex would otherwise still match the trailing "2/2"/"3/2" substring
+regardless of the preceding "√", raising/lowering just the digits and leaving
+a stray literal "√" in front (e.g. "√²/₂" - genuinely confusing, since it
+reads as if the radical applies only to the raised digit). Excluded via a
+`(?<!√)` negative lookbehind on the fraction alternative, so any fraction
+glued directly after a "√" is left untouched as plain text.
 """
 
 import re
@@ -64,7 +74,7 @@ import re
 _MATH_RE = re.compile(
     r"\^\((?P<epnum>-?\d+)/(?P<epden>-?\d+)\)"
     r"|\^(?P<exp>-?\d+)"
-    r"|(?P<fsign>-?)(?P<fnum>\d+)/(?P<fden>\d+)"
+    r"|(?<!√)(?P<fsign>-?)(?P<fnum>\d+)/(?P<fden>\d+)"
 )
 # Matches a lone x or n not glued to another letter (so "box" or "and" are
 # left alone) - single pass over the original text so italicising one

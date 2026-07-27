@@ -89,6 +89,17 @@ def test_fraction_followed_by_other_punctuation_is_untouched():
     assert to_markup("(3/4)") == "(<super>3</super>/<sub>4</sub>)"
 
 
+def test_surd_over_integer_is_left_as_plain_text():
+    # A surd-over-integer exact trig value (see exact_trig_values.py) is a
+    # single already-clear unit, deliberately not run through the standalone-
+    # fraction path - the trailing digits are the radicand of the preceding
+    # "√", not an independent numerator to raise/lower.
+    assert to_markup("√2/2") == "√2/2"
+    assert to_markup("√3/2") == "√3/2"
+    assert to_markup("sin(45°) = √2/2") == "sin(45°) = √2/2"
+    assert to_markup("3√5/4") == "3√5/4"
+
+
 def test_unit_rates_are_not_mistaken_for_fractions():
     # These all have a slash but letters (not digits) on at least one side,
     # so they must be left completely alone.

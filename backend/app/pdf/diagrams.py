@@ -565,6 +565,74 @@ def draw_general_triangle(params: dict) -> Drawing:
     return d
 
 
+def _tick_marks(p: tuple, q: tuple, count: int, length: float = 5, gap: float = 3) -> list:
+    """`count` short dashes perpendicular to segment p-q, centred at its
+    midpoint - the standard "equal sides" exam-diagram convention (1 tick for
+    one equal pair, 2 ticks for a second, distinct, equal pair)."""
+    dx, dy = q[0] - p[0], q[1] - p[1]
+    norm = math.hypot(dx, dy)
+    ux, uy = dx / norm, dy / norm
+    px, py = -uy, ux
+    mx, my = (p[0] + q[0]) / 2, (p[1] + q[1]) / 2
+    marks = []
+    offsets = [(i - (count - 1) / 2) * gap for i in range(count)]
+    for off in offsets:
+        cx, cy = mx + ux * off, my + uy * off
+        marks.append(
+            Line(cx - px * length / 2, cy - py * length / 2, cx + px * length / 2, cy + py * length / 2,
+                 strokeColor=INK, strokeWidth=1.1)
+        )
+    return marks
+
+
+def draw_two_triangle_congruence(params: dict) -> Drawing:
+    """Two separate, non-overlapping triangles (not to scale) for a
+    congruent-triangle-proof question. Sides declared equal get tick marks
+    (_tick_marks) and angles declared equal get nested arcs
+    (_vertex_angle_arc at increasing radii) - the marks show which parts are
+    equal, not the real proportions. Each triangle is 3 fixed points, indexed
+    0=bottom-left, 1=bottom-right, 2=apex (matching draw_general_triangle's
+    A/B/C convention).
+
+    params: labels_1/labels_2 (3-tuples of vertex label strings), ticks_1/
+    ticks_2 (list of (i, j, count) - tick-mark the side between local points
+    i and j), arcs_1/arcs_2 (list of (vertex_index, count) - count nested
+    arcs at that vertex), note (optional caption, e.g. a shared-side remark;
+    replaces the usual "not accurately drawn" caption when present)."""
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    T1 = [(12, 34), (82, 34), (47, 102)]
+    T2 = [(118, 34), (188, 34), (153, 102)]
+
+    for tri in (T1, T2):
+        d.add(Polygon([coord for pt in tri for coord in pt], strokeColor=INK, fillColor=None, strokeWidth=1.2))
+
+    for tri, labels in ((T1, params.get("labels_1")), (T2, params.get("labels_2"))):
+        if not labels:
+            continue
+        for idx, (pt, label) in enumerate(zip(tri, labels)):
+            x, y = pt
+            y_off = -13 if idx < 2 else 10
+            anchor = "end" if idx == 0 else ("start" if idx == 1 else "middle")
+            d.add(_label(x, y + y_off, label, anchor=anchor, size=8))
+
+    for tri, ticks_key in ((T1, "ticks_1"), (T2, "ticks_2")):
+        for i, j, count in params.get(ticks_key, []):
+            for mark in _tick_marks(tri[i], tri[j], count):
+                d.add(mark)
+
+    for tri, arcs_key in ((T1, "arcs_1"), (T2, "arcs_2")):
+        for vertex_idx, count in params.get(arcs_key, []):
+            others = [tri[k] for k in range(3) if k != vertex_idx]
+            for n in range(count):
+                d.add(_vertex_angle_arc(tri[vertex_idx], others[0], others[1], radius=9 + n * 4))
+
+    if params.get("note"):
+        d.add(_label(DIAGRAM_WIDTH / 2, 8, params["note"], size=7, color=MUTED))
+    else:
+        _not_to_scale(d)
+    return d
+
+
 def draw_vector_triangle(params: dict) -> Drawing:
     """Triangle OAB with position vectors a = OA, b = OB, and a point P on AB
     at a given ratio AP:PB, for geometric-vector questions."""
@@ -1720,6 +1788,10 @@ def draw_cuboid(params: dict) -> Drawing:
     d.add(_label(x0 + fw / 2, y0 - 14, params["width_label"]))
     d.add(_label(x0 - 10, y0 + fh / 2, params["height_label"], anchor="end"))
     d.add(_label((FBR[0] + BBR[0]) / 2 + 6, (FBR[1] + BBR[1]) / 2 - 4, params["length_label"], anchor="start", size=8))
+    if params.get("diagonal_label"):
+        d.add(Line(*FBL, *BTR, strokeColor=INK, strokeWidth=0.9, strokeDashArray=[3, 2]))
+        mx, my = (FBL[0] + BTR[0]) / 2, (FBL[1] + BTR[1]) / 2
+        d.add(_label(mx + 6, my + 4, params["diagonal_label"], anchor="start", size=8))
     _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
     return d
 
@@ -2032,6 +2104,7 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "right_triangle": draw_right_triangle,
     "trig_triangle": draw_trig_triangle,
     "general_triangle": draw_general_triangle,
+    "two_triangle_congruence": draw_two_triangle_congruence,
     "vector_triangle": draw_vector_triangle,
     "circle_angle_centre": draw_circle_angle_centre,
     "circle_semicircle": draw_circle_semicircle,

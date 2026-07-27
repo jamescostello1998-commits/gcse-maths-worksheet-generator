@@ -12,16 +12,16 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-Phases 1 and 2 of a large user-supplied Geometry expansion (chronology steps 23-24)
-are **complete and pushed**. 251 topics total, backend suite 592/592, frontend 45/45
-(unaffected), no known bugs. **Phases 3-4 of the same Geometry expansion are NOT
-started**: Phase 3 (trig/Pythagoras extensions + congruent proof), Phase 4
-(transformations, bearings, constructions & loci) — see "Ideas for a future session"
-for the exact scoped item list agreed with the user.
+Phases 1, 2 and 3 of a large user-supplied Geometry expansion (chronology steps
+23-25) are **complete and pushed**. 257 topics total, backend suite 616/616,
+frontend 45/45 (unaffected), no known bugs. **Phase 4 of the same Geometry
+expansion is NOT started**: transformations, bearings, constructions & loci —
+see "Ideas for a future session" for the exact scoped item list agreed with the
+user.
 Before starting anything new:
-1. If continuing the Geometry expansion, confirm with the user which phase to do
-   next (they were agreed as a sequence but not committed to a timeline) rather
-   than assuming Phase 3 is automatically next.
+1. If continuing the Geometry expansion, confirm with the user that Phase 4 is
+   next (it's the last phase in the agreed sequence, but wasn't committed to a
+   timeline) rather than assuming it's automatically wanted.
 2. Otherwise check "Ideas for a future session" (bottom of this file) for other
    candidate follow-ups — none are started and none are promised.
 3. Otherwise, ask the user directly what they'd like to work on next.
@@ -30,11 +30,11 @@ Before starting anything new:
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**251 topics across 6 sections**, all procedurally generated with independent
+**257 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.).
-Full backend suite: **592/592 passing**. Frontend suite: **45/45 passing**.
+Full backend suite: **616/616 passing**. Frontend suite: **45/45 passing**.
 
 **Practice Tests (fixed/static content, not procedural — the one deliberate exception
 to the paragraph above)**: a 7th homepage section, `backend/app/practice_tests/`,
@@ -139,7 +139,7 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 | Number | Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 54 |
 | Algebra | Expressions/Formulae/Equations/Identities, Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 57 |
 | Ratio & Proportion | Percentages, Best Buys, Ratio, Proportion, Compound Measures | 34 |
-| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes | 58 |
+| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof | 64 |
 | Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams, Venn Diagrams | 22 |
 | Statistics | Averages from a List, Frequency Tables, Working Backwards, Charts and Graphs, Cumulative Frequency & Box Plots, Histograms | 26 |
 
@@ -1120,6 +1120,95 @@ content today; it's built and unit-tested for when one eventually does.
     renders generically through the existing section/topic-card UI, confirmed live via
     the browser preview: Geometry's Foundation/Higher split grew from 23/23 to 29/29).
 
+25. New session, Phase 3 (trig/Pythagoras extensions + congruent proof) of the
+    same Geometry expansion, per the user's explicit choice of Phase 3 over
+    Phase 4 when asked (this session's plan also confirmed two design
+    decisions up front: all 5 items are Higher-only except congruent triangle
+    proof, which also gets a Foundation "state the criterion" sibling; and
+    congruent triangle proof uses a curated template bank like
+    `algebraic_proof.py`, not a procedural generator, since a proof's claim
+    can't be meaningfully re-randomised). Entered plan mode given the scope,
+    researched via 3 parallel Explore agents (trig/Pythagoras generator and
+    verification conventions; the Phase 2 3D diagram engine's extensibility;
+    the curated-bank pattern) plus a Plan agent, then verified every fact
+    against the real files before finalizing the plan.
+
+    Added 6 new topics (251→257): `exact_trig_values` (new
+    `exact_trig_values.py`, Trigonometry group — a 14-entry `(ratio, angle)`
+    lookup table for sin/cos/tan at 0°/30°/45°/60°/90°, verified independently
+    via `sp.simplify` against sympy's own trig evaluation rather than
+    re-checking the same hardcoded table); `exact_trig_values_triangles`
+    (same file — reuses the existing `draw_trig_triangle` diagram unchanged,
+    angle restricted to {30,45,60}, answer an exact surd/fraction verified by
+    comparing the hand-derived value against a raw floating-point
+    `math.sin`/`cos`/`tan` computation, a genuinely different computation
+    path); `pythagoras_3d`/`trig_3d` (new `solids_3d_trig.py`, shared cuboid-
+    dimension generation — a reroll-based `_cuboid_dims` helper keeps the
+    space diagonal always irrational/decimal, mirroring
+    `pythagoras.generate_hypotenuse_decimal`'s reroll pattern; both verified
+    via the 3D coordinate distance formula / vector dot-product, a genuinely
+    different route than the "apply Pythagoras/trig twice" method used for the
+    displayed steps); `congruent_triangle_proof`/`_foundation` (new
+    `congruent_triangle_proof.py` — an 18-entry curated bank of SSS/SAS/ASA/RHS
+    scenarios, in a brand-new "Congruence Proof" Geometry group mirroring
+    `algebraic_proof.py`'s dedicated-group precedent exactly; one shared
+    template bank, two question shapes per the confirmed design — Higher gets
+    the full written proof, Foundation just states the criterion; each
+    template's `verify()` builds one concrete coordinate instance satisfying
+    its stated givens, via two small reusable helpers
+    (`_point_from_two_distances` for shared-side/SSS scenarios,
+    `_third_vertex_asa` via the law of sines for ASA scenarios), then confirms
+    all 3 corresponding side lengths match between the two triangles — the
+    actual geometric consequence of any of the four criteria).
+
+    Built and **visually verified first, before any topic code was written**
+    (matching this project's established highest-risk-first precedent from
+    Venn/3D-shapes/arc-sector diagrams): a new `two_triangle_congruence`
+    diagram kind (`draw_two_triangle_congruence` + a new `_tick_marks` helper
+    for equal-side marks, reusing the existing `_vertex_angle_arc` at two
+    radii for nested equal-angle arcs) plus an additive `diagonal_label`
+    extension to the existing `draw_cuboid` (a dashed space-diagonal line,
+    following the exact optional-param-gated precedent already set by
+    `draw_cone`'s `show_height_triangle`/`draw_pyramid`'s built-in height
+    line). The spike caught a real bug immediately: the congruence diagram's
+    default "Diagram NOT accurately drawn" caption overlapped the bottom-right
+    vertex label — fixed by raising the triangles' vertical position within
+    the canvas, giving the caption clearance. Deliberately decided *against*
+    drawing an angle arc for `trig_3d`'s diagram (only the one diagonal line):
+    these solids are fixed-proportion oblique sketches, and an arc between the
+    *projected* 2D directions of two 3D lines would misrepresent the true 3D
+    angle - the angle is described in the prompt text instead.
+
+    One real bug was caught and fixed only by rendering an actual PDF and
+    reading it closely — not by any unit test, the same story as most gotchas
+    in this file: `mathtext.py`'s auto-fraction regex matched the trailing
+    "2/2"/"3/2" substring inside an exact-value surd string like "√2/2"
+    regardless of the preceding "√", raising/lowering just the digits and
+    leaving a stray literal "√" in front (rendered as a confusing "√²/₂").
+    Fixed with a `(?<!√)` negative lookbehind on the fraction alternative, so
+    a fraction glued directly after "√" is left as plain text, while an
+    unrelated plain rational trig value like "1/2" still gets the normal
+    vinculum-style treatment. A second, pre-existing issue was fixed in
+    passing: `backend/requirements.txt` was missing `pymupdf` even though this
+    project's own documented "Verifying new topics visually" workflow (and
+    several past chronology entries) rely on it — added as a real pinned
+    dependency rather than an undocumented ad hoc install.
+
+    Central integration (registry wiring — `solids_3d_trig` slotting into the
+    existing "Pythagoras' Theorem"/"Trigonometry" groups, `congruent_triangle_
+    proof` establishing the new "Congruence Proof" group — the 4 hardcoded
+    `251`-topic-count assertions updated to `257`, full suite, browser/PDF
+    end-to-end verification for all 6 new topics across both diagram kinds)
+    was done directly, following the established parallel-subagent-session
+    pattern even though this session's build was done directly rather than via
+    subagents (the 3 files' interdependency — shared diagram kinds, a shared
+    "which existing group" placement — made a single continuous pass simpler
+    than coordinating parallel agents for a batch this size). Backend suite
+    grew from 592 to 616 tests (23 new + 1 new `mathtext.py` regression test);
+    frontend unaffected (45/45 — confirmed live via the browser preview:
+    Geometry's Foundation/Higher split grew from 29/29 to 30/34, and the new
+    "Congruence Proof" group appears correctly under Geometry).
+
 Everything above is committed and pushed (see `git log`).
 
 ## Environment gotchas (Windows, this machine specifically)
@@ -1318,22 +1407,25 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
 
 ## Ideas for a future session (not started, no commitment made)
 
-- **Geometry expansion Phases 3-4** (agreed with the user in chronology step 23;
-  Phases 1 and 2 are built — see step 24 for Phase 2's 3D-shapes topics and new
-  diagram engine): **Phase 3** — trig/Pythagoras extensions + proof: exact trig
-  values, exact trig values within triangles, 3D Pythagoras, 3D trig, congruent
-  triangle proof. **Phase 4** — transformations, bearings, constructions & loci: line
-  symmetry, rotational symmetry, reflections/rotations/translations/enlargements
-  (including negative and fractional scale factors, both completing and describing),
-  cosine rule in bearings, constructing angle bisectors/perpendicular bisectors/
-  triangles (describe-the-method text questions, per the user's choice — not
-  diagram-based, since there's no way to "solve" a construction numerically), and
-  loci and regions. Neither phase is started — ask the user which to do next rather
-  than assuming Phase 3 by default.
+- **Geometry expansion Phase 4** (agreed with the user in chronology step 23;
+  Phases 1, 2 and 3 are built — see steps 24-25 for 3D Shapes and the trig/
+  Pythagoras/congruence-proof topics): transformations, bearings, constructions
+  & loci: line symmetry, rotational symmetry, reflections/rotations/
+  translations/enlargements (including negative and fractional scale factors,
+  both completing and describing), cosine rule in bearings, constructing angle
+  bisectors/perpendicular bisectors/triangles (describe-the-method text
+  questions, per the user's choice — not diagram-based, since there's no way
+  to "solve" a construction numerically), and loci and regions. Not started —
+  confirm with the user before starting, per the "Where to pick up next" note
+  above.
   - Compound 3D shapes' **surface area** was deliberately left out of Phase 2's
     `compound_3d_volume` topic (volume only) — excluding a compound solid's internal
     shared face correctly was judged too much added risk for that session's first
     pass. Could be added as its own topic later if wanted.
+  - Phase 3's congruent triangle proof topic covers SSS/SAS/ASA/RHS via an
+    18-entry curated bank (see step 25) — a Foundation `trig_mixed`-style
+    sibling covering *identifying* similar (not congruent) triangles, or a
+    "prove NOT congruent" variant, were not requested and are not built.
 - The from-scratch Foundation/Higher curriculum audit (step 13) flagged a handful of
   **lower-confidence** candidates that were reported but deliberately *not* built,
   pending more research or a product decision: `probability_combined_dice` (may
