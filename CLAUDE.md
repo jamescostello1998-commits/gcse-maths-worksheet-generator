@@ -14,17 +14,83 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 Phases 1, 2 and 3 of a large user-supplied Geometry expansion (chronology steps
 23-25) are **complete and pushed**. 257 topics total, backend suite 616/616,
-frontend 45/45 (unaffected), no known bugs. **Phase 4 of the same Geometry
-expansion is NOT started**: transformations, bearings, constructions & loci —
-see "Ideas for a future session" for the exact scoped item list agreed with the
-user.
-Before starting anything new:
-1. If continuing the Geometry expansion, confirm with the user that Phase 4 is
-   next (it's the last phase in the agreed sequence, but wasn't committed to a
-   timeline) rather than assuming it's automatically wanted.
-2. Otherwise check "Ideas for a future session" (bottom of this file) for other
-   candidate follow-ups — none are started and none are promised.
-3. Otherwise, ask the user directly what they'd like to work on next.
+frontend 45/45 (unaffected), no known bugs.
+
+**Phase 4 (the last phase) is IN PROGRESS — research done, no code written
+yet, session paused mid-plan-mode at the user's request** ("i want to continue
+in a new session"). A full plan-mode research pass (2 parallel Explore agents)
+was completed; the next session should resume planning from these findings
+rather than re-researching, then get user sign-off on the open questions below
+before writing any code. The full findings are also preserved in the plan file
+at `C:\Users\James\.claude\plans\sorted-floating-elephant.md` (machine-local,
+not in this repo, and could in principle be overwritten by an unrelated future
+plan-mode session — this CLAUDE.md summary is the durable copy).
+
+**Scope** (agreed back in chronology step 23): line symmetry, rotational
+symmetry, reflections/rotations/translations/enlargements on a coordinate grid
+(negative and fractional enlargement scale factors included, both "complete
+the transformation" and "describe the transformation" question styles), cosine
+rule in bearings, three construction topics (angle bisector, perpendicular
+bisector, triangle given SSS/SAS/ASA — text-only "describe the method", no
+diagram, since a construction can't be numerically "solved"), and loci and
+regions.
+
+**Research findings so far:**
+- **Transformations need a brand-new "shape on a numbered grid" diagram
+  kind** — nothing in `diagrams.py` currently plots a polygon at real grid
+  coordinates. `_draw_scaled_axes` (diagrams.py:801) already returns a
+  reusable `to_px(x, y) -> (px, py)` transform (used by
+  `draw_function_graph`/`draw_piecewise_graph`/`draw_number_line`) that the
+  new diagram kind can plot polygon vertices through — the gridding logic
+  doesn't need to be rebuilt, just a polygon-drawing layer on top.
+  `graph_transformations` (Algebra) is confirmed **unrelated** (transforms an
+  abstract function graph, not a shape) — this was already suspected as a
+  false-positive in step 23 and is now directly confirmed by reading the code.
+- **Cosine rule in bearings** can mostly reuse `triangle_rules.py`'s existing
+  `generate_cosine_rule` maths (SAS→side / SSS→angle, both independently
+  verified via coordinate-geometry cross-checks) reframed as a bearings word
+  problem, but needs a genuinely new diagram (`draw_general_triangle` has no
+  concept of orientation/north/clockwise-measured angle — a north-arrow +
+  clockwise-arc diagram kind is needed, reusing small helpers like `_label`
+  and an arc similar to `_vertex_angle_arc`).
+- **Constructions raise a real open design question, not yet decided**: the
+  two existing "prose answer" precedents (`algebraic_proof.py`,
+  `congruent_triangle_proof.py`) both use a curated template bank
+  (`_Template`/`_t()`, `TEMPLATES: list[...]`,
+  `question_count=len(TEMPLATES)`) with a **mandatory, meaningful
+  `verify()`** per template (symbolic algebra / coordinate-geometry
+  congruence check respectively). For "describe how to construct an angle
+  bisector," there is **no computational ground truth to check against** —
+  unlike those two precedents. Needs an explicit decision: drop `verify()`
+  from this topic's template shape entirely (author-review only), or keep a
+  token/structural stub for consistency. Don't default silently either way —
+  ask the user.
+- **Loci and regions needs an entirely new 2D diagram kind** — the only
+  existing "region" diagram is `draw_number_line`, which is strictly 1D.
+  Nothing 2D (grid-region-fill, circle/arc-based locus) exists to extend.
+- Current Geometry groups/counts (64 topics, 12 groups) are listed in the
+  "Current state" table below — new groups (Transformations, Bearings,
+  Constructions & Loci, or similar) just need a new topic module each,
+  imported and slotted into `_TOPIC_LIST`'s `# Geometry` block; grouping is
+  driven purely by consecutive same-`GROUP` topics in list order.
+
+**Open questions to raise with the user before planning further** (do not
+assume a default):
+1. Given the size (transformations alone is 4 operations × 2 question styles
+   × scale-factor variants, plus bearings, plus 3 construction topics, plus
+   loci — at least 2 brand-new diagram engines), should Phase 4 itself be
+   split into sub-phases, the way the original expansion was split into
+   Phases 1-4?
+2. The construction-topic `verify()` question above.
+3. Whether "describe the transformation" is wanted for all 4 transform types
+   or just some, and whether negative/fractional-scale-factor enlargement
+   should be its own Higher-only topic with a separate Foundation
+   positive-integer-scale-factor sibling (mirrors this project's established
+   tier-split convention, but not yet confirmed for this specific content).
+
+If the user wants something else entirely instead of continuing Phase 4, check
+"Ideas for a future session" (bottom of this file) for other candidate
+follow-ups, or ask directly what they'd like to work on.
 
 ## Current state
 
