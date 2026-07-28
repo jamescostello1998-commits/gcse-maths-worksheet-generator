@@ -18,24 +18,40 @@ complete and pushed**. 268 topics total, backend suite 638/638, frontend
 45/45 (unaffected), no known bugs.
 
 **Phase 4b (bearings, constructions, loci — the last remaining piece of the
-original Phase 4 scope) is NOT started.** Scope, agreed back in chronology
-step 23: cosine rule in bearings (needs a new north-arrow + clockwise-arc
-diagram kind, reusing `_label`/an arc similar to `_vertex_angle_arc` —
-`triangle_rules.py`'s existing `generate_cosine_rule` SAS/SSS maths mostly
-reuses directly, reframed as a bearings word problem); three construction
-topics (angle bisector, perpendicular bisector, triangle given SSS/SAS/ASA —
-text-only "describe the method", no diagram, since a construction can't be
-numerically "solved"; confirmed in chronology step 26 that these get **no
-`verify()`** — author-review only, since there's no computational ground
-truth for "is this compass-and-straightedge description correct", unlike the
-`algebraic_proof.py`/`congruent_triangle_proof.py` curated-bank precedent
-which both have one); and loci and regions (needs an entirely new 2D diagram
-kind — the only existing "region" diagram, `draw_number_line`, is strictly
-1D; nothing 2D like a grid-region-fill or circle/arc-based locus exists to
-extend). Not yet planned in detail — do a fresh research pass (this area
-wasn't covered by Phase 4a's research) before writing code, and check with
-the user whether Phase 4b should also be sub-split, mirroring Phase 4a's own
-precedent.
+original Phase 4 scope) is FULLY PLANNED but NOT YET CODED.** The user
+confirmed Phase 4b should be one single pass (not split further). A full
+plan-mode research pass (3 parallel Explore agents + 1 Plan agent, plus two
+technical claims independently re-verified directly — ReportLab's `ArcPath`
+sweep direction, and that `fillOpacity` genuinely renders in real PDF output)
+was completed, and every open design decision was confirmed with the user.
+**The complete plan (exact topic list, diagram-kind param shapes, verification
+design, registry insertion points, test plan, build order) is preserved at
+`C:\Users\James\.claude\plans\tidy-crafting-shore.md`** (machine-local, not in
+this repo) — resume by writing/confirming the final plan from that file's
+findings (do not re-run the research) and proceeding straight to
+implementation. This CLAUDE.md section is a summary in case that file is ever
+lost; the plan file is the durable detailed copy.
+
+**Net effect once built: 6 new topics (268 → 274)** — `bearings_cosine_rule`
+(Higher, new `bearings.py`, reframes `triangle_rules.py`'s existing SAS
+cosine-rule maths as a two-leg bearings word problem, deriving the included
+angle from the two given bearings before applying the cosine rule); a new
+"Bearings" group. `construction_angle_bisector` /
+`construction_perpendicular_bisector` / `construction_triangle` (all
+Foundation, new `constructions.py`, new "Constructions" group) — confirmed
+**no `verify()` at all** (author-review only) and confirmed to use randomised
+numbers/labels embedded in fixed per-scenario method text (large combinatorial
+state space) rather than a curated `TEMPLATES` bank, since a fixed 3-entry
+bank would be thinner than any existing precedent in this app.
+`loci_constructions` (Foundation) / `loci_regions` (Higher), new `loci.py`,
+new "Loci" group — confirmed as 2 separate tier-split topics, not one
+combined topic; needs 2 new diagram kinds (`draw_bearings`;
+`draw_loci_construction`/`draw_loci_region`, the latter sharing a
+`_scaled_circle` helper that always uses `Ellipse` with separately-computed
+x/y radii rather than `Circle`, since `_draw_scaled_axes`'s pixel scaling is
+never exactly uniform even with a square data window) — confirmed to use a
+rasterized dot-mesh for shaded regions, not hand-built boolean `ArcPath`
+geometry.
 
 If the user wants something else entirely instead of continuing Phase 4b,
 check "Ideas for a future session" (bottom of this file) for other candidate
