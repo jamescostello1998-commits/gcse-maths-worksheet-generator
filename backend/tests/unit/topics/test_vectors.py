@@ -48,6 +48,31 @@ def test_geometric_vectors_has_a_diagram_and_coefficients_sum_to_one():
         assert sp.Rational(n, m + n) + sp.Rational(m, m + n) == 1
 
 
+def test_generators_use_the_vec_sentinel_for_genuine_vector_mentions():
+    # \vec{a}/\vec{b} is bolded at render time (see mathtext.py's _VECTOR_RE) -
+    # confirms vectors.py itself writes the raw sentinel, not just that it
+    # renders correctly (that's mathtext.py's own test suite's job).
+    rng = random.Random(94)
+    for _ in range(TRIALS):
+        q = vectors.generate_vectors_arithmetic_foundation(Tier.FOUNDATION, rng)
+        assert "\\vec{a}" in q.prompt
+        assert "\\vec{b}" in q.prompt
+
+
+def test_geometric_vectors_prompt_leaves_the_english_article_untouched():
+    # The one genuinely ambiguous sentence in this app ("OAB is a triangle
+    # with OA = a and OB = b") - "is a triangle" must stay a plain,
+    # unmarked "a" while the two genuine vector mentions get the sentinel.
+    rng = random.Random(95)
+    for _ in range(TRIALS):
+        q = vectors.generate_geometric_vectors(Tier.HIGHER, rng)
+        assert "is a triangle" in q.prompt
+        assert "OA = \\vec{a}" in q.prompt
+        assert "OB = \\vec{b}" in q.prompt
+        assert q.diagram.params["a_label"] == "\\vec{a}"
+        assert q.diagram.params["b_label"] == "\\vec{b}"
+
+
 def test_dedup_keys_vary_per_generator():
     for generate, tier in GENERATORS:
         rng = random.Random(93)

@@ -188,16 +188,41 @@ def test_expectation_attaches_a_dice_diagram_only_for_the_die_context():
             assert q.diagram is not None
             assert q.diagram.kind == "dice"
             saw_dice_diagram = True
-        else:
+        elif "A spinner has" not in q.prompt:
             assert q.diagram is None
             saw_no_diagram = True
     assert saw_dice_diagram
     assert saw_no_diagram
 
 
-def test_listing_outcomes_attaches_a_spinner_diagram_only_for_single_spinner_scenarios():
+def test_expectation_spinner_diagram_matches_the_stated_probability():
+    # dedup_key = f"expectation:spinner:{colour}:{numerator}:{denominator}:{trials}"
+    rng = random.Random(2140)
+    saw_diagram = False
+    saw_no_diagram_large_denominator = False
+    for _ in range(TRIALS):
+        q = probability.generate_expectation(Tier.FOUNDATION, rng)
+        if "A spinner has" not in q.prompt:
+            continue
+        parts = q.dedup_key.split(":")
+        numerator, denominator = int(parts[3]), int(parts[4])
+        if denominator <= 12:
+            assert q.diagram is not None
+            assert q.diagram.kind == "spinner"
+            assert len(q.diagram.params["sectors"]) == denominator
+            assert q.diagram.params["highlight"] == list(range(numerator))
+            saw_diagram = True
+        else:
+            assert q.diagram is None
+            saw_no_diagram_large_denominator = True
+    assert saw_diagram
+    assert saw_no_diagram_large_denominator
+
+
+def test_listing_outcomes_attaches_a_spinner_diagram_only_for_spinner_scenarios():
     rng = random.Random(215)
     saw_spinner_diagram = False
+    saw_pair_diagram = False
     saw_no_diagram = False
     for _ in range(TRIALS):
         q = probability.generate_listing_outcomes(Tier.FOUNDATION, rng)
@@ -205,8 +230,15 @@ def test_listing_outcomes_attaches_a_spinner_diagram_only_for_single_spinner_sce
             assert q.diagram is not None
             assert q.diagram.kind == "spinner"
             saw_spinner_diagram = True
+        elif q.dedup_key.startswith("listing:two_spinner3") or q.dedup_key.startswith("listing:spinner3_spinner4"):
+            assert q.diagram is not None
+            assert q.diagram.kind == "spinner_pair"
+            assert "sectors_a" in q.diagram.params
+            assert "sectors_b" in q.diagram.params
+            saw_pair_diagram = True
         else:
             assert q.diagram is None
             saw_no_diagram = True
     assert saw_spinner_diagram
+    assert saw_pair_diagram
     assert saw_no_diagram

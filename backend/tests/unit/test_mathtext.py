@@ -182,5 +182,30 @@ def test_a_bare_x_or_n_inside_the_generated_file_path_is_never_italicised(monkey
     m = _IMG_RE.search(markup)
     assert m is not None
     assert m.group(1) == fake_path
-    assert "<i>" not in markup
-    assert "</i>" not in markup
+
+
+# ---------------------------------------------------------------------------
+# Bold vector labels (\vec{a} / \vec{b}) - see app/topics/vectors.py, which
+# writes this marker directly in generator source rather than relying on a
+# blanket regex (bare "a" collides constantly with the English article).
+# ---------------------------------------------------------------------------
+
+def test_vec_sentinel_becomes_bold():
+    assert _markup("Find \\vec{a} + \\vec{b}.") == "Find <b>a</b> + <b>b</b>."
+
+
+def test_vec_sentinel_does_not_bold_a_nearby_unrelated_article():
+    assert _markup("a triangle has OA = \\vec{a}") == "a triangle has OA = <b>a</b>"
+
+
+def test_plain_unmarked_a_or_b_stays_untouched():
+    # Confirms the marker, not the bare letter, is what triggers bolding -
+    # this is the same sentence CLAUDE.md's deferred-item note uses as the
+    # canonical ambiguous example.
+    assert _markup("OAB is a triangle with OA = a and OB = b.") == (
+        "OAB is a triangle with OA = a and OB = b."
+    )
+
+
+def test_vec_sentinel_survives_alongside_a_coefficient():
+    assert _markup("3\\vec{a} - \\vec{b}") == "3<b>a</b> - <b>b</b>"

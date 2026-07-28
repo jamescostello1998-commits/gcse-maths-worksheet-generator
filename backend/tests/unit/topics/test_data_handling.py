@@ -165,11 +165,23 @@ def test_relative_frequency_attaches_a_dice_diagram_only_for_the_biased_dice_con
             assert q.diagram.kind == "dice"
             assert q.diagram.params["values"] == [6]
             saw_dice_diagram = True
-        else:
+        elif "A spinner is tested" not in q.prompt:
             assert q.diagram is None
             saw_no_diagram = True
     assert saw_dice_diagram
     assert saw_no_diagram
+
+
+def test_relative_frequency_attaches_a_spinner_diagram_for_the_spinner_context():
+    rng = random.Random(4440)
+    saw_spinner_diagram = False
+    for _ in range(TRIALS):
+        q = data_handling.generate_relative_frequency(Tier.FOUNDATION, rng)
+        if "A spinner is tested" in q.prompt:
+            assert q.diagram is not None
+            assert q.diagram.kind == "spinner"
+            saw_spinner_diagram = True
+    assert saw_spinner_diagram
 
 
 def test_modelled_example_two_way_tables_produces_verified_examples():

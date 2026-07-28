@@ -9,6 +9,16 @@ SECTION = "geometry"
 GROUP_ARITHMETIC = "Vectors"
 GROUP_GEOMETRIC = "Geometric Vectors"
 
+# The \vec{a}/\vec{b} marker (see app/pdf/mathtext.py's _VECTOR_RE and
+# app/pdf/diagrams.py's _TEXT_RUN_RE) bolds a genuine vector mention at
+# render time - written explicitly here, at the source, rather than matched
+# by a blanket regex, since "a" collides constantly with the English
+# indefinite article ("OAB is a triangle...") and can't be told apart from a
+# genuine vector mention by pattern alone. Plain string literals, not
+# f-strings, so no brace-escaping is ever needed at any call site below.
+_VEC_A = "\\vec{a}"
+_VEC_B = "\\vec{b}"
+
 _RATIO_CHOICES = [
     (1, 1), (1, 2), (2, 1), (1, 3), (3, 1), (1, 4), (4, 1), (1, 5), (5, 1),
     (2, 3), (3, 2), (2, 5), (5, 2), (3, 4), (4, 3), (3, 5), (5, 3), (4, 5), (5, 4),
@@ -53,19 +63,19 @@ def _vector_arithmetic(rng: random.Random, *, coord_range: int, k_range, m_range
     if (int(check[0]), int(check[1])) != (rx, ry):
         raise ValueError("vectors_arithmetic verification failed: sympy cross-check mismatch")
 
-    k_term = "a" if k == 1 else f"{k}a"
-    m_term = "b" if m == 1 else f"{m}b"
+    k_term = _VEC_A if k == 1 else f"{k}{_VEC_A}"
+    m_term = _VEC_B if m == 1 else f"{m}{_VEC_B}"
     expr = f"{k_term} {op} {m_term}"
 
     steps = [
-        f"a = {_fmt_vector((ax, ay))}, b = {_fmt_vector((bx, by))}",
+        f"{_VEC_A} = {_fmt_vector((ax, ay))}, {_VEC_B} = {_fmt_vector((bx, by))}",
         f"{k_term} = {_fmt_vector((k * ax, k * ay))} and {m_term} = {_fmt_vector((m * bx, m * by))}",
         f"{expr} = {_fmt_vector((rx, ry))}",
     ]
     return Question(
         topic_id=topic_id,
         tier=tier,
-        prompt=f"a = {_fmt_vector((ax, ay))} and b = {_fmt_vector((bx, by))}. Find {expr}.",
+        prompt=f"{_VEC_A} = {_fmt_vector((ax, ay))} and {_VEC_B} = {_fmt_vector((bx, by))}. Find {expr}.",
         solution_steps=tuple(steps),
         final_answer=_fmt_vector((rx, ry)),
         dedup_key=f"vec_arith:{ax}:{ay}:{bx}:{by}:{k}:{m}:{op}",
@@ -91,8 +101,8 @@ def _modelled_vector_arithmetic(rng: random.Random, *, coord_range: int, k_range
     if (int(check[0]), int(check[1])) != (rx, ry):
         raise ValueError("modelled example vectors_arithmetic verification failed: sympy cross-check mismatch")
 
-    k_term = "a" if k == 1 else f"{k}a"
-    m_term = "b" if m == 1 else f"{m}b"
+    k_term = _VEC_A if k == 1 else f"{k}{_VEC_A}"
+    m_term = _VEC_B if m == 1 else f"{m}{_VEC_B}"
     expr = f"{k_term} {op} {m_term}"
     verb = "adding" if op == "+" else "subtracting"
 
@@ -100,22 +110,22 @@ def _modelled_vector_arithmetic(rng: random.Random, *, coord_range: int, k_range
         "A vector is scaled by multiplying every one of its components by the same number, and two "
         "vectors are combined by adding or subtracting matching components separately - x with x, "
         "and y with y.",
-        f"First scale each vector on its own. {k_term} means multiply every component of a by {k}, "
-        f"giving {_fmt_vector((k * ax, k * ay))}. Similarly {m_term} means multiply every component "
-        f"of b by {m}, giving {_fmt_vector((m * bx, m * by))}.",
+        f"First scale each vector on its own. {k_term} means multiply every component of {_VEC_A} by "
+        f"{k}, giving {_fmt_vector((k * ax, k * ay))}. Similarly {m_term} means multiply every "
+        f"component of {_VEC_B} by {m}, giving {_fmt_vector((m * bx, m * by))}.",
         f"Now combine the two scaled vectors component-by-component, {verb} the x-components together "
         "and the y-components together.",
         f"This gives the final answer, {_fmt_vector((rx, ry))}.",
     ]
     worked_calculation = [
-        f"a = {_fmt_vector((ax, ay))}, b = {_fmt_vector((bx, by))}",
+        f"{_VEC_A} = {_fmt_vector((ax, ay))}, {_VEC_B} = {_fmt_vector((bx, by))}",
         f"{k_term} = {_fmt_vector((k * ax, k * ay))}, {m_term} = {_fmt_vector((m * bx, m * by))}",
         f"{expr} = {_fmt_vector((rx, ry))}",
     ]
     return ModelledExample(
         topic_id=topic_id,
         tier=tier,
-        prompt=f"a = {_fmt_vector((ax, ay))} and b = {_fmt_vector((bx, by))}. Find {expr}.",
+        prompt=f"{_VEC_A} = {_fmt_vector((ax, ay))} and {_VEC_B} = {_fmt_vector((bx, by))}. Find {expr}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=_fmt_vector((rx, ry)),
@@ -184,8 +194,8 @@ def _fmt_signed_term(coeff: sp.Rational, letter: str, is_first: bool) -> str:
 
 
 def _fmt_vector_expr(coeff_a: sp.Rational, coeff_b: sp.Rational) -> str:
-    parts = [p for p in [_fmt_signed_term(coeff_a, "a", is_first=True)] if p]
-    b_term = _fmt_signed_term(coeff_b, "b", is_first=not parts)
+    parts = [p for p in [_fmt_signed_term(coeff_a, _VEC_A, is_first=True)] if p]
+    b_term = _fmt_signed_term(coeff_b, _VEC_B, is_first=not parts)
     if b_term:
         parts.append(b_term)
     return " ".join(parts) if parts else "0"
@@ -226,13 +236,15 @@ def generate_geometric_vectors(tier: Tier, rng: random.Random) -> Question:
     answer = _fmt_vector_expr(coeff_a, coeff_b)
 
     steps = [
-        "AB = OB - OA = b - a",
-        f"A{point_label} = ({m}/{m + n})AB = ({m}/{m + n})(b - a)",
+        f"AB = OB - OA = {_VEC_B} - {_VEC_A}",
+        f"A{point_label} = ({m}/{m + n})AB = ({m}/{m + n})({_VEC_B} - {_VEC_A})",
     ]
     if target == "OP":
-        steps.append(f"{vec_name} = OA + A{point_label} = a + ({m}/{m + n})(b - a) = {answer}")
+        steps.append(
+            f"{vec_name} = OA + A{point_label} = {_VEC_A} + ({m}/{m + n})({_VEC_B} - {_VEC_A}) = {answer}"
+        )
     elif target == "AP":
-        steps.append(f"{vec_name} = ({m}/{m + n})(b - a) = {answer}")
+        steps.append(f"{vec_name} = ({m}/{m + n})({_VEC_B} - {_VEC_A}) = {answer}")
     else:
         steps.append(f"{vec_name} = OB - O{point_label} = {answer}")
 
@@ -240,16 +252,16 @@ def generate_geometric_vectors(tier: Tier, rng: random.Random) -> Question:
         topic_id="geometric_vectors",
         tier=Tier.HIGHER,
         prompt=(
-            f"OAB is a triangle with OA = a and OB = b. Point {point_label} lies on AB such that "
-            f"A{point_label}:{point_label}B = {m}:{n}. Find the vector {vec_name} in terms of "
-            "a and b, giving your answer in its simplest form."
+            f"OAB is a triangle with OA = {_VEC_A} and OB = {_VEC_B}. Point {point_label} lies on AB "
+            f"such that A{point_label}:{point_label}B = {m}:{n}. Find the vector {vec_name} in terms "
+            f"of {_VEC_A} and {_VEC_B}, giving your answer in its simplest form."
         ),
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=f"geo_vec:{m}:{n}:{target}",
         diagram=DiagramSpec(
             kind="vector_triangle",
-            params={"ratio": [m, n], "point_label": point_label, "a_label": "a", "b_label": "b", "origin_label": "O"},
+            params={"ratio": [m, n], "point_label": point_label, "a_label": _VEC_A, "b_label": _VEC_B, "origin_label": "O"},
         ),
     )
 
@@ -291,26 +303,26 @@ def generate_modelled_example_geometric_vectors(tier: Tier, rng: random.Random) 
         "The key idea is that any point sitting on a straight line between two other points can be "
         "written as a fraction of the way along the vector connecting them - so the first job is "
         "always to find that connecting vector.",
-        "AB = OB - OA = b - a, since travelling from A to B is the same as undoing the trip from O to "
-        "A, then making the trip from O to B.",
+        f"AB = OB - OA = {_VEC_B} - {_VEC_A}, since travelling from A to B is the same as undoing the "
+        "trip from O to A, then making the trip from O to B.",
         f"{point_label} divides AB in the ratio {m}:{n}, so it sits ({m}/{m + n}) of the way from A to "
-        f"B: A{point_label} = ({m}/{m + n})AB = ({m}/{m + n})(b - a).",
+        f"B: A{point_label} = ({m}/{m + n})AB = ({m}/{m + n})({_VEC_B} - {_VEC_A}).",
     ]
     worked_calculation = [
-        "AB = OB - OA = b - a",
-        f"A{point_label} = ({m}/{m + n})(b - a)",
+        f"AB = OB - OA = {_VEC_B} - {_VEC_A}",
+        f"A{point_label} = ({m}/{m + n})({_VEC_B} - {_VEC_A})",
     ]
     if target == "OP":
         teaching_steps.append(
-            f"To reach {vec_name} starting from the origin O, first travel to A (that's vector a), "
-            f"then continue along A{point_label}: {vec_name} = OA + A{point_label} = "
-            f"a + ({m}/{m + n})(b - a) = {answer}."
+            f"To reach {vec_name} starting from the origin O, first travel to A (that's vector "
+            f"{_VEC_A}), then continue along A{point_label}: {vec_name} = OA + A{point_label} = "
+            f"{_VEC_A} + ({m}/{m + n})({_VEC_B} - {_VEC_A}) = {answer}."
         )
-        worked_calculation.append(f"{vec_name} = a + ({m}/{m + n})(b - a) = {answer}")
+        worked_calculation.append(f"{vec_name} = {_VEC_A} + ({m}/{m + n})({_VEC_B} - {_VEC_A}) = {answer}")
     elif target == "AP":
         teaching_steps.append(
             f"{vec_name} IS the vector A{point_label} that was just found, so no extra work is needed "
-            f"here: {vec_name} = ({m}/{m + n})(b - a) = {answer}."
+            f"here: {vec_name} = ({m}/{m + n})({_VEC_B} - {_VEC_A}) = {answer}."
         )
         worked_calculation.append(f"{vec_name} = {answer}")
     else:
@@ -325,16 +337,16 @@ def generate_modelled_example_geometric_vectors(tier: Tier, rng: random.Random) 
         topic_id="geometric_vectors",
         tier=Tier.HIGHER,
         prompt=(
-            f"OAB is a triangle with OA = a and OB = b. Point {point_label} lies on AB such that "
-            f"A{point_label}:{point_label}B = {m}:{n}. Find the vector {vec_name} in terms of "
-            "a and b, giving your answer in its simplest form."
+            f"OAB is a triangle with OA = {_VEC_A} and OB = {_VEC_B}. Point {point_label} lies on AB "
+            f"such that A{point_label}:{point_label}B = {m}:{n}. Find the vector {vec_name} in terms "
+            f"of {_VEC_A} and {_VEC_B}, giving your answer in its simplest form."
         ),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
         diagram=DiagramSpec(
             kind="vector_triangle",
-            params={"ratio": [m, n], "point_label": point_label, "a_label": "a", "b_label": "b", "origin_label": "O"},
+            params={"ratio": [m, n], "point_label": point_label, "a_label": _VEC_A, "b_label": _VEC_B, "origin_label": "O"},
         ),
     )
 

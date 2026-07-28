@@ -618,13 +618,8 @@ def generate_modelled_example_frustum_volume_surface_area(tier: Tier, rng: rando
 
 
 # ---------------------------------------------------------------------------
-# Topic 4: Compound 3D Shapes (volume only - see module docstring note below)
+# Topic 4: Compound 3D Shapes (volume)
 # ---------------------------------------------------------------------------
-# Surface area is deliberately out of scope for compound 3D shapes: getting it
-# right would mean carefully excluding the internal "join" face shared by the
-# two component solids (e.g. the circle where a hemisphere meets a cylinder),
-# which is a genuinely different - and riskier - problem than volume (where
-# the two component volumes simply add). Left for a possible future session.
 
 def generate_compound_3d_volume(tier: Tier, rng: random.Random) -> Question:
     for _ in range(20):
@@ -928,6 +923,365 @@ def generate_modelled_example_compound_3d_volume(tier: Tier, rng: random.Random)
 
 
 # ---------------------------------------------------------------------------
+# Topic 5: Compound 3D Shapes (surface area)
+# ---------------------------------------------------------------------------
+# Unlike volume, surface area must exclude the internal "join" face shared by
+# the two component solids (e.g. the flat circle where a hemisphere meets a
+# cylinder) - the exact problem compound_3d_volume's original design
+# deliberately avoided. All three variants below end up as rounded 3-s.f.
+# decimals (unlike compound_3d_volume, where cuboid_pyramid alone was exact)
+# since this topic's cuboid_pyramid slant height is routinely irrational -
+# matches the sibling standalone pyramid topic's own surface-area branch,
+# which accepts the same trade-off for the same reason.
+
+def generate_compound_3d_surface_area(tier: Tier, rng: random.Random) -> Question:
+    for _ in range(20):
+        variant = rng.choice(["cylinder_hemisphere", "cone_hemisphere", "cuboid_pyramid"])
+        if variant in ("cylinder_hemisphere", "cone_hemisphere", "cuboid_pyramid"):
+            break
+    else:
+        raise ValueError("compound_3d_surface_area could not draw a valid variant")
+
+    if variant == "cylinder_hemisphere":
+        radius = rng.randint(2, 10)
+        cyl_height = rng.randint(3, 20)
+
+        # Exposed surface: cylinder's curved side + cylinder's own flat
+        # bottom + hemisphere's curved surface. NOT included: the cylinder's
+        # top (covered by the hemisphere) or the hemisphere's flat face
+        # (glued to the cylinder top) - both are internal.
+        sa_exact = 2 * sp.pi * radius * cyl_height + 3 * sp.pi * radius**2
+        decimal_answer = sp.N(sa_exact, 3)
+
+        independent_total = 2 * math.pi * radius * cyl_height + 3 * math.pi * radius**2
+        if abs(float(decimal_answer) - independent_total) / independent_total > 0.01:
+            raise ValueError("compound_3d_surface_area (cylinder_hemisphere) verification failed")
+        decimal_str = _fmt_sig3(sa_exact)
+
+        steps = [
+            f"Cylinder curved surface = 2 × π × r × h = 2 × π × {radius} × {cyl_height}",
+            f"Cylinder base = π × r² = π × {radius}² (the top is covered by the hemisphere, "
+            "so it's excluded)",
+            f"Hemisphere curved surface = 2 × π × r² = 2 × π × {radius}² (its flat face is "
+            "glued to the cylinder, so it's excluded too)",
+            f"Total surface area ≈ {decimal_str} cm² (3 s.f.)",
+        ]
+        prompt = (
+            f"A capsule-shaped solid is made from a cylinder of radius {radius} cm and height "
+            f"{cyl_height} cm, with a hemisphere of the same radius attached to one end. Find "
+            "the total surface area, correct to 3 significant figures."
+        )
+        dedup_key = f"compound3d_sa:cyl_hemi:{radius}:{cyl_height}"
+        diagram = DiagramSpec(
+            kind="compound_3d",
+            params={
+                "variant": "cylinder_hemisphere",
+                "radius_label": f"{radius} cm",
+                "height_label": f"{cyl_height} cm",
+            },
+        )
+        final_answer = f"{decimal_str} cm²"
+
+    elif variant == "cone_hemisphere":
+        radius = rng.randint(2, 10)
+        cone_height = rng.randint(3, 20)
+
+        l_exact = sp.sqrt(radius**2 + cone_height**2)
+        l_float_from_sympy = float(sp.N(l_exact, 10))
+        # Independent check (a): re-derive l via a second, plain math.sqrt-based
+        # float computation rather than sympy's symbolic sqrt.
+        l_float_independent = math.sqrt(radius**2 + cone_height**2)
+        if abs(l_float_from_sympy - l_float_independent) > 1e-6:
+            raise ValueError("compound_3d_surface_area (cone_hemisphere) slant height verification failed")
+
+        # Exposed surface: cone's curved side + hemisphere's curved surface.
+        # NOT included: the cone has no base circle here (its open end is
+        # where the hemisphere attaches), and the hemisphere's flat face is
+        # glued on - both internal.
+        sa_exact = sp.pi * radius * l_exact + 2 * sp.pi * radius**2
+        decimal_answer = sp.N(sa_exact, 3)
+
+        # Independent check (b): recompute total surface area via a fully
+        # separate math-library float computation against the sympy-based one.
+        sa_float_independent = math.pi * radius * l_float_independent + 2 * math.pi * radius**2
+        if abs(float(decimal_answer) - sa_float_independent) / sa_float_independent > 0.01:
+            raise ValueError("compound_3d_surface_area (cone_hemisphere) verification failed")
+        decimal_str = _fmt_sig3(sa_exact)
+        l_display = _fmt_sig3(l_exact)
+
+        steps = [
+            f"Slant height l = √(r² + h²) = √({radius}² + {cone_height}²) ≈ {l_display} cm",
+            f"Cone curved surface = π × r × l = π × {radius} × {l_display}",
+            f"Hemisphere curved surface = 2 × π × r² = 2 × π × {radius}² (the cone's base and "
+            "the hemisphere's flat face are both glued together internally, so neither is exposed)",
+            f"Total surface area ≈ {decimal_str} cm² (3 s.f.)",
+        ]
+        prompt = (
+            f"An ice-cream-shaped solid is made from a cone of radius {radius} cm and height "
+            f"{cone_height} cm, with a hemisphere of the same radius attached to its open end. "
+            "Find the total surface area, correct to 3 significant figures."
+        )
+        dedup_key = f"compound3d_sa:cone_hemi:{radius}:{cone_height}"
+        diagram = DiagramSpec(
+            kind="compound_3d",
+            params={
+                "variant": "cone_hemisphere",
+                "radius_label": f"{radius} cm",
+                "cone_height_label": f"{cone_height} cm",
+            },
+        )
+        final_answer = f"{decimal_str} cm²"
+
+    else:  # cuboid_pyramid
+        base = rng.randint(4, 16)
+        box_height = rng.randint(3, 15)
+        roof_height = rng.randint(2, 10)
+
+        slant_exact = sp.sqrt(roof_height**2 + sp.Rational(base, 2) ** 2)
+        slant_float_from_sympy = float(sp.N(slant_exact, 10))
+        slant_float_independent = math.sqrt(roof_height**2 + (base / 2) ** 2)
+        if abs(slant_float_from_sympy - slant_float_independent) > 1e-6:
+            raise ValueError("compound_3d_surface_area (cuboid_pyramid) slant height verification failed")
+
+        # Exposed surface: cuboid's 4 vertical faces + cuboid's own bottom +
+        # pyramid's 4 triangular faces. NOT included: the cuboid's top and the
+        # pyramid's own base - the same square, entirely internal between the
+        # two solids.
+        sa_exact = 4 * base * box_height + base**2 + 2 * base * slant_exact
+        decimal_answer = sp.N(sa_exact, 3)
+
+        sa_float_independent = 4 * base * box_height + base**2 + 2 * base * slant_float_independent
+        if abs(float(decimal_answer) - sa_float_independent) / sa_float_independent > 0.01:
+            raise ValueError("compound_3d_surface_area (cuboid_pyramid) verification failed")
+        decimal_str = _fmt_sig3(sa_exact)
+        slant_display = _fmt_sig3(slant_exact)
+
+        steps = [
+            f"Slant height of a triangular face l = √(roof height² + (base ÷ 2)²) = "
+            f"√({roof_height}² + ({base} ÷ 2)²) ≈ {slant_display} cm",
+            f"Cuboid's 4 vertical faces = 4 × base × height = 4 × {base} × {box_height}",
+            f"Cuboid's base = base² = {base}² (the top is covered by the pyramid, and the "
+            "pyramid's own base is the same internal square, so neither is exposed)",
+            f"Pyramid's 4 triangular faces = 2 × base × l = 2 × {base} × {slant_display}",
+            f"Total surface area ≈ {decimal_str} cm² (3 s.f.)",
+        ]
+        prompt = (
+            f"A silo-shaped solid is made from a cuboid with a square base of side {base} cm "
+            f"and height {box_height} cm, with a square-based pyramid of height {roof_height} cm "
+            "on top (sharing the same square base). Find the total surface area, correct to 3 "
+            "significant figures."
+        )
+        dedup_key = f"compound3d_sa:cuboid_pyr:{base}:{box_height}:{roof_height}"
+        diagram = DiagramSpec(
+            kind="compound_3d",
+            params={
+                "variant": "cuboid_pyramid",
+                "base_label": f"{base} cm",
+                "roof_height_label": f"{roof_height} cm",
+            },
+        )
+        final_answer = f"{decimal_str} cm²"
+
+    return Question(
+        topic_id="compound_3d_surface_area",
+        tier=Tier.HIGHER,
+        prompt=prompt,
+        solution_steps=tuple(steps),
+        final_answer=final_answer,
+        dedup_key=dedup_key,
+        diagram=diagram,
+    )
+
+
+def generate_modelled_example_compound_3d_surface_area(tier: Tier, rng: random.Random) -> ModelledExample:
+    for _ in range(20):
+        variant = rng.choice(["cylinder_hemisphere", "cone_hemisphere", "cuboid_pyramid"])
+        if variant in ("cylinder_hemisphere", "cone_hemisphere", "cuboid_pyramid"):
+            break
+    else:
+        raise ValueError("modelled example compound_3d_surface_area could not draw a valid variant")
+
+    if variant == "cylinder_hemisphere":
+        radius = rng.randint(2, 10)
+        cyl_height = rng.randint(3, 20)
+
+        sa_exact = 2 * sp.pi * radius * cyl_height + 3 * sp.pi * radius**2
+        decimal_answer = sp.N(sa_exact, 3)
+
+        independent_total = 2 * math.pi * radius * cyl_height + 3 * math.pi * radius**2
+        if abs(float(decimal_answer) - independent_total) / independent_total > 0.01:
+            raise ValueError("modelled example compound_3d_surface_area (cylinder_hemisphere) verification failed")
+        decimal_str = _fmt_sig3(sa_exact)
+        curved_str = _fmt_sig3(2 * sp.pi * radius * cyl_height)
+        base_str = _fmt_sig3(sp.pi * radius**2)
+        hemi_str = _fmt_sig3(2 * sp.pi * radius**2)
+
+        teaching_steps = [
+            "For a compound solid's surface area, only the faces you can actually see or touch "
+            "from outside count - anywhere two parts are glued together, that shared face is "
+            "hidden inside the solid and must be left out entirely.",
+            f"The cylinder contributes its curved side, 2 × π × r × h = 2 × π × {radius} × "
+            f"{cyl_height} ≈ {curved_str} cm², and its own flat bottom, π × r² = π × {radius}² "
+            f"≈ {base_str} cm² - but NOT its top, since the hemisphere is glued there.",
+            f"The hemisphere contributes only its curved surface, 2 × π × r² = 2 × π × "
+            f"{radius}² ≈ {hemi_str} cm² - its flat circular face is the one glued to the "
+            "cylinder's top, so it's hidden and doesn't count.",
+            f"Add the three exposed pieces together: {curved_str} + {base_str} + {hemi_str} "
+            f"≈ {decimal_str} cm² (3 s.f.).",
+        ]
+        worked_calculation = [
+            f"Cylinder curved = 2 × π × {radius} × {cyl_height} ≈ {curved_str} cm²",
+            f"Cylinder base = π × {radius}² ≈ {base_str} cm²",
+            f"Hemisphere curved = 2 × π × {radius}² ≈ {hemi_str} cm²",
+            f"Total ≈ {decimal_str} cm²",
+        ]
+        prompt = (
+            f"A capsule-shaped solid is made from a cylinder of radius {radius} cm and height "
+            f"{cyl_height} cm, with a hemisphere of the same radius attached to one end. Find "
+            "the total surface area, correct to 3 significant figures."
+        )
+        final_answer = f"{decimal_str} cm²"
+        diagram = DiagramSpec(
+            kind="compound_3d",
+            params={
+                "variant": "cylinder_hemisphere",
+                "radius_label": f"{radius} cm",
+                "height_label": f"{cyl_height} cm",
+            },
+        )
+
+    elif variant == "cone_hemisphere":
+        radius = rng.randint(2, 10)
+        cone_height = rng.randint(3, 20)
+
+        l_exact = sp.sqrt(radius**2 + cone_height**2)
+        l_float_from_sympy = float(sp.N(l_exact, 10))
+        l_float_independent = math.sqrt(radius**2 + cone_height**2)
+        if abs(l_float_from_sympy - l_float_independent) > 1e-6:
+            raise ValueError(
+                "modelled example compound_3d_surface_area (cone_hemisphere) slant height verification failed"
+            )
+
+        sa_exact = sp.pi * radius * l_exact + 2 * sp.pi * radius**2
+        decimal_answer = sp.N(sa_exact, 3)
+
+        sa_float_independent = math.pi * radius * l_float_independent + 2 * math.pi * radius**2
+        if abs(float(decimal_answer) - sa_float_independent) / sa_float_independent > 0.01:
+            raise ValueError("modelled example compound_3d_surface_area (cone_hemisphere) verification failed")
+        decimal_str = _fmt_sig3(sa_exact)
+        l_display = _fmt_sig3(l_exact)
+        cone_str = _fmt_sig3(sp.pi * radius * l_exact)
+        hemi_str = _fmt_sig3(2 * sp.pi * radius**2)
+
+        teaching_steps = [
+            "As with any compound solid, only the outside-facing surfaces count - wherever the "
+            "cone and hemisphere are glued together, that shared circular face is hidden inside "
+            "and must be left out.",
+            f"First find the cone's slant height using Pythagoras: l = √(r² + h²) = "
+            f"√({radius}² + {cone_height}²) ≈ {l_display} cm.",
+            f"The cone contributes its curved surface, π × r × l = π × {radius} × {l_display} "
+            f"≈ {cone_str} cm² - it has no base circle exposed here, since that's exactly where "
+            "the hemisphere attaches.",
+            f"The hemisphere contributes only its curved surface, 2 × π × r² = 2 × π × "
+            f"{radius}² ≈ {hemi_str} cm² - its flat face is glued to the cone, so it's hidden.",
+            f"Add the two exposed pieces: {cone_str} + {hemi_str} ≈ {decimal_str} cm² (3 s.f.).",
+        ]
+        worked_calculation = [
+            f"l = √({radius}² + {cone_height}²) ≈ {l_display} cm",
+            f"Cone curved = π × {radius} × {l_display} ≈ {cone_str} cm²",
+            f"Hemisphere curved = 2 × π × {radius}² ≈ {hemi_str} cm²",
+            f"Total ≈ {decimal_str} cm²",
+        ]
+        prompt = (
+            f"An ice-cream-shaped solid is made from a cone of radius {radius} cm and height "
+            f"{cone_height} cm, with a hemisphere of the same radius attached to its open end. "
+            "Find the total surface area, correct to 3 significant figures."
+        )
+        final_answer = f"{decimal_str} cm²"
+        diagram = DiagramSpec(
+            kind="compound_3d",
+            params={
+                "variant": "cone_hemisphere",
+                "radius_label": f"{radius} cm",
+                "cone_height_label": f"{cone_height} cm",
+            },
+        )
+
+    else:  # cuboid_pyramid
+        base = rng.randint(4, 16)
+        box_height = rng.randint(3, 15)
+        roof_height = rng.randint(2, 10)
+
+        slant_exact = sp.sqrt(roof_height**2 + sp.Rational(base, 2) ** 2)
+        slant_float_from_sympy = float(sp.N(slant_exact, 10))
+        slant_float_independent = math.sqrt(roof_height**2 + (base / 2) ** 2)
+        if abs(slant_float_from_sympy - slant_float_independent) > 1e-6:
+            raise ValueError(
+                "modelled example compound_3d_surface_area (cuboid_pyramid) slant height verification failed"
+            )
+
+        sa_exact = 4 * base * box_height + base**2 + 2 * base * slant_exact
+        decimal_answer = sp.N(sa_exact, 3)
+
+        sa_float_independent = 4 * base * box_height + base**2 + 2 * base * slant_float_independent
+        if abs(float(decimal_answer) - sa_float_independent) / sa_float_independent > 0.01:
+            raise ValueError("modelled example compound_3d_surface_area (cuboid_pyramid) verification failed")
+        decimal_str = _fmt_sig3(sa_exact)
+        slant_display = _fmt_sig3(slant_exact)
+        sides_val = 4 * base * box_height
+        pyramid_faces_str = _fmt_sig3(2 * base * slant_exact)
+
+        teaching_steps = [
+            "Again, only the outside-facing surfaces count - the cuboid's top and the pyramid's "
+            "base are the same square sitting between the two solids, entirely hidden, so both "
+            "are left out.",
+            f"The cuboid contributes its 4 vertical sides, 4 × base × height = 4 × {base} × "
+            f"{box_height} = {sides_val} cm², plus its own bottom, base² = {base}² = "
+            f"{base**2} cm² - but not its top.",
+            f"The pyramid's slant height (apex to the midpoint of a base edge) comes from "
+            f"Pythagoras: l = √(roof height² + (base ÷ 2)²) = √({roof_height}² + "
+            f"({base} ÷ 2)²) ≈ {slant_display} cm.",
+            f"The pyramid contributes its 4 triangular faces, 2 × base × l = 2 × {base} × "
+            f"{slant_display} ≈ {pyramid_faces_str} cm² - but not its own base, since that's "
+            "the same square already counted as the cuboid's bottom.",
+            f"Add the exposed pieces together: {sides_val} + {base**2} + {pyramid_faces_str} "
+            f"≈ {decimal_str} cm² (3 s.f.).",
+        ]
+        worked_calculation = [
+            f"Cuboid sides = 4 × {base} × {box_height} = {sides_val} cm²",
+            f"Cuboid base = {base}² = {base**2} cm²",
+            f"l = √({roof_height}² + ({base} ÷ 2)²) ≈ {slant_display} cm",
+            f"Pyramid faces = 2 × {base} × {slant_display} ≈ {pyramid_faces_str} cm²",
+            f"Total ≈ {decimal_str} cm²",
+        ]
+        prompt = (
+            f"A silo-shaped solid is made from a cuboid with a square base of side {base} cm "
+            f"and height {box_height} cm, with a square-based pyramid of height {roof_height} cm "
+            "on top (sharing the same square base). Find the total surface area, correct to 3 "
+            "significant figures."
+        )
+        final_answer = f"{decimal_str} cm²"
+        diagram = DiagramSpec(
+            kind="compound_3d",
+            params={
+                "variant": "cuboid_pyramid",
+                "base_label": f"{base} cm",
+                "roof_height_label": f"{roof_height} cm",
+            },
+        )
+
+    return ModelledExample(
+        topic_id="compound_3d_surface_area",
+        tier=Tier.HIGHER,
+        prompt=prompt,
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=final_answer,
+        diagram=diagram,
+    )
+
+
+# ---------------------------------------------------------------------------
 # Topic definitions
 # ---------------------------------------------------------------------------
 
@@ -973,4 +1327,15 @@ TOPIC_COMPOUND_3D_VOLUME = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_compound_3d_volume,
+)
+
+TOPIC_COMPOUND_3D_SURFACE_AREA = TopicDefinition(
+    id="compound_3d_surface_area",
+    display_name="Compound 3D Shapes (Surface Area)",
+    description="Find the surface area of a compound solid made from two joined 3D shapes.",
+    generate=generate_compound_3d_surface_area,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_compound_3d_surface_area,
 )

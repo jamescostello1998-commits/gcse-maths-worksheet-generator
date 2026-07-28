@@ -12,6 +12,7 @@ GENERATORS = [
     (solids.generate_volume_surface_area_pyramid, Tier.HIGHER),
     (solids.generate_frustum_volume_surface_area, Tier.HIGHER),
     (solids.generate_compound_3d_volume, Tier.HIGHER),
+    (solids.generate_compound_3d_surface_area, Tier.HIGHER),
 ]
 
 
@@ -20,6 +21,7 @@ EXPECTED_DIAGRAM_KINDS = {
     solids.generate_volume_surface_area_pyramid: "pyramid",
     solids.generate_frustum_volume_surface_area: "frustum",
     solids.generate_compound_3d_volume: "compound_3d",
+    solids.generate_compound_3d_surface_area: "compound_3d",
 }
 
 
@@ -210,7 +212,7 @@ def test_frustum_diagram_params_match_dedup_key_values():
 
 
 # ---------------------------------------------------------------------------
-# Compound 3D (volume only)
+# Compound 3D (volume)
 # ---------------------------------------------------------------------------
 
 def test_compound_3d_covers_all_three_variants():
@@ -246,6 +248,63 @@ def test_compound_3d_curved_variants_give_rounded_decimal_answers():
 
 
 # ---------------------------------------------------------------------------
+# Compound 3D (surface area)
+# ---------------------------------------------------------------------------
+# Unlike the volume topic above, EVERY variant here is a rounded decimal -
+# the cuboid_pyramid variant's slant height (sqrt(roof_height^2 +
+# (base/2)^2)) is routinely irrational, unlike its exact volume counterpart.
+
+def test_compound_3d_surface_area_covers_all_three_variants():
+    rng = random.Random(600)
+    variants_seen = {q.diagram.params["variant"] for q in (
+        solids.generate_compound_3d_surface_area(Tier.HIGHER, rng) for _ in range(TRIALS)
+    )}
+    assert variants_seen == {"cylinder_hemisphere", "cone_hemisphere", "cuboid_pyramid"}
+
+
+def test_compound_3d_surface_area_cuboid_pyramid_is_rounded_and_pi_free():
+    rng = random.Random(601)
+    found = False
+    for _ in range(TRIALS):
+        q = solids.generate_compound_3d_surface_area(Tier.HIGHER, rng)
+        if q.diagram.params["variant"] == "cuboid_pyramid":
+            found = True
+            assert "π" not in q.final_answer
+            assert "cm²" in q.final_answer
+    assert found
+
+
+def test_compound_3d_surface_area_curved_variants_are_pi_free_in_final_answer():
+    # π is fine in the intermediate solution_steps (it's part of the working)
+    # but the final_answer itself is always a rounded decimal, same as the
+    # volume sibling's curved variants.
+    rng = random.Random(602)
+    seen_curved = False
+    for _ in range(TRIALS):
+        q = solids.generate_compound_3d_surface_area(Tier.HIGHER, rng)
+        if q.diagram.params["variant"] in ("cylinder_hemisphere", "cone_hemisphere"):
+            seen_curved = True
+            assert "π" not in q.final_answer
+            assert "cm²" in q.final_answer
+    assert seen_curved
+
+
+def test_compound_3d_surface_area_cuboid_pyramid_is_strictly_less_than_naively_including_both_internal_faces():
+    # A direct, exact cross-check for the one variant with no irrationality
+    # involved anywhere except the slant height: the real formula (excluding
+    # the cuboid's top / pyramid's base, the shared internal square) must give
+    # a strictly smaller total than a naive version that mistakenly includes
+    # both of those flat faces - confirming the exclusion is real, not just
+    # that some plausible-looking rounded number came out.
+    for base, box_height, roof_height in [(4, 3, 2), (10, 8, 5), (16, 15, 10), (7, 4, 9)]:
+        slant = float(sp.sqrt(roof_height**2 + sp.Rational(base, 2) ** 2))
+        correct_sa = 4 * base * box_height + base**2 + 2 * base * slant
+        naive_sa_with_both_internal_faces = 4 * base * box_height + 2 * base**2 + 2 * base * slant
+        assert correct_sa < naive_sa_with_both_internal_faces
+        assert naive_sa_with_both_internal_faces - correct_sa == base**2
+
+
+# ---------------------------------------------------------------------------
 # Topic metadata
 # ---------------------------------------------------------------------------
 
@@ -254,6 +313,7 @@ ALL_TOPICS = [
     solids.TOPIC_VOLUME_SURFACE_AREA_PYRAMID,
     solids.TOPIC_FRUSTUM_VOLUME_SURFACE_AREA,
     solids.TOPIC_COMPOUND_3D_VOLUME,
+    solids.TOPIC_COMPOUND_3D_SURFACE_AREA,
 ]
 
 
@@ -264,6 +324,7 @@ def test_topic_definitions_have_expected_metadata():
         "volume_surface_area_pyramid",
         "frustum_volume_surface_area",
         "compound_3d_volume",
+        "compound_3d_surface_area",
     }
     for t in ALL_TOPICS:
         assert t.section == "geometry"
@@ -299,6 +360,12 @@ MODELLED_EXAMPLE_GENERATORS = [
         solids.generate_modelled_example_compound_3d_volume,
         Tier.HIGHER,
         "compound_3d_volume",
+        "compound_3d",
+    ),
+    (
+        solids.generate_modelled_example_compound_3d_surface_area,
+        Tier.HIGHER,
+        "compound_3d_surface_area",
         "compound_3d",
     ),
 ]

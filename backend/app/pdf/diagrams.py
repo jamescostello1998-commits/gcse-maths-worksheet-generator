@@ -24,11 +24,20 @@ DIAGRAM_HEIGHT = 130
 _LABEL_SIZE = 9
 _LABEL_FONT = "Helvetica"
 _LABEL_FONT_ITALIC = "Helvetica-Oblique"
+_LABEL_FONT_BOLD = "Helvetica-Bold"
 
 
-# Matches a lone x or n not glued to another letter (so "Green"/"box" are left
-# alone) - mirrors app/pdf/mathtext.py's _VARIABLE_RE exactly.
-_VARIABLE_RE = re.compile(r"(?<![A-Za-z])[xn](?![A-Za-z])")
+# Matches, in one combined pass so each span is claimed exactly once: (1) the
+# explicit vector-letter marker \vec{a}/\vec{b} (see app/topics/vectors.py -
+# written directly in generator source, not matched by a blanket letter
+# pattern, since "a" collides constantly with the English indefinite
+# article), or (2) a lone x or n not glued to another letter (so "Green"/
+# "box" are left alone) - mirrors app/pdf/mathtext.py's _VARIABLE_RE/
+# _VECTOR_RE exactly.
+_TEXT_RUN_RE = re.compile(
+    r"\\vec\{(?P<vec>[ab])\}"
+    r"|(?<![A-Za-z])(?P<var>[xn])(?![A-Za-z])"
+)
 
 # A bare numeric fraction like "3/4" or "-3/4" within a label is drawn as a
 # stacked numerator/line/denominator (a vinculum) instead of inline "3/4" -
@@ -39,17 +48,21 @@ _FRACTION_PAD = 1.5
 
 
 def _text_runs(text: str) -> list[tuple[str, str]]:
-    """Split plain (non-fraction) text into (substring, fontName) runs,
+    """Split plain (non-fraction) text into (substring, fontName) runs:
     italicising the algebraic variables x and n (as standalone letters only,
-    so words like "Green" or "box" are left alone) so diagram labels match
-    standard maths typesetting (mirrors app/pdf/mathtext.py's handling of
-    Paragraph text)."""
+    so words like "Green" or "box" are left alone), and bolding an explicit
+    \\vec{a}/\\vec{b} vector marker down to just its bare letter - so diagram
+    labels match standard maths typesetting (mirrors app/pdf/mathtext.py's
+    handling of Paragraph text)."""
     runs: list[tuple[str, str]] = []
     pos = 0
-    for m in _VARIABLE_RE.finditer(text):
+    for m in _TEXT_RUN_RE.finditer(text):
         if m.start() > pos:
             runs.append((text[pos : m.start()], _LABEL_FONT))
-        runs.append((m.group(0), _LABEL_FONT_ITALIC))
+        if m.group("vec") is not None:
+            runs.append((m.group("vec"), _LABEL_FONT_BOLD))
+        else:
+            runs.append((m.group("var"), _LABEL_FONT_ITALIC))
         pos = m.end()
     if pos < len(text):
         runs.append((text[pos:], _LABEL_FONT))
@@ -2100,16 +2113,8 @@ def draw_dice(params: dict) -> Drawing:
     return d
 
 
-def draw_spinner(params: dict) -> Drawing:
-    """A spinner divided into equal sectors, each labelled. params['sectors']:
-    list of label strings (one per equal sector). params['highlight']:
-    optional list of sector indices filled to mark the target outcome(s)."""
-    sectors: list[str] = params["sectors"]
-    highlight = set(params.get("highlight", []))
+def _draw_spinner_at(d: Drawing, cx: float, cy: float, r: float, sectors: list, highlight: set) -> None:
     n = len(sectors)
-    cx, cy, r = 75, 65, 50
-    d = Drawing(150, 130)
-
     for i, label in enumerate(sectors):
         start = 90 + i * 360 / n
         end = 90 + (i + 1) * 360 / n
@@ -2121,6 +2126,25 @@ def draw_spinner(params: dict) -> Drawing:
     d.add(Polygon(points=[cx - 5, cy, cx + 5, cy, cx, cy + r * 0.55], fillColor=ACCENT, strokeColor=None))
     d.add(Circle(cx, cy, 4, fillColor=INK, strokeColor=None))
 
+
+def draw_spinner(params: dict) -> Drawing:
+    """A spinner divided into equal sectors, each labelled. params['sectors']:
+    list of label strings (one per equal sector). params['highlight']:
+    optional list of sector indices filled to mark the target outcome(s)."""
+    sectors: list[str] = params["sectors"]
+    highlight = set(params.get("highlight", []))
+    d = Drawing(150, 130)
+    _draw_spinner_at(d, 75, 65, 50, sectors, highlight)
+    return d
+
+
+def draw_spinner_pair(params: dict) -> Drawing:
+    """Two independent spinners side by side, for questions combining two
+    spinners (e.g. listing outcomes) where neither spinner has a marked
+    target outcome - so unlike draw_spinner, there is no highlight param."""
+    d = Drawing(320, 130)
+    _draw_spinner_at(d, 75, 65, 50, params["sectors_a"], set())
+    _draw_spinner_at(d, 245, 65, 50, params["sectors_b"], set())
     return d
 
 
@@ -2551,6 +2575,7 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "fraction_shapes": draw_fraction_shapes,
     "dice": draw_dice,
     "spinner": draw_spinner,
+    "spinner_pair": draw_spinner_pair,
     "bag_of_counters": draw_bag,
     "parallelogram": draw_parallelogram,
     "trapezium": draw_trapezium,

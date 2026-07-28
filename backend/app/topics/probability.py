@@ -465,11 +465,12 @@ def _build_listing_outcomes(rng: random.Random):
     if not (4 <= total <= 12):
         raise ValueError("listing_outcomes total outcomes out of expected range")
 
-    # Only single-spinner scenarios get an illustration - the two-spinner scenarios
-    # would need two diagrams shown at once, which draw_spinner doesn't support.
-    diagram = DiagramSpec(kind="spinner", params={"sectors": vals_b}) if scenario in (
-        "coin_spinner3", "coin_spinner4",
-    ) else None
+    if scenario in ("coin_spinner3", "coin_spinner4"):
+        diagram = DiagramSpec(kind="spinner", params={"sectors": vals_b})
+    elif scenario in ("two_spinner3", "spinner3_spinner4"):
+        diagram = DiagramSpec(kind="spinner_pair", params={"sectors_a": vals_a, "sectors_b": vals_b})
+    else:
+        diagram = None
 
     return context, vals_a, vals_b, scenario, diagram
 
@@ -721,8 +722,7 @@ def _build_expectation(rng: random.Random):
         ctx_key = f"die:{target}"
         # A biased die is still a physical 6-sided die - illustrating a standard
         # die with the target face highlighted is faithful without inventing
-        # anything. The spinner branch below has no side-count to draw from, so
-        # it's deliberately left without a diagram.
+        # anything.
         diagram = DiagramSpec(kind="dice", params={"values": [target], "highlight": [0]})
     elif context == "spinner":
         colour = rng.choice(COLOURS)
@@ -732,6 +732,22 @@ def _build_expectation(rng: random.Random):
         )
         event_desc = f"land on {colour}"
         ctx_key = f"spinner:{colour}"
+        # A spinner with `denominator` equal sectors, `numerator` of them the
+        # target colour, is exactly what "P(landing on {colour}) = {frac}"
+        # describes - reusing denominator/numerator (already generated above,
+        # shared across all 5 contexts) keeps the diagram genuinely consistent
+        # with the stated probability rather than inventing a separate side
+        # count. Capped at 12 sectors: beyond that the wedges on draw_spinner's
+        # fixed-size canvas become wafer-thin and hard to read, so larger
+        # denominators (20, 25) are deliberately left text-only.
+        if denominator <= 12:
+            diagram = DiagramSpec(
+                kind="spinner",
+                params={
+                    "sectors": [colour[0].upper() if i < numerator else "" for i in range(denominator)],
+                    "highlight": list(range(numerator)),
+                },
+            )
     elif context == "coin":
         prompt = (
             f"A biased coin has P(heads) = {frac}. The coin is flipped {trials} times. "

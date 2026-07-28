@@ -13,9 +13,16 @@ denominator, e.g. "3/4" -> a small inline image) rather than sitting inline
 on the baseline. Any future topic that follows the same ASCII convention gets
 correct typesetting for free.
 
-Only x and n are italicised (not a, b, or other letters) - see CLAUDE.md for
-why a blanket rule can't safely cover every single-letter variable (e.g. "a"
-collides constantly with the English indefinite article).
+Only x and n are italicised via a blanket regex - see CLAUDE.md for why a
+blanket rule can't safely cover every single-letter variable (e.g. "a"
+collides constantly with the English indefinite article). Vector labels "a"/
+"b" are bolded instead (matching real exam convention), but via an explicit
+per-occurrence marker written directly in generator source - `\vec{a}` /
+`\vec{b}` - rather than a blanket regex, since there's no way to tell a
+genuine vector mention from the English article by pattern alone. This is
+still a plain-ASCII convention parsed centrally here (consistent with `^n`/
+`num/den`), not hand-written PDF markup - see `_VECTOR_RE` below and
+`app/topics/vectors.py`.
 
 **Standalone fractions are rendered as a small PNG and embedded inline via
 `<img>`** (app/pdf/fraction_images.py) - a true vinculum can't be built from
@@ -89,6 +96,11 @@ _MATH_RE = re.compile(
 # left alone) - single pass over the original text so italicising one
 # variable can never change what the other one sees as its neighbour.
 _VARIABLE_RE = re.compile(r"(?<![A-Za-z])[xn](?![A-Za-z])")
+# Matches the explicit vector-letter marker \vec{a} / \vec{b} - written
+# directly in generator source (see app/topics/vectors.py) rather than
+# matched by a blanket letter pattern, since "a" collides constantly with
+# the English indefinite article and can't be disambiguated by regex alone.
+_VECTOR_RE = re.compile(r"\\vec\{([ab])\}")
 
 
 def _replace_math(m: re.Match, font_size: float, color: Color, bold: bool) -> str:
@@ -102,16 +114,20 @@ def _replace_math(m: re.Match, font_size: float, color: Color, bold: bool) -> st
 
 
 def to_markup(text: str, *, font_size: float, color: Color, bold: bool = False) -> str:
-    # Italicise x/n BEFORE substituting fractions/exponents, not after: a
-    # standalone fraction is now replaced with an <img src="..."/> tag whose
-    # file path is a randomly-named temp file (tempfile.mkdtemp), and that
-    # random suffix can itself contain a bare "x" or "n" flanked by
-    # non-letters (e.g. ".../gcse_fractions_k_x7ili6/frac_0.png") - running
-    # _VARIABLE_RE afterward would re-scan and italicise part of the file
-    # path, corrupting it (found via an actual end-to-end worksheet render,
-    # not a unit test - the synthetic spike text never happened to produce a
-    # matching random suffix). Doing the math substitution last means its
-    # inserted markup is never re-scanned by anything else.
+    # Italicise x/n and bold \vec{a}/\vec{b} BEFORE substituting fractions/
+    # exponents, not after: a standalone fraction is now replaced with an
+    # <img src="..."/> tag whose file path is a randomly-named temp file
+    # (tempfile.mkdtemp), and that random suffix can itself contain a bare
+    # "x" or "n" flanked by non-letters (e.g.
+    # ".../gcse_fractions_k_x7ili6/frac_0.png") - running _VARIABLE_RE
+    # afterward would re-scan and italicise part of the file path, corrupting
+    # it (found via an actual end-to-end worksheet render, not a unit test -
+    # the synthetic spike text never happened to produce a matching random
+    # suffix). Doing the math substitution last means its inserted markup is
+    # never re-scanned by anything else. _VECTOR_RE has no actual collision
+    # risk (\vec{a}/\vec{b} contain no digits or bare x/n), but runs in this
+    # same early pass for the same safety-discipline reason.
     text = _VARIABLE_RE.sub(lambda m: f"<i>{m.group(0)}</i>", text)
+    text = _VECTOR_RE.sub(lambda m: f"<b>{m.group(1)}</b>", text)
     text = _MATH_RE.sub(lambda m: _replace_math(m, font_size, color, bold), text)
     return text

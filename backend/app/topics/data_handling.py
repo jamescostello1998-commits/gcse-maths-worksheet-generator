@@ -387,6 +387,19 @@ _RELATIVE_FREQUENCY_CONTEXTS = [
 ]
 
 
+def _relative_frequency_diagram(item: str) -> DiagramSpec | None:
+    """Purely illustrative - like the existing 'biased dice' diagram (always
+    shows face 6 regardless of the real frequency numbers), this never
+    determines the answer. The 'spinner' item's event text is always fixed
+    ("lands on red"), so a fixed 4-sector layout with one highlighted sector
+    is enough - no side-count needs deriving from anything."""
+    if item == "biased dice":
+        return DiagramSpec(kind="dice", params={"values": [6], "highlight": [0]})
+    if item == "spinner":
+        return DiagramSpec(kind="spinner", params={"sectors": ["", "", "R", ""], "highlight": [2]})
+    return None
+
+
 def generate_relative_frequency(tier: Tier, rng: random.Random) -> Question:
     item, event = rng.choice(_RELATIVE_FREQUENCY_CONTEXTS)
     trials = rng.choice([20, 40, 50, 80, 100, 200])
@@ -418,9 +431,7 @@ def generate_relative_frequency(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=str(int(expected)),
         dedup_key=f"relfreq:{item}:{event}:{trials}:{frequency}:{future_trials}",
-        diagram=(
-            DiagramSpec(kind="dice", params={"values": [6], "highlight": [0]}) if item == "biased dice" else None
-        ),
+        diagram=_relative_frequency_diagram(item),
     )
 
 
@@ -465,9 +476,7 @@ def generate_modelled_example_relative_frequency(tier: Tier, rng: random.Random)
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=str(int(expected)),
-        diagram=(
-            DiagramSpec(kind="dice", params={"values": [6], "highlight": [0]}) if item == "biased dice" else None
-        ),
+        diagram=_relative_frequency_diagram(item),
     )
 
 

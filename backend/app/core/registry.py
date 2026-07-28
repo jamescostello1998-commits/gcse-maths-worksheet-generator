@@ -284,6 +284,7 @@ _TOPIC_LIST: list[TopicDefinition] = [
     solids_curved_compound.TOPIC_VOLUME_SURFACE_AREA_PYRAMID,
     solids_curved_compound.TOPIC_FRUSTUM_VOLUME_SURFACE_AREA,
     solids_curved_compound.TOPIC_COMPOUND_3D_VOLUME,
+    solids_curved_compound.TOPIC_COMPOUND_3D_SURFACE_AREA,
     transformations.TOPIC_SYMMETRY_LINES,
     transformations.TOPIC_SYMMETRY_ROTATIONAL,
     transformations.TOPIC_TRANSFORM_REFLECT_COMPLETE,

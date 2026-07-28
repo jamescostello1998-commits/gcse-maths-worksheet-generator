@@ -12,29 +12,26 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-**The entire user-supplied Geometry expansion (all 4 phases, chronology steps
-23-27) is now complete and pushed.** 274 topics total, backend suite
-658/658, frontend 45/45 (unaffected), no known bugs. Geometry Phase 4b
-(bearings, constructions, loci — the last remaining piece of the original
-Phase 4 scope) was built in chronology step 27: 6 new topics
-(`bearings_cosine_rule`, `construction_angle_bisector`,
-`construction_perpendicular_bisector`, `construction_triangle`,
-`loci_constructions`, `loci_regions`), 3 new groups ("Bearings",
-"Constructions", "Loci"), 3 new diagram kinds (`draw_bearings`,
-`draw_loci_construction`, `draw_loci_region`).
+**The entire user-supplied Geometry expansion is complete (chronology steps
+23-27), the fraction-vinculum rendering fix landed (step 28), and three more
+"Ideas" items the user picked directly were built in step 29: compound-3D
+surface area, spinner diagrams for 3 previously text-only branches, and bold
+vector labels.** 275 topics total, backend suite 682/682, frontend 45/45
+(unaffected), no known bugs. A 4th candidate the user asked about,
+`probability_combined_dice`, turned out to already exist (a fully-built
+Higher topic) — confirmed and reported back, nothing built there.
 
 There is no committed next step for this project right now — check "Ideas
 for a future session" (bottom of this file) for candidate follow-ups (stem-
-and-leaf diagrams, scatter graphs/correlation, standard deviation, bold
-vector labels, compound-3D surface area, a handful of lower-confidence
-curriculum-audit candidates, saved worksheet history, deployment, etc.), or
-ask the user directly what they'd like to work on next.
+and-leaf diagrams, scatter graphs/correlation, standard deviation, a handful
+of lower-confidence curriculum-audit candidates, saved worksheet history,
+deployment, etc.), or ask the user directly what they'd like to work on next.
 
 ## Current state
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**274 topics across 6 sections**, all procedurally generated with independent
+**275 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.),
@@ -43,7 +40,7 @@ stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.),
 "describe the method" text questions with no way to numerically check a
 described construction — author-review only, no `verify()` at all (see
 chronology step 27).
-Full backend suite: **658/658 passing**. Frontend suite: **45/45 passing**.
+Full backend suite: **682/682 passing**. Frontend suite: **45/45 passing**.
 
 **Practice Tests (fixed/static content, not procedural — the one deliberate exception
 to the paragraph above)**: a 7th homepage section, `backend/app/practice_tests/`,
@@ -148,7 +145,7 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 | Number | Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 54 |
 | Algebra | Expressions/Formulae/Equations/Identities, Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 57 |
 | Ratio & Proportion | Percentages, Best Buys, Ratio, Proportion, Compound Measures | 34 |
-| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations, Bearings, Constructions, Loci | 81 |
+| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations, Bearings, Constructions, Loci | 82 |
 | Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams, Venn Diagrams | 22 |
 | Statistics | Averages from a List, Frequency Tables, Working Backwards, Charts and Graphs, Cumulative Frequency & Box Plots, Histograms | 26 |
 
@@ -528,6 +525,68 @@ diagram at all and, uniquely in this codebase, **no `verify()`** — they are
 "describe the method" text questions with randomised numbers/labels in fixed
 per-scenario method text, author-review only (there is no way to numerically
 check a described construction).
+
+**Compound-3D surface area, spinner diagrams, and bold vector labels**
+(chronology step 29 — three "Ideas" items the user picked directly).
+`compound_3d_surface_area` (Higher, `solids_curved_compound.py`) is the
+surface-area sibling of `compound_3d_volume`, reusing the exact same 3
+variants/param ranges and the exact same `draw_compound_3d` diagram
+unchanged, but excluding each shape-pair's internal shared/join face from
+the formula — the exact problem the volume topic's own original design
+deliberately avoided. Unlike the volume topic (where the cuboid_pyramid
+variant is exact, no π/no irrationality), this topic's cuboid_pyramid slant
+height is routinely irrational, so **all three variants** give a rounded
+3-s.f. decimal answer here (matching the sibling standalone pyramid topic's
+own surface-area branch, which accepts the same trade-off for the same
+reason) — a genuine, deliberate asymmetry from its volume sibling, not an
+oversight.
+
+`draw_spinner` was refactored to extract its wedge/label/pointer body into a
+shared `_draw_spinner_at` helper (pure extraction, output unchanged), enabling
+a new `draw_spinner_pair` (kind `"spinner_pair"`, two independent spinners
+side by side on one wider canvas, no highlight support since two-spinner
+scenarios never mark a target outcome) — this fixes the last diagram gap
+flagged in step 21: `probability_listing_outcomes`'s `two_spinner3`/
+`spinner3_spinner4` scenarios. Separately, `probability_expectation`'s
+`"spinner"` context (previously text-only — no side-count to draw from) now
+reuses its already-generated `numerator`/`denominator` directly as the
+spinner's own sector count/highlight, so the diagram is *exactly* consistent
+with the stated probability, capped at `denominator <= 12` (the two larger
+denominators in `_EXPECTATION_DENOMINATORS`, 20 and 25, stay text-only to
+avoid a visually degenerate wafer-thin-wedge spinner — verified at the n=12
+boundary case specifically). `relative_frequency`'s `"spinner"` item gets a
+simple fixed illustrative spinner (matching how its existing "biased dice"
+diagram is *also* purely illustrative, always showing face 6 regardless of
+the real frequency numbers — diagrams here never determine the answer).
+
+Vector labels `a`/`b` are now **bold**, not unstyled, matching real exam
+convention (deferred since chronology step 16 pending exactly this design).
+Rather than a blanket regex (impossible here — bare "a" collides constantly
+with the English indefinite article, e.g. "OAB **is a** triangle with OA =
+**a**"), generators mark each genuine vector mention explicitly at the
+source with a new ASCII sentinel, `\vec{a}`/`\vec{b}` (module constants
+`_VEC_A`/`_VEC_B` in `vectors.py`) — a plain-text convention in the same
+spirit as this app's existing `^n`/`num/den`, not hand-written PDF markup
+(no topic in this codebase does that). `mathtext.py` gained `_VECTOR_RE`,
+substituted in the same early pass as the x/n italics regex (before
+fraction/exponent substitution, for the same file-path-corruption-avoidance
+reason already documented there); `diagrams.py` gained a parallel
+`_LABEL_FONT_BOLD` and folded the vector pattern into one combined
+`_TEXT_RUN_RE` alongside its own x/n regex, so `vector_triangle` diagram
+labels (`draw_vector_triangle`'s `a_label`/`b_label`) get the same bold
+treatment via its separate, non-mathtext styling pipeline. Every genuine
+`a`/`b` occurrence across both `vectors.py` functions (arithmetic and
+geometric, including their modelled-example twins) was individually audited
+against "genuine vector vs. English article" — confirmed via full end-to-end
+PDF rendering that "is a triangle" stays plain while every genuine mention,
+including ones sitting in the very same sentence, renders bold, and that
+bold vectors compose correctly alongside fraction-vinculum images (e.g.
+"Answer: -(1/5)**a** + (1/5)**b**") with no interference between the two
+systems.
+
+Backend suite grew from 668 to 682 tests (274→275 topics — only
+`compound_3d_surface_area` is a new topic; the other two pieces changed
+existing topics/shared rendering code). Frontend unaffected (45/45).
 
 **⚠️ Gotchas (bit us, see below)**:
 - Never use the literal Unicode superscript-minus character `⁻` (e.g. in `f⁻¹`,
@@ -1615,6 +1674,69 @@ check a described construction).
     tests; frontend and Geometry Phase 4b both unaffected (this session
     touched only the shared math-typesetting layer).
 
+29. New session, three items from the "Ideas for a future session" list that
+    the user picked directly (shown the list, chose two categories: "loose
+    ends from finished phases" and "diagram gaps on existing topics"), plus a
+    4th candidate (`probability_combined_dice`) the user asked about that
+    turned out to already exist. Given the size and number of embedded
+    design decisions (a new topic, a cross-cutting typesetting refactor, a
+    generator-content change plus a new diagram kind, and 5 separate
+    lower-confidence curriculum-audit candidates CLAUDE.md itself flagged as
+    needing a decision before building), asked scoping questions up front
+    via `AskUserQuestion` before committing to anything, then entered plan
+    mode given the resulting scope: 3 parallel Explore agents (one per
+    remaining piece) followed by 1 Plan agent, with every finding
+    independently re-verified by reading the actual current file contents
+    directly (not just trusting agent reports) before finalizing the plan.
+
+    **`probability_combined_dice` was confirmed to already exist** — a
+    fully-built Higher topic (`generate_combined_dice`, three event
+    branches, brute-force-verified against the 36-outcome sample space).
+    This was exactly the "may overlap" candidate flagged by the original
+    curriculum audit (step 13) as needing a check first; confirmed now that
+    it's not overlap, it's a duplicate. Nothing built, reported back to the
+    user, dropped from scope.
+
+    Built, in this order (diagram-layer work first, per this project's own
+    established precedent): (1) spinner diagram gaps — `draw_spinner`
+    refactored into a shared `_draw_spinner_at` helper plus new
+    `draw_spinner_pair`, wired into `probability_listing_outcomes`'s
+    two-spinner scenarios, `probability_expectation`'s spinner branch (now
+    reusing its own numerator/denominator as the sector count/highlight,
+    capped at `denominator <= 12`), and `relative_frequency`'s spinner item
+    (fixed illustrative spinner); (2) `compound_3d_surface_area` — new
+    Higher topic, same 3 variants/diagram as `compound_3d_volume`, excluding
+    each internal join face, verified via the same independent-float-
+    recomputation pattern already proven by its sibling topics in the same
+    file; (3) bold vector labels — a new `\vec{a}`/`\vec{b}` ASCII sentinel
+    convention (see "Compound-3D surface area, spinner diagrams, and bold
+    vector labels" above for full technical detail on all three). One open
+    scope question was resolved with the user via `AskUserQuestion` before
+    building: accept that `compound_3d_surface_area`'s diagram won't show
+    the slant height (unlike its standalone cone/pyramid siblings), rather
+    than extending `draw_compound_3d` — kept the diagram-reuse zero-risk.
+
+    Every piece was visually verified end-to-end via real worksheet/
+    modelled-example PDF renders (not just unit tests) before considering it
+    done, per this project's established discipline — including the
+    two-spinner diagram in a real `probability_listing_outcomes` worksheet,
+    the `denominator = 12` boundary case for `probability_expectation`'s
+    spinner, all 3 `compound_3d_surface_area` variants (question, solution,
+    *and* modelled-example pages), and bold vectors composing correctly
+    alongside fraction-vinculum images in the same line. No bugs were found
+    during this session's own verification passes (unlike most prior
+    sessions in this file) — the extensive up-front research and plan
+    validation this time caught the design issues (the cuboid_pyramid
+    rounding asymmetry, the denominator-cap threshold) before any code was
+    written rather than after. Central integration (registry wiring, the 4
+    hardcoded `274`-topic-count assertions updated to `275`, full
+    backend+frontend suite, browser-driven end-to-end verification for all 7
+    touched/new topics) was done directly. Backend suite grew from 668 to
+    682 tests; frontend unaffected (45/45 — confirmed live via the browser
+    preview: Geometry grew from 81 to 82 topics, "Compound 3D Shapes
+    (Surface Area)" appears correctly alongside its volume sibling in the
+    "3D Shapes" group).
+
 Everything above is committed and pushed (see `git log`).
 
 ## Environment gotchas (Windows, this machine specifically)
@@ -1813,22 +1935,16 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
 
 ## Ideas for a future session (not started, no commitment made)
 
-- The entire user-supplied Geometry expansion (Phases 1-4b) is now complete —
-  see chronology steps 23-27. Two small loose ends from within it were never
-  requested and are not built: compound 3D shapes' **surface area** was
-  deliberately left out of Phase 2's `compound_3d_volume` topic (volume
-  only) — excluding a compound solid's internal shared face correctly was
-  judged too much added risk for that session's first pass, could be added
-  as its own topic later if wanted; and Phase 3's congruent triangle proof
-  topic covers SSS/SAS/ASA/RHS via an 18-entry curated bank (see step 25) —
-  a Foundation `trig_mixed`-style sibling covering *identifying* similar
-  (not congruent) triangles, or a "prove NOT congruent" variant, were not
-  requested and are not built.
+- The entire user-supplied Geometry expansion (Phases 1-4b) is complete — see
+  chronology steps 23-27 — and its one genuine loose end, compound-3D
+  surface area, was built in step 29. One small loose end remains: Phase 3's
+  congruent triangle proof topic covers SSS/SAS/ASA/RHS via an 18-entry
+  curated bank (see step 25) — a Foundation `trig_mixed`-style sibling
+  covering *identifying* similar (not congruent) triangles, or a "prove NOT
+  congruent" variant, were not requested and are not built.
 - The from-scratch Foundation/Higher curriculum audit (step 13) flagged a handful of
   **lower-confidence** candidates that were reported but deliberately *not* built,
-  pending more research or a product decision: `probability_combined_dice` (may
-  overlap with the existing Foundation `sample_space_diagrams` — worth checking
-  whether a distinct Foundation sibling adds anything), `velocity_time_interpret`
+  pending more research or a product decision: `velocity_time_interpret`
   (the gradient/acceleration reading might be Foundation-appropriate; only
   "area under graph = distance" is clearly Higher-only — could split rather than
   duplicate), `fractions_mixed_number_arithmetic` (a Foundation sibling with
@@ -1836,26 +1952,14 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
   version), `trig_mixed` (a Foundation version combining the already-Foundation
   side/angle topics). Don't build these without discussing first — the audit's
   confidence in each was explicitly lower than the 11 that were built.
-- Bold (not italic) `a`/`b` vector labels in `vectors.py`/`diagrams.py`, matching real
-  exam typesetting convention — deliberately deferred (see chronology step 16): needs
-  every vector prompt/step string marked at the source (not a blanket regex, which
-  can't tell a genuine vector mention from the English article "a" in the same
-  sentence). `n` (sequences, angles, ratio) is already done as of step 16.
+  (`probability_combined_dice`, also originally on this list, was confirmed
+  in step 29 to already exist — not a gap, removed from this list.)
 - Stem-and-leaf diagrams, scatter graphs & correlation, and standard deviation are all
   real GCSE Statistics content not covered by the Probability/Statistics topic list
   the user supplied (chronology steps 17–18) — never explicitly requested, so not
   built, but worth flagging if a future session wants to round out Statistics further.
 - Saved worksheet history, mixed-topic revision papers, user accounts.
 - Deploying this somewhere instead of local-only dev servers.
-- `probability_expectation`'s `spinner` context and `relative_frequency`'s `spinner`
-  context both have no side-count in their generators, so step 21 deliberately left
-  them without a spinner diagram rather than inventing one — could be built by first
-  adding a real side-count to those generators (a small, genuine change to the
-  question content itself, not just a diagram retrofit). Similarly,
-  `probability_listing_outcomes`'s two-spinner scenarios (`two_spinner3`/
-  `spinner3_spinner4`) have no diagram since `draw_spinner` only draws one spinner at
-  a time — would need a second diagram kind (or a `draw_spinner` extension) that lays
-  out two spinners side by side.
 - Practice Tests (step 22) deliberately deferred a few things, per the user's choices
   at the time: mimicking OCR's real 3-paper-per-sitting structure (non-calculator +
   2 calculator papers) instead of one combined 100-mark paper; hand-authored genuine

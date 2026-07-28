@@ -4,6 +4,7 @@ from reportlab.graphics.shapes import Drawing, Rect, Wedge
 from app.core.models import DiagramSpec
 from app.pdf.diagrams import (
     _LABEL_FONT,
+    _LABEL_FONT_BOLD,
     _LABEL_FONT_ITALIC,
     _math_runs,
     draw_bar_chart,
@@ -234,6 +235,7 @@ SAMPLE_SPECS = [
     DiagramSpec(kind="dice", params={"values": [6], "highlight": [0]}),
     DiagramSpec(kind="spinner", params={"sectors": ["Red", "Blue", "Green", "Yellow"], "highlight": [1]}),
     DiagramSpec(kind="spinner", params={"sectors": ["1", "2", "3", "4", "5", "6"], "highlight": [2, 4]}),
+    DiagramSpec(kind="spinner_pair", params={"sectors_a": ["1", "2", "3"], "sectors_b": ["R", "B", "G", "Y"]}),
     DiagramSpec(
         kind="bag_of_counters",
         params={"counts": {"red": 4, "blue": 6, "green": 3}, "highlight": "blue"},
@@ -317,6 +319,15 @@ def test_math_runs_italicises_x_and_n():
 def test_math_runs_leaves_other_letters_upright():
     assert _math_runs("10 cm") == [("text", "10 cm", _LABEL_FONT)]
     assert _math_runs("70°") == [("text", "70°", _LABEL_FONT)]
+
+
+def test_math_runs_bolds_the_vec_marker_down_to_just_its_letter():
+    # \vec{a}/\vec{b} (see app/topics/vectors.py) bolds only the bare letter -
+    # the marker itself never appears in the rendered run.
+    assert _math_runs("\\vec{a}") == [("text", "a", _LABEL_FONT_BOLD)]
+    assert _math_runs("\\vec{a} = (3, -2)") == [
+        ("text", "a", _LABEL_FONT_BOLD), ("text", " = (3, -2)", _LABEL_FONT),
+    ]
 
 
 def test_math_runs_does_not_italicise_x_or_n_inside_a_word():
