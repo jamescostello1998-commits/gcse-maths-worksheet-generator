@@ -619,6 +619,143 @@ def draw_general_triangle(params: dict) -> Drawing:
     return d
 
 
+def _bearing_arc(cx: float, cy: float, bearing_deg: float, radius: float = 11, color=INK) -> ArcPath:
+    """An unfilled arc from north, swept *clockwise* by exactly bearing_deg
+    (0-360) - the full compass sweep, reflex or not, unlike _angle_arc's
+    shortest-arc-only behaviour. ray_angle converts the bearing into this
+    file's usual CCW-from-positive-x-axis convention (north = 90 degrees);
+    ArcPath.addArc always sweeps CCW/increasing, so addArc(cx, cy, r,
+    ray_angle, ray_angle + bearing_deg) traces the exact same physical arc as
+    the true clockwise-from-north sweep, for any bearing including reflex
+    ones (confirmed by reading reportlab's own getArcPoints source)."""
+    ray_angle = (90 - bearing_deg) % 360
+    arc = ArcPath(strokeColor=color, fillColor=None, strokeWidth=0.8)
+    arc.addArc(cx, cy, radius, ray_angle, ray_angle + bearing_deg, moveTo=True)
+    return arc
+
+
+def _north_arrow(x: float, y: float, length: float = 13, color=INK) -> Group:
+    """A short vertical line with an arrowhead pointing to true north (up the
+    page) plus an 'N' label - the standard bearings-diagram convention for
+    marking the reference direction at a point."""
+    group = Group()
+    tip = (x, y + length)
+    group.add(Line(x, y, tip[0], tip[1], strokeColor=color, strokeWidth=0.8))
+    group.add(_arrowhead(tip, (0.0, 1.0), color=color, length=5, half_width=2.3))
+    group.add(_label(x, tip[1] + 3, "N", color=color, size=7))
+    return group
+
+
+def draw_bearings(params: dict) -> Drawing:
+    """Schematic (not to scale) diagram for a two-leg bearings problem: from
+    A, travel on a given bearing to B, then from B on a second bearing to C.
+    Both legs are drawn solid, the direct A-to-C distance dashed (labelled
+    with the caller's unknown_label - never the real answer on the question
+    page, see bearings.py), and a north arrow + full clockwise-from-north
+    bearing arc is drawn at *both* A and B (not just the start point),
+    matching real exam bearings diagrams. Vertex/side labels are pushed
+    outward from the triangle's own centroid (same idiom as
+    draw_general_triangle/draw_grid_transformation) since the shape's
+    orientation varies with the random bearings, unlike those diagrams'
+    fixed schematic vertices."""
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    label_A, label_B, label_C = params["labels"]
+    bearing_at_A, bearing_at_B = params["bearing_at_A"], params["bearing_at_B"]
+
+    def unit_vector(bearing_deg: float) -> tuple:
+        rad = math.radians(bearing_deg)
+        return (math.sin(rad), math.cos(rad))
+
+    A = (0.0, 0.0)
+    B = unit_vector(bearing_at_A)
+    dx, dy = unit_vector(bearing_at_B)
+    C = (B[0] + dx, B[1] + dy)
+
+    xs, ys = (A[0], B[0], C[0]), (A[1], B[1], C[1])
+    x_span, y_span = (max(xs) - min(xs)) or 1.0, (max(ys) - min(ys)) or 1.0
+    # Asymmetric margins: extra headroom above the topmost point (whichever
+    # of A/B/C that turns out to be) for that point's north arrow + arc + "N"
+    # label, which extend further up the page than any other diagram element;
+    # extra headroom below the bottommost point too, so an outward-pushed
+    # vertex/side label there still clears the "Diagram NOT accurately
+    # drawn" caption along the bottom edge - both found via this diagram
+    # kind's visual spike (a vertex/side label pushed straight down from a
+    # point sitting right at the un-padded margin landed on top of the
+    # caption text).
+    margin_side, margin_top, margin_bottom = 30, 38, 34
+    scale = min(
+        (DIAGRAM_WIDTH - 2 * margin_side) / x_span,
+        (DIAGRAM_HEIGHT - margin_top - margin_bottom) / y_span,
+    )
+    ox = (DIAGRAM_WIDTH - x_span * scale) / 2 - min(xs) * scale
+    oy = margin_bottom - min(ys) * scale
+
+    def to_px(p: tuple) -> tuple:
+        return (p[0] * scale + ox, p[1] * scale + oy)
+
+    pA, pB, pC = to_px(A), to_px(B), to_px(C)
+    centroid = ((pA[0] + pB[0] + pC[0]) / 3, (pA[1] + pB[1] + pC[1]) / 3)
+
+    def outward(p: tuple, q: tuple, dist: float) -> tuple:
+        """Midpoint of p-q, offset perpendicular and away from the
+        triangle's centroid, with a text anchor chosen from the offset's own
+        sign - a middle anchor would let a wide label swing back over the
+        line itself (found via this diagram kind's visual spike: a
+        near-vertical leg, whose north arrow/arc/"N" label sit right along
+        that same line, kept colliding with its own centered leg-length
+        label). Mirrors the anchor-by-offset-sign fix already used in
+        draw_parallel_lines/draw_triangle_angles."""
+        mx, my = (p[0] + q[0]) / 2, (p[1] + q[1]) / 2
+        vx, vy = q[0] - p[0], q[1] - p[1]
+        length = math.hypot(vx, vy) or 1.0
+        perp = (-vy / length, vx / length)
+        to_c = (centroid[0] - mx, centroid[1] - my)
+        if perp[0] * to_c[0] + perp[1] * to_c[1] > 0:
+            perp = (-perp[0], -perp[1])
+        anchor = "start" if perp[0] >= 0 else "end"
+        return (mx + perp[0] * dist, my + perp[1] * dist, anchor)
+
+    d.add(Line(pA[0], pA[1], pB[0], pB[1], strokeColor=INK, strokeWidth=1.2))
+    d.add(Line(pB[0], pB[1], pC[0], pC[1], strokeColor=INK, strokeWidth=1.2))
+    d.add(Line(pA[0], pA[1], pC[0], pC[1], strokeColor=MUTED, strokeWidth=1.0, strokeDashArray=[3, 2]))
+
+    lx, ly, anchor = outward(pA, pB, 16)
+    d.add(_label(lx, ly, params["leg1_label"], anchor=anchor, size=8))
+    lx, ly, anchor = outward(pB, pC, 16)
+    d.add(_label(lx, ly, params["leg2_label"], anchor=anchor, size=8))
+    lx, ly, anchor = outward(pA, pC, 16)
+    d.add(_label(lx, ly, params["unknown_label"], anchor=anchor, color=ACCENT, size=8))
+
+    def vertex_label_pos(p: tuple, has_arrow: bool) -> tuple:
+        vx, vy = p[0] - centroid[0], p[1] - centroid[1]
+        vdist = math.hypot(vx, vy) or 1.0
+        ux, uy = vx / vdist, vy / vdist
+        if has_arrow and uy > 0.6:
+            # The outward-from-centroid direction points near-straight up,
+            # right where that point's own north arrow/arc/"N" label already
+            # are - push sideways instead (found via this diagram kind's
+            # visual spike: A/B labels routinely collided with their own
+            # arrow when the third point sat below them).
+            ux, uy = (1.0 if ux >= 0 else -1.0), 0.2
+            norm = math.hypot(ux, uy)
+            ux, uy = ux / norm, uy / norm
+        offset = 15 if has_arrow else 12
+        return (p[0] + ux * offset, p[1] + uy * offset)
+
+    for p, label, has_arrow in ((pA, label_A, True), (pB, label_B, True), (pC, label_C, False)):
+        d.add(Circle(p[0], p[1], 1.8, strokeColor=INK, fillColor=INK))
+        lx, ly = vertex_label_pos(p, has_arrow)
+        d.add(_label(lx, ly, label, size=8))
+
+    d.add(_north_arrow(pA[0], pA[1]))
+    d.add(_bearing_arc(pA[0], pA[1], bearing_at_A))
+    d.add(_north_arrow(pB[0], pB[1]))
+    d.add(_bearing_arc(pB[0], pB[1], bearing_at_B))
+
+    _not_to_scale(d)
+    return d
+
+
 def _tick_marks(p: tuple, q: tuple, count: int, length: float = 5, gap: float = 3) -> list:
     """`count` short dashes perpendicular to segment p-q, centred at its
     midpoint - the standard "equal sides" exam-diagram convention (1 tick for
@@ -1079,6 +1216,138 @@ def draw_grid_transformation(params: dict) -> Drawing:
     draw_shape(params["original_vertices"], params["original_labels"], INK)
     if params.get("image_vertices"):
         draw_shape(params["image_vertices"], params["image_labels"], ACCENT)
+
+    return d
+
+
+def _scaled_circle(to_px: Callable, centre: tuple, r: float, x_span: float, y_span: float, plot_w: float, plot_h: float, **kw) -> Ellipse:
+    """A circle of true radius r, drawn correctly on a _draw_scaled_axes
+    grid. ALWAYS uses Ellipse with separately-computed rx/ry, never plain
+    Circle, since to_px's x/y pixel scaling is never exactly uniform even
+    with a square data window (plot_w != plot_h, from GRAPH_WIDTH/HEIGHT
+    minus fixed margins) - confirmed by reading _draw_scaled_axes directly."""
+    cx, cy = to_px(*centre)
+    rx, ry = r * plot_w / x_span, r * plot_h / y_span
+    return Ellipse(cx, cy, rx, ry, **kw)
+
+
+def _loci_reference_points(d: Drawing, to_px: Callable, points: list) -> None:
+    for point in points:
+        px, py = to_px(*point["xy"])
+        d.add(Circle(px, py, 1.8, strokeColor=INK, fillColor=INK))
+        if point.get("label"):
+            d.add(_label(px + 8, py + 8, point["label"], anchor="start", size=8))
+
+
+def draw_loci_construction(params: dict) -> Drawing:
+    """A real-scale, gridded diagram for a loci question: the fixed
+    reference point(s) are always shown; the constructed locus itself - a
+    circle (locus of points a fixed distance from a point) or a line segment
+    (a perpendicular/angle bisector) - is added only once known, via the
+    same blank-question/completed-solution split already used by
+    draw_grid_transformation (params['circle']/'segment' omitted for the
+    blank question-page diagram, present for the solution-page one).
+    params['given_lines'] (e.g. the two rays forming an angle to bisect, or
+    the segment between two points to bisect) are drawn on *both* pages,
+    same as draw_grid_transformation's mirror_line/centre/vector - they are
+    information the student is given, not the answer."""
+    d = Drawing(GRAPH_WIDTH, GRAPH_HEIGHT)
+    x_min, x_max = params["x_min"], params["x_max"]
+    y_min, y_max = params["y_min"], params["y_max"]
+    to_px = _draw_scaled_axes(d, x_min, x_max, y_min, y_max)
+
+    for line in params.get("given_lines", []):
+        x0, y0 = to_px(*line["p1"])
+        x1, y1 = to_px(*line["p2"])
+        d.add(Line(x0, y0, x1, y1, strokeColor=INK, strokeWidth=1.2))
+
+    _loci_reference_points(d, to_px, params.get("points", []))
+
+    circle = params.get("circle")
+    if circle is not None:
+        x_span = max(x_max, 0) - min(x_min, 0)
+        y_span = max(y_max, 0) - min(y_min, 0)
+        plot_w = d.width - _GRAPH_MARGIN_L - _GRAPH_MARGIN_R
+        plot_h = d.height - _GRAPH_MARGIN_T - _GRAPH_MARGIN_B
+        d.add(_scaled_circle(
+            to_px, circle["centre"], circle["radius"], x_span, y_span, plot_w, plot_h,
+            strokeColor=ACCENT, fillColor=None, strokeWidth=1.2,
+        ))
+
+    segment = params.get("segment")
+    if segment is not None:
+        x0, y0 = to_px(*segment["p1"])
+        x1, y1 = to_px(*segment["p2"])
+        d.add(Line(
+            x0, y0, x1, y1, strokeColor=ACCENT, strokeWidth=1.2,
+            strokeDashArray=[3, 2] if segment.get("dashed") else None,
+        ))
+
+    return d
+
+
+def _satisfies_loci_constraints(x: float, y: float, constraints: list) -> bool:
+    for c in constraints:
+        if c["type"] == "disk":
+            cx, cy = c["centre"]
+            inside = (x - cx) ** 2 + (y - cy) ** 2 <= c["radius"] ** 2
+            if inside != c.get("inside", True):
+                return False
+        elif c["type"] == "half_plane":
+            ax, ay = c["closer_to"]
+            bx, by = c["than"]
+            if (x - ax) ** 2 + (y - ay) ** 2 > (x - bx) ** 2 + (y - by) ** 2:
+                return False
+    return True
+
+
+def draw_loci_region(params: dict) -> Drawing:
+    """Same grid base as draw_loci_construction, plus each constraint's own
+    boundary (a dashed circle or segment, in params['boundaries'] - always
+    drawn on both the question and solution page, since it's given
+    information) and, once known, a shaded region satisfying every
+    constraint in params['shade_constraints'] - rendered as a rasterized dot
+    mesh (sample a fine grid, evaluate each constraint directly at each
+    sample point, paint a small translucent dot wherever all of them hold)
+    rather than hand-built boolean region geometry (the draw_venn_diagram
+    technique), so this generalises to any future constraint combination for
+    free."""
+    d = Drawing(GRAPH_WIDTH, GRAPH_HEIGHT)
+    x_min, x_max = params["x_min"], params["x_max"]
+    y_min, y_max = params["y_min"], params["y_max"]
+    to_px = _draw_scaled_axes(d, x_min, x_max, y_min, y_max)
+
+    x_span = max(x_max, 0) - min(x_min, 0)
+    y_span = max(y_max, 0) - min(y_min, 0)
+    plot_w = d.width - _GRAPH_MARGIN_L - _GRAPH_MARGIN_R
+    plot_h = d.height - _GRAPH_MARGIN_T - _GRAPH_MARGIN_B
+    for boundary in params.get("boundaries", []):
+        if boundary["type"] == "circle":
+            d.add(_scaled_circle(
+                to_px, boundary["centre"], boundary["radius"], x_span, y_span, plot_w, plot_h,
+                strokeColor=INK, fillColor=None, strokeWidth=1.0, strokeDashArray=[3, 2],
+            ))
+        elif boundary["type"] == "segment":
+            x0, y0 = to_px(*boundary["p1"])
+            x1, y1 = to_px(*boundary["p2"])
+            d.add(Line(x0, y0, x1, y1, strokeColor=INK, strokeWidth=1.0, strokeDashArray=[3, 2]))
+
+    _loci_reference_points(d, to_px, params.get("points", []))
+
+    constraints = params.get("shade_constraints")
+    if constraints:
+        step = 0.3
+        x_lo, x_hi = min(x_min, 0), max(x_max, 0)
+        y_lo, y_hi = min(y_min, 0), max(y_max, 0)
+        x = x_lo
+        while x <= x_hi + 1e-9:
+            y = y_lo
+            while y <= y_hi + 1e-9:
+                if _satisfies_loci_constraints(x, y, constraints):
+                    px, py = to_px(x, y)
+                    d.add(Circle(px, py, 1.3, fillColor=ACCENT, strokeColor=None, fillOpacity=0.35))
+                y += step
+            x += step
 
     return d
 
@@ -2253,6 +2522,7 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "right_triangle": draw_right_triangle,
     "trig_triangle": draw_trig_triangle,
     "general_triangle": draw_general_triangle,
+    "bearings": draw_bearings,
     "two_triangle_congruence": draw_two_triangle_congruence,
     "vector_triangle": draw_vector_triangle,
     "circle_angle_centre": draw_circle_angle_centre,
@@ -2265,6 +2535,8 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "piecewise_graph": draw_piecewise_graph,
     "graph_transformation": draw_graph_transformation,
     "grid_transformation": draw_grid_transformation,
+    "loci_construction": draw_loci_construction,
+    "loci_region": draw_loci_region,
     "tree_diagram": draw_tree_diagram,
     "two_way_table": draw_two_way_table,
     "sample_space_diagram": draw_sample_space_diagram,

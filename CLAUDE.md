@@ -12,60 +12,38 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-Phases 1-3 of a large user-supplied Geometry expansion (chronology steps 23-25)
-and **Phase 4a (chronology step 26, Symmetry + Transformations) are all
-complete and pushed**. 268 topics total, backend suite 638/638, frontend
-45/45 (unaffected), no known bugs.
+**The entire user-supplied Geometry expansion (all 4 phases, chronology steps
+23-27) is now complete and pushed.** 274 topics total, backend suite
+658/658, frontend 45/45 (unaffected), no known bugs. Geometry Phase 4b
+(bearings, constructions, loci — the last remaining piece of the original
+Phase 4 scope) was built in chronology step 27: 6 new topics
+(`bearings_cosine_rule`, `construction_angle_bisector`,
+`construction_perpendicular_bisector`, `construction_triangle`,
+`loci_constructions`, `loci_regions`), 3 new groups ("Bearings",
+"Constructions", "Loci"), 3 new diagram kinds (`draw_bearings`,
+`draw_loci_construction`, `draw_loci_region`).
 
-**Phase 4b (bearings, constructions, loci — the last remaining piece of the
-original Phase 4 scope) is FULLY PLANNED but NOT YET CODED.** The user
-confirmed Phase 4b should be one single pass (not split further). A full
-plan-mode research pass (3 parallel Explore agents + 1 Plan agent, plus two
-technical claims independently re-verified directly — ReportLab's `ArcPath`
-sweep direction, and that `fillOpacity` genuinely renders in real PDF output)
-was completed, and every open design decision was confirmed with the user.
-**The complete plan (exact topic list, diagram-kind param shapes, verification
-design, registry insertion points, test plan, build order) is preserved at
-`C:\Users\James\.claude\plans\tidy-crafting-shore.md`** (machine-local, not in
-this repo) — resume by writing/confirming the final plan from that file's
-findings (do not re-run the research) and proceeding straight to
-implementation. This CLAUDE.md section is a summary in case that file is ever
-lost; the plan file is the durable detailed copy.
-
-**Net effect once built: 6 new topics (268 → 274)** — `bearings_cosine_rule`
-(Higher, new `bearings.py`, reframes `triangle_rules.py`'s existing SAS
-cosine-rule maths as a two-leg bearings word problem, deriving the included
-angle from the two given bearings before applying the cosine rule); a new
-"Bearings" group. `construction_angle_bisector` /
-`construction_perpendicular_bisector` / `construction_triangle` (all
-Foundation, new `constructions.py`, new "Constructions" group) — confirmed
-**no `verify()` at all** (author-review only) and confirmed to use randomised
-numbers/labels embedded in fixed per-scenario method text (large combinatorial
-state space) rather than a curated `TEMPLATES` bank, since a fixed 3-entry
-bank would be thinner than any existing precedent in this app.
-`loci_constructions` (Foundation) / `loci_regions` (Higher), new `loci.py`,
-new "Loci" group — confirmed as 2 separate tier-split topics, not one
-combined topic; needs 2 new diagram kinds (`draw_bearings`;
-`draw_loci_construction`/`draw_loci_region`, the latter sharing a
-`_scaled_circle` helper that always uses `Ellipse` with separately-computed
-x/y radii rather than `Circle`, since `_draw_scaled_axes`'s pixel scaling is
-never exactly uniform even with a square data window) — confirmed to use a
-rasterized dot-mesh for shaded regions, not hand-built boolean `ArcPath`
-geometry.
-
-If the user wants something else entirely instead of continuing Phase 4b,
-check "Ideas for a future session" (bottom of this file) for other candidate
-follow-ups, or ask directly what they'd like to work on.
+There is no committed next step for this project right now — check "Ideas
+for a future session" (bottom of this file) for candidate follow-ups (stem-
+and-leaf diagrams, scatter graphs/correlation, standard deviation, bold
+vector labels, compound-3D surface area, a handful of lower-confidence
+curriculum-audit candidates, saved worksheet history, deployment, etc.), or
+ask the user directly what they'd like to work on next.
 
 ## Current state
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**268 topics across 6 sections**, all procedurally generated with independent
+**274 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
-stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.).
-Full backend suite: **638/638 passing**. Frontend suite: **45/45 passing**.
+stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.),
+**except the 3 Constructions topics** (`construction_angle_bisector`,
+`construction_perpendicular_bisector`, `construction_triangle`), which are
+"describe the method" text questions with no way to numerically check a
+described construction — author-review only, no `verify()` at all (see
+chronology step 27).
+Full backend suite: **658/658 passing**. Frontend suite: **45/45 passing**.
 
 **Practice Tests (fixed/static content, not procedural — the one deliberate exception
 to the paragraph above)**: a 7th homepage section, `backend/app/practice_tests/`,
@@ -170,7 +148,7 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 | Number | Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 54 |
 | Algebra | Expressions/Formulae/Equations/Identities, Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 57 |
 | Ratio & Proportion | Percentages, Best Buys, Ratio, Proportion, Compound Measures | 34 |
-| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations | 75 |
+| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations, Bearings, Constructions, Loci | 81 |
 | Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams, Venn Diagrams | 22 |
 | Statistics | Averages from a List, Frequency Tables, Working Backwards, Charts and Graphs, Cumulative Frequency & Box Plots, Histograms | 26 |
 
@@ -482,6 +460,37 @@ already drawn as vector shapes (`String`/`Line` in a `Group`) and don't need the
 Paragraph-markup workaround — italics there also cover `x` and `n`. No current topic's
 diagram actually shows a fraction label yet, so this path is unexercised by real
 content today; it's built and unit-tested for when one eventually does.
+
+**Bearings, Constructions, and Loci** (Geometry Phase 4b, chronology step 27
+— the final piece of the large user-supplied Geometry expansion): three new
+groups. `draw_bearings` (kind `"bearings"`) is a schematic (not-to-scale)
+diagram for `bearings_cosine_rule` — two legs of a journey with a north
+arrow + full clockwise-from-north `_bearing_arc` at *both* turn points (not
+just the start), built on a new `_north_arrow` helper. `draw_loci_construction`
+(kind `"loci_construction"`) and `draw_loci_region` (kind `"loci_region"`)
+share the existing `_draw_scaled_axes` grid engine and a new `_scaled_circle`
+helper — a circle of true radius r on that grid always uses `Ellipse` with
+separately-computed x/y pixel radii, never plain `Circle`, since the grid's
+pixel scaling is never exactly uniform even on a square data window (verified
+directly: a circle on a deliberately wide non-square window still rendered
+as a true circle, not an ellipse). `draw_loci_region`'s shaded region is a
+rasterized dot mesh (sample a fine grid, evaluate every constraint at each
+point, paint a small translucent `fillOpacity` dot wherever all hold) rather
+than hand-built boolean region geometry (the `draw_venn_diagram` technique) —
+confirmed fast enough (hundreds of dots, milliseconds) and legible at normal
+diagram size. Both loci diagram kinds follow the established blank-question/
+completed-solution `diagram`/`solution_diagram` split (`draw_loci_construction`'s
+`circle`/`segment` params and `draw_loci_region`'s `shade_constraints` param
+are the "answer", omitted on the question page; `draw_loci_construction`'s
+`given_lines` and `draw_loci_region`'s `boundaries` are given information, so
+they're drawn on *both* pages, matching how `draw_grid_transformation` always
+shows its mirror line/centre/vector regardless of whether the image is
+present). The 3 Constructions topics (`construction_angle_bisector`/
+`construction_perpendicular_bisector`/`construction_triangle`) have no
+diagram at all and, uniquely in this codebase, **no `verify()`** — they are
+"describe the method" text questions with randomised numbers/labels in fixed
+per-scenario method text, author-review only (there is no way to numerically
+check a described construction).
 
 **⚠️ Gotchas (bit us, see below)**:
 - Never use the literal Unicode superscript-minus character `⁻` (e.g. in `f⁻¹`,
@@ -1386,6 +1395,100 @@ content today; it's built and unit-tested for when one eventually does.
     correctly, and both the worksheet and modelled-example endpoints
     returned 200 OK for a live topic in this group).
 
+27. New session, Geometry Phase 4b (bearings, constructions, loci) — the
+    last remaining piece of the original Phase 4 scope, resuming from a
+    prior session that had paused after a full plan-mode research pass (3
+    parallel Explore agents + 1 Plan agent, plus two technical claims —
+    ReportLab `ArcPath`'s sweep direction and `fillOpacity` genuinely
+    rendering in real PDF output — independently re-verified by direct
+    experiment) with every design decision already confirmed but no plan
+    file written and no code started. This session re-verified the
+    codebase's state hadn't drifted (topic count, registry import block,
+    and topic-list tail all matched the prior research exactly), wrote the
+    final plan straight from those preserved findings, and proceeded to
+    implementation without re-running the research.
+
+    Added 6 new topics (268→274) across 3 new files: `bearings_cosine_rule`
+    (Higher, new `bearings.py`, new "Bearings" group) reimplements
+    `triangle_rules.py`'s SAS cosine-rule maths (not imported — matches that
+    file's existing sine_rule/cosine_rule/triangle_area sibling-function
+    pattern) as a two-leg bearings word problem: the included angle at the
+    turn point is derived from the two given bearings (back-bearing +
+    difference) before applying the cosine rule, verified in two independent
+    stages (coordinate-geometry angle re-derivation via dot product, then
+    the same coordinate-distance cross-check `cosine_rule` itself uses).
+    `construction_angle_bisector` / `construction_perpendicular_bisector` /
+    `construction_triangle` (all Foundation, new `constructions.py`, new
+    "Constructions" group) are "describe the method" text questions with
+    **no `verify()` at all** (author-review only, per the confirmed design —
+    the sole exception to this codebase's "always verify independently"
+    rule, since there is no way to numerically check a described
+    construction) and no `TEMPLATES` bank — randomised numbers/labels
+    embedded in fixed per-scenario method text instead, giving a state space
+    in the thousands-to-millions rather than a fixed handful.
+    `loci_constructions` (Foundation: locus from a point / two points / two
+    lines, one of three branches per question) and `loci_regions` (Higher: a
+    genuinely two-constraint shaded region — "within r cm of A AND closer to
+    A than B") both live in new `loci.py`, new "Loci" group, and both use the
+    same blank-question/completed-solution `diagram`/`solution_diagram`
+    split as the Phase 4a grid-transformation topics.
+
+    Three new diagram kinds were built and visually spiked first, before any
+    topic code was written (this project's established highest-risk-first
+    precedent): `draw_bearings` (a new `_bearing_arc` helper sweeps the
+    *full* clockwise-from-north bearing via `ArcPath.addArc`, unlike
+    `_angle_arc`'s shortest-arc-only behaviour — needed since a bearing arc
+    is often reflex; a new `_north_arrow` helper; both drawn at *both* turn
+    points, matching real exam bearings diagrams) and
+    `draw_loci_construction`/`draw_loci_region` (built on the existing
+    `_draw_scaled_axes` grid engine, sharing a new `_scaled_circle` helper
+    that always uses `Ellipse` with separately-computed x/y radii rather
+    than `Circle` — confirmed necessary by rendering a circle on a
+    deliberately wide non-square grid window and seeing it stay a true
+    circle, not an ellipse; `draw_loci_region`'s shading is a rasterized dot
+    mesh, sampling a fine grid and painting a small translucent
+    `fillOpacity` dot wherever every constraint holds, rather than
+    hand-built boolean region geometry).
+
+    The bearings diagram spike caught and fixed several real label-collision
+    bugs via rendering actual PDFs across a wide sweep of bearing
+    combinations (reflex, near-cardinal, both turn directions) — not by unit
+    tests, the same story as most diagram gotchas in this file: vertex
+    labels at the two turn points routinely collided with their own north
+    arrow when pushed straight up by the usual outward-from-centroid rule
+    (fixed by detecting a near-vertical outward direction at an arrow-bearing
+    vertex and pushing sideways instead); leg-length/unknown-distance labels
+    centre-anchored on their offset point swung back over a near-vertical
+    leg and collided with that vertex's own "N" label (fixed with the same
+    anchor-by-offset-sign rule already used by `draw_parallel_lines`/
+    `draw_triangle_angles`, plus a wider offset distance); and a
+    downward-pushed label at the bottom-most point could land on top of the
+    "Diagram NOT accurately drawn" caption (fixed by asymmetric margins
+    reserving headroom at both the top, for arrows, and the bottom, for
+    pushed-down labels). `draw_loci_construction` also gained a
+    `given_lines` param (always drawn, on both question and solution pages —
+    the two rays forming an angle to bisect, or the segment between two
+    points to bisect) and `draw_loci_region` gained a `boundaries` param
+    (each constraint's own dashed circle/segment boundary, always drawn,
+    independent of whether the shading itself is present yet) — both follow
+    the same "given information is always shown" convention
+    `draw_grid_transformation` established for its mirror line/centre/vector
+    in Phase 4a.
+
+    Central integration (registry wiring — 3 new imports at their
+    alphabetical slots, one contiguous topic block appended after Phase 4a's
+    block and before `# Probability`, matching how every previous phase's
+    block was appended in one place), the 4 hardcoded `268`-topic-count
+    assertions updated to `274`, the full backend+frontend suite, and
+    browser-driven end-to-end verification (worksheet *and* modelled-example
+    generation through the real running app for all 6 new topics, plus
+    confirming the new "Bearings"/"Constructions"/"Loci" groups appear
+    correctly under Geometry's Foundation/Higher tier picker — Foundation
+    grew 38→42, Higher grew 37→39) were all done directly in this session.
+    Backend suite grew from 638 to 658 tests; frontend unaffected (45/45 —
+    new groups render generically through the existing section/topic-card
+    UI).
+
 Everything above is committed and pushed (see `git log`).
 
 ## Environment gotchas (Windows, this machine specifically)
@@ -1584,24 +1687,17 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
 
 ## Ideas for a future session (not started, no commitment made)
 
-- **Geometry expansion Phase 4b** (agreed with the user in chronology step 23;
-  Phases 1-3 and Phase 4a are built — see steps 24-26 for 3D Shapes, the trig/
-  Pythagoras/congruence-proof topics, and Symmetry/Transformations): bearings
-  & constructions/loci — cosine rule in bearings, constructing angle
-  bisectors/perpendicular bisectors/triangles (describe-the-method text
-  questions, per the user's choice — not diagram-based, since there's no way
-  to "solve" a construction numerically, and confirmed in step 26 to need no
-  `verify()` either — author-review only), and loci and regions. Not started —
-  confirm with the user before starting, per the "Where to pick up next" note
-  above.
-  - Compound 3D shapes' **surface area** was deliberately left out of Phase 2's
-    `compound_3d_volume` topic (volume only) — excluding a compound solid's internal
-    shared face correctly was judged too much added risk for that session's first
-    pass. Could be added as its own topic later if wanted.
-  - Phase 3's congruent triangle proof topic covers SSS/SAS/ASA/RHS via an
-    18-entry curated bank (see step 25) — a Foundation `trig_mixed`-style
-    sibling covering *identifying* similar (not congruent) triangles, or a
-    "prove NOT congruent" variant, were not requested and are not built.
+- The entire user-supplied Geometry expansion (Phases 1-4b) is now complete —
+  see chronology steps 23-27. Two small loose ends from within it were never
+  requested and are not built: compound 3D shapes' **surface area** was
+  deliberately left out of Phase 2's `compound_3d_volume` topic (volume
+  only) — excluding a compound solid's internal shared face correctly was
+  judged too much added risk for that session's first pass, could be added
+  as its own topic later if wanted; and Phase 3's congruent triangle proof
+  topic covers SSS/SAS/ASA/RHS via an 18-entry curated bank (see step 25) —
+  a Foundation `trig_mixed`-style sibling covering *identifying* similar
+  (not congruent) triangles, or a "prove NOT congruent" variant, were not
+  requested and are not built.
 - The from-scratch Foundation/Higher curriculum audit (step 13) flagged a handful of
   **lower-confidence** candidates that were reported but deliberately *not* built,
   pending more research or a product decision: `probability_combined_dice` (may
