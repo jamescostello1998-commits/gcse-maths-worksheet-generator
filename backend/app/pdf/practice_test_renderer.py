@@ -60,8 +60,8 @@ def _escape(text: str) -> str:
     return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-def _fmt(text: str) -> str:
-    return to_markup(_escape(text))
+def _fmt(text: str, style: ParagraphStyle) -> str:
+    return to_markup(_escape(text), font_size=style.fontSize, color=style.textColor, bold=style.fontName == FONT_BOLD)
 
 
 def _candidate_info_table(styles: dict) -> Table:
@@ -137,7 +137,7 @@ def _cover_page_elements(paper: PracticeTestPaper, styles: dict) -> list:
 
 
 def _question_block(number: int, question: PracticeQuestion, styles: dict) -> KeepTogether:
-    prompt_para = Paragraph(f"<b>{number}.</b> {_fmt(question.prompt)}", styles["QuestionText"])
+    prompt_para = Paragraph(f"<b>{number}.</b> {_fmt(question.prompt, styles['QuestionText'])}", styles["QuestionText"])
     marks_para = Paragraph(f"[{question.marks}]", styles["MarksLabel"])
     row = Table([[prompt_para, marks_para]], colWidths=[_QUESTION_COL_WIDTH, _MARKS_COL_WIDTH])
     row.setStyle(
@@ -199,12 +199,12 @@ def _mark_scheme_table(paper: PracticeTestPaper, styles: dict) -> Table:
     rows = [header]
     for i, question in enumerate(paper.questions, start=1):
         guidance = "<br/>".join(
-            f"<b>{point.code}</b> {_fmt(point.description)}" for point in question.mark_scheme
+            f"<b>{point.code}</b> {_fmt(point.description, styles['MarkSchemeCell'])}" for point in question.mark_scheme
         )
         rows.append(
             [
                 Paragraph(str(i), styles["MarkSchemeCell"]),
-                Paragraph(_fmt(question.final_answer), styles["MarkSchemeCell"]),
+                Paragraph(_fmt(question.final_answer, styles["MarkSchemeCell"]), styles["MarkSchemeCell"]),
                 Paragraph(str(question.marks), styles["MarkSchemeCell"]),
                 Paragraph(guidance, styles["MarkSchemeCell"]),
             ]

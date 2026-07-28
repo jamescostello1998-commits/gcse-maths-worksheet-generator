@@ -10,23 +10,25 @@ from reportlab.platypus import (
     Spacer,
 )
 
+from reportlab.lib.styles import ParagraphStyle
+
 from app.core.errors import PdfRenderError
 from app.core.models import Question, Worksheet
 from app.pdf.diagrams import render_diagram
 from app.pdf.mathtext import to_markup
-from app.pdf.styles import MARGIN, RULE, build_styles
+from app.pdf.styles import FONT_BOLD, MARGIN, RULE, build_styles
 
 
 def _escape(text: str) -> str:
     return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-def _fmt(text: str) -> str:
-    return to_markup(_escape(text))
+def _fmt(text: str, style: ParagraphStyle) -> str:
+    return to_markup(_escape(text), font_size=style.fontSize, color=style.textColor, bold=style.fontName == FONT_BOLD)
 
 
 def _question_block(number: int, question: Question, styles: dict) -> KeepTogether:
-    elements = [Paragraph(f"<b>Q{number}.</b> {_fmt(question.prompt)}", styles["QuestionText"])]
+    elements = [Paragraph(f"<b>Q{number}.</b> {_fmt(question.prompt, styles['QuestionText'])}", styles["QuestionText"])]
     if question.diagram is not None:
         elements.append(Spacer(1, 4))
         elements.append(render_diagram(question.diagram))
@@ -37,17 +39,17 @@ def _question_block(number: int, question: Question, styles: dict) -> KeepTogeth
 def _solution_block(number: int, question: Question, styles: dict) -> KeepTogether:
     elements = [Paragraph(f"Q{number}", styles["SolutionHeading"])]
     for step in question.solution_steps:
-        elements.append(Paragraph(_fmt(step), styles["SolutionStep"]))
+        elements.append(Paragraph(_fmt(step, styles["SolutionStep"]), styles["SolutionStep"]))
     if question.solution_diagram is not None:
         elements.append(Spacer(1, 4))
         elements.append(render_diagram(question.solution_diagram))
         elements.append(Spacer(1, 4))
-    elements.append(Paragraph(f"Answer: {_fmt(question.final_answer)}", styles["FinalAnswer"]))
+    elements.append(Paragraph(f"Answer: {_fmt(question.final_answer, styles['FinalAnswer'])}", styles["FinalAnswer"]))
     return KeepTogether(elements)
 
 
 def _answer_row(number: int, question: Question, styles: dict) -> Paragraph:
-    return Paragraph(f"<b>Q{number}.</b> {_fmt(question.final_answer)}", styles["AnswerRow"])
+    return Paragraph(f"<b>Q{number}.</b> {_fmt(question.final_answer, styles['AnswerRow'])}", styles["AnswerRow"])
 
 
 def render_worksheet(worksheet: Worksheet, answers_only: bool = False) -> bytes:

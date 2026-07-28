@@ -21,11 +21,13 @@ from reportlab.platypus import (
     TableStyle,
 )
 
+from reportlab.lib.styles import ParagraphStyle
+
 from app.core.errors import PdfRenderError
 from app.core.models import ModelledExample, Question, Tier
 from app.pdf.diagrams import render_diagram
 from app.pdf.mathtext import to_markup
-from app.pdf.styles import ACCENT, HIGHLIGHT, MARGIN, RULE, build_styles
+from app.pdf.styles import ACCENT, FONT_BOLD, HIGHLIGHT, MARGIN, RULE, build_styles
 
 _PAGE_WIDTH = A4[0] - 2 * MARGIN
 
@@ -37,8 +39,8 @@ def _escape(text: str) -> str:
     return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-def _fmt(text: str) -> str:
-    return to_markup(_escape(text))
+def _fmt(text: str, style: ParagraphStyle) -> str:
+    return to_markup(_escape(text), font_size=style.fontSize, color=style.textColor, bold=style.fontName == FONT_BOLD)
 
 
 def _steps_shown_count(index: int, n_steps: int) -> int:
@@ -59,7 +61,7 @@ def _steps_shown_count(index: int, n_steps: int) -> int:
 
 
 def _worked_calculation_box(lines: tuple[str, ...], styles: dict) -> Table:
-    cell = [Paragraph(_fmt(line), styles["WorkedCalcLine"]) for line in lines]
+    cell = [Paragraph(_fmt(line, styles["WorkedCalcLine"]), styles["WorkedCalcLine"]) for line in lines]
     box = Table([[cell]], colWidths=[_PAGE_WIDTH])
     box.setStyle(
         TableStyle(
@@ -83,7 +85,7 @@ def _worked_example_elements(topic_name: str, tier: Tier, example: ModelledExamp
         Paragraph(_escape(topic_name), styles["Title"]),
         Paragraph(f"{tier_label} Tier &nbsp;&#8226;&nbsp; Worked Example", styles["Meta"]),
         HRFlowable(width="100%", thickness=0.75, color=RULE, spaceAfter=16),
-        Paragraph(_fmt(example.prompt), styles["WorkedPrompt"]),
+        Paragraph(_fmt(example.prompt, styles["WorkedPrompt"]), styles["WorkedPrompt"]),
     ]
     if example.diagram is not None:
         elements.append(Spacer(1, 4))
@@ -92,14 +94,14 @@ def _worked_example_elements(topic_name: str, tier: Tier, example: ModelledExamp
     elements.append(_worked_calculation_box(example.worked_calculation, styles))
     elements.append(Paragraph("How it works", styles["TeachingHeading"]))
     for i, step in enumerate(example.teaching_steps, start=1):
-        elements.append(Paragraph(f"<b>{i}.</b> {_fmt(step)}", styles["TeachingStep"]))
+        elements.append(Paragraph(f"<b>{i}.</b> {_fmt(step, styles['TeachingStep'])}", styles["TeachingStep"]))
     elements.append(Spacer(1, 8))
-    elements.append(Paragraph(f"Answer: {_fmt(example.final_answer)}", styles["TeachingAnswer"]))
+    elements.append(Paragraph(f"Answer: {_fmt(example.final_answer, styles['TeachingAnswer'])}", styles["TeachingAnswer"]))
     return elements
 
 
 def _practice_block(number: int, question: Question, index: int, styles: dict) -> KeepTogether:
-    elements = [Paragraph(f"<b>Q{number}.</b> {_fmt(question.prompt)}", styles["PracticeQuestion"])]
+    elements = [Paragraph(f"<b>Q{number}.</b> {_fmt(question.prompt, styles['PracticeQuestion'])}", styles["PracticeQuestion"])]
     if question.diagram is not None:
         elements.append(Spacer(1, 4))
         elements.append(render_diagram(question.diagram))
@@ -116,7 +118,7 @@ def _practice_block(number: int, question: Question, index: int, styles: dict) -
     else:
         for i, step in enumerate(question.solution_steps):
             if i < shown:
-                elements.append(Paragraph(_fmt(step), styles["ScaffoldGiven"]))
+                elements.append(Paragraph(_fmt(step, styles["ScaffoldGiven"]), styles["ScaffoldGiven"]))
             else:
                 elements.append(Paragraph(_FADE_BLANK, styles["ScaffoldBlank"]))
     elements.append(Paragraph(f"Answer: {_ANSWER_BLANK}", styles["ScaffoldBlank"]))

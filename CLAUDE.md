@@ -441,25 +441,62 @@ unused) would show under both.
 
 **Typesetting**: `backend/app/pdf/mathtext.py` centrally converts plain-ASCII math in
 generator output (`x`, `n`, `x^2`, `10^-3`, `3/4`) into real PDF typesetting — the
-variables `x` and `n` are italicised, `^n` becomes a real superscript, and a fraction
-gets its numerator raised/denominator lowered (`<super>`/`<sub>`, e.g. `3/4` →
-3-raised/4-lowered) — applied once at render time in `renderer.py` (and
-`modelled_example_renderer.py`, which shares the same `to_markup`), so any topic that
-follows the ASCII convention gets this for free. Only `x`/`n` are italicised, not
-`a`/`b` or other letters — see the "Italicising more variables" bullet below for why a
-blanket rule can't safely cover every single letter (e.g. `a` collides constantly with
-the English indefinite article). The fraction markup is a super/sub approximation, not
-a true stacked vinculum (horizontal bar) — ReportLab's inline `<img>` tag only accepts
-a file-path string and this environment has no working image-rasterisation backend
-(`renderPM` needs Cairo bindings that aren't installed), so a real vinculum in prose
-text would need PNGs rendered via PIL to temp files using a hardcoded font path
-(`C:\Windows\Fonts\arial.ttf`) — judged too fragile for the payoff and deliberately
-not built (see chronology step 16). Diagram labels get the *real* vinculum treatment
-via `diagrams.py`'s `_label()`/`_math_runs()`/`_draw_fraction()`, since diagrams are
-already drawn as vector shapes (`String`/`Line` in a `Group`) and don't need the
-Paragraph-markup workaround — italics there also cover `x` and `n`. No current topic's
-diagram actually shows a fraction label yet, so this path is unexercised by real
-content today; it's built and unit-tested for when one eventually does.
+variables `x` and `n` are italicised, `^n` becomes a real superscript, and a standalone
+fraction is rendered as a **true stacked vinculum** (numerator over a horizontal rule
+over denominator, e.g. `3/4` → a small inline image, matching the diagram-label
+treatment below) — applied once at render time in `renderer.py`,
+`modelled_example_renderer.py`, and `practice_test_renderer.py` (all three share the
+same `to_markup`), so any topic that follows the ASCII convention gets this for free.
+Only `x`/`n` are italicised, not `a`/`b` or other letters — see the "Italicising more
+variables" bullet below for why a blanket rule can't safely cover every single letter
+(e.g. `a` collides constantly with the English indefinite article).
+
+**A true vinculum in prose text (chronology step 28)** — originally deferred (step 16)
+as "too fragile for the payoff" because ReportLab's inline `<img>` tag needs a real
+image *file*, and ReportLab's own vector-to-image rasteriser (`renderPM`) isn't
+installed here (needs Cairo bindings) — was revisited and built once the user asked
+again, using the workaround already scoped out at the time: `app/pdf/fraction_images.py`
+draws the numerator/rule/denominator directly with **PIL** (already an installed
+dependency of reportlab/pymupdf, now pinned explicitly in `requirements.txt`) onto a
+transparent-background PNG, using the same Windows TrueType fonts
+(`C:\Windows\Fonts\arial.ttf`/`arialbd.ttf`) ReportLab itself would fall back to, at
+4x supersampling for crisp print quality. Results are cached in memory (keyed by
+every visual parameter: numerator, denominator, font size, bold, colour) and written
+once per unique fraction to a per-process temp directory (cleaned up via `atexit`),
+since the same fraction (e.g. `1/2`) recurs constantly across a 20-question worksheet.
+`to_markup` therefore needs the caller's font size/colour/bold-ness to size and colour
+the image correctly — its signature grew `font_size`/`color`/`bold` keyword params,
+and every `_fmt(text)` call site across the 3 renderer files became `_fmt(text, style)`,
+deriving those three from the actual `ParagraphStyle` being used (so a fraction in a
+bold green answer line renders bold and green, not always plain black). The `<img>`
+tag's `valign="bottom"` attribute was confirmed — by rendering real text at several
+valign values side by side and comparing pixel-for-pixel — to align the fraction's own
+visual baseline (the bottom of the denominator digits) with the surrounding text's
+baseline with no extra offset maths needed. A negative fraction's sign (`-3/4`) stays
+a plain baseline character in front of the image — only the num/den/rule are drawn as
+one unit. The old `<sub>`+comma ReportLab spacing quirk (documented below) no longer
+applies to fractions at all now that they're images, so its workaround code was
+removed as dead.
+
+**Real bug found and fixed while building this** (via an actual end-to-end worksheet
+render, not a unit test — same story as most gotchas in this file): the very first
+version ran the `x`/`n`-italicising regex pass *after* the fraction-substitution pass.
+Since a fraction is now replaced with an `<img src="{temp file path}">` tag, and
+`tempfile.mkdtemp`'s random suffix can itself contain a bare "x" or "n" flanked by
+non-letters (e.g. `...gcse_fractions_k_x7ili6\frac_0.png`), the later italics pass
+re-scanned and corrupted part of the just-inserted file path, breaking image loading
+entirely for any worksheet unlucky enough to hit a matching random suffix — synthetic
+spike text never happened to trigger it, only a real render across many questions did.
+Fixed by reordering `to_markup` to italicise first, then substitute fractions/exponents
+last, so the inserted markup (including file paths) is never re-scanned by anything
+else — with a deterministic regression test (monkeypatching the image path to force
+the exact scenario) added alongside the probabilistic real-world discovery.
+
+Diagram labels keep their own, separate true-vinculum implementation
+(`diagrams.py`'s `_label()`/`_math_runs()`/`_draw_fraction()`) rather than sharing
+`fraction_images.py` — diagrams are already drawn as vector shapes (`String`/`Line`
+in a `Group`) inside a `Drawing`, not Paragraph markup, so they never had the
+inline-image constraint prose text does, and don't need PNGs at all.
 
 **Bearings, Constructions, and Loci** (Geometry Phase 4b, chronology step 27
 — the final piece of the large user-supplied Geometry expansion): three new
@@ -498,15 +535,17 @@ check a described construction).
   missing-glyph box. Always write `f^-1(x)`, `cos^-1(...)` etc. and let `mathtext.py`
   superscript it properly. (`²`, `√`, `π`, `≤`, `°`, `×`, `÷`, `£` are all fine as
   literal Unicode — only `⁻` specifically is the problem.)
-- ReportLab renders a comma **glued and raised** to the preceding digit when it
-  immediately follows a closing `</sub>` with no space in between (verified in
-  isolation with a throwaway script — periods, colons, semicolons, question marks and
-  closing parens in the same position are all fine, and so is a comma after
-  `</super>`; only sub+comma with zero gap breaks). Since every fraction here ends in
-  `</sub>`, and prose text very often follows a fraction straight with a comma (e.g.
-  `"...= 20/90, 2/9..."`), `mathtext.py`'s `_replace_fraction` inserts a non-breaking
-  space before such a comma to dodge it. If a future change ever hand-writes
-  `<sub>...</sub>` markup directly (bypassing `to_markup`), watch for this.
+- (Historical, resolved as of chronology step 28 — kept for context in case `<sub>`
+  markup is ever hand-written again) ReportLab renders a comma **glued and raised** to
+  the preceding digit when it immediately follows a closing `</sub>` with no space in
+  between (verified in isolation with a throwaway script — periods, colons, semicolons,
+  question marks and closing parens in the same position are all fine, and so is a
+  comma after `</super>`; only sub+comma with zero gap breaks). Standalone fractions
+  used to end in `</sub>` (the old `<super>`/`<sub>` approximation) and needed a
+  non-breaking-space workaround before a trailing comma; now that fractions are
+  `<img>` tags instead (see "A true vinculum in prose text" above), `<sub>` is never
+  emitted anywhere in this codebase, so the workaround was removed as dead code. If a
+  future change ever hand-writes `<sub>...</sub>` markup directly, watch for this again.
 
 ## How this was built (chronology, for context)
 
@@ -1488,6 +1527,93 @@ check a described construction).
     Backend suite grew from 638 to 658 tests; frontend unaffected (45/45 —
     new groups render generically through the existing section/topic-card
     UI).
+
+28. New session, a direct user request to revisit standalone fractions in
+    prose text (worksheet prompts/solution steps/answers): replace the
+    `<super>`/`<sub>` raised-numerator/lowered-denominator approximation
+    (shipped in step 16, when a true vinculum was judged "too fragile for
+    the payoff") with a real stacked vinculum, matching a reference image
+    the user provided. Asked two clarifying questions up front per the
+    user's request: confirmed scope was prose text only (diagram labels
+    already had a true vinculum) and confirmed proceeding with the
+    previously-identified PIL/PNG approach rather than re-investigating
+    alternatives first.
+
+    Built `app/pdf/fraction_images.py`: PIL draws the numerator, a
+    horizontal rule, and the denominator directly onto a transparent PNG
+    (4x supersampled) using the same Windows TrueType font files ReportLab
+    itself falls back to, cached in memory per unique (num, den, font_size,
+    bold, colour) and written once per fraction to a per-process temp
+    directory (`atexit`-cleaned). Added `Pillow` as an explicit pinned
+    dependency in `requirements.txt` (it was already an installed transitive
+    dependency of reportlab/pymupdf, but now genuinely imported directly, matching
+    this project's established precedent of pinning what's actually used —
+    see the `pymupdf` addition in step 25). `mathtext.py`'s standalone-
+    fraction branch now emits `<img src="..." valign="bottom"/>` instead of
+    `<super>/<sub>`; the leading sign of a negative fraction stays a plain
+    baseline character in front of the image, not part of it. `to_markup`
+    grew required `font_size`/`color` keyword params (plus optional `bold`),
+    and all 15 `_fmt(text)` call sites across the 3 PDF renderers
+    (`renderer.py`, `modelled_example_renderer.py`, `practice_test_renderer.py`)
+    became `_fmt(text, style)`, deriving those three from the real
+    `ParagraphStyle` in use so a fraction in bold green answer text renders
+    bold and green, not always plain black.
+
+    The `valign="bottom"` attribute (and the exact image height needed to
+    make it work) was determined empirically, not from documentation alone:
+    a spike script rendered the same fraction inline at 8 different `<img
+    valign>` values side by side in a real PDF, rasterized at high DPI, and
+    compared pixel-for-pixel against the surrounding text's own baseline —
+    `"bottom"` (ReportLab's own default) turned out to align correctly with
+    no extra offset maths needed at all, once the PNG's own bottom edge was
+    drawn flush with the denominator's glyph bottom. Verified across a wide
+    battery of real cases the same way: negative fractions, mixed numbers,
+    a fraction immediately before a comma/period/closing-paren, bold text,
+    ACCENT-coloured bold text, multi-digit numerators/denominators, and
+    several fractions in one line — all correct on the first full pass.
+
+    **Real bug found and fixed via an actual end-to-end worksheet render,
+    not a unit test** (same story as most gotchas in this file — the
+    synthetic spike text never happened to trigger it): the first working
+    version italicised `x`/`n` *after* substituting fractions, but a
+    fraction is now an `<img src="{temp path}">` tag, and
+    `tempfile.mkdtemp`'s random directory-name suffix can itself contain a
+    bare "x" or "n" flanked by non-letters (e.g. `..._k_x7ili6\frac_0.png`)
+    - the later italics pass re-scanned and corrupted that path, breaking
+    image loading entirely for any worksheet unlucky enough to hit a
+    matching random suffix. Fixed by reordering `to_markup` to italicise
+    first and substitute fractions/exponents last, so inserted markup
+    (including file paths) is never re-scanned by anything else — with a
+    new deterministic regression test (monkeypatching the fraction-image
+    path to force the exact "x in the path" scenario) added alongside the
+    real-world discovery, since the bug itself was probabilistic and
+    wouldn't reliably reproduce in a normal test run.
+
+    The old `<sub>`+comma ReportLab spacing quirk (documented in the
+    Gotchas list above) no longer applies now that fractions are images,
+    not `<sub>` tags — since nothing in this codebase emits `<sub>` at all
+    any more, its non-breaking-space workaround was removed as dead code
+    (the Gotchas entry itself was kept, marked historical/resolved, in case
+    `<sub>` markup is ever hand-written again). `test_mathtext.py`'s
+    fraction tests were rewritten from exact-string equality (no longer
+    possible, since the output embeds a dynamically-generated temp path) to
+    structural assertions via a regex extracting the `<img>` tag's
+    attributes; a new `test_fraction_images.py` covers the PNG renderer
+    directly (real file on disk, correct dimensions/colour, caching
+    behaviour). Visually verified end-to-end across genuinely different
+    real topics (not just the synthetic spike) — `fractions_add_subtract`,
+    `fractions_simplify`, `fractions_equivalent`, `probability_single_event`
+    (worksheet, worked solutions, *and* the modelled-example page, which
+    exercises three more paragraph styles including the boxed bold worked-
+    calculation and the bold ACCENT-coloured answer line) — plus the
+    practice-test mark scheme's dense 9pt table, the smallest font size
+    fractions appear at anywhere in the app. Diagram labels were untouched
+    (they already had their own, separate true-vinculum implementation in
+    `diagrams.py`, which doesn't share `fraction_images.py` since diagrams
+    draw as vector shapes, not Paragraph markup, and never had the inline-
+    image constraint prose text does). Backend suite grew from 658 to 668
+    tests; frontend and Geometry Phase 4b both unaffected (this session
+    touched only the shared math-typesetting layer).
 
 Everything above is committed and pushed (see `git log`).
 
