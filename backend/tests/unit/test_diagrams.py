@@ -8,7 +8,9 @@ from app.pdf.diagrams import (
     _math_runs,
     draw_bar_chart,
     draw_box_plot,
+    draw_grid_transformation,
     draw_pie_chart,
+    draw_symmetry_shape,
     render_diagram,
 )
 
@@ -253,6 +255,34 @@ SAMPLE_SPECS = [
             "width_label": "16 cm", "height_label": "10 cm", "roof_label": "5 cm", "cut_label": "4 cm",
         },
     ),
+    DiagramSpec(
+        kind="grid_transformation",
+        params={
+            "x_min": -8, "x_max": 8, "y_min": -8, "y_max": 8,
+            "original_vertices": [(1, 1), (3, 1), (3, 2), (1, 2)], "original_labels": ["A", "B", "C", "D"],
+            "mirror_line": {"type": "vertical", "x": -1, "label": "x = -1"},
+        },
+    ),
+    DiagramSpec(
+        kind="grid_transformation",
+        params={
+            "x_min": -8, "x_max": 8, "y_min": -8, "y_max": 8,
+            "original_vertices": [(1, 1), (3, 1), (3, 2), (1, 2)], "original_labels": ["A", "B", "C", "D"],
+            "image_vertices": [(-3, 1), (-5, 1), (-5, 2), (-3, 2)], "image_labels": ["A'", "B'", "C'", "D'"],
+            "centre": (0, 0), "translation_vector": (4, 3), "vector_label": "(4, 3)",
+        },
+    ),
+    DiagramSpec(
+        kind="symmetry_shape",
+        params={"vertices": [(0, 0), (6, 0), (6, 4), (0, 4)], "blank": True},
+    ),
+    DiagramSpec(
+        kind="symmetry_shape",
+        params={
+            "vertices": [(0, 0), (6, 0), (6, 4), (0, 4)],
+            "symmetry_lines": [{"p1": (3, -1), "p2": (3, 5)}, {"p1": (-1, 2), "p2": (7, 2)}],
+        },
+    ),
 ]
 
 
@@ -393,3 +423,83 @@ def test_box_plot_label_column_keeps_labels_clear_of_the_whiskers():
     assert len(label_strings) == 2
     for s in label_strings:
         assert s.x < whisker_left_edge  # labels sit strictly left of every whisker/box edge
+
+
+def test_grid_transformation_blank_omits_the_image_but_keeps_given_annotations():
+    base_params = {
+        "x_min": -8, "x_max": 8, "y_min": -8, "y_max": 8,
+        "original_vertices": [(1, 1), (3, 1), (3, 2), (1, 2)], "original_labels": ["A", "B", "C", "D"],
+        "mirror_line": {"type": "vertical", "x": -1, "label": "x = -1"},
+    }
+    blank = draw_grid_transformation(params=base_params)
+    solution = draw_grid_transformation(params={
+        **base_params,
+        "image_vertices": [(-3, 1), (-5, 1), (-5, 2), (-3, 2)],
+        "image_labels": ["A'", "B'", "C'", "D'"],
+    })
+    from reportlab.graphics.shapes import Group, Polygon, String
+
+    def _all(shape, cls):
+        if isinstance(shape, cls):
+            yield shape
+        elif isinstance(shape, Group):
+            for child in shape.contents:
+                yield from _all(child, cls)
+
+    # The mirror line (given information) is drawn on both the blank question-page
+    # version and the completed solution-page version. The label "x = -1" is split
+    # into separate runs by the standalone-x italiciser, so match on the
+    # un-italicised remainder " = -1" rather than the whole string.
+    assert any(s.text == " = -1" for s in _all(blank, String))
+    assert any(s.text == " = -1" for s in _all(solution, String))
+    # Only the solution has the image polygon and its primed vertex labels.
+    assert len(list(_all(blank, Polygon))) == 1
+    assert len(list(_all(solution, Polygon))) == 2
+    assert not any(s.text == "A'" for s in _all(blank, String))
+    assert any(s.text == "A'" for s in _all(solution, String))
+
+
+def test_grid_transformation_mirror_line_only_appears_when_passed():
+    from reportlab.graphics.shapes import Group, Line
+
+    def _all_lines(shape):
+        if isinstance(shape, Line):
+            yield shape
+        elif isinstance(shape, Group):
+            for child in shape.contents:
+                yield from _all_lines(child)
+
+    no_mirror = draw_grid_transformation(params={
+        "x_min": -8, "x_max": 8, "y_min": -8, "y_max": 8,
+        "original_vertices": [(1, 1), (3, 1), (3, 2), (1, 2)], "original_labels": ["A", "B", "C", "D"],
+    })
+    with_mirror = draw_grid_transformation(params={
+        "x_min": -8, "x_max": 8, "y_min": -8, "y_max": 8,
+        "original_vertices": [(1, 1), (3, 1), (3, 2), (1, 2)], "original_labels": ["A", "B", "C", "D"],
+        "mirror_line": {"type": "horizontal", "y": -2, "label": "y = -2"},
+    })
+    dashed_no_mirror = [ln for ln in _all_lines(no_mirror) if ln.strokeDashArray]
+    dashed_with_mirror = [ln for ln in _all_lines(with_mirror) if ln.strokeDashArray]
+    assert len(dashed_no_mirror) == 0
+    assert len(dashed_with_mirror) == 1
+
+
+def test_symmetry_shape_blank_omits_symmetry_lines():
+    params = {
+        "vertices": [(0, 0), (6, 0), (6, 4), (0, 4)],
+        "symmetry_lines": [{"p1": (3, -1), "p2": (3, 5)}, {"p1": (-1, 2), "p2": (7, 2)}],
+    }
+    blank = draw_symmetry_shape(params={**params, "blank": True})
+    solution = draw_symmetry_shape(params=params)
+
+    from reportlab.graphics.shapes import Group, Line
+
+    def _all_lines(shape):
+        if isinstance(shape, Line):
+            yield shape
+        elif isinstance(shape, Group):
+            for child in shape.contents:
+                yield from _all_lines(child)
+
+    assert len(list(_all_lines(blank))) == 0
+    assert len(list(_all_lines(solution))) == 2

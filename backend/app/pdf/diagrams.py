@@ -492,6 +492,60 @@ def draw_polygon(params: dict) -> Drawing:
     return d
 
 
+def _rotation_indicator(cx: float, cy: float, radius: float = 18, color=ACCENT) -> Group:
+    """A centre dot plus a curved arc (270 degrees, counterclockwise) marking
+    rotational symmetry about (cx, cy) - the order label is added separately
+    by the caller so its position can be chosen per-diagram."""
+    group = Group()
+    group.add(Circle(cx, cy, 2.2, fillColor=color, strokeColor=color))
+    group.add(_angle_arc(cx, cy, 0, 270, radius=radius, color=color))
+    return group
+
+
+def draw_symmetry_shape(params: dict) -> Drawing:
+    """A single named polygon (schematic, auto-scaled to fit the diagram box)
+    for line/rotational symmetry questions. params['vertices'] is a list of
+    (x, y) local coordinates in any scale/origin - auto-fit to the box.
+    params['blank'] (question page) draws the outline only; the solution
+    page (blank False/omitted) overlays dashed line(s) of symmetry
+    (params['symmetry_lines'], a list of {"p1": (x, y), "p2": (x, y)} in the
+    same local coordinate space) or, for rotational symmetry, a centre dot +
+    curved arrow (params['rotation_centre'], params['rotation_order'])."""
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    vertices = params["vertices"]
+    xs = [v[0] for v in vertices]
+    ys = [v[1] for v in vertices]
+    x_lo, x_hi = min(xs), max(xs)
+    y_lo, y_hi = min(ys), max(ys)
+    pad = 26
+    span_x = max(x_hi - x_lo, 1e-6)
+    span_y = max(y_hi - y_lo, 1e-6)
+    scale = min((DIAGRAM_WIDTH - 2 * pad) / span_x, (DIAGRAM_HEIGHT - 2 * pad) / span_y)
+    mid_x, mid_y = (x_lo + x_hi) / 2, (y_lo + y_hi) / 2
+    box_cx, box_cy = DIAGRAM_WIDTH / 2, DIAGRAM_HEIGHT / 2
+
+    def fit(pt: tuple) -> tuple:
+        return (box_cx + (pt[0] - mid_x) * scale, box_cy + (pt[1] - mid_y) * scale)
+
+    px_vertices = [fit(v) for v in vertices]
+    pts = [coord for vertex in px_vertices for coord in vertex]
+    d.add(Polygon(pts, strokeColor=INK, fillColor=None, strokeWidth=1.3))
+
+    if not params.get("blank", False):
+        for line in params.get("symmetry_lines") or []:
+            x0, y0 = fit(line["p1"])
+            x1, y1 = fit(line["p2"])
+            d.add(Line(x0, y0, x1, y1, strokeColor=ACCENT, strokeWidth=1.1, strokeDashArray=[3, 2]))
+        centre = params.get("rotation_centre")
+        if centre is not None:
+            cxp, cyp = fit(centre)
+            d.add(_rotation_indicator(cxp, cyp))
+            if params.get("rotation_order"):
+                d.add(_label(cxp, cyp - 26, f"order {params['rotation_order']}", color=ACCENT, size=7.5))
+
+    return d
+
+
 def draw_right_triangle(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     A, B, C = (40, 25), (165, 25), (40, 105)
@@ -931,6 +985,100 @@ def draw_piecewise_graph(params: dict) -> Drawing:
         for t, v in params["points"]:
             px, py = to_px(t, v)
             d.add(Circle(px, py, 1.8, strokeColor=INK, fillColor=INK))
+
+    return d
+
+
+def _arrowhead(tip: tuple, direction: tuple, color=INK, length: float = 6, half_width: float = 3) -> Polygon:
+    """A small filled triangular arrowhead at `tip`, pointing along the unit
+    vector `direction` (dx, dy)."""
+    dx, dy = direction
+    back = (tip[0] - dx * length, tip[1] - dy * length)
+    perp_x, perp_y = -dy, dx
+    left = (back[0] + perp_x * half_width, back[1] + perp_y * half_width)
+    right = (back[0] - perp_x * half_width, back[1] - perp_y * half_width)
+    return Polygon([tip[0], tip[1], left[0], left[1], right[0], right[1]], fillColor=color, strokeColor=color)
+
+
+def draw_grid_transformation(params: dict) -> Drawing:
+    """A real-scale, gridded diagram showing an 'original' polygon and,
+    unless params['image_vertices'] is omitted, its transformed 'image' -
+    for reflection/rotation/translation/enlargement questions on a
+    coordinate grid. params['mirror_line']/'centre'/'translation_vector' are
+    given information the student needs to perform the transform (not the
+    answer), so they are drawn whenever present, independent of whether the
+    image is shown - this lets one diagram kind serve both the blank
+    question-page version (no image_vertices) and the completed
+    solution-page version (image_vertices present) of a 'complete the
+    transformation' question, as well as a 'describe the transformation'
+    question (both shapes present, no mirror_line/centre/vector - that's
+    exactly what the student must determine)."""
+    d = Drawing(GRAPH_WIDTH, GRAPH_HEIGHT)
+    x_min, x_max = params["x_min"], params["x_max"]
+    y_min, y_max = params["y_min"], params["y_max"]
+    to_px = _draw_scaled_axes(d, x_min, x_max, y_min, y_max)
+
+    def draw_shape(vertices, labels, color) -> None:
+        px_vertices = [to_px(x, y) for x, y in vertices]
+        pts = [coord for vertex in px_vertices for coord in vertex]
+        d.add(Polygon(pts, strokeColor=color, fillColor=None, strokeWidth=1.3))
+        cx = sum(p[0] for p in px_vertices) / len(px_vertices)
+        cy = sum(p[1] for p in px_vertices) / len(px_vertices)
+        for (px, py), label in zip(px_vertices, labels):
+            d.add(Circle(px, py, 1.8, strokeColor=color, fillColor=color))
+            dx, dy = px - cx, py - cy
+            dist = math.hypot(dx, dy) or 1.0
+            d.add(_label(px + dx / dist * 9, py + dy / dist * 9, label, color=color, size=7.5))
+
+    mirror = params.get("mirror_line")
+    if mirror:
+        kind = mirror["type"]
+        if kind == "vertical":
+            x0, y0 = to_px(mirror["x"], y_min)
+            x1, y1 = to_px(mirror["x"], y_max)
+        elif kind == "horizontal":
+            x0, y0 = to_px(x_min, mirror["y"])
+            x1, y1 = to_px(x_max, mirror["y"])
+        else:
+            sign = mirror["sign"]
+            if sign == 1:
+                lo, hi = max(x_min, y_min), min(x_max, y_max)
+            else:
+                lo, hi = max(x_min, -y_max), min(x_max, -y_min)
+            x0, y0 = to_px(lo, sign * lo)
+            x1, y1 = to_px(hi, sign * hi)
+        d.add(Line(x0, y0, x1, y1, strokeColor=MUTED, strokeWidth=1.0, strokeDashArray=[3, 2]))
+        if mirror.get("label"):
+            d.add(_label(x1 - 4, y1 + 5, mirror["label"], anchor="end", color=MUTED, size=7.5))
+
+    centre = params.get("centre")
+    if centre is not None:
+        # No text label here (only a dot) - "centre of rotation/enlargement"
+        # is long enough that it reliably collides with nearby vertex labels
+        # whenever the centre sits close to (or exactly on) a shape vertex, a
+        # common and pedagogically normal configuration (e.g. "enlarge from
+        # vertex A") - found via this diagram kind's visual spike. The
+        # coordinate is stated in the prompt/solution text instead; the dot
+        # is enough to show *where* it is against the numbered grid.
+        cxp, cyp = to_px(*centre)
+        d.add(Circle(cxp, cyp, 2.3, fillColor=INK, strokeColor=INK))
+
+    vector = params.get("translation_vector")
+    if vector:
+        dx, dy = vector
+        anchor = params["original_vertices"][0]
+        ax, ay = to_px(*anchor)
+        bx, by = to_px(anchor[0] + dx, anchor[1] + dy)
+        d.add(Line(ax, ay, bx, by, strokeColor=ACCENT, strokeWidth=1.2, strokeDashArray=[3, 2]))
+        length = math.hypot(bx - ax, by - ay)
+        if length > 1e-6:
+            d.add(_arrowhead((bx, by), ((bx - ax) / length, (by - ay) / length), color=ACCENT))
+        if params.get("vector_label"):
+            d.add(_label((ax + bx) / 2 + 8, (ay + by) / 2, params["vector_label"], anchor="start", color=ACCENT, size=7.5))
+
+    draw_shape(params["original_vertices"], params["original_labels"], INK)
+    if params.get("image_vertices"):
+        draw_shape(params["image_vertices"], params["image_labels"], ACCENT)
 
     return d
 
@@ -2101,6 +2249,7 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "parallel_lines": draw_parallel_lines,
     "exterior_triangle": draw_exterior_triangle,
     "polygon": draw_polygon,
+    "symmetry_shape": draw_symmetry_shape,
     "right_triangle": draw_right_triangle,
     "trig_triangle": draw_trig_triangle,
     "general_triangle": draw_general_triangle,
@@ -2115,6 +2264,7 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "function_graph": draw_function_graph,
     "piecewise_graph": draw_piecewise_graph,
     "graph_transformation": draw_graph_transformation,
+    "grid_transformation": draw_grid_transformation,
     "tree_diagram": draw_tree_diagram,
     "two_way_table": draw_two_way_table,
     "sample_space_diagram": draw_sample_space_diagram,

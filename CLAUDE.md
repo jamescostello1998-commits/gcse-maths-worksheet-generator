@@ -12,95 +12,44 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-Phases 1, 2 and 3 of a large user-supplied Geometry expansion (chronology steps
-23-25) are **complete and pushed**. 257 topics total, backend suite 616/616,
-frontend 45/45 (unaffected), no known bugs.
+Phases 1-3 of a large user-supplied Geometry expansion (chronology steps 23-25)
+and **Phase 4a (chronology step 26, Symmetry + Transformations) are all
+complete and pushed**. 268 topics total, backend suite 638/638, frontend
+45/45 (unaffected), no known bugs.
 
-**Phase 4 (the last phase) is IN PROGRESS — research done, no code written
-yet, session paused mid-plan-mode at the user's request** ("i want to continue
-in a new session"). A full plan-mode research pass (2 parallel Explore agents)
-was completed; the next session should resume planning from these findings
-rather than re-researching, then get user sign-off on the open questions below
-before writing any code. The full findings are also preserved in the plan file
-at `C:\Users\James\.claude\plans\sorted-floating-elephant.md` (machine-local,
-not in this repo, and could in principle be overwritten by an unrelated future
-plan-mode session — this CLAUDE.md summary is the durable copy).
+**Phase 4b (bearings, constructions, loci — the last remaining piece of the
+original Phase 4 scope) is NOT started.** Scope, agreed back in chronology
+step 23: cosine rule in bearings (needs a new north-arrow + clockwise-arc
+diagram kind, reusing `_label`/an arc similar to `_vertex_angle_arc` —
+`triangle_rules.py`'s existing `generate_cosine_rule` SAS/SSS maths mostly
+reuses directly, reframed as a bearings word problem); three construction
+topics (angle bisector, perpendicular bisector, triangle given SSS/SAS/ASA —
+text-only "describe the method", no diagram, since a construction can't be
+numerically "solved"; confirmed in chronology step 26 that these get **no
+`verify()`** — author-review only, since there's no computational ground
+truth for "is this compass-and-straightedge description correct", unlike the
+`algebraic_proof.py`/`congruent_triangle_proof.py` curated-bank precedent
+which both have one); and loci and regions (needs an entirely new 2D diagram
+kind — the only existing "region" diagram, `draw_number_line`, is strictly
+1D; nothing 2D like a grid-region-fill or circle/arc-based locus exists to
+extend). Not yet planned in detail — do a fresh research pass (this area
+wasn't covered by Phase 4a's research) before writing code, and check with
+the user whether Phase 4b should also be sub-split, mirroring Phase 4a's own
+precedent.
 
-**Scope** (agreed back in chronology step 23): line symmetry, rotational
-symmetry, reflections/rotations/translations/enlargements on a coordinate grid
-(negative and fractional enlargement scale factors included, both "complete
-the transformation" and "describe the transformation" question styles), cosine
-rule in bearings, three construction topics (angle bisector, perpendicular
-bisector, triangle given SSS/SAS/ASA — text-only "describe the method", no
-diagram, since a construction can't be numerically "solved"), and loci and
-regions.
-
-**Research findings so far:**
-- **Transformations need a brand-new "shape on a numbered grid" diagram
-  kind** — nothing in `diagrams.py` currently plots a polygon at real grid
-  coordinates. `_draw_scaled_axes` (diagrams.py:801) already returns a
-  reusable `to_px(x, y) -> (px, py)` transform (used by
-  `draw_function_graph`/`draw_piecewise_graph`/`draw_number_line`) that the
-  new diagram kind can plot polygon vertices through — the gridding logic
-  doesn't need to be rebuilt, just a polygon-drawing layer on top.
-  `graph_transformations` (Algebra) is confirmed **unrelated** (transforms an
-  abstract function graph, not a shape) — this was already suspected as a
-  false-positive in step 23 and is now directly confirmed by reading the code.
-- **Cosine rule in bearings** can mostly reuse `triangle_rules.py`'s existing
-  `generate_cosine_rule` maths (SAS→side / SSS→angle, both independently
-  verified via coordinate-geometry cross-checks) reframed as a bearings word
-  problem, but needs a genuinely new diagram (`draw_general_triangle` has no
-  concept of orientation/north/clockwise-measured angle — a north-arrow +
-  clockwise-arc diagram kind is needed, reusing small helpers like `_label`
-  and an arc similar to `_vertex_angle_arc`).
-- **Constructions raise a real open design question, not yet decided**: the
-  two existing "prose answer" precedents (`algebraic_proof.py`,
-  `congruent_triangle_proof.py`) both use a curated template bank
-  (`_Template`/`_t()`, `TEMPLATES: list[...]`,
-  `question_count=len(TEMPLATES)`) with a **mandatory, meaningful
-  `verify()`** per template (symbolic algebra / coordinate-geometry
-  congruence check respectively). For "describe how to construct an angle
-  bisector," there is **no computational ground truth to check against** —
-  unlike those two precedents. Needs an explicit decision: drop `verify()`
-  from this topic's template shape entirely (author-review only), or keep a
-  token/structural stub for consistency. Don't default silently either way —
-  ask the user.
-- **Loci and regions needs an entirely new 2D diagram kind** — the only
-  existing "region" diagram is `draw_number_line`, which is strictly 1D.
-  Nothing 2D (grid-region-fill, circle/arc-based locus) exists to extend.
-- Current Geometry groups/counts (64 topics, 12 groups) are listed in the
-  "Current state" table below — new groups (Transformations, Bearings,
-  Constructions & Loci, or similar) just need a new topic module each,
-  imported and slotted into `_TOPIC_LIST`'s `# Geometry` block; grouping is
-  driven purely by consecutive same-`GROUP` topics in list order.
-
-**Open questions to raise with the user before planning further** (do not
-assume a default):
-1. Given the size (transformations alone is 4 operations × 2 question styles
-   × scale-factor variants, plus bearings, plus 3 construction topics, plus
-   loci — at least 2 brand-new diagram engines), should Phase 4 itself be
-   split into sub-phases, the way the original expansion was split into
-   Phases 1-4?
-2. The construction-topic `verify()` question above.
-3. Whether "describe the transformation" is wanted for all 4 transform types
-   or just some, and whether negative/fractional-scale-factor enlargement
-   should be its own Higher-only topic with a separate Foundation
-   positive-integer-scale-factor sibling (mirrors this project's established
-   tier-split convention, but not yet confirmed for this specific content).
-
-If the user wants something else entirely instead of continuing Phase 4, check
-"Ideas for a future session" (bottom of this file) for other candidate
+If the user wants something else entirely instead of continuing Phase 4b,
+check "Ideas for a future session" (bottom of this file) for other candidate
 follow-ups, or ask directly what they'd like to work on.
 
 ## Current state
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**257 topics across 6 sections**, all procedurally generated with independent
+**268 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.).
-Full backend suite: **616/616 passing**. Frontend suite: **45/45 passing**.
+Full backend suite: **638/638 passing**. Frontend suite: **45/45 passing**.
 
 **Practice Tests (fixed/static content, not procedural — the one deliberate exception
 to the paragraph above)**: a 7th homepage section, `backend/app/practice_tests/`,
@@ -205,7 +154,7 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 | Number | Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 54 |
 | Algebra | Expressions/Formulae/Equations/Identities, Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 57 |
 | Ratio & Proportion | Percentages, Best Buys, Ratio, Proportion, Compound Measures | 34 |
-| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof | 64 |
+| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations | 75 |
 | Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams, Venn Diagrams | 22 |
 | Statistics | Averages from a List, Frequency Tables, Working Backwards, Charts and Graphs, Cumulative Frequency & Box Plots, Histograms | 26 |
 
@@ -1275,6 +1224,152 @@ content today; it's built and unit-tested for when one eventually does.
     Geometry's Foundation/Higher split grew from 29/29 to 30/34, and the new
     "Congruence Proof" group appears correctly under Geometry).
 
+26. New session, Geometry Phase 4a (Symmetry + Transformations) of the same
+    expansion. The full original Phase 4 scope (transformations, bearings,
+    constructions, loci) was judged too large for one pass, mirroring the
+    precedent already set by splitting the overall Geometry expansion into
+    Phases 1-4 back in step 23 — confirmed with the user up front, along with
+    two other open questions from the paused prior session: construction
+    topics (Phase 4b, not built this session) get no `verify()` at all
+    (author-review only); and "describe the transformation" is wanted for all
+    4 transform types, with enlargement getting a Foundation (positive
+    integer scale factor) / Higher (negative/fractional) sibling pair for its
+    "complete" style. Entered plan mode, researched via 2 parallel Explore
+    agents (the `_draw_scaled_axes`/`to_px` gridded-diagram machinery and the
+    blank/solution two-diagram pattern; registry conventions, existing
+    Foundation/Higher split precedent, and confirmation of zero collision
+    with any existing topic) plus a Plan agent, then confirmed two further
+    scope decisions before writing code: centres of rotation/enlargement and
+    translation vectors are always integer grid points (only the enlargement
+    scale factor itself goes negative/fractional, sidestepping any risk of
+    `mathtext.py`'s fraction regex firing mid-coordinate); and
+    `transform_rotate_describe`/`transform_enlarge_describe` are Higher-only
+    even though their "complete" siblings include a Foundation version
+    (finding an unknown centre from before/after shapes is a harder,
+    discriminator-level skill than reading one off).
+
+    Added 11 new topics (257→268) in one new file, `transformations.py`,
+    across two new Geometry groups: **Symmetry** (`symmetry_lines`,
+    `symmetry_rotational` — an 11-entry curated bank of named shapes
+    (rectangle, square, equilateral/isosceles triangle, isosceles trapezium,
+    regular pentagon/hexagon, parallelogram, kite, rhombus, irregular
+    pentagon) with hand-computed lines-of-symmetry/rotational-order claims,
+    `question_count=len(_SYMMETRY_SHAPES)` per the `algebraic_proof.py`
+    curated-bank precedent — verified independently and rigorously at
+    *import time*, not just by a test: `_count_symmetries` re-derives both
+    the line-count and rotational order from raw vertex coordinates alone,
+    trying every geometrically possible reflection axis and rotation order
+    from first principles, and raises immediately if any bank entry's claim
+    doesn't match) and **Transformations** (`transform_reflect_complete`/
+    `_describe`, `transform_rotate_complete`/`_describe`,
+    `transform_translate_complete`/`_describe`,
+    `transform_enlarge_complete_foundation`/`_complete_higher`/`_describe` —
+    all procedurally generated on a fixed -8..8 grid, using a small pool of
+    hand-picked *asymmetric* polygon templates (0 lines of symmetry,
+    rotational order 1 — required so a "describe" question has a uniquely
+    identifiable answer) with a reroll loop for parameter combinations that
+    would land off-grid). Two new diagram kinds, both visually spiked and
+    iterated on *before* writing topic content (this project's established
+    highest-risk-first precedent): `draw_symmetry_shape` (a single named
+    polygon, auto-scaled to fit the schematic box, with optional dashed
+    symmetry line(s) or a rotational-order indicator on the solution page)
+    and `draw_grid_transformation` (one flexible kind covering all 4
+    transform types × both question styles, built on `_draw_scaled_axes` —
+    draws the original shape always, the image only when given (the
+    existing blank/solution split), and any combination of a dashed mirror
+    line, a centre-of-rotation/enlargement dot, or a translation-vector
+    arrow, independent of whether the image is shown, since those are
+    *given* information the student needs, not the answer).
+
+    Each transform type's independent verification uses a genuinely
+    different method than the primitive used to build the displayed steps,
+    per this project's established convention: reflection via the
+    perpendicular-bisector definition (not a re-derived coordinate formula);
+    rotation via complex-number multiplication (`× i`/`-1`/`-i`) instead of
+    the coordinate swap/negate used for the steps; translation via an
+    invariant-displacement check across every vertex; enlargement via a
+    squared-distance ratio plus a collinearity check plus a dot-product sign
+    check, together pinning down the transform without ever recomputing
+    `q = centre + k*(p - centre)` directly. "Describe" topics reuse the same
+    checks in the reverse direction.
+
+    **Five real diagram/generator bugs were found and fixed during this
+    session's own visual spike and follow-up verification passes — none by
+    the unit tests, all by rendering actual output and looking closely, or
+    by a programmatic scan once eyeballing individual renders stopped
+    catching everything:**
+    1. A long "centre of rotation"/"centre of enlargement" text label
+       reliably collided with a nearby vertex's own label whenever the
+       centre sat close to (or exactly on) a shape vertex — a common,
+       pedagogically normal setup (e.g. "enlarge from vertex A"). Fixed by
+       dropping the text label entirely (just the dot remains; the
+       coordinate is stated in the prompt/solution text instead).
+    2. A shrinking enlargement (scale factor 1/2) combined with a small
+       shape and a centre at/near one of its own vertices produced a tiny,
+       hard-to-label image. Led to widening `_SHAPE_TEMPLATES`' minimum edge
+       length and, more fundamentally, discovering (2) and (5) below.
+    3. `math.atan2(...) % math.pi`, used by `_count_symmetries` to dedupe
+       candidate symmetry axes, hit a real floating-point wraparound: an
+       angle just below zero reduces to just-under-π instead of
+       just-above-zero, so a genuine axis could be double-counted as two
+       distinct ones. Fixed with a `_same_axis` helper that checks both
+       `abs(a-b)` and its distance from the `0`/`π` wraparound boundary —
+       caught immediately at module import time (`square` computed 5 lines
+       of symmetry instead of 4), not by a test.
+    4. When a reflection's mirror line coincided exactly with the y-axis or
+       x-axis (`x = 0`/`y = 0`), the dashed mirror line drew directly on top
+       of the solid axis and the "x = 0" label collided with the axis's own
+       permanent "y"/"x" name label. Fixed by excluding 0 from the mirror
+       line's random-choice pool entirely, rather than special-casing the
+       rendering.
+    5. **The most significant finding**: a programmatic scan (extracting
+       every rendered vertex label's real pixel position across hundreds of
+       generated instances per topic, rather than trusting individual
+       spot-checks) found that `rotate`/`translate`/`enlarge` still had a
+       10-25% rate of two *unrelated* vertices' labels landing within a few
+       pixels of each other — a centroid-distance "well separated" check
+       had let the two shapes' bounding boxes overlap whenever either shape
+       was elongated, or (for rotation/enlargement specifically) a vertex
+       sat close to the transform's own centre, which by definition keeps
+       its image close too. A stricter "bounding boxes must be fully
+       disjoint" check was tried next but proved geometrically
+       near-impossible for a plain positive-scale-factor enlargement on a
+       bounded grid (analysis showed the required gap from the centre grows
+       with `span / (k - 1)`, easily exceeding the grid's own size for
+       `k = 2`) — so enlargement's centre is now *constructed* just outside
+       the shape's own bounding box (a random cardinal direction, gap 2-4
+       units) rather than chosen uniformly at random and hoped for, and
+       separation itself is checked by predicting each label's actual
+       landing position (replicating `diagrams.py`'s own outward-push-from-
+       centroid formula in grid units) and requiring every pair to clear a
+       minimum distance — directly targeting the real problem (labels
+       colliding) without over-constraining shapes that merely overlap or
+       cross without their labels colliding. Re-running the same
+       programmatic scan afterward found zero collisions across 4500
+       rendered instances (9 generators × 500 trials each). The reroll
+       budget was also raised (200 → 4000 attempts) once the stricter combined
+       checks made some parameter combinations - especially fractional-scale-
+       factor Higher enlargement - genuinely rare rather than merely uncommon.
+
+    A sixth, smaller issue (grammar, not a diagram bug): symmetry prompts
+    read "a isosceles trapezium" for any shape name starting with a vowel
+    sound — fixed with a small `_article()` helper.
+
+    Central integration (registry wiring, the 4 hardcoded `257`-topic-count
+    assertions updated to `268`), the full backend+frontend suite, and
+    browser-driven end-to-end verification (worksheet *and* modelled-example
+    generation through the real running app, plus a direct
+    `render_worksheet`/`render_modelled_example` script per this project's
+    documented "Verifying new topics visually" workflow, covering all 11 new
+    topics) were all done directly in this session, built solo rather than
+    via parallel subagents given the diagram-kind/verification-helper
+    interdependency across all 11 topics in a single new file. Backend suite
+    grew from 616 to 638 tests; frontend unaffected (45/45 — confirmed live
+    via the browser preview: Geometry grew from 38 Foundation/37 Higher
+    topics with new "Symmetry" and "Transformations" groups both appearing
+    correctly, and both the worksheet and modelled-example endpoints
+    returned 200 OK for a live topic in this group).
+
 Everything above is committed and pushed (see `git log`).
 
 ## Environment gotchas (Windows, this machine specifically)
@@ -1473,15 +1568,14 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
 
 ## Ideas for a future session (not started, no commitment made)
 
-- **Geometry expansion Phase 4** (agreed with the user in chronology step 23;
-  Phases 1, 2 and 3 are built — see steps 24-25 for 3D Shapes and the trig/
-  Pythagoras/congruence-proof topics): transformations, bearings, constructions
-  & loci: line symmetry, rotational symmetry, reflections/rotations/
-  translations/enlargements (including negative and fractional scale factors,
-  both completing and describing), cosine rule in bearings, constructing angle
+- **Geometry expansion Phase 4b** (agreed with the user in chronology step 23;
+  Phases 1-3 and Phase 4a are built — see steps 24-26 for 3D Shapes, the trig/
+  Pythagoras/congruence-proof topics, and Symmetry/Transformations): bearings
+  & constructions/loci — cosine rule in bearings, constructing angle
   bisectors/perpendicular bisectors/triangles (describe-the-method text
   questions, per the user's choice — not diagram-based, since there's no way
-  to "solve" a construction numerically), and loci and regions. Not started —
+  to "solve" a construction numerically, and confirmed in step 26 to need no
+  `verify()` either — author-review only), and loci and regions. Not started —
   confirm with the user before starting, per the "Where to pick up next" note
   above.
   - Compound 3D shapes' **surface area** was deliberately left out of Phase 2's
