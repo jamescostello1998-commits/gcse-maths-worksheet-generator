@@ -1,0 +1,1042 @@
+{
+  "id": "higher-03-paper1",
+  "name": "Higher Practice Test 3 – Paper 1 of 3",
+  "tier": "higher",
+  "sitting_id": "higher-03",
+  "paper_number": 1,
+  "questions": [
+    {
+      "topic_id": "standard_form_multiply_divide",
+      "prompt": "Work out (3 × 10^5) × (1 × 10^5). Give your answer in standard form.",
+      "solution_steps": [
+        "Multiply the mantissas: 3 × 1 = 3",
+        "Add the powers of 10: 5 + 5 = 10"
+      ],
+      "final_answer": "3 × 10^10",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply the mantissas: 3 × 1 = 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add the powers of 10: 5 + 5 = 10",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3 × 10^10 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "surds_multiply_divide",
+      "prompt": "Simplify √5 × √15, giving your answer in the form a√b.",
+      "solution_steps": [
+        "√5 × √15 = √(5 × 15) = √75",
+        "Find the largest square factor of 75: 5^2 × 3 = 75",
+        "√75 = √(5^2 × 3) = 5√3"
+      ],
+      "final_answer": "5√3",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "√5 × √15 = √(5 × 15) = √75",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Find the largest square factor of 75: 5^2 × 3 = 75",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√75 = √(5^2 × 3) = 5√3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5√3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "prime_factors_higher",
+      "prompt": "Write 279 as a product of its prime factors, giving your answer in index form.",
+      "solution_steps": [
+        "Divide 279 repeatedly by the smallest prime that fits: 3 × 3 × 31",
+        "Write repeated factors using index notation: 279 = 3^2 × 31"
+      ],
+      "final_answer": "3^2 × 31",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Divide 279 repeatedly by the smallest prime that fits: 3 × 3 × 31",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write repeated factors using index notation: 279 = 3^2 × 31",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3^2 × 31 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "decimals_recurring_to_fraction",
+      "prompt": "The recurring decimal 0.(230769) can be written as a fraction. Find this fraction in its simplest form.",
+      "solution_steps": [
+        "Let x = 0.(230769)",
+        "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
+        "This gives x = 230769/999999",
+        "Simplify: 3/13"
+      ],
+      "final_answer": "3/13",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let x = 0.(230769)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "This gives x = 230769/999999",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify: 3/13",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3/13 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simplifying_indices_challenging",
+      "prompt": "Simplify (6^2)^3 ÷ 6^4, giving your answer as a fraction where necessary.",
+      "solution_steps": [
+        "Multiply the powers in the bracket: 2 × 3 = 6",
+        "(6^2)^3 = 6^6",
+        "Subtract the powers to divide: 6 - (4) = 2",
+        "6^6 ÷ 6^4 = 6^2 = 36"
+      ],
+      "final_answer": "36",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply the powers in the bracket: 2 × 3 = 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(6^2)^3 = 6^6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract the powers to divide: 6 - (4) = 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "6^6 ÷ 6^4 = 6^2 = 36",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "36 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "indices_common_base_equations",
+      "prompt": "Solve 125^x = 3125.",
+      "solution_steps": [
+        "Write both sides as powers of 5: 125 = 5^3 and 3125 = 5^5",
+        "125^x = 3125 becomes (5^3)^x = 5^5, i.e. 5^(3x) = 5^5",
+        "Since the bases match, the powers must be equal: 3x = 5",
+        "x = 5/3"
+      ],
+      "final_answer": "5/3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Write both sides as powers of 5: 125 = 5^3 and 3125 = 5^5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "125^x = 3125 becomes (5^3)^x = 5^5, i.e. 5^(3x) = 5^5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Since the bases match, the powers must be equal: 3x = 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 5/3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5/3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "solving_inequalities_higher",
+      "prompt": "Solve the inequality: -6(x - 3) < -4",
+      "solution_steps": [
+        "Expand the bracket: -6(x - 3) < -4",
+        "-6x + 18 < -4",
+        "Subtract 18 from both sides:",
+        "-6x < -22",
+        "Divide both sides by -6 (dividing by a negative number reverses the inequality sign):",
+        "x > 11/3"
+      ],
+      "final_answer": "x > 11/3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: -6(x - 3) < -4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-6x + 18 < -4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 18 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-6x < -22 Divide both sides by -6 (dividing by a negative number reverses the inequality sign): x > 11/3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x > 11/3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_quadratic",
+      "prompt": "Solve the simultaneous equations: y = x^2 - x - 8 and y = x + 16",
+      "solution_steps": [
+        "Substitute y = x + 16 into y = x^2 - x - 8: x + 16 = x^2 - x - 8",
+        "Rearrange: x^2 - 2x - 24 = 0",
+        "Factorise: (x + 4)(x - 6) = 0",
+        "x = -4 or x = 6",
+        "When x = -4, y = 12. When x = 6, y = 22."
+      ],
+      "final_answer": "(-4, 12) and (6, 22)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Substitute y = x + 16 into y = x^2 - x - 8: x + 16 = x^2 - x - 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rearrange: x^2 - 2x - 24 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: (x + 4)(x - 6) = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -4 or x = 6 When x = -4, y = 12. When x = 6, y = 22.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(-4, 12) and (6, 22) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "quadratic_formula",
+      "prompt": "Solve 2x^2 + 14x - 13 = 0 using the quadratic formula, giving your answers to 2 decimal places.",
+      "solution_steps": [
+        "x = (-b ± √(b^2 - 4ac)) / 2a",
+        "a = 2, b = 14, c = -13",
+        "x = (-14 ± √(14^2 - 4×2×-13)) / (2×2)",
+        "x = (-14 ± √300) / 4",
+        "x = 0.83 or x = -7.83"
+      ],
+      "final_answer": "x = 0.83 or x = -7.83",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "x = (-b ± √(b^2 - 4ac)) / 2a",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "a = 2, b = 14, c = -13",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = (-14 ± √(14^2 - 4×2×-13)) / (2×2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = (-14 ± √300) / 4 x = 0.83 or x = -7.83",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 0.83 or x = -7.83 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_reciprocal",
+      "prompt": "Complete a table of values for y = 36/x for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = 36/x:",
+        "x: -4, -3, -2, -1, 1, 2, 3, 4",
+        "y: -9, -12, -18, -36, 36, 18, 12, 9",
+        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
+      ],
+      "final_answer": "Reciprocal curve: y = 36/x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = 36/x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: -9, -12, -18, -36, 36, 18, 12, 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Reciprocal curve: y = 36/x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "reciprocal",
+          "a": 36,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -38,
+          "y_max": 38,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "reciprocal",
+          "a": 36,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -38,
+          "y_max": 38,
+          "table_points": [
+            [
+              -4,
+              -9
+            ],
+            [
+              -3,
+              -12
+            ],
+            [
+              -2,
+              -18
+            ],
+            [
+              -1,
+              -36
+            ],
+            [
+              1,
+              36
+            ],
+            [
+              2,
+              18
+            ],
+            [
+              3,
+              12
+            ],
+            [
+              4,
+              9
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "functions_composite_inverse",
+      "prompt": "f(x) = 3x + 5. Find f^-1(x).",
+      "solution_steps": [
+        "y = 3x + 5",
+        "Rearrange to make x the subject: x = (y - 5) / 3",
+        "Swap x and y: f^-1(x) = (x - 5)/3"
+      ],
+      "final_answer": "(x - 5)/3",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = 3x + 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rearrange to make x the subject: x = (y - 5) / 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Swap x and y: f^-1(x) = (x - 5)/3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(x - 5)/3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_cubic",
+      "prompt": "Complete a table of values for y = -x^3 for x = -3 to 3, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = -x^3:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: 27, 8, 1, 0, -1, -8, -27",
+        "Plot each (x, y) point and join them with a single smooth curve."
+      ],
+      "final_answer": "Cubic curve: y = -x^3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = -x^3:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 27, 8, 1, 0, -1, -8, -27",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Cubic curve: y = -x^3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": -1,
+          "b": 0,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -29,
+          "y_max": 29,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": -1,
+          "b": 0,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -29,
+          "y_max": 29,
+          "table_points": [
+            [
+              -3,
+              27
+            ],
+            [
+              -2,
+              8
+            ],
+            [
+              -1,
+              1
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              -1
+            ],
+            [
+              2,
+              -8
+            ],
+            [
+              3,
+              -27
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "completing_the_square",
+      "prompt": "Write x^2 - 2x + 3 in the form (x + p)^2 + q.",
+      "solution_steps": [
+        "Half the coefficient of x: -2 ÷ 2 = -1",
+        "(x - 1)^2 = x^2 - 2x + 1",
+        "x^2 - 2x + 3 = (x - 1)^2 + (3 - 1) = (x - 1)^2 + 2"
+      ],
+      "final_answer": "(x - 1)^2 + 2",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Half the coefficient of x: -2 ÷ 2 = -1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(x - 1)^2 = x^2 - 2x + 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x^2 - 2x + 3 = (x - 1)^2 + (3 - 1) = (x - 1)^2 + 2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(x - 1)^2 + 2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "unit_conversions_higher",
+      "prompt": "Convert 21 cm² to mm².",
+      "solution_steps": [
+        "Linear conversion factor: 1 cm = 10 mm, so for area, 1 cm² = 10^2 = 100 mm²",
+        "21 cm² = 21 × 100 = 2100 mm²"
+      ],
+      "final_answer": "2100 mm²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Linear conversion factor: 1 cm = 10 mm, so for area, 1 cm² = 10^2 = 100 mm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "21 cm² = 21 × 100 = 2100 mm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2100 mm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_shape_similar_higher",
+      "prompt": "Shape A and Shape B are similar. A length on shape A is 3 cm and the corresponding length on shape B is 2 cm. The volume of shape B is 72 cm^3. Find the volume of shape A.",
+      "solution_steps": [
+        "Linear scale factor = 2 ÷ 3 = 2/3",
+        "Volume scale factor = (2/3)^3 = 8/27",
+        "Volume of A = 72 ÷ 8/27 = 243 cm^3"
+      ],
+      "final_answer": "243 cm^3",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Linear scale factor = 2 ÷ 3 = 2/3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Volume scale factor = (2/3)^3 = 8/27",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Volume of A = 72 ÷ 8/27 = 243 cm^3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "243 cm^3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "percentage_increase_decrease_calculator",
+      "prompt": "Using a calculator, increase £36.20 by 22.5%. Give your answer to 2 decimal places.",
+      "solution_steps": [
+        "Convert 22.5% to a multiplier: 1.225",
+        "Multiply: £36.20 × 1.225 = £44.35 (calculator, 2 d.p.)"
+      ],
+      "final_answer": "£44.35",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 22.5% to a multiplier: 1.225",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply: £36.20 × 1.225 = £44.35 (calculator, 2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£44.35 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pressure_higher",
+      "prompt": "A machine foot exerts a force of 648 N over a contact area of 4733 cm². Find the pressure in N/m², correct to 2 decimal places.",
+      "solution_steps": [
+        "Convert area to m²: 4733 cm² = 4733 ÷ 10000 = 0.4733 m²",
+        "pressure = force ÷ area = 648 ÷ 0.4733 = 1369.11 N/m² (2 d.p.)"
+      ],
+      "final_answer": "1369.11 N/m²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert area to m²: 4733 cm² = 4733 ÷ 10000 = 0.4733 m²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "pressure = force ÷ area = 648 ÷ 0.4733 = 1369.11 N/m² (2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1369.11 N/m² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_to_equation",
+      "prompt": "(x + 5) : (4x - 32) = 4:3. Find the value of x.",
+      "solution_steps": [
+        "Cross-multiply: 3(x + 5) = 4(4x - 32)",
+        "Expand: 3x + 15 = 16x - 128",
+        "Collect x terms: -13x = -143",
+        "x = -143 ÷ -13 = 11"
+      ],
+      "final_answer": "x = 11",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Cross-multiply: 3(x + 5) = 4(4x - 32)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand: 3x + 15 = 16x - 128",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Collect x terms: -13x = -143",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -143 ÷ -13 = 11",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 11 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pythagoras_ladder_context",
+      "prompt": "A ladder of length 13 m leans against a vertical wall with its base 6 m from the wall. Find the height the ladder reaches up the wall, giving your answer as a surd in its simplest form.",
+      "solution_steps": [
+        "height² = ladder² - base² = 13² - 6² = 169 - 36 = 133",
+        "height = √133 = √133 m (exact form)"
+      ],
+      "final_answer": "√133 m",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "height² = ladder² - base² = 13² - 6² = 169 - 36 = 133",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "height = √133 = √133 m (exact form)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "√133 m oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "right_triangle",
+        "params": {
+          "leg1_label": "6 m",
+          "leg2_label": "?",
+          "hyp_label": "13 m"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_exterior",
+      "prompt": "An exterior angle of a triangle is 54°. The two remote interior angles are 39° and (3x - 18)°. Find x.",
+      "solution_steps": [
+        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+        "3x - 18 = 15",
+        "Add 18 to both sides:",
+        "3x = 33",
+        "Divide both sides by 3:",
+        "x = 11"
+      ],
+      "final_answer": "11",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3x - 18 = 15",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add 18 to both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3x = 33 Divide both sides by 3: x = 11",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "11 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "exterior_triangle",
+        "params": {
+          "interior1_label": "39°",
+          "interior2_label": "(3x - 18)°",
+          "exterior_label": "54°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "triangle_area_sine_rule",
+      "prompt": "Triangle ABC has side a = 19 cm, side b = 24 cm, and the angle between them, angle C = 157°. Find the area of the triangle, correct to 3 significant figures.",
+      "solution_steps": [
+        "Use Area = (1/2) × a × b × sin(C)",
+        "Area = 0.5 × 19 × 24 × sin(157°) = 89.1 cm² (3 s.f.)"
+      ],
+      "final_answer": "89.1 cm²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Use Area = (1/2) × a × b × sin(C)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area = 0.5 × 19 × 24 × sin(157°) = 89.1 cm² (3 s.f.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "89.1 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "general_triangle",
+        "params": {
+          "side_a_label": "19 cm",
+          "side_b_label": "24 cm",
+          "side_c_label": null,
+          "angle_A_label": null,
+          "angle_B_label": null,
+          "angle_C_label": "157°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "trig_missing_angle_higher",
+      "prompt": "In the right-angled triangle shown, find the angle x, correct to 1 decimal place.",
+      "solution_steps": [
+        "Use tan, since we know two of the three sides.",
+        "tan(x) = 17 ÷ 34",
+        "x = tan^-1(17 ÷ 34) = 26.6° (1 d.p.)"
+      ],
+      "final_answer": "26.6°",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Use tan, since we know two of the three sides.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "tan(x) = 17 ÷ 34",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = tan^-1(17 ÷ 34) = 26.6° (1 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "26.6° oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "trig_triangle",
+        "params": {
+          "adjacent_label": "34 cm",
+          "opposite_label": "17 cm",
+          "hyp_label": null,
+          "angle_label": "x°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "venn_diagram_notation",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}. The Venn diagram shows sets A and B. List the elements of (A ∪ B)'.",
+      "solution_steps": [
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+        "A = {2, 7, 8, 9}, B = {3, 5, 6, 9}",
+        "(A ∪ B)' means the elements in neither A nor B.",
+        "(A ∪ B)' = {1, 4, 10}"
+      ],
+      "final_answer": "{1, 4, 10}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {2, 7, 8, 9}, B = {3, 5, 6, 9}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(A ∪ B)' means the elements in neither A nor B.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(A ∪ B)' = {1, 4, 10}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "{1, 4, 10} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "S",
+          "region_text": {
+            "a_only": "2, 7, 8",
+            "b_only": "3, 5, 6",
+            "both": "9",
+            "neither": "1, 4, 10"
+          }
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_conditional",
+      "prompt": "A bag contains 6 red and 4 yellow counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour.",
+      "solution_steps": [
+        "P(both red) = 6/10 × 5/9 = 1/3",
+        "P(both yellow) = 4/10 × 3/9 = 2/15",
+        "P(both same colour) = 1/3 + 2/15 = 7/15"
+      ],
+      "final_answer": "7/15",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "P(both red) = 6/10 × 5/9 = 1/3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(both yellow) = 4/10 × 3/9 = 2/15",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(both same colour) = 1/3 + 2/15 = 7/15",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "7/15 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "bag_of_counters",
+        "params": {
+          "counts": {
+            "red": 6,
+            "yellow": 4
+          }
+        }
+      },
+      "solution_diagram": null
+    }
+  ]
+}

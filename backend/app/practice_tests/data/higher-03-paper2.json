@@ -1,0 +1,1079 @@
+{
+  "id": "higher-03-paper2",
+  "name": "Higher Practice Test 3 – Paper 2 of 3",
+  "tier": "higher",
+  "sitting_id": "higher-03",
+  "paper_number": 2,
+  "questions": [
+    {
+      "topic_id": "fractions_mixed_number_arithmetic",
+      "prompt": "Work out 2 4/5 - 1 3/4. Give your answer as a mixed number.",
+      "solution_steps": [
+        "Convert to improper fractions: 2 4/5 = 14/5, 1 3/4 = 7/4",
+        "Subtract the improper fractions: 14/5 - 7/4 = 21/20",
+        "Convert back to a mixed number: 1 1/20"
+      ],
+      "final_answer": "1 1/20",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert to improper fractions: 2 4/5 = 14/5, 1 3/4 = 7/4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract the improper fractions: 14/5 - 7/4 = 21/20",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Convert back to a mixed number: 1 1/20",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1 1/20 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "recurring_decimal_two_digit",
+      "prompt": "The recurring decimal 0.(27) can be written as a fraction. Find this fraction in its simplest form.",
+      "solution_steps": [
+        "Let x = 0.(27), so 100x = 27.2727... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Subtract: 100x - x = 27 - 0, so 99x = 27",
+        "x = 27/99 = 3/11"
+      ],
+      "final_answer": "3/11",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let x = 0.(27), so 100x = 27.2727... (two digits repeat, so multiply by 100 to shift a full block)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract: 100x - x = 27 - 0, so 99x = 27",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 27/99 = 3/11",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3/11 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "standard_form_multiply_divide",
+      "prompt": "Work out (4 × 10^0) × (8 × 10^6). Give your answer in standard form.",
+      "solution_steps": [
+        "Multiply the mantissas: 4 × 8 = 32",
+        "Add the powers of 10: 0 + 6 = 6",
+        "Renormalize so the mantissa is between 1 and 10: 3.2 × 10^7"
+      ],
+      "final_answer": "3.2 × 10^7",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply the mantissas: 4 × 8 = 32",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add the powers of 10: 0 + 6 = 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Renormalize so the mantissa is between 1 and 10: 3.2 × 10^7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3.2 × 10^7 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "hcf_lcm_by_prime_factors",
+      "prompt": "Using prime factorisation, find the HCF of 189 and 138.",
+      "solution_steps": [
+        "189 = 3^3 × 7",
+        "138 = 2 × 3 × 23",
+        "HCF: take the lowest power of each prime that appears in both numbers",
+        "HCF = 3"
+      ],
+      "final_answer": "3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "189 = 3^3 × 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "138 = 2 × 3 × 23",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "HCF: take the lowest power of each prime that appears in both numbers",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "HCF = 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "surds_multiply_divide",
+      "prompt": "Simplify √8 × √7, giving your answer in the form a√b.",
+      "solution_steps": [
+        "√8 × √7 = √(8 × 7) = √56",
+        "Find the largest square factor of 56: 2^2 × 14 = 56",
+        "√56 = √(2^2 × 14) = 2√14"
+      ],
+      "final_answer": "2√14",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "√8 × √7 = √(8 × 7) = √56",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Find the largest square factor of 56: 2^2 × 14 = 56",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√56 = √(2^2 × 14) = 2√14",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2√14 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "powers_higher",
+      "prompt": "Work out 27^(2/3).",
+      "solution_steps": [
+        "27^(2/3) = (27^(1/3))^2",
+        "27^(1/3) = 3",
+        "3^2 = 9"
+      ],
+      "final_answer": "9",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "27^(2/3) = (27^(1/3))^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "27^(1/3) = 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3^2 = 9",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "9 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "bounds_calculation",
+      "prompt": "A rectangle has length 39 cm and width 19 cm, both measured to the nearest cm. Calculate the lower bound for the area of the rectangle.",
+      "solution_steps": [
+        "Length: 39 cm (to the nearest cm) gives 38.5 ≤ length < 39.5",
+        "Width: 19 cm (to the nearest cm) gives 18.5 ≤ width < 19.5",
+        "For the lower bound of the area, use the lower bound of each measurement: 38.5 × 18.5 = 712.25 cm²"
+      ],
+      "final_answer": "712.25 cm²",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Length: 39 cm (to the nearest cm) gives 38.5 ≤ length < 39.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Width: 19 cm (to the nearest cm) gives 18.5 ≤ width < 19.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For the lower bound of the area, use the lower bound of each measurement: 38.5 × 18.5 = 712.25 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "712.25 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "quadratic_inequalities",
+      "prompt": "Solve the inequality: -x^2 + 6x + 16 ≥ 0",
+      "solution_steps": [
+        "Factorise: -x^2 + 6x + 16 = -(x - 8)(x + 2)",
+        "The critical values are x = -2 and x = 8.",
+        "The coefficient of x^2 is negative, so the graph is a upside-down U-shaped parabola, and ≥ 0 is satisfied between the two roots.",
+        "Answer: -2 ≤ x ≤ 8"
+      ],
+      "final_answer": "-2 ≤ x ≤ 8",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Factorise: -x^2 + 6x + 16 = -(x - 8)(x + 2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The critical values are x = -2 and x = 8.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The coefficient of x^2 is negative, so the graph is a upside-down U-shaped parabola, and ≥ 0 is satisfied between the two roots.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Answer: -2 ≤ x ≤ 8",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-2 ≤ x ≤ 8 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_brackets",
+      "prompt": "Solve: 3(2x + 8) = -18",
+      "solution_steps": [
+        "Expand the bracket: 3(2x + 8) = 6x + 24",
+        "6x + 24 = -18",
+        "Subtract 24 from both sides:",
+        "6x = -42",
+        "Divide both sides by 6:",
+        "x = -7"
+      ],
+      "final_answer": "-7",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: 3(2x + 8) = 6x + 24",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "6x + 24 = -18",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 24 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "6x = -42 Divide both sides by 6: x = -7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-7 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_reciprocal",
+      "prompt": "Complete a table of values for y = 24/x for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = 24/x:",
+        "x: -4, -3, -2, -1, 1, 2, 3, 4",
+        "y: -6, -8, -12, -24, 24, 12, 8, 6",
+        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
+      ],
+      "final_answer": "Reciprocal curve: y = 24/x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = 24/x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: -6, -8, -12, -24, 24, 12, 8, 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Reciprocal curve: y = 24/x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "reciprocal",
+          "a": 24,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -26,
+          "y_max": 26,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "reciprocal",
+          "a": 24,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -26,
+          "y_max": 26,
+          "table_points": [
+            [
+              -4,
+              -6
+            ],
+            [
+              -3,
+              -8
+            ],
+            [
+              -2,
+              -12
+            ],
+            [
+              -1,
+              -24
+            ],
+            [
+              1,
+              24
+            ],
+            [
+              2,
+              12
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              4,
+              6
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "sequences_quadratic_nth_term",
+      "prompt": "Here are the first four terms of a quadratic sequence: 8, 6, 0, -10. Find an expression for the nth term.",
+      "solution_steps": [
+        "First differences: -2, -6, -10",
+        "Second difference is constant: -4, so the coefficient of n^2 is -4 ÷ 2 = -2",
+        "nth term = -2n^2 + 4n + 6"
+      ],
+      "final_answer": "-2n^2 + 4n + 6",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First differences: -2, -6, -10",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Second difference is constant: -4, so the coefficient of n^2 is -4 ÷ 2 = -2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "nth term = -2n^2 + 4n + 6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-2n^2 + 4n + 6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "forming_equations_higher",
+      "prompt": "A quadrilateral has angles 67°, 66°, (4x - 8)°, and (3x + 102)°. Form an equation and solve it to find x.",
+      "solution_steps": [
+        "Angles in a quadrilateral sum to 360°.",
+        "67 + 66 + (4x - 8) + (3x + 102) = 360",
+        "Collect the x-terms and constants together:",
+        "7x + 94 = 227",
+        "Subtract 94 from both sides:",
+        "7x = 133",
+        "Divide both sides by 7:",
+        "x = 19"
+      ],
+      "final_answer": "19",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles in a quadrilateral sum to 360°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "67 + 66 + (4x - 8) + (3x + 102) = 360",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Collect the x-terms and constants together:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "7x + 94 = 227 Subtract 94 from both sides: 7x = 133 Divide both sides by 7: x = 19",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "19 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "graph_transformations",
+      "prompt": "The graph of y = f(x) undergoes a translation by vector (0, 2). Write down the equation of the transformed graph in terms of f(x).",
+      "solution_steps": [
+        "y = f(x) + 2 corresponds to a translation by vector (0, 2)."
+      ],
+      "final_answer": "y = f(x) + 2",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = f(x) + 2 corresponds to a translation by vector (0, 2).",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y = f(x) + 2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "graph_transformation",
+        "params": {
+          "transform": "translate_up",
+          "shift": 2,
+          "original_label": "y = f(x)",
+          "transformed_label": "y = f(x) + 2"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "velocity_time_interpret",
+      "prompt": "The velocity-time graph shows a car's journey. Find the total distance travelled.",
+      "solution_steps": [
+        "Total distance = total area under the graph (a trapezium)",
+        "Distance = ½ × (35 + 20) × 20 = 550 m"
+      ],
+      "final_answer": "550 m",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total distance = total area under the graph (a trapezium)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Distance = ½ × (35 + 20) × 20 = 550 m",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "550 m oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              20
+            ],
+            [
+              25,
+              20
+            ],
+            [
+              35,
+              0
+            ]
+          ],
+          "x_max": 40,
+          "y_max": 25,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_inverse_proportion",
+      "prompt": "y is inversely proportional to x^3. When x = 3, y = 64. Find the value of y when x = 4.",
+      "solution_steps": [
+        "y = k ÷ x^3",
+        "k = y × x^3 = 64 × 3^3 = 64 × 27 = 1728",
+        "y = k ÷ x^3 = 1728 ÷ 4^3 = 1728 ÷ 64 = 27"
+      ],
+      "final_answer": "27",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = k ÷ x^3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "k = y × x^3 = 64 × 3^3 = 64 × 27 = 1728",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y = k ÷ x^3 = 1728 ÷ 4^3 = 1728 ÷ 64 = 27",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "27 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "unit_conversions_higher",
+      "prompt": "Convert 4149 mm² to cm².",
+      "solution_steps": [
+        "Linear conversion factor: 1 cm = 10 mm, so for area, 1 cm² = 10^2 = 100 mm²",
+        "4149 mm² = 4149 ÷ 100 = 41.49 cm²"
+      ],
+      "final_answer": "41.49 cm²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Linear conversion factor: 1 cm = 10 mm, so for area, 1 cm² = 10^2 = 100 mm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4149 mm² = 4149 ÷ 100 = 41.49 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "41.49 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "mixed_percentages",
+      "prompt": "After a 42.5% increase, an item costs £461.70. Find the original price.",
+      "solution_steps": [
+        "Convert 42.5% to a multiplier: 1.43 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 461.70 ÷ 1.43 = 324"
+      ],
+      "final_answer": "£324",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 42.5% to a multiplier: 1.43 (original × multiplier = new value)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide the new value by the multiplier: 461.70 ÷ 1.43 = 324",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£324 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "compound_percentage",
+      "prompt": "A price of £36 decreases by 12%, then increases by 12%. Find the final price.",
+      "solution_steps": [
+        "After the first change: 36 × 0.88 = 31.68",
+        "After the second change: 31.68 × 1.12 = 35.48"
+      ],
+      "final_answer": "£35.48",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "After the first change: 36 × 0.88 = 31.68",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "After the second change: 31.68 × 1.12 = 35.48",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£35.48 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "percentage_increase_decrease_calculator",
+      "prompt": "Using a calculator, increase £284.05 by 13.5%. Give your answer to 2 decimal places.",
+      "solution_steps": [
+        "Convert 13.5% to a multiplier: 1.135",
+        "Multiply: £284.05 × 1.135 = £322.40 (calculator, 2 d.p.)"
+      ],
+      "final_answer": "£322.40",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 13.5% to a multiplier: 1.135",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply: £284.05 × 1.135 = £322.40 (calculator, 2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£322.40 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "volume_surface_area_pyramid",
+      "prompt": "A square-based pyramid has a base of side 12 cm and a perpendicular height of 19 cm. Find its total surface area, correct to 3 significant figures.",
+      "solution_steps": [
+        "Slant height l = √(height² + (base ÷ 2)²) = √(19² + (12 ÷ 2)²) ≈ 19.9 cm",
+        "Surface area = base² + 2 × base × l = 12² + 2 × 12 × 19.9",
+        "= 622 cm² (3 s.f.)"
+      ],
+      "final_answer": "622 cm²",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Slant height l = √(height² + (base ÷ 2)²) = √(19² + (12 ÷ 2)²) ≈ 19.9 cm",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Surface area = base² + 2 × base × l = 12² + 2 × 12 × 19.9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 622 cm² (3 s.f.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "622 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "pyramid",
+        "params": {
+          "base_label": "12 cm",
+          "height_label": "19 cm",
+          "slant_label": "19.92 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "trig_missing_angle_higher",
+      "prompt": "In the right-angled triangle shown, find the angle x, correct to 1 decimal place.",
+      "solution_steps": [
+        "Use sin, since we know two of the three sides.",
+        "sin(x) = 24 ÷ 28",
+        "x = sin^-1(24 ÷ 28) = 59.0° (1 d.p.)"
+      ],
+      "final_answer": "59.0°",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Use sin, since we know two of the three sides.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "sin(x) = 24 ÷ 28",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = sin^-1(24 ÷ 28) = 59.0° (1 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "59.0° oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "trig_triangle",
+        "params": {
+          "adjacent_label": null,
+          "opposite_label": "24 cm",
+          "hyp_label": "28 cm",
+          "angle_label": "x°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_polygon_interior",
+      "prompt": "A polygon has 5 sides. 4 of its interior angles are each 124°, and the remaining interior angle is (4x + 40)°. Find x.",
+      "solution_steps": [
+        "Sum of interior angles = (n - 2) × 180 = (5 - 2) × 180 = 540°",
+        "Sum of the 4 equal angles = 4 × 124 = 496°",
+        "Remaining angle = 540 - 496 = 44°",
+        "4x + 40 = 44",
+        "Subtract 40 from both sides:",
+        "4x = 4",
+        "Divide both sides by 4:",
+        "x = 1"
+      ],
+      "final_answer": "1",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Sum of interior angles = (n - 2) × 180 = (5 - 2) × 180 = 540°",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Sum of the 4 equal angles = 4 × 124 = 496°",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Remaining angle = 540 - 496 = 44°",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x + 40 = 44 Subtract 40 from both sides: 4x = 4 Divide both sides by 4: x = 1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "polygon",
+        "params": {
+          "n_sides": 5,
+          "marked_angle_label": "(4x + 40)°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "congruent_triangle_proof",
+      "prompt": "ABCD is a square, and AC is one of its diagonals. Prove that the two triangles are congruent.",
+      "solution_steps": [
+        "AB = AD (sides of the square)",
+        "angle ABC = angle ADC = 90° (angles of the square)",
+        "BC = DC (sides of the square)",
+        "By Side-Angle-Side (SAS), the triangles are congruent.",
+        "Since two sides and the included angle match, triangles ABC and ADC are congruent."
+      ],
+      "final_answer": "Triangles are congruent (SAS).",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "AB = AD (sides of the square)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "angle ABC = angle ADC = 90° (angles of the square)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "BC = DC (sides of the square)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "By Side-Angle-Side (SAS), the triangles are congruent. Since two sides and the included angle match, triangles ABC and ADC are congruent.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Triangles are congruent (SAS). oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "two_triangle_congruence",
+        "params": {
+          "labels_1": [
+            "A",
+            "B",
+            "C"
+          ],
+          "labels_2": [
+            "A",
+            "D",
+            "C"
+          ],
+          "ticks_1": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "ticks_2": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "arcs_1": [
+            [
+              1,
+              1
+            ]
+          ],
+          "arcs_2": [
+            [
+              1,
+              1
+            ]
+          ],
+          "note": "AC is the shared diagonal of the square."
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "venn_diagram_notation",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7}. The Venn diagram shows sets A and B. List the elements of A ∪ B.",
+      "solution_steps": [
+        "ξ = {1, 2, 3, 4, 5, 6, 7}",
+        "A = {1, 2, 6}, B = {1, 2, 3}",
+        "A ∪ B means the elements in A, in B, or in both.",
+        "A ∪ B = {1, 2, 3, 6}"
+      ],
+      "final_answer": "{1, 2, 3, 6}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {1, 2, 6}, B = {1, 2, 3}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A ∪ B means the elements in A, in B, or in both.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A ∪ B = {1, 2, 3, 6}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "{1, 2, 3, 6} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "S",
+          "region_text": {
+            "a_only": "6",
+            "b_only": "3",
+            "both": "1, 2",
+            "neither": "4, 5, 7"
+          }
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_combined_dice",
+      "prompt": "Two fair six-sided dice are rolled. Find the probability that both dice show 5.",
+      "solution_steps": [
+        "P(first die is 5) = 1/6, P(second die is 5) = 1/6",
+        "Independent events multiply: P(both 5) = 1/6 × 1/6 = 1/36"
+      ],
+      "final_answer": "1/36",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "P(first die is 5) = 1/6, P(second die is 5) = 1/6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Independent events multiply: P(both 5) = 1/6 × 1/6 = 1/36",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/36 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "dice",
+        "params": {
+          "values": [
+            4,
+            4
+          ]
+        }
+      },
+      "solution_diagram": null
+    }
+  ]
+}

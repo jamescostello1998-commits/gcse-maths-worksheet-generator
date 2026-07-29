@@ -1,0 +1,1192 @@
+{
+  "id": "foundation-05-paper1",
+  "name": "Foundation Practice Test 5 – Paper 1 of 3",
+  "tier": "foundation",
+  "sitting_id": "foundation-05",
+  "paper_number": 1,
+  "questions": [
+    {
+      "topic_id": "hcf_by_listing",
+      "prompt": "Find the highest common factor (HCF) of 11 and 56.",
+      "solution_steps": [
+        "Factors of 11: 1, 11",
+        "Factors of 56: 1, 2, 4, 7, 8, 14, 28, 56",
+        "Highest common factor = 1"
+      ],
+      "final_answer": "1",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Factors of 11: 1, 11",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factors of 56: 1, 2, 4, 7, 8, 14, 28, 56",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Highest common factor = 1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_multiply",
+      "prompt": "Work out 6/10 × 5/5. Give your answer as a fraction in its simplest form.",
+      "solution_steps": [
+        "Multiply numerators: 6 × 5 = 30",
+        "Multiply denominators: 10 × 5 = 50",
+        "Simplify 30/50 = 3/5"
+      ],
+      "final_answer": "3/5",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply numerators: 6 × 5 = 30",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply denominators: 10 × 5 = 50",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify 30/50 = 3/5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3/5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pie_chart_interpret",
+      "prompt": "The pie chart shows the favourite sport of 12 people. What percentage chose Tennis?",
+      "solution_steps": [
+        "Tennis accounts for 3 out of 12.",
+        "3/12 × 100 = 25%."
+      ],
+      "final_answer": "25%",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Tennis accounts for 3 out of 12.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3/12 × 100 = 25%.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "25% oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "pie_chart",
+        "params": {
+          "categories": [
+            "Football",
+            "Tennis",
+            "Swimming",
+            "Rugby"
+          ],
+          "values": [
+            3,
+            3,
+            4,
+            2
+          ],
+          "show": "value"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_of_amount",
+      "prompt": "Find 3/5 of 150.",
+      "solution_steps": [
+        "Divide by the denominator: 150 ÷ 5 = 30",
+        "Multiply by the numerator: 30 × 3 = 90"
+      ],
+      "final_answer": "90",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Divide by the denominator: 150 ÷ 5 = 30",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply by the numerator: 30 × 3 = 90",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "90 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "standard_form_to_small",
+      "prompt": "Write 0.067 in standard form.",
+      "solution_steps": [
+        "Move the decimal point until there is one non-zero digit before it: 6.7",
+        "Count how many places the decimal point moved: 2 (the number is less than 1, so the power is negative)",
+        "0.067 = 6.7 × 10^-2"
+      ],
+      "final_answer": "6.7 × 10^-2",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Move the decimal point until there is one non-zero digit before it: 6.7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Count how many places the decimal point moved: 2 (the number is less than 1, so the power is negative)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "0.067 = 6.7 × 10^-2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6.7 × 10^-2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_ordering",
+      "prompt": "Write these fractions in order, largest to smallest: 1/4, 1/2, 1/5, 5/6",
+      "solution_steps": [
+        "Convert every fraction to the same denominator, the LCM of 4, 2, 5, 6: 60",
+        "Rewrite each fraction over 60: 1/4 = 15/60, 1/2 = 30/60, 1/5 = 12/60, 5/6 = 50/60",
+        "Order the numerators from largest to smallest and convert back: 5/6, 1/2, 1/4, 1/5"
+      ],
+      "final_answer": "5/6, 1/2, 1/4, 1/5",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert every fraction to the same denominator, the LCM of 4, 2, 5, 6: 60",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rewrite each fraction over 60: 1/4 = 15/60, 1/2 = 30/60, 1/5 = 12/60, 5/6 = 50/60",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Order the numerators from largest to smallest and convert back: 5/6, 1/2, 1/4, 1/5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5/6, 1/2, 1/4, 1/5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "prime_numbers",
+      "prompt": "From this list, write down all the prime numbers: 100, 17, 30, 15, 49, 98",
+      "solution_steps": [
+        "Check each number for factors other than 1 and itself: 100, 17, 30, 15, 49, 98",
+        "Prime numbers: 17"
+      ],
+      "final_answer": "17",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Check each number for factors other than 1 and itself: 100, 17, 30, 15, 49, 98",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Prime numbers: 17",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "17 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "expand_single_bracket",
+      "prompt": "Expand: 9(-9x - 3)",
+      "solution_steps": [
+        "Multiply 9 by -9x: -81x",
+        "Multiply 9 by -3: -27",
+        "Combine: -81x - 27"
+      ],
+      "final_answer": "-81x - 27",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply 9 by -9x: -81x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply 9 by -3: -27",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine: -81x - 27",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-81x - 27 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_two_step",
+      "prompt": "Solve: 7x + 12 = 47",
+      "solution_steps": [
+        "7x + 12 = 47",
+        "Subtract 12 from both sides:",
+        "7x = 35",
+        "Divide both sides by 7:",
+        "x = 5"
+      ],
+      "final_answer": "5",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "7x + 12 = 47",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 12 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "7x = 35",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 7: x = 5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_straight_line",
+      "prompt": "Complete a table of values for y = -4x + 5 for x = -3 to 3, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = -4x + 5:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: 17, 13, 9, 5, 1, -3, -7",
+        "Plot each (x, y) point and join them with a single ruled straight line."
+      ],
+      "final_answer": "Straight line: y = -4x + 5",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = -4x + 5:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 17, 13, 9, 5, 1, -3, -7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Straight line: y = -4x + 5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "linear",
+          "m": -4,
+          "c": 5,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -8,
+          "y_max": 18,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "linear",
+          "m": -4,
+          "c": 5,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -8,
+          "y_max": 18,
+          "table_points": [
+            [
+              -3,
+              17
+            ],
+            [
+              -2,
+              13
+            ],
+            [
+              -1,
+              9
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              -3
+            ],
+            [
+              3,
+              -7
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "factorise_common_factor",
+      "prompt": "Factorise: 3x + 18",
+      "solution_steps": [
+        "Find the highest common factor of 3 and 18: 3",
+        "Factorise: 3(x + 6)"
+      ],
+      "final_answer": "3(x + 6)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find the highest common factor of 3 and 18: 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: 3(x + 6)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3(x + 6) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_graphically",
+      "prompt": "The graphs of y = -3x - 14 and y = -x - 6 are shown below. Use the graphs to write down the solution to the simultaneous equations.",
+      "solution_steps": [
+        "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
+        "The lines cross at x = -4, y = -2."
+      ],
+      "final_answer": "x = -4, y = -2",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The lines cross at x = -4, y = -2.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = -4, y = -2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "linear_graph_pair",
+        "params": {
+          "intersection_label": "?",
+          "label1": "y = -3x - 14",
+          "label2": "y = -x - 6"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_one_step",
+      "prompt": "Solve: 5x = 60",
+      "solution_steps": [
+        "5x = 60",
+        "Divide both sides by 5:",
+        "x = 12"
+      ],
+      "final_answer": "12",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "5x = 60",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 5:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 12",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "12 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_both_sides_foundation",
+      "prompt": "Solve: 6x + 9 = 4x + 15",
+      "solution_steps": [
+        "6x + 9 = 4x + 15",
+        "Subtract 4x from both sides:",
+        "2x + 9 = 15",
+        "Subtract 9 from both sides:",
+        "2x = 6",
+        "Divide both sides by 2:",
+        "x = 3"
+      ],
+      "final_answer": "3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "6x + 9 = 4x + 15",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 4x from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x + 9 = 15",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 9 from both sides: 2x = 6 Divide both sides by 2: x = 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "solving_inequalities_foundation",
+      "prompt": "Solve the inequality: x/2 + 7 > 0",
+      "solution_steps": [
+        "x/2 + 7 > 0",
+        "Subtract 7 from both sides:",
+        "x/2 > -7",
+        "Multiply both sides by 2:",
+        "x > -14"
+      ],
+      "final_answer": "x > -14",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "x/2 + 7 > 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 7 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x/2 > -7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply both sides by 2: x > -14",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x > -14 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "direct_proportion",
+      "prompt": "On a map, 7 cm represents 42 km in real life. How many km does 20 cm represent?",
+      "solution_steps": [
+        "Unit value = 42 km ÷ 7 = 6 km",
+        "Answer = 6 km × 20 = 120 km"
+      ],
+      "final_answer": "120 km",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Unit value = 42 km ÷ 7 = 6 km",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Answer = 6 km × 20 = 120 km",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "120 km oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_share_three_part_foundation",
+      "prompt": "Share 140 in the ratio 2:9:9.",
+      "solution_steps": [
+        "Total parts = 2 + 9 + 9 = 20",
+        "Value of one part = 140 ÷ 20 = 7",
+        "Share 1 = 2 × 7 = 14",
+        "Share 2 = 9 × 7 = 63",
+        "Share 3 = 9 × 7 = 63"
+      ],
+      "final_answer": "14 : 63 : 63",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total parts = 2 + 9 + 9 = 20",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Value of one part = 140 ÷ 20 = 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 1 = 2 × 7 = 14",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 2 = 9 × 7 = 63 Share 3 = 9 × 7 = 63",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "14 : 63 : 63 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "sdt_mixed",
+      "prompt": "A delivery van travels 568 km in 8 hours. Find its average speed in km/h.",
+      "solution_steps": [
+        "speed = distance ÷ time",
+        "speed = 568 ÷ 8 = 71 km/h"
+      ],
+      "final_answer": "71 km/h",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "speed = distance ÷ time",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "speed = 568 ÷ 8 = 71 km/h",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "71 km/h oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simple_interest",
+      "prompt": "£3500 is invested at a simple interest rate of 2% per year for 3 years. Find the interest earned.",
+      "solution_steps": [
+        "Simple interest formula: I = P × r × t ÷ 100",
+        "I = 3500 × 2 × 3 ÷ 100 = £210"
+      ],
+      "final_answer": "£210",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Simple interest formula: I = P × r × t ÷ 100",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "I = 3500 × 2 × 3 ÷ 100 = £210",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£210 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "percentage_change",
+      "prompt": "Increase 40 by 25%.",
+      "solution_steps": [
+        "Convert 25% to a multiplier: 1.25",
+        "Multiply: 40 × 1.25 = 50"
+      ],
+      "final_answer": "50",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 25% to a multiplier: 1.25",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply: 40 × 1.25 = 50",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "50 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "transform_enlarge_complete_foundation",
+      "prompt": "Enlarge shape ABCDEF by scale factor 2, centre (0, 9). Draw and label the image A'B'C'D'E'F'.",
+      "solution_steps": [
+        "The centre of enlargement is (0, 9) and the scale factor is 2.",
+        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-2, -8) from the centre, so A' = (0, 9) + 2 × (-2, -8) = (-4, -7).",
+        "Repeat for every vertex: A(-2, 1) -> A'(-4, -7), B(3, 1) -> B'(6, -7), C(3, 3) -> C'(6, -3), D(1, 3) -> D'(2, -3), E(1, 5) -> E'(2, 1), F(-2, 5) -> F'(-4, 1)"
+      ],
+      "final_answer": "A'(-4, -7), B'(6, -7), C'(6, -3), D'(2, -3), E'(2, 1), F'(-4, 1)",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The centre of enlargement is (0, 9) and the scale factor is 2.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-2, -8) from the centre, so A' = (0, 9) + 2 × (-2, -8) = (-4, -7).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Repeat for every vertex: A(-2, 1) -> A'(-4, -7), B(3, 1) -> B'(6, -7), C(3, 3) -> C'(6, -3), D(1, 3) -> D'(2, -3), E(1, 5) -> E'(2, 1), F(-2, 5) -> F'(-4, 1)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "A'(-4, -7), B'(6, -7), C'(6, -3), D'(2, -3), E'(2, 1), F'(-4, 1) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              -2,
+              1
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              -2,
+              5
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "centre": [
+            0,
+            9
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              -2,
+              1
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              -2,
+              5
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "centre": [
+            0,
+            9
+          ],
+          "image_vertices": [
+            [
+              -4,
+              -7
+            ],
+            [
+              6,
+              -7
+            ],
+            [
+              6,
+              -3
+            ],
+            [
+              2,
+              -3
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              -4,
+              1
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'",
+            "D'",
+            "E'",
+            "F'"
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "volume_surface_area_cylinder_foundation",
+      "prompt": "A cylinder has radius 9 cm and height 14 cm. Find its volume, correct to 3 significant figures.",
+      "solution_steps": [
+        "Volume = π × r² × h = π × 9² × 14",
+        "= 3560 cm³ (3 s.f., using a calculator value of π)"
+      ],
+      "final_answer": "3560 cm³",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Volume = π × r² × h = π × 9² × 14",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 3560 cm³ (3 s.f., using a calculator value of π)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3560 cm³ oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "cylinder",
+        "params": {
+          "radius_label": "9 cm",
+          "height_label": "14 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_sector_foundation",
+      "prompt": "A sector of a circle has radius 13 cm and angle 196°. Find the area of the sector, correct to 3 significant figures.",
+      "solution_steps": [
+        "Area = (θ ÷ 360) × π × r² = (196 ÷ 360) × π × 13²",
+        "= 289 cm² (3 s.f., using a calculator value of π)"
+      ],
+      "final_answer": "289 cm²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area = (θ ÷ 360) × π × r² = (196 ÷ 360) × π × 13²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 289 cm² (3 s.f., using a calculator value of π)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "289 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "sector",
+        "params": {
+          "angle": 196,
+          "radius_label": "13 cm",
+          "angle_label": "196°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "volume_surface_area_cuboid",
+      "prompt": "A cuboid has length 15 cm, width 9 cm and height 12 cm. Find its surface area.",
+      "solution_steps": [
+        "Surface area = 2 × (lw + lh + wh) = 2 × (15×9 + 15×12 + 9×12)",
+        "= 2 × (135 + 180 + 108) = 846 cm²"
+      ],
+      "final_answer": "846 cm²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Surface area = 2 × (lw + lh + wh) = 2 × (15×9 + 15×12 + 9×12)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 2 × (135 + 180 + 108) = 846 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "846 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "cuboid",
+        "params": {
+          "width_label": "9 cm",
+          "height_label": "12 cm",
+          "length_label": "15 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_polygon_interior_foundation",
+      "prompt": "A regular polygon has 20 sides. Find the size of one interior angle.",
+      "solution_steps": [
+        "Sum of interior angles = (n - 2) × 180 = (20 - 2) × 180 = 3240°",
+        "This is a regular polygon, so each interior angle = 3240 ÷ 20 = 162°"
+      ],
+      "final_answer": "162°",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Sum of interior angles = (n - 2) × 180 = (20 - 2) × 180 = 3240°",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "This is a regular polygon, so each interior angle = 3240 ÷ 20 = 162°",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "162° oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "polygon",
+        "params": {
+          "n_sides": 12,
+          "marked_angle_label": "?"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "trig_missing_angle_foundation",
+      "prompt": "In the right-angled triangle shown, find the angle x, correct to 1 decimal place.",
+      "solution_steps": [
+        "Use tan, since we know two of the three sides.",
+        "tan(x) = 9 ÷ 15",
+        "x = tan^-1(9 ÷ 15) = 31.0° (1 d.p.)"
+      ],
+      "final_answer": "31.0°",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Use tan, since we know two of the three sides.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "tan(x) = 9 ÷ 15",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = tan^-1(9 ÷ 15) = 31.0° (1 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "31.0° oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "trig_triangle",
+        "params": {
+          "adjacent_label": "15 cm",
+          "opposite_label": "9 cm",
+          "hyp_label": null,
+          "angle_label": "x°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_listing_outcomes",
+      "prompt": "A coin is flipped and a die is rolled. List all the possible outcomes.",
+      "solution_steps": [
+        "There are 2 possible outcomes for the first event and 6 for the second, so there are 2 × 6 = 12 possible combined outcomes.",
+        "For each outcome of the first event, list every outcome of the second event: H1, H2, H3, H4, H5, H6, T1, T2, T3, T4, T5, T6"
+      ],
+      "final_answer": "H1, H2, H3, H4, H5, H6, T1, T2, T3, T4, T5, T6",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "There are 2 possible outcomes for the first event and 6 for the second, so there are 2 × 6 = 12 possible combined outcomes.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For each outcome of the first event, list every outcome of the second event: H1, H2, H3, H4, H5, H6, T1, T2, T3, T4, T5, T6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "H1, H2, H3, H4, H5, H6, T1, T2, T3, T4, T5, T6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_equivalent_diagram",
+      "prompt": "The first shape shows 3/4 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
+      "solution_steps": [
+        "Cross-multiply 3/4 against each labelled shape: a shape shows an equivalent fraction only if 3 × (its denominator) = (its shaded count) × 4.",
+        "Only shape A) 9/12 works: 3 × 12 = 9 × 4 = 36."
+      ],
+      "final_answer": "A) 9/12",
+      "marks": 1,
+      "mark_scheme": [
+        {
+          "code": "B1",
+          "description": "A) 9/12 (selecting the correct option)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "fraction_shapes",
+        "params": {
+          "shapes": [
+            {
+              "kind": "circle",
+              "parts": 4,
+              "shaded": 3,
+              "label": "3/4"
+            },
+            {
+              "kind": "circle",
+              "parts": 12,
+              "shaded": 9,
+              "label": "A) 9/12"
+            },
+            {
+              "kind": "circle",
+              "parts": 4,
+              "shaded": 1,
+              "label": "B) 1/4"
+            },
+            {
+              "kind": "circle",
+              "parts": 6,
+              "shaded": 1,
+              "label": "C) 1/6"
+            }
+          ]
+        }
+      },
+      "solution_diagram": null
+    }
+  ]
+}

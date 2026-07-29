@@ -1,0 +1,963 @@
+{
+  "id": "higher-05-paper1",
+  "name": "Higher Practice Test 5 – Paper 1 of 3",
+  "tier": "higher",
+  "sitting_id": "higher-05",
+  "paper_number": 1,
+  "questions": [
+    {
+      "topic_id": "surds_multiply_divide",
+      "prompt": "Simplify √320 ÷ √2, giving your answer in the form a√b.",
+      "solution_steps": [
+        "√320 ÷ √2 = √(320/2) = √160",
+        "Find the largest square factor of 160: 4^2 × 10 = 160",
+        "√160 = √(4^2 × 10) = 4√10"
+      ],
+      "final_answer": "4√10",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "√320 ÷ √2 = √(320/2) = √160",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Find the largest square factor of 160: 4^2 × 10 = 160",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√160 = √(4^2 × 10) = 4√10",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4√10 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_divide",
+      "prompt": "Work out 9/6 ÷ 7/9. Give your answer as a fraction in its simplest form.",
+      "solution_steps": [
+        "Keep-change-flip: 9/6 ÷ 7/9 = 9/6 × 9/7",
+        "Multiply: (9×9)/(6×7) = 81/42",
+        "Simplify: 27/14"
+      ],
+      "final_answer": "27/14",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Keep-change-flip: 9/6 ÷ 7/9 = 9/6 × 9/7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply: (9×9)/(6×7) = 81/42",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify: 27/14",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "27/14 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_mixed_number_arithmetic",
+      "prompt": "Work out 5 2/7 - 1 5/7. Give your answer as a mixed number.",
+      "solution_steps": [
+        "Convert to improper fractions: 5 2/7 = 37/7, 1 5/7 = 12/7",
+        "Subtract the improper fractions: 37/7 - 12/7 = 25/7",
+        "Convert back to a mixed number: 3 4/7"
+      ],
+      "final_answer": "3 4/7",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert to improper fractions: 5 2/7 = 37/7, 1 5/7 = 12/7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract the improper fractions: 37/7 - 12/7 = 25/7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Convert back to a mixed number: 3 4/7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3 4/7 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "roots_higher",
+      "prompt": "Simplify √12, giving your answer in the form a√b.",
+      "solution_steps": [
+        "Find the largest square factor of 12: 2^2 × 3 = 12",
+        "√12 = √(2^2 × 3) = 2√3"
+      ],
+      "final_answer": "2√3",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find the largest square factor of 12: 2^2 × 3 = 12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√12 = √(2^2 × 3) = 2√3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2√3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simplifying_indices_challenging",
+      "prompt": "Simplify 25^(3/2) × 25^-2, giving your answer as a fraction where necessary.",
+      "solution_steps": [
+        "25^(1/2) is the square root of 25, which is 5, so 25^(3/2) = 5^3",
+        "25^-2 = 1/25^2 = 1/5^4",
+        "25^(3/2) × 25^-2 = 5^3 × 1/5^4 = 5^(3-4) = 5^-1",
+        "5^-1 = 1/5"
+      ],
+      "final_answer": "1/5",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "25^(1/2) is the square root of 25, which is 5, so 25^(3/2) = 5^3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "25^-2 = 1/25^2 = 1/5^4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "25^(3/2) × 25^-2 = 5^3 × 1/5^4 = 5^(3-4) = 5^-1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5^-1 = 1/5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "hcf_lcm_by_prime_factors",
+      "prompt": "Using prime factorisation, find the LCM of 38 and 62.",
+      "solution_steps": [
+        "38 = 2 × 19",
+        "62 = 2 × 31",
+        "LCM: take the highest power of each prime",
+        "LCM = 1178"
+      ],
+      "final_answer": "1178",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "38 = 2 × 19",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "62 = 2 × 31",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "LCM: take the highest power of each prime",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "LCM = 1178",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1178 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "graph_transformations",
+      "prompt": "The graph of y = f(x) is transformed to give the graph of y = f(-x). Describe this transformation fully.",
+      "solution_steps": [
+        "y = f(-x) corresponds to a reflection in the y-axis."
+      ],
+      "final_answer": "Reflection in the y-axis",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = f(-x) corresponds to a reflection in the y-axis.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Reflection in the y-axis oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "graph_transformation",
+        "params": {
+          "transform": "reflect_y",
+          "shift": 0,
+          "original_label": "y = f(x)",
+          "transformed_label": "y = f(-x)"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "expand_double_brackets",
+      "prompt": "Expand: (5x + 6)(-6x + 4)",
+      "solution_steps": [
+        "First: 5x × -6x = -30x^2",
+        "Outer: 5x × 4 = 20x",
+        "Inner: 6 × -6x = -36x",
+        "Last: 6 × 4 = 24",
+        "Combine like terms: -30x^2 - 16x + 24"
+      ],
+      "final_answer": "-30x^2 - 16x + 24",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First: 5x × -6x = -30x^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Outer: 5x × 4 = 20x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Inner: 6 × -6x = -36x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Last: 6 × 4 = 24 Combine like terms: -30x^2 - 16x + 24",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-30x^2 - 16x + 24 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "sequences_quadratic_nth_term",
+      "prompt": "Here are the first four terms of a quadratic sequence: 5, 9, 15, 23. Find an expression for the nth term.",
+      "solution_steps": [
+        "First differences: 4, 6, 8",
+        "Second difference is constant: 2, so the coefficient of n^2 is 2 ÷ 2 = 1",
+        "nth term = n^2 + n + 3"
+      ],
+      "final_answer": "n^2 + n + 3",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First differences: 4, 6, 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Second difference is constant: 2, so the coefficient of n^2 is 2 ÷ 2 = 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "nth term = n^2 + n + 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "n^2 + n + 3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "factorise_quadratics",
+      "prompt": "Factorise: x^2 - 25",
+      "solution_steps": [
+        "Find two numbers that multiply to -25 and add to 0: 5 and -5",
+        "Write as two brackets: (x + 5)(x - 5)"
+      ],
+      "final_answer": "(x + 5)(x - 5)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find two numbers that multiply to -25 and add to 0: 5 and -5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write as two brackets: (x + 5)(x - 5)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(x + 5)(x - 5) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "iteration",
+      "prompt": "The iterative formula x_(n+1) = sqrt(11 - x_n) is used with x_0 = 2. Find the values of x_1, x_2 and x_3, giving each answer to 3 decimal places.",
+      "solution_steps": [
+        "Iterative formula: x_(n+1) = sqrt(11 - x_n)",
+        "x_0 = 2",
+        "x_1 = g(x_0) = sqrt(11 - 2) = 3.000",
+        "x_2 = g(x_1) = sqrt(11 - 3.000) = 2.828",
+        "x_3 = g(x_2) = sqrt(11 - 2.828) = 2.859"
+      ],
+      "final_answer": "x_1 = 3.000, x_2 = 2.828, x_3 = 2.859",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Iterative formula: x_(n+1) = sqrt(11 - x_n)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x_0 = 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x_1 = g(x_0) = sqrt(11 - 2) = 3.000",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x_2 = g(x_1) = sqrt(11 - 3.000) = 2.828 x_3 = g(x_2) = sqrt(11 - 2.828) = 2.859",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x_1 = 3.000, x_2 = 2.828, x_3 = 2.859 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "quadratic_inequalities",
+      "prompt": "Solve the inequality: x^2 + 5x + 4 ≤ 0",
+      "solution_steps": [
+        "Factorise: x^2 + 5x + 4 = (x + 4)(x + 1)",
+        "The critical values are x = -4 and x = -1.",
+        "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and ≤ 0 is satisfied between the two roots.",
+        "Answer: -4 ≤ x ≤ -1"
+      ],
+      "final_answer": "-4 ≤ x ≤ -1",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Factorise: x^2 + 5x + 4 = (x + 4)(x + 1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The critical values are x = -4 and x = -1.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and ≤ 0 is satisfied between the two roots.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Answer: -4 ≤ x ≤ -1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-4 ≤ x ≤ -1 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_proof",
+      "prompt": "Prove algebraically that (n + 2)^2 - (n - 2)^2 is always a multiple of 8.",
+      "solution_steps": [
+        "Let n be any integer, with n + 2 and n - 2 the integers 2 either side of it.",
+        "Write the given expression algebraically: (n + 2)^2 - (n - 2)^2.",
+        "Expand and simplify: (n + 2)^2 - (n - 2)^2 = 8n.",
+        "Factorise/rearrange to expose the structure: 8n = 8n.",
+        "8n is exactly 8 times the whole number n, so the expression is always a multiple of 8."
+      ],
+      "final_answer": "Proven: (n + 2)^2 - (n - 2)^2 = 8n, always a multiple of 8.",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let n be any integer, with n + 2 and n - 2 the integers 2 either side of it.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write the given expression algebraically: (n + 2)^2 - (n - 2)^2.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand and simplify: (n + 2)^2 - (n - 2)^2 = 8n.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise/rearrange to expose the structure: 8n = 8n. 8n is exactly 8 times the whole number n, so the expression is always a multiple of 8.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Proven: (n + 2)^2 - (n - 2)^2 = 8n, always a multiple of 8. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_brackets",
+      "prompt": "Solve: 2(3x + 1) = 50",
+      "solution_steps": [
+        "Expand the bracket: 2(3x + 1) = 6x + 2",
+        "6x + 2 = 50",
+        "Subtract 2 from both sides:",
+        "6x = 48",
+        "Divide both sides by 6:",
+        "x = 8"
+      ],
+      "final_answer": "8",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: 2(3x + 1) = 6x + 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "6x + 2 = 50",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 2 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "6x = 48 Divide both sides by 6: x = 8",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "8 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "speed_with_conversions",
+      "prompt": "A cyclist travels 500 m in 20 seconds. Find its average speed in km/h, correct to 1 decimal place.",
+      "solution_steps": [
+        "speed = distance ÷ time = 500 ÷ 20 = 25 m/s",
+        "Convert to km/h: 25 × 3.6 = 90 km/h (1 d.p.)"
+      ],
+      "final_answer": "90 km/h",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "speed = distance ÷ time = 500 ÷ 20 = 25 m/s",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Convert to km/h: 25 × 3.6 = 90 km/h (1 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "90 km/h oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_shape_similar_higher",
+      "prompt": "Shape A and Shape B are similar. A length on shape A is 2 cm and the corresponding length on shape B is 5 cm. The area of shape B is 25 cm². Find the area of shape A.",
+      "solution_steps": [
+        "Linear scale factor = 5 ÷ 2 = 5/2",
+        "Area scale factor = (5/2)^2 = 25/4",
+        "Area of A = 25 ÷ 25/4 = 4 cm²"
+      ],
+      "final_answer": "4 cm²",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Linear scale factor = 5 ÷ 2 = 5/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area scale factor = (5/2)^2 = 25/4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of A = 25 ÷ 25/4 = 4 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_direct_proportion",
+      "prompt": "y is directly proportional to x^2. When x = 9, y = 648. Find the value of y when x = 4.",
+      "solution_steps": [
+        "y = kx^2",
+        "648 = k × 9^2 = k × 81",
+        "k = 648 ÷ 81 = 8",
+        "y = 8 × 4^2 = 8 × 16 = 128"
+      ],
+      "final_answer": "128",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = kx^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "648 = k × 9^2 = k × 81",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "k = 648 ÷ 81 = 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y = 8 × 4^2 = 8 × 16 = 128",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "128 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "percentage_increase_decrease_calculator",
+      "prompt": "Using a calculator, decrease £769.20 by 4.8%. Give your answer to 2 decimal places.",
+      "solution_steps": [
+        "Convert 4.8% to a multiplier: 0.952",
+        "Multiply: £769.20 × 0.952 = £732.28 (calculator, 2 d.p.)"
+      ],
+      "final_answer": "£732.28",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 4.8% to a multiplier: 0.952",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply: £769.20 × 0.952 = £732.28 (calculator, 2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£732.28 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_exterior",
+      "prompt": "An exterior angle of a triangle is 77°. The two remote interior angles are 54° and (5x - 77)°. Find x.",
+      "solution_steps": [
+        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+        "5x - 77 = 23",
+        "Add 77 to both sides:",
+        "5x = 100",
+        "Divide both sides by 5:",
+        "x = 20"
+      ],
+      "final_answer": "20",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x - 77 = 23",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add 77 to both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x = 100 Divide both sides by 5: x = 20",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "20 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "exterior_triangle",
+        "params": {
+          "interior1_label": "54°",
+          "interior2_label": "(5x - 77)°",
+          "exterior_label": "77°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "trig_mixed",
+      "prompt": "In the right-angled triangle shown, find the angle x, correct to 1 decimal place.",
+      "solution_steps": [
+        "Use sin, since we know two of the three sides.",
+        "sin(x) = 17 ÷ 28",
+        "x = sin^-1(17 ÷ 28) = 37.4° (1 d.p.)"
+      ],
+      "final_answer": "37.4°",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Use sin, since we know two of the three sides.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "sin(x) = 17 ÷ 28",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = sin^-1(17 ÷ 28) = 37.4° (1 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "37.4° oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "trig_triangle",
+        "params": {
+          "adjacent_label": null,
+          "opposite_label": "17 cm",
+          "hyp_label": "28 cm",
+          "angle_label": "x°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "vectors_arithmetic_higher",
+      "prompt": "\\vec{a} = (-11, 0) and \\vec{b} = (-6, -10). Find 4\\vec{a} + -2\\vec{b}.",
+      "solution_steps": [
+        "\\vec{a} = (-11, 0), \\vec{b} = (-6, -10)",
+        "4\\vec{a} = (-44, 0) and -2\\vec{b} = (12, 20)",
+        "4\\vec{a} + -2\\vec{b} = (-32, 20)"
+      ],
+      "final_answer": "(-32, 20)",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "\\vec{a} = (-11, 0), \\vec{b} = (-6, -10)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4\\vec{a} = (-44, 0) and -2\\vec{b} = (12, 20)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4\\vec{a} + -2\\vec{b} = (-32, 20)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(-32, 20) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "tree_diagram_dependent",
+      "prompt": "A bag contains 8 red and 4 blue counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the two counters are different colours.",
+      "solution_steps": [
+        "After the first counter is picked (without replacement), there are 11 counters left.",
+        "P(red then red) = 2/3 × 7/11 = 14/33",
+        "P(red then blue) = 2/3 × 4/11 = 8/33",
+        "P(blue then red) = 1/3 × 8/11 = 8/33",
+        "P(blue then blue) = 1/3 × 3/11 = 1/11",
+        "P(the two counters are different colours) = 16/33"
+      ],
+      "final_answer": "16/33",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "After the first counter is picked (without replacement), there are 11 counters left.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(red then red) = 2/3 × 7/11 = 14/33",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(red then blue) = 2/3 × 4/11 = 8/33",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(blue then red) = 1/3 × 8/11 = 8/33 P(blue then blue) = 1/3 × 3/11 = 1/11 P(the two counters are different colours) = 16/33",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "16/33 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Red",
+              "2/3"
+            ],
+            [
+              "Blue",
+              "1/3"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Red",
+                "7/11"
+              ],
+              [
+                "Blue",
+                "4/11"
+              ]
+            ],
+            [
+              [
+                "Red",
+                "8/11"
+              ],
+              [
+                "Blue",
+                "3/11"
+              ]
+            ]
+          ],
+          "leaf_probs": [
+            [
+              "14/33",
+              "8/33"
+            ],
+            [
+              "8/33",
+              "1/11"
+            ]
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_combined_dice",
+      "prompt": "Two fair six-sided dice are rolled. Find the probability that at least one die shows 1.",
+      "solution_steps": [
+        "P(neither die shows 1) = 5/6 × 5/6 = 25/36",
+        "P(at least one 1) = 1 - 25/36 = 11/36"
+      ],
+      "final_answer": "11/36",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "P(neither die shows 1) = 5/6 × 5/6 = 25/36",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(at least one 1) = 1 - 25/36 = 11/36",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "11/36 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "dice",
+        "params": {
+          "values": [
+            3,
+            2
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "forming_equations_higher",
+      "prompt": "A quadrilateral has angles 68°, 29°, (4x - 17)°, and (2x + 166)°. Form an equation and solve it to find x.",
+      "solution_steps": [
+        "Angles in a quadrilateral sum to 360°.",
+        "68 + 29 + (4x - 17) + (2x + 166) = 360",
+        "Collect the x-terms and constants together:",
+        "6x + 149 = 263",
+        "Subtract 149 from both sides:",
+        "6x = 114",
+        "Divide both sides by 6:",
+        "x = 19"
+      ],
+      "final_answer": "19",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles in a quadrilateral sum to 360°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "68 + 29 + (4x - 17) + (2x + 166) = 360",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Collect the x-terms and constants together:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "6x + 149 = 263 Subtract 149 from both sides: 6x = 114 Divide both sides by 6: x = 19",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "19 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    }
+  ]
+}

@@ -5,7 +5,7 @@ def test_single_step_question_gets_two_marks():
     marks, points = build_mark_scheme(("Area = 6 x 5 = 30",), "30")
     assert marks == 2
     assert [p.code for p in points] == ["M1", "A1"]
-    assert points[-1].description == "30 oe (cao)"
+    assert points[-1].description == "30 oe"
 
 
 def test_multi_step_question_gets_one_method_mark_per_step_plus_accuracy():

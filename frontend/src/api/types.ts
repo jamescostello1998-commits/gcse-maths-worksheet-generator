@@ -29,6 +29,8 @@ export interface PracticeTestSummary {
   id: string
   name: string
   tier: Tier
+  sittingId: string
+  paperNumber: number
   totalMarks: number
   questionCount: number
 }

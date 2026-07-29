@@ -42,5 +42,7 @@ class PracticeTestSummary(BaseModel):
     id: str
     name: str
     tier: TierEnum
+    sitting_id: str
+    paper_number: int
     total_marks: int
     question_count: int

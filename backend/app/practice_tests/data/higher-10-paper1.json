@@ -1,0 +1,1002 @@
+{
+  "id": "higher-10-paper1",
+  "name": "Higher Practice Test 10 – Paper 1 of 3",
+  "tier": "higher",
+  "sitting_id": "higher-10",
+  "paper_number": 1,
+  "questions": [
+    {
+      "topic_id": "roots_higher",
+      "prompt": "Simplify √180, giving your answer in the form a√b.",
+      "solution_steps": [
+        "Find the largest square factor of 180: 6^2 × 5 = 180",
+        "√180 = √(6^2 × 5) = 6√5"
+      ],
+      "final_answer": "6√5",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find the largest square factor of 180: 6^2 × 5 = 180",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√180 = √(6^2 × 5) = 6√5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6√5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "indices_common_base_equations",
+      "prompt": "Solve 5^(x+3) = 625^(2x).",
+      "solution_steps": [
+        "Write both sides as powers of 5: 5 = 5^1 and 625 = 5^4",
+        "5^(x+3) = 625^(2x) becomes 5^(x+3) = 5^(4×2x), i.e. 5^(x+3) = 5^(8x)",
+        "Since the bases match, the powers must be equal: x + 3 = 8x",
+        "Rearranging: -7x = -3, so x = -3/-7 = 3/7"
+      ],
+      "final_answer": "3/7",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Write both sides as powers of 5: 5 = 5^1 and 625 = 5^4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5^(x+3) = 625^(2x) becomes 5^(x+3) = 5^(4×2x), i.e. 5^(x+3) = 5^(8x)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Since the bases match, the powers must be equal: x + 3 = 8x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rearranging: -7x = -3, so x = -3/-7 = 3/7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3/7 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "bounds_calculation",
+      "prompt": "A rectangle has length 36 cm and width 6 cm, both measured to the nearest cm. Calculate the lower bound for the area of the rectangle.",
+      "solution_steps": [
+        "Length: 36 cm (to the nearest cm) gives 35.5 ≤ length < 36.5",
+        "Width: 6 cm (to the nearest cm) gives 5.5 ≤ width < 6.5",
+        "For the lower bound of the area, use the lower bound of each measurement: 35.5 × 5.5 = 195.25 cm²"
+      ],
+      "final_answer": "195.25 cm²",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Length: 36 cm (to the nearest cm) gives 35.5 ≤ length < 36.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Width: 6 cm (to the nearest cm) gives 5.5 ≤ width < 6.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For the lower bound of the area, use the lower bound of each measurement: 35.5 × 5.5 = 195.25 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "195.25 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "standard_form_add_subtract",
+      "prompt": "Work out (1 × 10^7) + (3 × 10^6). Give your answer in standard form.",
+      "solution_steps": [
+        "Write both numbers with the same power of 10: 1×10^7 = 10×10^6, 3×10^6 = 3×10^6",
+        "Add the coefficients: 10 + 3 = 13",
+        "Write in standard form: 13 × 10^6 = 1.3 × 10^7"
+      ],
+      "final_answer": "1.3 × 10^7",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Write both numbers with the same power of 10: 1×10^7 = 10×10^6, 3×10^6 = 3×10^6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add the coefficients: 10 + 3 = 13",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write in standard form: 13 × 10^6 = 1.3 × 10^7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1.3 × 10^7 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simplifying_indices_challenging",
+      "prompt": "Simplify 25^(1/2) × 25^-3, giving your answer as a fraction where necessary.",
+      "solution_steps": [
+        "25^(1/2) is the square root of 25, which is 5, so 25^(1/2) = 5^1",
+        "25^-3 = 1/25^3 = 1/5^6",
+        "25^(1/2) × 25^-3 = 5^1 × 1/5^6 = 5^(1-6) = 5^-5",
+        "5^-5 = 1/3125"
+      ],
+      "final_answer": "1/3125",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "25^(1/2) is the square root of 25, which is 5, so 25^(1/2) = 5^1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "25^-3 = 1/25^3 = 1/5^6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "25^(1/2) × 25^-3 = 5^1 × 1/5^6 = 5^(1-6) = 5^-5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5^-5 = 1/3125",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/3125 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "rationalise_denominator",
+      "prompt": "Rationalise the denominator of 10/(9 - √14), giving your answer in its simplest form.",
+      "solution_steps": [
+        "Multiply the numerator and denominator by the conjugate of the denominator, (9 + √14):",
+        "10/(9 - √14) = 10(9 + √14) / [(9 - √14)(9 + √14)]",
+        "The denominator is a difference of two squares: 9^2 - 14 = 67",
+        "The numerator is 10(9 + √14) = 90 + 10√14",
+        "= (90 + 10√14)/67"
+      ],
+      "final_answer": "(90 + 10√14)/67",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply the numerator and denominator by the conjugate of the denominator, (9 + √14):",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "10/(9 - √14) = 10(9 + √14) / [(9 - √14)(9 + √14)]",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The denominator is a difference of two squares: 9^2 - 14 = 67",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The numerator is 10(9 + √14) = 90 + 10√14 = (90 + 10√14)/67",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(90 + 10√14)/67 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "expand_triple_brackets",
+      "prompt": "Expand and simplify: (3x + 4)(3x + 4)(2x + 2)",
+      "solution_steps": [
+        "First expand two of the brackets: (3x + 4)(3x + 4) = 9x^2 + 24x + 16",
+        "Multiply the result by (2x + 2) and collect like terms",
+        "= 18x^3 + 66x^2 + 80x + 32"
+      ],
+      "final_answer": "18x^3 + 66x^2 + 80x + 32",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First expand two of the brackets: (3x + 4)(3x + 4) = 9x^2 + 24x + 16",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply the result by (2x + 2) and collect like terms",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 18x^3 + 66x^2 + 80x + 32",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "18x^3 + 66x^2 + 80x + 32 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_brackets",
+      "prompt": "Solve: 6(5x + 6) = -204",
+      "solution_steps": [
+        "Expand the bracket: 6(5x + 6) = 30x + 36",
+        "30x + 36 = -204",
+        "Subtract 36 from both sides:",
+        "30x = -240",
+        "Divide both sides by 30:",
+        "x = -8"
+      ],
+      "final_answer": "-8",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: 6(5x + 6) = 30x + 36",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "30x + 36 = -204",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 36 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "30x = -240 Divide both sides by 30: x = -8",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-8 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_cubic",
+      "prompt": "Complete a table of values for y = x^3 - x for x = -3 to 3, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = x^3 - x:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: -24, -6, 0, 0, 0, 6, 24",
+        "Plot each (x, y) point and join them with a single smooth curve."
+      ],
+      "final_answer": "Cubic curve: y = x^3 - x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = x^3 - x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: -24, -6, 0, 0, 0, 6, 24",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Cubic curve: y = x^3 - x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": 1,
+          "b": -1,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -26,
+          "y_max": 26,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": 1,
+          "b": -1,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -26,
+          "y_max": 26,
+          "table_points": [
+            [
+              -3,
+              -24
+            ],
+            [
+              -2,
+              -6
+            ],
+            [
+              -1,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              24
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "completing_the_square",
+      "prompt": "Write x^2 + 18x - 6 in the form (x + p)^2 + q.",
+      "solution_steps": [
+        "Half the coefficient of x: 18 ÷ 2 = 9",
+        "(x + 9)^2 = x^2 + 18x + 81",
+        "x^2 + 18x + -6 = (x + 9)^2 + (-6 - 81) = (x + 9)^2 - 87"
+      ],
+      "final_answer": "(x + 9)^2 - 87",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Half the coefficient of x: 18 ÷ 2 = 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(x + 9)^2 = x^2 + 18x + 81",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x^2 + 18x + -6 = (x + 9)^2 + (-6 - 81) = (x + 9)^2 - 87",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(x + 9)^2 - 87 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "perpendicular_lines_equation",
+      "prompt": "A line is perpendicular to y = -3x + 1 and passes through the point (-5, -6). Find the equation of the line.",
+      "solution_steps": [
+        "Perpendicular gradients multiply to give -1: m × -3 = -1, so m = 1/3",
+        "Substitute (-5, -6) into y = 1/3x + c: -6 = 1/3×(-5) + c, so c = -13/3",
+        "Equation of the line: y = 1/3x - 13/3"
+      ],
+      "final_answer": "y = 1/3x - 13/3",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Perpendicular gradients multiply to give -1: m × -3 = -1, so m = 1/3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute (-5, -6) into y = 1/3x + c: -6 = 1/3×(-5) + c, so c = -13/3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Equation of the line: y = 1/3x - 13/3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y = 1/3x - 13/3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_proof",
+      "prompt": "Prove algebraically that the difference between the squares of two consecutive odd numbers is always a multiple of 8.",
+      "solution_steps": [
+        "Let two consecutive odd numbers be 2n + 1 and 2n + 3 (for integer n).",
+        "Write the given expression algebraically: (2n + 3)^2 - (2n + 1)^2.",
+        "Expand and simplify: (2n + 3)^2 - (2n + 1)^2 = 8n + 8.",
+        "Factorise/rearrange to expose the structure: 8n + 8 = 8(n + 1).",
+        "Since 8n + 8 factorises exactly to 8(n + 1), the difference is always 8 times a whole number, so it is always a multiple of 8."
+      ],
+      "final_answer": "Proven: the difference is 8(n + 1), always a multiple of 8.",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let two consecutive odd numbers be 2n + 1 and 2n + 3 (for integer n).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write the given expression algebraically: (2n + 3)^2 - (2n + 1)^2.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand and simplify: (2n + 3)^2 - (2n + 1)^2 = 8n + 8.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise/rearrange to expose the structure: 8n + 8 = 8(n + 1). Since 8n + 8 factorises exactly to 8(n + 1), the difference is always 8 times a whole number, so it is always a multiple of 8.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Proven: the difference is 8(n + 1), always a multiple of 8. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pressure_higher",
+      "prompt": "A storage container has a rectangular base measuring 13 cm × 26 cm and exerts a force of 3621 N. Find the pressure it exerts, correct to 2 decimal places.",
+      "solution_steps": [
+        "area = length × width = 13 × 26 = 338 cm²",
+        "pressure = force ÷ area = 3621 ÷ 338 = 10.71 N/cm² (2 d.p.)"
+      ],
+      "final_answer": "10.71 N/cm²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "area = length × width = 13 × 26 = 338 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "pressure = force ÷ area = 3621 ÷ 338 = 10.71 N/cm² (2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "10.71 N/cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_shape_similar_higher",
+      "prompt": "Shape A and Shape B are similar. A length on shape A is 4 cm and the corresponding length on shape B is 6 cm. The volume of shape A is 16 cm^3. Find the volume of shape B.",
+      "solution_steps": [
+        "Linear scale factor = 6 ÷ 4 = 3/2",
+        "Volume scale factor = (3/2)^3 = 27/8",
+        "Volume of B = 16 × 27/8 = 54 cm^3"
+      ],
+      "final_answer": "54 cm^3",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Linear scale factor = 6 ÷ 4 = 3/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Volume scale factor = (3/2)^3 = 27/8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Volume of B = 16 × 27/8 = 54 cm^3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "54 cm^3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "density_higher",
+      "prompt": "A sample of liquid has a mass of 15 kg and a volume of 272 cm³. Find its density in g/cm³, correct to 2 decimal places.",
+      "solution_steps": [
+        "Convert mass to grams: 15 kg = 15 × 1000 = 15000 g",
+        "density = mass ÷ volume = 15000 ÷ 272 = 55.15 g/cm³ (2 d.p.)"
+      ],
+      "final_answer": "55.15 g/cm³",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert mass to grams: 15 kg = 15 × 1000 = 15000 g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "density = mass ÷ volume = 15000 ÷ 272 = 55.15 g/cm³ (2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "55.15 g/cm³ oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_inverse_proportion",
+      "prompt": "y is inversely proportional to x^2. When x = 2, y = 54. Find the value of y when x = 3.",
+      "solution_steps": [
+        "y = k ÷ x^2",
+        "k = y × x^2 = 54 × 2^2 = 54 × 4 = 216",
+        "y = k ÷ x^2 = 216 ÷ 3^2 = 216 ÷ 9 = 24"
+      ],
+      "final_answer": "24",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = k ÷ x^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "k = y × x^2 = 54 × 2^2 = 54 × 4 = 216",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y = k ÷ x^2 = 216 ÷ 3^2 = 216 ÷ 9 = 24",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "24 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "unit_conversions_higher",
+      "prompt": "Convert 25 cm² to mm².",
+      "solution_steps": [
+        "Linear conversion factor: 1 cm = 10 mm, so for area, 1 cm² = 10^2 = 100 mm²",
+        "25 cm² = 25 × 100 = 2500 mm²"
+      ],
+      "final_answer": "2500 mm²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Linear conversion factor: 1 cm = 10 mm, so for area, 1 cm² = 10^2 = 100 mm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "25 cm² = 25 × 100 = 2500 mm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2500 mm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "trig_missing_side_higher",
+      "prompt": "In the right-angled triangle shown, find the length of x, correct to 3 significant figures.",
+      "solution_steps": [
+        "We know the opposite and want the hypotenuse, so use sin.",
+        "x = 26 ÷ sin(28°) = 55.4 (to 3 s.f.)"
+      ],
+      "final_answer": "55.4 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "We know the opposite and want the hypotenuse, so use sin.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 26 ÷ sin(28°) = 55.4 (to 3 s.f.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "55.4 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "trig_triangle",
+        "params": {
+          "adjacent_label": null,
+          "opposite_label": "26 cm",
+          "hyp_label": "x cm",
+          "angle_label": "28°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_around_point_higher",
+      "prompt": "The angles 89°, 82° and (2x + 185)° are angles around a point. Find x.",
+      "solution_steps": [
+        "Angles around a point sum to 360°.",
+        "2x + 185 = 189",
+        "Subtract 185 from both sides:",
+        "2x = 4",
+        "Divide both sides by 2:",
+        "x = 2"
+      ],
+      "final_answer": "2",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles around a point sum to 360°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x + 185 = 189",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 185 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x = 4 Divide both sides by 2: x = 2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "angle_line",
+        "params": {
+          "angle_values": [
+            89,
+            82,
+            189
+          ],
+          "labels": [
+            "89°",
+            "82°",
+            "(2x + 185)°"
+          ],
+          "around_point": true
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "volume_surface_area_pyramid",
+      "prompt": "A square-based pyramid has a base of side 16 cm and a perpendicular height of 9 cm. Find its total surface area, correct to 3 significant figures.",
+      "solution_steps": [
+        "Slant height l = √(height² + (base ÷ 2)²) = √(9² + (16 ÷ 2)²) ≈ 12.0 cm",
+        "Surface area = base² + 2 × base × l = 16² + 2 × 16 × 12.0",
+        "= 641 cm² (3 s.f.)"
+      ],
+      "final_answer": "641 cm²",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Slant height l = √(height² + (base ÷ 2)²) = √(9² + (16 ÷ 2)²) ≈ 12.0 cm",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Surface area = base² + 2 × base × l = 16² + 2 × 16 × 12.0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 641 cm² (3 s.f.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "641 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "pyramid",
+        "params": {
+          "base_label": "16 cm",
+          "height_label": "9 cm",
+          "slant_label": "12.04 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_circle",
+      "prompt": "A circle has radius 9 cm. Find its circumference in terms of π.",
+      "solution_steps": [
+        "Circumference = 2 × π × r = 2 × π × 9 = 18π cm",
+        "≈ 56.5 cm (3 s.f.)"
+      ],
+      "final_answer": "18π cm (≈ 56.5 cm)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Circumference = 2 × π × r = 2 × π × 9 = 18π cm",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "≈ 56.5 cm (3 s.f.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "18π cm (≈ 56.5 cm) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "circle",
+        "params": {
+          "radius": 9,
+          "label": "9 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "venn_diagram_algebra",
+      "prompt": "The Venn diagram shows the number of elements in each region of sets A and B, given in terms of x. There are 52 elements in total. Find the value of x, and hence find the number of elements in B only.",
+      "solution_steps": [
+        "a_only + b_only + both + neither = total: (3x) + (x) + (2x + 3) + 13 = 52",
+        "Collecting like terms: 6x + 16 = 52",
+        "x = 6",
+        "Substituting x = 6: A only = 18, B only = 6, both = 15, neither = 13",
+        "The number of elements in B only = 6"
+      ],
+      "final_answer": "6",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "a_only + b_only + both + neither = total: (3x) + (x) + (2x + 3) + 13 = 52",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Collecting like terms: 6x + 16 = 52",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substituting x = 6: A only = 18, B only = 6, both = 15, neither = 13 The number of elements in B only = 6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "region_text": {
+            "a_only": "3x",
+            "b_only": "x",
+            "both": "2x + 3",
+            "neither": "13"
+          }
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "venn_diagram_notation",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7}. The Venn diagram shows sets A and B. List the elements of A.",
+      "solution_steps": [
+        "ξ = {1, 2, 3, 4, 5, 6, 7}",
+        "A = {3, 4, 5, 6}, B = {2, 3, 5}",
+        "A means the elements in A.",
+        "A = {3, 4, 5, 6}"
+      ],
+      "final_answer": "{3, 4, 5, 6}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {3, 4, 5, 6}, B = {2, 3, 5}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A means the elements in A.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {3, 4, 5, 6}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "{3, 4, 5, 6} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "S",
+          "region_text": {
+            "a_only": "4, 6",
+            "b_only": "2",
+            "both": "3, 5",
+            "neither": "1, 7"
+          }
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "forming_equations_higher",
+      "prompt": "A quadrilateral has angles 82°, 52°, (2x + 8)°, and (4x + 140)°. Form an equation and solve it to find x.",
+      "solution_steps": [
+        "Angles in a quadrilateral sum to 360°.",
+        "82 + 52 + (2x + 8) + (4x + 140) = 360",
+        "Collect the x-terms and constants together:",
+        "6x + 148 = 226",
+        "Subtract 148 from both sides:",
+        "6x = 78",
+        "Divide both sides by 6:",
+        "x = 13"
+      ],
+      "final_answer": "13",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles in a quadrilateral sum to 360°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "82 + 52 + (2x + 8) + (4x + 140) = 360",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Collect the x-terms and constants together:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "6x + 148 = 226 Subtract 148 from both sides: 6x = 78 Divide both sides by 6: x = 13",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "13 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    }
+  ]
+}

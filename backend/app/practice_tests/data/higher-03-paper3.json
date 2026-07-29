@@ -1,0 +1,1050 @@
+{
+  "id": "higher-03-paper3",
+  "name": "Higher Practice Test 3 – Paper 3 of 3",
+  "tier": "higher",
+  "sitting_id": "higher-03",
+  "paper_number": 3,
+  "questions": [
+    {
+      "topic_id": "standard_form_multiply_divide",
+      "prompt": "Work out (5 × 10^0) ÷ (5 × 10^3). Give your answer in standard form.",
+      "solution_steps": [
+        "Divide the mantissas: 5 ÷ 5 = 1",
+        "Subtract the powers of 10: 0 - 3 = -3"
+      ],
+      "final_answer": "1 × 10^-3",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Divide the mantissas: 5 ÷ 5 = 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract the powers of 10: 0 - 3 = -3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1 × 10^-3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "indices_common_base_equations",
+      "prompt": "Solve 81^x = 27.",
+      "solution_steps": [
+        "Write both sides as powers of 3: 81 = 3^4 and 27 = 3^3",
+        "81^x = 27 becomes (3^4)^x = 3^3, i.e. 3^(4x) = 3^3",
+        "Since the bases match, the powers must be equal: 4x = 3",
+        "x = 3/4"
+      ],
+      "final_answer": "3/4",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Write both sides as powers of 3: 81 = 3^4 and 27 = 3^3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "81^x = 27 becomes (3^4)^x = 3^3, i.e. 3^(4x) = 3^3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Since the bases match, the powers must be equal: 4x = 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 3/4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3/4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "bounds_calculation",
+      "prompt": "A car travels 181 km (to the nearest km) in 8 hours (to the nearest hour). Calculate the upper bound for the average speed of the car, to 1 decimal place.",
+      "solution_steps": [
+        "Distance: 181 km (to the nearest km) gives 180.5 ≤ distance < 181.5",
+        "Time: 8 hours (to the nearest hour) gives 7.5 ≤ time < 8.5",
+        "For the upper bound of the speed, divide the upper bound of distance by the lower bound of time: 181.5 ÷ 7.5 = 24.2 ≈ 24.2 km/h"
+      ],
+      "final_answer": "24.2 km/h (to 1 d.p.)",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Distance: 181 km (to the nearest km) gives 180.5 ≤ distance < 181.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Time: 8 hours (to the nearest hour) gives 7.5 ≤ time < 8.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For the upper bound of the speed, divide the upper bound of distance by the lower bound of time: 181.5 ÷ 7.5 = 24.2 ≈ 24.2 km/h",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "24.2 km/h (to 1 d.p.) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_mixed_number_arithmetic",
+      "prompt": "Work out 4 2/7 + 4 3/8. Give your answer as a mixed number.",
+      "solution_steps": [
+        "Convert to improper fractions: 4 2/7 = 30/7, 4 3/8 = 35/8",
+        "Add the improper fractions: 30/7 + 35/8 = 485/56",
+        "Convert back to a mixed number: 8 37/56"
+      ],
+      "final_answer": "8 37/56",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert to improper fractions: 4 2/7 = 30/7, 4 3/8 = 35/8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add the improper fractions: 30/7 + 35/8 = 485/56",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Convert back to a mixed number: 8 37/56",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "8 37/56 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "standard_form_add_subtract",
+      "prompt": "Work out (4 × 10^6) - (7 × 10^4). Give your answer in standard form.",
+      "solution_steps": [
+        "Write both numbers with the same power of 10: 4×10^6 = 400×10^4, 7×10^4 = 7×10^4",
+        "Subtract the coefficients: 400 - 7 = 393",
+        "Write in standard form: 393 × 10^4 = 3.93 × 10^6"
+      ],
+      "final_answer": "3.93 × 10^6",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Write both numbers with the same power of 10: 4×10^6 = 400×10^4, 7×10^4 = 7×10^4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract the coefficients: 400 - 7 = 393",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write in standard form: 393 × 10^4 = 3.93 × 10^6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3.93 × 10^6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_surds",
+      "prompt": "Expand and simplify (4 + √5)^2, giving your answer in the form p + q√5.",
+      "solution_steps": [
+        "(4 + √5)^2 = (4 + √5)(4 + √5)",
+        "Expand: 16 +8√5 +8√5 + 5",
+        "Combine the whole-number terms: 16 + 5 = 21",
+        "Combine the √5 terms: +8√5 +8√5 = +8√5",
+        "(4 + √5)^2 = 21 + 8√5"
+      ],
+      "final_answer": "21 + 8√5",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "(4 + √5)^2 = (4 + √5)(4 + √5)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand: 16 +8√5 +8√5 + 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine the whole-number terms: 16 + 5 = 21",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine the √5 terms: +8√5 +8√5 = +8√5 (4 + √5)^2 = 21 + 8√5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "21 + 8√5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_different_coefficient",
+      "prompt": "Solve the simultaneous equations: 5x + 5y = 35 and 4x + 3y = 25",
+      "solution_steps": [
+        "5x + 5y = 35  (1)",
+        "4x + 3y = 25  (2)",
+        "(1) × 3: 15x + 15y = 105  (3)",
+        "(2) × 5: 20x + 15y = 125  (4)",
+        "(3) - (4): -5x = -20, so x = 4",
+        "Substitute x = 4 into (1): 5y = 15, so y = 3"
+      ],
+      "final_answer": "x = 4, y = 3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "5x + 5y = 35  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x + 3y = 25  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(1) × 3: 15x + 15y = 105  (3)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(2) × 5: 20x + 15y = 125  (4) (3) - (4): -5x = -20, so x = 4 Substitute x = 4 into (1): 5y = 15, so y = 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 4, y = 3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "change_subject_higher",
+      "prompt": "Make x the subject of the formula y = 7x + 3x.",
+      "solution_steps": [
+        "y = 7x + 3x",
+        "Factorise the right-hand side: y = (10)x",
+        "Divide both sides by 10: x = y/10"
+      ],
+      "final_answer": "x = y/10",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = 7x + 3x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise the right-hand side: y = (10)x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 10: x = y/10",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = y/10 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_quadratic",
+      "prompt": "Solve the simultaneous equations: y = x^2 - 4x - 3 and y = -3x - 1",
+      "solution_steps": [
+        "Substitute y = -3x - 1 into y = x^2 - 4x - 3: -3x - 1 = x^2 - 4x - 3",
+        "Rearrange: x^2 - x - 2 = 0",
+        "Factorise: (x + 1)(x - 2) = 0",
+        "x = -1 or x = 2",
+        "When x = -1, y = 2. When x = 2, y = -7."
+      ],
+      "final_answer": "(-1, 2) and (2, -7)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Substitute y = -3x - 1 into y = x^2 - 4x - 3: -3x - 1 = x^2 - 4x - 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rearrange: x^2 - x - 2 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: (x + 1)(x - 2) = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -1 or x = 2 When x = -1, y = 2. When x = 2, y = -7.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(-1, 2) and (2, -7) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_brackets",
+      "prompt": "Solve: 4(5x - 1) = 56",
+      "solution_steps": [
+        "Expand the bracket: 4(5x - 1) = 20x - 4",
+        "20x - 4 = 56",
+        "Add 4 to both sides:",
+        "20x = 60",
+        "Divide both sides by 20:",
+        "x = 3"
+      ],
+      "final_answer": "3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: 4(5x - 1) = 20x - 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "20x - 4 = 56",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add 4 to both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "20x = 60 Divide both sides by 20: x = 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_cubic",
+      "prompt": "Complete a table of values for y = x^3 + 2x for x = -3 to 3, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = x^3 + 2x:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: -33, -12, -3, 0, 3, 12, 33",
+        "Plot each (x, y) point and join them with a single smooth curve."
+      ],
+      "final_answer": "Cubic curve: y = x^3 + 2x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = x^3 + 2x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: -33, -12, -3, 0, 3, 12, 33",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Cubic curve: y = x^3 + 2x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": 1,
+          "b": 2,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -35,
+          "y_max": 35,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": 1,
+          "b": 2,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -35,
+          "y_max": 35,
+          "table_points": [
+            [
+              -3,
+              -33
+            ],
+            [
+              -2,
+              -12
+            ],
+            [
+              -1,
+              -3
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              12
+            ],
+            [
+              3,
+              33
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "solving_inequalities_higher",
+      "prompt": "Solve the inequality: -5(x + 7) > 11",
+      "solution_steps": [
+        "Expand the bracket: -5(x + 7) > 11",
+        "-5x - 35 > 11",
+        "Add 35 to both sides:",
+        "-5x > 46",
+        "Divide both sides by -5 (dividing by a negative number reverses the inequality sign):",
+        "x < -46/5"
+      ],
+      "final_answer": "x < -46/5",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: -5(x + 7) > 11",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-5x - 35 > 11",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add 35 to both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-5x > 46 Divide both sides by -5 (dividing by a negative number reverses the inequality sign): x < -46/5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x < -46/5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "tree_diagram_mixed",
+      "prompt": "A bag contains 3 red and 6 yellow counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the first counter is red and the second counter is yellow.",
+      "solution_steps": [
+        "After the first counter is picked (without replacement), there are 8 counters left.",
+        "P(red then red) = 1/3 × 1/4 = 1/12",
+        "P(red then yellow) = 1/3 × 3/4 = 1/4",
+        "P(yellow then red) = 2/3 × 3/8 = 1/4",
+        "P(yellow then yellow) = 2/3 × 5/8 = 5/12",
+        "P(the first counter is red and the second counter is yellow) = 1/4"
+      ],
+      "final_answer": "1/4",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "After the first counter is picked (without replacement), there are 8 counters left.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(red then red) = 1/3 × 1/4 = 1/12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(red then yellow) = 1/3 × 3/4 = 1/4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(yellow then red) = 2/3 × 3/8 = 1/4 P(yellow then yellow) = 2/3 × 5/8 = 5/12 P(the first counter is red and the second counter is yellow) = 1/4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Red",
+              "1/3"
+            ],
+            [
+              "Yellow",
+              "2/3"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Red",
+                "1/4"
+              ],
+              [
+                "Yellow",
+                "3/4"
+              ]
+            ],
+            [
+              [
+                "Red",
+                "3/8"
+              ],
+              [
+                "Yellow",
+                "5/8"
+              ]
+            ]
+          ],
+          "leaf_probs": [
+            [
+              "1/12",
+              "1/4"
+            ],
+            [
+              "1/4",
+              "5/12"
+            ]
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_to_equation",
+      "prompt": "(x + 9) : (2x - 15) = 6:1. Find the value of x.",
+      "solution_steps": [
+        "Cross-multiply: 1(x + 9) = 6(2x - 15)",
+        "Expand: x + 9 = 12x - 90",
+        "Collect x terms: -11x = -99",
+        "x = -99 ÷ -11 = 9"
+      ],
+      "final_answer": "x = 9",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Cross-multiply: 1(x + 9) = 6(2x - 15)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand: x + 9 = 12x - 90",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Collect x terms: -11x = -99",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -99 ÷ -11 = 9",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 9 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "reverse_percentage",
+      "prompt": "After a 15% decrease, an item costs £64.60. Find the original price.",
+      "solution_steps": [
+        "Convert 15% to a multiplier: 0.85 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 64.60 ÷ 0.85 = 76"
+      ],
+      "final_answer": "£76",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 15% to a multiplier: 0.85 (original × multiplier = new value)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide the new value by the multiplier: 64.60 ÷ 0.85 = 76",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£76 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_difference_higher",
+      "prompt": "Amounts are in the ratio 4:1:2. The difference between the largest and smallest amount is 12. Find all three amounts and their total.",
+      "solution_steps": [
+        "Difference in parts = 4 - 1 = 3 parts",
+        "Value of one part = 12 ÷ 3 = 4",
+        "Amount 1 = 4 × 4 = 16",
+        "Amount 2 = 1 × 4 = 4",
+        "Amount 3 = 2 × 4 = 8",
+        "Total = 16 + 4 + 8 = 28"
+      ],
+      "final_answer": "16 : 4 : 8 (total 28)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Difference in parts = 4 - 1 = 3 parts",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Value of one part = 12 ÷ 3 = 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Amount 1 = 4 × 4 = 16",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Amount 2 = 1 × 4 = 4 Amount 3 = 2 × 4 = 8 Total = 16 + 4 + 8 = 28",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "16 : 4 : 8 (total 28) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pythagoras_3d",
+      "prompt": "A cuboid has length 5 cm, width 3 cm and height 8 cm. Find the length of the diagonal AG that runs from one corner of the cuboid to the opposite corner, correct to 3 significant figures.",
+      "solution_steps": [
+        "First find the diagonal across the base: base diagonal² = l² + w² = 5² + 3² = 34.",
+        "Then apply Pythagoras again using the height: AG² = base diagonal² + h² = 34 + 8² = 98.",
+        "AG = √98 = 9.90 cm (3 s.f.)"
+      ],
+      "final_answer": "9.90 cm",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First find the diagonal across the base: base diagonal² = l² + w² = 5² + 3² = 34.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Then apply Pythagoras again using the height: AG² = base diagonal² + h² = 34 + 8² = 98.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "AG = √98 = 9.90 cm (3 s.f.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "9.90 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "cuboid",
+        "params": {
+          "length_label": "5 cm",
+          "width_label": "3 cm",
+          "height_label": "8 cm",
+          "diagonal_label": "?"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_exterior",
+      "prompt": "An exterior angle of a triangle is 125°. The two remote interior angles are 58° and (5x + 17)°. Find x.",
+      "solution_steps": [
+        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+        "5x + 17 = 67",
+        "Subtract 17 from both sides:",
+        "5x = 50",
+        "Divide both sides by 5:",
+        "x = 10"
+      ],
+      "final_answer": "10",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x + 17 = 67",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 17 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x = 50 Divide both sides by 5: x = 10",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "10 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "exterior_triangle",
+        "params": {
+          "interior1_label": "58°",
+          "interior2_label": "(5x + 17)°",
+          "exterior_label": "125°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "volume_surface_area_pyramid",
+      "prompt": "A square-based pyramid has a base of side 15 cm and a perpendicular height of 4 cm. Find its total surface area, correct to 3 significant figures.",
+      "solution_steps": [
+        "Slant height l = √(height² + (base ÷ 2)²) = √(4² + (15 ÷ 2)²) ≈ 8.50 cm",
+        "Surface area = base² + 2 × base × l = 15² + 2 × 15 × 8.50",
+        "= 480 cm² (3 s.f.)"
+      ],
+      "final_answer": "480 cm²",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Slant height l = √(height² + (base ÷ 2)²) = √(4² + (15 ÷ 2)²) ≈ 8.50 cm",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Surface area = base² + 2 × base × l = 15² + 2 × 15 × 8.50",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 480 cm² (3 s.f.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "480 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "pyramid",
+        "params": {
+          "base_label": "15 cm",
+          "height_label": "4 cm",
+          "slant_label": "8.50 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_straight_line_higher",
+      "prompt": "The angles 26° and (5x + 89)° lie on a straight line. Find x.",
+      "solution_steps": [
+        "Angles on a straight line sum to 180°.",
+        "5x + 89 = 154",
+        "Subtract 89 from both sides:",
+        "5x = 65",
+        "Divide both sides by 5:",
+        "x = 13"
+      ],
+      "final_answer": "13",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles on a straight line sum to 180°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x + 89 = 154",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 89 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x = 65 Divide both sides by 5: x = 13",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "13 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "angle_line",
+        "params": {
+          "angle_values": [
+            26,
+            154
+          ],
+          "labels": [
+            "26°",
+            "(5x + 89)°"
+          ],
+          "around_point": false
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "tree_diagram_dependent",
+      "prompt": "A bag contains 8 blue and 6 red counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that both counters are the same colour.",
+      "solution_steps": [
+        "After the first counter is picked (without replacement), there are 13 counters left.",
+        "P(blue then blue) = 4/7 × 7/13 = 4/13",
+        "P(blue then red) = 4/7 × 6/13 = 24/91",
+        "P(red then blue) = 3/7 × 8/13 = 24/91",
+        "P(red then red) = 3/7 × 5/13 = 15/91",
+        "P(both counters are the same colour) = 43/91"
+      ],
+      "final_answer": "43/91",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "After the first counter is picked (without replacement), there are 13 counters left.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(blue then blue) = 4/7 × 7/13 = 4/13",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(blue then red) = 4/7 × 6/13 = 24/91",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(red then blue) = 3/7 × 8/13 = 24/91 P(red then red) = 3/7 × 5/13 = 15/91 P(both counters are the same colour) = 43/91",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "43/91 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Blue",
+              "4/7"
+            ],
+            [
+              "Red",
+              "3/7"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Blue",
+                "7/13"
+              ],
+              [
+                "Red",
+                "6/13"
+              ]
+            ],
+            [
+              [
+                "Blue",
+                "8/13"
+              ],
+              [
+                "Red",
+                "5/13"
+              ]
+            ]
+          ],
+          "leaf_probs": [
+            [
+              "4/13",
+              "24/91"
+            ],
+            [
+              "24/91",
+              "15/91"
+            ]
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "set_notation",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, A = {2, 4, 5, 6, 8, 9}, B = {1, 2, 3, 5, 11}. List the elements of A ∪ B.",
+      "solution_steps": [
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}",
+        "A = {2, 4, 5, 6, 8, 9}",
+        "B = {1, 2, 3, 5, 11}",
+        "A ∪ B means A union B (elements in A, B, or both).",
+        "A ∪ B = {1, 2, 3, 4, 5, 6, 8, 9, 11}"
+      ],
+      "final_answer": "{1, 2, 3, 4, 5, 6, 8, 9, 11}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {2, 4, 5, 6, 8, 9}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B = {1, 2, 3, 5, 11}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A ∪ B means A union B (elements in A, B, or both). A ∪ B = {1, 2, 3, 4, 5, 6, 8, 9, 11}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "{1, 2, 3, 4, 5, 6, 8, 9, 11} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    }
+  ]
+}

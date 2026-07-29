@@ -1,0 +1,1070 @@
+{
+  "id": "higher-07-paper1",
+  "name": "Higher Practice Test 7 – Paper 1 of 3",
+  "tier": "higher",
+  "sitting_id": "higher-07",
+  "paper_number": 1,
+  "questions": [
+    {
+      "topic_id": "bounds_calculation",
+      "prompt": "A rectangle has length 34 cm and width 28 cm, both measured to the nearest cm. Calculate the lower bound for the area of the rectangle.",
+      "solution_steps": [
+        "Length: 34 cm (to the nearest cm) gives 33.5 ≤ length < 34.5",
+        "Width: 28 cm (to the nearest cm) gives 27.5 ≤ width < 28.5",
+        "For the lower bound of the area, use the lower bound of each measurement: 33.5 × 27.5 = 921.25 cm²"
+      ],
+      "final_answer": "921.25 cm²",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Length: 34 cm (to the nearest cm) gives 33.5 ≤ length < 34.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Width: 28 cm (to the nearest cm) gives 27.5 ≤ width < 28.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For the lower bound of the area, use the lower bound of each measurement: 33.5 × 27.5 = 921.25 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "921.25 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "roots_higher",
+      "prompt": "Simplify √117, giving your answer in the form a√b.",
+      "solution_steps": [
+        "Find the largest square factor of 117: 3^2 × 13 = 117",
+        "√117 = √(3^2 × 13) = 3√13"
+      ],
+      "final_answer": "3√13",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find the largest square factor of 117: 3^2 × 13 = 117",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√117 = √(3^2 × 13) = 3√13",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3√13 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "standard_form_add_subtract",
+      "prompt": "Work out (2 × 10^7) + (6 × 10^6). Give your answer in standard form.",
+      "solution_steps": [
+        "Write both numbers with the same power of 10: 2×10^7 = 20×10^6, 6×10^6 = 6×10^6",
+        "Add the coefficients: 20 + 6 = 26",
+        "Write in standard form: 26 × 10^6 = 2.6 × 10^7"
+      ],
+      "final_answer": "2.6 × 10^7",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Write both numbers with the same power of 10: 2×10^7 = 20×10^6, 6×10^6 = 6×10^6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add the coefficients: 20 + 6 = 26",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write in standard form: 26 × 10^6 = 2.6 × 10^7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2.6 × 10^7 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "decimals_recurring_to_fraction",
+      "prompt": "The recurring decimal 0.(3) can be written as a fraction. Find this fraction in its simplest form.",
+      "solution_steps": [
+        "Let x = 0.(3)",
+        "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
+        "This gives x = 3/9",
+        "Simplify: 1/3"
+      ],
+      "final_answer": "1/3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let x = 0.(3)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "This gives x = 3/9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify: 1/3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "indices_common_base_equations",
+      "prompt": "Solve 25^(x+4) = 125^(3x).",
+      "solution_steps": [
+        "Write both sides as powers of 5: 25 = 5^2 and 125 = 5^3",
+        "25^(x+4) = 125^(3x) becomes 5^(2(x+4)) = 5^(3×3x), i.e. 5^(2x+8) = 5^(9x)",
+        "Since the bases match, the powers must be equal: 2x + 8 = 9x",
+        "Rearranging: -7x = -8, so x = -8/-7 = 8/7"
+      ],
+      "final_answer": "8/7",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Write both sides as powers of 5: 25 = 5^2 and 125 = 5^3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "25^(x+4) = 125^(3x) becomes 5^(2(x+4)) = 5^(3×3x), i.e. 5^(2x+8) = 5^(9x)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Since the bases match, the powers must be equal: 2x + 8 = 9x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rearranging: -7x = -8, so x = -8/-7 = 8/7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "8/7 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_divide",
+      "prompt": "Work out 6/4 ÷ 3/10. Give your answer as a fraction in its simplest form.",
+      "solution_steps": [
+        "Keep-change-flip: 6/4 ÷ 3/10 = 6/4 × 10/3",
+        "Multiply: (6×10)/(4×3) = 60/12",
+        "Simplify: 5"
+      ],
+      "final_answer": "5",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Keep-change-flip: 6/4 ÷ 3/10 = 6/4 × 10/3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply: (6×10)/(4×3) = 60/12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify: 5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "turning_point_of_graph",
+      "prompt": "Find the coordinates of the turning point of the curve y = x^2 - 12x + 10.",
+      "solution_steps": [
+        "Complete the square: x^2 - 12x + 10 = (x - 6)^2 - 26",
+        "The turning point of y = (x + p)^2 + q is (-p, q).",
+        "Turning point = (6, -26)"
+      ],
+      "final_answer": "(6, -26)",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Complete the square: x^2 - 12x + 10 = (x - 6)^2 - 26",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Turning point = (6, -26)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(6, -26) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "parabola",
+        "params": {
+          "vertex_label": "(6, -26)"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_cubic",
+      "prompt": "Complete a table of values for y = -x^3 - 2x for x = -3 to 3, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = -x^3 - 2x:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: 33, 12, 3, 0, -3, -12, -33",
+        "Plot each (x, y) point and join them with a single smooth curve."
+      ],
+      "final_answer": "Cubic curve: y = -x^3 - 2x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = -x^3 - 2x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 33, 12, 3, 0, -3, -12, -33",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Cubic curve: y = -x^3 - 2x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": -1,
+          "b": -2,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -35,
+          "y_max": 35,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": -1,
+          "b": -2,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -35,
+          "y_max": 35,
+          "table_points": [
+            [
+              -3,
+              33
+            ],
+            [
+              -2,
+              12
+            ],
+            [
+              -1,
+              3
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              -3
+            ],
+            [
+              2,
+              -12
+            ],
+            [
+              3,
+              -33
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "change_subject_higher",
+      "prompt": "Make x the subject of the formula y = 7x + 4x + 15.",
+      "solution_steps": [
+        "y = 7x + 4x + 15",
+        "Subtract 15 from both sides: y - 15 = 7x + 4x",
+        "Factorise the right-hand side: y - 15 = (11)x",
+        "Divide both sides by 11: x = (y - 15)/11"
+      ],
+      "final_answer": "x = (y - 15)/11",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = 7x + 4x + 15",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 15 from both sides: y - 15 = 7x + 4x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise the right-hand side: y - 15 = (11)x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 11: x = (y - 15)/11",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = (y - 15)/11 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_different_coefficient",
+      "prompt": "Solve the simultaneous equations: 3x + 5y = -14 and 5x + 3y = -18",
+      "solution_steps": [
+        "3x + 5y = -14  (1)",
+        "5x + 3y = -18  (2)",
+        "(1) × 3: 9x + 15y = -42  (3)",
+        "(2) × 5: 25x + 15y = -90  (4)",
+        "(3) - (4): -16x = 48, so x = -3",
+        "Substitute x = -3 into (1): 5y = -5, so y = -1"
+      ],
+      "final_answer": "x = -3, y = -1",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "3x + 5y = -14  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x + 3y = -18  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(1) × 3: 9x + 15y = -42  (3)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(2) × 5: 25x + 15y = -90  (4) (3) - (4): -16x = 48, so x = -3 Substitute x = -3 into (1): 5y = -5, so y = -1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = -3, y = -1 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_brackets",
+      "prompt": "Solve: 5(4x + 3) = -25",
+      "solution_steps": [
+        "Expand the bracket: 5(4x + 3) = 20x + 15",
+        "20x + 15 = -25",
+        "Subtract 15 from both sides:",
+        "20x = -40",
+        "Divide both sides by 20:",
+        "x = -2"
+      ],
+      "final_answer": "-2",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: 5(4x + 3) = 20x + 15",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "20x + 15 = -25",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 15 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "20x = -40 Divide both sides by 20: x = -2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "expand_double_brackets",
+      "prompt": "Expand: (6x - 4)(5x - 4)",
+      "solution_steps": [
+        "First: 6x × 5x = 30x^2",
+        "Outer: 6x × -4 = -24x",
+        "Inner: -4 × 5x = -20x",
+        "Last: -4 × -4 = 16",
+        "Combine like terms: 30x^2 - 44x + 16"
+      ],
+      "final_answer": "30x^2 - 44x + 16",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First: 6x × 5x = 30x^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Outer: 6x × -4 = -24x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Inner: -4 × 5x = -20x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Last: -4 × -4 = 16 Combine like terms: 30x^2 - 44x + 16",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "30x^2 - 44x + 16 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_quadratic",
+      "prompt": "Solve the simultaneous equations: y = x^2 + 4x - 6 and y = 9x - 12",
+      "solution_steps": [
+        "Substitute y = 9x - 12 into y = x^2 + 4x - 6: 9x - 12 = x^2 + 4x - 6",
+        "Rearrange: x^2 - 5x + 6 = 0",
+        "Factorise: (x - 3)(x - 2) = 0",
+        "x = 3 or x = 2",
+        "When x = 3, y = 15. When x = 2, y = 6."
+      ],
+      "final_answer": "(3, 15) and (2, 6)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Substitute y = 9x - 12 into y = x^2 + 4x - 6: 9x - 12 = x^2 + 4x - 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rearrange: x^2 - 5x + 6 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: (x - 3)(x - 2) = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 3 or x = 2 When x = 3, y = 15. When x = 2, y = 6.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(3, 15) and (2, 6) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "unit_conversions_higher",
+      "prompt": "Convert 41.4 cm³ to mm³.",
+      "solution_steps": [
+        "Linear conversion factor: 1 cm = 10 mm, so for volume, 1 cm³ = 10^3 = 1000 mm³",
+        "41.4 cm³ = 41.4 × 1000 = 41400 mm³"
+      ],
+      "final_answer": "41400 mm³",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Linear conversion factor: 1 cm = 10 mm, so for volume, 1 cm³ = 10^3 = 1000 mm³",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "41.4 cm³ = 41.4 × 1000 = 41400 mm³",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "41400 mm³ oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "percentage_increase_decrease_calculator",
+      "prompt": "Using a calculator, decrease £296.95 by 8.25%. Give your answer to 2 decimal places.",
+      "solution_steps": [
+        "Convert 8.25% to a multiplier: 0.9175",
+        "Multiply: £296.95 × 0.9175 = £272.45 (calculator, 2 d.p.)"
+      ],
+      "final_answer": "£272.45",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 8.25% to a multiplier: 0.9175",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply: £296.95 × 0.9175 = £272.45 (calculator, 2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£272.45 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "density_higher",
+      "prompt": "A block of alloy in the shape of a cuboid has dimensions 8 cm × 2 cm × 9 cm and a density of 2 g/cm³. Find its mass.",
+      "solution_steps": [
+        "volume = length × width × height = 8 × 2 × 9 = 144 cm³",
+        "mass = density × volume = 2 × 144 = 288 g"
+      ],
+      "final_answer": "288 g",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "volume = length × width × height = 8 × 2 × 9 = 144 cm³",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "mass = density × volume = 2 × 144 = 288 g",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "288 g oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_combine",
+      "prompt": "Given that a:b = 9:2 and b:c = 4:3, find a:b:c in its simplest form.",
+      "solution_steps": [
+        "Scale a:b = 9:2 by 2 so b = 4: a:b = 18:4",
+        "Scale b:c = 4:3 by 1 so b = 4: b:c = 4:3",
+        "Combine: a:b:c = 18:4:3",
+        "Simplify by dividing by 1: a:b:c = 18:4:3"
+      ],
+      "final_answer": "18 : 4 : 3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Scale a:b = 9:2 by 2 so b = 4: a:b = 18:4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Scale b:c = 4:3 by 1 so b = 4: b:c = 4:3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine: a:b:c = 18:4:3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify by dividing by 1: a:b:c = 18:4:3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "18 : 4 : 3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pressure_higher",
+      "prompt": "A crate has a rectangular base measuring 2 cm × 13 cm and exerts a pressure of 48 N/cm². Find the force it exerts.",
+      "solution_steps": [
+        "area = length × width = 2 × 13 = 26 cm²",
+        "force = pressure × area = 48 × 26 = 1248 N"
+      ],
+      "final_answer": "1248 N",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "area = length × width = 2 × 13 = 26 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "force = pressure × area = 48 × 26 = 1248 N",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1248 N oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "volume_surface_area_cylinder",
+      "prompt": "A cylinder has radius 11 cm and height 8 cm. Find the exact volume, in terms of π.",
+      "solution_steps": [
+        "Volume = π × r² × h = π × 11² × 8",
+        "= 968π cm³"
+      ],
+      "final_answer": "968π cm³",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Volume = π × r² × h = π × 11² × 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 968π cm³",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "968π cm³ oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "cylinder",
+        "params": {
+          "radius_label": "11 cm",
+          "height_label": "8 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "compound_3d_surface_area",
+      "prompt": "A capsule-shaped solid is made from a cylinder of radius 8 cm and height 5 cm, with a hemisphere of the same radius attached to one end. Find the total surface area, correct to 3 significant figures.",
+      "solution_steps": [
+        "Cylinder curved surface = 2 × π × r × h = 2 × π × 8 × 5",
+        "Cylinder base = π × r² = π × 8² (the top is covered by the hemisphere, so it's excluded)",
+        "Hemisphere curved surface = 2 × π × r² = 2 × π × 8² (its flat face is glued to the cylinder, so it's excluded too)",
+        "Total surface area ≈ 855 cm² (3 s.f.)"
+      ],
+      "final_answer": "855 cm²",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Cylinder curved surface = 2 × π × r × h = 2 × π × 8 × 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Cylinder base = π × r² = π × 8² (the top is covered by the hemisphere, so it's excluded)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Hemisphere curved surface = 2 × π × r² = 2 × π × 8² (its flat face is glued to the cylinder, so it's excluded too)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total surface area ≈ 855 cm² (3 s.f.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "855 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "compound_3d",
+        "params": {
+          "variant": "cylinder_hemisphere",
+          "radius_label": "8 cm",
+          "height_label": "5 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "loci_regions",
+      "prompt": "A and B are two fixed points (shown). Shade the region containing points that are both within 3 cm of A AND closer to A than to B.",
+      "solution_steps": [
+        "The boundary for 'within 3 cm of A' is a circle, centre A, radius 3 cm - the region is inside this circle.",
+        "The boundary for 'closer to A than to B' is the perpendicular bisector of AB - the region is on the A side of it.",
+        "The required region is where these two conditions overlap."
+      ],
+      "final_answer": "The region inside the circle of radius 3 cm centred on A, and on the A side of the perpendicular bisector of AB.",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The boundary for 'within 3 cm of A' is a circle, centre A, radius 3 cm - the region is inside this circle.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The boundary for 'closer to A than to B' is the perpendicular bisector of AB - the region is on the A side of it.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The required region is where these two conditions overlap.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "The region inside the circle of radius 3 cm centred on A, and on the A side of the perpendicular bisector of AB. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "loci_region",
+        "params": {
+          "x_min": -7.0,
+          "x_max": 1.0,
+          "y_min": -3.0,
+          "y_max": 8.0,
+          "points": [
+            {
+              "xy": [
+                -3,
+                4
+              ],
+              "label": "A"
+            },
+            {
+              "xy": [
+                -3,
+                -2
+              ],
+              "label": "B"
+            }
+          ],
+          "boundaries": [
+            {
+              "type": "circle",
+              "centre": [
+                -3,
+                4
+              ],
+              "radius": 3
+            },
+            {
+              "type": "segment",
+              "p1": [
+                8.0,
+                1.0
+              ],
+              "p2": [
+                -14.0,
+                1.0
+              ]
+            }
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "loci_region",
+        "params": {
+          "x_min": -7.0,
+          "x_max": 1.0,
+          "y_min": -3.0,
+          "y_max": 8.0,
+          "points": [
+            {
+              "xy": [
+                -3,
+                4
+              ],
+              "label": "A"
+            },
+            {
+              "xy": [
+                -3,
+                -2
+              ],
+              "label": "B"
+            }
+          ],
+          "boundaries": [
+            {
+              "type": "circle",
+              "centre": [
+                -3,
+                4
+              ],
+              "radius": 3
+            },
+            {
+              "type": "segment",
+              "p1": [
+                8.0,
+                1.0
+              ],
+              "p2": [
+                -14.0,
+                1.0
+              ]
+            }
+          ],
+          "shade_constraints": [
+            {
+              "type": "disk",
+              "centre": [
+                -3,
+                4
+              ],
+              "radius": 3,
+              "inside": true
+            },
+            {
+              "type": "half_plane",
+              "closer_to": [
+                -3,
+                4
+              ],
+              "than": [
+                -3,
+                -2
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "frustum_volume_surface_area",
+      "prompt": "A frustum is formed from a cone with a bottom radius of 7 cm and a top radius of 2 cm, and a vertical height of 3 cm. Find its total surface area, correct to 3 significant figures.",
+      "solution_steps": [
+        "Slant height l = √(h² + (R - r)²) = √(3² + (7 - 2)²) ≈ 5.83 cm",
+        "Curved surface area = π × (R + r) × l = π × (7 + 2) × 5.83",
+        "Total surface area = curved + both circular ends = π(R + r)l + πR² + πr²",
+        "= 331 cm² (3 s.f.)"
+      ],
+      "final_answer": "331 cm²",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Slant height l = √(h² + (R - r)²) = √(3² + (7 - 2)²) ≈ 5.83 cm",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Curved surface area = π × (R + r) × l = π × (7 + 2) × 5.83",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total surface area = curved + both circular ends = π(R + r)l + πR² + πr²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 331 cm² (3 s.f.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "331 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "frustum",
+        "params": {
+          "radius_bottom_label": "7 cm",
+          "radius_top_label": "2 cm",
+          "height_label": "3 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "set_notation",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, A = {2, 3, 4, 8, 9, 10}, B = {3, 5, 8}. List the elements of (A ∪ B)'.",
+      "solution_steps": [
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+        "A = {2, 3, 4, 8, 9, 10}",
+        "B = {3, 5, 8}",
+        "(A ∪ B)' means the complement of A union B.",
+        "(A ∪ B)' = {1, 6, 7}"
+      ],
+      "final_answer": "{1, 6, 7}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {2, 3, 4, 8, 9, 10}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B = {3, 5, 8}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(A ∪ B)' means the complement of A union B. (A ∪ B)' = {1, 6, 7}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "{1, 6, 7} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "product_rule_counting",
+      "prompt": "A shop sells 6 different phone cases, 4 different screen protectors and 4 different chargers. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "solution_steps": [
+        "Total combinations = 6 × 4 × 4 = 96"
+      ],
+      "final_answer": "96",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total combinations = 6 × 4 × 4 = 96",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "96 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    }
+  ]
+}

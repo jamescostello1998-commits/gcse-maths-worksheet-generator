@@ -261,6 +261,39 @@
   color: var(--error-text);
 }
 
+/* Practice test card (one sitting = 3 papers, each with its own downloads) */
+
+.practice-test-card__papers {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.practice-test-card__paper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.practice-test-card__paper:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.practice-test-card__paper-info {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.practice-test-card__paper-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-heading);
+}
+
 /* Per-topic generation options (question count, answers-only) */
 
 .topic-card__options-toggle {

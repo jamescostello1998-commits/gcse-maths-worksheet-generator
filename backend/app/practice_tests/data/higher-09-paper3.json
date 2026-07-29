@@ -1,0 +1,1004 @@
+{
+  "id": "higher-09-paper3",
+  "name": "Higher Practice Test 9 – Paper 3 of 3",
+  "tier": "higher",
+  "sitting_id": "higher-09",
+  "paper_number": 3,
+  "questions": [
+    {
+      "topic_id": "hcf_lcm_by_prime_factors",
+      "prompt": "Using prime factorisation, find the HCF of 25 and 155.",
+      "solution_steps": [
+        "25 = 5^2",
+        "155 = 5 × 31",
+        "HCF: take the lowest power of each prime that appears in both numbers",
+        "HCF = 5"
+      ],
+      "final_answer": "5",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "25 = 5^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "155 = 5 × 31",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "HCF: take the lowest power of each prime that appears in both numbers",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "HCF = 5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "standard_form_add_subtract",
+      "prompt": "Work out (1 × 10^7) - (2 × 10^6). Give your answer in standard form.",
+      "solution_steps": [
+        "Write both numbers with the same power of 10: 1×10^7 = 10×10^6, 2×10^6 = 2×10^6",
+        "Subtract the coefficients: 10 - 2 = 8",
+        "Write in standard form: 8 × 10^6 = 8 × 10^6"
+      ],
+      "final_answer": "8 × 10^6",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Write both numbers with the same power of 10: 1×10^7 = 10×10^6, 2×10^6 = 2×10^6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract the coefficients: 10 - 2 = 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write in standard form: 8 × 10^6 = 8 × 10^6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "8 × 10^6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "bounds_calculation",
+      "prompt": "A car travels 132 km (to the nearest km) in 6 hours (to the nearest hour). Calculate the upper bound for the average speed of the car, to 1 decimal place.",
+      "solution_steps": [
+        "Distance: 132 km (to the nearest km) gives 131.5 ≤ distance < 132.5",
+        "Time: 6 hours (to the nearest hour) gives 5.5 ≤ time < 6.5",
+        "For the upper bound of the speed, divide the upper bound of distance by the lower bound of time: 132.5 ÷ 5.5 = 265/11 ≈ 24.1 km/h"
+      ],
+      "final_answer": "24.1 km/h (to 1 d.p.)",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Distance: 132 km (to the nearest km) gives 131.5 ≤ distance < 132.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Time: 6 hours (to the nearest hour) gives 5.5 ≤ time < 6.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For the upper bound of the speed, divide the upper bound of distance by the lower bound of time: 132.5 ÷ 5.5 = 265/11 ≈ 24.1 km/h",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "24.1 km/h (to 1 d.p.) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "roots_higher",
+      "prompt": "Simplify √45, giving your answer in the form a√b.",
+      "solution_steps": [
+        "Find the largest square factor of 45: 3^2 × 5 = 45",
+        "√45 = √(3^2 × 5) = 3√5"
+      ],
+      "final_answer": "3√5",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find the largest square factor of 45: 3^2 × 5 = 45",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√45 = √(3^2 × 5) = 3√5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3√5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "surds_multiply_divide",
+      "prompt": "Simplify √6 × √15, giving your answer in the form a√b.",
+      "solution_steps": [
+        "√6 × √15 = √(6 × 15) = √90",
+        "Find the largest square factor of 90: 3^2 × 10 = 90",
+        "√90 = √(3^2 × 10) = 3√10"
+      ],
+      "final_answer": "3√10",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "√6 × √15 = √(6 × 15) = √90",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Find the largest square factor of 90: 3^2 × 10 = 90",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√90 = √(3^2 × 10) = 3√10",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3√10 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "indices_common_base_equations",
+      "prompt": "Solve 4^x = 64.",
+      "solution_steps": [
+        "Write both sides as powers of 2: 4 = 2^2 and 64 = 2^6",
+        "4^x = 64 becomes (2^2)^x = 2^6, i.e. 2^(2x) = 2^6",
+        "Since the bases match, the powers must be equal: 2x = 6",
+        "x = 6/2 = 3"
+      ],
+      "final_answer": "3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Write both sides as powers of 2: 4 = 2^2 and 64 = 2^6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4^x = 64 becomes (2^2)^x = 2^6, i.e. 2^(2x) = 2^6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Since the bases match, the powers must be equal: 2x = 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 6/2 = 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simplifying_indices_challenging",
+      "prompt": "Simplify 25^(3/2) × 25^-3, giving your answer as a fraction where necessary.",
+      "solution_steps": [
+        "25^(1/2) is the square root of 25, which is 5, so 25^(3/2) = 5^3",
+        "25^-3 = 1/25^3 = 1/5^6",
+        "25^(3/2) × 25^-3 = 5^3 × 1/5^6 = 5^(3-6) = 5^-3",
+        "5^-3 = 1/125"
+      ],
+      "final_answer": "1/125",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "25^(1/2) is the square root of 25, which is 5, so 25^(3/2) = 5^3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "25^-3 = 1/25^3 = 1/5^6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "25^(3/2) × 25^-3 = 5^3 × 1/5^6 = 5^(3-6) = 5^-3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5^-3 = 1/125",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/125 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_proof",
+      "prompt": "Prove algebraically that the sum of four consecutive integers is always even.",
+      "solution_steps": [
+        "Let four consecutive integers be n, n + 1, n + 2 and n + 3.",
+        "Write the given expression algebraically: n + (n + 1) + (n + 2) + (n + 3).",
+        "Expand and simplify: n + (n + 1) + (n + 2) + (n + 3) = 4n + 6.",
+        "Factorise/rearrange to expose the structure: 4n + 6 = 2(2n + 3).",
+        "Since 4n + 6 factorises exactly to 2(2n + 3), the sum is always 2 times a whole number, so it is always even - though because 2n + 3 is itself always odd, the sum is NOT always a multiple of 4."
+      ],
+      "final_answer": "Proven: the sum is 2(2n + 3), always even (but not always a multiple of 4).",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let four consecutive integers be n, n + 1, n + 2 and n + 3.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write the given expression algebraically: n + (n + 1) + (n + 2) + (n + 3).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand and simplify: n + (n + 1) + (n + 2) + (n + 3) = 4n + 6.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise/rearrange to expose the structure: 4n + 6 = 2(2n + 3). Since 4n + 6 factorises exactly to 2(2n + 3), the sum is always 2 times a whole number, so it is always even - though because 2n + 3 is itself always odd, the sum is NOT always a multiple of 4.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Proven: the sum is 2(2n + 3), always even (but not always a multiple of 4). oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "perpendicular_lines_equation",
+      "prompt": "A line is perpendicular to y = x - 5 and passes through the point (-1, -2). Find the equation of the line.",
+      "solution_steps": [
+        "Perpendicular gradients multiply to give -1: m × 1 = -1, so m = -1",
+        "Substitute (-1, -2) into y = -1x + c: -2 = -1×(-1) + c, so c = -3",
+        "Equation of the line: y = -x - 3"
+      ],
+      "final_answer": "y = -x - 3",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Perpendicular gradients multiply to give -1: m × 1 = -1, so m = -1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute (-1, -2) into y = -1x + c: -2 = -1×(-1) + c, so c = -3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Equation of the line: y = -x - 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y = -x - 3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "velocity_time_interpret",
+      "prompt": "The velocity-time graph shows a car's journey. Find its deceleration during the final phase.",
+      "solution_steps": [
+        "Deceleration = change in velocity ÷ time = 24 ÷ 5 = 24/5 m/s^2"
+      ],
+      "final_answer": "24/5 m/s^2",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Deceleration = change in velocity ÷ time = 24 ÷ 5 = 24/5 m/s^2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "24/5 m/s^2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              8,
+              24
+            ],
+            [
+              33,
+              24
+            ],
+            [
+              38,
+              0
+            ]
+          ],
+          "x_max": 43,
+          "y_max": 29,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "forming_equations_higher",
+      "prompt": "I think of a number. I add 15 to it, then multiply the result by 9. The answer is 162. Form an equation and solve it to find the number.",
+      "solution_steps": [
+        "Let the number be x.",
+        "9(x + 15) = 162",
+        "Expand the bracket:",
+        "9x + 135 = 162",
+        "Subtract 135 from both sides:",
+        "9x = 27",
+        "Divide both sides by 9:",
+        "x = 3"
+      ],
+      "final_answer": "3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let the number be x.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "9(x + 15) = 162",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand the bracket:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "9x + 135 = 162 Subtract 135 from both sides: 9x = 27 Divide both sides by 9: x = 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "completing_the_square",
+      "prompt": "Write x^2 - 2x - 12 in the form (x + p)^2 + q.",
+      "solution_steps": [
+        "Half the coefficient of x: -2 ÷ 2 = -1",
+        "(x - 1)^2 = x^2 - 2x + 1",
+        "x^2 - 2x + -12 = (x - 1)^2 + (-12 - 1) = (x - 1)^2 - 13"
+      ],
+      "final_answer": "(x - 1)^2 - 13",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Half the coefficient of x: -2 ÷ 2 = -1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(x - 1)^2 = x^2 - 2x + 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x^2 - 2x + -12 = (x - 1)^2 + (-12 - 1) = (x - 1)^2 - 13",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(x - 1)^2 - 13 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "turning_point_of_graph",
+      "prompt": "Find the coordinates of the turning point of the curve y = x^2 - 8x - 3.",
+      "solution_steps": [
+        "Complete the square: x^2 - 8x + -3 = (x - 4)^2 - 19",
+        "The turning point of y = (x + p)^2 + q is (-p, q).",
+        "Turning point = (4, -19)"
+      ],
+      "final_answer": "(4, -19)",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Complete the square: x^2 - 8x + -3 = (x - 4)^2 - 19",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Turning point = (4, -19)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(4, -19) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "parabola",
+        "params": {
+          "vertex_label": "(4, -19)"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "graph_transformations",
+      "prompt": "The graph of y = f(x) is transformed to give the graph of y = f(-x). Describe this transformation fully.",
+      "solution_steps": [
+        "y = f(-x) corresponds to a reflection in the y-axis."
+      ],
+      "final_answer": "Reflection in the y-axis",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = f(-x) corresponds to a reflection in the y-axis.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Reflection in the y-axis oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "graph_transformation",
+        "params": {
+          "transform": "reflect_y",
+          "shift": 0,
+          "original_label": "y = f(x)",
+          "transformed_label": "y = f(-x)"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "satisfying_inequalities_higher",
+      "prompt": "x satisfies both 5x + 6 ≥ -2 and 4x - 9 < -6. List the integer values of x that satisfy both.",
+      "solution_steps": [
+        "Solve the first inequality:",
+        "5x + 6 ≥ -2",
+        "Subtract 6 from both sides:",
+        "5x ≥ -8",
+        "Divide both sides by 5:",
+        "x ≥ -8/5",
+        "Solve the second inequality:",
+        "4x - 9 < -6",
+        "Add 9 to both sides:",
+        "4x < 3",
+        "Divide both sides by 4:",
+        "x < 3/4",
+        "Combine both results into a single range: -8/5 ≤ x < 3/4",
+        "The integers satisfying both inequalities are: -1, 0"
+      ],
+      "final_answer": "-1, 0",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Solve the first inequality:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x + 6 ≥ -2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 6 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x ≥ -8 Divide both sides by 5: x ≥ -8/5 Solve the second inequality: 4x - 9 < -6 Add 9 to both sides: 4x < 3 Divide both sides by 4: x < 3/4 Combine both results into a single range: -8/5 ≤ x < 3/4 The integers satisfying both inequalities are: -1, 0",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-1, 0 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_combine",
+      "prompt": "Given that a:b = 2:5 and b:c = 5:6, find a:b:c in its simplest form.",
+      "solution_steps": [
+        "Scale a:b = 2:5 by 1 so b = 5: a:b = 2:5",
+        "Scale b:c = 5:6 by 1 so b = 5: b:c = 5:6",
+        "Combine: a:b:c = 2:5:6",
+        "Simplify by dividing by 1: a:b:c = 2:5:6"
+      ],
+      "final_answer": "2 : 5 : 6",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Scale a:b = 2:5 by 1 so b = 5: a:b = 2:5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Scale b:c = 5:6 by 1 so b = 5: b:c = 5:6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine: a:b:c = 2:5:6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify by dividing by 1: a:b:c = 2:5:6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2 : 5 : 6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_inverse_proportion",
+      "prompt": "y is inversely proportional to x^3. When x = 3, y = 500. Find the value of y when x = 5.",
+      "solution_steps": [
+        "y = k ÷ x^3",
+        "k = y × x^3 = 500 × 3^3 = 500 × 27 = 13500",
+        "y = k ÷ x^3 = 13500 ÷ 5^3 = 13500 ÷ 125 = 108"
+      ],
+      "final_answer": "108",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = k ÷ x^3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "k = y × x^3 = 500 × 3^3 = 500 × 27 = 13500",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y = k ÷ x^3 = 13500 ÷ 5^3 = 13500 ÷ 125 = 108",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "108 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "percentage_increase_decrease_calculator",
+      "prompt": "Using a calculator, increase £282.95 by 22.5%. Give your answer to 2 decimal places.",
+      "solution_steps": [
+        "Convert 22.5% to a multiplier: 1.225",
+        "Multiply: £282.95 × 1.225 = £346.61 (calculator, 2 d.p.)"
+      ],
+      "final_answer": "£346.61",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 22.5% to a multiplier: 1.225",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply: £282.95 × 1.225 = £346.61 (calculator, 2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£346.61 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "volume_surface_area_pyramid",
+      "prompt": "A square-based pyramid has a base of side 9 cm and a perpendicular height of 12 cm. Find its volume.",
+      "solution_steps": [
+        "Volume = (1/3) × base² × height = (1/3) × 9² × 12",
+        "= 324 cm³"
+      ],
+      "final_answer": "324 cm³",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Volume = (1/3) × base² × height = (1/3) × 9² × 12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 324 cm³",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "324 cm³ oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "pyramid",
+        "params": {
+          "base_label": "9 cm",
+          "height_label": "12 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "volume_surface_area_sphere",
+      "prompt": "A sphere has radius 3 cm. Find its volume, correct to 3 significant figures.",
+      "solution_steps": [
+        "V = (4/3) × π × r³ = (4/3) × π × 3³",
+        "= 113 cm³ (3 s.f.)"
+      ],
+      "final_answer": "113 cm³",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "V = (4/3) × π × r³ = (4/3) × π × 3³",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 113 cm³ (3 s.f.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "113 cm³ oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "sphere",
+        "params": {
+          "radius_label": "3 cm",
+          "hemisphere": false
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "triangle_area_sine_rule",
+      "prompt": "Triangle ABC has side a = 12 cm, side b = 11 cm, and the angle between them, angle C = 97°. Find the area of the triangle, correct to 3 significant figures.",
+      "solution_steps": [
+        "Use Area = (1/2) × a × b × sin(C)",
+        "Area = 0.5 × 12 × 11 × sin(97°) = 65.5 cm² (3 s.f.)"
+      ],
+      "final_answer": "65.5 cm²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Use Area = (1/2) × a × b × sin(C)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area = 0.5 × 12 × 11 × sin(97°) = 65.5 cm² (3 s.f.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "65.5 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "general_triangle",
+        "params": {
+          "side_a_label": "12 cm",
+          "side_b_label": "11 cm",
+          "side_c_label": null,
+          "angle_A_label": null,
+          "angle_B_label": null,
+          "angle_C_label": "97°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "trig_3d",
+      "prompt": "A cuboid has length 7 cm, width 15 cm and height 11 cm. Find the angle between the diagonal AG (from one corner to the opposite corner) and the base of the cuboid, correct to 1 decimal place.",
+      "solution_steps": [
+        "First find the diagonal across the base: base diagonal = √(l² + w²) = √(7² + 15²) = 16.553 cm - this is the projection of AG onto the base.",
+        "The angle between AG and the base, height and base diagonal form a right-angled triangle: tan(angle) = height ÷ base diagonal = 11 ÷ 16.553.",
+        "angle = tan^-1(11 ÷ 16.553) = 33.6° (1 d.p.)"
+      ],
+      "final_answer": "33.6°",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First find the diagonal across the base: base diagonal = √(l² + w²) = √(7² + 15²) = 16.553 cm - this is the projection of AG onto the base.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The angle between AG and the base, height and base diagonal form a right-angled triangle: tan(angle) = height ÷ base diagonal = 11 ÷ 16.553.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "angle = tan^-1(11 ÷ 16.553) = 33.6° (1 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "33.6° oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "cuboid",
+        "params": {
+          "length_label": "7 cm",
+          "width_label": "15 cm",
+          "height_label": "11 cm",
+          "diagonal_label": "θ"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_around_point_higher",
+      "prompt": "The angles 110°, 104° and (5x + 46)° are angles around a point. Find x.",
+      "solution_steps": [
+        "Angles around a point sum to 360°.",
+        "5x + 46 = 146",
+        "Subtract 46 from both sides:",
+        "5x = 100",
+        "Divide both sides by 5:",
+        "x = 20"
+      ],
+      "final_answer": "20",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles around a point sum to 360°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x + 46 = 146",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 46 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x = 100 Divide both sides by 5: x = 20",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "20 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "angle_line",
+        "params": {
+          "angle_values": [
+            110,
+            104,
+            146
+          ],
+          "labels": [
+            "110°",
+            "104°",
+            "(5x + 46)°"
+          ],
+          "around_point": true
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "product_rule_counting",
+      "prompt": "A shop sells 4 different fonts, 5 different colours and 5 different paper sizes. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "solution_steps": [
+        "Total combinations = 4 × 5 × 5 = 100"
+      ],
+      "final_answer": "100",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total combinations = 4 × 5 × 5 = 100",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "100 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_combined_dice",
+      "prompt": "Two fair six-sided dice are rolled. Find the probability that both dice show 3.",
+      "solution_steps": [
+        "P(first die is 3) = 1/6, P(second die is 3) = 1/6",
+        "Independent events multiply: P(both 3) = 1/6 × 1/6 = 1/36"
+      ],
+      "final_answer": "1/36",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "P(first die is 3) = 1/6, P(second die is 3) = 1/6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Independent events multiply: P(both 3) = 1/6 × 1/6 = 1/36",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/36 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "dice",
+        "params": {
+          "values": [
+            2,
+            5
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_mixed_number_arithmetic",
+      "prompt": "Work out 5 1/2 - 3 2/7. Give your answer as a mixed number.",
+      "solution_steps": [
+        "Convert to improper fractions: 5 1/2 = 11/2, 3 2/7 = 23/7",
+        "Subtract the improper fractions: 11/2 - 23/7 = 31/14",
+        "Convert back to a mixed number: 2 3/14"
+      ],
+      "final_answer": "2 3/14",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert to improper fractions: 5 1/2 = 11/2, 3 2/7 = 23/7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract the improper fractions: 11/2 - 23/7 = 31/14",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Convert back to a mixed number: 2 3/14",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2 3/14 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    }
+  ]
+}

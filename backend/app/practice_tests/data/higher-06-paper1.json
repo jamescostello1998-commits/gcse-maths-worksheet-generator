@@ -1,0 +1,1018 @@
+{
+  "id": "higher-06-paper1",
+  "name": "Higher Practice Test 6 – Paper 1 of 3",
+  "tier": "higher",
+  "sitting_id": "higher-06",
+  "paper_number": 1,
+  "questions": [
+    {
+      "topic_id": "standard_form_add_subtract",
+      "prompt": "Work out (3 × 10^4) + (4 × 10^2). Give your answer in standard form.",
+      "solution_steps": [
+        "Write both numbers with the same power of 10: 3×10^4 = 300×10^2, 4×10^2 = 4×10^2",
+        "Add the coefficients: 300 + 4 = 304",
+        "Write in standard form: 304 × 10^2 = 3.04 × 10^4"
+      ],
+      "final_answer": "3.04 × 10^4",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Write both numbers with the same power of 10: 3×10^4 = 300×10^2, 4×10^2 = 4×10^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add the coefficients: 300 + 4 = 304",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write in standard form: 304 × 10^2 = 3.04 × 10^4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3.04 × 10^4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "roots_higher",
+      "prompt": "Simplify √75, giving your answer in the form a√b.",
+      "solution_steps": [
+        "Find the largest square factor of 75: 5^2 × 3 = 75",
+        "√75 = √(5^2 × 3) = 5√3"
+      ],
+      "final_answer": "5√3",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find the largest square factor of 75: 5^2 × 3 = 75",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√75 = √(5^2 × 3) = 5√3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5√3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "standard_form_multiply_divide",
+      "prompt": "Work out (8 × 10^0) × (3 × 10^4). Give your answer in standard form.",
+      "solution_steps": [
+        "Multiply the mantissas: 8 × 3 = 24",
+        "Add the powers of 10: 0 + 4 = 4",
+        "Renormalize so the mantissa is between 1 and 10: 2.4 × 10^5"
+      ],
+      "final_answer": "2.4 × 10^5",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply the mantissas: 8 × 3 = 24",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add the powers of 10: 0 + 4 = 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Renormalize so the mantissa is between 1 and 10: 2.4 × 10^5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2.4 × 10^5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "rationalise_denominator",
+      "prompt": "Rationalise the denominator of 7/√13, giving your answer in its simplest form.",
+      "solution_steps": [
+        "Multiply the top and bottom by √13: 7/√13 = 7√13/13",
+        "= 7√13/13"
+      ],
+      "final_answer": "7√13/13",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply the top and bottom by √13: 7/√13 = 7√13/13",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 7√13/13",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "7√13/13 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "powers_higher",
+      "prompt": "Work out 36^(3/2).",
+      "solution_steps": [
+        "36^(3/2) = (36^(1/2))^3",
+        "36^(1/2) = 6",
+        "6^3 = 216"
+      ],
+      "final_answer": "216",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "36^(3/2) = (36^(1/2))^3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "36^(1/2) = 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "6^3 = 216",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "216 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "decimals_recurring_to_fraction",
+      "prompt": "The recurring decimal 0.1(6) can be written as a fraction. Find this fraction in its simplest form.",
+      "solution_steps": [
+        "Let x = 0.1(6)",
+        "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
+        "This gives x = 15/90",
+        "Simplify: 1/6"
+      ],
+      "final_answer": "1/6",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let x = 0.1(6)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "This gives x = 15/90",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify: 1/6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simplifying_indices_challenging",
+      "prompt": "Simplify (4^-1 × 4^3)^3, giving your answer as a fraction where necessary.",
+      "solution_steps": [
+        "Add the powers inside the bracket first: -1 + 3 = 2",
+        "(4^-1 × 4^3)^3 = (4^2)^3",
+        "Multiply the powers: 2 × 3 = 6",
+        "(4^2)^3 = 4^6 = 4096"
+      ],
+      "final_answer": "4096",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Add the powers inside the bracket first: -1 + 3 = 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(4^-1 × 4^3)^3 = (4^2)^3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply the powers: 2 × 3 = 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(4^2)^3 = 4^6 = 4096",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4096 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_brackets",
+      "prompt": "Solve: 5(6x - 2) = -130",
+      "solution_steps": [
+        "Expand the bracket: 5(6x - 2) = 30x - 10",
+        "30x - 10 = -130",
+        "Add 10 to both sides:",
+        "30x = -120",
+        "Divide both sides by 30:",
+        "x = -4"
+      ],
+      "final_answer": "-4",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: 5(6x - 2) = 30x - 10",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "30x - 10 = -130",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add 10 to both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "30x = -120 Divide both sides by 30: x = -4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_fractions_add_subtract",
+      "prompt": "Simplify 2/(x + 1) - 7/(x + 6), giving your answer as a single fraction.",
+      "solution_steps": [
+        "Write both fractions over the common denominator (x + 1)(x + 6):",
+        "2/(x + 1) - 7/(x + 6) = (2(x + 6) - 7(x + 1))/(x + 1)(x + 6)",
+        "Expand the numerator: 2(x + 6) - 7(x + 1) = -5x + 5",
+        "= (-5x + 5)/(x + 1)(x + 6)"
+      ],
+      "final_answer": "(-5x + 5)/(x + 1)(x + 6)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Write both fractions over the common denominator (x + 1)(x + 6):",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2/(x + 1) - 7/(x + 6) = (2(x + 6) - 7(x + 1))/(x + 1)(x + 6)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand the numerator: 2(x + 6) - 7(x + 1) = -5x + 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= (-5x + 5)/(x + 1)(x + 6)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(-5x + 5)/(x + 1)(x + 6) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "forming_equations_higher",
+      "prompt": "I think of a number. I subtract 6 to it, then multiply the result by 3. The answer is 9. Form an equation and solve it to find the number.",
+      "solution_steps": [
+        "Let the number be x.",
+        "3(x - 6) = 9",
+        "Expand the bracket:",
+        "3x - 18 = 9",
+        "Add 18 to both sides:",
+        "3x = 27",
+        "Divide both sides by 3:",
+        "x = 9"
+      ],
+      "final_answer": "9",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let the number be x.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3(x - 6) = 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand the bracket:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3x - 18 = 9 Add 18 to both sides: 3x = 27 Divide both sides by 3: x = 9",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "9 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_both_sides",
+      "prompt": "Solve: 5x + 5 = x + 25",
+      "solution_steps": [
+        "5x + 5 = x + 25",
+        "Subtract 1x from both sides:",
+        "4x + 5 = 25",
+        "Subtract 5 from both sides:",
+        "4x = 20",
+        "Divide both sides by 4:",
+        "x = 5"
+      ],
+      "final_answer": "5",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "5x + 5 = x + 25",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 1x from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x + 5 = 25",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 5 from both sides: 4x = 20 Divide both sides by 4: x = 5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_quadratic",
+      "prompt": "Solve the simultaneous equations: y = x^2 - 4 and y = -7x - 14",
+      "solution_steps": [
+        "Substitute y = -7x - 14 into y = x^2 - 4: -7x - 14 = x^2 - 4",
+        "Rearrange: x^2 + 7x + 10 = 0",
+        "Factorise: (x + 2)(x + 5) = 0",
+        "x = -2 or x = -5",
+        "When x = -2, y = 0. When x = -5, y = 21."
+      ],
+      "final_answer": "(-2, 0) and (-5, 21)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Substitute y = -7x - 14 into y = x^2 - 4: -7x - 14 = x^2 - 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rearrange: x^2 + 7x + 10 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: (x + 2)(x + 5) = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -2 or x = -5 When x = -2, y = 0. When x = -5, y = 21.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(-2, 0) and (-5, 21) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "quadratic_inequalities",
+      "prompt": "Solve the inequality: -x^2 + 5x + 14 ≤ 0",
+      "solution_steps": [
+        "Factorise: -x^2 + 5x + 14 = -(x + 2)(x - 7)",
+        "The critical values are x = -2 and x = 7.",
+        "The coefficient of x^2 is negative, so the graph is a upside-down U-shaped parabola, and ≤ 0 is satisfied outside the two roots.",
+        "Answer: x ≤ -2 or x ≥ 7"
+      ],
+      "final_answer": "x ≤ -2 or x ≥ 7",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Factorise: -x^2 + 5x + 14 = -(x + 2)(x - 7)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The critical values are x = -2 and x = 7.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The coefficient of x^2 is negative, so the graph is a upside-down U-shaped parabola, and ≤ 0 is satisfied outside the two roots.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Answer: x ≤ -2 or x ≥ 7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x ≤ -2 or x ≥ 7 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_shape_similar_higher",
+      "prompt": "Shape A and Shape B are similar. A length on shape A is 4 cm and the corresponding length on shape B is 5 cm. The area of shape A is 112 cm². Find the area of shape B.",
+      "solution_steps": [
+        "Linear scale factor = 5 ÷ 4 = 5/4",
+        "Area scale factor = (5/4)^2 = 25/16",
+        "Area of B = 112 × 25/16 = 175 cm²"
+      ],
+      "final_answer": "175 cm²",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Linear scale factor = 5 ÷ 4 = 5/4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area scale factor = (5/4)^2 = 25/16",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of B = 112 × 25/16 = 175 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "175 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "density_higher",
+      "prompt": "A piece of wood has a mass of 18 kg and a volume of 1945 cm³. Find its density in g/cm³, correct to 2 decimal places.",
+      "solution_steps": [
+        "Convert mass to grams: 18 kg = 18 × 1000 = 18000 g",
+        "density = mass ÷ volume = 18000 ÷ 1945 = 9.25 g/cm³ (2 d.p.)"
+      ],
+      "final_answer": "9.25 g/cm³",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert mass to grams: 18 kg = 18 × 1000 = 18000 g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "density = mass ÷ volume = 18000 ÷ 1945 = 9.25 g/cm³ (2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "9.25 g/cm³ oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_difference_higher",
+      "prompt": "Amounts are in the ratio 1:7:5. The difference between the largest and smallest amount is 78. Find all three amounts and their total.",
+      "solution_steps": [
+        "Difference in parts = 7 - 1 = 6 parts",
+        "Value of one part = 78 ÷ 6 = 13",
+        "Amount 1 = 1 × 13 = 13",
+        "Amount 2 = 7 × 13 = 91",
+        "Amount 3 = 5 × 13 = 65",
+        "Total = 13 + 91 + 65 = 169"
+      ],
+      "final_answer": "13 : 91 : 65 (total 169)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Difference in parts = 7 - 1 = 6 parts",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Value of one part = 78 ÷ 6 = 13",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Amount 1 = 1 × 13 = 13",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Amount 2 = 7 × 13 = 91 Amount 3 = 5 × 13 = 65 Total = 13 + 91 + 65 = 169",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "13 : 91 : 65 (total 169) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_inverse_proportion",
+      "prompt": "y is inversely proportional to x^2. When x = 3, y = 108. Find the value of y when x = 6.",
+      "solution_steps": [
+        "y = k ÷ x^2",
+        "k = y × x^2 = 108 × 3^2 = 108 × 9 = 972",
+        "y = k ÷ x^2 = 972 ÷ 6^2 = 972 ÷ 36 = 27"
+      ],
+      "final_answer": "27",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = k ÷ x^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "k = y × x^2 = 108 × 3^2 = 108 × 9 = 972",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y = k ÷ x^2 = 972 ÷ 6^2 = 972 ÷ 36 = 27",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "27 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "bearings_cosine_rule",
+      "prompt": "A ship sails from port A on a bearing of 103° for 22 km to point B. It then changes course and sails on a bearing of 318° for 9 km to point C. Find the direct distance from A to C, correct to 3 significant figures.",
+      "solution_steps": [
+        "The back bearing of A from B is 103° + 180° = 283°.",
+        "Angle ABC is the difference between this back bearing and the bearing of C from B: angle ABC = 35°.",
+        "Use the cosine rule: AC² = AB² + BC² - 2×AB×BC×cos(ABC)",
+        "AC² = 22² + 9² - 2×22×9×cos(35°) = 240.6",
+        "AC = √240.6 = 15.5 km (3 s.f.)"
+      ],
+      "final_answer": "15.5 km",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The back bearing of A from B is 103° + 180° = 283°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Angle ABC is the difference between this back bearing and the bearing of C from B: angle ABC = 35°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Use the cosine rule: AC² = AB² + BC² - 2×AB×BC×cos(ABC)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "AC² = 22² + 9² - 2×22×9×cos(35°) = 240.6 AC = √240.6 = 15.5 km (3 s.f.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "15.5 km oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "bearings",
+        "params": {
+          "labels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "bearing_at_A": 103,
+          "bearing_at_B": 318,
+          "leg1_label": "22 km",
+          "leg2_label": "9 km",
+          "unknown_label": "x km"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "volume_surface_area_cylinder",
+      "prompt": "A cylinder has radius 9 cm and height 15 cm. Find the exact volume, in terms of π.",
+      "solution_steps": [
+        "Volume = π × r² × h = π × 9² × 15",
+        "= 1215π cm³"
+      ],
+      "final_answer": "1215π cm³",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Volume = π × r² × h = π × 9² × 15",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 1215π cm³",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1215π cm³ oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "cylinder",
+        "params": {
+          "radius_label": "9 cm",
+          "height_label": "15 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "transform_enlarge_complete_higher",
+      "prompt": "Enlarge shape ABCD by scale factor -1, centre (2, 0). Draw and label the image A'B'C'D'.",
+      "solution_steps": [
+        "The centre of enlargement is (2, 0) and the scale factor is -1.",
+        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-2, 3) from the centre, so A' = (2, 0) + -1 × (-2, 3) = (4, -3).",
+        "Repeat for every vertex: A(0, 3) -> A'(4, -3), B(4, 3) -> B'(0, -3), C(3, 7) -> C'(1, -7), D(-1, 6) -> D'(5, -6)",
+        "A negative scale factor puts the image on the opposite side of the centre from the original shape."
+      ],
+      "final_answer": "A'(4, -3), B'(0, -3), C'(1, -7), D'(5, -6)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The centre of enlargement is (2, 0) and the scale factor is -1.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-2, 3) from the centre, so A' = (2, 0) + -1 × (-2, 3) = (4, -3).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Repeat for every vertex: A(0, 3) -> A'(4, -3), B(4, 3) -> B'(0, -3), C(3, 7) -> C'(1, -7), D(-1, 6) -> D'(5, -6)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A negative scale factor puts the image on the opposite side of the centre from the original shape.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "A'(4, -3), B'(0, -3), C'(1, -7), D'(5, -6) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              0,
+              3
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              -1,
+              6
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "centre": [
+            2,
+            0
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              0,
+              3
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              3,
+              7
+            ],
+            [
+              -1,
+              6
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "centre": [
+            2,
+            0
+          ],
+          "image_vertices": [
+            [
+              4,
+              -3
+            ],
+            [
+              0,
+              -3
+            ],
+            [
+              1,
+              -7
+            ],
+            [
+              5,
+              -6
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'",
+            "D'"
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "area_mixed_compound",
+      "prompt": "A shape is made from a rectangle 20 cm by 8 cm, with a triangular roof of height 4 cm on top, and a quarter-circle of radius 3 cm cut from one bottom corner. Find the total area, correct to 3 significant figures.",
+      "solution_steps": [
+        "Rectangle area = 20 × 8 = 160 cm²",
+        "Triangle roof area = ½ × 20 × 4 = 40 cm²",
+        "Quarter-circle cut area = (π × 3²) ÷ 4 ≈ 7.07 cm²",
+        "Total area = 160 + 40 - 7.07 ≈ 193 cm²"
+      ],
+      "final_answer": "193 cm²",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Rectangle area = 20 × 8 = 160 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Triangle roof area = ½ × 20 × 4 = 40 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Quarter-circle cut area = (π × 3²) ÷ 4 ≈ 7.07 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total area = 160 + 40 - 7.07 ≈ 193 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "193 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "mixed_compound",
+        "params": {
+          "width": 20,
+          "height": 8,
+          "roof_height": 4,
+          "cut_radius": 3,
+          "width_label": "20 cm",
+          "height_label": "8 cm",
+          "roof_label": "4 cm",
+          "cut_label": "3 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "venn_diagram_notation",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}. The Venn diagram shows sets A and B. List the elements of B ∩ A'.",
+      "solution_steps": [
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+        "A = {1, 3, 7, 8, 9}, B = {1, 3, 5, 8, 10}",
+        "B ∩ A' means the elements in B but not in A.",
+        "B ∩ A' = {5, 10}"
+      ],
+      "final_answer": "{5, 10}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {1, 3, 7, 8, 9}, B = {1, 3, 5, 8, 10}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B ∩ A' means the elements in B but not in A.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B ∩ A' = {5, 10}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "{5, 10} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "S",
+          "region_text": {
+            "a_only": "7, 9",
+            "b_only": "5, 10",
+            "both": "1, 3, 8",
+            "neither": "2, 4, 6"
+          }
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "percentage_increase_decrease_calculator",
+      "prompt": "Using a calculator, increase £583.55 by 13.5%. Give your answer to 2 decimal places.",
+      "solution_steps": [
+        "Convert 13.5% to a multiplier: 1.135",
+        "Multiply: £583.55 × 1.135 = £662.33 (calculator, 2 d.p.)"
+      ],
+      "final_answer": "£662.33",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 13.5% to a multiplier: 1.135",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply: £583.55 × 1.135 = £662.33 (calculator, 2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£662.33 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    }
+  ]
+}

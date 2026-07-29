@@ -1,0 +1,1041 @@
+{
+  "id": "higher-08-paper3",
+  "name": "Higher Practice Test 8 – Paper 3 of 3",
+  "tier": "higher",
+  "sitting_id": "higher-08",
+  "paper_number": 3,
+  "questions": [
+    {
+      "topic_id": "recurring_decimal_two_digit",
+      "prompt": "The recurring decimal 0.(36) can be written as a fraction. Find this fraction in its simplest form.",
+      "solution_steps": [
+        "Let x = 0.(36), so 100x = 36.3636... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Subtract: 100x - x = 36 - 0, so 99x = 36",
+        "x = 36/99 = 4/11"
+      ],
+      "final_answer": "4/11",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let x = 0.(36), so 100x = 36.3636... (two digits repeat, so multiply by 100 to shift a full block)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract: 100x - x = 36 - 0, so 99x = 36",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 36/99 = 4/11",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4/11 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simplifying_indices_challenging",
+      "prompt": "Simplify 25^(3/2) × 25^-2, giving your answer as a fraction where necessary.",
+      "solution_steps": [
+        "25^(1/2) is the square root of 25, which is 5, so 25^(3/2) = 5^3",
+        "25^-2 = 1/25^2 = 1/5^4",
+        "25^(3/2) × 25^-2 = 5^3 × 1/5^4 = 5^(3-4) = 5^-1",
+        "5^-1 = 1/5"
+      ],
+      "final_answer": "1/5",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "25^(1/2) is the square root of 25, which is 5, so 25^(3/2) = 5^3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "25^-2 = 1/25^2 = 1/5^4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "25^(3/2) × 25^-2 = 5^3 × 1/5^4 = 5^(3-4) = 5^-1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5^-1 = 1/5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "bounds_calculation",
+      "prompt": "A rectangle has length 26 cm and width 7 cm, both measured to the nearest cm. Calculate the lower bound for the area of the rectangle.",
+      "solution_steps": [
+        "Length: 26 cm (to the nearest cm) gives 25.5 ≤ length < 26.5",
+        "Width: 7 cm (to the nearest cm) gives 6.5 ≤ width < 7.5",
+        "For the lower bound of the area, use the lower bound of each measurement: 25.5 × 6.5 = 165.75 cm²"
+      ],
+      "final_answer": "165.75 cm²",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Length: 26 cm (to the nearest cm) gives 25.5 ≤ length < 26.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Width: 7 cm (to the nearest cm) gives 6.5 ≤ width < 7.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For the lower bound of the area, use the lower bound of each measurement: 25.5 × 6.5 = 165.75 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "165.75 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "decimals_recurring_to_fraction",
+      "prompt": "The recurring decimal 0.8(3) can be written as a fraction. Find this fraction in its simplest form.",
+      "solution_steps": [
+        "Let x = 0.8(3)",
+        "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
+        "This gives x = 75/90",
+        "Simplify: 5/6"
+      ],
+      "final_answer": "5/6",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let x = 0.8(3)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "This gives x = 75/90",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify: 5/6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5/6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "hcf_lcm_by_prime_factors",
+      "prompt": "Using prime factorisation, find the LCM of 192 and 52.",
+      "solution_steps": [
+        "192 = 2^6 × 3",
+        "52 = 2^2 × 13",
+        "LCM: take the highest power of each prime",
+        "LCM = 2496"
+      ],
+      "final_answer": "2496",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "192 = 2^6 × 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "52 = 2^2 × 13",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "LCM: take the highest power of each prime",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "LCM = 2496",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2496 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "prime_factors_higher",
+      "prompt": "Write 268 as a product of its prime factors, giving your answer in index form.",
+      "solution_steps": [
+        "Divide 268 repeatedly by the smallest prime that fits: 2 × 2 × 67",
+        "Write repeated factors using index notation: 268 = 2^2 × 67"
+      ],
+      "final_answer": "2^2 × 67",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Divide 268 repeatedly by the smallest prime that fits: 2 × 2 × 67",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write repeated factors using index notation: 268 = 2^2 × 67",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2^2 × 67 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_fractions_multiply_divide",
+      "prompt": "Simplify (x^2 - 81)/(x - 7) × (x - 7)/(x - 9), giving your answer in its simplest form.",
+      "solution_steps": [
+        "Factorise the difference of two squares: (x^2 - 81) = (x - 9)(x + 9)",
+        "(x - 9)(x + 9)/(x - 7) × (x - 7)/(x - 9)",
+        "Cancel the common factors (x - 7) and (x - 9):",
+        "= x + 9"
+      ],
+      "final_answer": "x + 9",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Factorise the difference of two squares: (x^2 - 81) = (x - 9)(x + 9)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(x - 9)(x + 9)/(x - 7) × (x - 7)/(x - 9)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Cancel the common factors (x - 7) and (x - 9):",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= x + 9",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x + 9 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_different_coefficient",
+      "prompt": "Solve the simultaneous equations: 4x + 5y = -13 and 5x + 3y = -13",
+      "solution_steps": [
+        "4x + 5y = -13  (1)",
+        "5x + 3y = -13  (2)",
+        "(1) × 3: 12x + 15y = -39  (3)",
+        "(2) × 5: 25x + 15y = -65  (4)",
+        "(3) - (4): -13x = 26, so x = -2",
+        "Substitute x = -2 into (1): 5y = -5, so y = -1"
+      ],
+      "final_answer": "x = -2, y = -1",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "4x + 5y = -13  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x + 3y = -13  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(1) × 3: 12x + 15y = -39  (3)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(2) × 5: 25x + 15y = -65  (4) (3) - (4): -13x = 26, so x = -2 Substitute x = -2 into (1): 5y = -5, so y = -1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = -2, y = -1 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "satisfying_inequalities_higher",
+      "prompt": "Solve the inequality -10 < -4x - 3 < 3, then list the integer values of x that satisfy it.",
+      "solution_steps": [
+        "-10 < -4x - 3 < 3",
+        "Add 3 to all three parts:",
+        "-7 < -4x < 6",
+        "Divide all three parts by -4 - since this is negative, every inequality sign reverses, and the low/high sides swap around:",
+        "-3/2 < x < 7/4",
+        "The integers satisfying this are: -1, 0, 1"
+      ],
+      "final_answer": "-1, 0, 1",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "-10 < -4x - 3 < 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add 3 to all three parts:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-7 < -4x < 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide all three parts by -4 - since this is negative, every inequality sign reverses, and the low/high sides swap around: -3/2 < x < 7/4 The integers satisfying this are: -1, 0, 1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-1, 0, 1 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "change_subject_higher",
+      "prompt": "Make r the subject of the formula A = 2πr^2.",
+      "solution_steps": [
+        "A = 2πr^2",
+        "Divide both sides by 2π: A/(2π) = r^2",
+        "Take the square root of both sides: r = √(A/(2π))"
+      ],
+      "final_answer": "r = √(A/(2π))",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A = 2πr^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 2π: A/(2π) = r^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Take the square root of both sides: r = √(A/(2π))",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "r = √(A/(2π)) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "inequalities_number_line_higher",
+      "prompt": "Draw the solution set of -4 ≤ x < 1 on a number line.",
+      "solution_steps": [
+        "Draw a filled circle at -4 and an open circle at 1.",
+        "Shade the segment of the line between the two circles."
+      ],
+      "final_answer": "-4 ≤ x < 1",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Draw a filled circle at -4 and an open circle at 1.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Shade the segment of the line between the two circles.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-4 ≤ x < 1 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [],
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [
+            {
+              "value": -4,
+              "closed": true
+            },
+            {
+              "value": 1,
+              "closed": false
+            }
+          ],
+          "shade": "between"
+        }
+      }
+    },
+    {
+      "topic_id": "expand_triple_brackets",
+      "prompt": "Expand and simplify: (x + 1)(-2x + 2)(2x + 3)",
+      "solution_steps": [
+        "First expand two of the brackets: (x + 1)(-2x + 2) = -2x^2 + 2",
+        "Multiply the result by (2x + 3) and collect like terms",
+        "= -4x^3 - 6x^2 + 4x + 6"
+      ],
+      "final_answer": "-4x^3 - 6x^2 + 4x + 6",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First expand two of the brackets: (x + 1)(-2x + 2) = -2x^2 + 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply the result by (2x + 3) and collect like terms",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= -4x^3 - 6x^2 + 4x + 6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-4x^3 - 6x^2 + 4x + 6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "iteration",
+      "prompt": "The iterative formula x_(n+1) = 10 / (x_n + 6) is used with x_0 = 0. Find the values of x_1, x_2 and x_3, giving each answer to 3 decimal places.",
+      "solution_steps": [
+        "Iterative formula: x_(n+1) = 10 / (x_n + 6)",
+        "x_0 = 0",
+        "x_1 = g(x_0) = 10 / (0 + 6) = 1.667",
+        "x_2 = g(x_1) = 10 / (1.667 + 6) = 1.304",
+        "x_3 = g(x_2) = 10 / (1.304 + 6) = 1.369"
+      ],
+      "final_answer": "x_1 = 1.667, x_2 = 1.304, x_3 = 1.369",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Iterative formula: x_(n+1) = 10 / (x_n + 6)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x_0 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x_1 = g(x_0) = 10 / (0 + 6) = 1.667",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x_2 = g(x_1) = 10 / (1.667 + 6) = 1.304 x_3 = g(x_2) = 10 / (1.304 + 6) = 1.369",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x_1 = 1.667, x_2 = 1.304, x_3 = 1.369 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_inverse_proportion",
+      "prompt": "y is inversely proportional to x^3. When x = 3, y = 750. Find the value of y when x = 5.",
+      "solution_steps": [
+        "y = k ÷ x^3",
+        "k = y × x^3 = 750 × 3^3 = 750 × 27 = 20250",
+        "y = k ÷ x^3 = 20250 ÷ 5^3 = 20250 ÷ 125 = 162"
+      ],
+      "final_answer": "162",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = k ÷ x^3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "k = y × x^3 = 750 × 3^3 = 750 × 27 = 20250",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y = k ÷ x^3 = 20250 ÷ 5^3 = 20250 ÷ 125 = 162",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "162 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "speed_with_conversions",
+      "prompt": "A train travels 295 km in 5 hours. Find its average speed in m/s, correct to 1 decimal place.",
+      "solution_steps": [
+        "speed = distance ÷ time = 295 ÷ 5 = 59 km/h",
+        "Convert to m/s: 59 ÷ 3.6 = 16.4 m/s (1 d.p.)"
+      ],
+      "final_answer": "16.4 m/s",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "speed = distance ÷ time = 295 ÷ 5 = 59 km/h",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Convert to m/s: 59 ÷ 3.6 = 16.4 m/s (1 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "16.4 m/s oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "geometric_vectors",
+      "prompt": "OAB is a triangle with OA = \\vec{a} and OB = \\vec{b}. Point P lies on AB such that AP:PB = 3:5. Find the vector PB in terms of \\vec{a} and \\vec{b}, giving your answer in its simplest form.",
+      "solution_steps": [
+        "AB = OB - OA = \\vec{b} - \\vec{a}",
+        "AP = (3/8)AB = (3/8)(\\vec{b} - \\vec{a})",
+        "PB = OB - OP = -(5/8)\\vec{a} + (5/8)\\vec{b}"
+      ],
+      "final_answer": "-(5/8)\\vec{a} + (5/8)\\vec{b}",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "AB = OB - OA = \\vec{b} - \\vec{a}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "AP = (3/8)AB = (3/8)(\\vec{b} - \\vec{a})",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "PB = OB - OP = -(5/8)\\vec{a} + (5/8)\\vec{b}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-(5/8)\\vec{a} + (5/8)\\vec{b} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "vector_triangle",
+        "params": {
+          "ratio": [
+            3,
+            5
+          ],
+          "point_label": "P",
+          "a_label": "\\vec{a}",
+          "b_label": "\\vec{b}",
+          "origin_label": "O"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_direct_proportion",
+      "prompt": "y is directly proportional to x^2. When x = 9, y = 567. Find the value of y when x = 3.",
+      "solution_steps": [
+        "y = kx^2",
+        "567 = k × 9^2 = k × 81",
+        "k = 567 ÷ 81 = 7",
+        "y = 7 × 3^2 = 7 × 9 = 63"
+      ],
+      "final_answer": "63",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = kx^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "567 = k × 9^2 = k × 81",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "k = 567 ÷ 81 = 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y = 7 × 3^2 = 7 × 9 = 63",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "63 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "trig_missing_angle_higher",
+      "prompt": "In the right-angled triangle shown, find the angle x, correct to 1 decimal place.",
+      "solution_steps": [
+        "Use tan, since we know two of the three sides.",
+        "tan(x) = 24 ÷ 11",
+        "x = tan^-1(24 ÷ 11) = 65.4° (1 d.p.)"
+      ],
+      "final_answer": "65.4°",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Use tan, since we know two of the three sides.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "tan(x) = 24 ÷ 11",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = tan^-1(24 ÷ 11) = 65.4° (1 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "65.4° oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "trig_triangle",
+        "params": {
+          "adjacent_label": "11 cm",
+          "opposite_label": "24 cm",
+          "hyp_label": null,
+          "angle_label": "x°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "sine_rule",
+      "prompt": "In triangle ABC, angle A = 90°, angle B = 47°, and side a = 25 cm. Find the length of side b, correct to 3 significant figures.",
+      "solution_steps": [
+        "Use the sine rule: a / sin(A) = b / sin(B)",
+        "b = (25 × sin(47°)) ÷ sin(90°) = 18.3 cm (3 s.f.)"
+      ],
+      "final_answer": "18.3 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Use the sine rule: a / sin(A) = b / sin(B)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "b = (25 × sin(47°)) ÷ sin(90°) = 18.3 cm (3 s.f.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "18.3 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "general_triangle",
+        "params": {
+          "side_a_label": "25 cm",
+          "side_b_label": "x cm",
+          "side_c_label": null,
+          "angle_A_label": "90°",
+          "angle_B_label": "47°",
+          "angle_C_label": null
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_triangle_higher",
+      "prompt": "A triangle has angles 96°, 23°, and (4x + 37)°. Find x.",
+      "solution_steps": [
+        "Angles in a triangle sum to 180°.",
+        "4x + 37 = 61",
+        "Subtract 37 from both sides:",
+        "4x = 24",
+        "Divide both sides by 4:",
+        "x = 6"
+      ],
+      "final_answer": "6",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles in a triangle sum to 180°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x + 37 = 61",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 37 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x = 24 Divide both sides by 4: x = 6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "triangle_angles",
+        "params": {
+          "angle_labels": [
+            "96°",
+            "23°",
+            "(4x + 37)°"
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "compound_3d_surface_area",
+      "prompt": "A silo-shaped solid is made from a cuboid with a square base of side 14 cm and height 15 cm, with a square-based pyramid of height 3 cm on top (sharing the same square base). Find the total surface area, correct to 3 significant figures.",
+      "solution_steps": [
+        "Slant height of a triangular face l = √(roof height² + (base ÷ 2)²) = √(3² + (14 ÷ 2)²) ≈ 7.62 cm",
+        "Cuboid's 4 vertical faces = 4 × base × height = 4 × 14 × 15",
+        "Cuboid's base = base² = 14² (the top is covered by the pyramid, and the pyramid's own base is the same internal square, so neither is exposed)",
+        "Pyramid's 4 triangular faces = 2 × base × l = 2 × 14 × 7.62",
+        "Total surface area ≈ 1250 cm² (3 s.f.)"
+      ],
+      "final_answer": "1250 cm²",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Slant height of a triangular face l = √(roof height² + (base ÷ 2)²) = √(3² + (14 ÷ 2)²) ≈ 7.62 cm",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Cuboid's 4 vertical faces = 4 × base × height = 4 × 14 × 15",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Cuboid's base = base² = 14² (the top is covered by the pyramid, and the pyramid's own base is the same internal square, so neither is exposed)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Pyramid's 4 triangular faces = 2 × base × l = 2 × 14 × 7.62 Total surface area ≈ 1250 cm² (3 s.f.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1250 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "compound_3d",
+        "params": {
+          "variant": "cuboid_pyramid",
+          "base_label": "14 cm",
+          "roof_height_label": "3 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "tree_diagram_mixed",
+      "prompt": "A bag contains 5 green and 8 red counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the first counter is red and the second counter is red.",
+      "solution_steps": [
+        "After the first counter is picked (without replacement), there are 12 counters left.",
+        "P(green then green) = 5/13 × 1/3 = 5/39",
+        "P(green then red) = 5/13 × 2/3 = 10/39",
+        "P(red then green) = 8/13 × 5/12 = 10/39",
+        "P(red then red) = 8/13 × 7/12 = 14/39",
+        "P(the first counter is red and the second counter is red) = 14/39"
+      ],
+      "final_answer": "14/39",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "After the first counter is picked (without replacement), there are 12 counters left.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(green then green) = 5/13 × 1/3 = 5/39",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(green then red) = 5/13 × 2/3 = 10/39",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(red then green) = 8/13 × 5/12 = 10/39 P(red then red) = 8/13 × 7/12 = 14/39 P(the first counter is red and the second counter is red) = 14/39",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "14/39 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Green",
+              "5/13"
+            ],
+            [
+              "Red",
+              "8/13"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Green",
+                "1/3"
+              ],
+              [
+                "Red",
+                "2/3"
+              ]
+            ],
+            [
+              [
+                "Green",
+                "5/12"
+              ],
+              [
+                "Red",
+                "7/12"
+              ]
+            ]
+          ],
+          "leaf_probs": [
+            [
+              "5/39",
+              "10/39"
+            ],
+            [
+              "10/39",
+              "14/39"
+            ]
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "tree_diagram_dependent",
+      "prompt": "A bag contains 3 green and 5 yellow counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that both counters are the same colour.",
+      "solution_steps": [
+        "After the first counter is picked (without replacement), there are 7 counters left.",
+        "P(green then green) = 3/8 × 2/7 = 3/28",
+        "P(green then yellow) = 3/8 × 5/7 = 15/56",
+        "P(yellow then green) = 5/8 × 3/7 = 15/56",
+        "P(yellow then yellow) = 5/8 × 4/7 = 5/14",
+        "P(both counters are the same colour) = 13/28"
+      ],
+      "final_answer": "13/28",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "After the first counter is picked (without replacement), there are 7 counters left.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(green then green) = 3/8 × 2/7 = 3/28",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(green then yellow) = 3/8 × 5/7 = 15/56",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(yellow then green) = 5/8 × 3/7 = 15/56 P(yellow then yellow) = 5/8 × 4/7 = 5/14 P(both counters are the same colour) = 13/28",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "13/28 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Green",
+              "3/8"
+            ],
+            [
+              "Yellow",
+              "5/8"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Green",
+                "2/7"
+              ],
+              [
+                "Yellow",
+                "5/7"
+              ]
+            ],
+            [
+              [
+                "Green",
+                "3/7"
+              ],
+              [
+                "Yellow",
+                "4/7"
+              ]
+            ]
+          ],
+          "leaf_probs": [
+            [
+              "3/28",
+              "15/56"
+            ],
+            [
+              "15/56",
+              "5/14"
+            ]
+          ]
+        }
+      },
+      "solution_diagram": null
+    }
+  ]
+}

@@ -1,0 +1,1180 @@
+{
+  "id": "foundation-08-paper3",
+  "name": "Foundation Practice Test 8 – Paper 3 of 3",
+  "tier": "foundation",
+  "sitting_id": "foundation-08",
+  "paper_number": 3,
+  "questions": [
+    {
+      "topic_id": "factors",
+      "prompt": "Write down all the factors of 26.",
+      "solution_steps": [
+        "Check every whole number from 1 to 26 to see if it divides exactly: 1, 2, 13, 26"
+      ],
+      "final_answer": "1, 2, 13, 26",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Check every whole number from 1 to 26 to see if it divides exactly: 1, 2, 13, 26",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1, 2, 13, 26 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_equivalent_diagram",
+      "prompt": "Shape A is divided into 3 equal parts, with 2 shaded. Shape B is divided into 12 equal parts. How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
+      "solution_steps": [
+        "Shape A shows 2/3 shaded; Shape B has 12 equal parts.",
+        "Find the scale factor between the denominators: 12 ÷ 3 = 4",
+        "Multiply the shaded count by the same scale factor: 2 × 4 = 8"
+      ],
+      "final_answer": "8",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Shape A shows 2/3 shaded; Shape B has 12 equal parts.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Find the scale factor between the denominators: 12 ÷ 3 = 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply the shaded count by the same scale factor: 2 × 4 = 8",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "8 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "fraction_shapes",
+        "params": {
+          "shapes": [
+            {
+              "kind": "circle",
+              "parts": 3,
+              "shaded": 2,
+              "label": "2/3"
+            },
+            {
+              "kind": "circle",
+              "parts": 12,
+              "shaded": 0,
+              "label": "?/12"
+            }
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "fraction_shapes",
+        "params": {
+          "shapes": [
+            {
+              "kind": "circle",
+              "parts": 3,
+              "shaded": 2,
+              "label": "2/3"
+            },
+            {
+              "kind": "circle",
+              "parts": 12,
+              "shaded": 8,
+              "label": "8/12"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "negative_add_subtract",
+      "prompt": "Work out 18 - (-19).",
+      "solution_steps": [
+        "18 - (-19) = 37"
+      ],
+      "final_answer": "37",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "18 - (-19) = 37",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "37 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "decimals_ordering",
+      "prompt": "Write these values in order, starting with the smallest: 0.14, 0.88, 0.33, 8%",
+      "solution_steps": [
+        "Convert each value to a decimal: 0.14 = 0.14, 0.88 = 0.88, 0.33 = 0.33, 8% = 0.08",
+        "Order from smallest to largest: 8%, 0.14, 0.33, 0.88"
+      ],
+      "final_answer": "8%, 0.14, 0.33, 0.88",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert each value to a decimal: 0.14 = 0.14, 0.88 = 0.88, 0.33 = 0.33, 8% = 0.08",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Order from smallest to largest: 8%, 0.14, 0.33, 0.88",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "8%, 0.14, 0.33, 0.88 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "bidmas",
+      "prompt": "Work out 7^2 + 5 × 5 - 6 ÷ 2. Use the correct order of operations.",
+      "solution_steps": [
+        "Indices: 7^2 = 49",
+        "Multiplication: 5 × 5 = 25",
+        "Division: 6 ÷ 2 = 3",
+        "Addition: 49 + 25 = 74",
+        "Subtraction: 74 - 3 = 71"
+      ],
+      "final_answer": "71",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Indices: 7^2 = 49",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiplication: 5 × 5 = 25",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Division: 6 ÷ 2 = 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Addition: 49 + 25 = 74 Subtraction: 74 - 3 = 71",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "71 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "powers_foundation",
+      "prompt": "Simplify 3^2 × 3^5, giving your answer as a single power of 3.",
+      "solution_steps": [
+        "Add the powers: 2 + 5 = 7",
+        "3^2 × 3^5 = 3^7"
+      ],
+      "final_answer": "3^7",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Add the powers: 2 + 5 = 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3^2 × 3^5 = 3^7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3^7 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "number_powers_of_ten",
+      "prompt": "Work out 900 × 10.",
+      "solution_steps": [
+        "Multiplying by 10 moves the decimal point 1 place to the right.",
+        "900 × 10 = 9000"
+      ],
+      "final_answer": "9000",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiplying by 10 moves the decimal point 1 place to the right.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "900 × 10 = 9000",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "9000 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "recurring_decimal_single_digit",
+      "prompt": "The recurring decimal 0.(4) can be written as a fraction. Find this fraction in its simplest form.",
+      "solution_steps": [
+        "Let x = 0.(4), so 10x = 4.444... (only one digit repeats, so multiply by 10 to shift it one place)",
+        "Subtract: 10x - x = 4 - 0, so 9x = 4",
+        "x = 4/9 = 4/9"
+      ],
+      "final_answer": "4/9",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let x = 0.(4), so 10x = 4.444... (only one digit repeats, so multiply by 10 to shift it one place)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract: 10x - x = 4 - 0, so 9x = 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 4/9 = 4/9",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4/9 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_ordering",
+      "prompt": "Write these fractions in order, largest to smallest: 1/6, 8/9, 3/5, 1/4, 1/2",
+      "solution_steps": [
+        "Convert every fraction to the same denominator, the LCM of 6, 9, 5, 4, 2: 180",
+        "Rewrite each fraction over 180: 1/6 = 30/180, 8/9 = 160/180, 3/5 = 108/180, 1/4 = 45/180, 1/2 = 90/180",
+        "Order the numerators from largest to smallest and convert back: 8/9, 3/5, 1/2, 1/4, 1/6"
+      ],
+      "final_answer": "8/9, 3/5, 1/2, 1/4, 1/6",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert every fraction to the same denominator, the LCM of 6, 9, 5, 4, 2: 180",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rewrite each fraction over 180: 1/6 = 30/180, 8/9 = 160/180, 3/5 = 108/180, 1/4 = 45/180, 1/2 = 90/180",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Order the numerators from largest to smallest and convert back: 8/9, 3/5, 1/2, 1/4, 1/6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "8/9, 3/5, 1/2, 1/4, 1/6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_brackets_foundation",
+      "prompt": "Solve: 2(2x + 6) = 36",
+      "solution_steps": [
+        "Expand the bracket: 2(2x + 6) = 4x + 12",
+        "4x + 12 = 36",
+        "Subtract 12 from both sides:",
+        "4x = 24",
+        "Divide both sides by 4:",
+        "x = 6"
+      ],
+      "final_answer": "6",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: 2(2x + 6) = 4x + 12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x + 12 = 36",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 12 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x = 24 Divide both sides by 4: x = 6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "functions_evaluate",
+      "prompt": "f(x) = -4x + 6. Find f(8).",
+      "solution_steps": [
+        "f(8) = -4×(8) + 6",
+        "f(8) = -26"
+      ],
+      "final_answer": "-26",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "f(8) = -4×(8) + 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "f(8) = -26",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-26 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_forming_and_solving",
+      "prompt": "4 tickets and 1 programme cost £1.89 in total. 1 ticket and 4 programmes cost £1.26 in total. Form and solve a pair of simultaneous equations to find the cost of one ticket and one programme.",
+      "solution_steps": [
+        "Let x = cost of one ticket (pence), y = cost of one programme (pence).",
+        "4x + 1y = 189  (1)",
+        "1x + 4y = 126  (2)",
+        "Solving simultaneously: x = 42, y = 21"
+      ],
+      "final_answer": "ticket = £0.42, programme = £0.21",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let x = cost of one ticket (pence), y = cost of one programme (pence).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x + 1y = 189  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "1x + 4y = 126  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Solving simultaneously: x = 42, y = 21",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "ticket = £0.42, programme = £0.21 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "classify_expressions",
+      "prompt": "Is the following an expression, equation, formula, or identity?\nP = 2l + 2w",
+      "solution_steps": [
+        "Look at the statement: P = 2l + 2w.",
+        "This relates two or more DIFFERENT letters, each standing for its own real-world quantity (the perimeter P of a rectangle from its length l and width w) - it isn't just one unknown x on its own.",
+        "It's a general rule connecting those quantities: substitute known values in to work out the unknown one. Nothing here is being solved for a single numeric x, and the two sides aren't two expanded forms of the same expression.",
+        "Because it connects distinct named quantities in a real-world relationship, this is a formula."
+      ],
+      "final_answer": "formula",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Look at the statement: P = 2l + 2w.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "This relates two or more DIFFERENT letters, each standing for its own real-world quantity (the perimeter P of a rectangle from its length l and width w) - it isn't just one unknown x on its own.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "It's a general rule connecting those quantities: substitute known values in to work out the unknown one. Nothing here is being solved for a single numeric x, and the two sides aren't two expanded forms of the same expression.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Because it connects distinct named quantities in a real-world relationship, this is a formula.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "formula oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "factorise_common_factor",
+      "prompt": "Factorise: -63x + 9",
+      "solution_steps": [
+        "Find the highest common factor of -63 and 9: 9",
+        "Factorise: 9(-7x + 1)"
+      ],
+      "final_answer": "9(-7x + 1)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find the highest common factor of -63 and 9: 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: 9(-7x + 1)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "9(-7x + 1) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "factorise_quadratics_foundation",
+      "prompt": "Factorise: x^2 + 10x + 16",
+      "solution_steps": [
+        "Find two numbers that multiply to 16 and add to 10: 2 and 8",
+        "Write as two brackets: (x + 2)(x + 8)"
+      ],
+      "final_answer": "(x + 2)(x + 8)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find two numbers that multiply to 16 and add to 10: 2 and 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write as two brackets: (x + 2)(x + 8)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(x + 2)(x + 8) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "line_equation_from_graph",
+      "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
+      "solution_steps": [
+        "Gradient = rise/run = (-6 - -1) / (4 - -1) = -1",
+        "Using y = mx + c with the point (-1, -1): -1 = -1×(-1) + c, so c = -2",
+        "Equation of the line: y = -x - 2"
+      ],
+      "final_answer": "y = -x - 2",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Gradient = rise/run = (-6 - -1) / (4 - -1) = -1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Using y = mx + c with the point (-1, -1): -1 = -1×(-1) + c, so c = -2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Equation of the line: y = -x - 2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y = -x - 2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "linear",
+          "m": -1,
+          "c": -2,
+          "x_min": -2,
+          "x_max": 5,
+          "y_min": -8,
+          "y_max": 1,
+          "table_points": [
+            [
+              -1,
+              -1
+            ],
+            [
+              4,
+              -6
+            ]
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_quadratic",
+      "prompt": "Complete a table of values for y = x^2 + x for x = -3 to 3, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = x^2 + x:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: 6, 2, 0, 0, 2, 6, 12",
+        "Plot each (x, y) point and join them with a single smooth curve."
+      ],
+      "final_answer": "Quadratic curve: y = x^2 + x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = x^2 + x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 6, 2, 0, 0, 2, 6, 12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Quadratic curve: y = x^2 + x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "quadratic",
+          "a": 1,
+          "b": 1,
+          "c": 0,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -1,
+          "y_max": 13,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "quadratic",
+          "a": 1,
+          "b": 1,
+          "c": 0,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -1,
+          "y_max": 13,
+          "table_points": [
+            [
+              -3,
+              6
+            ],
+            [
+              -2,
+              2
+            ],
+            [
+              -1,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              12
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "direct_proportion",
+      "prompt": "A recipe for 4 people uses 956g of butter. How much butter is needed for 19 people?",
+      "solution_steps": [
+        "Unit value = 956g ÷ 4 = 239g",
+        "Answer = 239g × 19 = 4541g"
+      ],
+      "final_answer": "4541g",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Unit value = 956g ÷ 4 = 239g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Answer = 239g × 19 = 4541g",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4541g oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pressure",
+      "prompt": "A storage container exerts a force of 813 N over a contact area of 36 cm². Find the pressure, correct to 2 decimal places.",
+      "solution_steps": [
+        "pressure = force ÷ area",
+        "pressure = 813 ÷ 36 = 22.58 N/cm² (2 d.p.)"
+      ],
+      "final_answer": "22.58 N/cm²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "pressure = force ÷ area",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "pressure = 813 ÷ 36 = 22.58 N/cm² (2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "22.58 N/cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "percentage_change",
+      "prompt": "Increase 280 by 10%.",
+      "solution_steps": [
+        "Convert 10% to a multiplier: 1.10",
+        "Multiply: 280 × 1.10 = 308"
+      ],
+      "final_answer": "308",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 10% to a multiplier: 1.10",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply: 280 × 1.10 = 308",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "308 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_share_two_part",
+      "prompt": "Share 288 in the ratio 9:7.",
+      "solution_steps": [
+        "Total parts = 9 + 7 = 16",
+        "Value of one part = 288 ÷ 16 = 18",
+        "Share 1 = 9 × 18 = 162",
+        "Share 2 = 7 × 18 = 126"
+      ],
+      "final_answer": "162 : 126",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total parts = 9 + 7 = 16",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Value of one part = 288 ÷ 16 = 18",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 1 = 9 × 18 = 162",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 2 = 7 × 18 = 126",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "162 : 126 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "reverse_percentage_foundation",
+      "prompt": "After a 10% increase, an item costs £176. Find the original price.",
+      "solution_steps": [
+        "Convert 10% to a multiplier: 1.10 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 176 ÷ 1.10 = 160"
+      ],
+      "final_answer": "£160",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 10% to a multiplier: 1.10 (original × multiplier = new value)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide the new value by the multiplier: 176 ÷ 1.10 = 160",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£160 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "transform_reflect_describe",
+      "prompt": "Shape ABCD is reflected to give shape A'B'C'D', shown on the grid. Describe fully the single transformation that maps ABCD onto A'B'C'D'.",
+      "solution_steps": [
+        "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
+        "Comparing corresponding vertices shows the mirror line is y = -x."
+      ],
+      "final_answer": "Reflection in the line y = -x",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Comparing corresponding vertices shows the mirror line is y = -x.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Reflection in the line y = -x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              2,
+              2
+            ],
+            [
+              6,
+              2
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              1,
+              5
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "image_vertices": [
+            [
+              -2,
+              -2
+            ],
+            [
+              -2,
+              -6
+            ],
+            [
+              -6,
+              -5
+            ],
+            [
+              -5,
+              -1
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'",
+            "D'"
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "trig_missing_angle_foundation",
+      "prompt": "In the right-angled triangle shown, find the angle x, correct to 1 decimal place.",
+      "solution_steps": [
+        "Use cos, since we know two of the three sides.",
+        "cos(x) = 6 ÷ 11",
+        "x = cos^-1(6 ÷ 11) = 56.9° (1 d.p.)"
+      ],
+      "final_answer": "56.9°",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Use cos, since we know two of the three sides.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "cos(x) = 6 ÷ 11",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = cos^-1(6 ÷ 11) = 56.9° (1 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "56.9° oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "trig_triangle",
+        "params": {
+          "adjacent_label": "6 cm",
+          "opposite_label": null,
+          "hyp_label": "11 cm",
+          "angle_label": "x°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_sector_foundation",
+      "prompt": "A sector of a circle has radius 5 cm and angle 105°. Find the area of the sector, correct to 3 significant figures.",
+      "solution_steps": [
+        "Area = (θ ÷ 360) × π × r² = (105 ÷ 360) × π × 5²",
+        "= 22.9 cm² (3 s.f., using a calculator value of π)"
+      ],
+      "final_answer": "22.9 cm²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area = (θ ÷ 360) × π × r² = (105 ÷ 360) × π × 5²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 22.9 cm² (3 s.f., using a calculator value of π)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "22.9 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "sector",
+        "params": {
+          "angle": 105,
+          "radius_label": "5 cm",
+          "angle_label": "105°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_triangle",
+      "prompt": "A triangle has base 20 cm and height 14 cm. Find its area.",
+      "solution_steps": [
+        "Area = (1/2) × base × height = (1/2) × 20 × 14 = 140 cm²"
+      ],
+      "final_answer": "140 cm²",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area = (1/2) × base × height = (1/2) × 20 × 14 = 140 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "140 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "triangle_area",
+        "params": {
+          "base": 20,
+          "height": 14,
+          "base_label": "20 cm",
+          "height_label": "14 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_exterior_foundation",
+      "prompt": "An exterior angle of a triangle is x°. The two remote interior angles are 43° and 67°. Find x.",
+      "solution_steps": [
+        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+        "x = 43 + 67 = 110"
+      ],
+      "final_answer": "110",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 43 + 67 = 110",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "110 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "exterior_triangle",
+        "params": {
+          "interior1_label": "43°",
+          "interior2_label": "67°",
+          "exterior_label": "x"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "two_way_tables",
+      "prompt": "The two-way table shows the number of boys and girls who prefer football or tennis. Copy and complete the table, and state the missing value marked '?'.",
+      "solution_steps": [
+        "The missing value is in the 'Boys' row and 'Tennis' column.",
+        "Using the row total: 30 - 12 = 18",
+        "Using the column total: 30 - 12 = 18",
+        "Missing value = 18"
+      ],
+      "final_answer": "18",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The missing value is in the 'Boys' row and 'Tennis' column.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Using the row total: 30 - 12 = 18",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Using the column total: 30 - 12 = 18",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Missing value = 18",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "18 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "two_way_table",
+        "params": {
+          "row_labels": [
+            "Boys",
+            "Girls",
+            "Total"
+          ],
+          "col_labels": [
+            "Football",
+            "Tennis",
+            "Total"
+          ],
+          "cells": [
+            [
+              "12",
+              "?",
+              "30"
+            ],
+            [
+              "20",
+              "12",
+              "32"
+            ],
+            [
+              "32",
+              "30",
+              "62"
+            ]
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "two_way_table",
+        "params": {
+          "row_labels": [
+            "Boys",
+            "Girls",
+            "Total"
+          ],
+          "col_labels": [
+            "Football",
+            "Tennis",
+            "Total"
+          ],
+          "cells": [
+            [
+              "12",
+              "18",
+              "30"
+            ],
+            [
+              "20",
+              "12",
+              "32"
+            ],
+            [
+              "32",
+              "30",
+              "62"
+            ]
+          ]
+        }
+      }
+    }
+  ]
+}

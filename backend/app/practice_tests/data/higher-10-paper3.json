@@ -1,0 +1,1057 @@
+{
+  "id": "higher-10-paper3",
+  "name": "Higher Practice Test 10 – Paper 3 of 3",
+  "tier": "higher",
+  "sitting_id": "higher-10",
+  "paper_number": 3,
+  "questions": [
+    {
+      "topic_id": "roots_higher",
+      "prompt": "Simplify √125, giving your answer in the form a√b.",
+      "solution_steps": [
+        "Find the largest square factor of 125: 5^2 × 5 = 125",
+        "√125 = √(5^2 × 5) = 5√5"
+      ],
+      "final_answer": "5√5",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find the largest square factor of 125: 5^2 × 5 = 125",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√125 = √(5^2 × 5) = 5√5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5√5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simplifying_indices_challenging",
+      "prompt": "Simplify (2^3 × 2^-2)^2, giving your answer as a fraction where necessary.",
+      "solution_steps": [
+        "Add the powers inside the bracket first: 3 + -2 = 1",
+        "(2^3 × 2^-2)^2 = (2^1)^2",
+        "Multiply the powers: 1 × 2 = 2",
+        "(2^1)^2 = 2^2 = 4"
+      ],
+      "final_answer": "4",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Add the powers inside the bracket first: 3 + -2 = 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(2^3 × 2^-2)^2 = (2^1)^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply the powers: 1 × 2 = 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(2^1)^2 = 2^2 = 4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "indices_common_base_equations",
+      "prompt": "Solve 9^x = 27.",
+      "solution_steps": [
+        "Write both sides as powers of 3: 9 = 3^2 and 27 = 3^3",
+        "9^x = 27 becomes (3^2)^x = 3^3, i.e. 3^(2x) = 3^3",
+        "Since the bases match, the powers must be equal: 2x = 3",
+        "x = 3/2"
+      ],
+      "final_answer": "3/2",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Write both sides as powers of 3: 9 = 3^2 and 27 = 3^3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "9^x = 27 becomes (3^2)^x = 3^3, i.e. 3^(2x) = 3^3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Since the bases match, the powers must be equal: 2x = 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 3/2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3/2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "rationalise_denominator",
+      "prompt": "Rationalise the denominator of 4/(9 + √13), giving your answer in its simplest form.",
+      "solution_steps": [
+        "Multiply the numerator and denominator by the conjugate of the denominator, (9 - √13):",
+        "4/(9 + √13) = 4(9 - √13) / [(9 + √13)(9 - √13)]",
+        "The denominator is a difference of two squares: 9^2 - 13 = 68",
+        "The numerator is 4(9 - √13) = 36 - 4√13",
+        "Simplify by dividing numerator and denominator by 4: (9 - 1√13)/17"
+      ],
+      "final_answer": "(9 - 1√13)/17",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply the numerator and denominator by the conjugate of the denominator, (9 - √13):",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4/(9 + √13) = 4(9 - √13) / [(9 + √13)(9 - √13)]",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The denominator is a difference of two squares: 9^2 - 13 = 68",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The numerator is 4(9 - √13) = 36 - 4√13 Simplify by dividing numerator and denominator by 4: (9 - 1√13)/17",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(9 - 1√13)/17 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "prime_factors_higher",
+      "prompt": "Write 684 as a product of its prime factors, giving your answer in index form.",
+      "solution_steps": [
+        "Divide 684 repeatedly by the smallest prime that fits: 2 × 2 × 3 × 3 × 19",
+        "Write repeated factors using index notation: 684 = 2^2 × 3^2 × 19"
+      ],
+      "final_answer": "2^2 × 3^2 × 19",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Divide 684 repeatedly by the smallest prime that fits: 2 × 2 × 3 × 3 × 19",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write repeated factors using index notation: 684 = 2^2 × 3^2 × 19",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2^2 × 3^2 × 19 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_mixed_number_arithmetic",
+      "prompt": "Work out 1 1/2 - 1 1/2. Give your answer as a mixed number.",
+      "solution_steps": [
+        "Convert to improper fractions: 1 1/2 = 3/2, 1 1/2 = 3/2",
+        "Subtract the improper fractions: 3/2 - 3/2 = 0/1",
+        "Convert back to a mixed number: 0"
+      ],
+      "final_answer": "0",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert to improper fractions: 1 1/2 = 3/2, 1 1/2 = 3/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract the improper fractions: 3/2 - 3/2 = 0/1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Convert back to a mixed number: 0",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "0 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_fractions_multiply_divide",
+      "prompt": "Simplify (x^2 - 49)/(x - 1) × (x - 1)/(x - 7), giving your answer in its simplest form.",
+      "solution_steps": [
+        "Factorise the difference of two squares: (x^2 - 49) = (x - 7)(x + 7)",
+        "(x - 7)(x + 7)/(x - 1) × (x - 1)/(x - 7)",
+        "Cancel the common factors (x - 1) and (x - 7):",
+        "= x + 7"
+      ],
+      "final_answer": "x + 7",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Factorise the difference of two squares: (x^2 - 49) = (x - 7)(x + 7)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(x - 7)(x + 7)/(x - 1) × (x - 1)/(x - 7)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Cancel the common factors (x - 1) and (x - 7):",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= x + 7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x + 7 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "turning_point_of_graph",
+      "prompt": "Find the coordinates of the turning point of the curve y = x^2 - 2x + 12.",
+      "solution_steps": [
+        "Complete the square: x^2 - 2x + 12 = (x - 1)^2 + 11",
+        "The turning point of y = (x + p)^2 + q is (-p, q).",
+        "Turning point = (1, 11)"
+      ],
+      "final_answer": "(1, 11)",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Complete the square: x^2 - 2x + 12 = (x - 1)^2 + 11",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Turning point = (1, 11)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(1, 11) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "parabola",
+        "params": {
+          "vertex_label": "(1, 11)"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_fractions_add_subtract",
+      "prompt": "Simplify 4/(x - 1) + 8/(x - 7), giving your answer as a single fraction.",
+      "solution_steps": [
+        "Write both fractions over the common denominator (x - 1)(x - 7):",
+        "4/(x - 1) + 8/(x - 7) = (4(x - 7) + 8(x - 1))/(x - 1)(x - 7)",
+        "Expand the numerator: 4(x - 7) + 8(x - 1) = 12x - 36",
+        "= (12x - 36)/(x - 1)(x - 7)"
+      ],
+      "final_answer": "(12x - 36)/(x - 1)(x - 7)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Write both fractions over the common denominator (x - 1)(x - 7):",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4/(x - 1) + 8/(x - 7) = (4(x - 7) + 8(x - 1))/(x - 1)(x - 7)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand the numerator: 4(x - 7) + 8(x - 1) = 12x - 36",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= (12x - 36)/(x - 1)(x - 7)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(12x - 36)/(x - 1)(x - 7) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "change_subject_higher",
+      "prompt": "Make x the subject of the formula y = 6x + 8x + 2.",
+      "solution_steps": [
+        "y = 6x + 8x + 2",
+        "Subtract 2 from both sides: y - 2 = 6x + 8x",
+        "Factorise the right-hand side: y - 2 = (14)x",
+        "Divide both sides by 14: x = (y - 2)/14"
+      ],
+      "final_answer": "x = (y - 2)/14",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = 6x + 8x + 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 2 from both sides: y - 2 = 6x + 8x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise the right-hand side: y - 2 = (14)x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 14: x = (y - 2)/14",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = (y - 2)/14 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "perpendicular_lines_equation",
+      "prompt": "A line is perpendicular to y = 2x - 7 and passes through the point (-1, -3). Find the equation of the line.",
+      "solution_steps": [
+        "Perpendicular gradients multiply to give -1: m × 2 = -1, so m = -1/2",
+        "Substitute (-1, -3) into y = -1/2x + c: -3 = -1/2×(-1) + c, so c = -7/2",
+        "Equation of the line: y = -1/2x - 7/2"
+      ],
+      "final_answer": "y = -1/2x - 7/2",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Perpendicular gradients multiply to give -1: m × 2 = -1, so m = -1/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute (-1, -3) into y = -1/2x + c: -3 = -1/2×(-1) + c, so c = -7/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Equation of the line: y = -1/2x - 7/2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y = -1/2x - 7/2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "expand_double_brackets",
+      "prompt": "Expand: (6x + 3)(2x + 1)",
+      "solution_steps": [
+        "First: 6x × 2x = 12x^2",
+        "Outer: 6x × 1 = 6x",
+        "Inner: 3 × 2x = 6x",
+        "Last: 3 × 1 = 3",
+        "Combine like terms: 12x^2 + 12x + 3"
+      ],
+      "final_answer": "12x^2 + 12x + 3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First: 6x × 2x = 12x^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Outer: 6x × 1 = 6x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Inner: 3 × 2x = 6x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Last: 3 × 1 = 3 Combine like terms: 12x^2 + 12x + 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "12x^2 + 12x + 3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_cubic",
+      "prompt": "Complete a table of values for y = x^3 - 3x for x = -3 to 3, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = x^3 - 3x:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: -18, -2, 2, 0, -2, 2, 18",
+        "Plot each (x, y) point and join them with a single smooth curve."
+      ],
+      "final_answer": "Cubic curve: y = x^3 - 3x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = x^3 - 3x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: -18, -2, 2, 0, -2, 2, 18",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Cubic curve: y = x^3 - 3x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": 1,
+          "b": -3,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -20,
+          "y_max": 20,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": 1,
+          "b": -3,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -20,
+          "y_max": 20,
+          "table_points": [
+            [
+              -3,
+              -18
+            ],
+            [
+              -2,
+              -2
+            ],
+            [
+              -1,
+              2
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              -2
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              18
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "speed_with_conversions",
+      "prompt": "A motorbike travels 45 km in 50 minutes. Find its average speed in km/h, correct to 1 decimal place.",
+      "solution_steps": [
+        "Convert time to hours: 50 minutes = 50 ÷ 60 hours",
+        "speed = distance ÷ time = 45 ÷ (50 ÷ 60) = 54 km/h (1 d.p.)"
+      ],
+      "final_answer": "54 km/h",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert time to hours: 50 minutes = 50 ÷ 60 hours",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "speed = distance ÷ time = 45 ÷ (50 ÷ 60) = 54 km/h (1 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "54 km/h oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "percentage_increase_decrease_calculator",
+      "prompt": "Using a calculator, increase £756.00 by 3.6%. Give your answer to 2 decimal places.",
+      "solution_steps": [
+        "Convert 3.6% to a multiplier: 1.036",
+        "Multiply: £756.00 × 1.036 = £783.22 (calculator, 2 d.p.)"
+      ],
+      "final_answer": "£783.22",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 3.6% to a multiplier: 1.036",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply: £756.00 × 1.036 = £783.22 (calculator, 2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£783.22 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "compound_percentage",
+      "prompt": "A price of £152 increases by 17.5%, then decreases by 35%. Find the final price.",
+      "solution_steps": [
+        "After the first change: 152 × 1.18 = 178.60",
+        "After the second change: 178.60 × 0.65 = 116.09"
+      ],
+      "final_answer": "£116.09",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "After the first change: 152 × 1.18 = 178.60",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "After the second change: 178.60 × 0.65 = 116.09",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£116.09 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pressure_higher",
+      "prompt": "A machine foot has a rectangular base measuring 18 cm × 17 cm and exerts a force of 4800 N. Find the pressure it exerts, correct to 2 decimal places.",
+      "solution_steps": [
+        "area = length × width = 18 × 17 = 306 cm²",
+        "pressure = force ÷ area = 4800 ÷ 306 = 15.69 N/cm² (2 d.p.)"
+      ],
+      "final_answer": "15.69 N/cm²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "area = length × width = 18 × 17 = 306 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "pressure = force ÷ area = 4800 ÷ 306 = 15.69 N/cm² (2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "15.69 N/cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_difference_higher",
+      "prompt": "Amounts are in the ratio 3:6:2. The difference between the largest and smallest amount is 60. Find all three amounts.",
+      "solution_steps": [
+        "Difference in parts = 6 - 2 = 4 parts",
+        "Value of one part = 60 ÷ 4 = 15",
+        "Amount 1 = 3 × 15 = 45",
+        "Amount 2 = 6 × 15 = 90",
+        "Amount 3 = 2 × 15 = 30"
+      ],
+      "final_answer": "45 : 90 : 30",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Difference in parts = 6 - 2 = 4 parts",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Value of one part = 60 ÷ 4 = 15",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Amount 1 = 3 × 15 = 45",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Amount 2 = 6 × 15 = 90 Amount 3 = 2 × 15 = 30",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "45 : 90 : 30 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_subtract_compound",
+      "prompt": "A rectangular sheet of metal 18 cm by 15 cm has a rectangular hole 5 cm by 12 cm cut from its centre. Find the remaining area.",
+      "solution_steps": [
+        "Area of large rectangle = 18 × 15 = 270 cm²",
+        "Area of rectangular hole = 5 × 12 = 60 cm²",
+        "Remaining area = 270 - 60 = 210 cm²"
+      ],
+      "final_answer": "210 cm²",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area of large rectangle = 18 × 15 = 270 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of rectangular hole = 5 × 12 = 60 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Remaining area = 270 - 60 = 210 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "210 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "l_shape",
+        "params": {
+          "outer_w": 18,
+          "outer_h": 15,
+          "inner_w": 5,
+          "inner_h": 12,
+          "notch": "center",
+          "outer_labels": [
+            "18 cm",
+            "15 cm"
+          ],
+          "inner_labels": [
+            "5 cm",
+            "12 cm"
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "trig_missing_angle_higher",
+      "prompt": "In the right-angled triangle shown, find the angle x, correct to 1 decimal place.",
+      "solution_steps": [
+        "Use cos, since we know two of the three sides.",
+        "cos(x) = 37 ÷ 38",
+        "x = cos^-1(37 ÷ 38) = 13.2° (1 d.p.)"
+      ],
+      "final_answer": "13.2°",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Use cos, since we know two of the three sides.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "cos(x) = 37 ÷ 38",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = cos^-1(37 ÷ 38) = 13.2° (1 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "13.2° oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "trig_triangle",
+        "params": {
+          "adjacent_label": "37 cm",
+          "opposite_label": null,
+          "hyp_label": "38 cm",
+          "angle_label": "x°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "congruent_triangle_proof",
+      "prompt": "ABCD is a parallelogram with AB parallel to DC, and AC is one of its diagonals. Prove that the two triangles are congruent.",
+      "solution_steps": [
+        "angle BAC = angle DCA (alternate angles, AB parallel to DC)",
+        "AC is common to both triangles",
+        "angle BCA = angle DAC (alternate angles, BC parallel to AD)",
+        "By Angle-Side-Angle (ASA), the triangles are congruent.",
+        "Since two angles and the included side match, triangles ABC and CDA are congruent."
+      ],
+      "final_answer": "Triangles are congruent (ASA).",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "angle BAC = angle DCA (alternate angles, AB parallel to DC)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "AC is common to both triangles",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "angle BCA = angle DAC (alternate angles, BC parallel to AD)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "By Angle-Side-Angle (ASA), the triangles are congruent. Since two angles and the included side match, triangles ABC and CDA are congruent.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Triangles are congruent (ASA). oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "two_triangle_congruence",
+        "params": {
+          "labels_1": [
+            "A",
+            "B",
+            "C"
+          ],
+          "labels_2": [
+            "C",
+            "D",
+            "A"
+          ],
+          "ticks_1": [
+            [
+              2,
+              0,
+              1
+            ]
+          ],
+          "ticks_2": [
+            [
+              2,
+              0,
+              1
+            ]
+          ],
+          "arcs_1": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          "arcs_2": [
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              2
+            ]
+          ],
+          "note": "AC is common to both triangles."
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_mixed_compound",
+      "prompt": "A shape is made from a rectangle 19 cm by 7 cm, with a triangular roof of height 4 cm on top, and a quarter-circle of radius 3 cm cut from one bottom corner. Find the total area, correct to 3 significant figures.",
+      "solution_steps": [
+        "Rectangle area = 19 × 7 = 133 cm²",
+        "Triangle roof area = ½ × 19 × 4 = 38 cm²",
+        "Quarter-circle cut area = (π × 3²) ÷ 4 ≈ 7.07 cm²",
+        "Total area = 133 + 38 - 7.07 ≈ 164 cm²"
+      ],
+      "final_answer": "164 cm²",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Rectangle area = 19 × 7 = 133 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Triangle roof area = ½ × 19 × 4 = 38 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Quarter-circle cut area = (π × 3²) ÷ 4 ≈ 7.07 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total area = 133 + 38 - 7.07 ≈ 164 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "164 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "mixed_compound",
+        "params": {
+          "width": 19,
+          "height": 7,
+          "roof_height": 4,
+          "cut_radius": 3,
+          "width_label": "19 cm",
+          "height_label": "7 cm",
+          "roof_label": "4 cm",
+          "cut_label": "3 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "tree_diagram_mixed",
+      "prompt": "A bag contains 3 blue and 6 green counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that both counters are the same colour.",
+      "solution_steps": [
+        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(blue) = 1/3, P(green) = 2/3.",
+        "P(both blue) = 1/3 × 1/3 = 1/9",
+        "P(both green) = 2/3 × 2/3 = 4/9",
+        "P(same colour) = 1/9 + 4/9 = 5/9"
+      ],
+      "final_answer": "5/9",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(blue) = 1/3, P(green) = 2/3.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(both blue) = 1/3 × 1/3 = 1/9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(both green) = 2/3 × 2/3 = 4/9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(same colour) = 1/9 + 4/9 = 5/9",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5/9 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Blue",
+              "1/3"
+            ],
+            [
+              "Green",
+              "2/3"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Blue",
+                "1/3"
+              ],
+              [
+                "Green",
+                "2/3"
+              ]
+            ],
+            [
+              [
+                "Blue",
+                "1/3"
+              ],
+              [
+                "Green",
+                "2/3"
+              ]
+            ]
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "product_rule_counting",
+      "prompt": "A shop sells 2 different shirts, 2 different pairs of trousers and 4 different pairs of shoes. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "solution_steps": [
+        "Total combinations = 2 × 2 × 4 = 16"
+      ],
+      "final_answer": "16",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total combinations = 2 × 2 × 4 = 16",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "16 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    }
+  ]
+}

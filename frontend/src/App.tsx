@@ -50,7 +50,8 @@ function App() {
           <section className="practice-tests-section">
             <h2 className="practice-tests-section__heading">Practice Tests</h2>
             <p className="practice-tests-section__subtitle">
-              Fixed, exam-style papers - 10 Foundation and 10 Higher, 100 marks each.
+              Fixed, exam-style papers - 10 Foundation and 10 Higher practice tests, each a sitting of 3
+              papers, 100 marks and 1 hour 30 minutes per paper.
             </p>
             <button
               type="button"
@@ -58,7 +59,7 @@ function App() {
               onClick={() => setPracticeTestsOpen(true)}
             >
               <h2 className="section-card__name">Practice Tests</h2>
-              <p className="section-card__count">20 papers</p>
+              <p className="section-card__count">20 practice tests · 60 papers</p>
             </button>
           </section>
         </>

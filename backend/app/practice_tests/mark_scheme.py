@@ -1,11 +1,18 @@
 """Derives an OCR-style mark breakdown (M1/A1/B1 marking points) from a
 frozen question's own solution_steps/final_answer. Deliberately generic and
 data-driven rather than hand-authored per topic - see CLAUDE.md's Practice
-Tests entry for why: this is a systematic approximation of OCR marking
-convention, not lifted from a real mark scheme (no reference papers to
-calibrate against). Every M1's description is the actual generated working
-line; the A1/B1's description is the actual generated final_answer - nothing
-here is invented text unrelated to the real question content.
+Tests entry for why. Calibrated against the real "Subject-Specific Marking
+Instructions" read directly from actual OCR mark schemes spanning June 2017
+to June 2024 (Foundation and Higher): M marks reward a correct method and
+aren't lost for purely numerical errors; A marks require a preceding M mark;
+B marks are independent of method marks. The `oe` (or equivalent) abbreviation
+is still current throughout 2017-2024; `cao` ("correct answer only") was an
+explicitly-defined abbreviation in the 2017/2019 schemes but is dropped from
+the 2022/2024 ones in favour of plain accepted-answer wording - this module
+follows the current (2022+) convention, not the retired one. Every M1's
+description is the actual generated working line; the A1/B1's description is
+the actual generated final_answer - nothing here is invented text unrelated
+to the real question content.
 """
 
 import re
@@ -37,7 +44,7 @@ def build_mark_scheme(solution_steps: tuple[str, ...], final_answer: str) -> tup
         method_texts = steps[:n_method]
 
     method_points = tuple(MarkPoint(code="M1", description=text, marks=1) for text in method_texts)
-    accuracy_point = MarkPoint(code="A1", description=f"{final_answer} oe (cao)", marks=1)
+    accuracy_point = MarkPoint(code="A1", description=f"{final_answer} oe", marks=1)
 
     marks = n_method + 1
     return marks, method_points + (accuracy_point,)

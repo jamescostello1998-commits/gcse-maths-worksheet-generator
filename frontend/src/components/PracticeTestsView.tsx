@@ -1,7 +1,23 @@
 import { useState } from 'react'
-import type { Tier } from '../api/types'
+import type { PracticeTestSummary, Tier } from '../api/types'
 import { usePracticeTests } from '../hooks/usePracticeTests'
 import { PracticeTestCard } from './PracticeTestCard'
+
+function groupBySitting(papers: PracticeTestSummary[]): PracticeTestSummary[][] {
+  const bySitting = new Map<string, PracticeTestSummary[]>()
+  for (const paper of papers) {
+    const group = bySitting.get(paper.sittingId)
+    if (group) {
+      group.push(paper)
+    } else {
+      bySitting.set(paper.sittingId, [paper])
+    }
+  }
+  for (const group of bySitting.values()) {
+    group.sort((a, b) => a.paperNumber - b.paperNumber)
+  }
+  return Array.from(bySitting.values())
+}
 
 interface PracticeTestsViewProps {
   onBack: () => void
@@ -26,7 +42,7 @@ export function PracticeTestsView({ onBack }: PracticeTestsViewProps) {
         {!loading && !error && (
           <div className="tier-picker">
             {TIERS.map((tier) => {
-              const count = practiceTests.filter((p) => p.tier === tier).length
+              const count = groupBySitting(practiceTests.filter((p) => p.tier === tier)).length
               const isEmpty = count === 0
               return (
                 <button
@@ -38,7 +54,7 @@ export function PracticeTestsView({ onBack }: PracticeTestsViewProps) {
                 >
                   <span className="tier-picker__name">{TIER_LABELS[tier]}</span>
                   <span className="tier-picker__count">
-                    {isEmpty ? 'No papers yet' : `${count} paper${count === 1 ? '' : 's'}`}
+                    {isEmpty ? 'No papers yet' : `${count} practice test${count === 1 ? '' : 's'}`}
                   </span>
                 </button>
               )
@@ -49,7 +65,7 @@ export function PracticeTestsView({ onBack }: PracticeTestsViewProps) {
     )
   }
 
-  const filtered = practiceTests.filter((p) => p.tier === selectedTier)
+  const sittings = groupBySitting(practiceTests.filter((p) => p.tier === selectedTier))
 
   return (
     <div className="section-view">
@@ -60,8 +76,8 @@ export function PracticeTestsView({ onBack }: PracticeTestsViewProps) {
         Practice Tests <span className="section-view__tier">· {TIER_LABELS[selectedTier]}</span>
       </h2>
       <div className="topic-grid">
-        {filtered.map((paper) => (
-          <PracticeTestCard key={paper.id} paper={paper} />
+        {sittings.map((papers) => (
+          <PracticeTestCard key={papers[0].sittingId} papers={papers} />
         ))}
       </div>
     </div>

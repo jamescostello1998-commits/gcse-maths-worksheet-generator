@@ -613,7 +613,13 @@ def draw_general_triangle(params: dict) -> Drawing:
     if params.get("side_b_label"):
         d.add(_label(mid_ac[0] - 12, mid_ac[1] + 2, params["side_b_label"], anchor="end", size=8))
     if params.get("side_c_label"):
-        d.add(_label(mid_ab[0], mid_ab[1] - 12, params["side_c_label"], size=8))
+        # Kept closer to the base than the original -12 offset - with only
+        # 28 units of canvas below the base (A/B sit at y=28, canvas bottom
+        # at y=0) a -12 offset left just 6 units of clearance above the
+        # "Diagram NOT accurately drawn" caption at y=10, which visibly
+        # overlapped it once a real caller labelled all three sides at once
+        # (found by rendering the formulae-sheet triangle, not a unit test).
+        d.add(_label(mid_ab[0], mid_ab[1] - 8, params["side_c_label"], size=8))
 
     centroid = ((A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3)
 
