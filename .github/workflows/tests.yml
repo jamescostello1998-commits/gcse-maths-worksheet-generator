@@ -8,7 +8,13 @@ on:
 jobs:
   backend:
     name: Backend (pytest)
-    runs-on: ubuntu-latest
+    # windows-latest, not ubuntu-latest: app/pdf/fraction_images.py hardcodes
+    # Windows TrueType font paths (C:\Windows\Fonts\arial.ttf/arialbd.ttf) by
+    # design, matching this app's own local-Windows-dev-tool identity (see
+    # CLAUDE.md's "Environment gotchas" section) - those paths don't exist on
+    # Linux runners, which fails every PDF-rendering test that touches a
+    # fraction with `OSError: cannot open resource`.
+    runs-on: windows-latest
     defaults:
       run:
         working-directory: backend
