@@ -2067,7 +2067,15 @@ started. They were installed mid-session:
   ```powershell
   $env:Path = "C:\Users\James\AppData\Local\NodePortable\node-v22.14.0-win-x64;" + $env:Path
   ```
-- **GitHub CLI**: installed via winget, works normally (`gh auth status` to check).
+- **GitHub CLI**: installed via winget (`winget install --id GitHub.cli`), but **not
+  on PATH** in a fresh Bash/PowerShell tool session — `gh` alone gives "not
+  recognized"/"command not found" even right after a successful install, and
+  `winget list --id GitHub.cli` can even come back empty if it was reinstalled since
+  (don't take that as proof it's missing; check the real path first). Call it via its
+  full path instead: `& "C:\Program Files\GitHub CLI\gh.exe" <args>` in PowerShell, or
+  the equivalent in Bash. Auth persists across reinstalls (keyring-backed), so
+  `gh auth status` via the full path should already show logged in — no need to
+  `gh auth login` again.
 - **Console/terminal Unicode**: printing strings containing `⁻¹`, `°`, etc. straight to
   a PowerShell/cp1252 console can throw `UnicodeEncodeError` even though the *PDF*
   renders those characters fine (or, in the `⁻` case specifically, doesn't — see the
