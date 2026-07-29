@@ -665,6 +665,76 @@ def _north_arrow(x: float, y: float, length: float = 13, color=INK) -> Group:
     return group
 
 
+def _draw_bearings_single_leg(params: dict) -> Drawing:
+    """A simpler 2-point bearings diagram (a single leg from A to B), for
+    Foundation-level bearings questions (back bearings / reading a bearing
+    directly) that don't need the full cosine-rule triangle - draw_bearings
+    always drawing a third point/second leg/second arc had no clean way to
+    represent just one leg through params alone (found while adding this
+    mode: setting bearing_at_B to the back bearing degenerates point C onto
+    A instead of omitting it). North arrow + bearing arc are always drawn at
+    A (the given bearing); an arc at B is only added if
+    answer_bearing_at_B is given (the solution page revealing a derived
+    bearing, e.g. a back bearing - never shown on the question page)."""
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    label_A, label_B = params["labels"]
+    bearing_at_A = params["bearing_at_A"]
+    answer_bearing_at_B = params.get("answer_bearing_at_B")
+
+    def unit_vector(bearing_deg: float) -> tuple:
+        rad = math.radians(bearing_deg)
+        return (math.sin(rad), math.cos(rad))
+
+    A = (0.0, 0.0)
+    B = unit_vector(bearing_at_A)
+
+    xs, ys = (A[0], B[0]), (A[1], B[1])
+    x_span, y_span = (max(xs) - min(xs)) or 1.0, (max(ys) - min(ys)) or 1.0
+    margin_side, margin_top, margin_bottom = 40, 38, 34
+    scale = min(
+        (DIAGRAM_WIDTH - 2 * margin_side) / x_span,
+        (DIAGRAM_HEIGHT - margin_top - margin_bottom) / y_span,
+    )
+    ox = (DIAGRAM_WIDTH - x_span * scale) / 2 - min(xs) * scale
+    oy = margin_bottom - min(ys) * scale
+
+    def to_px(p: tuple) -> tuple:
+        return (p[0] * scale + ox, p[1] * scale + oy)
+
+    pA, pB = to_px(A), to_px(B)
+
+    d.add(Line(pA[0], pA[1], pB[0], pB[1], strokeColor=INK, strokeWidth=1.2))
+
+    mx, my = (pA[0] + pB[0]) / 2, (pA[1] + pB[1]) / 2
+    vx, vy = pB[0] - pA[0], pB[1] - pA[1]
+    length = math.hypot(vx, vy) or 1.0
+    perp = (-vy / length, vx / length)
+    anchor = "start" if perp[0] >= 0 else "end"
+    d.add(_label(mx + perp[0] * 14, my + perp[1] * 14, params["leg1_label"], anchor=anchor, size=8))
+
+    for p, label in ((pA, label_A), (pB, label_B)):
+        d.add(Circle(p[0], p[1], 1.8, strokeColor=INK, fillColor=INK))
+        vx2, vy2 = p[0] - mx, p[1] - my
+        vdist = math.hypot(vx2, vy2) or 1.0
+        ux, uy = vx2 / vdist, vy2 / vdist
+        if uy > 0.6:
+            # Same fix as the two-leg diagram: don't push a vertex label
+            # straight up into that point's own north arrow/arc/"N" label.
+            ux, uy = (1.0 if ux >= 0 else -1.0), 0.2
+            norm = math.hypot(ux, uy)
+            ux, uy = ux / norm, uy / norm
+        d.add(_label(p[0] + ux * 14, p[1] + uy * 14, label, size=8))
+
+    d.add(_north_arrow(pA[0], pA[1]))
+    d.add(_bearing_arc(pA[0], pA[1], bearing_at_A))
+    if answer_bearing_at_B is not None:
+        d.add(_north_arrow(pB[0], pB[1]))
+        d.add(_bearing_arc(pB[0], pB[1], answer_bearing_at_B, color=ACCENT))
+
+    _not_to_scale(d)
+    return d
+
+
 def draw_bearings(params: dict) -> Drawing:
     """Schematic (not to scale) diagram for a two-leg bearings problem: from
     A, travel on a given bearing to B, then from B on a second bearing to C.
@@ -676,7 +746,13 @@ def draw_bearings(params: dict) -> Drawing:
     outward from the triangle's own centroid (same idiom as
     draw_general_triangle/draw_grid_transformation) since the shape's
     orientation varies with the random bearings, unlike those diagrams'
-    fixed schematic vertices."""
+    fixed schematic vertices.
+
+    A single-leg (2-point) variant is used instead whenever bearing_at_B is
+    omitted - see _draw_bearings_single_leg."""
+    if params.get("bearing_at_B") is None:
+        return _draw_bearings_single_leg(params)
+
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     label_A, label_B, label_C = params["labels"]
     bearing_at_A, bearing_at_B = params["bearing_at_A"], params["bearing_at_B"]
@@ -1005,7 +1081,18 @@ def _nice_tick_step(lo: float, hi: float) -> float:
         return 2
     if span <= 50:
         return 5
-    return 10
+    if span <= 100:
+        return 10
+    if span <= 200:
+        return 20
+    if span <= 500:
+        return 50
+    # No existing caller reached a span this large before trig_graph (0-360
+    # degrees) - found by rendering an actual worksheet and seeing every
+    # integer from 1 to 360 crammed into the tick labels, since the old
+    # flat "step=10 for any span>50" never scaled further. These extra
+    # tiers are purely additive for spans no prior topic ever used.
+    return 100
 
 
 def _draw_scaled_axes(
@@ -1084,6 +1171,14 @@ def _fn_value(kind: str, x: float, params: dict) -> float:
         return params["a"] * x**3 + params["b"] * x
     if kind == "reciprocal":
         return params["a"] / x
+    if kind == "exponential":
+        return params["a"] * params["base"] ** x
+    if kind == "trigonometric":
+        # sin/cos only - both continuous everywhere, unlike tan (which has
+        # vertical asymptotes at 90 degrees/270 degrees and would need the
+        # same branch-splitting draw_function_graph's reciprocal kind uses).
+        fn = {"sin": math.sin, "cos": math.cos}[params["fn"]]
+        return params.get("sign", 1) * fn(math.radians(x))
     raise ValueError(f"unknown function graph kind: {kind!r}")
 
 
@@ -2051,6 +2146,57 @@ def draw_time_series(params: dict) -> Drawing:
     return d
 
 
+def draw_scatter_graph(params: dict) -> Drawing:
+    """A scatter graph through params['points'] (a list of (x, y) pairs) -
+    unlike draw_time_series/draw_cumulative_frequency, points are plotted as
+    unconnected markers only (no PolyLine), since a scatter graph's x-values
+    have no implied order/sequence to join. params['blank'] draws axes only.
+    params['best_fit'] (optional {"m", "c"}) draws a single straight line of
+    best fit spanning the full x-range - a genuinely new element with no
+    precedent in draw_time_series/draw_cumulative_frequency, since neither
+    of those diagram kinds ever draws a second, independent line alongside
+    the data."""
+    points: list = params["points"]
+    blank = params.get("blank", False)
+    best_fit = params.get("best_fit")
+    x_label = params.get("x_label", "x")
+    y_label = params.get("y_label", "y")
+
+    xs = [p[0] for p in points]
+    ys = [p[1] for p in points]
+    x_span_raw = (max(xs) - min(xs)) or 1
+    y_span_raw = (max(ys) - min(ys)) or 1
+    x_min, x_max = min(xs) - x_span_raw * 0.1, max(xs) + x_span_raw * 0.1
+    y_min_raw, y_max_raw = min(ys) - y_span_raw * 0.15, max(ys) + y_span_raw * 0.15
+    y_min = max(0, y_min_raw) if min(ys) >= 0 else y_min_raw
+    y_max = y_max_raw
+
+    width, height = 230, 150
+    margin_l, margin_r, margin_t, margin_b = 30, 12, 10, 24
+    plot_w, plot_h = width - margin_l - margin_r, height - margin_t - margin_b
+    d = Drawing(width, height)
+
+    to_px = _draw_stats_axes(
+        d, margin_l, margin_b, plot_w, plot_h, x_min, x_max, y_min, y_max,
+        x_label=x_label, y_label=y_label,
+    )
+
+    if not blank:
+        for x, y in points:
+            px, py = to_px(x, y)
+            d.add(Circle(px, py, 1.8, strokeColor=INK, fillColor=None, strokeWidth=1.1))
+
+        if best_fit is not None:
+            m, c = best_fit["m"], best_fit["c"]
+            x0, x1 = x_min, x_max
+            y0, y1 = m * x0 + c, m * x1 + c
+            px0, py0 = to_px(x0, y0)
+            px1, py1 = to_px(x1, y1)
+            d.add(Line(px0, py0, px1, py1, strokeColor=ACCENT, strokeWidth=1.3))
+
+    return d
+
+
 def draw_fraction_shapes(params: dict) -> Drawing:
     """One or more shapes (bar or circle), each divided into `parts` equal
     segments with `shaded` of them filled - illustrates a fraction shaded/parts.
@@ -2265,6 +2411,74 @@ def draw_triangular_prism(params: dict) -> Drawing:
     d.add(_label(A[0] - 10, (A[1] + C[1]) / 2, params["triangle_height_label"], anchor="end"))
     d.add(_label((B[0] + B2[0]) / 2 + 6, (B[1] + B2[1]) / 2 - 4, params["length_label"], anchor="start", size=8))
     _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
+    return d
+
+
+def draw_plans_and_elevations(params: dict) -> Drawing:
+    """Three flat orthographic views (front elevation, side elevation, plan)
+    of a solid, laid out in the standard first-angle arrangement - plan
+    directly below the front view (sharing its width), side view directly
+    to the right of the front view (sharing its height). Genuinely
+    different in style from every other 3D diagram in this file
+    (draw_cuboid, draw_triangular_prism, etc.), which all use oblique/
+    cavalier projection via _offset() - no existing helper produces true
+    orthographic projections, so this is built from scratch with plain flat
+    Rect/Polygon shapes, each sized proportionally to the solid's real
+    dimensions from a single shared scale (not just topologically laid out,
+    unlike draw_net's unfolded-face diagrams).
+
+    Every solid here reduces to the same three shapes by the same
+    reasoning: the plan view and side view are always plain rectangles
+    (the silhouette swept along the length is constant), and only the
+    front view varies with the solid's actual cross-section (a rectangle
+    for a cuboid, a right-angled triangle for a triangular prism)."""
+    shape = params["shape"]
+    if shape == "cuboid":
+        dim_x, dim_y, dim_z = params["length"], params["height"], params["width"]
+        x_label, y_label, z_label = params["length_label"], params["height_label"], params["width_label"]
+        front_kind = "rect"
+    elif shape == "triangular_prism":
+        dim_x, dim_y, dim_z = params["base"], params["tri_height"], params["length"]
+        x_label, y_label, z_label = params["base_label"], params["tri_height_label"], params["length_label"]
+        front_kind = "triangle"
+    else:
+        raise ValueError(f"unknown plans/elevations shape: {shape!r}")
+
+    cell = 60
+    scale = cell / max(dim_x, dim_y, dim_z)
+    sx, sy, sz = dim_x * scale, dim_y * scale, dim_z * scale
+
+    gap = 16
+    margin_l, margin_bottom = 50, 26
+    fx0 = margin_l
+    fy0 = margin_bottom + sz + gap
+
+    d_width = fx0 + sx + gap + sz + 20
+    d_height = fy0 + sy + 22
+    d = Drawing(d_width, d_height)
+
+    d.add(_label(fx0 + sx / 2, fy0 + sy + 14, "Front elevation", size=7.5))
+    d.add(_label(fx0 + sx + gap + sz / 2, fy0 + sy + 14, "Side elevation", size=7.5))
+    d.add(_label(fx0 + sx / 2, margin_bottom - 12, "Plan view", size=7.5))
+
+    if front_kind == "rect":
+        d.add(Rect(fx0, fy0, sx, sy, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    else:
+        d.add(Polygon(
+            [fx0, fy0, fx0 + sx, fy0, fx0, fy0 + sy],
+            strokeColor=INK, fillColor=None, strokeWidth=1.2,
+        ))
+        s = 7
+        d.add(Rect(fx0, fy0, s, s, strokeColor=INK, fillColor=None, strokeWidth=1))
+
+    d.add(Rect(fx0, margin_bottom, sx, sz, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    d.add(Rect(fx0 + sx + gap, fy0, sz, sy, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+
+    d.add(_label(fx0 + sx / 2, fy0 - 10, x_label, size=8))
+    d.add(_label(fx0 - 8, fy0 + sy / 2, y_label, anchor="end", size=8))
+    d.add(_label(fx0 + sx + gap + sz / 2, fy0 - 10, z_label, size=8))
+    d.add(_label(fx0 - 8, margin_bottom + sz / 2, z_label, anchor="end", size=8))
+
     return d
 
 
@@ -2577,6 +2791,8 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "histogram": draw_histogram,
     "cumulative_frequency": draw_cumulative_frequency,
     "time_series": draw_time_series,
+    "scatter_graph": draw_scatter_graph,
+    "plans_and_elevations": draw_plans_and_elevations,
     "number_line": draw_number_line,
     "fraction_shapes": draw_fraction_shapes,
     "dice": draw_dice,

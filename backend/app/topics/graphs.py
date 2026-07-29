@@ -204,6 +204,140 @@ def generate_plot_cubic(tier: Tier, rng: random.Random) -> Question:
     )
 
 
+def generate_plot_exponential(tier: Tier, rng: random.Random) -> Question:
+    a = rng.randint(1, 8)
+    base = rng.choice([2, 3])
+    xs = list(range(0, 5))
+    ys = [a * base**x for x in xs]
+
+    # Independent check: the ratio between consecutive y-values must be
+    # constant and equal to the base - a genuinely different computation
+    # path than the direct a * base**x exponentiation used to build the
+    # table above.
+    ratios = {ys[i + 1] / ys[i] for i in range(len(ys) - 1)}
+    if ratios != {float(base)}:
+        raise ValueError("plot_exponential verification failed: non-constant ratio")
+
+    table_points = list(zip(xs, ys))
+    # No right-hand margin (unlike the sibling plot_* topics): exponential
+    # growth accelerates so fast that even a small margin unit pushes the
+    # curve's y-value well past y_max, and draw_function_graph's clamping
+    # then visibly flattens the top of the curve instead of it continuing
+    # to rise - found by rendering an actual worksheet and looking at the
+    # curve shape, not a unit test. A left-hand margin is kept, since that
+    # side only shows the curve gently approaching (never reaching) zero.
+    x_min, x_max = xs[0] - 1, xs[-1]
+    y_min, y_max = 0, max(ys) + max(ys) * 0.1
+
+    fn_str = f"{base}^x" if a == 1 else f"{a} × {base}^x"
+    steps = [
+        f"Table of values for y = {fn_str}:",
+        "x: " + ", ".join(str(x) for x in xs),
+        "y: " + ", ".join(str(y) for y in ys),
+        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases "
+        "and approaching (but never touching) the x-axis as x decreases.",
+    ]
+    return Question(
+        topic_id="plot_exponential",
+        tier=Tier.HIGHER,
+        prompt=f"Complete a table of values for y = {fn_str} for x = 0 to 4, then plot the graph.",
+        solution_steps=tuple(steps),
+        final_answer=f"Exponential curve: y = {fn_str}",
+        dedup_key=f"plot_exp:{a}:{base}",
+        diagram=DiagramSpec(
+            kind="function_graph",
+            params={
+                "kind": "exponential", "a": a, "base": base,
+                "x_min": x_min, "x_max": x_max, "y_min": y_min, "y_max": y_max,
+                "blank": True,
+            },
+        ),
+        solution_diagram=DiagramSpec(
+            kind="function_graph",
+            params={
+                "kind": "exponential", "a": a, "base": base,
+                "x_min": x_min, "x_max": x_max, "y_min": y_min, "y_max": y_max,
+                "table_points": table_points,
+            },
+        ),
+    )
+
+
+_TRIG_EXACT_VALUES = {
+    "sin": {0: 0, 90: 1, 180: 0, 270: -1},
+    "cos": {0: 1, 90: 0, 180: -1, 270: 0},
+}
+_TRIG_DOMAINS = ((0, 360), (-180, 180))
+
+
+def _trig_case(rng: random.Random):
+    # Genuine variety beyond just "sin or cos": reflecting in the x-axis
+    # (y = -sin(x) etc, still a distinct curve/answer) and shifting which
+    # 360-degree window is shown both give real, distinct questions (8
+    # combinations total) - needed because a modelled example always builds
+    # 5 distinct practice questions for its own topic regardless of the
+    # topic's own question_count (routes.py's PRACTICE_QUESTION_COUNT), so
+    # 2 combinations (just sin/cos) was never enough.
+    fn = rng.choice(["sin", "cos"])
+    reflect = rng.choice([False, True])
+    x_min, x_max = rng.choice(_TRIG_DOMAINS)
+    sign = -1 if reflect else 1
+    xs = [x_min + 90 * i for i in range(5)]
+    ys = [sign * _TRIG_EXACT_VALUES[fn][x % 360] for x in xs]
+
+    # Independent verification: each table value is checked against sympy's
+    # own exact trig evaluation of the REAL (possibly negative) angle - a
+    # genuinely different computation path than the hardcoded lookup-by-
+    # reduced-angle used to build the table above, and one that also
+    # independently confirms the %360 periodicity reduction itself.
+    for x, y in zip(xs, ys):
+        exact = sp.sin(sp.rad(x)) if fn == "sin" else sp.cos(sp.rad(x))
+        if sp.simplify(sign * exact - y) != 0:
+            raise ValueError("trig_graph verification failed: exact value mismatch")
+
+    fn_str = f"-{fn}(x°)" if reflect else f"{fn}(x°)"
+    return fn, reflect, x_min, x_max, xs, ys, fn_str
+
+
+def generate_trig_graph(tier: Tier, rng: random.Random) -> Question:
+    fn, reflect, x_min, x_max, xs, ys, fn_str = _trig_case(rng)
+    table_points = list(zip(xs, ys))
+    steps = [
+        f"Table of values for y = {fn_str}:",
+        "x: " + ", ".join(str(x) for x in xs),
+        "y: " + ", ".join(str(y) for y in ys),
+        f"Plot each (x, y) point and join them with a single smooth curve - y = {fn_str} repeats the same "
+        "shape every 360°, and never goes above 1 or below -1.",
+    ]
+    return Question(
+        topic_id="trig_graph",
+        tier=Tier.HIGHER,
+        prompt=f"Complete a table of values for y = {fn_str} for x = {x_min} to {x_max} (in steps of 90°), "
+        "then plot the graph.",
+        solution_steps=tuple(steps),
+        final_answer=f"y = {fn_str}",
+        dedup_key=f"trig_graph:{fn}:{reflect}:{x_min}",
+        diagram=DiagramSpec(
+            kind="function_graph",
+            params={
+                "kind": "trigonometric", "fn": fn, "sign": -1 if reflect else 1,
+                "x_min": x_min, "x_max": x_max, "y_min": -1.4, "y_max": 1.4,
+                "x_label": "x (degrees)",
+                "blank": True,
+            },
+        ),
+        solution_diagram=DiagramSpec(
+            kind="function_graph",
+            params={
+                "kind": "trigonometric", "fn": fn, "sign": -1 if reflect else 1,
+                "x_min": x_min, "x_max": x_max, "y_min": -1.4, "y_max": 1.4,
+                "x_label": "x (degrees)",
+                "table_points": table_points,
+            },
+        ),
+    )
+
+
 def generate_plot_reciprocal(tier: Tier, rng: random.Random) -> Question:
     magnitude = rng.choice([12, 24, 36, 48])
     sign = rng.choice([1, -1])
@@ -814,6 +948,90 @@ def generate_modelled_example_plot_cubic(tier: Tier, rng: random.Random) -> Mode
     )
 
 
+def generate_modelled_example_plot_exponential(tier: Tier, rng: random.Random) -> ModelledExample:
+    a = rng.randint(1, 8)
+    base = rng.choice([2, 3])
+    xs = list(range(0, 5))
+    ys = [a * base**x for x in xs]
+
+    ratios = {ys[i + 1] / ys[i] for i in range(len(ys) - 1)}
+    if ratios != {float(base)}:
+        raise ValueError("modelled example plot_exponential verification failed")
+
+    table_points = list(zip(xs, ys))
+    x_min, x_max = xs[0] - 1, xs[-1]
+    y_min, y_max = 0, max(ys) + max(ys) * 0.1
+    fn_str = f"{base}^x" if a == 1 else f"{a} × {base}^x"
+
+    teaching_steps = [
+        f"Build a table of values for y = {fn_str} by substituting each x from 0 to 4 - each y-value is "
+        f"{a} multiplied by {base} raised to the power x.",
+        "Working through a few: "
+        + ", ".join(f"x={x}: y={y}" for x, y in list(zip(xs, ys))[:3])
+        + f", and so on - notice each y-value is exactly {base} times the one before it.",
+        "Plot each (x, y) pair and join them with a single smooth curve. Exponential growth starts out "
+        "flat and gets dramatically steeper as x increases - the curve never actually reaches y = 0, "
+        "getting closer and closer to it as x decreases.",
+    ]
+    worked_calculation = [
+        f"y = {fn_str}",
+        "x: " + ", ".join(str(x) for x in xs),
+        "y: " + ", ".join(str(y) for y in ys),
+    ]
+    return ModelledExample(
+        topic_id="plot_exponential",
+        tier=Tier.HIGHER,
+        prompt=f"Complete a table of values for y = {fn_str} for x = 0 to 4, then plot the graph.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"Exponential curve: y = {fn_str}",
+        diagram=DiagramSpec(
+            kind="function_graph",
+            params={
+                "kind": "exponential", "a": a, "base": base,
+                "x_min": x_min, "x_max": x_max, "y_min": y_min, "y_max": y_max,
+                "table_points": table_points,
+            },
+        ),
+    )
+
+
+def generate_modelled_example_trig_graph(tier: Tier, rng: random.Random) -> ModelledExample:
+    fn, reflect, x_min, x_max, xs, ys, fn_str = _trig_case(rng)
+    table_points = list(zip(xs, ys))
+    teaching_steps = [
+        f"Build a table of values for y = {fn_str} at angles 90° apart across the given range - these "
+        f"land on the key points where {fn} takes its maximum, minimum, or crosses zero.",
+        "Working through them: " + ", ".join(f"x={x}: y={y}" for x, y in list(zip(xs, ys))[:3]) + ", and so on.",
+        f"Plot each (x, y) pair and join them with a single smooth curve. The graph of y = {fn_str} is a "
+        "repeating wave shape that never goes above 1 or below -1, and repeats itself every 360°"
+        + (" - reflected in the x-axis compared with the basic curve, since it's negative." if reflect else "."),
+    ]
+    worked_calculation = [
+        f"y = {fn_str}",
+        "x: " + ", ".join(str(x) for x in xs),
+        "y: " + ", ".join(str(y) for y in ys),
+    ]
+    return ModelledExample(
+        topic_id="trig_graph",
+        tier=Tier.HIGHER,
+        prompt=f"Complete a table of values for y = {fn_str} for x = {x_min} to {x_max} (in steps of 90°), "
+        "then plot the graph.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"y = {fn_str}",
+        diagram=DiagramSpec(
+            kind="function_graph",
+            params={
+                "kind": "trigonometric", "fn": fn, "sign": -1 if reflect else 1,
+                "x_min": x_min, "x_max": x_max, "y_min": -1.4, "y_max": 1.4,
+                "x_label": "x (degrees)",
+                "table_points": table_points,
+            },
+        ),
+    )
+
+
 def generate_modelled_example_plot_reciprocal(tier: Tier, rng: random.Random) -> ModelledExample:
     magnitude = rng.choice([12, 24, 36, 48])
     sign = rng.choice([1, -1])
@@ -1348,6 +1566,30 @@ TOPIC_PLOT_CUBIC = TopicDefinition(
     fixed_tier=Tier.HIGHER,
     question_count=PLOTTING_QUESTION_COUNT,
     generate_modelled_example=generate_modelled_example_plot_cubic,
+)
+
+TOPIC_PLOT_EXPONENTIAL = TopicDefinition(
+    id="plot_exponential",
+    display_name="Plotting Exponential Graphs",
+    description="Complete a table of values and plot an exponential graph on the axes provided. (5 questions)",
+    generate=generate_plot_exponential,
+    section=SECTION,
+    group=GROUP_PLOTTING,
+    fixed_tier=Tier.HIGHER,
+    question_count=PLOTTING_QUESTION_COUNT,
+    generate_modelled_example=generate_modelled_example_plot_exponential,
+)
+
+TOPIC_TRIG_GRAPH = TopicDefinition(
+    id="trig_graph",
+    display_name="Plotting Trigonometric Graphs",
+    description="Complete a table of values and plot a sine or cosine graph on the axes provided. (5 questions)",
+    generate=generate_trig_graph,
+    section=SECTION,
+    group=GROUP_PLOTTING,
+    fixed_tier=Tier.HIGHER,
+    question_count=PLOTTING_QUESTION_COUNT,
+    generate_modelled_example=generate_modelled_example_trig_graph,
 )
 
 TOPIC_PLOT_RECIPROCAL = TopicDefinition(

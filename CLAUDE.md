@@ -12,20 +12,31 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
+**⚠️ FIRST: step 31's work below is written to disk but NOT YET COMMITTED OR
+PUSHED**, unlike every other session recorded in this file (see the repo
+header above - that "always committed and pushed" invariant does not hold
+right now). It lives on branch `aqa-spec-gap-topics` (created off `master`),
+22 changed/new files, all tests passing, nothing staged or committed. Before
+doing anything else, run `git status` to confirm this is still the state you
+find, then ask the user whether to commit/push/open a PR (matching the
+branch → commit → push → PR → merge flow used for the two PRs immediately
+before this session) before starting new work on top of it.
+
 **The entire user-supplied Geometry expansion is complete (chronology steps
 23-27), the fraction-vinculum rendering fix landed (step 28), three more
 "Ideas" items the user picked directly were built in step 29 (compound-3D
 surface area, spinner diagrams for 3 previously text-only branches, and bold
-vector labels), and the Practice Tests feature was rebuilt to genuinely match
-a real OCR GCSE Maths sitting (step 30) — real 3-papers-per-sitting structure,
-mark-scheme conventions and a Formulae Sheet calibrated against actual OCR
-papers spanning June 2017-June 2024.** 275 topics total (unchanged this
-session — step 30 touched only the Practice Tests feature), backend suite
-684/684, frontend 45/45, no known bugs.
+vector labels), the Practice Tests feature was rebuilt to genuinely match a
+real OCR GCSE Maths sitting (step 30), and a full AQA-spec gap audit followed
+by all 7 identified high-confidence gaps (11 new topics across 3 sections,
+including 2 brand-new diagram engines - scatter graphs and plans/elevations)
+was completed in step 31.** 286 topics total, backend suite 715/715, frontend
+45/45, no known bugs.
 
-There is no committed next step for this project right now — check "Ideas
-for a future session" (bottom of this file) for candidate follow-ups (stem-
-and-leaf diagrams, scatter graphs/correlation, standard deviation, a handful
+There is no committed next step for this project right now (once step 31 is
+committed/pushed) — check "Ideas for a future session" (bottom of this file)
+for candidate follow-ups (the remaining medium/low-confidence AQA-spec gaps
+from step 31's audit, stem-and-leaf diagrams, standard deviation, a handful
 of lower-confidence curriculum-audit candidates, saved worksheet history,
 deployment, etc.), or ask the user directly what they'd like to work on next.
 
@@ -33,7 +44,7 @@ deployment, etc.), or ask the user directly what they'd like to work on next.
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**275 topics across 6 sections**, all procedurally generated with independent
+**286 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.),
@@ -42,7 +53,7 @@ stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.),
 "describe the method" text questions with no way to numerically check a
 described construction — author-review only, no `verify()` at all (see
 chronology step 27).
-Full backend suite: **682/682 passing**. Frontend suite: **45/45 passing**.
+Full backend suite: **715/715 passing**. Frontend suite: **45/45 passing**.
 
 **Practice Tests (fixed/static content, not procedural — the one deliberate exception
 to the paragraph above)**: a 7th homepage section, `backend/app/practice_tests/`,
@@ -190,11 +201,11 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 | Section | Groups | Topics |
 |---|---|---|
 | Number | Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 54 |
-| Algebra | Expressions/Formulae/Equations/Identities, Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 57 |
+| Algebra | Expressions/Formulae/Equations/Identities, Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Equation of a Circle, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 63 |
 | Ratio & Proportion | Percentages, Best Buys, Ratio, Proportion, Compound Measures | 34 |
-| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations, Bearings, Constructions, Loci | 82 |
+| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations, Bearings, Constructions, Loci | 84 |
 | Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams, Venn Diagrams | 22 |
-| Statistics | Averages from a List, Frequency Tables, Working Backwards, Charts and Graphs, Cumulative Frequency & Box Plots, Histograms | 26 |
+| Statistics | Averages from a List, Frequency Tables, Working Backwards, Charts and Graphs, Cumulative Frequency & Box Plots, Histograms, Sampling and Populations | 29 |
 
 **First curriculum-audit dual-tier siblings**: Foundation-difficulty siblings for three
 previously-Higher-only topics, flagged by an earlier audit and deliberately deferred
@@ -1893,6 +1904,150 @@ existing topics/shared rendering code). Frontend unaffected (45/45).
     200 OK for `foundation-01-paper1/paper` and `foundation-01-paper2/
     mark-scheme`).
 
+31. New session, a user-requested audit: read all 6 AQA 8300 spec pages
+    (Number, Algebra, Ratio & Proportion, Geometry & Measures, Probability,
+    Statistics) and cross-referenced every one against the app's 275 existing
+    topics to find genuine content gaps. Reported findings by confidence tier
+    (high/medium/low, matching this project's own curriculum-audit
+    convention) rather than building anything immediately, per the user's
+    explicit "ask any clarifying questions" instruction. Found 7 high-
+    confidence gaps: solving quadratics by factorising/completing the square
+    (only the quadratic-formula method existed as an actual "solve for x"
+    topic - factorise/complete-the-square topics only manipulated the
+    expression), graphs of exponential/trigonometric functions, equation of a
+    circle + tangent, plans and elevations of 3D solids, basic/Foundation
+    bearings (only the Higher cosine-rule application existed), scatter
+    graphs & correlation (previously flagged in this file's own "Ideas" list
+    but never built), and sampling/populations (a genuinely new finding).
+    Asked the user to prioritize; entered plan mode given the scope (research
+    via 3 parallel Explore agents covering: quadratic-solving/graph-plotting/
+    circle-equation code, bearings/3D-diagram code, stats-axes/no-diagram-
+    topic code) and confirmed via `AskUserQuestion` to build all 3 phases
+    (reuse-heavy quick wins → moderate diagram extensions → two brand-new
+    diagram engines) in one session.
+
+    **Phase 1** (reuse existing code, minimal new diagram work): solving
+    quadratics by factorising (`solve_quadratic_factorising_foundation`/
+    `_higher`, added to `expand_factorise.py`, reusing its existing
+    `_find_factor_pair`/root-construction helpers directly) and by completing
+    the square (`solve_quadratic_completing_square`, `quadratic_graphs.py`,
+    constructing a guaranteed-real-root quadratic via a square-free surd
+    offset, reusing `powers_roots._SQUARE_FREE_FACTORS`); `sampling_methods`
+    (new "Sampling and Populations" Statistics group, `sampling.py` - a
+    genuinely randomised stratified-sample calculation branch verified via
+    exact integer/Fraction round-half-up cross-checks, plus a scenario-bank
+    branch for bias/method-identification questions, each scenario still
+    randomising its own cosmetic numbers/locations for dedup-key variety);
+    `circle_equation` (new "Equation of a Circle" Algebra group,
+    `circle_equation.py`, Higher only - needed **zero new diagram code**,
+    since `draw_loci_construction` (built for `loci.py` in step 27) already
+    accepted exactly the `circle`/`segment` param shape this needed).
+
+    **Phase 2** (extend one existing function per item): `bearings_foundation`
+    (Foundation, same "Bearings" group as the existing Higher cosine-rule
+    topic) needed a genuine extension to `draw_bearings` - the existing
+    function always drew a full 3-point/2-leg/2-arc diagram with no clean way
+    to get a 2-point single-leg diagram through params alone (confirmed by
+    checking: setting the second bearing to the back-bearing degenerates
+    point C onto point A instead of omitting it), so a new
+    `_draw_bearings_single_leg` branch was added, dispatched whenever
+    `bearing_at_B` is omitted - back-bearing and reading-a-bearing question
+    types built on top. `plot_exponential`/`trig_graph` (new topics in
+    `graphs.py`'s existing "Plotting Graphs" group) needed one new `elif`
+    branch each in `diagrams.py`'s `_fn_value` (trig limited to sin/cos, not
+    tan, to avoid the asymptote-branch-splitting complexity `draw_function_
+    graph`'s reciprocal kind already needs).
+
+    **Phase 3** (new diagram engines, built and visually verified before any
+    topic code was written, per this project's established highest-risk-
+    first precedent): `draw_scatter_graph` (new diagram kind, built on the
+    existing `_draw_stats_axes` engine but deliberately *not* mirroring
+    `draw_time_series`/`draw_cumulative_frequency`'s connecting `PolyLine`,
+    since scatter points must never be joined; added a from-scratch line-of-
+    best-fit renderer, no precedent for that anywhere in this file) powers
+    `scatter_graph_construct`/`_interpret` (new topics in `charts.py`'s
+    sibling `scatter_graphs.py`, "Charts and Graphs" group) - data is
+    generated around a known line with random noise, then the actual (noisy)
+    data's Pearson correlation sign is independently recomputed and checked
+    against the intended direction, rerolling if unlucky noise flipped it,
+    rather than trusting the generating parameters alone. `draw_plans_and_
+    elevations` (genuinely new from-scratch diagram engine - confirmed no
+    existing helper produces true orthographic front/side/plan views, since
+    every other 3D diagram in `diagrams.py` uses oblique projection via the
+    shared `_offset()` helper) powers `plans_and_elevations` (new topic,
+    "3D Shapes" group, `plans_elevations.py`) for cuboids and triangular
+    prisms (reusing `solids_prisms.py`'s own validated dimension generation),
+    laid out in the standard first-angle arrangement (plan below the front
+    view sharing its width, side view beside the front view sharing its
+    height) - the question page reuses the existing oblique `draw_cuboid`/
+    `draw_triangular_prism` diagrams unchanged for the "given" solid, and the
+    new engine only appears on the solution page.
+
+    **Several real bugs were found and fixed via this session's own testing
+    and visual-verification passes, not by writing code and assuming it was
+    right:**
+    - A latent sign-formatting bug in `quadratic_graphs.py`, present since
+      the file was first written (chronology step 7): three step-text lines
+      hand-reconstructed `"x^2 {sign}x + {c}"` instead of calling the
+      already-correct `_fmt_quadratic` helper, so a negative constant term
+      printed as `"+ -3"` instead of `"- 3"` - caught only because the new
+      `solve_quadratic_completing_square` generator copied the same buggy
+      pattern and a console print surfaced it; fixed at the root in all
+      three pre-existing occurrences plus the new one, with a regression
+      test added across every generator in the file.
+    - `_draw_scaled_axes`'s tick-spacing helper (`_nice_tick_step`) had a
+      flat "step 10 for any span over 50" rule that no existing caller had
+      ever exceeded by much (the widest was `circle_equation`'s radius-25
+      case, span ≈ 52) - `trig_graph`'s 0-360-degree domain (span 360)
+      exposed it immediately: every integer from 1 to 360 was crammed into
+      the tick labels as unreadable overlapping text. Fixed by extending the
+      tiering (20/50/100 for larger spans) - purely additive, confirmed no
+      existing diagram's span reaches the tiers that changed.
+    - `trig_graph` was first built with only 2 truly distinct dedup keys
+      (sin, cos) and a `question_count` override to match - but a modelled
+      example always builds 5 distinct *practice* questions for its own
+      topic regardless of that override (`routes.py`'s hardcoded
+      `PRACTICE_QUESTION_COUNT`), so every modelled-example request failed.
+      Fixed by adding genuine further variety (reflection in the x-axis,
+      and a second 360-degree window) rather than papering over it, giving
+      8 real combinations and letting `question_count` return to the
+      sibling-topic default of 5 - caught by the full suite's existing
+      "render a modelled example for every topic" test, not a bug found by
+      inspection.
+    - `plot_exponential`'s curve visibly flattened at its right-hand edge in
+      the rendered PDF: the usual "+1 unit" x-margin the sibling plotting
+      topics use pushed the curve just far enough past `y_max` to trigger
+      `draw_function_graph`'s existing clamp-to-y_max behaviour, which
+      flattens rather than continues the curve - fixed by dropping that one
+      topic's right-hand margin only (exponential growth needs it far less
+      than the mild curves the shared margin was tuned for).
+    - `sampling_methods`'s stratified-sample calculation initially cross-
+      checked its exact-Fraction round-half-up answer against a plain
+      `round(float)` computation - passed a 300-trial smoke test, then
+      failed at a wider trial count from a genuine floating-point precision
+      issue exactly at .5 tie boundaries (not, as first suspected, Python's
+      round-half-to-even convention). Fixed by making the independent check
+      exact too (integer-arithmetic round-half-up cross-checked against
+      Fraction-based round-half-up - two different code paths through
+      Python's numeric stack, neither touching binary floats), then
+      confirmed clean across 180,000 trials.
+
+    Central integration (registry wiring for all 11 new topics across 8
+    files, the 4 hardcoded `275`-topic-count assertions updated to `286`,
+    dedicated test files written or extended for every new topic following
+    this project's established `GENERATORS` list + 200-400-trial pattern -
+    3 brand-new test files plus 4 existing ones extended, none of which had
+    any dedicated coverage before this step's "write proper tests" pass),
+    the full backend+frontend suite, and browser-driven end-to-end
+    verification (worksheet *and* modelled-example generation through the
+    real running app for a sample of the new topics, including a live
+    search confirming both new "Solving Quadratic Equations" siblings and
+    the new "Equation of a Circle" group render correctly) were all done
+    directly in this session. Backend suite grew from 684 to 715 tests;
+    frontend unaffected (45/45 - all new topics render generically through
+    the existing section/topic-card UI, confirmed live via the browser
+    preview).
+
 Everything above is committed and pushed (see `git log`).
 
 ## Environment gotchas (Windows, this machine specifically)
@@ -2110,10 +2265,29 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
   confidence in each was explicitly lower than the 11 that were built.
   (`probability_combined_dice`, also originally on this list, was confirmed
   in step 29 to already exist — not a gap, removed from this list.)
-- Stem-and-leaf diagrams, scatter graphs & correlation, and standard deviation are all
-  real GCSE Statistics content not covered by the Probability/Statistics topic list
-  the user supplied (chronology steps 17–18) — never explicitly requested, so not
-  built, but worth flagging if a future session wants to round out Statistics further.
+- Stem-and-leaf diagrams and standard deviation are real GCSE Statistics content not
+  covered by the Probability/Statistics topic list the user supplied (chronology steps
+  17–18) — never explicitly requested, so not built, but worth flagging if a future
+  session wants to round out Statistics further. (Scatter graphs & correlation, also
+  originally on this list, were built in step 31 — removed from here.)
+- Step 31's full AQA-spec gap audit reported medium- and low-confidence gaps that were
+  **not** built (only the 7 high-confidence ones were) — don't build these without
+  discussing first, since the audit's confidence in each was explicitly lower than the
+  7 that were built: substitution into expressions/formulae as its own standalone
+  topic (used implicitly everywhere already, never tested as a bare "substitute x=3
+  into..." question); geometric sequences and other special sequence types (Fibonacci-
+  type, common-ratio) — only arithmetic and quadratic nth-term exist; estimating the
+  gradient of a genuinely curved graph via a tangent (`velocity_time_interpret` only
+  handles straight-line segments); box plots and IQR being Higher-only in this app
+  despite AQA listing both as Foundation "additional content" too (a tier-placement
+  gap, same pattern as the audits in steps 6/9/13/20); map scales/scale drawings
+  (distinct from the similar-shapes scale-factor topics that already exist);
+  constructing a perpendicular from/at a point to a line (distinct from the existing
+  perpendicular *bisector* construction); conditional probability specifically via
+  Venn diagrams or two-way tables (only the "pick two without replacement" tree-style
+  version exists); pictograms, vertical line charts, and frequency trees (all
+  relatively minor/basic); combining multiple transformations into one equivalent
+  transformation.
 - Saved worksheet history, mixed-topic revision papers, user accounts.
 - Deploying this somewhere instead of local-only dev servers.
 - Practice Tests (step 22) deliberately deferred a few things, per the user's choices

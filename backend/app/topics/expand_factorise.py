@@ -10,6 +10,7 @@ from app.topics.base import TopicDefinition
 SECTION = "algebra"
 GROUP_EXPAND = "Expanding Brackets"
 GROUP_FACTORISE = "Factorising"
+GROUP_SOLVE_QUADRATIC = "Solving Quadratic Equations"
 
 
 def _rand_nonzero(rng: random.Random, lo: int, hi: int) -> int:
@@ -628,6 +629,157 @@ def generate_modelled_example_factorise_quadratic_foundation(
     )
 
 
+def generate_solve_quadratic_factorising_foundation(tier: Tier, rng: random.Random):
+    # Same root-first construction as generate_factorise_quadratic_foundation
+    # (both roots negative, since p, q > 0 here) - solving is just the extra
+    # "hence x = -p or x = -q" step once the quadratic is factorised.
+    p = rng.randint(1, 9)
+    q = rng.randint(1, 9)
+    b = p + q
+    c = p * q
+
+    residual = sp.expand((X + p) * (X + q) - (X**2 + b * X + c))
+    if residual != 0:
+        raise ValueError("solve_quadratic_factorising_foundation verification failed")
+
+    root1, root2 = -p, -q
+    prompt = f"Solve {_fmt_quadratic(1, b, c)} = 0 by factorising."
+    steps = [
+        f"Find two numbers that multiply to {c} and add to {b}: {p} and {q}",
+        f"Factorise: ({_fmt_factor(p)})({_fmt_factor(q)}) = 0",
+        f"Either x + {p} = 0 or x + {q} = 0",
+        f"x = {root1} or x = {root2}",
+    ]
+    return Question(
+        topic_id="solve_quadratic_factorising_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=prompt,
+        solution_steps=tuple(steps),
+        final_answer=f"x = {root1} or x = {root2}",
+        dedup_key=f"solve_factorise_f:{p}:{q}",
+    )
+
+
+def generate_modelled_example_solve_quadratic_factorising_foundation(
+    tier: Tier, rng: random.Random
+) -> ModelledExample:
+    p = rng.randint(1, 9)
+    q = rng.randint(1, 9)
+    b = p + q
+    c = p * q
+
+    residual = sp.expand((X + p) * (X + q) - (X**2 + b * X + c))
+    if residual != 0:
+        raise ValueError("modelled example solve_quadratic_factorising_foundation verification failed (symbolic)")
+    root1, root2 = -p, -q
+    for root in (root1, root2):
+        if root**2 + b * root + c != 0:
+            raise ValueError("modelled example solve_quadratic_factorising_foundation verification failed (numeric)")
+
+    teaching_steps = [
+        f"If two brackets multiply together to give 0, one of them must actually equal 0 - this is the "
+        "key idea that lets factorising solve an equation, not just simplify an expression.",
+        f"Factorise {_fmt_quadratic(1, b, c)} the usual way: find two numbers that multiply to {c} and "
+        f"add to {b}. That's {p} and {q}, giving ({_fmt_factor(p)})({_fmt_factor(q)}) = 0.",
+        f"Since the product is 0, either x + {p} = 0 or x + {q} = 0 - there's no other way to make a "
+        "product of two brackets equal zero.",
+        f"Solve each mini-equation separately: x + {p} = 0 gives x = {root1}, and x + {q} = 0 gives "
+        f"x = {root2}. Check by substituting back into the original: both make "
+        f"{_fmt_quadratic(1, b, c)} equal exactly 0.",
+    ]
+    worked_calculation = [
+        f"{_fmt_quadratic(1, b, c)} = 0",
+        f"({_fmt_factor(p)})({_fmt_factor(q)}) = 0",
+        f"x = {root1} or x = {root2}",
+    ]
+    return ModelledExample(
+        topic_id="solve_quadratic_factorising_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=f"Solve {_fmt_quadratic(1, b, c)} = 0 by factorising.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"x = {root1} or x = {root2}",
+    )
+
+
+def generate_solve_quadratic_factorising(tier: Tier, rng: random.Random):
+    # Same root-first construction as generate_factorise_quadratic (roots can
+    # be any sign) - _find_factor_pair independently recovers the factor pair
+    # by searching divisors of c (the manual method), which is then asserted
+    # to match the roots the quadratic was actually built from.
+    r1 = _rand_nonzero(rng, -9, 9)
+    r2 = _rand_nonzero(rng, -9, 9)
+    b = -(r1 + r2)
+    c = r1 * r2
+
+    p, q = _find_factor_pair(b, c)
+    if {p, q} != {-r1, -r2}:
+        raise ValueError("solve_quadratic_factorising verification failed: factor pair mismatch")
+
+    residual = sp.expand((X + p) * (X + q) - (X**2 + b * X + c))
+    if residual != 0:
+        raise ValueError("solve_quadratic_factorising verification failed: expansion")
+
+    root1, root2 = -p, -q
+    prompt = f"Solve {_fmt_quadratic(1, b, c)} = 0 by factorising."
+    steps = [
+        f"Find two numbers that multiply to {c} and add to {b}: {p} and {q}",
+        f"Factorise: ({_fmt_factor(p)})({_fmt_factor(q)}) = 0",
+        f"Either x + {p} = 0 or x + {q} = 0",
+        f"x = {root1} or x = {root2}",
+    ]
+    return Question(
+        topic_id="solve_quadratic_factorising",
+        tier=Tier.HIGHER,
+        prompt=prompt,
+        solution_steps=tuple(steps),
+        final_answer=f"x = {root1} or x = {root2}",
+        dedup_key=f"solve_factorise:{r1}:{r2}",
+    )
+
+
+def generate_modelled_example_solve_quadratic_factorising(tier: Tier, rng: random.Random) -> ModelledExample:
+    r1 = _rand_nonzero(rng, -9, 9)
+    r2 = _rand_nonzero(rng, -9, 9)
+    b = -(r1 + r2)
+    c = r1 * r2
+
+    p, q = _find_factor_pair(b, c)
+    if {p, q} != {-r1, -r2}:
+        raise ValueError("modelled example solve_quadratic_factorising verification failed: factor pair mismatch")
+    residual = sp.expand((X + p) * (X + q) - (X**2 + b * X + c))
+    if residual != 0:
+        raise ValueError("modelled example solve_quadratic_factorising verification failed (symbolic)")
+    root1, root2 = -p, -q
+    for root in (root1, root2):
+        if root**2 + b * root + c != 0:
+            raise ValueError("modelled example solve_quadratic_factorising verification failed (numeric)")
+
+    teaching_steps = [
+        f"If two brackets multiply together to give 0, one of them must actually equal 0 - this is the "
+        "key idea that lets factorising solve an equation, not just simplify an expression.",
+        f"Factorise {_fmt_quadratic(1, b, c)} the usual way: find two numbers that multiply to {c} and "
+        f"add to {b}. That's {p} and {q}, giving ({_fmt_factor(p)})({_fmt_factor(q)}) = 0.",
+        f"Since the product is 0, either x + {p} = 0 or x + {q} = 0.",
+        f"Solve each mini-equation separately: x + {p} = 0 gives x = {root1}, and x + {q} = 0 gives "
+        f"x = {root2}. Check by substituting back into the original: both make "
+        f"{_fmt_quadratic(1, b, c)} equal exactly 0.",
+    ]
+    worked_calculation = [
+        f"{_fmt_quadratic(1, b, c)} = 0",
+        f"({_fmt_factor(p)})({_fmt_factor(q)}) = 0",
+        f"x = {root1} or x = {root2}",
+    ]
+    return ModelledExample(
+        topic_id="solve_quadratic_factorising",
+        tier=Tier.HIGHER,
+        prompt=f"Solve {_fmt_quadratic(1, b, c)} = 0 by factorising.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"x = {root1} or x = {root2}",
+    )
+
+
 TOPIC_EXPAND_SINGLE = TopicDefinition(
     id="expand_single_bracket",
     display_name="Single Bracket",
@@ -703,4 +855,26 @@ TOPIC_FACTORISE_QUADRATIC = TopicDefinition(
     group=GROUP_FACTORISE,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_factorise_quadratic,
+)
+
+TOPIC_SOLVE_QUADRATIC_FACTORISING_FOUNDATION = TopicDefinition(
+    id="solve_quadratic_factorising_foundation",
+    display_name="Solving by Factorising",
+    description="Solve a quadratic equation with two positive integer factors by factorising.",
+    generate=generate_solve_quadratic_factorising_foundation,
+    section=SECTION,
+    group=GROUP_SOLVE_QUADRATIC,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_solve_quadratic_factorising_foundation,
+)
+
+TOPIC_SOLVE_QUADRATIC_FACTORISING = TopicDefinition(
+    id="solve_quadratic_factorising",
+    display_name="Solving by Factorising",
+    description="Solve a quadratic equation by factorising, including negative roots.",
+    generate=generate_solve_quadratic_factorising,
+    section=SECTION,
+    group=GROUP_SOLVE_QUADRATIC,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_solve_quadratic_factorising,
 )
