@@ -104,6 +104,8 @@ def _to_practice_test_summary(paper: PracticeTestPaper) -> PracticeTestSummary:
         id=paper.id,
         name=paper.name,
         tier=paper.tier,
+        sitting_id=paper.sitting_id,
+        paper_number=paper.paper_number,
         total_marks=paper.total_marks,
         question_count=len(paper.questions),
     )

@@ -13,13 +13,15 @@ solutions, searchable/browsable across 6 curriculum sections.
 ## Where to pick up next
 
 **The entire user-supplied Geometry expansion is complete (chronology steps
-23-27), the fraction-vinculum rendering fix landed (step 28), and three more
-"Ideas" items the user picked directly were built in step 29: compound-3D
+23-27), the fraction-vinculum rendering fix landed (step 28), three more
+"Ideas" items the user picked directly were built in step 29 (compound-3D
 surface area, spinner diagrams for 3 previously text-only branches, and bold
-vector labels.** 275 topics total, backend suite 682/682, frontend 45/45
-(unaffected), no known bugs. A 4th candidate the user asked about,
-`probability_combined_dice`, turned out to already exist (a fully-built
-Higher topic) — confirmed and reported back, nothing built there.
+vector labels), and the Practice Tests feature was rebuilt to genuinely match
+a real OCR GCSE Maths sitting (step 30) — real 3-papers-per-sitting structure,
+mark-scheme conventions and a Formulae Sheet calibrated against actual OCR
+papers spanning June 2017-June 2024.** 275 topics total (unchanged this
+session — step 30 touched only the Practice Tests feature), backend suite
+684/684, frontend 45/45, no known bugs.
 
 There is no committed next step for this project right now — check "Ideas
 for a future session" (bottom of this file) for candidate follow-ups (stem-
@@ -44,9 +46,19 @@ Full backend suite: **682/682 passing**. Frontend suite: **45/45 passing**.
 
 **Practice Tests (fixed/static content, not procedural — the one deliberate exception
 to the paragraph above)**: a 7th homepage section, `backend/app/practice_tests/`,
-holds 20 committed papers (`data/*.json`, `foundation-01`..`10`, `higher-01`..`10`),
-each a 100-mark, OCR-GCSE-styled paper assembled by *freezing* real output from the
-existing 232 generators rather than writing new exam-style content by hand. Built via
+holds 60 committed papers (`data/*.json`) — **10 sittings per tier, each a real
+OCR-shaped sitting of 3 separate 100-mark, 1h30m papers** (`foundation-01-paper1`
+.. `foundation-10-paper3`, `higher-01-paper1` .. `higher-10-paper3`), matching how a
+real OCR GCSE Maths series is actually structured (J560/01-03 Foundation, J560/04-06
+Higher, calculator allowed on all three papers — there is no non-calculator paper,
+unlike AQA/Edexcel). This structure, the mark-scheme conventions, and the Formulae
+Sheet (all below) were calibrated in chronology step 30 by directly reading real OCR
+papers and mark schemes spanning June 2017 to June 2024 (via revisionmaths.com's past-
+papers page) — **never by copying their actual question or mark-scheme text**, only
+their structure, marking conventions, and generic mathematical facts (formulae are not
+copyrightable expression). Each paper is still assembled by *freezing* real output
+from the existing 275 generators rather than writing new exam-style content by hand —
+that identity is unchanged from when this feature was first built (step 22). Built via
 a one-time script (`build.py`, run manually — `python -m app.practice_tests.build` —
 not at request time): `topic_selection.py` picks a spread of topics per paper
 (a curated per-section mark-share target approximating real GCSE weighting, plus a
@@ -58,39 +70,74 @@ derived deterministically from `(paper_id, topic_id)` via SHA-256 (never Python'
 built-in `hash()`, which is randomised per-process for strings) — confirmed via a
 full-codebase grep that no generator anywhere touches the bare `random` module outside
 its passed-in `rng`, so this is fully reproducible: re-running `build.py` produces
-byte-identical JSON every time, verified by a test. Every paper's marks sum to
-**exactly 100**, enforced by `topic_selection.select_paper_topics`'s fill-then-close
-algorithm (self-restarts with a perturbed seed if it paints itself into a corner) plus
-a `build.py`-level repair pass (`_repair_to_target`) for the handful of topics whose
-`solution_steps` length varies by branch, occasionally drifting the real total from
-the "typical" total the selection was planned against — and a whole-paper retry
-(`MAX_PAPER_RETRIES`) as the final safety net.
+byte-identical JSON every time, verified by a test. `select_paper_topics` is called
+independently (fresh seed) once per paper — it only dedupes topics *within* one paper,
+so the same topic can legitimately recur across a sitting's 3 papers, matching how
+real OCR papers work (a skill can appear on more than one paper in a series). Every
+paper's marks sum to **exactly 100**, enforced by `topic_selection.select_paper_topics`'s
+fill-then-close algorithm (self-restarts with a perturbed seed if it paints itself into
+a corner) plus a `build.py`-level repair pass (`_repair_to_target`) for the handful of
+topics whose `solution_steps` length varies by branch, occasionally drifting the real
+total from the "typical" total the selection was planned against — and a whole-paper
+retry (`MAX_PAPER_RETRIES`) as the final safety net.
 
 The OCR-style mark scheme (`app/practice_tests/mark_scheme.py`) is a **systematic
-approximation**, not lifted from a real OCR mark scheme (no reference papers were
-available to calibrate against — built from general exam-board convention instead,
-per the user's choice): a question's own `solution_steps` become M1 method marks
-(1 per step, capped at 4, with any overflow folded into the last one) followed by one
-A1 accuracy mark quoting the question's own `final_answer` (e.g. `"30 oe (cao)"`);
-a multiple-choice-style `final_answer` (matches `^[A-D]\)`, e.g. `"B) 3/4"`, this app's
-convention for "identify the correct one" questions) gets a single independent B1
-instead, since there's no method to mark. **`PracticeQuestion`/`PracticeTestPaper`
+approximation calibrated against real OCR mark schemes** (spanning June 2017 to June
+2024, both tiers) rather than hand-authored per-question mark allocations: a
+question's own `solution_steps` become M1 method marks (1 per step, capped at 4, with
+any overflow folded into the last one) followed by one A1 accuracy mark quoting the
+question's own `final_answer` with `oe` appended (e.g. `"30 oe"`); a multiple-choice-
+style `final_answer` (matches `^[A-D]\)`, e.g. `"B) 3/4"`, this app's convention for
+"identify the correct one" questions) gets a single independent B1 instead, since
+there's no method to mark. `oe`/`isw`/`nfww`/`rot`/`soi`/`dep` were all confirmed
+current and stable 2017→2024 by reading the real "Subject-Specific Marking
+Instructions" pages directly; **`cao` ("correct answer only") was explicitly defined
+in the 2017/2019 schemes but is dropped from the 2022/2024 ones in favour of plain
+accepted-answer wording** — this module deliberately follows the current convention,
+not the retired one (the original build, before real papers were available to check
+against, used `"{answer} oe (cao)"`). The rendered mark-scheme PDF now also opens with
+a short, own-words summary of M/A/B marking convention and the abbreviation key (in
+`practice_test_renderer.py`'s `_marking_instructions_box`) — paraphrased from what was
+read, not copied. **`PracticeQuestion`/`PracticeTestPaper`
 (`practice_tests/models.py`) are deliberately separate from `core/models.py`'s
-`Question`/`TopicDefinition`** — none of the 232 existing generators or their tests
-were touched to build this feature. Two new PDF renderers
+`Question`/`TopicDefinition`** — none of the 275 existing generators or their tests
+were touched to build this feature. `PracticeTestPaper` carries `sitting_id`/
+`paper_number` alongside the original `id`/`name`/`tier`/`questions`, so the API/
+frontend can group a sitting's 3 papers together without any route-shape changes —
+`paper_id` (e.g. `foundation-03-paper2`) is still the one unique identifier for
+`GET /api/practice-tests/{paper_id}/paper` and `.../mark-scheme`. Two PDF renderers
 (`app/pdf/practice_test_renderer.py`) follow the existing `SimpleDocTemplate` +
 flowable-list idiom: `render_practice_test_paper` (an original-wording — not copied
 from any real OCR paper — cover page with candidate-detail boxes and an instructions
-box, then numbered questions with marks shown as `[n]` in a right-aligned column) and
-`render_mark_scheme` (a `Question | Answer | Marks | Guidance` table, one row per
-question, each M1/A1/B1 point stacked in the Guidance cell). Three new GET routes
-(`GET /api/practice-tests`, `.../{id}/paper`, `.../{id}/mark-scheme`) since content is
-fully static per id — no request body needed, unlike the POST-based worksheet/modelled-
-example endpoints. Frontend: `PracticeTestsView`/`PracticeTestCard` mirror
-`SectionView`/`TopicCard`'s two-level tier-picker and two-independent-download-button
-patterns exactly, rendered as a distinct block **underneath** `HomeScreen` in
-`App.tsx` (not folded into the 6-section grid, since a static paper list is
-structurally different from the procedural topic tree).
+box, now followed by a tier-specific **Formulae Sheet page** — `_formulae_sheet_elements`
+— before Q1, reusing the existing `right_triangle`/`general_triangle` diagram kinds for
+its reference figures; then numbered questions with marks shown as `[n]` in a
+right-aligned column) and `render_mark_scheme` (the marking-instructions box described
+above, then a `Question | Answer | Marks | Guidance` table, one row per question, each
+M1/A1/B1 point stacked in the Guidance cell). Three GET routes (`GET /api/practice-tests`,
+`.../{id}/paper`, `.../{id}/mark-scheme`) since content is fully static per id — no
+request body needed, unlike the POST-based worksheet/modelled-example endpoints.
+Frontend: `PracticeTestsView` groups the flat paper list by `sittingId` client-side
+(mirroring how `SectionView` already groups client-side by tier) before rendering one
+`PracticeTestCard` per sitting; each card shows all 3 papers with their own independent
+Test Paper/Mark Scheme download buttons (`PracticeTestCard`'s `papers` prop is now an
+array, one `useDownloadTestPaper`/`useDownloadMarkScheme` hook pair per paper), rendered
+as a distinct block **underneath** `HomeScreen` in `App.tsx` (not folded into the
+6-section grid, since a static paper list is structurally different from the
+procedural topic tree).
+
+**A real, pre-existing diagram bug was found and fixed while building the Formulae
+Sheet** (via rendering the actual PDF and looking closely, not a unit test — same
+story as most gotchas in this file): `draw_general_triangle` (`app/pdf/diagrams.py`,
+shared by the existing sine-rule/cosine-rule/triangle-area topics) placed its
+`side_c_label` only 6 units above the "Diagram NOT accurately drawn" caption, which
+visibly overlapped once a caller labelled all three sides *and* used the default
+not-to-scale caption at the same time — several existing cosine-rule topics already
+do exactly this (label `side_a`/`side_b`/`side_c` together), so this was a latent bug
+in already-shipped output, only now surfaced because the Formulae Sheet's reference
+triangle is the single densest use of this diagram kind (all three sides and all
+three angles labelled at once). Fixed by moving the label closer to the base
+(offset `-8` instead of `-12`), giving real clearance from the caption.
 
 **Real bug found and fixed while building this** (via this feature's first end-to-end
 visual check, not the existing unit tests — same story as most gotchas in this file):
@@ -1737,6 +1784,115 @@ existing topics/shared rendering code). Frontend unaffected (45/45).
     (Surface Area)" appears correctly alongside its volume sibling in the
     "3D Shapes" group).
 
+30. New session, a user-reported gap: neither the Practice Tests papers nor
+    their mark scheme actually represented a real OCR GCSE Maths exam. The
+    user pointed at revisionmaths.com's OCR past-papers page as a reference
+    and asked for clarifying questions before any changes. Fetched that page,
+    then read (via pymupdf/`fitz`, since `WebFetch` can't parse PDF binaries)
+    an actual June 2024 Foundation paper + its mark scheme, both tiers' real
+    Formulae Sheets, and — after the user asked to check more than just one
+    year for variety — 4 more mark schemes spanning June 2017 to June 2022
+    (Foundation and Higher). This confirmed three genuine gaps: (1) real OCR
+    GCSE Maths is 3 separate 100-mark, 1h30m papers per tier per sitting
+    (J560/01-03 Foundation, /04-06 Higher), calculator allowed on all three
+    (no non-calculator paper, unlike AQA/Edexcel) — the app built one combined
+    100-mark "paper" per test id; (2) real mark-scheme conventions (M1/A1/B1/
+    SC, `oe`/`isw`/`nfww`/`rot`/`soi`/`dep`) were confirmed stable 2017→2024,
+    but `cao` — which the app's mark scheme hardcoded onto every accuracy
+    mark — was dropped from OCR's own abbreviation list after 2019 in favour
+    of plain accepted-answer wording, so the app was following a retired
+    convention; (3) every real paper ships a tier-specific Formulae Sheet,
+    which the app didn't render at all. Asked 4 clarifying questions up front
+    via `AskUserQuestion` (paper structure, sittings-per-tier, mark-scheme
+    fidelity, formulae sheet) — all resolved in favour of the full rebuild:
+    3-paper sittings, 10 sittings/tier (30 papers/tier, 60 total, up from 20),
+    real mark-scheme conventions, and the formulae sheet. Entered plan mode
+    given the scope (touches the data model, the build script, the mark
+    scheme, both PDF renderers, the API schema, and both practice-test
+    frontend components) and read every relevant file directly (not via
+    subagents, since the design questions were interdependent) before writing
+    the plan.
+
+    A hard boundary was set and kept throughout: content stays generated by
+    this app's own 275 verified generators (frozen the same way as before) —
+    the real papers were used only to calibrate *structure, mark-scheme
+    conventions, and generic mathematical facts*, never to copy OCR's actual
+    copyrighted question or mark-scheme text.
+
+    `PracticeTestPaper` gained `sitting_id`/`paper_number` fields;
+    `build.py` now loops 10 sittings × 3 papers per tier (`SITTINGS_PER_TIER`,
+    `PAPERS_PER_SITTING`), each paper built by the same per-paper assembly
+    logic as before (fill-then-close, repair, retry) just invoked 3× per
+    sitting with its own seed — `topic_selection.py` itself needed no changes,
+    since its existing within-paper-only dedup already allows a topic to
+    recur across a sitting's 3 papers, which is exactly how real OCR papers
+    behave. `mark_scheme.py`'s accuracy-mark description changed from
+    `"{answer} oe (cao)"` to `"{answer} oe"`. `practice_test_renderer.py`
+    gained a new Formulae Sheet page (`_formulae_sheet_elements`, inserted
+    between the cover page and Q1) — trapezium area, prism volume, circle
+    circumference/area, Pythagoras, sin/cos/tan for both tiers, plus the
+    quadratic formula, sine rule, cosine rule, area of a triangle, and
+    conditional probability for Higher only — reusing the existing
+    `right_triangle`/`general_triangle` diagram kinds for its reference
+    figures (no new diagram kind needed) and matching this app's existing
+    ASCII math conventions exactly (grepped `pythagoras.py`/`triangle_rules.py`/
+    `quadratic_equations.py` for the established phrasing — `"a² + b² = c²"`,
+    `"a / sin(A) = b / sin(B) = c / sin(C)"`, `"x = (-b ± √(b^2 - 4ac)) / 2a"` —
+    rather than inventing new notation). Also added a short, own-words
+    marking-instructions paragraph to the mark-scheme PDF
+    (`_marking_instructions_box`) summarising the M/A/B convention and
+    abbreviation key. `PracticeTestSummary` (API schema) and the frontend
+    `PracticeTestSummary` type both gained `sittingId`/`paperNumber`; no route
+    shape changed, since `paper_id` was already the one unique identifier.
+    `PracticeTestsView` now groups the flat paper list by `sittingId`
+    client-side (mirroring `SectionView`'s existing client-side tier
+    grouping) before rendering one `PracticeTestCard` per sitting;
+    `PracticeTestCard`'s prop changed from a single `paper` to a `papers`
+    array, rendering one row per paper with its own independent download
+    buttons. The homepage's static "Practice Tests" teaser copy in `App.tsx`
+    (hardcoded "10 Foundation and 10 Higher, 100 marks each" / "20 papers")
+    was also stale and needed updating — caught only by browsing the actual
+    running app during verification, not by any test, since this text isn't
+    covered by any assertion.
+
+    **One real, pre-existing diagram bug was found and fixed** via rendering
+    the actual Formulae Sheet PDF and looking closely, not by a unit test —
+    same story as most gotchas in this file: `draw_general_triangle`
+    (`app/pdf/diagrams.py`, shared by the existing sine-rule/cosine-rule/
+    triangle-area topics) positioned its `side_c_label` only 6 units above
+    the "Diagram NOT accurately drawn" caption, which visibly overlapped once
+    a caller labelled all three sides together — several existing cosine-rule
+    topics already do exactly this, so this was latent in already-shipped
+    output, only now surfaced because the Formulae Sheet's reference triangle
+    is the single densest use of this diagram kind (all three sides and all
+    three angles labelled at once). Fixed by tightening the label's offset
+    from the base (`-12` → `-8`), confirmed clear via a second, zoomed render.
+    A smaller, purely cosmetic authoring issue was also caught the same way:
+    the sin(A)/cos(A)/tan(A) trio was originally written as one
+    space-separated formula line, and ReportLab's Paragraph whitespace
+    collapsing ran them together into an unreadable single line — split into
+    3 separate lines.
+
+    All 20 old `data/*.json` files (old `foundation-NN`/`higher-NN` id scheme)
+    were deleted and `build.py` was re-run to produce all 60 new papers
+    fresh — re-confirmed byte-identical/exactly-100-marks via the existing
+    (now updated) determinism and mark-total tests. Backend suite grew from
+    682 to 684 tests (2 new tests render a real Foundation and Higher paper +
+    mark scheme via `fitz` and assert the Formulae Sheet page and the current
+    mark-scheme wording are actually present, and that the retired `cao` tag
+    is not — an automated stand-in for the manual visual check, since this is
+    new page content that would otherwise only be caught by eye); frontend
+    unaffected in count (45/45 — `PracticeTestCard.test.tsx`/
+    `PracticeTestsView.test.tsx` fixtures were updated for the new grouped-
+    by-sitting shape). Verified end-to-end via the running app: cover page,
+    Formulae Sheet (both tiers, both reference diagrams legible with no label
+    overlap), and mark-scheme wording were all screenshotted from real
+    rendered PDFs; the browser preview confirmed each sitting card shows 3
+    papers with 6 working download buttons, and a real paper + mark-scheme
+    download was exercised through the actual UI (network requests confirmed
+    200 OK for `foundation-01-paper1/paper` and `foundation-01-paper2/
+    mark-scheme`).
+
 Everything above is committed and pushed (see `git log`).
 
 ## Environment gotchas (Windows, this machine specifically)
@@ -1961,13 +2117,17 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
 - Saved worksheet history, mixed-topic revision papers, user accounts.
 - Deploying this somewhere instead of local-only dev servers.
 - Practice Tests (step 22) deliberately deferred a few things, per the user's choices
-  at the time: mimicking OCR's real 3-paper-per-sitting structure (non-calculator +
-  2 calculator papers) instead of one combined 100-mark paper; hand-authored genuine
-  multi-part exam questions (with sub-parts a/b/c combining several skills) instead of
-  frozen single-skill generator output; and calibrating the mark scheme against real
-  OCR specimen papers, which weren't available this session — if the user obtains
-  some later, `mark_scheme.py`'s marks-per-step default rule could be replaced with
-  real per-question-type mark allocations.
+  at the time. Step 30 later resolved two of them by reading real OCR papers directly
+  (revisionmaths.com): the real 3-paper-per-sitting structure is now built (confirmed
+  this time that OCR's own structure has calculator allowed on *all three* papers, not
+  a non-calculator + 2 calculator split like AQA/Edexcel — the step-22 note above was
+  itself a guess that turned out wrong), and the mark scheme/formulae sheet are now
+  calibrated against real papers spanning June 2017-June 2024. Still genuinely not
+  built: hand-authored multi-part exam questions (with sub-parts a/b/c combining
+  several skills, the way real OCR questions are often structured) instead of frozen
+  single-skill generator output — `mark_scheme.py`'s one-M1-per-step derivation is
+  still a systematic approximation of a real per-question mark allocation, not a
+  transcription of one, since this app's questions are still single-skill by design.
 
 Don't start any of these without checking with the user first — this list is just
 carried-over context, not a plan.

@@ -36,6 +36,8 @@ class PracticeTestPaper:
     id: str
     name: str
     tier: Tier
+    sitting_id: str
+    paper_number: int
     questions: tuple[PracticeQuestion, ...]
 
     @property
@@ -58,6 +60,8 @@ def paper_to_dict(paper: PracticeTestPaper) -> dict:
         "id": paper.id,
         "name": paper.name,
         "tier": paper.tier.value,
+        "sitting_id": paper.sitting_id,
+        "paper_number": paper.paper_number,
         "questions": [
             {
                 "topic_id": q.topic_id,
@@ -90,4 +94,11 @@ def paper_from_dict(data: dict) -> PracticeTestPaper:
         )
         for q in data["questions"]
     )
-    return PracticeTestPaper(id=data["id"], name=data["name"], tier=Tier(data["tier"]), questions=questions)
+    return PracticeTestPaper(
+        id=data["id"],
+        name=data["name"],
+        tier=Tier(data["tier"]),
+        sitting_id=data["sitting_id"],
+        paper_number=data["paper_number"],
+        questions=questions,
+    )

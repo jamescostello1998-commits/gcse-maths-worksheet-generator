@@ -177,13 +177,15 @@ def test_worksheet_generation_error_returns_500(monkeypatch):
     assert "attempts" not in body["detail"]  # no internal detail/stack trace leaked
 
 
-def test_practice_tests_returns_all_20_papers():
+def test_practice_tests_returns_all_60_papers():
     response = client.get("/api/practice-tests")
     assert response.status_code == 200
     data = response.json()
-    assert len(data) == 20
+    assert len(data) == 60
     for paper in data:
-        assert set(paper.keys()) == {"id", "name", "tier", "total_marks", "question_count"}
+        assert set(paper.keys()) == {
+            "id", "name", "tier", "sitting_id", "paper_number", "total_marks", "question_count",
+        }
         assert paper["total_marks"] == 100
 
 
@@ -191,24 +193,24 @@ def test_practice_tests_filters_by_tier():
     response = client.get("/api/practice-tests", params={"tier": "higher"})
     assert response.status_code == 200
     data = response.json()
-    assert len(data) == 10
+    assert len(data) == 30
     assert all(p["tier"] == "higher" for p in data)
 
 
 def test_practice_test_paper_returns_pdf():
-    response = client.get("/api/practice-tests/foundation-01/paper")
+    response = client.get("/api/practice-tests/foundation-01-paper1/paper")
     assert response.status_code == 200
     assert response.headers["content-type"] == "application/pdf"
     assert response.content.startswith(b"%PDF-")
-    assert "foundation-01-test-paper.pdf" in response.headers["content-disposition"]
+    assert "foundation-01-paper1-test-paper.pdf" in response.headers["content-disposition"]
 
 
 def test_practice_test_mark_scheme_returns_pdf():
-    response = client.get("/api/practice-tests/higher-05/mark-scheme")
+    response = client.get("/api/practice-tests/higher-05-paper2/mark-scheme")
     assert response.status_code == 200
     assert response.headers["content-type"] == "application/pdf"
     assert response.content.startswith(b"%PDF-")
-    assert "higher-05-mark-scheme.pdf" in response.headers["content-disposition"]
+    assert "higher-05-paper2-mark-scheme.pdf" in response.headers["content-disposition"]
 
 
 def test_unknown_practice_test_returns_404():

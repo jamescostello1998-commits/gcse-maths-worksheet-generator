@@ -4,8 +4,24 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { PracticeTestsView } from './PracticeTestsView'
 
 const rawPracticeTests = [
-  { id: 'foundation-01', name: 'Foundation Practice Test 1', tier: 'foundation', total_marks: 100, question_count: 27 },
-  { id: 'higher-01', name: 'Higher Practice Test 1', tier: 'higher', total_marks: 100, question_count: 23 },
+  {
+    id: 'foundation-01-paper1',
+    name: 'Foundation Practice Test 1 – Paper 1 of 3',
+    tier: 'foundation',
+    sitting_id: 'foundation-01',
+    paper_number: 1,
+    total_marks: 100,
+    question_count: 27,
+  },
+  {
+    id: 'higher-01-paper1',
+    name: 'Higher Practice Test 1 – Paper 1 of 3',
+    tier: 'higher',
+    sitting_id: 'higher-01',
+    paper_number: 1,
+    total_marks: 100,
+    question_count: 23,
+  },
 ]
 
 function stubFetchWithPracticeTests(): void {

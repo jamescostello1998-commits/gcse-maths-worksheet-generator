@@ -26,6 +26,7 @@ from reportlab.platypus import (
 )
 
 from app.core.errors import PdfRenderError
+from app.core.models import DiagramSpec, Tier
 from app.pdf.diagrams import render_diagram
 from app.pdf.mathtext import to_markup
 from app.pdf.styles import ACCENT, FONT, FONT_BOLD, GRID, HIGHLIGHT, INK, MARGIN, MUTED, RULE, build_styles
@@ -52,6 +53,16 @@ def _extra_styles() -> dict[str, ParagraphStyle]:
         ),
         "MarkSchemeCell": ParagraphStyle(
             "MarkSchemeCell", fontName=FONT, fontSize=9, textColor=INK, leading=13,
+        ),
+        "MarkingGuidance": ParagraphStyle(
+            "MarkingGuidance", fontName=FONT, fontSize=9.5, textColor=MUTED, leading=14,
+        ),
+        "FormulaGroupHeading": ParagraphStyle(
+            "FormulaGroupHeading", fontName=FONT_BOLD, fontSize=11.5, textColor=ACCENT,
+            spaceBefore=12, spaceAfter=6,
+        ),
+        "FormulaLine": ParagraphStyle(
+            "FormulaLine", fontName=FONT, fontSize=11, textColor=INK, leftIndent=6, leading=16, spaceAfter=4,
         ),
     }
 
@@ -95,7 +106,8 @@ def _instructions_box(paper: PracticeTestPaper, styles: dict) -> Table:
     lines = [
         "Answer all questions.",
         "Write your answers clearly in the space provided.",
-        "You may use a calculator.",
+        "You may use a calculator, geometrical instruments, and tracing paper.",
+        "A Formulae Sheet for this tier is included in this document.",
         "Show your working - marks may be awarded for a correct method even if your final answer is incorrect.",
         "The number of marks for each question is shown in brackets, e.g. [3].",
         f"The total number of marks for this paper is {paper.total_marks}.",
@@ -134,6 +146,70 @@ def _cover_page_elements(paper: PracticeTestPaper, styles: dict) -> list:
         Paragraph("Instructions", styles["SectionHeading"]),
         _instructions_box(paper, styles),
     ]
+
+
+def _formula_line(text: str, styles: dict) -> Paragraph:
+    style = styles["FormulaLine"]
+    return Paragraph(_fmt(text, style), style)
+
+
+def _formulae_sheet_elements(tier: Tier, styles: dict) -> list:
+    """A reference Formulae Sheet, bound into the paper right after the cover
+    page - matching where a real OCR paper carries its own tier-specific
+    sheet. Content is the same set of generic mathematical facts every real
+    OCR Formulae Sheet gives (confirmed by reading both tiers' actual 2024
+    sheets) - not copied wording, since these are plain facts, not creative
+    expression."""
+    elements: list = [
+        Paragraph("Formulae Sheet", styles["SectionHeading"]),
+        Paragraph(
+            "These formulae are provided for reference - you do not need to memorise them.",
+            styles["Meta"],
+        ),
+        Paragraph("Perimeter, Area and Volume", styles["FormulaGroupHeading"]),
+        _formula_line("Area of a trapezium = (1/2) × (a + b) × h", styles),
+        _formula_line("Volume of a prism = area of cross-section × length", styles),
+        _formula_line("Circumference of a circle = 2 × π × r = π × d", styles),
+        _formula_line("Area of a circle = π × r^2", styles),
+        Paragraph("Pythagoras' Theorem and Trigonometry", styles["FormulaGroupHeading"]),
+        render_diagram(
+            DiagramSpec(kind="right_triangle", params={"leg1_label": "b", "leg2_label": "a", "hyp_label": "c"})
+        ),
+        Spacer(1, 4),
+        _formula_line("In any right-angled triangle with hypotenuse c: a^2 + b^2 = c^2", styles),
+        _formula_line("sin(A) = a/c", styles),
+        _formula_line("cos(A) = b/c", styles),
+        _formula_line("tan(A) = a/b", styles),
+    ]
+    if tier == Tier.HIGHER:
+        elements += [
+            Paragraph("The Quadratic Formula", styles["FormulaGroupHeading"]),
+            _formula_line("The solutions of ax^2 + bx + c = 0 are:", styles),
+            _formula_line("x = (-b ± √(b^2 - 4ac)) / 2a", styles),
+            Paragraph("Sine Rule, Cosine Rule and Area of a Triangle", styles["FormulaGroupHeading"]),
+            render_diagram(
+                DiagramSpec(
+                    kind="general_triangle",
+                    params={
+                        "side_a_label": "a", "side_b_label": "b", "side_c_label": "c",
+                        "angle_A_label": "A", "angle_B_label": "B", "angle_C_label": "C",
+                    },
+                )
+            ),
+            Spacer(1, 4),
+            _formula_line("Sine rule: a / sin(A) = b / sin(B) = c / sin(C)", styles),
+            _formula_line("Cosine rule: a^2 = b^2 + c^2 - 2bc × cos(A)", styles),
+            _formula_line("Area of triangle = (1/2) × a × b × sin(C)", styles),
+        ]
+    elements += [
+        Paragraph("Compound Interest", styles["FormulaGroupHeading"]),
+        _formula_line("Total accrued = P × (1 + r/100)^n", styles),
+        Paragraph("Probability", styles["FormulaGroupHeading"]),
+        _formula_line("P(A or B) = P(A) + P(B) - P(A and B)", styles),
+    ]
+    if tier == Tier.HIGHER:
+        elements.append(_formula_line("P(A and B) = P(A) × P(B | A)", styles))
+    return elements
 
 
 def _question_block(number: int, question: PracticeQuestion, styles: dict) -> KeepTogether:
@@ -182,6 +258,8 @@ def _render_paper(paper: PracticeTestPaper) -> bytes:
 
     story = _cover_page_elements(paper, styles)
     story.append(PageBreak())
+    story.extend(_formulae_sheet_elements(paper.tier, styles))
+    story.append(PageBreak())
     for i, question in enumerate(paper.questions, start=1):
         story.append(_question_block(i, question, styles))
 
@@ -229,6 +307,36 @@ def _mark_scheme_table(paper: PracticeTestPaper, styles: dict) -> Table:
     return table
 
 
+def _marking_instructions_box(styles: dict) -> Table:
+    """A short, own-words summary of real OCR marking convention (M/A/B marks,
+    common abbreviations) - checked directly against the "Subject-Specific
+    Marking Instructions" pages of actual OCR mark schemes spanning June 2017
+    to June 2024, not copied from any of their wording."""
+    lines = [
+        "M marks are for using a correct method, and are not lost for purely numerical errors.",
+        "A marks require the preceding M mark(s) to have been awarded.",
+        "B marks are independent of method marks, awarded for a correct final or intermediate answer.",
+        "oe = or equivalent &#8226; isw = ignore subsequent working after a correct answer &#8226; "
+        "nfww = not from wrong working &#8226; rot = rounded or truncated &#8226; "
+        "soi = seen or implied &#8226; dep = dependent on an earlier mark.",
+    ]
+    body = "<br/>".join(f"&#8226; {line}" for line in lines)
+    para = Paragraph(body, styles["MarkingGuidance"])
+    box = Table([[para]], colWidths=[_PAGE_WIDTH])
+    box.setStyle(
+        TableStyle(
+            [
+                ("BOX", (0, 0), (-1, -1), 0.75, GRID),
+                ("TOPPADDING", (0, 0), (-1, -1), 10),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 10),
+                ("LEFTPADDING", (0, 0), (-1, -1), 14),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 14),
+            ]
+        )
+    )
+    return box
+
+
 def render_mark_scheme(paper: PracticeTestPaper) -> bytes:
     try:
         return _render_mark_scheme(paper)
@@ -257,6 +365,8 @@ def _render_mark_scheme(paper: PracticeTestPaper) -> bytes:
             f"{tier_label} Tier &nbsp;&#8226;&nbsp; Total {paper.total_marks} marks", styles["Meta"]
         ),
         HRFlowable(width="100%", thickness=0.75, color=RULE, spaceAfter=16),
+        _marking_instructions_box(styles),
+        Spacer(1, 16),
         _mark_scheme_table(paper, styles),
     ]
 

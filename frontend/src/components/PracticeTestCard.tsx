@@ -3,21 +3,25 @@ import { useDownloadMarkScheme } from '../hooks/useDownloadMarkScheme'
 import { useDownloadTestPaper } from '../hooks/useDownloadTestPaper'
 
 interface PracticeTestCardProps {
-  paper: PracticeTestSummary
+  papers: PracticeTestSummary[]
 }
 
-export function PracticeTestCard({ paper }: PracticeTestCardProps) {
+function sittingName(papers: PracticeTestSummary[]): string {
+  return papers[0].name.split(' – Paper')[0]
+}
+
+function PaperRow({ paper }: { paper: PracticeTestSummary }) {
   const { status, error, download } = useDownloadTestPaper()
   const { status: markSchemeStatus, error: markSchemeError, download: downloadMarkScheme } = useDownloadMarkScheme()
 
   return (
-    <div className="topic-card">
-      <div className="topic-card__header">
-        <h4 className="topic-card__name">{paper.name}</h4>
+    <div className="practice-test-card__paper">
+      <div className="practice-test-card__paper-info">
+        <span className="practice-test-card__paper-label">Paper {paper.paperNumber}</span>
+        <span className="topic-card__description">
+          {paper.questionCount} questions • {paper.totalMarks} marks
+        </span>
       </div>
-      <p className="topic-card__description">
-        {paper.questionCount} questions • {paper.totalMarks} marks
-      </p>
       <div className="topic-card__actions">
         <button
           type="button"
@@ -38,6 +42,21 @@ export function PracticeTestCard({ paper }: PracticeTestCardProps) {
       </div>
       {status === 'error' && error && <p className="topic-card__error">{error}</p>}
       {markSchemeStatus === 'error' && markSchemeError && <p className="topic-card__error">{markSchemeError}</p>}
+    </div>
+  )
+}
+
+export function PracticeTestCard({ papers }: PracticeTestCardProps) {
+  return (
+    <div className="topic-card">
+      <div className="topic-card__header">
+        <h4 className="topic-card__name">{sittingName(papers)}</h4>
+      </div>
+      <div className="practice-test-card__papers">
+        {papers.map((paper) => (
+          <PaperRow key={paper.id} paper={paper} />
+        ))}
+      </div>
     </div>
   )
 }

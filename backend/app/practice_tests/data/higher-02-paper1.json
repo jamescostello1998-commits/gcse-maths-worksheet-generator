@@ -1,0 +1,1049 @@
+{
+  "id": "higher-02-paper1",
+  "name": "Higher Practice Test 2 – Paper 1 of 3",
+  "tier": "higher",
+  "sitting_id": "higher-02",
+  "paper_number": 1,
+  "questions": [
+    {
+      "topic_id": "hcf_lcm_by_prime_factors",
+      "prompt": "Using prime factorisation, find the LCM of 110 and 136.",
+      "solution_steps": [
+        "110 = 2 × 5 × 11",
+        "136 = 2^3 × 17",
+        "LCM: take the highest power of each prime",
+        "LCM = 7480"
+      ],
+      "final_answer": "7480",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "110 = 2 × 5 × 11",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "136 = 2^3 × 17",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "LCM: take the highest power of each prime",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "LCM = 7480",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "7480 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "bounds_calculation",
+      "prompt": "A rectangle has length 14 cm and width 13 cm, both measured to the nearest cm. Calculate the upper bound for the area of the rectangle.",
+      "solution_steps": [
+        "Length: 14 cm (to the nearest cm) gives 13.5 ≤ length < 14.5",
+        "Width: 13 cm (to the nearest cm) gives 12.5 ≤ width < 13.5",
+        "For the upper bound of the area, use the upper bound of each measurement: 14.5 × 13.5 = 195.75 cm²"
+      ],
+      "final_answer": "195.75 cm²",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Length: 14 cm (to the nearest cm) gives 13.5 ≤ length < 14.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Width: 13 cm (to the nearest cm) gives 12.5 ≤ width < 13.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For the upper bound of the area, use the upper bound of each measurement: 14.5 × 13.5 = 195.75 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "195.75 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "rationalise_denominator",
+      "prompt": "Rationalise the denominator of 12/(6 - √14), giving your answer in its simplest form.",
+      "solution_steps": [
+        "Multiply the numerator and denominator by the conjugate of the denominator, (6 + √14):",
+        "12/(6 - √14) = 12(6 + √14) / [(6 - √14)(6 + √14)]",
+        "The denominator is a difference of two squares: 6^2 - 14 = 22",
+        "The numerator is 12(6 + √14) = 72 + 12√14",
+        "Simplify by dividing numerator and denominator by 2: (36 + 6√14)/11"
+      ],
+      "final_answer": "(36 + 6√14)/11",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply the numerator and denominator by the conjugate of the denominator, (6 + √14):",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "12/(6 - √14) = 12(6 + √14) / [(6 - √14)(6 + √14)]",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The denominator is a difference of two squares: 6^2 - 14 = 22",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The numerator is 12(6 + √14) = 72 + 12√14 Simplify by dividing numerator and denominator by 2: (36 + 6√14)/11",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(36 + 6√14)/11 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "surds_multiply_divide",
+      "prompt": "Simplify √2250 ÷ √6, giving your answer in the form a√b.",
+      "solution_steps": [
+        "√2250 ÷ √6 = √(2250/6) = √375",
+        "Find the largest square factor of 375: 5^2 × 15 = 375",
+        "√375 = √(5^2 × 15) = 5√15"
+      ],
+      "final_answer": "5√15",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "√2250 ÷ √6 = √(2250/6) = √375",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Find the largest square factor of 375: 5^2 × 15 = 375",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√375 = √(5^2 × 15) = 5√15",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5√15 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "standard_form_multiply_divide",
+      "prompt": "Work out (8 × 10^-1) ÷ (2 × 10^-4). Give your answer in standard form.",
+      "solution_steps": [
+        "Divide the mantissas: 8 ÷ 2 = 4",
+        "Subtract the powers of 10: -1 - -4 = 3"
+      ],
+      "final_answer": "4 × 10^3",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Divide the mantissas: 8 ÷ 2 = 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract the powers of 10: -1 - -4 = 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4 × 10^3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_mixed_number_arithmetic",
+      "prompt": "Work out 4 3/7 + 1 2/4. Give your answer as a mixed number.",
+      "solution_steps": [
+        "Convert to improper fractions: 4 3/7 = 31/7, 1 2/4 = 3/2",
+        "Add the improper fractions: 31/7 + 3/2 = 83/14",
+        "Convert back to a mixed number: 5 13/14"
+      ],
+      "final_answer": "5 13/14",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert to improper fractions: 4 3/7 = 31/7, 1 2/4 = 3/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add the improper fractions: 31/7 + 3/2 = 83/14",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Convert back to a mixed number: 5 13/14",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5 13/14 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "turning_point_of_graph",
+      "prompt": "Find the coordinates of the turning point of the curve y = x^2 - 12x + 1.",
+      "solution_steps": [
+        "Complete the square: x^2 - 12x + 1 = (x - 6)^2 - 35",
+        "The turning point of y = (x + p)^2 + q is (-p, q).",
+        "Turning point = (6, -35)"
+      ],
+      "final_answer": "(6, -35)",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Complete the square: x^2 - 12x + 1 = (x - 6)^2 - 35",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Turning point = (6, -35)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(6, -35) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "parabola",
+        "params": {
+          "vertex_label": "(6, -35)"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_reciprocal",
+      "prompt": "Complete a table of values for y = 24/x for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = 24/x:",
+        "x: -4, -3, -2, -1, 1, 2, 3, 4",
+        "y: -6, -8, -12, -24, 24, 12, 8, 6",
+        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
+      ],
+      "final_answer": "Reciprocal curve: y = 24/x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = 24/x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: -6, -8, -12, -24, 24, 12, 8, 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Reciprocal curve: y = 24/x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "reciprocal",
+          "a": 24,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -26,
+          "y_max": 26,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "reciprocal",
+          "a": 24,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -26,
+          "y_max": 26,
+          "table_points": [
+            [
+              -4,
+              -6
+            ],
+            [
+              -3,
+              -8
+            ],
+            [
+              -2,
+              -12
+            ],
+            [
+              -1,
+              -24
+            ],
+            [
+              1,
+              24
+            ],
+            [
+              2,
+              12
+            ],
+            [
+              3,
+              8
+            ],
+            [
+              4,
+              6
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "algebraic_fractions_multiply_divide",
+      "prompt": "Simplify (x^2 - 81)/(x - 6) ÷ (x - 9)/(x - 6), giving your answer in its simplest form.",
+      "solution_steps": [
+        "Factorise the difference of two squares: (x^2 - 81) = (x - 9)(x + 9)",
+        "Dividing by a fraction means multiplying by its reciprocal: ÷ (x - 9)/(x - 6) becomes × (x - 6)/(x - 9)",
+        "(x - 9)(x + 9)/(x - 6) × (x - 6)/(x - 9)",
+        "Cancel the common factors (x - 6) and (x - 9):",
+        "= x + 9"
+      ],
+      "final_answer": "x + 9",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Factorise the difference of two squares: (x^2 - 81) = (x - 9)(x + 9)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Dividing by a fraction means multiplying by its reciprocal: ÷ (x - 9)/(x - 6) becomes × (x - 6)/(x - 9)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(x - 9)(x + 9)/(x - 6) × (x - 6)/(x - 9)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Cancel the common factors (x - 6) and (x - 9): = x + 9",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x + 9 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "forming_equations_higher",
+      "prompt": "A quadrilateral has angles 21°, 82°, (3x + 4)°, and (x + 237)°. Form an equation and solve it to find x.",
+      "solution_steps": [
+        "Angles in a quadrilateral sum to 360°.",
+        "21 + 82 + (3x + 4) + (x + 237) = 360",
+        "Collect the x-terms and constants together:",
+        "4x + 241 = 257",
+        "Subtract 241 from both sides:",
+        "4x = 16",
+        "Divide both sides by 4:",
+        "x = 4"
+      ],
+      "final_answer": "4",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles in a quadrilateral sum to 360°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "21 + 82 + (3x + 4) + (x + 237) = 360",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Collect the x-terms and constants together:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x + 241 = 257 Subtract 241 from both sides: 4x = 16 Divide both sides by 4: x = 4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_proof",
+      "prompt": "Prove algebraically that n^2 + n + 1 is always odd.",
+      "solution_steps": [
+        "n^2 + n factorises as n(n + 1), the product of two consecutive integers n and n + 1.",
+        "Write the given expression algebraically: n^2 + n + 1.",
+        "Expand and simplify: n^2 + n + 1 = n(n + 1) + 1.",
+        "Factorise/rearrange to expose the structure: n(n + 1) + 1 = n(n + 1) is always even (one of n, n + 1 is always even), so n(n + 1) + 1 is always 1 more than an even number.",
+        "Since n(n + 1) is always even, adding 1 to it always gives an odd number - so n^2 + n + 1 is always odd."
+      ],
+      "final_answer": "Proven: n^2 + n + 1 = n(n + 1) + 1, always odd since n(n + 1) is always even.",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "n^2 + n factorises as n(n + 1), the product of two consecutive integers n and n + 1.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write the given expression algebraically: n^2 + n + 1.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand and simplify: n^2 + n + 1 = n(n + 1) + 1.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise/rearrange to expose the structure: n(n + 1) + 1 = n(n + 1) is always even (one of n, n + 1 is always even), so n(n + 1) + 1 is always 1 more than an even number. Since n(n + 1) is always even, adding 1 to it always gives an odd number - so n^2 + n + 1 is always odd.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Proven: n^2 + n + 1 = n(n + 1) + 1, always odd since n(n + 1) is always even. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "solving_inequalities_higher",
+      "prompt": "Solve the inequality: 6x + 4 ≥ 9x + 5",
+      "solution_steps": [
+        "6x + 4 ≥ 9x + 5",
+        "Subtract 9x from both sides:",
+        "-3x + 4 ≥ 5",
+        "Subtract 4 from both sides:",
+        "-3x ≥ 1",
+        "Divide both sides by -3 (dividing by a negative number reverses the inequality sign):",
+        "x ≤ -1/3"
+      ],
+      "final_answer": "x ≤ -1/3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "6x + 4 ≥ 9x + 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 9x from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-3x + 4 ≥ 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 4 from both sides: -3x ≥ 1 Divide both sides by -3 (dividing by a negative number reverses the inequality sign): x ≤ -1/3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x ≤ -1/3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "inequalities_number_line_higher",
+      "prompt": "Draw the solution set of x < -5 or x ≥ -1 on a number line.",
+      "solution_steps": [
+        "Draw an open circle at -5 and a filled circle at -1.",
+        "Shade to the left of -5 and to the right of -1, with arrows showing both continue indefinitely."
+      ],
+      "final_answer": "x < -5 or x ≥ -1",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Draw an open circle at -5 and a filled circle at -1.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Shade to the left of -5 and to the right of -1, with arrows showing both continue indefinitely.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x < -5 or x ≥ -1 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [],
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [
+            {
+              "value": -5,
+              "closed": false
+            },
+            {
+              "value": -1,
+              "closed": true
+            }
+          ],
+          "shade": "outside"
+        }
+      }
+    },
+    {
+      "topic_id": "unit_conversions_higher",
+      "prompt": "Convert 998 cm³ to m³.",
+      "solution_steps": [
+        "Linear conversion factor: 1 m = 100 cm, so for volume, 1 m³ = 100^3 = 1000000 cm³",
+        "998 cm³ = 998 ÷ 1000000 = 0.000998 m³"
+      ],
+      "final_answer": "0.000998 m³",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Linear conversion factor: 1 m = 100 cm, so for volume, 1 m³ = 100^3 = 1000000 cm³",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "998 cm³ = 998 ÷ 1000000 = 0.000998 m³",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "0.000998 m³ oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "compound_percentage",
+      "prompt": "A price of £120 decreases by 60%, then increases by 15%. Find the final price.",
+      "solution_steps": [
+        "After the first change: 120 × 0.40 = 48",
+        "After the second change: 48 × 1.15 = 55.20"
+      ],
+      "final_answer": "£55.20",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "After the first change: 120 × 0.40 = 48",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "After the second change: 48 × 1.15 = 55.20",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£55.20 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_direct_proportion",
+      "prompt": "y is directly proportional to x^3. When x = 7, y = 2058. Find the value of y when x = 3.",
+      "solution_steps": [
+        "y = kx^3",
+        "2058 = k × 7^3 = k × 343",
+        "k = 2058 ÷ 343 = 6",
+        "y = 6 × 3^3 = 6 × 27 = 162"
+      ],
+      "final_answer": "162",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = kx^3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2058 = k × 7^3 = k × 343",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "k = 2058 ÷ 343 = 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y = 6 × 3^3 = 6 × 27 = 162",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "162 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_share_three_part",
+      "prompt": "Share 77 in the ratio 1:2:8.",
+      "solution_steps": [
+        "Total parts = 1 + 2 + 8 = 11",
+        "Value of one part = 77 ÷ 11 = 7",
+        "Share 1 = 1 × 7 = 7",
+        "Share 2 = 2 × 7 = 14",
+        "Share 3 = 8 × 7 = 56"
+      ],
+      "final_answer": "7 : 14 : 56",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total parts = 1 + 2 + 8 = 11",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Value of one part = 77 ÷ 11 = 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 1 = 1 × 7 = 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 2 = 2 × 7 = 14 Share 3 = 8 × 7 = 56",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "7 : 14 : 56 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "circle_theorems",
+      "prompt": "A and B are points on a circle with centre O, and C is a point on the major arc. Find the angle at the centre, x.",
+      "solution_steps": [
+        "The angle at the centre is twice the angle at the circumference subtended by the same arc.",
+        "x = 2 × 78° = 156°"
+      ],
+      "final_answer": "156°",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The angle at the centre is twice the angle at the circumference subtended by the same arc.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 2 × 78° = 156°",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "156° oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "circle_angle_centre",
+        "params": {
+          "centre_label": "x°",
+          "circumference_label": "78°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_mixed_compound",
+      "prompt": "A shape is made from a rectangle 12 cm by 14 cm, with a triangular roof of height 9 cm on top, and a quarter-circle of radius 2 cm cut from one bottom corner. Find the total area, correct to 3 significant figures.",
+      "solution_steps": [
+        "Rectangle area = 12 × 14 = 168 cm²",
+        "Triangle roof area = ½ × 12 × 9 = 54 cm²",
+        "Quarter-circle cut area = (π × 2²) ÷ 4 ≈ 3.14 cm²",
+        "Total area = 168 + 54 - 3.14 ≈ 219 cm²"
+      ],
+      "final_answer": "219 cm²",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Rectangle area = 12 × 14 = 168 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Triangle roof area = ½ × 12 × 9 = 54 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Quarter-circle cut area = (π × 2²) ÷ 4 ≈ 3.14 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total area = 168 + 54 - 3.14 ≈ 219 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "219 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "mixed_compound",
+        "params": {
+          "width": 12,
+          "height": 14,
+          "roof_height": 9,
+          "cut_radius": 2,
+          "width_label": "12 cm",
+          "height_label": "14 cm",
+          "roof_label": "9 cm",
+          "cut_label": "2 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "product_rule_counting",
+      "prompt": "A shop sells 4 different fonts and 5 different colours. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "solution_steps": [
+        "Total combinations = 4 × 5 = 20"
+      ],
+      "final_answer": "20",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total combinations = 4 × 5 = 20",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "20 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_semicircle_compound_higher",
+      "prompt": "A shape is made from a rectangle 6 cm by 17 cm with a semicircle of diameter 6 cm attached to one side. Find the total area, giving your answer in terms of π.",
+      "solution_steps": [
+        "Area of rectangle = 6 × 17 = 102 cm²",
+        "Radius of semicircle = 6 ÷ 2 = 3 cm",
+        "Area of semicircle = (1/2) × π × 3² = (9/2)π cm²",
+        "Total area = 102 + (9/2)π cm² (exact form)"
+      ],
+      "final_answer": "(102 + (9/2)π) cm²",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area of rectangle = 6 × 17 = 102 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Radius of semicircle = 6 ÷ 2 = 3 cm",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of semicircle = (1/2) × π × 3² = (9/2)π cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total area = 102 + (9/2)π cm² (exact form)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(102 + (9/2)π) cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "rectangle_semicircle",
+        "params": {
+          "width": 6,
+          "height": 17,
+          "radius": 3,
+          "width_label": "6 cm",
+          "height_label": "17 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "venn_diagram_notation",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6}. The Venn diagram shows sets A and B. List the elements of A ∩ B.",
+      "solution_steps": [
+        "ξ = {1, 2, 3, 4, 5, 6}",
+        "A = {1, 3, 6}, B = {1, 2, 5, 6}",
+        "A ∩ B means the elements in both A and B.",
+        "A ∩ B = {1, 6}"
+      ],
+      "final_answer": "{1, 6}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "ξ = {1, 2, 3, 4, 5, 6}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {1, 3, 6}, B = {1, 2, 5, 6}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A ∩ B means the elements in both A and B.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A ∩ B = {1, 6}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "{1, 6} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "S",
+          "region_text": {
+            "a_only": "3",
+            "b_only": "2, 5",
+            "both": "1, 6",
+            "neither": "4"
+          }
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_conditional",
+      "prompt": "A bag contains 6 purple and 5 green counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour.",
+      "solution_steps": [
+        "P(both purple) = 6/11 × 5/10 = 3/11",
+        "P(both green) = 5/11 × 4/10 = 2/11",
+        "P(both same colour) = 3/11 + 2/11 = 5/11"
+      ],
+      "final_answer": "5/11",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "P(both purple) = 6/11 × 5/10 = 3/11",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(both green) = 5/11 × 4/10 = 2/11",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(both same colour) = 3/11 + 2/11 = 5/11",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5/11 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "bag_of_counters",
+        "params": {
+          "counts": {
+            "purple": 6,
+            "green": 5
+          }
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "velocity_time_interpret",
+      "prompt": "The velocity-time graph shows a car's journey. Find the total distance travelled.",
+      "solution_steps": [
+        "Total distance = total area under the graph (a trapezium)",
+        "Distance = ½ × (33 + 15) × 24 = 576 m"
+      ],
+      "final_answer": "576 m",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total distance = total area under the graph (a trapezium)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Distance = ½ × (33 + 15) × 24 = 576 m",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "576 m oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              8,
+              24
+            ],
+            [
+              23,
+              24
+            ],
+            [
+              33,
+              0
+            ]
+          ],
+          "x_max": 38,
+          "y_max": 29,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
+        }
+      },
+      "solution_diagram": null
+    }
+  ]
+}

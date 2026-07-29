@@ -1,0 +1,1053 @@
+{
+  "id": "higher-01-paper1",
+  "name": "Higher Practice Test 1 – Paper 1 of 3",
+  "tier": "higher",
+  "sitting_id": "higher-01",
+  "paper_number": 1,
+  "questions": [
+    {
+      "topic_id": "recurring_decimal_two_digit",
+      "prompt": "The recurring decimal 0.(96) can be written as a fraction. Find this fraction in its simplest form.",
+      "solution_steps": [
+        "Let x = 0.(96), so 100x = 96.9696... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Subtract: 100x - x = 96 - 0, so 99x = 96",
+        "x = 96/99 = 32/33"
+      ],
+      "final_answer": "32/33",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let x = 0.(96), so 100x = 96.9696... (two digits repeat, so multiply by 100 to shift a full block)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract: 100x - x = 96 - 0, so 99x = 96",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 96/99 = 32/33",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "32/33 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "decimals_recurring_to_fraction",
+      "prompt": "The recurring decimal 0.(7) can be written as a fraction. Find this fraction in its simplest form.",
+      "solution_steps": [
+        "Let x = 0.(7)",
+        "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
+        "This gives x = 7/9",
+        "Simplify: 7/9"
+      ],
+      "final_answer": "7/9",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let x = 0.(7)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "This gives x = 7/9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify: 7/9",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "7/9 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "rationalise_denominator",
+      "prompt": "Rationalise the denominator of 2/√15, giving your answer in its simplest form.",
+      "solution_steps": [
+        "Multiply the top and bottom by √15: 2/√15 = 2√15/15",
+        "= 2√15/15"
+      ],
+      "final_answer": "2√15/15",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply the top and bottom by √15: 2/√15 = 2√15/15",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 2√15/15",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2√15/15 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "bounds_calculation",
+      "prompt": "A rectangle has length 34 cm and width 18 cm, both measured to the nearest cm. Calculate the upper bound for the area of the rectangle.",
+      "solution_steps": [
+        "Length: 34 cm (to the nearest cm) gives 33.5 ≤ length < 34.5",
+        "Width: 18 cm (to the nearest cm) gives 17.5 ≤ width < 18.5",
+        "For the upper bound of the area, use the upper bound of each measurement: 34.5 × 18.5 = 638.25 cm²"
+      ],
+      "final_answer": "638.25 cm²",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Length: 34 cm (to the nearest cm) gives 33.5 ≤ length < 34.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Width: 18 cm (to the nearest cm) gives 17.5 ≤ width < 18.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For the upper bound of the area, use the upper bound of each measurement: 34.5 × 18.5 = 638.25 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "638.25 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_mixed_number_arithmetic",
+      "prompt": "Work out 4 2/7 + 1 2/4. Give your answer as a mixed number.",
+      "solution_steps": [
+        "Convert to improper fractions: 4 2/7 = 30/7, 1 2/4 = 3/2",
+        "Add the improper fractions: 30/7 + 3/2 = 81/14",
+        "Convert back to a mixed number: 5 11/14"
+      ],
+      "final_answer": "5 11/14",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert to improper fractions: 4 2/7 = 30/7, 1 2/4 = 3/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add the improper fractions: 30/7 + 3/2 = 81/14",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Convert back to a mixed number: 5 11/14",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5 11/14 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_surds",
+      "prompt": "Expand and simplify (7 - √3)(4 + √3), giving your answer in the form p + q√3.",
+      "solution_steps": [
+        "Expand the brackets (FOIL): (7 - √3)(4 + √3) = 28 +7√3 -4√3 -3",
+        "√3 × √3 = 3, so the last term is a whole number: -3",
+        "Combine the whole-number terms: 28 -3 = 25",
+        "Combine the √3 terms: +7√3 -4√3 = +3√3",
+        "(7 - √3)(4 + √3) = 25 + 3√3"
+      ],
+      "final_answer": "25 + 3√3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the brackets (FOIL): (7 - √3)(4 + √3) = 28 +7√3 -4√3 -3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√3 × √3 = 3, so the last term is a whole number: -3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine the whole-number terms: 28 -3 = 25",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine the √3 terms: +7√3 -4√3 = +3√3 (7 - √3)(4 + √3) = 25 + 3√3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "25 + 3√3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "velocity_time_interpret",
+      "prompt": "The velocity-time graph shows a car's journey. Find its acceleration during the first phase.",
+      "solution_steps": [
+        "Acceleration = change in velocity ÷ time = 20 ÷ 10 = 2 m/s^2"
+      ],
+      "final_answer": "2 m/s^2",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Acceleration = change in velocity ÷ time = 20 ÷ 10 = 2 m/s^2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2 m/s^2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              10,
+              20
+            ],
+            [
+              35,
+              20
+            ],
+            [
+              40,
+              0
+            ]
+          ],
+          "x_max": 45,
+          "y_max": 25,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "change_subject_higher",
+      "prompt": "Make x the subject of the formula y = (x + 15)/(x - 9).",
+      "solution_steps": [
+        "y = (x + 15)/(x - 9)",
+        "Multiply both sides by (x - 9): y(x - 9) = x + 15",
+        "Expand the bracket: yx - 9y = x + 15",
+        "Collect the x-terms on one side: yx - x = 15 + 9y",
+        "Factorise: x(y - 1) = 15 + 9y",
+        "Divide both sides by (y - 1): x = (15 + 9y)/(y - 1)"
+      ],
+      "final_answer": "x = (15 + 9y)/(y - 1)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = (x + 15)/(x - 9)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply both sides by (x - 9): y(x - 9) = x + 15",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand the bracket: yx - 9y = x + 15",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Collect the x-terms on one side: yx - x = 15 + 9y Factorise: x(y - 1) = 15 + 9y Divide both sides by (y - 1): x = (15 + 9y)/(y - 1)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = (15 + 9y)/(y - 1) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "satisfying_inequalities_higher",
+      "prompt": "x satisfies both x + 8 > -6 and 4x + 4 ≤ -5. List the integer values of x that satisfy both.",
+      "solution_steps": [
+        "Solve the first inequality:",
+        "x + 8 > -6",
+        "Subtract 8 from both sides:",
+        "x > -14",
+        "x > -14",
+        "Solve the second inequality:",
+        "4x + 4 ≤ -5",
+        "Subtract 4 from both sides:",
+        "4x ≤ -9",
+        "Divide both sides by 4:",
+        "x ≤ -9/4",
+        "Combine both results into a single range: -14 < x ≤ -9/4",
+        "The integers satisfying both inequalities are: -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3"
+      ],
+      "final_answer": "-13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Solve the first inequality:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x + 8 > -6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 8 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x > -14 x > -14 Solve the second inequality: 4x + 4 ≤ -5 Subtract 4 from both sides: 4x ≤ -9 Divide both sides by 4: x ≤ -9/4 Combine both results into a single range: -14 < x ≤ -9/4 The integers satisfying both inequalities are: -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_reciprocal",
+      "prompt": "Complete a table of values for y = 48/x for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = 48/x:",
+        "x: -4, -3, -2, -1, 1, 2, 3, 4",
+        "y: -12, -16, -24, -48, 48, 24, 16, 12",
+        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
+      ],
+      "final_answer": "Reciprocal curve: y = 48/x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = 48/x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: -12, -16, -24, -48, 48, 24, 16, 12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Reciprocal curve: y = 48/x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "reciprocal",
+          "a": 48,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -50,
+          "y_max": 50,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "reciprocal",
+          "a": 48,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -50,
+          "y_max": 50,
+          "table_points": [
+            [
+              -4,
+              -12
+            ],
+            [
+              -3,
+              -16
+            ],
+            [
+              -2,
+              -24
+            ],
+            [
+              -1,
+              -48
+            ],
+            [
+              1,
+              48
+            ],
+            [
+              2,
+              24
+            ],
+            [
+              3,
+              16
+            ],
+            [
+              4,
+              12
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "linear_both_sides",
+      "prompt": "Solve: -6x + 15 = -4x + 1",
+      "solution_steps": [
+        "-6x + 15 = -4x + 1",
+        "Add 4x to both sides:",
+        "-2x + 15 = 1",
+        "Subtract 15 from both sides:",
+        "-2x = -14",
+        "Divide both sides by -2:",
+        "x = 7"
+      ],
+      "final_answer": "7",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "-6x + 15 = -4x + 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add 4x to both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-2x + 15 = 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 15 from both sides: -2x = -14 Divide both sides by -2: x = 7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "7 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "expand_triple_brackets",
+      "prompt": "Expand and simplify: (-x + 4)(3x + 1)(-3x - 4)",
+      "solution_steps": [
+        "First expand two of the brackets: (-x + 4)(3x + 1) = -3x^2 + 11x + 4",
+        "Multiply the result by (-3x - 4) and collect like terms",
+        "= 9x^3 - 21x^2 - 56x - 16"
+      ],
+      "final_answer": "9x^3 - 21x^2 - 56x - 16",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First expand two of the brackets: (-x + 4)(3x + 1) = -3x^2 + 11x + 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply the result by (-3x - 4) and collect like terms",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 9x^3 - 21x^2 - 56x - 16",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "9x^3 - 21x^2 - 56x - 16 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "solving_inequalities_higher",
+      "prompt": "Solve the inequality: 3x - 10 > 6x - 9",
+      "solution_steps": [
+        "3x - 10 > 6x - 9",
+        "Subtract 6x from both sides:",
+        "-3x - 10 > -9",
+        "Add 10 to both sides:",
+        "-3x > 1",
+        "Divide both sides by -3 (dividing by a negative number reverses the inequality sign):",
+        "x < -1/3"
+      ],
+      "final_answer": "x < -1/3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "3x - 10 > 6x - 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 6x from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-3x - 10 > -9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add 10 to both sides: -3x > 1 Divide both sides by -3 (dividing by a negative number reverses the inequality sign): x < -1/3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x < -1/3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_shape_similar_higher",
+      "prompt": "Shape A and Shape B are similar. A length on shape A is 6 cm and the corresponding length on shape B is 4 cm. The volume of shape B is 16 cm^3. Find the volume of shape A.",
+      "solution_steps": [
+        "Linear scale factor = 4 ÷ 6 = 2/3",
+        "Volume scale factor = (2/3)^3 = 8/27",
+        "Volume of A = 16 ÷ 8/27 = 54 cm^3"
+      ],
+      "final_answer": "54 cm^3",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Linear scale factor = 4 ÷ 6 = 2/3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Volume scale factor = (2/3)^3 = 8/27",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Volume of A = 16 ÷ 8/27 = 54 cm^3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "54 cm^3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_combine",
+      "prompt": "Given that a:b = 4:2 and b:c = 4:8, find a:b:c in its simplest form.",
+      "solution_steps": [
+        "Scale a:b = 4:2 by 2 so b = 4: a:b = 8:4",
+        "Scale b:c = 4:8 by 1 so b = 4: b:c = 4:8",
+        "Combine: a:b:c = 8:4:8",
+        "Simplify by dividing by 4: a:b:c = 2:1:2"
+      ],
+      "final_answer": "2 : 1 : 2",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Scale a:b = 4:2 by 2 so b = 4: a:b = 8:4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Scale b:c = 4:8 by 1 so b = 4: b:c = 4:8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine: a:b:c = 8:4:8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify by dividing by 4: a:b:c = 2:1:2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2 : 1 : 2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "unit_conversions_higher",
+      "prompt": "Convert 2635 cm³ to m³.",
+      "solution_steps": [
+        "Linear conversion factor: 1 m = 100 cm, so for volume, 1 m³ = 100^3 = 1000000 cm³",
+        "2635 cm³ = 2635 ÷ 1000000 = 0.002635 m³"
+      ],
+      "final_answer": "0.002635 m³",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Linear conversion factor: 1 m = 100 cm, so for volume, 1 m³ = 100^3 = 1000000 cm³",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2635 cm³ = 2635 ÷ 1000000 = 0.002635 m³",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "0.002635 m³ oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "reverse_percentage",
+      "prompt": "After a 12% decrease, an item costs £63.36. Find the original price.",
+      "solution_steps": [
+        "Convert 12% to a multiplier: 0.88 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 63.36 ÷ 0.88 = 72"
+      ],
+      "final_answer": "£72",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 12% to a multiplier: 0.88 (original × multiplier = new value)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide the new value by the multiplier: 63.36 ÷ 0.88 = 72",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£72 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_inverse_proportion",
+      "prompt": "y is inversely proportional to x^2. When x = 6, y = 12. Find the value of y when x = 2.",
+      "solution_steps": [
+        "y = k ÷ x^2",
+        "k = y × x^2 = 12 × 6^2 = 12 × 36 = 432",
+        "y = k ÷ x^2 = 432 ÷ 2^2 = 432 ÷ 4 = 108"
+      ],
+      "final_answer": "108",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = k ÷ x^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "k = y × x^2 = 12 × 6^2 = 12 × 36 = 432",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y = k ÷ x^2 = 432 ÷ 2^2 = 432 ÷ 4 = 108",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "108 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_subtract_compound",
+      "prompt": "A rectangular sheet of metal 11 cm by 14 cm has a rectangular hole 8 cm by 5 cm cut from its centre. Find the remaining area.",
+      "solution_steps": [
+        "Area of large rectangle = 11 × 14 = 154 cm²",
+        "Area of rectangular hole = 8 × 5 = 40 cm²",
+        "Remaining area = 154 - 40 = 114 cm²"
+      ],
+      "final_answer": "114 cm²",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area of large rectangle = 11 × 14 = 154 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of rectangular hole = 8 × 5 = 40 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Remaining area = 154 - 40 = 114 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "114 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "l_shape",
+        "params": {
+          "outer_w": 11,
+          "outer_h": 14,
+          "inner_w": 8,
+          "inner_h": 5,
+          "notch": "center",
+          "outer_labels": [
+            "11 cm",
+            "14 cm"
+          ],
+          "inner_labels": [
+            "8 cm",
+            "5 cm"
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "vectors_arithmetic_higher",
+      "prompt": "\\vec{a} = (9, -3) and \\vec{b} = (-11, -4). Find -5\\vec{a} + -1\\vec{b}.",
+      "solution_steps": [
+        "\\vec{a} = (9, -3), \\vec{b} = (-11, -4)",
+        "-5\\vec{a} = (-45, 15) and -1\\vec{b} = (11, 4)",
+        "-5\\vec{a} + -1\\vec{b} = (-34, 19)"
+      ],
+      "final_answer": "(-34, 19)",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "\\vec{a} = (9, -3), \\vec{b} = (-11, -4)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-5\\vec{a} = (-45, 15) and -1\\vec{b} = (11, 4)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-5\\vec{a} + -1\\vec{b} = (-34, 19)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(-34, 19) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_straight_line_higher",
+      "prompt": "The angles 41° and (2x + 107)° lie on a straight line. Find x.",
+      "solution_steps": [
+        "Angles on a straight line sum to 180°.",
+        "2x + 107 = 139",
+        "Subtract 107 from both sides:",
+        "2x = 32",
+        "Divide both sides by 2:",
+        "x = 16"
+      ],
+      "final_answer": "16",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles on a straight line sum to 180°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x + 107 = 139",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 107 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x = 32 Divide both sides by 2: x = 16",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "16 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "angle_line",
+        "params": {
+          "angle_values": [
+            41,
+            139
+          ],
+          "labels": [
+            "41°",
+            "(2x + 107)°"
+          ],
+          "around_point": false
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "compound_3d_volume",
+      "prompt": "A silo-shaped solid is made from a cuboid with a square base of side 14 cm and height 8 cm, with a square-based pyramid of height 8 cm on top (sharing the same square base). Find the total volume.",
+      "solution_steps": [
+        "Cuboid volume = base² × height = 14² × 8 = 1568 cm³",
+        "Pyramid volume = (1/3) × base² × height = (1/3) × 14² × 8 = 1568/3 cm³",
+        "Total volume = 1568 + 1568/3 = 6272/3 cm³"
+      ],
+      "final_answer": "6272/3 cm³",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Cuboid volume = base² × height = 14² × 8 = 1568 cm³",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Pyramid volume = (1/3) × base² × height = (1/3) × 14² × 8 = 1568/3 cm³",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total volume = 1568 + 1568/3 = 6272/3 cm³",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6272/3 cm³ oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "compound_3d",
+        "params": {
+          "variant": "cuboid_pyramid",
+          "base_label": "14 cm",
+          "roof_height_label": "8 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "product_rule_counting",
+      "prompt": "A shop sells 2 different phone cases and 2 different screen protectors. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "solution_steps": [
+        "Total combinations = 2 × 2 = 4"
+      ],
+      "final_answer": "4",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total combinations = 2 × 2 = 4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_combined_dice",
+      "prompt": "Two fair six-sided dice are rolled. Find the probability that both dice show 4.",
+      "solution_steps": [
+        "P(first die is 4) = 1/6, P(second die is 4) = 1/6",
+        "Independent events multiply: P(both 4) = 1/6 × 1/6 = 1/36"
+      ],
+      "final_answer": "1/36",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "P(first die is 4) = 1/6, P(second die is 4) = 1/6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Independent events multiply: P(both 4) = 1/6 × 1/6 = 1/36",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/36 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "dice",
+        "params": {
+          "values": [
+            6,
+            6
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "box_plot_interpret",
+      "prompt": "The box plots compare test scores for two classes. Which class had the smaller range?",
+      "solution_steps": [
+        "Class A range = 46, Class B range = 31.",
+        "Class B is smaller."
+      ],
+      "final_answer": "Class B",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Class A range = 46, Class B range = 31.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Class B is smaller.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Class B oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "box_plot",
+        "params": {
+          "box_plots": [
+            {
+              "min": 2,
+              "q1": 15.0,
+              "median": 26.0,
+              "q3": 32.0,
+              "max": 48,
+              "label": "Class A"
+            },
+            {
+              "min": 1,
+              "q1": 8.0,
+              "median": 24.0,
+              "q3": 29.5,
+              "max": 32,
+              "label": "Class B"
+            }
+          ],
+          "x_label": "Test Scores"
+        }
+      },
+      "solution_diagram": null
+    }
+  ]
+}

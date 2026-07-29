@@ -1,0 +1,1117 @@
+{
+  "id": "higher-08-paper1",
+  "name": "Higher Practice Test 8 – Paper 1 of 3",
+  "tier": "higher",
+  "sitting_id": "higher-08",
+  "paper_number": 1,
+  "questions": [
+    {
+      "topic_id": "bounds_calculation",
+      "prompt": "A rectangle has length 37 cm and width 6 cm, both measured to the nearest cm. Calculate the upper bound for the area of the rectangle.",
+      "solution_steps": [
+        "Length: 37 cm (to the nearest cm) gives 36.5 ≤ length < 37.5",
+        "Width: 6 cm (to the nearest cm) gives 5.5 ≤ width < 6.5",
+        "For the upper bound of the area, use the upper bound of each measurement: 37.5 × 6.5 = 243.75 cm²"
+      ],
+      "final_answer": "243.75 cm²",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Length: 37 cm (to the nearest cm) gives 36.5 ≤ length < 37.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Width: 6 cm (to the nearest cm) gives 5.5 ≤ width < 6.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For the upper bound of the area, use the upper bound of each measurement: 37.5 × 6.5 = 243.75 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "243.75 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "prime_factors_higher",
+      "prompt": "Write 552 as a product of its prime factors, giving your answer in index form.",
+      "solution_steps": [
+        "Divide 552 repeatedly by the smallest prime that fits: 2 × 2 × 2 × 3 × 23",
+        "Write repeated factors using index notation: 552 = 2^3 × 3 × 23"
+      ],
+      "final_answer": "2^3 × 3 × 23",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Divide 552 repeatedly by the smallest prime that fits: 2 × 2 × 2 × 3 × 23",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write repeated factors using index notation: 552 = 2^3 × 3 × 23",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2^3 × 3 × 23 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "roots_higher",
+      "prompt": "Simplify √54, giving your answer in the form a√b.",
+      "solution_steps": [
+        "Find the largest square factor of 54: 3^2 × 6 = 54",
+        "√54 = √(3^2 × 6) = 3√6"
+      ],
+      "final_answer": "3√6",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find the largest square factor of 54: 3^2 × 6 = 54",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√54 = √(3^2 × 6) = 3√6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3√6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simplifying_indices_challenging",
+      "prompt": "Simplify (6^-3)^3 ÷ 6^-3, giving your answer as a fraction where necessary.",
+      "solution_steps": [
+        "Multiply the powers in the bracket: -3 × 3 = -9",
+        "(6^-3)^3 = 6^-9",
+        "Subtract the powers to divide: -9 - (-3) = -6",
+        "6^-9 ÷ 6^-3 = 6^-6 = 1/46656"
+      ],
+      "final_answer": "1/46656",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply the powers in the bracket: -3 × 3 = -9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(6^-3)^3 = 6^-9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract the powers to divide: -9 - (-3) = -6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "6^-9 ÷ 6^-3 = 6^-6 = 1/46656",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/46656 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_mixed_number_arithmetic",
+      "prompt": "Work out 3 4/6 + 3 1/5. Give your answer as a mixed number.",
+      "solution_steps": [
+        "Convert to improper fractions: 3 4/6 = 11/3, 3 1/5 = 16/5",
+        "Add the improper fractions: 11/3 + 16/5 = 103/15",
+        "Convert back to a mixed number: 6 13/15"
+      ],
+      "final_answer": "6 13/15",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert to improper fractions: 3 4/6 = 11/3, 3 1/5 = 16/5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add the improper fractions: 11/3 + 16/5 = 103/15",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Convert back to a mixed number: 6 13/15",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6 13/15 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "powers_higher",
+      "prompt": "Work out 25^(1/2).",
+      "solution_steps": [
+        "25^(1/2) means the square root of 25.",
+        "25^(1/2) = 5"
+      ],
+      "final_answer": "5",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "25^(1/2) means the square root of 25.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "25^(1/2) = 5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "standard_form_add_subtract",
+      "prompt": "Work out (8 × 10^6) - (4 × 10^5). Give your answer in standard form.",
+      "solution_steps": [
+        "Write both numbers with the same power of 10: 8×10^6 = 80×10^5, 4×10^5 = 4×10^5",
+        "Subtract the coefficients: 80 - 4 = 76",
+        "Write in standard form: 76 × 10^5 = 7.6 × 10^6"
+      ],
+      "final_answer": "7.6 × 10^6",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Write both numbers with the same power of 10: 8×10^6 = 80×10^5, 4×10^5 = 4×10^5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract the coefficients: 80 - 4 = 76",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write in standard form: 76 × 10^5 = 7.6 × 10^6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "7.6 × 10^6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_quadratic",
+      "prompt": "Solve the simultaneous equations: y = x^2 + 4x + 1 and y = 9x - 3",
+      "solution_steps": [
+        "Substitute y = 9x - 3 into y = x^2 + 4x + 1: 9x - 3 = x^2 + 4x + 1",
+        "Rearrange: x^2 - 5x + 4 = 0",
+        "Factorise: (x - 1)(x - 4) = 0",
+        "x = 1 or x = 4",
+        "When x = 1, y = 6. When x = 4, y = 33."
+      ],
+      "final_answer": "(1, 6) and (4, 33)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Substitute y = 9x - 3 into y = x^2 + 4x + 1: 9x - 3 = x^2 + 4x + 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rearrange: x^2 - 5x + 4 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: (x - 1)(x - 4) = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 1 or x = 4 When x = 1, y = 6. When x = 4, y = 33.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(1, 6) and (4, 33) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "sequences_quadratic_nth_term",
+      "prompt": "Here are the first four terms of a quadratic sequence: 4, 0, -8, -20. Find an expression for the nth term.",
+      "solution_steps": [
+        "First differences: -4, -8, -12",
+        "Second difference is constant: -4, so the coefficient of n^2 is -4 ÷ 2 = -2",
+        "nth term = -2n^2 + 2n + 4"
+      ],
+      "final_answer": "-2n^2 + 2n + 4",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First differences: -4, -8, -12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Second difference is constant: -4, so the coefficient of n^2 is -4 ÷ 2 = -2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "nth term = -2n^2 + 2n + 4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-2n^2 + 2n + 4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "completing_the_square",
+      "prompt": "Write x^2 + 4x in the form (x + p)^2 + q.",
+      "solution_steps": [
+        "Half the coefficient of x: 4 ÷ 2 = 2",
+        "(x + 2)^2 = x^2 + 4x + 4",
+        "x^2 + 4x + 0 = (x + 2)^2 + (0 - 4) = (x + 2)^2 - 4"
+      ],
+      "final_answer": "(x + 2)^2 - 4",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Half the coefficient of x: 4 ÷ 2 = 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(x + 2)^2 = x^2 + 4x + 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x^2 + 4x + 0 = (x + 2)^2 + (0 - 4) = (x + 2)^2 - 4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(x + 2)^2 - 4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_different_coefficient",
+      "prompt": "Solve the simultaneous equations: 5x + 4y = 37 and 4x + 5y = 35",
+      "solution_steps": [
+        "5x + 4y = 37  (1)",
+        "4x + 5y = 35  (2)",
+        "(1) × 5: 25x + 20y = 185  (3)",
+        "(2) × 4: 16x + 20y = 140  (4)",
+        "(3) - (4): 9x = 45, so x = 5",
+        "Substitute x = 5 into (1): 4y = 12, so y = 3"
+      ],
+      "final_answer": "x = 5, y = 3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "5x + 4y = 37  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x + 5y = 35  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(1) × 5: 25x + 20y = 185  (3)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(2) × 4: 16x + 20y = 140  (4) (3) - (4): 9x = 45, so x = 5 Substitute x = 5 into (1): 4y = 12, so y = 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 5, y = 3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "forming_equations_higher",
+      "prompt": "A rectangle has one side of length 11 cm and the other side of length (x + 4) cm. The area of the rectangle is 264 cm². Form an equation and solve it to find x.",
+      "solution_steps": [
+        "Area of a rectangle = length × width.",
+        "11(x + 4) = 264",
+        "Expand the bracket:",
+        "11x + 44 = 264",
+        "Subtract 44 from both sides:",
+        "11x = 220",
+        "Divide both sides by 11:",
+        "x = 20"
+      ],
+      "final_answer": "20",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area of a rectangle = length × width.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "11(x + 4) = 264",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand the bracket:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "11x + 44 = 264 Subtract 44 from both sides: 11x = 220 Divide both sides by 11: x = 20",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "20 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "solving_inequalities_higher",
+      "prompt": "Solve the inequality: -2(x + 7) < 2",
+      "solution_steps": [
+        "Expand the bracket: -2(x + 7) < 2",
+        "-2x - 14 < 2",
+        "Add 14 to both sides:",
+        "-2x < 16",
+        "Divide both sides by -2 (dividing by a negative number reverses the inequality sign):",
+        "x > -8"
+      ],
+      "final_answer": "x > -8",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: -2(x + 7) < 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-2x - 14 < 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add 14 to both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-2x < 16 Divide both sides by -2 (dividing by a negative number reverses the inequality sign): x > -8",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x > -8 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "change_subject_higher",
+      "prompt": "Make x the subject of the formula y = 8x + 4x + 14.",
+      "solution_steps": [
+        "y = 8x + 4x + 14",
+        "Subtract 14 from both sides: y - 14 = 8x + 4x",
+        "Factorise the right-hand side: y - 14 = (12)x",
+        "Divide both sides by 12: x = (y - 14)/12"
+      ],
+      "final_answer": "x = (y - 14)/12",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = 8x + 4x + 14",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 14 from both sides: y - 14 = 8x + 4x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise the right-hand side: y - 14 = (12)x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 12: x = (y - 14)/12",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = (y - 14)/12 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "speed_with_conversions",
+      "prompt": "A motorbike travels 44 km in 72 minutes. Find its average speed in km/h, correct to 1 decimal place.",
+      "solution_steps": [
+        "Convert time to hours: 72 minutes = 72 ÷ 60 hours",
+        "speed = distance ÷ time = 44 ÷ (72 ÷ 60) = 36.7 km/h (1 d.p.)"
+      ],
+      "final_answer": "36.7 km/h",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert time to hours: 72 minutes = 72 ÷ 60 hours",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "speed = distance ÷ time = 44 ÷ (72 ÷ 60) = 36.7 km/h (1 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "36.7 km/h oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "percentage_increase_decrease_calculator",
+      "prompt": "Using a calculator, increase £603.65 by 4.8%. Give your answer to 2 decimal places.",
+      "solution_steps": [
+        "Convert 4.8% to a multiplier: 1.048",
+        "Multiply: £603.65 × 1.048 = £632.63 (calculator, 2 d.p.)"
+      ],
+      "final_answer": "£632.63",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 4.8% to a multiplier: 1.048",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply: £603.65 × 1.048 = £632.63 (calculator, 2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£632.63 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_difference_higher",
+      "prompt": "Amounts are in the ratio 1:5:7. The difference between the largest and smallest amount is 30. Find all three amounts and their total.",
+      "solution_steps": [
+        "Difference in parts = 7 - 1 = 6 parts",
+        "Value of one part = 30 ÷ 6 = 5",
+        "Amount 1 = 1 × 5 = 5",
+        "Amount 2 = 5 × 5 = 25",
+        "Amount 3 = 7 × 5 = 35",
+        "Total = 5 + 25 + 35 = 65"
+      ],
+      "final_answer": "5 : 25 : 35 (total 65)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Difference in parts = 7 - 1 = 6 parts",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Value of one part = 30 ÷ 6 = 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Amount 1 = 1 × 5 = 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Amount 2 = 5 × 5 = 25 Amount 3 = 7 × 5 = 35 Total = 5 + 25 + 35 = 65",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5 : 25 : 35 (total 65) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pressure_higher",
+      "prompt": "A crate exerts a force of 1894 N over a contact area of 3399 cm². Find the pressure in N/m², correct to 2 decimal places.",
+      "solution_steps": [
+        "Convert area to m²: 3399 cm² = 3399 ÷ 10000 = 0.3399 m²",
+        "pressure = force ÷ area = 1894 ÷ 0.3399 = 5572.23 N/m² (2 d.p.)"
+      ],
+      "final_answer": "5572.23 N/m²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert area to m²: 3399 cm² = 3399 ÷ 10000 = 0.3399 m²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "pressure = force ÷ area = 1894 ÷ 0.3399 = 5572.23 N/m² (2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5572.23 N/m² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "reverse_percentage",
+      "prompt": "After a 30% increase, an item costs £57.20. Find the original price.",
+      "solution_steps": [
+        "Convert 30% to a multiplier: 1.30 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 57.20 ÷ 1.30 = 44"
+      ],
+      "final_answer": "£44",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 30% to a multiplier: 1.30 (original × multiplier = new value)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide the new value by the multiplier: 57.20 ÷ 1.30 = 44",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£44 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_triangle_higher",
+      "prompt": "A triangle has angles 32°, 59°, and (3x + 50)°. Find x.",
+      "solution_steps": [
+        "Angles in a triangle sum to 180°.",
+        "3x + 50 = 89",
+        "Subtract 50 from both sides:",
+        "3x = 39",
+        "Divide both sides by 3:",
+        "x = 13"
+      ],
+      "final_answer": "13",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles in a triangle sum to 180°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3x + 50 = 89",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 50 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3x = 39 Divide both sides by 3: x = 13",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "13 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "triangle_angles",
+        "params": {
+          "angle_labels": [
+            "32°",
+            "59°",
+            "(3x + 50)°"
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "transform_enlarge_complete_higher",
+      "prompt": "Enlarge shape ABCDEF by scale factor -1, centre (1, 4). Draw and label the image A'B'C'D'E'F'.",
+      "solution_steps": [
+        "The centre of enlargement is (1, 4) and the scale factor is -1.",
+        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (2, -2) from the centre, so A' = (1, 4) + -1 × (2, -2) = (-1, 6).",
+        "Repeat for every vertex: A(3, 2) -> A'(-1, 6), B(7, 2) -> B'(-5, 6), C(7, 4) -> C'(-5, 4), D(5, 4) -> D'(-3, 4), E(5, 7) -> E'(-3, 1), F(3, 7) -> F'(-1, 1)",
+        "A negative scale factor puts the image on the opposite side of the centre from the original shape."
+      ],
+      "final_answer": "A'(-1, 6), B'(-5, 6), C'(-5, 4), D'(-3, 4), E'(-3, 1), F'(-1, 1)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The centre of enlargement is (1, 4) and the scale factor is -1.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (2, -2) from the centre, so A' = (1, 4) + -1 × (2, -2) = (-1, 6).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Repeat for every vertex: A(3, 2) -> A'(-1, 6), B(7, 2) -> B'(-5, 6), C(7, 4) -> C'(-5, 4), D(5, 4) -> D'(-3, 4), E(5, 7) -> E'(-3, 1), F(3, 7) -> F'(-1, 1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A negative scale factor puts the image on the opposite side of the centre from the original shape.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "A'(-1, 6), B'(-5, 6), C'(-5, 4), D'(-3, 4), E'(-3, 1), F'(-1, 1) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              3,
+              2
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              7
+            ],
+            [
+              3,
+              7
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "centre": [
+            1,
+            4
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              3,
+              2
+            ],
+            [
+              7,
+              2
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              7
+            ],
+            [
+              3,
+              7
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "centre": [
+            1,
+            4
+          ],
+          "image_vertices": [
+            [
+              -1,
+              6
+            ],
+            [
+              -5,
+              6
+            ],
+            [
+              -5,
+              4
+            ],
+            [
+              -3,
+              4
+            ],
+            [
+              -3,
+              1
+            ],
+            [
+              -1,
+              1
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'",
+            "D'",
+            "E'",
+            "F'"
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "transform_enlarge_describe",
+      "prompt": "Shape ABCD is enlarged to give shape A'B'C'D', shown on the grid. Describe fully the single transformation that maps ABCD onto A'B'C'D'.",
+      "solution_steps": [
+        "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
+        "For this pair, the lines meet at (0, 1) and the ratio works out as -1."
+      ],
+      "final_answer": "Enlargement, scale factor -1, centre (0, 1)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For this pair, the lines meet at (0, 1) and the ratio works out as -1.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Enlargement, scale factor -1, centre (0, 1) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              -1,
+              3
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              2,
+              7
+            ],
+            [
+              -2,
+              6
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "image_vertices": [
+            [
+              1,
+              -1
+            ],
+            [
+              -3,
+              -1
+            ],
+            [
+              -2,
+              -5
+            ],
+            [
+              2,
+              -4
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'",
+            "D'"
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "volume_surface_area_cylinder",
+      "prompt": "A cylinder has radius 12 cm and height 18 cm. Find the exact volume, in terms of π.",
+      "solution_steps": [
+        "Volume = π × r² × h = π × 12² × 18",
+        "= 2592π cm³"
+      ],
+      "final_answer": "2592π cm³",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Volume = π × r² × h = π × 12² × 18",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 2592π cm³",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2592π cm³ oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "cylinder",
+        "params": {
+          "radius_label": "12 cm",
+          "height_label": "18 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "venn_diagram_algebra",
+      "prompt": "The Venn diagram shows the number of elements in each region of sets A and B, given in terms of x. There are 49 elements in total. Find the value of x, and hence find the probability that a randomly chosen element is in both A and B.",
+      "solution_steps": [
+        "a_only + b_only + both + neither = total: (x) + (3x) + (2x + 2) + 17 = 49",
+        "Collecting like terms: 6x + 19 = 49",
+        "x = 5",
+        "Substituting x = 5: A only = 5, B only = 15, both = 12, neither = 17",
+        "The probability that a randomly chosen element is in both A and B = 12/49"
+      ],
+      "final_answer": "12/49",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "a_only + b_only + both + neither = total: (x) + (3x) + (2x + 2) + 17 = 49",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Collecting like terms: 6x + 19 = 49",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substituting x = 5: A only = 5, B only = 15, both = 12, neither = 17 The probability that a randomly chosen element is in both A and B = 12/49",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "12/49 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "region_text": {
+            "a_only": "x",
+            "b_only": "3x",
+            "both": "2x + 2",
+            "neither": "17"
+          }
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_combined_dice",
+      "prompt": "Two fair six-sided dice are rolled. Find the probability that at least one die shows 6.",
+      "solution_steps": [
+        "P(neither die shows 6) = 5/6 × 5/6 = 25/36",
+        "P(at least one 6) = 1 - 25/36 = 11/36"
+      ],
+      "final_answer": "11/36",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "P(neither die shows 6) = 5/6 × 5/6 = 25/36",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(at least one 6) = 1 - 25/36 = 11/36",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "11/36 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "dice",
+        "params": {
+          "values": [
+            3,
+            4
+          ]
+        }
+      },
+      "solution_diagram": null
+    }
+  ]
+}

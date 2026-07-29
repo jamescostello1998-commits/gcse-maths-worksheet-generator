@@ -1,9 +1,11 @@
-"""One-time assembly script for the 20 fixed practice papers. Not run at
-request time - run manually (`python -m app.practice_tests.build`), the
-output JSON files are committed to the repo as static content. Re-running
-this script reproduces byte-identical output, since every seed is derived
-deterministically from (paper_id, topic_id) via SHA-256 (never Python's
-built-in `hash()`, which is randomised per-process for strings).
+"""One-time assembly script for the 60 fixed practice papers - 10 sittings
+per tier, each a real OCR-shaped sitting of 3 separate 100-mark papers
+(matching J560/01-03 Foundation / J560/04-06 Higher). Not run at request
+time - run manually (`python -m app.practice_tests.build`), the output JSON
+files are committed to the repo as static content. Re-running this script
+reproduces byte-identical output, since every seed is derived deterministically
+from (paper_id, topic_id) via SHA-256 (never Python's built-in `hash()`, which
+is randomised per-process for strings).
 """
 
 import hashlib
@@ -18,7 +20,8 @@ from app.practice_tests.topic_selection import eligible_topics_by_section, selec
 from app.topics.base import TopicDefinition
 
 DATA_DIR = Path(__file__).parent / "data"
-PAPERS_PER_TIER = 10
+SITTINGS_PER_TIER = 10
+PAPERS_PER_SITTING = 3
 TARGET_MARKS = 100
 MAX_REPAIR_ATTEMPTS = 300
 
@@ -28,12 +31,16 @@ def _seed(*parts: str) -> int:
     return int.from_bytes(digest[:8], "big")
 
 
-def _paper_id(tier: Tier, index: int) -> str:
-    return f"{tier.value}-{index:02d}"
+def _sitting_id(tier: Tier, sitting_index: int) -> str:
+    return f"{tier.value}-{sitting_index:02d}"
 
 
-def _paper_name(tier: Tier, index: int) -> str:
-    return f"{tier.value.title()} Practice Test {index}"
+def _paper_id(tier: Tier, sitting_index: int, paper_number: int) -> str:
+    return f"{_sitting_id(tier, sitting_index)}-paper{paper_number}"
+
+
+def _paper_name(tier: Tier, sitting_index: int, paper_number: int) -> str:
+    return f"{tier.value.title()} Practice Test {sitting_index} – Paper {paper_number} of {PAPERS_PER_SITTING}"
 
 
 def _build_practice_question(topic: TopicDefinition, seed: int) -> PracticeQuestion:
@@ -93,16 +100,17 @@ MAX_PAPER_RETRIES = 20
 
 def _assemble_paper(
     tier: Tier,
-    index: int,
+    sitting_index: int,
+    paper_number: int,
     by_section: dict[str, list[TopicDefinition]],
     typical_marks: dict[str, int],
 ) -> PracticeTestPaper:
-    base_paper_id = _paper_id(tier, index)
+    base_paper_id = _paper_id(tier, sitting_index, paper_number)
     last_error: Exception | None = None
     for retry in range(MAX_PAPER_RETRIES):
         seed_key = base_paper_id if retry == 0 else f"{base_paper_id}#retry{retry}"
         try:
-            return _try_assemble_paper(tier, index, base_paper_id, seed_key, by_section, typical_marks)
+            return _try_assemble_paper(tier, sitting_index, paper_number, base_paper_id, seed_key, by_section, typical_marks)
         except ValueError as exc:
             last_error = exc
             continue
@@ -111,7 +119,8 @@ def _assemble_paper(
 
 def _try_assemble_paper(
     tier: Tier,
-    index: int,
+    sitting_index: int,
+    paper_number: int,
     paper_id: str,
     seed_key: str,
     by_section: dict[str, list[TopicDefinition]],
@@ -129,7 +138,14 @@ def _try_assemble_paper(
     if total != TARGET_MARKS:
         raise ValueError(f"Paper {paper_id} settled at {total} marks, not {TARGET_MARKS}")
 
-    return PracticeTestPaper(id=paper_id, name=_paper_name(tier, index), tier=tier, questions=tuple(questions))
+    return PracticeTestPaper(
+        id=paper_id,
+        name=_paper_name(tier, sitting_index, paper_number),
+        tier=tier,
+        sitting_id=_sitting_id(tier, sitting_index),
+        paper_number=paper_number,
+        questions=tuple(questions),
+    )
 
 
 def _typical_marks_for_tier(tier: Tier, by_section: dict[str, list[TopicDefinition]]) -> dict[str, int]:
@@ -142,17 +158,19 @@ def _typical_marks_for_tier(tier: Tier, by_section: dict[str, list[TopicDefiniti
 
 
 def build_papers(paper_ids: list[str] | None = None) -> list[PracticeTestPaper]:
-    """Build the given paper ids (e.g. ["foundation-01", "higher-01"]), or
-    all 20 if omitted. Does not write to disk - see main()/write_papers()."""
+    """Build the given paper ids (e.g. ["foundation-01-paper1"]), or all 60
+    (10 sittings/tier * 3 papers/sitting) if omitted. Does not write to disk -
+    see main()/write_papers()."""
     papers: list[PracticeTestPaper] = []
     for tier in (Tier.FOUNDATION, Tier.HIGHER):
         by_section = eligible_topics_by_section(tier)
         typical_marks = _typical_marks_for_tier(tier, by_section)
-        for index in range(1, PAPERS_PER_TIER + 1):
-            pid = _paper_id(tier, index)
-            if paper_ids is not None and pid not in paper_ids:
-                continue
-            papers.append(_assemble_paper(tier, index, by_section, typical_marks))
+        for sitting_index in range(1, SITTINGS_PER_TIER + 1):
+            for paper_number in range(1, PAPERS_PER_SITTING + 1):
+                pid = _paper_id(tier, sitting_index, paper_number)
+                if paper_ids is not None and pid not in paper_ids:
+                    continue
+                papers.append(_assemble_paper(tier, sitting_index, paper_number, by_section, typical_marks))
     return papers
 
 
