@@ -12,16 +12,10 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-**⚠️ FIRST: step 32's work below is written to disk but NOT YET COMMITTED OR
-PUSHED**, unlike every other session recorded in this file (see the repo
-header above - that "always committed and pushed" invariant does not hold
-right now). It lives on branch `aqa-spec-gap-topics` (same branch as steps
-31 and the gh-CLI note fix, already committed/pushed with an open PR - see
-`gh pr view 3` or the repo's PR list), with many changed/new files, all
-tests passing, nothing staged or committed. Before doing anything else, run
-`git status` to confirm this is still the state you find, then ask the user
-whether to commit/push (adding to the same open PR, unless they'd rather
-split it out) before starting new work on top of it.
+Step 32's work is committed and pushed to branch `aqa-spec-gap-topics`
+(same branch as steps 31 and the gh-CLI note fix), added to the same open
+PR - see `gh pr view 3` or the repo's PR list. The PR has not been merged
+yet; check its status before assuming `master` already has this work.
 
 **The entire user-supplied Geometry expansion is complete (chronology steps
 23-27), the fraction-vinculum rendering fix landed (step 28), three more
