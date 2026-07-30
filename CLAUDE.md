@@ -12,10 +12,12 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-Step 32's work is committed and pushed to branch `aqa-spec-gap-topics`
-(same branch as steps 31 and the gh-CLI note fix), added to the same open
-PR - see `gh pr view 3` or the repo's PR list. The PR has not been merged
-yet; check its status before assuming `master` already has this work.
+Step 33's work (Bell Tasks, see "Current state" below and chronology step 33)
+is not yet committed/pushed on branch `aqa-spec-gap-topics` — do so before
+assuming it's saved. Steps 31/32's work on that same branch was already added
+to the open PR (`gh pr view 3` or the repo's PR list); the PR has not been
+merged yet, so check its status before assuming `master` already has any of
+this.
 
 **The entire user-supplied Geometry expansion is complete (chronology steps
 23-27), the fraction-vinculum rendering fix landed (step 28), three more
@@ -23,19 +25,24 @@ yet; check its status before assuming `master` already has this work.
 surface area, spinner diagrams for 3 previously text-only branches, and bold
 vector labels), the Practice Tests feature was rebuilt to genuinely match a
 real OCR GCSE Maths sitting (step 30), a full AQA-spec gap audit followed by
-all 7 identified high-confidence gaps was completed in step 31, and step 32
+all 7 identified high-confidence gaps was completed in step 31, step 32
 gave Practice Tests a real OCR-style answer layout, read the actual OCR J560
 spec end to end, closed all 10 gaps that audit found, and retrofitted the
-real OCR non-calculator paper structure onto Practice Tests.** 296 topics
-total, backend suite 756/756, frontend 46/46, no known bugs.
+real OCR non-calculator paper structure onto Practice Tests, and step 33
+added a brand-new "Bell Tasks" homepage feature (see "Current state" below)
+generating a PowerPoint starter-activity deck from 6 teacher-chosen topics.**
+296 topics total (unchanged this step - Bell Tasks is a new *output format*
+over the existing topic pool, not new topics), backend suite 828/828,
+frontend 61/61, no known bugs.
 
-There is no committed next step for this project right now (once step 32 is
+There is no committed next step for this project right now (once step 33 is
 committed/pushed) — check "Ideas for a future session" (bottom of this file)
 for candidate follow-ups (the remaining medium-confidence OCR-spec gaps from
 step 32's audit, the remaining medium/low-confidence AQA-spec gaps from step
 31's audit, stem-and-leaf diagrams, standard deviation, a handful of
 lower-confidence curriculum-audit candidates, saved worksheet history,
-deployment, etc.), or ask the user directly what they'd like to work on next.
+deployment, a KS3 Bell Tasks tier, etc.), or ask the user directly what
+they'd like to work on next.
 
 ## Current state
 
@@ -177,6 +184,153 @@ actually read closely enough to notice, until the practice-tests mark scheme did
 Fixed by reformatting through fixed-point notation (`Decimal(format(quantized, "f"))`)
 inside `_round_to_1sf` itself, so every caller (both the normal generator and the
 modelled example) is fixed by the one change.
+
+**Bell Tasks (chronology step 33)**: a third homepage feature, `backend/app/bell_tasks/`,
+sitting alongside the 6-section grid and Practice Tests exactly like Practice Tests sits
+alongside the grid (its own sibling `<section>` in `App.tsx`, not folded into either). A
+teacher picks a KS3/KS4 sub-menu (KS3 is a disabled dead link, "for later", per direct
+request — only KS4 is built) then, for KS4, exactly 6 topics from the full flattened list
+of all 296 existing topics (no curation - every topic is eligible, including diagram-heavy
+ones) via 6 searchable topic pickers (`BellTasksView.tsx`, one per box — a plain `<select>`
+was tried first but a 296-option native dropdown is unusable, so each box is a
+`SearchableTopicSelect.tsx` combobox instead: a text input that shows the full topic list
+on focus and filters it live by substring as the teacher types, reusing `TopicSearch.tsx`'s
+established filter-as-you-type convention rather than inventing a new one), each excluding
+topics already chosen in another box so the 6 stay distinct without a separate validation
+error state. `POST /api/bell-tasks` (`GenerateBellTasksRequest.topic_ids`, a Pydantic
+`field_validator` enforcing exactly 6 distinct ids) returns a **fresh, freshly-random
+`.pptx` every single call** — no persistence anywhere, matching the plain Worksheet
+Generator's behaviour, not Practice Tests' frozen/static one. `generate_bell_tasks_pptx`
+(`app/bell_tasks/generator.py`) calls `build_worksheet(topic_id, topic.fixed_tier, count=5,
+rng=shared_rng)` once per chosen topic (one shared `random.Random()` across all 6, same
+precedent as `create_modelled_example`'s multi-call sharing) — **100% reuse of the existing
+verified generator pipeline**, no new question-generation logic anywhere in this feature.
+
+The output deck's exact visual style (a purple `#531D60` theme, two real logo images -
+Sparx and "Need to Know Book & Planners" - a page-number box, a live date field, and a
+3×2 grid of 6 numbered boxes per slide) was **not rebuilt from scratch** — the user
+supplied a real reference PowerPoint and explicitly chose "keep everything exactly as-is",
+so the reference file itself (already containing exactly 5 correctly-styled blank
+slides, one per weekday) was copied in verbatim as
+`app/bell_tasks/assets/bell_task_template.pptx` and is opened fresh per request via
+`python-pptx` (`Presentation(template_path)`) — never mutated on disk, only in memory,
+then saved to a `BytesIO` and returned as bytes. **Box numbering is column-major**,
+matching the template's own existing "1./3./5." (row 0) / "2./4./6." (row 1) cell
+content — confirmed by reading the real XML, not assumed — so box *N* is a fixed topic
+for the whole week: box *N*'s cell on weekday-slide *K* holds that topic's *K*th (of 5)
+generated question (`app/bell_tasks/layout.py`'s `BOX_TO_ROW_COL`). No answer key is
+generated at all (a deliberate, explicit user choice, unlike every other feature in this
+app) - purely question-only output, matching the reference file's own blank template.
+
+Three new supporting pieces, all built and verified in isolation before any pptx-specific
+code was written (this project's own established "verify the riskiest piece first"
+diagram-engine precedent): (1) `app/bell_tasks/diagram_raster.py` rasterizes a topic's
+existing ReportLab `Drawing` (from `render_diagram`, completely unchanged) to PNG bytes for
+embedding as a picture shape — via `reportlab.graphics.renderPDF` (pure vector-to-PDF, no
+Cairo/`renderPM` needed) to a small in-memory one-page PDF, then `fitz` (already pinned)
+rasterizes page 0 - reusing this project's own established PDF-to-PNG pattern (see
+"Verifying new topics visually" below) but applied to a single standalone `Drawing` instead
+of a whole rendered page; (2) `app/bell_tasks/math_tokenizer.py`'s `tokenize()` adapts
+`mathtext.py`'s existing fraction/exponent/variable/vector regexes, but instead of building
+ReportLab markup, splits a prompt into an ordered list of typed tokens - plain `TextSpan`s
+(rendered as a normal `python-pptx` run, `"Calibri"` for words or `"Cambria Math"` for
+bare digits/operators/`x`/`n`, a literal per-token **font** switch per the user's original
+instruction) plus three *structural* token types - `FractionSpan`, `ExponentSpan`,
+`FractionalExponentSpan` - promoted to real, native PowerPoint equation objects instead (see
+(3) below); (3) `app/bell_tasks/omml.py` builds those equation objects as raw OOXML (Office
+Math Markup Language) inserted directly into a paragraph's XML via `lxml`, since
+`python-pptx` has **no built-in support for equations at all**. A spike (build a minimal
+equation fragment, save, open in real PowerPoint via COM automation, look at the result)
+found the mechanism a slide actually needs: a bare `<m:oMath>` as a direct child of `<a:p>`
+is silently dropped - unlike a Word document, a PowerPoint slide's DrawingML text needs the
+Office-2010 math extension wrapper, `<mc:AlternateContent><mc:Choice Requires="a14"><a14:m>
+<m:oMathPara><m:oMath>...</m:oMath></m:oMathPara></a14:m></mc:Choice><mc:Fallback>` (plain-
+text run for older PowerPoint) `</mc:Fallback></mc:AlternateContent>`, coexisting inline
+with ordinary `<a:r>` runs before/after it on the same line - confirmed working for both a
+real stacked fraction (`<m:f>`) and a real superscript (`<m:sSup>`, including a fraction
+nested inside one for a fractional exponent), each sized/coloured correctly via an `<a:rPr>`
+nested inside each math run's own `<m:rPr>`. Given this real complexity, exponents are only
+promoted to a true native superscript when the base is unambiguous - a bare digit run or a
+single letter not itself preceded by another letter (`x^2`, `n^2`, `f^-1`, `10^-3`) - real
+generator output also has exponents on a whole bracketed expression (`(x - 3)^2`), a multi-
+letter identifier (`cos^-1`), or a run-together coefficient+variable (`at^2`, meaning
+`a * t^2`, not `(at)^2`); correctly identifying the true base in those cases would need
+balanced-parenthesis scanning or word-level disambiguation, judged a materially bigger
+undertaking than asked for, so they deliberately keep the pre-existing plain "^n" inline-
+text rendering instead of risking a wrongly-scoped superscript.
+
+**Diagram sizing was reworked after a user report that embedded diagrams looked squeezed**:
+the original `layout.diagram_rect` computed a (width, height) box from the cell alone and
+handed both dimensions straight to `add_picture`, which does not preserve an image's own
+aspect ratio when both dimensions are given explicitly - it stretches to fill whatever box
+it's told, regardless of the diagram's real proportions, and different diagram kinds have
+genuinely different native `Drawing` sizes (not always the same `DIAGRAM_WIDTH`/
+`DIAGRAM_HEIGHT` defaults). Fixed by threading the diagram's own native width/height (in
+points, straight from the rendered `Drawing`) through to `diagram_rect`, which now treats
+the cell-derived box as a maximum bounding area only and scales the native size down (never
+up, capped at 1.0×) to the largest size that fits inside it without distortion, centred
+horizontally within the reserved zone - the diagram may end up noticeably smaller than the
+old behaviour's box, but is never stretched, and stays crisp even at the smaller size since
+rasterization DPI is unchanged.
+
+**Several real bugs were found and fixed via this session's own end-to-end visual
+verification, not by any unit test written in advance** - the same story as most gotchas in
+this file: (1) the tokenizer's first version classified *any* bare `-` character as a
+math/minus-sign token, including the hyphen inside compound words like "right-angled" or
+"square-based" (real generator output), rendering half a word in Cambria Math - fixed with
+a lookahead (`-(?![A-Za-z])`) so a hyphen immediately followed by a letter is left as plain
+prose, while a genuine minus sign (followed by a digit or space) still counts as math; (2) a
+long, data-listing prompt (e.g. `bar_chart_construct`, which spells out several
+category:value pairs in the question text itself) wrapped to 4 lines and ran straight
+into a diagram placed at a fixed height fraction with no regard for how much text sat
+above it, visibly overlapping in a real rendered slide - fixed by estimating the prompt's
+own wrapped-line count from its character length and the cell's width first
+(`layout.estimate_text_line_count`), then shrinking the diagram's reserved height to
+whatever's genuinely left (`layout.diagram_rect`, returns `None` - skip the diagram
+entirely - when even a legible minimum wouldn't fit), plus a full extra line of headroom
+since a rough width-based estimate can legitimately run a touch long; (3) some topic
+*names* already end with their own tier disambiguator by this app's own naming convention
+(e.g. `"Dividing Fractions (Foundation)"`, for a Foundation/Higher sibling pair) - the
+frontend's dropdown label helper originally appended `"(Foundation)"`/`"(Higher)"`
+unconditionally, doubling up to `"... (Foundation) (Foundation)"` for those specific
+topics; fixed by checking whether the name already ends with that exact suffix first;
+(4) the single most subtle bug this feature produced: every native equation object
+(fraction or exponent) rendered as **completely blank** the first time real generator
+content was checked in PowerPoint, even though the inserted XML was well-formed and had
+already been proven correct in an isolated spike. Root cause - a real table cell, once
+`TextFrame.clear()`'d (exactly what `_set_cell_content` does before rebuilding it), leaves
+a trailing `<a:endParaRPr>` element behind, which the DrawingML schema requires to always
+be the **last** child of a paragraph; the isolated OMML spike used a brand-new textbox with
+no such element, so it never exposed the bug. `omml.py`'s equation-building code used a
+plain `etree.SubElement(paragraph_xml, ...)` append, which has no schema awareness and
+lands *after* `endParaRPr` - PowerPoint silently drops anything positioned there rather than
+erroring, which is also why this had nothing to do with the XML's own validity and nothing
+a schema-only check would have caught. Fixed with `_insert_before_end_para_rpr`, which finds
+any trailing `endParaRPr` and inserts before it instead of blindly appending - `python-pptx`'s
+own `add_run()` already gets this right internally, which is exactly why every plain-text
+run continued to work throughout and only the hand-built equation XML was affected.
+
+Verified end-to-end: full backend+frontend suites; a real generated `.pptx` opened via
+`python-pptx` read-back (structural assertions - correct slide/cell/box↔topic mapping,
+correct `font.name`/`font.size` per run, real `<m:f>`/`<m:sSup>` equation elements present
+and correctly positioned relative to `endParaRPr`, every added picture's bounding box
+contained within its own cell and its aspect ratio preserved) *and*, since this Windows
+machine has no LibreOffice installed (the project's pptx-authoring skill's usual visual-QA
+path doesn't work here - confirmed, its `soffice.py` wrapper throws on `socket.AF_UNIX`), a
+genuine visual check via COM-automating the real Microsoft PowerPoint already installed on
+this machine (`pywin32`, installed ad hoc for this one-off QA step only - deliberately
+**not** added to `requirements.txt`, since it's a local verification tool, not something
+the app itself depends on) to export real rendered slide images and look closely at them,
+exactly like this project's established "render and look closely" discipline, just via a
+different renderer than usual; plus a full live browser click-through (KS3 disabled, KS4
+topic-picker with live search-as-you-type and cross-box exclusion confirmed directly via
+the running app, Generate, a real `.pptx` downloaded with a 200 OK and no console errors).
+
+Backend suite grew from 756 to 828 tests (across 5 files mirroring the `practice_tests/`
+subpackage-test precedent - `test_diagram_raster.py`, `test_math_tokenizer.py`,
+`test_layout.py`, `test_omml.py` (new), `test_generator.py` - plus 4 new route tests);
+frontend grew from 46 to 61 (`BellTasksView.test.tsx` plus a new
+`SearchableTopicSelect.test.tsx`).
 
 **Modelled Example feature (on every topic, including new ones)**: a second button, "Generate
 Modelled Example," sits next to "Generate Worksheet" on every topic card
@@ -2213,7 +2367,86 @@ existing topics/shared rendering code). Frontend unaffected (45/45).
     only the 10 high-confidence ones) - see "Ideas for a future session".
     Backend suite grew from 715 to 756 tests; frontend grew from 45 to 46.
 
-Everything above is committed and pushed (see `git log`).
+33. New session, a large brand-new feature ("Bell Tasks") built from a real
+    reference PowerPoint the user supplied for style ("Bell Task planning DO
+    NOT SAVE.pptx", from their Downloads - read directly by unzipping its raw
+    XML, since this project's `pptx`-authoring skill's usual `markitdown`/
+    LibreOffice tooling either wasn't installed (`markitdown`) or doesn't work
+    on this Windows machine (LibreOffice absent entirely; its `soffice.py`
+    wrapper throws on `socket.AF_UNIX`)). Asked two rounds of clarifying
+    questions up front per the user's explicit request (8 questions total,
+    covering topic-pool scope, the box↔topic↔day layout mapping, whether an
+    answer key was wanted, branding/logo handling, diagram handling inside a
+    small box, what a mystery "10" placeholder should show, and regeneration
+    behaviour) before writing anything, then entered plan mode given the
+    scope (3 parallel Explore agents covering backend generation/routes
+    architecture, frontend homepage/section architecture, and diagram-kind/
+    pptx-tooling availability, followed by 1 Plan agent) and read every
+    critical file directly before finalizing the plan.
+
+    Built the feature described in "Bell Tasks" above in `Current state`
+    (full technical detail there, not repeated here): a new
+    `backend/app/bell_tasks/` package (`diagram_raster.py`, `math_tokenizer.py`,
+    `layout.py`, `generator.py`, plus the reference file copied in verbatim as
+    a template asset), a new `POST /api/bell-tasks` route/schema, and a new
+    `BellTasksView.tsx` frontend screen wired in as a third homepage feature
+    alongside the 6-section grid and Practice Tests. `python-pptx` (1.0.2) was
+    added as a new pinned backend dependency - confirmed absent beforehand,
+    the first time this project has needed to read/write `.pptx` rather than
+    PDF output.
+
+    The single riskiest piece - rasterizing one of this app's existing
+    ReportLab `Drawing` diagrams to a PNG for embedding in a `.pptx` picture
+    shape, with no prior precedent anywhere in this codebase and CLAUDE.md's
+    own note that ReportLab's bitmap renderer (`renderPM`) isn't installed
+    here - was spiked and validated in complete isolation first, per this
+    project's own established discipline: `reportlab.graphics.renderPDF`
+    (pure vector-to-PDF, needs no Cairo bindings) renders the `Drawing` to a
+    small in-memory one-page PDF, then `fitz` (already pinned) rasterizes it -
+    confirmed working first against synthetic shapes, then against several
+    real diagram kinds (a triangle, a rectangle, a bar chart), before any
+    pptx-specific code was written.
+
+    Three real bugs were found and fixed via this session's own end-to-end
+    visual verification (not by any test written in advance) - see the full
+    writeup in "Bell Tasks" above: a tokenizer bug classifying compound-word
+    hyphens ("right-angled") as minus-sign math tokens; a genuine text/diagram
+    overlap for long, data-listing prompts once actually rendered in
+    PowerPoint (fixed with a text-length-aware shrink-or-skip layout, not just
+    a bigger fixed margin); and a doubled tier suffix
+    ("... (Foundation) (Foundation)") for the handful of topics whose own
+    display name already ends with their tier in parentheses.
+
+    Visual QA for the generated `.pptx` couldn't use this project's usual
+    LibreOffice-based render-and-look-closely workflow (not installed on this
+    machine), so `pywin32` was installed ad hoc (a one-off local QA tool, not
+    added to `requirements.txt`, since the app itself never depends on it) to
+    COM-automate the real Microsoft PowerPoint already installed here and
+    export actual rendered slide images - confirming the fixes above and
+    giving genuine confidence in fonts/colours/branding/diagram placement
+    that a structural-only check couldn't. Full backend+frontend suites and a
+    live browser click-through (KS3 disabled, KS4 6-topic picker, Generate, a
+    real 200 OK `.pptx` download with no console errors) were also run.
+    Backend suite grew from 756 to 808 tests; frontend grew from 46 to 52.
+
+    Same feature, continued in a follow-up conversation before step 33 had
+    ever been committed, per 3 pieces of direct user feedback on the first
+    real generated deck: diagrams looked squeezed/stretched, the 296-option
+    plain `<select>` dropdowns needed search, and Cambria Math should mean
+    PowerPoint's actual native equation objects, not just a font choice. See
+    "Bell Tasks" in `Current state` above for the full technical detail on
+    all three fixes (aspect-preserving diagram sizing; `SearchableTopicSelect.tsx`;
+    real OMML equations via a new `app/bell_tasks/omml.py`) and the fourth
+    real bug they surfaced (native equations silently rendering blank because
+    of paragraph-child ordering relative to `endParaRPr` - the single most
+    subtle gotcha this feature produced, found only by rendering real
+    generator content in real PowerPoint, not by any test written in
+    advance). Backend suite grew from 808 to 828 tests; frontend grew from 52
+    to 61.
+
+Everything above except step 33 is committed and pushed (see `git log`) -
+step 33 (Bell Tasks, including this follow-up round of fixes) is not yet
+committed as of the end of that session.
 
 ## Environment gotchas (Windows, this machine specifically)
 

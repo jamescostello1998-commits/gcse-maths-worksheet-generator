@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { BellTasksView } from './components/BellTasksView'
 import { ErrorBanner } from './components/ErrorBanner'
 import { HomeScreen } from './components/HomeScreen'
 import { PracticeTestsView } from './components/PracticeTestsView'
@@ -11,6 +12,7 @@ function App() {
   const { sections, loading, error } = useSections()
   const [selectedSectionId, setSelectedSectionId] = useState<string | null>(null)
   const [practiceTestsOpen, setPracticeTestsOpen] = useState(false)
+  const [bellTasksOpen, setBellTasksOpen] = useState(false)
   const [query, setQuery] = useState('')
 
   const selectedSection = sections.find((s) => s.id === selectedSectionId) ?? null
@@ -42,6 +44,8 @@ function App() {
         <TopicSearch sections={sections} query={query} />
       ) : practiceTestsOpen ? (
         <PracticeTestsView onBack={() => setPracticeTestsOpen(false)} />
+      ) : bellTasksOpen ? (
+        <BellTasksView sections={sections} onBack={() => setBellTasksOpen(false)} />
       ) : selectedSection ? (
         <SectionView section={selectedSection} onBack={() => setSelectedSectionId(null)} />
       ) : (
@@ -60,6 +64,21 @@ function App() {
             >
               <h2 className="section-card__name">Practice Tests</h2>
               <p className="section-card__count">20 practice tests · 60 papers</p>
+            </button>
+          </section>
+          <section className="practice-tests-section">
+            <h2 className="practice-tests-section__heading">Bell Tasks</h2>
+            <p className="practice-tests-section__subtitle">
+              A 5-day starter-activity PowerPoint - pick 6 topics and get a week's worth of quick
+              questions, one topic per box, every day.
+            </p>
+            <button
+              type="button"
+              className="section-card practice-tests-entry"
+              onClick={() => setBellTasksOpen(true)}
+            >
+              <h2 className="section-card__name">Bell Tasks</h2>
+              <p className="section-card__count">KS3 &amp; KS4 · pick 6 topics</p>
             </button>
           </section>
         </>

@@ -220,3 +220,44 @@ def test_unknown_practice_test_returns_404():
     assert paper_response.status_code == 404
     assert mark_scheme_response.status_code == 404
     assert "detail" in paper_response.json()
+
+
+BELL_TASKS_TOPIC_IDS = [
+    "angles_triangle",
+    "area_rectangle",
+    "fractions_add_subtract",
+    "linear_two_step",
+    "probability_single_event",
+    "bar_chart_construct",
+]
+
+
+def test_bell_tasks_valid_request_returns_pptx():
+    response = client.post("/api/bell-tasks", json={"topic_ids": BELL_TASKS_TOPIC_IDS})
+    assert response.status_code == 200
+    assert response.headers["content-type"] == (
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+    )
+    assert response.content[:2] == b"PK"  # a .pptx is a zip archive
+    assert "bell-tasks-" in response.headers["content-disposition"]
+    assert ".pptx" in response.headers["content-disposition"]
+
+
+def test_bell_tasks_wrong_topic_count_returns_422():
+    too_few = client.post("/api/bell-tasks", json={"topic_ids": BELL_TASKS_TOPIC_IDS[:5]})
+    too_many = client.post("/api/bell-tasks", json={"topic_ids": BELL_TASKS_TOPIC_IDS + ["fractions_simplify"]})
+    assert too_few.status_code == 422
+    assert too_many.status_code == 422
+
+
+def test_bell_tasks_duplicate_topic_returns_422():
+    duplicated = BELL_TASKS_TOPIC_IDS[:5] + [BELL_TASKS_TOPIC_IDS[0]]
+    response = client.post("/api/bell-tasks", json={"topic_ids": duplicated})
+    assert response.status_code == 422
+
+
+def test_bell_tasks_unknown_topic_returns_404():
+    bad = BELL_TASKS_TOPIC_IDS[:5] + ["not_a_real_topic"]
+    response = client.post("/api/bell-tasks", json={"topic_ids": bad})
+    assert response.status_code == 404
+    assert "detail" in response.json()

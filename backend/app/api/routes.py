@@ -1,15 +1,18 @@
 import random
+from datetime import date
 from typing import Optional
 
 from fastapi import APIRouter, HTTPException, Response
 
 from app.api.schemas import (
+    GenerateBellTasksRequest,
     GenerateWorksheetRequest,
     GroupSchema,
     PracticeTestSummary,
     SectionSchema,
     TopicSummary,
 )
+from app.bell_tasks.generator import generate_bell_tasks_pptx
 from app.core.models import Tier
 from app.core.registry import get_topic, list_topics, sections_tree
 from app.pdf.modelled_example_renderer import render_modelled_example
@@ -95,6 +98,17 @@ def create_modelled_example(payload: GenerateWorksheetRequest) -> Response:
     return Response(
         content=pdf_bytes,
         media_type="application/pdf",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
+
+
+@router.post("/bell-tasks")
+def create_bell_tasks(payload: GenerateBellTasksRequest) -> Response:
+    pptx_bytes = generate_bell_tasks_pptx(payload.topic_ids)
+    filename = f"bell-tasks-{date.today().isoformat()}.pptx"
+    return Response(
+        content=pptx_bytes,
+        media_type="application/vnd.openxmlformats-officedocument.presentationml.presentation",
         headers={"Content-Disposition": f'attachment; filename="{filename}"'},
     )
 
