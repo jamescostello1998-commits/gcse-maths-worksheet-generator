@@ -1,3 +1,4 @@
+import math
 import random
 
 import sympy as sp
@@ -269,50 +270,98 @@ _TRIG_EXACT_VALUES = {
 }
 _TRIG_DOMAINS = ((0, 360), (-180, 180))
 
+# tan has vertical asymptotes at 90 + 180k degrees, and draw_function_graph's
+# trigonometric kind deliberately does NOT attempt the asymptote-branch-
+# splitting draw_function_graph's reciprocal kind needs - so every tan window
+# here is hand-picked to sit strictly between two consecutive asymptotes
+# (never spanning one), unlike _TRIG_DOMAINS above (which are always a full
+# 360-degree window and always contain one). Both windows below span 160
+# degrees so a 4-step, 5-point table lands on whole-number x-values.
+_TAN_DOMAINS = ((-80, 80), (100, 260))
+
 
 def _trig_case(rng: random.Random):
     # Genuine variety beyond just "sin or cos": reflecting in the x-axis
     # (y = -sin(x) etc, still a distinct curve/answer) and shifting which
-    # 360-degree window is shown both give real, distinct questions (8
-    # combinations total) - needed because a modelled example always builds
-    # 5 distinct practice questions for its own topic regardless of the
-    # topic's own question_count (routes.py's PRACTICE_QUESTION_COUNT), so
-    # 2 combinations (just sin/cos) was never enough.
-    fn = rng.choice(["sin", "cos"])
+    # window is shown both give real, distinct questions - needed because a
+    # modelled example always builds 5 distinct practice questions for its
+    # own topic regardless of the topic's own question_count (routes.py's
+    # PRACTICE_QUESTION_COUNT), so 2 combinations (just sin/cos) was never
+    # enough. Adding tan as a genuine third function multiplies this further.
+    fn = rng.choice(["sin", "cos", "tan"])
     reflect = rng.choice([False, True])
-    x_min, x_max = rng.choice(_TRIG_DOMAINS)
     sign = -1 if reflect else 1
-    xs = [x_min + 90 * i for i in range(5)]
-    ys = [sign * _TRIG_EXACT_VALUES[fn][x % 360] for x in xs]
 
-    # Independent verification: each table value is checked against sympy's
-    # own exact trig evaluation of the REAL (possibly negative) angle - a
-    # genuinely different computation path than the hardcoded lookup-by-
-    # reduced-angle used to build the table above, and one that also
-    # independently confirms the %360 periodicity reduction itself.
-    for x, y in zip(xs, ys):
-        exact = sp.sin(sp.rad(x)) if fn == "sin" else sp.cos(sp.rad(x))
-        if sp.simplify(sign * exact - y) != 0:
-            raise ValueError("trig_graph verification failed: exact value mismatch")
+    if fn == "tan":
+        x_min, x_max = rng.choice(_TAN_DOMAINS)
+        step = (x_max - x_min) // 4
+        xs = [x_min + step * i for i in range(5)]
+        # Unlike sin/cos (exact 0/1/-1 lookup values), tan at these x-values
+        # is generally irrational - round to 2 d.p. for a clean table/plot.
+        ys = [round(sign * math.tan(math.radians(x)), 2) for x in xs]
+
+        # Independent verification: recompute each value via sympy's own
+        # trig evaluation (mpmath-backed under the hood) rather than
+        # python's math.tan used to build the table above - a genuinely
+        # different computation path - and confirm the displayed (rounded)
+        # value is within half a rounding unit of the true value. Safe here
+        # since these windows are constructed to always stay strictly
+        # between two consecutive asymptotes, so sp.tan(sp.rad(x)) is
+        # always defined (never blows up).
+        for x, y in zip(xs, ys):
+            exact = sign * sp.tan(sp.rad(x))
+            if abs(float(exact) - y) > 0.006:
+                raise ValueError("trig_graph verification failed: tan exact value mismatch")
+
+        # y-range must be derived from the actual sampled values (tan's
+        # steepness varies a lot depending on how close the window edges
+        # sit to an asymptote) - never a single fixed range for every case,
+        # unlike sin/cos's fixed [-1.4, 1.4]. Pad by 1 unit and round
+        # outward to the next whole number for a little visual headroom.
+        y_min = math.floor(min(ys) - 1)
+        y_max = math.ceil(max(ys) + 1)
+    else:
+        x_min, x_max = rng.choice(_TRIG_DOMAINS)
+        xs = [x_min + 90 * i for i in range(5)]
+        ys = [sign * _TRIG_EXACT_VALUES[fn][x % 360] for x in xs]
+
+        # Independent verification: each table value is checked against sympy's
+        # own exact trig evaluation of the REAL (possibly negative) angle - a
+        # genuinely different computation path than the hardcoded lookup-by-
+        # reduced-angle used to build the table above, and one that also
+        # independently confirms the %360 periodicity reduction itself.
+        for x, y in zip(xs, ys):
+            exact = sp.sin(sp.rad(x)) if fn == "sin" else sp.cos(sp.rad(x))
+            if sp.simplify(sign * exact - y) != 0:
+                raise ValueError("trig_graph verification failed: exact value mismatch")
+
+        y_min, y_max = -1.4, 1.4
 
     fn_str = f"-{fn}(x°)" if reflect else f"{fn}(x°)"
-    return fn, reflect, x_min, x_max, xs, ys, fn_str
+    return fn, reflect, x_min, x_max, xs, ys, fn_str, y_min, y_max
 
 
 def generate_trig_graph(tier: Tier, rng: random.Random) -> Question:
-    fn, reflect, x_min, x_max, xs, ys, fn_str = _trig_case(rng)
+    fn, reflect, x_min, x_max, xs, ys, fn_str, y_min, y_max = _trig_case(rng)
     table_points = list(zip(xs, ys))
+    step = xs[1] - xs[0]
+    if fn == "tan":
+        shape_note = (
+            f"y = {fn_str} repeats the same shape every 180°, and rises/falls very steeply near the "
+            "edges of this window (approaching, but never reaching, a vertical asymptote just outside it)."
+        )
+    else:
+        shape_note = f"y = {fn_str} repeats the same shape every 360°, and never goes above 1 or below -1."
     steps = [
         f"Table of values for y = {fn_str}:",
         "x: " + ", ".join(str(x) for x in xs),
         "y: " + ", ".join(str(y) for y in ys),
-        f"Plot each (x, y) point and join them with a single smooth curve - y = {fn_str} repeats the same "
-        "shape every 360°, and never goes above 1 or below -1.",
+        f"Plot each (x, y) point and join them with a single smooth curve - {shape_note}",
     ]
     return Question(
         topic_id="trig_graph",
         tier=Tier.HIGHER,
-        prompt=f"Complete a table of values for y = {fn_str} for x = {x_min} to {x_max} (in steps of 90°), "
+        prompt=f"Complete a table of values for y = {fn_str} for x = {x_min} to {x_max} (in steps of {step}°), "
         "then plot the graph.",
         solution_steps=tuple(steps),
         final_answer=f"y = {fn_str}",
@@ -321,7 +370,7 @@ def generate_trig_graph(tier: Tier, rng: random.Random) -> Question:
             kind="function_graph",
             params={
                 "kind": "trigonometric", "fn": fn, "sign": -1 if reflect else 1,
-                "x_min": x_min, "x_max": x_max, "y_min": -1.4, "y_max": 1.4,
+                "x_min": x_min, "x_max": x_max, "y_min": y_min, "y_max": y_max,
                 "x_label": "x (degrees)",
                 "blank": True,
             },
@@ -330,7 +379,7 @@ def generate_trig_graph(tier: Tier, rng: random.Random) -> Question:
             kind="function_graph",
             params={
                 "kind": "trigonometric", "fn": fn, "sign": -1 if reflect else 1,
-                "x_min": x_min, "x_max": x_max, "y_min": -1.4, "y_max": 1.4,
+                "x_min": x_min, "x_max": x_max, "y_min": y_min, "y_max": y_max,
                 "x_label": "x (degrees)",
                 "table_points": table_points,
             },
@@ -997,15 +1046,27 @@ def generate_modelled_example_plot_exponential(tier: Tier, rng: random.Random) -
 
 
 def generate_modelled_example_trig_graph(tier: Tier, rng: random.Random) -> ModelledExample:
-    fn, reflect, x_min, x_max, xs, ys, fn_str = _trig_case(rng)
+    fn, reflect, x_min, x_max, xs, ys, fn_str, y_min, y_max = _trig_case(rng)
     table_points = list(zip(xs, ys))
+    step = xs[1] - xs[0]
+    if fn == "tan":
+        wave_note = (
+            f"The graph of y = {fn_str} is not a wave like sin/cos - it climbs (or falls) increasingly "
+            "steeply as x approaches an asymptote just outside this window, where the curve would "
+            "shoot off to infinity, repeating this same pattern every 180°"
+            + (" - reflected in the x-axis compared with the basic curve, since it's negative." if reflect else ".")
+        )
+    else:
+        wave_note = (
+            f"The graph of y = {fn_str} is a repeating wave shape that never goes above 1 or below -1, "
+            "and repeats itself every 360°"
+            + (" - reflected in the x-axis compared with the basic curve, since it's negative." if reflect else ".")
+        )
     teaching_steps = [
-        f"Build a table of values for y = {fn_str} at angles 90° apart across the given range - these "
-        f"land on the key points where {fn} takes its maximum, minimum, or crosses zero.",
+        f"Build a table of values for y = {fn_str} at angles {step}° apart across the given range - these "
+        f"land on the key points that show the overall shape of {fn}.",
         "Working through them: " + ", ".join(f"x={x}: y={y}" for x, y in list(zip(xs, ys))[:3]) + ", and so on.",
-        f"Plot each (x, y) pair and join them with a single smooth curve. The graph of y = {fn_str} is a "
-        "repeating wave shape that never goes above 1 or below -1, and repeats itself every 360°"
-        + (" - reflected in the x-axis compared with the basic curve, since it's negative." if reflect else "."),
+        f"Plot each (x, y) pair and join them with a single smooth curve. {wave_note}",
     ]
     worked_calculation = [
         f"y = {fn_str}",
@@ -1015,7 +1076,7 @@ def generate_modelled_example_trig_graph(tier: Tier, rng: random.Random) -> Mode
     return ModelledExample(
         topic_id="trig_graph",
         tier=Tier.HIGHER,
-        prompt=f"Complete a table of values for y = {fn_str} for x = {x_min} to {x_max} (in steps of 90°), "
+        prompt=f"Complete a table of values for y = {fn_str} for x = {x_min} to {x_max} (in steps of {step}°), "
         "then plot the graph.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
@@ -1024,7 +1085,7 @@ def generate_modelled_example_trig_graph(tier: Tier, rng: random.Random) -> Mode
             kind="function_graph",
             params={
                 "kind": "trigonometric", "fn": fn, "sign": -1 if reflect else 1,
-                "x_min": x_min, "x_max": x_max, "y_min": -1.4, "y_max": 1.4,
+                "x_min": x_min, "x_max": x_max, "y_min": y_min, "y_max": y_max,
                 "x_label": "x (degrees)",
                 "table_points": table_points,
             },
@@ -1583,7 +1644,10 @@ TOPIC_PLOT_EXPONENTIAL = TopicDefinition(
 TOPIC_TRIG_GRAPH = TopicDefinition(
     id="trig_graph",
     display_name="Plotting Trigonometric Graphs",
-    description="Complete a table of values and plot a sine or cosine graph on the axes provided. (5 questions)",
+    description=(
+        "Complete a table of values and plot a sine, cosine, or tangent graph on the axes provided. "
+        "(5 questions)"
+    ),
     generate=generate_trig_graph,
     section=SECTION,
     group=GROUP_PLOTTING,

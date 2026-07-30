@@ -4,6 +4,7 @@
   "tier": "foundation",
   "sitting_id": "foundation-05",
   "paper_number": 3,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "standard_form_to",
@@ -281,34 +282,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_nth_term",
-      "prompt": "Here are the first four terms of a sequence: 7, 4, 1, -2. Find an expression for the nth term.",
+      "topic_id": "special_sequences_foundation",
+      "prompt": "Here are the first 4 terms of a sequence: 6, 12, 18, 24. Find the next term.",
       "solution_steps": [
-        "Common difference = -3",
-        "nth term = -3n + 10",
-        "nth term = -3n + 10"
+        "This is an arithmetic sequence: it goes up (or down) by the same amount, 6, each time.",
+        "Next term = 24 + 6 = 30"
       ],
-      "final_answer": "-3n + 10",
-      "marks": 4,
+      "final_answer": "30",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Common difference = -3",
+          "description": "This is an arithmetic sequence: it goes up (or down) by the same amount, 6, each time.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = -3n + 10",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "nth term = -3n + 10",
+          "description": "Next term = 24 + 6 = 30",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-3n + 10 oe",
+          "description": "30 oe",
           "marks": 1
         }
       ],
@@ -316,28 +311,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_common_factor",
-      "prompt": "Factorise: 56x - 40",
+      "topic_id": "factorise_quadratics_foundation",
+      "prompt": "Factorise: x^2 + 4x + 3",
       "solution_steps": [
-        "Find the highest common factor of 56 and -40: 8",
-        "Factorise: 8(7x - 5)"
+        "Find two numbers that multiply to 3 and add to 4: 3 and 1",
+        "Write as two brackets: (x + 3)(x + 1)"
       ],
-      "final_answer": "8(7x - 5)",
+      "final_answer": "(x + 3)(x + 1)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the highest common factor of 56 and -40: 8",
+          "description": "Find two numbers that multiply to 3 and add to 4: 3 and 1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: 8(7x - 5)",
+          "description": "Write as two brackets: (x + 3)(x + 1)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8(7x - 5) oe",
+          "description": "(x + 3)(x + 1) oe",
           "marks": 1
         }
       ],
@@ -345,40 +340,232 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_shorter_leg",
-      "prompt": "A right-angled triangle has hypotenuse 50 cm and one leg 14 cm. Find the length of the other leg.",
+      "topic_id": "fractions_equivalent_diagram",
+      "prompt": "The first shape shows 1/2 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
       "solution_steps": [
-        "b² = c² - a² = 50² - 14² = 2500 - 196 = 2304",
-        "b = √2304 = 48"
+        "Cross-multiply 1/2 against each labelled shape: a shape shows an equivalent fraction only if 1 × (its denominator) = (its shaded count) × 2.",
+        "Only shape B) 5/10 works: 1 × 10 = 5 × 2 = 10."
       ],
-      "final_answer": "48 cm",
-      "marks": 3,
+      "final_answer": "B) 5/10",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "b² = c² - a² = 50² - 14² = 2500 - 196 = 2304",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "b = √2304 = 48",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "48 cm oe",
+          "code": "B1",
+          "description": "B) 5/10 (selecting the correct option)",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "right_triangle",
+        "kind": "fraction_shapes",
         "params": {
-          "leg1_label": "14 cm",
-          "leg2_label": "?",
-          "hyp_label": "50 cm"
+          "shapes": [
+            {
+              "kind": "circle",
+              "parts": 2,
+              "shaded": 1,
+              "label": "1/2"
+            },
+            {
+              "kind": "circle",
+              "parts": 6,
+              "shaded": 5,
+              "label": "A) 5/6"
+            },
+            {
+              "kind": "circle",
+              "parts": 10,
+              "shaded": 5,
+              "label": "B) 5/10"
+            },
+            {
+              "kind": "circle",
+              "parts": 4,
+              "shaded": 1,
+              "label": "C) 1/4"
+            }
+          ]
         }
       },
       "solution_diagram": null
+    },
+    {
+      "topic_id": "substitution_foundation",
+      "prompt": "A = (1/2)bh. Find the value of A when b = 5 and h = 8.",
+      "solution_steps": [
+        "A = (1/2)bh",
+        "A = (1/2) × 5 × 8",
+        "A = 40/2",
+        "A = 20"
+      ],
+      "final_answer": "A = 20",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A = (1/2)bh",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = (1/2) × 5 × 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = 40/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = 20",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "A = 20 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "expand_double_brackets_foundation",
+      "prompt": "Expand: (4x + 2)(x + 1)",
+      "solution_steps": [
+        "First: 4x × 1x = 4x^2",
+        "Outer: 4x × 1 = 4x",
+        "Inner: 2 × 1x = 2x",
+        "Last: 2 × 1 = 2",
+        "Combine like terms: 4x^2 + 6x + 2"
+      ],
+      "final_answer": "4x^2 + 6x + 2",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First: 4x × 1x = 4x^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Outer: 4x × 1 = 4x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Inner: 2 × 1x = 2x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Last: 2 × 1 = 2 Combine like terms: 4x^2 + 6x + 2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4x^2 + 6x + 2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_quadratic",
+      "prompt": "Complete a table of values for y = -x^2 - 2x - 4 for x = -3 to 3, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = -x^2 - 2x - 4:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: -7, -4, -3, -4, -7, -12, -19",
+        "Plot each (x, y) point and join them with a single smooth curve."
+      ],
+      "final_answer": "Quadratic curve: y = -x^2 - 2x - 4",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = -x^2 - 2x - 4:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: -7, -4, -3, -4, -7, -12, -19",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Quadratic curve: y = -x^2 - 2x - 4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "quadratic",
+          "a": -1,
+          "b": -2,
+          "c": -4,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -20,
+          "y_max": -2,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "quadratic",
+          "a": -1,
+          "b": -2,
+          "c": -4,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -20,
+          "y_max": -2,
+          "table_points": [
+            [
+              -3,
+              -7
+            ],
+            [
+              -2,
+              -4
+            ],
+            [
+              -1,
+              -3
+            ],
+            [
+              0,
+              -4
+            ],
+            [
+              1,
+              -7
+            ],
+            [
+              2,
+              -12
+            ],
+            [
+              3,
+              -19
+            ]
+          ]
+        }
+      }
     },
     {
       "topic_id": "change_subject_foundation",
@@ -409,180 +596,6 @@
         {
           "code": "A1",
           "description": "x = (y + 11)/5 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "expand_single_bracket",
-      "prompt": "Expand: 4(6x - 1)",
-      "solution_steps": [
-        "Multiply 4 by 6x: 24x",
-        "Multiply 4 by -1: -4",
-        "Combine: 24x - 4"
-      ],
-      "final_answer": "24x - 4",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiply 4 by 6x: 24x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply 4 by -1: -4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Combine: 24x - 4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "24x - 4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "plot_distance_time",
-      "prompt": "A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop 4 km away after 25 minutes. They stay at the shop until 35 minutes, then cycle straight back home at a constant speed, arriving home at 65 minutes. Draw a distance-time graph to show this journey, and find the total distance travelled.",
-      "solution_steps": [
-        "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 4 km after 25 minutes.",
-        "Stay at 4 km until 35 minutes.",
-        "Return at a constant speed to 0 km, arriving home at 65 minutes.",
-        "Plot these points and join each stage with a straight line segment.",
-        "Total distance travelled = 4 km out + 4 km back = 8 km"
-      ],
-      "final_answer": "8 km",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 4 km after 25 minutes.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Stay at 4 km until 35 minutes.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Return at a constant speed to 0 km, arriving home at 65 minutes.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot these points and join each stage with a straight line segment. Total distance travelled = 4 km out + 4 km back = 8 km",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "8 km oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              25,
-              4
-            ],
-            [
-              35,
-              4
-            ],
-            [
-              65,
-              0
-            ]
-          ],
-          "x_max": 70,
-          "y_max": 6,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)",
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              25,
-              4
-            ],
-            [
-              35,
-              4
-            ],
-            [
-              65,
-              0
-            ]
-          ],
-          "x_max": 70,
-          "y_max": 6,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)"
-        }
-      }
-    },
-    {
-      "topic_id": "forming_equations_foundation",
-      "prompt": "A triangle has angles 25°, 27°, and (3x + 68)°. Form an equation and solve it to find x.",
-      "solution_steps": [
-        "Angles in a triangle sum to 180°.",
-        "25 + 27 + (3x + 68) = 180",
-        "3x + 68 = 128",
-        "Subtract 68 from both sides:",
-        "3x = 60",
-        "Divide both sides by 3:",
-        "x = 20"
-      ],
-      "final_answer": "20",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Angles in a triangle sum to 180°.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "25 + 27 + (3x + 68) = 180",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "3x + 68 = 128",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 68 from both sides: 3x = 60 Divide both sides by 3: x = 20",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "20 oe",
           "marks": 1
         }
       ],
@@ -735,175 +748,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof_foundation",
-      "prompt": "ABCD is an isosceles trapezium with AB parallel to DC and AD = BC. AC and BD are its diagonals. State which congruence criterion (SSS, SAS, ASA or RHS) proves that the two triangles are congruent.",
-      "solution_steps": [
-        "AB is common to both triangles",
-        "angle DAB = angle CBA (base angles of an isosceles trapezium are equal)",
-        "AD = BC (given, the equal legs of the trapezium)",
-        "These facts match the Side-Angle-Side (SAS) congruence criterion."
-      ],
-      "final_answer": "SAS",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "AB is common to both triangles",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "angle DAB = angle CBA (base angles of an isosceles trapezium are equal)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "AD = BC (given, the equal legs of the trapezium)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "These facts match the Side-Angle-Side (SAS) congruence criterion.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "SAS oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "two_triangle_congruence",
-        "params": {
-          "labels_1": [
-            "A",
-            "B",
-            "D"
-          ],
-          "labels_2": [
-            "B",
-            "A",
-            "C"
-          ],
-          "ticks_1": [
-            [
-              0,
-              1,
-              1
-            ],
-            [
-              0,
-              2,
-              2
-            ]
-          ],
-          "ticks_2": [
-            [
-              0,
-              1,
-              1
-            ],
-            [
-              0,
-              2,
-              2
-            ]
-          ],
-          "arcs_1": [
-            [
-              0,
-              1
-            ]
-          ],
-          "arcs_2": [
-            [
-              0,
-              1
-            ]
-          ],
-          "note": "AB is common to both triangles."
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "pythagoras_hypotenuse_triple",
-      "prompt": "A right-angled triangle has legs 9 cm and 40 cm. Find the length of the hypotenuse.",
-      "solution_steps": [
-        "c² = a² + b² = 9² + 40² = 81 + 1600 = 1681",
-        "c = √1681 = 41"
-      ],
-      "final_answer": "41 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "c² = a² + b² = 9² + 40² = 81 + 1600 = 1681",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "c = √1681 = 41",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "41 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "right_triangle",
-        "params": {
-          "leg1_label": "9 cm",
-          "leg2_label": "40 cm",
-          "hyp_label": "?"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "construction_perpendicular_bisector",
-      "prompt": "Line segment PF has length 10 cm. Describe, step by step, how to construct the perpendicular bisector of PF using only a ruler and a pair of compasses.",
-      "solution_steps": [
-        "Open the compasses to a radius more than half of 10 cm (more than half the length of PF).",
-        "With the compass point on P, draw an arc above and below the line.",
-        "Without changing the compass radius, place the point on F and draw two more arcs, crossing the first two.",
-        "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of PF."
-      ],
-      "final_answer": "A straight line through the two arc intersections, crossing PF at its midpoint at a right angle.",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Open the compasses to a radius more than half of 10 cm (more than half the length of PF).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "With the compass point on P, draw an arc above and below the line.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Without changing the compass radius, place the point on F and draw two more arcs, crossing the first two.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of PF.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "A straight line through the two arc intersections, crossing PF at its midpoint at a right angle. oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
       "topic_id": "properties_3d_shapes",
       "prompt": "How many edges does a hexagonal prism have?",
       "solution_steps": [
@@ -937,6 +781,144 @@
       ],
       "diagram": null,
       "solution_diagram": null
+    },
+    {
+      "topic_id": "pythagoras_hypotenuse_decimal",
+      "prompt": "A right-angled triangle has legs 20 cm and 9 cm. Find the length of the hypotenuse, correct to 1 decimal place.",
+      "solution_steps": [
+        "c² = a² + b² = 20² + 9² = 400 + 81 = 481",
+        "c = √481 ≈ 21.9 cm (1 d.p.)"
+      ],
+      "final_answer": "21.9 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "c² = a² + b² = 20² + 9² = 400 + 81 = 481",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "c = √481 ≈ 21.9 cm (1 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "21.9 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "right_triangle",
+        "params": {
+          "leg1_label": "20 cm",
+          "leg2_label": "9 cm",
+          "hyp_label": "?"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "construction_perpendicular_from_point",
+      "prompt": "Point E is not on line segment YH (length 6 cm). Describe, step by step, how to construct the perpendicular from E to the line YH using only a ruler and a pair of compasses.",
+      "solution_steps": [
+        "Open the compasses to a radius large enough to reach the line YH from E.",
+        "With the compass point on E, draw an arc that crosses YH at two points.",
+        "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs on the far side of YH from E, so that they intersect each other.",
+        "Draw a straight line from E through the point where these two arcs intersect. This line is the perpendicular from E to YH, crossing it at the foot of the perpendicular."
+      ],
+      "final_answer": "The straight line from E through the intersection of the two far-side arcs is perpendicular to YH.",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Open the compasses to a radius large enough to reach the line YH from E.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "With the compass point on E, draw an arc that crosses YH at two points.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs on the far side of YH from E, so that they intersect each other.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Draw a straight line from E through the point where these two arcs intersect. This line is the perpendicular from E to YH, crossing it at the foot of the perpendicular.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "The straight line from E through the intersection of the two far-side arcs is perpendicular to YH. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plans_and_elevations",
+      "prompt": "The diagram shows a solid with its dimensions labelled. Draw and label the front elevation, side elevation, and plan view of the solid.",
+      "solution_steps": [
+        "The front elevation is what you see looking at the solid straight on from the front.",
+        "Front elevation: a rectangle, 12 cm by 3 cm.",
+        "The side elevation is what you see looking at the solid straight on from the side.",
+        "Side elevation: a rectangle, 10 cm by 3 cm.",
+        "The plan view is what you see looking straight down at the solid from above.",
+        "Plan view: a rectangle, 12 cm by 10 cm."
+      ],
+      "final_answer": "Front elevation: a rectangle, 12 cm by 3 cm. Side elevation: a rectangle, 10 cm by 3 cm. Plan view: a rectangle, 12 cm by 10 cm.",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The front elevation is what you see looking at the solid straight on from the front.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Front elevation: a rectangle, 12 cm by 3 cm.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The side elevation is what you see looking at the solid straight on from the side.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Side elevation: a rectangle, 10 cm by 3 cm. The plan view is what you see looking straight down at the solid from above. Plan view: a rectangle, 12 cm by 10 cm.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Front elevation: a rectangle, 12 cm by 3 cm. Side elevation: a rectangle, 10 cm by 3 cm. Plan view: a rectangle, 12 cm by 10 cm. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "cuboid",
+        "params": {
+          "length_label": "12 cm",
+          "width_label": "10 cm",
+          "height_label": "3 cm"
+        }
+      },
+      "solution_diagram": {
+        "kind": "plans_and_elevations",
+        "params": {
+          "shape": "cuboid",
+          "length": 12,
+          "width": 10,
+          "height": 3,
+          "length_label": "12 cm",
+          "width_label": "10 cm",
+          "height_label": "3 cm"
+        }
+      }
     },
     {
       "topic_id": "venn_diagram_probability",
@@ -1042,50 +1024,63 @@
       }
     },
     {
-      "topic_id": "fractions_equivalent_diagram",
-      "prompt": "The first shape shows 1/2 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
+      "topic_id": "composite_bar_chart",
+      "prompt": "The composite bar chart shows the number of sales split by 2023 and 2024. Find the total for Jan.",
       "solution_steps": [
-        "Cross-multiply 1/2 against each labelled shape: a shape shows an equivalent fraction only if 1 × (its denominator) = (its shaded count) × 2.",
-        "Only shape B) 5/10 works: 1 × 10 = 5 × 2 = 10."
+        "Jan's segments are 2, 8.",
+        "Add them: 2 + 8 = 10."
       ],
-      "final_answer": "B) 5/10",
-      "marks": 1,
+      "final_answer": "10",
+      "marks": 3,
       "mark_scheme": [
         {
-          "code": "B1",
-          "description": "B) 5/10 (selecting the correct option)",
+          "code": "M1",
+          "description": "Jan's segments are 2, 8.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add them: 2 + 8 = 10.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "10 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "fraction_shapes",
+        "kind": "bar_chart",
         "params": {
-          "shapes": [
-            {
-              "kind": "circle",
-              "parts": 2,
-              "shaded": 1,
-              "label": "1/2"
-            },
-            {
-              "kind": "circle",
-              "parts": 6,
-              "shaded": 5,
-              "label": "A) 5/6"
-            },
-            {
-              "kind": "circle",
-              "parts": 10,
-              "shaded": 5,
-              "label": "B) 5/10"
-            },
-            {
-              "kind": "circle",
-              "parts": 4,
-              "shaded": 1,
-              "label": "C) 1/4"
-            }
-          ]
+          "categories": [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr"
+          ],
+          "series": [
+            [
+              2,
+              8
+            ],
+            [
+              3,
+              10
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              2,
+              13
+            ]
+          ],
+          "series_labels": [
+            "2023",
+            "2024"
+          ],
+          "y_label": "Frequency"
         }
       },
       "solution_diagram": null

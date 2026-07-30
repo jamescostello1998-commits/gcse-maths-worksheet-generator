@@ -127,7 +127,83 @@ def _two_tangents(rng: random.Random) -> Question:
     )
 
 
-_SHAPES = [_angle_at_centre, _angle_in_semicircle, _cyclic_quadrilateral, _two_tangents]
+def _angle_same_segment(rng: random.Random) -> Question:
+    given_angle = rng.randint(20, 80)
+    unknown_angle = given_angle
+    if unknown_angle != given_angle:
+        raise ValueError("circle_theorem verification failed: angles in the same segment")
+
+    if rng.random() < 0.5:
+        c_label, d_label = f"{given_angle}°", "x°"
+        ask = "angle ADB, x"
+    else:
+        c_label, d_label = "x°", f"{given_angle}°"
+        ask = "angle ACB, x"
+
+    steps = [
+        "Angles in the same segment, subtended by the same chord (here AB), are equal.",
+        f"x = {given_angle}°",
+    ]
+    return Question(
+        topic_id="circle_theorems",
+        tier=Tier.HIGHER,
+        prompt=(
+            "A, B, C, and D are points on a circle, where C and D are on the same arc, both subtending "
+            f"the chord AB. Find {ask}."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=f"{unknown_angle}°",
+        dedup_key=f"circ_same_seg:{given_angle}:{c_label}",
+        diagram=DiagramSpec(
+            kind="circle_same_segment",
+            params={"angle_c_label": c_label, "angle_d_label": d_label},
+        ),
+    )
+
+
+def _alternate_segment(rng: random.Random) -> Question:
+    given_angle = rng.randint(20, 80)
+    unknown_angle = given_angle
+    if unknown_angle != given_angle:
+        raise ValueError("circle_theorem verification failed: alternate segment theorem")
+
+    if rng.random() < 0.5:
+        tangent_label, segment_label = f"{given_angle}°", "x°"
+        ask = "angle QRP, x"
+    else:
+        tangent_label, segment_label = "x°", f"{given_angle}°"
+        ask = "the angle between the tangent and the chord PQ, x"
+
+    steps = [
+        "The alternate segment theorem: the angle between a tangent and a chord equals the angle "
+        "subtended by that chord in the alternate segment.",
+        f"x = {given_angle}°",
+    ]
+    return Question(
+        topic_id="circle_theorems",
+        tier=Tier.HIGHER,
+        prompt=(
+            "PQ is a chord of a circle, and the tangent to the circle at P is shown. R is a point on "
+            f"the circle in the alternate segment. Find {ask}."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=f"{unknown_angle}°",
+        dedup_key=f"circ_alt_seg:{given_angle}:{tangent_label}",
+        diagram=DiagramSpec(
+            kind="circle_alternate_segment",
+            params={"tangent_angle_label": tangent_label, "segment_angle_label": segment_label},
+        ),
+    )
+
+
+_SHAPES = [
+    _angle_at_centre,
+    _angle_in_semicircle,
+    _cyclic_quadrilateral,
+    _two_tangents,
+    _angle_same_segment,
+    _alternate_segment,
+]
 
 
 def generate_circle_theorem(tier: Tier, rng: random.Random) -> Question:
@@ -297,11 +373,102 @@ def _modelled_two_tangents(rng: random.Random) -> ModelledExample:
     )
 
 
+def _modelled_angle_same_segment(rng: random.Random) -> ModelledExample:
+    given_angle = rng.randint(20, 80)
+    unknown_angle = given_angle
+    if unknown_angle != given_angle:
+        raise ValueError("modelled example circle_theorem verification failed: angles in the same segment")
+
+    if rng.random() < 0.5:
+        c_label, d_label = f"{given_angle}°", "x°"
+        ask = "angle ADB, x"
+    else:
+        c_label, d_label = "x°", f"{given_angle}°"
+        ask = "angle ACB, x"
+
+    teaching_steps = [
+        "Angles in the same segment theorem: if two points are on the same arc of a circle, the angles "
+        "they make when looking at the same chord are always equal - both angles are said to be "
+        "\"subtended by\" that chord.",
+        "Here C and D both sit on the same arc and both look at the chord AB, so angle ACB and angle "
+        "ADB must be equal to each other, no matter where exactly C and D sit on that arc.",
+        f"Since one of the two angles is given as {given_angle}°, the other one, x, must equal it "
+        "exactly - there's no further calculation needed once you recognise the theorem applies.",
+        f"x = {given_angle}°.",
+    ]
+    worked_calculation = [
+        "angle ADB = angle ACB (angles in the same segment)",
+        f"x = {given_angle}°",
+    ]
+    return ModelledExample(
+        topic_id="circle_theorems",
+        tier=Tier.HIGHER,
+        prompt=(
+            "A, B, C, and D are points on a circle, where C and D are on the same arc, both subtending "
+            f"the chord AB. Find {ask}."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"{unknown_angle}°",
+        diagram=DiagramSpec(
+            kind="circle_same_segment",
+            params={"angle_c_label": c_label, "angle_d_label": d_label},
+        ),
+    )
+
+
+def _modelled_alternate_segment(rng: random.Random) -> ModelledExample:
+    given_angle = rng.randint(20, 80)
+    unknown_angle = given_angle
+    if unknown_angle != given_angle:
+        raise ValueError("modelled example circle_theorem verification failed: alternate segment theorem")
+
+    if rng.random() < 0.5:
+        tangent_label, segment_label = f"{given_angle}°", "x°"
+        ask = "angle QRP, x"
+    else:
+        tangent_label, segment_label = "x°", f"{given_angle}°"
+        ask = "the angle between the tangent and the chord PQ, x"
+
+    teaching_steps = [
+        "The alternate segment theorem links a tangent to a circle with a chord drawn from the same "
+        "point of contact: the angle between the tangent and the chord is always equal to the angle "
+        "the chord makes at a point on the far arc - the \"alternate segment\", meaning the segment on "
+        "the other side of the chord from the angle between the tangent and chord.",
+        "Here the tangent touches the circle at P and PQ is the chord, so the angle between them (at P) "
+        "is equal to angle QRP, the angle the same chord PQ makes at R, a point on the alternate segment.",
+        f"Since one of these two equal angles is given as {given_angle}°, the other, x, must equal it "
+        "exactly.",
+        f"x = {given_angle}°.",
+    ]
+    worked_calculation = [
+        "tangent-chord angle at P = angle QRP (alternate segment theorem)",
+        f"x = {given_angle}°",
+    ]
+    return ModelledExample(
+        topic_id="circle_theorems",
+        tier=Tier.HIGHER,
+        prompt=(
+            "PQ is a chord of a circle, and the tangent to the circle at P is shown. R is a point on "
+            f"the circle in the alternate segment. Find {ask}."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"{unknown_angle}°",
+        diagram=DiagramSpec(
+            kind="circle_alternate_segment",
+            params={"tangent_angle_label": tangent_label, "segment_angle_label": segment_label},
+        ),
+    )
+
+
 _MODELLED_SHAPES = [
     _modelled_angle_at_centre,
     _modelled_angle_in_semicircle,
     _modelled_cyclic_quadrilateral,
     _modelled_two_tangents,
+    _modelled_angle_same_segment,
+    _modelled_alternate_segment,
 ]
 
 
@@ -313,7 +480,7 @@ def generate_modelled_example_circle_theorem(tier: Tier, rng: random.Random) -> 
 TOPIC_CIRCLE_THEOREMS = TopicDefinition(
     id="circle_theorems",
     display_name="Circle Theorems",
-    description="Apply circle theorems (angle at centre, angle in a semicircle, cyclic quadrilaterals, tangents) to find a missing angle.",
+    description="Apply circle theorems (angle at centre, angle in a semicircle, cyclic quadrilaterals, tangents, angles in the same segment, alternate segment) to find a missing angle.",
     generate=generate_circle_theorem,
     section=SECTION,
     group=GROUP,

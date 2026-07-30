@@ -999,7 +999,13 @@ def draw_circle_cyclic_quad(params: dict) -> Drawing:
 
 
 def draw_circle_two_tangents(params: dict) -> Drawing:
-    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    # Taller than the usual DIAGRAM_HEIGHT: the external point T sits well
+    # above the circle (cy + r + 38 = 132), and its label further still - on
+    # the standard 130-tall canvas this silently overflowed the Drawing's own
+    # bounds, bleeding the label up into the prompt text above it (ReportLab
+    # doesn't clip a Drawing's overflowing content) - found via rendering an
+    # actual worksheet and looking closely, not a unit test.
+    d = Drawing(DIAGRAM_WIDTH, 160)
     cx, cy, r = 100, 60, 34
     d.add(Circle(cx, cy, r, strokeColor=INK, fillColor=None, strokeWidth=1.2))
     A, B = _circle_point(cx, cy, r, 145), _circle_point(cx, cy, r, 35)
@@ -1012,6 +1018,45 @@ def draw_circle_two_tangents(params: dict) -> Drawing:
     d.add(_vertex_angle_arc((cx, cy), A, B, radius=14))
     d.add(_label(T[0], T[1] + 12, params["external_label"], size=8))
     d.add(_label(cx, cy - 14, params["centre_label"], size=8))
+    _not_to_scale(d)
+    return d
+
+
+def draw_circle_same_segment(params: dict) -> Drawing:
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    cx, cy, r = 100, 74, 42
+    d.add(Circle(cx, cy, r, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    A, B = _circle_point(cx, cy, r, 200), _circle_point(cx, cy, r, 340)
+    C, Dp = _circle_point(cx, cy, r, 70), _circle_point(cx, cy, r, 110)
+    d.add(Line(A[0], A[1], B[0], B[1], strokeColor=INK, strokeWidth=0.8))
+    for P in (C, Dp):
+        d.add(Line(P[0], P[1], A[0], A[1], strokeColor=INK, strokeWidth=1))
+        d.add(Line(P[0], P[1], B[0], B[1], strokeColor=INK, strokeWidth=1))
+    d.add(_vertex_angle_arc(C, A, B, radius=10))
+    d.add(_vertex_angle_arc(Dp, A, B, radius=10))
+    d.add(_label(C[0], C[1] + 10, params["angle_c_label"], size=7))
+    d.add(_label(Dp[0], Dp[1] + 10, params["angle_d_label"], size=7))
+    _not_to_scale(d)
+    return d
+
+
+def draw_circle_alternate_segment(params: dict) -> Drawing:
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    cx, cy, r = 100, 76, 40
+    d.add(Circle(cx, cy, r, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    P = _circle_point(cx, cy, r, 270)
+    Q = _circle_point(cx, cy, r, 190)
+    R = _circle_point(cx, cy, r, 30)
+    tangent_left = (P[0] - 46, P[1])
+    tangent_right = (P[0] + 46, P[1])
+    d.add(Line(tangent_left[0], tangent_left[1], tangent_right[0], tangent_right[1], strokeColor=INK, strokeWidth=1.2))
+    d.add(Line(P[0], P[1], Q[0], Q[1], strokeColor=INK, strokeWidth=1))
+    d.add(Line(Q[0], Q[1], R[0], R[1], strokeColor=INK, strokeWidth=1))
+    d.add(Line(R[0], R[1], P[0], P[1], strokeColor=INK, strokeWidth=1))
+    d.add(_vertex_angle_arc(P, tangent_left, Q, radius=14))
+    d.add(_vertex_angle_arc(R, Q, P, radius=10))
+    d.add(_label(P[0] - 14, P[1] - 12, params["tangent_angle_label"], size=7, anchor="end"))
+    d.add(_label(R[0], R[1] - 12, params["segment_angle_label"], size=7))
     _not_to_scale(d)
     return d
 
@@ -1174,10 +1219,13 @@ def _fn_value(kind: str, x: float, params: dict) -> float:
     if kind == "exponential":
         return params["a"] * params["base"] ** x
     if kind == "trigonometric":
-        # sin/cos only - both continuous everywhere, unlike tan (which has
-        # vertical asymptotes at 90 degrees/270 degrees and would need the
-        # same branch-splitting draw_function_graph's reciprocal kind uses).
-        fn = {"sin": math.sin, "cos": math.cos}[params["fn"]]
+        # sin/cos are continuous everywhere. tan has vertical asymptotes at
+        # 90 + 180k degrees and would need the same branch-splitting
+        # draw_function_graph's reciprocal kind uses if plotted across one -
+        # callers using "tan" are expected to only ever pass an x_min/x_max
+        # window that stays strictly within one continuous branch (never
+        # spanning an asymptote), so a plain lookup is safe here.
+        fn = {"sin": math.sin, "cos": math.cos, "tan": math.tan}[params["fn"]]
         return params.get("sign", 1) * fn(math.radians(x))
     raise ValueError(f"unknown function graph kind: {kind!r}")
 
@@ -1462,6 +1510,100 @@ def draw_loci_region(params: dict) -> Drawing:
                     d.add(Circle(px, py, 1.3, fillColor=ACCENT, strokeColor=None, fillOpacity=0.35))
                 y += step
             x += step
+
+    return d
+
+
+def _clip_line_to_window(
+    m: float, c: float, x_min: float, x_max: float, y_min: float, y_max: float
+) -> tuple[tuple[float, float], tuple[float, float]] | None:
+    """The segment of the line y = m*x + c that lies within the rectangle
+    [x_min, x_max] x [y_min, y_max], as two endpoint (x, y) tuples - or None
+    if the line never crosses the rectangle at all. Finds every point where
+    the line crosses one of the rectangle's four edges, keeps only the ones
+    that actually land on that edge (not off the end of it), and returns the
+    two extreme candidates. Needed because a steep line's y-value at x_min or
+    x_max routinely lands far outside the window - drawing between those raw
+    endpoints (rather than this clipped segment) sends the line's pixel
+    coordinates far outside the Drawing's own canvas, which ReportLab does
+    not clip, so it bleeds into whatever page content sits above/below the
+    diagram - found via rendering an actual worksheet and looking closely,
+    not a unit test."""
+    candidates: list[tuple[float, float]] = []
+    for x in (x_min, x_max):
+        y = m * x + c
+        if y_min - 1e-9 <= y <= y_max + 1e-9:
+            candidates.append((x, y))
+    if m != 0:
+        for y in (y_min, y_max):
+            x = (y - c) / m
+            if x_min - 1e-9 <= x <= x_max + 1e-9:
+                candidates.append((x, y))
+    if len(candidates) < 2:
+        return None
+    candidates.sort(key=lambda p: p[0])
+    return candidates[0], candidates[-1]
+
+
+def _satisfies_inequality_lines(x: float, y: float, lines: list) -> bool:
+    for line in lines:
+        rhs = line["m"] * x + line["c"]
+        op = line["op"]
+        if op == "<" and not (y < rhs):
+            return False
+        if op == "<=" and not (y <= rhs):
+            return False
+        if op == ">" and not (y > rhs):
+            return False
+        if op == ">=" and not (y >= rhs):
+            return False
+    return True
+
+
+def draw_inequality_region(params: dict) -> Drawing:
+    """Shades the region on gridded axes satisfying every inequality in
+    params['lines'] (1-2 entries, each of the form y <op> m*x + c - never a
+    general ax+by=c or a vertical line, which covers the realistic GCSE
+    question shape). Each boundary is drawn full-width across the window,
+    dashed for a strict inequality (<, >) and solid for a non-strict one
+    (<=, >=), matching real exam convention. params['blank'] gives bare axes
+    only (the question page, matching inequalities_number_line.py's
+    blank-question/marked-solution split) - otherwise the boundary lines and
+    a rasterized-dot-mesh shaded region are both drawn, reusing the exact
+    sample-a-fine-grid-and-test-every-point technique draw_loci_region
+    already uses, generalised here to a linear-inequality predicate instead
+    of a circle/half-plane one."""
+    d = Drawing(GRAPH_WIDTH, GRAPH_HEIGHT)
+    x_min, x_max = params["x_min"], params["x_max"]
+    y_min, y_max = params["y_min"], params["y_max"]
+    to_px = _draw_scaled_axes(d, x_min, x_max, y_min, y_max)
+
+    if params.get("blank", False):
+        return d
+
+    lines = params.get("lines", [])
+    for line in lines:
+        clipped = _clip_line_to_window(line["m"], line["c"], x_min, x_max, y_min, y_max)
+        if clipped is None:
+            continue
+        (x0, y0), (x1, y1) = clipped
+        px0, py0 = to_px(x0, y0)
+        px1, py1 = to_px(x1, y1)
+        dashed = line["op"] in ("<", ">")
+        d.add(Line(px0, py0, px1, py1, strokeColor=INK, strokeWidth=1.2, strokeDashArray=[3, 2] if dashed else None))
+
+    step = 0.25
+    x_lo, x_hi = min(x_min, 0), max(x_max, 0)
+    y_lo, y_hi = min(y_min, 0), max(y_max, 0)
+    x = x_lo
+    while x <= x_hi + 1e-9:
+        y = y_lo
+        while y <= y_hi + 1e-9:
+            if _satisfies_inequality_lines(x, y, lines):
+                px, py = to_px(x, y)
+                d.add(Circle(px, py, 1.3, fillColor=ACCENT, strokeColor=None, fillOpacity=0.35))
+            y += step
+        x += step
 
     return d
 
@@ -2773,6 +2915,8 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "circle_semicircle": draw_circle_semicircle,
     "circle_cyclic_quad": draw_circle_cyclic_quad,
     "circle_two_tangents": draw_circle_two_tangents,
+    "circle_same_segment": draw_circle_same_segment,
+    "circle_alternate_segment": draw_circle_alternate_segment,
     "parabola": draw_parabola,
     "linear_graph_pair": draw_linear_graph_pair,
     "function_graph": draw_function_graph,
@@ -2781,6 +2925,7 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "grid_transformation": draw_grid_transformation,
     "loci_construction": draw_loci_construction,
     "loci_region": draw_loci_region,
+    "inequality_region": draw_inequality_region,
     "tree_diagram": draw_tree_diagram,
     "two_way_table": draw_two_way_table,
     "sample_space_diagram": draw_sample_space_diagram,

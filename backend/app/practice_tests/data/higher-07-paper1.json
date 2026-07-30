@@ -4,6 +4,7 @@
   "tier": "higher",
   "sitting_id": "higher-07",
   "paper_number": 1,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "bounds_calculation",
@@ -187,34 +188,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_divide",
-      "prompt": "Work out 6/4 ÷ 3/10. Give your answer as a fraction in its simplest form.",
+      "topic_id": "quadratic_formula",
+      "prompt": "Solve 3x^2 + 12x + 7 = 0 using the quadratic formula, giving your answers to 2 decimal places.",
       "solution_steps": [
-        "Keep-change-flip: 6/4 ÷ 3/10 = 6/4 × 10/3",
-        "Multiply: (6×10)/(4×3) = 60/12",
-        "Simplify: 5"
+        "x = (-b ± √(b^2 - 4ac)) / 2a",
+        "a = 3, b = 12, c = 7",
+        "x = (-12 ± √(12^2 - 4×3×7)) / (2×3)",
+        "x = (-12 ± √60) / 6",
+        "x = -0.71 or x = -3.29"
       ],
-      "final_answer": "5",
-      "marks": 4,
+      "final_answer": "x = -0.71 or x = -3.29",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Keep-change-flip: 6/4 ÷ 3/10 = 6/4 × 10/3",
+          "description": "x = (-b ± √(b^2 - 4ac)) / 2a",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: (6×10)/(4×3) = 60/12",
+          "description": "a = 3, b = 12, c = 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify: 5",
+          "description": "x = (-12 ± √(12^2 - 4×3×7)) / (2×3)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = (-12 ± √60) / 6 x = -0.71 or x = -3.29",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5 oe",
+          "description": "x = -0.71 or x = -3.29 oe",
           "marks": 1
         }
       ],
@@ -222,265 +230,90 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "turning_point_of_graph",
-      "prompt": "Find the coordinates of the turning point of the curve y = x^2 - 12x + 10.",
+      "topic_id": "plot_exponential",
+      "prompt": "Complete a table of values for y = 4 × 3^x for x = 0 to 4, then plot the graph.",
       "solution_steps": [
-        "Complete the square: x^2 - 12x + 10 = (x - 6)^2 - 26",
-        "The turning point of y = (x + p)^2 + q is (-p, q).",
-        "Turning point = (6, -26)"
+        "Table of values for y = 4 × 3^x:",
+        "x: 0, 1, 2, 3, 4",
+        "y: 4, 12, 36, 108, 324",
+        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
       ],
-      "final_answer": "(6, -26)",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Complete the square: x^2 - 12x + 10 = (x - 6)^2 - 26",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Turning point = (6, -26)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(6, -26) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "parabola",
-        "params": {
-          "vertex_label": "(6, -26)"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "plot_cubic",
-      "prompt": "Complete a table of values for y = -x^3 - 2x for x = -3 to 3, then plot the graph.",
-      "solution_steps": [
-        "Table of values for y = -x^3 - 2x:",
-        "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: 33, 12, 3, 0, -3, -12, -33",
-        "Plot each (x, y) point and join them with a single smooth curve."
-      ],
-      "final_answer": "Cubic curve: y = -x^3 - 2x",
+      "final_answer": "Exponential curve: y = 4 × 3^x",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = -x^3 - 2x:",
+          "description": "Table of values for y = 4 × 3^x:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "description": "x: 0, 1, 2, 3, 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: 33, 12, 3, 0, -3, -12, -33",
+          "description": "y: 4, 12, 36, 108, 324",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Cubic curve: y = -x^3 - 2x oe",
+          "description": "Exponential curve: y = 4 × 3^x oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "cubic",
-          "a": -1,
-          "b": -2,
-          "x_min": -4,
+          "kind": "exponential",
+          "a": 4,
+          "base": 3,
+          "x_min": -1,
           "x_max": 4,
-          "y_min": -35,
-          "y_max": 35,
+          "y_min": 0,
+          "y_max": 356.4,
           "blank": true
         }
       },
       "solution_diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "cubic",
-          "a": -1,
-          "b": -2,
-          "x_min": -4,
+          "kind": "exponential",
+          "a": 4,
+          "base": 3,
+          "x_min": -1,
           "x_max": 4,
-          "y_min": -35,
-          "y_max": 35,
+          "y_min": 0,
+          "y_max": 356.4,
           "table_points": [
             [
-              -3,
-              33
-            ],
-            [
-              -2,
-              12
-            ],
-            [
-              -1,
-              3
-            ],
-            [
               0,
-              0
+              4
             ],
             [
               1,
-              -3
+              12
             ],
             [
               2,
-              -12
+              36
             ],
             [
               3,
-              -33
+              108
+            ],
+            [
+              4,
+              324
             ]
           ]
         }
       }
-    },
-    {
-      "topic_id": "change_subject_higher",
-      "prompt": "Make x the subject of the formula y = 7x + 4x + 15.",
-      "solution_steps": [
-        "y = 7x + 4x + 15",
-        "Subtract 15 from both sides: y - 15 = 7x + 4x",
-        "Factorise the right-hand side: y - 15 = (11)x",
-        "Divide both sides by 11: x = (y - 15)/11"
-      ],
-      "final_answer": "x = (y - 15)/11",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "y = 7x + 4x + 15",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 15 from both sides: y - 15 = 7x + 4x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise the right-hand side: y - 15 = (11)x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by 11: x = (y - 15)/11",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = (y - 15)/11 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simultaneous_different_coefficient",
-      "prompt": "Solve the simultaneous equations: 3x + 5y = -14 and 5x + 3y = -18",
-      "solution_steps": [
-        "3x + 5y = -14  (1)",
-        "5x + 3y = -18  (2)",
-        "(1) × 3: 9x + 15y = -42  (3)",
-        "(2) × 5: 25x + 15y = -90  (4)",
-        "(3) - (4): -16x = 48, so x = -3",
-        "Substitute x = -3 into (1): 5y = -5, so y = -1"
-      ],
-      "final_answer": "x = -3, y = -1",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "3x + 5y = -14  (1)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "5x + 3y = -18  (2)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(1) × 3: 9x + 15y = -42  (3)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(2) × 5: 25x + 15y = -90  (4) (3) - (4): -16x = 48, so x = -3 Substitute x = -3 into (1): 5y = -5, so y = -1",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = -3, y = -1 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "linear_brackets",
-      "prompt": "Solve: 5(4x + 3) = -25",
-      "solution_steps": [
-        "Expand the bracket: 5(4x + 3) = 20x + 15",
-        "20x + 15 = -25",
-        "Subtract 15 from both sides:",
-        "20x = -40",
-        "Divide both sides by 20:",
-        "x = -2"
-      ],
-      "final_answer": "-2",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Expand the bracket: 5(4x + 3) = 20x + 15",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "20x + 15 = -25",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 15 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "20x = -40 Divide both sides by 20: x = -2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
     },
     {
       "topic_id": "expand_double_brackets",
@@ -560,6 +393,137 @@
         {
           "code": "A1",
           "description": "(3, 15) and (2, 6) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "forming_equations_higher",
+      "prompt": "A quadrilateral has angles 44°, 93°, (4x - 16)°, and (4x + 151)°. Form an equation and solve it to find x.",
+      "solution_steps": [
+        "Angles in a quadrilateral sum to 360°.",
+        "44 + 93 + (4x - 16) + (4x + 151) = 360",
+        "Collect the x-terms and constants together:",
+        "8x + 135 = 223",
+        "Subtract 135 from both sides:",
+        "8x = 88",
+        "Divide both sides by 8:",
+        "x = 11"
+      ],
+      "final_answer": "11",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles in a quadrilateral sum to 360°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "44 + 93 + (4x - 16) + (4x + 151) = 360",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Collect the x-terms and constants together:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "8x + 135 = 223 Subtract 135 from both sides: 8x = 88 Divide both sides by 8: x = 11",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "11 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "expand_triple_brackets",
+      "prompt": "Expand and simplify: (3x + 3)(x + 3)(x - 1)",
+      "solution_steps": [
+        "First expand two of the brackets: (3x + 3)(x + 3) = 3x^2 + 12x + 9",
+        "Multiply the result by (x - 1) and collect like terms",
+        "= 3x^3 + 9x^2 - 3x - 9"
+      ],
+      "final_answer": "3x^3 + 9x^2 - 3x - 9",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First expand two of the brackets: (3x + 3)(x + 3) = 3x^2 + 12x + 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply the result by (x - 1) and collect like terms",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 3x^3 + 9x^2 - 3x - 9",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3x^3 + 9x^2 - 3x - 9 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "satisfying_inequalities_higher",
+      "prompt": "x satisfies both 4x + 5 ≥ -3 and 3x - 9 < -2. List the integer values of x that satisfy both.",
+      "solution_steps": [
+        "Solve the first inequality:",
+        "4x + 5 ≥ -3",
+        "Subtract 5 from both sides:",
+        "4x ≥ -8",
+        "Divide both sides by 4:",
+        "x ≥ -2",
+        "Solve the second inequality:",
+        "3x - 9 < -2",
+        "Add 9 to both sides:",
+        "3x < 7",
+        "Divide both sides by 3:",
+        "x < 7/3",
+        "Combine both results into a single range: -2 ≤ x < 7/3",
+        "The integers satisfying both inequalities are: -2, -1, 0, 1, 2"
+      ],
+      "final_answer": "-2, -1, 0, 1, 2",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Solve the first inequality:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x + 5 ≥ -3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 5 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x ≥ -8 Divide both sides by 4: x ≥ -2 Solve the second inequality: 3x - 9 < -2 Add 9 to both sides: 3x < 7 Divide both sides by 3: x < 7/3 Combine both results into a single range: -2 ≤ x < 7/3 The integers satisfying both inequalities are: -2, -1, 0, 1, 2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-2, -1, 0, 1, 2 oe",
           "marks": 1
         }
       ],
@@ -954,49 +918,43 @@
       }
     },
     {
-      "topic_id": "frustum_volume_surface_area",
-      "prompt": "A frustum is formed from a cone with a bottom radius of 7 cm and a top radius of 2 cm, and a vertical height of 3 cm. Find its total surface area, correct to 3 significant figures.",
+      "topic_id": "compound_3d_volume",
+      "prompt": "An ice-cream-shaped solid is made from a cone of radius 4 cm and height 20 cm, with a hemisphere of the same radius attached to its open end. Find the total volume, correct to 3 significant figures.",
       "solution_steps": [
-        "Slant height l = √(h² + (R - r)²) = √(3² + (7 - 2)²) ≈ 5.83 cm",
-        "Curved surface area = π × (R + r) × l = π × (7 + 2) × 5.83",
-        "Total surface area = curved + both circular ends = π(R + r)l + πR² + πr²",
-        "= 331 cm² (3 s.f.)"
+        "Cone volume = (1/3) × π × r² × h = (1/3) × π × 4² × 20",
+        "Hemisphere volume = (2/3) × π × r³ = (2/3) × π × 4³",
+        "Total volume = cone + hemisphere ≈ 469 cm³ (3 s.f.)"
       ],
-      "final_answer": "331 cm²",
-      "marks": 5,
+      "final_answer": "469 cm³",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Slant height l = √(h² + (R - r)²) = √(3² + (7 - 2)²) ≈ 5.83 cm",
+          "description": "Cone volume = (1/3) × π × r² × h = (1/3) × π × 4² × 20",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Curved surface area = π × (R + r) × l = π × (7 + 2) × 5.83",
+          "description": "Hemisphere volume = (2/3) × π × r³ = (2/3) × π × 4³",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total surface area = curved + both circular ends = π(R + r)l + πR² + πr²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 331 cm² (3 s.f.)",
+          "description": "Total volume = cone + hemisphere ≈ 469 cm³ (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "331 cm² oe",
+          "description": "469 cm³ oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "frustum",
+        "kind": "compound_3d",
         "params": {
-          "radius_bottom_label": "7 cm",
-          "radius_top_label": "2 cm",
-          "height_label": "3 cm"
+          "variant": "cone_hemisphere",
+          "radius_label": "4 cm",
+          "cone_height_label": "20 cm"
         }
       },
       "solution_diagram": null
@@ -1044,22 +1002,82 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "product_rule_counting",
-      "prompt": "A shop sells 6 different phone cases, 4 different screen protectors and 4 different chargers. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "topic_id": "inequalities_number_line_higher",
+      "prompt": "Write down the inequality (or pair of inequalities) shown by the number line below.",
       "solution_steps": [
-        "Total combinations = 6 × 4 × 4 = 96"
+        "The circle at 1 is filled and the circle at 6 is filled.",
+        "The shading lies outside the two circles, so either bound alone is enough: x ≤ 1 or x ≥ 6."
       ],
-      "final_answer": "96",
-      "marks": 2,
+      "final_answer": "x ≤ 1 or x ≥ 6",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total combinations = 6 × 4 × 4 = 96",
+          "description": "The circle at 1 is filled and the circle at 6 is filled.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The shading lies outside the two circles, so either bound alone is enough: x ≤ 1 or x ≥ 6.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "96 oe",
+          "description": "x ≤ 1 or x ≥ 6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [
+            {
+              "value": 1,
+              "closed": true
+            },
+            {
+              "value": 6,
+              "closed": true
+            }
+          ],
+          "shade": "outside"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "kinematics_suvat",
+      "prompt": "An object starts with a velocity of 0 m/s and has a constant acceleration of 1 m/s^2 for 9 s. Find its final velocity.",
+      "solution_steps": [
+        "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
+        "v = u + at",
+        "Substitute u = 0, a = 1, t = 9: v = 0 + 1 × 9 = 0 + 9 = 9"
+      ],
+      "final_answer": "9 m/s",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "v = u + at",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute u = 0, a = 1, t = 9: v = 0 + 1 × 9 = 0 + 9 = 9",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "9 m/s oe",
           "marks": 1
         }
       ],

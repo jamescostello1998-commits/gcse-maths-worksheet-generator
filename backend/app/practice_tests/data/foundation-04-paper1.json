@@ -4,6 +4,7 @@
   "tier": "foundation",
   "sitting_id": "foundation-04",
   "paper_number": 1,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "fractions_simplify",
@@ -305,34 +306,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_single_bracket",
-      "prompt": "Expand: -2(4x - 5)",
+      "topic_id": "substitution_foundation",
+      "prompt": "A = lw. Find the value of A when l = 7 and w = 13.",
       "solution_steps": [
-        "Multiply -2 by 4x: -8x",
-        "Multiply -2 by -5: 10",
-        "Combine: -8x + 10"
+        "A = lw",
+        "A = 7 × 13",
+        "A = 91"
       ],
-      "final_answer": "-8x + 10",
+      "final_answer": "A = 91",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply -2 by 4x: -8x",
+          "description": "A = lw",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply -2 by -5: 10",
+          "description": "A = 7 × 13",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Combine: -8x + 10",
+          "description": "A = 91",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-8x + 10 oe",
+          "description": "A = 91 oe",
           "marks": 1
         }
       ],
@@ -437,34 +438,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_one_step",
-      "prompt": "Solve: 5x = 45",
+      "topic_id": "linear_two_step",
+      "prompt": "Solve: 9x + 1 = 73",
       "solution_steps": [
-        "5x = 45",
-        "Divide both sides by 5:",
-        "x = 9"
+        "9x + 1 = 73",
+        "Subtract 1 from both sides:",
+        "9x = 72",
+        "Divide both sides by 9:",
+        "x = 8"
       ],
-      "final_answer": "9",
-      "marks": 4,
+      "final_answer": "8",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5x = 45",
+          "description": "9x + 1 = 73",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 5:",
+          "description": "Subtract 1 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 9",
+          "description": "9x = 72",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 9: x = 8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9 oe",
+          "description": "8 oe",
           "marks": 1
         }
       ],
@@ -671,34 +679,110 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_enlarge_complete_foundation",
-      "prompt": "Enlarge shape ABCDEF by scale factor 2, centre (6, 6). Draw and label the image A'B'C'D'E'F'.",
+      "topic_id": "construction_angle_bisector",
+      "prompt": "Angle XAW = 83°. Describe, step by step, how to construct the bisector of angle XAW using only a ruler and a pair of compasses.",
       "solution_steps": [
-        "The centre of enlargement is (6, 6) and the scale factor is 2.",
-        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-6, -5) from the centre, so A' = (6, 6) + 2 × (-6, -5) = (-6, -4).",
-        "Repeat for every vertex: A(0, 1) -> A'(-6, -4), B(4, 1) -> B'(2, -4), C(4, 3) -> C'(2, 0), D(2, 3) -> D'(-2, 0), E(2, 6) -> E'(-2, 6), F(0, 6) -> F'(-6, 6)"
+        "Open the compasses to any radius and place the point on A (the vertex of the angle).",
+        "Draw an arc that crosses both arms of the angle, at a point on AX and a point on AW.",
+        "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
+        "Draw a straight line from A through the point where the two arcs intersect. This line is the bisector of angle XAW."
       ],
-      "final_answer": "A'(-6, -4), B'(2, -4), C'(2, 0), D'(-2, 0), E'(-2, 6), F'(-6, 6)",
-      "marks": 4,
+      "final_answer": "The straight line from A through the intersection of the two equal-radius arcs bisects angle XAW into two equal angles.",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The centre of enlargement is (6, 6) and the scale factor is 2.",
+          "description": "Open the compasses to any radius and place the point on A (the vertex of the angle).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-6, -5) from the centre, so A' = (6, 6) + 2 × (-6, -5) = (-6, -4).",
+          "description": "Draw an arc that crosses both arms of the angle, at a point on AX and a point on AW.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Repeat for every vertex: A(0, 1) -> A'(-6, -4), B(4, 1) -> B'(2, -4), C(4, 3) -> C'(2, 0), D(2, 3) -> D'(-2, 0), E(2, 6) -> E'(-2, 6), F(0, 6) -> F'(-6, 6)",
+          "description": "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Draw a straight line from A through the point where the two arcs intersect. This line is the bisector of angle XAW.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(-6, -4), B'(2, -4), C'(2, 0), D'(-2, 0), E'(-2, 6), F'(-6, 6) oe",
+          "description": "The straight line from A through the intersection of the two equal-radius arcs bisects angle XAW into two equal angles. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "construction_triangle",
+      "prompt": "Triangle QKG has QK = 14 cm, the angle at K equal to 56°, and KG = 7 cm. Describe, step by step, how to construct triangle QKG using a ruler, a protractor, and a pair of compasses.",
+      "solution_steps": [
+        "Draw the line segment QK = 14 cm using a ruler.",
+        "At K, use a protractor to draw a ray at 56° from the line KQ.",
+        "Along this new ray, measure 7 cm from K using a ruler and mark the point G.",
+        "Draw a straight line from Q to G to complete the triangle."
+      ],
+      "final_answer": "Triangle QKG, with G marked 7 cm from K along the 56° ray at K.",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Draw the line segment QK = 14 cm using a ruler.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "At K, use a protractor to draw a ray at 56° from the line KQ.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Along this new ray, measure 7 cm from K using a ruler and mark the point G.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Draw a straight line from Q to G to complete the triangle.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Triangle QKG, with G marked 7 cm from K along the 56° ray at K. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "transform_translate_describe",
+      "prompt": "Shape ABCDEF is translated to give shape A'B'C'D'E'F', shown on the grid. Describe fully the single transformation that maps ABCDEF onto A'B'C'D'E'F'.",
+      "solution_steps": [
+        "Every vertex moves by exactly the same amount: comparing A(2, -1) with A'(-1, -6) gives the vector (-3, -5).",
+        "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
+      ],
+      "final_answer": "Translation by the vector (-3, -5)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Every vertex moves by exactly the same amount: comparing A(2, -1) with A'(-1, -6) gives the vector (-3, -5).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Checking the other vertices confirms the same vector applies throughout, so this is a translation.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Translation by the vector (-3, -5) oe",
           "marks": 1
         }
       ],
@@ -711,7 +795,15 @@
           "y_max": 8,
           "original_vertices": [
             [
-              0,
+              2,
+              -1
+            ],
+            [
+              6,
+              -1
+            ],
+            [
+              6,
               1
             ],
             [
@@ -720,19 +812,11 @@
             ],
             [
               4,
-              3
+              4
             ],
             [
               2,
-              3
-            ],
-            [
-              2,
-              6
-            ],
-            [
-              0,
-              6
+              4
             ]
           ],
           "original_labels": [
@@ -742,82 +826,31 @@
             "D",
             "E",
             "F"
-          ],
-          "centre": [
-            6,
-            6
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              0,
-              1
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              4,
-              3
-            ],
-            [
-              2,
-              3
-            ],
-            [
-              2,
-              6
-            ],
-            [
-              0,
-              6
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
-          ],
-          "centre": [
-            6,
-            6
           ],
           "image_vertices": [
             [
-              -6,
+              -1,
+              -6
+            ],
+            [
+              3,
+              -6
+            ],
+            [
+              3,
               -4
             ],
             [
-              2,
+              1,
               -4
             ],
             [
-              2,
-              0
+              1,
+              -1
             ],
             [
-              -2,
-              0
-            ],
-            [
-              -2,
-              6
-            ],
-            [
-              -6,
-              6
+              -1,
+              -1
             ]
           ],
           "image_labels": [
@@ -829,276 +862,71 @@
             "F'"
           ]
         }
-      }
+      },
+      "solution_diagram": null
     },
     {
-      "topic_id": "area_rectangle",
-      "prompt": "A rectangle has length 17 cm and width 7 cm. Find its area.",
+      "topic_id": "area_trapezium",
+      "prompt": "A trapezium has parallel sides of length 10 cm and 14 cm, and a perpendicular height of 6 cm. Find its area.",
       "solution_steps": [
-        "Area = length × width = 17 × 7 = 119 cm²"
+        "Area = ½ × (a + b) × height = ½ × (10 + 14) × 6 = 72 cm²"
       ],
-      "final_answer": "119 cm²",
+      "final_answer": "72 cm²",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = length × width = 17 × 7 = 119 cm²",
+          "description": "Area = ½ × (a + b) × height = ½ × (10 + 14) × 6 = 72 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "119 cm² oe",
+          "description": "72 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "rectangle",
+        "kind": "trapezium",
         "params": {
-          "width": 17,
-          "height": 7,
-          "width_label": "17 cm",
-          "height_label": "7 cm"
+          "a": 10,
+          "b": 14,
+          "height": 6,
+          "a_label": "10 cm",
+          "b_label": "14 cm",
+          "height_label": "6 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_rotate_complete",
-      "prompt": "Rotate shape ABC 90° clockwise about the centre (-3, 0). Draw and label the image A'B'C'.",
+      "topic_id": "probability_single_event",
+      "prompt": "A bag contains 2 blue, 4 red counters. A counter is picked at random. Find the probability that it is red.",
       "solution_steps": [
-        "Rotate each vertex 90° clockwise about the centre (-3, 0): every point stays the same distance from the centre and turns through the same angle.",
-        "A(-3, 3) -> A'(0, 0), B(2, 3) -> B'(0, -5), C(-2, 7) -> C'(4, -1)"
+        "Total counters = 6",
+        "Number of red counters = 4",
+        "P(red) = 4/6 = 2/3"
       ],
-      "final_answer": "A'(0, 0), B'(0, -5), C'(4, -1)",
-      "marks": 3,
+      "final_answer": "2/3",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rotate each vertex 90° clockwise about the centre (-3, 0): every point stays the same distance from the centre and turns through the same angle.",
+          "description": "Total counters = 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A(-3, 3) -> A'(0, 0), B(2, 3) -> B'(0, -5), C(-2, 7) -> C'(4, -1)",
+          "description": "Number of red counters = 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(red) = 4/6 = 2/3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(0, 0), B'(0, -5), C'(4, -1) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              -3,
-              3
-            ],
-            [
-              2,
-              3
-            ],
-            [
-              -2,
-              7
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C"
-          ],
-          "centre": [
-            -3,
-            0
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              -3,
-              3
-            ],
-            [
-              2,
-              3
-            ],
-            [
-              -2,
-              7
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C"
-          ],
-          "centre": [
-            -3,
-            0
-          ],
-          "image_vertices": [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              -5
-            ],
-            [
-              4,
-              -1
-            ]
-          ],
-          "image_labels": [
-            "A'",
-            "B'",
-            "C'"
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "area_parallelogram",
-      "prompt": "A parallelogram has a base of 17 cm and a perpendicular height of 8 cm. Find its area.",
-      "solution_steps": [
-        "Area = base × height = 17 × 8 = 136 cm²"
-      ],
-      "final_answer": "136 cm²",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Area = base × height = 17 × 8 = 136 cm²",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "136 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "parallelogram",
-        "params": {
-          "base": 17,
-          "height": 8,
-          "base_label": "17 cm",
-          "height_label": "8 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "area_triangle",
-      "prompt": "A triangle has base 20 cm and height 10 cm. Find its area.",
-      "solution_steps": [
-        "Area = (1/2) × base × height = (1/2) × 20 × 10 = 100 cm²"
-      ],
-      "final_answer": "100 cm²",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Area = (1/2) × base × height = (1/2) × 20 × 10 = 100 cm²",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "100 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "triangle_area",
-        "params": {
-          "base": 20,
-          "height": 10,
-          "base_label": "20 cm",
-          "height_label": "10 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "set_notation_foundation",
-      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9}, A = {1, 3, 8, 9}, B = {1, 2, 4, 7, 8}. List the elements that are in A but not in B.",
-      "solution_steps": [
-        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9}",
-        "A = {1, 3, 8, 9}",
-        "B = {1, 2, 4, 7, 8}",
-        "Check each element of ξ in turn to see whether it are in A but not in B.",
-        "Elements that are in A but not in B: {3, 9}"
-      ],
-      "final_answer": "{3, 9}",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A = {1, 3, 8, 9}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "B = {1, 2, 4, 7, 8}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Check each element of ξ in turn to see whether it are in A but not in B. Elements that are in A but not in B: {3, 9}",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "{3, 9} oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "probability_complement",
-      "prompt": "A bag contains 3 yellow, 2 green, 6 red counters. A counter is picked at random. Find the probability that it is NOT red.",
-      "solution_steps": [
-        "P(red) = 6/11 = 6/11",
-        "P(not red) = 1 - 6/11 = 5/11"
-      ],
-      "final_answer": "5/11",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "P(red) = 6/11 = 6/11",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(not red) = 1 - 6/11 = 5/11",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "5/11 oe",
+          "description": "2/3 oe",
           "marks": 1
         }
       ],
@@ -1106,9 +934,8 @@
         "kind": "bag_of_counters",
         "params": {
           "counts": {
-            "yellow": 3,
-            "green": 2,
-            "red": 6
+            "blue": 2,
+            "red": 4
           },
           "highlight": "red"
         }
@@ -1116,136 +943,99 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "time_series_graph",
-      "prompt": "The time series graph shows the number of visitors over time. At which period was the value highest?",
+      "topic_id": "relative_frequency",
+      "prompt": "A drawing pin is tested 50 times, and it lands point up 18 times. Use this relative frequency to estimate how many times this would happen in 300 trials.",
       "solution_steps": [
-        "Compare every plotted value: 25, 32, 34, 29, 20, 8.",
-        "The highest value, 34, occurs at period 3."
+        "Relative frequency = frequency ÷ number of trials = 18/50 = 9/25",
+        "Estimated number of times in 300 trials = 9/25 × 300 = 108"
       ],
-      "final_answer": "3",
+      "final_answer": "108",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Compare every plotted value: 25, 32, 34, 29, 20, 8.",
+          "description": "Relative frequency = frequency ÷ number of trials = 18/50 = 9/25",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The highest value, 34, occurs at period 3.",
+          "description": "Estimated number of times in 300 trials = 9/25 × 300 = 108",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 oe",
+          "description": "108 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_listing_outcomes",
+      "prompt": "Two 3-sided spinners are spun: one labelled B, P, R and the other labelled 1, 2, 3. List all the possible outcomes.",
+      "solution_steps": [
+        "There are 3 possible outcomes for the first event and 3 for the second, so there are 3 × 3 = 9 possible combined outcomes.",
+        "For each outcome of the first event, list every outcome of the second event: B1, B2, B3, P1, P2, P3, R1, R2, R3"
+      ],
+      "final_answer": "B1, B2, B3, P1, P2, P3, R1, R2, R3",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "There are 3 possible outcomes for the first event and 3 for the second, so there are 3 × 3 = 9 possible combined outcomes.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For each outcome of the first event, list every outcome of the second event: B1, B2, B3, P1, P2, P3, R1, R2, R3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "B1, B2, B3, P1, P2, P3, R1, R2, R3 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "time_series",
+        "kind": "spinner_pair",
         "params": {
-          "points": [
-            [
-              1,
-              25
-            ],
-            [
-              2,
-              32
-            ],
-            [
-              3,
-              34
-            ],
-            [
-              4,
-              29
-            ],
-            [
-              5,
-              20
-            ],
-            [
-              6,
-              8
-            ]
+          "sectors_a": [
+            "B",
+            "P",
+            "R"
           ],
-          "x_label": "Week",
-          "y_label": "Visitors"
+          "sectors_b": [
+            "1",
+            "2",
+            "3"
+          ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_equivalent_diagram",
-      "prompt": "Shape A is divided into 3 equal parts, with 2 shaded. Shape B is divided into 9 equal parts. How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
+      "topic_id": "stats_range",
+      "prompt": "Find the range of this data set: 15, 17, 10, 24, 6, 21, 4, 5.",
       "solution_steps": [
-        "Shape A shows 2/3 shaded; Shape B has 9 equal parts.",
-        "Find the scale factor between the denominators: 9 ÷ 3 = 3",
-        "Multiply the shaded count by the same scale factor: 2 × 3 = 6"
+        "Range = largest - smallest = 24 - 4 = 20"
       ],
-      "final_answer": "6",
-      "marks": 4,
+      "final_answer": "20",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Shape A shows 2/3 shaded; Shape B has 9 equal parts.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Find the scale factor between the denominators: 9 ÷ 3 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the shaded count by the same scale factor: 2 × 3 = 6",
+          "description": "Range = largest - smallest = 24 - 4 = 20",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6 oe",
+          "description": "20 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "bar",
-              "parts": 3,
-              "shaded": 2,
-              "label": "2/3"
-            },
-            {
-              "kind": "bar",
-              "parts": 9,
-              "shaded": 0,
-              "label": "?/9"
-            }
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "bar",
-              "parts": 3,
-              "shaded": 2,
-              "label": "2/3"
-            },
-            {
-              "kind": "bar",
-              "parts": 9,
-              "shaded": 6,
-              "label": "6/9"
-            }
-          ]
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     }
   ]
 }

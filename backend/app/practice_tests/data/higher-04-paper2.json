@@ -4,6 +4,7 @@
   "tier": "higher",
   "sitting_id": "higher-04",
   "paper_number": 2,
+  "calculator_allowed": false,
   "questions": [
     {
       "topic_id": "hcf_lcm_by_prime_factors",
@@ -223,96 +224,88 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_reciprocal",
-      "prompt": "Complete a table of values for y = 48/x for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
+      "topic_id": "trig_graph",
+      "prompt": "Complete a table of values for y = -cos(x°) for x = -180 to 180 (in steps of 90°), then plot the graph.",
       "solution_steps": [
-        "Table of values for y = 48/x:",
-        "x: -4, -3, -2, -1, 1, 2, 3, 4",
-        "y: -12, -16, -24, -48, 48, 24, 16, 12",
-        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
+        "Table of values for y = -cos(x°):",
+        "x: -180, -90, 0, 90, 180",
+        "y: 1, 0, -1, 0, 1",
+        "Plot each (x, y) point and join them with a single smooth curve - y = -cos(x°) repeats the same shape every 360°, and never goes above 1 or below -1."
       ],
-      "final_answer": "Reciprocal curve: y = 48/x",
+      "final_answer": "y = -cos(x°)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = 48/x:",
+          "description": "Table of values for y = -cos(x°):",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
+          "description": "x: -180, -90, 0, 90, 180",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: -12, -16, -24, -48, 48, 24, 16, 12",
+          "description": "y: 1, 0, -1, 0, 1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
+          "description": "Plot each (x, y) point and join them with a single smooth curve - y = -cos(x°) repeats the same shape every 360°, and never goes above 1 or below -1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Reciprocal curve: y = 48/x oe",
+          "description": "y = -cos(x°) oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "reciprocal",
-          "a": 48,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -50,
-          "y_max": 50,
+          "kind": "trigonometric",
+          "fn": "cos",
+          "sign": -1,
+          "x_min": -180,
+          "x_max": 180,
+          "y_min": -1.4,
+          "y_max": 1.4,
+          "x_label": "x (degrees)",
           "blank": true
         }
       },
       "solution_diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "reciprocal",
-          "a": 48,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -50,
-          "y_max": 50,
+          "kind": "trigonometric",
+          "fn": "cos",
+          "sign": -1,
+          "x_min": -180,
+          "x_max": 180,
+          "y_min": -1.4,
+          "y_max": 1.4,
+          "x_label": "x (degrees)",
           "table_points": [
             [
-              -4,
-              -12
+              -180,
+              1
             ],
             [
-              -3,
-              -16
+              -90,
+              0
             ],
             [
-              -2,
-              -24
+              0,
+              -1
             ],
             [
-              -1,
-              -48
+              90,
+              0
             ],
             [
-              1,
-              48
-            ],
-            [
-              2,
-              24
-            ],
-            [
-              3,
-              16
-            ],
-            [
-              4,
-              12
+              180,
+              1
             ]
           ]
         }
@@ -362,50 +355,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "satisfying_inequalities_higher",
-      "prompt": "x satisfies both 3x + 9 ≥ -4 and 4x + 1 < -6. List the integer values of x that satisfy both.",
+      "topic_id": "algebraic_proof",
+      "prompt": "Prove algebraically that the product of three consecutive integers is always a multiple of 6.",
       "solution_steps": [
-        "Solve the first inequality:",
-        "3x + 9 ≥ -4",
-        "Subtract 9 from both sides:",
-        "3x ≥ -13",
-        "Divide both sides by 3:",
-        "x ≥ -13/3",
-        "Solve the second inequality:",
-        "4x + 1 < -6",
-        "Subtract 1 from both sides:",
-        "4x < -7",
-        "Divide both sides by 4:",
-        "x < -7/4",
-        "Combine both results into a single range: -13/3 ≤ x < -7/4",
-        "The integers satisfying both inequalities are: -4, -3, -2"
+        "Let three consecutive integers be n, n + 1 and n + 2.",
+        "Write the given expression algebraically: n(n + 1)(n + 2).",
+        "Expand and simplify: n(n + 1)(n + 2) = n^3 + 3n^2 + 2n.",
+        "Factorise/rearrange to expose the structure: n^3 + 3n^2 + 2n = among any 3 consecutive integers, one is a multiple of 3, and at least one is even, so their product always carries both a factor of 3 and a factor of 2.",
+        "Since one of any three consecutive integers is always a multiple of 3, and at least one is always even, the product always has both 2 and 3 as factors - so it is always a multiple of 2 × 3 = 6."
       ],
-      "final_answer": "-4, -3, -2",
+      "final_answer": "Proven: n(n + 1)(n + 2) is always a multiple of 6.",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Solve the first inequality:",
+          "description": "Let three consecutive integers be n, n + 1 and n + 2.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3x + 9 ≥ -4",
+          "description": "Write the given expression algebraically: n(n + 1)(n + 2).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 9 from both sides:",
+          "description": "Expand and simplify: n(n + 1)(n + 2) = n^3 + 3n^2 + 2n.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3x ≥ -13 Divide both sides by 3: x ≥ -13/3 Solve the second inequality: 4x + 1 < -6 Subtract 1 from both sides: 4x < -7 Divide both sides by 4: x < -7/4 Combine both results into a single range: -13/3 ≤ x < -7/4 The integers satisfying both inequalities are: -4, -3, -2",
+          "description": "Factorise/rearrange to expose the structure: n^3 + 3n^2 + 2n = among any 3 consecutive integers, one is a multiple of 3, and at least one is even, so their product always carries both a factor of 3 and a factor of 2. Since one of any three consecutive integers is always a multiple of 3, and at least one is always even, the product always has both 2 and 3 as factors - so it is always a multiple of 2 × 3 = 6.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-4, -3, -2 oe",
+          "description": "Proven: n(n + 1)(n + 2) is always a multiple of 6. oe",
           "marks": 1
         }
       ],
@@ -468,34 +452,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_triple_brackets",
-      "prompt": "Expand and simplify: (-2x + 2)(-x - 3)(-3x + 3)",
+      "topic_id": "factorise_quadratics",
+      "prompt": "Factorise: x^2 + 5x - 24",
       "solution_steps": [
-        "First expand two of the brackets: (-2x + 2)(-x - 3) = 2x^2 + 4x - 6",
-        "Multiply the result by (-3x + 3) and collect like terms",
-        "= -6x^3 - 6x^2 + 30x - 18"
+        "Find two numbers that multiply to -24 and add to 5: -3 and 8",
+        "Write as two brackets: (x - 3)(x + 8)"
       ],
-      "final_answer": "-6x^3 - 6x^2 + 30x - 18",
-      "marks": 4,
+      "final_answer": "(x - 3)(x + 8)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First expand two of the brackets: (-2x + 2)(-x - 3) = 2x^2 + 4x - 6",
+          "description": "Find two numbers that multiply to -24 and add to 5: -3 and 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the result by (-3x + 3) and collect like terms",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= -6x^3 - 6x^2 + 30x - 18",
+          "description": "Write as two brackets: (x - 3)(x + 8)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-6x^3 - 6x^2 + 30x - 18 oe",
+          "description": "(x - 3)(x + 8) oe",
           "marks": 1
         }
       ],
@@ -503,42 +481,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_different_coefficient",
-      "prompt": "Solve the simultaneous equations: 5x + 3y = -35 and 4x + 2y = -26",
+      "topic_id": "simultaneous_quadratic",
+      "prompt": "Solve the simultaneous equations: y = x^2 - 4x - 1 and y = -8x + 11",
       "solution_steps": [
-        "5x + 3y = -35  (1)",
-        "4x + 2y = -26  (2)",
-        "(1) × 2: 10x + 6y = -70  (3)",
-        "(2) × 3: 12x + 6y = -78  (4)",
-        "(3) - (4): -2x = 8, so x = -4",
-        "Substitute x = -4 into (1): 3y = -15, so y = -5"
+        "Substitute y = -8x + 11 into y = x^2 - 4x - 1: -8x + 11 = x^2 - 4x - 1",
+        "Rearrange: x^2 + 4x - 12 = 0",
+        "Factorise: (x - 2)(x + 6) = 0",
+        "x = 2 or x = -6",
+        "When x = 2, y = -5. When x = -6, y = 59."
       ],
-      "final_answer": "x = -4, y = -5",
+      "final_answer": "(2, -5) and (-6, 59)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5x + 3y = -35  (1)",
+          "description": "Substitute y = -8x + 11 into y = x^2 - 4x - 1: -8x + 11 = x^2 - 4x - 1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x + 2y = -26  (2)",
+          "description": "Rearrange: x^2 + 4x - 12 = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(1) × 2: 10x + 6y = -70  (3)",
+          "description": "Factorise: (x - 2)(x + 6) = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(2) × 3: 12x + 6y = -78  (4) (3) - (4): -2x = 8, so x = -4 Substitute x = -4 into (1): 3y = -15, so y = -5",
+          "description": "x = 2 or x = -6 When x = 2, y = -5. When x = -6, y = 59.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -4, y = -5 oe",
+          "description": "(2, -5) and (-6, 59) oe",
           "marks": 1
         }
       ],
@@ -546,34 +523,50 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_shape_similar_higher",
-      "prompt": "Shape A and Shape B are similar. A length on shape A is 6 cm and the corresponding length on shape B is 2 cm. The volume of shape B is 2 cm^3. Find the volume of shape A.",
+      "topic_id": "satisfying_inequalities_higher",
+      "prompt": "x satisfies both 3x + 9 ≥ -4 and 4x + 1 < -6. List the integer values of x that satisfy both.",
       "solution_steps": [
-        "Linear scale factor = 2 ÷ 6 = 1/3",
-        "Volume scale factor = (1/3)^3 = 1/27",
-        "Volume of A = 2 ÷ 1/27 = 54 cm^3"
+        "Solve the first inequality:",
+        "3x + 9 ≥ -4",
+        "Subtract 9 from both sides:",
+        "3x ≥ -13",
+        "Divide both sides by 3:",
+        "x ≥ -13/3",
+        "Solve the second inequality:",
+        "4x + 1 < -6",
+        "Subtract 1 from both sides:",
+        "4x < -7",
+        "Divide both sides by 4:",
+        "x < -7/4",
+        "Combine both results into a single range: -13/3 ≤ x < -7/4",
+        "The integers satisfying both inequalities are: -4, -3, -2"
       ],
-      "final_answer": "54 cm^3",
-      "marks": 4,
+      "final_answer": "-4, -3, -2",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Linear scale factor = 2 ÷ 6 = 1/3",
+          "description": "Solve the first inequality:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Volume scale factor = (1/3)^3 = 1/27",
+          "description": "3x + 9 ≥ -4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Volume of A = 2 ÷ 1/27 = 54 cm^3",
+          "description": "Subtract 9 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3x ≥ -13 Divide both sides by 3: x ≥ -13/3 Solve the second inequality: 4x + 1 < -6 Subtract 1 from both sides: 4x < -7 Divide both sides by 4: x < -7/4 Combine both results into a single range: -13/3 ≤ x < -7/4 The integers satisfying both inequalities are: -4, -3, -2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "54 cm^3 oe",
+          "description": "-4, -3, -2 oe",
           "marks": 1
         }
       ],
@@ -670,42 +663,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_difference_higher",
-      "prompt": "Amounts are in the ratio 9:6:3. The difference between the largest and smallest amount is 54. Find all three amounts and their total.",
+      "topic_id": "ratio_to_equation",
+      "prompt": "(x + 8) : (3x + 10) = 5:1. Find the value of x.",
       "solution_steps": [
-        "Difference in parts = 9 - 3 = 6 parts",
-        "Value of one part = 54 ÷ 6 = 9",
-        "Amount 1 = 9 × 9 = 81",
-        "Amount 2 = 6 × 9 = 54",
-        "Amount 3 = 3 × 9 = 27",
-        "Total = 81 + 54 + 27 = 162"
+        "Cross-multiply: 1(x + 8) = 5(3x + 10)",
+        "Expand: x + 8 = 15x + 50",
+        "Collect x terms: -14x = 42",
+        "x = 42 ÷ -14 = -3"
       ],
-      "final_answer": "81 : 54 : 27 (total 162)",
+      "final_answer": "x = -3",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Difference in parts = 9 - 3 = 6 parts",
+          "description": "Cross-multiply: 1(x + 8) = 5(3x + 10)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 54 ÷ 6 = 9",
+          "description": "Expand: x + 8 = 15x + 50",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Amount 1 = 9 × 9 = 81",
+          "description": "Collect x terms: -14x = 42",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Amount 2 = 6 × 9 = 54 Amount 3 = 3 × 9 = 27 Total = 81 + 54 + 27 = 162",
+          "description": "x = 42 ÷ -14 = -3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "81 : 54 : 27 (total 162) oe",
+          "description": "x = -3 oe",
           "marks": 1
         }
       ],
@@ -713,73 +704,96 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_ladder_context",
-      "prompt": "A ladder of length 7 m leans against a vertical wall with its base 4 m from the wall. Find the height the ladder reaches up the wall, giving your answer as a surd in its simplest form.",
+      "topic_id": "ratio_share_three_part",
+      "prompt": "Share 70 in the ratio 2:5:7.",
       "solution_steps": [
-        "height² = ladder² - base² = 7² - 4² = 49 - 16 = 33",
-        "height = √33 = √33 m (exact form)"
+        "Total parts = 2 + 5 + 7 = 14",
+        "Value of one part = 70 ÷ 14 = 5",
+        "Share 1 = 2 × 5 = 10",
+        "Share 2 = 5 × 5 = 25",
+        "Share 3 = 7 × 5 = 35"
       ],
-      "final_answer": "√33 m",
-      "marks": 3,
+      "final_answer": "10 : 25 : 35",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "height² = ladder² - base² = 7² - 4² = 49 - 16 = 33",
+          "description": "Total parts = 2 + 5 + 7 = 14",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "height = √33 = √33 m (exact form)",
+          "description": "Value of one part = 70 ÷ 14 = 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 1 = 2 × 5 = 10",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 2 = 5 × 5 = 25 Share 3 = 7 × 5 = 35",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "√33 m oe",
+          "description": "10 : 25 : 35 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "right_triangle",
-        "params": {
-          "leg1_label": "4 m",
-          "leg2_label": "?",
-          "hyp_label": "7 m"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "area_sector",
-      "prompt": "A sector of a circle has radius 3 cm and angle 90°. Find the exact area of the sector, in terms of π.",
+      "topic_id": "area_mixed_compound",
+      "prompt": "A shape is made from a rectangle 11 cm by 15 cm, with a triangular roof of height 8 cm on top, and a quarter-circle of radius 2 cm cut from one bottom corner. Find the total area, correct to 3 significant figures.",
       "solution_steps": [
-        "Area = (θ ÷ 360) × π × r² = (90 ÷ 360) × π × 3²",
-        "= (9/4)π cm²"
+        "Rectangle area = 11 × 15 = 165 cm²",
+        "Triangle roof area = ½ × 11 × 8 = 44 cm²",
+        "Quarter-circle cut area = (π × 2²) ÷ 4 ≈ 3.14 cm²",
+        "Total area = 165 + 44 - 3.14 ≈ 206 cm²"
       ],
-      "final_answer": "(9/4)π cm²",
-      "marks": 3,
+      "final_answer": "206 cm²",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = (θ ÷ 360) × π × r² = (90 ÷ 360) × π × 3²",
+          "description": "Rectangle area = 11 × 15 = 165 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= (9/4)π cm²",
+          "description": "Triangle roof area = ½ × 11 × 8 = 44 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Quarter-circle cut area = (π × 2²) ÷ 4 ≈ 3.14 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total area = 165 + 44 - 3.14 ≈ 206 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(9/4)π cm² oe",
+          "description": "206 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "sector",
+        "kind": "mixed_compound",
         "params": {
-          "angle": 90,
-          "radius_label": "3 cm",
-          "angle_label": "90°"
+          "width": 11,
+          "height": 15,
+          "roof_height": 8,
+          "cut_radius": 2,
+          "width_label": "11 cm",
+          "height_label": "15 cm",
+          "roof_label": "8 cm",
+          "cut_label": "2 cm"
         }
       },
       "solution_diagram": null
@@ -820,90 +834,84 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_parallel_lines",
-      "prompt": "A line crosses two parallel lines. The angle 129° and the angle (5x + 44)° are alternate angles. Find x.",
+      "topic_id": "angles_straight_line_higher",
+      "prompt": "The angles 116° and (4x - 16)° lie on a straight line. Find x.",
       "solution_steps": [
-        "Alternate angles are equal.",
-        "5x + 44 = 129",
-        "Subtract 44 from both sides:",
-        "5x = 85",
-        "Divide both sides by 5:",
-        "x = 17"
+        "Angles on a straight line sum to 180°.",
+        "4x - 16 = 64",
+        "Add 16 to both sides:",
+        "4x = 80",
+        "Divide both sides by 4:",
+        "x = 20"
       ],
-      "final_answer": "17",
+      "final_answer": "20",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Alternate angles are equal.",
+          "description": "Angles on a straight line sum to 180°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x + 44 = 129",
+          "description": "4x - 16 = 64",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 44 from both sides:",
+          "description": "Add 16 to both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x = 85 Divide both sides by 5: x = 17",
+          "description": "4x = 80 Divide both sides by 4: x = 20",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "17 oe",
+          "description": "20 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "parallel_lines",
+        "kind": "angle_line",
         "params": {
-          "known_label": "129°",
-          "unknown_label": "(5x + 44)°",
-          "relation": "alternate"
+          "angle_values": [
+            116,
+            64
+          ],
+          "labels": [
+            "116°",
+            "(4x - 16)°"
+          ],
+          "around_point": false
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_enlarge_complete_higher",
-      "prompt": "Enlarge shape ABCDEF by scale factor -1, centre (3, -1). Draw and label the image A'B'C'D'E'F'.",
+      "topic_id": "transform_enlarge_describe",
+      "prompt": "Shape ABCD is enlarged to give shape A'B'C'D', shown on the grid. Describe fully the single transformation that maps ABCD onto A'B'C'D'.",
       "solution_steps": [
-        "The centre of enlargement is (3, -1) and the scale factor is -1.",
-        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-4, 2) from the centre, so A' = (3, -1) + -1 × (-4, 2) = (7, -3).",
-        "Repeat for every vertex: A(-1, 1) -> A'(7, -3), B(4, 1) -> B'(2, -3), C(4, 3) -> C'(2, -5), D(2, 3) -> D'(4, -5), E(2, 5) -> E'(4, -7), F(-1, 5) -> F'(7, -7)",
-        "A negative scale factor puts the image on the opposite side of the centre from the original shape."
+        "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
+        "For this pair, the lines meet at (-2, 0) and the ratio works out as -1."
       ],
-      "final_answer": "A'(7, -3), B'(2, -3), C'(2, -5), D'(4, -5), E'(4, -7), F'(7, -7)",
-      "marks": 5,
+      "final_answer": "Enlargement, scale factor -1, centre (-2, 0)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The centre of enlargement is (3, -1) and the scale factor is -1.",
+          "description": "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-4, 2) from the centre, so A' = (3, -1) + -1 × (-4, 2) = (7, -3).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Repeat for every vertex: A(-1, 1) -> A'(7, -3), B(4, 1) -> B'(2, -3), C(4, 3) -> C'(2, -5), D(2, 3) -> D'(4, -5), E(2, 5) -> E'(4, -7), F(-1, 5) -> F'(7, -7)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A negative scale factor puts the image on the opposite side of the centre from the original shape.",
+          "description": "For this pair, the lines meet at (-2, 0) and the ratio works out as -1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(7, -3), B'(2, -3), C'(2, -5), D'(4, -5), E'(4, -7), F'(7, -7) oe",
+          "description": "Enlargement, scale factor -1, centre (-2, 0) oe",
           "marks": 1
         }
       ],
@@ -916,27 +924,19 @@
           "y_max": 8,
           "original_vertices": [
             [
-              -1,
-              1
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              4,
-              3
+              -2,
+              2
             ],
             [
               2,
-              3
+              2
             ],
             [
-              2,
-              5
+              1,
+              6
             ],
             [
-              -1,
+              -3,
               5
             ]
           ],
@@ -944,97 +944,35 @@
             "A",
             "B",
             "C",
-            "D",
-            "E",
-            "F"
-          ],
-          "centre": [
-            3,
-            -1
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              -1,
-              1
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              4,
-              3
-            ],
-            [
-              2,
-              3
-            ],
-            [
-              2,
-              5
-            ],
-            [
-              -1,
-              5
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
-          ],
-          "centre": [
-            3,
-            -1
+            "D"
           ],
           "image_vertices": [
             [
-              7,
-              -3
+              -2,
+              -2
             ],
             [
-              2,
-              -3
+              -6,
+              -2
             ],
             [
-              2,
+              -5,
+              -6
+            ],
+            [
+              -1,
               -5
-            ],
-            [
-              4,
-              -5
-            ],
-            [
-              4,
-              -7
-            ],
-            [
-              7,
-              -7
             ]
           ],
           "image_labels": [
             "A'",
             "B'",
             "C'",
-            "D'",
-            "E'",
-            "F'"
+            "D'"
           ]
         }
-      }
+      },
+      "solution_diagram": null
     },
     {
       "topic_id": "probability_combined_dice",
@@ -1074,46 +1012,26 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_conditional",
-      "prompt": "A bag contains 4 red and 7 blue counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour.",
+      "topic_id": "product_rule_counting",
+      "prompt": "A shop sells 5 different phone cases and 3 different screen protectors. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
       "solution_steps": [
-        "P(both red) = 4/11 × 3/10 = 6/55",
-        "P(both blue) = 7/11 × 6/10 = 21/55",
-        "P(both same colour) = 6/55 + 21/55 = 27/55"
+        "Total combinations = 5 × 3 = 15"
       ],
-      "final_answer": "27/55",
-      "marks": 4,
+      "final_answer": "15",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "P(both red) = 4/11 × 3/10 = 6/55",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(both blue) = 7/11 × 6/10 = 21/55",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(both same colour) = 6/55 + 21/55 = 27/55",
+          "description": "Total combinations = 5 × 3 = 15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "27/55 oe",
+          "description": "15 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "bag_of_counters",
-        "params": {
-          "counts": {
-            "red": 4,
-            "blue": 7
-          }
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {

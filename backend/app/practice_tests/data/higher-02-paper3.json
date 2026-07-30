@@ -4,6 +4,7 @@
   "tier": "higher",
   "sitting_id": "higher-02",
   "paper_number": 3,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "recurring_decimal_two_digit",
@@ -251,40 +252,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_fractions_add_subtract",
-      "prompt": "Simplify 4/(x - 1) - 9/(x - 7), giving your answer as a single fraction.",
+      "topic_id": "simultaneous_different_coefficient",
+      "prompt": "Solve the simultaneous equations: 3x + 4y = -27 and 4x + 3y = -29",
       "solution_steps": [
-        "Write both fractions over the common denominator (x - 1)(x - 7):",
-        "4/(x - 1) - 9/(x - 7) = (4(x - 7) - 9(x - 1))/(x - 1)(x - 7)",
-        "Expand the numerator: 4(x - 7) - 9(x - 1) = -5x - 19",
-        "= (-5x - 19)/(x - 1)(x - 7)"
+        "3x + 4y = -27  (1)",
+        "4x + 3y = -29  (2)",
+        "(1) × 3: 9x + 12y = -81  (3)",
+        "(2) × 4: 16x + 12y = -116  (4)",
+        "(3) - (4): -7x = 35, so x = -5",
+        "Substitute x = -5 into (1): 4y = -12, so y = -3"
       ],
-      "final_answer": "(-5x - 19)/(x - 1)(x - 7)",
+      "final_answer": "x = -5, y = -3",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Write both fractions over the common denominator (x - 1)(x - 7):",
+          "description": "3x + 4y = -27  (1)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4/(x - 1) - 9/(x - 7) = (4(x - 7) - 9(x - 1))/(x - 1)(x - 7)",
+          "description": "4x + 3y = -29  (2)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand the numerator: 4(x - 7) - 9(x - 1) = -5x - 19",
+          "description": "(1) × 3: 9x + 12y = -81  (3)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= (-5x - 19)/(x - 1)(x - 7)",
+          "description": "(2) × 4: 16x + 12y = -116  (4) (3) - (4): -7x = 35, so x = -5 Substitute x = -5 into (1): 4y = -12, so y = -3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(-5x - 19)/(x - 1)(x - 7) oe",
+          "description": "x = -5, y = -3 oe",
           "marks": 1
         }
       ],
@@ -335,42 +338,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_different_coefficient",
-      "prompt": "Solve the simultaneous equations: 3x + 4y = -27 and 4x + 3y = -29",
+      "topic_id": "simultaneous_quadratic",
+      "prompt": "Solve the simultaneous equations: y = x^2 - 3x + 2 and y = -x + 10",
       "solution_steps": [
-        "3x + 4y = -27  (1)",
-        "4x + 3y = -29  (2)",
-        "(1) × 3: 9x + 12y = -81  (3)",
-        "(2) × 4: 16x + 12y = -116  (4)",
-        "(3) - (4): -7x = 35, so x = -5",
-        "Substitute x = -5 into (1): 4y = -12, so y = -3"
+        "Substitute y = -x + 10 into y = x^2 - 3x + 2: -x + 10 = x^2 - 3x + 2",
+        "Rearrange: x^2 - 2x - 8 = 0",
+        "Factorise: (x + 2)(x - 4) = 0",
+        "x = -2 or x = 4",
+        "When x = -2, y = 12. When x = 4, y = 6."
       ],
-      "final_answer": "x = -5, y = -3",
+      "final_answer": "(-2, 12) and (4, 6)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "3x + 4y = -27  (1)",
+          "description": "Substitute y = -x + 10 into y = x^2 - 3x + 2: -x + 10 = x^2 - 3x + 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x + 3y = -29  (2)",
+          "description": "Rearrange: x^2 - 2x - 8 = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(1) × 3: 9x + 12y = -81  (3)",
+          "description": "Factorise: (x + 2)(x - 4) = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(2) × 4: 16x + 12y = -116  (4) (3) - (4): -7x = 35, so x = -5 Substitute x = -5 into (1): 4y = -12, so y = -3",
+          "description": "x = -2 or x = 4 When x = -2, y = 12. When x = 4, y = 6.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -5, y = -3 oe",
+          "description": "(-2, 12) and (4, 6) oe",
           "marks": 1
         }
       ],
@@ -378,123 +380,114 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "forming_equations_higher",
-      "prompt": "A composite shape's perimeter is made up of two sides of length 9 cm, two sides of length 5 cm, and two sides of length (x + 7) cm. The total perimeter is 66 cm. Form an equation and solve it to find x.",
+      "topic_id": "change_subject_higher",
+      "prompt": "Make r the subject of the formula A = 5πr^2.",
       "solution_steps": [
-        "Perimeter = sum of all side lengths.",
-        "2(9) + 2(5) + 2(x + 7) = 66",
-        "Expand the bracket and collect the constants:",
-        "2x + 42 = 66",
-        "Subtract 42 from both sides:",
-        "2x = 24",
-        "Divide both sides by 2:",
-        "x = 12"
+        "A = 5πr^2",
+        "Divide both sides by 5π: A/(5π) = r^2",
+        "Take the square root of both sides: r = √(A/(5π))"
       ],
-      "final_answer": "12",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Perimeter = sum of all side lengths.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2(9) + 2(5) + 2(x + 7) = 66",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Expand the bracket and collect the constants:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2x + 42 = 66 Subtract 42 from both sides: 2x = 24 Divide both sides by 2: x = 12",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "12 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "solving_inequalities_higher",
-      "prompt": "Solve the inequality: 5x + 8 > 10x - 3",
-      "solution_steps": [
-        "5x + 8 > 10x - 3",
-        "Subtract 10x from both sides:",
-        "-5x + 8 > -3",
-        "Subtract 8 from both sides:",
-        "-5x > -11",
-        "Divide both sides by -5 (dividing by a negative number reverses the inequality sign):",
-        "x < 11/5"
-      ],
-      "final_answer": "x < 11/5",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "5x + 8 > 10x - 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 10x from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "-5x + 8 > -3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 8 from both sides: -5x > -11 Divide both sides by -5 (dividing by a negative number reverses the inequality sign): x < 11/5",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x < 11/5 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "expand_triple_brackets",
-      "prompt": "Expand and simplify: (-2x + 4)(4x - 3)(x - 3)",
-      "solution_steps": [
-        "First expand two of the brackets: (-2x + 4)(4x - 3) = -8x^2 + 22x - 12",
-        "Multiply the result by (x - 3) and collect like terms",
-        "= -8x^3 + 46x^2 - 78x + 36"
-      ],
-      "final_answer": "-8x^3 + 46x^2 - 78x + 36",
+      "final_answer": "r = √(A/(5π))",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First expand two of the brackets: (-2x + 4)(4x - 3) = -8x^2 + 22x - 12",
+          "description": "A = 5πr^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the result by (x - 3) and collect like terms",
+          "description": "Divide both sides by 5π: A/(5π) = r^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= -8x^3 + 46x^2 - 78x + 36",
+          "description": "Take the square root of both sides: r = √(A/(5π))",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-8x^3 + 46x^2 - 78x + 36 oe",
+          "description": "r = √(A/(5π)) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "satisfying_inequalities_higher",
+      "prompt": "x satisfies both 5x + 5 ≥ 0 and 3x + 5 ≤ 7. List the integer values of x that satisfy both.",
+      "solution_steps": [
+        "Solve the first inequality:",
+        "5x + 5 ≥ 0",
+        "Subtract 5 from both sides:",
+        "5x ≥ -5",
+        "Divide both sides by 5:",
+        "x ≥ -1",
+        "Solve the second inequality:",
+        "3x + 5 ≤ 7",
+        "Subtract 5 from both sides:",
+        "3x ≤ 2",
+        "Divide both sides by 3:",
+        "x ≤ 2/3",
+        "Combine both results into a single range: -1 ≤ x ≤ 2/3",
+        "The integers satisfying both inequalities are: -1, 0"
+      ],
+      "final_answer": "-1, 0",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Solve the first inequality:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x + 5 ≥ 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 5 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x ≥ -5 Divide both sides by 5: x ≥ -1 Solve the second inequality: 3x + 5 ≤ 7 Subtract 5 from both sides: 3x ≤ 2 Divide both sides by 3: x ≤ 2/3 Combine both results into a single range: -1 ≤ x ≤ 2/3 The integers satisfying both inequalities are: -1, 0",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-1, 0 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "factorise_quadratics",
+      "prompt": "Factorise: x^2 - 3x - 28",
+      "solution_steps": [
+        "Find two numbers that multiply to -28 and add to -3: 4 and -7",
+        "Write as two brackets: (x + 4)(x - 7)"
+      ],
+      "final_answer": "(x + 4)(x - 7)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find two numbers that multiply to -28 and add to -3: 4 and -7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write as two brackets: (x + 4)(x - 7)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(x + 4)(x - 7) oe",
           "marks": 1
         }
       ],
@@ -546,22 +539,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "product_rule_counting",
-      "prompt": "A shop sells 4 different fonts, 2 different colours and 6 different paper sizes. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "topic_id": "exact_trig_values",
+      "prompt": "Write down the exact value of tan(30°).",
       "solution_steps": [
-        "Total combinations = 4 × 2 × 6 = 48"
+        "Recall the exact-value triangles: 30°-60°-90° (sides 1, √3, 2) and 45°-45°-90° (sides 1, 1, √2) - no calculator needed for these special angles.",
+        "tan(30°) = √3/3"
       ],
-      "final_answer": "48",
-      "marks": 2,
+      "final_answer": "√3/3",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total combinations = 4 × 2 × 6 = 48",
+          "description": "Recall the exact-value triangles: 30°-60°-90° (sides 1, √3, 2) and 45°-45°-90° (sides 1, 1, √2) - no calculator needed for these special angles.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "tan(30°) = √3/3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "48 oe",
+          "description": "√3/3 oe",
           "marks": 1
         }
       ],
@@ -703,79 +702,81 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_3d",
-      "prompt": "A cuboid has length 3 cm, width 13 cm and height 7 cm. Find the angle between the diagonal AG (from one corner to the opposite corner) and the base of the cuboid, correct to 1 decimal place.",
+      "topic_id": "cosine_rule",
+      "prompt": "In triangle ABC, side b = 13 cm, side c = 19 cm, and the angle between them, angle A = 61°. Find the length of side a, correct to 3 significant figures.",
       "solution_steps": [
-        "First find the diagonal across the base: base diagonal = √(l² + w²) = √(3² + 13²) = 13.342 cm - this is the projection of AG onto the base.",
-        "The angle between AG and the base, height and base diagonal form a right-angled triangle: tan(angle) = height ÷ base diagonal = 7 ÷ 13.342.",
-        "angle = tan^-1(7 ÷ 13.342) = 27.7° (1 d.p.)"
+        "Use the cosine rule: a² = b² + c² - 2bc cos(A)",
+        "a² = 13² + 19² - 2×13×19×cos(61°) = 290.5",
+        "a = √290.5 = 17.0 cm (3 s.f.)"
       ],
-      "final_answer": "27.7°",
+      "final_answer": "17.0 cm",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First find the diagonal across the base: base diagonal = √(l² + w²) = √(3² + 13²) = 13.342 cm - this is the projection of AG onto the base.",
+          "description": "Use the cosine rule: a² = b² + c² - 2bc cos(A)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The angle between AG and the base, height and base diagonal form a right-angled triangle: tan(angle) = height ÷ base diagonal = 7 ÷ 13.342.",
+          "description": "a² = 13² + 19² - 2×13×19×cos(61°) = 290.5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "angle = tan^-1(7 ÷ 13.342) = 27.7° (1 d.p.)",
+          "description": "a = √290.5 = 17.0 cm (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "27.7° oe",
+          "description": "17.0 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cuboid",
+        "kind": "general_triangle",
         "params": {
-          "length_label": "3 cm",
-          "width_label": "13 cm",
-          "height_label": "7 cm",
-          "diagonal_label": "θ"
+          "side_a_label": "x cm",
+          "side_b_label": "13 cm",
+          "side_c_label": "19 cm",
+          "angle_A_label": "61°",
+          "angle_B_label": null,
+          "angle_C_label": null
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cylinder",
-      "prompt": "A cylinder has radius 12 cm and height 14 cm. Find the exact total surface area, in terms of π.",
+      "topic_id": "volume_surface_area_cone",
+      "prompt": "A cone has radius 6 cm and slant height 17 cm. Find its volume, correct to 3 significant figures.",
       "solution_steps": [
-        "Surface area = 2πr(r + h) = 2 × π × 12 × (12 + 14)",
-        "= 624π cm²"
+        "Volume = (1/3) × π × r² × h = (1/3) × π × 6² × 15.906",
+        "= 600 cm³ (3 s.f., using a calculator value of π)"
       ],
-      "final_answer": "624π cm²",
+      "final_answer": "600 cm³",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Surface area = 2πr(r + h) = 2 × π × 12 × (12 + 14)",
+          "description": "Volume = (1/3) × π × r² × h = (1/3) × π × 6² × 15.906",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 624π cm²",
+          "description": "= 600 cm³ (3 s.f., using a calculator value of π)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "624π cm² oe",
+          "description": "600 cm³ oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cylinder",
+        "kind": "cone",
         "params": {
-          "radius_label": "12 cm",
-          "height_label": "14 cm"
+          "radius_label": "6 cm",
+          "slant_label": "17 cm"
         }
       },
       "solution_diagram": null
@@ -829,153 +830,6 @@
         }
       },
       "solution_diagram": null
-    },
-    {
-      "topic_id": "loci_regions",
-      "prompt": "A and B are two fixed points (shown). Shade the region containing points that are both within 5 cm of A AND closer to A than to B.",
-      "solution_steps": [
-        "The boundary for 'within 5 cm of A' is a circle, centre A, radius 5 cm - the region is inside this circle.",
-        "The boundary for 'closer to A than to B' is the perpendicular bisector of AB - the region is on the A side of it.",
-        "The required region is where these two conditions overlap."
-      ],
-      "final_answer": "The region inside the circle of radius 5 cm centred on A, and on the A side of the perpendicular bisector of AB.",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The boundary for 'within 5 cm of A' is a circle, centre A, radius 5 cm - the region is inside this circle.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The boundary for 'closer to A than to B' is the perpendicular bisector of AB - the region is on the A side of it.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The required region is where these two conditions overlap.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "The region inside the circle of radius 5 cm centred on A, and on the A side of the perpendicular bisector of AB. oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "loci_region",
-        "params": {
-          "x_min": -8.0,
-          "x_max": 5.0,
-          "y_min": -3.0,
-          "y_max": 9.0,
-          "points": [
-            {
-              "xy": [
-                -2,
-                3
-              ],
-              "label": "A"
-            },
-            {
-              "xy": [
-                4,
-                -1
-              ],
-              "label": "B"
-            }
-          ],
-          "boundaries": [
-            {
-              "type": "circle",
-              "centre": [
-                -2,
-                3
-              ],
-              "radius": 5
-            },
-            {
-              "type": "segment",
-              "p1": [
-                8.21110255092798,
-                11.816653826391969
-              ],
-              "p2": [
-                -6.211102550927979,
-                -9.816653826391969
-              ]
-            }
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "loci_region",
-        "params": {
-          "x_min": -8.0,
-          "x_max": 5.0,
-          "y_min": -3.0,
-          "y_max": 9.0,
-          "points": [
-            {
-              "xy": [
-                -2,
-                3
-              ],
-              "label": "A"
-            },
-            {
-              "xy": [
-                4,
-                -1
-              ],
-              "label": "B"
-            }
-          ],
-          "boundaries": [
-            {
-              "type": "circle",
-              "centre": [
-                -2,
-                3
-              ],
-              "radius": 5
-            },
-            {
-              "type": "segment",
-              "p1": [
-                8.21110255092798,
-                11.816653826391969
-              ],
-              "p2": [
-                -6.211102550927979,
-                -9.816653826391969
-              ]
-            }
-          ],
-          "shade_constraints": [
-            {
-              "type": "disk",
-              "centre": [
-                -2,
-                3
-              ],
-              "radius": 5,
-              "inside": true
-            },
-            {
-              "type": "half_plane",
-              "closer_to": [
-                -2,
-                3
-              ],
-              "than": [
-                4,
-                -1
-              ]
-            }
-          ]
-        }
-      }
     },
     {
       "topic_id": "tree_diagram_dependent",
@@ -1064,6 +918,47 @@
           ]
         }
       },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "substitution_higher",
+      "prompt": "a = (v - u)/t. Find the value of a when u = 42, v = 43 and t = 2.",
+      "solution_steps": [
+        "a = (v - u)/t",
+        "a = (43 - 42)/2",
+        "a = 1/2",
+        "a = 1/2"
+      ],
+      "final_answer": "a = 1/2",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "a = (v - u)/t",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "a = (43 - 42)/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "a = 1/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "a = 1/2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "a = 1/2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     }
   ]

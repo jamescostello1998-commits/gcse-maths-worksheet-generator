@@ -4,6 +4,7 @@
   "tier": "higher",
   "sitting_id": "higher-09",
   "paper_number": 2,
+  "calculator_allowed": false,
   "questions": [
     {
       "topic_id": "prime_factors_higher",
@@ -153,38 +154,37 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_missing_side_higher",
-      "prompt": "In the right-angled triangle shown, find the length of x, correct to 3 significant figures.",
+      "topic_id": "pythagoras_ladder_context",
+      "prompt": "A ladder of length 9 m leans against a vertical wall with its base 5 m from the wall. Find the height the ladder reaches up the wall, giving your answer as a surd in its simplest form.",
       "solution_steps": [
-        "We know the opposite and want the hypotenuse, so use sin.",
-        "x = 13 ÷ sin(72°) = 13.7 (to 3 s.f.)"
+        "height² = ladder² - base² = 9² - 5² = 81 - 25 = 56",
+        "height = √56 = 2√14 m (exact form)"
       ],
-      "final_answer": "13.7 cm",
+      "final_answer": "2√14 m",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "We know the opposite and want the hypotenuse, so use sin.",
+          "description": "height² = ladder² - base² = 9² - 5² = 81 - 25 = 56",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 13 ÷ sin(72°) = 13.7 (to 3 s.f.)",
+          "description": "height = √56 = 2√14 m (exact form)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "13.7 cm oe",
+          "description": "2√14 m oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "trig_triangle",
+        "kind": "right_triangle",
         "params": {
-          "adjacent_label": null,
-          "opposite_label": "13 cm",
-          "hyp_label": "x cm",
-          "angle_label": "72°"
+          "leg1_label": "5 m",
+          "leg2_label": "?",
+          "hyp_label": "9 m"
         }
       },
       "solution_diagram": null
@@ -277,6 +277,214 @@
           "y_label": "Velocity (m/s)"
         }
       },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_exponential",
+      "prompt": "Complete a table of values for y = 3^x for x = 0 to 4, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = 3^x:",
+        "x: 0, 1, 2, 3, 4",
+        "y: 1, 3, 9, 27, 81",
+        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
+      ],
+      "final_answer": "Exponential curve: y = 3^x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = 3^x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: 0, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 1, 3, 9, 27, 81",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Exponential curve: y = 3^x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "exponential",
+          "a": 1,
+          "base": 3,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 89.1,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "exponential",
+          "a": 1,
+          "base": 3,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 89.1,
+          "table_points": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              9
+            ],
+            [
+              3,
+              27
+            ],
+            [
+              4,
+              81
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "special_sequences_higher",
+      "prompt": "The first 4 terms of a geometric sequence are: 6, 18, 54, 162. Each term is found by multiplying the previous term by a common ratio. Find the 5th term of the sequence.",
+      "solution_steps": [
+        "Common ratio r = 3 (divide any term by the term before it).",
+        "nth term = a × r^(n - 1) = 6 × (3)^4",
+        "Term 5 = 486"
+      ],
+      "final_answer": "486",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Common ratio r = 3 (divide any term by the term before it).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "nth term = a × r^(n - 1) = 6 × (3)^4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Term 5 = 486",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "486 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_brackets",
+      "prompt": "Solve: 6(4x - 3) = -66",
+      "solution_steps": [
+        "Expand the bracket: 6(4x - 3) = 24x - 18",
+        "24x - 18 = -66",
+        "Add 18 to both sides:",
+        "24x = -48",
+        "Divide both sides by 24:",
+        "x = -2"
+      ],
+      "final_answer": "-2",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: 6(4x - 3) = 24x - 18",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "24x - 18 = -66",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add 18 to both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "24x = -48 Divide both sides by 24: x = -2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "solving_inequalities_higher",
+      "prompt": "Solve the inequality: 5x + 7 ≥ 8x - 6",
+      "solution_steps": [
+        "5x + 7 ≥ 8x - 6",
+        "Subtract 8x from both sides:",
+        "-3x + 7 ≥ -6",
+        "Subtract 7 from both sides:",
+        "-3x ≥ -13",
+        "Divide both sides by -3 (dividing by a negative number reverses the inequality sign):",
+        "x ≤ 13/3"
+      ],
+      "final_answer": "x ≤ 13/3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "5x + 7 ≥ 8x - 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 8x from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-3x + 7 ≥ -6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 7 from both sides: -3x ≥ -13 Divide both sides by -3 (dividing by a negative number reverses the inequality sign): x ≤ 13/3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x ≤ 13/3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -374,253 +582,70 @@
       }
     },
     {
-      "topic_id": "inequalities_number_line_higher",
-      "prompt": "Write down the inequality (or pair of inequalities) shown by the number line below.",
+      "topic_id": "algebraic_fractions_multiply_divide",
+      "prompt": "Simplify (x^2 - 64)/(x + 1) ÷ (x - 8)/(x + 1), giving your answer in its simplest form.",
       "solution_steps": [
-        "The circle at -3 is filled and the circle at 3 is filled.",
-        "The shading lies outside the two circles, so either bound alone is enough: x ≤ -3 or x ≥ 3."
+        "Factorise the difference of two squares: (x^2 - 64) = (x - 8)(x + 8)",
+        "Dividing by a fraction means multiplying by its reciprocal: ÷ (x - 8)/(x + 1) becomes × (x + 1)/(x - 8)",
+        "(x - 8)(x + 8)/(x + 1) × (x + 1)/(x - 8)",
+        "Cancel the common factors (x + 1) and (x - 8):",
+        "= x + 8"
       ],
-      "final_answer": "x ≤ -3 or x ≥ 3",
+      "final_answer": "x + 8",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Factorise the difference of two squares: (x^2 - 64) = (x - 8)(x + 8)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Dividing by a fraction means multiplying by its reciprocal: ÷ (x - 8)/(x + 1) becomes × (x + 1)/(x - 8)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(x - 8)(x + 8)/(x + 1) × (x + 1)/(x - 8)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Cancel the common factors (x + 1) and (x - 8): = x + 8",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x + 8 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "density_higher",
+      "prompt": "A stone has a mass of 13 kg and a volume of 147 cm³. Find its density in g/cm³, correct to 2 decimal places.",
+      "solution_steps": [
+        "Convert mass to grams: 13 kg = 13 × 1000 = 13000 g",
+        "density = mass ÷ volume = 13000 ÷ 147 = 88.44 g/cm³ (2 d.p.)"
+      ],
+      "final_answer": "88.44 g/cm³",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The circle at -3 is filled and the circle at 3 is filled.",
+          "description": "Convert mass to grams: 13 kg = 13 × 1000 = 13000 g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The shading lies outside the two circles, so either bound alone is enough: x ≤ -3 or x ≥ 3.",
+          "description": "density = mass ÷ volume = 13000 ÷ 147 = 88.44 g/cm³ (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x ≤ -3 or x ≥ 3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -8,
-            8
-          ],
-          "boundaries": [
-            {
-              "value": -3,
-              "closed": true
-            },
-            {
-              "value": 3,
-              "closed": true
-            }
-          ],
-          "shade": "outside"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "linear_both_sides",
-      "prompt": "Solve: 6x - 4 = -3x - 76",
-      "solution_steps": [
-        "6x - 4 = -3x - 76",
-        "Add 3x to both sides:",
-        "9x - 4 = -76",
-        "Add 4 to both sides:",
-        "9x = -72",
-        "Divide both sides by 9:",
-        "x = -8"
-      ],
-      "final_answer": "-8",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "6x - 4 = -3x - 76",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add 3x to both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "9x - 4 = -76",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add 4 to both sides: 9x = -72 Divide both sides by 9: x = -8",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-8 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simultaneous_different_coefficient",
-      "prompt": "Solve the simultaneous equations: 3x + 5y = 46 and 5x + 3y = 34",
-      "solution_steps": [
-        "3x + 5y = 46  (1)",
-        "5x + 3y = 34  (2)",
-        "(1) × 3: 9x + 15y = 138  (3)",
-        "(2) × 5: 25x + 15y = 170  (4)",
-        "(3) - (4): -16x = -32, so x = 2",
-        "Substitute x = 2 into (1): 5y = 40, so y = 8"
-      ],
-      "final_answer": "x = 2, y = 8",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "3x + 5y = 46  (1)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "5x + 3y = 34  (2)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(1) × 3: 9x + 15y = 138  (3)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(2) × 5: 25x + 15y = 170  (4) (3) - (4): -16x = -32, so x = 2 Substitute x = 2 into (1): 5y = 40, so y = 8",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = 2, y = 8 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "sequences_quadratic_nth_term",
-      "prompt": "Here are the first four terms of a quadratic sequence: 4, 0, -10, -26. Find an expression for the nth term.",
-      "solution_steps": [
-        "First differences: -4, -10, -16",
-        "Second difference is constant: -6, so the coefficient of n^2 is -6 ÷ 2 = -3",
-        "nth term = -3n^2 + 5n + 2"
-      ],
-      "final_answer": "-3n^2 + 5n + 2",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "First differences: -4, -10, -16",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Second difference is constant: -6, so the coefficient of n^2 is -6 ÷ 2 = -3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "nth term = -3n^2 + 5n + 2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-3n^2 + 5n + 2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "quadratic_formula",
-      "prompt": "Solve 2x^2 - 13x - 9 = 0 using the quadratic formula, giving your answers to 2 decimal places.",
-      "solution_steps": [
-        "x = (-b ± √(b^2 - 4ac)) / 2a",
-        "a = 2, b = -13, c = -9",
-        "x = (13 ± √(-13^2 - 4×2×-9)) / (2×2)",
-        "x = (13 ± √241) / 4",
-        "x = 7.13 or x = -0.63"
-      ],
-      "final_answer": "x = 7.13 or x = -0.63",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "x = (-b ± √(b^2 - 4ac)) / 2a",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "a = 2, b = -13, c = -9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = (13 ± √(-13^2 - 4×2×-9)) / (2×2)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = (13 ± √241) / 4 x = 7.13 or x = -0.63",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = 7.13 or x = -0.63 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "iteration",
-      "prompt": "The iterative formula x_(n+1) = (21 - x_n^2) / 8 is used with x_0 = -1. Find the values of x_1, x_2 and x_3, giving each answer to 3 decimal places.",
-      "solution_steps": [
-        "Iterative formula: x_(n+1) = (21 - x_n^2) / 8",
-        "x_0 = -1",
-        "x_1 = g(x_0) = (21 - (-1)^2) / 8 = 2.500",
-        "x_2 = g(x_1) = (21 - 2.500^2) / 8 = 1.844",
-        "x_3 = g(x_2) = (21 - 1.844^2) / 8 = 2.200"
-      ],
-      "final_answer": "x_1 = 2.500, x_2 = 1.844, x_3 = 2.200",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Iterative formula: x_(n+1) = (21 - x_n^2) / 8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x_0 = -1",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x_1 = g(x_0) = (21 - (-1)^2) / 8 = 2.500",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x_2 = g(x_1) = (21 - 2.500^2) / 8 = 1.844 x_3 = g(x_2) = (21 - 1.844^2) / 8 = 2.200",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x_1 = 2.500, x_2 = 1.844, x_3 = 2.200 oe",
+          "description": "88.44 g/cm³ oe",
           "marks": 1
         }
       ],
@@ -669,28 +694,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "percentage_increase_decrease_calculator",
-      "prompt": "Using a calculator, increase £498.05 by 6.4%. Give your answer to 2 decimal places.",
+      "topic_id": "reverse_percentage",
+      "prompt": "After a 17.5% increase, an item costs £141. Find the original price.",
       "solution_steps": [
-        "Convert 6.4% to a multiplier: 1.064",
-        "Multiply: £498.05 × 1.064 = £529.93 (calculator, 2 d.p.)"
+        "Convert 17.5% to a multiplier: 1.18 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 141 ÷ 1.18 = 120"
       ],
-      "final_answer": "£529.93",
+      "final_answer": "£120",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 6.4% to a multiplier: 1.064",
+          "description": "Convert 17.5% to a multiplier: 1.18 (original × multiplier = new value)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: £498.05 × 1.064 = £529.93 (calculator, 2 d.p.)",
+          "description": "Divide the new value by the multiplier: 141 ÷ 1.18 = 120",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£529.93 oe",
+          "description": "£120 oe",
           "marks": 1
         }
       ],
@@ -698,28 +723,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "density_higher",
-      "prompt": "A stone has a mass of 13 kg and a volume of 147 cm³. Find its density in g/cm³, correct to 2 decimal places.",
+      "topic_id": "unit_conversions_higher",
+      "prompt": "Convert 11.6 cm³ to mm³.",
       "solution_steps": [
-        "Convert mass to grams: 13 kg = 13 × 1000 = 13000 g",
-        "density = mass ÷ volume = 13000 ÷ 147 = 88.44 g/cm³ (2 d.p.)"
+        "Linear conversion factor: 1 cm = 10 mm, so for volume, 1 cm³ = 10^3 = 1000 mm³",
+        "11.6 cm³ = 11.6 × 1000 = 11600 mm³"
       ],
-      "final_answer": "88.44 g/cm³",
+      "final_answer": "11600 mm³",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert mass to grams: 13 kg = 13 × 1000 = 13000 g",
+          "description": "Linear conversion factor: 1 cm = 10 mm, so for volume, 1 cm³ = 10^3 = 1000 mm³",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "density = mass ÷ volume = 13000 ÷ 147 = 88.44 g/cm³ (2 d.p.)",
+          "description": "11.6 cm³ = 11.6 × 1000 = 11600 mm³",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "88.44 g/cm³ oe",
+          "description": "11600 mm³ oe",
           "marks": 1
         }
       ],
@@ -762,40 +787,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_enlarge_complete_higher",
-      "prompt": "Enlarge shape ABCD by scale factor -1, centre (0, 0). Draw and label the image A'B'C'D'.",
+      "topic_id": "transform_enlarge_describe",
+      "prompt": "Shape ABCD is enlarged to give shape A'B'C'D', shown on the grid. Describe fully the single transformation that maps ABCD onto A'B'C'D'.",
       "solution_steps": [
-        "The centre of enlargement is (0, 0) and the scale factor is -1.",
-        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-1, 2) from the centre, so A' = (0, 0) + -1 × (-1, 2) = (1, -2).",
-        "Repeat for every vertex: A(-1, 2) -> A'(1, -2), B(3, 2) -> B'(-3, -2), C(2, 6) -> C'(-2, -6), D(-2, 5) -> D'(2, -5)",
-        "A negative scale factor puts the image on the opposite side of the centre from the original shape."
+        "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
+        "For this pair, the lines meet at (0, 4) and the ratio works out as -1."
       ],
-      "final_answer": "A'(1, -2), B'(-3, -2), C'(-2, -6), D'(2, -5)",
-      "marks": 5,
+      "final_answer": "Enlargement, scale factor -1, centre (0, 4)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The centre of enlargement is (0, 0) and the scale factor is -1.",
+          "description": "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-1, 2) from the centre, so A' = (0, 0) + -1 × (-1, 2) = (1, -2).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Repeat for every vertex: A(-1, 2) -> A'(1, -2), B(3, 2) -> B'(-3, -2), C(2, 6) -> C'(-2, -6), D(-2, 5) -> D'(2, -5)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A negative scale factor puts the image on the opposite side of the centre from the original shape.",
+          "description": "For this pair, the lines meet at (0, 4) and the ratio works out as -1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(1, -2), B'(-3, -2), C'(-2, -6), D'(2, -5) oe",
+          "description": "Enlargement, scale factor -1, centre (0, 4) oe",
           "marks": 1
         }
       ],
@@ -808,20 +821,20 @@
           "y_max": 8,
           "original_vertices": [
             [
-              -1,
-              2
+              3,
+              3
             ],
             [
-              3,
-              2
+              7,
+              3
+            ],
+            [
+              6,
+              7
             ],
             [
               2,
               6
-            ],
-            [
-              -2,
-              5
             ]
           ],
           "original_labels": [
@@ -829,64 +842,23 @@
             "B",
             "C",
             "D"
-          ],
-          "centre": [
-            0,
-            0
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              -1,
-              2
-            ],
-            [
-              3,
-              2
-            ],
-            [
-              2,
-              6
-            ],
-            [
-              -2,
-              5
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
-          ],
-          "centre": [
-            0,
-            0
           ],
           "image_vertices": [
             [
-              1,
-              -2
+              -3,
+              5
             ],
             [
-              -3,
-              -2
+              -7,
+              5
+            ],
+            [
+              -6,
+              1
             ],
             [
               -2,
-              -6
-            ],
-            [
-              2,
-              -5
+              2
             ]
           ],
           "image_labels": [
@@ -896,75 +868,150 @@
             "D'"
           ]
         }
-      }
+      },
+      "solution_diagram": null
     },
     {
-      "topic_id": "circle_theorems",
-      "prompt": "ABCD is a cyclic quadrilateral (all four vertices lie on a circle). Angle A = 96°. Find angle C, x, the angle opposite A.",
+      "topic_id": "congruent_triangle_proof",
+      "prompt": "M is the midpoint of AB. P is a point such that PM is perpendicular to AB. Prove that the two triangles are congruent.",
       "solution_steps": [
-        "Opposite angles in a cyclic quadrilateral sum to 180°.",
-        "x = 180 - 96 = 84"
+        "AM = BM (M is the midpoint of AB)",
+        "angle AMP = angle BMP = 90° (PM is perpendicular to AB)",
+        "PM is common to both triangles",
+        "By Side-Angle-Side (SAS), the triangles are congruent.",
+        "Since two sides and the included angle match, triangles AMP and BMP are congruent - so PA = PB, meaning P is equidistant from A and B."
       ],
-      "final_answer": "84°",
-      "marks": 3,
+      "final_answer": "Triangles are congruent (SAS).",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Opposite angles in a cyclic quadrilateral sum to 180°.",
+          "description": "AM = BM (M is the midpoint of AB)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 180 - 96 = 84",
+          "description": "angle AMP = angle BMP = 90° (PM is perpendicular to AB)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "PM is common to both triangles",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "By Side-Angle-Side (SAS), the triangles are congruent. Since two sides and the included angle match, triangles AMP and BMP are congruent - so PA = PB, meaning P is equidistant from A and B.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "84° oe",
+          "description": "Triangles are congruent (SAS). oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "circle_cyclic_quad",
+        "kind": "two_triangle_congruence",
         "params": {
-          "angle_A_label": "96°",
-          "angle_C_label": "x°"
+          "labels_1": [
+            "A",
+            "M",
+            "P"
+          ],
+          "labels_2": [
+            "B",
+            "M",
+            "P"
+          ],
+          "ticks_1": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              1
+            ]
+          ],
+          "ticks_2": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              1
+            ]
+          ],
+          "arcs_1": [
+            [
+              1,
+              1
+            ]
+          ],
+          "arcs_2": [
+            [
+              1,
+              1
+            ]
+          ],
+          "note": "MP is common to both triangles."
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_ladder_context",
-      "prompt": "A ladder of length 9 m leans against a vertical wall with its base 5 m from the wall. Find the height the ladder reaches up the wall, giving your answer as a surd in its simplest form.",
+      "topic_id": "angles_triangle_higher",
+      "prompt": "A triangle has angles 89°, 45°, and (3x + 40)°. Find x.",
       "solution_steps": [
-        "height² = ladder² - base² = 9² - 5² = 81 - 25 = 56",
-        "height = √56 = 2√14 m (exact form)"
+        "Angles in a triangle sum to 180°.",
+        "3x + 40 = 46",
+        "Subtract 40 from both sides:",
+        "3x = 6",
+        "Divide both sides by 3:",
+        "x = 2"
       ],
-      "final_answer": "2√14 m",
-      "marks": 3,
+      "final_answer": "2",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "height² = ladder² - base² = 9² - 5² = 81 - 25 = 56",
+          "description": "Angles in a triangle sum to 180°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "height = √56 = 2√14 m (exact form)",
+          "description": "3x + 40 = 46",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 40 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3x = 6 Divide both sides by 3: x = 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2√14 m oe",
+          "description": "2 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "right_triangle",
+        "kind": "triangle_angles",
         "params": {
-          "leg1_label": "5 m",
-          "leg2_label": "?",
-          "hyp_label": "9 m"
+          "angle_labels": [
+            "89°",
+            "45°",
+            "(3x + 40)°"
+          ]
         }
       },
       "solution_diagram": null
@@ -1076,45 +1123,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "set_notation",
-      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, A = {1, 4, 9, 10}, B = {1, 6, 9, 10}. List the elements of (A ∩ B)'.",
+      "topic_id": "probability_combined_dice",
+      "prompt": "Two fair six-sided dice are rolled. Find the probability that at least one die shows 1.",
       "solution_steps": [
-        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
-        "A = {1, 4, 9, 10}",
-        "B = {1, 6, 9, 10}",
-        "(A ∩ B)' means the complement of A intersect B.",
-        "(A ∩ B)' = {2, 3, 4, 5, 6, 7, 8}"
+        "P(neither die shows 1) = 5/6 × 5/6 = 25/36",
+        "P(at least one 1) = 1 - 25/36 = 11/36"
       ],
-      "final_answer": "{2, 3, 4, 5, 6, 7, 8}",
-      "marks": 5,
+      "final_answer": "11/36",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+          "description": "P(neither die shows 1) = 5/6 × 5/6 = 25/36",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A = {1, 4, 9, 10}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "B = {1, 6, 9, 10}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(A ∩ B)' means the complement of A intersect B. (A ∩ B)' = {2, 3, 4, 5, 6, 7, 8}",
+          "description": "P(at least one 1) = 1 - 25/36 = 11/36",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "{2, 3, 4, 5, 6, 7, 8} oe",
+          "description": "11/36 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "dice",
+        "params": {
+          "values": [
+            6,
+            1
+          ]
+        }
+      },
       "solution_diagram": null
     }
   ]

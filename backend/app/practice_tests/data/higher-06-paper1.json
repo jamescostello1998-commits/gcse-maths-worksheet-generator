@@ -4,6 +4,7 @@
   "tier": "higher",
   "sitting_id": "higher-06",
   "paper_number": 1,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "standard_form_add_subtract",
@@ -251,90 +252,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_brackets",
-      "prompt": "Solve: 5(6x - 2) = -130",
-      "solution_steps": [
-        "Expand the bracket: 5(6x - 2) = 30x - 10",
-        "30x - 10 = -130",
-        "Add 10 to both sides:",
-        "30x = -120",
-        "Divide both sides by 30:",
-        "x = -4"
-      ],
-      "final_answer": "-4",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Expand the bracket: 5(6x - 2) = 30x - 10",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "30x - 10 = -130",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add 10 to both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "30x = -120 Divide both sides by 30: x = -4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "algebraic_fractions_add_subtract",
-      "prompt": "Simplify 2/(x + 1) - 7/(x + 6), giving your answer as a single fraction.",
-      "solution_steps": [
-        "Write both fractions over the common denominator (x + 1)(x + 6):",
-        "2/(x + 1) - 7/(x + 6) = (2(x + 6) - 7(x + 1))/(x + 1)(x + 6)",
-        "Expand the numerator: 2(x + 6) - 7(x + 1) = -5x + 5",
-        "= (-5x + 5)/(x + 1)(x + 6)"
-      ],
-      "final_answer": "(-5x + 5)/(x + 1)(x + 6)",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Write both fractions over the common denominator (x + 1)(x + 6):",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2/(x + 1) - 7/(x + 6) = (2(x + 6) - 7(x + 1))/(x + 1)(x + 6)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Expand the numerator: 2(x + 6) - 7(x + 1) = -5x + 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= (-5x + 5)/(x + 1)(x + 6)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(-5x + 5)/(x + 1)(x + 6) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
       "topic_id": "forming_equations_higher",
       "prompt": "I think of a number. I subtract 6 to it, then multiply the result by 3. The answer is 9. Form an equation and solve it to find the number.",
       "solution_steps": [
@@ -373,6 +290,147 @@
         {
           "code": "A1",
           "description": "9 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_different_coefficient",
+      "prompt": "Solve the simultaneous equations: 2x + 2y = 18 and 5x + 4y = 42",
+      "solution_steps": [
+        "2x + 2y = 18  (1)",
+        "5x + 4y = 42  (2)",
+        "(1) × 4: 8x + 8y = 72  (3)",
+        "(2) × 2: 10x + 8y = 84  (4)",
+        "(3) - (4): -2x = -12, so x = 6",
+        "Substitute x = 6 into (1): 2y = 6, so y = 3"
+      ],
+      "final_answer": "x = 6, y = 3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "2x + 2y = 18  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x + 4y = 42  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(1) × 4: 8x + 8y = 72  (3)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(2) × 2: 10x + 8y = 84  (4) (3) - (4): -2x = -12, so x = 6 Substitute x = 6 into (1): 2y = 6, so y = 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 6, y = 3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "velocity_time_interpret",
+      "prompt": "The velocity-time graph shows a car's journey. Find the total distance travelled.",
+      "solution_steps": [
+        "Total distance = total area under the graph (a trapezium)",
+        "Distance = ½ × (35 + 20) × 20 = 550 m"
+      ],
+      "final_answer": "550 m",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total distance = total area under the graph (a trapezium)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Distance = ½ × (35 + 20) × 20 = 550 m",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "550 m oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              20
+            ],
+            [
+              25,
+              20
+            ],
+            [
+              35,
+              0
+            ]
+          ],
+          "x_max": 40,
+          "y_max": 25,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_brackets",
+      "prompt": "Solve: 5(6x - 2) = -130",
+      "solution_steps": [
+        "Expand the bracket: 5(6x - 2) = 30x - 10",
+        "30x - 10 = -130",
+        "Add 10 to both sides:",
+        "30x = -120",
+        "Divide both sides by 30:",
+        "x = -4"
+      ],
+      "final_answer": "-4",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: 5(6x - 2) = 30x - 10",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "30x - 10 = -130",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add 10 to both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "30x = -120 Divide both sides by 30: x = -4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-4 oe",
           "marks": 1
         }
       ],
@@ -424,41 +482,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_quadratic",
-      "prompt": "Solve the simultaneous equations: y = x^2 - 4 and y = -7x - 14",
+      "topic_id": "satisfying_inequalities_higher",
+      "prompt": "Solve the inequality -8 ≤ -2x - 3 ≤ 6, then list the integer values of x that satisfy it.",
       "solution_steps": [
-        "Substitute y = -7x - 14 into y = x^2 - 4: -7x - 14 = x^2 - 4",
-        "Rearrange: x^2 + 7x + 10 = 0",
-        "Factorise: (x + 2)(x + 5) = 0",
-        "x = -2 or x = -5",
-        "When x = -2, y = 0. When x = -5, y = 21."
+        "-8 ≤ -2x - 3 ≤ 6",
+        "Add 3 to all three parts:",
+        "-5 ≤ -2x ≤ 9",
+        "Divide all three parts by -2 - since this is negative, every inequality sign reverses, and the low/high sides swap around:",
+        "-9/2 ≤ x ≤ 5/2",
+        "The integers satisfying this are: -4, -3, -2, -1, 0, 1, 2"
       ],
-      "final_answer": "(-2, 0) and (-5, 21)",
+      "final_answer": "-4, -3, -2, -1, 0, 1, 2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Substitute y = -7x - 14 into y = x^2 - 4: -7x - 14 = x^2 - 4",
+          "description": "-8 ≤ -2x - 3 ≤ 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rearrange: x^2 + 7x + 10 = 0",
+          "description": "Add 3 to all three parts:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: (x + 2)(x + 5) = 0",
+          "description": "-5 ≤ -2x ≤ 9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = -2 or x = -5 When x = -2, y = 0. When x = -5, y = 21.",
+          "description": "Divide all three parts by -2 - since this is negative, every inequality sign reverses, and the low/high sides swap around: -9/2 ≤ x ≤ 5/2 The integers satisfying this are: -4, -3, -2, -1, 0, 1, 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(-2, 0) and (-5, 21) oe",
+          "description": "-4, -3, -2, -1, 0, 1, 2 oe",
           "marks": 1
         }
       ],
@@ -466,40 +525,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "quadratic_inequalities",
-      "prompt": "Solve the inequality: -x^2 + 5x + 14 ≤ 0",
+      "topic_id": "solve_quadratic_completing_square",
+      "prompt": "Solve x^2 + 2x - 125 = 0 by completing the square, giving your answers in exact surd form.",
       "solution_steps": [
-        "Factorise: -x^2 + 5x + 14 = -(x + 2)(x - 7)",
-        "The critical values are x = -2 and x = 7.",
-        "The coefficient of x^2 is negative, so the graph is a upside-down U-shaped parabola, and ≤ 0 is satisfied outside the two roots.",
-        "Answer: x ≤ -2 or x ≥ 7"
+        "Half the coefficient of x: 2 ÷ 2 = 1",
+        "Complete the square: x^2 + 2x - 125 = (x + 1)^2 - 126",
+        "Set (x + 1)^2 - 126 = 0, so (x + 1)^2 = 126",
+        "(x + 1) = ±√126 = ±3√14",
+        "x = -1 + 3√14 or x = -1 - 3√14"
       ],
-      "final_answer": "x ≤ -2 or x ≥ 7",
+      "final_answer": "x = -1 + 3√14 or x = -1 - 3√14",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Factorise: -x^2 + 5x + 14 = -(x + 2)(x - 7)",
+          "description": "Half the coefficient of x: 2 ÷ 2 = 1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The critical values are x = -2 and x = 7.",
+          "description": "Complete the square: x^2 + 2x - 125 = (x + 1)^2 - 126",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The coefficient of x^2 is negative, so the graph is a upside-down U-shaped parabola, and ≤ 0 is satisfied outside the two roots.",
+          "description": "Set (x + 1)^2 - 126 = 0, so (x + 1)^2 = 126",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer: x ≤ -2 or x ≥ 7",
+          "description": "(x + 1) = ±√126 = ±3√14 x = -1 + 3√14 or x = -1 - 3√14",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x ≤ -2 or x ≥ 7 oe",
+          "description": "x = -1 + 3√14 or x = -1 - 3√14 oe",
           "marks": 1
         }
       ],
@@ -740,40 +800,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_enlarge_complete_higher",
-      "prompt": "Enlarge shape ABCD by scale factor -1, centre (2, 0). Draw and label the image A'B'C'D'.",
+      "topic_id": "transform_enlarge_describe",
+      "prompt": "Shape ABC is enlarged to give shape A'B'C', shown on the grid. Describe fully the single transformation that maps ABC onto A'B'C'.",
       "solution_steps": [
-        "The centre of enlargement is (2, 0) and the scale factor is -1.",
-        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-2, 3) from the centre, so A' = (2, 0) + -1 × (-2, 3) = (4, -3).",
-        "Repeat for every vertex: A(0, 3) -> A'(4, -3), B(4, 3) -> B'(0, -3), C(3, 7) -> C'(1, -7), D(-1, 6) -> D'(5, -6)",
-        "A negative scale factor puts the image on the opposite side of the centre from the original shape."
+        "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
+        "For this pair, the lines meet at (2, 0) and the ratio works out as -1."
       ],
-      "final_answer": "A'(4, -3), B'(0, -3), C'(1, -7), D'(5, -6)",
-      "marks": 5,
+      "final_answer": "Enlargement, scale factor -1, centre (2, 0)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The centre of enlargement is (2, 0) and the scale factor is -1.",
+          "description": "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-2, 3) from the centre, so A' = (2, 0) + -1 × (-2, 3) = (4, -3).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Repeat for every vertex: A(0, 3) -> A'(4, -3), B(4, 3) -> B'(0, -3), C(3, 7) -> C'(1, -7), D(-1, 6) -> D'(5, -6)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A negative scale factor puts the image on the opposite side of the centre from the original shape.",
+          "description": "For this pair, the lines meet at (2, 0) and the ratio works out as -1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(4, -3), B'(0, -3), C'(1, -7), D'(5, -6) oe",
+          "description": "Enlargement, scale factor -1, centre (2, 0) oe",
           "marks": 1
         }
       ],
@@ -786,95 +834,45 @@
           "y_max": 8,
           "original_vertices": [
             [
-              0,
-              3
+              1,
+              2
             ],
             [
-              4,
-              3
+              6,
+              2
             ],
             [
-              3,
-              7
-            ],
-            [
-              -1,
+              2,
               6
             ]
           ],
           "original_labels": [
             "A",
             "B",
-            "C",
-            "D"
-          ],
-          "centre": [
-            2,
-            0
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              0,
-              3
-            ],
-            [
-              4,
-              3
-            ],
-            [
-              3,
-              7
-            ],
-            [
-              -1,
-              6
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
-          ],
-          "centre": [
-            2,
-            0
+            "C"
           ],
           "image_vertices": [
             [
-              4,
-              -3
+              3,
+              -2
             ],
             [
-              0,
-              -3
+              -2,
+              -2
             ],
             [
-              1,
-              -7
-            ],
-            [
-              5,
+              2,
               -6
             ]
           ],
           "image_labels": [
             "A'",
             "B'",
-            "C'",
-            "D'"
+            "C'"
           ]
         }
-      }
+      },
+      "solution_diagram": null
     },
     {
       "topic_id": "area_mixed_compound",
@@ -986,28 +984,22 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "percentage_increase_decrease_calculator",
-      "prompt": "Using a calculator, increase £583.55 by 13.5%. Give your answer to 2 decimal places.",
+      "topic_id": "product_rule_counting",
+      "prompt": "A shop sells 3 different phone cases and 2 different screen protectors. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
       "solution_steps": [
-        "Convert 13.5% to a multiplier: 1.135",
-        "Multiply: £583.55 × 1.135 = £662.33 (calculator, 2 d.p.)"
+        "Total combinations = 3 × 2 = 6"
       ],
-      "final_answer": "£662.33",
-      "marks": 3,
+      "final_answer": "6",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 13.5% to a multiplier: 1.135",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply: £583.55 × 1.135 = £662.33 (calculator, 2 d.p.)",
+          "description": "Total combinations = 3 × 2 = 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£662.33 oe",
+          "description": "6 oe",
           "marks": 1
         }
       ],

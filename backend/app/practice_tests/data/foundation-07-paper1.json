@@ -4,6 +4,7 @@
   "tier": "foundation",
   "sitting_id": "foundation-07",
   "paper_number": 1,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "negative_ordering",
@@ -265,34 +266,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_indices_foundation",
-      "prompt": "Simplify (5x^2)^4",
+      "topic_id": "solve_quadratic_factorising_foundation",
+      "prompt": "Solve x^2 + 8x + 12 = 0 by factorising.",
       "solution_steps": [
-        "Raising a power to another power: multiply the exponents, and raise the coefficient to that power too.",
-        "(5x^2)^4 = 5^4 x^(2×4)",
-        "= 625x^8"
+        "Find two numbers that multiply to 12 and add to 8: 6 and 2",
+        "Factorise: (x + 6)(x + 2) = 0",
+        "Either x + 6 = 0 or x + 2 = 0",
+        "x = -6 or x = -2"
       ],
-      "final_answer": "625x^8",
-      "marks": 4,
+      "final_answer": "x = -6 or x = -2",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Raising a power to another power: multiply the exponents, and raise the coefficient to that power too.",
+          "description": "Find two numbers that multiply to 12 and add to 8: 6 and 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(5x^2)^4 = 5^4 x^(2×4)",
+          "description": "Factorise: (x + 6)(x + 2) = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 625x^8",
+          "description": "Either x + 6 = 0 or x + 2 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -6 or x = -2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "625x^8 oe",
+          "description": "x = -6 or x = -2 oe",
           "marks": 1
         }
       ],
@@ -300,38 +307,59 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "parallel_lines_equation",
-      "prompt": "A line is parallel to y = 3x - 7 and passes through the point (-5, -6). Find the equation of the line.",
+      "topic_id": "line_equation_from_graph",
+      "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
       "solution_steps": [
-        "Parallel lines have the same gradient, so m = 3.",
-        "Substitute (-5, -6) into y = 3x + c: -6 = 3×(-5) + c, so c = 9",
-        "Equation of the line: y = 3x + 9"
+        "Gradient = rise/run = (4 - 8) / (1 - -3) = -1",
+        "Using y = mx + c with the point (-3, 8): 8 = -1×(-3) + c, so c = 5",
+        "Equation of the line: y = -x + 5"
       ],
-      "final_answer": "y = 3x + 9",
+      "final_answer": "y = -x + 5",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Parallel lines have the same gradient, so m = 3.",
+          "description": "Gradient = rise/run = (4 - 8) / (1 - -3) = -1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute (-5, -6) into y = 3x + c: -6 = 3×(-5) + c, so c = 9",
+          "description": "Using y = mx + c with the point (-3, 8): 8 = -1×(-3) + c, so c = 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Equation of the line: y = 3x + 9",
+          "description": "Equation of the line: y = -x + 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = 3x + 9 oe",
+          "description": "y = -x + 5 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "linear",
+          "m": -1,
+          "c": 5,
+          "x_min": -4,
+          "x_max": 2,
+          "y_min": 2,
+          "y_max": 10,
+          "table_points": [
+            [
+              -3,
+              8
+            ],
+            [
+              1,
+              4
+            ]
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -694,38 +722,158 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_missing_side_foundation",
-      "prompt": "In the right-angled triangle shown, find the length of x, correct to 3 significant figures.",
+      "topic_id": "congruent_triangle_proof_foundation",
+      "prompt": "ABCD is a kite with AB = AD and CB = CD. AC is a diagonal of the kite. State which congruence criterion (SSS, SAS, ASA or RHS) proves that the two triangles are congruent.",
       "solution_steps": [
-        "We know the hypotenuse and want the opposite, so use sin.",
-        "x = 8 × sin(22°) = 3.00 (to 3 s.f.)"
+        "AB = AD (given, adjacent sides of the kite)",
+        "CB = CD (given, adjacent sides of the kite)",
+        "AC is common to both triangles",
+        "These facts match the Side-Side-Side (SSS) congruence criterion."
       ],
-      "final_answer": "3.00 cm",
-      "marks": 3,
+      "final_answer": "SSS",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "We know the hypotenuse and want the opposite, so use sin.",
+          "description": "AB = AD (given, adjacent sides of the kite)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 8 × sin(22°) = 3.00 (to 3 s.f.)",
+          "description": "CB = CD (given, adjacent sides of the kite)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "AC is common to both triangles",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "These facts match the Side-Side-Side (SSS) congruence criterion.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3.00 cm oe",
+          "description": "SSS oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "trig_triangle",
+        "kind": "two_triangle_congruence",
         "params": {
-          "adjacent_label": null,
-          "opposite_label": "x cm",
-          "hyp_label": "8 cm",
-          "angle_label": "22°"
+          "labels_1": [
+            "A",
+            "B",
+            "C"
+          ],
+          "labels_2": [
+            "A",
+            "D",
+            "C"
+          ],
+          "ticks_1": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              0,
+              2,
+              1
+            ]
+          ],
+          "ticks_2": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              0,
+              2,
+              1
+            ]
+          ],
+          "arcs_1": [],
+          "arcs_2": [],
+          "note": "AC is common to both triangles."
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_sector_foundation",
+      "prompt": "A sector of a circle has radius 6 cm and angle 217°. Find the area of the sector, correct to 3 significant figures.",
+      "solution_steps": [
+        "Area = (θ ÷ 360) × π × r² = (217 ÷ 360) × π × 6²",
+        "= 68.2 cm² (3 s.f., using a calculator value of π)"
+      ],
+      "final_answer": "68.2 cm²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area = (θ ÷ 360) × π × r² = (217 ÷ 360) × π × 6²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 68.2 cm² (3 s.f., using a calculator value of π)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "68.2 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "sector",
+        "params": {
+          "angle": 217,
+          "radius_label": "6 cm",
+          "angle_label": "217°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_polygon_interior_foundation",
+      "prompt": "A polygon has 36 sides. Find the sum of its interior angles.",
+      "solution_steps": [
+        "Sum of interior angles = (n - 2) × 180 = (36 - 2) × 180 = 6120°"
+      ],
+      "final_answer": "6120°",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Sum of interior angles = (n - 2) × 180 = (36 - 2) × 180 = 6120°",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6120° oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "polygon",
+        "params": {
+          "n_sides": 12,
+          "marked_angle_label": "?"
         }
       },
       "solution_diagram": null
@@ -767,122 +915,36 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_exterior_foundation",
-      "prompt": "An exterior angle of a triangle is x°. The two remote interior angles are 44° and 21°. Find x.",
+      "topic_id": "area_circle_foundation",
+      "prompt": "A circle has radius 12 cm. Find its circumference, correct to 3 significant figures.",
       "solution_steps": [
-        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
-        "x = 44 + 21 = 65"
+        "Circumference = 2 × π × r = 2 × π × 12",
+        "= 75.4 cm (3 s.f., using a calculator value of π)"
       ],
-      "final_answer": "65",
+      "final_answer": "75.4 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+          "description": "Circumference = 2 × π × r = 2 × π × 12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 44 + 21 = 65",
+          "description": "= 75.4 cm (3 s.f., using a calculator value of π)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "65 oe",
+          "description": "75.4 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "exterior_triangle",
+        "kind": "circle",
         "params": {
-          "interior1_label": "44°",
-          "interior2_label": "21°",
-          "exterior_label": "x"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "area_trapezium",
-      "prompt": "A trapezium has parallel sides of length 10 cm and 15 cm, and a perpendicular height of 10 cm. Find its area.",
-      "solution_steps": [
-        "Area = ½ × (a + b) × height = ½ × (10 + 15) × 10 = 125 cm²"
-      ],
-      "final_answer": "125 cm²",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Area = ½ × (a + b) × height = ½ × (10 + 15) × 10 = 125 cm²",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "125 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "trapezium",
-        "params": {
-          "a": 10,
-          "b": 15,
-          "height": 10,
-          "a_label": "10 cm",
-          "b_label": "15 cm",
-          "height_label": "10 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "area_composite_rectangles",
-      "prompt": "An L-shaped room is formed by taking a rectangle 10 cm by 16 cm and removing a corner rectangle 6 cm by 3 cm. Find the area of the room.",
-      "solution_steps": [
-        "Area of full rectangle = 10 × 16 = 160 cm²",
-        "Area of the cut-out corner = 6 × 3 = 18 cm²",
-        "Area of the shape = 160 - 18 = 142 cm²"
-      ],
-      "final_answer": "142 cm²",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Area of full rectangle = 10 × 16 = 160 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Area of the cut-out corner = 6 × 3 = 18 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Area of the shape = 160 - 18 = 142 cm²",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "142 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "l_shape",
-        "params": {
-          "outer_w": 10,
-          "outer_h": 16,
-          "inner_w": 6,
-          "inner_h": 3,
-          "notch": "corner",
-          "outer_labels": [
-            "10 cm",
-            "16 cm"
-          ],
-          "inner_labels": [
-            "6 cm",
-            "3 cm"
-          ]
+          "radius": 12,
+          "label": "12 cm"
         }
       },
       "solution_diagram": null
@@ -978,71 +1040,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bar_chart_interpret",
-      "prompt": "The bar chart shows the favourite colour of a group of students. Find the total frequency shown on the chart.",
+      "topic_id": "stats_median_frequency_table",
+      "prompt": "A survey recorded the number of pets owned by each household: 5 (3 times), 6 (7 times), 7 (5 times), 8 (6 times). Find the median number of pets.",
       "solution_steps": [
-        "Read every bar's height: 7, 7, 8.",
-        "Add them together: 7 + 7 + 8 = 22."
+        "Total frequency = 3 + 7 + 5 + 6 = 21 data items.",
+        "Imagine the data written out in full, in order (each value repeated as many times as its frequency), then find the middle of that list.",
+        "Median = 7"
       ],
-      "final_answer": "22",
-      "marks": 3,
+      "final_answer": "7",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Read every bar's height: 7, 7, 8.",
+          "description": "Total frequency = 3 + 7 + 5 + 6 = 21 data items.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add them together: 7 + 7 + 8 = 22.",
+          "description": "Imagine the data written out in full, in order (each value repeated as many times as its frequency), then find the middle of that list.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Median = 7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "22 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "bar_chart",
-        "params": {
-          "categories": [
-            "Red",
-            "Blue",
-            "Yellow"
-          ],
-          "series": [
-            7,
-            7,
-            8
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "stats_mode",
-      "prompt": "Find the mode of this data set: 7, 4, 20, 20, 4, 7, 8, 4.",
-      "solution_steps": [
-        "Count how often each value appears. 4 appears 3 times, more than any other value.",
-        "Mode = the most frequent value = 4"
-      ],
-      "final_answer": "4",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Count how often each value appears. 4 appears 3 times, more than any other value.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Mode = the most frequent value = 4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "4 oe",
+          "description": "7 oe",
           "marks": 1
         }
       ],

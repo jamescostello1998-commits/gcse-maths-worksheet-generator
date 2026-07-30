@@ -4,6 +4,7 @@
   "tier": "foundation",
   "sitting_id": "foundation-07",
   "paper_number": 3,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "decimals_divide",
@@ -239,34 +240,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "change_subject_foundation",
-      "prompt": "Make x the subject of the formula y = 2x + 17.",
+      "topic_id": "substitution_foundation",
+      "prompt": "A = (1/2)bh. Find the value of A when b = 5 and h = 20.",
       "solution_steps": [
-        "y = 2x + 17",
-        "Subtract 17 from both sides: y - 17 = 2x",
-        "Divide both sides by 2: x = (y - 17)/2"
+        "A = (1/2)bh",
+        "A = (1/2) × 5 × 20",
+        "A = 100/2",
+        "A = 50"
       ],
-      "final_answer": "x = (y - 17)/2",
-      "marks": 4,
+      "final_answer": "A = 50",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = 2x + 17",
+          "description": "A = (1/2)bh",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 17 from both sides: y - 17 = 2x",
+          "description": "A = (1/2) × 5 × 20",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 2: x = (y - 17)/2",
+          "description": "A = 100/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = 50",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = (y - 17)/2 oe",
+          "description": "A = 50 oe",
           "marks": 1
         }
       ],
@@ -318,97 +325,98 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_distance_time",
-      "prompt": "A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop 6 km away after 25 minutes. They stay at the shop until 40 minutes, then cycle straight back home at a constant speed, arriving home at 65 minutes. Draw a distance-time graph to show this journey, and find the total distance travelled.",
+      "topic_id": "plot_quadratic",
+      "prompt": "Complete a table of values for y = -x^2 + x + 3 for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 6 km after 25 minutes.",
-        "Stay at 6 km until 40 minutes.",
-        "Return at a constant speed to 0 km, arriving home at 65 minutes.",
-        "Plot these points and join each stage with a straight line segment.",
-        "Total distance travelled = 6 km out + 6 km back = 12 km"
+        "Table of values for y = -x^2 + x + 3:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: -9, -3, 1, 3, 3, 1, -3",
+        "Plot each (x, y) point and join them with a single smooth curve."
       ],
-      "final_answer": "12 km",
+      "final_answer": "Quadratic curve: y = -x^2 + x + 3",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 6 km after 25 minutes.",
+          "description": "Table of values for y = -x^2 + x + 3:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Stay at 6 km until 40 minutes.",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Return at a constant speed to 0 km, arriving home at 65 minutes.",
+          "description": "y: -9, -3, 1, 3, 3, 1, -3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot these points and join each stage with a straight line segment. Total distance travelled = 6 km out + 6 km back = 12 km",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 km oe",
+          "description": "Quadratic curve: y = -x^2 + x + 3 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "piecewise_graph",
+        "kind": "function_graph",
         "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              25,
-              6
-            ],
-            [
-              40,
-              6
-            ],
-            [
-              65,
-              0
-            ]
-          ],
-          "x_max": 70,
-          "y_max": 8,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)",
+          "kind": "quadratic",
+          "a": -1,
+          "b": 1,
+          "c": 3,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -10,
+          "y_max": 4,
           "blank": true
         }
       },
       "solution_diagram": {
-        "kind": "piecewise_graph",
+        "kind": "function_graph",
         "params": {
-          "points": [
+          "kind": "quadratic",
+          "a": -1,
+          "b": 1,
+          "c": 3,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -10,
+          "y_max": 4,
+          "table_points": [
+            [
+              -3,
+              -9
+            ],
+            [
+              -2,
+              -3
+            ],
+            [
+              -1,
+              1
+            ],
             [
               0,
-              0
+              3
             ],
             [
-              25,
-              6
+              1,
+              3
             ],
             [
-              40,
-              6
+              2,
+              1
             ],
             [
-              65,
-              0
+              3,
+              -3
             ]
-          ],
-          "x_max": 70,
-          "y_max": 8,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)"
+          ]
         }
       }
     },
@@ -774,36 +782,36 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_hypotenuse_triple",
-      "prompt": "A right-angled triangle has legs 60 cm and 63 cm. Find the length of the hypotenuse.",
+      "topic_id": "pythagoras_hypotenuse_decimal",
+      "prompt": "A right-angled triangle has legs 13 cm and 12 cm. Find the length of the hypotenuse, correct to 1 decimal place.",
       "solution_steps": [
-        "c² = a² + b² = 60² + 63² = 3600 + 3969 = 7569",
-        "c = √7569 = 87"
+        "c² = a² + b² = 13² + 12² = 169 + 144 = 313",
+        "c = √313 ≈ 17.7 cm (1 d.p.)"
       ],
-      "final_answer": "87 cm",
+      "final_answer": "17.7 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "c² = a² + b² = 60² + 63² = 3600 + 3969 = 7569",
+          "description": "c² = a² + b² = 13² + 12² = 169 + 144 = 313",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "c = √7569 = 87",
+          "description": "c = √313 ≈ 17.7 cm (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "87 cm oe",
+          "description": "17.7 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "right_triangle",
         "params": {
-          "leg1_label": "60 cm",
-          "leg2_label": "63 cm",
+          "leg1_label": "13 cm",
+          "leg2_label": "12 cm",
           "hyp_label": "?"
         }
       },
@@ -860,36 +868,37 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_polygon_interior_foundation",
-      "prompt": "A regular polygon has 90 sides. Find the size of one interior angle.",
+      "topic_id": "pythagoras_hypotenuse_triple",
+      "prompt": "A right-angled triangle has legs 60 cm and 63 cm. Find the length of the hypotenuse.",
       "solution_steps": [
-        "Sum of interior angles = (n - 2) × 180 = (90 - 2) × 180 = 15840°",
-        "This is a regular polygon, so each interior angle = 15840 ÷ 90 = 176°"
+        "c² = a² + b² = 60² + 63² = 3600 + 3969 = 7569",
+        "c = √7569 = 87"
       ],
-      "final_answer": "176°",
+      "final_answer": "87 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Sum of interior angles = (n - 2) × 180 = (90 - 2) × 180 = 15840°",
+          "description": "c² = a² + b² = 60² + 63² = 3600 + 3969 = 7569",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "This is a regular polygon, so each interior angle = 15840 ÷ 90 = 176°",
+          "description": "c = √7569 = 87",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "176° oe",
+          "description": "87 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "polygon",
+        "kind": "right_triangle",
         "params": {
-          "n_sides": 12,
-          "marked_angle_label": "?"
+          "leg1_label": "60 cm",
+          "leg2_label": "63 cm",
+          "hyp_label": "?"
         }
       },
       "solution_diagram": null
@@ -930,50 +939,32 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_equivalent_diagram",
-      "prompt": "The first shape shows 1/5 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
+      "topic_id": "area_triangle",
+      "prompt": "A triangle has base 15 cm and height 9 cm. Find its area.",
       "solution_steps": [
-        "Cross-multiply 1/5 against each labelled shape: a shape shows an equivalent fraction only if 1 × (its denominator) = (its shaded count) × 5.",
-        "Only shape A) 2/10 works: 1 × 10 = 2 × 5 = 10."
+        "Area = (1/2) × base × height = (1/2) × 15 × 9 = 135/2 cm²"
       ],
-      "final_answer": "A) 2/10",
-      "marks": 1,
+      "final_answer": "135/2 cm²",
+      "marks": 2,
       "mark_scheme": [
         {
-          "code": "B1",
-          "description": "A) 2/10 (selecting the correct option)",
+          "code": "M1",
+          "description": "Area = (1/2) × base × height = (1/2) × 15 × 9 = 135/2 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "135/2 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "fraction_shapes",
+        "kind": "triangle_area",
         "params": {
-          "shapes": [
-            {
-              "kind": "circle",
-              "parts": 5,
-              "shaded": 1,
-              "label": "1/5"
-            },
-            {
-              "kind": "circle",
-              "parts": 10,
-              "shaded": 2,
-              "label": "A) 2/10"
-            },
-            {
-              "kind": "circle",
-              "parts": 9,
-              "shaded": 1,
-              "label": "B) 1/9"
-            },
-            {
-              "kind": "circle",
-              "parts": 12,
-              "shaded": 9,
-              "label": "C) 9/12"
-            }
-          ]
+          "base": 15,
+          "height": 9,
+          "base_label": "15 cm",
+          "height_label": "9 cm"
         }
       },
       "solution_diagram": null
@@ -1070,29 +1061,6 @@
           ]
         }
       },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "stats_mean",
-      "prompt": "Find the mean of this data set: 18, 7, 8, 9, 23, 22, 1, 8.",
-      "solution_steps": [
-        "Mean = sum ÷ count = (18 + 7 + 8 + 9 + 23 + 22 + 1 + 8) ÷ 8 = 96 ÷ 8 = 12"
-      ],
-      "final_answer": "12",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Mean = sum ÷ count = (18 + 7 + 8 + 9 + 23 + 22 + 1 + 8) ÷ 8 = 96 ÷ 8 = 12",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "12 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
       "solution_diagram": null
     }
   ]

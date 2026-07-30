@@ -12,39 +12,42 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-**⚠️ FIRST: step 31's work below is written to disk but NOT YET COMMITTED OR
+**⚠️ FIRST: step 32's work below is written to disk but NOT YET COMMITTED OR
 PUSHED**, unlike every other session recorded in this file (see the repo
 header above - that "always committed and pushed" invariant does not hold
-right now). It lives on branch `aqa-spec-gap-topics` (created off `master`),
-22 changed/new files, all tests passing, nothing staged or committed. Before
-doing anything else, run `git status` to confirm this is still the state you
-find, then ask the user whether to commit/push/open a PR (matching the
-branch → commit → push → PR → merge flow used for the two PRs immediately
-before this session) before starting new work on top of it.
+right now). It lives on branch `aqa-spec-gap-topics` (same branch as steps
+31 and the gh-CLI note fix, already committed/pushed with an open PR - see
+`gh pr view 3` or the repo's PR list), with many changed/new files, all
+tests passing, nothing staged or committed. Before doing anything else, run
+`git status` to confirm this is still the state you find, then ask the user
+whether to commit/push (adding to the same open PR, unless they'd rather
+split it out) before starting new work on top of it.
 
 **The entire user-supplied Geometry expansion is complete (chronology steps
 23-27), the fraction-vinculum rendering fix landed (step 28), three more
 "Ideas" items the user picked directly were built in step 29 (compound-3D
 surface area, spinner diagrams for 3 previously text-only branches, and bold
 vector labels), the Practice Tests feature was rebuilt to genuinely match a
-real OCR GCSE Maths sitting (step 30), and a full AQA-spec gap audit followed
-by all 7 identified high-confidence gaps (11 new topics across 3 sections,
-including 2 brand-new diagram engines - scatter graphs and plans/elevations)
-was completed in step 31.** 286 topics total, backend suite 715/715, frontend
-45/45, no known bugs.
+real OCR GCSE Maths sitting (step 30), a full AQA-spec gap audit followed by
+all 7 identified high-confidence gaps was completed in step 31, and step 32
+gave Practice Tests a real OCR-style answer layout, read the actual OCR J560
+spec end to end, closed all 10 gaps that audit found, and retrofitted the
+real OCR non-calculator paper structure onto Practice Tests.** 296 topics
+total, backend suite 756/756, frontend 46/46, no known bugs.
 
-There is no committed next step for this project right now (once step 31 is
+There is no committed next step for this project right now (once step 32 is
 committed/pushed) — check "Ideas for a future session" (bottom of this file)
-for candidate follow-ups (the remaining medium/low-confidence AQA-spec gaps
-from step 31's audit, stem-and-leaf diagrams, standard deviation, a handful
-of lower-confidence curriculum-audit candidates, saved worksheet history,
+for candidate follow-ups (the remaining medium-confidence OCR-spec gaps from
+step 32's audit, the remaining medium/low-confidence AQA-spec gaps from step
+31's audit, stem-and-leaf diagrams, standard deviation, a handful of
+lower-confidence curriculum-audit candidates, saved worksheet history,
 deployment, etc.), or ask the user directly what they'd like to work on next.
 
 ## Current state
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**286 topics across 6 sections**, all procedurally generated with independent
+**296 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.),
@@ -53,7 +56,7 @@ stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.),
 "describe the method" text questions with no way to numerically check a
 described construction — author-review only, no `verify()` at all (see
 chronology step 27).
-Full backend suite: **715/715 passing**. Frontend suite: **45/45 passing**.
+Full backend suite: **756/756 passing**. Frontend suite: **46/46 passing**.
 
 **Practice Tests (fixed/static content, not procedural — the one deliberate exception
 to the paragraph above)**: a 7th homepage section, `backend/app/practice_tests/`,
@@ -61,14 +64,26 @@ holds 60 committed papers (`data/*.json`) — **10 sittings per tier, each a rea
 OCR-shaped sitting of 3 separate 100-mark, 1h30m papers** (`foundation-01-paper1`
 .. `foundation-10-paper3`, `higher-01-paper1` .. `higher-10-paper3`), matching how a
 real OCR GCSE Maths series is actually structured (J560/01-03 Foundation, J560/04-06
-Higher, calculator allowed on all three papers — there is no non-calculator paper,
-unlike AQA/Edexcel). This structure, the mark-scheme conventions, and the Formulae
+Higher). This structure, the mark-scheme conventions, and the Formulae
 Sheet (all below) were calibrated in chronology step 30 by directly reading real OCR
 papers and mark schemes spanning June 2017 to June 2024 (via revisionmaths.com's past-
 papers page) — **never by copying their actual question or mark-scheme text**, only
 their structure, marking conventions, and generic mathematical facts (formulae are not
-copyrightable expression). Each paper is still assembled by *freezing* real output
-from the existing 275 generators rather than writing new exam-style content by hand —
+copyrightable expression). **Paper 2 (Foundation) and Paper 5 (Higher) — the middle
+paper of every 3-paper sitting — are non-calculator**, matching the real OCR J560
+specification read directly in chronology step 32 (this had been built wrong in step
+30 — assumed calculator-allowed throughout — until the actual spec PDF was read and
+said otherwise). `PracticeTestPaper.calculator_allowed` drives this: `build.py`
+computes a second, calculator-filtered topic pool per tier
+(`topic_selection.eligible_topics_by_section(tier, calculator_allowed=False)`, which
+excludes every topic in the curated `CALCULATOR_ONLY_TOPIC_IDS` frozenset — messy-
+decimal trigonometry, calculator-π area/volume topics, `standard_form_calculator`,
+`iteration`, etc., err-toward-inclusion since this only affects 1 of every 3 papers)
+and uses it whenever `paper_number == 2`; the cover page's instructions box and meta
+line both reflect this (`"You must NOT use a calculator for this paper"` /
+`"Non-calculator"`), and the frontend shows a "Non-calculator" badge on the affected
+paper card. Each paper is still assembled by *freezing* real output
+from the existing 296 generators rather than writing new exam-style content by hand —
 that identity is unchanged from when this feature was first built (step 22). Built via
 a one-time script (`build.py`, run manually — `python -m app.practice_tests.build` —
 not at request time): `topic_selection.py` picks a spread of topics per paper
@@ -111,7 +126,7 @@ a short, own-words summary of M/A/B marking convention and the abbreviation key 
 `practice_test_renderer.py`'s `_marking_instructions_box`) — paraphrased from what was
 read, not copied. **`PracticeQuestion`/`PracticeTestPaper`
 (`practice_tests/models.py`) are deliberately separate from `core/models.py`'s
-`Question`/`TopicDefinition`** — none of the 275 existing generators or their tests
+`Question`/`TopicDefinition`** — none of the 296 existing generators or their tests
 were touched to build this feature. `PracticeTestPaper` carries `sitting_id`/
 `paper_number` alongside the original `id`/`name`/`tier`/`questions`, so the API/
 frontend can group a sitting's 3 papers together without any route-shape changes —
@@ -123,7 +138,11 @@ from any real OCR paper — cover page with candidate-detail boxes and an instru
 box, now followed by a tier-specific **Formulae Sheet page** — `_formulae_sheet_elements`
 — before Q1, reusing the existing `right_triangle`/`general_triangle` diagram kinds for
 its reference figures; then numbered questions with marks shown as `[n]` in a
-right-aligned column) and `render_mark_scheme` (the marking-instructions box described
+right-aligned column, followed by real exam-style working space — `_working_lines`
+draws a number of ruled lines scaled to the question's own mark value
+(`_lines_for_marks`, roughly 2 lines per mark) — and a distinct boxed `_answer_line`
+below it, added in chronology step 32 per direct user request to make the paper look
+more like a real OCR script) and `render_mark_scheme` (the marking-instructions box described
 above, then a `Question | Answer | Marks | Guidance` table, one row per question, each
 M1/A1/B1 point stacked in the Guidance cell). Three GET routes (`GET /api/practice-tests`,
 `.../{id}/paper`, `.../{id}/mark-scheme`) since content is fully static per id — no
@@ -201,9 +220,9 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 | Section | Groups | Topics |
 |---|---|---|
 | Number | Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 54 |
-| Algebra | Expressions/Formulae/Equations/Identities, Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Equation of a Circle, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 63 |
+| Algebra | Expressions/Formulae/Equations/Identities, Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Substitution into Formulae, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Equation of a Circle, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Kinematics (SUVAT), Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 70 |
 | Ratio & Proportion | Percentages, Best Buys, Ratio, Proportion, Compound Measures | 34 |
-| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations, Bearings, Constructions, Loci | 84 |
+| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations, Bearings, Map Scales and Scale Drawings, Constructions, Loci | 87 |
 | Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams, Venn Diagrams | 22 |
 | Statistics | Averages from a List, Frequency Tables, Working Backwards, Charts and Graphs, Cumulative Frequency & Box Plots, Histograms, Sampling and Populations | 29 |
 
@@ -2048,6 +2067,158 @@ existing topics/shared rendering code). Frontend unaffected (45/45).
     the existing section/topic-card UI, confirmed live via the browser
     preview).
 
+32. New session, two user requests handled in sequence. First: make Practice
+    Test papers look more like a real OCR script. Asked 2 clarifying
+    questions up front (both resolved to the recommended option): working
+    space scaled to a question's own mark value rather than a fixed amount,
+    and a distinct boxed "Answer" line beneath it, matching real exam
+    convention. Built `_lines_for_marks`/`_working_lines`/`_answer_line` in
+    `practice_test_renderer.py` and wired them into `_question_block` -
+    verified visually (papers grew from ~6-7 pages to ~18-20, as expected
+    once every question gets real working room) and confirmed diagrams and
+    working space don't collide.
+
+    Second: the user linked the real OCR GCSE Mathematics specification
+    (J560, ocr.org.uk) and asked to check every one of its content points
+    against this app's 286 existing topics. Downloaded the PDF directly
+    (`WebFetch` can't parse PDF binaries, same lesson as step 30) and read
+    the entire subject-content section (pages 12-51, all 12 strands) via
+    `fitz` text extraction - the extraction jumbles table-column order but
+    keeps every phrase intact, workable for a content audit. Every candidate
+    gap was verified against the *actual current generator code* (grep/read,
+    not just inferred from the spec text) before being reported - this
+    caught several false positives early (e.g. `decimals.TOPIC_ORDERING`
+    already mixes fraction/decimal/percent types, so "ordering mixed
+    fractions/decimals/percentages" wasn't actually a gap; `velocity_time_
+    interpret` already covers area-under-graph = distance). Found 10
+    genuinely missing high-confidence gaps plus 5 lower-confidence ones,
+    and one structural finding unrelated to topic coverage: the real spec
+    requires Paper 2 (Foundation)/Paper 5 (Higher) - the middle paper of
+    every 3-paper sitting - to be non-calculator, contradicting step 30's
+    build (which had concluded, from real past papers, that OCR was
+    calculator-allowed throughout - true for the papers checked, but not
+    the actual current spec). Asked the user via `AskUserQuestion` which
+    gaps to build and whether to fix the calculator-paper mismatch too -
+    both resolved to "everything, now."
+
+    Entered plan mode given the scope (10 topics across many files plus a
+    structural Practice Tests change), researched via 3 parallel Explore
+    agents (practice-tests calculator-tier plumbing; graphs.py/diagrams.py
+    conventions for a tan-graph extension and a new inequality-region
+    diagram; transformations.py/bearings.py/changing_subject.py conventions
+    for the remaining new topics) plus direct reads of `constructions.py`/
+    `circle_theorems.py`/`iteration.py`, then wrote the plan.
+
+    **Shared diagram infrastructure was built and visually verified first**
+    (this project's own established precedent), directly rather than
+    delegated: two new circle-theorem diagrams (`draw_circle_same_segment`,
+    `draw_circle_alternate_segment`, following the existing `draw_circle_
+    angle_centre`-family pattern exactly); tan(x) support for the trig-graph
+    plotting engine, deliberately scoped to x-windows that stay strictly
+    between two consecutive asymptotes (e.g. -80..80°) rather than general
+    asymptote branch-splitting (which the existing `reciprocal` kind already
+    needs and a general tan implementation would too) - just one line added
+    to `_fn_value`'s trig lookup; and a new `inequality_region` diagram kind
+    (`draw_inequality_region`), built on the existing `_draw_scaled_axes`
+    engine plus the exact rasterized-dot-mesh shading technique `draw_loci_
+    region` already proved, deliberately scoped to inequalities of the form
+    `y <op> m*x + c` (never general `ax+by=c` or a vertical line) - dashed
+    boundary for strict `<`/`>`, solid for `<=`/`>=`.
+
+    The 10 gaps were then delegated to 7 parallel background subagents by
+    independent file cluster (no shared files, so true parallelism): (1)
+    `substitution.py` - new Foundation/Higher pair for substituting given
+    values into a formula, verified via Fraction arithmetic vs. independent
+    sympy `.subs()`; (2) `kinematics.py` - new Higher `kinematics_suvat`
+    topic (the three SUVAT equations), deliberately scoped to avoid ever
+    solving `s = ut + ½at²` for `t` (a quadratic) - only `s`/`u`/`a` are
+    ever the unknown for that equation; (3) `sequences.py` + `iteration.py`
+    extensions - `special_sequences_foundation`/`_higher` (triangular/
+    square/cube-number sequences; Fibonacci-type and geometric progressions)
+    and `trial_and_improvement` (a genuinely different skill from the
+    file's existing `x_(n+1)=g(x_n)` recurrence topic - systematic decimal
+    search on a cubic with a confirmed sign-change interval); (4) `circle_
+    theorems.py` + `constructions.py` extensions - two new theorem shapes
+    ("angles in the same segment", "alternate segment theorem") added to
+    the existing `circle_theorems` topic's shape pool (4→6, no new topic
+    ID) using the new diagram kinds, plus a new `construction_perpendicular_
+    from_point` topic (both "from an external point" and "at a point on the
+    line" scenarios), following this file's unique no-`verify()` convention;
+    (5) `transformations.py` extension - `combined_transformations` (Higher),
+    scoped to 4 GCSE-safe composition rules with known closed forms (two
+    translations → vector sum; two reflections in parallel mirrors → a
+    translation; two rotations about the same centre → angle sum; reflect
+    in both axes → 180° rotation about the origin), verified by simulating
+    both transforms in sequence and confirming the claimed single transform
+    reproduces the identical final coordinates; (6) `map_scales.py` (new
+    "Map Scales and Scale Drawings" Geometry group) + `inequalities_region.py`
+    (new Higher topic using the new diagram kind, mirroring `inequalities_
+    number_line.py`'s exact draw/read question-direction split) + a `graphs.py`
+    extension teaching `trig_graph` a `tan` branch; (7) the Practice Tests
+    non-calculator retrofit - `calculator_allowed` added to `PracticeTestPaper`,
+    a curated `CALCULATOR_ONLY_TOPIC_IDS` frozenset in `topic_selection.py`
+    (every messy-decimal/calculator-labelled topic - trigonometry, calculator-
+    π area/volume topics, `standard_form_calculator`, `iteration`, etc., erring
+    toward inclusion since it only affects 1 of every 3 papers), `build.py`
+    building a second calculator-filtered topic pool and using it whenever
+    `paper_number == 2`, the cover page's instructions conditional on the new
+    flag, and the field threaded through the API schema and the frontend
+    (`PracticeTestCard` gained a "Non-calculator" badge).
+
+    **5 of the 7 background agents hit a hard monthly API spend limit mid-task
+    and were killed** - a real external constraint, not a bug to route around.
+    Rather than assume the work was lost, checked `git status` directly: every
+    agent (including the 5 killed ones) had already written its actual code,
+    tests, and new files to disk before dying, mid-verification at worst - the
+    only casualties were a handful of `.png` scratch files never cleaned up
+    and (for the transformations agent specifically) a diagram fix it had
+    identified but not yet applied. Confirmed every file's completeness
+    directly (tails ending in a real `TopicDefinition`, not mid-edit) before
+    trusting any of it, then ran the full suite (all 756 passed immediately,
+    even before central registry wiring, since each cluster's own test file
+    imports its module directly).
+
+    Central integration (registry wiring for all 10 new/extended topics -
+    286→296 - the 4 hardcoded `286`-topic-count assertions updated to `296`,
+    full backend+frontend suite, rebuilding all 60 Practice Test papers now
+    that the calculator-tier logic and new topics were registered, confirmed
+    via a direct JSON scan that every non-calculator paper is genuinely free
+    of every `CALCULATOR_ONLY_TOPIC_IDS` topic) was done directly. **Three
+    real bugs were found and fixed via this session's own visual-verification
+    pass, not by any unit test** - the same story as most gotchas in this
+    file: (1) a *pre-existing*, unrelated bug in `draw_circle_two_tangents`
+    (present since long before this session) - its external point/label sat
+    above the `Drawing`'s own declared canvas height, so the "117°"-style
+    label silently bled upward into the question's prompt text, only now
+    surfaced because verifying the two *new* theorem shapes meant rendering
+    this diagram kind closely for the first time in a while - fixed by
+    giving that one function a taller canvas; (2) `draw_inequality_region`
+    (this session's own new code) drew each boundary line between its raw
+    `x_min`/`x_max` endpoints without clipping to the visible window, so a
+    steep line's off-screen endpoint sent the drawn line far outside the
+    `Drawing`'s bounds, bleeding into the page title above - fixed with a
+    new `_clip_line_to_window` helper that finds the line's true intersection
+    with the rectangle's four edges, confirmed clean across 300 trials; (3)
+    `combined_transformations` (also this session's new code) - its wider
+    double-prime labels (`A''`) could land close enough to an axis to collide
+    with that axis's own numbered tick labels, a class of overlap the
+    existing `_clear_of_axis_name_labels` check doesn't cover (it only
+    guards the two axis-*name* spots, not every tick along the line) - fixed
+    with a new `_clear_of_axis_tick_labels` check added to all 4 combo
+    reroll functions, confirmed zero collisions across 500 trials. Browser-
+    driven end-to-end verification confirmed all 296 topics live, the
+    section/group counts match exactly (Algebra 63→70, Geometry 84→87,
+    others unchanged), search finds every new topic, a real worksheet
+    download returns 200 OK, and the Practice Tests "Non-calculator" badge
+    renders correctly on Paper 2 - which also surfaced and fixed one small
+    CSS nit (the paper label wrapping mid-text once the badge took up extra
+    row space; added `white-space: nowrap`).
+
+    The 5 medium-confidence gaps this session's audit found were **not**
+    built (reported, not actioned, per the user's explicit choice to build
+    only the 10 high-confidence ones) - see "Ideas for a future session".
+    Backend suite grew from 715 to 756 tests; frontend grew from 45 to 46.
+
 Everything above is committed and pushed (see `git log`).
 
 ## Environment gotchas (Windows, this machine specifically)
@@ -2281,35 +2452,48 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
 - Step 31's full AQA-spec gap audit reported medium- and low-confidence gaps that were
   **not** built (only the 7 high-confidence ones were) — don't build these without
   discussing first, since the audit's confidence in each was explicitly lower than the
-  7 that were built: substitution into expressions/formulae as its own standalone
-  topic (used implicitly everywhere already, never tested as a bare "substitute x=3
-  into..." question); geometric sequences and other special sequence types (Fibonacci-
-  type, common-ratio) — only arithmetic and quadratic nth-term exist; estimating the
-  gradient of a genuinely curved graph via a tangent (`velocity_time_interpret` only
-  handles straight-line segments); box plots and IQR being Higher-only in this app
-  despite AQA listing both as Foundation "additional content" too (a tier-placement
-  gap, same pattern as the audits in steps 6/9/13/20); map scales/scale drawings
-  (distinct from the similar-shapes scale-factor topics that already exist);
-  constructing a perpendicular from/at a point to a line (distinct from the existing
-  perpendicular *bisector* construction); conditional probability specifically via
+  7 that were built: box plots and IQR being Higher-only in this app despite AQA
+  listing both as Foundation "additional content" too (a tier-placement gap, same
+  pattern as the audits in steps 6/9/13/20); conditional probability specifically via
   Venn diagrams or two-way tables (only the "pick two without replacement" tree-style
   version exists); pictograms, vertical line charts, and frequency trees (all
-  relatively minor/basic); combining multiple transformations into one equivalent
-  transformation.
+  relatively minor/basic). (Several other items originally on this list — substitution
+  into formulae, geometric/Fibonacci-type sequences, map scales/scale drawings,
+  perpendicular from/at a point, combining multiple transformations — were confirmed
+  as genuine gaps by step 32's independent OCR-spec audit and built then; removed from
+  this list.)
+- Step 32's full OCR J560-spec gap audit reported 5 medium-confidence gaps that were
+  **not** built (only the 10 high-confidence ones were, per the user's explicit choice)
+  — don't build these without discussing first: proving two triangles similar (via
+  AA/SSS/SAS criteria, distinct from `ratio_shape_similar_foundation`/`_higher`, which
+  only calculate a scale factor — a `congruent_triangle_proof.py`-style sibling would
+  be the natural pattern); reverse-direction plans and elevations (`plans_elevations.py`
+  currently only goes 3D-solid → 2D views; the spec also wants views → construct/
+  identify the solid, e.g. on isometric paper — a genuinely new diagram engine, not a
+  small extension); quadrilateral angle properties (finding angles via a kite/rhombus/
+  parallelogram's own diagonal/side properties, distinct from the existing area/
+  perimeter and symmetry topics for the same shapes); estimating the gradient of a
+  genuinely curved graph via a tangent (`velocity_time_interpret` only handles
+  straight-line segments — also flagged by the step-13/31 audits, still not built);
+  reading approximate roots of a quadratic directly off its plotted graph (`plot_
+  quadratic` only asks to build the table and plot the curve, never to read roots
+  back off it).
 - Saved worksheet history, mixed-topic revision papers, user accounts.
 - Deploying this somewhere instead of local-only dev servers.
 - Practice Tests (step 22) deliberately deferred a few things, per the user's choices
   at the time. Step 30 later resolved two of them by reading real OCR papers directly
-  (revisionmaths.com): the real 3-paper-per-sitting structure is now built (confirmed
-  this time that OCR's own structure has calculator allowed on *all three* papers, not
-  a non-calculator + 2 calculator split like AQA/Edexcel — the step-22 note above was
-  itself a guess that turned out wrong), and the mark scheme/formulae sheet are now
-  calibrated against real papers spanning June 2017-June 2024. Still genuinely not
-  built: hand-authored multi-part exam questions (with sub-parts a/b/c combining
-  several skills, the way real OCR questions are often structured) instead of frozen
-  single-skill generator output — `mark_scheme.py`'s one-M1-per-step derivation is
-  still a systematic approximation of a real per-question mark allocation, not a
-  transcription of one, since this app's questions are still single-skill by design.
+  (revisionmaths.com): the real 3-paper-per-sitting structure was built, and the mark
+  scheme/formulae sheet were calibrated against real papers spanning June 2017-June
+  2024 — though step 30's own conclusion that OCR has calculator allowed on *all
+  three* papers turned out to be wrong (right for the specific papers checked, but not
+  the actual current spec), corrected in step 32 once the real spec PDF was read
+  directly: Paper 2 (Foundation)/Paper 5 (Higher) are now genuinely non-calculator.
+  Still genuinely not built: hand-authored multi-part exam questions (with sub-parts
+  a/b/c combining several skills, the way real OCR questions are often structured)
+  instead of frozen single-skill generator output — `mark_scheme.py`'s one-M1-per-step
+  derivation is still a systematic approximation of a real per-question mark
+  allocation, not a transcription of one, since this app's questions are still
+  single-skill by design.
 
 Don't start any of these without checking with the user first — this list is just
 carried-over context, not a plan.

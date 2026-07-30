@@ -4,6 +4,7 @@
   "tier": "higher",
   "sitting_id": "higher-08",
   "paper_number": 2,
+  "calculator_allowed": false,
   "questions": [
     {
       "topic_id": "standard_form_multiply_divide",
@@ -99,37 +100,37 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_sector",
-      "prompt": "A sector of a circle has radius 15 cm and angle 255°. Find the exact area of the sector, in terms of π.",
+      "topic_id": "pythagoras_ladder_context",
+      "prompt": "A ladder of length 20 m leans against a vertical wall with its base 10 m from the wall. Find the height the ladder reaches up the wall, giving your answer as a surd in its simplest form.",
       "solution_steps": [
-        "Area = (θ ÷ 360) × π × r² = (255 ÷ 360) × π × 15²",
-        "= (1275/8)π cm²"
+        "height² = ladder² - base² = 20² - 10² = 400 - 100 = 300",
+        "height = √300 = 10√3 m (exact form)"
       ],
-      "final_answer": "(1275/8)π cm²",
+      "final_answer": "10√3 m",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = (θ ÷ 360) × π × r² = (255 ÷ 360) × π × 15²",
+          "description": "height² = ladder² - base² = 20² - 10² = 400 - 100 = 300",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= (1275/8)π cm²",
+          "description": "height = √300 = 10√3 m (exact form)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(1275/8)π cm² oe",
+          "description": "10√3 m oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "sector",
+        "kind": "right_triangle",
         "params": {
-          "angle": 255,
-          "radius_label": "15 cm",
-          "angle_label": "255°"
+          "leg1_label": "10 m",
+          "leg2_label": "?",
+          "hyp_label": "20 m"
         }
       },
       "solution_diagram": null
@@ -269,45 +270,165 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_proof",
-      "prompt": "Prove algebraically that n^3 - n is always a multiple of 6.",
+      "topic_id": "trial_and_improvement",
+      "prompt": "f(x) = x^3 + 3x - 43. Show that f(x) = 0 has a root between x = 3 and x = 4, then use trial and improvement to find this root correct to 1 decimal place.",
       "solution_steps": [
-        "n^3 - n factorises as (n - 1)n(n + 1), the product of three consecutive integers.",
-        "Write the given expression algebraically: n^3 - n.",
-        "Expand and simplify: n^3 - n = (n - 1)n(n + 1).",
-        "Factorise/rearrange to expose the structure: (n - 1)n(n + 1) = among any 3 consecutive integers, one is a multiple of 3, and at least one is even, so their product always carries both a factor of 3 and a factor of 2.",
-        "Since (n - 1), n and (n + 1) are three consecutive integers, one of them is always a multiple of 3 and at least one is always even - so their product always has both 2 and 3 as factors, making it always a multiple of 6."
+        "f(x) = x^3 + 3x - 43",
+        "f(3) = -7.00 (negative)",
+        "f(4) = 33.00 (positive)",
+        "f(3.1) = -3.91 (negative)",
+        "f(3.2) = -0.63 (negative)",
+        "f(3.3) = 2.84 (positive)",
+        "The sign changes between x = 3.2 and x = 3.3, so try the midpoint x = 3.25: f(3.25) = 1.08.",
+        "f(3.25) has the same sign as f(3.3), so the root lies between 3.2 and 3.25 - to 1 decimal place, this rounds down to 3.2."
       ],
-      "final_answer": "Proven: n^3 - n = (n - 1)n(n + 1) is always a multiple of 6.",
+      "final_answer": "x = 3.2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "n^3 - n factorises as (n - 1)n(n + 1), the product of three consecutive integers.",
+          "description": "f(x) = x^3 + 3x - 43",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write the given expression algebraically: n^3 - n.",
+          "description": "f(3) = -7.00 (negative)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand and simplify: n^3 - n = (n - 1)n(n + 1).",
+          "description": "f(4) = 33.00 (positive)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise/rearrange to expose the structure: (n - 1)n(n + 1) = among any 3 consecutive integers, one is a multiple of 3, and at least one is even, so their product always carries both a factor of 3 and a factor of 2. Since (n - 1), n and (n + 1) are three consecutive integers, one of them is always a multiple of 3 and at least one is always even - so their product always has both 2 and 3 as factors, making it always a multiple of 6.",
+          "description": "f(3.1) = -3.91 (negative) f(3.2) = -0.63 (negative) f(3.3) = 2.84 (positive) The sign changes between x = 3.2 and x = 3.3, so try the midpoint x = 3.25: f(3.25) = 1.08. f(3.25) has the same sign as f(3.3), so the root lies between 3.2 and 3.25 - to 1 decimal place, this rounds down to 3.2.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Proven: n^3 - n = (n - 1)n(n + 1) is always a multiple of 6. oe",
+          "description": "x = 3.2 oe",
           "marks": 1
         }
       ],
       "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_exponential",
+      "prompt": "Complete a table of values for y = 3 × 3^x for x = 0 to 4, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = 3 × 3^x:",
+        "x: 0, 1, 2, 3, 4",
+        "y: 3, 9, 27, 81, 243",
+        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
+      ],
+      "final_answer": "Exponential curve: y = 3 × 3^x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = 3 × 3^x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: 0, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 3, 9, 27, 81, 243",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Exponential curve: y = 3 × 3^x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "exponential",
+          "a": 3,
+          "base": 3,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 267.3,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "exponential",
+          "a": 3,
+          "base": 3,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 267.3,
+          "table_points": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              9
+            ],
+            [
+              2,
+              27
+            ],
+            [
+              3,
+              81
+            ],
+            [
+              4,
+              243
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "graph_transformations",
+      "prompt": "The graph of y = f(x) undergoes a translation by vector (3, 0). Write down the equation of the transformed graph in terms of f(x).",
+      "solution_steps": [
+        "y = f(x - 3) corresponds to a translation by vector (3, 0)."
+      ],
+      "final_answer": "y = f(x - 3)",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = f(x - 3) corresponds to a translation by vector (3, 0).",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y = f(x - 3) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "graph_transformation",
+        "params": {
+          "transform": "translate_right",
+          "shift": 3,
+          "original_label": "y = f(x)",
+          "transformed_label": "y = f(x - 3)"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -407,115 +528,41 @@
       }
     },
     {
-      "topic_id": "graph_transformations",
-      "prompt": "The graph of y = f(x) undergoes a translation by vector (3, 0). Write down the equation of the transformed graph in terms of f(x).",
+      "topic_id": "algebraic_proof",
+      "prompt": "Prove algebraically that n^3 - n is always a multiple of 6.",
       "solution_steps": [
-        "y = f(x - 3) corresponds to a translation by vector (3, 0)."
+        "n^3 - n factorises as (n - 1)n(n + 1), the product of three consecutive integers.",
+        "Write the given expression algebraically: n^3 - n.",
+        "Expand and simplify: n^3 - n = (n - 1)n(n + 1).",
+        "Factorise/rearrange to expose the structure: (n - 1)n(n + 1) = among any 3 consecutive integers, one is a multiple of 3, and at least one is even, so their product always carries both a factor of 3 and a factor of 2.",
+        "Since (n - 1), n and (n + 1) are three consecutive integers, one of them is always a multiple of 3 and at least one is always even - so their product always has both 2 and 3 as factors, making it always a multiple of 6."
       ],
-      "final_answer": "y = f(x - 3)",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "y = f(x - 3) corresponds to a translation by vector (3, 0).",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "y = f(x - 3) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "graph_transformation",
-        "params": {
-          "transform": "translate_right",
-          "shift": 3,
-          "original_label": "y = f(x)",
-          "transformed_label": "y = f(x - 3)"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "perpendicular_lines_equation",
-      "prompt": "A line is perpendicular to y = -3x + 4 and passes through the point (-3, 4). Find the equation of the line.",
-      "solution_steps": [
-        "Perpendicular gradients multiply to give -1: m × -3 = -1, so m = 1/3",
-        "Substitute (-3, 4) into y = 1/3x + c: 4 = 1/3×(-3) + c, so c = 5",
-        "Equation of the line: y = 1/3x + 5"
-      ],
-      "final_answer": "y = 1/3x + 5",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Perpendicular gradients multiply to give -1: m × -3 = -1, so m = 1/3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute (-3, 4) into y = 1/3x + c: 4 = 1/3×(-3) + c, so c = 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Equation of the line: y = 1/3x + 5",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "y = 1/3x + 5 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "satisfying_inequalities_higher",
-      "prompt": "x satisfies both 5x - 3 > 5 and x - 8 < 6. List the integer values of x that satisfy both.",
-      "solution_steps": [
-        "Solve the first inequality:",
-        "5x - 3 > 5",
-        "Add 3 to both sides:",
-        "5x > 8",
-        "Divide both sides by 5:",
-        "x > 8/5",
-        "Solve the second inequality:",
-        "x - 8 < 6",
-        "Add 8 to both sides:",
-        "x < 14",
-        "x < 14",
-        "Combine both results into a single range: 8/5 < x < 14",
-        "The integers satisfying both inequalities are: 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13"
-      ],
-      "final_answer": "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13",
+      "final_answer": "Proven: n^3 - n = (n - 1)n(n + 1) is always a multiple of 6.",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Solve the first inequality:",
+          "description": "n^3 - n factorises as (n - 1)n(n + 1), the product of three consecutive integers.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x - 3 > 5",
+          "description": "Write the given expression algebraically: n^3 - n.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add 3 to both sides:",
+          "description": "Expand and simplify: n^3 - n = (n - 1)n(n + 1).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x > 8 Divide both sides by 5: x > 8/5 Solve the second inequality: x - 8 < 6 Add 8 to both sides: x < 14 x < 14 Combine both results into a single range: 8/5 < x < 14 The integers satisfying both inequalities are: 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13",
+          "description": "Factorise/rearrange to expose the structure: (n - 1)n(n + 1) = among any 3 consecutive integers, one is a multiple of 3, and at least one is even, so their product always carries both a factor of 3 and a factor of 2. Since (n - 1), n and (n + 1) are three consecutive integers, one of them is always a multiple of 3 and at least one is always even - so their product always has both 2 and 3 as factors, making it always a multiple of 6.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 oe",
+          "description": "Proven: n^3 - n = (n - 1)n(n + 1) is always a multiple of 6. oe",
           "marks": 1
         }
       ],
@@ -523,39 +570,98 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_quadratic_nth_term",
-      "prompt": "Here are the first four terms of a quadratic sequence: 12, 20, 34, 54. Find an expression for the nth term.",
+      "topic_id": "plot_cubic",
+      "prompt": "Complete a table of values for y = -x^3 for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "First differences: 8, 14, 20",
-        "Second difference is constant: 6, so the coefficient of n^2 is 6 ÷ 2 = 3",
-        "nth term = 3n^2 - n + 10"
+        "Table of values for y = -x^3:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: 27, 8, 1, 0, -1, -8, -27",
+        "Plot each (x, y) point and join them with a single smooth curve."
       ],
-      "final_answer": "3n^2 - n + 10",
-      "marks": 4,
+      "final_answer": "Cubic curve: y = -x^3",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First differences: 8, 14, 20",
+          "description": "Table of values for y = -x^3:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Second difference is constant: 6, so the coefficient of n^2 is 6 ÷ 2 = 3",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = 3n^2 - n + 10",
+          "description": "y: 27, 8, 1, 0, -1, -8, -27",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3n^2 - n + 10 oe",
+          "description": "Cubic curve: y = -x^3 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": -1,
+          "b": 0,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -29,
+          "y_max": 29,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": -1,
+          "b": 0,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -29,
+          "y_max": 29,
+          "table_points": [
+            [
+              -3,
+              27
+            ],
+            [
+              -2,
+              8
+            ],
+            [
+              -1,
+              1
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              -1
+            ],
+            [
+              2,
+              -8
+            ],
+            [
+              3,
+              -27
+            ]
+          ]
+        }
+      }
     },
     {
       "topic_id": "velocity_time_interpret",
@@ -607,15 +713,17 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "completing_the_square",
-      "prompt": "Write x^2 - 2x - 7 in the form (x + p)^2 + q.",
+      "topic_id": "solve_quadratic_completing_square",
+      "prompt": "Solve x^2 - 2x - 7 = 0 by completing the square, giving your answers in exact surd form.",
       "solution_steps": [
         "Half the coefficient of x: -2 ÷ 2 = -1",
-        "(x - 1)^2 = x^2 - 2x + 1",
-        "x^2 - 2x + -7 = (x - 1)^2 + (-7 - 1) = (x - 1)^2 - 8"
+        "Complete the square: x^2 - 2x - 7 = (x - 1)^2 - 8",
+        "Set (x - 1)^2 - 8 = 0, so (x - 1)^2 = 8",
+        "(x - 1) = ±√8 = ±2√2",
+        "x = 1 + 2√2 or x = 1 - 2√2"
       ],
-      "final_answer": "(x - 1)^2 - 8",
-      "marks": 4,
+      "final_answer": "x = 1 + 2√2 or x = 1 - 2√2",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
@@ -624,17 +732,22 @@
         },
         {
           "code": "M1",
-          "description": "(x - 1)^2 = x^2 - 2x + 1",
+          "description": "Complete the square: x^2 - 2x - 7 = (x - 1)^2 - 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x^2 - 2x + -7 = (x - 1)^2 + (-7 - 1) = (x - 1)^2 - 8",
+          "description": "Set (x - 1)^2 - 8 = 0, so (x - 1)^2 = 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(x - 1) = ±√8 = ±2√2 x = 1 + 2√2 or x = 1 - 2√2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(x - 1)^2 - 8 oe",
+          "description": "x = 1 + 2√2 or x = 1 - 2√2 oe",
           "marks": 1
         }
       ],
@@ -712,28 +825,57 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "compound_percentage",
-      "prompt": "A price of £144 increases by 42.5%, then increases by 15%. Find the final price.",
+      "topic_id": "speed_with_conversions",
+      "prompt": "A cyclist travels 27 km in 45 minutes. Find its average speed in km/h, correct to 1 decimal place.",
       "solution_steps": [
-        "After the first change: 144 × 1.43 = 205.20",
-        "After the second change: 205.20 × 1.15 = 235.98"
+        "Convert time to hours: 45 minutes = 45 ÷ 60 hours",
+        "speed = distance ÷ time = 27 ÷ (45 ÷ 60) = 36 km/h (1 d.p.)"
       ],
-      "final_answer": "£235.98",
+      "final_answer": "36 km/h",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first change: 144 × 1.43 = 205.20",
+          "description": "Convert time to hours: 45 minutes = 45 ÷ 60 hours",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "After the second change: 205.20 × 1.15 = 235.98",
+          "description": "speed = distance ÷ time = 27 ÷ (45 ÷ 60) = 36 km/h (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£235.98 oe",
+          "description": "36 km/h oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "mixed_percentages",
+      "prompt": "After a 30% decrease, an item costs £109.20. Find the original price.",
+      "solution_steps": [
+        "Convert 30% to a multiplier: 0.70 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 109.20 ÷ 0.70 = 156"
+      ],
+      "final_answer": "£156",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 30% to a multiplier: 0.70 (original × multiplier = new value)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide the new value by the multiplier: 109.20 ÷ 0.70 = 156",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£156 oe",
           "marks": 1
         }
       ],
@@ -782,140 +924,53 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_mixed_compound",
-      "prompt": "A shape is made from a rectangle 14 cm by 14 cm, with a triangular roof of height 8 cm on top, and a quarter-circle of radius 3 cm cut from one bottom corner. Find the total area, correct to 3 significant figures.",
+      "topic_id": "area_subtract_compound",
+      "prompt": "A rectangular sheet of metal 13 cm by 24 cm has a rectangular hole 8 cm by 11 cm cut from its centre. Find the remaining area.",
       "solution_steps": [
-        "Rectangle area = 14 × 14 = 196 cm²",
-        "Triangle roof area = ½ × 14 × 8 = 56 cm²",
-        "Quarter-circle cut area = (π × 3²) ÷ 4 ≈ 7.07 cm²",
-        "Total area = 196 + 56 - 7.07 ≈ 245 cm²"
+        "Area of large rectangle = 13 × 24 = 312 cm²",
+        "Area of rectangular hole = 8 × 11 = 88 cm²",
+        "Remaining area = 312 - 88 = 224 cm²"
       ],
-      "final_answer": "245 cm²",
-      "marks": 5,
+      "final_answer": "224 cm²",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rectangle area = 14 × 14 = 196 cm²",
+          "description": "Area of large rectangle = 13 × 24 = 312 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Triangle roof area = ½ × 14 × 8 = 56 cm²",
+          "description": "Area of rectangular hole = 8 × 11 = 88 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Quarter-circle cut area = (π × 3²) ÷ 4 ≈ 7.07 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total area = 196 + 56 - 7.07 ≈ 245 cm²",
+          "description": "Remaining area = 312 - 88 = 224 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "245 cm² oe",
+          "description": "224 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "mixed_compound",
+        "kind": "l_shape",
         "params": {
-          "width": 14,
-          "height": 14,
-          "roof_height": 8,
-          "cut_radius": 3,
-          "width_label": "14 cm",
-          "height_label": "14 cm",
-          "roof_label": "8 cm",
-          "cut_label": "3 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "angles_parallel_lines",
-      "prompt": "A line crosses two parallel lines. The angle 71° and the angle (3x + 35)° are alternate angles. Find x.",
-      "solution_steps": [
-        "Alternate angles are equal.",
-        "3x + 35 = 71",
-        "Subtract 35 from both sides:",
-        "3x = 36",
-        "Divide both sides by 3:",
-        "x = 12"
-      ],
-      "final_answer": "12",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Alternate angles are equal.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "3x + 35 = 71",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 35 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "3x = 36 Divide both sides by 3: x = 12",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "12 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "parallel_lines",
-        "params": {
-          "known_label": "71°",
-          "unknown_label": "(3x + 35)°",
-          "relation": "alternate"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "pythagoras_surd_hypotenuse",
-      "prompt": "A right-angled triangle has legs 9 cm and 7 cm. Find the exact length of the hypotenuse, giving your answer as a simplified surd.",
-      "solution_steps": [
-        "c² = a² + b² = 9² + 7² = 81 + 49 = 130",
-        "c = √130 = √130 cm (exact form)"
-      ],
-      "final_answer": "√130 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "c² = a² + b² = 9² + 7² = 81 + 49 = 130",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "c = √130 = √130 cm (exact form)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "√130 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "right_triangle",
-        "params": {
-          "leg1_label": "9 cm",
-          "leg2_label": "7 cm",
-          "hyp_label": "?"
+          "outer_w": 13,
+          "outer_h": 24,
+          "inner_w": 8,
+          "inner_h": 11,
+          "notch": "center",
+          "outer_labels": [
+            "13 cm",
+            "24 cm"
+          ],
+          "inner_labels": [
+            "8 cm",
+            "11 cm"
+          ]
         }
       },
       "solution_diagram": null
@@ -977,83 +1032,114 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_combined_dice",
-      "prompt": "Two fair six-sided dice are rolled. Find the probability that both dice show 4.",
+      "topic_id": "angles_triangle_higher",
+      "prompt": "A triangle has angles 48°, 35°, and (2x + 91)°. Find x.",
       "solution_steps": [
-        "P(first die is 4) = 1/6, P(second die is 4) = 1/6",
-        "Independent events multiply: P(both 4) = 1/6 × 1/6 = 1/36"
+        "Angles in a triangle sum to 180°.",
+        "2x + 91 = 97",
+        "Subtract 91 from both sides:",
+        "2x = 6",
+        "Divide both sides by 2:",
+        "x = 3"
       ],
-      "final_answer": "1/36",
-      "marks": 3,
+      "final_answer": "3",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "P(first die is 4) = 1/6, P(second die is 4) = 1/6",
+          "description": "Angles in a triangle sum to 180°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Independent events multiply: P(both 4) = 1/6 × 1/6 = 1/36",
+          "description": "2x + 91 = 97",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 91 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x = 6 Divide both sides by 2: x = 3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/36 oe",
+          "description": "3 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "dice",
+        "kind": "triangle_angles",
         "params": {
-          "values": [
-            1,
-            6
+          "angle_labels": [
+            "48°",
+            "35°",
+            "(2x + 91)°"
           ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_conditional",
-      "prompt": "A bag contains 3 blue and 4 purple counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour.",
+      "topic_id": "arc_length",
+      "prompt": "A sector of a circle has radius 3 cm and angle 270°. Find the exact arc length, in terms of π.",
       "solution_steps": [
-        "P(both blue) = 3/7 × 2/6 = 1/7",
-        "P(both purple) = 4/7 × 3/6 = 2/7",
-        "P(both same colour) = 1/7 + 2/7 = 3/7"
+        "Arc length = (θ ÷ 360) × 2 × π × r = (270 ÷ 360) × 2 × π × 3",
+        "= (9/2)π cm"
       ],
-      "final_answer": "3/7",
-      "marks": 4,
+      "final_answer": "(9/2)π cm",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "P(both blue) = 3/7 × 2/6 = 1/7",
+          "description": "Arc length = (θ ÷ 360) × 2 × π × r = (270 ÷ 360) × 2 × π × 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(both purple) = 4/7 × 3/6 = 2/7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(both same colour) = 1/7 + 2/7 = 3/7",
+          "description": "= (9/2)π cm",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3/7 oe",
+          "description": "(9/2)π cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "bag_of_counters",
+        "kind": "sector",
         "params": {
-          "counts": {
-            "blue": 3,
-            "purple": 4
-          }
+          "angle": 270,
+          "radius_label": "3 cm",
+          "angle_label": "270°"
         }
       },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "product_rule_counting",
+      "prompt": "A shop sells 5 different fonts, 4 different colours and 4 different paper sizes. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "solution_steps": [
+        "Total combinations = 5 × 4 × 4 = 80"
+      ],
+      "final_answer": "80",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total combinations = 5 × 4 × 4 = 80",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "80 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     }
   ]

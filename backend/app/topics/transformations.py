@@ -205,6 +205,20 @@ def _clear_of_axis_name_labels(vertices: list) -> bool:
     return all(not (abs(x) < 2 and y > _GRID_MAX - 2) and not (x > _GRID_MAX - 2 and abs(y) < 2) for x, y in vertices)
 
 
+def _clear_of_axis_tick_labels(vertices: list) -> bool:
+    """True if no vertex's *predicted label position* (see
+    _predicted_label_positions below) lands close enough to either axis line
+    to risk sitting on top of one of that axis's own numbered tick labels,
+    which are printed at regular intervals along the whole visible axis, not
+    just at the two "axis name" spots _clear_of_axis_name_labels already
+    guards. Only needed for combined_transformations - its wider double-prime
+    labels (e.g. "A''") made this collision visible where the narrower
+    single-prime labels on every other _describe topic hadn't - found via
+    this topic's own visual spike, not a unit test."""
+    positions = _predicted_label_positions(vertices)
+    return all(abs(x) > 1.3 and abs(y) > 1.3 for x, y in positions)
+
+
 def _bounding_box(vertices: list) -> tuple[float, float, float, float]:
     xs = [v[0] for v in vertices]
     ys = [v[1] for v in vertices]
@@ -1621,4 +1635,338 @@ TOPIC_TRANSFORM_ENLARGE_DESCRIBE = TopicDefinition(
     group=GROUP_TRANSFORMATIONS,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_transform_enlarge_describe,
+)
+
+
+# ---------------------------------------------------------------------------
+# Combined transformations (Higher) - two transformations applied in
+# sequence, described as the single equivalent transformation. Scoped to 4
+# combination types, each with a known closed-form composition rule:
+#   1. two translations -> a single translation (vector sum)
+#   2. two reflections in parallel mirrors (both vertical or both
+#      horizontal) -> a single translation, perpendicular to the mirrors,
+#      of twice the distance between them
+#   3. two rotations about the SAME centre -> a single rotation about that
+#      centre, by the sum of the two angles
+#   4. reflection in the x-axis then the y-axis (either order - both give
+#      the same result) -> a single 180 deg rotation about the origin
+# Unlike the four _describe topics above (which show only the final image
+# and ask the student to work out what happened), this topic states both
+# given transformations explicitly in the prompt text - matching the real
+# GCSE phrasing for this question type ("...is reflected in x = 1 to give
+# A'B'C'. A'B'C' is then reflected in x = 4 to give A''B''C''. Describe
+# fully the single transformation that maps ABC onto A''B''C''.") - so the
+# diagram only ever needs to show the original and the final image (no
+# intermediate shape), reusing draw_grid_transformation exactly as the
+# _describe topics already do.
+#
+# Rotation angles are drawn from the same _ROTATIONS pool (90/180/270) used
+# throughout this file, so every non-degenerate pair's angle sum reduces
+# (mod 360) to another value in {90, 180, 270} automatically - see
+# _ROTATE_COMBO_PAIRS below - which is exactly the "keep it a nice
+# describable rotation" requirement without any extra reflex-angle handling.
+# ---------------------------------------------------------------------------
+
+
+class _ComboInstance(NamedTuple):
+    shape: list
+    step1_text: str          # e.g. "translated by the vector (2, 3)"
+    step2_text: str          # e.g. "translated by the vector (1, -1)"
+    reasoning_steps: tuple    # solution_steps content specific to this combo
+    final_answer: str
+    dedup_key: str
+    final: list
+
+
+_COMBO_TYPES = ("translate_translate", "reflect_parallel", "rotate_same_centre", "reflect_axes")
+
+
+def _random_combo_translate_translate(rng: random.Random) -> tuple:
+    for _ in range(_REROLL_ATTEMPTS):
+        shape = _random_shape(rng)
+        v1 = (rng.randint(-5, 5), rng.randint(-5, 5))
+        v2 = (rng.randint(-5, 5), rng.randint(-5, 5))
+        if v1 == (0, 0) or v2 == (0, 0):
+            continue
+        combined = (v1[0] + v2[0], v1[1] + v2[1])
+        if combined == (0, 0):
+            continue  # the two translations would cancel out - not describable as "a" transformation
+        intermediate = [(x + v1[0], y + v1[1]) for x, y in shape]
+        final = [(x + v2[0], y + v2[1]) for x, y in intermediate]
+        if (_fits_grid(shape) and _fits_grid(final) and _well_separated(shape, final)
+                and _clear_of_axis_name_labels(shape) and _clear_of_axis_name_labels(final)
+                and _clear_of_axis_tick_labels(shape) and _clear_of_axis_tick_labels(final)):
+            return shape, v1, v2, combined, final
+    raise ValueError("transformations: could not fit a translate+translate combined instance on the grid")
+
+
+def _verify_combo_translate_translate(shape: list, combined: Point, final: list) -> None:
+    """Independent check: apply the *claimed* single translation (the vector
+    sum) directly to the original vertices, and confirm it reproduces the
+    same final image as actually simulating the two given translations in
+    sequence - this re-derives the answer by simulation rather than trusting
+    the composition rule itself."""
+    direct = [(x + combined[0], y + combined[1]) for x, y in shape]
+    if direct != final:
+        raise ValueError("transformations: combined translate+translate verification failed")
+
+
+_PARALLEL_MIRROR_OFFSETS = tuple(range(-3, 4))  # -3..3; these mirror lines are
+# never drawn (the diagram shows only the original and final image, matching
+# every other _describe topic), so - unlike _random_mirror_line's drawn
+# mirrors - there's no axis-name-label collision risk in including 0 here.
+
+
+def _random_combo_reflect_parallel(rng: random.Random) -> tuple:
+    for _ in range(_REROLL_ATTEMPTS):
+        shape = _random_shape(rng)
+        orientation = rng.choice(("vertical", "horizontal"))
+        a, b = rng.sample(_PARALLEL_MIRROR_OFFSETS, 2)
+        key = "x" if orientation == "vertical" else "y"
+        mirror1 = {"type": orientation, key: a}
+        mirror2 = {"type": orientation, key: b}
+        intermediate = [_reflect_point(p, mirror1) for p in shape]
+        final = [_reflect_point(p, mirror2) for p in intermediate]
+        combined_vector = (2 * (b - a), 0) if orientation == "vertical" else (0, 2 * (b - a))
+        if (_fits_grid(shape) and _fits_grid(final) and _well_separated(shape, final)
+                and _clear_of_axis_name_labels(shape) and _clear_of_axis_name_labels(final)
+                and _clear_of_axis_tick_labels(shape) and _clear_of_axis_tick_labels(final)):
+            return shape, orientation, a, b, combined_vector, final
+    raise ValueError("transformations: could not fit a reflect-parallel combined instance on the grid")
+
+
+def _verify_combo_reflect_parallel(shape: list, combined_vector: Point, final: list) -> None:
+    """Independent check: apply the *claimed* single translation (twice the
+    gap between the mirrors, perpendicular to them) directly to the original
+    vertices, and confirm it reproduces the same final image as actually
+    reflecting in both mirror lines in sequence."""
+    direct = [(x + combined_vector[0], y + combined_vector[1]) for x, y in shape]
+    if direct != final:
+        raise ValueError("transformations: combined reflect-parallel verification failed")
+
+
+# Only pairs whose angle sum is NOT a multiple of 360 (i.e. doesn't compose
+# to the identity, which can't meaningfully be "described" as a rotation) -
+# every remaining pair's sum reduces mod 360 to another value already in
+# _ROTATIONS (90/180/270), confirmed by direct enumeration of all 9 pairs.
+_ROTATE_COMBO_PAIRS: tuple = tuple(
+    (a1, a2) for a1 in _ROTATIONS for a2 in _ROTATIONS if (a1 + a2) % 360 != 0
+)
+
+
+def _random_combo_rotate_same_centre(rng: random.Random) -> tuple:
+    for _ in range(_REROLL_ATTEMPTS):
+        shape = _random_shape(rng)
+        centre = (rng.randint(-4, 4), rng.randint(-4, 4))
+        angle1, angle2 = rng.choice(_ROTATE_COMBO_PAIRS)
+        combined_angle = (angle1 + angle2) % 360
+        intermediate = [_rotate_point(p, centre, angle1) for p in shape]
+        final = [_rotate_point(p, centre, angle2) for p in intermediate]
+        if (_fits_grid(shape) and _fits_grid(final) and _well_separated(shape, final)
+                and _clear_of_axis_name_labels(shape) and _clear_of_axis_name_labels(final)
+                and _clear_of_axis_tick_labels(shape) and _clear_of_axis_tick_labels(final)):
+            return shape, centre, angle1, angle2, combined_angle, final
+    raise ValueError("transformations: could not fit a rotate-same-centre combined instance on the grid")
+
+
+def _verify_combo_rotate_same_centre(shape: list, centre: Point, combined_angle: int, final: list) -> None:
+    """Independent check: apply the *claimed* single rotation (the angle
+    sum) directly to the original vertices, and confirm it reproduces the
+    same final image as actually rotating twice about the same centre in
+    sequence."""
+    direct = [_rotate_point(p, centre, combined_angle) for p in shape]
+    if direct != final:
+        raise ValueError("transformations: combined rotate-same-centre verification failed")
+
+
+_MIRROR_X_AXIS = {"type": "horizontal", "y": 0}  # the line y = 0 IS the x-axis
+_MIRROR_Y_AXIS = {"type": "vertical", "x": 0}     # the line x = 0 IS the y-axis
+
+
+def _random_combo_reflect_axes(rng: random.Random) -> tuple:
+    for _ in range(_REROLL_ATTEMPTS):
+        shape = _random_shape(rng)
+        order = rng.choice(("x_then_y", "y_then_x"))
+        first, second = (_MIRROR_X_AXIS, _MIRROR_Y_AXIS) if order == "x_then_y" else (_MIRROR_Y_AXIS, _MIRROR_X_AXIS)
+        intermediate = [_reflect_point(p, first) for p in shape]
+        final = [_reflect_point(p, second) for p in intermediate]
+        if (_fits_grid(shape) and _fits_grid(final) and _well_separated(shape, final)
+                and _clear_of_axis_name_labels(shape) and _clear_of_axis_name_labels(final)
+                and _clear_of_axis_tick_labels(shape) and _clear_of_axis_tick_labels(final)):
+            return shape, order, final
+    raise ValueError("transformations: could not fit a reflect-axes combined instance on the grid")
+
+
+def _verify_combo_reflect_axes(shape: list, final: list) -> None:
+    """Independent check: apply the *claimed* single 180 deg rotation about
+    the origin directly to the original vertices, and confirm it reproduces
+    the same final image as actually reflecting in the x-axis then the
+    y-axis (or vice versa) in sequence."""
+    direct = [_rotate_point(p, (0, 0), 180) for p in shape]
+    if direct != final:
+        raise ValueError("transformations: combined reflect-axes verification failed")
+
+
+def _build_combo_instance(rng: random.Random, combo_type: str) -> _ComboInstance:
+    if combo_type == "translate_translate":
+        shape, v1, v2, combined, final = _random_combo_translate_translate(rng)
+        _verify_combo_translate_translate(shape, combined, final)
+        reasoning_steps = (
+            "Two translations in a row combine into a single translation - just add the two vectors together.",
+            f"{_fmt_vector(v1)} + {_fmt_vector(v2)} = {_fmt_vector(combined)}.",
+        )
+        return _ComboInstance(
+            shape=shape,
+            step1_text=f"translated by the vector {_fmt_vector(v1)}",
+            step2_text=f"translated by the vector {_fmt_vector(v2)}",
+            reasoning_steps=reasoning_steps,
+            final_answer=f"Translation by the vector {_fmt_vector(combined)}",
+            dedup_key=f"combo_tt:{shape}:{v1}:{v2}",
+            final=final,
+        )
+
+    if combo_type == "reflect_parallel":
+        shape, orientation, a, b, combined_vector, final = _random_combo_reflect_parallel(rng)
+        _verify_combo_reflect_parallel(shape, combined_vector, final)
+        line = "x" if orientation == "vertical" else "y"
+        reasoning_steps = (
+            "Two reflections in parallel mirror lines combine into a single translation, perpendicular to "
+            "the mirrors, of twice the distance between them.",
+            f"The mirror lines are a distance {abs(b - a)} apart, so the combined translation is "
+            f"{_fmt_vector(combined_vector)}.",
+        )
+        return _ComboInstance(
+            shape=shape,
+            step1_text=f"reflected in the line {line} = {a}",
+            step2_text=f"reflected in the line {line} = {b}",
+            reasoning_steps=reasoning_steps,
+            final_answer=f"Translation by the vector {_fmt_vector(combined_vector)}",
+            dedup_key=f"combo_rp:{shape}:{orientation}:{a}:{b}",
+            final=final,
+        )
+
+    if combo_type == "rotate_same_centre":
+        shape, centre, angle1, angle2, combined_angle, final = _random_combo_rotate_same_centre(rng)
+        _verify_combo_rotate_same_centre(shape, centre, combined_angle, final)
+        reasoning_steps = (
+            "Two rotations about the same centre combine into a single rotation about that centre, by the "
+            "sum of the two angles.",
+            f"Measuring both turns anticlockwise: {angle1}° + {angle2}° = {angle1 + angle2}°, "
+            f"which is the same as {_rotation_wording(combined_angle)}.",
+        )
+        return _ComboInstance(
+            shape=shape,
+            step1_text=f"rotated {_rotation_wording(angle1)} about the centre {_fmt_point(centre)}",
+            step2_text=f"rotated {_rotation_wording(angle2)} about the same centre",
+            reasoning_steps=reasoning_steps,
+            final_answer=f"Rotation {_rotation_wording(combined_angle)} about {_fmt_point(centre)}",
+            dedup_key=f"combo_rc:{shape}:{centre}:{angle1}:{angle2}",
+            final=final,
+        )
+
+    # reflect_axes
+    shape, order, final = _random_combo_reflect_axes(rng)
+    _verify_combo_reflect_axes(shape, final)
+    if order == "x_then_y":
+        step1_text, step2_text = "reflected in the x-axis", "reflected in the y-axis"
+    else:
+        step1_text, step2_text = "reflected in the y-axis", "reflected in the x-axis"
+    reasoning_steps = (
+        "Reflecting in the x-axis then the y-axis (or the other way round - the order doesn't matter here) "
+        "sends every point (x, y) to (-x, -y).",
+        "That is exactly the same effect as a single 180° rotation about the origin.",
+    )
+    return _ComboInstance(
+        shape=shape,
+        step1_text=step1_text,
+        step2_text=step2_text,
+        reasoning_steps=reasoning_steps,
+        final_answer="Rotation 180° about (0, 0)",
+        dedup_key=f"combo_ra:{shape}:{order}",
+        final=final,
+    )
+
+
+def generate_combined_transformations(tier: Tier, rng: random.Random) -> Question:
+    instance = _build_combo_instance(rng, rng.choice(_COMBO_TYPES))
+    shape, final = instance.shape, instance.final
+    labels = _VERTEX_LABELS[: len(shape)]
+    image_labels = tuple(f"{l}''" for l in labels)
+    intermediate_name = _shape_name(tuple(f"{l}'" for l in labels))
+    name, image_name = _shape_name(labels), _shape_name(image_labels)
+
+    prompt = (
+        f"Shape {name} is {instance.step1_text} to give shape {intermediate_name}. "
+        f"Shape {intermediate_name} is then {instance.step2_text} to give shape {image_name}. "
+        f"Describe fully the single transformation that maps {name} directly onto {image_name}."
+    )
+    return Question(
+        topic_id="combined_transformations",
+        tier=Tier.HIGHER,
+        prompt=prompt,
+        solution_steps=instance.reasoning_steps,
+        final_answer=instance.final_answer,
+        dedup_key=instance.dedup_key,
+        diagram=DiagramSpec(
+            kind="grid_transformation",
+            params={
+                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
+                "original_vertices": shape, "original_labels": labels,
+                "image_vertices": final, "image_labels": image_labels,
+            },
+        ),
+    )
+
+
+def generate_modelled_example_combined_transformations(tier: Tier, rng: random.Random) -> ModelledExample:
+    instance = _build_combo_instance(rng, rng.choice(_COMBO_TYPES))
+    shape, final = instance.shape, instance.final
+    labels = _VERTEX_LABELS[: len(shape)]
+    image_labels = tuple(f"{l}''" for l in labels)
+    intermediate_name = _shape_name(tuple(f"{l}'" for l in labels))
+    name, image_name = _shape_name(labels), _shape_name(image_labels)
+
+    prompt = (
+        f"Shape {name} is {instance.step1_text} to give shape {intermediate_name}. "
+        f"Shape {intermediate_name} is then {instance.step2_text} to give shape {image_name}. "
+        f"Describe fully the single transformation that maps {name} directly onto {image_name}."
+    )
+    teaching_steps = [
+        "Two transformations applied one after another can often be combined into a single equivalent "
+        "transformation - the key is knowing the combination rule for that particular pair of transformation "
+        "types.",
+        instance.reasoning_steps[0],
+        instance.reasoning_steps[1],
+        f"So the single transformation that maps {name} directly onto {image_name} is: {instance.final_answer}.",
+    ]
+    return ModelledExample(
+        topic_id="combined_transformations",
+        tier=Tier.HIGHER,
+        prompt=prompt,
+        worked_calculation=(
+            f"{labels[0]}{_fmt_point(shape[0])} -> {image_labels[0]}{_fmt_point(final[0])}",
+            f"combined: {instance.final_answer}",
+        ),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=instance.final_answer,
+        diagram=DiagramSpec(
+            kind="grid_transformation",
+            params={
+                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
+                "original_vertices": shape, "original_labels": labels,
+                "image_vertices": final, "image_labels": image_labels,
+            },
+        ),
+    )
+
+
+TOPIC_COMBINED_TRANSFORMATIONS = TopicDefinition(
+    id="combined_transformations",
+    display_name="Combined Transformations",
+    description="Describe the single transformation equivalent to two transformations applied in sequence.",
+    generate=generate_combined_transformations,
+    section=SECTION,
+    group=GROUP_TRANSFORMATIONS,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_combined_transformations,
 )

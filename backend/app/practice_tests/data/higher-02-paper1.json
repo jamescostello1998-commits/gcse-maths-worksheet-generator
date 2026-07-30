@@ -4,6 +4,7 @@
   "tier": "higher",
   "sitting_id": "higher-02",
   "paper_number": 1,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "hcf_lcm_by_prime_factors",
@@ -223,177 +224,172 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "turning_point_of_graph",
-      "prompt": "Find the coordinates of the turning point of the curve y = x^2 - 12x + 1.",
+      "topic_id": "quadratic_formula",
+      "prompt": "Solve 2x^2 - 4x - 2 = 0, giving your answer in the form x = (-b ± k√m)/2a, fully simplified.",
       "solution_steps": [
-        "Complete the square: x^2 - 12x + 1 = (x - 6)^2 - 35",
-        "The turning point of y = (x + p)^2 + q is (-p, q).",
-        "Turning point = (6, -35)"
+        "x = (-b ± √(b^2 - 4ac)) / 2a",
+        "a = 2, b = -4, c = -2",
+        "x = (4 ± √(-4^2 - 4×2×-2)) / 4",
+        "x = (4 ± √32) / 4",
+        "√32 = √(4^2 × 2) = 4√2",
+        "x = (4 ± 4√2) / 4 = 1 ± √2 (dividing numerator and denominator by 4)"
       ],
-      "final_answer": "(6, -35)",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Complete the square: x^2 - 12x + 1 = (x - 6)^2 - 35",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Turning point = (6, -35)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(6, -35) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "parabola",
-        "params": {
-          "vertex_label": "(6, -35)"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "plot_reciprocal",
-      "prompt": "Complete a table of values for y = 24/x for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
-      "solution_steps": [
-        "Table of values for y = 24/x:",
-        "x: -4, -3, -2, -1, 1, 2, 3, 4",
-        "y: -6, -8, -12, -24, 24, 12, 8, 6",
-        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
-      ],
-      "final_answer": "Reciprocal curve: y = 24/x",
+      "final_answer": "x = 1 ± √2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = 24/x:",
+          "description": "x = (-b ± √(b^2 - 4ac)) / 2a",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
+          "description": "a = 2, b = -4, c = -2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: -6, -8, -12, -24, 24, 12, 8, 6",
+          "description": "x = (4 ± √(-4^2 - 4×2×-2)) / 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
+          "description": "x = (4 ± √32) / 4 √32 = √(4^2 × 2) = 4√2 x = (4 ± 4√2) / 4 = 1 ± √2 (dividing numerator and denominator by 4)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Reciprocal curve: y = 24/x oe",
+          "description": "x = 1 ± √2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "trig_graph",
+      "prompt": "Complete a table of values for y = tan(x°) for x = 100 to 260 (in steps of 40°), then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = tan(x°):",
+        "x: 100, 140, 180, 220, 260",
+        "y: -5.67, -0.84, -0.0, 0.84, 5.67",
+        "Plot each (x, y) point and join them with a single smooth curve - y = tan(x°) repeats the same shape every 180°, and rises/falls very steeply near the edges of this window (approaching, but never reaching, a vertical asymptote just outside it)."
+      ],
+      "final_answer": "y = tan(x°)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = tan(x°):",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: 100, 140, 180, 220, 260",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: -5.67, -0.84, -0.0, 0.84, 5.67",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve - y = tan(x°) repeats the same shape every 180°, and rises/falls very steeply near the edges of this window (approaching, but never reaching, a vertical asymptote just outside it).",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y = tan(x°) oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "reciprocal",
-          "a": 24,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -26,
-          "y_max": 26,
+          "kind": "trigonometric",
+          "fn": "tan",
+          "sign": 1,
+          "x_min": 100,
+          "x_max": 260,
+          "y_min": -7,
+          "y_max": 7,
+          "x_label": "x (degrees)",
           "blank": true
         }
       },
       "solution_diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "reciprocal",
-          "a": 24,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -26,
-          "y_max": 26,
+          "kind": "trigonometric",
+          "fn": "tan",
+          "sign": 1,
+          "x_min": 100,
+          "x_max": 260,
+          "y_min": -7,
+          "y_max": 7,
+          "x_label": "x (degrees)",
           "table_points": [
             [
-              -4,
-              -6
+              100,
+              -5.67
             ],
             [
-              -3,
-              -8
+              140,
+              -0.84
             ],
             [
-              -2,
-              -12
+              180,
+              -0.0
             ],
             [
-              -1,
-              -24
+              220,
+              0.84
             ],
             [
-              1,
-              24
-            ],
-            [
-              2,
-              12
-            ],
-            [
-              3,
-              8
-            ],
-            [
-              4,
-              6
+              260,
+              5.67
             ]
           ]
         }
       }
     },
     {
-      "topic_id": "algebraic_fractions_multiply_divide",
-      "prompt": "Simplify (x^2 - 81)/(x - 6) ÷ (x - 9)/(x - 6), giving your answer in its simplest form.",
+      "topic_id": "simultaneous_quadratic",
+      "prompt": "Solve the simultaneous equations: y = x^2 + 4x - 4 and y = 4x + 32",
       "solution_steps": [
-        "Factorise the difference of two squares: (x^2 - 81) = (x - 9)(x + 9)",
-        "Dividing by a fraction means multiplying by its reciprocal: ÷ (x - 9)/(x - 6) becomes × (x - 6)/(x - 9)",
-        "(x - 9)(x + 9)/(x - 6) × (x - 6)/(x - 9)",
-        "Cancel the common factors (x - 6) and (x - 9):",
-        "= x + 9"
+        "Substitute y = 4x + 32 into y = x^2 + 4x - 4: 4x + 32 = x^2 + 4x - 4",
+        "Rearrange: x^2 - 36 = 0",
+        "Factorise: (x + 6)(x - 6) = 0",
+        "x = -6 or x = 6",
+        "When x = -6, y = 8. When x = 6, y = 56."
       ],
-      "final_answer": "x + 9",
+      "final_answer": "(-6, 8) and (6, 56)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Factorise the difference of two squares: (x^2 - 81) = (x - 9)(x + 9)",
+          "description": "Substitute y = 4x + 32 into y = x^2 + 4x - 4: 4x + 32 = x^2 + 4x - 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Dividing by a fraction means multiplying by its reciprocal: ÷ (x - 9)/(x - 6) becomes × (x - 6)/(x - 9)",
+          "description": "Rearrange: x^2 - 36 = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(x - 9)(x + 9)/(x - 6) × (x - 6)/(x - 9)",
+          "description": "Factorise: (x + 6)(x - 6) = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Cancel the common factors (x - 6) and (x - 9): = x + 9",
+          "description": "x = -6 or x = 6 When x = -6, y = 8. When x = 6, y = 56.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x + 9 oe",
+          "description": "(-6, 8) and (6, 56) oe",
           "marks": 1
         }
       ],
@@ -401,44 +397,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "forming_equations_higher",
-      "prompt": "A quadrilateral has angles 21°, 82°, (3x + 4)°, and (x + 237)°. Form an equation and solve it to find x.",
+      "topic_id": "change_subject_higher",
+      "prompt": "Make r the subject of the formula A = πr^2.",
       "solution_steps": [
-        "Angles in a quadrilateral sum to 360°.",
-        "21 + 82 + (3x + 4) + (x + 237) = 360",
-        "Collect the x-terms and constants together:",
-        "4x + 241 = 257",
-        "Subtract 241 from both sides:",
-        "4x = 16",
-        "Divide both sides by 4:",
-        "x = 4"
+        "A = πr^2",
+        "Divide both sides by π: A/π = r^2",
+        "Take the square root of both sides: r = √(A/π)"
       ],
-      "final_answer": "4",
-      "marks": 5,
+      "final_answer": "r = √(A/π)",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles in a quadrilateral sum to 360°.",
+          "description": "A = πr^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "21 + 82 + (3x + 4) + (x + 237) = 360",
+          "description": "Divide both sides by π: A/π = r^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Collect the x-terms and constants together:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "4x + 241 = 257 Subtract 241 from both sides: 4x = 16 Divide both sides by 4: x = 4",
+          "description": "Take the square root of both sides: r = √(A/π)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4 oe",
+          "description": "r = √(A/π) oe",
           "marks": 1
         }
       ],
@@ -446,85 +432,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_proof",
-      "prompt": "Prove algebraically that n^2 + n + 1 is always odd.",
+      "topic_id": "iteration",
+      "prompt": "The iterative formula x_(n+1) = sqrt(21 - 2x_n) is used with x_0 = 4. Find the values of x_1, x_2 and x_3, giving each answer to 3 decimal places.",
       "solution_steps": [
-        "n^2 + n factorises as n(n + 1), the product of two consecutive integers n and n + 1.",
-        "Write the given expression algebraically: n^2 + n + 1.",
-        "Expand and simplify: n^2 + n + 1 = n(n + 1) + 1.",
-        "Factorise/rearrange to expose the structure: n(n + 1) + 1 = n(n + 1) is always even (one of n, n + 1 is always even), so n(n + 1) + 1 is always 1 more than an even number.",
-        "Since n(n + 1) is always even, adding 1 to it always gives an odd number - so n^2 + n + 1 is always odd."
+        "Iterative formula: x_(n+1) = sqrt(21 - 2x_n)",
+        "x_0 = 4",
+        "x_1 = g(x_0) = sqrt(21 - 2×4) = 3.606",
+        "x_2 = g(x_1) = sqrt(21 - 2×3.606) = 3.713",
+        "x_3 = g(x_2) = sqrt(21 - 2×3.713) = 3.684"
       ],
-      "final_answer": "Proven: n^2 + n + 1 = n(n + 1) + 1, always odd since n(n + 1) is always even.",
+      "final_answer": "x_1 = 3.606, x_2 = 3.713, x_3 = 3.684",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "n^2 + n factorises as n(n + 1), the product of two consecutive integers n and n + 1.",
+          "description": "Iterative formula: x_(n+1) = sqrt(21 - 2x_n)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write the given expression algebraically: n^2 + n + 1.",
+          "description": "x_0 = 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand and simplify: n^2 + n + 1 = n(n + 1) + 1.",
+          "description": "x_1 = g(x_0) = sqrt(21 - 2×4) = 3.606",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise/rearrange to expose the structure: n(n + 1) + 1 = n(n + 1) is always even (one of n, n + 1 is always even), so n(n + 1) + 1 is always 1 more than an even number. Since n(n + 1) is always even, adding 1 to it always gives an odd number - so n^2 + n + 1 is always odd.",
+          "description": "x_2 = g(x_1) = sqrt(21 - 2×3.606) = 3.713 x_3 = g(x_2) = sqrt(21 - 2×3.713) = 3.684",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Proven: n^2 + n + 1 = n(n + 1) + 1, always odd since n(n + 1) is always even. oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "solving_inequalities_higher",
-      "prompt": "Solve the inequality: 6x + 4 ≥ 9x + 5",
-      "solution_steps": [
-        "6x + 4 ≥ 9x + 5",
-        "Subtract 9x from both sides:",
-        "-3x + 4 ≥ 5",
-        "Subtract 4 from both sides:",
-        "-3x ≥ 1",
-        "Divide both sides by -3 (dividing by a negative number reverses the inequality sign):",
-        "x ≤ -1/3"
-      ],
-      "final_answer": "x ≤ -1/3",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "6x + 4 ≥ 9x + 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 9x from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "-3x + 4 ≥ 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 4 from both sides: -3x ≥ 1 Divide both sides by -3 (dividing by a negative number reverses the inequality sign): x ≤ -1/3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x ≤ -1/3 oe",
+          "description": "x_1 = 3.606, x_2 = 3.713, x_3 = 3.684 oe",
           "marks": 1
         }
       ],
@@ -588,6 +530,35 @@
           "shade": "outside"
         }
       }
+    },
+    {
+      "topic_id": "special_sequences_higher",
+      "prompt": "The first 4 terms of a Fibonacci-type sequence are: 8, 4, 12, 16. Each term (from the 3rd onwards) is found by adding the two terms before it. Find the next term of the sequence.",
+      "solution_steps": [
+        "Rule: each term (from the 3rd onwards) is found by adding the two terms before it.",
+        "12 + 16 = 28"
+      ],
+      "final_answer": "28",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Rule: each term (from the 3rd onwards) is found by adding the two terms before it.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "12 + 16 = 28",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "28 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
     },
     {
       "topic_id": "unit_conversions_higher",
@@ -731,36 +702,36 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "circle_theorems",
-      "prompt": "A and B are points on a circle with centre O, and C is a point on the major arc. Find the angle at the centre, x.",
+      "topic_id": "volume_surface_area_cylinder",
+      "prompt": "A cylinder has radius 8 cm and height 5 cm. Find the exact volume, in terms of π.",
       "solution_steps": [
-        "The angle at the centre is twice the angle at the circumference subtended by the same arc.",
-        "x = 2 × 78° = 156°"
+        "Volume = π × r² × h = π × 8² × 5",
+        "= 320π cm³"
       ],
-      "final_answer": "156°",
+      "final_answer": "320π cm³",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The angle at the centre is twice the angle at the circumference subtended by the same arc.",
+          "description": "Volume = π × r² × h = π × 8² × 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 2 × 78° = 156°",
+          "description": "= 320π cm³",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "156° oe",
+          "description": "320π cm³ oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "circle_angle_centre",
+        "kind": "cylinder",
         "params": {
-          "centre_label": "x°",
-          "circumference_label": "78°"
+          "radius_label": "8 cm",
+          "height_label": "5 cm"
         }
       },
       "solution_diagram": null
@@ -819,22 +790,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "product_rule_counting",
-      "prompt": "A shop sells 4 different fonts and 5 different colours. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "topic_id": "algebraic_inverse_proportion",
+      "prompt": "y is inversely proportional to x^2. When x = 3, y = 50. Find the value of y when x = 5.",
       "solution_steps": [
-        "Total combinations = 4 × 5 = 20"
+        "y = k ÷ x^2",
+        "k = y × x^2 = 50 × 3^2 = 50 × 9 = 450",
+        "y = k ÷ x^2 = 450 ÷ 5^2 = 450 ÷ 25 = 18"
       ],
-      "final_answer": "20",
-      "marks": 2,
+      "final_answer": "18",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total combinations = 4 × 5 = 20",
+          "description": "y = k ÷ x^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "k = y × x^2 = 50 × 3^2 = 50 × 9 = 450",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y = k ÷ x^2 = 450 ÷ 5^2 = 450 ÷ 25 = 18",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "20 oe",
+          "description": "18 oe",
           "marks": 1
         }
       ],

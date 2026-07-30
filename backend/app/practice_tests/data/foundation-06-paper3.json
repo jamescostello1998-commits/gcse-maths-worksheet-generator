@@ -4,6 +4,7 @@
   "tier": "foundation",
   "sitting_id": "foundation-06",
   "paper_number": 3,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "standard_form_to",
@@ -70,26 +71,120 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "negative_multiply_divide",
-      "prompt": "Work out -11 ÷ 11.",
+      "topic_id": "sample_space_diagrams",
+      "prompt": "Two fair spinners, one numbered 1 to 4 and the other numbered 1 to 4, are spun together. Complete the sample space diagram showing the sum of the two spinners, and use it to find the probability that the sum is even.",
       "solution_steps": [
-        "-11 ÷ 11 = -1"
+        "The sample space diagram shows every possible sum of the two spinners.",
+        "Number of favourable outcomes (the sum is even) = 8",
+        "Total number of equally likely outcomes = 16",
+        "P(the sum is even) = 1/2"
       ],
-      "final_answer": "-1",
-      "marks": 2,
+      "final_answer": "1/2",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "-11 ÷ 11 = -1",
+          "description": "The sample space diagram shows every possible sum of the two spinners.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Number of favourable outcomes (the sum is even) = 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total number of equally likely outcomes = 16",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(the sum is even) = 1/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-1 oe",
+          "description": "1/2 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "sample_space_diagram",
+        "params": {
+          "row_values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "col_values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "cells": [
+            [
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            [
+              "3",
+              "4",
+              "5",
+              "6"
+            ],
+            [
+              "4",
+              "5",
+              "6",
+              "7"
+            ],
+            [
+              "5",
+              "6",
+              "7",
+              "8"
+            ]
+          ],
+          "highlight": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -263,28 +358,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_next_term",
-      "prompt": "Find the next term in the sequence: 4, 0, -4, -8, ...",
+      "topic_id": "sequences_term_to_term_rule",
+      "prompt": "Here are the first four terms of a sequence: -2, -6, -18, -54. Describe the term-to-term rule, and find the next term.",
       "solution_steps": [
-        "Subtract 4 each time.",
-        "Next term = -8 - 4 = -12"
+        "Term-to-term rule: multiply by 3",
+        "Next term = -162"
       ],
-      "final_answer": "-12",
+      "final_answer": "Rule: multiply by 3. Next term = -162",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Subtract 4 each time.",
+          "description": "Term-to-term rule: multiply by 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Next term = -8 - 4 = -12",
+          "description": "Next term = -162",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-12 oe",
+          "description": "Rule: multiply by 3. Next term = -162 oe",
           "marks": 1
         }
       ],
@@ -292,41 +387,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "forming_equations_foundation",
-      "prompt": "A rectangle has one side of length 3 cm and the other side of length x cm. The area of the rectangle is 48 cm². Form an equation and solve it to find x.",
+      "topic_id": "change_subject_foundation",
+      "prompt": "Make t the subject of the formula v = u + 13t.",
       "solution_steps": [
-        "Area of a rectangle = length × width.",
-        "3x = 48",
-        "3x = 48",
-        "Divide both sides by 3:",
-        "x = 16"
+        "v = u + 13t",
+        "Subtract u from both sides: v - u = 13t",
+        "Divide both sides by 13: t = (v - u)/13"
       ],
-      "final_answer": "16",
-      "marks": 5,
+      "final_answer": "t = (v - u)/13",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area of a rectangle = length × width.",
+          "description": "v = u + 13t",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3x = 48",
+          "description": "Subtract u from both sides: v - u = 13t",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3x = 48",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by 3: x = 16",
+          "description": "Divide both sides by 13: t = (v - u)/13",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "16 oe",
+          "description": "t = (v - u)/13 oe",
           "marks": 1
         }
       ],
@@ -445,40 +533,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_common_coefficient",
-      "prompt": "Solve the simultaneous equations: 5x + 5y = 5 and 4x + 5y = 2",
+      "topic_id": "functions_evaluate",
+      "prompt": "f(x) = 3x + 3. Find f(-1).",
       "solution_steps": [
-        "5x + 5y = 5  (1)",
-        "4x + 5y = 2  (2)",
-        "Subtract the equations to eliminate y: 1x = 3, so x = 3",
-        "Substitute x = 3 into (1): 5y = -10, so y = -2"
+        "f(-1) = 3×(-1) + 3",
+        "f(-1) = 0"
       ],
-      "final_answer": "x = 3, y = -2",
-      "marks": 5,
+      "final_answer": "0",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5x + 5y = 5  (1)",
+          "description": "f(-1) = 3×(-1) + 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x + 5y = 2  (2)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract the equations to eliminate y: 1x = 3, so x = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute x = 3 into (1): 5y = -10, so y = -2",
+          "description": "f(-1) = 0",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 3, y = -2 oe",
+          "description": "0 oe",
           "marks": 1
         }
       ],
@@ -529,41 +605,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_three_part_foundation",
-      "prompt": "Share 162 in the ratio 7:7:4.",
+      "topic_id": "algebraic_indices_foundation",
+      "prompt": "Simplify 20x^6 ÷ 4x^2",
       "solution_steps": [
-        "Total parts = 7 + 7 + 4 = 18",
-        "Value of one part = 162 ÷ 18 = 9",
-        "Share 1 = 7 × 9 = 63",
-        "Share 2 = 7 × 9 = 63",
-        "Share 3 = 4 × 9 = 36"
+        "Dividing powers of the same base: subtract the exponents, and divide the coefficients.",
+        "20x^6 ÷ 4x^2 = (20÷4) x^(6-2)",
+        "= 5x^4"
       ],
-      "final_answer": "63 : 63 : 36",
-      "marks": 5,
+      "final_answer": "5x^4",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 7 + 7 + 4 = 18",
+          "description": "Dividing powers of the same base: subtract the exponents, and divide the coefficients.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 162 ÷ 18 = 9",
+          "description": "20x^6 ÷ 4x^2 = (20÷4) x^(6-2)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 1 = 7 × 9 = 63",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 7 × 9 = 63 Share 3 = 4 × 9 = 36",
+          "description": "= 5x^4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "63 : 63 : 36 oe",
+          "description": "5x^4 oe",
           "marks": 1
         }
       ],
@@ -629,34 +698,32 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_triangle",
-      "prompt": "A triangle has base 17 cm and height 13 cm. Find its area.",
+      "topic_id": "ratio_find_missing_share",
+      "prompt": "Two amounts are in the ratio 2:3. The first amount is 8. Find the second amount.",
       "solution_steps": [
-        "Area = (1/2) × base × height = (1/2) × 17 × 13 = 221/2 cm²"
+        "Value of one part = 8 ÷ 2 = 4",
+        "Second amount = 3 × 4 = 12"
       ],
-      "final_answer": "221/2 cm²",
-      "marks": 2,
+      "final_answer": "12",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = (1/2) × base × height = (1/2) × 17 × 13 = 221/2 cm²",
+          "description": "Value of one part = 8 ÷ 2 = 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Second amount = 3 × 4 = 12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "221/2 cm² oe",
+          "description": "12 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "triangle_area",
-        "params": {
-          "base": 17,
-          "height": 13,
-          "base_label": "17 cm",
-          "height_label": "13 cm"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -689,47 +756,32 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_straight_line",
-      "prompt": "The angles 109°, 11° and x° lie on a straight line. Find x.",
+      "topic_id": "simple_interest",
+      "prompt": "£3000 is invested at a simple interest rate of 6% per year for 1 years. Find the interest earned.",
       "solution_steps": [
-        "Angles on a straight line sum to 180°.",
-        "x = 180 - (109 + 11) = 180 - 120 = 60"
+        "Simple interest formula: I = P × r × t ÷ 100",
+        "I = 3000 × 6 × 1 ÷ 100 = £180"
       ],
-      "final_answer": "60",
+      "final_answer": "£180",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles on a straight line sum to 180°.",
+          "description": "Simple interest formula: I = P × r × t ÷ 100",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 180 - (109 + 11) = 180 - 120 = 60",
+          "description": "I = 3000 × 6 × 1 ÷ 100 = £180",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "60 oe",
+          "description": "£180 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "angle_line",
-        "params": {
-          "angle_values": [
-            109,
-            11,
-            60
-          ],
-          "labels": [
-            "109°",
-            "11°",
-            "x"
-          ],
-          "around_point": false
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -769,77 +821,136 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_triangle",
-      "prompt": "A triangle has angles 84°, 67°, and x°. Find x.",
+      "topic_id": "angles_parallel_lines_foundation",
+      "prompt": "A line crosses two parallel lines. The angle 130° and the angle x° are corresponding angles. Find x.",
       "solution_steps": [
-        "Angles in a triangle sum to 180°.",
-        "x = 180 - (84 + 67) = 180 - 151 = 29"
+        "Corresponding angles are equal.",
+        "x = 130"
       ],
-      "final_answer": "29",
+      "final_answer": "130",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles in a triangle sum to 180°.",
+          "description": "Corresponding angles are equal.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 180 - (84 + 67) = 180 - 151 = 29",
+          "description": "x = 130",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "29 oe",
+          "description": "130 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "triangle_angles",
+        "kind": "parallel_lines",
         "params": {
-          "angle_labels": [
-            "84°",
-            "67°",
-            "x"
-          ]
+          "known_label": "130°",
+          "unknown_label": "x",
+          "relation": "corresponding"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cylinder_foundation",
-      "prompt": "A cylinder has radius 7 cm and height 4 cm. Find its total surface area, correct to 3 significant figures.",
+      "topic_id": "symmetry_lines",
+      "prompt": "The diagram shows a rhombus. How many lines of symmetry does it have?",
       "solution_steps": [
-        "Surface area = 2πr² + 2πrh = (2 × π × 7²) + (2 × π × 7 × 4)",
-        "= 484 cm² (3 s.f., using a calculator value of π)"
+        "A rhombus has 2 lines of symmetry.",
+        "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram."
       ],
-      "final_answer": "484 cm²",
+      "final_answer": "2 lines of symmetry",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Surface area = 2πr² + 2πrh = (2 × π × 7²) + (2 × π × 7 × 4)",
+          "description": "A rhombus has 2 lines of symmetry.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 484 cm² (3 s.f., using a calculator value of π)",
+          "description": "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "484 cm² oe",
+          "description": "2 lines of symmetry oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cylinder",
+        "kind": "symmetry_shape",
         "params": {
-          "radius_label": "7 cm",
-          "height_label": "4 cm"
+          "vertices": [
+            [
+              0,
+              -3
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              -4,
+              0
+            ]
+          ],
+          "blank": true
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "symmetry_shape",
+        "params": {
+          "vertices": [
+            [
+              0,
+              -3
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              -4,
+              0
+            ]
+          ],
+          "symmetry_lines": [
+            {
+              "p1": [
+                -5,
+                0
+              ],
+              "p2": [
+                5,
+                0
+              ]
+            },
+            {
+              "p1": [
+                0,
+                -4
+              ],
+              "p2": [
+                0,
+                4
+              ]
+            }
+          ]
+        }
+      }
     },
     {
       "topic_id": "construction_triangle",
@@ -883,107 +994,196 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "two_way_tables",
-      "prompt": "The two-way table shows the number of year 10 and year 11 who prefer football or tennis. Copy and complete the table, and state the missing value marked '?'.",
+      "topic_id": "transform_rotate_complete",
+      "prompt": "Rotate shape ABCD 90° anticlockwise about the centre (3, 0). Draw and label the image A'B'C'D'.",
       "solution_steps": [
-        "The missing value is in the 'Year 11' row and 'Football' column.",
-        "Using the row total: 17 - 6 = 11",
-        "Using the column total: 19 - 8 = 11",
-        "Missing value = 11"
+        "Rotate each vertex 90° anticlockwise about the centre (3, 0): every point stays the same distance from the centre and turns through the same angle.",
+        "A(-1, -1) -> A'(4, -4), B(3, -1) -> B'(4, 0), C(2, 3) -> C'(0, -1), D(-2, 2) -> D'(1, -5)"
       ],
-      "final_answer": "11",
-      "marks": 5,
+      "final_answer": "A'(4, -4), B'(4, 0), C'(0, -1), D'(1, -5)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The missing value is in the 'Year 11' row and 'Football' column.",
+          "description": "Rotate each vertex 90° anticlockwise about the centre (3, 0): every point stays the same distance from the centre and turns through the same angle.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Using the row total: 17 - 6 = 11",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Using the column total: 19 - 8 = 11",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Missing value = 11",
+          "description": "A(-1, -1) -> A'(4, -4), B(3, -1) -> B'(4, 0), C(2, 3) -> C'(0, -1), D(-2, 2) -> D'(1, -5)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "11 oe",
+          "description": "A'(4, -4), B'(4, 0), C'(0, -1), D'(1, -5) oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "two_way_table",
+        "kind": "grid_transformation",
         "params": {
-          "row_labels": [
-            "Year 10",
-            "Year 11",
-            "Total"
-          ],
-          "col_labels": [
-            "Football",
-            "Tennis",
-            "Total"
-          ],
-          "cells": [
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
             [
-              "8",
-              "5",
-              "13"
+              -1,
+              -1
             ],
             [
-              "?",
-              "6",
-              "17"
+              3,
+              -1
             ],
             [
-              "19",
-              "11",
-              "30"
+              2,
+              3
+            ],
+            [
+              -2,
+              2
             ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "centre": [
+            3,
+            0
           ]
         }
       },
       "solution_diagram": {
-        "kind": "two_way_table",
+        "kind": "grid_transformation",
         "params": {
-          "row_labels": [
-            "Year 10",
-            "Year 11",
-            "Total"
-          ],
-          "col_labels": [
-            "Football",
-            "Tennis",
-            "Total"
-          ],
-          "cells": [
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
             [
-              "8",
-              "5",
-              "13"
+              -1,
+              -1
             ],
             [
-              "11",
-              "6",
-              "17"
+              3,
+              -1
             ],
             [
-              "19",
-              "11",
-              "30"
+              2,
+              3
+            ],
+            [
+              -2,
+              2
             ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "centre": [
+            3,
+            0
+          ],
+          "image_vertices": [
+            [
+              4,
+              -4
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              0,
+              -1
+            ],
+            [
+              1,
+              -5
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'",
+            "D'"
           ]
         }
       }
+    },
+    {
+      "topic_id": "relative_frequency",
+      "prompt": "A drawing pin is tested 40 times, and it lands point up 33 times. Use this relative frequency to estimate how many times this would happen in 280 trials.",
+      "solution_steps": [
+        "Relative frequency = frequency ÷ number of trials = 33/40 = 33/40",
+        "Estimated number of times in 280 trials = 33/40 × 280 = 231"
+      ],
+      "final_answer": "231",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Relative frequency = frequency ÷ number of trials = 33/40 = 33/40",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Estimated number of times in 280 trials = 33/40 × 280 = 231",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "231 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_complement",
+      "prompt": "A bag contains 4 blue, 4 yellow counters. A counter is picked at random. Find the probability that it is NOT yellow.",
+      "solution_steps": [
+        "P(yellow) = 4/8 = 1/2",
+        "P(not yellow) = 1 - 1/2 = 1/2"
+      ],
+      "final_answer": "1/2",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "P(yellow) = 4/8 = 1/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(not yellow) = 1 - 1/2 = 1/2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "bag_of_counters",
+        "params": {
+          "counts": {
+            "blue": 4,
+            "yellow": 4
+          },
+          "highlight": "yellow"
+        }
+      },
+      "solution_diagram": null
     },
     {
       "topic_id": "set_notation_foundation",
@@ -1026,77 +1226,6 @@
       ],
       "diagram": null,
       "solution_diagram": null
-    },
-    {
-      "topic_id": "fractions_equivalent_diagram",
-      "prompt": "Shape A is divided into 2 equal parts, with 1 shaded. Shape B is divided into 6 equal parts. How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
-      "solution_steps": [
-        "Shape A shows 1/2 shaded; Shape B has 6 equal parts.",
-        "Find the scale factor between the denominators: 6 ÷ 2 = 3",
-        "Multiply the shaded count by the same scale factor: 1 × 3 = 3"
-      ],
-      "final_answer": "3",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Shape A shows 1/2 shaded; Shape B has 6 equal parts.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Find the scale factor between the denominators: 6 ÷ 2 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the shaded count by the same scale factor: 1 × 3 = 3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "bar",
-              "parts": 2,
-              "shaded": 1,
-              "label": "1/2"
-            },
-            {
-              "kind": "bar",
-              "parts": 6,
-              "shaded": 0,
-              "label": "?/6"
-            }
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "bar",
-              "parts": 2,
-              "shaded": 1,
-              "label": "1/2"
-            },
-            {
-              "kind": "bar",
-              "parts": 6,
-              "shaded": 3,
-              "label": "3/6"
-            }
-          ]
-        }
-      }
     }
   ]
 }

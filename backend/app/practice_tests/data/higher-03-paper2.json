@@ -4,6 +4,7 @@
   "tier": "higher",
   "sitting_id": "higher-03",
   "paper_number": 2,
+  "calculator_allowed": false,
   "questions": [
     {
       "topic_id": "fractions_mixed_number_arithmetic",
@@ -152,34 +153,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "surds_multiply_divide",
-      "prompt": "Simplify √8 × √7, giving your answer in the form a√b.",
+      "topic_id": "reverse_percentage",
+      "prompt": "After a 42.5% increase, an item costs £364.80. Find the original price.",
       "solution_steps": [
-        "√8 × √7 = √(8 × 7) = √56",
-        "Find the largest square factor of 56: 2^2 × 14 = 56",
-        "√56 = √(2^2 × 14) = 2√14"
+        "Convert 42.5% to a multiplier: 1.43 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 364.80 ÷ 1.43 = 256"
       ],
-      "final_answer": "2√14",
-      "marks": 4,
+      "final_answer": "£256",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "√8 × √7 = √(8 × 7) = √56",
+          "description": "Convert 42.5% to a multiplier: 1.43 (original × multiplier = new value)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Find the largest square factor of 56: 2^2 × 14 = 56",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "√56 = √(2^2 × 14) = 2√14",
+          "description": "Divide the new value by the multiplier: 364.80 ÷ 1.43 = 256",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2√14 oe",
+          "description": "£256 oe",
           "marks": 1
         }
       ],
@@ -257,214 +252,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "quadratic_inequalities",
-      "prompt": "Solve the inequality: -x^2 + 6x + 16 ≥ 0",
+      "topic_id": "algebraic_proof",
+      "prompt": "Prove algebraically that the sum of the squares of two consecutive integers is always odd.",
       "solution_steps": [
-        "Factorise: -x^2 + 6x + 16 = -(x - 8)(x + 2)",
-        "The critical values are x = -2 and x = 8.",
-        "The coefficient of x^2 is negative, so the graph is a upside-down U-shaped parabola, and ≥ 0 is satisfied between the two roots.",
-        "Answer: -2 ≤ x ≤ 8"
+        "Let two consecutive integers be n and n + 1.",
+        "Write the given expression algebraically: n^2 + (n + 1)^2.",
+        "Expand and simplify: n^2 + (n + 1)^2 = 2n^2 + 2n + 1.",
+        "Factorise/rearrange to expose the structure: 2n^2 + 2n + 1 = 2(n^2 + n) + 1.",
+        "n^2 + n is always a whole number, so 2(n^2 + n) is always even - and the sum of squares is exactly 1 more than that even number, so it is always odd."
       ],
-      "final_answer": "-2 ≤ x ≤ 8",
+      "final_answer": "Proven: n^2 + (n + 1)^2 = 2(n^2 + n) + 1, always odd.",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Factorise: -x^2 + 6x + 16 = -(x - 8)(x + 2)",
+          "description": "Let two consecutive integers be n and n + 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The critical values are x = -2 and x = 8.",
+          "description": "Write the given expression algebraically: n^2 + (n + 1)^2.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The coefficient of x^2 is negative, so the graph is a upside-down U-shaped parabola, and ≥ 0 is satisfied between the two roots.",
+          "description": "Expand and simplify: n^2 + (n + 1)^2 = 2n^2 + 2n + 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer: -2 ≤ x ≤ 8",
+          "description": "Factorise/rearrange to expose the structure: 2n^2 + 2n + 1 = 2(n^2 + n) + 1. n^2 + n is always a whole number, so 2(n^2 + n) is always even - and the sum of squares is exactly 1 more than that even number, so it is always odd.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-2 ≤ x ≤ 8 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "linear_brackets",
-      "prompt": "Solve: 3(2x + 8) = -18",
-      "solution_steps": [
-        "Expand the bracket: 3(2x + 8) = 6x + 24",
-        "6x + 24 = -18",
-        "Subtract 24 from both sides:",
-        "6x = -42",
-        "Divide both sides by 6:",
-        "x = -7"
-      ],
-      "final_answer": "-7",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Expand the bracket: 3(2x + 8) = 6x + 24",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "6x + 24 = -18",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 24 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "6x = -42 Divide both sides by 6: x = -7",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-7 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "plot_reciprocal",
-      "prompt": "Complete a table of values for y = 24/x for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
-      "solution_steps": [
-        "Table of values for y = 24/x:",
-        "x: -4, -3, -2, -1, 1, 2, 3, 4",
-        "y: -6, -8, -12, -24, 24, 12, 8, 6",
-        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
-      ],
-      "final_answer": "Reciprocal curve: y = 24/x",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Table of values for y = 24/x:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y: -6, -8, -12, -24, 24, 12, 8, 6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Reciprocal curve: y = 24/x oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "reciprocal",
-          "a": 24,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -26,
-          "y_max": 26,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "reciprocal",
-          "a": 24,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -26,
-          "y_max": 26,
-          "table_points": [
-            [
-              -4,
-              -6
-            ],
-            [
-              -3,
-              -8
-            ],
-            [
-              -2,
-              -12
-            ],
-            [
-              -1,
-              -24
-            ],
-            [
-              1,
-              24
-            ],
-            [
-              2,
-              12
-            ],
-            [
-              3,
-              8
-            ],
-            [
-              4,
-              6
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "sequences_quadratic_nth_term",
-      "prompt": "Here are the first four terms of a quadratic sequence: 8, 6, 0, -10. Find an expression for the nth term.",
-      "solution_steps": [
-        "First differences: -2, -6, -10",
-        "Second difference is constant: -4, so the coefficient of n^2 is -4 ÷ 2 = -2",
-        "nth term = -2n^2 + 4n + 6"
-      ],
-      "final_answer": "-2n^2 + 4n + 6",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "First differences: -2, -6, -10",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Second difference is constant: -4, so the coefficient of n^2 is -4 ÷ 2 = -2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "nth term = -2n^2 + 4n + 6",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-2n^2 + 4n + 6 oe",
+          "description": "Proven: n^2 + (n + 1)^2 = 2(n^2 + n) + 1, always odd. oe",
           "marks": 1
         }
       ],
@@ -517,89 +339,239 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "graph_transformations",
-      "prompt": "The graph of y = f(x) undergoes a translation by vector (0, 2). Write down the equation of the transformed graph in terms of f(x).",
+      "topic_id": "trig_graph",
+      "prompt": "Complete a table of values for y = sin(x°) for x = 0 to 360 (in steps of 90°), then plot the graph.",
       "solution_steps": [
-        "y = f(x) + 2 corresponds to a translation by vector (0, 2)."
+        "Table of values for y = sin(x°):",
+        "x: 0, 90, 180, 270, 360",
+        "y: 0, 1, 0, -1, 0",
+        "Plot each (x, y) point and join them with a single smooth curve - y = sin(x°) repeats the same shape every 360°, and never goes above 1 or below -1."
       ],
-      "final_answer": "y = f(x) + 2",
-      "marks": 2,
+      "final_answer": "y = sin(x°)",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = f(x) + 2 corresponds to a translation by vector (0, 2).",
+          "description": "Table of values for y = sin(x°):",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: 0, 90, 180, 270, 360",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 0, 1, 0, -1, 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve - y = sin(x°) repeats the same shape every 360°, and never goes above 1 or below -1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = f(x) + 2 oe",
+          "description": "y = sin(x°) oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "graph_transformation",
+        "kind": "function_graph",
         "params": {
-          "transform": "translate_up",
-          "shift": 2,
-          "original_label": "y = f(x)",
-          "transformed_label": "y = f(x) + 2"
+          "kind": "trigonometric",
+          "fn": "sin",
+          "sign": 1,
+          "x_min": 0,
+          "x_max": 360,
+          "y_min": -1.4,
+          "y_max": 1.4,
+          "x_label": "x (degrees)",
+          "blank": true
         }
       },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "velocity_time_interpret",
-      "prompt": "The velocity-time graph shows a car's journey. Find the total distance travelled.",
-      "solution_steps": [
-        "Total distance = total area under the graph (a trapezium)",
-        "Distance = ½ × (35 + 20) × 20 = 550 m"
-      ],
-      "final_answer": "550 m",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total distance = total area under the graph (a trapezium)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Distance = ½ × (35 + 20) × 20 = 550 m",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "550 m oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "piecewise_graph",
+      "solution_diagram": {
+        "kind": "function_graph",
         "params": {
-          "points": [
+          "kind": "trigonometric",
+          "fn": "sin",
+          "sign": 1,
+          "x_min": 0,
+          "x_max": 360,
+          "y_min": -1.4,
+          "y_max": 1.4,
+          "x_label": "x (degrees)",
+          "table_points": [
             [
               0,
               0
             ],
             [
-              5,
-              20
+              90,
+              1
             ],
             [
-              25,
-              20
+              180,
+              0
             ],
             [
-              35,
+              270,
+              -1
+            ],
+            [
+              360,
               0
             ]
-          ],
-          "x_max": 40,
-          "y_max": 25,
-          "x_label": "Time (s)",
-          "y_label": "Velocity (m/s)"
+          ]
         }
-      },
+      }
+    },
+    {
+      "topic_id": "kinematics_suvat",
+      "prompt": "An object starts with a velocity of 15 m/s and has a constant acceleration of -5 m/s^2 for 1 s. Find the total displacement.",
+      "solution_steps": [
+        "This question gives three of s, u, a and t and asks for another, so use s = ut + (1/2)at^2, the equation linking exactly those four (note: t is never the unknown here, since solving this equation for t needs the quadratic formula).",
+        "s = ut + (1/2)at^2",
+        "Substitute u = 15, a = -5, t = 1: s = 15 × 1 + (1/2) × -5 × 1^2 = 15 + -5/2 = 12.5"
+      ],
+      "final_answer": "12.5 m",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "This question gives three of s, u, a and t and asks for another, so use s = ut + (1/2)at^2, the equation linking exactly those four (note: t is never the unknown here, since solving this equation for t needs the quadratic formula).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "s = ut + (1/2)at^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute u = 15, a = -5, t = 1: s = 15 × 1 + (1/2) × -5 × 1^2 = 15 + -5/2 = 12.5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "12.5 m oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_brackets",
+      "prompt": "Solve: 3(2x + 8) = -18",
+      "solution_steps": [
+        "Expand the bracket: 3(2x + 8) = 6x + 24",
+        "6x + 24 = -18",
+        "Subtract 24 from both sides:",
+        "6x = -42",
+        "Divide both sides by 6:",
+        "x = -7"
+      ],
+      "final_answer": "-7",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: 3(2x + 8) = 6x + 24",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "6x + 24 = -18",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 24 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "6x = -42 Divide both sides by 6: x = -7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-7 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_fractions_add_subtract",
+      "prompt": "Simplify 9/(x - 2) - 9/(x - 8), giving your answer as a single fraction.",
+      "solution_steps": [
+        "Write both fractions over the common denominator (x - 2)(x - 8):",
+        "9/(x - 2) - 9/(x - 8) = (9(x - 8) - 9(x - 2))/(x - 2)(x - 8)",
+        "Expand the numerator: 9(x - 8) - 9(x - 2) = -54",
+        "= (-54)/(x - 2)(x - 8)"
+      ],
+      "final_answer": "(-54)/(x - 2)(x - 8)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Write both fractions over the common denominator (x - 2)(x - 8):",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "9/(x - 2) - 9/(x - 8) = (9(x - 8) - 9(x - 2))/(x - 2)(x - 8)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand the numerator: 9(x - 8) - 9(x - 2) = -54",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= (-54)/(x - 2)(x - 8)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(-54)/(x - 2)(x - 8) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pressure_higher",
+      "prompt": "A machine foot has a rectangular base measuring 20 cm × 20 cm and exerts a pressure of 4 N/cm². Find the force it exerts.",
+      "solution_steps": [
+        "area = length × width = 20 × 20 = 400 cm²",
+        "force = pressure × area = 4 × 400 = 1600 N"
+      ],
+      "final_answer": "1600 N",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "area = length × width = 20 × 20 = 400 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "force = pressure × area = 4 × 400 = 1600 N",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1600 N oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -638,28 +610,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "unit_conversions_higher",
-      "prompt": "Convert 4149 mm² to cm².",
+      "topic_id": "speed_with_conversions",
+      "prompt": "A car travels 684 km in 6 hours. Find its average speed in m/s, correct to 1 decimal place.",
       "solution_steps": [
-        "Linear conversion factor: 1 cm = 10 mm, so for area, 1 cm² = 10^2 = 100 mm²",
-        "4149 mm² = 4149 ÷ 100 = 41.49 cm²"
+        "speed = distance ÷ time = 684 ÷ 6 = 114 km/h",
+        "Convert to m/s: 114 ÷ 3.6 = 31.7 m/s (1 d.p.)"
       ],
-      "final_answer": "41.49 cm²",
+      "final_answer": "31.7 m/s",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Linear conversion factor: 1 cm = 10 mm, so for area, 1 cm² = 10^2 = 100 mm²",
+          "description": "speed = distance ÷ time = 684 ÷ 6 = 114 km/h",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4149 mm² = 4149 ÷ 100 = 41.49 cm²",
+          "description": "Convert to m/s: 114 ÷ 3.6 = 31.7 m/s (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "41.49 cm² oe",
+          "description": "31.7 m/s oe",
           "marks": 1
         }
       ],
@@ -667,28 +639,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "mixed_percentages",
-      "prompt": "After a 42.5% increase, an item costs £461.70. Find the original price.",
+      "topic_id": "ratio_share_three_part",
+      "prompt": "Share 27 in the ratio 2:2:5.",
       "solution_steps": [
-        "Convert 42.5% to a multiplier: 1.43 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 461.70 ÷ 1.43 = 324"
+        "Total parts = 2 + 2 + 5 = 9",
+        "Value of one part = 27 ÷ 9 = 3",
+        "Share 1 = 2 × 3 = 6",
+        "Share 2 = 2 × 3 = 6",
+        "Share 3 = 5 × 3 = 15"
       ],
-      "final_answer": "£324",
-      "marks": 3,
+      "final_answer": "6 : 6 : 15",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 42.5% to a multiplier: 1.43 (original × multiplier = new value)",
+          "description": "Total parts = 2 + 2 + 5 = 9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide the new value by the multiplier: 461.70 ÷ 1.43 = 324",
+          "description": "Value of one part = 27 ÷ 9 = 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 1 = 2 × 3 = 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 2 = 2 × 3 = 6 Share 3 = 5 × 3 = 15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£324 oe",
+          "description": "6 : 6 : 15 oe",
           "marks": 1
         }
       ],
@@ -696,144 +681,122 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "compound_percentage",
-      "prompt": "A price of £36 decreases by 12%, then increases by 12%. Find the final price.",
+      "topic_id": "arc_length",
+      "prompt": "A sector of a circle has radius 12 cm and angle 255°. Find the exact arc length, in terms of π.",
       "solution_steps": [
-        "After the first change: 36 × 0.88 = 31.68",
-        "After the second change: 31.68 × 1.12 = 35.48"
+        "Arc length = (θ ÷ 360) × 2 × π × r = (255 ÷ 360) × 2 × π × 12",
+        "= 17π cm"
       ],
-      "final_answer": "£35.48",
+      "final_answer": "17π cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first change: 36 × 0.88 = 31.68",
+          "description": "Arc length = (θ ÷ 360) × 2 × π × r = (255 ÷ 360) × 2 × π × 12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "After the second change: 31.68 × 1.12 = 35.48",
+          "description": "= 17π cm",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£35.48 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "percentage_increase_decrease_calculator",
-      "prompt": "Using a calculator, increase £284.05 by 13.5%. Give your answer to 2 decimal places.",
-      "solution_steps": [
-        "Convert 13.5% to a multiplier: 1.135",
-        "Multiply: £284.05 × 1.135 = £322.40 (calculator, 2 d.p.)"
-      ],
-      "final_answer": "£322.40",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert 13.5% to a multiplier: 1.135",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply: £284.05 × 1.135 = £322.40 (calculator, 2 d.p.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£322.40 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "volume_surface_area_pyramid",
-      "prompt": "A square-based pyramid has a base of side 12 cm and a perpendicular height of 19 cm. Find its total surface area, correct to 3 significant figures.",
-      "solution_steps": [
-        "Slant height l = √(height² + (base ÷ 2)²) = √(19² + (12 ÷ 2)²) ≈ 19.9 cm",
-        "Surface area = base² + 2 × base × l = 12² + 2 × 12 × 19.9",
-        "= 622 cm² (3 s.f.)"
-      ],
-      "final_answer": "622 cm²",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Slant height l = √(height² + (base ÷ 2)²) = √(19² + (12 ÷ 2)²) ≈ 19.9 cm",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Surface area = base² + 2 × base × l = 12² + 2 × 12 × 19.9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 622 cm² (3 s.f.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "622 cm² oe",
+          "description": "17π cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "pyramid",
+        "kind": "sector",
         "params": {
-          "base_label": "12 cm",
-          "height_label": "19 cm",
-          "slant_label": "19.92 cm"
+          "angle": 255,
+          "radius_label": "12 cm",
+          "angle_label": "255°"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_missing_angle_higher",
-      "prompt": "In the right-angled triangle shown, find the angle x, correct to 1 decimal place.",
+      "topic_id": "area_semicircle_compound_higher",
+      "prompt": "A shape is made from a rectangle 6 cm by 5 cm with a semicircle of diameter 6 cm attached to one side. Find the total area, giving your answer in terms of π.",
       "solution_steps": [
-        "Use sin, since we know two of the three sides.",
-        "sin(x) = 24 ÷ 28",
-        "x = sin^-1(24 ÷ 28) = 59.0° (1 d.p.)"
+        "Area of rectangle = 6 × 5 = 30 cm²",
+        "Radius of semicircle = 6 ÷ 2 = 3 cm",
+        "Area of semicircle = (1/2) × π × 3² = (9/2)π cm²",
+        "Total area = 30 + (9/2)π cm² (exact form)"
       ],
-      "final_answer": "59.0°",
-      "marks": 4,
+      "final_answer": "(30 + (9/2)π) cm²",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Use sin, since we know two of the three sides.",
+          "description": "Area of rectangle = 6 × 5 = 30 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "sin(x) = 24 ÷ 28",
+          "description": "Radius of semicircle = 6 ÷ 2 = 3 cm",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = sin^-1(24 ÷ 28) = 59.0° (1 d.p.)",
+          "description": "Area of semicircle = (1/2) × π × 3² = (9/2)π cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total area = 30 + (9/2)π cm² (exact form)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "59.0° oe",
+          "description": "(30 + (9/2)π) cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "trig_triangle",
+        "kind": "rectangle_semicircle",
         "params": {
-          "adjacent_label": null,
-          "opposite_label": "24 cm",
-          "hyp_label": "28 cm",
-          "angle_label": "x°"
+          "width": 6,
+          "height": 5,
+          "radius": 3,
+          "width_label": "6 cm",
+          "height_label": "5 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "volume_surface_area_cylinder",
+      "prompt": "A cylinder has radius 11 cm and height 19 cm. Find the exact total surface area, in terms of π.",
+      "solution_steps": [
+        "Surface area = 2πr(r + h) = 2 × π × 11 × (11 + 19)",
+        "= 660π cm²"
+      ],
+      "final_answer": "660π cm²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Surface area = 2πr(r + h) = 2 × π × 11 × (11 + 19)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 660π cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "660π cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "cylinder",
+        "params": {
+          "radius_label": "11 cm",
+          "height_label": "19 cm"
         }
       },
       "solution_diagram": null
@@ -890,187 +853,163 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof",
-      "prompt": "ABCD is a square, and AC is one of its diagonals. Prove that the two triangles are congruent.",
+      "topic_id": "tree_diagram_dependent",
+      "prompt": "A bag contains 4 red and 8 yellow counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the two counters are different colours.",
       "solution_steps": [
-        "AB = AD (sides of the square)",
-        "angle ABC = angle ADC = 90° (angles of the square)",
-        "BC = DC (sides of the square)",
-        "By Side-Angle-Side (SAS), the triangles are congruent.",
-        "Since two sides and the included angle match, triangles ABC and ADC are congruent."
+        "After the first counter is picked (without replacement), there are 11 counters left.",
+        "P(red then red) = 1/3 × 3/11 = 1/11",
+        "P(red then yellow) = 1/3 × 8/11 = 8/33",
+        "P(yellow then red) = 2/3 × 4/11 = 8/33",
+        "P(yellow then yellow) = 2/3 × 7/11 = 14/33",
+        "P(the two counters are different colours) = 16/33"
       ],
-      "final_answer": "Triangles are congruent (SAS).",
+      "final_answer": "16/33",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "AB = AD (sides of the square)",
+          "description": "After the first counter is picked (without replacement), there are 11 counters left.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "angle ABC = angle ADC = 90° (angles of the square)",
+          "description": "P(red then red) = 1/3 × 3/11 = 1/11",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "BC = DC (sides of the square)",
+          "description": "P(red then yellow) = 1/3 × 8/11 = 8/33",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "By Side-Angle-Side (SAS), the triangles are congruent. Since two sides and the included angle match, triangles ABC and ADC are congruent.",
+          "description": "P(yellow then red) = 2/3 × 4/11 = 8/33 P(yellow then yellow) = 2/3 × 7/11 = 14/33 P(the two counters are different colours) = 16/33",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Triangles are congruent (SAS). oe",
+          "description": "16/33 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "two_triangle_congruence",
+        "kind": "tree_diagram",
         "params": {
-          "labels_1": [
-            "A",
-            "B",
-            "C"
-          ],
-          "labels_2": [
-            "A",
-            "D",
-            "C"
-          ],
-          "ticks_1": [
+          "stage1": [
             [
-              0,
-              1,
-              2
+              "Red",
+              "1/3"
             ],
             [
-              1,
-              2,
-              3
+              "Yellow",
+              "2/3"
             ]
           ],
-          "ticks_2": [
+          "stage2": [
             [
-              0,
-              1,
-              2
+              [
+                "Red",
+                "3/11"
+              ],
+              [
+                "Yellow",
+                "8/11"
+              ]
             ],
             [
-              1,
-              2,
-              3
+              [
+                "Red",
+                "4/11"
+              ],
+              [
+                "Yellow",
+                "7/11"
+              ]
             ]
           ],
-          "arcs_1": [
+          "leaf_probs": [
             [
-              1,
-              1
-            ]
-          ],
-          "arcs_2": [
+              "1/11",
+              "8/33"
+            ],
             [
-              1,
-              1
+              "8/33",
+              "14/33"
             ]
-          ],
-          "note": "AC is the shared diagonal of the square."
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "venn_diagram_notation",
-      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7}. The Venn diagram shows sets A and B. List the elements of A ∪ B.",
-      "solution_steps": [
-        "ξ = {1, 2, 3, 4, 5, 6, 7}",
-        "A = {1, 2, 6}, B = {1, 2, 3}",
-        "A ∪ B means the elements in A, in B, or in both.",
-        "A ∪ B = {1, 2, 3, 6}"
-      ],
-      "final_answer": "{1, 2, 3, 6}",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "ξ = {1, 2, 3, 4, 5, 6, 7}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A = {1, 2, 6}, B = {1, 2, 3}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A ∪ B means the elements in A, in B, or in both.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A ∪ B = {1, 2, 3, 6}",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "{1, 2, 3, 6} oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "venn_diagram",
-        "params": {
-          "labels": [
-            "A",
-            "B"
-          ],
-          "universal_label": "S",
-          "region_text": {
-            "a_only": "6",
-            "b_only": "3",
-            "both": "1, 2",
-            "neither": "4, 5, 7"
-          }
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "probability_combined_dice",
-      "prompt": "Two fair six-sided dice are rolled. Find the probability that both dice show 5.",
-      "solution_steps": [
-        "P(first die is 5) = 1/6, P(second die is 5) = 1/6",
-        "Independent events multiply: P(both 5) = 1/6 × 1/6 = 1/36"
-      ],
-      "final_answer": "1/36",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "P(first die is 5) = 1/6, P(second die is 5) = 1/6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Independent events multiply: P(both 5) = 1/6 × 1/6 = 1/36",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1/36 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "dice",
-        "params": {
-          "values": [
-            4,
-            4
           ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "set_notation",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, A = {1, 5, 6}, B = {1, 2, 5, 6, 10, 11}. List the elements of A'.",
+      "solution_steps": [
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}",
+        "A = {1, 5, 6}",
+        "B = {1, 2, 5, 6, 10, 11}",
+        "A' means the complement of A (elements not in A).",
+        "A' = {2, 3, 4, 7, 8, 9, 10, 11}"
+      ],
+      "final_answer": "{2, 3, 4, 7, 8, 9, 10, 11}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {1, 5, 6}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B = {1, 2, 5, 6, 10, 11}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A' means the complement of A (elements not in A). A' = {2, 3, 4, 7, 8, 9, 10, 11}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "{2, 3, 4, 7, 8, 9, 10, 11} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "graph_transformations",
+      "prompt": "The graph of y = f(x) undergoes a translation by vector (0, 2). Write down the equation of the transformed graph in terms of f(x).",
+      "solution_steps": [
+        "y = f(x) + 2 corresponds to a translation by vector (0, 2)."
+      ],
+      "final_answer": "y = f(x) + 2",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = f(x) + 2 corresponds to a translation by vector (0, 2).",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y = f(x) + 2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "graph_transformation",
+        "params": {
+          "transform": "translate_up",
+          "shift": 2,
+          "original_label": "y = f(x)",
+          "transformed_label": "y = f(x) + 2"
         }
       },
       "solution_diagram": null

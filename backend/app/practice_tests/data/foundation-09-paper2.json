@@ -4,6 +4,7 @@
   "tier": "foundation",
   "sitting_id": "foundation-09",
   "paper_number": 2,
+  "calculator_allowed": false,
   "questions": [
     {
       "topic_id": "prime_numbers",
@@ -64,28 +65,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_ordering",
-      "prompt": "Write these values in order, starting with the smallest: 80%, 0.52, 0.26, 40%",
+      "topic_id": "decimals_round_sf",
+      "prompt": "Round 876.168 to 2 significant figures.",
       "solution_steps": [
-        "Convert each value to a decimal: 80% = 0.80, 0.52 = 0.52, 0.26 = 0.26, 40% = 0.40",
-        "Order from smallest to largest: 0.26, 40%, 0.52, 80%"
+        "Identify the first 2 significant figures of 876.168.",
+        "876.168 rounded to 2 significant figures = 880"
       ],
-      "final_answer": "0.26, 40%, 0.52, 80%",
+      "final_answer": "880",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert each value to a decimal: 80% = 0.80, 0.52 = 0.52, 0.26 = 0.26, 40% = 0.40",
+          "description": "Identify the first 2 significant figures of 876.168.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Order from smallest to largest: 0.26, 40%, 0.52, 80%",
+          "description": "876.168 rounded to 2 significant figures = 880",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0.26, 40%, 0.52, 80% oe",
+          "description": "880 oe",
           "marks": 1
         }
       ],
@@ -228,22 +229,28 @@
       }
     },
     {
-      "topic_id": "negative_multiply_divide",
-      "prompt": "Work out 27 ÷ (-3).",
+      "topic_id": "negative_ordering",
+      "prompt": "Write these numbers in order, from largest to smallest: 9, -9, -6, -8, 3",
       "solution_steps": [
-        "27 ÷ (-3) = -9"
+        "Place the numbers on a number line: 9, -9, -6, -8, 3.",
+        "Reading them in order from largest to smallest gives: 9, 3, -6, -8, -9."
       ],
-      "final_answer": "-9",
-      "marks": 2,
+      "final_answer": "9, 3, -6, -8, -9",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "27 ÷ (-3) = -9",
+          "description": "Place the numbers on a number line: 9, -9, -6, -8, 3.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Reading them in order from largest to smallest gives: 9, 3, -6, -8, -9.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-9 oe",
+          "description": "9, 3, -6, -8, -9 oe",
           "marks": 1
         }
       ],
@@ -412,100 +419,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_straight_line",
-      "prompt": "Complete a table of values for y = 4x + 3 for x = -3 to 3, then plot the graph.",
-      "solution_steps": [
-        "Table of values for y = 4x + 3:",
-        "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: -9, -5, -1, 3, 7, 11, 15",
-        "Plot each (x, y) point and join them with a single ruled straight line."
-      ],
-      "final_answer": "Straight line: y = 4x + 3",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Table of values for y = 4x + 3:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x: -3, -2, -1, 0, 1, 2, 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y: -9, -5, -1, 3, 7, 11, 15",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Straight line: y = 4x + 3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "linear",
-          "m": 4,
-          "c": 3,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -10,
-          "y_max": 16,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "linear",
-          "m": 4,
-          "c": 3,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -10,
-          "y_max": 16,
-          "table_points": [
-            [
-              -3,
-              -9
-            ],
-            [
-              -2,
-              -5
-            ],
-            [
-              -1,
-              -1
-            ],
-            [
-              0,
-              3
-            ],
-            [
-              1,
-              7
-            ],
-            [
-              2,
-              11
-            ],
-            [
-              3,
-              15
-            ]
-          ]
-        }
-      }
-    },
-    {
       "topic_id": "expand_double_brackets_foundation",
       "prompt": "Expand: (4x + 5)(2x + 9)",
       "solution_steps": [
@@ -548,34 +461,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_indices_foundation",
-      "prompt": "Simplify 6x^6 × 2x^5",
+      "topic_id": "solve_quadratic_factorising_foundation",
+      "prompt": "Solve x^2 + 9x + 8 = 0 by factorising.",
       "solution_steps": [
-        "Multiplying powers of the same base: add the exponents, and multiply the coefficients.",
-        "6x^6 × 2x^5 = (6×2) x^(6+5)",
-        "= 12x^11"
+        "Find two numbers that multiply to 8 and add to 9: 8 and 1",
+        "Factorise: (x + 8)(x + 1) = 0",
+        "Either x + 8 = 0 or x + 1 = 0",
+        "x = -8 or x = -1"
       ],
-      "final_answer": "12x^11",
-      "marks": 4,
+      "final_answer": "x = -8 or x = -1",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiplying powers of the same base: add the exponents, and multiply the coefficients.",
+          "description": "Find two numbers that multiply to 8 and add to 9: 8 and 1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "6x^6 × 2x^5 = (6×2) x^(6+5)",
+          "description": "Factorise: (x + 8)(x + 1) = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 12x^11",
+          "description": "Either x + 8 = 0 or x + 1 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -8 or x = -1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12x^11 oe",
+          "description": "x = -8 or x = -1 oe",
           "marks": 1
         }
       ],
@@ -583,27 +502,100 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "stats_range",
-      "prompt": "Find the range of this data set: 19, 4, 30, 29, 4.",
+      "topic_id": "plot_quadratic",
+      "prompt": "Complete a table of values for y = -x^2 + x + 4 for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "Range = largest - smallest = 30 - 4 = 26"
+        "Table of values for y = -x^2 + x + 4:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: -8, -2, 2, 4, 4, 2, -2",
+        "Plot each (x, y) point and join them with a single smooth curve."
       ],
-      "final_answer": "26",
-      "marks": 2,
+      "final_answer": "Quadratic curve: y = -x^2 + x + 4",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Range = largest - smallest = 30 - 4 = 26",
+          "description": "Table of values for y = -x^2 + x + 4:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: -8, -2, 2, 4, 4, 2, -2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "26 oe",
+          "description": "Quadratic curve: y = -x^2 + x + 4 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "quadratic",
+          "a": -1,
+          "b": 1,
+          "c": 4,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -9,
+          "y_max": 5,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "quadratic",
+          "a": -1,
+          "b": 1,
+          "c": 4,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -9,
+          "y_max": 5,
+          "table_points": [
+            [
+              -3,
+              -8
+            ],
+            [
+              -2,
+              -2
+            ],
+            [
+              -1,
+              2
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              -2
+            ]
+          ]
+        }
+      }
     },
     {
       "topic_id": "factorise_common_factor",
@@ -628,6 +620,122 @@
         {
           "code": "A1",
           "description": "7(6x - 5) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "sequences_next_term",
+      "prompt": "Find the next term in the sequence: 6, 9, 12, 15, ...",
+      "solution_steps": [
+        "Add 3 each time.",
+        "Next term = 15 + 3 = 18"
+      ],
+      "final_answer": "18",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Add 3 each time.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Next term = 15 + 3 = 18",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "18 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_shape_similar_foundation",
+      "prompt": "Shape A and Shape B are similar. A side on shape A is 10 cm. The corresponding side on shape B is 5 cm. Another side on shape A is 6 cm. Find the length of the corresponding side on shape B.",
+      "solution_steps": [
+        "Scale factor = 5 ÷ 10 = 1/2",
+        "Corresponding length = 6 × 1/2 = 3"
+      ],
+      "final_answer": "3 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Scale factor = 5 ÷ 10 = 1/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Corresponding length = 6 × 1/2 = 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "compound_percentage_foundation",
+      "prompt": "A price of £60 increases by 25%, then decreases by 50%. Find the final price.",
+      "solution_steps": [
+        "After the first change: 60 × 1.25 = 75",
+        "After the second change: 75 × 0.50 = 37.50"
+      ],
+      "final_answer": "£37.50",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "After the first change: 60 × 1.25 = 75",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "After the second change: 75 × 0.50 = 37.50",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£37.50 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_find_missing_share",
+      "prompt": "Two amounts are in the ratio 7:6. The first amount is 49. Find the second amount.",
+      "solution_steps": [
+        "Value of one part = 49 ÷ 7 = 7",
+        "Second amount = 6 × 7 = 42"
+      ],
+      "final_answer": "42",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Value of one part = 49 ÷ 7 = 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Second amount = 6 × 7 = 42",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "42 oe",
           "marks": 1
         }
       ],
@@ -705,478 +813,166 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "compound_percentage_foundation",
-      "prompt": "A price of £60 increases by 25%, then decreases by 50%. Find the final price.",
+      "topic_id": "negative_add_subtract",
+      "prompt": "Work out -11 - (-6).",
       "solution_steps": [
-        "After the first change: 60 × 1.25 = 75",
-        "After the second change: 75 × 0.50 = 37.50"
+        "-11 - (-6) = -5"
       ],
-      "final_answer": "£37.50",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "After the first change: 60 × 1.25 = 75",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "After the second change: 75 × 0.50 = 37.50",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£37.50 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_find_missing_share",
-      "prompt": "Two amounts are in the ratio 7:6. The first amount is 49. Find the second amount.",
-      "solution_steps": [
-        "Value of one part = 49 ÷ 7 = 7",
-        "Second amount = 6 × 7 = 42"
-      ],
-      "final_answer": "42",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Value of one part = 49 ÷ 7 = 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Second amount = 6 × 7 = 42",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "42 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "volume_surface_area_cube",
-      "prompt": "A cube has side length 17 cm. Find its surface area.",
-      "solution_steps": [
-        "Surface area = 6 × side² = 6 × 17² = 6 × 289 = 1734 cm²"
-      ],
-      "final_answer": "1734 cm²",
+      "final_answer": "-5",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Surface area = 6 × side² = 6 × 17² = 6 × 289 = 1734 cm²",
+          "description": "-11 - (-6) = -5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1734 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "cuboid",
-        "params": {
-          "width_label": "17 cm",
-          "height_label": "17 cm",
-          "length_label": "17 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "symmetry_rotational",
-      "prompt": "The diagram shows a rectangle. State the order of rotational symmetry.",
-      "solution_steps": [
-        "Rotating the rectangle about its centre, it looks exactly the same 2 times during a full 360° turn.",
-        "So the order of rotational symmetry is 2."
-      ],
-      "final_answer": "order 2",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Rotating the rectangle about its centre, it looks exactly the same 2 times during a full 360° turn.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "So the order of rotational symmetry is 2.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "order 2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "symmetry_shape",
-        "params": {
-          "vertices": [
-            [
-              0,
-              0
-            ],
-            [
-              6,
-              0
-            ],
-            [
-              6,
-              4
-            ],
-            [
-              0,
-              4
-            ]
-          ],
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "symmetry_shape",
-        "params": {
-          "vertices": [
-            [
-              0,
-              0
-            ],
-            [
-              6,
-              0
-            ],
-            [
-              6,
-              4
-            ],
-            [
-              0,
-              4
-            ]
-          ],
-          "rotation_centre": [
-            3.0,
-            2.0
-          ],
-          "rotation_order": 2
-        }
-      }
-    },
-    {
-      "topic_id": "transform_enlarge_complete_foundation",
-      "prompt": "Enlarge shape ABCDEF by scale factor 2, centre (5, 5). Draw and label the image A'B'C'D'E'F'.",
-      "solution_steps": [
-        "The centre of enlargement is (5, 5) and the scale factor is 2.",
-        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-4, -6) from the centre, so A' = (5, 5) + 2 × (-4, -6) = (-3, -7).",
-        "Repeat for every vertex: A(1, -1) -> A'(-3, -7), B(6, -1) -> B'(7, -7), C(6, 1) -> C'(7, -3), D(4, 1) -> D'(3, -3), E(4, 3) -> E'(3, 1), F(1, 3) -> F'(-3, 1)"
-      ],
-      "final_answer": "A'(-3, -7), B'(7, -7), C'(7, -3), D'(3, -3), E'(3, 1), F'(-3, 1)",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The centre of enlargement is (5, 5) and the scale factor is 2.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-4, -6) from the centre, so A' = (5, 5) + 2 × (-4, -6) = (-3, -7).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Repeat for every vertex: A(1, -1) -> A'(-3, -7), B(6, -1) -> B'(7, -7), C(6, 1) -> C'(7, -3), D(4, 1) -> D'(3, -3), E(4, 3) -> E'(3, 1), F(1, 3) -> F'(-3, 1)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "A'(-3, -7), B'(7, -7), C'(7, -3), D'(3, -3), E'(3, 1), F'(-3, 1) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              1,
-              -1
-            ],
-            [
-              6,
-              -1
-            ],
-            [
-              6,
-              1
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              4,
-              3
-            ],
-            [
-              1,
-              3
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
-          ],
-          "centre": [
-            5,
-            5
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              1,
-              -1
-            ],
-            [
-              6,
-              -1
-            ],
-            [
-              6,
-              1
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              4,
-              3
-            ],
-            [
-              1,
-              3
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
-          ],
-          "centre": [
-            5,
-            5
-          ],
-          "image_vertices": [
-            [
-              -3,
-              -7
-            ],
-            [
-              7,
-              -7
-            ],
-            [
-              7,
-              -3
-            ],
-            [
-              3,
-              -3
-            ],
-            [
-              3,
-              1
-            ],
-            [
-              -3,
-              1
-            ]
-          ],
-          "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'",
-            "E'",
-            "F'"
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "angles_triangle",
-      "prompt": "A triangle has angles 51°, 33°, and x°. Find x.",
-      "solution_steps": [
-        "Angles in a triangle sum to 180°.",
-        "x = 180 - (51 + 33) = 180 - 84 = 96"
-      ],
-      "final_answer": "96",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Angles in a triangle sum to 180°.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 180 - (51 + 33) = 180 - 84 = 96",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "96 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "triangle_angles",
-        "params": {
-          "angle_labels": [
-            "51°",
-            "33°",
-            "x"
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "trig_missing_side_foundation",
-      "prompt": "In the right-angled triangle shown, find the length of x, correct to 3 significant figures.",
-      "solution_steps": [
-        "We know the hypotenuse and want the adjacent, so use cos.",
-        "x = 18 × cos(49°) = 11.8 (to 3 s.f.)"
-      ],
-      "final_answer": "11.8 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "We know the hypotenuse and want the adjacent, so use cos.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 18 × cos(49°) = 11.8 (to 3 s.f.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "11.8 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "trig_triangle",
-        "params": {
-          "adjacent_label": "x cm",
-          "opposite_label": null,
-          "hyp_label": "18 cm",
-          "angle_label": "49°"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "tree_diagram_drawing",
-      "prompt": "A bag contains 2 red and 5 blue counters. A counter is picked at random, replaced, and then a second counter is picked at random. Draw a fully-labelled tree diagram to show this information, and use it to find the probability that the first counter is red and the second counter is blue.",
-      "solution_steps": [
-        "Draw two branches from the start: P(red) = 2/7, P(blue) = 5/7.",
-        "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
-        "P(red then blue) = 2/7 × 5/7 = 10/49"
-      ],
-      "final_answer": "10/49",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Draw two branches from the start: P(red) = 2/7, P(blue) = 5/7.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(red then blue) = 2/7 × 5/7 = 10/49",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "10/49 oe",
+          "description": "-5 oe",
           "marks": 1
         }
       ],
       "diagram": null,
-      "solution_diagram": {
-        "kind": "tree_diagram",
-        "params": {
-          "stage1": [
-            [
-              "Red",
-              "2/7"
-            ],
-            [
-              "Blue",
-              "5/7"
-            ]
-          ],
-          "stage2": [
-            [
-              [
-                "Red",
-                "2/7"
-              ],
-              [
-                "Blue",
-                "5/7"
-              ]
-            ],
-            [
-              [
-                "Red",
-                "2/7"
-              ],
-              [
-                "Blue",
-                "5/7"
-              ]
-            ]
-          ]
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "construction_perpendicular_bisector",
+      "prompt": "Line segment LD has length 7 cm. Describe, step by step, how to construct the perpendicular bisector of LD using only a ruler and a pair of compasses.",
+      "solution_steps": [
+        "Open the compasses to a radius more than half of 7 cm (more than half the length of LD).",
+        "With the compass point on L, draw an arc above and below the line.",
+        "Without changing the compass radius, place the point on D and draw two more arcs, crossing the first two.",
+        "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of LD."
+      ],
+      "final_answer": "A straight line through the two arc intersections, crossing LD at its midpoint at a right angle.",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Open the compasses to a radius more than half of 7 cm (more than half the length of LD).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "With the compass point on L, draw an arc above and below the line.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Without changing the compass radius, place the point on D and draw two more arcs, crossing the first two.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of LD.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "A straight line through the two arc intersections, crossing LD at its midpoint at a right angle. oe",
+          "marks": 1
         }
-      }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_polygon_interior_foundation",
+      "prompt": "A regular polygon has 30 sides. Find the size of one exterior angle.",
+      "solution_steps": [
+        "Exterior angles of a regular polygon sum to 360°: each exterior angle = 360 ÷ 30 = 12°"
+      ],
+      "final_answer": "12°",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Exterior angles of a regular polygon sum to 360°: each exterior angle = 360 ÷ 30 = 12°",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "12° oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "polygon",
+        "params": {
+          "n_sides": 12,
+          "marked_angle_label": "?"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "nets_3d_shapes",
+      "prompt": "How many squares does the net of a cube contain?",
+      "solution_steps": [
+        "Imagine unfolding a cube flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
+        "A cube's net is made up of: 6 squares.",
+        "So the answer is: 6."
+      ],
+      "final_answer": "6",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Imagine unfolding a cube flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A cube's net is made up of: 6 squares.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "So the answer is: 6.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "net",
+        "params": {
+          "shape": "cube"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "roots_foundation",
+      "prompt": "Without using a calculator, show that √55 lies between two consecutive whole numbers, and state them.",
+      "solution_steps": [
+        "7^2 = 49 and 8^2 = 64",
+        "Since 49 < 55 < 64, √55 is between 7 and 8."
+      ],
+      "final_answer": "between 7 and 8",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "7^2 = 49 and 8^2 = 64",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Since 49 < 55 < 64, √55 is between 7 and 8.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "between 7 and 8 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
     },
     {
       "topic_id": "venn_diagram_probability",
@@ -1228,93 +1024,38 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pie_chart_interpret",
-      "prompt": "The pie chart shows the favourite sport of 24 people. What fraction of the total chose Football? Give your answer in its simplest form.",
+      "topic_id": "algebraic_indices_foundation",
+      "prompt": "Simplify 6x^6 × 2x^5",
       "solution_steps": [
-        "Football represents 1 out of 24: 1/24.",
-        "Simplify: 1/24."
+        "Multiplying powers of the same base: add the exponents, and multiply the coefficients.",
+        "6x^6 × 2x^5 = (6×2) x^(6+5)",
+        "= 12x^11"
       ],
-      "final_answer": "1/24",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Football represents 1 out of 24: 1/24.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Simplify: 1/24.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1/24 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "pie_chart",
-        "params": {
-          "categories": [
-            "Football",
-            "Tennis",
-            "Swimming",
-            "Rugby"
-          ],
-          "values": [
-            1,
-            3,
-            11,
-            9
-          ],
-          "show": "value"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "probability_and_or_rule",
-      "prompt": "A bag contains coloured counters. P(red) = 3/12. P(green) = 3/12. A counter cannot be both colours. Find P(red or green).",
-      "solution_steps": [
-        "A counter cannot be both red and green, so these events are mutually exclusive.",
-        "For mutually exclusive events, P(A or B) = P(A) + P(B).",
-        "P(red or green) = 3/12 + 3/12 = 1/2"
-      ],
-      "final_answer": "1/2",
+      "final_answer": "12x^11",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A counter cannot be both red and green, so these events are mutually exclusive.",
+          "description": "Multiplying powers of the same base: add the exponents, and multiply the coefficients.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For mutually exclusive events, P(A or B) = P(A) + P(B).",
+          "description": "6x^6 × 2x^5 = (6×2) x^(6+5)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(red or green) = 3/12 + 3/12 = 1/2",
+          "description": "= 12x^11",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/2 oe",
+          "description": "12x^11 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "bag_of_counters",
-        "params": {
-          "counts": {
-            "red": 3,
-            "green": 3,
-            "other": 6
-          }
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     }
   ]

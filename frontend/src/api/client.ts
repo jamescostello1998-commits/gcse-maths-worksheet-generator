@@ -156,6 +156,7 @@ interface RawPracticeTestSummary {
   tier: Tier
   sitting_id: string
   paper_number: number
+  calculator_allowed: boolean
   total_marks: number
   question_count: number
 }
@@ -167,6 +168,7 @@ function toPracticeTestSummary(raw: RawPracticeTestSummary): PracticeTestSummary
     tier: raw.tier,
     sittingId: raw.sitting_id,
     paperNumber: raw.paper_number,
+    calculatorAllowed: raw.calculator_allowed,
     totalMarks: raw.total_marks,
     questionCount: raw.question_count,
   }

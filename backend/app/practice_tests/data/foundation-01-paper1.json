@@ -4,6 +4,7 @@
   "tier": "foundation",
   "sitting_id": "foundation-01",
   "paper_number": 1,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "fractions_add_subtract",
@@ -352,42 +353,43 @@
       }
     },
     {
-      "topic_id": "linear_brackets_foundation",
-      "prompt": "Solve: 2(5x + 5) = 70",
+      "topic_id": "forming_equations_foundation",
+      "prompt": "A triangle has angles 90°, 58°, and (2x + 14)°. Form an equation and solve it to find x.",
       "solution_steps": [
-        "Expand the bracket: 2(5x + 5) = 10x + 10",
-        "10x + 10 = 70",
-        "Subtract 10 from both sides:",
-        "10x = 60",
-        "Divide both sides by 10:",
-        "x = 6"
+        "Angles in a triangle sum to 180°.",
+        "90 + 58 + (2x + 14) = 180",
+        "2x + 14 = 32",
+        "Subtract 14 from both sides:",
+        "2x = 18",
+        "Divide both sides by 2:",
+        "x = 9"
       ],
-      "final_answer": "6",
+      "final_answer": "9",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expand the bracket: 2(5x + 5) = 10x + 10",
+          "description": "Angles in a triangle sum to 180°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "10x + 10 = 70",
+          "description": "90 + 58 + (2x + 14) = 180",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 10 from both sides:",
+          "description": "2x + 14 = 32",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "10x = 60 Divide both sides by 10: x = 6",
+          "description": "Subtract 14 from both sides: 2x = 18 Divide both sides by 2: x = 9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6 oe",
+          "description": "9 oe",
           "marks": 1
         }
       ],
@@ -424,28 +426,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_quadratics_foundation",
-      "prompt": "Factorise: x^2 + 7x + 6",
+      "topic_id": "solve_quadratic_factorising_foundation",
+      "prompt": "Solve x^2 + 2x + 1 = 0 by factorising.",
       "solution_steps": [
-        "Find two numbers that multiply to 6 and add to 7: 1 and 6",
-        "Write as two brackets: (x + 1)(x + 6)"
+        "Find two numbers that multiply to 1 and add to 2: 1 and 1",
+        "Factorise: (x + 1)(x + 1) = 0",
+        "Either x + 1 = 0 or x + 1 = 0",
+        "x = -1 or x = -1"
       ],
-      "final_answer": "(x + 1)(x + 6)",
-      "marks": 3,
+      "final_answer": "x = -1 or x = -1",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to 6 and add to 7: 1 and 6",
+          "description": "Find two numbers that multiply to 1 and add to 2: 1 and 1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write as two brackets: (x + 1)(x + 6)",
+          "description": "Factorise: (x + 1)(x + 1) = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Either x + 1 = 0 or x + 1 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -1 or x = -1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(x + 1)(x + 6) oe",
+          "description": "x = -1 or x = -1 oe",
           "marks": 1
         }
       ],
@@ -453,34 +467,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_indices_foundation",
-      "prompt": "Simplify 2x^3 × x^2",
+      "topic_id": "linear_brackets_foundation",
+      "prompt": "Solve: 2(5x + 5) = 70",
       "solution_steps": [
-        "Multiplying powers of the same base: add the exponents, and multiply the coefficients.",
-        "2x^3 × x^2 = (2×1) x^(3+2)",
-        "= 2x^5"
+        "Expand the bracket: 2(5x + 5) = 10x + 10",
+        "10x + 10 = 70",
+        "Subtract 10 from both sides:",
+        "10x = 60",
+        "Divide both sides by 10:",
+        "x = 6"
       ],
-      "final_answer": "2x^5",
-      "marks": 4,
+      "final_answer": "6",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiplying powers of the same base: add the exponents, and multiply the coefficients.",
+          "description": "Expand the bracket: 2(5x + 5) = 10x + 10",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x^3 × x^2 = (2×1) x^(3+2)",
+          "description": "10x + 10 = 70",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 2x^5",
+          "description": "Subtract 10 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "10x = 60 Divide both sides by 10: x = 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2x^5 oe",
+          "description": "6 oe",
           "marks": 1
         }
       ],
@@ -566,34 +588,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "parallel_lines_equation",
-      "prompt": "A line is parallel to y = -3x - 5 and passes through the point (-2, -10). Find the equation of the line.",
+      "topic_id": "density",
+      "prompt": "A sample of liquid has a mass of 271 g and a density of 10 g/cm³. Find its volume, correct to 2 decimal places.",
       "solution_steps": [
-        "Parallel lines have the same gradient, so m = -3.",
-        "Substitute (-2, -10) into y = -3x + c: -10 = -3×(-2) + c, so c = -16",
-        "Equation of the line: y = -3x - 16"
+        "volume = mass ÷ density",
+        "volume = 271 ÷ 10 = 27.1 cm³ (2 d.p.)"
       ],
-      "final_answer": "y = -3x - 16",
-      "marks": 4,
+      "final_answer": "27.1 cm³",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Parallel lines have the same gradient, so m = -3.",
+          "description": "volume = mass ÷ density",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute (-2, -10) into y = -3x + c: -10 = -3×(-2) + c, so c = -16",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Equation of the line: y = -3x - 16",
+          "description": "volume = 271 ÷ 10 = 27.1 cm³ (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = -3x - 16 oe",
+          "description": "27.1 cm³ oe",
           "marks": 1
         }
       ],
@@ -601,28 +617,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sdt_mixed",
-      "prompt": "A car travels 95 miles in 5 hours. Find its average speed in mph.",
+      "topic_id": "inverse_proportion",
+      "prompt": "It takes 4 painters 84 hours to paint a fence. Working at the same rate, how long would it take 12 painters?",
       "solution_steps": [
-        "speed = distance ÷ time",
-        "speed = 95 ÷ 5 = 19 mph"
+        "Constant = 4 × 84 = 336",
+        "Time for 12 painters = 336 ÷ 12 = 28"
       ],
-      "final_answer": "19 mph",
+      "final_answer": "28 hours",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "speed = distance ÷ time",
+          "description": "Constant = 4 × 84 = 336",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "speed = 95 ÷ 5 = 19 mph",
+          "description": "Time for 12 painters = 336 ÷ 12 = 28",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "19 mph oe",
+          "description": "28 hours oe",
           "marks": 1
         }
       ],
@@ -630,28 +646,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "compound_percentage_foundation",
-      "prompt": "A price of £240 increases by 25%, then decreases by 50%. Find the final price.",
+      "topic_id": "reverse_percentage_foundation",
+      "prompt": "After a 10% increase, an item costs £22. Find the original price.",
       "solution_steps": [
-        "After the first change: 240 × 1.25 = 300",
-        "After the second change: 300 × 0.50 = 150"
+        "Convert 10% to a multiplier: 1.10 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 22 ÷ 1.10 = 20"
       ],
-      "final_answer": "£150",
+      "final_answer": "£20",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first change: 240 × 1.25 = 300",
+          "description": "Convert 10% to a multiplier: 1.10 (original × multiplier = new value)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "After the second change: 300 × 0.50 = 150",
+          "description": "Divide the new value by the multiplier: 22 ÷ 1.10 = 20",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£150 oe",
+          "description": "£20 oe",
           "marks": 1
         }
       ],
@@ -688,111 +704,93 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_three_part_foundation",
-      "prompt": "Share 95 in the ratio 6:6:7.",
+      "topic_id": "ratio_find_missing_share",
+      "prompt": "Two amounts are in the ratio 1:9. The first amount is 14. Find the second amount.",
       "solution_steps": [
-        "Total parts = 6 + 6 + 7 = 19",
-        "Value of one part = 95 ÷ 19 = 5",
-        "Share 1 = 6 × 5 = 30",
-        "Share 2 = 6 × 5 = 30",
-        "Share 3 = 7 × 5 = 35"
+        "Value of one part = 14 ÷ 1 = 14",
+        "Second amount = 9 × 14 = 126"
       ],
-      "final_answer": "30 : 30 : 35",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total parts = 6 + 6 + 7 = 19",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Value of one part = 95 ÷ 19 = 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 6 × 5 = 30",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 6 × 5 = 30 Share 3 = 7 × 5 = 35",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "30 : 30 : 35 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_share_two_part",
-      "prompt": "Share 80 in the ratio 2:3.",
-      "solution_steps": [
-        "Total parts = 2 + 3 = 5",
-        "Value of one part = 80 ÷ 5 = 16",
-        "Share 1 = 2 × 16 = 32",
-        "Share 2 = 3 × 16 = 48"
-      ],
-      "final_answer": "32 : 48",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total parts = 2 + 3 = 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Value of one part = 80 ÷ 5 = 16",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 2 × 16 = 32",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 3 × 16 = 48",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "32 : 48 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "angles_straight_line",
-      "prompt": "The angles 99°, 69° and x° lie on a straight line. Find x.",
-      "solution_steps": [
-        "Angles on a straight line sum to 180°.",
-        "x = 180 - (99 + 69) = 180 - 168 = 12"
-      ],
-      "final_answer": "12",
+      "final_answer": "126",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles on a straight line sum to 180°.",
+          "description": "Value of one part = 14 ÷ 1 = 14",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 180 - (99 + 69) = 180 - 168 = 12",
+          "description": "Second amount = 9 × 14 = 126",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 oe",
+          "description": "126 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pythagoras_hypotenuse_triple",
+      "prompt": "A right-angled triangle has legs 9 cm and 12 cm. Find the length of the hypotenuse.",
+      "solution_steps": [
+        "c² = a² + b² = 9² + 12² = 81 + 144 = 225",
+        "c = √225 = 15"
+      ],
+      "final_answer": "15 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "c² = a² + b² = 9² + 12² = 81 + 144 = 225",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "c = √225 = 15",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "15 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "right_triangle",
+        "params": {
+          "leg1_label": "9 cm",
+          "leg2_label": "12 cm",
+          "hyp_label": "?"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_around_point",
+      "prompt": "The angles 110°, 76° and x° are angles around a point. Find x.",
+      "solution_steps": [
+        "Angles around a point sum to 360°.",
+        "x = 360 - (110 + 76) = 360 - 186 = 174"
+      ],
+      "final_answer": "174",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles around a point sum to 360°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 360 - (110 + 76) = 360 - 186 = 174",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "174 oe",
           "marks": 1
         }
       ],
@@ -800,16 +798,16 @@
         "kind": "angle_line",
         "params": {
           "angle_values": [
-            99,
-            69,
-            12
+            110,
+            76,
+            174
           ],
           "labels": [
-            "99°",
-            "69°",
+            "110°",
+            "76°",
             "x"
           ],
-          "around_point": false
+          "around_point": true
         }
       },
       "solution_diagram": null
@@ -928,268 +926,253 @@
       }
     },
     {
-      "topic_id": "area_trapezium",
-      "prompt": "A trapezium has parallel sides of length 5 cm and 20 cm, and a perpendicular height of 8 cm. Find its area.",
+      "topic_id": "arc_length_foundation",
+      "prompt": "A sector of a circle has radius 3 cm and angle 271°. Find the arc length, correct to 3 significant figures.",
       "solution_steps": [
-        "Area = ½ × (a + b) × height = ½ × (5 + 20) × 8 = 100 cm²"
+        "Arc length = (θ ÷ 360) × 2 × π × r = (271 ÷ 360) × 2 × π × 3",
+        "= 14.2 cm (3 s.f., using a calculator value of π)"
       ],
-      "final_answer": "100 cm²",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Area = ½ × (a + b) × height = ½ × (5 + 20) × 8 = 100 cm²",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "100 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "trapezium",
-        "params": {
-          "a": 5,
-          "b": 20,
-          "height": 8,
-          "a_label": "5 cm",
-          "b_label": "20 cm",
-          "height_label": "8 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "volume_surface_area_cuboid",
-      "prompt": "A cuboid has length 4 cm, width 15 cm and height 5 cm. Find its volume.",
-      "solution_steps": [
-        "Volume = length × width × height = 4 × 15 × 5 = 300 cm³"
-      ],
-      "final_answer": "300 cm³",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Volume = length × width × height = 4 × 15 × 5 = 300 cm³",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "300 cm³ oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "cuboid",
-        "params": {
-          "width_label": "15 cm",
-          "height_label": "5 cm",
-          "length_label": "4 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "volume_surface_area_cube",
-      "prompt": "A cube has side length 15 cm. Find its surface area.",
-      "solution_steps": [
-        "Surface area = 6 × side² = 6 × 15² = 6 × 225 = 1350 cm²"
-      ],
-      "final_answer": "1350 cm²",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Surface area = 6 × side² = 6 × 15² = 6 × 225 = 1350 cm²",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1350 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "cuboid",
-        "params": {
-          "width_label": "15 cm",
-          "height_label": "15 cm",
-          "length_label": "15 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "volume_surface_area_cylinder_foundation",
-      "prompt": "A cylinder has radius 8 cm and height 4 cm. Find its total surface area, correct to 3 significant figures.",
-      "solution_steps": [
-        "Surface area = 2πr² + 2πrh = (2 × π × 8²) + (2 × π × 8 × 4)",
-        "= 603 cm² (3 s.f., using a calculator value of π)"
-      ],
-      "final_answer": "603 cm²",
+      "final_answer": "14.2 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Surface area = 2πr² + 2πrh = (2 × π × 8²) + (2 × π × 8 × 4)",
+          "description": "Arc length = (θ ÷ 360) × 2 × π × r = (271 ÷ 360) × 2 × π × 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 603 cm² (3 s.f., using a calculator value of π)",
+          "description": "= 14.2 cm (3 s.f., using a calculator value of π)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "603 cm² oe",
+          "description": "14.2 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cylinder",
+        "kind": "sector",
         "params": {
-          "radius_label": "8 cm",
-          "height_label": "4 cm"
+          "angle": 271,
+          "radius_label": "3 cm",
+          "angle_label": "271°"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "tree_diagram_independent",
-      "prompt": "A bag contains 2 yellow and 8 red counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that the first counter is red and the second counter is red.",
+      "topic_id": "volume_surface_area_triangular_prism",
+      "prompt": "A triangular prism has a right-angled triangular cross-section with legs 5 cm and 12 cm (hypotenuse 13 cm), and length 14 cm. Find its surface area.",
       "solution_steps": [
-        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(yellow) = 1/5, P(red) = 4/5.",
-        "P(red then red) = 4/5 × 4/5 = 16/25"
+        "Area of the two triangular ends = 2 × (1/2) × 5 × 12 = 60 cm²",
+        "Perimeter of the triangular cross-section = 5 + 12 + 13 = 30 cm",
+        "Area of the three rectangular faces = 30 × 14 = 420 cm²",
+        "Surface area = 60 + 420 = 480 cm²"
       ],
-      "final_answer": "16/25",
-      "marks": 3,
+      "final_answer": "480 cm²",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(yellow) = 1/5, P(red) = 4/5.",
+          "description": "Area of the two triangular ends = 2 × (1/2) × 5 × 12 = 60 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(red then red) = 4/5 × 4/5 = 16/25",
+          "description": "Perimeter of the triangular cross-section = 5 + 12 + 13 = 30 cm",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of the three rectangular faces = 30 × 14 = 420 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Surface area = 60 + 420 = 480 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "16/25 oe",
+          "description": "480 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "tree_diagram",
+        "kind": "triangular_prism",
         "params": {
-          "stage1": [
-            [
-              "Yellow",
-              "1/5"
-            ],
-            [
-              "Red",
-              "4/5"
-            ]
+          "base_label": "5 cm",
+          "triangle_height_label": "12 cm",
+          "length_label": "14 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "relative_frequency",
+      "prompt": "A biased dice is tested 80 times, and it shows a six 25 times. Use this relative frequency to estimate how many times this would happen in 208 trials.",
+      "solution_steps": [
+        "Relative frequency = frequency ÷ number of trials = 25/80 = 5/16",
+        "Estimated number of times in 208 trials = 5/16 × 208 = 65"
+      ],
+      "final_answer": "65",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Relative frequency = frequency ÷ number of trials = 25/80 = 5/16",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Estimated number of times in 208 trials = 5/16 × 208 = 65",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "65 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "dice",
+        "params": {
+          "values": [
+            6
           ],
-          "stage2": [
-            [
-              [
-                "Yellow",
-                "1/5"
-              ],
-              [
-                "Red",
-                "4/5"
-              ]
-            ],
-            [
-              [
-                "Yellow",
-                "1/5"
-              ],
-              [
-                "Red",
-                "4/5"
-              ]
-            ]
+          "highlight": [
+            0
           ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_equivalent_diagram",
-      "prompt": "Shape A is divided into 3 equal parts, with 2 shaded. Shape B is divided into 9 equal parts. How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
+      "topic_id": "two_way_tables",
+      "prompt": "The two-way table shows the number of boys and girls who prefer cats or dogs. Copy and complete the table, and state the missing value marked '?'.",
       "solution_steps": [
-        "Shape A shows 2/3 shaded; Shape B has 9 equal parts.",
-        "Find the scale factor between the denominators: 9 ÷ 3 = 3",
-        "Multiply the shaded count by the same scale factor: 2 × 3 = 6"
+        "The missing value is in the 'Boys' row and 'Cats' column.",
+        "Using the row total: 31 - 13 = 18",
+        "Using the column total: 36 - 18 = 18",
+        "Missing value = 18"
       ],
-      "final_answer": "6",
-      "marks": 4,
+      "final_answer": "18",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Shape A shows 2/3 shaded; Shape B has 9 equal parts.",
+          "description": "The missing value is in the 'Boys' row and 'Cats' column.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Find the scale factor between the denominators: 9 ÷ 3 = 3",
+          "description": "Using the row total: 31 - 13 = 18",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the shaded count by the same scale factor: 2 × 3 = 6",
+          "description": "Using the column total: 36 - 18 = 18",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Missing value = 18",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6 oe",
+          "description": "18 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "fraction_shapes",
+        "kind": "two_way_table",
         "params": {
-          "shapes": [
-            {
-              "kind": "circle",
-              "parts": 3,
-              "shaded": 2,
-              "label": "2/3"
-            },
-            {
-              "kind": "circle",
-              "parts": 9,
-              "shaded": 0,
-              "label": "?/9"
-            }
+          "row_labels": [
+            "Boys",
+            "Girls",
+            "Total"
+          ],
+          "col_labels": [
+            "Cats",
+            "Dogs",
+            "Total"
+          ],
+          "cells": [
+            [
+              "?",
+              "13",
+              "31"
+            ],
+            [
+              "18",
+              "11",
+              "29"
+            ],
+            [
+              "36",
+              "24",
+              "60"
+            ]
           ]
         }
       },
       "solution_diagram": {
-        "kind": "fraction_shapes",
+        "kind": "two_way_table",
         "params": {
-          "shapes": [
-            {
-              "kind": "circle",
-              "parts": 3,
-              "shaded": 2,
-              "label": "2/3"
-            },
-            {
-              "kind": "circle",
-              "parts": 9,
-              "shaded": 6,
-              "label": "6/9"
-            }
+          "row_labels": [
+            "Boys",
+            "Girls",
+            "Total"
+          ],
+          "col_labels": [
+            "Cats",
+            "Dogs",
+            "Total"
+          ],
+          "cells": [
+            [
+              "18",
+              "13",
+              "31"
+            ],
+            [
+              "18",
+              "11",
+              "29"
+            ],
+            [
+              "36",
+              "24",
+              "60"
+            ]
           ]
         }
       }
+    },
+    {
+      "topic_id": "stats_median",
+      "prompt": "Find the median of this data set: 17, 19, 24, 2, 27, 21.",
+      "solution_steps": [
+        "Sort the data: 2, 17, 19, 21, 24, 27. The middle two values are 19 and 21, so the median = (19 + 21) ÷ 2 = 20."
+      ],
+      "final_answer": "20",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Sort the data: 2, 17, 19, 21, 24, 27. The middle two values are 19 and 21, so the median = (19 + 21) ÷ 2 = 20.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "20 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
     }
   ]
 }

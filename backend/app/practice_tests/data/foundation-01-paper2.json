@@ -4,24 +4,31 @@
   "tier": "foundation",
   "sitting_id": "foundation-01",
   "paper_number": 2,
+  "calculator_allowed": false,
   "questions": [
     {
-      "topic_id": "factors",
-      "prompt": "Write down all the factors of 46.",
+      "topic_id": "prime_factors_foundation",
+      "prompt": "Write 130 as a product of its prime factors.",
       "solution_steps": [
-        "Check every whole number from 1 to 46 to see if it divides exactly: 1, 2, 23, 46"
+        "Divide 130 repeatedly by the smallest prime that fits: 2 × 5 × 13",
+        "130 = 2 × 5 × 13"
       ],
-      "final_answer": "1, 2, 23, 46",
-      "marks": 2,
+      "final_answer": "2 × 5 × 13",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Check every whole number from 1 to 46 to see if it divides exactly: 1, 2, 23, 46",
+          "description": "Divide 130 repeatedly by the smallest prime that fits: 2 × 5 × 13",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "130 = 2 × 5 × 13",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1, 2, 23, 46 oe",
+          "description": "2 × 5 × 13 oe",
           "marks": 1
         }
       ],
@@ -158,139 +165,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_to",
-      "prompt": "Write 4000 in standard form.",
+      "topic_id": "number_powers_of_ten",
+      "prompt": "Work out 470 × 10.",
       "solution_steps": [
-        "Move the decimal point until there is one non-zero digit before it: 4",
-        "Count how many places the decimal point moved: 3",
-        "4000 = 4 × 10^3"
+        "Multiplying by 10 moves the decimal point 1 place to the right.",
+        "470 × 10 = 4700"
       ],
-      "final_answer": "4 × 10^3",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Move the decimal point until there is one non-zero digit before it: 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Count how many places the decimal point moved: 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "4000 = 4 × 10^3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "4 × 10^3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "fractions_add_subtract",
-      "prompt": "Work out 4/8 + 2/8. Give your answer as a fraction in its simplest form.",
-      "solution_steps": [
-        "Find a common denominator: LCM(8, 8) = 8",
-        "Convert: 4/8 = 4/8, 2/8 = 2/8",
-        "Add: 4/8 + 2/8 = 6/8",
-        "Simplify: 3/4"
-      ],
-      "final_answer": "3/4",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find a common denominator: LCM(8, 8) = 8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Convert: 4/8 = 4/8, 2/8 = 2/8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add: 4/8 + 2/8 = 6/8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Simplify: 3/4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "3/4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "change_subject_foundation",
-      "prompt": "Make x the subject of the formula y = 5x - 2.",
-      "solution_steps": [
-        "y = 5x - 2",
-        "Add 2 to both sides: y + 2 = 5x",
-        "Divide both sides by 5: x = (y + 2)/5"
-      ],
-      "final_answer": "x = (y + 2)/5",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "y = 5x - 2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add 2 to both sides: y + 2 = 5x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by 5: x = (y + 2)/5",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = (y + 2)/5 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "functions_evaluate",
-      "prompt": "f(x) = -5x + 3. Find f(7).",
-      "solution_steps": [
-        "f(7) = -5×(7) + 3",
-        "f(7) = -32"
-      ],
-      "final_answer": "-32",
+      "final_answer": "4700",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "f(7) = -5×(7) + 3",
+          "description": "Multiplying by 10 moves the decimal point 1 place to the right.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "f(7) = -32",
+          "description": "470 × 10 = 4700",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-32 oe",
+          "description": "4700 oe",
           "marks": 1
         }
       ],
@@ -298,42 +194,142 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_multi_step",
-      "prompt": "Solve: 5x + 14 + 2x + 10 = 87",
+      "topic_id": "fractions_ordering",
+      "prompt": "Write these fractions in order, smallest to largest: 7/12, 5/6, 1/7, 2/3",
       "solution_steps": [
-        "Collect like terms: 5x + 2x = 7x, 14 + 10 = 24",
-        "7x + 24 = 87",
-        "Subtract 24 from both sides:",
-        "7x = 63",
-        "Divide both sides by 7:",
-        "x = 9"
+        "Convert every fraction to the same denominator, the LCM of 12, 6, 7, 3: 84",
+        "Rewrite each fraction over 84: 7/12 = 49/84, 5/6 = 70/84, 1/7 = 12/84, 2/3 = 56/84",
+        "Order the numerators from smallest to largest and convert back: 1/7, 7/12, 2/3, 5/6"
       ],
-      "final_answer": "9",
-      "marks": 5,
+      "final_answer": "1/7, 7/12, 2/3, 5/6",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Collect like terms: 5x + 2x = 7x, 14 + 10 = 24",
+          "description": "Convert every fraction to the same denominator, the LCM of 12, 6, 7, 3: 84",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "7x + 24 = 87",
+          "description": "Rewrite each fraction over 84: 7/12 = 49/84, 5/6 = 70/84, 1/7 = 12/84, 2/3 = 56/84",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 24 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "7x = 63 Divide both sides by 7: x = 9",
+          "description": "Order the numerators from smallest to largest and convert back: 1/7, 7/12, 2/3, 5/6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9 oe",
+          "description": "1/7, 7/12, 2/3, 5/6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "decimals_round_dp",
+      "prompt": "Round 81.329 to 2 decimal places.",
+      "solution_steps": [
+        "Look at the digit after the 2 decimal places we want: 9, so round up.",
+        "81.329 rounded to 2 decimal places = 81.33"
+      ],
+      "final_answer": "81.33",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Look at the digit after the 2 decimal places we want: 9, so round up.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "81.329 rounded to 2 decimal places = 81.33",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "81.33 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_indices_foundation",
+      "prompt": "Simplify (2x^4)^2",
+      "solution_steps": [
+        "Raising a power to another power: multiply the exponents, and raise the coefficient to that power too.",
+        "(2x^4)^2 = 2^2 x^(4×2)",
+        "= 4x^8"
+      ],
+      "final_answer": "4x^8",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Raising a power to another power: multiply the exponents, and raise the coefficient to that power too.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(2x^4)^2 = 2^2 x^(4×2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 4x^8",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4x^8 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_both_sides_foundation",
+      "prompt": "Solve: 4x + 10 = 5x + 8",
+      "solution_steps": [
+        "4x + 10 = 5x + 8",
+        "Subtract 5x from both sides:",
+        "-x + 10 = 8",
+        "Subtract 10 from both sides:",
+        "-x = -2",
+        "Divide both sides by -1:",
+        "x = 2"
+      ],
+      "final_answer": "2",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "4x + 10 = 5x + 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 5x from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-x + 10 = 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 10 from both sides: -x = -2 Divide both sides by -1: x = 2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2 oe",
           "marks": 1
         }
       ],
@@ -382,34 +378,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_single_bracket",
-      "prompt": "Expand: -7(-8x - 7)",
+      "topic_id": "substitution_foundation",
+      "prompt": "P = 2l + 2w. Find the value of P when l = 13 and w = 8.",
       "solution_steps": [
-        "Multiply -7 by -8x: 56x",
-        "Multiply -7 by -7: 49",
-        "Combine: 56x + 49"
+        "P = 2l + 2w",
+        "P = 2 × 13 + 2 × 8",
+        "P = 26 + 16",
+        "P = 42"
       ],
-      "final_answer": "56x + 49",
-      "marks": 4,
+      "final_answer": "P = 42",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply -7 by -8x: 56x",
+          "description": "P = 2l + 2w",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply -7 by -7: 49",
+          "description": "P = 2 × 13 + 2 × 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Combine: 56x + 49",
+          "description": "P = 26 + 16",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P = 42",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "56x + 49 oe",
+          "description": "P = 42 oe",
           "marks": 1
         }
       ],
@@ -452,6 +454,35 @@
         {
           "code": "A1",
           "description": "9 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "special_sequences_foundation",
+      "prompt": "Here are the first 5 terms of a sequence: 13, 16, 19, 22, 25. Find the next term.",
+      "solution_steps": [
+        "This is an arithmetic sequence: it goes up (or down) by the same amount, 3, each time.",
+        "Next term = 25 + 3 = 28"
+      ],
+      "final_answer": "28",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "This is an arithmetic sequence: it goes up (or down) by the same amount, 3, each time.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Next term = 25 + 3 = 28",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "28 oe",
           "marks": 1
         }
       ],
@@ -553,35 +584,6 @@
       }
     },
     {
-      "topic_id": "inverse_proportion",
-      "prompt": "It takes 3 pipes 24 hours to fill a tank. Working at the same rate, how long would it take 6 pipes?",
-      "solution_steps": [
-        "Constant = 3 × 24 = 72",
-        "Time for 6 pipes = 72 ÷ 6 = 12"
-      ],
-      "final_answer": "12 hours",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Constant = 3 × 24 = 72",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Time for 6 pipes = 72 ÷ 6 = 12",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "12 hours oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
       "topic_id": "simple_interest",
       "prompt": "£4300 is invested at a simple interest rate of 3% per year for 4 years. Find the interest earned.",
       "solution_steps": [
@@ -640,134 +642,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_find_missing_share",
-      "prompt": "Two amounts are in the ratio 5:9. The first amount is 25. Find the second amount.",
+      "topic_id": "ratio_share_three_part_foundation",
+      "prompt": "Share 72 in the ratio 2:4:6.",
       "solution_steps": [
-        "Value of one part = 25 ÷ 5 = 5",
-        "Second amount = 9 × 5 = 45"
+        "Total parts = 2 + 4 + 6 = 12",
+        "Value of one part = 72 ÷ 12 = 6",
+        "Share 1 = 2 × 6 = 12",
+        "Share 2 = 4 × 6 = 24",
+        "Share 3 = 6 × 6 = 36"
       ],
-      "final_answer": "45",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Value of one part = 25 ÷ 5 = 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Second amount = 9 × 5 = 45",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "45 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "direct_proportion",
-      "prompt": "A recipe for 2 people uses 44g of sugar. How much sugar is needed for 19 people?",
-      "solution_steps": [
-        "Unit value = 44g ÷ 2 = 22g",
-        "Answer = 22g × 19 = 418g"
-      ],
-      "final_answer": "418g",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Unit value = 44g ÷ 2 = 22g",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Answer = 22g × 19 = 418g",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "418g oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "area_sector_foundation",
-      "prompt": "A sector of a circle has radius 6 cm and angle 11°. Find the area of the sector, correct to 3 significant figures.",
-      "solution_steps": [
-        "Area = (θ ÷ 360) × π × r² = (11 ÷ 360) × π × 6²",
-        "= 3.46 cm² (3 s.f., using a calculator value of π)"
-      ],
-      "final_answer": "3.46 cm²",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Area = (θ ÷ 360) × π × r² = (11 ÷ 360) × π × 6²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 3.46 cm² (3 s.f., using a calculator value of π)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "3.46 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "sector",
-        "params": {
-          "angle": 11,
-          "radius_label": "6 cm",
-          "angle_label": "11°"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "construction_angle_bisector",
-      "prompt": "Angle DSL = 145°. Describe, step by step, how to construct the bisector of angle DSL using only a ruler and a pair of compasses.",
-      "solution_steps": [
-        "Open the compasses to any radius and place the point on S (the vertex of the angle).",
-        "Draw an arc that crosses both arms of the angle, at a point on SD and a point on SL.",
-        "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
-        "Draw a straight line from S through the point where the two arcs intersect. This line is the bisector of angle DSL."
-      ],
-      "final_answer": "The straight line from S through the intersection of the two equal-radius arcs bisects angle DSL into two equal angles.",
+      "final_answer": "12 : 24 : 36",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Open the compasses to any radius and place the point on S (the vertex of the angle).",
+          "description": "Total parts = 2 + 4 + 6 = 12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Draw an arc that crosses both arms of the angle, at a point on SD and a point on SL.",
+          "description": "Value of one part = 72 ÷ 12 = 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
+          "description": "Share 1 = 2 × 6 = 12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Draw a straight line from S through the point where the two arcs intersect. This line is the bisector of angle DSL.",
+          "description": "Share 2 = 4 × 6 = 24 Share 3 = 6 × 6 = 36",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "The straight line from S through the intersection of the two equal-radius arcs bisects angle DSL into two equal angles. oe",
+          "description": "12 : 24 : 36 oe",
           "marks": 1
         }
       ],
@@ -775,63 +684,240 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "vectors_arithmetic_foundation",
-      "prompt": "\\vec{a} = (2, 1) and \\vec{b} = (-8, -6). Find 4\\vec{a} - 4\\vec{b}.",
+      "topic_id": "inverse_proportion",
+      "prompt": "It takes 3 pipes 24 hours to fill a tank. Working at the same rate, how long would it take 6 pipes?",
       "solution_steps": [
-        "\\vec{a} = (2, 1), \\vec{b} = (-8, -6)",
-        "4\\vec{a} = (8, 4) and 4\\vec{b} = (-32, -24)",
-        "4\\vec{a} - 4\\vec{b} = (40, 28)"
+        "Constant = 3 × 24 = 72",
+        "Time for 6 pipes = 72 ÷ 6 = 12"
       ],
-      "final_answer": "(40, 28)",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "\\vec{a} = (2, 1), \\vec{b} = (-8, -6)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "4\\vec{a} = (8, 4) and 4\\vec{b} = (-32, -24)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "4\\vec{a} - 4\\vec{b} = (40, 28)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(40, 28) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "transform_translate_complete",
-      "prompt": "Translate shape ABCD by the vector (-4, 3). Draw and label the image A'B'C'D'.",
-      "solution_steps": [
-        "Translate every vertex by the vector (-4, 3): move each point 4 squares left and 3 squares up.",
-        "A(1, -3) -> A'(-3, 0), B(5, -3) -> B'(1, 0), C(4, 1) -> C'(0, 4), D(0, 0) -> D'(-4, 3)"
-      ],
-      "final_answer": "A'(-3, 0), B'(1, 0), C'(0, 4), D'(-4, 3)",
+      "final_answer": "12 hours",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Translate every vertex by the vector (-4, 3): move each point 4 squares left and 3 squares up.",
+          "description": "Constant = 3 × 24 = 72",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A(1, -3) -> A'(-3, 0), B(5, -3) -> B'(1, 0), C(4, 1) -> C'(0, 4), D(0, 0) -> D'(-4, 3)",
+          "description": "Time for 6 pipes = 72 ÷ 6 = 12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(-3, 0), B'(1, 0), C'(0, 4), D'(-4, 3) oe",
+          "description": "12 hours oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "compound_percentage_foundation",
+      "prompt": "A price of £120 increases by 50%, then increases by 25%. Find the final price.",
+      "solution_steps": [
+        "After the first change: 120 × 1.50 = 180",
+        "After the second change: 180 × 1.25 = 225"
+      ],
+      "final_answer": "£225",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "After the first change: 120 × 1.50 = 180",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "After the second change: 180 × 1.25 = 225",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£225 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "construction_perpendicular_bisector",
+      "prompt": "Line segment VQ has length 5 cm. Describe, step by step, how to construct the perpendicular bisector of VQ using only a ruler and a pair of compasses.",
+      "solution_steps": [
+        "Open the compasses to a radius more than half of 5 cm (more than half the length of VQ).",
+        "With the compass point on V, draw an arc above and below the line.",
+        "Without changing the compass radius, place the point on Q and draw two more arcs, crossing the first two.",
+        "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of VQ."
+      ],
+      "final_answer": "A straight line through the two arc intersections, crossing VQ at its midpoint at a right angle.",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Open the compasses to a radius more than half of 5 cm (more than half the length of VQ).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "With the compass point on V, draw an arc above and below the line.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Without changing the compass radius, place the point on Q and draw two more arcs, crossing the first two.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of VQ.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "A straight line through the two arc intersections, crossing VQ at its midpoint at a right angle. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "volume_surface_area_cube",
+      "prompt": "A cube has side length 11 cm. Find its surface area.",
+      "solution_steps": [
+        "Surface area = 6 × side² = 6 × 11² = 6 × 121 = 726 cm²"
+      ],
+      "final_answer": "726 cm²",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Surface area = 6 × side² = 6 × 11² = 6 × 121 = 726 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "726 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "cuboid",
+        "params": {
+          "width_label": "11 cm",
+          "height_label": "11 cm",
+          "length_label": "11 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "bearings_foundation",
+      "prompt": "The diagram shows the bearing of B from A. Write down the bearing of B from A as a three-figure bearing.",
+      "solution_steps": [
+        "A bearing is always written as three figures, measured clockwise from north.",
+        "Reading the angle shown from north: 259°, written as a three-figure bearing: 259°."
+      ],
+      "final_answer": "259°",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A bearing is always written as three figures, measured clockwise from north.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Reading the angle shown from north: 259°, written as a three-figure bearing: 259°.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "259° oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "bearings",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "bearing_at_A": 259,
+          "leg1_label": ""
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_straight_line",
+      "prompt": "The angles 123°, 22° and x° lie on a straight line. Find x.",
+      "solution_steps": [
+        "Angles on a straight line sum to 180°.",
+        "x = 180 - (123 + 22) = 180 - 145 = 35"
+      ],
+      "final_answer": "35",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles on a straight line sum to 180°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 180 - (123 + 22) = 180 - 145 = 35",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "35 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "angle_line",
+        "params": {
+          "angle_values": [
+            123,
+            22,
+            35
+          ],
+          "labels": [
+            "123°",
+            "22°",
+            "x"
+          ],
+          "around_point": false
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "transform_translate_describe",
+      "prompt": "Shape ABC is translated to give shape A'B'C', shown on the grid. Describe fully the single transformation that maps ABC onto A'B'C'.",
+      "solution_steps": [
+        "Every vertex moves by exactly the same amount: comparing A(-2, 0) with A'(1, 2) gives the vector (3, 2).",
+        "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
+      ],
+      "final_answer": "Translation by the vector (3, 2)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Every vertex moves by exactly the same amount: comparing A(-2, 0) with A'(1, 2) gives the vector (3, 2).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Checking the other vertices confirms the same vector applies throughout, so this is a translation.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Translation by the vector (3, 2) oe",
           "marks": 1
         }
       ],
@@ -844,97 +930,110 @@
           "y_max": 8,
           "original_vertices": [
             [
-              1,
-              -3
-            ],
-            [
-              5,
-              -3
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              0,
+              -2,
               0
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              -1,
+              4
             ]
           ],
           "original_labels": [
             "A",
             "B",
-            "C",
-            "D"
+            "C"
           ],
-          "translation_vector": [
-            -4,
-            3
-          ],
-          "vector_label": "(-4, 3)"
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              1,
-              -3
-            ],
-            [
-              5,
-              -3
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              0,
-              0
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
-          ],
-          "translation_vector": [
-            -4,
-            3
-          ],
-          "vector_label": "(-4, 3)",
           "image_vertices": [
             [
-              -3,
-              0
-            ],
-            [
               1,
-              0
+              2
             ],
             [
-              0,
-              4
+              6,
+              2
             ],
             [
-              -4,
-              3
+              2,
+              6
             ]
           ],
           "image_labels": [
             "A'",
             "B'",
-            "C'",
-            "D'"
+            "C'"
           ]
         }
-      }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "tree_diagram_independent",
+      "prompt": "A bag contains 5 yellow and 2 green counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that the first counter is yellow and the second counter is green.",
+      "solution_steps": [
+        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(yellow) = 5/7, P(green) = 2/7.",
+        "P(yellow then green) = 5/7 × 2/7 = 10/49"
+      ],
+      "final_answer": "10/49",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(yellow) = 5/7, P(green) = 2/7.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(yellow then green) = 5/7 × 2/7 = 10/49",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "10/49 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Yellow",
+              "5/7"
+            ],
+            [
+              "Green",
+              "2/7"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Yellow",
+                "5/7"
+              ],
+              [
+                "Green",
+                "2/7"
+              ]
+            ],
+            [
+              [
+                "Yellow",
+                "5/7"
+              ],
+              [
+                "Green",
+                "2/7"
+              ]
+            ]
+          ]
+        }
+      },
+      "solution_diagram": null
     },
     {
       "topic_id": "probability_listing_outcomes",
@@ -966,232 +1065,26 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sample_space_diagrams",
-      "prompt": "Two fair spinners, one numbered 1 to 6 and the other numbered 1 to 4, are spun together. Complete the sample space diagram showing the product of the two spinners, and use it to find the probability that the product is greater than 8.",
+      "topic_id": "stats_median",
+      "prompt": "Find the median of this data set: 12, 26, 26, 24, 3.",
       "solution_steps": [
-        "The sample space diagram shows every possible product of the two spinners.",
-        "Number of favourable outcomes (the product is greater than 8) = 10",
-        "Total number of equally likely outcomes = 24",
-        "P(the product is greater than 8) = 5/12"
+        "Sort the data: 3, 12, 24, 26, 26. The middle value is 24."
       ],
-      "final_answer": "5/12",
-      "marks": 5,
+      "final_answer": "24",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The sample space diagram shows every possible product of the two spinners.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Number of favourable outcomes (the product is greater than 8) = 10",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total number of equally likely outcomes = 24",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(the product is greater than 8) = 5/12",
+          "description": "Sort the data: 3, 12, 24, 26, 26. The middle value is 24.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5/12 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "sample_space_diagram",
-        "params": {
-          "row_values": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6
-          ],
-          "col_values": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "cells": [
-            [
-              "1",
-              "2",
-              "3",
-              "4"
-            ],
-            [
-              "2",
-              "4",
-              "6",
-              "8"
-            ],
-            [
-              "3",
-              "6",
-              "9",
-              "12"
-            ],
-            [
-              "4",
-              "8",
-              "12",
-              "16"
-            ],
-            [
-              "5",
-              "10",
-              "15",
-              "20"
-            ],
-            [
-              "6",
-              "12",
-              "18",
-              "24"
-            ]
-          ],
-          "highlight": [
-            [
-              2,
-              2
-            ],
-            [
-              2,
-              3
-            ],
-            [
-              3,
-              2
-            ],
-            [
-              3,
-              3
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              4,
-              2
-            ],
-            [
-              4,
-              3
-            ],
-            [
-              5,
-              1
-            ],
-            [
-              5,
-              2
-            ],
-            [
-              5,
-              3
-            ]
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "stats_mean_grouped_frequency_table_foundation",
-      "prompt": "The table shows the times (in minutes) taken by a group of runners: 0-9 (5), 10-19 (4), 20-29 (6) (class: frequency). Find an estimate of the mean time.",
-      "solution_steps": [
-        "Midpoints of each class: 4.50, 14.50, 24.50",
-        "Sum of (midpoint × frequency): 4.50×5 + 14.50×4 + 24.50×6 = 227.50",
-        "Total frequency = 5 + 4 + 6 = 15",
-        "Estimated mean = 227.50 ÷ 15 = 91/6"
-      ],
-      "final_answer": "≈ 91/6",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Midpoints of each class: 4.50, 14.50, 24.50",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Sum of (midpoint × frequency): 4.50×5 + 14.50×4 + 24.50×6 = 227.50",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total frequency = 5 + 4 + 6 = 15",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Estimated mean = 227.50 ÷ 15 = 91/6",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "≈ 91/6 oe",
+          "description": "24 oe",
           "marks": 1
         }
       ],
       "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "fractions_equivalent_diagram",
-      "prompt": "The first shape shows 5/6 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
-      "solution_steps": [
-        "Cross-multiply 5/6 against each labelled shape: a shape shows an equivalent fraction only if 5 × (its denominator) = (its shaded count) × 6.",
-        "Only shape C) 10/12 works: 5 × 12 = 10 × 6 = 60."
-      ],
-      "final_answer": "C) 10/12",
-      "marks": 1,
-      "mark_scheme": [
-        {
-          "code": "B1",
-          "description": "C) 10/12 (selecting the correct option)",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "bar",
-              "parts": 6,
-              "shaded": 5,
-              "label": "5/6"
-            },
-            {
-              "kind": "bar",
-              "parts": 8,
-              "shaded": 6,
-              "label": "A) 6/8"
-            },
-            {
-              "kind": "bar",
-              "parts": 10,
-              "shaded": 6,
-              "label": "B) 6/10"
-            },
-            {
-              "kind": "bar",
-              "parts": 12,
-              "shaded": 10,
-              "label": "C) 10/12"
-            }
-          ]
-        }
-      },
       "solution_diagram": null
     }
   ]

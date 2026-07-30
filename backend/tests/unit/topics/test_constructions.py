@@ -9,6 +9,7 @@ GENERATORS = [
     (constructions.generate_construction_angle_bisector, Tier.FOUNDATION),
     (constructions.generate_construction_perpendicular_bisector, Tier.FOUNDATION),
     (constructions.generate_construction_triangle, Tier.FOUNDATION),
+    (constructions.generate_construction_perpendicular_from_point, Tier.FOUNDATION),
 ]
 
 
@@ -59,14 +60,23 @@ def test_asa_angles_always_leave_room_for_a_third_angle():
         assert angle1 + angle2 < 180
 
 
+def test_perpendicular_from_point_covers_both_scenarios():
+    rng = random.Random(906)
+    scenarios = {
+        constructions._random_perpendicular_from_point_content(rng)[2] for _ in range(TRIALS)
+    }
+    assert scenarios == {"from_point", "at_point"}
+
+
 def test_topic_definitions_have_expected_metadata():
     topics = [
         constructions.TOPIC_CONSTRUCTION_ANGLE_BISECTOR,
         constructions.TOPIC_CONSTRUCTION_PERPENDICULAR_BISECTOR,
         constructions.TOPIC_CONSTRUCTION_TRIANGLE,
+        constructions.TOPIC_CONSTRUCTION_PERPENDICULAR_FROM_POINT,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 3
+    assert len(ids) == 4
     for t in topics:
         assert t.section == "geometry"
         assert t.group == "Constructions"
@@ -78,6 +88,7 @@ MODELLED_GENERATORS = [
     (constructions.generate_modelled_example_construction_angle_bisector, "construction_angle_bisector"),
     (constructions.generate_modelled_example_construction_perpendicular_bisector, "construction_perpendicular_bisector"),
     (constructions.generate_modelled_example_construction_triangle, "construction_triangle"),
+    (constructions.generate_modelled_example_construction_perpendicular_from_point, "construction_perpendicular_from_point"),
 ]
 
 

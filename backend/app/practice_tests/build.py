@@ -144,6 +144,11 @@ def _try_assemble_paper(
         tier=tier,
         sitting_id=_sitting_id(tier, sitting_index),
         paper_number=paper_number,
+        # Real OCR GCSE Maths reserves the middle paper of every 3-paper
+        # sitting (Paper 2 Foundation / Paper 5 Higher) as non-calculator -
+        # the caller is responsible for passing a calculator-filtered
+        # by_section pool whenever paper_number == 2 (see build_papers()).
+        calculator_allowed=(paper_number != 2),
         questions=tuple(questions),
     )
 
@@ -164,13 +169,20 @@ def build_papers(paper_ids: list[str] | None = None) -> list[PracticeTestPaper]:
     papers: list[PracticeTestPaper] = []
     for tier in (Tier.FOUNDATION, Tier.HIGHER):
         by_section = eligible_topics_by_section(tier)
+        # A second, calculator-filtered pool for the one non-calculator paper
+        # per sitting (Paper 2 - real OCR's Foundation Paper 2 / Higher Paper
+        # 5). typical_marks is computed once from the unfiltered pool, which
+        # is a strict superset of topic ids, so every id the filtered pool
+        # ever looks up is already present.
+        noncalc_by_section = eligible_topics_by_section(tier, calculator_allowed=False)
         typical_marks = _typical_marks_for_tier(tier, by_section)
         for sitting_index in range(1, SITTINGS_PER_TIER + 1):
             for paper_number in range(1, PAPERS_PER_SITTING + 1):
                 pid = _paper_id(tier, sitting_index, paper_number)
                 if paper_ids is not None and pid not in paper_ids:
                     continue
-                papers.append(_assemble_paper(tier, sitting_index, paper_number, by_section, typical_marks))
+                pool = noncalc_by_section if paper_number == 2 else by_section
+                papers.append(_assemble_paper(tier, sitting_index, paper_number, pool, typical_marks))
     return papers
 
 

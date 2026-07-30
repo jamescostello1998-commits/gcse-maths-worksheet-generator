@@ -4,6 +4,7 @@
   "tier": "foundation",
   "sitting_id": "foundation-03",
   "paper_number": 3,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "multiples",
@@ -382,34 +383,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_nth_term",
-      "prompt": "Here are the first four terms of a sequence: -10, -5, 0, 5. Find an expression for the nth term.",
+      "topic_id": "special_sequences_foundation",
+      "prompt": "The first 5 cube numbers are: 1, 8, 27, 64, 125. Find the next term in the sequence.",
       "solution_steps": [
-        "Common difference = 5",
-        "nth term = 5n - 15",
-        "nth term = 5n - 15"
+        "These are the cube numbers: the nth term is given by n^3.",
+        "Term 6 = 6^3 = 216"
       ],
-      "final_answer": "5n - 15",
-      "marks": 4,
+      "final_answer": "216",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Common difference = 5",
+          "description": "These are the cube numbers: the nth term is given by n^3.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = 5n - 15",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "nth term = 5n - 15",
+          "description": "Term 6 = 6^3 = 216",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5n - 15 oe",
+          "description": "216 oe",
           "marks": 1
         }
       ],
@@ -452,43 +447,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_both_sides_foundation",
-      "prompt": "Solve: 2x + 2 = 5x - 28",
+      "topic_id": "linear_brackets_foundation",
+      "prompt": "Solve: 2(5x + 3) = 56",
       "solution_steps": [
-        "2x + 2 = 5x - 28",
-        "Subtract 5x from both sides:",
-        "-3x + 2 = -28",
-        "Subtract 2 from both sides:",
-        "-3x = -30",
-        "Divide both sides by -3:",
-        "x = 10"
+        "Expand the bracket: 2(5x + 3) = 10x + 6",
+        "10x + 6 = 56",
+        "Subtract 6 from both sides:",
+        "10x = 50",
+        "Divide both sides by 10:",
+        "x = 5"
       ],
-      "final_answer": "10",
+      "final_answer": "5",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "2x + 2 = 5x - 28",
+          "description": "Expand the bracket: 2(5x + 3) = 10x + 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 5x from both sides:",
+          "description": "10x + 6 = 56",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-3x + 2 = -28",
+          "description": "Subtract 6 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 2 from both sides: -3x = -30 Divide both sides by -3: x = 10",
+          "description": "10x = 50 Divide both sides by 10: x = 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10 oe",
+          "description": "5 oe",
           "marks": 1
         }
       ],
@@ -694,76 +688,79 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_triangle",
-      "prompt": "A triangle has angles 28°, 117°, and x°. Find x.",
+      "topic_id": "angles_parallel_lines_foundation",
+      "prompt": "A line crosses two parallel lines. The angle 138° and the angle x° are co-interior angles. Find x.",
       "solution_steps": [
-        "Angles in a triangle sum to 180°.",
-        "x = 180 - (28 + 117) = 180 - 145 = 35"
+        "Co-interior angles sum to 180°.",
+        "x = 42"
       ],
-      "final_answer": "35",
+      "final_answer": "42",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles in a triangle sum to 180°.",
+          "description": "Co-interior angles sum to 180°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 180 - (28 + 117) = 180 - 145 = 35",
+          "description": "x = 42",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "35 oe",
+          "description": "42 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "triangle_angles",
+        "kind": "parallel_lines",
         "params": {
-          "angle_labels": [
-            "28°",
-            "117°",
-            "x"
-          ]
+          "known_label": "138°",
+          "unknown_label": "x",
+          "relation": "co_interior"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "vectors_arithmetic_foundation",
-      "prompt": "\\vec{a} = (-3, -1) and \\vec{b} = (1, -7). Find 2\\vec{a} + 3\\vec{b}.",
+      "topic_id": "nets_3d_shapes",
+      "prompt": "What 2D shapes make up the net of a cylinder?",
       "solution_steps": [
-        "\\vec{a} = (-3, -1), \\vec{b} = (1, -7)",
-        "2\\vec{a} = (-6, -2) and 3\\vec{b} = (3, -21)",
-        "2\\vec{a} + 3\\vec{b} = (-3, -23)"
+        "Imagine unfolding a cylinder flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
+        "A cylinder's net is made up of: 2 circles and 1 rectangle (the curved surface unrolled flat).",
+        "So the answer is: 2 circles and 1 rectangle (the curved surface unrolled flat)."
       ],
-      "final_answer": "(-3, -23)",
+      "final_answer": "2 circles and 1 rectangle (the curved surface unrolled flat)",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "\\vec{a} = (-3, -1), \\vec{b} = (1, -7)",
+          "description": "Imagine unfolding a cylinder flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2\\vec{a} = (-6, -2) and 3\\vec{b} = (3, -21)",
+          "description": "A cylinder's net is made up of: 2 circles and 1 rectangle (the curved surface unrolled flat).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2\\vec{a} + 3\\vec{b} = (-3, -23)",
+          "description": "So the answer is: 2 circles and 1 rectangle (the curved surface unrolled flat).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(-3, -23) oe",
+          "description": "2 circles and 1 rectangle (the curved surface unrolled flat) oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "net",
+        "params": {
+          "shape": "cylinder"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -798,40 +795,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "construction_angle_bisector",
-      "prompt": "Angle YZK = 52°. Describe, step by step, how to construct the bisector of angle YZK using only a ruler and a pair of compasses.",
+      "topic_id": "construction_perpendicular_bisector",
+      "prompt": "Line segment EQ has length 7 cm. Describe, step by step, how to construct the perpendicular bisector of EQ using only a ruler and a pair of compasses.",
       "solution_steps": [
-        "Open the compasses to any radius and place the point on Z (the vertex of the angle).",
-        "Draw an arc that crosses both arms of the angle, at a point on ZY and a point on ZK.",
-        "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
-        "Draw a straight line from Z through the point where the two arcs intersect. This line is the bisector of angle YZK."
+        "Open the compasses to a radius more than half of 7 cm (more than half the length of EQ).",
+        "With the compass point on E, draw an arc above and below the line.",
+        "Without changing the compass radius, place the point on Q and draw two more arcs, crossing the first two.",
+        "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of EQ."
       ],
-      "final_answer": "The straight line from Z through the intersection of the two equal-radius arcs bisects angle YZK into two equal angles.",
+      "final_answer": "A straight line through the two arc intersections, crossing EQ at its midpoint at a right angle.",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Open the compasses to any radius and place the point on Z (the vertex of the angle).",
+          "description": "Open the compasses to a radius more than half of 7 cm (more than half the length of EQ).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Draw an arc that crosses both arms of the angle, at a point on ZY and a point on ZK.",
+          "description": "With the compass point on E, draw an arc above and below the line.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
+          "description": "Without changing the compass radius, place the point on Q and draw two more arcs, crossing the first two.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Draw a straight line from Z through the point where the two arcs intersect. This line is the bisector of angle YZK.",
+          "description": "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of EQ.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "The straight line from Z through the intersection of the two equal-radius arcs bisects angle YZK into two equal angles. oe",
+          "description": "A straight line through the two arc intersections, crossing EQ at its midpoint at a right angle. oe",
           "marks": 1
         }
       ],
@@ -839,37 +836,30 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_exterior_foundation",
-      "prompt": "An exterior angle of a triangle is x°. The two remote interior angles are 43° and 51°. Find x.",
+      "topic_id": "angles_polygon_interior_foundation",
+      "prompt": "A regular polygon has 18 sides. Find the size of one exterior angle.",
       "solution_steps": [
-        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
-        "x = 43 + 51 = 94"
+        "Exterior angles of a regular polygon sum to 360°: each exterior angle = 360 ÷ 18 = 20°"
       ],
-      "final_answer": "94",
-      "marks": 3,
+      "final_answer": "20°",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 43 + 51 = 94",
+          "description": "Exterior angles of a regular polygon sum to 360°: each exterior angle = 360 ÷ 18 = 20°",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "94 oe",
+          "description": "20° oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "exterior_triangle",
+        "kind": "polygon",
         "params": {
-          "interior1_label": "43°",
-          "interior2_label": "51°",
-          "exterior_label": "x"
+          "n_sides": 12,
+          "marked_angle_label": "?"
         }
       },
       "solution_diagram": null
@@ -914,46 +904,45 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_listing_outcomes",
-      "prompt": "Two 3-sided spinners are spun: one labelled 1, 2, 3 and the other labelled 1, 2, 3. List all the possible outcomes.",
+      "topic_id": "set_notation_foundation",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9}, A = {3, 5, 6, 7}, B = {2, 3, 4, 5, 8}. List the elements that are in both A and B.",
       "solution_steps": [
-        "There are 3 possible outcomes for the first event and 3 for the second, so there are 3 × 3 = 9 possible combined outcomes.",
-        "For each outcome of the first event, list every outcome of the second event: 11, 12, 13, 21, 22, 23, 31, 32, 33"
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9}",
+        "A = {3, 5, 6, 7}",
+        "B = {2, 3, 4, 5, 8}",
+        "Check each element of ξ in turn to see whether it are in both A and B.",
+        "Elements that are in both A and B: {3, 5}"
       ],
-      "final_answer": "11, 12, 13, 21, 22, 23, 31, 32, 33",
-      "marks": 3,
+      "final_answer": "{3, 5}",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "There are 3 possible outcomes for the first event and 3 for the second, so there are 3 × 3 = 9 possible combined outcomes.",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For each outcome of the first event, list every outcome of the second event: 11, 12, 13, 21, 22, 23, 31, 32, 33",
+          "description": "A = {3, 5, 6, 7}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B = {2, 3, 4, 5, 8}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Check each element of ξ in turn to see whether it are in both A and B. Elements that are in both A and B: {3, 5}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "11, 12, 13, 21, 22, 23, 31, 32, 33 oe",
+          "description": "{3, 5} oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "spinner_pair",
-        "params": {
-          "sectors_a": [
-            "1",
-            "2",
-            "3"
-          ],
-          "sectors_b": [
-            "1",
-            "2",
-            "3"
-          ]
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     }
   ]

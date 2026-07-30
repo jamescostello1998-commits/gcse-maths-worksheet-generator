@@ -4,6 +4,7 @@
   "tier": "foundation",
   "sitting_id": "foundation-08",
   "paper_number": 1,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "standard_form_to_small",
@@ -276,40 +277,43 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_multi_step",
-      "prompt": "Solve: 3x + 9 + 3x - 9 = 72",
+      "topic_id": "linear_both_sides_foundation",
+      "prompt": "Solve: 2x + 8 = 3x + 3",
       "solution_steps": [
-        "Collect like terms: 3x + 3x = 6x, 9 - 9 = 0",
-        "6x = 72",
-        "Divide both sides by 6:",
-        "x = 12"
+        "2x + 8 = 3x + 3",
+        "Subtract 3x from both sides:",
+        "-x + 8 = 3",
+        "Subtract 8 from both sides:",
+        "-x = -5",
+        "Divide both sides by -1:",
+        "x = 5"
       ],
-      "final_answer": "12",
+      "final_answer": "5",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Collect like terms: 3x + 3x = 6x, 9 - 9 = 0",
+          "description": "2x + 8 = 3x + 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "6x = 72",
+          "description": "Subtract 3x from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 6:",
+          "description": "-x + 8 = 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 12",
+          "description": "Subtract 8 from both sides: -x = -5 Divide both sides by -1: x = 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 oe",
+          "description": "5 oe",
           "marks": 1
         }
       ],
@@ -407,28 +411,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_from_large",
-      "prompt": "Write 1.9 × 10^5 as an ordinary number.",
+      "topic_id": "prime_factors_foundation",
+      "prompt": "Write 84 as a product of its prime factors.",
       "solution_steps": [
-        "Multiply 1.9 by 10^5, which means moving the decimal point 5 place(s) right.",
-        "1.9 × 10^5 = 190000"
+        "Divide 84 repeatedly by the smallest prime that fits: 2 × 2 × 3 × 7",
+        "84 = 2 × 2 × 3 × 7"
       ],
-      "final_answer": "190000",
+      "final_answer": "2 × 2 × 3 × 7",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply 1.9 by 10^5, which means moving the decimal point 5 place(s) right.",
+          "description": "Divide 84 repeatedly by the smallest prime that fits: 2 × 2 × 3 × 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "1.9 × 10^5 = 190000",
+          "description": "84 = 2 × 2 × 3 × 7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "190000 oe",
+          "description": "2 × 2 × 3 × 7 oe",
           "marks": 1
         }
       ],
@@ -777,120 +781,68 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof_foundation",
-      "prompt": "Triangles ABC and ADC share side AC, with AB = AD and BC = DC. State which congruence criterion (SSS, SAS, ASA or RHS) proves that the two triangles are congruent.",
+      "topic_id": "nets_3d_shapes",
+      "prompt": "Describe the net of a triangular prism.",
       "solution_steps": [
-        "AB = AD (given)",
-        "BC = DC (given)",
-        "AC is common to both triangles",
-        "These facts match the Side-Side-Side (SSS) congruence criterion."
+        "Imagine unfolding a triangular prism flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
+        "A triangular prism's net is made up of: 2 triangles and 3 rectangles.",
+        "So the answer is: 2 triangles and 3 rectangles."
       ],
-      "final_answer": "SSS",
-      "marks": 5,
+      "final_answer": "2 triangles and 3 rectangles",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "AB = AD (given)",
+          "description": "Imagine unfolding a triangular prism flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "BC = DC (given)",
+          "description": "A triangular prism's net is made up of: 2 triangles and 3 rectangles.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "AC is common to both triangles",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "These facts match the Side-Side-Side (SSS) congruence criterion.",
+          "description": "So the answer is: 2 triangles and 3 rectangles.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "SSS oe",
+          "description": "2 triangles and 3 rectangles oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "two_triangle_congruence",
+        "kind": "net",
         "params": {
-          "labels_1": [
-            "A",
-            "B",
-            "C"
-          ],
-          "labels_2": [
-            "A",
-            "D",
-            "C"
-          ],
-          "ticks_1": [
-            [
-              0,
-              1,
-              2
-            ],
-            [
-              1,
-              2,
-              3
-            ],
-            [
-              0,
-              2,
-              1
-            ]
-          ],
-          "ticks_2": [
-            [
-              0,
-              1,
-              2
-            ],
-            [
-              1,
-              2,
-              3
-            ],
-            [
-              0,
-              2,
-              1
-            ]
-          ],
-          "arcs_1": [],
-          "arcs_2": [],
-          "note": "AC is common to both triangles."
+          "shape": "triangular_prism"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_reflect_describe",
-      "prompt": "Shape ABCD is reflected to give shape A'B'C'D', shown on the grid. Describe fully the single transformation that maps ABCD onto A'B'C'D'.",
+      "topic_id": "transform_translate_describe",
+      "prompt": "Shape ABCDEF is translated to give shape A'B'C'D'E'F', shown on the grid. Describe fully the single transformation that maps ABCDEF onto A'B'C'D'E'F'.",
       "solution_steps": [
-        "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
-        "Comparing corresponding vertices shows the mirror line is y = -x."
+        "Every vertex moves by exactly the same amount: comparing A(0, 0) with A'(-5, 1) gives the vector (-5, 1).",
+        "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
       ],
-      "final_answer": "Reflection in the line y = -x",
+      "final_answer": "Translation by the vector (-5, 1)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
+          "description": "Every vertex moves by exactly the same amount: comparing A(0, 0) with A'(-5, 1) gives the vector (-5, 1).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Comparing corresponding vertices shows the mirror line is y = -x.",
+          "description": "Checking the other vertices confirms the same vector applies throughout, so this is a translation.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Reflection in the line y = -x oe",
+          "description": "Translation by the vector (-5, 1) oe",
           "marks": 1
         }
       ],
@@ -903,241 +855,216 @@
           "y_max": 8,
           "original_vertices": [
             [
-              2,
-              2
-            ],
-            [
-              6,
-              2
+              0,
+              0
             ],
             [
               5,
-              6
+              0
             ],
             [
-              1,
-              5
+              5,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              0,
+              4
             ]
           ],
           "original_labels": [
             "A",
             "B",
             "C",
-            "D"
+            "D",
+            "E",
+            "F"
           ],
           "image_vertices": [
             [
-              -2,
-              -2
+              -5,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              3
             ],
             [
               -2,
-              -6
+              3
             ],
             [
-              -6,
-              -5
+              -2,
+              5
             ],
             [
               -5,
-              -1
+              5
             ]
           ],
           "image_labels": [
             "A'",
             "B'",
             "C'",
-            "D'"
+            "D'",
+            "E'",
+            "F'"
           ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "loci_constructions",
-      "prompt": "P is a fixed point. Describe the locus of points that are exactly 5 cm from P.",
+      "topic_id": "construction_triangle",
+      "prompt": "Triangle QBX has QB = 12 cm, the angle at B equal to 125°, and BX = 7 cm. Describe, step by step, how to construct triangle QBX using a ruler, a protractor, and a pair of compasses.",
       "solution_steps": [
-        "The locus of points a fixed distance from a single point is a circle centred on that point.",
-        "Every point on the locus must be exactly 5 cm from P, so the locus is a circle with centre P and radius 5 cm."
+        "Draw the line segment QB = 12 cm using a ruler.",
+        "At B, use a protractor to draw a ray at 125° from the line BQ.",
+        "Along this new ray, measure 7 cm from B using a ruler and mark the point X.",
+        "Draw a straight line from Q to X to complete the triangle."
       ],
-      "final_answer": "A circle, centre P, radius 5 cm.",
-      "marks": 3,
+      "final_answer": "Triangle QBX, with X marked 7 cm from B along the 125° ray at B.",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The locus of points a fixed distance from a single point is a circle centred on that point.",
+          "description": "Draw the line segment QB = 12 cm using a ruler.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Every point on the locus must be exactly 5 cm from P, so the locus is a circle with centre P and radius 5 cm.",
+          "description": "At B, use a protractor to draw a ray at 125° from the line BQ.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Along this new ray, measure 7 cm from B using a ruler and mark the point X.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Draw a straight line from Q to X to complete the triangle.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A circle, centre P, radius 5 cm. oe",
+          "description": "Triangle QBX, with X marked 7 cm from B along the 125° ray at B. oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "loci_construction",
-        "params": {
-          "x_min": -4.0,
-          "x_max": 8.0,
-          "y_min": -4.0,
-          "y_max": 8.0,
-          "points": [
-            {
-              "xy": [
-                2,
-                2
-              ],
-              "label": "P"
-            }
-          ],
-          "given_lines": []
-        }
-      },
-      "solution_diagram": {
-        "kind": "loci_construction",
-        "params": {
-          "x_min": -4.0,
-          "x_max": 8.0,
-          "y_min": -4.0,
-          "y_max": 8.0,
-          "points": [
-            {
-              "xy": [
-                2,
-                2
-              ],
-              "label": "P"
-            }
-          ],
-          "given_lines": [],
-          "circle": {
-            "centre": [
-              2,
-              2
-            ],
-            "radius": 5
-          },
-          "segment": null
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     },
     {
-      "topic_id": "symmetry_lines",
-      "prompt": "The diagram shows a square. How many lines of symmetry does it have?",
+      "topic_id": "two_way_tables",
+      "prompt": "The two-way table shows the number of boys and girls who prefer football or tennis. Copy and complete the table, and state the missing value marked '?'.",
       "solution_steps": [
-        "A square has 4 lines of symmetry.",
-        "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram."
+        "The missing value is in the 'Boys' row and 'Football' column.",
+        "Using the row total: 27 - 19 = 8",
+        "Using the column total: 27 - 19 = 8",
+        "Missing value = 8"
       ],
-      "final_answer": "4 lines of symmetry",
-      "marks": 3,
+      "final_answer": "8",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A square has 4 lines of symmetry.",
+          "description": "The missing value is in the 'Boys' row and 'Football' column.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram.",
+          "description": "Using the row total: 27 - 19 = 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Using the column total: 27 - 19 = 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Missing value = 8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4 lines of symmetry oe",
+          "description": "8 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "symmetry_shape",
+        "kind": "two_way_table",
         "params": {
-          "vertices": [
-            [
-              2.8284271247461903,
-              2.8284271247461903
-            ],
-            [
-              -2.82842712474619,
-              2.8284271247461903
-            ],
-            [
-              -2.8284271247461907,
-              -2.82842712474619
-            ],
-            [
-              2.8284271247461894,
-              -2.8284271247461907
-            ]
+          "row_labels": [
+            "Boys",
+            "Girls",
+            "Total"
           ],
-          "blank": true
+          "col_labels": [
+            "Football",
+            "Tennis",
+            "Total"
+          ],
+          "cells": [
+            [
+              "?",
+              "19",
+              "27"
+            ],
+            [
+              "19",
+              "20",
+              "39"
+            ],
+            [
+              "27",
+              "39",
+              "66"
+            ]
+          ]
         }
       },
       "solution_diagram": {
-        "kind": "symmetry_shape",
+        "kind": "two_way_table",
         "params": {
-          "vertices": [
-            [
-              2.8284271247461903,
-              2.8284271247461903
-            ],
-            [
-              -2.82842712474619,
-              2.8284271247461903
-            ],
-            [
-              -2.8284271247461907,
-              -2.82842712474619
-            ],
-            [
-              2.8284271247461894,
-              -2.8284271247461907
-            ]
+          "row_labels": [
+            "Boys",
+            "Girls",
+            "Total"
           ],
-          "symmetry_lines": [
-            {
-              "p1": [
-                -3.6769552621700474,
-                -3.6769552621700474
-              ],
-              "p2": [
-                3.6769552621700474,
-                3.6769552621700474
-              ]
-            },
-            {
-              "p1": [
-                -3.1840816777831187e-16,
-                -5.2
-              ],
-              "p2": [
-                3.1840816777831187e-16,
-                5.2
-              ]
-            },
-            {
-              "p1": [
-                3.676955262170047,
-                -3.6769552621700474
-              ],
-              "p2": [
-                -3.676955262170047,
-                3.6769552621700474
-              ]
-            },
-            {
-              "p1": [
-                5.2,
-                -6.368163355566237e-16
-              ],
-              "p2": [
-                -5.2,
-                6.368163355566237e-16
-              ]
-            }
+          "col_labels": [
+            "Football",
+            "Tennis",
+            "Total"
+          ],
+          "cells": [
+            [
+              "8",
+              "19",
+              "27"
+            ],
+            [
+              "19",
+              "20",
+              "39"
+            ],
+            [
+              "27",
+              "39",
+              "66"
+            ]
           ]
         }
       }
@@ -1187,71 +1114,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "venn_diagram_probability",
-      "prompt": "The Venn diagram shows the number of students in each region for sets A and B. Find P(A ∩ B).",
+      "topic_id": "sampling_methods",
+      "prompt": "A researcher wants to find out the opinions of all subscribers at a large organisation. She asks the first 47 subscribers she meets at the front gate before 7am. Explain why this sample might not be representative of all the subscribers.",
       "solution_steps": [
-        "Total number of elements = 9 + 4 + 14 + 7 = 34",
-        "Number of outcomes in A ∩ B = 14 = 14",
-        "P(A ∩ B) = 14/34 = 7/17"
+        "Only subscribers who happen to be at the front gate before 7am at that particular time have any chance of being chosen - anyone who isn't there is automatically excluded.",
+        "This is a convenience sample, not a random one, so it's likely to over-represent whichever kind of person tends to be in that place at that time, and under-represent everyone else."
       ],
-      "final_answer": "7/17",
-      "marks": 4,
+      "final_answer": "Biased - only people at that one location/time could be chosen, so the sample isn't representative.",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total number of elements = 9 + 4 + 14 + 7 = 34",
+          "description": "Only subscribers who happen to be at the front gate before 7am at that particular time have any chance of being chosen - anyone who isn't there is automatically excluded.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Number of outcomes in A ∩ B = 14 = 14",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(A ∩ B) = 14/34 = 7/17",
+          "description": "This is a convenience sample, not a random one, so it's likely to over-represent whichever kind of person tends to be in that place at that time, and under-represent everyone else.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7/17 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "venn_diagram",
-        "params": {
-          "labels": [
-            "A",
-            "B"
-          ],
-          "region_text": {
-            "a_only": "9",
-            "b_only": "4",
-            "both": "14",
-            "neither": "7"
-          }
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "stats_mean",
-      "prompt": "Find the mean of this data set: 30, 3, 4, 30, 8.",
-      "solution_steps": [
-        "Mean = sum ÷ count = (30 + 3 + 4 + 30 + 8) ÷ 5 = 75 ÷ 5 = 15"
-      ],
-      "final_answer": "15",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Mean = sum ÷ count = (30 + 3 + 4 + 30 + 8) ÷ 5 = 75 ÷ 5 = 15",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "15 oe",
+          "description": "Biased - only people at that one location/time could be chosen, so the sample isn't representative. oe",
           "marks": 1
         }
       ],

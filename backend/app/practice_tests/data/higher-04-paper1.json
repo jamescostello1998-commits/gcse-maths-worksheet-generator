@@ -4,6 +4,7 @@
   "tier": "higher",
   "sitting_id": "higher-04",
   "paper_number": 1,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "fractions_divide",
@@ -352,10 +353,53 @@
       }
     },
     {
+      "topic_id": "quadratic_formula",
+      "prompt": "Solve 3x^2 - 6x + 1 = 0, giving your answer in the form x = (-b ± k√m)/2a, fully simplified.",
+      "solution_steps": [
+        "x = (-b ± √(b^2 - 4ac)) / 2a",
+        "a = 3, b = -6, c = 1",
+        "x = (6 ± √(-6^2 - 4×3×1)) / 6",
+        "x = (6 ± √24) / 6",
+        "√24 = √(2^2 × 6) = 2√6",
+        "x = (6 ± 2√6) / 6 = (3 ± √6)/3 (dividing numerator and denominator by 2)"
+      ],
+      "final_answer": "x = (3 ± √6)/3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "x = (-b ± √(b^2 - 4ac)) / 2a",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "a = 3, b = -6, c = 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = (6 ± √(-6^2 - 4×3×1)) / 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = (6 ± √24) / 6 √24 = √(2^2 × 6) = 2√6 x = (6 ± 2√6) / 6 = (3 ± √6)/3 (dividing numerator and denominator by 2)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = (3 ± √6)/3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "turning_point_of_graph",
       "prompt": "Find the coordinates of the turning point of the curve y = x^2 + 12x.",
       "solution_steps": [
-        "Complete the square: x^2 + 12x + 0 = (x + 6)^2 - 36",
+        "Complete the square: x^2 + 12x = (x + 6)^2 - 36",
         "The turning point of y = (x + p)^2 + q is (-p, q).",
         "Turning point = (-6, -36)"
       ],
@@ -364,7 +408,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Complete the square: x^2 + 12x + 0 = (x + 6)^2 - 36",
+          "description": "Complete the square: x^2 + 12x = (x + 6)^2 - 36",
           "marks": 1
         },
         {
@@ -427,108 +471,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_quadratics",
-      "prompt": "Factorise: x^2 - 25",
+      "topic_id": "change_subject_higher",
+      "prompt": "Make r the subject of the formula A = πr^2.",
       "solution_steps": [
-        "Find two numbers that multiply to -25 and add to 0: 5 and -5",
-        "Write as two brackets: (x + 5)(x - 5)"
+        "A = πr^2",
+        "Divide both sides by π: A/π = r^2",
+        "Take the square root of both sides: r = √(A/π)"
       ],
-      "final_answer": "(x + 5)(x - 5)",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find two numbers that multiply to -25 and add to 0: 5 and -5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Write as two brackets: (x + 5)(x - 5)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(x + 5)(x - 5) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "forming_equations_higher",
-      "prompt": "A quadrilateral has angles 53°, 69°, (2x + 9)°, and (3x + 209)°. Form an equation and solve it to find x.",
-      "solution_steps": [
-        "Angles in a quadrilateral sum to 360°.",
-        "53 + 69 + (2x + 9) + (3x + 209) = 360",
-        "Collect the x-terms and constants together:",
-        "5x + 218 = 238",
-        "Subtract 218 from both sides:",
-        "5x = 20",
-        "Divide both sides by 5:",
-        "x = 4"
-      ],
-      "final_answer": "4",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Angles in a quadrilateral sum to 360°.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "53 + 69 + (2x + 9) + (3x + 209) = 360",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Collect the x-terms and constants together:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "5x + 218 = 238 Subtract 218 from both sides: 5x = 20 Divide both sides by 5: x = 4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "expand_triple_brackets",
-      "prompt": "Expand and simplify: (x + 1)(-4x - 1)(-2x - 2)",
-      "solution_steps": [
-        "First expand two of the brackets: (x + 1)(-4x - 1) = -4x^2 - 5x - 1",
-        "Multiply the result by (-2x - 2) and collect like terms",
-        "= 8x^3 + 18x^2 + 12x + 2"
-      ],
-      "final_answer": "8x^3 + 18x^2 + 12x + 2",
+      "final_answer": "r = √(A/π)",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First expand two of the brackets: (x + 1)(-4x - 1) = -4x^2 - 5x - 1",
+          "description": "A = πr^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the result by (-2x - 2) and collect like terms",
+          "description": "Divide both sides by π: A/π = r^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 8x^3 + 18x^2 + 12x + 2",
+          "description": "Take the square root of both sides: r = √(A/π)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8x^3 + 18x^2 + 12x + 2 oe",
+          "description": "r = √(A/π) oe",
           "marks": 1
         }
       ],
@@ -536,91 +506,111 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "velocity_time_interpret",
-      "prompt": "The velocity-time graph shows a car's journey. Find its deceleration during the final phase.",
+      "topic_id": "ratio_shape_similar_higher",
+      "prompt": "Shape A and Shape B are similar. A length on shape A is 4 cm and the corresponding length on shape B is 3 cm. The area of shape A is 48 cm². Find the area of shape B.",
       "solution_steps": [
-        "Deceleration = change in velocity ÷ time = 15 ÷ 12 = 5/4 m/s^2"
+        "Linear scale factor = 3 ÷ 4 = 3/4",
+        "Area scale factor = (3/4)^2 = 9/16",
+        "Area of B = 48 × 9/16 = 27 cm²"
       ],
-      "final_answer": "5/4 m/s^2",
-      "marks": 2,
+      "final_answer": "27 cm²",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Deceleration = change in velocity ÷ time = 15 ÷ 12 = 5/4 m/s^2",
+          "description": "Linear scale factor = 3 ÷ 4 = 3/4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area scale factor = (3/4)^2 = 9/16",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of B = 48 × 9/16 = 27 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5/4 m/s^2 oe",
+          "description": "27 cm² oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              10,
-              15
-            ],
-            [
-              25,
-              15
-            ],
-            [
-              37,
-              0
-            ]
-          ],
-          "x_max": 42,
-          "y_max": 20,
-          "x_label": "Time (s)",
-          "y_label": "Velocity (m/s)"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_different_coefficient",
-      "prompt": "Solve the simultaneous equations: 5x + 5y = -10 and 2x + 4y = 4",
+      "topic_id": "perpendicular_lines_equation",
+      "prompt": "A line is perpendicular to y = -5x - 7 and passes through the point (4, 7). Find the equation of the line.",
       "solution_steps": [
-        "5x + 5y = -10  (1)",
-        "2x + 4y = 4  (2)",
-        "(1) × 4: 20x + 20y = -40  (3)",
-        "(2) × 5: 10x + 20y = 20  (4)",
-        "(3) - (4): 10x = -60, so x = -6",
-        "Substitute x = -6 into (1): 5y = 20, so y = 4"
+        "Perpendicular gradients multiply to give -1: m × -5 = -1, so m = 1/5",
+        "Substitute (4, 7) into y = 1/5x + c: 7 = 1/5×(4) + c, so c = 31/5",
+        "Equation of the line: y = 1/5x + 31/5"
       ],
-      "final_answer": "x = -6, y = 4",
+      "final_answer": "y = 1/5x + 31/5",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Perpendicular gradients multiply to give -1: m × -5 = -1, so m = 1/5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute (4, 7) into y = 1/5x + c: 7 = 1/5×(4) + c, so c = 31/5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Equation of the line: y = 1/5x + 31/5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y = 1/5x + 31/5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_difference_higher",
+      "prompt": "Amounts are in the ratio 7:9:1. The difference between the largest and smallest amount is 120. Find all three amounts.",
+      "solution_steps": [
+        "Difference in parts = 9 - 1 = 8 parts",
+        "Value of one part = 120 ÷ 8 = 15",
+        "Amount 1 = 7 × 15 = 105",
+        "Amount 2 = 9 × 15 = 135",
+        "Amount 3 = 1 × 15 = 15"
+      ],
+      "final_answer": "105 : 135 : 15",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5x + 5y = -10  (1)",
+          "description": "Difference in parts = 9 - 1 = 8 parts",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x + 4y = 4  (2)",
+          "description": "Value of one part = 120 ÷ 8 = 15",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(1) × 4: 20x + 20y = -40  (3)",
+          "description": "Amount 1 = 7 × 15 = 105",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(2) × 5: 10x + 20y = 20  (4) (3) - (4): 10x = -60, so x = -6 Substitute x = -6 into (1): 5y = 20, so y = 4",
+          "description": "Amount 2 = 9 × 15 = 135 Amount 3 = 1 × 15 = 15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -6, y = 4 oe",
+          "description": "105 : 135 : 15 oe",
           "marks": 1
         }
       ],
@@ -744,44 +734,38 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_direct_proportion",
-      "prompt": "y is directly proportional to x^2. When x = 2, y = 28. Find the value of y when x = 3.",
+      "topic_id": "circle_theorems",
+      "prompt": "PQ is a chord of a circle, and the tangent to the circle at P is shown. R is a point on the circle in the alternate segment. Find the angle between the tangent and the chord PQ, x.",
       "solution_steps": [
-        "y = kx^2",
-        "28 = k × 2^2 = k × 4",
-        "k = 28 ÷ 4 = 7",
-        "y = 7 × 3^2 = 7 × 9 = 63"
+        "The alternate segment theorem: the angle between a tangent and a chord equals the angle subtended by that chord in the alternate segment.",
+        "x = 64°"
       ],
-      "final_answer": "63",
-      "marks": 5,
+      "final_answer": "64°",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = kx^2",
+          "description": "The alternate segment theorem: the angle between a tangent and a chord equals the angle subtended by that chord in the alternate segment.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "28 = k × 2^2 = k × 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "k = 28 ÷ 4 = 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y = 7 × 3^2 = 7 × 9 = 63",
+          "description": "x = 64°",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "63 oe",
+          "description": "64° oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "circle_alternate_segment",
+        "params": {
+          "tangent_angle_label": "x°",
+          "segment_angle_label": "64°"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -835,28 +819,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_rotate_describe",
-      "prompt": "Shape ABCDEF is rotated to give shape A'B'C'D'E'F', shown on the grid. Describe fully the single transformation that maps ABCDEF onto A'B'C'D'E'F'.",
+      "topic_id": "transform_enlarge_complete_higher",
+      "prompt": "Enlarge shape ABCDEF by scale factor -1, centre (2, -1). Draw and label the image A'B'C'D'E'F'.",
       "solution_steps": [
-        "The centre of rotation is the one point that is the same distance from a vertex and its image, for every vertex - it can be found where the perpendicular bisectors of two such pairs cross.",
-        "Measuring the turn from a vertex to its image about that point gives 90° clockwise about (-1, 3)."
+        "The centre of enlargement is (2, -1) and the scale factor is -1.",
+        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-4, 2) from the centre, so A' = (2, -1) + -1 × (-4, 2) = (6, -3).",
+        "Repeat for every vertex: A(-2, 1) -> A'(6, -3), B(3, 1) -> B'(1, -3), C(3, 3) -> C'(1, -5), D(1, 3) -> D'(3, -5), E(1, 5) -> E'(3, -7), F(-2, 5) -> F'(6, -7)",
+        "A negative scale factor puts the image on the opposite side of the centre from the original shape."
       ],
-      "final_answer": "Rotation 90° clockwise about (-1, 3)",
-      "marks": 3,
+      "final_answer": "A'(6, -3), B'(1, -3), C'(1, -5), D'(3, -5), E'(3, -7), F'(6, -7)",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The centre of rotation is the one point that is the same distance from a vertex and its image, for every vertex - it can be found where the perpendicular bisectors of two such pairs cross.",
+          "description": "The centre of enlargement is (2, -1) and the scale factor is -1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Measuring the turn from a vertex to its image about that point gives 90° clockwise about (-1, 3).",
+          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-4, 2) from the centre, so A' = (2, -1) + -1 × (-4, 2) = (6, -3).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Repeat for every vertex: A(-2, 1) -> A'(6, -3), B(3, 1) -> B'(1, -3), C(3, 3) -> C'(1, -5), D(1, 3) -> D'(3, -5), E(1, 5) -> E'(3, -7), F(-2, 5) -> F'(6, -7)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A negative scale factor puts the image on the opposite side of the centre from the original shape.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Rotation 90° clockwise about (-1, 3) oe",
+          "description": "A'(6, -3), B'(1, -3), C'(1, -5), D'(3, -5), E'(3, -7), F'(6, -7) oe",
           "marks": 1
         }
       ],
@@ -869,28 +865,28 @@
           "y_max": 8,
           "original_vertices": [
             [
-              1,
-              -3
-            ],
-            [
-              6,
-              -3
-            ],
-            [
-              6,
-              -1
-            ],
-            [
-              4,
-              -1
-            ],
-            [
-              4,
+              -2,
               1
             ],
             [
-              1,
+              3,
               1
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              -2,
+              5
             ]
           ],
           "original_labels": [
@@ -901,30 +897,81 @@
             "E",
             "F"
           ],
+          "centre": [
+            2,
+            -1
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              -2,
+              1
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              -2,
+              5
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "centre": [
+            2,
+            -1
+          ],
           "image_vertices": [
             [
-              -7,
-              1
+              6,
+              -3
             ],
             [
-              -7,
-              -4
+              1,
+              -3
             ],
             [
-              -5,
-              -4
+              1,
+              -5
             ],
             [
-              -5,
-              -2
+              3,
+              -5
             ],
             [
-              -3,
-              -2
+              3,
+              -7
             ],
             [
-              -3,
-              1
+              6,
+              -7
             ]
           ],
           "image_labels": [
@@ -936,8 +983,7 @@
             "F'"
           ]
         }
-      },
-      "solution_diagram": null
+      }
     },
     {
       "topic_id": "bearings_cosine_rule",
@@ -996,58 +1042,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_triangle_higher",
-      "prompt": "A triangle has angles 46°, 73°, and (2x + 33)°. Find x.",
-      "solution_steps": [
-        "Angles in a triangle sum to 180°.",
-        "2x + 33 = 61",
-        "Subtract 33 from both sides:",
-        "2x = 28",
-        "Divide both sides by 2:",
-        "x = 14"
-      ],
-      "final_answer": "14",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Angles in a triangle sum to 180°.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2x + 33 = 61",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 33 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2x = 28 Divide both sides by 2: x = 14",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "14 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "triangle_angles",
-        "params": {
-          "angle_labels": [
-            "46°",
-            "73°",
-            "(2x + 33)°"
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
       "topic_id": "probability_conditional",
       "prompt": "A bag contains 4 purple and 5 blue counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour.",
       "solution_steps": [
@@ -1088,6 +1082,29 @@
           }
         }
       },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "product_rule_counting",
+      "prompt": "A shop sells 5 different starters and 5 different main courses. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "solution_steps": [
+        "Total combinations = 5 × 5 = 25"
+      ],
+      "final_answer": "25",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total combinations = 5 × 5 = 25",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "25 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     }
   ]

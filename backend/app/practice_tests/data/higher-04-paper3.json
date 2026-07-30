@@ -4,7 +4,37 @@
   "tier": "higher",
   "sitting_id": "higher-04",
   "paper_number": 3,
+  "calculator_allowed": true,
   "questions": [
+    {
+      "topic_id": "prime_factors_higher",
+      "prompt": "Write 198 as a product of its prime factors, giving your answer in index form.",
+      "solution_steps": [
+        "Divide 198 repeatedly by the smallest prime that fits: 2 × 3 × 3 × 11",
+        "Write repeated factors using index notation: 198 = 2 × 3^2 × 11"
+      ],
+      "final_answer": "2 × 3^2 × 11",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Divide 198 repeatedly by the smallest prime that fits: 2 × 3 × 3 × 11",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write repeated factors using index notation: 198 = 2 × 3^2 × 11",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2 × 3^2 × 11 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
     {
       "topic_id": "standard_form_multiply_divide",
       "prompt": "Work out (1 × 10^-3) ÷ (2 × 10^-4). Give your answer in standard form.",
@@ -41,34 +71,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bounds_calculation",
-      "prompt": "A car travels 248 km (to the nearest km) in 7 hours (to the nearest hour). Calculate the upper bound for the average speed of the car, to 1 decimal place.",
+      "topic_id": "fractions_mixed_number_arithmetic",
+      "prompt": "Work out 4 3/4 + 3 1/2. Give your answer as a mixed number.",
       "solution_steps": [
-        "Distance: 248 km (to the nearest km) gives 247.5 ≤ distance < 248.5",
-        "Time: 7 hours (to the nearest hour) gives 6.5 ≤ time < 7.5",
-        "For the upper bound of the speed, divide the upper bound of distance by the lower bound of time: 248.5 ÷ 6.5 = 497/13 ≈ 38.2 km/h"
+        "Convert to improper fractions: 4 3/4 = 19/4, 3 1/2 = 7/2",
+        "Add the improper fractions: 19/4 + 7/2 = 33/4",
+        "Convert back to a mixed number: 8 1/4"
       ],
-      "final_answer": "38.2 km/h (to 1 d.p.)",
+      "final_answer": "8 1/4",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Distance: 248 km (to the nearest km) gives 247.5 ≤ distance < 248.5",
+          "description": "Convert to improper fractions: 4 3/4 = 19/4, 3 1/2 = 7/2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Time: 7 hours (to the nearest hour) gives 6.5 ≤ time < 7.5",
+          "description": "Add the improper fractions: 19/4 + 7/2 = 33/4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For the upper bound of the speed, divide the upper bound of distance by the lower bound of time: 248.5 ÷ 6.5 = 497/13 ≈ 38.2 km/h",
+          "description": "Convert back to a mixed number: 8 1/4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "38.2 km/h (to 1 d.p.) oe",
+          "description": "8 1/4 oe",
           "marks": 1
         }
       ],
@@ -117,34 +147,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_add_subtract",
-      "prompt": "Work out (6 × 10^6) + (2 × 10^5). Give your answer in standard form.",
+      "topic_id": "roots_higher",
+      "prompt": "Simplify √27, giving your answer in the form a√b.",
       "solution_steps": [
-        "Write both numbers with the same power of 10: 6×10^6 = 60×10^5, 2×10^5 = 2×10^5",
-        "Add the coefficients: 60 + 2 = 62",
-        "Write in standard form: 62 × 10^5 = 6.2 × 10^6"
+        "Find the largest square factor of 27: 3^2 × 3 = 27",
+        "√27 = √(3^2 × 3) = 3√3"
       ],
-      "final_answer": "6.2 × 10^6",
-      "marks": 4,
+      "final_answer": "3√3",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Write both numbers with the same power of 10: 6×10^6 = 60×10^5, 2×10^5 = 2×10^5",
+          "description": "Find the largest square factor of 27: 3^2 × 3 = 27",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add the coefficients: 60 + 2 = 62",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Write in standard form: 62 × 10^5 = 6.2 × 10^6",
+          "description": "√27 = √(3^2 × 3) = 3√3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6.2 × 10^6 oe",
+          "description": "3√3 oe",
           "marks": 1
         }
       ],
@@ -152,34 +176,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_divide",
-      "prompt": "Work out 8/3 ÷ 6/3. Give your answer as a fraction in its simplest form.",
+      "topic_id": "bounds_calculation",
+      "prompt": "A car travels 248 km (to the nearest km) in 7 hours (to the nearest hour). Calculate the upper bound for the average speed of the car, to 1 decimal place.",
       "solution_steps": [
-        "Keep-change-flip: 8/3 ÷ 6/3 = 8/3 × 3/6",
-        "Multiply: (8×3)/(3×6) = 24/18",
-        "Simplify: 4/3"
+        "Distance: 248 km (to the nearest km) gives 247.5 ≤ distance < 248.5",
+        "Time: 7 hours (to the nearest hour) gives 6.5 ≤ time < 7.5",
+        "For the upper bound of the speed, divide the upper bound of distance by the lower bound of time: 248.5 ÷ 6.5 = 497/13 ≈ 38.2 km/h"
       ],
-      "final_answer": "4/3",
+      "final_answer": "38.2 km/h (to 1 d.p.)",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Keep-change-flip: 8/3 ÷ 6/3 = 8/3 × 3/6",
+          "description": "Distance: 248 km (to the nearest km) gives 247.5 ≤ distance < 248.5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: (8×3)/(3×6) = 24/18",
+          "description": "Time: 7 hours (to the nearest hour) gives 6.5 ≤ time < 7.5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify: 4/3",
+          "description": "For the upper bound of the speed, divide the upper bound of distance by the lower bound of time: 248.5 ÷ 6.5 = 497/13 ≈ 38.2 km/h",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4/3 oe",
+          "description": "38.2 km/h (to 1 d.p.) oe",
           "marks": 1
         }
       ],
@@ -187,34 +211,159 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_mixed_number_arithmetic",
-      "prompt": "Work out 4 3/4 + 3 1/2. Give your answer as a mixed number.",
+      "topic_id": "hcf_lcm_by_prime_factors",
+      "prompt": "Using prime factorisation, find the HCF of 94 and 66.",
       "solution_steps": [
-        "Convert to improper fractions: 4 3/4 = 19/4, 3 1/2 = 7/2",
-        "Add the improper fractions: 19/4 + 7/2 = 33/4",
-        "Convert back to a mixed number: 8 1/4"
+        "94 = 2 × 47",
+        "66 = 2 × 3 × 11",
+        "HCF: take the lowest power of each prime that appears in both numbers",
+        "HCF = 2"
       ],
-      "final_answer": "8 1/4",
-      "marks": 4,
+      "final_answer": "2",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert to improper fractions: 4 3/4 = 19/4, 3 1/2 = 7/2",
+          "description": "94 = 2 × 47",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add the improper fractions: 19/4 + 7/2 = 33/4",
+          "description": "66 = 2 × 3 × 11",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Convert back to a mixed number: 8 1/4",
+          "description": "HCF: take the lowest power of each prime that appears in both numbers",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "HCF = 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8 1/4 oe",
+          "description": "2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "factorise_quadratics",
+      "prompt": "Factorise: x^2 + 2x - 48",
+      "solution_steps": [
+        "Find two numbers that multiply to -48 and add to 2: -6 and 8",
+        "Write as two brackets: (x - 6)(x + 8)"
+      ],
+      "final_answer": "(x - 6)(x + 8)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find two numbers that multiply to -48 and add to 2: -6 and 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write as two brackets: (x - 6)(x + 8)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(x - 6)(x + 8) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "velocity_time_interpret",
+      "prompt": "The velocity-time graph shows a car's journey. Find the total distance travelled.",
+      "solution_steps": [
+        "Total distance = total area under the graph (a trapezium)",
+        "Distance = ½ × (33 + 20) × 24 = 636 m"
+      ],
+      "final_answer": "636 m",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total distance = total area under the graph (a trapezium)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Distance = ½ × (33 + 20) × 24 = 636 m",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "636 m oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              24
+            ],
+            [
+              25,
+              24
+            ],
+            [
+              33,
+              0
+            ]
+          ],
+          "x_max": 38,
+          "y_max": 29,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "perpendicular_lines_equation",
+      "prompt": "A line is perpendicular to y = 2x - 3 and passes through the point (-2, 4). Find the equation of the line.",
+      "solution_steps": [
+        "Perpendicular gradients multiply to give -1: m × 2 = -1, so m = -1/2",
+        "Substitute (-2, 4) into y = -1/2x + c: 4 = -1/2×(-2) + c, so c = 3",
+        "Equation of the line: y = -1/2x + 3"
+      ],
+      "final_answer": "y = -1/2x + 3",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Perpendicular gradients multiply to give -1: m × 2 = -1, so m = -1/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute (-2, 4) into y = -1/2x + c: 4 = -1/2×(-2) + c, so c = 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Equation of the line: y = -1/2x + 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y = -1/2x + 3 oe",
           "marks": 1
         }
       ],
@@ -316,34 +465,73 @@
       }
     },
     {
-      "topic_id": "graph_transformations",
-      "prompt": "The graph of y = f(x) is transformed to give the graph of y = f(-x). Describe this transformation fully.",
+      "topic_id": "expand_triple_brackets",
+      "prompt": "Expand and simplify: (-x + 3)(3x + 4)(2x + 4)",
       "solution_steps": [
-        "y = f(-x) corresponds to a reflection in the y-axis."
+        "First expand two of the brackets: (-x + 3)(3x + 4) = -3x^2 + 5x + 12",
+        "Multiply the result by (2x + 4) and collect like terms",
+        "= -6x^3 - 2x^2 + 44x + 48"
       ],
-      "final_answer": "Reflection in the y-axis",
-      "marks": 2,
+      "final_answer": "-6x^3 - 2x^2 + 44x + 48",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = f(-x) corresponds to a reflection in the y-axis.",
+          "description": "First expand two of the brackets: (-x + 3)(3x + 4) = -3x^2 + 5x + 12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply the result by (2x + 4) and collect like terms",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= -6x^3 - 2x^2 + 44x + 48",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Reflection in the y-axis oe",
+          "description": "-6x^3 - 2x^2 + 44x + 48 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "graph_transformation",
-        "params": {
-          "transform": "reflect_y",
-          "shift": 0,
-          "original_label": "y = f(x)",
-          "transformed_label": "y = f(-x)"
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "change_subject_higher",
+      "prompt": "Make r the subject of the formula A = 2πr^2.",
+      "solution_steps": [
+        "A = 2πr^2",
+        "Divide both sides by 2π: A/(2π) = r^2",
+        "Take the square root of both sides: r = √(A/(2π))"
+      ],
+      "final_answer": "r = √(A/(2π))",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A = 2πr^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 2π: A/(2π) = r^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Take the square root of both sides: r = √(A/(2π))",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "r = √(A/(2π)) oe",
+          "marks": 1
         }
-      },
+      ],
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -390,34 +578,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_quadratic_nth_term",
-      "prompt": "Here are the first four terms of a quadratic sequence: -8, -12, -18, -26. Find an expression for the nth term.",
+      "topic_id": "algebraic_fractions_multiply_divide",
+      "prompt": "Simplify (x^2 - 4)/(x - 4) × (x - 4)/(x - 2), giving your answer in its simplest form.",
       "solution_steps": [
-        "First differences: -4, -6, -8",
-        "Second difference is constant: -2, so the coefficient of n^2 is -2 ÷ 2 = -1",
-        "nth term = -n^2 - n - 6"
+        "Factorise the difference of two squares: (x^2 - 4) = (x - 2)(x + 2)",
+        "(x - 2)(x + 2)/(x - 4) × (x - 4)/(x - 2)",
+        "Cancel the common factors (x - 4) and (x - 2):",
+        "= x + 2"
       ],
-      "final_answer": "-n^2 - n - 6",
-      "marks": 4,
+      "final_answer": "x + 2",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First differences: -4, -6, -8",
+          "description": "Factorise the difference of two squares: (x^2 - 4) = (x - 2)(x + 2)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Second difference is constant: -2, so the coefficient of n^2 is -2 ÷ 2 = -1",
+          "description": "(x - 2)(x + 2)/(x - 4) × (x - 4)/(x - 2)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = -n^2 - n - 6",
+          "description": "Cancel the common factors (x - 4) and (x - 2):",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= x + 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-n^2 - n - 6 oe",
+          "description": "x + 2 oe",
           "marks": 1
         }
       ],
@@ -425,186 +619,69 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inequalities_number_line_higher",
-      "prompt": "Draw the solution set of -3 ≤ x < 1 on a number line.",
+      "topic_id": "ratio_to_equation",
+      "prompt": "(x + 2) : (3x + 3) = 2:5. Find the value of x.",
       "solution_steps": [
-        "Draw a filled circle at -3 and an open circle at 1.",
-        "Shade the segment of the line between the two circles."
+        "Cross-multiply: 5(x + 2) = 2(3x + 3)",
+        "Expand: 5x + 10 = 6x + 6",
+        "Collect x terms: -x = -4",
+        "x = -4 ÷ -1 = 4"
       ],
-      "final_answer": "-3 ≤ x < 1",
+      "final_answer": "x = 4",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Cross-multiply: 5(x + 2) = 2(3x + 3)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand: 5x + 10 = 6x + 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Collect x terms: -x = -4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -4 ÷ -1 = 4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "percentage_increase_decrease_calculator",
+      "prompt": "Using a calculator, decrease £83.35 by 13.5%. Give your answer to 2 decimal places.",
+      "solution_steps": [
+        "Convert 13.5% to a multiplier: 0.865",
+        "Multiply: £83.35 × 0.865 = £72.10 (calculator, 2 d.p.)"
+      ],
+      "final_answer": "£72.10",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw a filled circle at -3 and an open circle at 1.",
+          "description": "Convert 13.5% to a multiplier: 0.865",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Shade the segment of the line between the two circles.",
+          "description": "Multiply: £83.35 × 0.865 = £72.10 (calculator, 2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-3 ≤ x < 1 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -8,
-            8
-          ],
-          "boundaries": [],
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -8,
-            8
-          ],
-          "boundaries": [
-            {
-              "value": -3,
-              "closed": true
-            },
-            {
-              "value": 1,
-              "closed": false
-            }
-          ],
-          "shade": "between"
-        }
-      }
-    },
-    {
-      "topic_id": "linear_both_sides",
-      "prompt": "Solve: -x - 13 = -6x - 53",
-      "solution_steps": [
-        "-x - 13 = -6x - 53",
-        "Add 6x to both sides:",
-        "5x - 13 = -53",
-        "Add 13 to both sides:",
-        "5x = -40",
-        "Divide both sides by 5:",
-        "x = -8"
-      ],
-      "final_answer": "-8",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "-x - 13 = -6x - 53",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add 6x to both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "5x - 13 = -53",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add 13 to both sides: 5x = -40 Divide both sides by 5: x = -8",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-8 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "expand_double_brackets",
-      "prompt": "Expand: (3x + 2)(2x + 5)",
-      "solution_steps": [
-        "First: 3x × 2x = 6x^2",
-        "Outer: 3x × 5 = 15x",
-        "Inner: 2 × 2x = 4x",
-        "Last: 2 × 5 = 10",
-        "Combine like terms: 6x^2 + 19x + 10"
-      ],
-      "final_answer": "6x^2 + 19x + 10",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "First: 3x × 2x = 6x^2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Outer: 3x × 5 = 15x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Inner: 2 × 2x = 4x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Last: 2 × 5 = 10 Combine like terms: 6x^2 + 19x + 10",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "6x^2 + 19x + 10 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "solving_inequalities_higher",
-      "prompt": "Solve the inequality: -4(x - 8) ≥ 0",
-      "solution_steps": [
-        "Expand the bracket: -4(x - 8) ≥ 0",
-        "-4x + 32 ≥ 0",
-        "Subtract 32 from both sides:",
-        "-4x ≥ -32",
-        "Divide both sides by -4 (dividing by a negative number reverses the inequality sign):",
-        "x ≤ 8"
-      ],
-      "final_answer": "x ≤ 8",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Expand the bracket: -4(x - 8) ≥ 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "-4x + 32 ≥ 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 32 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "-4x ≥ -32 Divide both sides by -4 (dividing by a negative number reverses the inequality sign): x ≤ 8",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x ≤ 8 oe",
+          "description": "£72.10 oe",
           "marks": 1
         }
       ],
@@ -641,109 +718,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_three_part",
-      "prompt": "Share 225 in the ratio 9:9:7.",
+      "topic_id": "graph_transformations",
+      "prompt": "The graph of y = f(x) is transformed to give the graph of y = f(-x). Describe this transformation fully.",
       "solution_steps": [
-        "Total parts = 9 + 9 + 7 = 25",
-        "Value of one part = 225 ÷ 25 = 9",
-        "Share 1 = 9 × 9 = 81",
-        "Share 2 = 9 × 9 = 81",
-        "Share 3 = 7 × 9 = 63"
+        "y = f(-x) corresponds to a reflection in the y-axis."
       ],
-      "final_answer": "81 : 81 : 63",
-      "marks": 5,
+      "final_answer": "Reflection in the y-axis",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 9 + 9 + 7 = 25",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Value of one part = 225 ÷ 25 = 9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 9 × 9 = 81",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 9 × 9 = 81 Share 3 = 7 × 9 = 63",
+          "description": "y = f(-x) corresponds to a reflection in the y-axis.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "81 : 81 : 63 oe",
+          "description": "Reflection in the y-axis oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "unit_conversions_higher",
-      "prompt": "Convert 4728 mm² to cm².",
-      "solution_steps": [
-        "Linear conversion factor: 1 cm = 10 mm, so for area, 1 cm² = 10^2 = 100 mm²",
-        "4728 mm² = 4728 ÷ 100 = 47.28 cm²"
-      ],
-      "final_answer": "47.28 cm²",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Linear conversion factor: 1 cm = 10 mm, so for area, 1 cm² = 10^2 = 100 mm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "4728 mm² = 4728 ÷ 100 = 47.28 cm²",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "47.28 cm² oe",
-          "marks": 1
+      "diagram": {
+        "kind": "graph_transformation",
+        "params": {
+          "transform": "reflect_y",
+          "shift": 0,
+          "original_label": "y = f(x)",
+          "transformed_label": "y = f(-x)"
         }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "algebraic_inverse_proportion",
-      "prompt": "y is inversely proportional to x^2. When x = 6, y = 16. Find the value of y when x = 2.",
-      "solution_steps": [
-        "y = k ÷ x^2",
-        "k = y × x^2 = 16 × 6^2 = 16 × 36 = 576",
-        "y = k ÷ x^2 = 576 ÷ 2^2 = 576 ÷ 4 = 144"
-      ],
-      "final_answer": "144",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "y = k ÷ x^2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "k = y × x^2 = 16 × 6^2 = 16 × 36 = 576",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y = k ÷ x^2 = 576 ÷ 2^2 = 576 ÷ 4 = 144",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "144 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
+      },
       "solution_diagram": null
     },
     {
@@ -788,186 +790,85 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_pyramid",
-      "prompt": "A square-based pyramid has a base of side 4 cm and a perpendicular height of 12 cm. Find its volume.",
+      "topic_id": "pythagoras_surd_hypotenuse",
+      "prompt": "A right-angled triangle has legs 5 cm and 10 cm. Find the exact length of the hypotenuse, giving your answer as a simplified surd.",
       "solution_steps": [
-        "Volume = (1/3) × base² × height = (1/3) × 4² × 12",
-        "= 64 cm³"
+        "c² = a² + b² = 5² + 10² = 25 + 100 = 125",
+        "c = √125 = 5√5 cm (exact form)"
       ],
-      "final_answer": "64 cm³",
+      "final_answer": "5√5 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Volume = (1/3) × base² × height = (1/3) × 4² × 12",
+          "description": "c² = a² + b² = 5² + 10² = 25 + 100 = 125",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 64 cm³",
+          "description": "c = √125 = 5√5 cm (exact form)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "64 cm³ oe",
+          "description": "5√5 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "pyramid",
+        "kind": "right_triangle",
         "params": {
-          "base_label": "4 cm",
-          "height_label": "12 cm"
+          "leg1_label": "5 cm",
+          "leg2_label": "10 cm",
+          "hyp_label": "?"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "loci_regions",
-      "prompt": "A and B are two fixed points (shown). Shade the region containing points that are both within 4 cm of B AND closer to B than to A.",
+      "topic_id": "sine_rule",
+      "prompt": "In triangle ABC, angle A = 66°, side a = 11 cm, and side b = 10.2 cm. Find angle B, correct to 1 decimal place.",
       "solution_steps": [
-        "The boundary for 'within 4 cm of B' is a circle, centre B, radius 4 cm - the region is inside this circle.",
-        "The boundary for 'closer to B than to A' is the perpendicular bisector of BA - the region is on the B side of it.",
-        "The required region is where these two conditions overlap."
+        "Use the sine rule: sin(B) / b = sin(A) / a",
+        "sin(B) = (10.2 × sin(66°)) ÷ 11",
+        "B = 58.0° (1 d.p.)"
       ],
-      "final_answer": "The region inside the circle of radius 4 cm centred on B, and on the B side of the perpendicular bisector of BA.",
+      "final_answer": "58.0°",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The boundary for 'within 4 cm of B' is a circle, centre B, radius 4 cm - the region is inside this circle.",
+          "description": "Use the sine rule: sin(B) / b = sin(A) / a",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The boundary for 'closer to B than to A' is the perpendicular bisector of BA - the region is on the B side of it.",
+          "description": "sin(B) = (10.2 × sin(66°)) ÷ 11",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The required region is where these two conditions overlap.",
+          "description": "B = 58.0° (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "The region inside the circle of radius 4 cm centred on B, and on the B side of the perpendicular bisector of BA. oe",
+          "description": "58.0° oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "loci_region",
+        "kind": "general_triangle",
         "params": {
-          "x_min": -4.0,
-          "x_max": 6.0,
-          "y_min": -1.0,
-          "y_max": 9.0,
-          "points": [
-            {
-              "xy": [
-                -2,
-                2
-              ],
-              "label": "A"
-            },
-            {
-              "xy": [
-                1,
-                4
-              ],
-              "label": "B"
-            }
-          ],
-          "boundaries": [
-            {
-              "type": "circle",
-              "centre": [
-                1,
-                4
-              ],
-              "radius": 4
-            },
-            {
-              "type": "segment",
-              "p1": [
-                -6.047001962252292,
-                11.320502943378438
-              ],
-              "p2": [
-                5.047001962252292,
-                -5.320502943378438
-              ]
-            }
-          ]
+          "side_a_label": "11 cm",
+          "side_b_label": "10.2 cm",
+          "side_c_label": null,
+          "angle_A_label": "66°",
+          "angle_B_label": "x°",
+          "angle_C_label": null
         }
       },
-      "solution_diagram": {
-        "kind": "loci_region",
-        "params": {
-          "x_min": -4.0,
-          "x_max": 6.0,
-          "y_min": -1.0,
-          "y_max": 9.0,
-          "points": [
-            {
-              "xy": [
-                -2,
-                2
-              ],
-              "label": "A"
-            },
-            {
-              "xy": [
-                1,
-                4
-              ],
-              "label": "B"
-            }
-          ],
-          "boundaries": [
-            {
-              "type": "circle",
-              "centre": [
-                1,
-                4
-              ],
-              "radius": 4
-            },
-            {
-              "type": "segment",
-              "p1": [
-                -6.047001962252292,
-                11.320502943378438
-              ],
-              "p2": [
-                5.047001962252292,
-                -5.320502943378438
-              ]
-            }
-          ],
-          "shade_constraints": [
-            {
-              "type": "disk",
-              "centre": [
-                1,
-                4
-              ],
-              "radius": 4,
-              "inside": true
-            },
-            {
-              "type": "half_plane",
-              "closer_to": [
-                1,
-                4
-              ],
-              "than": [
-                -2,
-                2
-              ]
-            }
-          ]
-        }
-      }
+      "solution_diagram": null
     },
     {
       "topic_id": "trig_missing_side_higher",
@@ -1007,36 +908,96 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cylinder",
-      "prompt": "A cylinder has radius 3 cm and height 20 cm. Find the exact volume, in terms of π.",
+      "topic_id": "compound_3d_volume",
+      "prompt": "An ice-cream-shaped solid is made from a cone of radius 10 cm and height 17 cm, with a hemisphere of the same radius attached to its open end. Find the total volume, correct to 3 significant figures.",
       "solution_steps": [
-        "Volume = π × r² × h = π × 3² × 20",
-        "= 180π cm³"
+        "Cone volume = (1/3) × π × r² × h = (1/3) × π × 10² × 17",
+        "Hemisphere volume = (2/3) × π × r³ = (2/3) × π × 10³",
+        "Total volume = cone + hemisphere ≈ 3870 cm³ (3 s.f.)"
       ],
-      "final_answer": "180π cm³",
-      "marks": 3,
+      "final_answer": "3870 cm³",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Volume = π × r² × h = π × 3² × 20",
+          "description": "Cone volume = (1/3) × π × r² × h = (1/3) × π × 10² × 17",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 180π cm³",
+          "description": "Hemisphere volume = (2/3) × π × r³ = (2/3) × π × 10³",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total volume = cone + hemisphere ≈ 3870 cm³ (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "180π cm³ oe",
+          "description": "3870 cm³ oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cylinder",
+        "kind": "compound_3d",
         "params": {
-          "radius_label": "3 cm",
-          "height_label": "20 cm"
+          "variant": "cone_hemisphere",
+          "radius_label": "10 cm",
+          "cone_height_label": "17 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_mixed_compound",
+      "prompt": "A shape is made from a rectangle 16 cm by 9 cm, with a triangular roof of height 10 cm on top, and a quarter-circle of radius 3 cm cut from one bottom corner. Find the total area, correct to 3 significant figures.",
+      "solution_steps": [
+        "Rectangle area = 16 × 9 = 144 cm²",
+        "Triangle roof area = ½ × 16 × 10 = 80 cm²",
+        "Quarter-circle cut area = (π × 3²) ÷ 4 ≈ 7.07 cm²",
+        "Total area = 144 + 80 - 7.07 ≈ 217 cm²"
+      ],
+      "final_answer": "217 cm²",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Rectangle area = 16 × 9 = 144 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Triangle roof area = ½ × 16 × 10 = 80 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Quarter-circle cut area = (π × 3²) ÷ 4 ≈ 7.07 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total area = 144 + 80 - 7.07 ≈ 217 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "217 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "mixed_compound",
+        "params": {
+          "width": 16,
+          "height": 9,
+          "roof_height": 10,
+          "cut_radius": 3,
+          "width_label": "16 cm",
+          "height_label": "9 cm",
+          "roof_label": "10 cm",
+          "cut_label": "3 cm"
         }
       },
       "solution_diagram": null
@@ -1062,126 +1023,6 @@
         }
       ],
       "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "tree_diagram_mixed",
-      "prompt": "A bag contains 6 red and 7 blue counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that the first counter is blue and the second counter is blue.",
-      "solution_steps": [
-        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(red) = 6/13, P(blue) = 7/13.",
-        "P(blue then blue) = 7/13 × 7/13 = 49/169"
-      ],
-      "final_answer": "49/169",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(red) = 6/13, P(blue) = 7/13.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(blue then blue) = 7/13 × 7/13 = 49/169",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "49/169 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "tree_diagram",
-        "params": {
-          "stage1": [
-            [
-              "Red",
-              "6/13"
-            ],
-            [
-              "Blue",
-              "7/13"
-            ]
-          ],
-          "stage2": [
-            [
-              [
-                "Red",
-                "6/13"
-              ],
-              [
-                "Blue",
-                "7/13"
-              ]
-            ],
-            [
-              [
-                "Red",
-                "6/13"
-              ],
-              [
-                "Blue",
-                "7/13"
-              ]
-            ]
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "velocity_time_interpret",
-      "prompt": "The velocity-time graph shows a car's journey. Find the total distance travelled.",
-      "solution_steps": [
-        "Total distance = total area under the graph (a trapezium)",
-        "Distance = ½ × (33 + 20) × 24 = 636 m"
-      ],
-      "final_answer": "636 m",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total distance = total area under the graph (a trapezium)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Distance = ½ × (33 + 20) × 24 = 636 m",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "636 m oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              5,
-              24
-            ],
-            [
-              25,
-              24
-            ],
-            [
-              33,
-              0
-            ]
-          ],
-          "x_max": 38,
-          "y_max": 29,
-          "x_label": "Time (s)",
-          "y_label": "Velocity (m/s)"
-        }
-      },
       "solution_diagram": null
     }
   ]

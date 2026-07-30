@@ -4,77 +4,8 @@
   "tier": "higher",
   "sitting_id": "higher-09",
   "paper_number": 1,
+  "calculator_allowed": true,
   "questions": [
-    {
-      "topic_id": "hcf_lcm_by_prime_factors",
-      "prompt": "Using prime factorisation, find the LCM of 126 and 115.",
-      "solution_steps": [
-        "126 = 2 × 3^2 × 7",
-        "115 = 5 × 23",
-        "LCM: take the highest power of each prime",
-        "LCM = 14490"
-      ],
-      "final_answer": "14490",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "126 = 2 × 3^2 × 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "115 = 5 × 23",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "LCM: take the highest power of each prime",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "LCM = 14490",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "14490 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "roots_higher",
-      "prompt": "Simplify √99, giving your answer in the form a√b.",
-      "solution_steps": [
-        "Find the largest square factor of 99: 3^2 × 11 = 99",
-        "√99 = √(3^2 × 11) = 3√11"
-      ],
-      "final_answer": "3√11",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find the largest square factor of 99: 3^2 × 11 = 99",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "√99 = √(3^2 × 11) = 3√11",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "3√11 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
     {
       "topic_id": "simplifying_indices_challenging",
       "prompt": "Simplify 4^(1/2) × 4^-2, giving your answer as a fraction where necessary.",
@@ -110,6 +41,70 @@
         {
           "code": "A1",
           "description": "1/8 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "rationalise_denominator",
+      "prompt": "Rationalise the denominator of 8/√6, giving your answer in its simplest form.",
+      "solution_steps": [
+        "Multiply the top and bottom by √6: 8/√6 = 8√6/6",
+        "Simplify 8/6 by dividing by 2: 4√6/3"
+      ],
+      "final_answer": "4√6/3",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply the top and bottom by √6: 8/√6 = 8√6/6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify 8/6 by dividing by 2: 4√6/3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4√6/3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_mixed_number_arithmetic",
+      "prompt": "Work out 5 2/3 - 4 1/3. Give your answer as a mixed number.",
+      "solution_steps": [
+        "Convert to improper fractions: 5 2/3 = 17/3, 4 1/3 = 13/3",
+        "Subtract the improper fractions: 17/3 - 13/3 = 4/3",
+        "Convert back to a mixed number: 1 1/3"
+      ],
+      "final_answer": "1 1/3",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert to improper fractions: 5 2/3 = 17/3, 4 1/3 = 13/3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract the improper fractions: 17/3 - 13/3 = 4/3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Convert back to a mixed number: 1 1/3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1 1/3 oe",
           "marks": 1
         }
       ],
@@ -158,34 +153,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_divide",
-      "prompt": "Work out 3/5 ÷ 2/7. Give your answer as a fraction in its simplest form.",
+      "topic_id": "standard_form_multiply_divide",
+      "prompt": "Work out (7 × 10^5) × (3 × 10^-3). Give your answer in standard form.",
       "solution_steps": [
-        "Keep-change-flip: 3/5 ÷ 2/7 = 3/5 × 7/2",
-        "Multiply: (3×7)/(5×2) = 21/10",
-        "Simplify: 21/10"
+        "Multiply the mantissas: 7 × 3 = 21",
+        "Add the powers of 10: 5 + -3 = 2",
+        "Renormalize so the mantissa is between 1 and 10: 2.1 × 10^3"
       ],
-      "final_answer": "21/10",
+      "final_answer": "2.1 × 10^3",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Keep-change-flip: 3/5 ÷ 2/7 = 3/5 × 7/2",
+          "description": "Multiply the mantissas: 7 × 3 = 21",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: (3×7)/(5×2) = 21/10",
+          "description": "Add the powers of 10: 5 + -3 = 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify: 21/10",
+          "description": "Renormalize so the mantissa is between 1 and 10: 2.1 × 10^3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "21/10 oe",
+          "description": "2.1 × 10^3 oe",
           "marks": 1
         }
       ],
@@ -193,177 +188,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "surds_multiply_divide",
-      "prompt": "Work out √360 ÷ √10, giving your answer as an integer.",
+      "topic_id": "bounds_calculation",
+      "prompt": "A rectangle has length 20 cm and width 10 cm, both measured to the nearest cm. Calculate the upper bound for the area of the rectangle.",
       "solution_steps": [
-        "√360 ÷ √10 = √(360/10) = √36",
-        "√36 = 6"
+        "Length: 20 cm (to the nearest cm) gives 19.5 ≤ length < 20.5",
+        "Width: 10 cm (to the nearest cm) gives 9.5 ≤ width < 10.5",
+        "For the upper bound of the area, use the upper bound of each measurement: 20.5 × 10.5 = 215.25 cm²"
       ],
-      "final_answer": "6",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "√360 ÷ √10 = √(360/10) = √36",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "√36 = 6",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "6 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "prime_factors_higher",
-      "prompt": "Write 610 as a product of its prime factors, giving your answer in index form.",
-      "solution_steps": [
-        "Divide 610 repeatedly by the smallest prime that fits: 2 × 5 × 61",
-        "Write repeated factors using index notation: 610 = 2 × 5 × 61"
-      ],
-      "final_answer": "2 × 5 × 61",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Divide 610 repeatedly by the smallest prime that fits: 2 × 5 × 61",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Write repeated factors using index notation: 610 = 2 × 5 × 61",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2 × 5 × 61 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "algebraic_proof",
-      "prompt": "Prove algebraically that n^2 - n is always even.",
-      "solution_steps": [
-        "n^2 - n factorises as n(n - 1), the product of two consecutive integers n - 1 and n.",
-        "Write the given expression algebraically: n^2 - n.",
-        "Expand and simplify: n^2 - n = n(n - 1).",
-        "Factorise/rearrange to expose the structure: n(n - 1) = if n is even, n(n - 1) is even × anything = even; if n is odd, then n - 1 is even, so n(n - 1) is anything × even = even.",
-        "Either n or n - 1 must be even (they are consecutive integers, so they can't both be odd), so the product always has an even factor - n^2 - n is always even."
-      ],
-      "final_answer": "Proven: n^2 - n = n(n - 1) is always even, since one of n, n - 1 is always even.",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "n^2 - n factorises as n(n - 1), the product of two consecutive integers n - 1 and n.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Write the given expression algebraically: n^2 - n.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Expand and simplify: n^2 - n = n(n - 1).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise/rearrange to expose the structure: n(n - 1) = if n is even, n(n - 1) is even × anything = even; if n is odd, then n - 1 is even, so n(n - 1) is anything × even = even. Either n or n - 1 must be even (they are consecutive integers, so they can't both be odd), so the product always has an even factor - n^2 - n is always even.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Proven: n^2 - n = n(n - 1) is always even, since one of n, n - 1 is always even. oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "completing_the_square",
-      "prompt": "Write x^2 + 18x + 6 in the form (x + p)^2 + q.",
-      "solution_steps": [
-        "Half the coefficient of x: 18 ÷ 2 = 9",
-        "(x + 9)^2 = x^2 + 18x + 81",
-        "x^2 + 18x + 6 = (x + 9)^2 + (6 - 81) = (x + 9)^2 - 75"
-      ],
-      "final_answer": "(x + 9)^2 - 75",
+      "final_answer": "215.25 cm²",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Half the coefficient of x: 18 ÷ 2 = 9",
+          "description": "Length: 20 cm (to the nearest cm) gives 19.5 ≤ length < 20.5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(x + 9)^2 = x^2 + 18x + 81",
+          "description": "Width: 10 cm (to the nearest cm) gives 9.5 ≤ width < 10.5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x^2 + 18x + 6 = (x + 9)^2 + (6 - 81) = (x + 9)^2 - 75",
+          "description": "For the upper bound of the area, use the upper bound of each measurement: 20.5 × 10.5 = 215.25 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(x + 9)^2 - 75 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "solving_inequalities_higher",
-      "prompt": "Solve the inequality: -5(x - 6) ≥ -4",
-      "solution_steps": [
-        "Expand the bracket: -5(x - 6) ≥ -4",
-        "-5x + 30 ≥ -4",
-        "Subtract 30 from both sides:",
-        "-5x ≥ -34",
-        "Divide both sides by -5 (dividing by a negative number reverses the inequality sign):",
-        "x ≤ 34/5"
-      ],
-      "final_answer": "x ≤ 34/5",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Expand the bracket: -5(x - 6) ≥ -4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "-5x + 30 ≥ -4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 30 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "-5x ≥ -34 Divide both sides by -5 (dividing by a negative number reverses the inequality sign): x ≤ 34/5",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x ≤ 34/5 oe",
+          "description": "215.25 cm² oe",
           "marks": 1
         }
       ],
@@ -399,6 +251,212 @@
         {
           "code": "A1",
           "description": "3n^2 - n + 5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "trig_graph",
+      "prompt": "Complete a table of values for y = -cos(x°) for x = -180 to 180 (in steps of 90°), then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = -cos(x°):",
+        "x: -180, -90, 0, 90, 180",
+        "y: 1, 0, -1, 0, 1",
+        "Plot each (x, y) point and join them with a single smooth curve - y = -cos(x°) repeats the same shape every 360°, and never goes above 1 or below -1."
+      ],
+      "final_answer": "y = -cos(x°)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = -cos(x°):",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -180, -90, 0, 90, 180",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 1, 0, -1, 0, 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve - y = -cos(x°) repeats the same shape every 360°, and never goes above 1 or below -1.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y = -cos(x°) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "trigonometric",
+          "fn": "cos",
+          "sign": -1,
+          "x_min": -180,
+          "x_max": 180,
+          "y_min": -1.4,
+          "y_max": 1.4,
+          "x_label": "x (degrees)",
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "trigonometric",
+          "fn": "cos",
+          "sign": -1,
+          "x_min": -180,
+          "x_max": 180,
+          "y_min": -1.4,
+          "y_max": 1.4,
+          "x_label": "x (degrees)",
+          "table_points": [
+            [
+              -180,
+              1
+            ],
+            [
+              -90,
+              0
+            ],
+            [
+              0,
+              -1
+            ],
+            [
+              90,
+              0
+            ],
+            [
+              180,
+              1
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "quadratic_inequalities",
+      "prompt": "Solve the inequality: x^2 + 9x + 18 > 0",
+      "solution_steps": [
+        "Factorise: x^2 + 9x + 18 = (x + 6)(x + 3)",
+        "The critical values are x = -6 and x = -3.",
+        "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and > 0 is satisfied outside the two roots.",
+        "Answer: x < -6 or x > -3"
+      ],
+      "final_answer": "x < -6 or x > -3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Factorise: x^2 + 9x + 18 = (x + 6)(x + 3)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The critical values are x = -6 and x = -3.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and > 0 is satisfied outside the two roots.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Answer: x < -6 or x > -3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x < -6 or x > -3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "iteration",
+      "prompt": "The iterative formula x_(n+1) = (23 - x_n^2) / 3 is used with x_0 = 1. Find the values of x_1, x_2 and x_3, giving each answer to 3 decimal places.",
+      "solution_steps": [
+        "Iterative formula: x_(n+1) = (23 - x_n^2) / 3",
+        "x_0 = 1",
+        "x_1 = g(x_0) = (23 - 1^2) / 3 = 7.333",
+        "x_2 = g(x_1) = (23 - 7.333^2) / 3 = -10.259",
+        "x_3 = g(x_2) = (23 - (-10.259)^2) / 3 = -27.417"
+      ],
+      "final_answer": "x_1 = 7.333, x_2 = -10.259, x_3 = -27.417",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Iterative formula: x_(n+1) = (23 - x_n^2) / 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x_0 = 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x_1 = g(x_0) = (23 - 1^2) / 3 = 7.333",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x_2 = g(x_1) = (23 - 7.333^2) / 3 = -10.259 x_3 = g(x_2) = (23 - (-10.259)^2) / 3 = -27.417",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x_1 = 7.333, x_2 = -10.259, x_3 = -27.417 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "special_sequences_higher",
+      "prompt": "The first 4 terms of a geometric sequence are: 6, 18, 54, 162. Each term is found by multiplying the previous term by a common ratio. Find the 5th term of the sequence.",
+      "solution_steps": [
+        "Common ratio r = 3 (divide any term by the term before it).",
+        "nth term = a × r^(n - 1) = 6 × (3)^4",
+        "Term 5 = 486"
+      ],
+      "final_answer": "486",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Common ratio r = 3 (divide any term by the term before it).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "nth term = a × r^(n - 1) = 6 × (3)^4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Term 5 = 486",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "486 oe",
           "marks": 1
         }
       ],
@@ -448,266 +506,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_cubic",
-      "prompt": "Complete a table of values for y = -x^3 + x for x = -3 to 3, then plot the graph.",
+      "topic_id": "stats_interquartile_range",
+      "prompt": "Find the interquartile range (IQR) of this data set: 25, 27, 40, 37, 25, 9, 11, 30, 2.",
       "solution_steps": [
-        "Table of values for y = -x^3 + x:",
-        "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: 24, 6, 0, 0, 0, -6, -24",
-        "Plot each (x, y) point and join them with a single smooth curve."
+        "Sort the data: 2, 9, 11, 25, 25, 27, 30, 37, 40.",
+        "Split into a lower half [2, 9, 11, 25] and an upper half [27, 30, 37, 40] (excluding the overall middle value when 9 is odd).",
+        "Q1 = median of the lower half = 10",
+        "Q3 = median of the upper half = 33.50",
+        "Interquartile range = Q3 - Q1 = 33.50 - 10 = 23.50"
       ],
-      "final_answer": "Cubic curve: y = -x^3 + x",
+      "final_answer": "23.50",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = -x^3 + x:",
+          "description": "Sort the data: 2, 9, 11, 25, 25, 27, 30, 37, 40.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "description": "Split into a lower half [2, 9, 11, 25] and an upper half [27, 30, 37, 40] (excluding the overall middle value when 9 is odd).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: 24, 6, 0, 0, 0, -6, -24",
+          "description": "Q1 = median of the lower half = 10",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "description": "Q3 = median of the upper half = 33.50 Interquartile range = Q3 - Q1 = 33.50 - 10 = 23.50",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Cubic curve: y = -x^3 + x oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "cubic",
-          "a": -1,
-          "b": 1,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -26,
-          "y_max": 26,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "cubic",
-          "a": -1,
-          "b": 1,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -26,
-          "y_max": 26,
-          "table_points": [
-            [
-              -3,
-              24
-            ],
-            [
-              -2,
-              6
-            ],
-            [
-              -1,
-              0
-            ],
-            [
-              0,
-              0
-            ],
-            [
-              1,
-              0
-            ],
-            [
-              2,
-              -6
-            ],
-            [
-              3,
-              -24
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "forming_equations_higher",
-      "prompt": "I think of a number. I add 14 to it, then multiply the result by 9. The answer is 162. Form an equation and solve it to find the number.",
-      "solution_steps": [
-        "Let the number be x.",
-        "9(x + 14) = 162",
-        "Expand the bracket:",
-        "9x + 126 = 162",
-        "Subtract 126 from both sides:",
-        "9x = 36",
-        "Divide both sides by 9:",
-        "x = 4"
-      ],
-      "final_answer": "4",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Let the number be x.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "9(x + 14) = 162",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Expand the bracket:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "9x + 126 = 162 Subtract 126 from both sides: 9x = 36 Divide both sides by 9: x = 4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "pressure_higher",
-      "prompt": "A concrete block has a rectangular base measuring 26 cm × 22 cm and exerts a force of 4425 N. Find the pressure it exerts, correct to 2 decimal places.",
-      "solution_steps": [
-        "area = length × width = 26 × 22 = 572 cm²",
-        "pressure = force ÷ area = 4425 ÷ 572 = 7.74 N/cm² (2 d.p.)"
-      ],
-      "final_answer": "7.74 N/cm²",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "area = length × width = 26 × 22 = 572 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "pressure = force ÷ area = 4425 ÷ 572 = 7.74 N/cm² (2 d.p.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "7.74 N/cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "density_higher",
-      "prompt": "A sculpture has a mass of 3 kg and a volume of 442 cm³. Find its density in g/cm³, correct to 2 decimal places.",
-      "solution_steps": [
-        "Convert mass to grams: 3 kg = 3 × 1000 = 3000 g",
-        "density = mass ÷ volume = 3000 ÷ 442 = 6.79 g/cm³ (2 d.p.)"
-      ],
-      "final_answer": "6.79 g/cm³",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert mass to grams: 3 kg = 3 × 1000 = 3000 g",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "density = mass ÷ volume = 3000 ÷ 442 = 6.79 g/cm³ (2 d.p.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "6.79 g/cm³ oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "compound_percentage",
-      "prompt": "A price of £44 decreases by 42.5%, then decreases by 30%. Find the final price.",
-      "solution_steps": [
-        "After the first change: 44 × 0.57 = 25.30",
-        "After the second change: 25.30 × 0.70 = 17.71"
-      ],
-      "final_answer": "£17.71",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "After the first change: 44 × 0.57 = 25.30",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "After the second change: 25.30 × 0.70 = 17.71",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£17.71 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_to_equation",
-      "prompt": "(x + 8) : (x + 16) = 2:3. Find the value of x.",
-      "solution_steps": [
-        "Cross-multiply: 3(x + 8) = 2(x + 16)",
-        "Expand: 3x + 24 = 2x + 32",
-        "Collect x terms: x = 8",
-        "x = 8 ÷ 1 = 8"
-      ],
-      "final_answer": "x = 8",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Cross-multiply: 3(x + 8) = 2(x + 16)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Expand: 3x + 24 = 2x + 32",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Collect x terms: x = 8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 8 ÷ 1 = 8",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = 8 oe",
+          "description": "23.50 oe",
           "marks": 1
         }
       ],
@@ -744,210 +577,147 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_pyramid",
-      "prompt": "A square-based pyramid has a base of side 8 cm and a perpendicular height of 9 cm. Find its volume.",
+      "topic_id": "ratio_shape_similar_higher",
+      "prompt": "Shape A and Shape B are similar. A length on shape A is 2 cm and the corresponding length on shape B is 6 cm. The volume of shape B is 27 cm^3. Find the volume of shape A.",
       "solution_steps": [
-        "Volume = (1/3) × base² × height = (1/3) × 8² × 9",
-        "= 192 cm³"
+        "Linear scale factor = 6 ÷ 2 = 3",
+        "Volume scale factor = (3)^3 = 27",
+        "Volume of A = 27 ÷ 27 = 1 cm^3"
       ],
-      "final_answer": "192 cm³",
-      "marks": 3,
+      "final_answer": "1 cm^3",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Volume = (1/3) × base² × height = (1/3) × 8² × 9",
+          "description": "Linear scale factor = 6 ÷ 2 = 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 192 cm³",
+          "description": "Volume scale factor = (3)^3 = 27",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Volume of A = 27 ÷ 27 = 1 cm^3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "192 cm³ oe",
+          "description": "1 cm^3 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "pyramid",
-        "params": {
-          "base_label": "8 cm",
-          "height_label": "9 cm"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_enlarge_describe",
-      "prompt": "Shape ABCD is enlarged to give shape A'B'C'D', shown on the grid. Describe fully the single transformation that maps ABCD onto A'B'C'D'.",
+      "topic_id": "ratio_combine",
+      "prompt": "Given that a:b = 4:7 and b:c = 7:7, find a:b:c in its simplest form.",
       "solution_steps": [
-        "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
-        "For this pair, the lines meet at (0, -1) and the ratio works out as -1."
+        "Scale a:b = 4:7 by 1 so b = 7: a:b = 4:7",
+        "Scale b:c = 7:7 by 1 so b = 7: b:c = 7:7",
+        "Combine: a:b:c = 4:7:7",
+        "Simplify by dividing by 1: a:b:c = 4:7:7"
       ],
-      "final_answer": "Enlargement, scale factor -1, centre (0, -1)",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For this pair, the lines meet at (0, -1) and the ratio works out as -1.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Enlargement, scale factor -1, centre (0, -1) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              -1,
-              1
-            ],
-            [
-              3,
-              1
-            ],
-            [
-              2,
-              5
-            ],
-            [
-              -2,
-              4
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
-          ],
-          "image_vertices": [
-            [
-              1,
-              -3
-            ],
-            [
-              -3,
-              -3
-            ],
-            [
-              -2,
-              -7
-            ],
-            [
-              2,
-              -6
-            ]
-          ],
-          "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'"
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "frustum_volume_surface_area",
-      "prompt": "A frustum is formed from a cone with a bottom radius of 7 cm and a top radius of 2 cm, and a vertical height of 10 cm. Find its volume, correct to 3 significant figures.",
-      "solution_steps": [
-        "Full cone height H = R × h ÷ (R - r) = 7 × 10 ÷ (7 - 2) = 14.00 cm (similar triangles)",
-        "Big cone volume = (1/3) × π × R² × H, small cone volume = (1/3) × π × r² × (H - h)",
-        "Frustum volume = (1/3) × π × h × (R² + Rr + r²) = (1/3) × π × 10 × (7² + 7×2 + 2²)",
-        "= 702 cm³ (3 s.f.)"
-      ],
-      "final_answer": "702 cm³",
+      "final_answer": "4 : 7 : 7",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Full cone height H = R × h ÷ (R - r) = 7 × 10 ÷ (7 - 2) = 14.00 cm (similar triangles)",
+          "description": "Scale a:b = 4:7 by 1 so b = 7: a:b = 4:7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Big cone volume = (1/3) × π × R² × H, small cone volume = (1/3) × π × r² × (H - h)",
+          "description": "Scale b:c = 7:7 by 1 so b = 7: b:c = 7:7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Frustum volume = (1/3) × π × h × (R² + Rr + r²) = (1/3) × π × 10 × (7² + 7×2 + 2²)",
+          "description": "Combine: a:b:c = 4:7:7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 702 cm³ (3 s.f.)",
+          "description": "Simplify by dividing by 1: a:b:c = 4:7:7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "702 cm³ oe",
+          "description": "4 : 7 : 7 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "frustum",
-        "params": {
-          "radius_bottom_label": "7 cm",
-          "radius_top_label": "2 cm",
-          "height_label": "10 cm"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_around_point_higher",
-      "prompt": "The angles 141°, 39°, 72° and (2x + 72)° are angles around a point. Find x.",
+      "topic_id": "pressure_higher",
+      "prompt": "A concrete block has a rectangular base measuring 26 cm × 22 cm and exerts a force of 4425 N. Find the pressure it exerts, correct to 2 decimal places.",
       "solution_steps": [
-        "Angles around a point sum to 360°.",
-        "2x + 72 = 108",
-        "Subtract 72 from both sides:",
-        "2x = 36",
+        "area = length × width = 26 × 22 = 572 cm²",
+        "pressure = force ÷ area = 4425 ÷ 572 = 7.74 N/cm² (2 d.p.)"
+      ],
+      "final_answer": "7.74 N/cm²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "area = length × width = 26 × 22 = 572 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "pressure = force ÷ area = 4425 ÷ 572 = 7.74 N/cm² (2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "7.74 N/cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_straight_line_higher",
+      "prompt": "The angles 133° and (2x + 43)° lie on a straight line. Find x.",
+      "solution_steps": [
+        "Angles on a straight line sum to 180°.",
+        "2x + 43 = 47",
+        "Subtract 43 from both sides:",
+        "2x = 4",
         "Divide both sides by 2:",
-        "x = 18"
+        "x = 2"
       ],
-      "final_answer": "18",
+      "final_answer": "2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles around a point sum to 360°.",
+          "description": "Angles on a straight line sum to 180°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x + 72 = 108",
+          "description": "2x + 43 = 47",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 72 from both sides:",
+          "description": "Subtract 43 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x = 36 Divide both sides by 2: x = 18",
+          "description": "2x = 4 Divide both sides by 2: x = 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "18 oe",
+          "description": "2 oe",
           "marks": 1
         }
       ],
@@ -955,18 +725,221 @@
         "kind": "angle_line",
         "params": {
           "angle_values": [
-            141,
-            39,
-            72,
-            108
+            133,
+            47
           ],
           "labels": [
-            "141°",
-            "39°",
-            "72°",
-            "(2x + 72)°"
+            "133°",
+            "(2x + 43)°"
           ],
-          "around_point": true
+          "around_point": false
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_subtract_compound",
+      "prompt": "A rectangular sheet of metal 19 cm by 20 cm has a rectangular hole 14 cm by 13 cm cut from its centre. Find the remaining area.",
+      "solution_steps": [
+        "Area of large rectangle = 19 × 20 = 380 cm²",
+        "Area of rectangular hole = 14 × 13 = 182 cm²",
+        "Remaining area = 380 - 182 = 198 cm²"
+      ],
+      "final_answer": "198 cm²",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area of large rectangle = 19 × 20 = 380 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of rectangular hole = 14 × 13 = 182 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Remaining area = 380 - 182 = 198 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "198 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "l_shape",
+        "params": {
+          "outer_w": 19,
+          "outer_h": 20,
+          "inner_w": 14,
+          "inner_h": 13,
+          "notch": "center",
+          "outer_labels": [
+            "19 cm",
+            "20 cm"
+          ],
+          "inner_labels": [
+            "14 cm",
+            "13 cm"
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_triangle_higher",
+      "prompt": "A triangle has angles 35°, 22°, and (4x + 43)°. Find x.",
+      "solution_steps": [
+        "Angles in a triangle sum to 180°.",
+        "4x + 43 = 123",
+        "Subtract 43 from both sides:",
+        "4x = 80",
+        "Divide both sides by 4:",
+        "x = 20"
+      ],
+      "final_answer": "20",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles in a triangle sum to 180°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x + 43 = 123",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 43 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x = 80 Divide both sides by 4: x = 20",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "20 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "triangle_angles",
+        "params": {
+          "angle_labels": [
+            "35°",
+            "22°",
+            "(4x + 43)°"
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "geometric_vectors",
+      "prompt": "OAB is a triangle with OA = \\vec{a} and OB = \\vec{b}. Point P lies on AB such that AP:PB = 5:2. Find the vector AP in terms of \\vec{a} and \\vec{b}, giving your answer in its simplest form.",
+      "solution_steps": [
+        "AB = OB - OA = \\vec{b} - \\vec{a}",
+        "AP = (5/7)AB = (5/7)(\\vec{b} - \\vec{a})",
+        "AP = (5/7)(\\vec{b} - \\vec{a}) = -(5/7)\\vec{a} + (5/7)\\vec{b}"
+      ],
+      "final_answer": "-(5/7)\\vec{a} + (5/7)\\vec{b}",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "AB = OB - OA = \\vec{b} - \\vec{a}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "AP = (5/7)AB = (5/7)(\\vec{b} - \\vec{a})",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "AP = (5/7)(\\vec{b} - \\vec{a}) = -(5/7)\\vec{a} + (5/7)\\vec{b}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-(5/7)\\vec{a} + (5/7)\\vec{b} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "vector_triangle",
+        "params": {
+          "ratio": [
+            5,
+            2
+          ],
+          "point_label": "P",
+          "a_label": "\\vec{a}",
+          "b_label": "\\vec{b}",
+          "origin_label": "O"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "venn_diagram_notation",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9}. The Venn diagram shows sets A and B. List the elements of B.",
+      "solution_steps": [
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9}",
+        "A = {1, 3, 4, 7, 9}, B = {3, 4, 6, 8}",
+        "B means the elements in B.",
+        "B = {3, 4, 6, 8}"
+      ],
+      "final_answer": "{3, 4, 6, 8}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {1, 3, 4, 7, 9}, B = {3, 4, 6, 8}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B means the elements in B.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B = {3, 4, 6, 8}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "{3, 4, 6, 8} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "S",
+          "region_text": {
+            "a_only": "1, 7, 9",
+            "b_only": "6, 8",
+            "both": "3, 4",
+            "neither": "2, 5"
+          }
         }
       },
       "solution_diagram": null
@@ -1012,29 +985,6 @@
           }
         }
       },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "product_rule_counting",
-      "prompt": "A shop sells 6 different starters, 6 different main courses and 6 different desserts. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
-      "solution_steps": [
-        "Total combinations = 6 × 6 × 6 = 216"
-      ],
-      "final_answer": "216",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total combinations = 6 × 6 × 6 = 216",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "216 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
       "solution_diagram": null
     }
   ]

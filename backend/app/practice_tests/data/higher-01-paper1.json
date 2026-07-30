@@ -4,6 +4,7 @@
   "tier": "higher",
   "sitting_id": "higher-01",
   "paper_number": 1,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "recurring_decimal_two_digit",
@@ -223,91 +224,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "velocity_time_interpret",
-      "prompt": "The velocity-time graph shows a car's journey. Find its acceleration during the first phase.",
+      "topic_id": "perpendicular_lines_equation",
+      "prompt": "A line is perpendicular to y = -x + 4 and passes through the point (-1, 4). Find the equation of the line.",
       "solution_steps": [
-        "Acceleration = change in velocity ÷ time = 20 ÷ 10 = 2 m/s^2"
+        "Perpendicular gradients multiply to give -1: m × -1 = -1, so m = 1",
+        "Substitute (-1, 4) into y = 1x + c: 4 = 1×(-1) + c, so c = 5",
+        "Equation of the line: y = x + 5"
       ],
-      "final_answer": "2 m/s^2",
-      "marks": 2,
+      "final_answer": "y = x + 5",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Acceleration = change in velocity ÷ time = 20 ÷ 10 = 2 m/s^2",
+          "description": "Perpendicular gradients multiply to give -1: m × -1 = -1, so m = 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute (-1, 4) into y = 1x + c: 4 = 1×(-1) + c, so c = 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Equation of the line: y = x + 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2 m/s^2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              10,
-              20
-            ],
-            [
-              35,
-              20
-            ],
-            [
-              40,
-              0
-            ]
-          ],
-          "x_max": 45,
-          "y_max": 25,
-          "x_label": "Time (s)",
-          "y_label": "Velocity (m/s)"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "change_subject_higher",
-      "prompt": "Make x the subject of the formula y = (x + 15)/(x - 9).",
-      "solution_steps": [
-        "y = (x + 15)/(x - 9)",
-        "Multiply both sides by (x - 9): y(x - 9) = x + 15",
-        "Expand the bracket: yx - 9y = x + 15",
-        "Collect the x-terms on one side: yx - x = 15 + 9y",
-        "Factorise: x(y - 1) = 15 + 9y",
-        "Divide both sides by (y - 1): x = (15 + 9y)/(y - 1)"
-      ],
-      "final_answer": "x = (15 + 9y)/(y - 1)",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "y = (x + 15)/(x - 9)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply both sides by (x - 9): y(x - 9) = x + 15",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Expand the bracket: yx - 9y = x + 15",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Collect the x-terms on one side: yx - x = 15 + 9y Factorise: x(y - 1) = 15 + 9y Divide both sides by (y - 1): x = (15 + 9y)/(y - 1)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = (15 + 9y)/(y - 1) oe",
+          "description": "y = x + 5 oe",
           "marks": 1
         }
       ],
@@ -315,49 +259,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "satisfying_inequalities_higher",
-      "prompt": "x satisfies both x + 8 > -6 and 4x + 4 ≤ -5. List the integer values of x that satisfy both.",
+      "topic_id": "expand_double_brackets",
+      "prompt": "Expand: (2x + 3)(-x + 5)",
       "solution_steps": [
-        "Solve the first inequality:",
-        "x + 8 > -6",
-        "Subtract 8 from both sides:",
-        "x > -14",
-        "x > -14",
-        "Solve the second inequality:",
-        "4x + 4 ≤ -5",
-        "Subtract 4 from both sides:",
-        "4x ≤ -9",
-        "Divide both sides by 4:",
-        "x ≤ -9/4",
-        "Combine both results into a single range: -14 < x ≤ -9/4",
-        "The integers satisfying both inequalities are: -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3"
+        "First: 2x × -1x = -2x^2",
+        "Outer: 2x × 5 = 10x",
+        "Inner: 3 × -1x = -3x",
+        "Last: 3 × 5 = 15",
+        "Combine like terms: -2x^2 + 7x + 15"
       ],
-      "final_answer": "-13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3",
+      "final_answer": "-2x^2 + 7x + 15",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Solve the first inequality:",
+          "description": "First: 2x × -1x = -2x^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x + 8 > -6",
+          "description": "Outer: 2x × 5 = 10x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 8 from both sides:",
+          "description": "Inner: 3 × -1x = -3x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x > -14 x > -14 Solve the second inequality: 4x + 4 ≤ -5 Subtract 4 from both sides: 4x ≤ -9 Divide both sides by 4: x ≤ -9/4 Combine both results into a single range: -14 < x ≤ -9/4 The integers satisfying both inequalities are: -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3",
+          "description": "Last: 3 × 5 = 15 Combine like terms: -2x^2 + 7x + 15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3 oe",
+          "description": "-2x^2 + 7x + 15 oe",
           "marks": 1
         }
       ],
@@ -365,96 +301,130 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_reciprocal",
-      "prompt": "Complete a table of values for y = 48/x for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
+      "topic_id": "algebraic_proof",
+      "prompt": "Prove algebraically that 2n(n + 3) - 2n^2 is always a multiple of 6.",
       "solution_steps": [
-        "Table of values for y = 48/x:",
-        "x: -4, -3, -2, -1, 1, 2, 3, 4",
-        "y: -12, -16, -24, -48, 48, 24, 16, 12",
-        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
+        "Let n be any integer.",
+        "Write the given expression algebraically: 2n(n + 3) - 2n^2.",
+        "Expand and simplify: 2n(n + 3) - 2n^2 = 6n.",
+        "Factorise/rearrange to expose the structure: 6n = 6n.",
+        "6n is exactly 6 times the whole number n, so the expression is always a multiple of 6."
       ],
-      "final_answer": "Reciprocal curve: y = 48/x",
+      "final_answer": "Proven: 2n(n + 3) - 2n^2 = 6n, always a multiple of 6.",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = 48/x:",
+          "description": "Let n be any integer.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
+          "description": "Write the given expression algebraically: 2n(n + 3) - 2n^2.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: -12, -16, -24, -48, 48, 24, 16, 12",
+          "description": "Expand and simplify: 2n(n + 3) - 2n^2 = 6n.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
+          "description": "Factorise/rearrange to expose the structure: 6n = 6n. 6n is exactly 6 times the whole number n, so the expression is always a multiple of 6.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Reciprocal curve: y = 48/x oe",
+          "description": "Proven: 2n(n + 3) - 2n^2 = 6n, always a multiple of 6. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "trig_graph",
+      "prompt": "Complete a table of values for y = -tan(x°) for x = -80 to 80 (in steps of 40°), then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = -tan(x°):",
+        "x: -80, -40, 0, 40, 80",
+        "y: 5.67, 0.84, -0.0, -0.84, -5.67",
+        "Plot each (x, y) point and join them with a single smooth curve - y = -tan(x°) repeats the same shape every 180°, and rises/falls very steeply near the edges of this window (approaching, but never reaching, a vertical asymptote just outside it)."
+      ],
+      "final_answer": "y = -tan(x°)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = -tan(x°):",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -80, -40, 0, 40, 80",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 5.67, 0.84, -0.0, -0.84, -5.67",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve - y = -tan(x°) repeats the same shape every 180°, and rises/falls very steeply near the edges of this window (approaching, but never reaching, a vertical asymptote just outside it).",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y = -tan(x°) oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "reciprocal",
-          "a": 48,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -50,
-          "y_max": 50,
+          "kind": "trigonometric",
+          "fn": "tan",
+          "sign": -1,
+          "x_min": -80,
+          "x_max": 80,
+          "y_min": -7,
+          "y_max": 7,
+          "x_label": "x (degrees)",
           "blank": true
         }
       },
       "solution_diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "reciprocal",
-          "a": 48,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -50,
-          "y_max": 50,
+          "kind": "trigonometric",
+          "fn": "tan",
+          "sign": -1,
+          "x_min": -80,
+          "x_max": 80,
+          "y_min": -7,
+          "y_max": 7,
+          "x_label": "x (degrees)",
           "table_points": [
             [
-              -4,
-              -12
+              -80,
+              5.67
             ],
             [
-              -3,
-              -16
+              -40,
+              0.84
             ],
             [
-              -2,
-              -24
+              0,
+              -0.0
             ],
             [
-              -1,
-              -48
+              40,
+              -0.84
             ],
             [
-              1,
-              48
-            ],
-            [
-              2,
-              24
-            ],
-            [
-              3,
-              16
-            ],
-            [
-              4,
-              12
+              80,
+              -5.67
             ]
           ]
         }
@@ -505,34 +475,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_triple_brackets",
-      "prompt": "Expand and simplify: (-x + 4)(3x + 1)(-3x - 4)",
+      "topic_id": "factorise_quadratics",
+      "prompt": "Factorise: x^2 - x - 12",
       "solution_steps": [
-        "First expand two of the brackets: (-x + 4)(3x + 1) = -3x^2 + 11x + 4",
-        "Multiply the result by (-3x - 4) and collect like terms",
-        "= 9x^3 - 21x^2 - 56x - 16"
+        "Find two numbers that multiply to -12 and add to -1: 3 and -4",
+        "Write as two brackets: (x + 3)(x - 4)"
       ],
-      "final_answer": "9x^3 - 21x^2 - 56x - 16",
-      "marks": 4,
+      "final_answer": "(x + 3)(x - 4)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First expand two of the brackets: (-x + 4)(3x + 1) = -3x^2 + 11x + 4",
+          "description": "Find two numbers that multiply to -12 and add to -1: 3 and -4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the result by (-3x - 4) and collect like terms",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 9x^3 - 21x^2 - 56x - 16",
+          "description": "Write as two brackets: (x + 3)(x - 4)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9x^3 - 21x^2 - 56x - 16 oe",
+          "description": "(x + 3)(x - 4) oe",
           "marks": 1
         }
       ],
@@ -540,48 +504,62 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solving_inequalities_higher",
-      "prompt": "Solve the inequality: 3x - 10 > 6x - 9",
+      "topic_id": "inequalities_number_line_higher",
+      "prompt": "Draw the solution set of x < -3 or x > 0 on a number line.",
       "solution_steps": [
-        "3x - 10 > 6x - 9",
-        "Subtract 6x from both sides:",
-        "-3x - 10 > -9",
-        "Add 10 to both sides:",
-        "-3x > 1",
-        "Divide both sides by -3 (dividing by a negative number reverses the inequality sign):",
-        "x < -1/3"
+        "Draw an open circle at -3 and an open circle at 0.",
+        "Shade to the left of -3 and to the right of 0, with arrows showing both continue indefinitely."
       ],
-      "final_answer": "x < -1/3",
-      "marks": 5,
+      "final_answer": "x < -3 or x > 0",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "3x - 10 > 6x - 9",
+          "description": "Draw an open circle at -3 and an open circle at 0.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 6x from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "-3x - 10 > -9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add 10 to both sides: -3x > 1 Divide both sides by -3 (dividing by a negative number reverses the inequality sign): x < -1/3",
+          "description": "Shade to the left of -3 and to the right of 0, with arrows showing both continue indefinitely.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x < -1/3 oe",
+          "description": "x < -3 or x > 0 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [],
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [
+            {
+              "value": -3,
+              "closed": false
+            },
+            {
+              "value": 0,
+              "closed": false
+            }
+          ],
+          "shade": "outside"
+        }
+      }
     },
     {
       "topic_id": "ratio_shape_similar_higher",
@@ -619,40 +597,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_combine",
-      "prompt": "Given that a:b = 4:2 and b:c = 4:8, find a:b:c in its simplest form.",
+      "topic_id": "quadratic_inequalities",
+      "prompt": "Solve the inequality: -x^2 - 11x - 18 < 0",
       "solution_steps": [
-        "Scale a:b = 4:2 by 2 so b = 4: a:b = 8:4",
-        "Scale b:c = 4:8 by 1 so b = 4: b:c = 4:8",
-        "Combine: a:b:c = 8:4:8",
-        "Simplify by dividing by 4: a:b:c = 2:1:2"
+        "Factorise: -x^2 - 11x - 18 = -(x + 9)(x + 2)",
+        "The critical values are x = -9 and x = -2.",
+        "The coefficient of x^2 is negative, so the graph is a upside-down U-shaped parabola, and < 0 is satisfied outside the two roots.",
+        "Answer: x < -9 or x > -2"
       ],
-      "final_answer": "2 : 1 : 2",
+      "final_answer": "x < -9 or x > -2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Scale a:b = 4:2 by 2 so b = 4: a:b = 8:4",
+          "description": "Factorise: -x^2 - 11x - 18 = -(x + 9)(x + 2)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Scale b:c = 4:8 by 1 so b = 4: b:c = 4:8",
+          "description": "The critical values are x = -9 and x = -2.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Combine: a:b:c = 8:4:8",
+          "description": "The coefficient of x^2 is negative, so the graph is a upside-down U-shaped parabola, and < 0 is satisfied outside the two roots.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify by dividing by 4: a:b:c = 2:1:2",
+          "description": "Answer: x < -9 or x > -2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2 : 1 : 2 oe",
+          "description": "x < -9 or x > -2 oe",
           "marks": 1
         }
       ],
@@ -805,49 +783,61 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "vectors_arithmetic_higher",
-      "prompt": "\\vec{a} = (9, -3) and \\vec{b} = (-11, -4). Find -5\\vec{a} + -1\\vec{b}.",
+      "topic_id": "geometric_vectors",
+      "prompt": "OAB is a triangle with OA = \\vec{a} and OB = \\vec{b}. Point P lies on AB such that AP:PB = 3:5. Find the vector AP in terms of \\vec{a} and \\vec{b}, giving your answer in its simplest form.",
       "solution_steps": [
-        "\\vec{a} = (9, -3), \\vec{b} = (-11, -4)",
-        "-5\\vec{a} = (-45, 15) and -1\\vec{b} = (11, 4)",
-        "-5\\vec{a} + -1\\vec{b} = (-34, 19)"
+        "AB = OB - OA = \\vec{b} - \\vec{a}",
+        "AP = (3/8)AB = (3/8)(\\vec{b} - \\vec{a})",
+        "AP = (3/8)(\\vec{b} - \\vec{a}) = -(3/8)\\vec{a} + (3/8)\\vec{b}"
       ],
-      "final_answer": "(-34, 19)",
+      "final_answer": "-(3/8)\\vec{a} + (3/8)\\vec{b}",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "\\vec{a} = (9, -3), \\vec{b} = (-11, -4)",
+          "description": "AB = OB - OA = \\vec{b} - \\vec{a}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-5\\vec{a} = (-45, 15) and -1\\vec{b} = (11, 4)",
+          "description": "AP = (3/8)AB = (3/8)(\\vec{b} - \\vec{a})",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-5\\vec{a} + -1\\vec{b} = (-34, 19)",
+          "description": "AP = (3/8)(\\vec{b} - \\vec{a}) = -(3/8)\\vec{a} + (3/8)\\vec{b}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(-34, 19) oe",
+          "description": "-(3/8)\\vec{a} + (3/8)\\vec{b} oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "vector_triangle",
+        "params": {
+          "ratio": [
+            3,
+            5
+          ],
+          "point_label": "P",
+          "a_label": "\\vec{a}",
+          "b_label": "\\vec{b}",
+          "origin_label": "O"
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_straight_line_higher",
-      "prompt": "The angles 41° and (2x + 107)° lie on a straight line. Find x.",
+      "topic_id": "angles_around_point_higher",
+      "prompt": "The angles 102°, 65° and (5x + 113)° are angles around a point. Find x.",
       "solution_steps": [
-        "Angles on a straight line sum to 180°.",
-        "2x + 107 = 139",
-        "Subtract 107 from both sides:",
-        "2x = 32",
-        "Divide both sides by 2:",
+        "Angles around a point sum to 360°.",
+        "5x + 113 = 193",
+        "Subtract 113 from both sides:",
+        "5x = 80",
+        "Divide both sides by 5:",
         "x = 16"
       ],
       "final_answer": "16",
@@ -855,22 +845,22 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles on a straight line sum to 180°.",
+          "description": "Angles around a point sum to 360°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x + 107 = 139",
+          "description": "5x + 113 = 193",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 107 from both sides:",
+          "description": "Subtract 113 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x = 32 Divide both sides by 2: x = 16",
+          "description": "5x = 80 Divide both sides by 5: x = 16",
           "marks": 1
         },
         {
@@ -883,56 +873,64 @@
         "kind": "angle_line",
         "params": {
           "angle_values": [
-            41,
-            139
+            102,
+            65,
+            193
           ],
           "labels": [
-            "41°",
-            "(2x + 107)°"
+            "102°",
+            "65°",
+            "(5x + 113)°"
           ],
-          "around_point": false
+          "around_point": true
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "compound_3d_volume",
-      "prompt": "A silo-shaped solid is made from a cuboid with a square base of side 14 cm and height 8 cm, with a square-based pyramid of height 8 cm on top (sharing the same square base). Find the total volume.",
+      "topic_id": "compound_3d_surface_area",
+      "prompt": "A capsule-shaped solid is made from a cylinder of radius 5 cm and height 19 cm, with a hemisphere of the same radius attached to one end. Find the total surface area, correct to 3 significant figures.",
       "solution_steps": [
-        "Cuboid volume = base² × height = 14² × 8 = 1568 cm³",
-        "Pyramid volume = (1/3) × base² × height = (1/3) × 14² × 8 = 1568/3 cm³",
-        "Total volume = 1568 + 1568/3 = 6272/3 cm³"
+        "Cylinder curved surface = 2 × π × r × h = 2 × π × 5 × 19",
+        "Cylinder base = π × r² = π × 5² (the top is covered by the hemisphere, so it's excluded)",
+        "Hemisphere curved surface = 2 × π × r² = 2 × π × 5² (its flat face is glued to the cylinder, so it's excluded too)",
+        "Total surface area ≈ 833 cm² (3 s.f.)"
       ],
-      "final_answer": "6272/3 cm³",
-      "marks": 4,
+      "final_answer": "833 cm²",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Cuboid volume = base² × height = 14² × 8 = 1568 cm³",
+          "description": "Cylinder curved surface = 2 × π × r × h = 2 × π × 5 × 19",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Pyramid volume = (1/3) × base² × height = (1/3) × 14² × 8 = 1568/3 cm³",
+          "description": "Cylinder base = π × r² = π × 5² (the top is covered by the hemisphere, so it's excluded)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total volume = 1568 + 1568/3 = 6272/3 cm³",
+          "description": "Hemisphere curved surface = 2 × π × r² = 2 × π × 5² (its flat face is glued to the cylinder, so it's excluded too)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total surface area ≈ 833 cm² (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6272/3 cm³ oe",
+          "description": "833 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "compound_3d",
         "params": {
-          "variant": "cuboid_pyramid",
-          "base_label": "14 cm",
-          "roof_height_label": "8 cm"
+          "variant": "cylinder_hemisphere",
+          "radius_label": "5 cm",
+          "height_label": "19 cm"
         }
       },
       "solution_diagram": null

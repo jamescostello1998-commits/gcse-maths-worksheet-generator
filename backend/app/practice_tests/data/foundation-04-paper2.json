@@ -4,6 +4,7 @@
   "tier": "foundation",
   "sitting_id": "foundation-04",
   "paper_number": 2,
+  "calculator_allowed": false,
   "questions": [
     {
       "topic_id": "negative_add_subtract",
@@ -99,28 +100,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_round_sf",
-      "prompt": "Round 767.357 to 2 significant figures.",
+      "topic_id": "decimals_round_dp",
+      "prompt": "Round 41.274 to 1 decimal place.",
       "solution_steps": [
-        "Identify the first 2 significant figures of 767.357.",
-        "767.357 rounded to 2 significant figures = 770"
+        "Look at the digit after the 1 decimal place we want: 7, so round up.",
+        "41.274 rounded to 1 decimal place = 41.3"
       ],
-      "final_answer": "770",
+      "final_answer": "41.3",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Identify the first 2 significant figures of 767.357.",
+          "description": "Look at the digit after the 1 decimal place we want: 7, so round up.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "767.357 rounded to 2 significant figures = 770",
+          "description": "41.274 rounded to 1 decimal place = 41.3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "770 oe",
+          "description": "41.3 oe",
           "marks": 1
         }
       ],
@@ -238,33 +239,75 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_simplify",
-      "prompt": "Simplify the fraction 7/21 fully.",
+      "topic_id": "fractions_equivalent_diagram",
+      "prompt": "Shape A is divided into 3 equal parts, with 2 shaded. Shape B is divided into 9 equal parts. How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
       "solution_steps": [
-        "Find the highest common factor of 7 and 21: 7",
-        "Divide numerator and denominator by 7: 7÷7 / 21÷7 = 1/3"
+        "Shape A shows 2/3 shaded; Shape B has 9 equal parts.",
+        "Find the scale factor between the denominators: 9 ÷ 3 = 3",
+        "Multiply the shaded count by the same scale factor: 2 × 3 = 6"
       ],
-      "final_answer": "1/3",
-      "marks": 3,
+      "final_answer": "6",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the highest common factor of 7 and 21: 7",
+          "description": "Shape A shows 2/3 shaded; Shape B has 9 equal parts.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide numerator and denominator by 7: 7÷7 / 21÷7 = 1/3",
+          "description": "Find the scale factor between the denominators: 9 ÷ 3 = 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply the shaded count by the same scale factor: 2 × 3 = 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/3 oe",
+          "description": "6 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "fraction_shapes",
+        "params": {
+          "shapes": [
+            {
+              "kind": "circle",
+              "parts": 3,
+              "shaded": 2,
+              "label": "2/3"
+            },
+            {
+              "kind": "circle",
+              "parts": 9,
+              "shaded": 0,
+              "label": "?/9"
+            }
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "fraction_shapes",
+        "params": {
+          "shapes": [
+            {
+              "kind": "circle",
+              "parts": 3,
+              "shaded": 2,
+              "label": "2/3"
+            },
+            {
+              "kind": "circle",
+              "parts": 9,
+              "shaded": 6,
+              "label": "6/9"
+            }
+          ]
+        }
+      }
     },
     {
       "topic_id": "simultaneous_forming_and_solving",
@@ -308,28 +351,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_quadratics_foundation",
-      "prompt": "Factorise: x^2 + 6x + 8",
+      "topic_id": "solve_quadratic_factorising_foundation",
+      "prompt": "Solve x^2 + 7x + 12 = 0 by factorising.",
       "solution_steps": [
-        "Find two numbers that multiply to 8 and add to 6: 4 and 2",
-        "Write as two brackets: (x + 4)(x + 2)"
+        "Find two numbers that multiply to 12 and add to 7: 4 and 3",
+        "Factorise: (x + 4)(x + 3) = 0",
+        "Either x + 4 = 0 or x + 3 = 0",
+        "x = -4 or x = -3"
       ],
-      "final_answer": "(x + 4)(x + 2)",
-      "marks": 3,
+      "final_answer": "x = -4 or x = -3",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to 8 and add to 6: 4 and 2",
+          "description": "Find two numbers that multiply to 12 and add to 7: 4 and 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write as two brackets: (x + 4)(x + 2)",
+          "description": "Factorise: (x + 4)(x + 3) = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Either x + 4 = 0 or x + 3 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -4 or x = -3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(x + 4)(x + 2) oe",
+          "description": "x = -4 or x = -3 oe",
           "marks": 1
         }
       ],
@@ -337,34 +392,31 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_trapezium",
-      "prompt": "A trapezium has parallel sides of length 6 cm and 10 cm, and a perpendicular height of 5 cm. Find its area.",
+      "topic_id": "volume_surface_area_cuboid",
+      "prompt": "A cuboid has length 9 cm, width 6 cm and height 15 cm. Find its volume.",
       "solution_steps": [
-        "Area = ½ × (a + b) × height = ½ × (6 + 10) × 5 = 40 cm²"
+        "Volume = length × width × height = 9 × 6 × 15 = 810 cm³"
       ],
-      "final_answer": "40 cm²",
+      "final_answer": "810 cm³",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = ½ × (a + b) × height = ½ × (6 + 10) × 5 = 40 cm²",
+          "description": "Volume = length × width × height = 9 × 6 × 15 = 810 cm³",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "40 cm² oe",
+          "description": "810 cm³ oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "trapezium",
+        "kind": "cuboid",
         "params": {
-          "a": 6,
-          "b": 10,
-          "height": 5,
-          "a_label": "6 cm",
-          "b_label": "10 cm",
-          "height_label": "5 cm"
+          "width_label": "6 cm",
+          "height_label": "15 cm",
+          "length_label": "9 cm"
         }
       },
       "solution_diagram": null
@@ -449,98 +501,33 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_straight_line",
-      "prompt": "Complete a table of values for y = x + 3 for x = -3 to 3, then plot the graph.",
+      "topic_id": "special_sequences_foundation",
+      "prompt": "The first 5 square numbers are: 1, 4, 9, 16, 25. Find the 7th term of the sequence (term number 7).",
       "solution_steps": [
-        "Table of values for y = x + 3:",
-        "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: 0, 1, 2, 3, 4, 5, 6",
-        "Plot each (x, y) point and join them with a single ruled straight line."
+        "These are the square numbers: the nth term is given by n^2.",
+        "Term 7 = 7^2 = 49"
       ],
-      "final_answer": "Straight line: y = x + 3",
-      "marks": 5,
+      "final_answer": "49",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = x + 3:",
+          "description": "These are the square numbers: the nth term is given by n^2.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -3, -2, -1, 0, 1, 2, 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y: 0, 1, 2, 3, 4, 5, 6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
+          "description": "Term 7 = 7^2 = 49",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Straight line: y = x + 3 oe",
+          "description": "49 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "linear",
-          "m": 1,
-          "c": 3,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -1,
-          "y_max": 7,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "linear",
-          "m": 1,
-          "c": 3,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -1,
-          "y_max": 7,
-          "table_points": [
-            [
-              -3,
-              0
-            ],
-            [
-              -2,
-              1
-            ],
-            [
-              -1,
-              2
-            ],
-            [
-              0,
-              3
-            ],
-            [
-              1,
-              4
-            ],
-            [
-              2,
-              5
-            ],
-            [
-              3,
-              6
-            ]
-          ]
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     },
     {
       "topic_id": "functions_evaluate",
@@ -736,175 +723,186 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_equivalent_diagram",
-      "prompt": "Shape A is divided into 3 equal parts, with 2 shaded. Shape B is divided into 9 equal parts. How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
+      "topic_id": "area_rectangle",
+      "prompt": "A rectangle has length 6 cm and width 19 cm. Find its area.",
       "solution_steps": [
-        "Shape A shows 2/3 shaded; Shape B has 9 equal parts.",
-        "Find the scale factor between the denominators: 9 ÷ 3 = 3",
-        "Multiply the shaded count by the same scale factor: 2 × 3 = 6"
+        "Area = length × width = 6 × 19 = 114 cm²"
       ],
-      "final_answer": "6",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Shape A shows 2/3 shaded; Shape B has 9 equal parts.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Find the scale factor between the denominators: 9 ÷ 3 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the shaded count by the same scale factor: 2 × 3 = 6",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "6 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "circle",
-              "parts": 3,
-              "shaded": 2,
-              "label": "2/3"
-            },
-            {
-              "kind": "circle",
-              "parts": 9,
-              "shaded": 0,
-              "label": "?/9"
-            }
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "circle",
-              "parts": 3,
-              "shaded": 2,
-              "label": "2/3"
-            },
-            {
-              "kind": "circle",
-              "parts": 9,
-              "shaded": 6,
-              "label": "6/9"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "volume_surface_area_cube",
-      "prompt": "A cube has side length 5 cm. Find its surface area.",
-      "solution_steps": [
-        "Surface area = 6 × side² = 6 × 5² = 6 × 25 = 150 cm²"
-      ],
-      "final_answer": "150 cm²",
+      "final_answer": "114 cm²",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Surface area = 6 × side² = 6 × 5² = 6 × 25 = 150 cm²",
+          "description": "Area = length × width = 6 × 19 = 114 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "150 cm² oe",
+          "description": "114 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cuboid",
+        "kind": "rectangle",
         "params": {
-          "width_label": "5 cm",
-          "height_label": "5 cm",
-          "length_label": "5 cm"
+          "width": 6,
+          "height": 19,
+          "width_label": "6 cm",
+          "height_label": "19 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_missing_side_foundation",
-      "prompt": "In the right-angled triangle shown, find the length of x, correct to 3 significant figures.",
+      "topic_id": "symmetry_rotational",
+      "prompt": "The diagram shows an isosceles trapezium. State the order of rotational symmetry.",
       "solution_steps": [
-        "We know the hypotenuse and want the adjacent, so use cos.",
-        "x = 5 × cos(36°) = 4.05 (to 3 s.f.)"
+        "Rotating the isosceles trapezium about its centre, it only looks the same once during a full 360° turn (back at the start).",
+        "So the order of rotational symmetry is 1."
       ],
-      "final_answer": "4.05 cm",
+      "final_answer": "order 1",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "We know the hypotenuse and want the adjacent, so use cos.",
+          "description": "Rotating the isosceles trapezium about its centre, it only looks the same once during a full 360° turn (back at the start).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 5 × cos(36°) = 4.05 (to 3 s.f.)",
+          "description": "So the order of rotational symmetry is 1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4.05 cm oe",
+          "description": "order 1 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "trig_triangle",
+        "kind": "symmetry_shape",
         "params": {
-          "adjacent_label": "x cm",
-          "opposite_label": null,
-          "hyp_label": "5 cm",
-          "angle_label": "36°"
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "symmetry_shape",
+        "params": {
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "rotation_centre": [
+            3.0,
+            1.5
+          ],
+          "rotation_order": 1
+        }
+      }
+    },
+    {
+      "topic_id": "nets_3d_shapes",
+      "prompt": "Describe the net of a cone.",
+      "solution_steps": [
+        "Imagine unfolding a cone flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
+        "A cone's net is made up of: 1 circle and 1 sector (the curved surface unrolled flat).",
+        "So the answer is: 1 circle and 1 sector (the curved surface unrolled flat)."
+      ],
+      "final_answer": "1 circle and 1 sector (the curved surface unrolled flat)",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Imagine unfolding a cone flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A cone's net is made up of: 1 circle and 1 sector (the curved surface unrolled flat).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "So the answer is: 1 circle and 1 sector (the curved surface unrolled flat).",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1 circle and 1 sector (the curved surface unrolled flat) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "net",
+        "params": {
+          "shape": "cone"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_parallel_lines_foundation",
-      "prompt": "A line crosses two parallel lines. The angle 106° and the angle x° are corresponding angles. Find x.",
+      "topic_id": "angles_polygon_interior_foundation",
+      "prompt": "A regular polygon has 40 sides. Find the size of one interior angle.",
       "solution_steps": [
-        "Corresponding angles are equal.",
-        "x = 106"
+        "Sum of interior angles = (n - 2) × 180 = (40 - 2) × 180 = 6840°",
+        "This is a regular polygon, so each interior angle = 6840 ÷ 40 = 171°"
       ],
-      "final_answer": "106",
+      "final_answer": "171°",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Corresponding angles are equal.",
+          "description": "Sum of interior angles = (n - 2) × 180 = (40 - 2) × 180 = 6840°",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 106",
+          "description": "This is a regular polygon, so each interior angle = 6840 ÷ 40 = 171°",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "106 oe",
+          "description": "171° oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "parallel_lines",
+        "kind": "polygon",
         "params": {
-          "known_label": "106°",
-          "unknown_label": "x",
-          "relation": "corresponding"
+          "n_sides": 12,
+          "marked_angle_label": "?"
         }
       },
       "solution_diagram": null
@@ -941,45 +939,37 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_around_point",
-      "prompt": "The angles 124°, 27° and x° are angles around a point. Find x.",
+      "topic_id": "angles_parallel_lines_foundation",
+      "prompt": "A line crosses two parallel lines. The angle 106° and the angle x° are corresponding angles. Find x.",
       "solution_steps": [
-        "Angles around a point sum to 360°.",
-        "x = 360 - (124 + 27) = 360 - 151 = 209"
+        "Corresponding angles are equal.",
+        "x = 106"
       ],
-      "final_answer": "209",
+      "final_answer": "106",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles around a point sum to 360°.",
+          "description": "Corresponding angles are equal.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 360 - (124 + 27) = 360 - 151 = 209",
+          "description": "x = 106",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "209 oe",
+          "description": "106 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "angle_line",
+        "kind": "parallel_lines",
         "params": {
-          "angle_values": [
-            124,
-            27,
-            209
-          ],
-          "labels": [
-            "124°",
-            "27°",
-            "x"
-          ],
-          "around_point": true
+          "known_label": "106°",
+          "unknown_label": "x",
+          "relation": "corresponding"
         }
       },
       "solution_diagram": null
@@ -1098,34 +1088,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bar_chart_construct",
-      "prompt": "The table shows the favourite fruit of a group of students: Grape: 15, Banana: 7, Orange: 17, Apple: 15. Draw a bar chart to show this information.",
+      "topic_id": "composite_bar_chart",
+      "prompt": "The composite bar chart shows the number of sales split by 2023 and 2024. How many 2024 are shown for Feb?",
       "solution_steps": [
-        "Draw one bar per category (Grape, Banana, Orange, Apple), each as tall as its frequency.",
-        "Heights: Grape: 15, Banana: 7, Orange: 17, Apple: 15.",
-        "Bars of height 15 (Grape), 7 (Banana), 17 (Orange), 15 (Apple)"
+        "Find the Feb bar, then the 2024 segment within it.",
+        "That segment's value is 3."
       ],
-      "final_answer": "Bars of height 15 (Grape), 7 (Banana), 17 (Orange), 15 (Apple)",
-      "marks": 4,
+      "final_answer": "3",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw one bar per category (Grape, Banana, Orange, Apple), each as tall as its frequency.",
+          "description": "Find the Feb bar, then the 2024 segment within it.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Heights: Grape: 15, Banana: 7, Orange: 17, Apple: 15.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Bars of height 15 (Grape), 7 (Banana), 17 (Orange), 15 (Apple)",
+          "description": "That segment's value is 3.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Bars of height 15 (Grape), 7 (Banana), 17 (Orange), 15 (Apple) oe",
+          "description": "3 oe",
           "marks": 1
         }
       ],
@@ -1133,37 +1117,37 @@
         "kind": "bar_chart",
         "params": {
           "categories": [
-            "Grape",
-            "Banana",
-            "Orange",
-            "Apple"
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr"
           ],
           "series": [
-            15,
-            7,
-            17,
-            15
+            [
+              12,
+              14
+            ],
+            [
+              14,
+              3
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              12
+            ]
           ],
-          "blank": true
+          "series_labels": [
+            "2023",
+            "2024"
+          ],
+          "y_label": "Frequency"
         }
       },
-      "solution_diagram": {
-        "kind": "bar_chart",
-        "params": {
-          "categories": [
-            "Grape",
-            "Banana",
-            "Orange",
-            "Apple"
-          ],
-          "series": [
-            15,
-            7,
-            17,
-            15
-          ]
-        }
-      }
+      "solution_diagram": null
     }
   ]
 }

@@ -4,6 +4,7 @@
   "tier": "higher",
   "sitting_id": "higher-06",
   "paper_number": 3,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "standard_form_add_subtract",
@@ -70,41 +71,63 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "set_notation",
-      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, A = {1, 2, 7}, B = {1, 7, 10}. List the elements of (A ∪ B)'.",
+      "topic_id": "fractions_mixed_number_arithmetic",
+      "prompt": "Work out 5 6/7 + 1 4/8. Give your answer as a mixed number.",
       "solution_steps": [
-        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
-        "A = {1, 2, 7}",
-        "B = {1, 7, 10}",
-        "(A ∪ B)' means the complement of A union B.",
-        "(A ∪ B)' = {3, 4, 5, 6, 8, 9}"
+        "Convert to improper fractions: 5 6/7 = 41/7, 1 4/8 = 3/2",
+        "Add the improper fractions: 41/7 + 3/2 = 103/14",
+        "Convert back to a mixed number: 7 5/14"
       ],
-      "final_answer": "{3, 4, 5, 6, 8, 9}",
-      "marks": 5,
+      "final_answer": "7 5/14",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+          "description": "Convert to improper fractions: 5 6/7 = 41/7, 1 4/8 = 3/2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A = {1, 2, 7}",
+          "description": "Add the improper fractions: 41/7 + 3/2 = 103/14",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "B = {1, 7, 10}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(A ∪ B)' means the complement of A union B. (A ∪ B)' = {3, 4, 5, 6, 8, 9}",
+          "description": "Convert back to a mixed number: 7 5/14",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "{3, 4, 5, 6, 8, 9} oe",
+          "description": "7 5/14 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "prime_factors_higher",
+      "prompt": "Write 786 as a product of its prime factors, giving your answer in index form.",
+      "solution_steps": [
+        "Divide 786 repeatedly by the smallest prime that fits: 2 × 3 × 131",
+        "Write repeated factors using index notation: 786 = 2 × 3 × 131"
+      ],
+      "final_answer": "2 × 3 × 131",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Divide 786 repeatedly by the smallest prime that fits: 2 × 3 × 131",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write repeated factors using index notation: 786 = 2 × 3 × 131",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2 × 3 × 131 oe",
           "marks": 1
         }
       ],
@@ -217,40 +240,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "quadratic_inequalities",
-      "prompt": "Solve the inequality: -x^2 + x + 30 < 0",
+      "topic_id": "algebraic_proof",
+      "prompt": "Prove algebraically that the product of two consecutive odd numbers is always odd.",
       "solution_steps": [
-        "Factorise: -x^2 + x + 30 = -(x + 5)(x - 6)",
-        "The critical values are x = -5 and x = 6.",
-        "The coefficient of x^2 is negative, so the graph is a upside-down U-shaped parabola, and < 0 is satisfied outside the two roots.",
-        "Answer: x < -5 or x > 6"
+        "Let two consecutive odd numbers be 2n + 1 and 2n + 3 (for integer n).",
+        "Write the given expression algebraically: (2n + 1)(2n + 3).",
+        "Expand and simplify: (2n + 1)(2n + 3) = 4n^2 + 8n + 3.",
+        "Factorise/rearrange to expose the structure: 4n^2 + 8n + 3 = 2(2n^2 + 4n + 1) + 1.",
+        "Since 4n^2 + 8n + 3 is exactly 1 more than the even number 2(2n^2 + 4n + 1), the product is always odd."
       ],
-      "final_answer": "x < -5 or x > 6",
+      "final_answer": "Proven: the product is 2(2n^2 + 4n + 1) + 1, always odd.",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Factorise: -x^2 + x + 30 = -(x + 5)(x - 6)",
+          "description": "Let two consecutive odd numbers be 2n + 1 and 2n + 3 (for integer n).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The critical values are x = -5 and x = 6.",
+          "description": "Write the given expression algebraically: (2n + 1)(2n + 3).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The coefficient of x^2 is negative, so the graph is a upside-down U-shaped parabola, and < 0 is satisfied outside the two roots.",
+          "description": "Expand and simplify: (2n + 1)(2n + 3) = 4n^2 + 8n + 3.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer: x < -5 or x > 6",
+          "description": "Factorise/rearrange to expose the structure: 4n^2 + 8n + 3 = 2(2n^2 + 4n + 1) + 1. Since 4n^2 + 8n + 3 is exactly 1 more than the even number 2(2n^2 + 4n + 1), the product is always odd.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x < -5 or x > 6 oe",
+          "description": "Proven: the product is 2(2n^2 + 4n + 1) + 1, always odd. oe",
           "marks": 1
         }
       ],
@@ -258,88 +282,92 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solving_inequalities_higher",
-      "prompt": "Solve the inequality: 6x + 3 ≥ 8x",
+      "topic_id": "inequalities_number_line_higher",
+      "prompt": "Draw the solution set of x ≤ 2 or x ≥ 6 on a number line.",
       "solution_steps": [
-        "6x + 3 ≥ 8x",
-        "Subtract 8x from both sides:",
-        "-2x + 3 ≥ 0",
-        "Subtract 3 from both sides:",
-        "-2x ≥ -3",
-        "Divide both sides by -2 (dividing by a negative number reverses the inequality sign):",
-        "x ≤ 3/2"
+        "Draw a filled circle at 2 and a filled circle at 6.",
+        "Shade to the left of 2 and to the right of 6, with arrows showing both continue indefinitely."
       ],
-      "final_answer": "x ≤ 3/2",
-      "marks": 5,
+      "final_answer": "x ≤ 2 or x ≥ 6",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "6x + 3 ≥ 8x",
+          "description": "Draw a filled circle at 2 and a filled circle at 6.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 8x from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "-2x + 3 ≥ 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 3 from both sides: -2x ≥ -3 Divide both sides by -2 (dividing by a negative number reverses the inequality sign): x ≤ 3/2",
+          "description": "Shade to the left of 2 and to the right of 6, with arrows showing both continue indefinitely.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x ≤ 3/2 oe",
+          "description": "x ≤ 2 or x ≥ 6 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [],
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [
+            {
+              "value": 2,
+              "closed": true
+            },
+            {
+              "value": 6,
+              "closed": true
+            }
+          ],
+          "shade": "outside"
+        }
+      }
     },
     {
-      "topic_id": "forming_equations_higher",
-      "prompt": "A rectangle has one side of length 7 cm and the other side of length (x + 1) cm. The area of the rectangle is 28 cm². Form an equation and solve it to find x.",
+      "topic_id": "change_subject_higher",
+      "prompt": "Make r the subject of the formula A = 2πr^2.",
       "solution_steps": [
-        "Area of a rectangle = length × width.",
-        "7(x + 1) = 28",
-        "Expand the bracket:",
-        "7x + 7 = 28",
-        "Subtract 7 from both sides:",
-        "7x = 21",
-        "Divide both sides by 7:",
-        "x = 3"
+        "A = 2πr^2",
+        "Divide both sides by 2π: A/(2π) = r^2",
+        "Take the square root of both sides: r = √(A/(2π))"
       ],
-      "final_answer": "3",
-      "marks": 5,
+      "final_answer": "r = √(A/(2π))",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area of a rectangle = length × width.",
+          "description": "A = 2πr^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "7(x + 1) = 28",
+          "description": "Divide both sides by 2π: A/(2π) = r^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand the bracket:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "7x + 7 = 28 Subtract 7 from both sides: 7x = 21 Divide both sides by 7: x = 3",
+          "description": "Take the square root of both sides: r = √(A/(2π))",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 oe",
+          "description": "r = √(A/(2π)) oe",
           "marks": 1
         }
       ],
@@ -390,83 +418,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "velocity_time_interpret",
-      "prompt": "The velocity-time graph shows a car's journey. Find the distance travelled while the car travels at constant velocity.",
+      "topic_id": "perpendicular_lines_equation",
+      "prompt": "A line is perpendicular to y = 2x - 3 and passes through the point (-1, 3). Find the equation of the line.",
       "solution_steps": [
-        "Distance = area under the graph = base × height (a rectangle)",
-        "Distance = 10 × 10 = 100 m"
+        "Perpendicular gradients multiply to give -1: m × 2 = -1, so m = -1/2",
+        "Substitute (-1, 3) into y = -1/2x + c: 3 = -1/2×(-1) + c, so c = 5/2",
+        "Equation of the line: y = -1/2x + 5/2"
       ],
-      "final_answer": "100 m",
-      "marks": 3,
+      "final_answer": "y = -1/2x + 5/2",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Distance = area under the graph = base × height (a rectangle)",
+          "description": "Perpendicular gradients multiply to give -1: m × 2 = -1, so m = -1/2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Distance = 10 × 10 = 100 m",
+          "description": "Substitute (-1, 3) into y = -1/2x + c: 3 = -1/2×(-1) + c, so c = 5/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Equation of the line: y = -1/2x + 5/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "100 m oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              12,
-              10
-            ],
-            [
-              22,
-              10
-            ],
-            [
-              32,
-              0
-            ]
-          ],
-          "x_max": 37,
-          "y_max": 15,
-          "x_label": "Time (s)",
-          "y_label": "Velocity (m/s)"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "factorise_quadratics",
-      "prompt": "Factorise: x^2 - 13x + 36",
-      "solution_steps": [
-        "Find two numbers that multiply to 36 and add to -13: -4 and -9",
-        "Write as two brackets: (x - 4)(x - 9)"
-      ],
-      "final_answer": "(x - 4)(x - 9)",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find two numbers that multiply to 36 and add to -13: -4 and -9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Write as two brackets: (x - 4)(x - 9)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(x - 4)(x - 9) oe",
+          "description": "y = -1/2x + 5/2 oe",
           "marks": 1
         }
       ],
@@ -474,34 +453,82 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "change_subject_higher",
-      "prompt": "Make r the subject of the formula A = 2πr^2.",
+      "topic_id": "solve_quadratic_factorising",
+      "prompt": "Solve x^2 - 17x + 72 = 0 by factorising.",
       "solution_steps": [
-        "A = 2πr^2",
-        "Divide both sides by 2π: A/(2π) = r^2",
-        "Take the square root of both sides: r = √(A/(2π))"
+        "Find two numbers that multiply to 72 and add to -17: -8 and -9",
+        "Factorise: (x - 8)(x - 9) = 0",
+        "Either x + -8 = 0 or x + -9 = 0",
+        "x = 8 or x = 9"
       ],
-      "final_answer": "r = √(A/(2π))",
-      "marks": 4,
+      "final_answer": "x = 8 or x = 9",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A = 2πr^2",
+          "description": "Find two numbers that multiply to 72 and add to -17: -8 and -9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 2π: A/(2π) = r^2",
+          "description": "Factorise: (x - 8)(x - 9) = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Take the square root of both sides: r = √(A/(2π))",
+          "description": "Either x + -8 = 0 or x + -9 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 8 or x = 9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "r = √(A/(2π)) oe",
+          "description": "x = 8 or x = 9 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "substitution_higher",
+      "prompt": "E = (1/2)mv^2. Find the value of E when m = 9 and v = -9.",
+      "solution_steps": [
+        "E = (1/2)mv^2",
+        "E = (1/2) × 9 × (-9)^2",
+        "E = (1/2) × 9 × 81",
+        "E = 729/2",
+        "E = 729/2"
+      ],
+      "final_answer": "E = 729/2",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "E = (1/2)mv^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "E = (1/2) × 9 × (-9)^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "E = (1/2) × 9 × 81",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "E = 729/2 E = 729/2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "E = 729/2 oe",
           "marks": 1
         }
       ],
@@ -651,96 +678,38 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof",
-      "prompt": "Triangle ABC is isosceles with AB = AC. D is the foot of the perpendicular from A to BC. Prove that the two triangles are congruent.",
+      "topic_id": "vectors_arithmetic_higher",
+      "prompt": "\\vec{a} = (8, -4) and \\vec{b} = (-8, -12). Find -3\\vec{a} - -1\\vec{b}.",
       "solution_steps": [
-        "angle ADB = angle ADC = 90° (AD is perpendicular to BC)",
-        "AB = AC (given, the hypotenuse of each right triangle)",
-        "AD is common to both triangles",
-        "By Right angle-Hypotenuse-Side (RHS), the triangles are congruent.",
-        "Since the hypotenuse and a common side match, with the right angle at D, triangles ABD and ACD are congruent - so BD = CD, meaning D is the midpoint of BC."
+        "\\vec{a} = (8, -4), \\vec{b} = (-8, -12)",
+        "-3\\vec{a} = (-24, 12) and -1\\vec{b} = (8, 12)",
+        "-3\\vec{a} - -1\\vec{b} = (-32, 0)"
       ],
-      "final_answer": "Triangles are congruent (RHS).",
-      "marks": 5,
+      "final_answer": "(-32, 0)",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "angle ADB = angle ADC = 90° (AD is perpendicular to BC)",
+          "description": "\\vec{a} = (8, -4), \\vec{b} = (-8, -12)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "AB = AC (given, the hypotenuse of each right triangle)",
+          "description": "-3\\vec{a} = (-24, 12) and -1\\vec{b} = (8, 12)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "AD is common to both triangles",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "By Right angle-Hypotenuse-Side (RHS), the triangles are congruent. Since the hypotenuse and a common side match, with the right angle at D, triangles ABD and ACD are congruent - so BD = CD, meaning D is the midpoint of BC.",
+          "description": "-3\\vec{a} - -1\\vec{b} = (-32, 0)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Triangles are congruent (RHS). oe",
+          "description": "(-32, 0) oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "two_triangle_congruence",
-        "params": {
-          "labels_1": [
-            "A",
-            "B",
-            "D"
-          ],
-          "labels_2": [
-            "A",
-            "C",
-            "D"
-          ],
-          "ticks_1": [
-            [
-              0,
-              1,
-              1
-            ],
-            [
-              0,
-              2,
-              2
-            ]
-          ],
-          "ticks_2": [
-            [
-              0,
-              1,
-              1
-            ],
-            [
-              0,
-              2,
-              2
-            ]
-          ],
-          "arcs_1": [
-            [
-              2,
-              1
-            ]
-          ],
-          "arcs_2": [
-            [
-              2,
-              1
-            ]
-          ],
-          "note": "AD is common to both triangles."
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -795,39 +764,45 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sine_rule",
-      "prompt": "In triangle ABC, angle A = 43°, angle B = 43°, and side a = 9 cm. Find the length of side b, correct to 3 significant figures.",
+      "topic_id": "cosine_rule",
+      "prompt": "In triangle ABC, side b = 18 cm, side c = 16 cm, and the angle between them, angle A = 100°. Find the length of side a, correct to 3 significant figures.",
       "solution_steps": [
-        "Use the sine rule: a / sin(A) = b / sin(B)",
-        "b = (9 × sin(43°)) ÷ sin(43°) = 9.00 cm (3 s.f.)"
+        "Use the cosine rule: a² = b² + c² - 2bc cos(A)",
+        "a² = 18² + 16² - 2×18×16×cos(100°) = 680.0",
+        "a = √680.0 = 26.1 cm (3 s.f.)"
       ],
-      "final_answer": "9.00 cm",
-      "marks": 3,
+      "final_answer": "26.1 cm",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Use the sine rule: a / sin(A) = b / sin(B)",
+          "description": "Use the cosine rule: a² = b² + c² - 2bc cos(A)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "b = (9 × sin(43°)) ÷ sin(43°) = 9.00 cm (3 s.f.)",
+          "description": "a² = 18² + 16² - 2×18×16×cos(100°) = 680.0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "a = √680.0 = 26.1 cm (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9.00 cm oe",
+          "description": "26.1 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "general_triangle",
         "params": {
-          "side_a_label": "9 cm",
-          "side_b_label": "x cm",
-          "side_c_label": null,
-          "angle_A_label": "43°",
-          "angle_B_label": "43°",
+          "side_a_label": "x cm",
+          "side_b_label": "18 cm",
+          "side_c_label": "16 cm",
+          "angle_A_label": "100°",
+          "angle_B_label": null,
           "angle_C_label": null
         }
       },
@@ -973,75 +948,50 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_combined_dice",
-      "prompt": "Two fair six-sided dice are rolled. Find the probability that at least one die shows 3.",
+      "topic_id": "geometric_vectors",
+      "prompt": "OAB is a triangle with OA = \\vec{a} and OB = \\vec{b}. Point P lies on AB such that AP:PB = 4:1. Find the vector AP in terms of \\vec{a} and \\vec{b}, giving your answer in its simplest form.",
       "solution_steps": [
-        "P(neither die shows 3) = 5/6 × 5/6 = 25/36",
-        "P(at least one 3) = 1 - 25/36 = 11/36"
+        "AB = OB - OA = \\vec{b} - \\vec{a}",
+        "AP = (4/5)AB = (4/5)(\\vec{b} - \\vec{a})",
+        "AP = (4/5)(\\vec{b} - \\vec{a}) = -(4/5)\\vec{a} + (4/5)\\vec{b}"
       ],
-      "final_answer": "11/36",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "P(neither die shows 3) = 5/6 × 5/6 = 25/36",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(at least one 3) = 1 - 25/36 = 11/36",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "11/36 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "dice",
-        "params": {
-          "values": [
-            2,
-            4
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "completing_the_square",
-      "prompt": "Write x^2 - 16x - 10 in the form (x + p)^2 + q.",
-      "solution_steps": [
-        "Half the coefficient of x: -16 ÷ 2 = -8",
-        "(x - 8)^2 = x^2 - 16x + 64",
-        "x^2 - 16x + -10 = (x - 8)^2 + (-10 - 64) = (x - 8)^2 - 74"
-      ],
-      "final_answer": "(x - 8)^2 - 74",
+      "final_answer": "-(4/5)\\vec{a} + (4/5)\\vec{b}",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Half the coefficient of x: -16 ÷ 2 = -8",
+          "description": "AB = OB - OA = \\vec{b} - \\vec{a}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(x - 8)^2 = x^2 - 16x + 64",
+          "description": "AP = (4/5)AB = (4/5)(\\vec{b} - \\vec{a})",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x^2 - 16x + -10 = (x - 8)^2 + (-10 - 64) = (x - 8)^2 - 74",
+          "description": "AP = (4/5)(\\vec{b} - \\vec{a}) = -(4/5)\\vec{a} + (4/5)\\vec{b}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(x - 8)^2 - 74 oe",
+          "description": "-(4/5)\\vec{a} + (4/5)\\vec{b} oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "vector_triangle",
+        "params": {
+          "ratio": [
+            4,
+            1
+          ],
+          "point_label": "P",
+          "a_label": "\\vec{a}",
+          "b_label": "\\vec{b}",
+          "origin_label": "O"
+        }
+      },
       "solution_diagram": null
     }
   ]

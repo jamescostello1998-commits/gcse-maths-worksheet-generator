@@ -4,6 +4,7 @@
   "tier": "foundation",
   "sitting_id": "foundation-02",
   "paper_number": 2,
+  "calculator_allowed": false,
   "questions": [
     {
       "topic_id": "decimals_divide",
@@ -64,42 +65,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "satisfying_inequalities_foundation",
-      "prompt": "Solve the inequality -13 < 4x + 7 ≤ 2, then list the integer values of x that satisfy it.",
+      "topic_id": "linear_one_step",
+      "prompt": "Solve: 5x = 25",
       "solution_steps": [
-        "-13 < 4x + 7 ≤ 2",
-        "Subtract 7 from all three parts:",
-        "-20 < 4x ≤ -5",
-        "Divide all three parts by 4:",
-        "-5 < x ≤ -5/4",
-        "The integers satisfying this are: -4, -3, -2"
+        "5x = 25",
+        "Divide both sides by 5:",
+        "x = 5"
       ],
-      "final_answer": "-4, -3, -2",
-      "marks": 5,
+      "final_answer": "5",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "-13 < 4x + 7 ≤ 2",
+          "description": "5x = 25",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 7 from all three parts:",
+          "description": "Divide both sides by 5:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-20 < 4x ≤ -5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide all three parts by 4: -5 < x ≤ -5/4 The integers satisfying this are: -4, -3, -2",
+          "description": "x = 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-4, -3, -2 oe",
+          "description": "5 oe",
           "marks": 1
         }
       ],
@@ -200,34 +193,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bidmas",
-      "prompt": "Work out 13 - 12 ÷ 6 × (5 + 1). Use the correct order of operations.",
+      "topic_id": "recurring_decimal_single_digit",
+      "prompt": "The recurring decimal 0.(1) can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Brackets: (5 + 1) = 6",
-        "Division and multiplication have equal priority, so work left to right: 12 ÷ 6 = 2, then × 6 = 12",
-        "Subtraction: 13 - 12 = 1"
+        "Let x = 0.(1), so 10x = 1.111... (only one digit repeats, so multiply by 10 to shift it one place)",
+        "Subtract: 10x - x = 1 - 0, so 9x = 1",
+        "x = 1/9 = 1/9"
       ],
-      "final_answer": "1",
+      "final_answer": "1/9",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Brackets: (5 + 1) = 6",
+          "description": "Let x = 0.(1), so 10x = 1.111... (only one digit repeats, so multiply by 10 to shift it one place)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Division and multiplication have equal priority, so work left to right: 12 ÷ 6 = 2, then × 6 = 12",
+          "description": "Subtract: 10x - x = 1 - 0, so 9x = 1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtraction: 13 - 12 = 1",
+          "description": "x = 1/9 = 1/9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 oe",
+          "description": "1/9 oe",
           "marks": 1
         }
       ],
@@ -392,47 +385,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_common_coefficient",
-      "prompt": "Solve the simultaneous equations: 2x + 2y = 2 and 3x + 2y = -4",
-      "solution_steps": [
-        "2x + 2y = 2  (1)",
-        "3x + 2y = -4  (2)",
-        "Subtract the equations to eliminate y: -1x = 6, so x = -6",
-        "Substitute x = -6 into (1): 2y = 14, so y = 7"
-      ],
-      "final_answer": "x = -6, y = 7",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "2x + 2y = 2  (1)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "3x + 2y = -4  (2)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract the equations to eliminate y: -1x = 6, so x = -6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute x = -6 into (1): 2y = 14, so y = 7",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = -6, y = 7 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
       "topic_id": "functions_evaluate",
       "prompt": "f(x) = 2x + 1. Find the value of x for which f(x) = 4.",
       "solution_steps": [
@@ -468,6 +420,41 @@
         {
           "code": "A1",
           "description": "3/2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_indices_foundation",
+      "prompt": "Simplify 2x^4 ÷ x^3",
+      "solution_steps": [
+        "Dividing powers of the same base: subtract the exponents, and divide the coefficients.",
+        "2x^4 ÷ x^3 = (2÷1) x^(4-3)",
+        "= 2x"
+      ],
+      "final_answer": "2x",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Dividing powers of the same base: subtract the exponents, and divide the coefficients.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x^4 ÷ x^3 = (2÷1) x^(4-3)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 2x",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2x oe",
           "marks": 1
         }
       ],
@@ -762,274 +749,45 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_enlarge_complete_foundation",
-      "prompt": "Enlarge shape ABC by scale factor 2, centre (1, 8). Draw and label the image A'B'C'.",
+      "topic_id": "construction_perpendicular_bisector",
+      "prompt": "Line segment UN has length 8 cm. Describe, step by step, how to construct the perpendicular bisector of UN using only a ruler and a pair of compasses.",
       "solution_steps": [
-        "The centre of enlargement is (1, 8) and the scale factor is 2.",
-        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-2, -7) from the centre, so A' = (1, 8) + 2 × (-2, -7) = (-3, -6).",
-        "Repeat for every vertex: A(-1, 1) -> A'(-3, -6), B(4, 1) -> B'(7, -6), C(0, 5) -> C'(-1, 2)"
+        "Open the compasses to a radius more than half of 8 cm (more than half the length of UN).",
+        "With the compass point on U, draw an arc above and below the line.",
+        "Without changing the compass radius, place the point on N and draw two more arcs, crossing the first two.",
+        "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of UN."
       ],
-      "final_answer": "A'(-3, -6), B'(7, -6), C'(-1, 2)",
-      "marks": 4,
+      "final_answer": "A straight line through the two arc intersections, crossing UN at its midpoint at a right angle.",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The centre of enlargement is (1, 8) and the scale factor is 2.",
+          "description": "Open the compasses to a radius more than half of 8 cm (more than half the length of UN).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-2, -7) from the centre, so A' = (1, 8) + 2 × (-2, -7) = (-3, -6).",
+          "description": "With the compass point on U, draw an arc above and below the line.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Repeat for every vertex: A(-1, 1) -> A'(-3, -6), B(4, 1) -> B'(7, -6), C(0, 5) -> C'(-1, 2)",
+          "description": "Without changing the compass radius, place the point on N and draw two more arcs, crossing the first two.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of UN.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(-3, -6), B'(7, -6), C'(-1, 2) oe",
+          "description": "A straight line through the two arc intersections, crossing UN at its midpoint at a right angle. oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              -1,
-              1
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              0,
-              5
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C"
-          ],
-          "centre": [
-            1,
-            8
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              -1,
-              1
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              0,
-              5
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C"
-          ],
-          "centre": [
-            1,
-            8
-          ],
-          "image_vertices": [
-            [
-              -3,
-              -6
-            ],
-            [
-              7,
-              -6
-            ],
-            [
-              -1,
-              2
-            ]
-          ],
-          "image_labels": [
-            "A'",
-            "B'",
-            "C'"
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "angles_straight_line",
-      "prompt": "The angles 25° and x° lie on a straight line. Find x.",
-      "solution_steps": [
-        "Angles on a straight line sum to 180°.",
-        "x = 180 - (25) = 180 - 25 = 155"
-      ],
-      "final_answer": "155",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Angles on a straight line sum to 180°.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 180 - (25) = 180 - 25 = 155",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "155 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "angle_line",
-        "params": {
-          "angle_values": [
-            25,
-            155
-          ],
-          "labels": [
-            "25°",
-            "x"
-          ],
-          "around_point": false
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
-    },
-    {
-      "topic_id": "transform_reflect_complete",
-      "prompt": "Reflect shape ABC in the line y = -x. Draw and label the image A'B'C'.",
-      "solution_steps": [
-        "Reflect each vertex in the line y = -x: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
-        "A(1, 3) -> A'(-3, -1), B(6, 3) -> B'(-3, -6), C(2, 7) -> C'(-7, -2)"
-      ],
-      "final_answer": "A'(-3, -1), B'(-3, -6), C'(-7, -2)",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Reflect each vertex in the line y = -x: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A(1, 3) -> A'(-3, -1), B(6, 3) -> B'(-3, -6), C(2, 7) -> C'(-7, -2)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "A'(-3, -1), B'(-3, -6), C'(-7, -2) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              1,
-              3
-            ],
-            [
-              6,
-              3
-            ],
-            [
-              2,
-              7
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C"
-          ],
-          "mirror_line": {
-            "type": "diagonal",
-            "sign": -1,
-            "label": "y = -x"
-          }
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              1,
-              3
-            ],
-            [
-              6,
-              3
-            ],
-            [
-              2,
-              7
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C"
-          ],
-          "mirror_line": {
-            "type": "diagonal",
-            "sign": -1,
-            "label": "y = -x"
-          },
-          "image_vertices": [
-            [
-              -3,
-              -1
-            ],
-            [
-              -3,
-              -6
-            ],
-            [
-              -7,
-              -2
-            ]
-          ],
-          "image_labels": [
-            "A'",
-            "B'",
-            "C'"
-          ]
-        }
-      }
     },
     {
       "topic_id": "angles_parallel_lines_foundation",
@@ -1063,6 +821,140 @@
           "known_label": "93°",
           "unknown_label": "x",
           "relation": "alternate"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "transform_translate_describe",
+      "prompt": "Shape ABCDEF is translated to give shape A'B'C'D'E'F', shown on the grid. Describe fully the single transformation that maps ABCDEF onto A'B'C'D'E'F'.",
+      "solution_steps": [
+        "Every vertex moves by exactly the same amount: comparing A(-1, -2) with A'(-5, -6) gives the vector (-4, -4).",
+        "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
+      ],
+      "final_answer": "Translation by the vector (-4, -4)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Every vertex moves by exactly the same amount: comparing A(-1, -2) with A'(-5, -6) gives the vector (-4, -4).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Checking the other vertices confirms the same vector applies throughout, so this is a translation.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Translation by the vector (-4, -4) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              -1,
+              -2
+            ],
+            [
+              4,
+              -2
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              -1,
+              2
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "image_vertices": [
+            [
+              -5,
+              -6
+            ],
+            [
+              0,
+              -6
+            ],
+            [
+              0,
+              -4
+            ],
+            [
+              -2,
+              -4
+            ],
+            [
+              -2,
+              -2
+            ],
+            [
+              -5,
+              -2
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'",
+            "D'",
+            "E'",
+            "F'"
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_polygon_interior_foundation",
+      "prompt": "A polygon has 9 sides. Find the sum of its interior angles.",
+      "solution_steps": [
+        "Sum of interior angles = (n - 2) × 180 = (9 - 2) × 180 = 1260°"
+      ],
+      "final_answer": "1260°",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Sum of interior angles = (n - 2) × 180 = (9 - 2) × 180 = 1260°",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1260° oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "polygon",
+        "params": {
+          "n_sides": 9,
+          "marked_angle_label": "?"
         }
       },
       "solution_diagram": null
@@ -1267,53 +1159,77 @@
       }
     },
     {
-      "topic_id": "fractions_equivalent_diagram",
-      "prompt": "The first shape shows 1/2 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
+      "topic_id": "scatter_graph_construct",
+      "prompt": "The table shows the midday temperature on a number of days and the number of ice creams a shop sold: (12, 43.7), (13, 55.3), (15, 45.1), (18, 55.9), (19, 66.0), (23, 74.4), (28, 90.0), (29, 88.2), (30, 95.6). Draw a scatter graph of this data, and describe the correlation.",
       "solution_steps": [
-        "Cross-multiply 1/2 against each labelled shape: a shape shows an equivalent fraction only if 1 × (its denominator) = (its shaded count) × 2.",
-        "Only shape B) 4/8 works: 1 × 8 = 4 × 2 = 8."
+        "Plot each (Temperature (°C), Ice creams sold) pair as a single point - do not join the points up with a line or curve.",
+        "As temperature (°c) increases, ice creams sold tends to increase too, so the points show positive correlation."
       ],
-      "final_answer": "B) 4/8",
-      "marks": 1,
+      "final_answer": "Positive correlation",
+      "marks": 3,
       "mark_scheme": [
         {
-          "code": "B1",
-          "description": "B) 4/8 (selecting the correct option)",
+          "code": "M1",
+          "description": "Plot each (Temperature (°C), Ice creams sold) pair as a single point - do not join the points up with a line or curve.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "As temperature (°c) increases, ice creams sold tends to increase too, so the points show positive correlation.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Positive correlation oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "fraction_shapes",
+      "diagram": null,
+      "solution_diagram": {
+        "kind": "scatter_graph",
         "params": {
-          "shapes": [
-            {
-              "kind": "circle",
-              "parts": 2,
-              "shaded": 1,
-              "label": "1/2"
-            },
-            {
-              "kind": "circle",
-              "parts": 10,
-              "shaded": 8,
-              "label": "A) 8/10"
-            },
-            {
-              "kind": "circle",
-              "parts": 8,
-              "shaded": 4,
-              "label": "B) 4/8"
-            },
-            {
-              "kind": "circle",
-              "parts": 10,
-              "shaded": 9,
-              "label": "C) 9/10"
-            }
-          ]
+          "points": [
+            [
+              12,
+              43.7
+            ],
+            [
+              13,
+              55.3
+            ],
+            [
+              15,
+              45.1
+            ],
+            [
+              18,
+              55.9
+            ],
+            [
+              19,
+              66.0
+            ],
+            [
+              23,
+              74.4
+            ],
+            [
+              28,
+              90.0
+            ],
+            [
+              29,
+              88.2
+            ],
+            [
+              30,
+              95.6
+            ]
+          ],
+          "x_label": "Temperature (°C)",
+          "y_label": "Ice creams sold"
         }
-      },
-      "solution_diagram": null
+      }
     }
   ]
 }

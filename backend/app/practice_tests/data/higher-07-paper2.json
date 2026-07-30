@@ -4,36 +4,37 @@
   "tier": "higher",
   "sitting_id": "higher-07",
   "paper_number": 2,
+  "calculator_allowed": false,
   "questions": [
     {
-      "topic_id": "surds_multiply_divide",
-      "prompt": "Simplify √3 × √6, giving your answer in the form a√b.",
+      "topic_id": "recurring_decimal_two_digit",
+      "prompt": "The recurring decimal 0.(75) can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "√3 × √6 = √(3 × 6) = √18",
-        "Find the largest square factor of 18: 3^2 × 2 = 18",
-        "√18 = √(3^2 × 2) = 3√2"
+        "Let x = 0.(75), so 100x = 75.7575... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Subtract: 100x - x = 75 - 0, so 99x = 75",
+        "x = 75/99 = 25/33"
       ],
-      "final_answer": "3√2",
+      "final_answer": "25/33",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "√3 × √6 = √(3 × 6) = √18",
+          "description": "Let x = 0.(75), so 100x = 75.7575... (two digits repeat, so multiply by 100 to shift a full block)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Find the largest square factor of 18: 3^2 × 2 = 18",
+          "description": "Subtract: 100x - x = 75 - 0, so 99x = 75",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "√18 = √(3^2 × 2) = 3√2",
+          "description": "x = 75/99 = 25/33",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3√2 oe",
+          "description": "25/33 oe",
           "marks": 1
         }
       ],
@@ -41,133 +42,70 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal 0.7(2) can be written as a fraction. Find this fraction in its simplest form.",
+      "topic_id": "roots_higher",
+      "prompt": "Simplify √160, giving your answer in the form a√b.",
       "solution_steps": [
-        "Let x = 0.7(2)",
-        "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
-        "This gives x = 65/90",
-        "Simplify: 13/18"
+        "Find the largest square factor of 160: 4^2 × 10 = 160",
+        "√160 = √(4^2 × 10) = 4√10"
       ],
-      "final_answer": "13/18",
+      "final_answer": "4√10",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find the largest square factor of 160: 4^2 × 10 = 160",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√160 = √(4^2 × 10) = 4√10",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4√10 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "rationalise_denominator",
+      "prompt": "Rationalise the denominator of 8/(7 + √6), giving your answer in its simplest form.",
+      "solution_steps": [
+        "Multiply the numerator and denominator by the conjugate of the denominator, (7 - √6):",
+        "8/(7 + √6) = 8(7 - √6) / [(7 + √6)(7 - √6)]",
+        "The denominator is a difference of two squares: 7^2 - 6 = 43",
+        "The numerator is 8(7 - √6) = 56 - 8√6",
+        "= (56 - 8√6)/43"
+      ],
+      "final_answer": "(56 - 8√6)/43",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.7(2)",
+          "description": "Multiply the numerator and denominator by the conjugate of the denominator, (7 - √6):",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
+          "description": "8/(7 + √6) = 8(7 - √6) / [(7 + √6)(7 - √6)]",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "This gives x = 65/90",
+          "description": "The denominator is a difference of two squares: 7^2 - 6 = 43",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify: 13/18",
+          "description": "The numerator is 8(7 - √6) = 56 - 8√6 = (56 - 8√6)/43",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "13/18 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "standard_form_multiply_divide",
-      "prompt": "Work out (6 × 10^2) ÷ (5 × 10^2). Give your answer in standard form.",
-      "solution_steps": [
-        "Divide the mantissas: 6 ÷ 5 = 1.2",
-        "Subtract the powers of 10: 2 - 2 = 0"
-      ],
-      "final_answer": "1.2 × 10^0",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Divide the mantissas: 6 ÷ 5 = 1.2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract the powers of 10: 2 - 2 = 0",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1.2 × 10^0 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "prime_factors_higher",
-      "prompt": "Write 628 as a product of its prime factors, giving your answer in index form.",
-      "solution_steps": [
-        "Divide 628 repeatedly by the smallest prime that fits: 2 × 2 × 157",
-        "Write repeated factors using index notation: 628 = 2^2 × 157"
-      ],
-      "final_answer": "2^2 × 157",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Divide 628 repeatedly by the smallest prime that fits: 2 × 2 × 157",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Write repeated factors using index notation: 628 = 2^2 × 157",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2^2 × 157 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "fractions_mixed_number_arithmetic",
-      "prompt": "Work out 5 3/4 - 4 6/7. Give your answer as a mixed number.",
-      "solution_steps": [
-        "Convert to improper fractions: 5 3/4 = 23/4, 4 6/7 = 34/7",
-        "Subtract the improper fractions: 23/4 - 34/7 = 25/28",
-        "Convert back to a mixed number: 0 25/28"
-      ],
-      "final_answer": "0 25/28",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert to improper fractions: 5 3/4 = 23/4, 4 6/7 = 34/7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract the improper fractions: 23/4 - 34/7 = 25/28",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Convert back to a mixed number: 0 25/28",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "0 25/28 oe",
+          "description": "(56 - 8√6)/43 oe",
           "marks": 1
         }
       ],
@@ -216,34 +154,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal 0.(75) can be written as a fraction. Find this fraction in its simplest form.",
+      "topic_id": "decimals_recurring_to_fraction",
+      "prompt": "The recurring decimal 0.7(2) can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(75), so 100x = 75.7575... (two digits repeat, so multiply by 100 to shift a full block)",
-        "Subtract: 100x - x = 75 - 0, so 99x = 75",
-        "x = 75/99 = 25/33"
+        "Let x = 0.7(2)",
+        "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
+        "This gives x = 65/90",
+        "Simplify: 13/18"
       ],
-      "final_answer": "25/33",
-      "marks": 4,
+      "final_answer": "13/18",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(75), so 100x = 75.7575... (two digits repeat, so multiply by 100 to shift a full block)",
+          "description": "Let x = 0.7(2)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract: 100x - x = 75 - 0, so 99x = 75",
+          "description": "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 75/99 = 25/33",
+          "description": "This gives x = 65/90",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify: 13/18",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "25/33 oe",
+          "description": "13/18 oe",
           "marks": 1
         }
       ],
@@ -251,263 +195,162 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inequalities_number_line_higher",
-      "prompt": "Draw the solution set of -5 < x ≤ -2 on a number line.",
+      "topic_id": "prime_factors_higher",
+      "prompt": "Write 628 as a product of its prime factors, giving your answer in index form.",
       "solution_steps": [
-        "Draw an open circle at -5 and a filled circle at -2.",
-        "Shade the segment of the line between the two circles."
+        "Divide 628 repeatedly by the smallest prime that fits: 2 × 2 × 157",
+        "Write repeated factors using index notation: 628 = 2^2 × 157"
       ],
-      "final_answer": "-5 < x ≤ -2",
+      "final_answer": "2^2 × 157",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw an open circle at -5 and a filled circle at -2.",
+          "description": "Divide 628 repeatedly by the smallest prime that fits: 2 × 2 × 157",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Shade the segment of the line between the two circles.",
+          "description": "Write repeated factors using index notation: 628 = 2^2 × 157",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-5 < x ≤ -2 oe",
+          "description": "2^2 × 157 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "substitution_higher",
+      "prompt": "v^2 = u^2 + 2as. Find the value of v when u = 2, a = 4 and s = 14. Give your answer to 3 significant figures if it is not exact.",
+      "solution_steps": [
+        "v^2 = u^2 + 2as",
+        "v^2 = 2^2 + 2 × 4 × 14",
+        "v^2 = 4 + 112",
+        "v^2 = 116",
+        "v = √116 = 10.8 (3 s.f.)",
+        "Take the positive square root only, since v represents a speed and must be positive."
+      ],
+      "final_answer": "v = 10.8 (3 s.f.)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "v^2 = u^2 + 2as",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "v^2 = 2^2 + 2 × 4 × 14",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "v^2 = 4 + 112",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "v^2 = 116 v = √116 = 10.8 (3 s.f.) Take the positive square root only, since v represents a speed and must be positive.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "v = 10.8 (3 s.f.) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_exponential",
+      "prompt": "Complete a table of values for y = 2 × 3^x for x = 0 to 4, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = 2 × 3^x:",
+        "x: 0, 1, 2, 3, 4",
+        "y: 2, 6, 18, 54, 162",
+        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
+      ],
+      "final_answer": "Exponential curve: y = 2 × 3^x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = 2 × 3^x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: 0, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 2, 6, 18, 54, 162",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Exponential curve: y = 2 × 3^x oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "number_line",
+        "kind": "function_graph",
         "params": {
-          "range": [
-            -8,
-            8
-          ],
-          "boundaries": [],
+          "kind": "exponential",
+          "a": 2,
+          "base": 3,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 178.2,
           "blank": true
         }
       },
       "solution_diagram": {
-        "kind": "number_line",
+        "kind": "function_graph",
         "params": {
-          "range": [
-            -8,
-            8
-          ],
-          "boundaries": [
-            {
-              "value": -5,
-              "closed": false
-            },
-            {
-              "value": -2,
-              "closed": true
-            }
-          ],
-          "shade": "between"
+          "kind": "exponential",
+          "a": 2,
+          "base": 3,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 178.2,
+          "table_points": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              6
+            ],
+            [
+              2,
+              18
+            ],
+            [
+              3,
+              54
+            ],
+            [
+              4,
+              162
+            ]
+          ]
         }
       }
-    },
-    {
-      "topic_id": "expand_triple_brackets",
-      "prompt": "Expand and simplify: (2x + 3)(2x + 4)(-x + 1)",
-      "solution_steps": [
-        "First expand two of the brackets: (2x + 3)(2x + 4) = 4x^2 + 14x + 12",
-        "Multiply the result by (-x + 1) and collect like terms",
-        "= -4x^3 - 10x^2 + 2x + 12"
-      ],
-      "final_answer": "-4x^3 - 10x^2 + 2x + 12",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "First expand two of the brackets: (2x + 3)(2x + 4) = 4x^2 + 14x + 12",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the result by (-x + 1) and collect like terms",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= -4x^3 - 10x^2 + 2x + 12",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-4x^3 - 10x^2 + 2x + 12 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "forming_equations_higher",
-      "prompt": "I think of a number. I add 5 to it, then multiply the result by 7. The answer is 161. Form an equation and solve it to find the number.",
-      "solution_steps": [
-        "Let the number be x.",
-        "7(x + 5) = 161",
-        "Expand the bracket:",
-        "7x + 35 = 161",
-        "Subtract 35 from both sides:",
-        "7x = 126",
-        "Divide both sides by 7:",
-        "x = 18"
-      ],
-      "final_answer": "18",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Let the number be x.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "7(x + 5) = 161",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Expand the bracket:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "7x + 35 = 161 Subtract 35 from both sides: 7x = 126 Divide both sides by 7: x = 18",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "18 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "sequences_quadratic_nth_term",
-      "prompt": "Here are the first four terms of a quadratic sequence: -11, -20, -35, -56. Find an expression for the nth term.",
-      "solution_steps": [
-        "First differences: -9, -15, -21",
-        "Second difference is constant: -6, so the coefficient of n^2 is -6 ÷ 2 = -3",
-        "nth term = -3n^2 - 8"
-      ],
-      "final_answer": "-3n^2 - 8",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "First differences: -9, -15, -21",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Second difference is constant: -6, so the coefficient of n^2 is -6 ÷ 2 = -3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "nth term = -3n^2 - 8",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-3n^2 - 8 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "algebraic_indices_higher",
-      "prompt": "Simplify 4x^5 ÷ 4x^3",
-      "solution_steps": [
-        "Dividing powers of the same base: subtract the exponents (this still works when an exponent is negative or zero), and divide the coefficients.",
-        "4x^5 ÷ 4x^3 = (4÷4) x^(5-(3))",
-        "= x^2"
-      ],
-      "final_answer": "x^2",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Dividing powers of the same base: subtract the exponents (this still works when an exponent is negative or zero), and divide the coefficients.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "4x^5 ÷ 4x^3 = (4÷4) x^(5-(3))",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= x^2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x^2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "satisfying_inequalities_higher",
-      "prompt": "x satisfies both 3x + 2 ≥ -10 and 5x + 3 ≤ 9. List the integer values of x that satisfy both.",
-      "solution_steps": [
-        "Solve the first inequality:",
-        "3x + 2 ≥ -10",
-        "Subtract 2 from both sides:",
-        "3x ≥ -12",
-        "Divide both sides by 3:",
-        "x ≥ -4",
-        "Solve the second inequality:",
-        "5x + 3 ≤ 9",
-        "Subtract 3 from both sides:",
-        "5x ≤ 6",
-        "Divide both sides by 5:",
-        "x ≤ 6/5",
-        "Combine both results into a single range: -4 ≤ x ≤ 6/5",
-        "The integers satisfying both inequalities are: -4, -3, -2, -1, 0, 1"
-      ],
-      "final_answer": "-4, -3, -2, -1, 0, 1",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Solve the first inequality:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "3x + 2 ≥ -10",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 2 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "3x ≥ -12 Divide both sides by 3: x ≥ -4 Solve the second inequality: 5x + 3 ≤ 9 Subtract 3 from both sides: 5x ≤ 6 Divide both sides by 5: x ≤ 6/5 Combine both results into a single range: -4 ≤ x ≤ 6/5 The integers satisfying both inequalities are: -4, -3, -2, -1, 0, 1",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-4, -3, -2, -1, 0, 1 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
     },
     {
       "topic_id": "perpendicular_lines_equation",
@@ -545,42 +388,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "quadratic_formula",
-      "prompt": "Solve 3x^2 + 9x - 3 = 0, giving your answer in the form x = (-b ± k√m)/2a, fully simplified.",
+      "topic_id": "factorise_quadratics",
+      "prompt": "Factorise: x^2 - 81",
       "solution_steps": [
-        "x = (-b ± √(b^2 - 4ac)) / 2a",
-        "a = 3, b = 9, c = -3",
-        "x = (-9 ± √(9^2 - 4×3×-3)) / 6",
-        "x = (-9 ± √117) / 6",
-        "√117 = √(3^2 × 13) = 3√13",
-        "x = (-9 ± 3√13) / 6 = (-3 ± √13)/2 (dividing numerator and denominator by 3)"
+        "Find two numbers that multiply to -81 and add to 0: 9 and -9",
+        "Write as two brackets: (x + 9)(x - 9)"
       ],
-      "final_answer": "x = (-3 ± √13)/2",
-      "marks": 5,
+      "final_answer": "(x + 9)(x - 9)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "x = (-b ± √(b^2 - 4ac)) / 2a",
+          "description": "Find two numbers that multiply to -81 and add to 0: 9 and -9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "a = 3, b = 9, c = -3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = (-9 ± √(9^2 - 4×3×-3)) / 6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = (-9 ± √117) / 6 √117 = √(3^2 × 13) = 3√13 x = (-9 ± 3√13) / 6 = (-3 ± √13)/2 (dividing numerator and denominator by 3)",
+          "description": "Write as two brackets: (x + 9)(x - 9)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = (-3 ± √13)/2 oe",
+          "description": "(x + 9)(x - 9) oe",
           "marks": 1
         }
       ],
@@ -588,44 +417,159 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_to_equation",
-      "prompt": "(x + 1) : (4x + 15) = 1:5. Find the value of x.",
+      "topic_id": "solve_quadratic_factorising",
+      "prompt": "Solve x^2 + 11x + 24 = 0 by factorising.",
       "solution_steps": [
-        "Cross-multiply: 5(x + 1) = 1(4x + 15)",
-        "Expand: 5x + 5 = 4x + 15",
-        "Collect x terms: x = 10",
-        "x = 10 ÷ 1 = 10"
+        "Find two numbers that multiply to 24 and add to 11: 3 and 8",
+        "Factorise: (x + 3)(x + 8) = 0",
+        "Either x + 3 = 0 or x + 8 = 0",
+        "x = -3 or x = -8"
       ],
-      "final_answer": "x = 10",
+      "final_answer": "x = -3 or x = -8",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Cross-multiply: 5(x + 1) = 1(4x + 15)",
+          "description": "Find two numbers that multiply to 24 and add to 11: 3 and 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand: 5x + 5 = 4x + 15",
+          "description": "Factorise: (x + 3)(x + 8) = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Collect x terms: x = 10",
+          "description": "Either x + 3 = 0 or x + 8 = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 10 ÷ 1 = 10",
+          "description": "x = -3 or x = -8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 10 oe",
+          "description": "x = -3 or x = -8 oe",
           "marks": 1
         }
       ],
       "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "velocity_time_interpret",
+      "prompt": "The velocity-time graph shows a car's journey. Find its acceleration during the first phase.",
+      "solution_steps": [
+        "Acceleration = change in velocity ÷ time = 10 ÷ 12 = 5/6 m/s^2"
+      ],
+      "final_answer": "5/6 m/s^2",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Acceleration = change in velocity ÷ time = 10 ÷ 12 = 5/6 m/s^2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5/6 m/s^2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              12,
+              10
+            ],
+            [
+              22,
+              10
+            ],
+            [
+              30,
+              0
+            ]
+          ],
+          "x_max": 35,
+          "y_max": 15,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "functions_composite_inverse",
+      "prompt": "f(x) = 2x - 8 and g(x) = 2x + 6. Find fg(x).",
+      "solution_steps": [
+        "fg(x) = f(2x + 6)",
+        "= 2(2x + 6) + -8",
+        "= 4x + 4"
+      ],
+      "final_answer": "4x + 4",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "fg(x) = f(2x + 6)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 2(2x + 6) + -8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 4x + 4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4x + 4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "graph_transformations",
+      "prompt": "The graph of y = f(x) is transformed to give the graph of y = f(x - 2). Describe this transformation fully.",
+      "solution_steps": [
+        "y = f(x - 2) corresponds to a translation by vector (2, 0)."
+      ],
+      "final_answer": "Translation by vector (2, 0)",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = f(x - 2) corresponds to a translation by vector (2, 0).",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Translation by vector (2, 0) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "graph_transformation",
+        "params": {
+          "transform": "translate_right",
+          "shift": 2,
+          "original_label": "y = f(x)",
+          "transformed_label": "y = f(x - 2)"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -658,40 +602,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_combine",
-      "prompt": "Given that a:b = 2:6 and b:c = 5:7, find a:b:c in its simplest form.",
+      "topic_id": "ratio_difference_higher",
+      "prompt": "Amounts are in the ratio 8:4:6. The difference between the largest and smallest amount is 8. Find all three amounts.",
       "solution_steps": [
-        "Scale a:b = 2:6 by 5 so b = 30: a:b = 10:30",
-        "Scale b:c = 5:7 by 6 so b = 30: b:c = 30:42",
-        "Combine: a:b:c = 10:30:42",
-        "Simplify by dividing by 2: a:b:c = 5:15:21"
+        "Difference in parts = 8 - 4 = 4 parts",
+        "Value of one part = 8 ÷ 4 = 2",
+        "Amount 1 = 8 × 2 = 16",
+        "Amount 2 = 4 × 2 = 8",
+        "Amount 3 = 6 × 2 = 12"
       ],
-      "final_answer": "5 : 15 : 21",
+      "final_answer": "16 : 8 : 12",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Scale a:b = 2:6 by 5 so b = 30: a:b = 10:30",
+          "description": "Difference in parts = 8 - 4 = 4 parts",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Scale b:c = 5:7 by 6 so b = 30: b:c = 30:42",
+          "description": "Value of one part = 8 ÷ 4 = 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Combine: a:b:c = 10:30:42",
+          "description": "Amount 1 = 8 × 2 = 16",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify by dividing by 2: a:b:c = 5:15:21",
+          "description": "Amount 2 = 4 × 2 = 8 Amount 3 = 6 × 2 = 12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5 : 15 : 21 oe",
+          "description": "16 : 8 : 12 oe",
           "marks": 1
         }
       ],
@@ -699,28 +644,69 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "density_higher",
-      "prompt": "A stone in the shape of a cuboid has dimensions 9 cm × 10 cm × 2 cm and a mass of 2938 g. Find its density, correct to 2 decimal places.",
+      "topic_id": "algebraic_direct_proportion",
+      "prompt": "y is directly proportional to x^3. When x = 2, y = 24. Find the value of y when x = 8.",
       "solution_steps": [
-        "volume = length × width × height = 9 × 10 × 2 = 180 cm³",
-        "density = mass ÷ volume = 2938 ÷ 180 = 16.32 g/cm³ (2 d.p.)"
+        "y = kx^3",
+        "24 = k × 2^3 = k × 8",
+        "k = 24 ÷ 8 = 3",
+        "y = 3 × 8^3 = 3 × 512 = 1536"
       ],
-      "final_answer": "16.32 g/cm³",
+      "final_answer": "1536",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = kx^3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "24 = k × 2^3 = k × 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "k = 24 ÷ 8 = 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y = 3 × 8^3 = 3 × 512 = 1536",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1536 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "reverse_percentage",
+      "prompt": "After a 15% increase, an item costs £78.20. Find the original price.",
+      "solution_steps": [
+        "Convert 15% to a multiplier: 1.15 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 78.20 ÷ 1.15 = 68"
+      ],
+      "final_answer": "£68",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "volume = length × width × height = 9 × 10 × 2 = 180 cm³",
+          "description": "Convert 15% to a multiplier: 1.15 (original × multiplier = new value)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "density = mass ÷ volume = 2938 ÷ 180 = 16.32 g/cm³ (2 d.p.)",
+          "description": "Divide the new value by the multiplier: 78.20 ÷ 1.15 = 68",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "16.32 g/cm³ oe",
+          "description": "£68 oe",
           "marks": 1
         }
       ],
@@ -728,14 +714,103 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_straight_line_higher",
-      "prompt": "The angles 37° and (5x + 43)° lie on a straight line. Find x.",
+      "topic_id": "area_mixed_compound",
+      "prompt": "A shape is made from a rectangle 16 cm by 7 cm, with a triangular roof of height 8 cm on top, and a quarter-circle of radius 2 cm cut from one bottom corner. Find the total area, correct to 3 significant figures.",
       "solution_steps": [
-        "Angles on a straight line sum to 180°.",
-        "5x + 43 = 143",
-        "Subtract 43 from both sides:",
-        "5x = 100",
-        "Divide both sides by 5:",
+        "Rectangle area = 16 × 7 = 112 cm²",
+        "Triangle roof area = ½ × 16 × 8 = 64 cm²",
+        "Quarter-circle cut area = (π × 2²) ÷ 4 ≈ 3.14 cm²",
+        "Total area = 112 + 64 - 3.14 ≈ 173 cm²"
+      ],
+      "final_answer": "173 cm²",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Rectangle area = 16 × 7 = 112 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Triangle roof area = ½ × 16 × 8 = 64 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Quarter-circle cut area = (π × 2²) ÷ 4 ≈ 3.14 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total area = 112 + 64 - 3.14 ≈ 173 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "173 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "mixed_compound",
+        "params": {
+          "width": 16,
+          "height": 7,
+          "roof_height": 8,
+          "cut_radius": 2,
+          "width_label": "16 cm",
+          "height_label": "7 cm",
+          "roof_label": "8 cm",
+          "cut_label": "2 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "arc_length",
+      "prompt": "A sector of a circle has radius 11 cm and angle 225°. Find the exact arc length, in terms of π.",
+      "solution_steps": [
+        "Arc length = (θ ÷ 360) × 2 × π × r = (225 ÷ 360) × 2 × π × 11",
+        "= (55/4)π cm"
+      ],
+      "final_answer": "(55/4)π cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Arc length = (θ ÷ 360) × 2 × π × r = (225 ÷ 360) × 2 × π × 11",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= (55/4)π cm",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(55/4)π cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "sector",
+        "params": {
+          "angle": 225,
+          "radius_label": "11 cm",
+          "angle_label": "225°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_parallel_lines",
+      "prompt": "A line crosses two parallel lines. The angle 50° and the angle (2x + 10)° are corresponding angles. Find x.",
+      "solution_steps": [
+        "Corresponding angles are equal.",
+        "2x + 10 = 50",
+        "Subtract 10 from both sides:",
+        "2x = 40",
+        "Divide both sides by 2:",
         "x = 20"
       ],
       "final_answer": "20",
@@ -743,22 +818,22 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles on a straight line sum to 180°.",
+          "description": "Corresponding angles are equal.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x + 43 = 143",
+          "description": "2x + 10 = 50",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 43 from both sides:",
+          "description": "Subtract 10 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x = 100 Divide both sides by 5: x = 20",
+          "description": "2x = 40 Divide both sides by 2: x = 20",
           "marks": 1
         },
         {
@@ -768,175 +843,149 @@
         }
       ],
       "diagram": {
-        "kind": "angle_line",
+        "kind": "parallel_lines",
         "params": {
-          "angle_values": [
-            37,
-            143
-          ],
-          "labels": [
-            "37°",
-            "(5x + 43)°"
-          ],
-          "around_point": false
+          "known_label": "50°",
+          "unknown_label": "(2x + 10)°",
+          "relation": "corresponding"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cylinder",
-      "prompt": "A cylinder has radius 4 cm and height 20 cm. Find the exact volume, in terms of π.",
+      "topic_id": "angles_exterior",
+      "prompt": "An exterior angle of a triangle is 78°. The two remote interior angles are 41° and (4x + 1)°. Find x.",
       "solution_steps": [
-        "Volume = π × r² × h = π × 4² × 20",
-        "= 320π cm³"
+        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+        "4x + 1 = 37",
+        "Subtract 1 from both sides:",
+        "4x = 36",
+        "Divide both sides by 4:",
+        "x = 9"
       ],
-      "final_answer": "320π cm³",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Volume = π × r² × h = π × 4² × 20",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 320π cm³",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "320π cm³ oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "cylinder",
-        "params": {
-          "radius_label": "4 cm",
-          "height_label": "20 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "pythagoras_surd_hypotenuse",
-      "prompt": "A right-angled triangle has legs 15 cm and 14 cm. Find the exact length of the hypotenuse, giving your answer as a simplified surd.",
-      "solution_steps": [
-        "c² = a² + b² = 15² + 14² = 225 + 196 = 421",
-        "c = √421 = √421 cm (exact form)"
-      ],
-      "final_answer": "√421 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "c² = a² + b² = 15² + 14² = 225 + 196 = 421",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "c = √421 = √421 cm (exact form)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "√421 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "right_triangle",
-        "params": {
-          "leg1_label": "15 cm",
-          "leg2_label": "14 cm",
-          "hyp_label": "?"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "area_sector",
-      "prompt": "A sector of a circle has radius 4 cm and angle 165°. Find the exact area of the sector, in terms of π.",
-      "solution_steps": [
-        "Area = (θ ÷ 360) × π × r² = (165 ÷ 360) × π × 4²",
-        "= (22/3)π cm²"
-      ],
-      "final_answer": "(22/3)π cm²",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Area = (θ ÷ 360) × π × r² = (165 ÷ 360) × π × 4²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= (22/3)π cm²",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(22/3)π cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "sector",
-        "params": {
-          "angle": 165,
-          "radius_label": "4 cm",
-          "angle_label": "165°"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "angles_triangle_higher",
-      "prompt": "A triangle has angles 54°, 50°, and (3x + 31)°. Find x.",
-      "solution_steps": [
-        "Angles in a triangle sum to 180°.",
-        "3x + 31 = 76",
-        "Subtract 31 from both sides:",
-        "3x = 45",
-        "Divide both sides by 3:",
-        "x = 15"
-      ],
-      "final_answer": "15",
+      "final_answer": "9",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles in a triangle sum to 180°.",
+          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3x + 31 = 76",
+          "description": "4x + 1 = 37",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 31 from both sides:",
+          "description": "Subtract 1 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3x = 45 Divide both sides by 3: x = 15",
+          "description": "4x = 36 Divide both sides by 4: x = 9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "15 oe",
+          "description": "9 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "triangle_angles",
+        "kind": "exterior_triangle",
         "params": {
-          "angle_labels": [
-            "54°",
-            "50°",
-            "(3x + 31)°"
+          "interior1_label": "41°",
+          "interior2_label": "(4x + 1)°",
+          "exterior_label": "78°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "tree_diagram_dependent",
+      "prompt": "A bag contains 6 yellow and 3 green counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the two counters are different colours.",
+      "solution_steps": [
+        "After the first counter is picked (without replacement), there are 8 counters left.",
+        "P(yellow then yellow) = 2/3 × 5/8 = 5/12",
+        "P(yellow then green) = 2/3 × 3/8 = 1/4",
+        "P(green then yellow) = 1/3 × 3/4 = 1/4",
+        "P(green then green) = 1/3 × 1/4 = 1/12",
+        "P(the two counters are different colours) = 1/2"
+      ],
+      "final_answer": "1/2",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "After the first counter is picked (without replacement), there are 8 counters left.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(yellow then yellow) = 2/3 × 5/8 = 5/12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(yellow then green) = 2/3 × 3/8 = 1/4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(green then yellow) = 1/3 × 3/4 = 1/4 P(green then green) = 1/3 × 1/4 = 1/12 P(the two counters are different colours) = 1/2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Yellow",
+              "2/3"
+            ],
+            [
+              "Green",
+              "1/3"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Yellow",
+                "5/8"
+              ],
+              [
+                "Green",
+                "3/8"
+              ]
+            ],
+            [
+              [
+                "Yellow",
+                "3/4"
+              ],
+              [
+                "Green",
+                "1/4"
+              ]
+            ]
+          ],
+          "leaf_probs": [
+            [
+              "5/12",
+              "1/4"
+            ],
+            [
+              "1/4",
+              "1/12"
+            ]
           ]
         }
       },
@@ -975,6 +1024,58 @@
             5,
             5
           ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "box_plot_interpret",
+      "prompt": "The box plots compare test scores for two classes. Which class had the higher median?",
+      "solution_steps": [
+        "Class A median = 30.0, Class B median = 33.0.",
+        "Class B is higher."
+      ],
+      "final_answer": "Class B",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Class A median = 30.0, Class B median = 33.0.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Class B is higher.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Class B oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "box_plot",
+        "params": {
+          "box_plots": [
+            {
+              "min": 7,
+              "q1": 20.0,
+              "median": 30.0,
+              "q3": 38.0,
+              "max": 44,
+              "label": "Class A"
+            },
+            {
+              "min": 2,
+              "q1": 19.5,
+              "median": 33.0,
+              "q3": 42.0,
+              "max": 48,
+              "label": "Class B"
+            }
+          ],
+          "x_label": "Test Scores"
         }
       },
       "solution_diagram": null

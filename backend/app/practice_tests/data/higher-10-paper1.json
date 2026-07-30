@@ -4,6 +4,7 @@
   "tier": "higher",
   "sitting_id": "higher-10",
   "paper_number": 1,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "roots_higher",
@@ -229,34 +230,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_triple_brackets",
-      "prompt": "Expand and simplify: (3x + 4)(3x + 4)(2x + 2)",
+      "topic_id": "factorise_quadratics",
+      "prompt": "Factorise: x^2 + 2x - 35",
       "solution_steps": [
-        "First expand two of the brackets: (3x + 4)(3x + 4) = 9x^2 + 24x + 16",
-        "Multiply the result by (2x + 2) and collect like terms",
-        "= 18x^3 + 66x^2 + 80x + 32"
+        "Find two numbers that multiply to -35 and add to 2: -5 and 7",
+        "Write as two brackets: (x - 5)(x + 7)"
       ],
-      "final_answer": "18x^3 + 66x^2 + 80x + 32",
-      "marks": 4,
+      "final_answer": "(x - 5)(x + 7)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First expand two of the brackets: (3x + 4)(3x + 4) = 9x^2 + 24x + 16",
+          "description": "Find two numbers that multiply to -35 and add to 2: -5 and 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the result by (2x + 2) and collect like terms",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 18x^3 + 66x^2 + 80x + 32",
+          "description": "Write as two brackets: (x - 5)(x + 7)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "18x^3 + 66x^2 + 80x + 32 oe",
+          "description": "(x - 5)(x + 7) oe",
           "marks": 1
         }
       ],
@@ -264,42 +259,44 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_brackets",
-      "prompt": "Solve: 6(5x + 6) = -204",
+      "topic_id": "forming_equations_higher",
+      "prompt": "A quadrilateral has angles 82°, 52°, (2x + 8)°, and (4x + 140)°. Form an equation and solve it to find x.",
       "solution_steps": [
-        "Expand the bracket: 6(5x + 6) = 30x + 36",
-        "30x + 36 = -204",
-        "Subtract 36 from both sides:",
-        "30x = -240",
-        "Divide both sides by 30:",
-        "x = -8"
+        "Angles in a quadrilateral sum to 360°.",
+        "82 + 52 + (2x + 8) + (4x + 140) = 360",
+        "Collect the x-terms and constants together:",
+        "6x + 148 = 226",
+        "Subtract 148 from both sides:",
+        "6x = 78",
+        "Divide both sides by 6:",
+        "x = 13"
       ],
-      "final_answer": "-8",
+      "final_answer": "13",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expand the bracket: 6(5x + 6) = 30x + 36",
+          "description": "Angles in a quadrilateral sum to 360°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "30x + 36 = -204",
+          "description": "82 + 52 + (2x + 8) + (4x + 140) = 360",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 36 from both sides:",
+          "description": "Collect the x-terms and constants together:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "30x = -240 Divide both sides by 30: x = -8",
+          "description": "6x + 148 = 226 Subtract 148 from both sides: 6x = 78 Divide both sides by 6: x = 13",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-8 oe",
+          "description": "13 oe",
           "marks": 1
         }
       ],
@@ -307,205 +304,315 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_cubic",
-      "prompt": "Complete a table of values for y = x^3 - x for x = -3 to 3, then plot the graph.",
+      "topic_id": "plot_exponential",
+      "prompt": "Complete a table of values for y = 6 × 2^x for x = 0 to 4, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = x^3 - x:",
-        "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: -24, -6, 0, 0, 0, 6, 24",
-        "Plot each (x, y) point and join them with a single smooth curve."
+        "Table of values for y = 6 × 2^x:",
+        "x: 0, 1, 2, 3, 4",
+        "y: 6, 12, 24, 48, 96",
+        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
       ],
-      "final_answer": "Cubic curve: y = x^3 - x",
+      "final_answer": "Exponential curve: y = 6 × 2^x",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = x^3 - x:",
+          "description": "Table of values for y = 6 × 2^x:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "description": "x: 0, 1, 2, 3, 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: -24, -6, 0, 0, 0, 6, 24",
+          "description": "y: 6, 12, 24, 48, 96",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Cubic curve: y = x^3 - x oe",
+          "description": "Exponential curve: y = 6 × 2^x oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "cubic",
-          "a": 1,
-          "b": -1,
-          "x_min": -4,
+          "kind": "exponential",
+          "a": 6,
+          "base": 2,
+          "x_min": -1,
           "x_max": 4,
-          "y_min": -26,
-          "y_max": 26,
+          "y_min": 0,
+          "y_max": 105.6,
           "blank": true
         }
       },
       "solution_diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "cubic",
-          "a": 1,
-          "b": -1,
-          "x_min": -4,
+          "kind": "exponential",
+          "a": 6,
+          "base": 2,
+          "x_min": -1,
           "x_max": 4,
-          "y_min": -26,
-          "y_max": 26,
+          "y_min": 0,
+          "y_max": 105.6,
           "table_points": [
             [
-              -3,
-              -24
-            ],
-            [
-              -2,
-              -6
-            ],
-            [
-              -1,
-              0
-            ],
-            [
               0,
-              0
-            ],
-            [
-              1,
-              0
-            ],
-            [
-              2,
               6
             ],
             [
-              3,
+              1,
+              12
+            ],
+            [
+              2,
               24
+            ],
+            [
+              3,
+              48
+            ],
+            [
+              4,
+              96
             ]
           ]
         }
       }
     },
     {
-      "topic_id": "completing_the_square",
-      "prompt": "Write x^2 + 18x - 6 in the form (x + p)^2 + q.",
+      "topic_id": "probability_conditional",
+      "prompt": "A bag contains 4 purple and 6 blue counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour.",
       "solution_steps": [
-        "Half the coefficient of x: 18 ÷ 2 = 9",
-        "(x + 9)^2 = x^2 + 18x + 81",
-        "x^2 + 18x + -6 = (x + 9)^2 + (-6 - 81) = (x + 9)^2 - 87"
+        "P(both purple) = 4/10 × 3/9 = 2/15",
+        "P(both blue) = 6/10 × 5/9 = 1/3",
+        "P(both same colour) = 2/15 + 1/3 = 7/15"
       ],
-      "final_answer": "(x + 9)^2 - 87",
+      "final_answer": "7/15",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Half the coefficient of x: 18 ÷ 2 = 9",
+          "description": "P(both purple) = 4/10 × 3/9 = 2/15",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(x + 9)^2 = x^2 + 18x + 81",
+          "description": "P(both blue) = 6/10 × 5/9 = 1/3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x^2 + 18x + -6 = (x + 9)^2 + (-6 - 81) = (x + 9)^2 - 87",
+          "description": "P(both same colour) = 2/15 + 1/3 = 7/15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(x + 9)^2 - 87 oe",
+          "description": "7/15 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "perpendicular_lines_equation",
-      "prompt": "A line is perpendicular to y = -3x + 1 and passes through the point (-5, -6). Find the equation of the line.",
-      "solution_steps": [
-        "Perpendicular gradients multiply to give -1: m × -3 = -1, so m = 1/3",
-        "Substitute (-5, -6) into y = 1/3x + c: -6 = 1/3×(-5) + c, so c = -13/3",
-        "Equation of the line: y = 1/3x - 13/3"
-      ],
-      "final_answer": "y = 1/3x - 13/3",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Perpendicular gradients multiply to give -1: m × -3 = -1, so m = 1/3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute (-5, -6) into y = 1/3x + c: -6 = 1/3×(-5) + c, so c = -13/3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Equation of the line: y = 1/3x - 13/3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "y = 1/3x - 13/3 oe",
-          "marks": 1
+      "diagram": {
+        "kind": "bag_of_counters",
+        "params": {
+          "counts": {
+            "purple": 4,
+            "blue": 6
+          }
         }
-      ],
-      "diagram": null,
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_proof",
-      "prompt": "Prove algebraically that the difference between the squares of two consecutive odd numbers is always a multiple of 8.",
+      "topic_id": "solve_quadratic_completing_square",
+      "prompt": "Solve x^2 - 8x - 29 = 0 by completing the square, giving your answers in exact surd form.",
       "solution_steps": [
-        "Let two consecutive odd numbers be 2n + 1 and 2n + 3 (for integer n).",
-        "Write the given expression algebraically: (2n + 3)^2 - (2n + 1)^2.",
-        "Expand and simplify: (2n + 3)^2 - (2n + 1)^2 = 8n + 8.",
-        "Factorise/rearrange to expose the structure: 8n + 8 = 8(n + 1).",
-        "Since 8n + 8 factorises exactly to 8(n + 1), the difference is always 8 times a whole number, so it is always a multiple of 8."
+        "Half the coefficient of x: -8 ÷ 2 = -4",
+        "Complete the square: x^2 - 8x - 29 = (x - 4)^2 - 45",
+        "Set (x - 4)^2 - 45 = 0, so (x - 4)^2 = 45",
+        "(x - 4) = ±√45 = ±3√5",
+        "x = 4 + 3√5 or x = 4 - 3√5"
       ],
-      "final_answer": "Proven: the difference is 8(n + 1), always a multiple of 8.",
+      "final_answer": "x = 4 + 3√5 or x = 4 - 3√5",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let two consecutive odd numbers be 2n + 1 and 2n + 3 (for integer n).",
+          "description": "Half the coefficient of x: -8 ÷ 2 = -4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write the given expression algebraically: (2n + 3)^2 - (2n + 1)^2.",
+          "description": "Complete the square: x^2 - 8x - 29 = (x - 4)^2 - 45",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand and simplify: (2n + 3)^2 - (2n + 1)^2 = 8n + 8.",
+          "description": "Set (x - 4)^2 - 45 = 0, so (x - 4)^2 = 45",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise/rearrange to expose the structure: 8n + 8 = 8(n + 1). Since 8n + 8 factorises exactly to 8(n + 1), the difference is always 8 times a whole number, so it is always a multiple of 8.",
+          "description": "(x - 4) = ±√45 = ±3√5 x = 4 + 3√5 or x = 4 - 3√5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Proven: the difference is 8(n + 1), always a multiple of 8. oe",
+          "description": "x = 4 + 3√5 or x = 4 - 3√5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_reciprocal",
+      "prompt": "Complete a table of values for y = -36/x for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = -36/x:",
+        "x: -4, -3, -2, -1, 1, 2, 3, 4",
+        "y: 9, 12, 18, 36, -36, -18, -12, -9",
+        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
+      ],
+      "final_answer": "Reciprocal curve: y = -36/x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = -36/x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 9, 12, 18, 36, -36, -18, -12, -9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Reciprocal curve: y = -36/x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "reciprocal",
+          "a": -36,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -38,
+          "y_max": 38,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "reciprocal",
+          "a": -36,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -38,
+          "y_max": 38,
+          "table_points": [
+            [
+              -4,
+              9
+            ],
+            [
+              -3,
+              12
+            ],
+            [
+              -2,
+              18
+            ],
+            [
+              -1,
+              36
+            ],
+            [
+              1,
+              -36
+            ],
+            [
+              2,
+              -18
+            ],
+            [
+              3,
+              -12
+            ],
+            [
+              4,
+              -9
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "trial_and_improvement",
+      "prompt": "f(x) = x^3 + 2x - 55. Show that f(x) = 0 has a root between x = 3 and x = 4, then use trial and improvement to find this root correct to 1 decimal place.",
+      "solution_steps": [
+        "f(x) = x^3 + 2x - 55",
+        "f(3) = -22.00 (negative)",
+        "f(4) = 17.00 (positive)",
+        "f(3.1) = -19.01 (negative)",
+        "f(3.2) = -15.83 (negative)",
+        "f(3.3) = -12.46 (negative)",
+        "f(3.4) = -8.90 (negative)",
+        "f(3.5) = -5.13 (negative)",
+        "f(3.6) = -1.14 (negative)",
+        "f(3.7) = 3.05 (positive)",
+        "The sign changes between x = 3.6 and x = 3.7, so try the midpoint x = 3.65: f(3.65) = 0.93.",
+        "f(3.65) has the same sign as f(3.7), so the root lies between 3.6 and 3.65 - to 1 decimal place, this rounds down to 3.6."
+      ],
+      "final_answer": "x = 3.6",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "f(x) = x^3 + 2x - 55",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "f(3) = -22.00 (negative)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "f(4) = 17.00 (positive)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "f(3.1) = -19.01 (negative) f(3.2) = -15.83 (negative) f(3.3) = -12.46 (negative) f(3.4) = -8.90 (negative) f(3.5) = -5.13 (negative) f(3.6) = -1.14 (negative) f(3.7) = 3.05 (positive) The sign changes between x = 3.6 and x = 3.7, so try the midpoint x = 3.65: f(3.65) = 0.93. f(3.65) has the same sign as f(3.7), so the root lies between 3.6 and 3.65 - to 1 decimal place, this rounds down to 3.6.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 3.6 oe",
           "marks": 1
         }
       ],
@@ -951,51 +1058,6 @@
           }
         }
       },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "forming_equations_higher",
-      "prompt": "A quadrilateral has angles 82°, 52°, (2x + 8)°, and (4x + 140)°. Form an equation and solve it to find x.",
-      "solution_steps": [
-        "Angles in a quadrilateral sum to 360°.",
-        "82 + 52 + (2x + 8) + (4x + 140) = 360",
-        "Collect the x-terms and constants together:",
-        "6x + 148 = 226",
-        "Subtract 148 from both sides:",
-        "6x = 78",
-        "Divide both sides by 6:",
-        "x = 13"
-      ],
-      "final_answer": "13",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Angles in a quadrilateral sum to 360°.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "82 + 52 + (2x + 8) + (4x + 140) = 360",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Collect the x-terms and constants together:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "6x + 148 = 226 Subtract 148 from both sides: 6x = 78 Divide both sides by 6: x = 13",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "13 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
       "solution_diagram": null
     }
   ]

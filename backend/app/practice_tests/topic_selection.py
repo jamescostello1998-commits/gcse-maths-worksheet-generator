@@ -69,6 +69,42 @@ NICHE_TOPIC_IDS: frozenset[str] = frozenset(
 
 _PRIORITY_WEIGHT = {"core": 3, "common": 2, "niche": 1}
 
+# Topics confirmed to require a calculator - a messy/irrational decimal result
+# (rounded trig ratios, sqrt-derived lengths, calculator-value-of-pi areas/
+# volumes), or explicitly labelled "(Calculator)" in their own display_name.
+# Real OCR GCSE Maths reserves Paper 2 (Foundation) / Paper 5 (Higher) - the
+# middle paper of every 3-paper sitting - as non-calculator, so build.py
+# excludes every topic in this set from that paper's eligible pool. A topic
+# whose generator randomly branches between an exact and a decimal/irrational
+# result (e.g. quadratic_formula's decimal-vs-surd branches) is included here
+# wholesale, since selection can't pick only the exact branch - conservative,
+# but this only affects 1 of every 3 papers, so the cost of erring toward
+# inclusion is low (see CLAUDE.md-style rationale in the PR that added this).
+CALCULATOR_ONLY_TOPIC_IDS: frozenset[str] = frozenset(
+    {
+        # Number
+        "standard_form_calculator",
+        # Ratio & Proportion
+        "percentage_increase_decrease_calculator",
+        # Geometry - decimal/calculator-pi area & perimeter
+        "area_circle_foundation", "area_semicircle_compound",
+        "arc_length_foundation", "area_sector_foundation",
+        # Geometry - decimal/calculator-pi volume & surface area
+        "volume_surface_area_cylinder_foundation", "volume_surface_area_cone",
+        "volume_surface_area_sphere", "volume_surface_area_pyramid",
+        "frustum_volume_surface_area", "compound_3d_volume", "compound_3d_surface_area",
+        # Geometry - Pythagoras/trig giving a rounded decimal answer
+        "pythagoras_hypotenuse_decimal", "pythagoras_3d", "trig_3d",
+        "trig_missing_side_foundation", "trig_missing_side_higher",
+        "trig_missing_angle_foundation", "trig_missing_angle_higher", "trig_mixed",
+        "sine_rule", "cosine_rule", "triangle_area_sine_rule", "bearings_cosine_rule",
+        # Algebra - branches between an exact surd and a rounded decimal root
+        "quadratic_formula",
+        # Algebra - the process itself requires repeated calculator evaluation
+        "iteration",
+    }
+)
+
 
 def topic_priority(topic_id: str) -> str:
     if topic_id in CORE_TOPIC_IDS:
@@ -78,11 +114,18 @@ def topic_priority(topic_id: str) -> str:
     return "common"
 
 
-def eligible_topics_by_section(tier: Tier) -> dict[str, list[TopicDefinition]]:
+def eligible_topics_by_section(tier: Tier, calculator_allowed: bool = True) -> dict[str, list[TopicDefinition]]:
+    """The pool of topics available for a paper of this tier. When
+    calculator_allowed is False (the middle paper of a 3-paper sitting - real
+    OCR's non-calculator paper), every topic in CALCULATOR_ONLY_TOPIC_IDS is
+    excluded from the pool entirely."""
     by_section: dict[str, list[TopicDefinition]] = {s: [] for s in SECTION_TARGET_MARKS}
     for topic in list_topics():
-        if topic.fixed_tier == tier and topic.section in by_section:
-            by_section[topic.section].append(topic)
+        if topic.fixed_tier != tier or topic.section not in by_section:
+            continue
+        if not calculator_allowed and topic.id in CALCULATOR_ONLY_TOPIC_IDS:
+            continue
+        by_section[topic.section].append(topic)
     return by_section
 
 

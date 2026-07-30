@@ -4,6 +4,7 @@
   "tier": "higher",
   "sitting_id": "higher-07",
   "paper_number": 3,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "hcf_lcm_by_prime_factors",
@@ -229,34 +230,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "functions_composite_inverse",
-      "prompt": "f(x) = 4x and g(x) = x + 5. Find gf(x).",
+      "topic_id": "algebraic_fractions_add_subtract",
+      "prompt": "Simplify 4/(x + 7) - 9/(x - 4), giving your answer as a single fraction.",
       "solution_steps": [
-        "gf(x) = g(4x)",
-        "= 1(4x) + 5",
-        "= 4x + 5"
+        "Write both fractions over the common denominator (x + 7)(x - 4):",
+        "4/(x + 7) - 9/(x - 4) = (4(x - 4) - 9(x + 7))/(x + 7)(x - 4)",
+        "Expand the numerator: 4(x - 4) - 9(x + 7) = -5x - 79",
+        "= (-5x - 79)/(x + 7)(x - 4)"
       ],
-      "final_answer": "4x + 5",
-      "marks": 4,
+      "final_answer": "(-5x - 79)/(x + 7)(x - 4)",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "gf(x) = g(4x)",
+          "description": "Write both fractions over the common denominator (x + 7)(x - 4):",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 1(4x) + 5",
+          "description": "4/(x + 7) - 9/(x - 4) = (4(x - 4) - 9(x + 7))/(x + 7)(x - 4)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 4x + 5",
+          "description": "Expand the numerator: 4(x - 4) - 9(x + 7) = -5x - 79",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= (-5x - 79)/(x + 7)(x - 4)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4x + 5 oe",
+          "description": "(-5x - 79)/(x + 7)(x - 4) oe",
           "marks": 1
         }
       ],
@@ -313,42 +320,44 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_brackets",
-      "prompt": "Solve: 2(5x + 1) = 42",
+      "topic_id": "forming_equations_higher",
+      "prompt": "A rectangle has one side of length 11 cm and the other side of length (x + 6) cm. The area of the rectangle is 187 cm². Form an equation and solve it to find x.",
       "solution_steps": [
-        "Expand the bracket: 2(5x + 1) = 10x + 2",
-        "10x + 2 = 42",
-        "Subtract 2 from both sides:",
-        "10x = 40",
-        "Divide both sides by 10:",
-        "x = 4"
+        "Area of a rectangle = length × width.",
+        "11(x + 6) = 187",
+        "Expand the bracket:",
+        "11x + 66 = 187",
+        "Subtract 66 from both sides:",
+        "11x = 121",
+        "Divide both sides by 11:",
+        "x = 11"
       ],
-      "final_answer": "4",
+      "final_answer": "11",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expand the bracket: 2(5x + 1) = 10x + 2",
+          "description": "Area of a rectangle = length × width.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "10x + 2 = 42",
+          "description": "11(x + 6) = 187",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 2 from both sides:",
+          "description": "Expand the bracket:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "10x = 40 Divide both sides by 10: x = 4",
+          "description": "11x + 66 = 187 Subtract 66 from both sides: 11x = 121 Divide both sides by 11: x = 11",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4 oe",
+          "description": "11 oe",
           "marks": 1
         }
       ],
@@ -356,10 +365,163 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "circle_equation",
+      "prompt": "The point (3, -4) lies on the circle x^2 + y^2 = 25. Find the equation of the tangent to the circle at this point.",
+      "solution_steps": [
+        "The point (3, -4) lies on the circle x^2 + y^2 = 25, since 3^2 + -4^2 = 25.",
+        "The radius to (3, -4) has gradient -4/3, so the tangent (perpendicular to the radius) has gradient -3/-4.",
+        "The tangent line through (3, -4) with that gradient simplifies to 3x - 4y = 25."
+      ],
+      "final_answer": "3x - 4y = 25",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The point (3, -4) lies on the circle x^2 + y^2 = 25, since 3^2 + -4^2 = 25.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The radius to (3, -4) has gradient -4/3, so the tangent (perpendicular to the radius) has gradient -3/-4.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The tangent line through (3, -4) with that gradient simplifies to 3x - 4y = 25.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3x - 4y = 25 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "loci_construction",
+        "params": {
+          "x_min": -6,
+          "x_max": 6,
+          "y_min": -6,
+          "y_max": 6,
+          "points": [
+            {
+              "xy": [
+                3,
+                -4
+              ],
+              "label": null
+            }
+          ],
+          "given_lines": [],
+          "circle": {
+            "centre": [
+              0,
+              0
+            ],
+            "radius": 5
+          },
+          "segment": null
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_different_coefficient",
+      "prompt": "Solve the simultaneous equations: 2x + 4y = 8 and 5x + 3y = 13",
+      "solution_steps": [
+        "2x + 4y = 8  (1)",
+        "5x + 3y = 13  (2)",
+        "(1) × 3: 6x + 12y = 24  (3)",
+        "(2) × 4: 20x + 12y = 52  (4)",
+        "(3) - (4): -14x = -28, so x = 2",
+        "Substitute x = 2 into (1): 4y = 4, so y = 1"
+      ],
+      "final_answer": "x = 2, y = 1",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "2x + 4y = 8  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x + 3y = 13  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(1) × 3: 6x + 12y = 24  (3)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(2) × 4: 20x + 12y = 52  (4) (3) - (4): -14x = -28, so x = 2 Substitute x = 2 into (1): 4y = 4, so y = 1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 2, y = 1 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "inequalities_region_higher",
+      "prompt": "The shaded region on the grid satisfies two inequalities. State both inequalities.",
+      "solution_steps": [
+        "The boundary line y = -x/2 - 2 is dashed, and the shading lies on the lower side of it, giving y < -x/2 - 2.",
+        "The boundary line y = -x - 1 is solid, and the shading lies on the lower side of it, giving y ≤ -x - 1."
+      ],
+      "final_answer": "y < -x/2 - 2 and y ≤ -x - 1",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The boundary line y = -x/2 - 2 is dashed, and the shading lies on the lower side of it, giving y < -x/2 - 2.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The boundary line y = -x - 1 is solid, and the shading lies on the lower side of it, giving y ≤ -x - 1.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y < -x/2 - 2 and y ≤ -x - 1 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "inequality_region",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "lines": [
+            {
+              "m": -0.5,
+              "c": -2,
+              "op": "<"
+            },
+            {
+              "m": -1.0,
+              "c": -1,
+              "op": "<="
+            }
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
       "topic_id": "turning_point_of_graph",
       "prompt": "Find the coordinates of the turning point of the curve y = x^2 - 6x - 14.",
       "solution_steps": [
-        "Complete the square: x^2 - 6x + -14 = (x - 3)^2 - 23",
+        "Complete the square: x^2 - 6x - 14 = (x - 3)^2 - 23",
         "The turning point of y = (x + p)^2 + q is (-p, q).",
         "Turning point = (3, -23)"
       ],
@@ -368,7 +530,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Complete the square: x^2 - 6x + -14 = (x - 3)^2 - 23",
+          "description": "Complete the square: x^2 - 6x - 14 = (x - 3)^2 - 23",
           "marks": 1
         },
         {
@@ -396,160 +558,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_fractions_add_subtract",
-      "prompt": "Simplify 4/(x + 7) - 9/(x - 4), giving your answer as a single fraction.",
+      "topic_id": "solve_quadratic_factorising",
+      "prompt": "Solve x^2 + 9x + 18 = 0 by factorising.",
       "solution_steps": [
-        "Write both fractions over the common denominator (x + 7)(x - 4):",
-        "4/(x + 7) - 9/(x - 4) = (4(x - 4) - 9(x + 7))/(x + 7)(x - 4)",
-        "Expand the numerator: 4(x - 4) - 9(x + 7) = -5x - 79",
-        "= (-5x - 79)/(x + 7)(x - 4)"
+        "Find two numbers that multiply to 18 and add to 9: 3 and 6",
+        "Factorise: (x + 3)(x + 6) = 0",
+        "Either x + 3 = 0 or x + 6 = 0",
+        "x = -3 or x = -6"
       ],
-      "final_answer": "(-5x - 79)/(x + 7)(x - 4)",
+      "final_answer": "x = -3 or x = -6",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Write both fractions over the common denominator (x + 7)(x - 4):",
+          "description": "Find two numbers that multiply to 18 and add to 9: 3 and 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4/(x + 7) - 9/(x - 4) = (4(x - 4) - 9(x + 7))/(x + 7)(x - 4)",
+          "description": "Factorise: (x + 3)(x + 6) = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand the numerator: 4(x - 4) - 9(x + 7) = -5x - 79",
+          "description": "Either x + 3 = 0 or x + 6 = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= (-5x - 79)/(x + 7)(x - 4)",
+          "description": "x = -3 or x = -6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(-5x - 79)/(x + 7)(x - 4) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "satisfying_inequalities_higher",
-      "prompt": "x satisfies both 2x - 3 > 13 and x - 5 ≤ 9. List the integer values of x that satisfy both.",
-      "solution_steps": [
-        "Solve the first inequality:",
-        "2x - 3 > 13",
-        "Add 3 to both sides:",
-        "2x > 16",
-        "Divide both sides by 2:",
-        "x > 8",
-        "Solve the second inequality:",
-        "x - 5 ≤ 9",
-        "Add 5 to both sides:",
-        "x ≤ 14",
-        "x ≤ 14",
-        "Combine both results into a single range: 8 < x ≤ 14",
-        "The integers satisfying both inequalities are: 9, 10, 11, 12, 13, 14"
-      ],
-      "final_answer": "9, 10, 11, 12, 13, 14",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Solve the first inequality:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2x - 3 > 13",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add 3 to both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2x > 16 Divide both sides by 2: x > 8 Solve the second inequality: x - 5 ≤ 9 Add 5 to both sides: x ≤ 14 x ≤ 14 Combine both results into a single range: 8 < x ≤ 14 The integers satisfying both inequalities are: 9, 10, 11, 12, 13, 14",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "9, 10, 11, 12, 13, 14 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "algebraic_indices_higher",
-      "prompt": "Simplify x × 6",
-      "solution_steps": [
-        "Multiplying powers of the same base: add the exponents (this still works when an exponent is negative or zero), and multiply the coefficients.",
-        "x × 6 = (1×6) x^(1+(0))",
-        "= 6x"
-      ],
-      "final_answer": "6x",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiplying powers of the same base: add the exponents (this still works when an exponent is negative or zero), and multiply the coefficients.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x × 6 = (1×6) x^(1+(0))",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 6x",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "6x oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "expand_triple_brackets",
-      "prompt": "Expand and simplify: (4x + 4)(-4x + 4)(x + 4)",
-      "solution_steps": [
-        "First expand two of the brackets: (4x + 4)(-4x + 4) = -16x^2 + 16",
-        "Multiply the result by (x + 4) and collect like terms",
-        "= -16x^3 - 64x^2 + 16x + 64"
-      ],
-      "final_answer": "-16x^3 - 64x^2 + 16x + 64",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "First expand two of the brackets: (4x + 4)(-4x + 4) = -16x^2 + 16",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the result by (x + 4) and collect like terms",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= -16x^3 - 64x^2 + 16x + 64",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-16x^3 - 64x^2 + 16x + 64 oe",
+          "description": "x = -3 or x = -6 oe",
           "marks": 1
         }
       ],
@@ -760,40 +802,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_enlarge_complete_higher",
-      "prompt": "Enlarge shape ABCDEF by scale factor -1, centre (0, 2). Draw and label the image A'B'C'D'E'F'.",
+      "topic_id": "transform_enlarge_describe",
+      "prompt": "Shape ABC is enlarged to give shape A'B'C', shown on the grid. Describe fully the single transformation that maps ABC onto A'B'C'.",
       "solution_steps": [
-        "The centre of enlargement is (0, 2) and the scale factor is -1.",
-        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (2, -1) from the centre, so A' = (0, 2) + -1 × (2, -1) = (-2, 3).",
-        "Repeat for every vertex: A(2, 1) -> A'(-2, 3), B(6, 1) -> B'(-6, 3), C(6, 3) -> C'(-6, 1), D(4, 3) -> D'(-4, 1), E(4, 6) -> E'(-4, -2), F(2, 6) -> F'(-2, -2)",
-        "A negative scale factor puts the image on the opposite side of the centre from the original shape."
+        "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
+        "For this pair, the lines meet at (0, 0) and the ratio works out as -1."
       ],
-      "final_answer": "A'(-2, 3), B'(-6, 3), C'(-6, 1), D'(-4, 1), E'(-4, -2), F'(-2, -2)",
-      "marks": 5,
+      "final_answer": "Enlargement, scale factor -1, centre (0, 0)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The centre of enlargement is (0, 2) and the scale factor is -1.",
+          "description": "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (2, -1) from the centre, so A' = (0, 2) + -1 × (2, -1) = (-2, 3).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Repeat for every vertex: A(2, 1) -> A'(-2, 3), B(6, 1) -> B'(-6, 3), C(6, 3) -> C'(-6, 1), D(4, 3) -> D'(-4, 1), E(4, 6) -> E'(-4, -2), F(2, 6) -> F'(-2, -2)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A negative scale factor puts the image on the opposite side of the centre from the original shape.",
+          "description": "For this pair, the lines meet at (0, 0) and the ratio works out as -1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(-2, 3), B'(-6, 3), C'(-6, 1), D'(-4, 1), E'(-4, -2), F'(-2, -2) oe",
+          "description": "Enlargement, scale factor -1, centre (0, 0) oe",
           "marks": 1
         }
       ],
@@ -806,125 +836,45 @@
           "y_max": 8,
           "original_vertices": [
             [
-              2,
-              1
-            ],
-            [
-              6,
-              1
-            ],
-            [
-              6,
-              3
-            ],
-            [
-              4,
-              3
-            ],
-            [
-              4,
-              6
+              -3,
+              2
             ],
             [
               2,
+              2
+            ],
+            [
+              -2,
               6
             ]
           ],
           "original_labels": [
             "A",
             "B",
-            "C",
-            "D",
-            "E",
-            "F"
-          ],
-          "centre": [
-            0,
-            2
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              2,
-              1
-            ],
-            [
-              6,
-              1
-            ],
-            [
-              6,
-              3
-            ],
-            [
-              4,
-              3
-            ],
-            [
-              4,
-              6
-            ],
-            [
-              2,
-              6
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
-          ],
-          "centre": [
-            0,
-            2
+            "C"
           ],
           "image_vertices": [
             [
-              -2,
-              3
-            ],
-            [
-              -6,
-              3
-            ],
-            [
-              -6,
-              1
-            ],
-            [
-              -4,
-              1
-            ],
-            [
-              -4,
+              3,
               -2
             ],
             [
               -2,
               -2
+            ],
+            [
+              2,
+              -6
             ]
           ],
           "image_labels": [
             "A'",
             "B'",
-            "C'",
-            "D'",
-            "E'",
-            "F'"
+            "C'"
           ]
         }
-      }
+      },
+      "solution_diagram": null
     },
     {
       "topic_id": "area_semicircle_compound_higher",
@@ -1020,51 +970,75 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "frustum_volume_surface_area",
-      "prompt": "A frustum is formed from a cone with a bottom radius of 9 cm and a top radius of 5 cm, and a vertical height of 5 cm. Find its total surface area, correct to 3 significant figures.",
+      "topic_id": "probability_combined_dice",
+      "prompt": "Two fair six-sided dice are rolled. Find the probability that at least one die shows 2.",
       "solution_steps": [
-        "Slant height l = √(h² + (R - r)²) = √(5² + (9 - 5)²) ≈ 6.40 cm",
-        "Curved surface area = π × (R + r) × l = π × (9 + 5) × 6.40",
-        "Total surface area = curved + both circular ends = π(R + r)l + πR² + πr²",
-        "= 615 cm² (3 s.f.)"
+        "P(neither die shows 2) = 5/6 × 5/6 = 25/36",
+        "P(at least one 2) = 1 - 25/36 = 11/36"
       ],
-      "final_answer": "615 cm²",
-      "marks": 5,
+      "final_answer": "11/36",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Slant height l = √(h² + (R - r)²) = √(5² + (9 - 5)²) ≈ 6.40 cm",
+          "description": "P(neither die shows 2) = 5/6 × 5/6 = 25/36",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Curved surface area = π × (R + r) × l = π × (9 + 5) × 6.40",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total surface area = curved + both circular ends = π(R + r)l + πR² + πr²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 615 cm² (3 s.f.)",
+          "description": "P(at least one 2) = 1 - 25/36 = 11/36",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "615 cm² oe",
+          "description": "11/36 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "frustum",
+        "kind": "dice",
         "params": {
-          "radius_bottom_label": "9 cm",
-          "radius_top_label": "5 cm",
-          "height_label": "5 cm"
+          "values": [
+            3,
+            1
+          ]
         }
       },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "vectors_arithmetic_higher",
+      "prompt": "\\vec{a} = (-3, 3) and \\vec{b} = (-10, -12). Find -5\\vec{a} + 4\\vec{b}.",
+      "solution_steps": [
+        "\\vec{a} = (-3, 3), \\vec{b} = (-10, -12)",
+        "-5\\vec{a} = (15, -15) and 4\\vec{b} = (-40, -48)",
+        "-5\\vec{a} + 4\\vec{b} = (-25, -63)"
+      ],
+      "final_answer": "(-25, -63)",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "\\vec{a} = (-3, 3), \\vec{b} = (-10, -12)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-5\\vec{a} = (15, -15) and 4\\vec{b} = (-40, -48)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-5\\vec{a} + 4\\vec{b} = (-25, -63)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(-25, -63) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     }
   ]

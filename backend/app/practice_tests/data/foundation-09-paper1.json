@@ -4,152 +4,31 @@
   "tier": "foundation",
   "sitting_id": "foundation-09",
   "paper_number": 1,
+  "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "roots_foundation",
-      "prompt": "Work out the cube root of 729.",
+      "topic_id": "estimation_rounding",
+      "prompt": "Work out an estimate for (32.3 × 9.1) ÷ 9.8 by rounding each number to 1 significant figure.",
       "solution_steps": [
-        "9^3 = 729, so the cube root of 729 = 9"
+        "Round each value to 1 significant figure: 32.3 ≈ 30, 9.1 ≈ 9, 9.8 ≈ 10",
+        "(30 × 9) ÷ 10 = 27"
       ],
-      "final_answer": "9",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "9^3 = 729, so the cube root of 729 = 9",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "9 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "fractions_add_subtract",
-      "prompt": "Work out 4/5 + 4/5. Give your answer as a fraction in its simplest form.",
-      "solution_steps": [
-        "Find a common denominator: LCM(5, 5) = 5",
-        "Convert: 4/5 = 4/5, 4/5 = 4/5",
-        "Add: 4/5 + 4/5 = 8/5",
-        "Simplify: 8/5"
-      ],
-      "final_answer": "8/5",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find a common denominator: LCM(5, 5) = 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Convert: 4/5 = 4/5, 4/5 = 4/5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add: 4/5 + 4/5 = 8/5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Simplify: 8/5",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "8/5 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "negative_add_subtract",
-      "prompt": "Work out -14 + (-11).",
-      "solution_steps": [
-        "-14 + (-11) = -25"
-      ],
-      "final_answer": "-25",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "-14 + (-11) = -25",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-25 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "fractions_improper_mixed",
-      "prompt": "Write 2 5/6 as an improper fraction.",
-      "solution_steps": [
-        "Multiply the whole number by the denominator: 2 × 6 = 12",
-        "Add the numerator: 12 + 5 = 17",
-        "Write over the same denominator: 17/6"
-      ],
-      "final_answer": "17/6",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiply the whole number by the denominator: 2 × 6 = 12",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add the numerator: 12 + 5 = 17",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Write over the same denominator: 17/6",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "17/6 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "decimals_round_sf",
-      "prompt": "Round 561.134 to 3 significant figures.",
-      "solution_steps": [
-        "Identify the first 3 significant figures of 561.134.",
-        "561.134 rounded to 3 significant figures = 561"
-      ],
-      "final_answer": "561",
+      "final_answer": "27",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Identify the first 3 significant figures of 561.134.",
+          "description": "Round each value to 1 significant figure: 32.3 ≈ 30, 9.1 ≈ 9, 9.8 ≈ 10",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "561.134 rounded to 3 significant figures = 561",
+          "description": "(30 × 9) ÷ 10 = 27",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "561 oe",
+          "description": "27 oe",
           "marks": 1
         }
       ],
@@ -157,34 +36,22 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "error_interval",
-      "prompt": "A number, x, is 5.8 rounded to 1 decimal place. Write down the error interval for x.",
+      "topic_id": "decimals_divide",
+      "prompt": "Work out 93.5 ÷ 11.",
       "solution_steps": [
-        "5.8 is rounded to 1 decimal place, so x can be up to half of that precision above or below 5.8.",
-        "Lower bound: 5.8 - 0.05 = 5.75",
-        "Upper bound: 5.8 + 0.05 = 5.85"
+        "93.5 ÷ 11 = 8.5"
       ],
-      "final_answer": "5.75 ≤ x < 5.85",
-      "marks": 4,
+      "final_answer": "8.5",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5.8 is rounded to 1 decimal place, so x can be up to half of that precision above or below 5.8.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Lower bound: 5.8 - 0.05 = 5.75",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Upper bound: 5.8 + 0.05 = 5.85",
+          "description": "93.5 ÷ 11 = 8.5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5.75 ≤ x < 5.85 oe",
+          "description": "8.5 oe",
           "marks": 1
         }
       ],
@@ -192,34 +59,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_ordering",
-      "prompt": "Write these fractions in order, smallest to largest: 1/8, 5/7, 1/2, 1/5",
+      "topic_id": "fractions_equivalent",
+      "prompt": "1/2 = ?/12. Find the missing numerator.",
       "solution_steps": [
-        "Convert every fraction to the same denominator, the LCM of 8, 7, 2, 5: 280",
-        "Rewrite each fraction over 280: 1/8 = 35/280, 5/7 = 200/280, 1/2 = 140/280, 1/5 = 56/280",
-        "Order the numerators from smallest to largest and convert back: 1/8, 1/5, 1/2, 5/7"
+        "Find the scale factor between the denominators: 12 ÷ 2 = 6",
+        "Multiply the numerator by the same scale factor: 1 × 6 = 6"
       ],
-      "final_answer": "1/8, 1/5, 1/2, 5/7",
-      "marks": 4,
+      "final_answer": "6",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert every fraction to the same denominator, the LCM of 8, 7, 2, 5: 280",
+          "description": "Find the scale factor between the denominators: 12 ÷ 2 = 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rewrite each fraction over 280: 1/8 = 35/280, 5/7 = 200/280, 1/2 = 140/280, 1/5 = 56/280",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Order the numerators from smallest to largest and convert back: 1/8, 1/5, 1/2, 5/7",
+          "description": "Multiply the numerator by the same scale factor: 1 × 6 = 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/8, 1/5, 1/2, 5/7 oe",
+          "description": "6 oe",
           "marks": 1
         }
       ],
@@ -227,34 +88,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_to_small",
-      "prompt": "Write 0.00000956 in standard form.",
+      "topic_id": "standard_form_from_small",
+      "prompt": "Write 8.29 × 10^-2 as an ordinary number.",
       "solution_steps": [
-        "Move the decimal point until there is one non-zero digit before it: 9.56",
-        "Count how many places the decimal point moved: 6 (the number is less than 1, so the power is negative)",
-        "0.00000956 = 9.56 × 10^-6"
+        "Multiply 8.29 by 10^-2, which means moving the decimal point 2 place(s) left.",
+        "8.29 × 10^-2 = 0.0829"
       ],
-      "final_answer": "9.56 × 10^-6",
-      "marks": 4,
+      "final_answer": "0.0829",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Move the decimal point until there is one non-zero digit before it: 9.56",
+          "description": "Multiply 8.29 by 10^-2, which means moving the decimal point 2 place(s) left.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Count how many places the decimal point moved: 6 (the number is less than 1, so the power is negative)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "0.00000956 = 9.56 × 10^-6",
+          "description": "8.29 × 10^-2 = 0.0829",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9.56 × 10^-6 oe",
+          "description": "0.0829 oe",
           "marks": 1
         }
       ],
@@ -262,40 +117,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_both_sides_foundation",
-      "prompt": "Solve: 6x = 5x + 9",
+      "topic_id": "multiples",
+      "prompt": "Is 31 a multiple of 13?",
       "solution_steps": [
-        "6x = 5x + 9",
-        "Subtract 5x from both sides:",
-        "x = 9",
-        "x = 9"
+        "31 ÷ 13 = 2 remainder 5",
+        "No, 31 is not a multiple of 13."
       ],
-      "final_answer": "9",
-      "marks": 5,
+      "final_answer": "No",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "6x = 5x + 9",
+          "description": "31 ÷ 13 = 2 remainder 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 5x from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 9",
+          "description": "No, 31 is not a multiple of 13.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9 oe",
+          "description": "No oe",
           "marks": 1
         }
       ],
@@ -303,34 +146,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_nth_term",
-      "prompt": "Here are the first four terms of a sequence: -5, 0, 5, 10. Find an expression for the nth term.",
+      "topic_id": "negative_ordering",
+      "prompt": "Write these numbers in order, from largest to smallest: 4, -10, 3, 0, -3, 5",
       "solution_steps": [
-        "Common difference = 5",
-        "nth term = 5n - 10",
-        "nth term = 5n - 10"
+        "Place the numbers on a number line: 4, -10, 3, 0, -3, 5.",
+        "Reading them in order from largest to smallest gives: 5, 4, 3, 0, -3, -10."
       ],
-      "final_answer": "5n - 10",
-      "marks": 4,
+      "final_answer": "5, 4, 3, 0, -3, -10",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Common difference = 5",
+          "description": "Place the numbers on a number line: 4, -10, 3, 0, -3, 5.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = 5n - 10",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "nth term = 5n - 10",
+          "description": "Reading them in order from largest to smallest gives: 5, 4, 3, 0, -3, -10.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5n - 10 oe",
+          "description": "5, 4, 3, 0, -3, -10 oe",
           "marks": 1
         }
       ],
@@ -338,41 +175,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_double_brackets_foundation",
-      "prompt": "Expand: (2x + 8)(3x + 2)",
+      "topic_id": "prime_factors_foundation",
+      "prompt": "Write 112 as a product of its prime factors.",
       "solution_steps": [
-        "First: 2x × 3x = 6x^2",
-        "Outer: 2x × 2 = 4x",
-        "Inner: 8 × 3x = 24x",
-        "Last: 8 × 2 = 16",
-        "Combine like terms: 6x^2 + 28x + 16"
+        "Divide 112 repeatedly by the smallest prime that fits: 2 × 2 × 2 × 2 × 7",
+        "112 = 2 × 2 × 2 × 2 × 7"
       ],
-      "final_answer": "6x^2 + 28x + 16",
-      "marks": 5,
+      "final_answer": "2 × 2 × 2 × 2 × 7",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First: 2x × 3x = 6x^2",
+          "description": "Divide 112 repeatedly by the smallest prime that fits: 2 × 2 × 2 × 2 × 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Outer: 2x × 2 = 4x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Inner: 8 × 3x = 24x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Last: 8 × 2 = 16 Combine like terms: 6x^2 + 28x + 16",
+          "description": "112 = 2 × 2 × 2 × 2 × 7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6x^2 + 28x + 16 oe",
+          "description": "2 × 2 × 2 × 2 × 7 oe",
           "marks": 1
         }
       ],
@@ -380,157 +204,89 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_one_step",
-      "prompt": "Solve: 7x = 84",
+      "topic_id": "fractions_equivalent_diagram",
+      "prompt": "The first shape shows 5/6 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
       "solution_steps": [
-        "7x = 84",
-        "Divide both sides by 7:",
-        "x = 12"
+        "Cross-multiply 5/6 against each labelled shape: a shape shows an equivalent fraction only if 5 × (its denominator) = (its shaded count) × 6.",
+        "Only shape C) 10/12 works: 5 × 12 = 10 × 6 = 60."
       ],
-      "final_answer": "12",
-      "marks": 4,
+      "final_answer": "C) 10/12",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "7x = 84",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by 7:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 12",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "12 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "plot_straight_line",
-      "prompt": "Complete a table of values for y = 2x - 6 for x = -3 to 3, then plot the graph.",
-      "solution_steps": [
-        "Table of values for y = 2x - 6:",
-        "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: -12, -10, -8, -6, -4, -2, 0",
-        "Plot each (x, y) point and join them with a single ruled straight line."
-      ],
-      "final_answer": "Straight line: y = 2x - 6",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Table of values for y = 2x - 6:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x: -3, -2, -1, 0, 1, 2, 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y: -12, -10, -8, -6, -4, -2, 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Straight line: y = 2x - 6 oe",
+          "code": "B1",
+          "description": "C) 10/12 (selecting the correct option)",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "function_graph",
+        "kind": "fraction_shapes",
         "params": {
-          "kind": "linear",
-          "m": 2,
-          "c": -6,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -13,
-          "y_max": 1,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "linear",
-          "m": 2,
-          "c": -6,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -13,
-          "y_max": 1,
-          "table_points": [
-            [
-              -3,
-              -12
-            ],
-            [
-              -2,
-              -10
-            ],
-            [
-              -1,
-              -8
-            ],
-            [
-              0,
-              -6
-            ],
-            [
-              1,
-              -4
-            ],
-            [
-              2,
-              -2
-            ],
-            [
-              3,
-              0
-            ]
+          "shapes": [
+            {
+              "kind": "bar",
+              "parts": 6,
+              "shaded": 5,
+              "label": "5/6"
+            },
+            {
+              "kind": "bar",
+              "parts": 12,
+              "shaded": 6,
+              "label": "A) 6/12"
+            },
+            {
+              "kind": "bar",
+              "parts": 12,
+              "shaded": 2,
+              "label": "B) 2/12"
+            },
+            {
+              "kind": "bar",
+              "parts": 12,
+              "shaded": 10,
+              "label": "C) 10/12"
+            }
           ]
         }
-      }
+      },
+      "solution_diagram": null
     },
     {
-      "topic_id": "functions_evaluate",
-      "prompt": "f(x) = -2x + 7. Find f(0).",
+      "topic_id": "bidmas",
+      "prompt": "Work out (5 + 5) × 6 - 18 ÷ 6. Use the correct order of operations.",
       "solution_steps": [
-        "f(0) = -2×(0) + 7",
-        "f(0) = 7"
+        "Brackets: (5 + 5) = 10",
+        "Multiplication: 10 × 6 = 60",
+        "Division: 18 ÷ 6 = 3",
+        "Subtraction: 60 - 3 = 57"
       ],
-      "final_answer": "7",
-      "marks": 3,
+      "final_answer": "57",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "f(0) = -2×(0) + 7",
+          "description": "Brackets: (5 + 5) = 10",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "f(0) = 7",
+          "description": "Multiplication: 10 × 6 = 60",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Division: 18 ÷ 6 = 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtraction: 60 - 3 = 57",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7 oe",
+          "description": "57 oe",
           "marks": 1
         }
       ],
@@ -539,36 +295,113 @@
     },
     {
       "topic_id": "forming_equations_foundation",
-      "prompt": "I think of a number, multiply it by 7 and add 19. The result is 40. Form an equation and solve it to find the number.",
+      "prompt": "The angles 57° and 47° and (4x + 176)° lie around a point. Form an equation and solve it to find x.",
       "solution_steps": [
-        "Let the number be x.",
-        "7x + 19 = 40",
-        "Subtract 19 from both sides:",
-        "7x = 21",
-        "Divide both sides by 7:",
-        "x = 3"
+        "Angles around a point sum to 360°.",
+        "57 + 47 + (4x + 176) = 360",
+        "4x + 176 = 256",
+        "Subtract 176 from both sides:",
+        "4x = 80",
+        "Divide both sides by 4:",
+        "x = 20"
       ],
-      "final_answer": "3",
+      "final_answer": "20",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let the number be x.",
+          "description": "Angles around a point sum to 360°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "7x + 19 = 40",
+          "description": "57 + 47 + (4x + 176) = 360",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 19 from both sides:",
+          "description": "4x + 176 = 256",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "7x = 21 Divide both sides by 7: x = 3",
+          "description": "Subtract 176 from both sides: 4x = 80 Divide both sides by 4: x = 20",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "20 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_common_coefficient",
+      "prompt": "Solve the simultaneous equations: 3x + 5y = -31 and 6x - 5y = 13",
+      "solution_steps": [
+        "3x + 5y = -31  (1)",
+        "6x - 5y = 13  (2)",
+        "Add the equations to eliminate y: 9x = -18, so x = -2",
+        "Substitute x = -2 into (1): 5y = -25, so y = -5"
+      ],
+      "final_answer": "x = -2, y = -5",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "3x + 5y = -31  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "6x - 5y = 13  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add the equations to eliminate y: 9x = -18, so x = -2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute x = -2 into (1): 5y = -25, so y = -5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = -2, y = -5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_one_step",
+      "prompt": "Solve: 3x = 9",
+      "solution_steps": [
+        "3x = 9",
+        "Divide both sides by 3:",
+        "x = 3"
+      ],
+      "final_answer": "3",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "3x = 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 3:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 3",
           "marks": 1
         },
         {
@@ -581,411 +414,586 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "best_buys",
-      "prompt": "A shop sells rice in different sizes: A: £12.24 for 450g; B: £8.12 for 700g. Which option is the better value for money? Show your working.",
+      "topic_id": "line_equation_from_graph",
+      "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
       "solution_steps": [
-        "Work out the price per 100g for each option:",
-        "A: £12.24 ÷ 450 × 100 = 272.00p per 100g",
-        "B: £8.12 ÷ 700 × 100 = 116.00p per 100g",
-        "The lowest price per 100g is B at 116.00p per 100g, so B is the best value."
+        "Gradient = rise/run = (-2 - -10) / (2 - -2) = 2",
+        "Using y = mx + c with the point (-2, -10): -10 = 2×(-2) + c, so c = -6",
+        "Equation of the line: y = 2x - 6"
       ],
-      "final_answer": "B (£8.12 for 700g)",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Work out the price per 100g for each option:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A: £12.24 ÷ 450 × 100 = 272.00p per 100g",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "B: £8.12 ÷ 700 × 100 = 116.00p per 100g",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The lowest price per 100g is B at 116.00p per 100g, so B is the best value.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "B (£8.12 for 700g) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "sdt_mixed",
-      "prompt": "A car travels 585 km in 5 hours. Find its average speed in km/h.",
-      "solution_steps": [
-        "speed = distance ÷ time",
-        "speed = 585 ÷ 5 = 117 km/h"
-      ],
-      "final_answer": "117 km/h",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "speed = distance ÷ time",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "speed = 585 ÷ 5 = 117 km/h",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "117 km/h oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_share_three_part_foundation",
-      "prompt": "Share 39 in the ratio 5:1:7.",
-      "solution_steps": [
-        "Total parts = 5 + 1 + 7 = 13",
-        "Value of one part = 39 ÷ 13 = 3",
-        "Share 1 = 5 × 3 = 15",
-        "Share 2 = 1 × 3 = 3",
-        "Share 3 = 7 × 3 = 21"
-      ],
-      "final_answer": "15 : 3 : 21",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total parts = 5 + 1 + 7 = 13",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Value of one part = 39 ÷ 13 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 5 × 3 = 15",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 1 × 3 = 3 Share 3 = 7 × 3 = 21",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "15 : 3 : 21 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "reverse_percentage_foundation",
-      "prompt": "After a 25% increase, an item costs £50. Find the original price.",
-      "solution_steps": [
-        "Convert 25% to a multiplier: 1.25 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 50 ÷ 1.25 = 40"
-      ],
-      "final_answer": "£40",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert 25% to a multiplier: 1.25 (original × multiplier = new value)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide the new value by the multiplier: 50 ÷ 1.25 = 40",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£40 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "trig_missing_angle_foundation",
-      "prompt": "In the right-angled triangle shown, find the angle x, correct to 1 decimal place.",
-      "solution_steps": [
-        "Use cos, since we know two of the three sides.",
-        "cos(x) = 7 ÷ 12",
-        "x = cos^-1(7 ÷ 12) = 54.3° (1 d.p.)"
-      ],
-      "final_answer": "54.3°",
+      "final_answer": "y = 2x - 6",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Use cos, since we know two of the three sides.",
+          "description": "Gradient = rise/run = (-2 - -10) / (2 - -2) = 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "cos(x) = 7 ÷ 12",
+          "description": "Using y = mx + c with the point (-2, -10): -10 = 2×(-2) + c, so c = -6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = cos^-1(7 ÷ 12) = 54.3° (1 d.p.)",
+          "description": "Equation of the line: y = 2x - 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "54.3° oe",
+          "description": "y = 2x - 6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "linear",
+          "m": 2,
+          "c": -6,
+          "x_min": -3,
+          "x_max": 3,
+          "y_min": -13,
+          "y_max": 1,
+          "table_points": [
+            [
+              -2,
+              -10
+            ],
+            [
+              2,
+              -2
+            ]
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "expand_double_brackets_foundation",
+      "prompt": "Expand: (4x + 9)(2x + 9)",
+      "solution_steps": [
+        "First: 4x × 2x = 8x^2",
+        "Outer: 4x × 9 = 36x",
+        "Inner: 9 × 2x = 18x",
+        "Last: 9 × 9 = 81",
+        "Combine like terms: 8x^2 + 54x + 81"
+      ],
+      "final_answer": "8x^2 + 54x + 81",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First: 4x × 2x = 8x^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Outer: 4x × 9 = 36x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Inner: 9 × 2x = 18x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Last: 9 × 9 = 81 Combine like terms: 8x^2 + 54x + 81",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "8x^2 + 54x + 81 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_forming_and_solving",
+      "prompt": "3 pens and 5 pencils cost £3.30 in total. 2 pens and 5 pencils cost £3.20 in total. Form and solve a pair of simultaneous equations to find the cost of one pen and one pencil.",
+      "solution_steps": [
+        "Let x = cost of one pen (pence), y = cost of one pencil (pence).",
+        "3x + 5y = 330  (1)",
+        "2x + 5y = 320  (2)",
+        "Solving simultaneously: x = 10, y = 60"
+      ],
+      "final_answer": "pen = £0.10, pencil = £0.60",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let x = cost of one pen (pence), y = cost of one pencil (pence).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3x + 5y = 330  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x + 5y = 320  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Solving simultaneously: x = 10, y = 60",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "pen = £0.10, pencil = £0.60 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "special_sequences_foundation",
+      "prompt": "The first 5 cube numbers are: 1, 8, 27, 64, 125. Find the 8th term of the sequence (term number 8).",
+      "solution_steps": [
+        "These are the cube numbers: the nth term is given by n^3.",
+        "Term 8 = 8^3 = 512"
+      ],
+      "final_answer": "512",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "These are the cube numbers: the nth term is given by n^3.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Term 8 = 8^3 = 512",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "512 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "find_percentage_change",
+      "prompt": "The price of an item changes from £400 to £440. Find the percentage increase.",
+      "solution_steps": [
+        "Find the difference between the two values: £440 and £400 differ by £40",
+        "Divide by the ORIGINAL value and convert to a percentage: £40 ÷ £400 × 100 = 10%"
+      ],
+      "final_answer": "10% increase",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find the difference between the two values: £440 and £400 differ by £40",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide by the ORIGINAL value and convert to a percentage: £40 ÷ £400 × 100 = 10%",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "10% increase oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "direct_proportion",
+      "prompt": "9 rulers cost £31.50. How much would 16 rulers cost?",
+      "solution_steps": [
+        "Unit value = £31.50 ÷ 9 = £3.50",
+        "Answer = £3.50 × 16 = £56.00"
+      ],
+      "final_answer": "£56.00",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Unit value = £31.50 ÷ 9 = £3.50",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Answer = £3.50 × 16 = £56.00",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£56.00 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "density",
+      "prompt": "A block of alloy has a mass of 35 g and a volume of 79 cm³. Find its density, correct to 2 decimal places.",
+      "solution_steps": [
+        "density = mass ÷ volume",
+        "density = 35 ÷ 79 = 0.44 g/cm³ (2 d.p.)"
+      ],
+      "final_answer": "0.44 g/cm³",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "density = mass ÷ volume",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "density = 35 ÷ 79 = 0.44 g/cm³ (2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "0.44 g/cm³ oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_1_to_n",
+      "prompt": "Write the ratio 5:8 in the form 1:n.",
+      "solution_steps": [
+        "Divide both parts of the ratio by 5 (the first part) so the first part becomes 1.",
+        "5 ÷ 5 = 1, 8 ÷ 5 ≈ 1.60"
+      ],
+      "final_answer": "1 : 1.60 (to 2 d.p.)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Divide both parts of the ratio by 5 (the first part) so the first part becomes 1.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5 ÷ 5 = 1, 8 ÷ 5 ≈ 1.60",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1 : 1.60 (to 2 d.p.) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "unit_conversions",
+      "prompt": "Convert 287 l to ml.",
+      "solution_steps": [
+        "1 l = 1000 ml",
+        "287 l = 287 × 1000 = 287000 ml"
+      ],
+      "final_answer": "287000 ml",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "1 l = 1000 ml",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "287 l = 287 × 1000 = 287000 ml",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "287000 ml oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "trig_missing_side_foundation",
+      "prompt": "In the right-angled triangle shown, find the length of x, correct to 3 significant figures.",
+      "solution_steps": [
+        "We know the hypotenuse and want the opposite, so use sin.",
+        "x = 20 × sin(36°) = 11.8 (to 3 s.f.)"
+      ],
+      "final_answer": "11.8 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "We know the hypotenuse and want the opposite, so use sin.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 20 × sin(36°) = 11.8 (to 3 s.f.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "11.8 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "trig_triangle",
         "params": {
-          "adjacent_label": "7 cm",
-          "opposite_label": null,
-          "hyp_label": "12 cm",
-          "angle_label": "x°"
+          "adjacent_label": null,
+          "opposite_label": "x cm",
+          "hyp_label": "20 cm",
+          "angle_label": "36°"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cuboid",
-      "prompt": "A cuboid has length 5 cm, width 11 cm and height 5 cm. Find its surface area.",
+      "topic_id": "volume_surface_area_cube",
+      "prompt": "A cube has side length 2 cm. Find its surface area.",
       "solution_steps": [
-        "Surface area = 2 × (lw + lh + wh) = 2 × (5×11 + 5×5 + 11×5)",
-        "= 2 × (55 + 25 + 55) = 270 cm²"
+        "Surface area = 6 × side² = 6 × 2² = 6 × 4 = 24 cm²"
       ],
-      "final_answer": "270 cm²",
-      "marks": 3,
+      "final_answer": "24 cm²",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Surface area = 2 × (lw + lh + wh) = 2 × (5×11 + 5×5 + 11×5)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 2 × (55 + 25 + 55) = 270 cm²",
+          "description": "Surface area = 6 × side² = 6 × 2² = 6 × 4 = 24 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "270 cm² oe",
+          "description": "24 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "cuboid",
         "params": {
-          "width_label": "11 cm",
-          "height_label": "5 cm",
-          "length_label": "5 cm"
+          "width_label": "2 cm",
+          "height_label": "2 cm",
+          "length_label": "2 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof_foundation",
-      "prompt": "Triangle ABC is isosceles with AB = AC. AD bisects angle BAC, meeting BC at D. State which congruence criterion (SSS, SAS, ASA or RHS) proves that the two triangles are congruent.",
+      "topic_id": "pythagoras_hypotenuse_decimal",
+      "prompt": "A right-angled triangle has legs 7 cm and 5 cm. Find the length of the hypotenuse, correct to 1 decimal place.",
       "solution_steps": [
-        "AB = AC (given)",
-        "angle BAD = angle CAD (AD bisects angle BAC)",
-        "AD is common to both triangles",
-        "These facts match the Side-Angle-Side (SAS) congruence criterion."
+        "c² = a² + b² = 7² + 5² = 49 + 25 = 74",
+        "c = √74 ≈ 8.6 cm (1 d.p.)"
       ],
-      "final_answer": "SAS",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "AB = AC (given)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "angle BAD = angle CAD (AD bisects angle BAC)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "AD is common to both triangles",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "These facts match the Side-Angle-Side (SAS) congruence criterion.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "SAS oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "two_triangle_congruence",
-        "params": {
-          "labels_1": [
-            "A",
-            "B",
-            "D"
-          ],
-          "labels_2": [
-            "A",
-            "C",
-            "D"
-          ],
-          "ticks_1": [
-            [
-              0,
-              1,
-              2
-            ],
-            [
-              0,
-              2,
-              1
-            ]
-          ],
-          "ticks_2": [
-            [
-              0,
-              1,
-              2
-            ],
-            [
-              0,
-              2,
-              1
-            ]
-          ],
-          "arcs_1": [
-            [
-              0,
-              1
-            ]
-          ],
-          "arcs_2": [
-            [
-              0,
-              1
-            ]
-          ],
-          "note": "AD is common to both triangles."
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "angles_polygon_interior_foundation",
-      "prompt": "A polygon has 4 sides. Find the sum of its interior angles.",
-      "solution_steps": [
-        "Sum of interior angles = (n - 2) × 180 = (4 - 2) × 180 = 360°"
-      ],
-      "final_answer": "360°",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Sum of interior angles = (n - 2) × 180 = (4 - 2) × 180 = 360°",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "360° oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "polygon",
-        "params": {
-          "n_sides": 4,
-          "marked_angle_label": "?"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "area_circle_foundation",
-      "prompt": "A circle has radius 6 cm. Find its circumference, correct to 3 significant figures.",
-      "solution_steps": [
-        "Circumference = 2 × π × r = 2 × π × 6",
-        "= 37.7 cm (3 s.f., using a calculator value of π)"
-      ],
-      "final_answer": "37.7 cm",
+      "final_answer": "8.6 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Circumference = 2 × π × r = 2 × π × 6",
+          "description": "c² = a² + b² = 7² + 5² = 49 + 25 = 74",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 37.7 cm (3 s.f., using a calculator value of π)",
+          "description": "c = √74 ≈ 8.6 cm (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "37.7 cm oe",
+          "description": "8.6 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "circle",
+        "kind": "right_triangle",
         "params": {
-          "radius": 6,
-          "label": "6 cm"
+          "leg1_label": "7 cm",
+          "leg2_label": "5 cm",
+          "hyp_label": "?"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "sample_space_diagrams",
-      "prompt": "Two fair spinners, one numbered 1 to 4 and the other numbered 1 to 6, are spun together. Complete the sample space diagram showing the product of the two spinners, and use it to find the probability that the product is greater than 5.",
+      "topic_id": "pythagoras_hypotenuse_triple",
+      "prompt": "A right-angled triangle has legs 8 cm and 15 cm. Find the length of the hypotenuse.",
       "solution_steps": [
-        "The sample space diagram shows every possible product of the two spinners.",
-        "Number of favourable outcomes (the product is greater than 5) = 15",
-        "Total number of equally likely outcomes = 24",
-        "P(the product is greater than 5) = 5/8"
+        "c² = a² + b² = 8² + 15² = 64 + 225 = 289",
+        "c = √289 = 17"
       ],
-      "final_answer": "5/8",
+      "final_answer": "17 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "c² = a² + b² = 8² + 15² = 64 + 225 = 289",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "c = √289 = 17",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "17 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "right_triangle",
+        "params": {
+          "leg1_label": "8 cm",
+          "leg2_label": "15 cm",
+          "hyp_label": "?"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "volume_surface_area_cylinder_foundation",
+      "prompt": "A cylinder has radius 6 cm and height 11 cm. Find its volume, correct to 3 significant figures.",
+      "solution_steps": [
+        "Volume = π × r² × h = π × 6² × 11",
+        "= 1240 cm³ (3 s.f., using a calculator value of π)"
+      ],
+      "final_answer": "1240 cm³",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Volume = π × r² × h = π × 6² × 11",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 1240 cm³ (3 s.f., using a calculator value of π)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1240 cm³ oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "cylinder",
+        "params": {
+          "radius_label": "6 cm",
+          "height_label": "11 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "construction_triangle",
+      "prompt": "Triangle HGQ has HG = 10 cm, the angle at H equal to 85°, and the angle at G equal to 23°. Describe, step by step, how to construct triangle HGQ using a ruler and a protractor.",
+      "solution_steps": [
+        "Draw the line segment HG = 10 cm using a ruler.",
+        "At H, use a protractor to draw a ray at 85° from the line HG.",
+        "At G, use a protractor to draw a ray at 23° from the line GH.",
+        "Label the point where the two new rays cross as Q. This completes triangle HGQ."
+      ],
+      "final_answer": "Triangle HGQ, with Q located where the two angle rays from H and G cross.",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The sample space diagram shows every possible product of the two spinners.",
+          "description": "Draw the line segment HG = 10 cm using a ruler.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Number of favourable outcomes (the product is greater than 5) = 15",
+          "description": "At H, use a protractor to draw a ray at 85° from the line HG.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total number of equally likely outcomes = 24",
+          "description": "At G, use a protractor to draw a ray at 23° from the line GH.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(the product is greater than 5) = 5/8",
+          "description": "Label the point where the two new rays cross as Q. This completes triangle HGQ.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Triangle HGQ, with Q located where the two angle rays from H and G cross. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_expectation",
+      "prompt": "In a batch of items, the probability that an item is defective is 9/20. 120 items are checked. How many would you expect to be defective?",
+      "solution_steps": [
+        "Expected number of times = probability × number of trials = 9/20 × 120",
+        "= 54"
+      ],
+      "final_answer": "54",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expected number of times = probability × number of trials = 9/20 × 120",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 54",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "54 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_and_or_rule",
+      "prompt": "A bag contains coloured counters. P(blue) = 2/8. P(green) = 3/8. A counter cannot be both colours. Find P(blue or green).",
+      "solution_steps": [
+        "A counter cannot be both blue and green, so these events are mutually exclusive.",
+        "For mutually exclusive events, P(A or B) = P(A) + P(B).",
+        "P(blue or green) = 2/8 + 3/8 = 5/8"
+      ],
+      "final_answer": "5/8",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A counter cannot be both blue and green, so these events are mutually exclusive.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For mutually exclusive events, P(A or B) = P(A) + P(B).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(blue or green) = 2/8 + 3/8 = 5/8",
           "marks": 1
         },
         {
@@ -995,158 +1003,38 @@
         }
       ],
       "diagram": {
-        "kind": "sample_space_diagram",
+        "kind": "bag_of_counters",
         "params": {
-          "row_values": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "col_values": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6
-          ],
-          "cells": [
-            [
-              "1",
-              "2",
-              "3",
-              "4",
-              "5",
-              "6"
-            ],
-            [
-              "2",
-              "4",
-              "6",
-              "8",
-              "10",
-              "12"
-            ],
-            [
-              "3",
-              "6",
-              "9",
-              "12",
-              "15",
-              "18"
-            ],
-            [
-              "4",
-              "8",
-              "12",
-              "16",
-              "20",
-              "24"
-            ]
-          ],
-          "highlight": [
-            [
-              0,
-              5
-            ],
-            [
-              1,
-              2
-            ],
-            [
-              1,
-              3
-            ],
-            [
-              1,
-              4
-            ],
-            [
-              1,
-              5
-            ],
-            [
-              2,
-              1
-            ],
-            [
-              2,
-              2
-            ],
-            [
-              2,
-              3
-            ],
-            [
-              2,
-              4
-            ],
-            [
-              2,
-              5
-            ],
-            [
-              3,
-              1
-            ],
-            [
-              3,
-              2
-            ],
-            [
-              3,
-              3
-            ],
-            [
-              3,
-              4
-            ],
-            [
-              3,
-              5
-            ]
-          ]
+          "counts": {
+            "blue": 2,
+            "green": 3,
+            "other": 3
+          }
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_complement",
-      "prompt": "A bag contains 4 green, 3 red counters. A counter is picked at random. Find the probability that it is NOT red.",
+      "topic_id": "stats_mean",
+      "prompt": "Find the mean of this data set: 5, 1, 2, 12, 2.",
       "solution_steps": [
-        "P(red) = 3/7 = 3/7",
-        "P(not red) = 1 - 3/7 = 4/7"
+        "Mean = sum ÷ count = (5 + 1 + 2 + 12 + 2) ÷ 5 = 22 ÷ 5 = 4.40"
       ],
-      "final_answer": "4/7",
-      "marks": 3,
+      "final_answer": "4.40",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "P(red) = 3/7 = 3/7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(not red) = 1 - 3/7 = 4/7",
+          "description": "Mean = sum ÷ count = (5 + 1 + 2 + 12 + 2) ÷ 5 = 22 ÷ 5 = 4.40",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4/7 oe",
+          "description": "4.40 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "bag_of_counters",
-        "params": {
-          "counts": {
-            "green": 4,
-            "red": 3
-          },
-          "highlight": "red"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     }
   ]

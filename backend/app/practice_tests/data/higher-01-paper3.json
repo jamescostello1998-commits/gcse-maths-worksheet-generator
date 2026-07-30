@@ -4,6 +4,7 @@
   "tier": "higher",
   "sitting_id": "higher-01",
   "paper_number": 3,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "fractions_mixed_number_arithmetic",
@@ -340,34 +341,40 @@
       }
     },
     {
-      "topic_id": "functions_composite_inverse",
-      "prompt": "f(x) = 3x + 3. Find f^-1(x).",
+      "topic_id": "algebraic_fractions_multiply_divide",
+      "prompt": "Simplify (x^2 - 81)/(x - 2) × (x - 2)/(x - 9), giving your answer in its simplest form.",
       "solution_steps": [
-        "y = 3x + 3",
-        "Rearrange to make x the subject: x = (y - 3) / 3",
-        "Swap x and y: f^-1(x) = (x - 3)/3"
+        "Factorise the difference of two squares: (x^2 - 81) = (x - 9)(x + 9)",
+        "(x - 9)(x + 9)/(x - 2) × (x - 2)/(x - 9)",
+        "Cancel the common factors (x - 2) and (x - 9):",
+        "= x + 9"
       ],
-      "final_answer": "(x - 3)/3",
-      "marks": 4,
+      "final_answer": "x + 9",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = 3x + 3",
+          "description": "Factorise the difference of two squares: (x^2 - 81) = (x - 9)(x + 9)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rearrange to make x the subject: x = (y - 3) / 3",
+          "description": "(x - 9)(x + 9)/(x - 2) × (x - 2)/(x - 9)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Swap x and y: f^-1(x) = (x - 3)/3",
+          "description": "Cancel the common factors (x - 2) and (x - 9):",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= x + 9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(x - 3)/3 oe",
+          "description": "x + 9 oe",
           "marks": 1
         }
       ],
@@ -375,41 +382,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "quadratic_formula",
-      "prompt": "Solve 2x^2 + 12x + 3 = 0 using the quadratic formula, giving your answers to 2 decimal places.",
+      "topic_id": "algebraic_fractions_add_subtract",
+      "prompt": "Simplify 6/(x + 1) - 1/(x - 7), giving your answer as a single fraction.",
       "solution_steps": [
-        "x = (-b ± √(b^2 - 4ac)) / 2a",
-        "a = 2, b = 12, c = 3",
-        "x = (-12 ± √(12^2 - 4×2×3)) / (2×2)",
-        "x = (-12 ± √120) / 4",
-        "x = -0.26 or x = -5.74"
+        "Write both fractions over the common denominator (x + 1)(x - 7):",
+        "6/(x + 1) - 1/(x - 7) = (6(x - 7) - 1(x + 1))/(x + 1)(x - 7)",
+        "Expand the numerator: 6(x - 7) - 1(x + 1) = 5x - 43",
+        "= (5x - 43)/(x + 1)(x - 7)"
       ],
-      "final_answer": "x = -0.26 or x = -5.74",
+      "final_answer": "(5x - 43)/(x + 1)(x - 7)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "x = (-b ± √(b^2 - 4ac)) / 2a",
+          "description": "Write both fractions over the common denominator (x + 1)(x - 7):",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "a = 2, b = 12, c = 3",
+          "description": "6/(x + 1) - 1/(x - 7) = (6(x - 7) - 1(x + 1))/(x + 1)(x - 7)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = (-12 ± √(12^2 - 4×2×3)) / (2×2)",
+          "description": "Expand the numerator: 6(x - 7) - 1(x + 1) = 5x - 43",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = (-12 ± √120) / 4 x = -0.26 or x = -5.74",
+          "description": "= (5x - 43)/(x + 1)(x - 7)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -0.26 or x = -5.74 oe",
+          "description": "(5x - 43)/(x + 1)(x - 7) oe",
           "marks": 1
         }
       ],
@@ -417,44 +423,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "forming_equations_higher",
-      "prompt": "A quadrilateral has angles 87°, 60°, (2x + 10)°, and (x + 191)°. Form an equation and solve it to find x.",
+      "topic_id": "change_subject_higher",
+      "prompt": "Make x the subject of the formula y = (x + 8)/(x - 10).",
       "solution_steps": [
-        "Angles in a quadrilateral sum to 360°.",
-        "87 + 60 + (2x + 10) + (x + 191) = 360",
-        "Collect the x-terms and constants together:",
-        "3x + 201 = 213",
-        "Subtract 201 from both sides:",
-        "3x = 12",
-        "Divide both sides by 3:",
-        "x = 4"
+        "y = (x + 8)/(x - 10)",
+        "Multiply both sides by (x - 10): y(x - 10) = x + 8",
+        "Expand the bracket: yx - 10y = x + 8",
+        "Collect the x-terms on one side: yx - x = 8 + 10y",
+        "Factorise: x(y - 1) = 8 + 10y",
+        "Divide both sides by (y - 1): x = (8 + 10y)/(y - 1)"
       ],
-      "final_answer": "4",
+      "final_answer": "x = (8 + 10y)/(y - 1)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles in a quadrilateral sum to 360°.",
+          "description": "y = (x + 8)/(x - 10)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "87 + 60 + (2x + 10) + (x + 191) = 360",
+          "description": "Multiply both sides by (x - 10): y(x - 10) = x + 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Collect the x-terms and constants together:",
+          "description": "Expand the bracket: yx - 10y = x + 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3x + 201 = 213 Subtract 201 from both sides: 3x = 12 Divide both sides by 3: x = 4",
+          "description": "Collect the x-terms on one side: yx - x = 8 + 10y Factorise: x(y - 1) = 8 + 10y Divide both sides by (y - 1): x = (8 + 10y)/(y - 1)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4 oe",
+          "description": "x = (8 + 10y)/(y - 1) oe",
           "marks": 1
         }
       ],
@@ -462,172 +466,126 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_reciprocal",
-      "prompt": "Complete a table of values for y = -12/x for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
+      "topic_id": "plot_exponential",
+      "prompt": "Complete a table of values for y = 4 × 3^x for x = 0 to 4, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = -12/x:",
-        "x: -4, -3, -2, -1, 1, 2, 3, 4",
-        "y: 3, 4, 6, 12, -12, -6, -4, -3",
-        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
+        "Table of values for y = 4 × 3^x:",
+        "x: 0, 1, 2, 3, 4",
+        "y: 4, 12, 36, 108, 324",
+        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
       ],
-      "final_answer": "Reciprocal curve: y = -12/x",
+      "final_answer": "Exponential curve: y = 4 × 3^x",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = -12/x:",
+          "description": "Table of values for y = 4 × 3^x:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
+          "description": "x: 0, 1, 2, 3, 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: 3, 4, 6, 12, -12, -6, -4, -3",
+          "description": "y: 4, 12, 36, 108, 324",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
+          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Reciprocal curve: y = -12/x oe",
+          "description": "Exponential curve: y = 4 × 3^x oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "reciprocal",
-          "a": -12,
-          "x_min": -4,
+          "kind": "exponential",
+          "a": 4,
+          "base": 3,
+          "x_min": -1,
           "x_max": 4,
-          "y_min": -14,
-          "y_max": 14,
+          "y_min": 0,
+          "y_max": 356.4,
           "blank": true
         }
       },
       "solution_diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "reciprocal",
-          "a": -12,
-          "x_min": -4,
+          "kind": "exponential",
+          "a": 4,
+          "base": 3,
+          "x_min": -1,
           "x_max": 4,
-          "y_min": -14,
-          "y_max": 14,
+          "y_min": 0,
+          "y_max": 356.4,
           "table_points": [
             [
-              -4,
-              3
-            ],
-            [
-              -3,
+              0,
               4
             ],
             [
-              -2,
-              6
-            ],
-            [
-              -1,
+              1,
               12
             ],
             [
-              1,
-              -12
-            ],
-            [
               2,
-              -6
+              36
             ],
             [
               3,
-              -4
+              108
             ],
             [
               4,
-              -3
+              324
             ]
           ]
         }
       }
     },
     {
-      "topic_id": "iteration",
-      "prompt": "The iterative formula x_(n+1) = (5 - x_n^2) / 6 is used with x_0 = 3. Find the values of x_1, x_2 and x_3, giving each answer to 3 decimal places.",
+      "topic_id": "kinematics_suvat",
+      "prompt": "An object starts with a velocity of 10 m/s and travels a displacement of 9 m in 9 s. Find its acceleration.",
       "solution_steps": [
-        "Iterative formula: x_(n+1) = (5 - x_n^2) / 6",
-        "x_0 = 3",
-        "x_1 = g(x_0) = (5 - 3^2) / 6 = -0.667",
-        "x_2 = g(x_1) = (5 - (-0.667)^2) / 6 = 0.759",
-        "x_3 = g(x_2) = (5 - 0.759^2) / 6 = 0.737"
+        "This question gives three of s, u, a and t and asks for another, so use s = ut + (1/2)at^2, the equation linking exactly those four (note: t is never the unknown here, since solving this equation for t needs the quadratic formula).",
+        "s = ut + (1/2)at^2",
+        "Rearrange to make a the subject: a = 2(s - ut)/t^2",
+        "Substitute s = 9, u = 10, t = 9: a = 2(9 - 10 × 9)/9^2 = -2"
       ],
-      "final_answer": "x_1 = -0.667, x_2 = 0.759, x_3 = 0.737",
+      "final_answer": "-2 m/s^2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Iterative formula: x_(n+1) = (5 - x_n^2) / 6",
+          "description": "This question gives three of s, u, a and t and asks for another, so use s = ut + (1/2)at^2, the equation linking exactly those four (note: t is never the unknown here, since solving this equation for t needs the quadratic formula).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x_0 = 3",
+          "description": "s = ut + (1/2)at^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x_1 = g(x_0) = (5 - 3^2) / 6 = -0.667",
+          "description": "Rearrange to make a the subject: a = 2(s - ut)/t^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x_2 = g(x_1) = (5 - (-0.667)^2) / 6 = 0.759 x_3 = g(x_2) = (5 - 0.759^2) / 6 = 0.737",
+          "description": "Substitute s = 9, u = 10, t = 9: a = 2(9 - 10 × 9)/9^2 = -2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x_1 = -0.667, x_2 = 0.759, x_3 = 0.737 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "algebraic_indices_higher",
-      "prompt": "Simplify 6x^5 ÷ x^-1",
-      "solution_steps": [
-        "Dividing powers of the same base: subtract the exponents (this still works when an exponent is negative or zero), and divide the coefficients.",
-        "6x^5 ÷ x^-1 = (6÷1) x^(5-(-1))",
-        "= 6x^6"
-      ],
-      "final_answer": "6x^6",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Dividing powers of the same base: subtract the exponents (this still works when an exponent is negative or zero), and divide the coefficients.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "6x^5 ÷ x^-1 = (6÷1) x^(5-(-1))",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 6x^6",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "6x^6 oe",
+          "description": "-2 m/s^2 oe",
           "marks": 1
         }
       ],
@@ -670,6 +628,47 @@
         {
           "code": "A1",
           "description": "26 : 117 : 65 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_combine",
+      "prompt": "Given that a:b = 5:7 and b:c = 3:1, find a:b:c in its simplest form.",
+      "solution_steps": [
+        "Scale a:b = 5:7 by 3 so b = 21: a:b = 15:21",
+        "Scale b:c = 3:1 by 7 so b = 21: b:c = 21:7",
+        "Combine: a:b:c = 15:21:7",
+        "Simplify by dividing by 1: a:b:c = 15:21:7"
+      ],
+      "final_answer": "15 : 21 : 7",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Scale a:b = 5:7 by 3 so b = 21: a:b = 15:21",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Scale b:c = 3:1 by 7 so b = 21: b:c = 21:7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine: a:b:c = 15:21:7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify by dividing by 1: a:b:c = 15:21:7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "15 : 21 : 7 oe",
           "marks": 1
         }
       ],
@@ -735,38 +734,46 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_shape_similar_higher",
-      "prompt": "Shape A and Shape B are similar. A length on shape A is 5 cm and the corresponding length on shape B is 4 cm. The volume of shape A is 500 cm^3. Find the volume of shape B.",
+      "topic_id": "trig_missing_angle_higher",
+      "prompt": "In the right-angled triangle shown, find the angle x, correct to 1 decimal place.",
       "solution_steps": [
-        "Linear scale factor = 4 ÷ 5 = 4/5",
-        "Volume scale factor = (4/5)^3 = 64/125",
-        "Volume of B = 500 × 64/125 = 256 cm^3"
+        "Use cos, since we know two of the three sides.",
+        "cos(x) = 16 ÷ 32",
+        "x = cos^-1(16 ÷ 32) = 60.0° (1 d.p.)"
       ],
-      "final_answer": "256 cm^3",
+      "final_answer": "60.0°",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Linear scale factor = 4 ÷ 5 = 4/5",
+          "description": "Use cos, since we know two of the three sides.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Volume scale factor = (4/5)^3 = 64/125",
+          "description": "cos(x) = 16 ÷ 32",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Volume of B = 500 × 64/125 = 256 cm^3",
+          "description": "x = cos^-1(16 ÷ 32) = 60.0° (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "256 cm^3 oe",
+          "description": "60.0° oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "trig_triangle",
+        "params": {
+          "adjacent_label": "16 cm",
+          "opposite_label": null,
+          "hyp_label": "32 cm",
+          "angle_label": "x°"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -858,262 +865,39 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof",
-      "prompt": "Triangles ABC and ABD both have a right angle at B, and share side AB, with angle BAC = angle BAD. Prove that the two triangles are congruent.",
+      "topic_id": "vectors_arithmetic_higher",
+      "prompt": "\\vec{a} = (8, -7) and \\vec{b} = (-1, -8). Find \\vec{a} + -2\\vec{b}.",
       "solution_steps": [
-        "angle BAC = angle BAD (given)",
-        "AB is common to both triangles",
-        "angle ABC = angle ABD = 90° (given)",
-        "By Angle-Side-Angle (ASA), the triangles are congruent.",
-        "Since two angles and the included side match, triangles ABC and ABD are congruent - so BC = BD."
+        "\\vec{a} = (8, -7), \\vec{b} = (-1, -8)",
+        "\\vec{a} = (8, -7) and -2\\vec{b} = (2, 16)",
+        "\\vec{a} + -2\\vec{b} = (10, 9)"
       ],
-      "final_answer": "Triangles are congruent (ASA).",
-      "marks": 5,
+      "final_answer": "(10, 9)",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "angle BAC = angle BAD (given)",
+          "description": "\\vec{a} = (8, -7), \\vec{b} = (-1, -8)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "AB is common to both triangles",
+          "description": "\\vec{a} = (8, -7) and -2\\vec{b} = (2, 16)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "angle ABC = angle ABD = 90° (given)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "By Angle-Side-Angle (ASA), the triangles are congruent. Since two angles and the included side match, triangles ABC and ABD are congruent - so BC = BD.",
+          "description": "\\vec{a} + -2\\vec{b} = (10, 9)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Triangles are congruent (ASA). oe",
+          "description": "(10, 9) oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "two_triangle_congruence",
-        "params": {
-          "labels_1": [
-            "A",
-            "B",
-            "C"
-          ],
-          "labels_2": [
-            "A",
-            "B",
-            "D"
-          ],
-          "ticks_1": [
-            [
-              0,
-              1,
-              1
-            ]
-          ],
-          "ticks_2": [
-            [
-              0,
-              1,
-              1
-            ]
-          ],
-          "arcs_1": [
-            [
-              0,
-              1
-            ],
-            [
-              1,
-              2
-            ]
-          ],
-          "arcs_2": [
-            [
-              0,
-              1
-            ],
-            [
-              1,
-              2
-            ]
-          ],
-          "note": "AB is common to both triangles."
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
-    },
-    {
-      "topic_id": "transform_enlarge_complete_higher",
-      "prompt": "Enlarge shape ABCDEF by scale factor -1, centre (1, -1). Draw and label the image A'B'C'D'E'F'.",
-      "solution_steps": [
-        "The centre of enlargement is (1, -1) and the scale factor is -1.",
-        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-1, 2) from the centre, so A' = (1, -1) + -1 × (-1, 2) = (2, -3).",
-        "Repeat for every vertex: A(0, 1) -> A'(2, -3), B(5, 1) -> B'(-3, -3), C(5, 3) -> C'(-3, -5), D(3, 3) -> D'(-1, -5), E(3, 5) -> E'(-1, -7), F(0, 5) -> F'(2, -7)",
-        "A negative scale factor puts the image on the opposite side of the centre from the original shape."
-      ],
-      "final_answer": "A'(2, -3), B'(-3, -3), C'(-3, -5), D'(-1, -5), E'(-1, -7), F'(2, -7)",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The centre of enlargement is (1, -1) and the scale factor is -1.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-1, 2) from the centre, so A' = (1, -1) + -1 × (-1, 2) = (2, -3).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Repeat for every vertex: A(0, 1) -> A'(2, -3), B(5, 1) -> B'(-3, -3), C(5, 3) -> C'(-3, -5), D(3, 3) -> D'(-1, -5), E(3, 5) -> E'(-1, -7), F(0, 5) -> F'(2, -7)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A negative scale factor puts the image on the opposite side of the centre from the original shape.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "A'(2, -3), B'(-3, -3), C'(-3, -5), D'(-1, -5), E'(-1, -7), F'(2, -7) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              0,
-              1
-            ],
-            [
-              5,
-              1
-            ],
-            [
-              5,
-              3
-            ],
-            [
-              3,
-              3
-            ],
-            [
-              3,
-              5
-            ],
-            [
-              0,
-              5
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
-          ],
-          "centre": [
-            1,
-            -1
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              0,
-              1
-            ],
-            [
-              5,
-              1
-            ],
-            [
-              5,
-              3
-            ],
-            [
-              3,
-              3
-            ],
-            [
-              3,
-              5
-            ],
-            [
-              0,
-              5
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
-          ],
-          "centre": [
-            1,
-            -1
-          ],
-          "image_vertices": [
-            [
-              2,
-              -3
-            ],
-            [
-              -3,
-              -3
-            ],
-            [
-              -3,
-              -5
-            ],
-            [
-              -1,
-              -5
-            ],
-            [
-              -1,
-              -7
-            ],
-            [
-              2,
-              -7
-            ]
-          ],
-          "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'",
-            "E'",
-            "F'"
-          ]
-        }
-      }
     },
     {
       "topic_id": "venn_diagram_notation",
@@ -1172,37 +956,112 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_combined_dice",
-      "prompt": "Two fair six-sided dice are rolled. Find the probability that both dice show 3.",
+      "topic_id": "product_rule_counting",
+      "prompt": "A shop sells 5 different phone cases, 3 different screen protectors and 3 different chargers. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
       "solution_steps": [
-        "P(first die is 3) = 1/6, P(second die is 3) = 1/6",
-        "Independent events multiply: P(both 3) = 1/6 × 1/6 = 1/36"
+        "Total combinations = 5 × 3 × 3 = 45"
       ],
-      "final_answer": "1/36",
-      "marks": 3,
+      "final_answer": "45",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "P(first die is 3) = 1/6, P(second die is 3) = 1/6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Independent events multiply: P(both 3) = 1/6 × 1/6 = 1/36",
+          "description": "Total combinations = 5 × 3 × 3 = 45",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/36 oe",
+          "description": "45 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "tree_diagram_mixed",
+      "prompt": "A bag contains 8 red and 4 yellow counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the two counters are different colours.",
+      "solution_steps": [
+        "After the first counter is picked (without replacement), there are 11 counters left.",
+        "P(red then red) = 2/3 × 7/11 = 14/33",
+        "P(red then yellow) = 2/3 × 4/11 = 8/33",
+        "P(yellow then red) = 1/3 × 8/11 = 8/33",
+        "P(yellow then yellow) = 1/3 × 3/11 = 1/11",
+        "P(the two counters are different colours) = 16/33"
+      ],
+      "final_answer": "16/33",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "After the first counter is picked (without replacement), there are 11 counters left.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(red then red) = 2/3 × 7/11 = 14/33",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(red then yellow) = 2/3 × 4/11 = 8/33",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(yellow then red) = 1/3 × 8/11 = 8/33 P(yellow then yellow) = 1/3 × 3/11 = 1/11 P(the two counters are different colours) = 16/33",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "16/33 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "dice",
+        "kind": "tree_diagram",
         "params": {
-          "values": [
-            6,
-            5
+          "stage1": [
+            [
+              "Red",
+              "2/3"
+            ],
+            [
+              "Yellow",
+              "1/3"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Red",
+                "7/11"
+              ],
+              [
+                "Yellow",
+                "4/11"
+              ]
+            ],
+            [
+              [
+                "Red",
+                "8/11"
+              ],
+              [
+                "Yellow",
+                "3/11"
+              ]
+            ]
+          ],
+          "leaf_probs": [
+            [
+              "14/33",
+              "8/33"
+            ],
+            [
+              "8/33",
+              "1/11"
+            ]
           ]
         }
       },

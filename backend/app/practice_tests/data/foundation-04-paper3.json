@@ -4,6 +4,7 @@
   "tier": "foundation",
   "sitting_id": "foundation-04",
   "paper_number": 3,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "standard_form_to",
@@ -388,35 +389,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_common_factor",
-      "prompt": "Factorise: 81x + 63",
-      "solution_steps": [
-        "Find the highest common factor of 81 and 63: 9",
-        "Factorise: 9(9x + 7)"
-      ],
-      "final_answer": "9(9x + 7)",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find the highest common factor of 81 and 63: 9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise: 9(9x + 7)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "9(9x + 7) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
       "topic_id": "factorise_quadratics_foundation",
       "prompt": "Factorise: x^2 + 5x + 4",
       "solution_steps": [
@@ -446,42 +418,84 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_brackets_foundation",
-      "prompt": "Solve: 3(3x + 1) = 48",
+      "topic_id": "solve_quadratic_factorising_foundation",
+      "prompt": "Solve x^2 + 11x + 18 = 0 by factorising.",
       "solution_steps": [
-        "Expand the bracket: 3(3x + 1) = 9x + 3",
-        "9x + 3 = 48",
-        "Subtract 3 from both sides:",
-        "9x = 45",
-        "Divide both sides by 9:",
-        "x = 5"
+        "Find two numbers that multiply to 18 and add to 11: 2 and 9",
+        "Factorise: (x + 2)(x + 9) = 0",
+        "Either x + 2 = 0 or x + 9 = 0",
+        "x = -2 or x = -9"
       ],
-      "final_answer": "5",
+      "final_answer": "x = -2 or x = -9",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expand the bracket: 3(3x + 1) = 9x + 3",
+          "description": "Find two numbers that multiply to 18 and add to 11: 2 and 9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "9x + 3 = 48",
+          "description": "Factorise: (x + 2)(x + 9) = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 3 from both sides:",
+          "description": "Either x + 2 = 0 or x + 9 = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "9x = 45 Divide both sides by 9: x = 5",
+          "description": "x = -2 or x = -9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5 oe",
+          "description": "x = -2 or x = -9 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "forming_equations_foundation",
+      "prompt": "A rectangle has one side of length 12 cm and the other side of length (x + 3) cm. The perimeter of the rectangle is 52 cm. Form an equation and solve it to find x.",
+      "solution_steps": [
+        "Perimeter = 2 × (sum of two different side lengths).",
+        "2(x + 3) + 2(12) = 52",
+        "2x + 30 = 52",
+        "Subtract 30 from both sides:",
+        "2x = 22",
+        "Divide both sides by 2:",
+        "x = 11"
+      ],
+      "final_answer": "11",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Perimeter = 2 × (sum of two different side lengths).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2(x + 3) + 2(12) = 52",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x + 30 = 52",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 30 from both sides: 2x = 22 Divide both sides by 2: x = 11",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "11 oe",
           "marks": 1
         }
       ],
@@ -682,30 +696,37 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_polygon_interior_foundation",
-      "prompt": "A polygon has 8 sides. Find the sum of its interior angles.",
+      "topic_id": "pythagoras_hypotenuse_triple",
+      "prompt": "A right-angled triangle has legs 24 cm and 70 cm. Find the length of the hypotenuse.",
       "solution_steps": [
-        "Sum of interior angles = (n - 2) × 180 = (8 - 2) × 180 = 1080°"
+        "c² = a² + b² = 24² + 70² = 576 + 4900 = 5476",
+        "c = √5476 = 74"
       ],
-      "final_answer": "1080°",
-      "marks": 2,
+      "final_answer": "74 cm",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Sum of interior angles = (n - 2) × 180 = (8 - 2) × 180 = 1080°",
+          "description": "c² = a² + b² = 24² + 70² = 576 + 4900 = 5476",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "c = √5476 = 74",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1080° oe",
+          "description": "74 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "polygon",
+        "kind": "right_triangle",
         "params": {
-          "n_sides": 8,
-          "marked_angle_label": "?"
+          "leg1_label": "24 cm",
+          "leg2_label": "70 cm",
+          "hyp_label": "?"
         }
       },
       "solution_diagram": null
@@ -742,40 +763,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "construction_triangle",
-      "prompt": "Triangle FQZ has FQ = 6 cm, the angle at Q equal to 50°, and QZ = 11 cm. Describe, step by step, how to construct triangle FQZ using a ruler, a protractor, and a pair of compasses.",
+      "topic_id": "construction_perpendicular_from_point",
+      "prompt": "Point E is not on line segment QT (length 7 cm). Describe, step by step, how to construct the perpendicular from E to the line QT using only a ruler and a pair of compasses.",
       "solution_steps": [
-        "Draw the line segment FQ = 6 cm using a ruler.",
-        "At Q, use a protractor to draw a ray at 50° from the line QF.",
-        "Along this new ray, measure 11 cm from Q using a ruler and mark the point Z.",
-        "Draw a straight line from F to Z to complete the triangle."
+        "Open the compasses to a radius large enough to reach the line QT from E.",
+        "With the compass point on E, draw an arc that crosses QT at two points.",
+        "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs on the far side of QT from E, so that they intersect each other.",
+        "Draw a straight line from E through the point where these two arcs intersect. This line is the perpendicular from E to QT, crossing it at the foot of the perpendicular."
       ],
-      "final_answer": "Triangle FQZ, with Z marked 11 cm from Q along the 50° ray at Q.",
+      "final_answer": "The straight line from E through the intersection of the two far-side arcs is perpendicular to QT.",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw the line segment FQ = 6 cm using a ruler.",
+          "description": "Open the compasses to a radius large enough to reach the line QT from E.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "At Q, use a protractor to draw a ray at 50° from the line QF.",
+          "description": "With the compass point on E, draw an arc that crosses QT at two points.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Along this new ray, measure 11 cm from Q using a ruler and mark the point Z.",
+          "description": "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs on the far side of QT from E, so that they intersect each other.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Draw a straight line from F to Z to complete the triangle.",
+          "description": "Draw a straight line from E through the point where these two arcs intersect. This line is the perpendicular from E to QT, crossing it at the foot of the perpendicular.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Triangle FQZ, with Z marked 11 cm from Q along the 50° ray at Q. oe",
+          "description": "The straight line from E through the intersection of the two far-side arcs is perpendicular to QT. oe",
           "marks": 1
         }
       ],
@@ -783,73 +804,81 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_ladder_context_foundation",
-      "prompt": "A ladder of length 13 m leans against a vertical wall with its base 5 m from the wall. Find the height the ladder reaches up the wall.",
+      "topic_id": "trig_missing_angle_foundation",
+      "prompt": "In the right-angled triangle shown, find the angle x, correct to 1 decimal place.",
       "solution_steps": [
-        "height² = ladder² - base² = 13² - 5² = 169 - 25 = 144",
-        "height = √144 = 12 m"
+        "Use sin, since we know two of the three sides.",
+        "sin(x) = 18 ÷ 19",
+        "x = sin^-1(18 ÷ 19) = 71.3° (1 d.p.)"
       ],
-      "final_answer": "12 m",
-      "marks": 3,
+      "final_answer": "71.3°",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "height² = ladder² - base² = 13² - 5² = 169 - 25 = 144",
+          "description": "Use sin, since we know two of the three sides.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "height = √144 = 12 m",
+          "description": "sin(x) = 18 ÷ 19",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = sin^-1(18 ÷ 19) = 71.3° (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 m oe",
+          "description": "71.3° oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "right_triangle",
+        "kind": "trig_triangle",
         "params": {
-          "leg1_label": "5 m",
-          "leg2_label": "?",
-          "hyp_label": "13 m"
+          "adjacent_label": null,
+          "opposite_label": "18 cm",
+          "hyp_label": "19 cm",
+          "angle_label": "x°"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_shorter_leg",
-      "prompt": "A right-angled triangle has hypotenuse 100 cm and one leg 28 cm. Find the length of the other leg.",
+      "topic_id": "trig_missing_side_foundation",
+      "prompt": "In the right-angled triangle shown, find the length of x, correct to 3 significant figures.",
       "solution_steps": [
-        "b² = c² - a² = 100² - 28² = 10000 - 784 = 9216",
-        "b = √9216 = 96"
+        "We know the hypotenuse and want the adjacent, so use cos.",
+        "x = 17 × cos(69°) = 6.09 (to 3 s.f.)"
       ],
-      "final_answer": "96 cm",
+      "final_answer": "6.09 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "b² = c² - a² = 100² - 28² = 10000 - 784 = 9216",
+          "description": "We know the hypotenuse and want the adjacent, so use cos.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "b = √9216 = 96",
+          "description": "x = 17 × cos(69°) = 6.09 (to 3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "96 cm oe",
+          "description": "6.09 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "right_triangle",
+        "kind": "trig_triangle",
         "params": {
-          "leg1_label": "28 cm",
-          "leg2_label": "?",
-          "hyp_label": "100 cm"
+          "adjacent_label": "x cm",
+          "opposite_label": null,
+          "hyp_label": "17 cm",
+          "angle_label": "69°"
         }
       },
       "solution_diagram": null
@@ -979,41 +1008,6 @@
           ]
         }
       },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "stats_mean_frequency_table",
-      "prompt": "A survey recorded the number of pets owned by each household: 0 (8 times), 1 (6 times), 2 (9 times), 3 (5 times). Find the mean number of pets.",
-      "solution_steps": [
-        "Multiply each value by its frequency and sum: 0×8 + 1×6 + 2×9 + 3×5 = 39",
-        "Total frequency = 8 + 6 + 9 + 5 = 28",
-        "Mean = 39 ÷ 28 = 39/28"
-      ],
-      "final_answer": "39/28",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiply each value by its frequency and sum: 0×8 + 1×6 + 2×9 + 3×5 = 39",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total frequency = 8 + 6 + 9 + 5 = 28",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Mean = 39 ÷ 28 = 39/28",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "39/28 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
       "solution_diagram": null
     }
   ]

@@ -4,65 +4,37 @@
   "tier": "higher",
   "sitting_id": "higher-02",
   "paper_number": 2,
+  "calculator_allowed": false,
   "questions": [
     {
-      "topic_id": "rationalise_denominator",
-      "prompt": "Rationalise the denominator of 6/√6, giving your answer in its simplest form.",
+      "topic_id": "standard_form_add_subtract",
+      "prompt": "Work out (3 × 10^4) + (4 × 10^2). Give your answer in standard form.",
       "solution_steps": [
-        "Multiply the top and bottom by √6: 6/√6 = 6√6/6",
-        "Simplify 6/6 by dividing by 6: √6"
+        "Write both numbers with the same power of 10: 3×10^4 = 300×10^2, 4×10^2 = 4×10^2",
+        "Add the coefficients: 300 + 4 = 304",
+        "Write in standard form: 304 × 10^2 = 3.04 × 10^4"
       ],
-      "final_answer": "√6",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiply the top and bottom by √6: 6/√6 = 6√6/6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Simplify 6/6 by dividing by 6: √6",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "√6 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "fractions_divide",
-      "prompt": "Work out 9/7 ÷ 8/12. Give your answer as a fraction in its simplest form.",
-      "solution_steps": [
-        "Keep-change-flip: 9/7 ÷ 8/12 = 9/7 × 12/8",
-        "Multiply: (9×12)/(7×8) = 108/56",
-        "Simplify: 27/14"
-      ],
-      "final_answer": "27/14",
+      "final_answer": "3.04 × 10^4",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Keep-change-flip: 9/7 ÷ 8/12 = 9/7 × 12/8",
+          "description": "Write both numbers with the same power of 10: 3×10^4 = 300×10^2, 4×10^2 = 4×10^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: (9×12)/(7×8) = 108/56",
+          "description": "Add the coefficients: 300 + 4 = 304",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify: 27/14",
+          "description": "Write in standard form: 304 × 10^2 = 3.04 × 10^4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "27/14 oe",
+          "description": "3.04 × 10^4 oe",
           "marks": 1
         }
       ],
@@ -70,28 +42,75 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "roots_higher",
-      "prompt": "Simplify √18, giving your answer in the form a√b.",
+      "topic_id": "simplifying_indices_challenging",
+      "prompt": "Simplify 9^(1/2) × 9^-1, giving your answer as a fraction where necessary.",
       "solution_steps": [
-        "Find the largest square factor of 18: 3^2 × 2 = 18",
-        "√18 = √(3^2 × 2) = 3√2"
+        "9^(1/2) is the square root of 9, which is 3, so 9^(1/2) = 3^1",
+        "9^-1 = 1/9^1 = 1/3^2",
+        "9^(1/2) × 9^-1 = 3^1 × 1/3^2 = 3^(1-2) = 3^-1",
+        "3^-1 = 1/3"
       ],
-      "final_answer": "3√2",
-      "marks": 3,
+      "final_answer": "1/3",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the largest square factor of 18: 3^2 × 2 = 18",
+          "description": "9^(1/2) is the square root of 9, which is 3, so 9^(1/2) = 3^1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "√18 = √(3^2 × 2) = 3√2",
+          "description": "9^-1 = 1/9^1 = 1/3^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "9^(1/2) × 9^-1 = 3^1 × 1/3^2 = 3^(1-2) = 3^-1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3^-1 = 1/3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3√2 oe",
+          "description": "1/3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_mixed_number_arithmetic",
+      "prompt": "Work out 2 6/7 - 2 1/3. Give your answer as a mixed number.",
+      "solution_steps": [
+        "Convert to improper fractions: 2 6/7 = 20/7, 2 1/3 = 7/3",
+        "Subtract the improper fractions: 20/7 - 7/3 = 11/21",
+        "Convert back to a mixed number: 0 11/21"
+      ],
+      "final_answer": "0 11/21",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert to improper fractions: 2 6/7 = 20/7, 2 1/3 = 7/3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract the improper fractions: 20/7 - 7/3 = 11/21",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Convert back to a mixed number: 0 11/21",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "0 11/21 oe",
           "marks": 1
         }
       ],
@@ -100,19 +119,19 @@
     },
     {
       "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal 0.1(6) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal 0.6(81) can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.1(6)",
+        "Let x = 0.6(81)",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
-        "This gives x = 15/90",
-        "Simplify: 1/6"
+        "This gives x = 675/990",
+        "Simplify: 15/22"
       ],
-      "final_answer": "1/6",
+      "final_answer": "15/22",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.1(6)",
+          "description": "Let x = 0.6(81)",
           "marks": 1
         },
         {
@@ -122,17 +141,17 @@
         },
         {
           "code": "M1",
-          "description": "This gives x = 15/90",
+          "description": "This gives x = 675/990",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify: 1/6",
+          "description": "Simplify: 15/22",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/6 oe",
+          "description": "15/22 oe",
           "marks": 1
         }
       ],
@@ -141,33 +160,33 @@
     },
     {
       "topic_id": "standard_form_multiply_divide",
-      "prompt": "Work out (6 × 10^-2) × (6 × 10^-3). Give your answer in standard form.",
+      "prompt": "Work out (9 × 10^3) × (5 × 10^-1). Give your answer in standard form.",
       "solution_steps": [
-        "Multiply the mantissas: 6 × 6 = 36",
-        "Add the powers of 10: -2 + -3 = -5",
-        "Renormalize so the mantissa is between 1 and 10: 3.6 × 10^-4"
+        "Multiply the mantissas: 9 × 5 = 45",
+        "Add the powers of 10: 3 + -1 = 2",
+        "Renormalize so the mantissa is between 1 and 10: 4.5 × 10^3"
       ],
-      "final_answer": "3.6 × 10^-4",
+      "final_answer": "4.5 × 10^3",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply the mantissas: 6 × 6 = 36",
+          "description": "Multiply the mantissas: 9 × 5 = 45",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add the powers of 10: -2 + -3 = -5",
+          "description": "Add the powers of 10: 3 + -1 = 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Renormalize so the mantissa is between 1 and 10: 3.6 × 10^-4",
+          "description": "Renormalize so the mantissa is between 1 and 10: 4.5 × 10^3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3.6 × 10^-4 oe",
+          "description": "4.5 × 10^3 oe",
           "marks": 1
         }
       ],
@@ -176,27 +195,27 @@
     },
     {
       "topic_id": "prime_factors_higher",
-      "prompt": "Write 304 as a product of its prime factors, giving your answer in index form.",
+      "prompt": "Write 539 as a product of its prime factors, giving your answer in index form.",
       "solution_steps": [
-        "Divide 304 repeatedly by the smallest prime that fits: 2 × 2 × 2 × 2 × 19",
-        "Write repeated factors using index notation: 304 = 2^4 × 19"
+        "Divide 539 repeatedly by the smallest prime that fits: 7 × 7 × 11",
+        "Write repeated factors using index notation: 539 = 7^2 × 11"
       ],
-      "final_answer": "2^4 × 19",
+      "final_answer": "7^2 × 11",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide 304 repeatedly by the smallest prime that fits: 2 × 2 × 2 × 2 × 19",
+          "description": "Divide 539 repeatedly by the smallest prime that fits: 7 × 7 × 11",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write repeated factors using index notation: 304 = 2^4 × 19",
+          "description": "Write repeated factors using index notation: 539 = 7^2 × 11",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2^4 × 19 oe",
+          "description": "7^2 × 11 oe",
           "marks": 1
         }
       ],
@@ -204,299 +223,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "indices_common_base_equations",
-      "prompt": "Solve 25^x = 15625.",
+      "topic_id": "kinematics_suvat",
+      "prompt": "An object starts with a velocity of 6 m/s and has a constant acceleration of 4 m/s^2 for 7 s. Find the total displacement.",
       "solution_steps": [
-        "Write both sides as powers of 5: 25 = 5^2 and 15625 = 5^6",
-        "25^x = 15625 becomes (5^2)^x = 5^6, i.e. 5^(2x) = 5^6",
-        "Since the bases match, the powers must be equal: 2x = 6",
-        "x = 6/2 = 3"
+        "This question gives three of s, u, a and t and asks for another, so use s = ut + (1/2)at^2, the equation linking exactly those four (note: t is never the unknown here, since solving this equation for t needs the quadratic formula).",
+        "s = ut + (1/2)at^2",
+        "Substitute u = 6, a = 4, t = 7: s = 6 × 7 + (1/2) × 4 × 7^2 = 42 + 98 = 140"
       ],
-      "final_answer": "3",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Write both sides as powers of 5: 25 = 5^2 and 15625 = 5^6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "25^x = 15625 becomes (5^2)^x = 5^6, i.e. 5^(2x) = 5^6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Since the bases match, the powers must be equal: 2x = 6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 6/2 = 3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "linear_both_sides",
-      "prompt": "Solve: -6x - 10 = -9x - 25",
-      "solution_steps": [
-        "-6x - 10 = -9x - 25",
-        "Add 9x to both sides:",
-        "3x - 10 = -25",
-        "Add 10 to both sides:",
-        "3x = -15",
-        "Divide both sides by 3:",
-        "x = -5"
-      ],
-      "final_answer": "-5",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "-6x - 10 = -9x - 25",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add 9x to both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "3x - 10 = -25",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add 10 to both sides: 3x = -15 Divide both sides by 3: x = -5",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-5 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "plot_reciprocal",
-      "prompt": "Complete a table of values for y = 48/x for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
-      "solution_steps": [
-        "Table of values for y = 48/x:",
-        "x: -4, -3, -2, -1, 1, 2, 3, 4",
-        "y: -12, -16, -24, -48, 48, 24, 16, 12",
-        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
-      ],
-      "final_answer": "Reciprocal curve: y = 48/x",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Table of values for y = 48/x:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y: -12, -16, -24, -48, 48, 24, 16, 12",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Reciprocal curve: y = 48/x oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "reciprocal",
-          "a": 48,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -50,
-          "y_max": 50,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "reciprocal",
-          "a": 48,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -50,
-          "y_max": 50,
-          "table_points": [
-            [
-              -4,
-              -12
-            ],
-            [
-              -3,
-              -16
-            ],
-            [
-              -2,
-              -24
-            ],
-            [
-              -1,
-              -48
-            ],
-            [
-              1,
-              48
-            ],
-            [
-              2,
-              24
-            ],
-            [
-              3,
-              16
-            ],
-            [
-              4,
-              12
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "solving_inequalities_higher",
-      "prompt": "Solve the inequality: -5(x - 2) ≥ 13",
-      "solution_steps": [
-        "Expand the bracket: -5(x - 2) ≥ 13",
-        "-5x + 10 ≥ 13",
-        "Subtract 10 from both sides:",
-        "-5x ≥ 3",
-        "Divide both sides by -5 (dividing by a negative number reverses the inequality sign):",
-        "x ≤ -3/5"
-      ],
-      "final_answer": "x ≤ -3/5",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Expand the bracket: -5(x - 2) ≥ 13",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "-5x + 10 ≥ 13",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 10 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "-5x ≥ 3 Divide both sides by -5 (dividing by a negative number reverses the inequality sign): x ≤ -3/5",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x ≤ -3/5 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "quadratic_inequalities",
-      "prompt": "Solve the inequality: x^2 + 2x - 8 < 0",
-      "solution_steps": [
-        "Factorise: x^2 + 2x - 8 = (x + 4)(x - 2)",
-        "The critical values are x = -4 and x = 2.",
-        "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and < 0 is satisfied between the two roots.",
-        "Answer: -4 < x < 2"
-      ],
-      "final_answer": "-4 < x < 2",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Factorise: x^2 + 2x - 8 = (x + 4)(x - 2)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The critical values are x = -4 and x = 2.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and < 0 is satisfied between the two roots.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Answer: -4 < x < 2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-4 < x < 2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "sequences_quadratic_nth_term",
-      "prompt": "Here are the first four terms of a quadratic sequence: -9, -12, -17, -24. Find an expression for the nth term.",
-      "solution_steps": [
-        "First differences: -3, -5, -7",
-        "Second difference is constant: -2, so the coefficient of n^2 is -2 ÷ 2 = -1",
-        "nth term = -n^2 - 8"
-      ],
-      "final_answer": "-n^2 - 8",
+      "final_answer": "140 m",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First differences: -3, -5, -7",
+          "description": "This question gives three of s, u, a and t and asks for another, so use s = ut + (1/2)at^2, the equation linking exactly those four (note: t is never the unknown here, since solving this equation for t needs the quadratic formula).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Second difference is constant: -2, so the coefficient of n^2 is -2 ÷ 2 = -1",
+          "description": "s = ut + (1/2)at^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = -n^2 - 8",
+          "description": "Substitute u = 6, a = 4, t = 7: s = 6 × 7 + (1/2) × 4 × 7^2 = 42 + 98 = 140",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-n^2 - 8 oe",
+          "description": "140 m oe",
           "marks": 1
         }
       ],
@@ -504,41 +258,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_double_brackets",
-      "prompt": "Expand: (-x - 3)(-3x + 1)",
+      "topic_id": "solve_quadratic_completing_square",
+      "prompt": "Solve x^2 - 6x - 54 = 0 by completing the square, giving your answers in exact surd form.",
       "solution_steps": [
-        "First: -1x × -3x = 3x^2",
-        "Outer: -1x × 1 = -1x",
-        "Inner: -3 × -3x = 9x",
-        "Last: -3 × 1 = -3",
-        "Combine like terms: 3x^2 + 8x - 3"
+        "Half the coefficient of x: -6 ÷ 2 = -3",
+        "Complete the square: x^2 - 6x - 54 = (x - 3)^2 - 63",
+        "Set (x - 3)^2 - 63 = 0, so (x - 3)^2 = 63",
+        "(x - 3) = ±√63 = ±3√7",
+        "x = 3 + 3√7 or x = 3 - 3√7"
       ],
-      "final_answer": "3x^2 + 8x - 3",
+      "final_answer": "x = 3 + 3√7 or x = 3 - 3√7",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First: -1x × -3x = 3x^2",
+          "description": "Half the coefficient of x: -6 ÷ 2 = -3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Outer: -1x × 1 = -1x",
+          "description": "Complete the square: x^2 - 6x - 54 = (x - 3)^2 - 63",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Inner: -3 × -3x = 9x",
+          "description": "Set (x - 3)^2 - 63 = 0, so (x - 3)^2 = 63",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Last: -3 × 1 = -3 Combine like terms: 3x^2 + 8x - 3",
+          "description": "(x - 3) = ±√63 = ±3√7 x = 3 + 3√7 or x = 3 - 3√7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3x^2 + 8x - 3 oe",
+          "description": "x = 3 + 3√7 or x = 3 - 3√7 oe",
           "marks": 1
         }
       ],
@@ -546,54 +300,208 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "turning_point_of_graph",
-      "prompt": "Find the coordinates of the turning point of the curve y = x^2 - 16x + 4.",
+      "topic_id": "factorise_quadratics",
+      "prompt": "Factorise: x^2 - 6x + 5",
       "solution_steps": [
-        "Complete the square: x^2 - 16x + 4 = (x - 8)^2 - 60",
-        "The turning point of y = (x + p)^2 + q is (-p, q).",
-        "Turning point = (8, -60)"
+        "Find two numbers that multiply to 5 and add to -6: -1 and -5",
+        "Write as two brackets: (x - 1)(x - 5)"
       ],
-      "final_answer": "(8, -60)",
-      "marks": 4,
+      "final_answer": "(x - 1)(x - 5)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Complete the square: x^2 - 16x + 4 = (x - 8)^2 - 60",
+          "description": "Find two numbers that multiply to 5 and add to -6: -1 and -5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Turning point = (8, -60)",
+          "description": "Write as two brackets: (x - 1)(x - 5)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(8, -60) oe",
+          "description": "(x - 1)(x - 5) oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "parabola",
-        "params": {
-          "vertex_label": "(8, -60)"
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_different_coefficient",
+      "prompt": "Solve the simultaneous equations: 4x + 5y = -36 and 2x + 4y = -30",
+      "solution_steps": [
+        "4x + 5y = -36  (1)",
+        "2x + 4y = -30  (2)",
+        "(1) × 4: 16x + 20y = -144  (3)",
+        "(2) × 5: 10x + 20y = -150  (4)",
+        "(3) - (4): 6x = 6, so x = 1",
+        "Substitute x = 1 into (1): 5y = -40, so y = -8"
+      ],
+      "final_answer": "x = 1, y = -8",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "4x + 5y = -36  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x + 4y = -30  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(1) × 4: 16x + 20y = -144  (3)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(2) × 5: 10x + 20y = -150  (4) (3) - (4): 6x = 6, so x = 1 Substitute x = 1 into (1): 5y = -40, so y = -8",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 1, y = -8 oe",
+          "marks": 1
         }
-      },
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "functions_composite_inverse",
+      "prompt": "f(x) = -6x + 7 and g(x) = -5x + 8. Find fg(x).",
+      "solution_steps": [
+        "fg(x) = f(-5x + 8)",
+        "= -6(-5x + 8) + 7",
+        "= 30x - 41"
+      ],
+      "final_answer": "30x - 41",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "fg(x) = f(-5x + 8)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= -6(-5x + 8) + 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 30x - 41",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "30x - 41 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "forming_equations_higher",
+      "prompt": "I think of a number. I subtract 9 to it, then multiply the result by 7. The answer is 21. Form an equation and solve it to find the number.",
+      "solution_steps": [
+        "Let the number be x.",
+        "7(x - 9) = 21",
+        "Expand the bracket:",
+        "7x - 63 = 21",
+        "Add 63 to both sides:",
+        "7x = 84",
+        "Divide both sides by 7:",
+        "x = 12"
+      ],
+      "final_answer": "12",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let the number be x.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "7(x - 9) = 21",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand the bracket:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "7x - 63 = 21 Add 63 to both sides: 7x = 84 Divide both sides by 7: x = 12",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "12 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_quadratic",
+      "prompt": "Solve the simultaneous equations: y = x^2 + 3x + 6 and y = -4x",
+      "solution_steps": [
+        "Substitute y = -4x into y = x^2 + 3x + 6: -4x = x^2 + 3x + 6",
+        "Rearrange: x^2 + 7x + 6 = 0",
+        "Factorise: (x + 6)(x + 1) = 0",
+        "x = -6 or x = -1",
+        "When x = -6, y = 24. When x = -1, y = 4."
+      ],
+      "final_answer": "(-6, 24) and (-1, 4)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Substitute y = -4x into y = x^2 + 3x + 6: -4x = x^2 + 3x + 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rearrange: x^2 + 7x + 6 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: (x + 6)(x + 1) = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -6 or x = -1 When x = -6, y = 24. When x = -1, y = 4.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(-6, 24) and (-1, 4) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     },
     {
       "topic_id": "algebraic_inverse_proportion",
-      "prompt": "y is inversely proportional to x^1. When x = 3, y = 8. Find the value of y when x = 4.",
+      "prompt": "y is inversely proportional to x^1. When x = 3, y = 18. Find the value of y when x = 6.",
       "solution_steps": [
         "y = k ÷ x^1",
-        "k = y × x^1 = 8 × 3^1 = 8 × 3 = 24",
-        "y = k ÷ x^1 = 24 ÷ 4^1 = 24 ÷ 4 = 6"
+        "k = y × x^1 = 18 × 3^1 = 18 × 3 = 54",
+        "y = k ÷ x^1 = 54 ÷ 6^1 = 54 ÷ 6 = 9"
       ],
-      "final_answer": "6",
+      "final_answer": "9",
       "marks": 4,
       "mark_scheme": [
         {
@@ -603,17 +511,17 @@
         },
         {
           "code": "M1",
-          "description": "k = y × x^1 = 8 × 3^1 = 8 × 3 = 24",
+          "description": "k = y × x^1 = 18 × 3^1 = 18 × 3 = 54",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y = k ÷ x^1 = 24 ÷ 4^1 = 24 ÷ 4 = 6",
+          "description": "y = k ÷ x^1 = 54 ÷ 6^1 = 54 ÷ 6 = 9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6 oe",
+          "description": "9 oe",
           "marks": 1
         }
       ],
@@ -621,75 +529,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_shape_similar_higher",
-      "prompt": "Shape A and Shape B are similar. A length on shape A is 3 cm and the corresponding length on shape B is 4 cm. The volume of shape A is 243 cm^3. Find the volume of shape B.",
+      "topic_id": "algebraic_direct_proportion",
+      "prompt": "y is directly proportional to x^2. When x = 7, y = 343. Find the value of y when x = 9.",
       "solution_steps": [
-        "Linear scale factor = 4 ÷ 3 = 4/3",
-        "Volume scale factor = (4/3)^3 = 64/27",
-        "Volume of B = 243 × 64/27 = 576 cm^3"
+        "y = kx^2",
+        "343 = k × 7^2 = k × 49",
+        "k = 343 ÷ 49 = 7",
+        "y = 7 × 9^2 = 7 × 81 = 567"
       ],
-      "final_answer": "576 cm^3",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Linear scale factor = 4 ÷ 3 = 4/3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Volume scale factor = (4/3)^3 = 64/27",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Volume of B = 243 × 64/27 = 576 cm^3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "576 cm^3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_to_equation",
-      "prompt": "(x + 7) : (x + 1) = 4:1. Find the value of x.",
-      "solution_steps": [
-        "Cross-multiply: 1(x + 7) = 4(x + 1)",
-        "Expand: x + 7 = 4x + 4",
-        "Collect x terms: -3x = -3",
-        "x = -3 ÷ -3 = 1"
-      ],
-      "final_answer": "x = 1",
+      "final_answer": "567",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Cross-multiply: 1(x + 7) = 4(x + 1)",
+          "description": "y = kx^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand: x + 7 = 4x + 4",
+          "description": "343 = k × 7^2 = k × 49",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Collect x terms: -3x = -3",
+          "description": "k = 343 ÷ 49 = 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = -3 ÷ -3 = 1",
+          "description": "y = 7 × 9^2 = 7 × 81 = 567",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 1 oe",
+          "description": "567 oe",
           "marks": 1
         }
       ],
@@ -697,28 +570,71 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "percentage_increase_decrease_calculator",
-      "prompt": "Using a calculator, decrease £617.65 by 17.5%. Give your answer to 2 decimal places.",
+      "topic_id": "ratio_difference_higher",
+      "prompt": "Amounts are in the ratio 7:5:9. The difference between the largest and smallest amount is 12. Find all three amounts and their total.",
       "solution_steps": [
-        "Convert 17.5% to a multiplier: 0.825",
-        "Multiply: £617.65 × 0.825 = £509.56 (calculator, 2 d.p.)"
+        "Difference in parts = 9 - 5 = 4 parts",
+        "Value of one part = 12 ÷ 4 = 3",
+        "Amount 1 = 7 × 3 = 21",
+        "Amount 2 = 5 × 3 = 15",
+        "Amount 3 = 9 × 3 = 27",
+        "Total = 21 + 15 + 27 = 63"
       ],
-      "final_answer": "£509.56",
+      "final_answer": "21 : 15 : 27 (total 63)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Difference in parts = 9 - 5 = 4 parts",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Value of one part = 12 ÷ 4 = 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Amount 1 = 7 × 3 = 21",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Amount 2 = 5 × 3 = 15 Amount 3 = 9 × 3 = 27 Total = 21 + 15 + 27 = 63",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "21 : 15 : 27 (total 63) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "compound_percentage",
+      "prompt": "A price of £96 increases by 35%, then increases by 24%. Find the final price.",
+      "solution_steps": [
+        "After the first change: 96 × 1.35 = 129.60",
+        "After the second change: 129.60 × 1.24 = 160.70"
+      ],
+      "final_answer": "£160.70",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 17.5% to a multiplier: 0.825",
+          "description": "After the first change: 96 × 1.35 = 129.60",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: £617.65 × 0.825 = £509.56 (calculator, 2 d.p.)",
+          "description": "After the second change: 129.60 × 1.24 = 160.70",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£509.56 oe",
+          "description": "£160.70 oe",
           "marks": 1
         }
       ],
@@ -726,59 +642,164 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "stats_interquartile_range",
-      "prompt": "Find the interquartile range (IQR) of this data set: 34, 5, 15, 35, 3, 32, 29, 16, 11.",
+      "topic_id": "combined_transformations",
+      "prompt": "Shape ABC is rotated 180° about the centre (1, -4) to give shape A'B'C'. Shape A'B'C' is then rotated 90° anticlockwise about the same centre to give shape A''B''C''. Describe fully the single transformation that maps ABC directly onto A''B''C''.",
       "solution_steps": [
-        "Sort the data: 3, 5, 11, 15, 16, 29, 32, 34, 35.",
-        "Split into a lower half [3, 5, 11, 15] and an upper half [29, 32, 34, 35] (excluding the overall middle value when 9 is odd).",
-        "Q1 = median of the lower half = 8",
-        "Q3 = median of the upper half = 33",
-        "Interquartile range = Q3 - Q1 = 33 - 8 = 25"
+        "Two rotations about the same centre combine into a single rotation about that centre, by the sum of the two angles.",
+        "Measuring both turns anticlockwise: 180° + 90° = 270°, which is the same as 90° clockwise."
       ],
-      "final_answer": "25",
-      "marks": 5,
+      "final_answer": "Rotation 90° clockwise about (1, -4)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Sort the data: 3, 5, 11, 15, 16, 29, 32, 34, 35.",
+          "description": "Two rotations about the same centre combine into a single rotation about that centre, by the sum of the two angles.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Split into a lower half [3, 5, 11, 15] and an upper half [29, 32, 34, 35] (excluding the overall middle value when 9 is odd).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Q1 = median of the lower half = 8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Q3 = median of the upper half = 33 Interquartile range = Q3 - Q1 = 33 - 8 = 25",
+          "description": "Measuring both turns anticlockwise: 180° + 90° = 270°, which is the same as 90° clockwise.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "25 oe",
+          "description": "Rotation 90° clockwise about (1, -4) oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              -1,
+              -3
+            ],
+            [
+              4,
+              -3
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "image_vertices": [
+            [
+              2,
+              -2
+            ],
+            [
+              2,
+              -7
+            ],
+            [
+              6,
+              -3
+            ]
+          ],
+          "image_labels": [
+            "A''",
+            "B''",
+            "C''"
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pythagoras_ladder_context",
+      "prompt": "A ladder of length 16 m leans against a vertical wall with its base 6 m from the wall. Find the height the ladder reaches up the wall, giving your answer as a surd in its simplest form.",
+      "solution_steps": [
+        "height² = ladder² - base² = 16² - 6² = 256 - 36 = 220",
+        "height = √220 = 2√55 m (exact form)"
+      ],
+      "final_answer": "2√55 m",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "height² = ladder² - base² = 16² - 6² = 256 - 36 = 220",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "height = √220 = 2√55 m (exact form)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2√55 m oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "right_triangle",
+        "params": {
+          "leg1_label": "6 m",
+          "leg2_label": "?",
+          "hyp_label": "16 m"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pythagoras_surd_hypotenuse",
+      "prompt": "A right-angled triangle has legs 13 cm and 14 cm. Find the exact length of the hypotenuse, giving your answer as a simplified surd.",
+      "solution_steps": [
+        "c² = a² + b² = 13² + 14² = 169 + 196 = 365",
+        "c = √365 = √365 cm (exact form)"
+      ],
+      "final_answer": "√365 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "c² = a² + b² = 13² + 14² = 169 + 196 = 365",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "c = √365 = √365 cm (exact form)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "√365 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "right_triangle",
+        "params": {
+          "leg1_label": "13 cm",
+          "leg2_label": "14 cm",
+          "hyp_label": "?"
+        }
+      },
       "solution_diagram": null
     },
     {
       "topic_id": "angles_around_point_higher",
-      "prompt": "The angles 139°, 114°, 14° and (5x + 68)° are angles around a point. Find x.",
+      "prompt": "The angles 32°, 109° and (4x + 179)° are angles around a point. Find x.",
       "solution_steps": [
         "Angles around a point sum to 360°.",
-        "5x + 68 = 93",
-        "Subtract 68 from both sides:",
-        "5x = 25",
-        "Divide both sides by 5:",
-        "x = 5"
+        "4x + 179 = 219",
+        "Subtract 179 from both sides:",
+        "4x = 40",
+        "Divide both sides by 4:",
+        "x = 10"
       ],
-      "final_answer": "5",
+      "final_answer": "10",
       "marks": 5,
       "mark_scheme": [
         {
@@ -788,22 +809,22 @@
         },
         {
           "code": "M1",
-          "description": "5x + 68 = 93",
+          "description": "4x + 179 = 219",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 68 from both sides:",
+          "description": "Subtract 179 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x = 25 Divide both sides by 5: x = 5",
+          "description": "4x = 40 Divide both sides by 4: x = 10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5 oe",
+          "description": "10 oe",
           "marks": 1
         }
       ],
@@ -811,16 +832,14 @@
         "kind": "angle_line",
         "params": {
           "angle_values": [
-            139,
-            114,
-            14,
-            93
+            32,
+            109,
+            219
           ],
           "labels": [
-            "139°",
-            "114°",
-            "14°",
-            "(5x + 68)°"
+            "32°",
+            "109°",
+            "(4x + 179)°"
           ],
           "around_point": true
         }
@@ -828,190 +847,124 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "geometric_vectors",
-      "prompt": "OAB is a triangle with OA = \\vec{a} and OB = \\vec{b}. Point P lies on AB such that AP:PB = 2:5. Find the vector OP in terms of \\vec{a} and \\vec{b}, giving your answer in its simplest form.",
+      "topic_id": "angles_parallel_lines",
+      "prompt": "A line crosses two parallel lines. The angle 90° and the angle (2x + 58)° are corresponding angles. Find x.",
       "solution_steps": [
-        "AB = OB - OA = \\vec{b} - \\vec{a}",
-        "AP = (2/7)AB = (2/7)(\\vec{b} - \\vec{a})",
-        "OP = OA + AP = \\vec{a} + (2/7)(\\vec{b} - \\vec{a}) = (5/7)\\vec{a} + (2/7)\\vec{b}"
-      ],
-      "final_answer": "(5/7)\\vec{a} + (2/7)\\vec{b}",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "AB = OB - OA = \\vec{b} - \\vec{a}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "AP = (2/7)AB = (2/7)(\\vec{b} - \\vec{a})",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "OP = OA + AP = \\vec{a} + (2/7)(\\vec{b} - \\vec{a}) = (5/7)\\vec{a} + (2/7)\\vec{b}",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(5/7)\\vec{a} + (2/7)\\vec{b} oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "vector_triangle",
-        "params": {
-          "ratio": [
-            2,
-            5
-          ],
-          "point_label": "P",
-          "a_label": "\\vec{a}",
-          "b_label": "\\vec{b}",
-          "origin_label": "O"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "angles_polygon_interior",
-      "prompt": "A polygon has 5 sides. 4 of its interior angles are each 111°, and the remaining interior angle is (2x + 66)°. Find x.",
-      "solution_steps": [
-        "Sum of interior angles = (n - 2) × 180 = (5 - 2) × 180 = 540°",
-        "Sum of the 4 equal angles = 4 × 111 = 444°",
-        "Remaining angle = 540 - 444 = 96°",
-        "2x + 66 = 96",
-        "Subtract 66 from both sides:",
-        "2x = 30",
+        "Corresponding angles are equal.",
+        "2x + 58 = 90",
+        "Subtract 58 from both sides:",
+        "2x = 32",
         "Divide both sides by 2:",
-        "x = 15"
+        "x = 16"
       ],
-      "final_answer": "15",
+      "final_answer": "16",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Sum of interior angles = (n - 2) × 180 = (5 - 2) × 180 = 540°",
+          "description": "Corresponding angles are equal.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Sum of the 4 equal angles = 4 × 111 = 444°",
+          "description": "2x + 58 = 90",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Remaining angle = 540 - 444 = 96°",
+          "description": "Subtract 58 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x + 66 = 96 Subtract 66 from both sides: 2x = 30 Divide both sides by 2: x = 15",
+          "description": "2x = 32 Divide both sides by 2: x = 16",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "15 oe",
+          "description": "16 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "polygon",
+        "kind": "parallel_lines",
         "params": {
-          "n_sides": 5,
-          "marked_angle_label": "(2x + 66)°"
+          "known_label": "90°",
+          "unknown_label": "(2x + 58)°",
+          "relation": "corresponding"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "tree_diagram_dependent",
-      "prompt": "A bag contains 6 red and 8 yellow counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the first counter is yellow and the second counter is red.",
+      "topic_id": "set_notation",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, A = {1, 3, 6, 8}, B = {1, 3, 5, 6, 10, 11}. List the elements of A ∩ B.",
       "solution_steps": [
-        "After the first counter is picked (without replacement), there are 13 counters left.",
-        "P(red then red) = 3/7 × 5/13 = 15/91",
-        "P(red then yellow) = 3/7 × 8/13 = 24/91",
-        "P(yellow then red) = 4/7 × 6/13 = 24/91",
-        "P(yellow then yellow) = 4/7 × 7/13 = 4/13",
-        "P(the first counter is yellow and the second counter is red) = 24/91"
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}",
+        "A = {1, 3, 6, 8}",
+        "B = {1, 3, 5, 6, 10, 11}",
+        "A ∩ B means A intersect B (elements in both A and B).",
+        "A ∩ B = {1, 3, 6}"
       ],
-      "final_answer": "24/91",
+      "final_answer": "{1, 3, 6}",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first counter is picked (without replacement), there are 13 counters left.",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(red then red) = 3/7 × 5/13 = 15/91",
+          "description": "A = {1, 3, 6, 8}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(red then yellow) = 3/7 × 8/13 = 24/91",
+          "description": "B = {1, 3, 5, 6, 10, 11}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(yellow then red) = 4/7 × 6/13 = 24/91 P(yellow then yellow) = 4/7 × 7/13 = 4/13 P(the first counter is yellow and the second counter is red) = 24/91",
+          "description": "A ∩ B means A intersect B (elements in both A and B). A ∩ B = {1, 3, 6}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "24/91 oe",
+          "description": "{1, 3, 6} oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "tree_diagram",
-        "params": {
-          "stage1": [
-            [
-              "Red",
-              "3/7"
-            ],
-            [
-              "Yellow",
-              "4/7"
-            ]
-          ],
-          "stage2": [
-            [
-              [
-                "Red",
-                "5/13"
-              ],
-              [
-                "Yellow",
-                "8/13"
-              ]
-            ],
-            [
-              [
-                "Red",
-                "6/13"
-              ],
-              [
-                "Yellow",
-                "7/13"
-              ]
-            ]
-          ],
-          "leaf_probs": [
-            [
-              "15/91",
-              "24/91"
-            ],
-            [
-              "24/91",
-              "4/13"
-            ]
-          ]
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "unit_conversions_higher",
+      "prompt": "Convert 4744 cm³ to m³.",
+      "solution_steps": [
+        "Linear conversion factor: 1 m = 100 cm, so for volume, 1 m³ = 100^3 = 1000000 cm³",
+        "4744 cm³ = 4744 ÷ 1000000 = 0.004744 m³"
+      ],
+      "final_answer": "0.004744 m³",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Linear conversion factor: 1 m = 100 cm, so for volume, 1 m³ = 100^3 = 1000000 cm³",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4744 cm³ = 4744 ÷ 1000000 = 0.004744 m³",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "0.004744 m³ oe",
+          "marks": 1
         }
-      },
+      ],
+      "diagram": null,
       "solution_diagram": null
     }
   ]

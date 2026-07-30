@@ -4,6 +4,7 @@
   "tier": "higher",
   "sitting_id": "higher-08",
   "paper_number": 1,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "bounds_calculation",
@@ -239,206 +240,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_quadratic",
-      "prompt": "Solve the simultaneous equations: y = x^2 + 4x + 1 and y = 9x - 3",
-      "solution_steps": [
-        "Substitute y = 9x - 3 into y = x^2 + 4x + 1: 9x - 3 = x^2 + 4x + 1",
-        "Rearrange: x^2 - 5x + 4 = 0",
-        "Factorise: (x - 1)(x - 4) = 0",
-        "x = 1 or x = 4",
-        "When x = 1, y = 6. When x = 4, y = 33."
-      ],
-      "final_answer": "(1, 6) and (4, 33)",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Substitute y = 9x - 3 into y = x^2 + 4x + 1: 9x - 3 = x^2 + 4x + 1",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Rearrange: x^2 - 5x + 4 = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise: (x - 1)(x - 4) = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 1 or x = 4 When x = 1, y = 6. When x = 4, y = 33.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(1, 6) and (4, 33) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "sequences_quadratic_nth_term",
-      "prompt": "Here are the first four terms of a quadratic sequence: 4, 0, -8, -20. Find an expression for the nth term.",
-      "solution_steps": [
-        "First differences: -4, -8, -12",
-        "Second difference is constant: -4, so the coefficient of n^2 is -4 ÷ 2 = -2",
-        "nth term = -2n^2 + 2n + 4"
-      ],
-      "final_answer": "-2n^2 + 2n + 4",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "First differences: -4, -8, -12",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Second difference is constant: -4, so the coefficient of n^2 is -4 ÷ 2 = -2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "nth term = -2n^2 + 2n + 4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-2n^2 + 2n + 4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "completing_the_square",
-      "prompt": "Write x^2 + 4x in the form (x + p)^2 + q.",
-      "solution_steps": [
-        "Half the coefficient of x: 4 ÷ 2 = 2",
-        "(x + 2)^2 = x^2 + 4x + 4",
-        "x^2 + 4x + 0 = (x + 2)^2 + (0 - 4) = (x + 2)^2 - 4"
-      ],
-      "final_answer": "(x + 2)^2 - 4",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Half the coefficient of x: 4 ÷ 2 = 2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(x + 2)^2 = x^2 + 4x + 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x^2 + 4x + 0 = (x + 2)^2 + (0 - 4) = (x + 2)^2 - 4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(x + 2)^2 - 4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simultaneous_different_coefficient",
-      "prompt": "Solve the simultaneous equations: 5x + 4y = 37 and 4x + 5y = 35",
-      "solution_steps": [
-        "5x + 4y = 37  (1)",
-        "4x + 5y = 35  (2)",
-        "(1) × 5: 25x + 20y = 185  (3)",
-        "(2) × 4: 16x + 20y = 140  (4)",
-        "(3) - (4): 9x = 45, so x = 5",
-        "Substitute x = 5 into (1): 4y = 12, so y = 3"
-      ],
-      "final_answer": "x = 5, y = 3",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "5x + 4y = 37  (1)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "4x + 5y = 35  (2)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(1) × 5: 25x + 20y = 185  (3)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(2) × 4: 16x + 20y = 140  (4) (3) - (4): 9x = 45, so x = 5 Substitute x = 5 into (1): 4y = 12, so y = 3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = 5, y = 3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "forming_equations_higher",
-      "prompt": "A rectangle has one side of length 11 cm and the other side of length (x + 4) cm. The area of the rectangle is 264 cm². Form an equation and solve it to find x.",
-      "solution_steps": [
-        "Area of a rectangle = length × width.",
-        "11(x + 4) = 264",
-        "Expand the bracket:",
-        "11x + 44 = 264",
-        "Subtract 44 from both sides:",
-        "11x = 220",
-        "Divide both sides by 11:",
-        "x = 20"
-      ],
-      "final_answer": "20",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Area of a rectangle = length × width.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "11(x + 4) = 264",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Expand the bracket:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "11x + 44 = 264 Subtract 44 from both sides: 11x = 220 Divide both sides by 11: x = 20",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "20 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
       "topic_id": "solving_inequalities_higher",
       "prompt": "Solve the inequality: -2(x + 7) < 2",
       "solution_steps": [
@@ -482,6 +283,141 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "trial_and_improvement",
+      "prompt": "f(x) = x^3 - 4x - 39. Show that f(x) = 0 has a root between x = 3 and x = 4, then use trial and improvement to find this root correct to 1 decimal place.",
+      "solution_steps": [
+        "f(x) = x^3 - 4x - 39",
+        "f(3) = -24.00 (negative)",
+        "f(4) = 9.00 (positive)",
+        "f(3.1) = -21.61 (negative)",
+        "f(3.2) = -19.03 (negative)",
+        "f(3.3) = -16.26 (negative)",
+        "f(3.4) = -13.30 (negative)",
+        "f(3.5) = -10.13 (negative)",
+        "f(3.6) = -6.74 (negative)",
+        "f(3.7) = -3.15 (negative)",
+        "f(3.8) = 0.67 (positive)",
+        "The sign changes between x = 3.7 and x = 3.8, so try the midpoint x = 3.75: f(3.75) = -1.27.",
+        "f(3.75) has the same sign as f(3.7), so the root lies between 3.75 and 3.8 - to 1 decimal place, this rounds up to 3.8."
+      ],
+      "final_answer": "x = 3.8",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "f(x) = x^3 - 4x - 39",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "f(3) = -24.00 (negative)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "f(4) = 9.00 (positive)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "f(3.1) = -21.61 (negative) f(3.2) = -19.03 (negative) f(3.3) = -16.26 (negative) f(3.4) = -13.30 (negative) f(3.5) = -10.13 (negative) f(3.6) = -6.74 (negative) f(3.7) = -3.15 (negative) f(3.8) = 0.67 (positive) The sign changes between x = 3.7 and x = 3.8, so try the midpoint x = 3.75: f(3.75) = -1.27. f(3.75) has the same sign as f(3.7), so the root lies between 3.75 and 3.8 - to 1 decimal place, this rounds up to 3.8.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 3.8 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "solve_quadratic_completing_square",
+      "prompt": "Solve x^2 + 10x + 18 = 0 by completing the square, giving your answers in exact surd form.",
+      "solution_steps": [
+        "Half the coefficient of x: 10 ÷ 2 = 5",
+        "Complete the square: x^2 + 10x + 18 = (x + 5)^2 - 7",
+        "Set (x + 5)^2 - 7 = 0, so (x + 5)^2 = 7",
+        "(x + 5) = ±√7",
+        "x = -5 + √7 or x = -5 - √7"
+      ],
+      "final_answer": "x = -5 + √7 or x = -5 - √7",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Half the coefficient of x: 10 ÷ 2 = 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Complete the square: x^2 + 10x + 18 = (x + 5)^2 - 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Set (x + 5)^2 - 7 = 0, so (x + 5)^2 = 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(x + 5) = ±√7 x = -5 + √7 or x = -5 - √7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = -5 + √7 or x = -5 - √7 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "satisfying_inequalities_higher",
+      "prompt": "Solve the inequality -10 < -2x - 2 < 1, then list the integer values of x that satisfy it.",
+      "solution_steps": [
+        "-10 < -2x - 2 < 1",
+        "Add 2 to all three parts:",
+        "-8 < -2x < 3",
+        "Divide all three parts by -2 - since this is negative, every inequality sign reverses, and the low/high sides swap around:",
+        "-3/2 < x < 4",
+        "The integers satisfying this are: -1, 0, 1, 2, 3"
+      ],
+      "final_answer": "-1, 0, 1, 2, 3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "-10 < -2x - 2 < 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add 2 to all three parts:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-8 < -2x < 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide all three parts by -2 - since this is negative, every inequality sign reverses, and the low/high sides swap around: -3/2 < x < 4 The integers satisfying this are: -1, 0, 1, 2, 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-1, 0, 1, 2, 3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "change_subject_higher",
       "prompt": "Make x the subject of the formula y = 8x + 4x + 14.",
       "solution_steps": [
@@ -516,6 +452,77 @@
         {
           "code": "A1",
           "description": "x = (y - 14)/12 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_quadratic",
+      "prompt": "Solve the simultaneous equations: y = x^2 + 4x + 1 and y = 9x - 3",
+      "solution_steps": [
+        "Substitute y = 9x - 3 into y = x^2 + 4x + 1: 9x - 3 = x^2 + 4x + 1",
+        "Rearrange: x^2 - 5x + 4 = 0",
+        "Factorise: (x - 1)(x - 4) = 0",
+        "x = 1 or x = 4",
+        "When x = 1, y = 6. When x = 4, y = 33."
+      ],
+      "final_answer": "(1, 6) and (4, 33)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Substitute y = 9x - 3 into y = x^2 + 4x + 1: 9x - 3 = x^2 + 4x + 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rearrange: x^2 - 5x + 4 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: (x - 1)(x - 4) = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 1 or x = 4 When x = 1, y = 6. When x = 4, y = 33.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(1, 6) and (4, 33) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "reverse_percentage",
+      "prompt": "After a 30% increase, an item costs £57.20. Find the original price.",
+      "solution_steps": [
+        "Convert 30% to a multiplier: 1.30 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 57.20 ÷ 1.30 = 44"
+      ],
+      "final_answer": "£44",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 30% to a multiplier: 1.30 (original × multiplier = new value)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide the new value by the multiplier: 57.20 ÷ 1.30 = 44",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£44 oe",
           "marks": 1
         }
       ],
@@ -653,252 +660,106 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "reverse_percentage",
-      "prompt": "After a 30% increase, an item costs £57.20. Find the original price.",
+      "topic_id": "area_subtract_compound",
+      "prompt": "A rectangular sheet of metal 23 cm by 16 cm has a rectangular hole 8 cm by 3 cm cut from its centre. Find the remaining area.",
       "solution_steps": [
-        "Convert 30% to a multiplier: 1.30 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 57.20 ÷ 1.30 = 44"
+        "Area of large rectangle = 23 × 16 = 368 cm²",
+        "Area of rectangular hole = 8 × 3 = 24 cm²",
+        "Remaining area = 368 - 24 = 344 cm²"
       ],
-      "final_answer": "£44",
-      "marks": 3,
+      "final_answer": "344 cm²",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 30% to a multiplier: 1.30 (original × multiplier = new value)",
+          "description": "Area of large rectangle = 23 × 16 = 368 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide the new value by the multiplier: 57.20 ÷ 1.30 = 44",
+          "description": "Area of rectangular hole = 8 × 3 = 24 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Remaining area = 368 - 24 = 344 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£44 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "angles_triangle_higher",
-      "prompt": "A triangle has angles 32°, 59°, and (3x + 50)°. Find x.",
-      "solution_steps": [
-        "Angles in a triangle sum to 180°.",
-        "3x + 50 = 89",
-        "Subtract 50 from both sides:",
-        "3x = 39",
-        "Divide both sides by 3:",
-        "x = 13"
-      ],
-      "final_answer": "13",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Angles in a triangle sum to 180°.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "3x + 50 = 89",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 50 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "3x = 39 Divide both sides by 3: x = 13",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "13 oe",
+          "description": "344 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "triangle_angles",
+        "kind": "l_shape",
         "params": {
-          "angle_labels": [
-            "32°",
-            "59°",
-            "(3x + 50)°"
+          "outer_w": 23,
+          "outer_h": 16,
+          "inner_w": 8,
+          "inner_h": 3,
+          "notch": "center",
+          "outer_labels": [
+            "23 cm",
+            "16 cm"
+          ],
+          "inner_labels": [
+            "8 cm",
+            "3 cm"
           ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_enlarge_complete_higher",
-      "prompt": "Enlarge shape ABCDEF by scale factor -1, centre (1, 4). Draw and label the image A'B'C'D'E'F'.",
+      "topic_id": "angles_parallel_lines",
+      "prompt": "A line crosses two parallel lines. The angle 40° and the angle (5x - 60)° are corresponding angles. Find x.",
       "solution_steps": [
-        "The centre of enlargement is (1, 4) and the scale factor is -1.",
-        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (2, -2) from the centre, so A' = (1, 4) + -1 × (2, -2) = (-1, 6).",
-        "Repeat for every vertex: A(3, 2) -> A'(-1, 6), B(7, 2) -> B'(-5, 6), C(7, 4) -> C'(-5, 4), D(5, 4) -> D'(-3, 4), E(5, 7) -> E'(-3, 1), F(3, 7) -> F'(-1, 1)",
-        "A negative scale factor puts the image on the opposite side of the centre from the original shape."
+        "Corresponding angles are equal.",
+        "5x - 60 = 40",
+        "Add 60 to both sides:",
+        "5x = 100",
+        "Divide both sides by 5:",
+        "x = 20"
       ],
-      "final_answer": "A'(-1, 6), B'(-5, 6), C'(-5, 4), D'(-3, 4), E'(-3, 1), F'(-1, 1)",
+      "final_answer": "20",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The centre of enlargement is (1, 4) and the scale factor is -1.",
+          "description": "Corresponding angles are equal.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (2, -2) from the centre, so A' = (1, 4) + -1 × (2, -2) = (-1, 6).",
+          "description": "5x - 60 = 40",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Repeat for every vertex: A(3, 2) -> A'(-1, 6), B(7, 2) -> B'(-5, 6), C(7, 4) -> C'(-5, 4), D(5, 4) -> D'(-3, 4), E(5, 7) -> E'(-3, 1), F(3, 7) -> F'(-1, 1)",
+          "description": "Add 60 to both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A negative scale factor puts the image on the opposite side of the centre from the original shape.",
+          "description": "5x = 100 Divide both sides by 5: x = 20",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(-1, 6), B'(-5, 6), C'(-5, 4), D'(-3, 4), E'(-3, 1), F'(-1, 1) oe",
+          "description": "20 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "grid_transformation",
+        "kind": "parallel_lines",
         "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              3,
-              2
-            ],
-            [
-              7,
-              2
-            ],
-            [
-              7,
-              4
-            ],
-            [
-              5,
-              4
-            ],
-            [
-              5,
-              7
-            ],
-            [
-              3,
-              7
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
-          ],
-          "centre": [
-            1,
-            4
-          ]
+          "known_label": "40°",
+          "unknown_label": "(5x - 60)°",
+          "relation": "corresponding"
         }
       },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              3,
-              2
-            ],
-            [
-              7,
-              2
-            ],
-            [
-              7,
-              4
-            ],
-            [
-              5,
-              4
-            ],
-            [
-              5,
-              7
-            ],
-            [
-              3,
-              7
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
-          ],
-          "centre": [
-            1,
-            4
-          ],
-          "image_vertices": [
-            [
-              -1,
-              6
-            ],
-            [
-              -5,
-              6
-            ],
-            [
-              -5,
-              4
-            ],
-            [
-              -3,
-              4
-            ],
-            [
-              -3,
-              1
-            ],
-            [
-              -1,
-              1
-            ]
-          ],
-          "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'",
-            "E'",
-            "F'"
-          ]
-        }
-      }
+      "solution_diagram": null
     },
     {
       "topic_id": "transform_enlarge_describe",
@@ -986,38 +847,120 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cylinder",
-      "prompt": "A cylinder has radius 12 cm and height 18 cm. Find the exact volume, in terms of π.",
+      "topic_id": "combined_transformations",
+      "prompt": "Shape ABC is reflected in the y-axis to give shape A'B'C'. Shape A'B'C' is then reflected in the x-axis to give shape A''B''C''. Describe fully the single transformation that maps ABC directly onto A''B''C''.",
       "solution_steps": [
-        "Volume = π × r² × h = π × 12² × 18",
-        "= 2592π cm³"
+        "Reflecting in the x-axis then the y-axis (or the other way round - the order doesn't matter here) sends every point (x, y) to (-x, -y).",
+        "That is exactly the same effect as a single 180° rotation about the origin."
       ],
-      "final_answer": "2592π cm³",
+      "final_answer": "Rotation 180° about (0, 0)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Volume = π × r² × h = π × 12² × 18",
+          "description": "Reflecting in the x-axis then the y-axis (or the other way round - the order doesn't matter here) sends every point (x, y) to (-x, -y).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 2592π cm³",
+          "description": "That is exactly the same effect as a single 180° rotation about the origin.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2592π cm³ oe",
+          "description": "Rotation 180° about (0, 0) oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cylinder",
+        "kind": "grid_transformation",
         "params": {
-          "radius_label": "12 cm",
-          "height_label": "18 cm"
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              1,
+              3
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              2,
+              7
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "image_vertices": [
+            [
+              -1,
+              -3
+            ],
+            [
+              -6,
+              -3
+            ],
+            [
+              -2,
+              -7
+            ]
+          ],
+          "image_labels": [
+            "A''",
+            "B''",
+            "C''"
+          ]
         }
       },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "set_notation",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, A = {5, 6, 9}, B = {1, 2, 3, 5, 9, 11}. List the elements of A ∩ B'.",
+      "solution_steps": [
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}",
+        "A = {5, 6, 9}",
+        "B = {1, 2, 3, 5, 9, 11}",
+        "A ∩ B' means elements in A but not in B.",
+        "A ∩ B' = {6}"
+      ],
+      "final_answer": "{6}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {5, 6, 9}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B = {1, 2, 3, 5, 9, 11}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A ∩ B' means elements in A but not in B. A ∩ B' = {6}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "{6} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -1077,40 +1020,26 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_combined_dice",
-      "prompt": "Two fair six-sided dice are rolled. Find the probability that at least one die shows 6.",
+      "topic_id": "product_rule_counting",
+      "prompt": "A shop sells 3 different fonts, 6 different colours and 4 different paper sizes. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
       "solution_steps": [
-        "P(neither die shows 6) = 5/6 × 5/6 = 25/36",
-        "P(at least one 6) = 1 - 25/36 = 11/36"
+        "Total combinations = 3 × 6 × 4 = 72"
       ],
-      "final_answer": "11/36",
-      "marks": 3,
+      "final_answer": "72",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "P(neither die shows 6) = 5/6 × 5/6 = 25/36",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(at least one 6) = 1 - 25/36 = 11/36",
+          "description": "Total combinations = 3 × 6 × 4 = 72",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "11/36 oe",
+          "description": "72 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "dice",
-        "params": {
-          "values": [
-            3,
-            4
-          ]
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     }
   ]

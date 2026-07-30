@@ -31,6 +31,7 @@ export interface PracticeTestSummary {
   tier: Tier
   sittingId: string
   paperNumber: number
+  calculatorAllowed: boolean
   totalMarks: number
   questionCount: number
 }

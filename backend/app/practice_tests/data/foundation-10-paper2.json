@@ -4,100 +4,31 @@
   "tier": "foundation",
   "sitting_id": "foundation-10",
   "paper_number": 2,
+  "calculator_allowed": false,
   "questions": [
     {
-      "topic_id": "decimals_multiply",
-      "prompt": "Work out 12.24 × 18.6.",
+      "topic_id": "decimals_add_subtract",
+      "prompt": "Work out 62.1 + 63.7.",
       "solution_steps": [
-        "Ignore the decimal points and multiply the whole numbers: 1224 × 186 = 227664",
-        "Count the total decimal places in the question: 2 + 1 = 3",
-        "Place the decimal point 3 places from the right: 227.664"
+        "Line up the decimal points, padding with a zero so both numbers have the same number of decimal places.",
+        "62.1 + 63.7 = 125.8"
       ],
-      "final_answer": "227.664",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Ignore the decimal points and multiply the whole numbers: 1224 × 186 = 227664",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Count the total decimal places in the question: 2 + 1 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Place the decimal point 3 places from the right: 227.664",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "227.664 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "standard_form_multiply_divide_foundation",
-      "prompt": "Work out (2 × 10^4) ÷ (5 × 10^3). Give your answer in standard form.",
-      "solution_steps": [
-        "Divide the mantissas: 2 ÷ 5 = 0.4",
-        "Subtract the powers of 10: 4 - 3 = 1",
-        "Renormalize so the mantissa is between 1 and 10: 4 × 10^0"
-      ],
-      "final_answer": "4 × 10^0",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Divide the mantissas: 2 ÷ 5 = 0.4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract the powers of 10: 4 - 3 = 1",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Renormalize so the mantissa is between 1 and 10: 4 × 10^0",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "4 × 10^0 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "negative_ordering",
-      "prompt": "Write these numbers in order, from largest to smallest: 10, -7, 3, -5, 7",
-      "solution_steps": [
-        "Place the numbers on a number line: 10, -7, 3, -5, 7.",
-        "Reading them in order from largest to smallest gives: 10, 7, 3, -5, -7."
-      ],
-      "final_answer": "10, 7, 3, -5, -7",
+      "final_answer": "125.8",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Place the numbers on a number line: 10, -7, 3, -5, 7.",
+          "description": "Line up the decimal points, padding with a zero so both numbers have the same number of decimal places.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Reading them in order from largest to smallest gives: 10, 7, 3, -5, -7.",
+          "description": "62.1 + 63.7 = 125.8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10, 7, 3, -5, -7 oe",
+          "description": "125.8 oe",
           "marks": 1
         }
       ],
@@ -105,22 +36,80 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "negative_add_subtract",
-      "prompt": "Work out 13 - (-1).",
+      "topic_id": "standard_form_from_small",
+      "prompt": "Write 8 × 10^-4 as an ordinary number.",
       "solution_steps": [
-        "13 - (-1) = 14"
+        "Multiply 8 by 10^-4, which means moving the decimal point 4 place(s) left.",
+        "8 × 10^-4 = 0.0008"
       ],
-      "final_answer": "14",
-      "marks": 2,
+      "final_answer": "0.0008",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "13 - (-1) = 14",
+          "description": "Multiply 8 by 10^-4, which means moving the decimal point 4 place(s) left.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "8 × 10^-4 = 0.0008",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "14 oe",
+          "description": "0.0008 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "number_powers_of_ten",
+      "prompt": "Work out 919 × 100.",
+      "solution_steps": [
+        "Multiplying by 100 moves the decimal point 2 places to the right.",
+        "919 × 100 = 91900"
+      ],
+      "final_answer": "91900",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiplying by 100 moves the decimal point 2 places to the right.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "919 × 100 = 91900",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "91900 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "negative_multiply_divide",
+      "prompt": "Work out 16 ÷ (-8).",
+      "solution_steps": [
+        "16 ÷ (-8) = -2"
+      ],
+      "final_answer": "-2",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "16 ÷ (-8) = -2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-2 oe",
           "marks": 1
         }
       ],
@@ -390,35 +379,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_common_factor",
-      "prompt": "Factorise: 32x - 36",
-      "solution_steps": [
-        "Find the highest common factor of 32 and -36: 4",
-        "Factorise: 4(8x - 9)"
-      ],
-      "final_answer": "4(8x - 9)",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find the highest common factor of 32 and -36: 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise: 4(8x - 9)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "4(8x - 9) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
       "topic_id": "expand_single_bracket",
       "prompt": "Expand: -5(x - 8)",
       "solution_steps": [
@@ -447,6 +407,35 @@
         {
           "code": "A1",
           "description": "-5x + 40 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "factorise_common_factor",
+      "prompt": "Factorise: 32x - 36",
+      "solution_steps": [
+        "Find the highest common factor of 32 and -36: 4",
+        "Factorise: 4(8x - 9)"
+      ],
+      "final_answer": "4(8x - 9)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find the highest common factor of 32 and -36: 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: 4(8x - 9)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4(8x - 9) oe",
           "marks": 1
         }
       ],
@@ -509,33 +498,44 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cube",
-      "prompt": "A cube has side length 8 cm. Find its surface area.",
+      "topic_id": "simultaneous_forming_and_solving",
+      "prompt": "5 apples and 2 bananas cost £3.58 in total. 5 apples and 5 bananas cost £5.80 in total. Form and solve a pair of simultaneous equations to find the cost of one apple and one banana.",
       "solution_steps": [
-        "Surface area = 6 × side² = 6 × 8² = 6 × 64 = 384 cm²"
+        "Let x = cost of one apple (pence), y = cost of one banana (pence).",
+        "5x + 2y = 358  (1)",
+        "5x + 5y = 580  (2)",
+        "Solving simultaneously: x = 42, y = 74"
       ],
-      "final_answer": "384 cm²",
-      "marks": 2,
+      "final_answer": "apple = £0.42, banana = £0.74",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Surface area = 6 × side² = 6 × 8² = 6 × 64 = 384 cm²",
+          "description": "Let x = cost of one apple (pence), y = cost of one banana (pence).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x + 2y = 358  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x + 5y = 580  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Solving simultaneously: x = 42, y = 74",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "384 cm² oe",
+          "description": "apple = £0.42, banana = £0.74 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "cuboid",
-        "params": {
-          "width_label": "8 cm",
-          "height_label": "8 cm",
-          "length_label": "8 cm"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -680,152 +680,251 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "nets_3d_shapes",
-      "prompt": "What 2D shapes make up the net of a cone?",
+      "topic_id": "symmetry_lines",
+      "prompt": "The diagram shows a regular pentagon. How many lines of symmetry does it have?",
       "solution_steps": [
-        "Imagine unfolding a cone flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
-        "A cone's net is made up of: 1 circle and 1 sector (the curved surface unrolled flat).",
-        "So the answer is: 1 circle and 1 sector (the curved surface unrolled flat)."
+        "A regular pentagon has 5 lines of symmetry.",
+        "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram."
       ],
-      "final_answer": "1 circle and 1 sector (the curved surface unrolled flat)",
+      "final_answer": "5 lines of symmetry",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A regular pentagon has 5 lines of symmetry.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5 lines of symmetry oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "symmetry_shape",
+        "params": {
+          "vertices": [
+            [
+              2.4492935982947064e-16,
+              4.0
+            ],
+            [
+              -3.804226065180614,
+              1.23606797749979
+            ],
+            [
+              -2.351141009169893,
+              -3.2360679774997894
+            ],
+            [
+              2.3511410091698917,
+              -3.2360679774997902
+            ],
+            [
+              3.8042260651806146,
+              1.2360679774997887
+            ]
+          ],
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "symmetry_shape",
+        "params": {
+          "vertices": [
+            [
+              2.4492935982947064e-16,
+              4.0
+            ],
+            [
+              -3.804226065180614,
+              1.23606797749979
+            ],
+            [
+              -2.351141009169893,
+              -3.2360679774997894
+            ],
+            [
+              2.3511410091698917,
+              -3.2360679774997902
+            ],
+            [
+              3.8042260651806146,
+              1.2360679774997887
+            ]
+          ],
+          "symmetry_lines": [
+            {
+              "p1": [
+                -3.1840816777831187e-16,
+                -5.2
+              ],
+              "p2": [
+                3.1840816777831187e-16,
+                5.2
+              ]
+            },
+            {
+              "p1": [
+                3.05648331192086,
+                -4.206888370749727
+              ],
+              "p2": [
+                -3.05648331192086,
+                4.206888370749727
+              ]
+            },
+            {
+              "p1": [
+                4.945493884734798,
+                -1.606888370749727
+              ],
+              "p2": [
+                -4.945493884734798,
+                1.606888370749727
+              ]
+            },
+            {
+              "p1": [
+                4.945493884734799,
+                1.606888370749726
+              ],
+              "p2": [
+                -4.945493884734799,
+                -1.606888370749726
+              ]
+            },
+            {
+              "p1": [
+                3.056483311920861,
+                4.206888370749726
+              ],
+              "p2": [
+                -3.056483311920861,
+                -4.206888370749726
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "vectors_arithmetic_foundation",
+      "prompt": "\\vec{a} = (8, 7) and \\vec{b} = (-7, -1). Find \\vec{a} + 2\\vec{b}.",
+      "solution_steps": [
+        "\\vec{a} = (8, 7), \\vec{b} = (-7, -1)",
+        "\\vec{a} = (8, 7) and 2\\vec{b} = (-14, -2)",
+        "\\vec{a} + 2\\vec{b} = (-6, 5)"
+      ],
+      "final_answer": "(-6, 5)",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Imagine unfolding a cone flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
+          "description": "\\vec{a} = (8, 7), \\vec{b} = (-7, -1)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A cone's net is made up of: 1 circle and 1 sector (the curved surface unrolled flat).",
+          "description": "\\vec{a} = (8, 7) and 2\\vec{b} = (-14, -2)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "So the answer is: 1 circle and 1 sector (the curved surface unrolled flat).",
+          "description": "\\vec{a} + 2\\vec{b} = (-6, 5)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 circle and 1 sector (the curved surface unrolled flat) oe",
+          "description": "(-6, 5) oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "net",
-        "params": {
-          "shape": "cone"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_shorter_leg",
-      "prompt": "A right-angled triangle has hypotenuse 148 cm and one leg 48 cm. Find the length of the other leg.",
+      "topic_id": "angles_straight_line",
+      "prompt": "The angles 69° and x° lie on a straight line. Find x.",
       "solution_steps": [
-        "b² = c² - a² = 148² - 48² = 21904 - 2304 = 19600",
-        "b = √19600 = 140"
+        "Angles on a straight line sum to 180°.",
+        "x = 180 - (69) = 180 - 69 = 111"
       ],
-      "final_answer": "140 cm",
+      "final_answer": "111",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "b² = c² - a² = 148² - 48² = 21904 - 2304 = 19600",
+          "description": "Angles on a straight line sum to 180°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "b = √19600 = 140",
+          "description": "x = 180 - (69) = 180 - 69 = 111",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "140 cm oe",
+          "description": "111 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "right_triangle",
+        "kind": "angle_line",
         "params": {
-          "leg1_label": "48 cm",
-          "leg2_label": "?",
-          "hyp_label": "148 cm"
+          "angle_values": [
+            69,
+            111
+          ],
+          "labels": [
+            "69°",
+            "x"
+          ],
+          "around_point": false
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "arc_length_foundation",
-      "prompt": "A sector of a circle has radius 15 cm and angle 121°. Find the arc length, correct to 3 significant figures.",
+      "topic_id": "construction_perpendicular_bisector",
+      "prompt": "Line segment JG has length 7 cm. Describe, step by step, how to construct the perpendicular bisector of JG using only a ruler and a pair of compasses.",
       "solution_steps": [
-        "Arc length = (θ ÷ 360) × 2 × π × r = (121 ÷ 360) × 2 × π × 15",
-        "= 31.7 cm (3 s.f., using a calculator value of π)"
+        "Open the compasses to a radius more than half of 7 cm (more than half the length of JG).",
+        "With the compass point on J, draw an arc above and below the line.",
+        "Without changing the compass radius, place the point on G and draw two more arcs, crossing the first two.",
+        "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of JG."
       ],
-      "final_answer": "31.7 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Arc length = (θ ÷ 360) × 2 × π × r = (121 ÷ 360) × 2 × π × 15",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 31.7 cm (3 s.f., using a calculator value of π)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "31.7 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "sector",
-        "params": {
-          "angle": 121,
-          "radius_label": "15 cm",
-          "angle_label": "121°"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "construction_angle_bisector",
-      "prompt": "Angle VYP = 48°. Describe, step by step, how to construct the bisector of angle VYP using only a ruler and a pair of compasses.",
-      "solution_steps": [
-        "Open the compasses to any radius and place the point on Y (the vertex of the angle).",
-        "Draw an arc that crosses both arms of the angle, at a point on YV and a point on YP.",
-        "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
-        "Draw a straight line from Y through the point where the two arcs intersect. This line is the bisector of angle VYP."
-      ],
-      "final_answer": "The straight line from Y through the intersection of the two equal-radius arcs bisects angle VYP into two equal angles.",
+      "final_answer": "A straight line through the two arc intersections, crossing JG at its midpoint at a right angle.",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Open the compasses to any radius and place the point on Y (the vertex of the angle).",
+          "description": "Open the compasses to a radius more than half of 7 cm (more than half the length of JG).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Draw an arc that crosses both arms of the angle, at a point on YV and a point on YP.",
+          "description": "With the compass point on J, draw an arc above and below the line.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
+          "description": "Without changing the compass radius, place the point on G and draw two more arcs, crossing the first two.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Draw a straight line from Y through the point where the two arcs intersect. This line is the bisector of angle VYP.",
+          "description": "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of JG.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "The straight line from Y through the intersection of the two equal-radius arcs bisects angle VYP into two equal angles. oe",
+          "description": "A straight line through the two arc intersections, crossing JG at its midpoint at a right angle. oe",
           "marks": 1
         }
       ],
@@ -955,75 +1054,33 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_equivalent_diagram",
-      "prompt": "Shape A is divided into 3 equal parts, with 1 shaded. Shape B is divided into 9 equal parts. How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
+      "topic_id": "sampling_methods",
+      "prompt": "A school wants to find out what all students think about the new uniform policy, but only surveys students in Year 10. Explain why this sample might not be representative of the whole school.",
       "solution_steps": [
-        "Shape A shows 1/3 shaded; Shape B has 9 equal parts.",
-        "Find the scale factor between the denominators: 9 ÷ 3 = 3",
-        "Multiply the shaded count by the same scale factor: 1 × 3 = 3"
+        "Students in every other year group have no chance of being chosen at all.",
+        "Year 10 students might have different opinions from other year groups (e.g. due to age or how long they've been at the school), so their views alone can't safely represent everyone."
       ],
-      "final_answer": "3",
-      "marks": 4,
+      "final_answer": "Biased - only one year group was asked, so other year groups aren't represented at all.",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Shape A shows 1/3 shaded; Shape B has 9 equal parts.",
+          "description": "Students in every other year group have no chance of being chosen at all.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Find the scale factor between the denominators: 9 ÷ 3 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the shaded count by the same scale factor: 1 × 3 = 3",
+          "description": "Year 10 students might have different opinions from other year groups (e.g. due to age or how long they've been at the school), so their views alone can't safely represent everyone.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 oe",
+          "description": "Biased - only one year group was asked, so other year groups aren't represented at all. oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "bar",
-              "parts": 3,
-              "shaded": 1,
-              "label": "1/3"
-            },
-            {
-              "kind": "bar",
-              "parts": 9,
-              "shaded": 0,
-              "label": "?/9"
-            }
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "bar",
-              "parts": 3,
-              "shaded": 1,
-              "label": "1/3"
-            },
-            {
-              "kind": "bar",
-              "parts": 9,
-              "shaded": 3,
-              "label": "3/9"
-            }
-          ]
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     }
   ]
 }

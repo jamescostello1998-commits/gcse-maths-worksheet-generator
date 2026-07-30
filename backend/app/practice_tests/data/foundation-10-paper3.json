@@ -4,6 +4,7 @@
   "tier": "foundation",
   "sitting_id": "foundation-10",
   "paper_number": 3,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "fractions_divide_foundation",
@@ -462,40 +463,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_forming_and_solving",
-      "prompt": "5 roses and 5 tulips cost £5.50 in total. 1 rose and 3 tulips cost £2.80 in total. Form and solve a pair of simultaneous equations to find the cost of one rose and one tulip.",
+      "topic_id": "simultaneous_common_coefficient",
+      "prompt": "Solve the simultaneous equations: 5x + y = 31 and 2x + y = 13",
       "solution_steps": [
-        "Let x = cost of one rose (pence), y = cost of one tulip (pence).",
-        "5x + 5y = 550  (1)",
-        "1x + 3y = 280  (2)",
-        "Solving simultaneously: x = 25, y = 85"
+        "5x + y = 31  (1)",
+        "2x + y = 13  (2)",
+        "Subtract the equations to eliminate y: 3x = 18, so x = 6",
+        "Substitute x = 6 into (1): 1y = 1, so y = 1"
       ],
-      "final_answer": "rose = £0.25, tulip = £0.85",
+      "final_answer": "x = 6, y = 1",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = cost of one rose (pence), y = cost of one tulip (pence).",
+          "description": "5x + y = 31  (1)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x + 5y = 550  (1)",
+          "description": "2x + y = 13  (2)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "1x + 3y = 280  (2)",
+          "description": "Subtract the equations to eliminate y: 3x = 18, so x = 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Solving simultaneously: x = 25, y = 85",
+          "description": "Substitute x = 6 into (1): 1y = 1, so y = 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "rose = £0.25, tulip = £0.85 oe",
+          "description": "x = 6, y = 1 oe",
           "marks": 1
         }
       ],
@@ -743,105 +744,159 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_missing_side_foundation",
-      "prompt": "In the right-angled triangle shown, find the length of x, correct to 3 significant figures.",
+      "topic_id": "congruent_triangle_proof_foundation",
+      "prompt": "Triangles ABC and ADC share side AC, with AB = AD and BC = DC. State which congruence criterion (SSS, SAS, ASA or RHS) proves that the two triangles are congruent.",
       "solution_steps": [
-        "We know the adjacent and want the opposite, so use tan.",
-        "x = 13 × tan(38°) = 10.2 (to 3 s.f.)"
+        "AB = AD (given)",
+        "BC = DC (given)",
+        "AC is common to both triangles",
+        "These facts match the Side-Side-Side (SSS) congruence criterion."
       ],
-      "final_answer": "10.2 cm",
-      "marks": 3,
+      "final_answer": "SSS",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "We know the adjacent and want the opposite, so use tan.",
+          "description": "AB = AD (given)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 13 × tan(38°) = 10.2 (to 3 s.f.)",
+          "description": "BC = DC (given)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "AC is common to both triangles",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "These facts match the Side-Side-Side (SSS) congruence criterion.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10.2 cm oe",
+          "description": "SSS oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "trig_triangle",
+        "kind": "two_triangle_congruence",
         "params": {
-          "adjacent_label": "13 cm",
-          "opposite_label": "x cm",
-          "hyp_label": null,
-          "angle_label": "38°"
+          "labels_1": [
+            "A",
+            "B",
+            "C"
+          ],
+          "labels_2": [
+            "A",
+            "D",
+            "C"
+          ],
+          "ticks_1": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              0,
+              2,
+              1
+            ]
+          ],
+          "ticks_2": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              0,
+              2,
+              1
+            ]
+          ],
+          "arcs_1": [],
+          "arcs_2": [],
+          "note": "AC is common to both triangles."
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "area_rectangle",
-      "prompt": "A rectangle has length 11 cm and width 12 cm. Find its area.",
+      "topic_id": "area_triangle",
+      "prompt": "A triangle has base 8 cm and height 4 cm. Find its area.",
       "solution_steps": [
-        "Area = length × width = 11 × 12 = 132 cm²"
+        "Area = (1/2) × base × height = (1/2) × 8 × 4 = 16 cm²"
       ],
-      "final_answer": "132 cm²",
+      "final_answer": "16 cm²",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = length × width = 11 × 12 = 132 cm²",
+          "description": "Area = (1/2) × base × height = (1/2) × 8 × 4 = 16 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "132 cm² oe",
+          "description": "16 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "rectangle",
+        "kind": "triangle_area",
         "params": {
-          "width": 11,
-          "height": 12,
-          "width_label": "11 cm",
-          "height_label": "12 cm"
+          "base": 8,
+          "height": 4,
+          "base_label": "8 cm",
+          "height_label": "4 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_triangular_prism",
-      "prompt": "A triangular prism has a right-angled triangular cross-section with legs 16 cm and 30 cm (hypotenuse 34 cm), and length 18 cm. Find its volume.",
+      "topic_id": "volume_surface_area_cylinder_foundation",
+      "prompt": "A cylinder has radius 10 cm and height 12 cm. Find its volume, correct to 3 significant figures.",
       "solution_steps": [
-        "Cross-section area = (1/2) × 16 × 30 = 240 cm²",
-        "Volume = cross-section area × length = 240 × 18 = 4320 cm³"
+        "Volume = π × r² × h = π × 10² × 12",
+        "= 3770 cm³ (3 s.f., using a calculator value of π)"
       ],
-      "final_answer": "4320 cm³",
+      "final_answer": "3770 cm³",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Cross-section area = (1/2) × 16 × 30 = 240 cm²",
+          "description": "Volume = π × r² × h = π × 10² × 12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Volume = cross-section area × length = 240 × 18 = 4320 cm³",
+          "description": "= 3770 cm³ (3 s.f., using a calculator value of π)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4320 cm³ oe",
+          "description": "3770 cm³ oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "triangular_prism",
+        "kind": "cylinder",
         "params": {
-          "base_label": "16 cm",
-          "triangle_height_label": "30 cm",
-          "length_label": "18 cm"
+          "radius_label": "10 cm",
+          "height_label": "12 cm"
         }
       },
       "solution_diagram": null
@@ -888,31 +943,37 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cube",
-      "prompt": "A cube has side length 4 cm. Find its volume.",
+      "topic_id": "volume_surface_area_triangular_prism",
+      "prompt": "A triangular prism has a right-angled triangular cross-section with legs 16 cm and 30 cm (hypotenuse 34 cm), and length 18 cm. Find its volume.",
       "solution_steps": [
-        "Volume = side³ = 4³ = 64 cm³"
+        "Cross-section area = (1/2) × 16 × 30 = 240 cm²",
+        "Volume = cross-section area × length = 240 × 18 = 4320 cm³"
       ],
-      "final_answer": "64 cm³",
-      "marks": 2,
+      "final_answer": "4320 cm³",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Volume = side³ = 4³ = 64 cm³",
+          "description": "Cross-section area = (1/2) × 16 × 30 = 240 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Volume = cross-section area × length = 240 × 18 = 4320 cm³",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "64 cm³ oe",
+          "description": "4320 cm³ oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cuboid",
+        "kind": "triangular_prism",
         "params": {
-          "width_label": "4 cm",
-          "height_label": "4 cm",
-          "length_label": "4 cm"
+          "base_label": "16 cm",
+          "triangle_height_label": "30 cm",
+          "length_label": "18 cm"
         }
       },
       "solution_diagram": null
@@ -1028,49 +1089,6 @@
             "red": 5
           },
           "highlight": "purple"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "bar_chart_interpret",
-      "prompt": "The bar chart shows the favourite colour of a group of students. How many more chose Green than Red? (Give a positive answer either way.)",
-      "solution_steps": [
-        "Green: 4, Red: 20.",
-        "Difference = |4 - 20| = 16."
-      ],
-      "final_answer": "16",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Green: 4, Red: 20.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Difference = |4 - 20| = 16.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "16 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "bar_chart",
-        "params": {
-          "categories": [
-            "Yellow",
-            "Green",
-            "Red"
-          ],
-          "series": [
-            6,
-            4,
-            20
-          ]
         }
       },
       "solution_diagram": null
