@@ -13,11 +13,10 @@ solutions, searchable/browsable across 6 curriculum sections.
 ## Where to pick up next
 
 Step 33's work (Bell Tasks, see "Current state" below and chronology step 33)
-is not yet committed/pushed on branch `aqa-spec-gap-topics` — do so before
-assuming it's saved. Steps 31/32's work on that same branch was already added
-to the open PR (`gh pr view 3` or the repo's PR list); the PR has not been
-merged yet, so check its status before assuming `master` already has any of
-this.
+is committed and pushed to branch `aqa-spec-gap-topics`, but not yet added to
+the open PR (`gh pr view 3` or the repo's PR list) — steps 31/32's work on
+that same branch already is. The PR has not been merged yet, so check its
+status before assuming `master` already has any of this.
 
 **The entire user-supplied Geometry expansion is complete (chronology steps
 23-27), the fraction-vinculum rendering fix landed (step 28), three more
@@ -2444,9 +2443,8 @@ existing topics/shared rendering code). Frontend unaffected (45/45).
     advance). Backend suite grew from 808 to 828 tests; frontend grew from 52
     to 61.
 
-Everything above except step 33 is committed and pushed (see `git log`) -
-step 33 (Bell Tasks, including this follow-up round of fixes) is not yet
-committed as of the end of that session.
+Everything above, including step 33 (Bell Tasks, and this follow-up round of
+fixes), is committed and pushed (see `git log`).
 
 ## Environment gotchas (Windows, this machine specifically)
 
