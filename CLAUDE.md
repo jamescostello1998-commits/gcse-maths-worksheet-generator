@@ -16,21 +16,22 @@ solutions, searchable/browsable across 6 curriculum sections.
 every topic (see chronology step 34) and were sent two generated PDFs
 (`backend/all_topics_review_questions.pdf` / `all_topics_review_answers.pdf`, one
 question - and, in the answers file, its full worked solution - from every one of the
-296 topics, one per page) via `backend/scripts/generate_review_pdfs.py` (**not yet
-committed** — ask the user whether to keep it in the repo before assuming it should be,
-though it's harmless to keep). They are going to review both PDFs and come back with
-specific feedback on what to change per topic — **the next session's actual work is
+296 topics, one per page) via `backend/scripts/generate_review_pdfs.py` (now committed
+and pushed - the two PDFs themselves are deliverables, not source, so they're
+deliberately left untracked/uncommitted, matching this project's convention of not
+committing generated/scratch output). They are going to review both PDFs and come back
+with specific feedback on what to change per topic — **the next session's actual work is
 whatever concrete changes they list**, most likely styling/wording/layout tweaks spread
 across many topic files and possibly `app/pdf/styles.py`/`renderer.py`/`diagrams.py` for
 anything systemic. Re-run the script (`.venv\Scripts\python.exe -m scripts.generate_review_pdfs`
 from `backend/`) to regenerate both PDFs after making changes, since it uses a fixed seed
 (42) so the same questions reappear for direct before/after comparison.
 
-Step 33's work (Bell Tasks, see "Current state" below and chronology step 33) and step
-34's PR-description update are both committed, pushed, and already part of the open PR
-(`gh pr view 3` or the repo's PR list — pushing to this branch updates it automatically,
-no separate action needed). The PR has not been merged yet, so check its status before
-assuming `master` already has any of this.
+Steps 33 and 34 (Bell Tasks, see "Current state" below, and this review-PDF tooling) are
+both committed, pushed, and already part of the open PR (`gh pr view 3` or the repo's PR
+list — pushing to this branch updates it automatically, no separate action needed). The
+PR has not been merged yet, so check its status before assuming `master` already has any
+of this.
 
 **The entire user-supplied Geometry expansion is complete (chronology steps
 23-27), the fraction-vinculum rendering fix landed (step 28), three more
@@ -2580,8 +2581,8 @@ questions reappear across reruns for a clean before/after comparison). The scrip
 `app/pdf/renderer.py`'s own `_question_block`/`_solution_block` and `app/pdf/styles.py`'s
 `build_styles()` directly rather than reimplementing them, so it's always a true preview
 of the app's actual current styling - no separate script logic to keep in sync if
-`renderer.py`/`styles.py` change. **Not yet committed** as of chronology step 34 - confirm
-with the user whether to keep it in the repo (see "Where to pick up next").
+`renderer.py`/`styles.py` change. The script itself is committed; the two generated PDFs
+are deliberately left untracked (deliverables, not source).
 
 ## Testing
 
