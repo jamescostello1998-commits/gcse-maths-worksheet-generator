@@ -16,6 +16,7 @@ from reportlab.lib import colors
 from reportlab.pdfbase.pdfmetrics import stringWidth
 
 from app.core.models import DiagramSpec
+from app.pdf.mathtext import _VAR_FONT_ITALIC
 from app.pdf.styles import ACCENT, CHART_COLORS, GRID, HIGHLIGHT, INK, MUTED, PAPER
 
 DIAGRAM_WIDTH = 200
@@ -23,7 +24,12 @@ DIAGRAM_HEIGHT = 130
 
 _LABEL_SIZE = 9
 _LABEL_FONT = "Helvetica"
-_LABEL_FONT_ITALIC = "Helvetica-Oblique"
+# Same registered curved-italic TTF used by app/pdf/mathtext.py's prose text
+# (imported directly so both call sites always agree, and so the font is
+# guaranteed registered with ReportLab before any diagram label uses it -
+# see mathtext.py's module docstring for why <i>/Helvetica-Oblique was
+# replaced with an explicit registered font).
+_LABEL_FONT_ITALIC = _VAR_FONT_ITALIC
 _LABEL_FONT_BOLD = "Helvetica-Bold"
 
 

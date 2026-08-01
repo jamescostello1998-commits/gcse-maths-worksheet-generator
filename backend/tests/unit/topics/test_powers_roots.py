@@ -1,4 +1,5 @@
 import random
+import re
 from fractions import Fraction
 
 from app.core.models import Tier
@@ -70,10 +71,17 @@ def test_topic_definitions_have_expected_metadata():
 
 
 def test_rationalise_denominator_never_leaves_a_root_on_the_bottom():
+    # A genuine fraction answer is now built via the \frac{NUM}{DEN} marker
+    # (see mathtext.py), not plain "NUM/DEN" text - extract DEN from
+    # whichever form is present.
+    frac_marker_re = re.compile(r"\\frac\{[^{}]*\}\{([^{}]*)\}")
     rng = random.Random(703)
     for _ in range(TRIALS):
         q = powers_roots.generate_rationalise_denominator(Tier.HIGHER, rng)
-        if "/" in q.final_answer:
+        m = frac_marker_re.search(q.final_answer)
+        if m is not None:
+            assert "√" not in m.group(1)
+        elif "/" in q.final_answer:
             denom = q.final_answer.split("/")[-1]
             assert "√" not in denom
 

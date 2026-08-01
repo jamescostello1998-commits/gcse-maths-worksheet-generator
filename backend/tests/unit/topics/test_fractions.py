@@ -135,7 +135,9 @@ def test_equivalent_diagram_fill_missing_shape_blanks_shape_b_until_solution():
             a, b, d, kind = q.dedup_key.split(":")[1:5]
             shapes = q.diagram.params["shapes"]
             assert len(shapes) == 2
-            assert shapes[0] == {"kind": kind, "parts": int(b), "shaded": int(a), "label": f"{a}/{b}"}
+            # No fraction caption on either shape - the student reads the
+            # fraction from the shading itself, not a label restating it.
+            assert shapes[0] == {"kind": kind, "parts": int(b), "shaded": int(a)}
             assert shapes[1]["parts"] == int(d)
             assert shapes[1]["shaded"] == 0
             assert q.solution_diagram is not None
@@ -143,6 +145,20 @@ def test_equivalent_diagram_fill_missing_shape_blanks_shape_b_until_solution():
             assert sol_shapes[1]["shaded"] == int(q.final_answer)
             assert sol_shapes[1]["parts"] == int(d)
     assert found_fill_missing
+
+
+def test_equivalent_diagram_only_shape_has_a_terse_prompt_with_no_explanatory_prose():
+    rng = random.Random(303)
+    found_diagram_only = False
+    for _ in range(TRIALS):
+        q = fractions.generate_fractions_equivalent_diagram(Tier.FOUNDATION, rng)
+        if q.dedup_key.startswith("diagram_fill:") and q.dedup_key.split(":")[5] == "diagram_only":
+            found_diagram_only = True
+            assert "divided into" not in q.prompt
+            assert "equal parts" not in q.prompt
+            shapes = q.diagram.params["shapes"]
+            assert shapes[0] == {"kind": shapes[0]["kind"], "parts": shapes[0]["parts"], "shaded": shapes[0]["shaded"]}
+    assert found_diagram_only
 
 
 def test_equivalent_diagram_identify_shape_shows_reference_plus_three_candidates():
@@ -154,8 +170,11 @@ def test_equivalent_diagram_identify_shape_shows_reference_plus_three_candidates
             found_identify = True
             shapes = q.diagram.params["shapes"]
             assert len(shapes) == 4
-            assert shapes[0]["label"] and "/" in shapes[0]["label"] and ")" not in shapes[0]["label"]
+            # The reference shape has no caption at all; each lettered
+            # candidate shows only its letter, not the fraction it represents
+            # - the student must read the fraction from the shading itself.
+            assert "label" not in shapes[0] or not shapes[0]["label"]
             for letter, shape in zip("ABC", shapes[1:]):
-                assert shape["label"].startswith(f"{letter})")
+                assert shape["label"] == f"{letter})"
             assert q.solution_diagram is None
     assert found_identify

@@ -12,20 +12,21 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-**Waiting on the user right now**: they asked for a full aesthetic-review pass across
-every topic (see chronology step 34) and were sent two generated PDFs
-(`backend/all_topics_review_questions.pdf` / `all_topics_review_answers.pdf`, one
-question - and, in the answers file, its full worked solution - from every one of the
-296 topics, one per page) via `backend/scripts/generate_review_pdfs.py` (now committed
-and pushed - the two PDFs themselves are deliverables, not source, so they're
-deliberately left untracked/uncommitted, matching this project's convention of not
-committing generated/scratch output). They are going to review both PDFs and come back
-with specific feedback on what to change per topic — **the next session's actual work is
-whatever concrete changes they list**, most likely styling/wording/layout tweaks spread
-across many topic files and possibly `app/pdf/styles.py`/`renderer.py`/`diagrams.py` for
-anything systemic. Re-run the script (`.venv\Scripts\python.exe -m scripts.generate_review_pdfs`
-from `backend/`) to regenerate both PDFs after making changes, since it uses a fixed seed
-(42) so the same questions reappear for direct before/after comparison.
+**Waiting on the user right now**: the aesthetic-review pass across every topic (see
+chronology step 34) produced a first batch of concrete feedback, all addressed in step
+35 (see below) and sent back as freshly regenerated review PDFs
+(`backend/all_topics_review_questions.pdf` / `all_topics_review_answers.pdf` — same
+fixed-seed script, `backend/scripts/generate_review_pdfs.py`, so the same questions
+reappear for direct before/after comparison; the two PDFs themselves are deliverables,
+not source, deliberately left untracked/uncommitted). The user is continuing to review
+topic-by-topic and will come back with further batches of feedback — **the next
+session's actual work is whatever concrete changes they list next**, following the same
+pattern as step 35: check whether a request is really an engine-level fix (touch
+`app/pdf/mathtext.py`/`diagrams.py`/`fraction_images.py`/`radical_images.py`/
+`recurring_decimal_images.py` once, benefits every topic) before treating it as a
+one-topic content tweak. Re-run the script
+(`.venv\Scripts\python.exe -m scripts.generate_review_pdfs` from `backend/`) to
+regenerate both PDFs after making changes.
 
 Steps 33 and 34 (Bell Tasks, see "Current state" below, and this review-PDF tooling) are
 both committed, pushed, and already part of the open PR (`gh pr view 3` or the repo's PR
@@ -45,18 +46,20 @@ spec end to end, closed all 10 gaps that audit found, and retrofitted the
 real OCR non-calculator paper structure onto Practice Tests, and step 33
 added a brand-new "Bell Tasks" homepage feature (see "Current state" below)
 generating a PowerPoint starter-activity deck from 6 teacher-chosen topics.**
-296 topics total (unchanged this step - Bell Tasks is a new *output format*
-over the existing topic pool, not new topics), backend suite 828/828,
-frontend 61/61, no known bugs.
+296 topics total (unchanged since step 33 - step 35's Number-topic review-feedback
+pass was rendering/wording fixes, no new or retired topics), backend suite
+862/862, frontend 61/61, no known bugs.
 
-There is no committed next step for this project right now (once step 33 is
-committed/pushed) — check "Ideas for a future session" (bottom of this file)
+There is no committed next step for this project right now — see "Where to pick
+up next" above (waiting on the next batch of the user's ongoing topic-by-topic
+review feedback) — or check "Ideas for a future session" (bottom of this file)
 for candidate follow-ups (the remaining medium-confidence OCR-spec gaps from
 step 32's audit, the remaining medium/low-confidence AQA-spec gaps from step
 31's audit, stem-and-leaf diagrams, standard deviation, a handful of
 lower-confidence curriculum-audit candidates, saved worksheet history,
-deployment, a KS3 Bell Tasks tier, etc.), or ask the user directly what
-they'd like to work on next.
+deployment, a KS3 Bell Tasks tier, the full language-variety rollout beyond the
+4 files step 35 piloted it on, etc.), or ask the user directly what they'd like
+to work on next.
 
 ## Current state
 
@@ -2496,9 +2499,152 @@ fixes), is committed and pushed (see `git log`).
     rendered pages at both ends and the middle of each document, including one diagram-
     bearing topic, all correct. No app code was touched this step - this was purely a new
     internal tool built from 100% existing, already-verified rendering code, so no topic
-    count or test count change. The script is **not yet committed** - the user hadn't said
-    whether to keep it by the end of this session, so its status is left open (see "Where to
-    pick up next").
+    count or test count change. The script was committed and pushed (see the intro's PR
+    note above).
+
+35. New session, a large batch of concrete review feedback on Number-section topics from
+    the aesthetic-review pass (step 34's PDFs), plus several items explicitly marked
+    "change throughout" - meaning fix the underlying typesetting capability once,
+    centrally, rather than per-topic. Asked two clarifying questions up front via
+    `AskUserQuestion` (both genuinely ambiguous, not guessable): "curved x" meant
+    switching the italic font used for variables app-wide from Helvetica-Oblique
+    (straight strokes, easily confused with ×) to a genuinely curved italic font; the
+    recurring-decimal notation should use dot(s) over the repeating digit(s) (confirmed
+    UK GCSE convention), not a bar over the block. Entered plan mode given the scope
+    (research via direct file reads plus one Plan agent, since the design was already
+    well understood from the codebase's own documented conventions) - the plan phased
+    the work as: spike the 4 riskiest new rendering pieces first, land them as shared
+    `app/pdf/mathtext.py` engine capabilities, then apply the specific Number-topic
+    content fixes on top, then pilot a language-variety helper.
+
+    **Phase 0 spikes** (all done and visually confirmed correct before any real topic
+    code was touched, matching this project's "verify the riskiest piece first"
+    precedent): (1) TTF font registration in ReportLab - genuinely new territory for
+    this codebase (`fraction_images.py`'s existing TTF usage is PIL-only, a separate
+    mechanism) - registered Times New Roman Italic/Bold Italic
+    (`C:\Windows\Fonts\timesi.ttf`/`timesbi.ttf`) via `pdfmetrics.registerFont(TTFont(...))`,
+    confirmed via a real rendered-PDF spike that an explicit `<font name="...">` tag
+    (not `<i>`, which only resolves to the Standard-14 family's own oblique face) works
+    standalone, nested inside `<super>`, in bold contexts, and at small (9pt) sizes -
+    and that `String(fontName=...)` in `diagrams.py`'s vector-shape labels accepts the
+    same registered name directly. (2) A full-length radical image (hook + bar spanning
+    the radicand) - hand-drawn via PIL polygon/line primitives sized to the radicand's
+    measured width, mirroring `fraction_images.py`'s architecture. (3) A fraction image
+    (via `get_fraction_image` at a reduced size) nested inside `<super>` - confirmed it
+    rises and aligns correctly even at the smallest font size fractions appear anywhere
+    in the app (the practice-test mark scheme's 9pt table), reversing an earlier
+    deliberate "not worth the complexity" decision documented in `mathtext.py`. (4) A
+    recurring-decimal dot-mark image (single dot over a lone repeating digit; dots over
+    both the first and last digit of a longer block) - rendered as one flat PIL image
+    per occurrence (not composited via Paragraph markup) since placing the dot(s)
+    accurately needs to measure each digit's own position.
+
+    **Engine changes**, all landed centrally in `app/pdf/mathtext.py` (plus two new
+    sibling modules, `app/pdf/radical_images.py` and `app/pdf/recurring_decimal_images.py`,
+    mirroring `fraction_images.py`'s caching/tempdir architecture) - each fixes every
+    topic using the same ASCII convention, not just the topic that surfaced the request:
+    (a) the curved-italic-x font swap, applied identically in `diagrams.py` (which now
+    imports the same registered font name directly from `mathtext.py` rather than
+    maintaining its own independent constant, so prose and diagram labels can never
+    drift apart); (b) `_MATH_RE` grew alternatives for a bare variable exponent (`8^x`)
+    and a generic compound-parenthesised exponent (`9^(x+2)`, `5^(3x)`) - both need
+    `_VARIABLE_RE` to leave an `x`/`n` immediately after `^` un-italicised (added `^` to
+    its negative-lookbehind class) so `_MATH_RE`'s own alternative can claim it and
+    superscript it correctly; (c) a `√(?P<radn>\d+)` alternative renders a full-length
+    radical for any bare-digit radicand, with a `(?!/\d)` lookahead deliberately
+    preserving the existing flat-text exact-trig-value convention (`√2/2` stays
+    untouched, per the module's own documented "Surd-over-integer gotcha"); (d) the
+    fractional-exponent alternative now renders a real reduced-size vinculum image
+    raised in `<super>` instead of flat `<super>(1/4)</super>` text; (e) two new
+    explicit ASCII sentinel markers, `\frac{NUM}{DEN}` and `\recur{PREFIX}{BLOCK}` -
+    the same precedent as the existing `\vec{a}`/`\vec{b}` marker (a blanket regex can't
+    safely auto-detect an unknown-value placeholder, an algebraic/surd numerator, or
+    which digits are a decimal's recurring block, so the generator marks it explicitly)
+    - protected from the earlier italics/vector passes via a new placeholder-extraction
+    step in `to_markup` (pulls marker spans out to opaque Private Use Area characters
+    before `_VARIABLE_RE`/`_VECTOR_RE` run, splices the real rendered `<img>` back in
+    after `_MATH_RE`), closing off the same bug class already documented for the
+    fraction-image temp-path corruption, this time for marker content instead of a
+    random tempfile suffix; (f) a defensive end-anchored regex strips a trailing "."
+    immediately after a decimal number (e.g. "...3.5." → "...3.5") - lives in the one
+    function shared by all three PDF renderers, so it covers every topic's prompt with
+    no per-topic-file changes needed at all.
+
+    **Real bug found via this session's own visual verification, not by any unit test**
+    (same story as most gotchas in this file): rendering `powers_higher`'s answer
+    exposed that `"1/{base}^{exponent}"`-style text (denominator immediately followed by
+    a bare `^exponent`, with nothing grouping them) had *always* rendered wrong - the
+    plain-fraction regex claimed just the "1/{base}" part, leaving the exponent to
+    superscript separately, reading as "(1/base)^exponent" instead of the intended
+    "1/(base^exponent)". This was latent since long before this session (the old flat
+    `<super>`/`<sub>` fraction markup had the exact same regex-matching behaviour), only
+    now made visually obvious by the new, much more prominent vinculum image. Found and
+    fixed **10 occurrences of the same pattern across `powers_roots.py`** (not just the
+    one topic that surfaced it) by wrapping the denominator in parentheses,
+    `"1/({base}^{exponent})"`. Also fixed, in the same file, a smaller pre-existing
+    cosmetic issue surfaced by the new vinculum's higher visual prominence: the
+    conjugate-rationalisation branch always showed an explicit coefficient of 1 in its
+    surd term (e.g. "7 + 1√7" instead of "7 + √7"), unlike the simple-rationalisation
+    branch which already special-cased this.
+
+    **Number-topic content fixes**, all built on top of the engine changes:
+    `fractions_ordering`/`decimals_ordering` reworded to "ascending order"/"descending
+    order" (`decimals_ordering` gained a genuine descending variant - it was previously
+    ascending-only); `fractions.py`'s `generate_multiply_fractions`/
+    `generate_divide_fractions`/`generate_divide_fractions_foundation` (+ modelled
+    twins) fixed via reroll-on-collision so numerator can never equal denominator (a
+    disguised-integer risk, e.g. "5/5") - deliberately NOT switched to the file's other
+    dependent-draw pattern, which would have also silently eliminated improper
+    fractions these Foundation topics are meant to produce; an Explore-agent audit of
+    every other topic file confirmed no further instances of this bug class exist
+    elsewhere in the app. `number_theory.py`'s `factors` gained a new low-probability
+    third branch ("How many factors does N have?", via weighted `rng.choices`, verified
+    independently via the prime-factorisation divisor-count formula) plus a matching
+    modelled-example path (previously unconditional, only ever demonstrating
+    "list_factors" style). `fractions_equivalent` now randomly asks for either the
+    missing numerator or denominator (previously always numerator) and uses the new
+    `\frac{?}{d}` marker for the unknown placeholder instead of plain literal text.
+    `fractions_equivalent_diagram` had its fraction-caption labels stripped from every
+    diagram shape in both existing branches (the student now reads the fraction from
+    the shading itself), plus a new third "diagram_only" branch with a short prompt and
+    none of the "Shape A is divided into N equal parts..." explanatory prose, since the
+    now-caption-free diagram communicates that visually. `rationalise_denominator`'s
+    both branches (simple and conjugate) now build their answers via the `\frac{}{}`
+    marker instead of raw string concatenation. All 3 recurring-decimal topics
+    (`recurring_decimal_single_digit`/`_two_digit`, `decimals_recurring_to_fraction`)
+    switched from parenthesised `"0.(digits)"` text to the `\recur{}{}` marker -
+    surfaced a second real bug via a rendered-PDF spike (not caught by the unit tests,
+    which only check the underlying regex/image logic): `valign="bottom"` (the
+    fraction/radical images' own proven-correct setting) visibly sank the recurring-
+    decimal image below the true text baseline, because unlike those two image kinds
+    (whose ink touches both the top AND bottom of the image), this image only has
+    padding ABOVE the digits (reserved for the dot mark) - `"bottom"` aligns to the
+    line's descender space instead of the true baseline in that specific case. Fixed by
+    using `valign="baseline"` for this one marker only, confirmed via the same
+    side-by-side valign-comparison spike technique `fraction_images.py`'s own docstring
+    already documents using originally.
+
+    **Language-variety pilot**: new `app/topics/phrasing.py` (small categorised
+    verb-pool helpers - `evaluate_verb`/`amount_verb`/`simplify_verb`/`convert_phrasing`,
+    each a thin `rng.choice` over a pool sized to fit one sentence shape, since not
+    every synonym fits every grammatical pattern) applied throughout `fractions.py`,
+    `decimals.py`, and `powers_roots.py` (every hardcoded "Work out"/"Simplify"/"Find X
+    of Y"/"Write X as Y" prompt in those 3 files now varies per-question). Full rollout
+    across the other ~250 topics is deliberately out of scope for this session -
+    flagged as a follow-up, matching this project's own pilot-then-rollout precedent
+    (e.g. Modelled Examples, step 10→11).
+
+    No topic count change (296 - this was entirely rendering/wording fixes, no new or
+    retired topics). Central verification: full backend suite, the review-PDF script
+    re-run to regenerate both all-topics PDFs (confirming the "change throughout" items
+    landed correctly on topics never directly touched this session, e.g. a Pythagoras
+    surd-hypotenuse answer and a plain linear-equations prompt both spot-checked and
+    confirmed correct), and a live browser click-through (worksheet + modelled example
+    downloads both 200 OK, no console errors) for `fractions_equivalent_diagram`'s new
+    branch. Backend suite grew from 828 to 862 tests (new `test_radical_images.py`,
+    `test_recurring_decimal_images.py`, `test_phrasing.py`, plus extended
+    `test_mathtext.py`/`test_fractions.py`/`test_powers_roots.py`); frontend unaffected
+    (61/61 - no frontend files were touched this session).
 
 ## Environment gotchas (Windows, this machine specifically)
 

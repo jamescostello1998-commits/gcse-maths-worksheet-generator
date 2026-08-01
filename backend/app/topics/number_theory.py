@@ -201,7 +201,38 @@ def generate_modelled_example_multiples(tier: Tier, rng: random.Random) -> Model
 
 
 def generate_factors(tier: Tier, rng: random.Random) -> Question:
-    shape = rng.choice(["list_factors", "is_factor"])
+    # count_factors is deliberately low-probability - a "how many" question
+    # is a smaller variation on list_factors rather than a distinct skill.
+    shape = rng.choices(["list_factors", "is_factor", "count_factors"], weights=[45, 45, 10])[0]
+
+    if shape == "count_factors":
+        n = rng.randint(12, 100)
+        factors_brute = [i for i in range(1, n + 1) if n % i == 0]
+        factor_count = len(factors_brute)
+
+        # Independent check: derive the count from the prime factorisation's
+        # exponents (the divisor-count formula, product of (exponent + 1)) -
+        # a different method than the brute-force 1..n scan above.
+        exponents = Counter(_prime_factorise(n))
+        formula_count = 1
+        for exp in exponents.values():
+            formula_count *= exp + 1
+        if formula_count != factor_count:
+            raise ValueError("factors verification failed: factor count mismatch")
+
+        steps = [
+            f"List every factor of {n} by checking each whole number from 1 to {n}: "
+            f"{', '.join(str(f) for f in factors_brute)}.",
+            f"Count them: {factor_count} factors.",
+        ]
+        return Question(
+            topic_id="factors",
+            tier=Tier.FOUNDATION,
+            prompt=f"How many factors does {n} have?",
+            solution_steps=tuple(steps),
+            final_answer=str(factor_count),
+            dedup_key=f"factors_count:{n}",
+        )
 
     if shape == "list_factors":
         n = rng.randint(12, 60)
@@ -258,6 +289,59 @@ def generate_factors(tier: Tier, rng: random.Random) -> Question:
 
 
 def generate_modelled_example_factors(tier: Tier, rng: random.Random) -> ModelledExample:
+    shape = rng.choices(["list_factors", "count_factors"], weights=[70, 30])[0]
+
+    if shape == "count_factors":
+        # Retry until n has at least two factor pairs (i.e. isn't prime) so
+        # the worked example always has more than one line to show.
+        for _ in range(50):
+            n = rng.randint(12, 100)
+            pairs_in_order = [(i, n // i) for i in range(1, int(n**0.5) + 1) if n % i == 0]
+            if len(pairs_in_order) >= 2:
+                break
+        else:
+            raise ValueError("modelled example factors could not find a suitable number")
+
+        factors_brute = [i for i in range(1, n + 1) if n % i == 0]
+        pair_factors: set[int] = set()
+        for i, j in pairs_in_order:
+            pair_factors.add(i)
+            pair_factors.add(j)
+        if pair_factors != set(factors_brute):
+            raise ValueError("modelled example factors verification failed")
+        factor_count = len(factors_brute)
+
+        exponents = Counter(_prime_factorise(n))
+        formula_count = 1
+        for exp in exponents.values():
+            formula_count *= exp + 1
+        if formula_count != factor_count:
+            raise ValueError("modelled example factors verification failed: factor count mismatch")
+
+        pair_lines = ", ".join(f"{i} × {j} = {n}" for i, j in pairs_in_order)
+        bound = math.isqrt(n)
+        teaching_steps = [
+            "Rather than listing every factor one at a time, it's faster to work in pairs: work upwards "
+            f"from 1 and test whether each whole number divides {n} exactly. Factors always come in "
+            f"pairs - if i divides {n}, then {n} ÷ i divides {n} too, so each successful test finds two "
+            "factors at once.",
+            f"Checking: {pair_lines}.",
+            f"You only need to check up to √{n} ≈ {bound} - beyond that point every new factor would just "
+            "repeat a pair already found in reverse order.",
+            f"Collecting every distinct value found from the pairs gives the full list "
+            f"({', '.join(str(f) for f in factors_brute)}), and counting them gives the total: "
+            f"{factor_count} factors.",
+        ]
+        worked_calculation = [f"{i} × {j} = {n}" for i, j in pairs_in_order] + [f"{factor_count} factors"]
+        return ModelledExample(
+            topic_id="factors",
+            tier=Tier.FOUNDATION,
+            prompt=f"How many factors does {n} have?",
+            worked_calculation=tuple(worked_calculation),
+            teaching_steps=tuple(teaching_steps),
+            final_answer=str(factor_count),
+        )
+
     # Retry until n has at least two factor pairs (i.e. isn't prime) so the
     # worked example always has more than one line to show.
     for _ in range(50):
