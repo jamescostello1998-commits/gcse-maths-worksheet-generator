@@ -12,11 +12,25 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-Step 33's work (Bell Tasks, see "Current state" below and chronology step 33)
-is committed and pushed to branch `aqa-spec-gap-topics`, but not yet added to
-the open PR (`gh pr view 3` or the repo's PR list) — steps 31/32's work on
-that same branch already is. The PR has not been merged yet, so check its
-status before assuming `master` already has any of this.
+**Waiting on the user right now**: they asked for a full aesthetic-review pass across
+every topic (see chronology step 34) and were sent two generated PDFs
+(`backend/all_topics_review_questions.pdf` / `all_topics_review_answers.pdf`, one
+question - and, in the answers file, its full worked solution - from every one of the
+296 topics, one per page) via `backend/scripts/generate_review_pdfs.py` (**not yet
+committed** — ask the user whether to keep it in the repo before assuming it should be,
+though it's harmless to keep). They are going to review both PDFs and come back with
+specific feedback on what to change per topic — **the next session's actual work is
+whatever concrete changes they list**, most likely styling/wording/layout tweaks spread
+across many topic files and possibly `app/pdf/styles.py`/`renderer.py`/`diagrams.py` for
+anything systemic. Re-run the script (`.venv\Scripts\python.exe -m scripts.generate_review_pdfs`
+from `backend/`) to regenerate both PDFs after making changes, since it uses a fixed seed
+(42) so the same questions reappear for direct before/after comparison.
+
+Step 33's work (Bell Tasks, see "Current state" below and chronology step 33) and step
+34's PR-description update are both committed, pushed, and already part of the open PR
+(`gh pr view 3` or the repo's PR list — pushing to this branch updates it automatically,
+no separate action needed). The PR has not been merged yet, so check its status before
+assuming `master` already has any of this.
 
 **The entire user-supplied Geometry expansion is complete (chronology steps
 23-27), the fraction-vinculum rendering fix landed (step 28), three more
@@ -2446,6 +2460,45 @@ existing topics/shared rendering code). Frontend unaffected (45/45).
 Everything above, including step 33 (Bell Tasks, and this follow-up round of
 fixes), is committed and pushed (see `git log`).
 
+34. New session. First, two small housekeeping requests: confirmed the two step-33
+    follow-up commits were already picked up by the open PR (`gh pr view 3`) automatically
+    (a PR tracks its head branch directly - `aqa-spec-gap-topics` - so nothing extra was
+    needed), then updated the PR's own description to mention Bell Tasks (it previously
+    only described steps 31's AQA-gap topics, the PR's original scope) and refreshed its
+    test-plan counts to the current 828/61.
+
+    Second, and the larger piece: the user is starting a broad aesthetic-review pass across
+    every topic and asked for a PDF with one question from every topic, plus a separate
+    answers PDF, so feedback could be given in stages. Asked 3 clarifying questions up front
+    (layout - one topic per page vs continuous flow; topic labelling - full Section/Group/
+    Tier breadcrumb vs bare name; answer-PDF depth - full worked solution vs answer-only),
+    all resolved to the recommended option. Built `backend/scripts/generate_review_pdfs.py`
+    - a one-off dev script, not part of the app itself - that reuses the real renderer's own
+    block-building helpers directly (`_question_block`/`_solution_block` from
+    `app/pdf/renderer.py`, `build_styles()` from `app/pdf/styles.py`) rather than
+    reimplementing them, so the output is a true preview of the app's actual current
+    styling. Walks `sections_tree()` in the app's own declared order, calling
+    `build_worksheet(topic.id, topic.fixed_tier, count=1, rng=shared_rng)` once per topic
+    (one shared, fixed-seed `random.Random(42)` across all 296 topics, so re-running the
+    script after a fix reproduces the *same* questions for direct before/after comparison,
+    the same "share one rng" precedent used elsewhere in this codebase) - each topic gets
+    its own page headed `Section › Group › Topic Name (Tier)` plus a `Topic N of 296 • id:
+    topic_id` line (the id makes it trivial to jump straight to the right generator file
+    from a piece of feedback). Generated both PDFs and sent them directly to the user (not
+    just written to disk) via the file-send tool. Verified before sending: page counts
+    (`all_topics_review_questions.pdf` is exactly 296 pages, one per topic, confirming no
+    topic was skipped or duplicated; `all_topics_review_answers.pdf` is 299 - 3 topics'
+    worked solutions genuinely spill onto a second page - `trig_graph`'s table-of-values,
+    `plot_distance_time`'s journey narrative, `loci_regions`'s two-constraint description -
+    confirmed by reading those specific pages' text directly, not just assumed, since a
+    stray page-count mismatch could just as easily have been a real bug) and spot-checked
+    rendered pages at both ends and the middle of each document, including one diagram-
+    bearing topic, all correct. No app code was touched this step - this was purely a new
+    internal tool built from 100% existing, already-verified rendering code, so no topic
+    count or test count change. The script is **not yet committed** - the user hadn't said
+    whether to keep it by the end of this session, so its status is left open (see "Where to
+    pick up next").
+
 ## Environment gotchas (Windows, this machine specifically)
 
 Python, Node, and GitHub CLI were **not** installed on this machine when this project
@@ -2514,6 +2567,21 @@ weighting/priority tables or `mark_scheme.py`'s marking rules) — it overwrites
 files and is fully deterministic (re-running with no code changes reproduces
 byte-identical output). Restart the backend afterward to pick up the new data (the
 loader reads the JSON files once at import time).
+
+**Regenerating the all-topics aesthetic-review PDFs** (chronology step 34): the user is
+doing a broad aesthetic-review pass across every topic, working from two generated PDFs
+(one question - and, in the answers version, its full worked solution - from every one of
+the 296 topics, one per page, headed `Section › Group › Topic Name (Tier)`). Re-run
+`backend\.venv\Scripts\python.exe -m scripts.generate_review_pdfs` (from `backend/`)
+whenever a change should be reflected in a fresh comparison copy - it overwrites
+`all_topics_review_questions.pdf`/`all_topics_review_answers.pdf` in `backend/` and is
+fully deterministic (fixed seed `42` in `scripts/generate_review_pdfs.py`, so the same
+questions reappear across reruns for a clean before/after comparison). The script reuses
+`app/pdf/renderer.py`'s own `_question_block`/`_solution_block` and `app/pdf/styles.py`'s
+`build_styles()` directly rather than reimplementing them, so it's always a true preview
+of the app's actual current styling - no separate script logic to keep in sync if
+`renderer.py`/`styles.py` change. **Not yet committed** as of chronology step 34 - confirm
+with the user whether to keep it in the repo (see "Where to pick up next").
 
 ## Testing
 
