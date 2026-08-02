@@ -14,52 +14,47 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 **Waiting on the user right now**: the aesthetic-review pass across every topic (see
 chronology step 34) produced a first batch of concrete feedback, all addressed in step
-35 (see below) and sent back as freshly regenerated review PDFs
+35 and sent back as freshly regenerated review PDFs
 (`backend/all_topics_review_questions.pdf` / `all_topics_review_answers.pdf` — same
 fixed-seed script, `backend/scripts/generate_review_pdfs.py`, so the same questions
 reappear for direct before/after comparison; the two PDFs themselves are deliverables,
 not source, deliberately left untracked/uncommitted). The user is continuing to review
 topic-by-topic and will come back with further batches of feedback — **the next
 session's actual work is whatever concrete changes they list next**, following the same
-pattern as step 35: check whether a request is really an engine-level fix (touch
-`app/pdf/mathtext.py`/`diagrams.py`/`fraction_images.py`/`radical_images.py`/
-`recurring_decimal_images.py` once, benefits every topic) before treating it as a
-one-topic content tweak. Re-run the script
-(`.venv\Scripts\python.exe -m scripts.generate_review_pdfs` from `backend/`) to
-regenerate both PDFs after making changes.
+pattern as step 35:
 
-Steps 33 and 34 (Bell Tasks, see "Current state" below, and this review-PDF tooling) are
-both committed, pushed, and already part of the open PR (`gh pr view 3` or the repo's PR
-list — pushing to this branch updates it automatically, no separate action needed). The
-PR has not been merged yet, so check its status before assuming `master` already has any
-of this.
+1. Read the actual current generator code for anything named in the feedback before
+   assuming what it does — several step-35 items turned out to need a different fix
+   than the literal wording suggested (e.g. "not a horizontal fraction" needed a new
+   generalised fraction marker, not just reusing the existing plain-digit one).
+2. Check whether a request is really an engine-level fix — touch
+   `app/pdf/mathtext.py`/`diagrams.py`/`fraction_images.py`/`radical_images.py`/
+   `recurring_decimal_images.py` once and it benefits every topic that uses the same
+   ASCII convention — before treating it as a one-topic content tweak. Grep for the
+   same pattern elsewhere in `app/topics/` before assuming a fix is topic-local (step
+   35's `powers_roots.py` glued-fraction-exponent bug turned out to have 10 instances,
+   not 1).
+3. Render the actual PDF and look closely before calling anything done — nearly every
+   real bug found in this project's history (including three in step 35) was caught
+   this way, never by the unit tests alone. See "Verifying new topics visually" below.
+4. Re-run the script (`.venv\Scripts\python.exe -m scripts.generate_review_pdfs` from
+   `backend/`) to regenerate both PDFs after making changes, and send the fresh pair
+   back to the user for their next comparison pass.
 
-**The entire user-supplied Geometry expansion is complete (chronology steps
-23-27), the fraction-vinculum rendering fix landed (step 28), three more
-"Ideas" items the user picked directly were built in step 29 (compound-3D
-surface area, spinner diagrams for 3 previously text-only branches, and bold
-vector labels), the Practice Tests feature was rebuilt to genuinely match a
-real OCR GCSE Maths sitting (step 30), a full AQA-spec gap audit followed by
-all 7 identified high-confidence gaps was completed in step 31, step 32
-gave Practice Tests a real OCR-style answer layout, read the actual OCR J560
-spec end to end, closed all 10 gaps that audit found, and retrofitted the
-real OCR non-calculator paper structure onto Practice Tests, and step 33
-added a brand-new "Bell Tasks" homepage feature (see "Current state" below)
-generating a PowerPoint starter-activity deck from 6 teacher-chosen topics.**
-296 topics total (unchanged since step 33 - step 35's Number-topic review-feedback
-pass was rendering/wording fixes, no new or retired topics), backend suite
-862/862, frontend 61/61, no known bugs.
+All work through step 35 is committed, pushed, and already part of the open PR
+(`gh pr view 3` or the repo's PR list — pushing to this branch updates it automatically,
+no separate action needed). The PR has not been merged yet, so check its status before
+assuming `master` already has any of this. 296 topics total (unchanged since step 33 —
+step 35 was rendering/wording fixes, no new or retired topics), backend suite 862/862,
+frontend 61/61, no known bugs.
 
-There is no committed next step for this project right now — see "Where to pick
-up next" above (waiting on the next batch of the user's ongoing topic-by-topic
-review feedback) — or check "Ideas for a future session" (bottom of this file)
-for candidate follow-ups (the remaining medium-confidence OCR-spec gaps from
-step 32's audit, the remaining medium/low-confidence AQA-spec gaps from step
-31's audit, stem-and-leaf diagrams, standard deviation, a handful of
-lower-confidence curriculum-audit candidates, saved worksheet history,
-deployment, a KS3 Bell Tasks tier, the full language-variety rollout beyond the
-4 files step 35 piloted it on, etc.), or ask the user directly what they'd like
-to work on next.
+If the user hasn't given new feedback yet, check "Ideas for a future session" (bottom of
+this file) for candidate follow-ups (the remaining medium-confidence OCR-spec gaps from
+step 32's audit, the remaining medium/low-confidence AQA-spec gaps from step 31's audit,
+stem-and-leaf diagrams, standard deviation, a handful of lower-confidence
+curriculum-audit candidates, saved worksheet history, deployment, a KS3 Bell Tasks tier,
+the full language-variety rollout beyond the 4 files step 35 piloted it on, etc.), or ask
+directly what they'd like to work on next.
 
 ## Current state
 
