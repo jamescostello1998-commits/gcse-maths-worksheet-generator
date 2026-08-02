@@ -1,30 +1,16 @@
 import math
 import random
-from decimal import ROUND_HALF_UP, Decimal
 
 import sympy as sp
 
 from app.core.models import DiagramSpec, ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
+from app.topics.rounding import pick_rounding
 
 SECTION = "geometry"
 GROUP = "3D Shapes"
 
 _MEASURE_LABEL = {"volume": "volume", "surface_area": "total surface area"}
-
-
-def _round_to_3sf(value: float) -> Decimal:
-    """Round a float to 3 significant figures, always displaying as a plain
-    fixed-point decimal string - sympy's sp.N(expr, 3) switches to scientific
-    notation (e.g. "1.02E+3") for values >= 1000, which is exactly the
-    _round_to_1sf bug already documented and fixed in estimation.py. Cylinder/
-    cone volumes and surface areas comfortably reach into the thousands, so
-    this project's own documented fix pattern is reused here rather than
-    calling sp.N directly for display."""
-    d = Decimal(str(value))
-    exp = d.adjusted()
-    quantized = d.quantize(Decimal(1).scaleb(exp - 2), rounding=ROUND_HALF_UP)
-    return Decimal(format(quantized, "f"))
 
 
 def _fmt_pi_term(coeff) -> str:
@@ -45,30 +31,33 @@ def generate_volume_surface_area_cylinder_foundation(tier: Tier, rng: random.Ran
     radius = rng.randint(2, 12)
     height = rng.randint(3, 20)
     measure = rng.choice(["volume", "surface_area"])
+    rounding = pick_rounding(rng)
 
     if measure == "volume":
         exact_expr = sp.pi * radius**2 * height
         value = float(exact_expr)
-        decimal_answer = _round_to_3sf(value)
+        decimal_answer = format(rounding.round_fn(value), "f")
         independent = math.pi * radius**2 * height
         steps = [
             f"Volume = π × r² × h = π × {radius}² × {height}",
-            f"= {decimal_answer} cm³ (3 s.f., using a calculator value of π)",
+            f"= {decimal_answer} cm³ ({rounding.short}, using a calculator value of π)",
         ]
         unit = "cm³"
     else:
         exact_expr = 2 * sp.pi * radius**2 + 2 * sp.pi * radius * height
         value = float(exact_expr)
-        decimal_answer = _round_to_3sf(value)
+        decimal_answer = format(rounding.round_fn(value), "f")
         independent = 2 * math.pi * radius**2 + 2 * math.pi * radius * height
         steps = [
             f"Surface area = 2πr² + 2πrh = (2 × π × {radius}²) + (2 × π × {radius} × {height})",
-            f"= {decimal_answer} cm² (3 s.f., using a calculator value of π)",
+            f"= {decimal_answer} cm² ({rounding.short}, using a calculator value of π)",
         ]
         unit = "cm²"
 
     # Independent check via Python's math.pi - a different π source/implementation
     # than sympy's symbolic pi used above (matches area_circle_foundation's style).
+    # Compares full-precision raw values only, unrelated to which display
+    # precision was chosen above, so needs no change for the rounding rollout.
     if abs(value - independent) / independent > 0.01:
         raise ValueError("volume_surface_area_cylinder_foundation verification failed")
 
@@ -77,7 +66,7 @@ def generate_volume_surface_area_cylinder_foundation(tier: Tier, rng: random.Ran
         tier=Tier.FOUNDATION,
         prompt=(
             f"A cylinder has radius {radius} cm and height {height} cm. Find its "
-            f"{_MEASURE_LABEL[measure]}, correct to 3 significant figures."
+            f"{_MEASURE_LABEL[measure]}, correct to {rounding.phrase}."
         ),
         solution_steps=tuple(steps),
         final_answer=f"{decimal_answer} {unit}",
@@ -95,29 +84,30 @@ def generate_modelled_example_volume_surface_area_cylinder_foundation(
     radius = rng.randint(2, 12)
     height = rng.randint(3, 20)
     measure = rng.choice(["volume", "surface_area"])
+    rounding = pick_rounding(rng)
 
     if measure == "volume":
         exact_expr = sp.pi * radius**2 * height
         value = float(exact_expr)
-        decimal_answer = _round_to_3sf(value)
+        decimal_answer = format(rounding.round_fn(value), "f")
         independent = math.pi * radius**2 * height
         teaching_steps = [
             "A cylinder is just a circle 'stretched out' into a prism - its volume is the area of "
             "the circular cross-section multiplied by the height, the same idea used for any prism.",
             f"The base area is π × r² = π × {radius}² = π × {radius**2}.",
             f"Multiply the base area by the height: π × {radius**2} × {height} ≈ {value:.5f}...",
-            f"Round to 3 significant figures: {decimal_answer} cm³.",
+            f"Round to {rounding.phrase}: {decimal_answer} cm³.",
         ]
         worked_calculation = [
             "Volume = π × r² × h",
             f"= π × {radius}² × {height}",
-            f"= {decimal_answer} cm³ (3 s.f.)",
+            f"= {decimal_answer} cm³ ({rounding.short})",
         ]
         unit = "cm³"
     else:
         exact_expr = 2 * sp.pi * radius**2 + 2 * sp.pi * radius * height
         value = float(exact_expr)
-        decimal_answer = _round_to_3sf(value)
+        decimal_answer = format(rounding.round_fn(value), "f")
         independent = 2 * math.pi * radius**2 + 2 * math.pi * radius * height
         teaching_steps = [
             "A cylinder's total surface area is made of three pieces: the two circular ends "
@@ -126,12 +116,12 @@ def generate_modelled_example_volume_surface_area_cylinder_foundation(
             f"The curved side unrolls into a rectangle of width equal to the circle's circumference "
             f"and height {height} cm, giving 2 × π × {radius} × {height}.",
             f"Add the two parts together: (2 × π × {radius**2}) + (2 × π × {radius} × {height}) "
-            f"≈ {decimal_answer} cm² (3 s.f.).",
+            f"≈ {decimal_answer} cm² ({rounding.short}).",
         ]
         worked_calculation = [
             "Surface area = 2πr² + 2πrh",
             f"= (2 × π × {radius}²) + (2 × π × {radius} × {height})",
-            f"= {decimal_answer} cm² (3 s.f.)",
+            f"= {decimal_answer} cm² ({rounding.short})",
         ]
         unit = "cm²"
 
@@ -143,7 +133,7 @@ def generate_modelled_example_volume_surface_area_cylinder_foundation(
         tier=Tier.FOUNDATION,
         prompt=(
             f"A cylinder has radius {radius} cm and height {height} cm. Find its "
-            f"{_MEASURE_LABEL[measure]}, correct to 3 significant figures."
+            f"{_MEASURE_LABEL[measure]}, correct to {rounding.phrase}."
         ),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
@@ -283,7 +273,7 @@ def generate_modelled_example_volume_surface_area_cylinder(tier: Tier, rng: rand
 
 
 # ---------------------------------------------------------------------------
-# Cone - Higher only (decimal answers, 3 s.f.)
+# Cone - Higher only (decimal answers, randomised rounding precision)
 # ---------------------------------------------------------------------------
 
 
@@ -344,28 +334,30 @@ def generate_volume_surface_area_cone(tier: Tier, rng: random.Random) -> Questio
         )
         given_desc = f"radius {radius} cm and (perpendicular) height {height} cm"
 
+    rounding = pick_rounding(rng)
+
     if measure == "volume":
         exact_expr = sp.Rational(1, 3) * sp.pi * radius**2 * height
         value = float(exact_expr)
-        decimal_answer = _round_to_3sf(value)
+        decimal_answer = format(rounding.round_fn(value), "f")
         independent = (1 / 3) * math.pi * radius**2 * height
         if abs(value - independent) / independent > 0.01:
             raise ValueError("volume_surface_area_cone volume verification failed")
         steps = [
             f"Volume = (1/3) × π × r² × h = (1/3) × π × {radius}² × {height:.3f}",
-            f"= {decimal_answer} cm³ (3 s.f., using a calculator value of π)",
+            f"= {decimal_answer} cm³ ({rounding.short}, using a calculator value of π)",
         ]
         answer = f"{decimal_answer} cm³"
     else:
         exact_expr = sp.pi * radius * (radius + slant)
         value = float(exact_expr)
-        decimal_answer = _round_to_3sf(value)
+        decimal_answer = format(rounding.round_fn(value), "f")
         independent = math.pi * radius * (radius + slant)
         if abs(value - independent) / independent > 0.01:
             raise ValueError("volume_surface_area_cone surface area verification failed")
         steps = [
             f"Surface area = πr² + πrl = πr(r + l) = π × {radius} × ({radius} + {slant:.3f})",
-            f"= {decimal_answer} cm² (3 s.f., using a calculator value of π)",
+            f"= {decimal_answer} cm² ({rounding.short}, using a calculator value of π)",
         ]
         answer = f"{decimal_answer} cm²"
 
@@ -375,7 +367,7 @@ def generate_volume_surface_area_cone(tier: Tier, rng: random.Random) -> Questio
         tier=Tier.HIGHER,
         prompt=(
             f"A cone has {given_desc}. Find its {_MEASURE_LABEL[measure]}, correct to "
-            "3 significant figures."
+            f"{rounding.phrase}."
         ),
         solution_steps=tuple(steps),
         final_answer=answer,
@@ -440,10 +432,12 @@ def generate_modelled_example_volume_surface_area_cone(tier: Tier, rng: random.R
             f"l = √(r² + h²) = √({radius}² + {height}²) ≈ {slant:.3f} cm.",
         ]
 
+    rounding = pick_rounding(rng)
+
     if measure == "volume":
         exact_expr = sp.Rational(1, 3) * sp.pi * radius**2 * height
         value = float(exact_expr)
-        decimal_answer = _round_to_3sf(value)
+        decimal_answer = format(rounding.round_fn(value), "f")
         independent = (1 / 3) * math.pi * radius**2 * height
         if abs(value - independent) / independent > 0.01:
             raise ValueError("modelled example volume_surface_area_cone volume verification failed")
@@ -452,18 +446,18 @@ def generate_modelled_example_volume_surface_area_cone(tier: Tier, rng: random.R
             "same base radius, same height.",
             f"The enclosing cylinder's volume is π × r² × h = π × {radius}² × {height:.3f}; the "
             f"cone is one third of that.",
-            f"(1/3) × π × {radius}² × {height:.3f} ≈ {decimal_answer} cm³ (3 s.f.).",
+            f"(1/3) × π × {radius}² × {height:.3f} ≈ {decimal_answer} cm³ ({rounding.short}).",
         ]
         worked_calculation = [
             "Volume = (1/3) × π × r² × h",
             f"= (1/3) × π × {radius}² × {height:.3f}",
-            f"= {decimal_answer} cm³ (3 s.f.)",
+            f"= {decimal_answer} cm³ ({rounding.short})",
         ]
         answer = f"{decimal_answer} cm³"
     else:
         exact_expr = sp.pi * radius * (radius + slant)
         value = float(exact_expr)
-        decimal_answer = _round_to_3sf(value)
+        decimal_answer = format(rounding.round_fn(value), "f")
         independent = math.pi * radius * (radius + slant)
         if abs(value - independent) / independent > 0.01:
             raise ValueError("modelled example volume_surface_area_cone surface area verification failed")
@@ -472,12 +466,12 @@ def generate_modelled_example_volume_surface_area_cone(tier: Tier, rng: random.R
             "surface, which unrolls into πrl - together that factorises as πr(r + l).",
             f"Add the radius and slant height inside the bracket: {radius} + {slant:.3f} "
             f"≈ {radius + slant:.3f}.",
-            f"Multiply by π × r: π × {radius} × {radius + slant:.3f} ≈ {decimal_answer} cm² (3 s.f.).",
+            f"Multiply by π × r: π × {radius} × {radius + slant:.3f} ≈ {decimal_answer} cm² ({rounding.short}).",
         ]
         worked_calculation = [
             "Surface area = πr(r + l)",
             f"= π × {radius} × ({radius} + {slant:.3f})",
-            f"= {decimal_answer} cm² (3 s.f.)",
+            f"= {decimal_answer} cm² ({rounding.short})",
         ]
         answer = f"{decimal_answer} cm²"
 
@@ -486,7 +480,7 @@ def generate_modelled_example_volume_surface_area_cone(tier: Tier, rng: random.R
         tier=Tier.HIGHER,
         prompt=(
             f"A cone has {given_desc}. Find its {_MEASURE_LABEL[measure]}, correct to "
-            "3 significant figures."
+            f"{rounding.phrase}."
         ),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),

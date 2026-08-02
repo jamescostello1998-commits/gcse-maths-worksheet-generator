@@ -97,6 +97,22 @@ def test_arc_length_and_area_sector_foundation_give_decimal_answers():
             assert "π" not in q.final_answer
 
 
+def test_decimal_topics_reach_all_three_rounding_phrasings():
+    generators = [
+        area_perimeter.generate_circle_foundation,
+        area_perimeter.generate_arc_length_foundation,
+        area_perimeter.generate_area_sector_foundation,
+    ]
+    phrasings = {"1 decimal place", "2 decimal places", "3 significant figures"}
+    for generate in generators:
+        rng = random.Random(48)
+        seen = set()
+        for _ in range(200):
+            q = generate(Tier.FOUNDATION, rng)
+            seen |= {p for p in phrasings if p in q.prompt}
+        assert seen == phrasings
+
+
 def test_mixed_compound_gives_a_decimal_answer():
     rng = random.Random(47)
     for _ in range(TRIALS):

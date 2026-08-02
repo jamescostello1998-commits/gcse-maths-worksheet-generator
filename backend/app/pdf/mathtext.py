@@ -82,11 +82,16 @@ italic text, `<super><font name="...">x</font></super>`.
 **A standalone "√n" is now a true full-length radical** (app/pdf/radical_images.py)
 - a hook plus a horizontal bar spanning the whole radicand, matching real
 exam typesetting - rather than the bare Unicode "√" glyph glued directly in
-front of the digits with no bar at all. Only bare-digit radicands are
-matched (`√(?P<radn>\d+)`); a radical wrapping non-digit content (e.g. an
-unevaluated "√(k^2 × m)" mid-working expression) is left as plain literal
-text, unchanged - confirmed by audit that no topic currently needs the full
-treatment there. **Deliberately excluded via a `(?!/\d)` lookahead**: a
+front of the digits with no bar at all. Bare-digit and bare-decimal
+radicands are matched (`√(?P<radn>\d+(?:\.\d+)?)`) - e.g. "√205" and
+"√205.1" both get the full treatment (the decimal case was added after a
+real rendering bug: an intermediate 4-s.f. decimal like "√205.1" only had
+its "205" covered by the radical bar, stranding ".1" as plain text right
+after it, since the regex originally matched integers only). A radical
+wrapping other non-numeric content (e.g. an unevaluated "√(k^2 × m)"
+mid-working expression) is left as plain literal text, unchanged - confirmed
+by audit that no topic currently needs the full treatment there.
+**Deliberately excluded via a `(?!/\d)` lookahead**: a
 radical immediately followed by "/digit" (e.g. exact trig values like
 "√2/2", "√3/2") - these are a single already-clear unit, meant to stay a
 flat literal string (see the "Surd-over-integer gotcha" further down), not
@@ -238,7 +243,7 @@ _MATH_RE = re.compile(
     r"|\^\((?P<cexp>[^()]*)\)"
     r"|\^(?P<exp>-?\d+)"
     r"|\^(?P<vexp>[xn])(?![A-Za-z])"
-    r"|√(?P<radn>\d+)(?!/\d)"
+    r"|√(?P<radn>\d+(?:\.\d+)?)(?!/\d)"
     r"|(?<!√)(?P<fsign>-?)(?P<fnum>\d+)/(?P<fden>\d+)"
 )
 # Matches a lone x or n not glued to another letter (so "box" or "and" are

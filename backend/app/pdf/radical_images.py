@@ -8,11 +8,14 @@ environment - so PIL draws the hook/bar/digits directly onto a transparent
 PNG instead, using the same TrueType font file `fraction_images.py` already
 uses.
 
-Only bare-digit radicands are supported (see `mathtext.py`'s `√(?P<radn>\\d+)`
-regex) - a confirmed audit of every topic generator found no case of a
-radical wrapping non-digit content (e.g. an unevaluated expression like
-"√(k^2 × m)") that would need this treatment; those stay plain literal text,
-unchanged from before this module existed.
+Only bare-digit or bare-decimal radicands are supported (see `mathtext.py`'s
+`√(?P<radn>\\d+(?:\\.\\d+)?)` regex) - a confirmed audit of every topic
+generator found no case of a radical wrapping other non-numeric content
+(e.g. an unevaluated expression like "√(k^2 × m)") that would need this
+treatment; those stay plain literal text, unchanged from before this module
+existed. This function itself never assumed integer-only input - `radicand`
+is drawn as whatever string it's given - so supporting a decimal radicand
+needed no change here, only to `mathtext.py`'s regex.
 
 Results are cached in memory (keyed by every visual parameter) and written
 once per unique radical to a per-process temp directory - same caching

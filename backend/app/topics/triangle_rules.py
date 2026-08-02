@@ -4,6 +4,7 @@ from decimal import ROUND_HALF_UP, Decimal
 
 from app.core.models import DiagramSpec, ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
+from app.topics.rounding import pick_rounding
 
 SECTION = "geometry"
 GROUP_SINE = "Sine Rule"
@@ -55,16 +56,16 @@ def generate_sine_rule(tier: Tier, rng: random.Random) -> Question:
         if abs(_dist(B, C) - side_a) > 1e-6:
             raise ValueError("sine_rule verification failed: coordinate cross-check mismatch")
 
-        b_str = _fmt_dec(_round_sf(side_b, 3))
-
         if shape == "side":
+            rounding = pick_rounding(rng)
+            b_str = _fmt_dec(rounding.round_fn(side_b))
             steps = [
                 "Use the sine rule: a / sin(A) = b / sin(B)",
-                f"b = ({side_a} × sin({angle_B}°)) ÷ sin({angle_A}°) = {b_str} cm (3 s.f.)",
+                f"b = ({side_a} × sin({angle_B}°)) ÷ sin({angle_A}°) = {b_str} cm ({rounding.short})",
             ]
             prompt = (
                 f"In triangle ABC, angle A = {angle_A}°, angle B = {angle_B}°, and side a = {side_a} cm. "
-                "Find the length of side b, correct to 3 significant figures."
+                f"Find the length of side b, correct to {rounding.phrase}."
             )
             answer = f"{b_str} cm"
             dedup_key = f"sine_rule_side:{angle_A}:{angle_B}:{side_a}"
@@ -76,6 +77,13 @@ def generate_sine_rule(tier: Tier, rng: random.Random) -> Question:
                 },
             )
         else:
+            # b is a *given* value here (the angle is what's being asked for, always
+            # rounded to 1 d.p. by real exam convention - never varied via
+            # pick_rounding, per rounding.py's own documented exclusion), so it keeps
+            # its own fixed 3 s.f. display, unrelated to the student's own rounding
+            # instruction.
+            b_str = _fmt_dec(_round_sf(side_b, 3))
+
             # Verify that solving from the *rounded* side b (what a student would
             # actually use) is still close to angle_B - not an exact match (3 s.f.
             # rounding of b shifts the recovered angle slightly, same as in any real
@@ -144,9 +152,9 @@ def generate_modelled_example_sine_rule(tier: Tier, rng: random.Random) -> Model
         if abs(_dist(B, C) - side_a) > 1e-6:
             raise ValueError("modelled example sine_rule verification failed: coordinate cross-check mismatch")
 
-        b_str = _fmt_dec(_round_sf(side_b, 3))
-
         if shape == "side":
+            rounding = pick_rounding(rng)
+            b_str = _fmt_dec(rounding.round_fn(side_b))
             teaching_steps = [
                 "The sine rule links every side of a triangle to the sine of the angle directly "
                 "opposite it: a / sin(A) = b / sin(B) = c / sin(C). It's the tool to reach for whenever "
@@ -157,7 +165,7 @@ def generate_modelled_example_sine_rule(tier: Tier, rng: random.Random) -> Model
                 "of the rule that also involves b and B: a / sin(A) = b / sin(B).",
                 "Rearrange to make the side we want, b, the subject, by cross-multiplying and dividing.",
                 f"Substitute in the numbers: b = ({side_a} × sin({angle_B}°)) ÷ sin({angle_A}°), which "
-                f"evaluates to {b_str} cm once rounded to 3 significant figures as asked.",
+                f"evaluates to {b_str} cm once rounded to {rounding.phrase} as asked.",
             ]
             worked_calculation = [
                 "a / sin(A) = b / sin(B)",
@@ -166,7 +174,7 @@ def generate_modelled_example_sine_rule(tier: Tier, rng: random.Random) -> Model
             ]
             prompt = (
                 f"In triangle ABC, angle A = {angle_A}°, angle B = {angle_B}°, and side a = {side_a} cm. "
-                "Find the length of side b, correct to 3 significant figures."
+                f"Find the length of side b, correct to {rounding.phrase}."
             )
             answer = f"{b_str} cm"
             diagram = DiagramSpec(
@@ -177,6 +185,12 @@ def generate_modelled_example_sine_rule(tier: Tier, rng: random.Random) -> Model
                 },
             )
         else:
+            # b is a *given* value here (the angle is what's being asked for, always
+            # rounded to 1 d.p. by real exam convention - never varied via
+            # pick_rounding, per rounding.py's own documented exclusion), so it keeps
+            # its own fixed 3 s.f. display, unrelated to the student's own rounding
+            # instruction.
+            b_str = _fmt_dec(_round_sf(side_b, 3))
             ratio = float(b_str) * math.sin(rad_A) / side_a
             if not (-1 <= ratio <= 1):
                 continue
@@ -243,16 +257,17 @@ def generate_cosine_rule(tier: Tier, rng: random.Random) -> Question:
         if abs(_dist(B, C) - side_a) > 1e-6:
             raise ValueError("cosine_rule verification failed: coordinate cross-check mismatch")
 
-        rounded = _round_sf(side_a, 3)
+        rounding = pick_rounding(rng)
+        rounded = rounding.round_fn(side_a)
         a_sq_str = _fmt_dec(_round_sf(a_sq, 4))
         steps = [
             "Use the cosine rule: a² = b² + c² - 2bc cos(A)",
             f"a² = {b}² + {c}² - 2×{b}×{c}×cos({angle_A}°) = {a_sq_str}",
-            f"a = √{a_sq_str} = {_fmt_dec(rounded)} cm (3 s.f.)",
+            f"a = √{a_sq_str} = {_fmt_dec(rounded)} cm ({rounding.short})",
         ]
         prompt = (
             f"In triangle ABC, side b = {b} cm, side c = {c} cm, and the angle between them, "
-            f"angle A = {angle_A}°. Find the length of side a, correct to 3 significant figures."
+            f"angle A = {angle_A}°. Find the length of side a, correct to {rounding.phrase}."
         )
         answer = f"{_fmt_dec(rounded)} cm"
         dedup_key = f"cosine_rule_side:{b}:{c}:{angle_A}"
@@ -340,7 +355,8 @@ def generate_modelled_example_cosine_rule(tier: Tier, rng: random.Random) -> Mod
         if abs(_dist(B, C) - side_a) > 1e-6:
             raise ValueError("modelled example cosine_rule verification failed: coordinate cross-check mismatch")
 
-        rounded = _round_sf(side_a, 3)
+        rounding = pick_rounding(rng)
+        rounded = rounding.round_fn(side_a)
         a_sq_str = _fmt_dec(_round_sf(a_sq, 4))
         teaching_steps = [
             "The cosine rule finds a missing side when you know the other two sides and the angle "
@@ -351,7 +367,7 @@ def generate_modelled_example_cosine_rule(tier: Tier, rng: random.Random) -> Mod
             f"Work through the right-hand side one term at a time: {b}² + {c}² - 2×{b}×{c}×cos({angle_A}°) "
             f"= {a_sq_str}. This is a², not a - don't forget the final step.",
             f"Take the square root to undo the squaring: a = √{a_sq_str} = {_fmt_dec(rounded)} cm, "
-            "rounded to 3 significant figures as the question asks.",
+            f"rounded to {rounding.phrase} as the question asks.",
         ]
         worked_calculation = [
             "a² = b² + c² - 2bc cos(A)",
@@ -360,7 +376,7 @@ def generate_modelled_example_cosine_rule(tier: Tier, rng: random.Random) -> Mod
         ]
         prompt = (
             f"In triangle ABC, side b = {b} cm, side c = {c} cm, and the angle between them, "
-            f"angle A = {angle_A}°. Find the length of side a, correct to 3 significant figures."
+            f"angle A = {angle_A}°. Find the length of side a, correct to {rounding.phrase}."
         )
         answer = f"{_fmt_dec(rounded)} cm"
         diagram = DiagramSpec(
@@ -452,17 +468,18 @@ def generate_triangle_area(tier: Tier, rng: random.Random) -> Question:
     if abs(shoelace_area - area) > 1e-6:
         raise ValueError("triangle_area verification failed: shoelace cross-check mismatch")
 
-    rounded = _round_sf(area, 3)
+    rounding = pick_rounding(rng)
+    rounded = rounding.round_fn(area)
     steps = [
         "Use Area = (1/2) × a × b × sin(C)",
-        f"Area = 0.5 × {a} × {b} × sin({angle_C}°) = {_fmt_dec(rounded)} cm² (3 s.f.)",
+        f"Area = 0.5 × {a} × {b} × sin({angle_C}°) = {_fmt_dec(rounded)} cm² ({rounding.short})",
     ]
     return Question(
         topic_id="triangle_area_sine_rule",
         tier=Tier.HIGHER,
         prompt=(
             f"Triangle ABC has side a = {a} cm, side b = {b} cm, and the angle between them, "
-            f"angle C = {angle_C}°. Find the area of the triangle, correct to 3 significant figures."
+            f"angle C = {angle_C}°. Find the area of the triangle, correct to {rounding.phrase}."
         ),
         solution_steps=tuple(steps),
         final_answer=f"{_fmt_dec(rounded)} cm²",
@@ -491,7 +508,8 @@ def generate_modelled_example_triangle_area(tier: Tier, rng: random.Random) -> M
     if abs(shoelace_area - area) > 1e-6:
         raise ValueError("modelled example triangle_area verification failed: shoelace cross-check mismatch")
 
-    rounded = _round_sf(area, 3)
+    rounding = pick_rounding(rng)
+    rounded = rounding.round_fn(area)
     teaching_steps = [
         "The usual triangle area formula, Area = (1/2) × base × height, needs a height measured at a "
         "right angle to the base - but if you only know two sides and the angle between them, there's "
@@ -499,7 +517,7 @@ def generate_modelled_example_triangle_area(tier: Tier, rng: random.Random) -> M
         f"Here a = {a} cm and b = {b} cm are the two known sides, and C = {angle_C}° is the included "
         "angle - the angle at the vertex where those two sides meet, not one of the other two angles.",
         f"Substitute the values straight into the formula: Area = 0.5 × {a} × {b} × sin({angle_C}°).",
-        f"Evaluating gives {_fmt_dec(rounded)} cm², rounded to 3 significant figures as asked.",
+        f"Evaluating gives {_fmt_dec(rounded)} cm², rounded to {rounding.phrase} as asked.",
     ]
     worked_calculation = [
         "Area = (1/2) × a × b × sin(C)",
@@ -510,7 +528,7 @@ def generate_modelled_example_triangle_area(tier: Tier, rng: random.Random) -> M
         tier=Tier.HIGHER,
         prompt=(
             f"Triangle ABC has side a = {a} cm, side b = {b} cm, and the angle between them, "
-            f"angle C = {angle_C}°. Find the area of the triangle, correct to 3 significant figures."
+            f"angle C = {angle_C}°. Find the area of the triangle, correct to {rounding.phrase}."
         ),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),

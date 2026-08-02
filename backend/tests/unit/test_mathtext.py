@@ -254,6 +254,18 @@ def test_radical_wrapping_non_digit_content_is_left_as_plain_text():
     assert _markup("√(4^2 × 3)") == "√(4<super>2</super> × 3)"
 
 
+def test_radical_with_a_decimal_radicand_covers_the_whole_number():
+    # Real bug found via rendering: "√205.1" (an intermediate decimal value,
+    # e.g. bearings_cosine_rule's AC² display) only matched the integer part
+    # "205" originally, leaving ".1" stranded as plain text right after the
+    # radical image instead of under its bar. The whole decimal must now be
+    # part of one match/image.
+    markup = _markup("AC = √205.1 = 14.32 km")
+    matches = list(_IMG_RE.finditer(markup))
+    assert len(matches) == 1
+    assert markup == f"AC = {matches[0].group(0)} = 14.32 km"
+
+
 # ---------------------------------------------------------------------------
 # Explicit \frac{}{} / \recur{}{} sentinel markers - for content the
 # automatic digit-only regexes above can't safely auto-detect (an unknown

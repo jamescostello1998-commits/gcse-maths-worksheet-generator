@@ -200,3 +200,23 @@ def test_modelled_examples_never_print_scientific_notation():
             example = generate_example(tier, rng)
             assert "E+" not in example.final_answer
             assert "e+" not in example.final_answer
+
+
+def test_decimal_topics_reach_all_three_rounding_phrasings():
+    # The cylinder-foundation and cone topics' answers were converted from a
+    # hardcoded "3 significant figures" to a random choice among the 3 real
+    # GCSE rounding instructions (see app/topics/rounding.py) - confirm all
+    # three genuinely appear over enough trials. The Higher (exact-π-form)
+    # cylinder topic is untouched and deliberately excluded here.
+    generators = [
+        (solids_cylinders_cones.generate_volume_surface_area_cylinder_foundation, Tier.FOUNDATION),
+        (solids_cylinders_cones.generate_volume_surface_area_cone, Tier.HIGHER),
+    ]
+    phrasings = {"1 decimal place", "2 decimal places", "3 significant figures"}
+    for generate, tier in generators:
+        rng = random.Random(505)
+        seen = set()
+        for _ in range(200):
+            q = generate(tier, rng)
+            seen |= {p for p in phrasings if p in q.prompt}
+        assert seen == phrasings

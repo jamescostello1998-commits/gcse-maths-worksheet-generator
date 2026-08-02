@@ -5,6 +5,7 @@ import sympy as sp
 
 from app.core.models import DiagramSpec, ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
+from app.topics.rounding import pick_rounding
 
 SECTION = "geometry"
 GROUP = "Area & Perimeter"
@@ -381,36 +382,38 @@ def generate_modelled_example_circle(tier: Tier, rng: random.Random) -> Modelled
 def generate_circle_foundation(tier: Tier, rng: random.Random) -> Question:
     radius = rng.randint(3, 15)
     measure = rng.choice(["area", "circumference"])
+    rounding = pick_rounding(rng)
 
     if measure == "area":
         exact_expr = sp.pi * radius**2
-        decimal_answer = sp.N(exact_expr, 3)
+        independent = math.pi * radius**2
+        decimal_answer = format(rounding.round_fn(independent), "f")
         steps = [
             f"Area = π × r² = π × {radius}² = π × {radius**2}",
-            f"= {decimal_answer} cm² (3 s.f., using a calculator value of π)",
+            f"= {decimal_answer} cm² ({rounding.short}, using a calculator value of π)",
         ]
-        independent = math.pi * radius**2
     else:
         exact_expr = 2 * sp.pi * radius
-        decimal_answer = sp.N(exact_expr, 3)
+        independent = 2 * math.pi * radius
+        decimal_answer = format(rounding.round_fn(independent), "f")
         steps = [
             f"Circumference = 2 × π × r = 2 × π × {radius}",
-            f"= {decimal_answer} cm (3 s.f., using a calculator value of π)",
+            f"= {decimal_answer} cm ({rounding.short}, using a calculator value of π)",
         ]
-        independent = 2 * math.pi * radius
 
-    # Independent check via Python's math.pi - a different π source/implementation
-    # than sympy's symbolic pi used above. Tolerance is relative, since rounding
-    # to 3 s.f. can shift the absolute value by more than a fixed small amount
-    # once the magnitude grows (e.g. area for larger radii).
-    if abs(float(decimal_answer) - independent) / independent > 0.01:
+    # Independent check via Python's math.pi (used for `independent`, and
+    # hence for the rounded/displayed answer) against sympy's own symbolic
+    # pi - a different π source/implementation. Compares full precision
+    # (unrounded) values, so the tolerance can stay tight regardless of
+    # which display precision was randomly chosen.
+    if independent <= 0 or abs(float(sp.N(exact_expr, 15)) - independent) / independent > 1e-9:
         raise ValueError("area_circle_foundation verification failed")
 
     unit = "cm²" if measure == "area" else "cm"
     return Question(
         topic_id="area_circle_foundation",
         tier=Tier.FOUNDATION,
-        prompt=f"A circle has radius {radius} cm. Find its {measure}, correct to 3 significant figures.",
+        prompt=f"A circle has radius {radius} cm. Find its {measure}, correct to {rounding.phrase}.",
         solution_steps=tuple(steps),
         final_answer=f"{decimal_answer} {unit}",
         dedup_key=f"circle_f:{radius}:{measure}",
@@ -421,52 +424,54 @@ def generate_circle_foundation(tier: Tier, rng: random.Random) -> Question:
 def generate_modelled_example_circle_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
     radius = rng.randint(3, 15)
     measure = rng.choice(["area", "circumference"])
+    rounding = pick_rounding(rng)
 
     if measure == "area":
         exact_expr = sp.pi * radius**2
-        decimal_answer = sp.N(exact_expr, 3)
         independent = math.pi * radius**2
+        decimal_answer = format(rounding.round_fn(independent), "f")
         teaching_steps = [
             "The area of a circle is A = π × r². Here we're using the calculator's decimal "
             "value of π (3.14159...) instead of leaving π symbolically, since the question "
             "asks for a rounded answer.",
             f"Square the radius: {radius}² = {radius**2}.",
             f"Multiply by π on a calculator: π × {radius**2} = {float(exact_expr):.5f}...",
-            f"Round to 3 significant figures: {decimal_answer} cm².",
+            f"Round to {rounding.phrase}: {decimal_answer} cm².",
         ]
         worked_calculation = [
             "Area = π × r²",
             f"= π × {radius}²",
-            f"= {decimal_answer} cm² (3 s.f.)",
+            f"= {decimal_answer} cm² ({rounding.short})",
         ]
     else:
         exact_expr = 2 * sp.pi * radius
-        decimal_answer = sp.N(exact_expr, 3)
         independent = 2 * math.pi * radius
+        decimal_answer = format(rounding.round_fn(independent), "f")
         teaching_steps = [
             "The circumference is C = 2 × π × r. As with the area, here we use π's decimal "
             "calculator value rather than leaving π symbolically, since a rounded answer "
             "is wanted.",
             f"Double the radius: 2 × {radius} = {2 * radius}.",
             f"Multiply by π on a calculator: π × {2 * radius} = {float(exact_expr):.5f}...",
-            f"Round to 3 significant figures: {decimal_answer} cm.",
+            f"Round to {rounding.phrase}: {decimal_answer} cm.",
         ]
         worked_calculation = [
             "Circumference = 2 × π × r",
             f"= 2 × π × {radius}",
-            f"= {decimal_answer} cm (3 s.f.)",
+            f"= {decimal_answer} cm ({rounding.short})",
         ]
 
-    # Independent check via Python's math.pi - a different π source/implementation
-    # than sympy's symbolic pi used above.
-    if abs(float(decimal_answer) - independent) / independent > 0.01:
+    # Independent check via Python's math.pi against sympy's own symbolic pi -
+    # compares full precision, so the tolerance stays tight regardless of
+    # which display precision was randomly chosen.
+    if independent <= 0 or abs(float(sp.N(exact_expr, 15)) - independent) / independent > 1e-9:
         raise ValueError("modelled example area_circle_foundation verification failed")
 
     unit = "cm²" if measure == "area" else "cm"
     return ModelledExample(
         topic_id="area_circle_foundation",
         tier=Tier.FOUNDATION,
-        prompt=f"A circle has radius {radius} cm. Find its {measure}, correct to 3 significant figures.",
+        prompt=f"A circle has radius {radius} cm. Find its {measure}, correct to {rounding.phrase}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{decimal_answer} {unit}",
@@ -1127,11 +1132,11 @@ def _sector_diagram(angle: int, radius: int) -> DiagramSpec:
 def generate_arc_length_foundation(tier: Tier, rng: random.Random) -> Question:
     radius = rng.randint(3, 15)
     angle = rng.randint(10, 350)
+    rounding = pick_rounding(rng)
 
     exact_expr = sp.Rational(angle, 360) * 2 * sp.pi * radius
-    decimal_answer = sp.N(exact_expr, 3)
     independent = (angle / 360) * 2 * math.pi * radius
-    if abs(float(decimal_answer) - independent) / independent > 0.01:
+    if independent <= 0 or abs(float(sp.N(exact_expr, 15)) - independent) / independent > 1e-9:
         raise ValueError("arc_length_foundation verification failed")
 
     # Independent cross-check via the sector-area formula: sector area = ½ × arc
@@ -1142,16 +1147,17 @@ def generate_arc_length_foundation(tier: Tier, rng: random.Random) -> Question:
     if abs(float(arc_from_area) - float(sp.N(exact_expr, 6))) / float(sp.N(exact_expr, 6)) > 1e-6:
         raise ValueError("arc_length_foundation cross-formula verification failed")
 
+    decimal_answer = format(rounding.round_fn(independent), "f")
     steps = [
         f"Arc length = (θ ÷ 360) × 2 × π × r = ({angle} ÷ 360) × 2 × π × {radius}",
-        f"= {decimal_answer} cm (3 s.f., using a calculator value of π)",
+        f"= {decimal_answer} cm ({rounding.short}, using a calculator value of π)",
     ]
     return Question(
         topic_id="arc_length_foundation",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A sector of a circle has radius {radius} cm and angle {angle}°. Find the arc length, "
-            "correct to 3 significant figures."
+            f"correct to {rounding.phrase}."
         ),
         solution_steps=tuple(steps),
         final_answer=f"{decimal_answer} cm",
@@ -1163,13 +1169,14 @@ def generate_arc_length_foundation(tier: Tier, rng: random.Random) -> Question:
 def generate_modelled_example_arc_length_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
     radius = rng.randint(3, 15)
     angle = rng.randint(10, 350)
+    rounding = pick_rounding(rng)
 
     exact_expr = sp.Rational(angle, 360) * 2 * sp.pi * radius
-    decimal_answer = sp.N(exact_expr, 3)
     independent = (angle / 360) * 2 * math.pi * radius
-    if abs(float(decimal_answer) - independent) / independent > 0.01:
+    if independent <= 0 or abs(float(sp.N(exact_expr, 15)) - independent) / independent > 1e-9:
         raise ValueError("modelled example arc_length_foundation verification failed")
 
+    decimal_answer = format(rounding.round_fn(independent), "f")
     teaching_steps = [
         "An arc is just a fraction of the full circumference - work out what fraction of the full "
         "360° the sector's angle takes up, then apply that same fraction to the whole circumference.",
@@ -1183,7 +1190,7 @@ def generate_modelled_example_arc_length_foundation(tier: Tier, rng: random.Rand
         tier=Tier.FOUNDATION,
         prompt=(
             f"A sector of a circle has radius {radius} cm and angle {angle}°. Find the arc length, "
-            "correct to 3 significant figures."
+            f"correct to {rounding.phrase}."
         ),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
@@ -1255,11 +1262,11 @@ def generate_modelled_example_arc_length(tier: Tier, rng: random.Random) -> Mode
 def generate_area_sector_foundation(tier: Tier, rng: random.Random) -> Question:
     radius = rng.randint(3, 15)
     angle = rng.randint(10, 350)
+    rounding = pick_rounding(rng)
 
     exact_expr = sp.Rational(angle, 360) * sp.pi * radius**2
-    decimal_answer = sp.N(exact_expr, 3)
     independent = (angle / 360) * math.pi * radius**2
-    if abs(float(decimal_answer) - independent) / independent > 0.01:
+    if independent <= 0 or abs(float(sp.N(exact_expr, 15)) - independent) / independent > 1e-9:
         raise ValueError("area_sector_foundation verification failed")
 
     # Independent cross-check via the arc-length formula: area = ½ × arc length × r.
@@ -1268,16 +1275,17 @@ def generate_area_sector_foundation(tier: Tier, rng: random.Random) -> Question:
     if abs(float(area_from_arc) - float(sp.N(exact_expr, 6))) / float(sp.N(exact_expr, 6)) > 1e-6:
         raise ValueError("area_sector_foundation cross-formula verification failed")
 
+    decimal_answer = format(rounding.round_fn(independent), "f")
     steps = [
         f"Area = (θ ÷ 360) × π × r² = ({angle} ÷ 360) × π × {radius}²",
-        f"= {decimal_answer} cm² (3 s.f., using a calculator value of π)",
+        f"= {decimal_answer} cm² ({rounding.short}, using a calculator value of π)",
     ]
     return Question(
         topic_id="area_sector_foundation",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A sector of a circle has radius {radius} cm and angle {angle}°. Find the area of the "
-            "sector, correct to 3 significant figures."
+            f"sector, correct to {rounding.phrase}."
         ),
         solution_steps=tuple(steps),
         final_answer=f"{decimal_answer} cm²",
@@ -1289,13 +1297,14 @@ def generate_area_sector_foundation(tier: Tier, rng: random.Random) -> Question:
 def generate_modelled_example_area_sector_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
     radius = rng.randint(3, 15)
     angle = rng.randint(10, 350)
+    rounding = pick_rounding(rng)
 
     exact_expr = sp.Rational(angle, 360) * sp.pi * radius**2
-    decimal_answer = sp.N(exact_expr, 3)
     independent = (angle / 360) * math.pi * radius**2
-    if abs(float(decimal_answer) - independent) / independent > 0.01:
+    if independent <= 0 or abs(float(sp.N(exact_expr, 15)) - independent) / independent > 1e-9:
         raise ValueError("modelled example area_sector_foundation verification failed")
 
+    decimal_answer = format(rounding.round_fn(independent), "f")
     teaching_steps = [
         "A sector is a 'slice' of the circle - work out what fraction of the full 360° the sector's "
         "angle takes up, then apply that same fraction to the whole circle's area.",
@@ -1309,7 +1318,7 @@ def generate_modelled_example_area_sector_foundation(tier: Tier, rng: random.Ran
         tier=Tier.FOUNDATION,
         prompt=(
             f"A sector of a circle has radius {radius} cm and angle {angle}°. Find the area of the "
-            "sector, correct to 3 significant figures."
+            f"sector, correct to {rounding.phrase}."
         ),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),

@@ -97,3 +97,21 @@ def test_modelled_example_generators_produce_verified_examples():
             assert len(example.worked_calculation) >= 2
             assert len(example.teaching_steps) >= 3
             assert example.final_answer
+
+
+def test_decimal_topics_reach_all_three_rounding_phrasings():
+    # pythagoras_3d's answer (a length) was converted from a hardcoded
+    # "3 significant figures" to a random choice among the 3 real GCSE
+    # rounding instructions (see app/topics/rounding.py) - confirm all three
+    # genuinely appear over enough trials. trig_3d's answer is an angle,
+    # which by real GCSE convention always stays fixed at "1 decimal place"
+    # and is deliberately excluded here (never touched by the rollout).
+    generators = [solids_3d_trig.generate_3d_pythagoras]
+    phrasings = {"1 decimal place", "2 decimal places", "3 significant figures"}
+    for generate in generators:
+        rng = random.Random(506)
+        seen = set()
+        for _ in range(200):
+            q = generate(Tier.HIGHER, rng)
+            seen |= {p for p in phrasings if p in q.prompt}
+        assert seen == phrasings

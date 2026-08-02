@@ -1,13 +1,13 @@
 import dataclasses
 import math
 import random
-from decimal import ROUND_HALF_UP, Decimal
 from fractions import Fraction
 
 import sympy as sp
 
 from app.core.models import ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
+from app.topics.rounding import pick_rounding
 
 SECTION = "algebra"
 GROUP = "Substitution into Formulae"
@@ -29,22 +29,6 @@ H_SYM = sp.symbols("h")
 
 def _fmt_frac(frac: Fraction) -> str:
     return str(frac.numerator) if frac.denominator == 1 else f"{frac.numerator}/{frac.denominator}"
-
-
-def _round_sig3(value: float) -> str:
-    """Rounds a float to 3 significant figures and formats it in plain
-    fixed-point notation. Deliberately reformats through format(d, "f")
-    rather than trusting Decimal's own str() - a Decimal.quantize result that
-    lands on a positive power of ten otherwise prints in scientific notation
-    (e.g. "3E+1" instead of "30"), a real bug documented elsewhere in this
-    codebase (estimation.py's _round_to_1sf)."""
-    d = Decimal(repr(value))
-    if d == 0:
-        return "0"
-    exponent = d.adjusted() - 2
-    quant_step = Decimal(1).scaleb(exponent)
-    rounded = d.quantize(quant_step, rounding=ROUND_HALF_UP)
-    return format(rounded, "f")
 
 
 def _fmt_signed_for_square(value: int) -> str:
@@ -208,6 +192,7 @@ def _build_speed_squared(rng: random.Random):
 
 def _shape_speed_squared_higher(rng: random.Random) -> Question:
     u, a, s, val = _build_speed_squared(rng)
+    rounding = pick_rounding(rng)
 
     # Independent verification: build v^2 = u^2 + 2as as a sympy expression,
     # substitute numerically, then confirm sympy's own numeric sqrt (a
@@ -229,9 +214,9 @@ def _shape_speed_squared_higher(rng: random.Random) -> Question:
         v_float = math.sqrt(val)
         if abs(float(sp.N(sympy_root)) - v_float) > 1e-9:
             raise ValueError("substitution speed-squared (higher) verification failed (approx root)")
-        v_rounded = _round_sig3(v_float)
-        v_final = f"{v_rounded} (3 s.f.)"
-        note = f"v = √{val} = {v_rounded} (3 s.f.)"
+        v_rounded = format(rounding.round_fn(v_float), "f")
+        v_final = f"{v_rounded} ({rounding.short})"
+        note = f"v = √{val} = {v_rounded} ({rounding.short})"
 
     a_disp = f"({a})" if a < 0 else str(a)
     term2 = 2 * a * s
@@ -248,7 +233,7 @@ def _shape_speed_squared_higher(rng: random.Random) -> Question:
         tier=Tier.HIGHER,
         prompt=(
             f"v^2 = u^2 + 2as. Find the value of v when u = {u}, a = {a} and s = {s}. "
-            "Give your answer to 3 significant figures if it is not exact."
+            f"Give your answer to {rounding.phrase} if it is not exact."
         ),
         solution_steps=tuple(steps),
         final_answer=f"v = {v_final}",
@@ -515,6 +500,7 @@ def generate_modelled_example_substitution_foundation(tier: Tier, rng: random.Ra
 
 def _modelled_speed_squared_higher(rng: random.Random) -> ModelledExample:
     u, a, s, val = _build_speed_squared(rng)
+    rounding = pick_rounding(rng)
 
     rhs = (U_SYM**2 + 2 * A_SYM * S_SYM).subs({U_SYM: u, A_SYM: a, S_SYM: s})
     if int(rhs) != val:
@@ -536,15 +522,15 @@ def _modelled_speed_squared_higher(rng: random.Random) -> ModelledExample:
             raise ValueError(
                 "modelled example substitution speed-squared (higher) verification failed (approx root)"
             )
-        v_rounded = _round_sig3(v_float)
-        v_final = f"{v_rounded} (3 s.f.)"
-        final_line = f"v = √{val} ≈ {v_rounded} (3 s.f.)"
+        v_rounded = format(rounding.round_fn(v_float), "f")
+        v_final = f"{v_rounded} ({rounding.short})"
+        final_line = f"v = √{val} ≈ {v_rounded} ({rounding.short})"
 
     a_disp = f"({a})" if a < 0 else str(a)
     term2 = 2 * a * s
     prompt = (
         f"v^2 = u^2 + 2as. Find the value of v when u = {u}, a = {a} and s = {s}. "
-        "Give your answer to 3 significant figures if it is not exact."
+        f"Give your answer to {rounding.phrase} if it is not exact."
     )
     teaching_steps = [
         "This formula gives v squared, not v itself - so after substituting, there's one extra step "
@@ -563,7 +549,7 @@ def _modelled_speed_squared_higher(rng: random.Random) -> ModelledExample:
             f"{val} is a perfect square, so the square root is exact: v = √{val} = {root_int}."
             if is_exact
             else f"{val} isn't a perfect square, so the square root is irrational - use a calculator "
-            f"and round to 3 significant figures: v = √{val} ≈ {v_rounded}."
+            f"and round to {rounding.phrase}: v = √{val} ≈ {v_rounded}."
         ),
         "Only the positive square root is taken as the final answer, since v represents a speed and "
         "a physical speed can't be negative (even though a decelerating object might have a negative "

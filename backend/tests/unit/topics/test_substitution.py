@@ -77,6 +77,24 @@ def test_modelled_example_generators_produce_verified_examples():
             assert example.final_answer
 
 
+def test_decimal_topics_reach_all_three_rounding_phrasings():
+    """Only the speed-squared Higher shape (v = sqrt(u^2 + 2as)) ever rounds -
+    drawn directly rather than via the outer 3-shape dispatcher, since the
+    dispatcher would only reach it a third of the time. The rounding phrase
+    is baked into the prompt unconditionally (even when the root turns out
+    to be exact), so every single draw is a hit - no need to rely on hitting
+    the non-exact branch specifically."""
+    generators = [substitution._shape_speed_squared_higher]
+    phrasings = {"1 decimal place", "2 decimal places", "3 significant figures"}
+    for generate in generators:
+        rng = random.Random(556)
+        seen = set()
+        for _ in range(200):
+            q = generate(rng)
+            seen |= {p for p in phrasings if p in q.prompt}
+        assert seen == phrasings
+
+
 def test_higher_generator_includes_negative_values():
     """The Higher topic must exercise substituting a negative value into a
     power/root/fraction formula, not just positive ones - confirmed by

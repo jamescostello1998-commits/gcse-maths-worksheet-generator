@@ -12,6 +12,7 @@ from decimal import ROUND_HALF_UP, Decimal
 
 from app.core.models import DiagramSpec, ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
+from app.topics.rounding import pick_rounding
 
 SECTION = "geometry"
 GROUP_BEARINGS = "Bearings"
@@ -85,7 +86,8 @@ def _build_bearings_question(rng: random.Random) -> dict:
 
     _verify_bearings(A, B, C, angle_b_interior, ac, "bearings_cosine_rule")
 
-    rounded = _round_sf(ac, 3)
+    rounding = pick_rounding(rng)
+    rounded = rounding.round_fn(ac)
     back_bearing = (bearing_at_A + 180) % 360
     ac_sq_str = _fmt_dec(_round_sf(ac_sq, 4))
 
@@ -98,6 +100,8 @@ def _build_bearings_question(rng: random.Random) -> dict:
         "d2": d2,
         "ac_sq_str": ac_sq_str,
         "rounded": rounded,
+        "rounding_phrase": rounding.phrase,
+        "rounding_short": rounding.short,
     }
 
 
@@ -105,7 +109,7 @@ def _bearings_prompt(v: dict) -> str:
     return (
         f"A ship sails from port A on a bearing of {_fmt_bearing(v['bearing_at_A'])} for {v['d1']} km "
         f"to point B. It then changes course and sails on a bearing of {_fmt_bearing(v['bearing_at_B'])} "
-        f"for {v['d2']} km to point C. Find the direct distance from A to C, correct to 3 significant figures."
+        f"for {v['d2']} km to point C. Find the direct distance from A to C, correct to {v['rounding_phrase']}."
     )
 
 
@@ -119,7 +123,7 @@ def generate_bearings(tier: Tier, rng: random.Random) -> Question:
         "Use the cosine rule: AC² = AB² + BC² - 2×AB×BC×cos(ABC)",
         f"AC² = {v['d1']}² + {v['d2']}² - 2×{v['d1']}×{v['d2']}×"
         f"cos({v['angle_b_interior']}°) = {v['ac_sq_str']}",
-        f"AC = √{v['ac_sq_str']} = {_fmt_dec(v['rounded'])} km (3 s.f.)",
+        f"AC = √{v['ac_sq_str']} = {_fmt_dec(v['rounded'])} km ({v['rounding_short']})",
     ]
     diagram = DiagramSpec(
         kind="bearings",
@@ -159,7 +163,7 @@ def generate_modelled_example_bearings(tier: Tier, rng: random.Random) -> Modell
         f"AC² = AB² + BC² - 2×AB×BC×cos(ABC), giving AC² = "
         f"{v['d1']}² + {v['d2']}² - 2×{v['d1']}×{v['d2']}×cos({v['angle_b_interior']}°) "
         f"= {v['ac_sq_str']}.",
-        f"Take the square root and round to 3 significant figures: AC = √{v['ac_sq_str']} = "
+        f"Take the square root and round to {v['rounding_phrase']}: AC = √{v['ac_sq_str']} = "
         f"{_fmt_dec(v['rounded'])} km.",
     ]
     worked_calculation = [
