@@ -151,7 +151,7 @@ def _formula_str(shape: str, a: int, b: int) -> str:
         return f"x_(n+1) = \\frac{{{a} - x_n^2}}{{{b}}}"
     if shape == "sqrt":
         coeff = "" if b == 1 else str(b)
-        return f"x_(n+1) = sqrt({a} - {coeff}x_n)"
+        return f"x_(n+1) = √({a} - {coeff}x_n)"
     return f"x_(n+1) = \\frac{{{a}}}{{x_n + {b}}}"
 
 
@@ -165,7 +165,7 @@ def _subst_expr(shape: str, a: int, b: int, prev_disp: str) -> str:
         return f"\\frac{{{a} - {squared_disp}^2}}{{{b}}}"
     if shape == "sqrt":
         coeff = "" if b == 1 else f"{b}×"
-        return f"sqrt({a} - {coeff}{squared_disp})"
+        return f"√({a} - {coeff}{squared_disp})"
     return f"\\frac{{{a}}}{{{prev_disp} + {b}}}"
 
 

@@ -12,23 +12,14 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-**Blocked on the user right now**: chronology step 36 was a large batch of Algebra-section
-review feedback (see step 35's aesthetic-review pass) — everything in that batch is done
-**except `iteration`**, which was supposed to "remove the underscore and make it look like
-the picture attached" but no image actually reached the conversation. **First thing next
-session: ask the user for that reference image (or a plain-English description of the
-notation they want) before touching `iteration.py`** — do not guess at a redesign of the
-`x_n`/`x_(n+1)` notation without it. Once that's resolved, regenerate the review PDFs
-(`.venv\Scripts\python.exe -m scripts.generate_review_pdfs` from `backend/`) and send the
-fresh pair back.
-
-Freshly regenerated review PDFs reflecting everything else from step 36
+The `iteration` item blocked at the end of step 36 (pending a reference image for its
+"remove the underscore" request) is now resolved — see chronology step 37. Freshly
+regenerated review PDFs reflecting that fix
 (`backend/all_topics_review_questions.pdf` / `all_topics_review_answers.pdf` — same
 fixed-seed script, `backend/scripts/generate_review_pdfs.py`, deliberately untracked) were
-already sent back at the end of step 36. The user is continuing their topic-by-topic
-review and will come back with further batches of feedback — **the next session's actual
-work is whatever concrete changes they list next** (once `iteration` is unblocked),
-following the same pattern as steps 35-36:
+sent back at the end of step 37. The user is continuing their topic-by-topic review and
+will come back with further batches of feedback — **the next session's actual work is
+whatever concrete changes they list next**, following the same pattern as steps 35-37:
 
 1. Read the actual current generator code for anything named in the feedback before
    assuming what it does — several step-35/36 items turned out to need a different fix
@@ -55,13 +46,13 @@ following the same pattern as steps 35-36:
    `backend/`) to regenerate both PDFs after making changes, and send the fresh pair
    back to the user for their next comparison pass.
 
-All work through step 36 (except the blocked `iteration` item) is committed, pushed, and
-already part of the open PR (`gh pr view 3` or the repo's PR list — pushing to this
-branch updates it automatically, no separate action needed). The PR has not been merged
-yet, so check its status before assuming `master` already has any of this. 296 topics
-total (unchanged since step 33 — steps 35-36 were rendering/wording/formatting fixes, no
-new or retired topics), backend suite 862/862, frontend 61/61, no known bugs other than
-the deliberately-deferred `iteration` item above.
+All work through step 37 (including the previously-blocked `iteration` fix) is
+committed, pushed, and already part of the open PR (`gh pr view 3` or the repo's PR
+list — pushing to this branch updates it automatically, no separate action needed). The
+PR has not been merged yet, so check its status before assuming `master` already has any
+of this. 296 topics total (unchanged since step 33 — steps 35-37 were rendering/wording/
+formatting fixes, no new or retired topics), backend suite 873/873, frontend 61/61, no
+known bugs.
 
 If the user hasn't given new feedback yet, check "Ideas for a future session" (bottom of
 this file) for candidate follow-ups (the remaining medium-confidence OCR-spec gaps from
@@ -846,17 +837,33 @@ existing topics/shared rendering code). Frontend unaffected (45/45).
   missing-glyph box. Always write `f^-1(x)`, `cos^-1(...)` etc. and let `mathtext.py`
   superscript it properly. (`²`, `√`, `π`, `≤`, `°`, `×`, `÷`, `£` are all fine as
   literal Unicode — only `⁻` specifically is the problem.)
-- (Historical, resolved as of chronology step 28 — kept for context in case `<sub>`
-  markup is ever hand-written again) ReportLab renders a comma **glued and raised** to
-  the preceding digit when it immediately follows a closing `</sub>` with no space in
-  between (verified in isolation with a throwaway script — periods, colons, semicolons,
-  question marks and closing parens in the same position are all fine, and so is a
-  comma after `</super>`; only sub+comma with zero gap breaks). Standalone fractions
-  used to end in `</sub>` (the old `<super>`/`<sub>` approximation) and needed a
-  non-breaking-space workaround before a trailing comma; now that fractions are
-  `<img>` tags instead (see "A true vinculum in prose text" above), `<sub>` is never
-  emitted anywhere in this codebase, so the workaround was removed as dead code. If a
-  future change ever hand-writes `<sub>...</sub>` markup directly, watch for this again.
+- The Unicode Latin-subscript-letter block (`ₙ` U+2099, `ₓ` U+2093, subscript
+  digits/`+`/`-`) is NOT a usable shortcut for hand-rolled subscripts either —
+  Arial has no glyphs for most of them either (confirmed via a `font.getmask` spike:
+  they fall back to the exact same `.notdef` bbox as a deliberately-invalid
+  codepoint). Use a real `<sub>` tag (see mathtext.py's `_SUBSCRIPT_RE`, chronology
+  step 37) or manual multi-run drawing (see `fraction_images.py`'s `_draw_run`, for
+  content that must be drawn as raw PIL text instead of Paragraph markup) — never a
+  Unicode subscript character.
+- ReportLab renders a comma **glued and raised** to the preceding digit when it
+  immediately follows a closing `</sub>` with no space in between (verified in
+  isolation with a throwaway script — periods, colons, semicolons, question marks and
+  closing parens in the same position are all fine, and so is a comma after
+  `</super>`; only sub+comma with zero gap breaks). This first surfaced in chronology
+  step 16 (the old `<super>`/`<sub>` fraction approximation) and was worked around
+  with a non-breaking space; once fractions became `<img>` tags instead (step 28),
+  `<sub>` was removed from the codebase entirely and the workaround became dead code.
+  Step 37 reintroduced `<sub>` for real (`x_n`/`x_(n+1)` subscript notation, see
+  mathtext.py's `_SUBSCRIPT_RE`) and hit this again — confirmed still present via a
+  real rendered-PDF spike. **Fixed with a thin space (U+2009), not a non-breaking
+  space or zero-width space** — a zero-width space was tried first and rejected
+  (Helvetica has no glyph for it, same class of issue as the `⁻¹` gotcha below,
+  confirmed via a `font.getmask` spike showing it falls back to the exact same
+  `.notdef` bbox as a deliberately-invalid codepoint); a non-breaking space fixes the
+  glue but leaves a visibly larger gap than real typesetting would use. `mathtext.py`'s
+  `_SUB_COMMA_RE` inserts the thin space wherever `</sub>` is immediately followed by
+  a comma — if you ever hand-write more `<sub>...</sub>` markup directly elsewhere,
+  watch for this again.
 
 ## How this was built (chronology, for context)
 
@@ -2848,6 +2855,74 @@ fixes), is committed and pushed (see `git log`).
     #3). The `iteration` item remains open, blocked on the user's reference image
     (see "Where to pick up next").
 
+37. New session, resolving the single item step 36 left blocked: the user supplied the
+    reference image (a "3 Minute Maths" slide showing `x_(n+1) = ∛(3 - x_n)` with a true
+    subscript - no visible underscore or parentheses - for the recurrence notation). Fixed
+    at the engine level in `app/pdf/mathtext.py`, not as a one-off patch to `iteration.py`'s
+    strings, per this project's own "engine-level fix, not topic-local" convention: a new
+    `_SUBSCRIPT_RE` matches `x_n`/`x_(n+1)`-style ASCII notation and converts it to a real
+    `<sub>` tag (parentheses stripped, not shown), run BEFORE the italics pass so the bare
+    letter inside is still italicised normally afterward. Confirmed via a full-codebase grep
+    that no topic other than `iteration.py` ever emits this exact "x_" pattern as real
+    rendered text (several dozen false-positive hits were all either Python variable names
+    in source code or unrelated dict keys like `params["x_label"]`, never actual prompt/step
+    string content) - so this is a zero-risk addition for every other topic.
+
+    **Reintroducing `<sub>` revived the historical "comma glued to `</sub>`" ReportLab
+    quirk** documented elsewhere in this file (previously marked resolved only in the sense
+    that the codebase no longer emitted `<sub>` at all) - confirmed still present via a real
+    rendered-PDF spike before shipping (iteration.py's own prompt text has exactly this
+    shape: "x_1, x_2 and x_3"). A zero-width space was tried first and rejected the same way
+    the `⁻¹`/`∕` gotchas were - Helvetica has no glyph for it, confirmed via a `font.getmask`
+    spike showing it falls back to the exact same `.notdef` bbox as a deliberately-invalid
+    codepoint. A thin space (U+2009, which Helvetica does have) fixes the glue with only a
+    negligible visible gap - `_SUB_COMMA_RE` inserts it wherever `</sub>` is immediately
+    followed by a comma.
+
+    A second, narrower problem: two of the topic's three shapes (quadratic, reciprocal)
+    embed a literal "x_n" *inside* a `\frac{}{}` marker's own numerator/denominator (e.g.
+    quadratic's formula numerator "a - x_n^2") - this content is drawn as raw PIL text by
+    `get_fraction_image` with no markup interpretation at all, so mathtext.py's new regex
+    never sees it (it's already extracted into an opaque placeholder and rendered to an
+    image before `_SUBSCRIPT_RE` would run). Fixed narrowly in
+    `app/pdf/fraction_images.py`: a new `_XN_RE` matches ONLY the exact literal substring
+    "x_n" (optionally with a trailing "^digits", so "x_n^2" composes correctly as a real
+    subscript immediately followed by a real superscript, both attached to the same "x" -
+    standard notation for "the square of the nth term"), and `_measure_run`/`_draw_run`
+    manually walk the numerator/denominator left to right, drawing "x_n" as a real
+    italic-font subscript instead of three literal characters. This is deliberately much
+    narrower than a general "any `^digits` inside any fraction becomes a superscript" rule,
+    which was considered and rejected - several *other* topics already use `\frac{}{}` for
+    fractions containing a genuine unrelated "^" (`changing_subject.py`, `kinematics.py`,
+    `quadratic_equations.py`, among the 12 files from step 36's fraction-line audit), and a
+    blanket rule would have risked altering their already-correct, already-shipped
+    rendering; matching only the literal "x_n" substring makes this a zero-risk addition for
+    every one of those files. The subscript "n" (and the base "x") are drawn in the same
+    Times Italic font `mathtext.py` uses for variables elsewhere, even though the
+    surrounding fraction digits stay in plain Arial (an accepted, pre-existing simplification
+    for `\frac{}{}` content generally - see mathtext.py's "Surd-over-integer gotcha" - and
+    invisible at this size, since no other topic's fraction content contains a bare "x_n"
+    for the font mismatch to affect).
+
+    Separately, swapped the sqrt shape's literal word "sqrt(...)" for a real "√(...)" symbol
+    in both `_formula_str` and `_subst_expr`, matching the rest of the app's convention
+    (confirmed safe: since the radicand is algebraic, not bare digits, this renders as a
+    plain literal "√" character per mathtext.py's already-documented behaviour for non-digit
+    radicands, not a full vinculum-radical image - no new radical-engine work needed).
+
+    All three shapes were rendered and visually inspected before considering this done (per
+    this project's own "render and look closely" discipline) - including a native-resolution
+    pixel check of the fraction-embedded subscript/superscript specifically, since an early
+    screenshot at a small crop size made the denominator digits look mis-sized purely from
+    image-scaling interpolation, not a real bug (re-confirmed correct once measured/viewed at
+    native resolution). `trial_and_improvement` (this topic's sibling, which never uses "x_"
+    notation) was re-rendered too, to confirm it's genuinely unaffected. Backend suite grew
+    from 862 to 873 tests (6 new subscript tests in `test_mathtext.py`, 4 new `\frac{}{}`
+    "x_n" tests in `test_fraction_images.py`, 1 new test in `test_iteration.py` confirming
+    the sqrt-symbol swap); frontend unaffected (61/61 - this session touched only backend
+    PDF rendering). No topic count change (still 296). The review PDFs were regenerated
+    (still 296/302 pages, as expected with no topic count change) and sent back to the user.
+
 ## Environment gotchas (Windows, this machine specifically)
 
 Python, Node, and GitHub CLI were **not** installed on this machine when this project
@@ -3016,7 +3091,9 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
   exponents (including negative, e.g. `10^-3`), `^-1` for inverse-function/inverse-
   trig notation, `^(num/den)` for a fractional exponent (e.g. `x^(1/4)`, raised as
   one flat unit — see "Fractional exponents in mathtext.py" above), `num/den` for
-  standalone fractions (e.g. `3/4`). Never hand-write Unicode
+  standalone fractions (e.g. `3/4`), `x_n`/`x_(n+1)` for a real subscript (parens
+  stripped, not shown — see chronology step 37; currently only `iteration.py` uses
+  this). Never hand-write Unicode
   `²`/`⁻¹`/italics in generator code (with the sole exception of `²`, which IS safe
   as a literal — see the Gotcha above for exactly what is/isn't). `x` and `n` are
   both italicised as of chronology step 16; `a`/`b` (vectors) are NOT — see the

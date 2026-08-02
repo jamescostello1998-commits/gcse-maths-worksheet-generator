@@ -160,6 +160,39 @@ punctuation normalisation, not a math substitution, but lives here because
 `to_markup` is the one function shared by all three PDF renderers, so a
 single fix here covers every topic's prompt without needing to touch the
 ~40 files that hardcode a trailing period into their prompt strings.
+
+**A real subscript for "x_n"/"x_(n+1)"-style notation** (chronology step
+after 36 - the iteration.py fix that had been blocked pending a reference
+image): `iteration.py`'s recurrence notation was previously a literal
+underscore character glued between "x" and the index (e.g. "x_(n+1)"
+rendered exactly as those 7 characters), never given any real subscript
+treatment - the reference image the user supplied showed a true subscript
+with no visible underscore or parentheses, matching standard exam
+notation. `_SUBSCRIPT_RE` matches "x_" followed by either a parenthesised
+group (parens stripped, not shown) or a single bare alnum run, and wraps
+the content in a real `<sub>` tag - run BEFORE the italics pass, so a bare
+"n" inside still gets italicised normally by `_VARIABLE_RE` afterward (the
+outer "x" does too, since it's left as plain text). This is a genuine
+engine capability, not a one-off patch to iteration.py's strings - any
+future topic using the same "x_" ASCII convention gets it for free.
+
+**Reintroducing `<sub>` revived a documented historical ReportLab quirk**:
+a comma immediately following a closing `</sub>` with zero gap renders
+glued to, and slightly raised with, the preceding subscript (confirmed via
+a real rendered-PDF spike before shipping this - iteration.py's own prompt
+text has exactly this shape, e.g. "x_1, x_2 and x_3"). A zero-width space
+was tried first and rejected (Helvetica has no glyph for it, same class of
+issue as the "⁻¹" gotcha in CLAUDE.md - it rendered as a missing-glyph
+box); a thin space (U+2009, which Helvetica does have) fixes the glue with
+only a negligible visible gap, confirmed the same way. `_SUB_COMMA_RE`
+inserts it wherever `</sub>` is immediately followed by ",".
+
+**A subscript embedded inside a `\frac{}{}` marker's own numerator/
+denominator is a separate, narrower fix** - see `app/pdf/fraction_images.py`,
+since that content is drawn as raw PIL text, not Paragraph markup, and
+never passes through this module's regexes at all (it's already extracted
+into an opaque placeholder and rendered to an image before `_SUBSCRIPT_RE`
+would ever see it).
 """
 
 import re
@@ -217,6 +250,16 @@ _MARKER_RE = re.compile(
 # A literal "." immediately after a decimal number, at the very end of the
 # string - see the module docstring's final paragraph.
 _TRAILING_DECIMAL_PERIOD_RE = re.compile(r"(\d+\.\d+)\.$")
+
+# "x_n" / "x_(n+1)" -style subscript notation - see the module docstring's
+# "A real subscript" paragraph. The base "x" is left as plain text (picked
+# up by the italics pass below like any other bare "x"); only the part
+# after "_" is wrapped in <sub>, with its parentheses (if any) stripped.
+_SUBSCRIPT_RE = re.compile(r"(?<![A-Za-z])x_(?:\((?P<sub_paren>[^()]+)\)|(?P<sub_bare>[A-Za-z0-9]+))")
+
+# The historical "comma glued to </sub>" ReportLab quirk - see the module
+# docstring's "Reintroducing <sub>" paragraph.
+_SUB_COMMA_RE = re.compile(r"</sub>(?=,)")
 
 # Private Use Area base codepoint for marker placeholders - see the module
 # docstring's "Marker content is protected..." paragraph.
@@ -290,6 +333,17 @@ def to_markup(text: str, *, font_size: float, color: Color, bold: bool = False) 
     # passes below (see the module docstring's "Marker content is
     # protected..." paragraph).
     text, placeholders = _extract_markers(text, font_size, color, bold)
+
+    # Convert "x_n"/"x_(n+1)"-style subscript notation to a real <sub> tag
+    # BEFORE italicising, so the bare letter(s) inside are still available
+    # for _VARIABLE_RE to italicise normally in the next step (see the
+    # module docstring's "A real subscript" paragraph). Immediately fix up
+    # the historical comma-after-</sub> ReportLab quirk this can expose.
+    text = _SUBSCRIPT_RE.sub(
+        lambda m: f"x<sub>{m.group('sub_paren') if m.group('sub_paren') is not None else m.group('sub_bare')}</sub>",
+        text,
+    )
+    text = _SUB_COMMA_RE.sub("</sub> ", text)
 
     # Italicise x/n and bold \vec{a}/\vec{b} BEFORE substituting fractions/
     # exponents/radicals, not after: those substitutions insert <img

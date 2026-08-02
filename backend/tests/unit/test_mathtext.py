@@ -357,3 +357,38 @@ def test_plain_unmarked_a_or_b_stays_untouched():
 
 def test_vec_sentinel_survives_alongside_a_coefficient():
     assert _markup("3\\vec{a} - \\vec{b}") == "3<b>a</b> - <b>b</b>"
+
+
+def test_subscript_bare_digit():
+    assert _markup("x_0 = 2") == f"{_italic('x')}<sub>0</sub> = 2"
+
+
+def test_subscript_bare_letter_is_italicised_inside_sub():
+    assert _markup("x_n") == f"{_italic('x')}<sub>{_italic('n')}</sub>"
+
+
+def test_subscript_parenthesised_expression_drops_the_parens():
+    assert _markup("x_(n+1) = g(x_n)") == (
+        f"{_italic('x')}<sub>{_italic('n')}+1</sub> = g({_italic('x')}<sub>{_italic('n')}</sub>)"
+    )
+
+
+def test_subscript_composes_with_a_trailing_exponent():
+    # "x_n^2" means (x_n)^2 - the subscript and superscript both attach to
+    # the same x, giving a real subscript immediately followed by a real
+    # superscript, not a nested "n^2".
+    assert _markup("x_n^2") == f"{_italic('x')}<sub>{_italic('n')}</sub><super>2</super>"
+
+
+def test_subscript_followed_by_comma_gets_a_thin_space_not_a_glued_comma():
+    # Reintroducing <sub> revives a documented ReportLab quirk (a comma
+    # glued/raised immediately after </sub> with zero gap) - confirmed via a
+    # real rendered-PDF spike before shipping. A thin space (U+2009) fixes
+    # it with a negligible visible gap.
+    assert _markup("x_1, x_2") == (
+        f"{_italic('x')}<sub>1</sub> , {_italic('x')}<sub>2</sub>"
+    )
+
+
+def test_subscript_not_followed_by_comma_is_untouched():
+    assert _markup("x_1 = 2") == f"{_italic('x')}<sub>1</sub> = 2"
