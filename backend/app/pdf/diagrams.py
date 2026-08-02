@@ -201,6 +201,45 @@ def draw_rectangle(params: dict) -> Drawing:
     return d
 
 
+def draw_two_similar_rectangles(params: dict) -> Drawing:
+    """Two separate rectangles - "Shape A" and "Shape B" - side by side, for
+    a similar-shapes ratio question where the student must identify
+    corresponding sides themselves (same orientation, so width<->width and
+    height<->height, but the two rectangles are NOT drawn in their true
+    relative proportions - one side is often the unknown the student must
+    find, and drawing it at its real scaled size would let a careful
+    ruler-measurement leak the answer - see `_not_to_scale`).
+
+    params: a_width_label/a_height_label (Shape A's two side labels), b_width_label/
+    b_height_label (Shape B's two corresponding side labels - one is the known
+    scale-factor partner, the other may be the unknown, e.g. "x"). Any of the
+    four is optional (omit a key entirely to leave that side unlabelled) -
+    the area/volume version of this question only ever states ONE
+    corresponding length pair (the area/volume itself, not a second length,
+    is what's given/asked for), so only one width/height pair is passed."""
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    ax0, ay0, aw, ah = 8, 38, 48, 42
+    bx0, by0, bw, bh = 96, 34, 55, 58
+
+    d.add(Rect(ax0, ay0, aw, ah, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    d.add(Rect(bx0, by0, bw, bh, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+
+    d.add(_label(ax0 + aw / 2, ay0 + ah + 8, "Shape A", size=8, color=MUTED))
+    d.add(_label(bx0 + bw / 2, by0 + bh + 8, "Shape B", size=8, color=MUTED))
+
+    if params.get("a_width_label"):
+        d.add(_label(ax0 + aw / 2, ay0 - 14, params["a_width_label"]))
+    if params.get("a_height_label"):
+        d.add(_label(ax0 + aw + 8, ay0 + ah / 2, params["a_height_label"], anchor="start"))
+    if params.get("b_width_label"):
+        d.add(_label(bx0 + bw / 2, by0 - 14, params["b_width_label"]))
+    if params.get("b_height_label"):
+        d.add(_label(bx0 + bw + 8, by0 + bh / 2, params["b_height_label"], anchor="start"))
+
+    _not_to_scale(d)
+    return d
+
+
 def draw_triangle_area(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     base_val, height_val = params["base"], params["height"]
@@ -2989,6 +3028,7 @@ def draw_compound_3d(params: dict) -> Drawing:
 
 _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "rectangle": draw_rectangle,
+    "two_similar_rectangles": draw_two_similar_rectangles,
     "triangle_area": draw_triangle_area,
     "l_shape": draw_l_shape,
     "circle": draw_circle,

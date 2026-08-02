@@ -311,6 +311,26 @@ def test_recur_marker_and_frac_marker_can_coexist():
 
 
 # ---------------------------------------------------------------------------
+# \plain{X} - opts a bare letter OUT of the default x/n italics.
+# ---------------------------------------------------------------------------
+
+def test_plain_marker_renders_n_upright():
+    assert _markup(r"Write the ratio in the form 1:\plain{n}.") == "Write the ratio in the form 1:n."
+
+
+def test_plain_marker_leaves_other_bare_n_occurrences_italicised():
+    # Only the explicitly-marked occurrence is exempted - a different, unmarked
+    # "n" elsewhere in the same string is still italicised as normal.
+    assert _markup(r"n and \plain{n}") == f"{_italic('n')} and n"
+
+
+def test_plain_marker_content_is_not_re_scanned_by_other_passes():
+    # The bare content is spliced back verbatim after every other pass - a
+    # fraction-looking "1/2" inside \plain{} must NOT become a vinculum image.
+    assert _markup(r"\plain{1/2}") == "1/2"
+
+
+# ---------------------------------------------------------------------------
 # Trailing full stop directly after a decimal number.
 # ---------------------------------------------------------------------------
 

@@ -4,6 +4,7 @@ from typing import NamedTuple
 
 from app.core.models import ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
+from app.topics.units import display_qty, needs_larger_unit
 
 SECTION = "ratio_proportion"
 GROUP = "Best Buys"
@@ -101,10 +102,12 @@ def generate_best_buys(tier: Tier, rng: random.Random) -> Question:
     winner = options[winner_idx]
 
     option_lines = "; ".join(
-        f"{o.label}: {_fmt_price(o.price_pence)} for {o.qty}{unit}" for o in options
+        f"{o.label}: {_fmt_price(o.price_pence)} for {display_qty(o.qty, unit)}" for o in options
     )
     steps = [f"Work out the price per 100{unit} for each option:"]
     for o in options:
+        if needs_larger_unit(o.qty, unit):
+            steps.append(f"{o.label}: {display_qty(o.qty, unit)} = {o.qty}{unit}")
         steps.append(f"{o.label}: {_fmt_price(o.price_pence)} ÷ {o.qty} × 100 = {_fmt_unit_price(o.unit_price, unit)}")
     steps.append(
         f"The lowest price per 100{unit} is {winner.label} at "
@@ -119,7 +122,7 @@ def generate_best_buys(tier: Tier, rng: random.Random) -> Question:
             "Which option is the better value for money? Show your working."
         ),
         solution_steps=tuple(steps),
-        final_answer=f"{winner.label} ({_fmt_price(winner.price_pence)} for {winner.qty}{unit})",
+        final_answer=f"{winner.label} ({_fmt_price(winner.price_pence)} for {display_qty(winner.qty, unit)})",
         dedup_key=(
             f"bb:{noun}:{'|'.join(f'{o.label}:{o.qty}:{o.price_pence}' for o in options)}"
         ),
@@ -131,7 +134,7 @@ def generate_modelled_example_best_buys(tier: Tier, rng: random.Random) -> Model
     winner = options[winner_idx]
 
     option_lines = "; ".join(
-        f"{o.label}: {_fmt_price(o.price_pence)} for {o.qty}{unit}" for o in options
+        f"{o.label}: {_fmt_price(o.price_pence)} for {display_qty(o.qty, unit)}" for o in options
     )
     prompt = (
         f"A shop sells {noun} in different sizes: {option_lines}. "
@@ -144,10 +147,17 @@ def generate_modelled_example_best_buys(tier: Tier, rng: random.Random) -> Model
         f"we need to work out a fair 'per-unit' price for each one, such as the price per 100{unit}.",
     ]
     for o in options:
-        teaching_steps.append(
-            f"For {o.label}: divide the price by the quantity, then scale up to 100{unit}: "
-            f"{_fmt_price(o.price_pence)} ÷ {o.qty} × 100 = {_fmt_unit_price(o.unit_price, unit)}."
-        )
+        if needs_larger_unit(o.qty, unit):
+            teaching_steps.append(
+                f"For {o.label}: {display_qty(o.qty, unit)} is {o.qty}{unit}, so divide the price by "
+                f"that, then scale up to 100{unit}: "
+                f"{_fmt_price(o.price_pence)} ÷ {o.qty} × 100 = {_fmt_unit_price(o.unit_price, unit)}."
+            )
+        else:
+            teaching_steps.append(
+                f"For {o.label}: divide the price by the quantity, then scale up to 100{unit}: "
+                f"{_fmt_price(o.price_pence)} ÷ {o.qty} × 100 = {_fmt_unit_price(o.unit_price, unit)}."
+            )
     teaching_steps.append(
         f"Now the options are on a level playing field - whichever has the LOWEST price per "
         f"100{unit} is the better value. Here, {winner.label} has the lowest at "
@@ -161,6 +171,8 @@ def generate_modelled_example_best_buys(tier: Tier, rng: random.Random) -> Model
 
     worked_calculation = [f"Price per 100{unit}:"]
     for o in options:
+        if needs_larger_unit(o.qty, unit):
+            worked_calculation.append(f"{o.label}: {display_qty(o.qty, unit)} = {o.qty}{unit}")
         worked_calculation.append(f"{o.label}: {_fmt_price(o.price_pence)} ÷ {o.qty} × 100 = {_fmt_unit_price(o.unit_price, unit)}")
     worked_calculation.append(f"Best value: {winner.label}")
 
@@ -170,7 +182,7 @@ def generate_modelled_example_best_buys(tier: Tier, rng: random.Random) -> Model
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
-        final_answer=f"{winner.label} ({_fmt_price(winner.price_pence)} for {winner.qty}{unit})",
+        final_answer=f"{winner.label} ({_fmt_price(winner.price_pence)} for {display_qty(winner.qty, unit)})",
     )
 
 

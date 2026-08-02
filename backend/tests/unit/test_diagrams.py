@@ -17,6 +17,13 @@ from app.pdf.diagrams import (
 
 SAMPLE_SPECS = [
     DiagramSpec(kind="rectangle", params={"width": 10, "height": 6, "width_label": "10 cm", "height_label": "6 cm"}),
+    DiagramSpec(
+        kind="two_similar_rectangles",
+        params={
+            "a_width_label": "6 cm", "a_height_label": "9 cm",
+            "b_width_label": "8 cm", "b_height_label": "x",
+        },
+    ),
     DiagramSpec(kind="triangle_area", params={"base": 8, "height": 5, "base_label": "8 cm", "height_label": "5 cm"}),
     DiagramSpec(
         kind="l_shape",
@@ -307,6 +314,20 @@ def test_render_diagram_produces_valid_drawing(spec):
 def test_unknown_kind_raises_clearly():
     with pytest.raises(ValueError, match="Unknown diagram kind"):
         render_diagram(DiagramSpec(kind="not_a_real_kind", params={}))
+
+
+def test_two_similar_rectangles_omits_unlabelled_sides():
+    # ratio_shape_similar_higher only ever gives one length pair (the
+    # area/volume, not a second length, is what's given/asked for) - the
+    # diagram must not crash or draw a placeholder when a_height_label/
+    # b_height_label are simply absent from params.
+    spec = DiagramSpec(
+        kind="two_similar_rectangles",
+        params={"a_width_label": "6 cm", "b_width_label": "8 cm"},
+    )
+    drawing = render_diagram(spec)
+    assert isinstance(drawing, Drawing)
+    assert len(drawing.contents) > 0
 
 
 def test_math_runs_italicises_x_and_n():

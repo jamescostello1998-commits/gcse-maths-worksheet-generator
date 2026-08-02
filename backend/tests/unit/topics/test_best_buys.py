@@ -1,4 +1,5 @@
 import random
+import re
 
 from app.core.models import Tier
 from app.topics import best_buys
@@ -90,3 +91,23 @@ def test_best_buys_final_answer_names_the_winning_label():
     for _ in range(TRIALS):
         q = best_buys.generate_best_buys(Tier.FOUNDATION, rng)
         assert q.final_answer[0] in ("A", "B", "C")
+
+
+_BARE_QTY_RE = re.compile(r"(\d+)(g|ml)\b")
+_CONVERSION_CLAUSE_RE = re.compile(r"\d+(\.\d+)?(kg|L) = \d+(g|ml)")
+
+
+def test_best_buys_quantities_at_or_above_1000_display_in_the_larger_unit():
+    # Any pack size >= 1000g/1000ml must show as kg/L in the prompt and final
+    # answer, with an explicit "1.2kg = 1200g" conversion clause among the
+    # solution steps (never a bare jump straight to "÷ 1200").
+    rng = random.Random(326)
+    found_a_conversion = False
+    for _ in range(500):
+        q = best_buys.generate_best_buys(Tier.FOUNDATION, rng)
+        for line in (q.prompt, q.final_answer):
+            for m in _BARE_QTY_RE.finditer(line):
+                assert int(m.group(1)) < 1000
+        if any(_CONVERSION_CLAUSE_RE.search(step) for step in q.solution_steps):
+            found_a_conversion = True
+    assert found_a_conversion

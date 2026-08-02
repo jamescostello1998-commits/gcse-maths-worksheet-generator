@@ -113,10 +113,22 @@ is the non-recurring digits before the repeating block (may be empty, e.g.
 over the single digit (if BLOCK has length 1) or over both the first and
 last digit of BLOCK (matching the confirmed UK GCSE convention).
 
+**A third sentinel, `\plain{X}`, opts a bare letter OUT of the automatic
+x/n italics** - for the rare case where "n" (or "x") appears as a plain
+notational placeholder rather than a genuine algebraic variable, e.g.
+`ratio_1_to_n`'s "1:n"/"n:1" ratio-form notation, where real exam
+convention leaves the "n" upright. This is the same "blanket regex can't
+safely disambiguate, so the generator marks it explicitly" precedent as
+`\vec{a}`/`\vec{b}` and the fraction/recurring-decimal markers, just in the
+opposite direction (opt OUT of styling rather than opt IN) - `x`/`n` are
+italicised by default everywhere else, so this stays a rare, explicit
+exception, not a new default.
+
 **Marker content is protected from the italics/vector passes via an early
-extraction step.** `\frac{}{}`/`\recur{}{}` spans are pulled out and replaced
-with an opaque placeholder *before* `_VARIABLE_RE`/`_VECTOR_RE` run, then the
-real rendered `<img>` markup is spliced back in after `_MATH_RE`'s pass. This
+extraction step.** `\frac{}{}`/`\recur{}{}`/`\plain{}` spans are pulled out
+and replaced with an opaque placeholder *before* `_VARIABLE_RE`/`_VECTOR_RE`
+run, then the real markup (rendered `<img>` for the first two, the bare
+literal content for `\plain{}`) is spliced back in after `_MATH_RE`'s pass. This
 forecloses the exact bug class already documented below for the fraction-
 image temp-path: a bare `x`/`n` or `\vec{}` sitting inside a marker's braces
 (plausible for an algebraic numerator) would otherwise get corrupted by the
@@ -241,11 +253,12 @@ _VARIABLE_RE = re.compile(r"(?<![A-Za-z^])[xn](?![A-Za-z])")
 # matched by a blanket letter pattern, since "a" collides constantly with
 # the English indefinite article and can't be disambiguated by regex alone.
 _VECTOR_RE = re.compile(r"\\vec\{([ab])\}")
-# The two explicit fraction/recurring-decimal sentinel markers - see the
-# module docstring's "Two explicit ASCII sentinel markers" section.
+# The three explicit sentinel markers - see the module docstring's "Two
+# explicit ASCII sentinel markers" and "A third sentinel, \plain{X}" sections.
 _MARKER_RE = re.compile(
     r"\\frac\{(?P<mnum>[^{}]*)\}\{(?P<mden>[^{}]*)\}"
     r"|\\recur\{(?P<mprefix>[^{}]*)\}\{(?P<mblock>[^{}]*)\}"
+    r"|\\plain\{(?P<mplain>[^{}]*)\}"
 )
 # A literal "." immediately after a decimal number, at the very end of the
 # string - see the module docstring's final paragraph.
@@ -270,6 +283,9 @@ def _extract_markers(text: str, font_size: float, color: Color, bold: bool) -> t
     placeholders: list[str] = []
 
     def repl(m: re.Match) -> str:
+        if m.group("mplain") is not None:
+            placeholders.append(m.group("mplain"))
+            return chr(_PLACEHOLDER_BASE + len(placeholders) - 1)
         if m.group("mnum") is not None:
             img = get_fraction_image(m.group("mnum"), m.group("mden"), font_size, bold, color)
             valign = "bottom"

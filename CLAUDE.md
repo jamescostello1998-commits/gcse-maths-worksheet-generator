@@ -12,14 +12,14 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-The `iteration` item blocked at the end of step 36 (pending a reference image for its
-"remove the underscore" request) is now resolved — see chronology step 37. Freshly
-regenerated review PDFs reflecting that fix
+Step 38 handled a full batch of Ratio & Proportion review feedback (6 named items,
+`best_buys` through `direct_proportion`) — see its chronology entry. Freshly regenerated
+review PDFs reflecting all of it
 (`backend/all_topics_review_questions.pdf` / `all_topics_review_answers.pdf` — same
 fixed-seed script, `backend/scripts/generate_review_pdfs.py`, deliberately untracked) were
-sent back at the end of step 37. The user is continuing their topic-by-topic review and
+sent back at the end of step 38. The user is continuing their topic-by-topic review and
 will come back with further batches of feedback — **the next session's actual work is
-whatever concrete changes they list next**, following the same pattern as steps 35-37:
+whatever concrete changes they list next**, following the same pattern as steps 35-38:
 
 1. Read the actual current generator code for anything named in the feedback before
    assuming what it does — several step-35/36 items turned out to need a different fix
@@ -46,13 +46,12 @@ whatever concrete changes they list next**, following the same pattern as steps 
    `backend/`) to regenerate both PDFs after making changes, and send the fresh pair
    back to the user for their next comparison pass.
 
-All work through step 37 (including the previously-blocked `iteration` fix) is
-committed, pushed, and already part of the open PR (`gh pr view 3` or the repo's PR
-list — pushing to this branch updates it automatically, no separate action needed). The
-PR has not been merged yet, so check its status before assuming `master` already has any
-of this. 296 topics total (unchanged since step 33 — steps 35-37 were rendering/wording/
-formatting fixes, no new or retired topics), backend suite 873/873, frontend 61/61, no
-known bugs.
+All work through step 38 is committed, pushed, and already part of the open PR
+(`gh pr view 3` or the repo's PR list — pushing to this branch updates it automatically,
+no separate action needed). The PR has not been merged yet, so check its status before
+assuming `master` already has any of this. 296 topics total (unchanged since step 33 —
+steps 35-38 were rendering/wording/formatting fixes, no new or retired topics), backend
+suite 892/892, frontend 61/61, no known bugs.
 
 If the user hasn't given new feedback yet, check "Ideas for a future session" (bottom of
 this file) for candidate follow-ups (the remaining medium-confidence OCR-spec gaps from
@@ -2923,6 +2922,121 @@ fixes), is committed and pushed (see `git log`).
     PDF rendering). No topic count change (still 296). The review PDFs were regenerated
     (still 296/302 pages, as expected with no topic count change) and sent back to the user.
 
+38. New session, a batch of Ratio & Proportion review feedback (6 named items:
+    `best_buys`, `ratio_find_missing_share`/`ratio_difference`/`ratio_difference_higher`,
+    `ratio_1_to_n`, `ratio_shape_similar_foundation`/`_higher`, `direct_proportion`).
+    Asked clarifying questions up front via `AskUserQuestion` on the genuinely ambiguous
+    items before touching code: whether `ratio_difference`'s restyle should switch to
+    giving one share's value directly (matching the user's literal example) or keep
+    giving the difference with just terser wording (chosen: **keep the difference**,
+    since that's what makes the topic distinct from `ratio_find_missing_share` -
+    otherwise the two topics would test near-identical content); what shape/orientation
+    the new similar-shapes diagram should use (chosen: **two rectangles, same
+    orientation** - simplest, since a rectangle's own width/height already disambiguate
+    corresponding sides without needing rotation); and whether the best_buys g→kg
+    scope should extend to `direct_proportion`'s recipe template, which was found via
+    the "check for the same pattern elsewhere" pass to have the exact same issue
+    (chosen: **yes**, plus ml→L too, for symmetry).
+
+    **best_buys / direct_proportion g→kg, ml→L conversion**: new
+    `app/topics/units.py` (`display_qty`/`needs_larger_unit`) - a raw base-unit amount
+    (grams, millilitres) displays in the larger unit (kg, litres) once it reaches 1000,
+    e.g. `display_qty(1200, "g")` → `"1.2kg"`. Fixed-point formatting only
+    (`format(Decimal, "f")`, never a bare `Decimal` `.normalize()`/`str()`) - confirmed
+    via a real spike that the same "3E+1"-style scientific-notation bug documented for
+    `estimation_rounding` (chronology step 22) reproduces here too for a qty that
+    normalizes to a round number, even though no current caller's range actually reaches
+    it. Wired into `best_buys.py` (pack-size mentions in the prompt/option-list/final
+    answer) and `proportion.py`'s `direct_proportion` recipe template (`display_qty`
+    used for prompt/final-answer "narration", while the actual division/multiplication
+    steps still work in raw grams throughout) - both add an explicit
+    `"1.2kg = 1200g"`-style conversion clause wherever the two forms differ, so no step
+    ever jumps from a kg-displayed number straight into a gram-based division with no
+    explanation. `direct_proportion`'s other three templates (shopping, map, currency)
+    never reach this threshold, so are unaffected.
+
+    **`ratio_find_missing_share`/`ratio_difference`/`ratio_difference_higher` restyled
+    to a letter-equation format** (e.g. "a : b = 1 : 7. a = 10. What is the value of
+    b?"), replacing the old "Two amounts are in the ratio..." prose framing. New
+    `_LETTER_PAIRS`/`_LETTER_TRIPLES` pools (`ratio.py`) vary which letters are used per
+    question - **deliberately excludes "x" and "n"**, the only two letters
+    `mathtext.py`'s engine italicises by default, since pairing an italicised letter
+    with a plain one in the same ratio (e.g. "x : y") looks like a rendering
+    inconsistency even though each letter's styling is individually correct - found via
+    an actual render during this session, not assumed up front. `ratio_find_missing_share`
+    now always asks for the other letter's value directly (the old "or find the total"
+    branch was dropped, matching the user's literal example - it had no total-asking
+    variant); `ratio_difference`/`_higher` **keep** giving the difference (per the
+    clarifying-question answer above) and keep their existing "or also ask for the
+    total" branch, just restyled with letters (e.g. "a : b = 3 : 5. b - a = 12. Find a
+    and b, and their total.") - the bigger/smaller letter in the difference clause is
+    picked from the actual generated values (`bigger_letter, smaller_letter = (l1, l2)
+    if a > b else (l2, l1)`), not hardcoded, so it's always stated as a true positive
+    quantity.
+
+    **`ratio_1_to_n`'s "n" is no longer italicised** - a genuine gap in `mathtext.py`'s
+    "x/n are always italic" convention, since here "n" is a plain ratio-form
+    placeholder ("1:n"), not an algebraic variable, and real exam convention leaves it
+    upright. Rather than special-case this one topic, added a new general engine
+    capability: **`\plain{X}` opts a bare letter OUT of the automatic italics** - the
+    third explicit ASCII sentinel marker in `mathtext.py` (alongside `\frac{}{}`/
+    `\recur{}{}`), extracted into the same placeholder mechanism *before* the italics
+    pass runs, then spliced back as fully bare/literal content afterward (opting out of
+    every later pass, not just italics, since there's nothing else in `ratio_1_to_n`'s
+    content that would need markup applied to a bare "n" anyway). Every literal "n" in
+    `ratio_1_to_n`'s prompt/steps/worked_calculation/teaching_steps was audited and
+    converted to `\plain{n}` - confirmed via a real render that "n" now sits upright
+    everywhere it appears, prompt through modelled example.
+
+    **`ratio_shape_similar_foundation`/`_higher` restyled with a new diagram**, moving
+    the numeric side-length data out of the prompt text (which now just states "Shape A
+    and Shape B are similar. Find the length of side x." for Foundation, or "...The
+    area of shape B is 360 cm². Find the area of shape A." for Higher, unchanged from
+    the user's example) and into a new `two_similar_rectangles` diagram kind
+    (`app/pdf/diagrams.py`) - two separate, non-overlapping rectangles ("Shape A"/
+    "Shape B"), same orientation (so correspondence is just "width↔width, height↔
+    height", no rotation needed), explicitly **NOT drawn to true relative scale**
+    (`_not_to_scale`) since one side is often the very unknown the student must find -
+    drawing it at its real proportion would let a careful ruler-measurement leak the
+    answer, the same reasoning this app already applies to schematic triangles/circles
+    elsewhere. All four side labels are optional (`params.get(...)`, no KeyError if
+    omitted) since the Higher (area/volume) version only ever states ONE corresponding
+    length pair (the area/volume itself, not a second length, is what's given/asked
+    for) - Foundation passes all four (two full dimensions per shape, one of which is
+    the unknown letter), Higher passes only the two width labels. New
+    `_UNKNOWN_LETTERS = ["x", "y", "z"]` pool varies the Foundation topic's unknown-side
+    letter per question, matching the user's "(letters can be changed)" note. **A real
+    bug was found and fixed via this diagram's own first spike render**, before any
+    topic code was wired up (this project's established "verify the riskiest piece
+    first" precedent): the initial layout gave Shape B's height label too little
+    clearance from the canvas's right edge, so a two-digit label like "45 cm" clipped
+    off completely - fixed by narrowing both rectangles slightly and shifting Shape B
+    left, re-confirmed clean across several longer-label test cases before wiring it
+    into the real topics.
+
+    **`direct_proportion` wording**: every one of its 4 templates (shopping, recipe,
+    map, currency) now opens with "If ..." (e.g. "If 8 pencils cost £21.68, how much
+    would 15 pencils cost?"), restructuring what used to be two separate sentences into
+    one conditional clause. The currency template's `amount_noun` ("value in dollars")
+    and its prompt's own "in dollars" mention both gained a parenthetical "($)"
+    immediately after the bare word "dollars" - the one place in this file a currency
+    is ever named by word without its symbol sitting right next to a figure - so every
+    teaching-step sentence built from `amount_noun` picks up the clarification
+    automatically, with no separate per-sentence edit needed.
+
+    Central verification: full backend suite (873→892 tests - `test_units.py` (new),
+    plus new tests in `test_ratio.py`, `test_diagrams.py`, `test_best_buys.py`,
+    `test_proportion.py`, and 3 new `\plain{}` tests in `test_mathtext.py`); frontend
+    unaffected (61/61 - no frontend files touched). No topic count change (still 296 -
+    this was entirely rendering/wording/diagram fixes to existing topics). Every
+    changed topic was rendered and visually inspected (worksheet, worked solutions, and
+    modelled-example pages) before considering it done, plus a live browser
+    click-through (both similar-shapes topics generated a real worksheet/modelled
+    example, 200 OK, no console errors). The review PDFs were regenerated (296
+    question pages, unchanged; 303 answer pages, up from 302 - expected, since the two
+    similar-shapes topics' worked solutions now include a diagram) and sent back to the
+    user.
+
 ## Environment gotchas (Windows, this machine specifically)
 
 Python, Node, and GitHub CLI were **not** installed on this machine when this project
@@ -3093,7 +3207,9 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
   one flat unit — see "Fractional exponents in mathtext.py" above), `num/den` for
   standalone fractions (e.g. `3/4`), `x_n`/`x_(n+1)` for a real subscript (parens
   stripped, not shown — see chronology step 37; currently only `iteration.py` uses
-  this). Never hand-write Unicode
+  this), `\plain{X}` to opt a bare letter OUT of the default x/n italics for the rare
+  case it's a plain notational placeholder rather than a real variable (e.g.
+  `ratio_1_to_n`'s "1:n" — see chronology step 38). Never hand-write Unicode
   `²`/`⁻¹`/italics in generator code (with the sole exception of `²`, which IS safe
   as a literal — see the Gotcha above for exactly what is/isn't). `x` and `n` are
   both italicised as of chronology step 16; `a`/`b` (vectors) are NOT — see the

@@ -3,6 +3,7 @@ from fractions import Fraction
 
 from app.core.models import ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
+from app.topics.units import display_qty
 
 SECTION = "ratio_proportion"
 GROUP = "Proportion"
@@ -29,7 +30,7 @@ def _direct_shopping(x1: int, x2: int, rng: random.Random) -> dict:
     y1, y2 = unit_value * x1, unit_value * x2
     return {
         "name": f"shopping:{item}",
-        "prompt": f"{x1} {item} cost £{_format_money(y1)}. How much would {x2} {item} cost?",
+        "prompt": f"If {x1} {item} cost £{_format_money(y1)}, how much would {x2} {item} cost?",
         "x1": x1,
         "x2": x2,
         "y1": y1,
@@ -49,8 +50,8 @@ def _direct_recipe(x1: int, x2: int, rng: random.Random) -> dict:
     return {
         "name": f"recipe:{ingredient}",
         "prompt": (
-            f"A recipe for {x1} people uses {y1}g of {ingredient}. How much {ingredient} "
-            f"is needed for {x2} people?"
+            f"If a recipe for {x1} people uses {display_qty(y1, 'g')} of {ingredient}, how much "
+            f"{ingredient} is needed for {x2} people?"
         ),
         "x1": x1,
         "x2": x2,
@@ -61,6 +62,7 @@ def _direct_recipe(x1: int, x2: int, rng: random.Random) -> dict:
         "unit_phrase": "one person's share",
         "amount_noun": f"amount of {ingredient} needed",
         "format_amount": lambda v: f"{v}g",
+        "narrate_amount": lambda v: display_qty(v, "g"),
     }
 
 
@@ -70,7 +72,7 @@ def _direct_map(x1: int, x2: int, rng: random.Random) -> dict:
     return {
         "name": "map",
         "prompt": (
-            f"On a map, {x1} cm represents {y1} km in real life. How many km does "
+            f"If {x1} cm on a map represents {y1} km in real life, how many km does "
             f"{x2} cm represent?"
         ),
         "x1": x1,
@@ -90,7 +92,7 @@ def _direct_currency(x1: int, x2: int, rng: random.Random) -> dict:
     y1, y2 = unit_value * x1, unit_value * x2
     return {
         "name": "currency",
-        "prompt": f"£{x1} exchanges for ${_format_money(y1)}. How much is £{x2} worth in dollars?",
+        "prompt": f"If £{x1} exchanges for ${_format_money(y1)}, how much is £{x2} worth in dollars ($)?",
         "x1": x1,
         "x2": x2,
         "y1": y1,
@@ -98,7 +100,7 @@ def _direct_currency(x1: int, x2: int, rng: random.Random) -> dict:
         "unit_value": unit_value,
         "quantity_phrase": "the amount exchanged (in £)",
         "unit_phrase": "£1",
-        "amount_noun": "value in dollars",
+        "amount_noun": "value in dollars ($)",
         "format_amount": lambda v: f"${_format_money(v)}",
     }
 
@@ -119,22 +121,27 @@ def generate_direct_proportion(tier: Tier, rng: random.Random) -> Question:
     ctx = _pick_direct_context(rng)
     x1, x2, y1, y2, unit_value = ctx["x1"], ctx["x2"], ctx["y1"], ctx["y2"], ctx["unit_value"]
     format_amount = ctx["format_amount"]
+    narrate_amount = ctx.get("narrate_amount", format_amount)
 
     # Independent verification via cross-multiplication (a different computation path
     # than the divide-then-multiply used to build the steps below).
     if Fraction(y2, x2) != Fraction(y1, x1):
         raise ValueError("direct_proportion verification failed")
 
-    steps = [
-        f"Unit value = {format_amount(y1)} ÷ {x1} = {format_amount(unit_value)}",
-        f"Answer = {format_amount(unit_value)} × {x2} = {format_amount(y2)}",
-    ]
+    steps = []
+    if narrate_amount(y1) != format_amount(y1):
+        steps.append(f"{narrate_amount(y1)} = {format_amount(y1)}")
+    steps.append(f"Unit value = {format_amount(y1)} ÷ {x1} = {format_amount(unit_value)}")
+    steps.append(f"Answer = {format_amount(unit_value)} × {x2} = {format_amount(y2)}")
+    if narrate_amount(y2) != format_amount(y2):
+        steps.append(f"{format_amount(y2)} = {narrate_amount(y2)}")
+
     return Question(
         topic_id="direct_proportion",
         tier=Tier.FOUNDATION,
         prompt=ctx["prompt"],
         solution_steps=tuple(steps),
-        final_answer=format_amount(y2),
+        final_answer=narrate_amount(y2),
         dedup_key=f"direct:{ctx['name']}:{x1}:{x2}:{unit_value}",
     )
 
@@ -143,6 +150,7 @@ def generate_modelled_example_direct_proportion(tier: Tier, rng: random.Random) 
     ctx = _pick_direct_context(rng)
     x1, x2, y1, y2, unit_value = ctx["x1"], ctx["x2"], ctx["y1"], ctx["y2"], ctx["unit_value"]
     format_amount = ctx["format_amount"]
+    narrate_amount = ctx.get("narrate_amount", format_amount)
 
     # Independent verification via cross-multiplication (a different computation path
     # than the divide-then-multiply used to build the working below).
@@ -153,24 +161,37 @@ def generate_modelled_example_direct_proportion(tier: Tier, rng: random.Random) 
         f"This is direct proportion: as {ctx['quantity_phrase']} increases, the "
         f"{ctx['amount_noun']} increases in the same ratio, so the first job is to work out "
         f"what {ctx['unit_phrase']} is worth.",
+    ]
+    if narrate_amount(y1) != format_amount(y1):
+        teaching_steps.append(
+            f"The given amount, {narrate_amount(y1)}, is the same as {format_amount(y1)} - "
+            "converting to that unit makes the division below straightforward."
+        )
+    teaching_steps.append(
         f"Divide the known {ctx['amount_noun']} by the known number to find that: "
-        f"{format_amount(y1)} ÷ {x1} = {format_amount(unit_value)}.",
+        f"{format_amount(y1)} ÷ {x1} = {format_amount(unit_value)}."
+    )
+    teaching_steps.append(
         f"Now scale that unit value up (or down) to the new number, {x2}, by multiplying: "
-        f"{format_amount(unit_value)} × {x2} = {format_amount(y2)}.",
-        f"So the {ctx['amount_noun']} works out as {format_amount(y2)}.",
-    ]
-    worked_calculation = [
-        ctx["prompt"],
-        f"{format_amount(y1)} ÷ {x1} = {format_amount(unit_value)}",
-        f"{format_amount(unit_value)} × {x2} = {format_amount(y2)}",
-    ]
+        f"{format_amount(unit_value)} × {x2} = {format_amount(y2)}."
+    )
+    teaching_steps.append(f"So the {ctx['amount_noun']} works out as {narrate_amount(y2)}.")
+
+    worked_calculation = [ctx["prompt"]]
+    if narrate_amount(y1) != format_amount(y1):
+        worked_calculation.append(f"{narrate_amount(y1)} = {format_amount(y1)}")
+    worked_calculation.append(f"{format_amount(y1)} ÷ {x1} = {format_amount(unit_value)}")
+    worked_calculation.append(f"{format_amount(unit_value)} × {x2} = {format_amount(y2)}")
+    if narrate_amount(y2) != format_amount(y2):
+        worked_calculation.append(f"{format_amount(y2)} = {narrate_amount(y2)}")
+
     return ModelledExample(
         topic_id="direct_proportion",
         tier=Tier.FOUNDATION,
         prompt=ctx["prompt"],
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
-        final_answer=format_amount(y2),
+        final_answer=narrate_amount(y2),
     )
 
 
