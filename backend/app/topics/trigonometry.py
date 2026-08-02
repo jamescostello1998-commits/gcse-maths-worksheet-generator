@@ -87,7 +87,7 @@ def _trig_side_question(rng: random.Random, *, angle_lo, angle_hi, side_lo, side
     return Question(
         topic_id=topic_id,
         tier=tier,
-        prompt=f"In the right-angled triangle shown, find the length of x, correct to {sig_figs} significant figures.",
+        prompt=f"In the triangle shown, find the length of x, correct to {sig_figs} significant figures.",
         solution_steps=tuple(steps),
         final_answer=f"{_fmt_dec(rounded)} cm",
         dedup_key=f"trig_side:{shape}:{angle_deg}:{known_val}",
@@ -180,7 +180,7 @@ def _trig_side_modelled_example(rng: random.Random, *, angle_lo, angle_hi, side_
     return ModelledExample(
         topic_id=topic_id,
         tier=tier,
-        prompt=f"In the right-angled triangle shown, find the length of x, correct to {sig_figs} significant figures.",
+        prompt=f"In the triangle shown, find the length of x, correct to {sig_figs} significant figures.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{_fmt_dec(rounded)} cm",
@@ -275,7 +275,7 @@ def _trig_angle_question(rng: random.Random, *, side_lo, side_hi, topic_id, tier
     return Question(
         topic_id=topic_id,
         tier=tier,
-        prompt="In the right-angled triangle shown, find the angle x, correct to 1 decimal place.",
+        prompt="In the triangle shown, find the angle x, correct to 1 decimal place.",
         solution_steps=tuple(steps),
         final_answer=f"{_fmt_dec(rounded)}°",
         dedup_key=f"trig_angle:{shape}:{ratio_arg}",
@@ -363,7 +363,7 @@ def _trig_angle_modelled_example(rng: random.Random, *, side_lo, side_hi, topic_
     return ModelledExample(
         topic_id=topic_id,
         tier=tier,
-        prompt="In the right-angled triangle shown, find the angle x, correct to 1 decimal place.",
+        prompt="In the triangle shown, find the angle x, correct to 1 decimal place.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{_fmt_dec(rounded)}°",

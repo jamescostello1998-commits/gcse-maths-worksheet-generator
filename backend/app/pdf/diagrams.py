@@ -361,25 +361,68 @@ def draw_trapezium(params: dict) -> Drawing:
         strokeColor=INK, fillColor=None, strokeWidth=1.2,
     ))
     d.add(Line(top_x0, y0 + bh, top_x0, y0, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
-    d.add(_label(top_x0 + aw / 2, y0 + bh + 12, params["a_label"]))
-    d.add(_label(x0 + bw / 2, y0 - 14, params["b_label"]))
-    d.add(_label(top_x0 - 8, y0 + bh / 2, params["height_label"], anchor="end"))
+    d.add(_label(top_x0 + aw / 2, y0 + bh + 14, params["a_label"]))
+    d.add(_label(x0 + bw / 2, y0 - 16, params["b_label"]))
+    # The dashed height line sits at top_x0, which can land very close to
+    # (or even left of) the shape's own bottom-left corner x0 when the
+    # slant is shallow (a close to b) or reversed (a > b) - anchoring the
+    # height label a fixed 8px left of top_x0 alone let it sit on top of
+    # the sloped left edge. Anchor left of whichever of x0/top_x0 is
+    # further left instead, so it always clears the edge regardless of
+    # slope direction.
+    left_edge = min(x0, top_x0)
+    d.add(_label(left_edge - 8, y0 + bh / 2, params["height_label"], anchor="end"))
     return d
 
 
 def draw_sector(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     cx, cy = DIAGRAM_WIDTH / 2, DIAGRAM_HEIGHT / 2
-    r = min(DIAGRAM_WIDTH, DIAGRAM_HEIGHT) / 2 - 25
+    # No full-circle outline any more (see below) - the sector itself is the
+    # only thing that needs to fit, so it can fill noticeably more of the
+    # canvas than when a same-radius dashed circle also had to fit.
+    r = min(DIAGRAM_WIDTH, DIAGRAM_HEIGHT) / 2 - 14
     angle = params["angle"]
     start, end = 90 - angle, 90
 
-    d.add(Circle(cx, cy, r, strokeColor=GRID, fillColor=None, strokeWidth=0.75, strokeDashArray=[2, 2]))
     d.add(Wedge(cx, cy, r, start, end, fillColor=HIGHLIGHT, strokeColor=INK, strokeWidth=1.2))
+    # Mark the sector's own angle at the centre with a small arc, matching
+    # every other angle-labelling diagram kind in this file (there was
+    # previously no arc here at all, just the numeric label). Built directly
+    # (not via _angle_arc, which always takes the shortest of the two
+    # possible sweeps between the rays) since a sector's own angle is
+    # routinely reflex (>180°) - _angle_arc would draw the short
+    # complementary arc outside the wedge instead of tracing the sector's
+    # actual angle, which is exactly wrong for a reflex sector.
+    arc_r = min(18, r * 0.35)
+    arc = ArcPath(strokeColor=INK, fillColor=None, strokeWidth=0.9)
+    arc.addArc(cx, cy, arc_r, start, end, moveTo=True)
+    d.add(arc)
     d.add(_label(cx + 4, cy + r + 10, params["radius_label"], anchor="start"))
     mid = math.radians((start + end) / 2)
-    label_r = min(r * 0.55, r - 14)
-    d.add(_label(cx + label_r * math.cos(mid), cy + label_r * math.sin(mid), params["angle_label"], size=8))
+    # A narrow sector's own straight width (2 x radius x sin(angle/2)) can be
+    # far smaller than the label text at any radius up to the sector's own
+    # edge, and the sector always opens toward the fixed top ray (end=90) -
+    # so "just outside the arc, along the bisector" (tried first) still
+    # collides with the radius_label above, which anchors near that same
+    # top ray's tip regardless of angle. Instead, for a narrow angle, place
+    # the label just behind the vertex - directly opposite the wedge's own
+    # opening direction - where there is always clear space, matching real
+    # exam diagrams' convention of writing a narrow angle's value beside the
+    # sharp point rather than cramming it inside the sliver.
+    if angle < 40:
+        label_r = 20
+        label_angle = mid + math.pi
+        label_size = 8 if angle < 22 else 9
+    else:
+        label_r = arc_r + 15
+        label_angle = mid
+        label_size = 10
+    lx = cx + label_r * math.cos(label_angle)
+    ly = cy + label_r * math.sin(label_angle)
+    lx = max(10, min(DIAGRAM_WIDTH - 10, lx))
+    ly = max(8, min(DIAGRAM_HEIGHT - 8, ly))
+    d.add(_label(lx, ly, params["angle_label"], size=label_size))
     return d
 
 
@@ -418,6 +461,7 @@ def draw_angle_line(params: dict) -> Drawing:
     around_point = params["around_point"]
     cx, cy = DIAGRAM_WIDTH / 2, DIAGRAM_HEIGHT / 2 - (0 if around_point else 10)
     radius = 65
+    arc_r = 15
     angle_values = params["angle_values"]
     labels = params["labels"]
 
@@ -433,16 +477,22 @@ def draw_angle_line(params: dict) -> Drawing:
 
     running = 0.0
     for v, lbl in zip(angle_values, labels):
-        d.add(_angle_arc(cx, cy, running, running + v, radius=15))
+        d.add(_angle_arc(cx, cy, running, running + v, radius=arc_r))
         if v < 20:
-            label_radius = radius + 13  # narrow wedges: place the label just beyond the ray tips
+            # Narrow wedges: the arc itself has little room, so place the
+            # label just beyond the ray tips entirely rather than cramming
+            # it into the wedge.
+            label_radius = radius + 13
         elif v < 35:
-            label_radius = radius * 0.85
+            label_radius = arc_r + 20
         else:
-            label_radius = radius * 0.78
+            # Sit close to the arc rather than most of the way out to the
+            # ray tips - a fixed radius*0.78 (~51 units, vs. this arc's own
+            # 15) read as "far higher than the angle it's labelling".
+            label_radius = arc_r + 15
         mid_rad = math.radians(running + v / 2)
         lx, ly = cx + label_radius * math.cos(mid_rad), cy + label_radius * math.sin(mid_rad)
-        d.add(_label(lx, ly, lbl, size=7.5))
+        d.add(_label(lx, ly, lbl, size=9.5))
         running += v
 
     d.add(Circle(cx, cy, 2, strokeColor=INK, fillColor=INK))
@@ -470,10 +520,10 @@ def draw_triangle_angles(params: dict) -> Drawing:
         # centroid than short ones like "31°" or "x", so they have more clearance
         # from the two sloped edges either side of the vertex - a fixed 0.58 inset
         # only worked while every label was short enough to fit near the vertex.
-        width = stringWidth(str(lbl), _LABEL_FONT, 7.5)
+        width = stringWidth(str(lbl), _LABEL_FONT, 9.5)
         inset = min(0.8, 0.5 + width / 220)
         lx, ly = vx + (cx - vx) * inset, vy + (cy - vy) * inset
-        d.add(_label(lx, ly, lbl, size=7.5))
+        d.add(_label(lx, ly, lbl, size=9.5))
     return d
 
 
@@ -499,11 +549,24 @@ def draw_polygon_angles(params: dict) -> Drawing:
         other1, other2 = vertices[(i - 1) % n], vertices[(i + 1) % n]
         d.add(_vertex_angle_arc(vertex, other1, other2, radius=9))
         vx, vy = vertex
-        width = stringWidth(str(lbl), _LABEL_FONT, 7.5)
+        width = stringWidth(str(lbl), _LABEL_FONT, 9.5)
         inset = min(0.8, 0.5 + width / 220)
         lx, ly = vx + (cx - vx) * inset, vy + (cy - vy) * inset
-        d.add(_label(lx, ly, lbl, size=7.5))
+        d.add(_label(lx, ly, lbl, size=9.5))
     return d
+
+
+def _parallel_arrow_mark(cx: float, cy: float, size: float = 5, color=INK) -> Group:
+    """A double-chevron ('>>') tick mark centred at (cx, cy) on a horizontal
+    line, pointing right - the standard GCSE convention marking two lines as
+    parallel. Two small '>' chevrons side by side, each made of two strokes
+    meeting at an apex."""
+    group = Group()
+    for dx in (-3.5, 3.5):
+        apex = (cx + dx + size * 0.6, cy)
+        group.add(Line(cx + dx - size * 0.4, cy - size * 0.6, apex[0], apex[1], strokeColor=color, strokeWidth=1.1))
+        group.add(Line(apex[0], apex[1], cx + dx - size * 0.4, cy + size * 0.6, strokeColor=color, strokeWidth=1.1))
+    return group
 
 
 def draw_parallel_lines(params: dict) -> Drawing:
@@ -512,6 +575,12 @@ def draw_parallel_lines(params: dict) -> Drawing:
     y_top, y_bottom = DIAGRAM_HEIGHT - 35, 35
     d.add(Line(x_left, y_top, x_right, y_top, strokeColor=INK, strokeWidth=1.2))
     d.add(Line(x_left, y_bottom, x_right, y_bottom, strokeColor=INK, strokeWidth=1.2))
+    # Double-chevron arrow marks on both lines, standard GCSE convention for
+    # "these two lines are parallel" - placed near the left edge, well away
+    # from the transversal intersection points so they never collide with
+    # the angle arcs.
+    d.add(_parallel_arrow_mark(x_left + 28, y_top))
+    d.add(_parallel_arrow_mark(x_left + 28, y_bottom))
 
     ix_top, ix_bottom = DIAGRAM_WIDTH * 0.4, DIAGRAM_WIDTH * 0.62
     dx, dy = ix_bottom - ix_top, y_bottom - y_top
@@ -537,8 +606,8 @@ def draw_parallel_lines(params: dict) -> Drawing:
     # while every label was as short as "x".
     known_anchor = "start" if kx >= 0 else "end"
     unknown_anchor = "start" if ux2 >= 0 else "end"
-    d.add(_label(ix_top + kx, y_top + ky, params["known_label"], anchor=known_anchor, size=8))
-    d.add(_label(ix_bottom + ux2, y_bottom + uy2, params["unknown_label"], anchor=unknown_anchor, size=8))
+    d.add(_label(ix_top + kx, y_top + ky, params["known_label"], anchor=known_anchor, size=10))
+    d.add(_label(ix_bottom + ux2, y_bottom + uy2, params["unknown_label"], anchor=unknown_anchor, size=10))
     return d
 
 
@@ -558,14 +627,18 @@ def draw_exterior_triangle(params: dict) -> Drawing:
 
     centroid = ((A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3)
 
-    def _inset(vertex, factor=0.7):
+    def _inset(vertex, factor=0.35):
         return (vertex[0] + (centroid[0] - vertex[0]) * factor, vertex[1] + (centroid[1] - vertex[1]) * factor)
 
+    # A 0.7 inset (most of the way to the centroid) sat much further from
+    # each vertex's own arc (radius=9) than the arc itself - "far away from
+    # the angles" - brought in close enough to read as attached to the arc
+    # while still clearing the vertex point itself.
     ax, ay = _inset(A)
     bx, by = _inset(B)
-    d.add(_label(ax, ay, params["interior1_label"], size=8))
-    d.add(_label(bx, by, params["interior2_label"], size=8))
-    d.add(_label(B[0] + 20, B[1] + 10, params["exterior_label"], anchor="start", size=8))
+    d.add(_label(ax, ay, params["interior1_label"], size=10))
+    d.add(_label(bx, by, params["interior2_label"], size=10))
+    d.add(_label(B[0] + 20, B[1] + 10, params["exterior_label"], anchor="start", size=10))
     return d
 
 
@@ -585,7 +658,7 @@ def draw_polygon(params: dict) -> Drawing:
     d.add(_vertex_angle_arc(vertices[0], vertices[-1], vertices[1], radius=8))
     vx, vy = vertices[0]
     lx, ly = vx + (cx - vx) * 0.45, vy + (cy - vy) * 0.45
-    d.add(_label(lx, ly, params["marked_angle_label"], size=7.5))
+    d.add(_label(lx, ly, params["marked_angle_label"], size=9.5))
     return d
 
 
@@ -657,7 +730,13 @@ def draw_right_triangle(params: dict) -> Drawing:
 
 
 def _not_to_scale(d: Drawing, x: float = DIAGRAM_WIDTH / 2, y: float = 10) -> None:
-    d.add(_label(x, y, "Diagram NOT accurately drawn", color=MUTED, size=6.5))
+    """No-op by user request - the "Diagram NOT accurately drawn" caption is
+    no longer rendered anywhere. Every diagram this is called from is still
+    genuinely schematic (not drawn to true relative scale), so nothing about
+    correctness/scale-cheating risk changes - only the caption text itself
+    is gone. Kept as a real function (not deleted, not its ~20 call sites
+    stripped out) so re-enabling it later is a one-line change."""
+    return
 
 
 def draw_trig_triangle(params: dict) -> Drawing:
@@ -674,9 +753,27 @@ def draw_trig_triangle(params: dict) -> Drawing:
     if params.get("opposite_label"):
         d.add(_label(A[0] - 10, (A[1] + C[1]) / 2, params["opposite_label"], anchor="end"))
     if params.get("hyp_label"):
-        d.add(_label((B[0] + C[0]) / 2 + 12, (B[1] + C[1]) / 2 + 6, params["hyp_label"], anchor="start"))
+        # Push the label outward from the hypotenuse's midpoint, away from
+        # the third vertex A (i.e. away from the triangle's interior) rather
+        # than always growing rightward from a fixed offset - a wide
+        # hypotenuse label previously swung back toward B's own corner,
+        # where the angle label also sits.
+        mid_x, mid_y = (B[0] + C[0]) / 2, (B[1] + C[1]) / 2
+        ox, oy = mid_x - A[0], mid_y - A[1]
+        norm = math.hypot(ox, oy) or 1.0
+        ox, oy = ox / norm, oy / norm
+        lx, ly = mid_x + ox * 12, mid_y + oy * 12
+        d.add(_label(lx, ly, params["hyp_label"], anchor="start" if ox >= 0 else "end"))
     d.add(_vertex_angle_arc(B, A, C, radius=9))
-    d.add(_label(B[0] - 20, B[1] + 9, params["angle_label"], size=8))
+    # Push the angle label from B toward the triangle's centroid rather than
+    # a fixed (dx, dy) offset - a fixed offset doesn't track the wedge's own
+    # bisector direction, so for some adjacent/opposite ratios it swung
+    # close enough to the hypotenuse (B-C) to visibly overlap it. The
+    # direction to the centroid always sits inside the wedge at B, matching
+    # the same fix already used by draw_general_triangle's angle labels.
+    centroid = ((A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3)
+    bx, by = B[0] + (centroid[0] - B[0]) * 0.4, B[1] + (centroid[1] - B[1]) * 0.4
+    d.add(_label(bx, by, params["angle_label"], size=10))
     return d
 
 
@@ -707,7 +804,7 @@ def draw_general_triangle(params: dict) -> Drawing:
 
     centroid = ((A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3)
 
-    def inset(v, factor=0.55):
+    def inset(v, factor):
         return (v[0] + (centroid[0] - v[0]) * factor, v[1] + (centroid[1] - v[1]) * factor)
 
     for vertex, other1, other2, key in (
@@ -715,8 +812,17 @@ def draw_general_triangle(params: dict) -> Drawing:
     ):
         if params.get(key):
             d.add(_vertex_angle_arc(vertex, other1, other2, radius=8))
-            px, py = inset(vertex)
-            d.add(_label(px, py, params[key], size=8))
+            # Scale the inward pull by the label's own text width (same fix
+            # already used by draw_triangle_angles/draw_polygon_angles) - a
+            # fixed 0.55 factor only worked while every angle label was
+            # short; a wide one (e.g. from sine/cosine rule with an
+            # algebraic or decimal value) needs more clearance from the two
+            # sloped edges either side of the vertex.
+            lbl = params[key]
+            width = stringWidth(str(lbl), _LABEL_FONT, 10)
+            factor = min(0.75, 0.45 + width / 220)
+            px, py = inset(vertex, factor)
+            d.add(_label(px, py, lbl, size=10))
 
     _not_to_scale(d)
     return d
@@ -737,7 +843,7 @@ def _bearing_arc(cx: float, cy: float, bearing_deg: float, radius: float = 11, c
     return arc
 
 
-def _north_arrow(x: float, y: float, length: float = 13, color=INK) -> Group:
+def _north_arrow(x: float, y: float, length: float = 20, color=INK) -> Group:
     """A short vertical line with an arrowhead pointing to true north (up the
     page) plus an 'N' label - the standard bearings-diagram convention for
     marking the reference direction at a point."""
@@ -1011,6 +1117,16 @@ def draw_vector_triangle(params: dict) -> Drawing:
     d.add(Line(O[0], O[1], A[0], A[1], strokeColor=INK, strokeWidth=1.2))
     d.add(Line(O[0], O[1], B[0], B[1], strokeColor=INK, strokeWidth=1.2))
     d.add(Line(A[0], A[1], B[0], B[1], strokeColor=INK, strokeWidth=1.2))
+
+    # A vector is a directed quantity - mark the direction of travel (O->A,
+    # O->B) with a small arrowhead partway along each line, matching real
+    # exam-diagram convention (previously these were plain undirected
+    # strokes, indistinguishable from an ordinary triangle's sides).
+    for start, end in ((O, A), (O, B)):
+        mx, my = (start[0] + end[0]) / 2, (start[1] + end[1]) / 2
+        dx, dy = end[0] - start[0], end[1] - start[1]
+        length = math.hypot(dx, dy) or 1.0
+        d.add(_arrowhead((mx, my), (dx / length, dy / length)))
 
     m, n = params["ratio"]
     t = m / (m + n)
@@ -2640,9 +2756,15 @@ def draw_cuboid(params: dict) -> Drawing:
     """A cuboid in oblique projection (front face + visible top/right faces
     solid; the three edges meeting at the hidden back-bottom-left vertex
     dashed). A cube is just this same diagram with all three edge labels
-    equal - no separate function needed."""
+    equal - no separate function needed, UNLESS params['is_cube'] is set, in
+    which case the front face is drawn genuinely square (rather than always
+    the same fixed 80x60 rectangle regardless of input) so it actually reads
+    as a cube on screen, not a generic cuboid."""
     d = Drawing(SOLID_WIDTH, SOLID_HEIGHT)
-    x0, y0, fw, fh = 55, 30, 80, 60
+    if params.get("is_cube"):
+        x0, y0, fw, fh = 60, 24, 66, 66
+    else:
+        x0, y0, fw, fh = 55, 30, 80, 60
     FBL, FBR, FTR, FTL = (x0, y0), (x0 + fw, y0), (x0 + fw, y0 + fh), (x0, y0 + fh)
     BBL, BBR, BTR, BTL = _offset(FBL), _offset(FBR), _offset(FTR), _offset(FTL)
 
@@ -2658,8 +2780,29 @@ def draw_cuboid(params: dict) -> Drawing:
     d.add(_label((FBR[0] + BBR[0]) / 2 + 6, (FBR[1] + BBR[1]) / 2 - 4, params["length_label"], anchor="start", size=8))
     if params.get("diagonal_label"):
         d.add(Line(*FBL, *BTR, strokeColor=INK, strokeWidth=0.9, strokeDashArray=[3, 2]))
-        mx, my = (FBL[0] + BTR[0]) / 2, (FBL[1] + BTR[1]) / 2
+        # Placed 60% of the way along the diagonal (toward G/BTR) rather than
+        # at the exact midpoint - the midpoint sits right in the cluster of
+        # hidden dashed edges near the back-bottom-left vertex (D), which
+        # collided with D's own vertex label once vertex_labels was added.
+        mx = FBL[0] + (BTR[0] - FBL[0]) * 0.6
+        my = FBL[1] + (BTR[1] - FBL[1]) * 0.6
         d.add(_label(mx + 6, my + 4, params["diagonal_label"], anchor="start", size=8))
+
+    vertex_labels = params.get("vertex_labels")
+    if vertex_labels:
+        # Standard ABCD/EFGH cuboid-vertex naming: base face A-B-C-D going
+        # front-left, front-right, back-right, back-left; top face E-F-G-H
+        # directly above. This makes AG (FBL<->BTR) the true space diagonal
+        # already drawn above when diagonal_label is set.
+        points_order = [FBL, FBR, BBR, BBL, FTL, FTR, BTR, BTL]
+        cx_all = sum(p[0] for p in points_order) / len(points_order)
+        cy_all = sum(p[1] for p in points_order) / len(points_order)
+        for pt, lbl in zip(points_order, vertex_labels):
+            dx_l, dy_l = pt[0] - cx_all, pt[1] - cy_all
+            dist = math.hypot(dx_l, dy_l) or 1.0
+            lx, ly = pt[0] + dx_l / dist * 13, pt[1] + dy_l / dist * 13
+            d.add(_label(lx, ly, lbl, size=7.5))
+
     _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
     return d
 

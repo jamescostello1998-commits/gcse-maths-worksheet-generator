@@ -46,7 +46,7 @@ def test_all_generators_attach_a_right_triangle_diagram_with_exactly_one_unknown
         assert q.diagram is not None
         assert q.diagram.kind == "right_triangle"
         labels = [q.diagram.params["leg1_label"], q.diagram.params["leg2_label"], q.diagram.params["hyp_label"]]
-        assert labels.count("?") == 1
+        assert labels.count("x") == 1
 
 
 def test_simplify_surd():
@@ -129,4 +129,4 @@ def test_modelled_examples_produce_valid_verified_examples():
                 example.diagram.params["leg2_label"],
                 example.diagram.params["hyp_label"],
             ]
-            assert labels.count("?") == 1
+            assert labels.count("x") == 1

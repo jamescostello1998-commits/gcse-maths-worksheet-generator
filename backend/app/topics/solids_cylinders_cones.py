@@ -529,4 +529,8 @@ TOPIC_VOLUME_SURFACE_AREA_CONE = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_volume_surface_area_cone,
+    preamble_lines=(
+        "Volume of a cone = (1/3) × π × r² × h",
+        "Surface area of a cone = πr(r + l), where l is the slant height",
+    ),
 )

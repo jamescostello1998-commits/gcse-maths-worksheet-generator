@@ -1294,6 +1294,10 @@ TOPIC_VOLUME_SURFACE_AREA_SPHERE = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_volume_surface_area_sphere,
+    preamble_lines=(
+        "Volume of a sphere = (4/3) × π × r³",
+        "Surface area of a sphere = 4 × π × r²",
+    ),
 )
 
 TOPIC_VOLUME_SURFACE_AREA_PYRAMID = TopicDefinition(
@@ -1305,6 +1309,10 @@ TOPIC_VOLUME_SURFACE_AREA_PYRAMID = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_volume_surface_area_pyramid,
+    preamble_lines=(
+        "Volume of a pyramid = (1/3) × base² × height",
+        "Surface area of a pyramid = base² + 2 × base × l, where l is the slant height of a face",
+    ),
 )
 
 TOPIC_FRUSTUM_VOLUME_SURFACE_AREA = TopicDefinition(
@@ -1316,6 +1324,10 @@ TOPIC_FRUSTUM_VOLUME_SURFACE_AREA = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_frustum_volume_surface_area,
+    preamble_lines=(
+        "Volume of a frustum = (1/3) × π × h × (R² + Rr + r²), where R and r are the two radii",
+        "Surface area of a frustum = π(R + r)l + πR² + πr², where l is the slant height",
+    ),
 )
 
 TOPIC_COMPOUND_3D_VOLUME = TopicDefinition(
@@ -1327,6 +1339,11 @@ TOPIC_COMPOUND_3D_VOLUME = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_compound_3d_volume,
+    preamble_lines=(
+        "Volume of a cone = (1/3) × π × r² × h",
+        "Volume of a sphere = (4/3) × π × r³ (a hemisphere is half this)",
+        "Volume of a pyramid = (1/3) × base² × height",
+    ),
 )
 
 TOPIC_COMPOUND_3D_SURFACE_AREA = TopicDefinition(
@@ -1338,4 +1355,9 @@ TOPIC_COMPOUND_3D_SURFACE_AREA = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_compound_3d_surface_area,
+    preamble_lines=(
+        "Curved surface area of a cone = πrl, where l is the slant height",
+        "Curved surface area of a sphere = 4 × π × r² (a hemisphere's curved part is half this)",
+        "Surface area of a pyramid's triangular faces = 2 × base × l, where l is a face's slant height",
+    ),
 )

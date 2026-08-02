@@ -186,7 +186,7 @@ def generate_exact_trig_values_triangles(tier: Tier, rng: random.Random) -> Ques
     return Question(
         topic_id="exact_trig_values_triangles",
         tier=Tier.HIGHER,
-        prompt="In the right-angled triangle shown, find the exact length of x. Give your answer in surd form where appropriate.",
+        prompt="In the triangle shown, find the exact length of x. Give your answer in surd form where appropriate.",
         solution_steps=tuple(steps),
         final_answer=f"{display} cm",
         dedup_key=f"exact_trig_tri:{shape}:{angle}:{given}",
@@ -244,7 +244,7 @@ def generate_modelled_example_exact_trig_values_triangles(tier: Tier, rng: rando
     return ModelledExample(
         topic_id="exact_trig_values_triangles",
         tier=Tier.HIGHER,
-        prompt="In the right-angled triangle shown, find the exact length of x. Give your answer in surd form where appropriate.",
+        prompt="In the triangle shown, find the exact length of x. Give your answer in surd form where appropriate.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{display} cm",

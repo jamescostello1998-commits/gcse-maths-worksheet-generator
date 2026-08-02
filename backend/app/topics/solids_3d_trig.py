@@ -85,6 +85,7 @@ def generate_3d_pythagoras(tier: Tier, rng: random.Random) -> Question:
                 "width_label": f"{w} cm",
                 "height_label": f"{h} cm",
                 "diagonal_label": "?",
+                "vertex_labels": ["A", "B", "C", "D", "E", "F", "G", "H"],
             },
         ),
     )
@@ -133,6 +134,7 @@ def generate_modelled_example_3d_pythagoras(tier: Tier, rng: random.Random) -> M
                 "width_label": f"{w} cm",
                 "height_label": f"{h} cm",
                 "diagonal_label": "?",
+                "vertex_labels": ["A", "B", "C", "D", "E", "F", "G", "H"],
             },
         ),
     )
@@ -185,6 +187,7 @@ def generate_3d_trigonometry(tier: Tier, rng: random.Random) -> Question:
                 "width_label": f"{w} cm",
                 "height_label": f"{h} cm",
                 "diagonal_label": "θ",
+                "vertex_labels": ["A", "B", "C", "D", "E", "F", "G", "H"],
             },
         ),
     )
@@ -236,6 +239,7 @@ def generate_modelled_example_3d_trigonometry(tier: Tier, rng: random.Random) ->
                 "width_label": f"{w} cm",
                 "height_label": f"{h} cm",
                 "diagonal_label": "θ",
+                "vertex_labels": ["A", "B", "C", "D", "E", "F", "G", "H"],
             },
         ),
     )

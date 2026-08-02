@@ -53,13 +53,13 @@ def generate_hypotenuse_triple(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="pythagoras_hypotenuse_triple",
         tier=Tier.FOUNDATION,
-        prompt=f"A right-angled triangle has legs {leg1} cm and {leg2} cm. Find the length of the hypotenuse.",
+        prompt=f"A right-angled triangle has sides {leg1} cm and {leg2} cm. Find the length of x.",
         solution_steps=tuple(steps),
         final_answer=f"{hyp} cm",
         dedup_key=f"hyp_triple:{leg1}:{leg2}",
         diagram=DiagramSpec(
             kind="right_triangle",
-            params={"leg1_label": f"{leg1} cm", "leg2_label": f"{leg2} cm", "hyp_label": "?"},
+            params={"leg1_label": f"{leg1} cm", "leg2_label": f"{leg2} cm", "hyp_label": "x"},
         ),
     )
 
@@ -79,7 +79,7 @@ def generate_modelled_example_hypotenuse_triple(tier: Tier, rng: random.Random) 
         "Pythagoras' theorem says that in any right-angled triangle, the square of the "
         "hypotenuse (the longest side, opposite the right angle) equals the sum of the "
         "squares of the other two sides.",
-        f"Here the two shorter sides (the legs) are {leg1} cm and {leg2} cm, so we square "
+        f"Here the two shorter sides are {leg1} cm and {leg2} cm, so we square "
         f"each of them and add the results together: {leg1}² + {leg2}² = {leg1**2} + {leg2**2} = {sum_sq}.",
         f"That total, {sum_sq}, is the hypotenuse squared - so to find the hypotenuse itself "
         f"we take the square root: c = √{sum_sq}.",
@@ -95,13 +95,13 @@ def generate_modelled_example_hypotenuse_triple(tier: Tier, rng: random.Random) 
     return ModelledExample(
         topic_id="pythagoras_hypotenuse_triple",
         tier=Tier.FOUNDATION,
-        prompt=f"A right-angled triangle has legs {leg1} cm and {leg2} cm. Find the length of the hypotenuse.",
+        prompt=f"A right-angled triangle has sides {leg1} cm and {leg2} cm. Find the length of x.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{hyp} cm",
         diagram=DiagramSpec(
             kind="right_triangle",
-            params={"leg1_label": f"{leg1} cm", "leg2_label": f"{leg2} cm", "hyp_label": "?"},
+            params={"leg1_label": f"{leg1} cm", "leg2_label": f"{leg2} cm", "hyp_label": "x"},
         ),
     )
 
@@ -125,15 +125,15 @@ def generate_hypotenuse_decimal(tier: Tier, rng: random.Random) -> Question:
         topic_id="pythagoras_hypotenuse_decimal",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"A right-angled triangle has legs {a} cm and {b} cm. Find the length of the "
-            "hypotenuse, correct to 1 decimal place."
+            f"A right-angled triangle has sides {a} cm and {b} cm. Find the length of x, "
+            "correct to 1 decimal place."
         ),
         solution_steps=tuple(steps),
         final_answer=f"{rounded} cm",
         dedup_key=f"hyp_decimal:{a}:{b}",
         diagram=DiagramSpec(
             kind="right_triangle",
-            params={"leg1_label": f"{a} cm", "leg2_label": f"{b} cm", "hyp_label": "?"},
+            params={"leg1_label": f"{a} cm", "leg2_label": f"{b} cm", "hyp_label": "x"},
         ),
     )
 
@@ -158,7 +158,7 @@ def generate_modelled_example_hypotenuse_decimal(tier: Tier, rng: random.Random)
     teaching_steps = [
         "Pythagoras' theorem tells us that the square of the hypotenuse equals the sum of "
         "the squares of the other two sides, in any right-angled triangle.",
-        f"Square each of the two given legs and add them together: {a}² + {b}² = {a * a} + {b * b} = {s}.",
+        f"Square each of the two given sides and add them together: {a}² + {b}² = {a * a} + {b * b} = {s}.",
         f"To undo the squaring and get back to the hypotenuse itself, take the square root "
         f"of {s}. This time {s} isn't a perfect square, so the answer is a decimal.",
         f"√{s} ≈ {rounded}, rounded to 1 decimal place as the question asks - always check "
@@ -174,15 +174,15 @@ def generate_modelled_example_hypotenuse_decimal(tier: Tier, rng: random.Random)
         topic_id="pythagoras_hypotenuse_decimal",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"A right-angled triangle has legs {a} cm and {b} cm. Find the length of the "
-            "hypotenuse, correct to 1 decimal place."
+            f"A right-angled triangle has sides {a} cm and {b} cm. Find the length of x, "
+            "correct to 1 decimal place."
         ),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{rounded} cm",
         diagram=DiagramSpec(
             kind="right_triangle",
-            params={"leg1_label": f"{a} cm", "leg2_label": f"{b} cm", "hyp_label": "?"},
+            params={"leg1_label": f"{a} cm", "leg2_label": f"{b} cm", "hyp_label": "x"},
         ),
     )
 
@@ -203,15 +203,15 @@ def generate_shorter_leg(tier: Tier, rng: random.Random) -> Question:
         topic_id="pythagoras_shorter_leg",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"A right-angled triangle has hypotenuse {hyp} cm and one leg {leg_known} cm. "
-            "Find the length of the other leg."
+            f"A right-angled triangle has hypotenuse {hyp} cm and one side {leg_known} cm. "
+            "Find the length of x."
         ),
         solution_steps=tuple(steps),
         final_answer=f"{leg_missing} cm",
         dedup_key=f"shorter_leg:{leg_known}:{hyp}",
         diagram=DiagramSpec(
             kind="right_triangle",
-            params={"leg1_label": f"{leg_known} cm", "leg2_label": "?", "hyp_label": f"{hyp} cm"},
+            params={"leg1_label": f"{leg_known} cm", "leg2_label": "x", "hyp_label": f"{hyp} cm"},
         ),
     )
 
@@ -223,19 +223,19 @@ def generate_modelled_example_shorter_leg(tier: Tier, rng: random.Random) -> Mod
     diff = hyp**2 - leg_known**2
     if diff != leg_missing**2:
         raise ValueError("modelled example shorter_leg verification failed")
-    # Independent check: adding both legs' squares should reproduce the hypotenuse squared.
+    # Independent check: adding both sides' squares should reproduce the hypotenuse squared.
     if leg_known**2 + leg_missing**2 != hyp**2:
         raise ValueError("modelled example shorter_leg converse check failed")
 
     teaching_steps = [
         "Pythagoras' theorem still applies, but this time we're given the hypotenuse and "
-        "one leg, and asked for the other leg - so the formula needs rearranging first.",
-        f"Start from c² = a² + b². We know c = {hyp} cm and one leg a = {leg_known} cm, "
-        "and we want the missing leg b.",
+        "one side, and asked for the other side - so the formula needs rearranging first.",
+        f"Start from c² = a² + b². We know c = {hyp} cm and one side a = {leg_known} cm, "
+        "and we want the missing side b.",
         f"Rearrange to make b² the subject: b² = c² - a² = {hyp}² - {leg_known}² = "
         f"{hyp**2} - {leg_known**2} = {diff}.",
         f"Take the square root of both sides to find b: b = √{diff} = {leg_missing} cm. "
-        "Notice we subtract here, not add, because we're finding a leg rather than the hypotenuse.",
+        "Notice we subtract here, not add, because we're finding a side rather than the hypotenuse.",
     ]
     worked_calculation = [
         f"b² = {hyp}² - {leg_known}²",
@@ -247,15 +247,15 @@ def generate_modelled_example_shorter_leg(tier: Tier, rng: random.Random) -> Mod
         topic_id="pythagoras_shorter_leg",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"A right-angled triangle has hypotenuse {hyp} cm and one leg {leg_known} cm. "
-            "Find the length of the other leg."
+            f"A right-angled triangle has hypotenuse {hyp} cm and one side {leg_known} cm. "
+            "Find the length of x."
         ),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{leg_missing} cm",
         diagram=DiagramSpec(
             kind="right_triangle",
-            params={"leg1_label": f"{leg_known} cm", "leg2_label": "?", "hyp_label": f"{hyp} cm"},
+            params={"leg1_label": f"{leg_known} cm", "leg2_label": "x", "hyp_label": f"{hyp} cm"},
         ),
     )
 
@@ -282,15 +282,15 @@ def generate_surd_hypotenuse(tier: Tier, rng: random.Random) -> Question:
         topic_id="pythagoras_surd_hypotenuse",
         tier=Tier.HIGHER,
         prompt=(
-            f"A right-angled triangle has legs {a} cm and {b} cm. Find the exact length of the "
-            "hypotenuse, giving your answer as a simplified surd."
+            f"A right-angled triangle has sides {a} cm and {b} cm. Find the exact length of x, "
+            "giving your answer as a simplified surd."
         ),
         solution_steps=tuple(steps),
         final_answer=f"{surd_str} cm",
         dedup_key=f"surd_hyp:{a}:{b}",
         diagram=DiagramSpec(
             kind="right_triangle",
-            params={"leg1_label": f"{a} cm", "leg2_label": f"{b} cm", "hyp_label": "?"},
+            params={"leg1_label": f"{a} cm", "leg2_label": f"{b} cm", "hyp_label": "x"},
         ),
     )
 
@@ -322,8 +322,8 @@ def generate_modelled_example_surd_hypotenuse(tier: Tier, rng: random.Random) ->
             f"√{s} is already in its simplest form: {surd_str}."
         )
     teaching_steps = [
-        "As always with Pythagoras' theorem, square the two legs and add them together to "
-        "get the hypotenuse squared.",
+        "As always with Pythagoras' theorem, square the two shorter sides and add them "
+        "together to get the hypotenuse squared.",
         f"{a}² + {b}² = {a * a} + {b * b} = {s}. Since the question asks for an exact answer "
         f"rather than a rounded decimal, we leave this as a surd: c = √{s}.",
         simplify_step,
@@ -341,15 +341,15 @@ def generate_modelled_example_surd_hypotenuse(tier: Tier, rng: random.Random) ->
         topic_id="pythagoras_surd_hypotenuse",
         tier=Tier.HIGHER,
         prompt=(
-            f"A right-angled triangle has legs {a} cm and {b} cm. Find the exact length of the "
-            "hypotenuse, giving your answer as a simplified surd."
+            f"A right-angled triangle has sides {a} cm and {b} cm. Find the exact length of x, "
+            "giving your answer as a simplified surd."
         ),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{surd_str} cm",
         diagram=DiagramSpec(
             kind="right_triangle",
-            params={"leg1_label": f"{a} cm", "leg2_label": f"{b} cm", "hyp_label": "?"},
+            params={"leg1_label": f"{a} cm", "leg2_label": f"{b} cm", "hyp_label": "x"},
         ),
     )
 
@@ -387,7 +387,7 @@ def generate_ladder_context(tier: Tier, rng: random.Random) -> Question:
         dedup_key=f"ladder:{base}:{ladder}",
         diagram=DiagramSpec(
             kind="right_triangle",
-            params={"leg1_label": f"{base} m", "leg2_label": "?", "hyp_label": f"{ladder} m"},
+            params={"leg1_label": f"{base} m", "leg2_label": "x", "hyp_label": f"{ladder} m"},
         ),
     )
 
@@ -407,8 +407,8 @@ def generate_modelled_example_ladder_context(tier: Tier, rng: random.Random) -> 
     surd_str = _fmt_surd(m, r)
     teaching_steps = [
         "A ladder against a wall forms a right-angled triangle: the ladder is the "
-        "hypotenuse, the base distance from the wall is one leg, and the height up the "
-        "wall is the other leg we need to find.",
+        "hypotenuse, the base distance from the wall is one side, and the height up the "
+        "wall is the other side we need to find.",
         f"Rearranged Pythagoras gives height² = ladder² - base² = {ladder}² - {base}² = "
         f"{ladder**2} - {base**2} = {s}.",
         f"{s} is not a perfect square, so rather than rounding we leave the answer as an "
@@ -437,7 +437,7 @@ def generate_modelled_example_ladder_context(tier: Tier, rng: random.Random) -> 
         final_answer=answer_str,
         diagram=DiagramSpec(
             kind="right_triangle",
-            params={"leg1_label": f"{base} m", "leg2_label": "?", "hyp_label": f"{ladder} m"},
+            params={"leg1_label": f"{base} m", "leg2_label": "x", "hyp_label": f"{ladder} m"},
         ),
     )
 
@@ -465,7 +465,7 @@ def generate_ladder_context_foundation(tier: Tier, rng: random.Random) -> Questi
         dedup_key=f"ladder_f:{base}:{ladder}",
         diagram=DiagramSpec(
             kind="right_triangle",
-            params={"leg1_label": f"{base} m", "leg2_label": "?", "hyp_label": f"{ladder} m"},
+            params={"leg1_label": f"{base} m", "leg2_label": "x", "hyp_label": f"{ladder} m"},
         ),
     )
 
@@ -480,11 +480,11 @@ def generate_modelled_example_ladder_context_foundation(tier: Tier, rng: random.
     teaching_steps = [
         "A ladder leaning against a wall forms a right-angled triangle: the ladder itself "
         "is the hypotenuse (the longest side, opposite the right angle where the wall "
-        "meets the ground), the distance from the wall is one leg, and the height up the "
-        "wall is the other leg.",
+        "meets the ground), the distance from the wall is one side, and the height up the "
+        "wall is the other side.",
         f"We know the ladder (hypotenuse) = {ladder} m and the base distance = {base} m, "
         "and we want the height, so rearrange Pythagoras' theorem to make the missing "
-        "leg the subject.",
+        "side the subject.",
         f"height² = ladder² - base² = {ladder}² - {base}² = {ladder**2} - {base**2} = {diff}.",
         f"height = √{diff} = {height} m. It's worth sanity-checking that the height is "
         "shorter than the ladder itself, which it is here - a good quick check that the "
@@ -508,7 +508,7 @@ def generate_modelled_example_ladder_context_foundation(tier: Tier, rng: random.
         final_answer=f"{height} m",
         diagram=DiagramSpec(
             kind="right_triangle",
-            params={"leg1_label": f"{base} m", "leg2_label": "?", "hyp_label": f"{ladder} m"},
+            params={"leg1_label": f"{base} m", "leg2_label": "x", "hyp_label": f"{ladder} m"},
         ),
     )
 
@@ -537,8 +537,8 @@ TOPIC_HYPOTENUSE_DECIMAL = TopicDefinition(
 
 TOPIC_SHORTER_LEG = TopicDefinition(
     id="pythagoras_shorter_leg",
-    display_name="Shorter Leg",
-    description="Find a missing leg given the hypotenuse and the other leg.",
+    display_name="Shorter Side",
+    description="Find a missing side given the hypotenuse and the other side.",
     generate=generate_shorter_leg,
     section=SECTION,
     group=GROUP,

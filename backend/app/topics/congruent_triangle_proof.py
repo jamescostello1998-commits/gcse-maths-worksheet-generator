@@ -378,7 +378,7 @@ TEMPLATES: list[_CongruenceTemplate] = [
     _t(
         "isosceles_trapezium_diagonal_sas",
         "ABCD is an isosceles trapezium with AB parallel to DC and AD = BC. AC and BD are its diagonals.",
-        ("AB is common to both triangles", "angle DAB = angle CBA (base angles of an isosceles trapezium are equal)", "AD = BC (given, the equal legs of the trapezium)"),
+        ("AB is common to both triangles", "angle DAB = angle CBA (base angles of an isosceles trapezium are equal)", "AD = BC (given, the equal sides of the trapezium)"),
         "SAS",
         "Since two sides and the included angle match, triangles ABD and BAC are congruent - so AC = BD, the diagonals of an isosceles trapezium are equal.",
         {
