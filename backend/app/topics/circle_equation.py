@@ -91,8 +91,8 @@ def generate_circle_equation(tier: Tier, rng: random.Random) -> Question:
     tangent_str = f"{a}x {'+' if b >= 0 else '-'} {abs(b)}y = {r_sq}"
     steps = [
         f"The point ({a}, {b}) lies on the circle x^2 + y^2 = {r_sq}, since {a}^2 + {b}^2 = {r_sq}.",
-        f"The radius to ({a}, {b}) has gradient {b}/{a}, so the tangent (perpendicular to the radius) "
-        f"has gradient -{a}/{b}.",
+        f"The radius to ({a}, {b}) has gradient \\frac{{{b}}}{{{a}}}, so the tangent (perpendicular to the radius) "
+        f"has gradient -\\frac{{{a}}}{{{b}}}.",
         f"The tangent line through ({a}, {b}) with that gradient simplifies to {tangent_str}.",
     ]
     return Question(
@@ -145,15 +145,15 @@ def generate_modelled_example_circle_equation(tier: Tier, rng: random.Random) ->
         "point at a right angle - that perpendicularity is the key fact used to find its equation.",
         f"First check the given point really is on the circle: {a}^2 + {b}^2 = {r_sq}, which matches "
         f"the circle x^2 + y^2 = {r_sq}, so ({a}, {b}) does lie on it.",
-        f"The radius from the origin to ({a}, {b}) has gradient {b}/{a} (rise over run). Since the "
-        f"tangent is perpendicular to this radius, its gradient is the negative reciprocal: -{a}/{b}.",
-        f"Writing the equation of the line through ({a}, {b}) with gradient -{a}/{b}, and rearranging, "
+        f"The radius from the origin to ({a}, {b}) has gradient \\frac{{{b}}}{{{a}}} (rise over run). Since the "
+        f"tangent is perpendicular to this radius, its gradient is the negative reciprocal: -\\frac{{{a}}}{{{b}}}.",
+        f"Writing the equation of the line through ({a}, {b}) with gradient -\\frac{{{a}}}{{{b}}}, and rearranging, "
         f"simplifies neatly to {tangent_str} - substituting the point back in confirms "
         f"{a}×{a} {'+' if b >= 0 else '-'} {abs(b)}×{b} = {r_sq}.",
     ]
     worked_calculation = [
-        f"point ({a}, {b}), radius gradient = {b}/{a}",
-        f"tangent gradient = -{a}/{b}",
+        f"point ({a}, {b}), radius gradient = \\frac{{{b}}}{{{a}}}",
+        f"tangent gradient = -\\frac{{{a}}}{{{b}}}",
         f"{tangent_str}",
     ]
     return ModelledExample(

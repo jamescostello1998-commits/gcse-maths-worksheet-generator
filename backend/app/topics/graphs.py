@@ -46,7 +46,7 @@ def _fmt_cubic(a: int, b: int) -> str:
 
 
 def _fmt_reciprocal(a: int) -> str:
-    return f"{a}/x" if a > 0 else f"-{abs(a)}/x"
+    return f"\\frac{{{a}}}{{x}}" if a > 0 else f"-\\frac{{{abs(a)}}}{{x}}"
 
 
 def generate_plot_straight_line(tier: Tier, rng: random.Random) -> Question:
@@ -509,7 +509,7 @@ def generate_line_equation_from_graph(tier: Tier, rng: random.Random) -> Questio
     y_min, y_max = min(end_ys) - 1, max(end_ys) + 1
 
     steps = [
-        f"Gradient = rise/run = ({y2} - {y1}) / ({x2} - {x1}) = {m}",
+        f"Gradient = rise/run = \\frac{{{y2} - {y1}}}{{{x2} - {x1}}} = {m}",
         f"Using y = mx + c with the point ({x1}, {y1}): {y1} = {m}×({x1}) + c, so c = {c}",
         f"Equation of the line: y = {fmt_linear(m, c)}",
     ]
@@ -525,7 +525,6 @@ def generate_line_equation_from_graph(tier: Tier, rng: random.Random) -> Questio
             params={
                 "kind": "linear", "m": m, "c": c,
                 "x_min": x_min, "x_max": x_max, "y_min": y_min, "y_max": y_max,
-                "table_points": [[x1, y1], [x2, y2]],
             },
         ),
     )
@@ -1213,13 +1212,13 @@ def generate_modelled_example_line_equation_from_graph(tier: Tier, rng: random.R
         f"its y-intercept c. Both can be read from any two clearly marked points on the line, here "
         f"({x1}, {y1}) and ({x2}, {y2}).",
         f"Find the gradient using rise over run between the two points: "
-        f"m = ({y2} - {y1}) / ({x2} - {x1}) = {m}.",
+        f"m = \\frac{{{y2} - {y1}}}{{{x2} - {x1}}} = {m}.",
         f"Substitute one of the points and the gradient into y = mx + c to find c: using ({x1}, {y1}), "
         f"{y1} = {m}×({x1}) + c, so c = {c}.",
         f"So the equation of the line is y = {fmt_linear(m, c)}.",
     ]
     worked_calculation = [
-        f"m = ({y2} - {y1}) / ({x2} - {x1}) = {m}",
+        f"m = \\frac{{{y2} - {y1}}}{{{x2} - {x1}}} = {m}",
         f"{y1} = {m}×({x1}) + c",
         f"c = {c}",
         f"y = {fmt_linear(m, c)}",
@@ -1236,7 +1235,6 @@ def generate_modelled_example_line_equation_from_graph(tier: Tier, rng: random.R
             params={
                 "kind": "linear", "m": m, "c": c,
                 "x_min": x_min, "x_max": x_max, "y_min": y_min, "y_max": y_max,
-                "table_points": [[x1, y1], [x2, y2]],
             },
         ),
     )

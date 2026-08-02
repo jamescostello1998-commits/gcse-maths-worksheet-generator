@@ -31,7 +31,11 @@ def test_graphically_diagram_does_not_reveal_the_answer():
         q = simultaneous_equations.generate_simultaneous_graphically(Tier.FOUNDATION, rng)
         assert q.diagram is not None
         assert q.diagram.kind == "linear_graph_pair"
-        assert q.diagram.params["intersection_label"] == "?"
+        # No dot/label marks the intersection at all - that's the answer the
+        # student must find by reading the two labelled lines off the graph.
+        assert "intersection_label" not in q.diagram.params
+        assert q.diagram.params["label1"]
+        assert q.diagram.params["label2"]
 
 
 def test_dedup_keys_vary_per_generator():
@@ -90,11 +94,12 @@ def test_modelled_example_generators_produce_verified_examples():
             assert example.final_answer
 
 
-def test_modelled_example_graphically_diagram_reveals_the_answer():
+def test_modelled_example_graphically_diagram_has_no_intersection_marker():
     rng = random.Random(241)
     for _ in range(TRIALS):
         example = simultaneous_equations.generate_modelled_example_simultaneous_graphically(Tier.FOUNDATION, rng)
         assert example.diagram is not None
         assert example.diagram.kind == "linear_graph_pair"
-        assert example.diagram.params["intersection_label"] != "?"
-        assert example.diagram.params["intersection_label"].startswith("(")
+        assert "intersection_label" not in example.diagram.params
+        assert example.diagram.params["label1"]
+        assert example.diagram.params["label2"]

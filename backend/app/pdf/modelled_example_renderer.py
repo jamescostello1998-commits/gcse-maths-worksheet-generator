@@ -60,6 +60,31 @@ def _steps_shown_count(index: int, n_steps: int) -> int:
     return 0
 
 
+def _preamble_box(lines: tuple[str, ...], styles: dict) -> Table:
+    """A boxed panel of fixed reference lines (e.g. formulae) shown once at
+    the top of the modelled-example page, before the prompt - same boxed
+    styling as the worked-calculation box below it, per direct user
+    request that these formulae also appear on the modelled-example PDF,
+    not just the plain worksheet."""
+    cell = [Paragraph("Formulae", styles["TeachingHeading"])]
+    cell += [Paragraph(_fmt(line, styles["WorkedCalcLine"]), styles["WorkedCalcLine"]) for line in lines]
+    box = Table([[cell]], colWidths=[_PAGE_WIDTH])
+    box.setStyle(
+        TableStyle(
+            [
+                ("BACKGROUND", (0, 0), (-1, -1), HIGHLIGHT),
+                ("BOX", (0, 0), (-1, -1), 0.75, ACCENT),
+                ("TOPPADDING", (0, 0), (-1, -1), 12),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 12),
+                ("LEFTPADDING", (0, 0), (-1, -1), 16),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 16),
+                ("VALIGN", (0, 0), (-1, -1), "TOP"),
+            ]
+        )
+    )
+    return box
+
+
 def _worked_calculation_box(lines: tuple[str, ...], styles: dict) -> Table:
     cell = [Paragraph(_fmt(line, styles["WorkedCalcLine"]), styles["WorkedCalcLine"]) for line in lines]
     box = Table([[cell]], colWidths=[_PAGE_WIDTH])
@@ -79,14 +104,19 @@ def _worked_calculation_box(lines: tuple[str, ...], styles: dict) -> Table:
     return box
 
 
-def _worked_example_elements(topic_name: str, tier: Tier, example: ModelledExample, styles: dict) -> list:
+def _worked_example_elements(
+    topic_name: str, tier: Tier, example: ModelledExample, styles: dict, preamble_lines: tuple[str, ...] = (),
+) -> list:
     tier_label = tier.value.title()
     elements = [
         Paragraph(_escape(topic_name), styles["Title"]),
         Paragraph(f"{tier_label} Tier &nbsp;&#8226;&nbsp; Worked Example", styles["Meta"]),
         HRFlowable(width="100%", thickness=0.75, color=RULE, spaceAfter=16),
-        Paragraph(_fmt(example.prompt, styles["WorkedPrompt"]), styles["WorkedPrompt"]),
     ]
+    if preamble_lines:
+        elements.append(_preamble_box(preamble_lines, styles))
+        elements.append(Spacer(1, 12))
+    elements.append(Paragraph(_fmt(example.prompt, styles["WorkedPrompt"]), styles["WorkedPrompt"]))
     if example.diagram is not None:
         elements.append(Spacer(1, 4))
         elements.append(render_diagram(example.diagram))
@@ -128,15 +158,17 @@ def _practice_block(number: int, question: Question, index: int, styles: dict) -
 
 def render_modelled_example(
     topic_name: str, tier: Tier, example: ModelledExample, practice_questions: tuple[Question, ...],
+    preamble_lines: tuple[str, ...] = (),
 ) -> bytes:
     try:
-        return _render(topic_name, tier, example, practice_questions)
+        return _render(topic_name, tier, example, practice_questions, preamble_lines)
     except Exception as exc:
         raise PdfRenderError(exc) from exc
 
 
 def _render(
     topic_name: str, tier: Tier, example: ModelledExample, practice_questions: tuple[Question, ...],
+    preamble_lines: tuple[str, ...] = (),
 ) -> bytes:
     styles = build_styles()
     buffer = io.BytesIO()
@@ -150,7 +182,7 @@ def _render(
         title=f"{topic_name} ({tier.value.title()}) - Modelled Example",
     )
 
-    story = _worked_example_elements(topic_name, tier, example, styles)
+    story = _worked_example_elements(topic_name, tier, example, styles, preamble_lines)
     story.append(PageBreak())
     story.append(Paragraph("Now You Try", styles["SectionHeading"]))
     story.append(

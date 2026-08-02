@@ -57,3 +57,4 @@ class Worksheet:
     tier: Tier
     questions: tuple[Question, ...]
     generated_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
+    preamble_lines: tuple[str, ...] = ()

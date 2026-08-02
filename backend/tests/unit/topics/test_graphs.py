@@ -54,13 +54,14 @@ def test_plotting_generators_provide_blank_axes_on_the_question_and_a_completed_
             assert not q.solution_diagram.params.get("blank", False)
 
 
-def test_line_equation_from_graph_diagram_shows_the_two_marked_points():
+def test_line_equation_from_graph_diagram_has_no_dots():
     rng = random.Random(232)
     for _ in range(TRIALS):
         q = graphs.generate_line_equation_from_graph(Tier.FOUNDATION, rng)
         assert q.diagram is not None
         assert q.diagram.kind == "function_graph"
-        assert len(q.diagram.params["table_points"]) == 2
+        assert q.diagram.params["kind"] == "linear"
+        assert "table_points" not in q.diagram.params
 
 
 def test_graph_transformations_diagram_matches_notation():

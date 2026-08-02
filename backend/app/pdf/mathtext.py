@@ -273,6 +273,14 @@ def _replace_math(m: re.Match, font_size: float, color: Color, bold: bool) -> st
 
 
 def to_markup(text: str, *, font_size: float, color: Color, bold: bool = False) -> str:
+    # A generator can force a real line break in rendered prose by putting a
+    # literal "\n" in its prompt/step text - _escape() (which runs before
+    # this function, in every renderer) only touches &/</>, so a raw
+    # newline survives untouched and is safe to convert to ReportLab's own
+    # <br/> tag here, unlike hand-writing "<br/>" directly in generator
+    # code (which _escape() would mangle into visible "&lt;br/&gt;" text).
+    text = text.replace("\n", "<br/>")
+
     # Punctuation normalisation first (pure string op, no interaction with
     # anything else - see the module docstring's final paragraph).
     text = _TRAILING_DECIMAL_PERIOD_RE.sub(r"\1", text)

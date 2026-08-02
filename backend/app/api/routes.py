@@ -93,7 +93,9 @@ def create_modelled_example(payload: GenerateWorksheetRequest) -> Response:
     rng = random.Random()
     example = topic.generate_modelled_example(tier, rng)
     practice_worksheet = build_worksheet(payload.topic_id, tier, count=PRACTICE_QUESTION_COUNT, rng=rng)
-    pdf_bytes = render_modelled_example(topic.display_name, tier, example, practice_worksheet.questions)
+    pdf_bytes = render_modelled_example(
+        topic.display_name, tier, example, practice_worksheet.questions, topic.preamble_lines or ()
+    )
     filename = f"{payload.topic_id}-{tier.value}-modelled-example.pdf"
     return Response(
         content=pdf_bytes,

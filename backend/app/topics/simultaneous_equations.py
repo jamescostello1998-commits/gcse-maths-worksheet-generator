@@ -252,7 +252,7 @@ def generate_simultaneous_graphically(tier: Tier, rng: random.Random) -> Questio
         dedup_key=f"sim_graph:{m1}:{c1}:{m2}:{c2}",
         diagram=DiagramSpec(
             kind="linear_graph_pair",
-            params={"intersection_label": "?", "label1": line1, "label2": line2},
+            params={"label1": line1, "label2": line2},
         ),
     )
 
@@ -518,7 +518,7 @@ def generate_modelled_example_simultaneous_graphically(tier: Tier, rng: random.R
         final_answer=f"x = {sol_x}, y = {sol_y}",
         diagram=DiagramSpec(
             kind="linear_graph_pair",
-            params={"intersection_label": f"({sol_x}, {sol_y})", "label1": line1, "label2": line2},
+            params={"label1": line1, "label2": line2},
         ),
     )
 

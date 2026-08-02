@@ -55,7 +55,14 @@ def _fmt_exact(num: int, den: int, rad: int) -> str:
     if rad == 1:
         return str(num) if den == 1 else f"{num}/{den}"
     surd = f"√{rad}" if num == 1 else f"{num}√{rad}"
-    return surd if den == 1 else f"{surd}/{den}"
+    # A coefficient-1 surd over an integer (e.g. "√3/2") is a single
+    # already-clear unit mathtext.py deliberately leaves as flat text (see
+    # its "Surd-over-integer gotcha"), but a computed coefficient > 1 (e.g.
+    # "5√3/2") is not auto-detected at all and would render as an ugly flat
+    # slash - use the explicit \frac{}{} marker for that case.
+    if den == 1:
+        return surd
+    return f"{surd}/{den}" if num == 1 else f"\\frac{{{surd}}}{{{den}}}"
 
 
 def _verify_exact(ratio: str, angle_deg: int, num: int, den: int, rad: int) -> None:

@@ -33,8 +33,13 @@ def test_add_subtract_answer_is_single_fraction_with_factorised_denominator():
     rng = random.Random(402)
     for _ in range(TRIALS):
         q = algebraic_fractions.generate_algebraic_fractions_add_subtract(Tier.HIGHER, rng)
-        assert q.final_answer.count("(") >= 3  # numerator bracket + two denominator factors
-        assert "/" in q.final_answer
+        # The answer is a real stacked-vinculum fraction via the \frac{}{}
+        # marker (see mathtext.py), not a raw "num/den" string - so it has
+        # no bare "/" at all, and the denominator's two factorised brackets
+        # are the only "(" in the string.
+        assert q.final_answer.startswith("\\frac{")
+        assert "/" not in q.final_answer
+        assert q.final_answer.count("(") >= 2  # two denominator factors
 
 
 def test_multiply_divide_answer_is_a_simplified_linear_expression():

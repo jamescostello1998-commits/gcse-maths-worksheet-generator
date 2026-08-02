@@ -104,7 +104,7 @@ def _shape_perimeter_foundation(rng: random.Random) -> Question:
         raise ValueError("substitution perimeter (foundation) verification failed")
 
     steps = [
-        "P = 2l + 2w",
+        "P = 2L + 2w",
         f"P = 2 × {l} + 2 × {w}",
         f"P = {2 * l} + {2 * w}",
         f"P = {p}",
@@ -112,7 +112,7 @@ def _shape_perimeter_foundation(rng: random.Random) -> Question:
     return Question(
         topic_id="substitution_foundation",
         tier=Tier.FOUNDATION,
-        prompt=f"P = 2l + 2w. Find the value of P when l = {l} and w = {w}.",
+        prompt=f"P = 2L + 2w. Find the value of P when L = {l} and w = {w}.",
         solution_steps=tuple(steps),
         final_answer=f"P = {p}",
         dedup_key=f"sub_perimeter:{l}:{w}",
@@ -129,14 +129,14 @@ def _shape_area_foundation(rng: random.Random) -> Question:
         raise ValueError("substitution area (foundation) verification failed")
 
     steps = [
-        "A = lw",
+        "A = LW",
         f"A = {l} × {w}",
         f"A = {area}",
     ]
     return Question(
         topic_id="substitution_foundation",
         tier=Tier.FOUNDATION,
-        prompt=f"A = lw. Find the value of A when l = {l} and w = {w}.",
+        prompt=f"A = LW. Find the value of A when L = {l} and w = {w}.",
         solution_steps=tuple(steps),
         final_answer=f"A = {area}",
         dedup_key=f"sub_area:{l}:{w}",
@@ -324,15 +324,15 @@ def _shape_acceleration_higher(rng: random.Random) -> Question:
 
     diff = v - u
     steps = [
-        "a = (v - u)/t",
-        f"a = ({v} - {u})/{t}",
+        "a = \\frac{v - u}{t}",
+        f"a = \\frac{{{v} - {u}}}{{{t}}}",
         f"a = {diff}/{t}" if diff >= 0 else f"a = -{-diff}/{t}",
         f"a = {_fmt_frac(a)}",
     ]
     return Question(
         topic_id="substitution_higher",
         tier=Tier.HIGHER,
-        prompt=f"a = (v - u)/t. Find the value of a when u = {u}, v = {v} and t = {t}.",
+        prompt=f"a = \\frac{{v - u}}{{t}}. Find the value of a when u = {u}, v = {v} and t = {t}.",
         solution_steps=tuple(steps),
         final_answer=f"a = {_fmt_frac(a)}",
         dedup_key=f"sub_accel:{u}:{v}:{t}",
@@ -404,21 +404,21 @@ def _modelled_perimeter_foundation(rng: random.Random) -> ModelledExample:
         raise ValueError("modelled example substitution perimeter (foundation) verification failed")
 
     teaching_steps = [
-        "P = 2l + 2w has two separate terms added together: 2l (twice the length) and 2w (twice the "
+        "P = 2L + 2w has two separate terms added together: 2L (twice the length) and 2w (twice the "
         "width) - each term needs its own substitution and multiplication before they're added.",
-        f"Replace l with {l} and w with {w}: P = 2 × {l} + 2 × {w}.",
+        f"Replace L with {l} and w with {w}: P = 2 × {l} + 2 × {w}.",
         f"Work out each multiplication separately first: 2 × {l} = {2 * l} and 2 × {w} = {2 * w}.",
         f"Then add the two results together: P = {2 * l} + {2 * w} = {p}.",
     ]
     worked_calculation = [
-        "P = 2l + 2w",
+        "P = 2L + 2w",
         f"P = 2 × {l} + 2 × {w}",
         f"P = {p}",
     ]
     return ModelledExample(
         topic_id="substitution_foundation",
         tier=Tier.FOUNDATION,
-        prompt=f"P = 2l + 2w. Find the value of P when l = {l} and w = {w}.",
+        prompt=f"P = 2L + 2w. Find the value of P when L = {l} and w = {w}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"P = {p}",
@@ -435,20 +435,20 @@ def _modelled_area_foundation(rng: random.Random) -> ModelledExample:
         raise ValueError("modelled example substitution area (foundation) verification failed")
 
     teaching_steps = [
-        "A = lw means area equals length multiplied by width - substituting just means replacing l "
+        "A = LW means area equals length multiplied by width - substituting just means replacing L "
         "and w with the numbers given, then doing that one multiplication.",
-        f"Replace l with {l} and w with {w}: A = {l} × {w}.",
+        f"Replace L with {l} and w with {w}: A = {l} × {w}.",
         f"Multiply the two numbers together: A = {area}.",
     ]
     worked_calculation = [
-        "A = lw",
+        "A = LW",
         f"A = {l} × {w}",
         f"A = {area}",
     ]
     return ModelledExample(
         topic_id="substitution_foundation",
         tier=Tier.FOUNDATION,
-        prompt=f"A = lw. Find the value of A when l = {l} and w = {w}.",
+        prompt=f"A = LW. Find the value of A when L = {l} and w = {w}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"A = {area}",
@@ -633,10 +633,10 @@ def _modelled_acceleration_higher(rng: random.Random) -> ModelledExample:
 
     diff = v - u
     teaching_steps = [
-        "a = (v - u)/t is an algebraic fraction: the whole numerator (v - u) has to be worked out "
-        "first, before dividing by t - you can't divide u by t and v by t separately, since it's the "
-        "DIFFERENCE that's being divided.",
-        f"Substitute u = {u}, v = {v} and t = {t}: a = ({v} - {u})/{t}.",
+        "a = \\frac{v - u}{t} is an algebraic fraction: the whole numerator (v - u) has to be "
+        "worked out first, before dividing by t - you can't divide u by t and v by t separately, "
+        "since it's the DIFFERENCE that's being divided.",
+        f"Substitute u = {u}, v = {v} and t = {t}: a = \\frac{{{v} - {u}}}{{{t}}}.",
         (
             f"Work out the numerator: {v} - {u} = {diff}, which is negative here - that makes sense "
             "physically, since the object is slowing down (its final velocity is lower than its "
@@ -647,15 +647,15 @@ def _modelled_acceleration_higher(rng: random.Random) -> ModelledExample:
         f"Finally, express that division as a simplified fraction: a = {_fmt_frac(a)}.",
     ]
     worked_calculation = [
-        "a = (v - u)/t",
-        f"a = ({v} - {u})/{t}",
+        "a = \\frac{v - u}{t}",
+        f"a = \\frac{{{v} - {u}}}{{{t}}}",
         f"a = {diff}/{t}" if diff >= 0 else f"a = -{-diff}/{t}",
         f"a = {_fmt_frac(a)}",
     ]
     return ModelledExample(
         topic_id="substitution_higher",
         tier=Tier.HIGHER,
-        prompt=f"a = (v - u)/t. Find the value of a when u = {u}, v = {v} and t = {t}.",
+        prompt=f"a = \\frac{{v - u}}{{t}}. Find the value of a when u = {u}, v = {v} and t = {t}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"a = {_fmt_frac(a)}",

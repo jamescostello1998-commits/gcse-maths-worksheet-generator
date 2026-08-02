@@ -242,9 +242,19 @@ def draw_l_shape(params: dict) -> Drawing:
         d.add(Rect(ix0, iy0, iw_s, ih_s, strokeColor=INK, fillColor=None, strokeWidth=1.0))
 
     d.add(_label(x0 + ow_s / 2, y0 - 14, params["outer_labels"][0]))
-    d.add(_label(x0 - 10, y0 + oh_s / 2, params["outer_labels"][1], anchor="end"))
-    inner_text = f"{params['inner_labels'][0]} × {params['inner_labels'][1]}"
-    d.add(_label(x0 + ow_s / 2, y0 + oh_s + 12, inner_text, color=MUTED, size=8))
+    if params.get("notch") == "corner" and params.get("right_labels"):
+        # The notch genuinely splits the right-hand edge into two real
+        # segments - label each one directly instead of a single combined
+        # "outer height" label, so students see two real side lengths
+        # rather than unevaluated arithmetic like "(12 + 12) cm".
+        upper_label, lower_label = params["right_labels"]
+        d.add(_label(x0 + ow_s + 8, y0 + (oh_s - ih_s) / 2, upper_label, anchor="start", size=7.5))
+        d.add(_label(x0 + ow_s - iw_s + 8, y0 + oh_s - ih_s / 2, lower_label, anchor="start", size=7.5))
+    else:
+        d.add(_label(x0 - 10, y0 + oh_s / 2, params["outer_labels"][1], anchor="end"))
+    if params.get("inner_labels"):
+        inner_text = f"{params['inner_labels'][0]} × {params['inner_labels'][1]}"
+        d.add(_label(x0 + ow_s / 2, y0 + oh_s + 12, inner_text, color=MUTED, size=8))
     return d
 
 
@@ -421,6 +431,35 @@ def draw_triangle_angles(params: dict) -> Drawing:
         # centroid than short ones like "31°" or "x", so they have more clearance
         # from the two sloped edges either side of the vertex - a fixed 0.58 inset
         # only worked while every label was short enough to fit near the vertex.
+        width = stringWidth(str(lbl), _LABEL_FONT, 7.5)
+        inset = min(0.8, 0.5 + width / 220)
+        lx, ly = vx + (cx - vx) * inset, vy + (cy - vy) * inset
+        d.add(_label(lx, ly, lbl, size=7.5))
+    return d
+
+
+def draw_polygon_angles(params: dict) -> Drawing:
+    """A schematic n-sided polygon with every interior angle labelled - a
+    generalisation of draw_triangle_angles to params['n_sides'] vertices
+    (e.g. 4 for a quadrilateral), reusing the same vertex-arc + centroid-
+    inset label placement so wide algebraic labels get the same
+    collision-safe treatment triangles already have."""
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    cx, cy = DIAGRAM_WIDTH / 2, DIAGRAM_HEIGHT / 2 - 5
+    n = params["n_sides"]
+    r = 45
+    vertices = []
+    for i in range(n):
+        rad = math.radians(90 + i * 360 / n)
+        vertices.append((cx + r * math.cos(rad), cy + r * math.sin(rad)))
+
+    pts = [coord for vertex in vertices for coord in vertex]
+    d.add(Polygon(pts, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+
+    for i, (vertex, lbl) in enumerate(zip(vertices, params["angle_labels"])):
+        other1, other2 = vertices[(i - 1) % n], vertices[(i + 1) % n]
+        d.add(_vertex_angle_arc(vertex, other1, other2, radius=9))
+        vx, vy = vertex
         width = stringWidth(str(lbl), _LABEL_FONT, 7.5)
         inset = min(0.8, 0.5 + width / 220)
         lx, ly = vx + (cx - vx) * inset, vy + (cy - vy) * inset
@@ -1098,19 +1137,37 @@ def draw_parabola(params: dict) -> Drawing:
 
 
 def draw_linear_graph_pair(params: dict) -> Drawing:
-    """Two schematic straight lines (not to scale) crossing at a marked point."""
+    """Two schematic straight lines (not to scale) crossing on the axes -
+    no point/label marks the crossing itself, since for a 'solve
+    simultaneously' question that intersection IS the answer the student
+    must find by reading the graph."""
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     ox, oy = 25, 20
     axis_len_x, axis_len_y = DIAGRAM_WIDTH - 45, DIAGRAM_HEIGHT - 35
     _draw_axes(d, ox, oy, axis_len_x, axis_len_y)
 
-    ix, iy = ox + axis_len_x * 0.55, oy + axis_len_y * 0.55
-    d.add(Line(ox + 5, oy + axis_len_y * 0.15, ox + axis_len_x - 5, oy + axis_len_y * 0.75, strokeColor=INK, strokeWidth=1.2))
-    d.add(Line(ox + 5, oy + axis_len_y * 0.85, ox + axis_len_x - 15, oy + 5, strokeColor=INK, strokeWidth=1.2))
-    d.add(Circle(ix, iy, 2, strokeColor=INK, fillColor=INK))
-    d.add(_label(ix + 10, iy + 6, params["intersection_label"], anchor="start", size=8))
-    d.add(_label(ox + axis_len_x * 0.88, oy + axis_len_y * 0.7, params["label1"], size=8))
-    d.add(_label(ox + axis_len_x * 0.25, oy + axis_len_y * 0.92, params["label2"], size=8))
+    p1_start = (ox + 5, oy + axis_len_y * 0.15)
+    p1_end = (ox + axis_len_x - 5, oy + axis_len_y * 0.75)
+    p2_start = (ox + 5, oy + axis_len_y * 0.85)
+    p2_end = (ox + axis_len_x - 15, oy + 5)
+    d.add(Line(p1_start[0], p1_start[1], p1_end[0], p1_end[1], strokeColor=INK, strokeWidth=1.2))
+    d.add(Line(p2_start[0], p2_start[1], p2_end[0], p2_end[1], strokeColor=INK, strokeWidth=1.2))
+
+    def _label_along(p_from: tuple, p_to: tuple, t: float, text: str, anchor: str) -> None:
+        # Label anchored a fraction t along the line (never right at an
+        # endpoint, which sits close to a diagram corner already carrying
+        # the "x"/"y" axis-name label), raised above it. `anchor` is chosen
+        # per line so the text grows in the direction the line is moving
+        # AWAY from the label (down-slope for an ascending line read
+        # right-to-left, down-slope for a descending line read left-to-
+        # right) - so the gap to the line only widens along the text's
+        # length, never narrows back into it.
+        x = p_from[0] + (p_to[0] - p_from[0]) * t
+        y = p_from[1] + (p_to[1] - p_from[1]) * t
+        d.add(_label(x, y + 10, text, anchor=anchor, size=8))
+
+    _label_along(p1_start, p1_end, 0.85, params["label1"], anchor="end")
+    _label_along(p2_start, p2_end, 0.10, params["label2"], anchor="start")
     _not_to_scale(d)
     return d
 
@@ -1146,6 +1203,9 @@ def _nice_tick_step(lo: float, hi: float) -> float:
     return 100
 
 
+_MIN_SQUARE_UNIT_PX = 8.0
+
+
 def _draw_scaled_axes(
     d: Drawing, x_min: float, x_max: float, y_min: float, y_max: float,
     x_axis_label: str = "x", y_axis_label: str = "y",
@@ -1162,11 +1222,32 @@ def _draw_scaled_axes(
 
     plot_w = d.width - _GRAPH_MARGIN_L - _GRAPH_MARGIN_R
     plot_h = d.height - _GRAPH_MARGIN_T - _GRAPH_MARGIN_B
+    x_span = (x_max - x_min) or 1
+    y_span = (y_max - y_min) or 1
+    px_per_unit_x = plot_w / x_span
+    px_per_unit_y = plot_h / y_span
 
-    def to_px(x: float, y: float) -> tuple[float, float]:
-        px = _GRAPH_MARGIN_L + (x - x_min) / (x_max - x_min) * plot_w
-        py = _GRAPH_MARGIN_B + (y - y_min) / (y_max - y_min) * plot_h
-        return px, py
+    # Prefer a true square grid (equal px-per-unit on both axes, matching
+    # real squared exercise-book paper) whenever the tighter of the two
+    # per-axis scales still gives a legible unit-square size. Fall back to
+    # the old independently-scaled (rectangular) axes only when the data's
+    # x/y ranges are too lopsided for that to work (e.g. a 360-degree trig
+    # sweep against a y range of +-1.4, or a distance-time graph running to
+    # 65 minutes against 12 km) - forcing square there would shrink the
+    # constrained axis's unit squares to sub-pixel slivers.
+    square_px = min(px_per_unit_x, px_per_unit_y)
+    if square_px >= _MIN_SQUARE_UNIT_PX:
+        used_w, used_h = x_span * square_px, y_span * square_px
+        origin_x = _GRAPH_MARGIN_L + (plot_w - used_w) / 2
+        origin_y = _GRAPH_MARGIN_B + (plot_h - used_h) / 2
+
+        def to_px(x: float, y: float) -> tuple[float, float]:
+            return origin_x + (x - x_min) * square_px, origin_y + (y - y_min) * square_px
+    else:
+        def to_px(x: float, y: float) -> tuple[float, float]:
+            px = _GRAPH_MARGIN_L + (x - x_min) / x_span * plot_w
+            py = _GRAPH_MARGIN_B + (y - y_min) / y_span * plot_h
+            return px, py
 
     # Fine unit gridlines.
     x = math.ceil(x_min)
@@ -1614,7 +1695,11 @@ def draw_inequality_region(params: dict) -> Drawing:
     return d
 
 
-_TRANSFORM_BASE_SHAPE = [(-3, 3), (-2, 0.5), (-1, -1), (0, -1.5), (1, -1), (2, 0.5), (3, 3)]
+def _transform_base_fn(x: float) -> float:
+    # A smooth symmetric bowl-shaped curve (exactly y = 0.5x^2 - 1.5) used
+    # as the generic "y = f(x)" schematic - sampled densely below rather
+    # than drawn as a coarse hand-picked-point polyline.
+    return 0.5 * x**2 - 1.5
 
 
 def _apply_transform(kind: str, shift: float, pt: tuple[float, float]) -> tuple[float, float]:
@@ -1645,14 +1730,17 @@ def draw_graph_transformation(params: dict) -> Drawing:
         x, y = pt
         return (max(min(x, x_max), x_min), max(min(y, y_max), y_min))
 
+    n = 40
+    base_pts = [(-3 + 6 * i / n, _transform_base_fn(-3 + 6 * i / n)) for i in range(n + 1)]
+
     orig_pts: list[float] = []
-    for pt in _TRANSFORM_BASE_SHAPE:
+    for pt in base_pts:
         px, py = to_px(*clamp(pt))
         orig_pts.extend([px, py])
     d.add(PolyLine(orig_pts, strokeColor=MUTED, strokeWidth=1.1, strokeDashArray=[3, 2]))
 
     trans_pts: list[float] = []
-    for pt in _TRANSFORM_BASE_SHAPE:
+    for pt in base_pts:
         tpt = _apply_transform(params["transform"], params.get("shift", 0), pt)
         px, py = to_px(*clamp(tpt))
         trans_pts.extend([px, py])
@@ -2907,6 +2995,7 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "rectangle_semicircle": draw_rectangle_semicircle,
     "angle_line": draw_angle_line,
     "triangle_angles": draw_triangle_angles,
+    "polygon_angles": draw_polygon_angles,
     "parallel_lines": draw_parallel_lines,
     "exterior_triangle": draw_exterior_triangle,
     "polygon": draw_polygon,

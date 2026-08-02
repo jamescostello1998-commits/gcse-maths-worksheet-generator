@@ -359,7 +359,8 @@ def generate_algebraic_indices_higher(tier: Tier, rng: random.Random) -> Questio
 
         steps = [
             "Multiplying powers of the same base: add the exponents, even when they're fractions.",
-            f"{_term_frac(c1, m1, n)} × {_term_frac(c2, m2, n)} = ({c1}×{c2}) x^({m1}/{n}+{m2}/{n})",
+            f"{_term_frac(c1, m1, n)} × {_term_frac(c2, m2, n)} = "
+            f"({c1}×{c2}) x^(\\frac{{{m1}}}{{{n}}}+\\frac{{{m2}}}{{{n}}})",
             f"= {_term(coeff, k)}",
         ]
         return Question(
@@ -533,7 +534,7 @@ def generate_modelled_example_algebraic_indices_higher(tier: Tier, rng: random.R
         ]
         worked_calculation = [
             f"{_term_frac(c1, m1, n)} × {_term_frac(c2, m2, n)}",
-            f"= ({c1}×{c2}) x^({m1}/{n}+{m2}/{n})",
+            f"= ({c1}×{c2}) x^(\\frac{{{m1}}}{{{n}}}+\\frac{{{m2}}}{{{n}}})",
             f"= {_term(coeff, k)}",
         ]
         return ModelledExample(

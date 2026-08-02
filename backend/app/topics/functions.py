@@ -60,7 +60,7 @@ def _fmt_inverse(a: int, b: int) -> str:
     inner = f"x - {b}" if b > 0 else (f"x + {-b}" if b < 0 else "x")
     if a == 1:
         return inner
-    return f"({inner})/{a}"
+    return f"\\frac{{{inner}}}{{{a}}}"
 
 
 def generate_functions_composite_inverse(tier: Tier, rng: random.Random) -> Question:
@@ -113,7 +113,9 @@ def generate_functions_composite_inverse(tier: Tier, rng: random.Random) -> Ques
 
         steps = [
             f"y = {fmt_linear(a, b)}",
-            f"Rearrange to make x the subject: x = (y - {b}) / {a}" if b else f"Rearrange to make x the subject: x = y / {a}",
+            f"Rearrange to make x the subject: x = \\frac{{y - {b}}}{{{a}}}"
+            if b
+            else f"Rearrange to make x the subject: x = \\frac{{y}}{{{a}}}",
             f"Swap x and y: f^-1(x) = {inv_str}",
         ]
         return Question(
@@ -251,13 +253,14 @@ def generate_modelled_example_functions_composite_inverse(tier: Tier, rng: rando
             "the subject, then swap the letters x and y around.",
             f"Write y = {fmt_linear(a, b)}.",
             (f"Rearrange to make x the subject: subtract {b} from both sides then divide by {a}, "
-             f"giving x = (y - {b})/{a}."
-             if b else f"Rearrange to make x the subject: divide both sides by {a}, giving x = y/{a}."),
+             f"giving x = \\frac{{y - {b}}}{{{a}}}."
+             if b else f"Rearrange to make x the subject: divide both sides by {a}, giving "
+             f"x = \\frac{{y}}{{{a}}}."),
             f"Swap x and y (since f^-1 takes an x-input now): f^-1(x) = {inv_str}.",
         ]
         worked_calculation = [
             f"y = {fmt_linear(a, b)}",
-            f"x = (y - {b})/{a}" if b else f"x = y/{a}",
+            f"x = \\frac{{y - {b}}}{{{a}}}" if b else f"x = \\frac{{y}}{{{a}}}",
             f"f^-1(x) = {inv_str}",
         ]
         return ModelledExample(

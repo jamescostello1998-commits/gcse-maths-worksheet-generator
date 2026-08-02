@@ -12,41 +12,56 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-**Waiting on the user right now**: the aesthetic-review pass across every topic (see
-chronology step 34) produced a first batch of concrete feedback, all addressed in step
-35 and sent back as freshly regenerated review PDFs
+**Blocked on the user right now**: chronology step 36 was a large batch of Algebra-section
+review feedback (see step 35's aesthetic-review pass) — everything in that batch is done
+**except `iteration`**, which was supposed to "remove the underscore and make it look like
+the picture attached" but no image actually reached the conversation. **First thing next
+session: ask the user for that reference image (or a plain-English description of the
+notation they want) before touching `iteration.py`** — do not guess at a redesign of the
+`x_n`/`x_(n+1)` notation without it. Once that's resolved, regenerate the review PDFs
+(`.venv\Scripts\python.exe -m scripts.generate_review_pdfs` from `backend/`) and send the
+fresh pair back.
+
+Freshly regenerated review PDFs reflecting everything else from step 36
 (`backend/all_topics_review_questions.pdf` / `all_topics_review_answers.pdf` — same
-fixed-seed script, `backend/scripts/generate_review_pdfs.py`, so the same questions
-reappear for direct before/after comparison; the two PDFs themselves are deliverables,
-not source, deliberately left untracked/uncommitted). The user is continuing to review
-topic-by-topic and will come back with further batches of feedback — **the next
-session's actual work is whatever concrete changes they list next**, following the same
-pattern as step 35:
+fixed-seed script, `backend/scripts/generate_review_pdfs.py`, deliberately untracked) were
+already sent back at the end of step 36. The user is continuing their topic-by-topic
+review and will come back with further batches of feedback — **the next session's actual
+work is whatever concrete changes they list next** (once `iteration` is unblocked),
+following the same pattern as steps 35-36:
 
 1. Read the actual current generator code for anything named in the feedback before
-   assuming what it does — several step-35 items turned out to need a different fix
-   than the literal wording suggested (e.g. "not a horizontal fraction" needed a new
-   generalised fraction marker, not just reusing the existing plain-digit one).
+   assuming what it does — several step-35/36 items turned out to need a different fix
+   than the literal wording suggested (e.g. step 36's "not a horizontal fraction" items
+   needed the `\frac{}{}` marker, not a wording change; "composite shape" needed a real
+   drawable L-shape, not just a renamed prompt).
 2. Check whether a request is really an engine-level fix — touch
    `app/pdf/mathtext.py`/`diagrams.py`/`fraction_images.py`/`radical_images.py`/
-   `recurring_decimal_images.py` once and it benefits every topic that uses the same
-   ASCII convention — before treating it as a one-topic content tweak. Grep for the
-   same pattern elsewhere in `app/topics/` before assuming a fix is topic-local (step
-   35's `powers_roots.py` glued-fraction-exponent bug turned out to have 10 instances,
-   not 1).
+   `recurring_decimal_images.py`/`app/pdf/styles.py` once and it benefits every topic
+   that uses the same convention — before treating it as a one-topic content tweak. Grep
+   for the same pattern elsewhere in `app/topics/` before assuming a fix is topic-local —
+   step 36's "fix the fraction line" request turned out to affect **12 files and ~90
+   individual lines** across the whole codebase, found only via a systematic audit, not
+   by fixing the one topic named in the feedback.
 3. Render the actual PDF and look closely before calling anything done — nearly every
-   real bug found in this project's history (including three in step 35) was caught
-   this way, never by the unit tests alone. See "Verifying new topics visually" below.
+   real bug found in this project's history (including at least four in step 36 alone —
+   see its chronology entry) was caught this way, never by the unit tests alone. See
+   "Verifying new topics visually" below. Step 36 specifically found that fixing a
+   flat-slash fraction into a real `\frac{}{}` image can itself introduce a NEW visual
+   bug (the image can be taller than the surrounding line and overlap the text above it)
+   that only shows up on rendered output, never in a unit test — if you add more
+   `\frac{}{}` markers to dense/multi-fraction lines, render and check.
 4. Re-run the script (`.venv\Scripts\python.exe -m scripts.generate_review_pdfs` from
    `backend/`) to regenerate both PDFs after making changes, and send the fresh pair
    back to the user for their next comparison pass.
 
-All work through step 35 is committed, pushed, and already part of the open PR
-(`gh pr view 3` or the repo's PR list — pushing to this branch updates it automatically,
-no separate action needed). The PR has not been merged yet, so check its status before
-assuming `master` already has any of this. 296 topics total (unchanged since step 33 —
-step 35 was rendering/wording fixes, no new or retired topics), backend suite 862/862,
-frontend 61/61, no known bugs.
+All work through step 36 (except the blocked `iteration` item) is committed, pushed, and
+already part of the open PR (`gh pr view 3` or the repo's PR list — pushing to this
+branch updates it automatically, no separate action needed). The PR has not been merged
+yet, so check its status before assuming `master` already has any of this. 296 topics
+total (unchanged since step 33 — steps 35-36 were rendering/wording/formatting fixes, no
+new or retired topics), backend suite 862/862, frontend 61/61, no known bugs other than
+the deliberately-deferred `iteration` item above.
 
 If the user hasn't given new feedback yet, check "Ideas for a future session" (bottom of
 this file) for candidate follow-ups (the remaining medium-confidence OCR-spec gaps from
@@ -2640,6 +2655,198 @@ fixes), is committed and pushed (see `git log`).
     `test_recurring_decimal_images.py`, `test_phrasing.py`, plus extended
     `test_mathtext.py`/`test_fractions.py`/`test_powers_roots.py`); frontend unaffected
     (61/61 - no frontend files were touched this session).
+
+36. New session, a large batch of concrete Algebra-section feedback from the same
+    aesthetic-review pass (step 34's PDFs), covering ~20 named items across diagrams,
+    wording, and one systemic "the fraction line is a plain slash, check this
+    everywhere" request. Entered plan mode given the scope; worked mostly directly
+    (diagram-engine and shared-renderer changes first, per this project's own
+    precedent), then dispatched parallel background agents once the remaining work
+    was well-isolated per-file. One item — `iteration` ("remove the underscore and
+    make it look like the picture attached") — is **still blocked**: no image
+    actually reached the conversation, so it was left untouched pending the user's
+    reference image next session (see "Where to pick up next").
+
+    **Shared diagram-engine changes** (`app/pdf/diagrams.py`), all done directly and
+    visually verified before any topic-level work: `_draw_scaled_axes` now prefers a
+    true square unit grid (equal px-per-unit on both axes, like real squared exercise
+    paper) whenever the tighter of the two per-axis scales still gives a legible
+    unit-square size (>= `_MIN_SQUARE_UNIT_PX`), falling back to the old independent
+    per-axis scaling only for genuinely lopsided ranges (e.g. a steep straight-line
+    gradient, or `trig_graph`'s 360°-vs-±1 domain) - decided per-render from the
+    actual data range, not hardcoded per topic, so e.g. `plot_straight_line` goes
+    square for shallow gradients and gracefully falls back for steep ones.
+    `draw_linear_graph_pair` (`simultaneous_graphically`) no longer marks the
+    intersection with a dot/`"?"` label at all (the intersection point IS the
+    answer the student must read off the graph) - each line's own label is now
+    anchored a fixed 85%/10% fraction along its own line, with an `anchor` chosen so
+    the label text always grows in the direction the line is moving away from (never
+    back over the line, the other line, or either axis name label) - found via two
+    real rendering iterations, not by inspection alone (a naive "extend past the
+    endpoint" version collided with the axis-name label at the corner; a
+    "midpoint + flat vertical offset" version had the text's trailing edge swing
+    back over a descending line). `draw_function_graph` no longer draws `table_points`
+    dots for `line_equation_from_graph` specifically (the two marked points on a
+    "read the equation off this line" question shouldn't be pre-marked) - achieved by
+    just not passing `table_points` for that one topic, not a diagram-kind change,
+    since every *other* plotting topic's dots (showing the table of values the
+    student computed) are correctly still shown. `draw_graph_transformation`'s
+    generic `y = f(x)` curve is now a genuinely smooth 40-point sample of a real
+    function (`_transform_base_fn`, `y = 0.5x^2 - 1.5` - confirmed algebraically to
+    exactly reproduce the 7 originally hand-picked points) instead of a coarse
+    7-point polyline. `turning_point_of_graph` no longer has a diagram at all (its
+    parabola diagram was showing the vertex label as the literal answer coordinates
+    anyway, so removing it was strictly simpler than fixing the leak). Two small new
+    diagram kinds/params: `polygon_angles` (a `draw_triangle_angles` generalisation
+    to n vertices, used for `forming_equations_higher`'s quadrilateral-angle branch)
+    and `draw_l_shape`'s new optional `right_labels` param (splits the notch-adjacent
+    edge into two independently labelled real segments instead of a single combined
+    "(m + n) cm" label that read like unevaluated arithmetic - found and fixed via
+    the same render-and-look-closely pass that built it).
+
+    **`forming_equations_foundation`/`_higher`** (`app/topics/forming_equations.py`):
+    per a scoped clarifying question, the "words" (think-of-a-number) branch stays
+    text-only (nothing to draw); the angles branch (straight/point/triangle for
+    Foundation, quadrilateral for Higher) now gets a real angle diagram via a new
+    shared `_angle_fact_diagram` helper (`angle_line`/`triangle_angles`/
+    `polygon_angles` depending on the fact), and the area/perimeter branch gets a
+    `rectangle` diagram, in both cases trimming the prompt down to just state the
+    total (e.g. "The perimeter of the rectangle shown is 32 cm...") since the side
+    lengths are now on the diagram instead of repeated in prose. Higher's perimeter
+    branch dropped the word "composite" entirely by becoming a real, correctly
+    geometric L-shape (`_l_shape_perimeter_diagram`) - the bottom width is the
+    algebraic `(x + k)`, and the notch height is deliberately set to exactly `m` so
+    the right-hand edge is a real notch-divided segment labelled `n`/`m` rather than
+    a fabricated "(m + n)" combined label. All 4 modelled-example counterparts got
+    the identical treatment.
+
+    **`kinematics_suvat`**: a new generic `TopicDefinition.preamble_lines` mechanism
+    (threaded through `Worksheet.preamble_lines`, `render_worksheet`'s new
+    `_preamble_box` helper, and `render_modelled_example`'s equivalent) shows all 3
+    SUVAT equations in a boxed "Formulae" panel at the top of both the worksheet and
+    the modelled-example PDF, before Q1 - reuses the exact same boxed styling as the
+    modelled-example page's existing worked-calculation box for a consistent house
+    style. This is genuinely new, reusable renderer plumbing (no prior topic had a
+    fixed preamble), not a one-off special case - any future topic that wants the
+    same "formulae shown once, up front" treatment just sets `preamble_lines` on its
+    `TopicDefinition`.
+
+    **Wording/behaviour tweaks** (each independently scoped, no shared mechanism):
+    `substitution_foundation`/`changing_subject.py`/`classify_expressions.py` - the
+    rectangle-length variable `l` (which reads as a capital `I`) is now `L`
+    throughout all three files (their formulas/prompts/steps/final answers), leaving
+    the unrelated slant-height `l` in the solids files untouched (genuine standard
+    exam notation, not the same collision). `expand_double_brackets_foundation`/
+    `expand_double_brackets` now say "Expand and simplify" (matching the sibling
+    triple-bracket topic, which already did); a new `_rand_x_coeff` helper makes a
+    bracket's own x-coefficient negative under 0.5% of the time instead of 50%
+    (constants can still be either sign as before) for `expand_double_brackets`/
+    `expand_triple_brackets`. `quadratic_inequalities`'s leading coefficient is now
+    always `1` (never the "upside-down U" `-1` case). `inequalities_number_line_higher`'s
+    "draw" prompt now reads "Draw the inequality/ies of ... on a number line."
+    `sequences_nth_term`/`sequences_quadratic_nth_term` now put "Find an expression
+    for the nth term." on its own line - via a new, generically-useful mechanism in
+    `mathtext.py`: a literal `"\n"` in any generator's prompt/step text (which
+    `_escape()` leaves untouched, unlike a hand-written `"<br/>"` which would get
+    escaped into visible text) is converted to a real ReportLab `<br/>` at the very
+    start of `to_markup`, available to any future topic that wants a forced line
+    break. `special_sequences_foundation` no longer shows "(term number x)" alongside
+    the ordinal ("Find the 6th term..." instead of "...(term number 6)").
+    `special_sequences_higher`'s geometric branch no longer states "Each term is
+    found by multiplying the previous term by a common ratio."
+
+    **The fraction-line audit** ("id: algebraic_fractions_add_subtract - fraction
+    line is a /, this must be checked on everything") turned out to be the largest
+    single piece of this session. `mathtext.py`'s auto-detect regex only converts a
+    standalone fraction to a real vinculum image when *both* numerator and
+    denominator are bare unsigned digit sequences - anything else (an algebraic
+    letter, brackets, a negative-signed denominator, a "?" placeholder, a surd
+    coefficient > 1) silently renders as a flat, un-typeset slash instead, with no
+    error or warning. Rather than fix just the one named topic, audited **every**
+    `app/topics/*.py` file (3 parallel research-only agents, ~65 files/functions
+    read, not just grepped) for genuine instances - explicitly excluding unit-rate
+    "per" expressions (`km/h`, `£/kg`) and already-safe bare-digit fractions,  which
+    correctly stay untouched. Found genuine instances in **12 files**: `fractions.py`,
+    `powers_roots.py` (mostly `rationalise_denominator`), `algebraic_fractions.py`
+    (systemic - every fraction in the file, including the final answer, was affected),
+    `changing_subject.py` (systemic - every rearranged-formula answer), `substitution.py`
+    (the acceleration shape), `sequences.py` (the triangular-number formula),
+    `kinematics.py` (most of the algebraic SUVAT rearrangements - several with a
+    denominator that can itself be negative, e.g. `(v-u)/a` when `a` is a
+    deceleration, which the auto-detect regex can't handle even when both sides are
+    otherwise plain digits), `quadratic_equations.py` (the surd-root final answer and
+    substituted quadratic-formula steps), `functions.py` (the inverse-function
+    shape), `iteration.py` (the quadratic/reciprocal formula shapes),
+    `inequalities.py`/`inequalities_region.py` (a unit-fraction coefficient
+    rendering as e.g. `"x/2"`), and `circle_equation.py` (gradient fractions with a
+    possibly-negative denominator). Fixed via 7 parallel write-capable agents (one
+    per cluster of unrelated files) plus 3 files done directly (`changing_subject.py`,
+    `substitution.py`, `kinematics.py` - already mid-edit this session for the `l`→`L`
+    and preamble work, so kept in-hand to avoid merge conflicts). Every fix follows
+    the established `\frac{NUM}{DEN}` marker convention (already precedented by
+    `\vec{a}`/`\vec{b}` and `\recur{}{}`), never touching the underlying
+    verification/arithmetic - purely a display-string change.
+
+    **Four real bugs were found and fixed via this session's own visual verification,
+    not by any unit test** - the same story as most gotchas in this file:
+    1. `exact_trig_values.py`'s `_fmt_exact` only special-cased a coefficient-1 surd
+       over an integer (e.g. "√3/2", deliberately left flat per an existing
+       documented gotcha) - a *computed* coefficient > 1 (e.g. `"5√3/2"`, reachable
+       from `exact_trig_values_triangles`'s triangle-side generator, never from the
+       base lookup table) fell through both the auto-detect and the flat-text
+       special case untouched. Fixed with an explicit `\frac{}{}` branch for that
+       specific case only, leaving the genuine coefficient-1 case exactly as before.
+    2. `algebraic_indices_higher`'s multiply-fractional-exponents step built a
+       compound exponent like `x^(1/2+3/2)` - individually-valid bare fractions, but
+       joined by a "+" inside the same `^(...)`, which defeats `_MATH_RE`'s
+       fractional-exponent alternative (it requires *exactly* `^(digits/digits)`)
+       and falls through to the generic flat-raised-text compound-exponent case
+       instead. Fixed by wrapping each half in its own `\frac{}{}` marker before
+       joining with "+" inside the `^(...)` - confirmed via a real render that two
+       correctly-scaled small vinculum fractions now sit side by side inside the
+       superscript, not a flat "1/2+3/2".
+    3. The single most significant finding: converting `rationalise_denominator`'s
+       conjugate-branch steps to `\frac{}{}` (per the audit above) introduced a
+       **new** visual bug the audit itself couldn't have caught, since it only
+       exists once real PDF output is inspected - a step combining two wide,
+       bracket-heavy fraction images on one line (`\frac{a}{denom} = \frac{a(conj)}
+       {[(denom)(conj)]}`) rendered tall enough to visibly overlap the *previous*
+       solution step's text line, because `SolutionStep`'s paragraph style
+       (`leading=15, spaceAfter=2`) was tuned years earlier against simple
+       plain-digit fractions (which happen to be almost exactly 15pt tall) and never
+       revisited for a wide algebraic fraction (measured at 16.5pt+ for content
+       involving brackets/surds). Root-caused via an isolated PIL bbox spike before
+       touching any real code (confirmed `font.getbbox()` genuinely returns a taller
+       box for bracket/surd-containing strings than for plain digits at the same
+       font size) - a first fix attempt (make every fraction image the same height,
+       based on the font's fixed ascent/descent metrics) was tried, rendered, and
+       **rejected**: it fixed the wide case but made every simple fraction *taller*
+       too, which broke previously-fine spacing across the whole document instead of
+       just the outlier - reverted in favour of two smaller, lower-risk fixes: (a)
+       splitting the one genuinely too-dense solution step into two separate steps
+       in `powers_roots.py` (one fraction's image per line, not two), and (b) a
+       modest `spaceAfter`/`spaceBefore` increase (2-6pt) to `SolutionStep`,
+       `FinalAnswer`, `WorkedCalcLine`, and `ScaffoldGiven` in `app/pdf/styles.py` -
+       general headroom for any inline fraction image slightly taller than a single
+       text line, benefiting every topic that uses these styles, not just this one.
+       Confirmed via a full re-render that the overlap is gone and page counts
+       didn't measurably bloat.
+    4. (Documented under "Compound-3D..." precedent, but worth restating here since
+       it directly follows from finding #3): any *future* addition of a
+       multi-fraction-per-line solution step should be rendered and visually checked
+       before being considered done - the underlying image-height-vs-leading gap is
+       now better cushioned, not eliminated, and a sufficiently dense line could
+       still in principle re-trigger it.
+
+    Central verification: full backend suite (862/862, unchanged count - this
+    session was entirely rendering/wording/formatting fixes to existing topics, no
+    new or retired topics), frontend suite (61/61, untouched - no frontend files
+    changed), and the review-PDF script re-run to send a fresh comparison pair back
+    to the user (296 question pages, unchanged; 302 answer pages, up from 299 -
+    expected, since a few more topics' solutions now spill onto a second page as a
+    direct, accepted consequence of the `SolutionStep` spacing increase in finding
+    #3). The `iteration` item remains open, blocked on the user's reference image
+    (see "Where to pick up next").
 
 ## Environment gotchas (Windows, this machine specifically)
 

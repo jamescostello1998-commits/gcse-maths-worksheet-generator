@@ -22,8 +22,8 @@ CATEGORIES = ("expression", "equation", "formula", "identity")
 # Well-known formulae relating two or more different letters/quantities.
 # Correct by construction - no per-instance verification needed.
 _FORMULAE = [
-    ("A = l × w", "the area A of a rectangle from its length l and width w"),
-    ("P = 2l + 2w", "the perimeter P of a rectangle from its length l and width w"),
+    ("A = L × w", "the area A of a rectangle from its length L and width w"),
+    ("P = 2L + 2w", "the perimeter P of a rectangle from its length L and width w"),
     ("v = u + at", "final velocity v from initial velocity u, acceleration a and time t"),
     ("C = πd", "the circumference C of a circle from its diameter d"),
     ("A = πr^2", "the area A of a circle from its radius r"),

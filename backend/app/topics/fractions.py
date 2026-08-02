@@ -31,7 +31,7 @@ def generate_simplify_fraction(tier: Tier, rng: random.Random) -> Question:
 
     steps = [
         f"Find the highest common factor of {num} and {den}: {hcf}",
-        f"Divide numerator and denominator by {hcf}: {num}÷{hcf} / {den}÷{hcf} = {p}/{q}",
+        f"Divide numerator and denominator by {hcf}: \\frac{{{num}÷{hcf}}}{{{den}÷{hcf}}} = {p}/{q}",
     ]
     return Question(
         topic_id="fractions_simplify",
@@ -126,7 +126,7 @@ def generate_divide_fractions(tier: Tier, rng: random.Random) -> Question:
 
     steps = [
         f"Keep-change-flip: {a}/{b} ÷ {c}/{d} = {a}/{b} × {d}/{c}",
-        f"Multiply: ({a}×{d})/({b}×{c}) = {a * d}/{b * c}",
+        f"Multiply: \\frac{{({a}×{d})}}{{({b}×{c})}} = {a * d}/{b * c}",
         f"Simplify: {_fmt_fraction(result)}",
     ]
     return Question(
@@ -154,7 +154,7 @@ def generate_divide_fractions_foundation(tier: Tier, rng: random.Random) -> Ques
 
     steps = [
         f"Keep-change-flip: {a}/{b} ÷ {c}/{d} = {a}/{b} × {d}/{c}",
-        f"Multiply: ({a}×{d})/({b}×{c}) = {a * d}/{b * c}",
+        f"Multiply: \\frac{{({a}×{d})}}{{({b}×{c})}} = {a * d}/{b * c}",
         f"Simplify: {_fmt_fraction(result)}",
     ]
     return Question(
@@ -677,7 +677,7 @@ def generate_modelled_example_simplify_fraction(tier: Tier, rng: random.Random) 
     worked_calculation = [
         f"{num}/{den}",
         f"HCF({num}, {den}) = {hcf}",
-        f"= ({num}÷{hcf})/({den}÷{hcf})",
+        f"= \\frac{{({num}÷{hcf})}}{{({den}÷{hcf})}}",
         f"= {p}/{q}",
     ]
     return ModelledExample(
@@ -723,7 +723,7 @@ def generate_modelled_example_multiply_fractions(tier: Tier, rng: random.Random)
     ]
     worked_calculation = [
         f"{a}/{b} × {c}/{d}",
-        f"= ({a}×{c})/({b}×{d})",
+        f"= \\frac{{({a}×{c})}}{{({b}×{d})}}",
         f"= {product_num}/{product_den}",
     ]
     if common > 1:
@@ -773,7 +773,7 @@ def generate_modelled_example_divide_fractions(tier: Tier, rng: random.Random) -
     worked_calculation = [
         f"{a}/{b} ÷ {c}/{d}",
         f"= {a}/{b} × {d}/{c}",
-        f"= ({a}×{d})/({b}×{c})",
+        f"= \\frac{{({a}×{d})}}{{({b}×{c})}}",
         f"= {product_num}/{product_den}",
     ]
     if common > 1:
@@ -823,7 +823,7 @@ def generate_modelled_example_divide_fractions_foundation(tier: Tier, rng: rando
     worked_calculation = [
         f"{a}/{b} ÷ {c}/{d}",
         f"= {a}/{b} × {d}/{c}",
-        f"= ({a}×{d})/({b}×{c})",
+        f"= \\frac{{({a}×{d})}}{{({b}×{c})}}",
         f"= {product_num}/{product_den}",
     ]
     if common > 1:
@@ -878,8 +878,8 @@ def generate_modelled_example_mixed_number_arithmetic(tier: Tier, rng: random.Ra
         "subtract directly, so the standard method is to first convert both into improper (top-heavy) "
         "fractions: multiply the whole number by the denominator, then add the numerator, all over the "
         "same denominator.",
-        f"{whole1} {num1}/{den1} = ({whole1}×{den1}+{num1})/{den1} = {raw_num1}/{den1}, and "
-        f"{whole2} {num2}/{den2} = ({whole2}×{den2}+{num2})/{den2} = {raw_num2}/{den2}.",
+        f"{whole1} {num1}/{den1} = \\frac{{({whole1}×{den1}+{num1})}}{{{den1}}} = {raw_num1}/{den1}, and "
+        f"{whole2} {num2}/{den2} = \\frac{{({whole2}×{den2}+{num2})}}{{{den2}}} = {raw_num2}/{den2}.",
         f"Now it's a normal fraction {verb}, so we need a common denominator: the LCM of {den1} and "
         f"{den2} is {lcm_val}. Converting: {raw_num1}/{den1} = {scaled_num1}/{lcm_val} and "
         f"{raw_num2}/{den2} = {scaled_num2}/{lcm_val}.",
@@ -976,7 +976,7 @@ def generate_modelled_example_fractions_equivalent(tier: Tier, rng: random.Rando
                 f"So {a}/{b} = {missing_num}/{d}.",
             ]
             worked_calculation = [
-                f"{a}/{b} = ?/{d}",
+                f"{a}/{b} = \\frac{{?}}{{{d}}}",
                 f"{d} ÷ {b} = {k}",
                 f"{a} × {k} = {missing_num}",
             ]
@@ -996,7 +996,7 @@ def generate_modelled_example_fractions_equivalent(tier: Tier, rng: random.Rando
                 f"So {a}/{b} = {missing_num}/{d}.",
             ]
             worked_calculation = [
-                f"{a}/{b} = {missing_num}/?",
+                f"{a}/{b} = \\frac{{{missing_num}}}{{?}}",
                 f"{missing_num} ÷ {a} = {k}",
                 f"{b} × {k} = {d}",
             ]
@@ -1119,7 +1119,7 @@ def generate_modelled_example_fractions_equivalent_diagram(tier: Tier, rng: rand
             "amount of the whole shape, just cut into different numbers of pieces.",
         ]
         worked_calculation = [
-            f"{a}/{b} = ?/{d}",
+            f"{a}/{b} = \\frac{{?}}{{{d}}}",
             f"{d} ÷ {b} = {k}",
             f"{a} × {k} = {target_shaded}",
         ]

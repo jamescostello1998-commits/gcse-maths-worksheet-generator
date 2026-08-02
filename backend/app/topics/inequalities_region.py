@@ -38,8 +38,8 @@ def _fmt_coeff_x(m: Fraction) -> str:
         return f"{m.numerator}x"
     if abs(m.numerator) == 1:
         sign = "-" if m.numerator < 0 else ""
-        return f"{sign}x/{m.denominator}"
-    return f"{m.numerator}x/{m.denominator}"
+        return f"{sign}\\frac{{x}}{{{m.denominator}}}"
+    return f"\\frac{{{m.numerator}x}}{{{m.denominator}}}"
 
 
 def _fmt_line_expr(m: Fraction, c: int) -> str:

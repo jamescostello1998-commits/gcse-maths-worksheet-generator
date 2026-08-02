@@ -2,7 +2,7 @@ import random
 
 import sympy as sp
 
-from app.core.models import DiagramSpec, ModelledExample, Question, Tier
+from app.core.models import ModelledExample, Question, Tier
 from app.topics.algebra_utils import X
 from app.topics.base import TopicDefinition
 from app.topics.powers_roots import _SQUARE_FREE_FACTORS
@@ -105,7 +105,6 @@ def generate_turning_point(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=f"turning_point:{p}:{c}",
-        diagram=DiagramSpec(kind="parabola", params={"vertex_label": answer}),
     )
 
 
@@ -185,7 +184,6 @@ def generate_modelled_example_turning_point(tier: Tier, rng: random.Random) -> M
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
-        diagram=DiagramSpec(kind="parabola", params={"vertex_label": answer}),
     )
 
 

@@ -51,11 +51,11 @@ def build_styles() -> dict[str, ParagraphStyle]:
         ),
         "SolutionStep": ParagraphStyle(
             "SolutionStep", fontName=FONT, fontSize=10.5, textColor=INK,
-            leftIndent=14, leading=15, spaceAfter=2,
+            leftIndent=14, leading=15, spaceAfter=6,
         ),
         "FinalAnswer": ParagraphStyle(
             "FinalAnswer", fontName=FONT_BOLD, fontSize=10.5, leading=13, textColor=INK,
-            leftIndent=14, spaceBefore=4, spaceAfter=10,
+            leftIndent=14, spaceBefore=6, spaceAfter=10,
         ),
         "WorkedPrompt": ParagraphStyle(
             "WorkedPrompt", fontName=FONT_BOLD, fontSize=13.5, leading=19, textColor=INK,
@@ -63,7 +63,7 @@ def build_styles() -> dict[str, ParagraphStyle]:
         ),
         "WorkedCalcLine": ParagraphStyle(
             "WorkedCalcLine", fontName=FONT_BOLD, fontSize=12.5, leading=19, textColor=INK,
-            spaceAfter=2,
+            spaceAfter=5,
         ),
         "TeachingHeading": ParagraphStyle(
             "TeachingHeading", fontName=FONT_BOLD, fontSize=11.5, leading=14, textColor=MUTED,
@@ -87,7 +87,7 @@ def build_styles() -> dict[str, ParagraphStyle]:
         ),
         "ScaffoldGiven": ParagraphStyle(
             "ScaffoldGiven", fontName=FONT, fontSize=10.5, textColor=INK,
-            leftIndent=14, leading=15, spaceAfter=4,
+            leftIndent=14, leading=15, spaceAfter=6,
         ),
         "ScaffoldBlank": ParagraphStyle(
             "ScaffoldBlank", fontName=FONT, fontSize=10.5, textColor=MUTED,

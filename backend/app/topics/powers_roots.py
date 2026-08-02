@@ -13,6 +13,23 @@ GROUP = "Powers, Roots & Indices"
 
 _SQUARE_FREE_FACTORS = [2, 3, 5, 6, 7, 10, 11, 13, 14, 15]
 
+_SUPERSCRIPT_DIGITS = str.maketrans("0123456789", "⁰¹²³⁴⁵⁶⁷⁸⁹")
+
+
+def _superscript(n: int) -> str:
+    """Render a plain non-negative integer exponent as true Unicode
+    superscript digits (e.g. 12 -> a raised "12") - needed inside a
+    \\frac{}{} marker's denominator text specifically, since fraction images
+    (app/pdf/fraction_images.py) are drawn as flat PIL text with no markup
+    support at all (no <super> tag reaches inside a marker - see mathtext.py's
+    docstring), so a literal "base^n" string would otherwise render with a
+    bare caret character instead of a raised exponent. Confirmed Arial (the
+    font fraction_images.py renders with) has real glyphs for all ten
+    superscript digits via a direct rendered-PNG spike before relying on it -
+    only used for denominators whose exponent is already a concrete integer,
+    never for an unevaluated expression like "b×c"."""
+    return str(n).translate(_SUPERSCRIPT_DIGITS)
+
 
 def generate_powers_foundation(tier: Tier, rng: random.Random) -> Question:
     shape = rng.choice(["evaluate", "law_multiply", "law_divide", "law_power"])
@@ -93,7 +110,7 @@ def generate_powers_higher(tier: Tier, rng: random.Random) -> Question:
         if check != result:
             raise ValueError("powers_higher verification failed")
 
-        steps = [f"{base}^-{exponent} = 1/({base}^{exponent}) = 1/{base**exponent}"]
+        steps = [f"{base}^-{exponent} = \\frac{{1}}{{{base}{_superscript(exponent)}}} = 1/{base**exponent}"]
         return Question(
             topic_id="powers_higher",
             tier=Tier.HIGHER,
@@ -364,12 +381,12 @@ def generate_modelled_example_powers_higher(tier: Tier, rng: random.Random) -> M
             "A negative index doesn't make the answer come out negative - instead, it's an instruction "
             f"to take the reciprocal (flip the number to 1 over it). {base}^-{exponent} means "
             f"1 ÷ {base}^{exponent}, not -({base}^{exponent}).",
-            f"So rewrite {base}^-{exponent} as 1/({base}^{exponent}), keeping the exponent positive but "
+            f"So rewrite {base}^-{exponent} as \\frac{{1}}{{{base}{_superscript(exponent)}}}, keeping the exponent positive but "
             "moving the whole expression underneath a 1.",
             f"Now evaluate the positive power on the bottom as usual: {base}^{exponent} = {base**exponent}.",
             f"This gives {base}^-{exponent} = 1/{base**exponent}.",
         ]
-        worked_calculation = [f"{base}^-{exponent}", f"= 1/({base}^{exponent})", f"= 1/{base**exponent}"]
+        worked_calculation = [f"{base}^-{exponent}", f"= \\frac{{1}}{{{base}{_superscript(exponent)}}}", f"= 1/{base**exponent}"]
         return ModelledExample(
             topic_id="powers_higher",
             tier=Tier.HIGHER,
@@ -609,7 +626,7 @@ def _build_rationalise_simple(rng: random.Random) -> Question:
         raise ValueError("rationalise_denominator simple verification failed")
 
     answer = _fmt_simple_rationalised(a2, b, b2)
-    steps = [f"Multiply the top and bottom by √{b}: {a}/√{b} = \\frac{{{a}√{b}}}{{{b}}}"]
+    steps = [f"Multiply the top and bottom by √{b}: \\frac{{{a}}}{{√{b}}} = \\frac{{{a}√{b}}}{{{b}}}"]
     if g > 1:
         steps.append(f"Simplify {a}/{b} by dividing by {g}: {answer}")
     else:
@@ -618,7 +635,7 @@ def _build_rationalise_simple(rng: random.Random) -> Question:
     return Question(
         topic_id="rationalise_denominator",
         tier=Tier.HIGHER,
-        prompt=f"Rationalise the denominator of {a}/√{b}, giving your answer in its simplest form.",
+        prompt=f"Rationalise the denominator of \\frac{{{a}}}{{√{b}}}, giving your answer in its simplest form.",
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=f"rationalise_simple:{a}:{b}",
@@ -664,10 +681,11 @@ def _build_rationalise_conjugate(rng: random.Random) -> Question:
     if abs(sp.N(original, 30) - sp.N(claimed, 30)) > sp.Float("1e-20"):
         raise ValueError("rationalise_denominator conjugate verification failed")
 
-    prompt = f"Rationalise the denominator of {a}/({denom_str}), giving your answer in its simplest form."
+    prompt = f"Rationalise the denominator of \\frac{{{a}}}{{{denom_str}}}, giving your answer in its simplest form."
     steps = [
         f"Multiply the numerator and denominator by the conjugate of the denominator, ({conj_str}):",
-        f"{a}/({denom_str}) = {a}({conj_str}) / [({denom_str})({conj_str})]",
+        f"\\frac{{{a}}}{{{denom_str}}}",
+        f"= \\frac{{{a}({conj_str})}}{{[({denom_str})({conj_str})]}}",
         f"The denominator is a difference of two squares: {b}^2 - {c} = {D}",
         f"The numerator is {a}({conj_str}) = {raw_numerator_str}",
     ]
@@ -714,29 +732,29 @@ def generate_modelled_example_rationalise_denominator(tier: Tier, rng: random.Ra
 
         answer = _fmt_simple_rationalised(a2, b, b2)
         teaching_steps = [
-            f"A fraction like {a}/√{b} has an irrational (never-terminating, non-repeating) number sitting "
+            f"A fraction like \\frac{{{a}}}{{√{b}}} has an irrational (never-terminating, non-repeating) number sitting "
             "in the denominator - by convention, GCSE answers avoid leaving a root on the bottom, so it "
             "needs to be moved to the top instead.",
-            f"The trick is to multiply the fraction by √{b}/√{b}, which equals 1, so the value of the "
+            f"The trick is to multiply the fraction by \\frac{{√{b}}}{{√{b}}}, which equals 1, so the value of the "
             f"fraction doesn't change - but on the bottom, √{b} × √{b} = {b}, a whole number.",
-            f"Applying this: {a}/√{b} = ({a} × √{b})/(√{b} × √{b}) = {a}√{b}/{b}.",
+            f"Applying this: \\frac{{{a}}}{{√{b}}} = \\frac{{({a} × √{b})}}{{(√{b} × √{b})}} = \\frac{{{a}√{b}}}{{{b}}}.",
             (
                 f"The fraction {a}/{b} still shares a common factor of {g}, so dividing both by it gives "
                 f"the fully simplified answer {answer}."
                 if g > 1
-                else f"{a} and {b} share no common factor, so {a}√{b}/{b} is already fully simplified."
+                else f"{a} and {b} share no common factor, so \\frac{{{a}√{b}}}{{{b}}} is already fully simplified."
             ),
-            f"So {a}/√{b} rationalises to {answer}.",
+            f"So \\frac{{{a}}}{{√{b}}} rationalises to {answer}.",
         ]
         worked_calculation = [
-            f"{a}/√{b}",
-            f"= {a}√{b}/{b}",
+            f"\\frac{{{a}}}{{√{b}}}",
+            f"= \\frac{{{a}√{b}}}{{{b}}}",
             f"= {answer}",
         ]
         return ModelledExample(
             topic_id="rationalise_denominator",
             tier=Tier.HIGHER,
-            prompt=f"Rationalise the denominator of {a}/√{b}, giving your answer in its simplest form.",
+            prompt=f"Rationalise the denominator of \\frac{{{a}}}{{√{b}}}, giving your answer in its simplest form.",
             worked_calculation=tuple(worked_calculation),
             teaching_steps=tuple(teaching_steps),
             final_answer=answer,
@@ -773,7 +791,7 @@ def generate_modelled_example_rationalise_denominator(tier: Tier, rng: random.Ra
         raise ValueError("modelled example rationalise_denominator conjugate verification failed")
 
     teaching_steps = [
-        f"A denominator like ({denom_str}) can't be rationalised just by multiplying by √{c}/√{c}, since "
+        f"A denominator like ({denom_str}) can't be rationalised just by multiplying by \\frac{{√{c}}}{{√{c}}}, since "
         f"that would leave a mixed term - instead, the trick is to multiply by the 'conjugate', "
         f"({conj_str}), which has the opposite sign in front of the root.",
         f"Multiplying a bracket by its conjugate always gives a difference of two squares, which clears "
@@ -789,14 +807,14 @@ def generate_modelled_example_rationalise_denominator(tier: Tier, rng: random.Ra
         ),
     ]
     worked_calculation = [
-        f"{a}/({denom_str})",
-        f"= {a}({conj_str}) / ({b}^2 - {c})",
+        f"\\frac{{{a}}}{{{denom_str}}}",
+        f"= \\frac{{{a}({conj_str})}}{{({b}^2 - {c})}}",
         f"= {answer}",
     ]
     return ModelledExample(
         topic_id="rationalise_denominator",
         tier=Tier.HIGHER,
-        prompt=f"Rationalise the denominator of {a}/({denom_str}), giving your answer in its simplest form.",
+        prompt=f"Rationalise the denominator of \\frac{{{a}}}{{{denom_str}}}, giving your answer in its simplest form.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
@@ -840,7 +858,7 @@ def generate_negative_indices(tier: Tier, rng: random.Random) -> Question:
             raise ValueError("negative_indices verification failed")
 
         steps = [
-            f"A negative index means take the reciprocal: {base}^-{n} = 1/({base}^{n})",
+            f"A negative index means take the reciprocal: {base}^-{n} = \\frac{{1}}{{{base}{_superscript(n)}}}",
             f"{base}^{n} = {result}",
             f"{base}^-{n} = 1/{result}",
         ]
@@ -924,12 +942,12 @@ def generate_modelled_example_negative_indices(tier: Tier, rng: random.Random) -
             "A negative index doesn't make the answer negative - it's an instruction to take the "
             f"reciprocal (flip the number to 1 over it). {base}^-{n} means 1 ÷ {base}^{n}, not "
             f"-({base}^{n}).",
-            f"Rewrite {base}^-{n} as 1/({base}^{n}), keeping the exponent positive but moving the whole "
+            f"Rewrite {base}^-{n} as \\frac{{1}}{{{base}{_superscript(n)}}}, keeping the exponent positive but moving the whole "
             "expression underneath a 1.",
             f"Now evaluate the positive power on the bottom as usual: {base}^{n} = {result}.",
             f"So {base}^-{n} = 1/{result}.",
         ]
-        worked_calculation = [f"{base}^-{n}", f"= 1/({base}^{n})", f"= 1/{result}"]
+        worked_calculation = [f"{base}^-{n}", f"= \\frac{{1}}{{{base}{_superscript(n)}}}", f"= 1/{result}"]
         return ModelledExample(
             topic_id="negative_indices",
             tier=Tier.FOUNDATION,
@@ -1055,8 +1073,8 @@ def generate_simplifying_indices_challenging(tier: Tier, rng: random.Random) -> 
         root_word = "square" if b == 2 else "cube"
         steps = [
             f"{base}^(1/{b}) is the {root_word} root of {base}, which is {r}, so {base}^({a}/{b}) = {r}^{a}",
-            f"{base}^-{c} = 1/({base}^{c}) = 1/({r}^{b * c})",
-            f"{base}^({a}/{b}) × {base}^-{c} = {r}^{a} × 1/({r}^{b * c}) = {r}^({a}-{b * c}) = {r}^{combined}",
+            f"{base}^-{c} = \\frac{{1}}{{{base}{_superscript(c)}}} = \\frac{{1}}{{{r}{_superscript(b * c)}}}",
+            f"{base}^({a}/{b}) × {base}^-{c} = {r}^{a} × \\frac{{1}}{{{r}{_superscript(b * c)}}} = {r}^({a}-{b * c}) = {r}^{combined}",
             f"{r}^{combined} = {answer}",
         ]
         return Question(
@@ -1175,8 +1193,8 @@ def generate_modelled_example_simplifying_indices_challenging(tier: Tier, rng: r
             f"{base}^(1/{b}) means the {root_word} root of {base}, which is {r} (since {r}^{b} = {base}), "
             f"so {base}^({a}/{b}) = {r}^{a}.",
             f"{base}^-{c} means the reciprocal of {base}^{c}. Since {base} = {r}^{b}, that's "
-            f"1/({r}^({b}×{c})) = 1/({r}^{b * c}).",
-            f"Multiplying {r}^{a} by 1/({r}^{b * c}) combines to a single power of {r}: "
+            f"1/({r}^({b}×{c})) = \\frac{{1}}{{{r}{_superscript(b * c)}}}.",
+            f"Multiplying {r}^{a} by \\frac{{1}}{{{r}{_superscript(b * c)}}} combines to a single power of {r}: "
             f"{r}^({a}-{b * c}) = {r}^{combined} = {answer}.",
         ]
         worked_calculation = [
@@ -1350,7 +1368,7 @@ def generate_indices_common_base_equations(tier: Tier, rng: random.Random) -> Qu
     coeff_str = "x" if c == 1 else f"{c}x"
     exp_str = coeff_str if c == 1 else f"({coeff_str})"
     steps = [
-        f"Write the right-hand side as a power of {p}: 1/({p}^{k}) = {p}^-{k}",
+        f"Write the right-hand side as a power of {p}: \\frac{{1}}{{{p}{_superscript(k)}}} = {p}^-{k}",
         f"{p}^{exp_str} = {p}^-{k}",
         f"Since the bases match, the powers must be equal: {coeff_str} = -{k}",
         _show_solved_x(-k, c, x),
@@ -1470,9 +1488,9 @@ def generate_modelled_example_indices_common_base_equations(tier: Tier, rng: ran
     coeff_str = "x" if c == 1 else f"{c}x"
     exp_str = coeff_str if c == 1 else f"({coeff_str})"
     teaching_steps = [
-        f"The right-hand side, 1/({p}^{k}), looks different from a power of {p} at first glance, but a "
+        f"The right-hand side, \\frac{{1}}{{{p}{_superscript(k)}}}, looks different from a power of {p} at first glance, but a "
         "reciprocal of a power is just that power written with a negative exponent.",
-        f"Rewrite 1/({p}^{k}) as {p}^-{k}. Now the equation {p}^{exp_str} = 1/{p**k} reads "
+        f"Rewrite \\frac{{1}}{{{p}{_superscript(k)}}} as {p}^-{k}. Now the equation {p}^{exp_str} = 1/{p**k} reads "
         f"{p}^{exp_str} = {p}^-{k}, with matching bases on both sides.",
         f"Since the bases match, the exponents themselves must be equal: {coeff_str} = -{k}.",
         (f"Dividing both sides by {c} gives {_show_solved_x(-k, c, x)}." if c != 1 else f"So {_show_solved_x(-k, c, x)}."),

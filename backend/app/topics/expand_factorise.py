@@ -20,6 +20,15 @@ def _rand_nonzero(rng: random.Random, lo: int, hi: int) -> int:
             return v
 
 
+def _rand_x_coeff(rng: random.Random, max_val: int) -> int:
+    """A bracket's x-coefficient - almost always positive (a bracket
+    starting with a negative x-term, e.g. "(-3x + 5)", is valid GCSE
+    content but visually unusual to lead with), made negative under 0.5%
+    of the time rather than never, per direct user request."""
+    magnitude = rng.randint(1, max_val)
+    return -magnitude if rng.random() < 0.005 else magnitude
+
+
 def _fmt_quadratic(a, b, c) -> str:
     parts: list[str] = []
     if a != 0:
@@ -217,9 +226,9 @@ def generate_modelled_example_factorise_common(tier: Tier, rng: random.Random) -
 
 
 def generate_expand_double(tier: Tier, rng: random.Random):
-    a = _rand_nonzero(rng, -6, 6)
+    a = _rand_x_coeff(rng, 6)
     b = _rand_nonzero(rng, -6, 6)
-    c = _rand_nonzero(rng, -6, 6)
+    c = _rand_x_coeff(rng, 6)
     d = _rand_nonzero(rng, -6, 6)
 
     expanded = sp.expand((a * X + b) * (c * X + d))
@@ -232,7 +241,7 @@ def generate_expand_double(tier: Tier, rng: random.Random):
     if residual != 0:
         raise ValueError("Expansion verification failed: double bracket")
 
-    prompt = f"Expand: ({fmt_linear(a, b)})({fmt_linear(c, d)})"
+    prompt = f"Expand and simplify: ({fmt_linear(a, b)})({fmt_linear(c, d)})"
     steps = [
         f"First: {a}x × {c}x = {a * c}x^2",
         f"Outer: {a}x × {d} = {a * d}x",
@@ -251,9 +260,9 @@ def generate_expand_double(tier: Tier, rng: random.Random):
 
 
 def generate_modelled_example_expand_double(tier: Tier, rng: random.Random) -> ModelledExample:
-    a = _rand_nonzero(rng, -6, 6)
+    a = _rand_x_coeff(rng, 6)
     b = _rand_nonzero(rng, -6, 6)
-    c = _rand_nonzero(rng, -6, 6)
+    c = _rand_x_coeff(rng, 6)
     d = _rand_nonzero(rng, -6, 6)
 
     expanded = sp.expand((a * X + b) * (c * X + d))
@@ -291,7 +300,7 @@ def generate_modelled_example_expand_double(tier: Tier, rng: random.Random) -> M
     return ModelledExample(
         topic_id="expand_double_brackets",
         tier=Tier.HIGHER,
-        prompt=f"Expand: ({fmt_linear(a, b)})({fmt_linear(c, d)})",
+        prompt=f"Expand and simplify: ({fmt_linear(a, b)})({fmt_linear(c, d)})",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=_fmt_quadratic(qa, qb, qc),
@@ -317,7 +326,7 @@ def generate_expand_double_foundation(tier: Tier, rng: random.Random):
     if residual != 0:
         raise ValueError("Expansion verification failed: double bracket (foundation)")
 
-    prompt = f"Expand: ({fmt_linear(a, b)})({fmt_linear(c, d)})"
+    prompt = f"Expand and simplify: ({fmt_linear(a, b)})({fmt_linear(c, d)})"
     steps = [
         f"First: {a}x × {c}x = {a * c}x^2",
         f"Outer: {a}x × {d} = {a * d}x",
@@ -376,7 +385,7 @@ def generate_modelled_example_expand_double_foundation(tier: Tier, rng: random.R
     return ModelledExample(
         topic_id="expand_double_brackets_foundation",
         tier=Tier.FOUNDATION,
-        prompt=f"Expand: ({fmt_linear(a, b)})({fmt_linear(c, d)})",
+        prompt=f"Expand and simplify: ({fmt_linear(a, b)})({fmt_linear(c, d)})",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=_fmt_quadratic(qa, qb, qc),
@@ -384,9 +393,9 @@ def generate_modelled_example_expand_double_foundation(tier: Tier, rng: random.R
 
 
 def generate_expand_triple(tier: Tier, rng: random.Random):
-    a, b = _rand_nonzero(rng, -4, 4), _rand_nonzero(rng, -4, 4)
-    c, d = _rand_nonzero(rng, -4, 4), _rand_nonzero(rng, -4, 4)
-    e, f = _rand_nonzero(rng, -4, 4), _rand_nonzero(rng, -4, 4)
+    a, b = _rand_x_coeff(rng, 4), _rand_nonzero(rng, -4, 4)
+    c, d = _rand_x_coeff(rng, 4), _rand_nonzero(rng, -4, 4)
+    e, f = _rand_x_coeff(rng, 4), _rand_nonzero(rng, -4, 4)
 
     expanded = sp.expand((a * X + b) * (c * X + d) * (e * X + f))
     poly = sp.Poly(expanded, X)
@@ -425,9 +434,9 @@ def generate_expand_triple(tier: Tier, rng: random.Random):
 
 
 def generate_modelled_example_expand_triple(tier: Tier, rng: random.Random) -> ModelledExample:
-    a, b = _rand_nonzero(rng, -4, 4), _rand_nonzero(rng, -4, 4)
-    c, d = _rand_nonzero(rng, -4, 4), _rand_nonzero(rng, -4, 4)
-    e, f = _rand_nonzero(rng, -4, 4), _rand_nonzero(rng, -4, 4)
+    a, b = _rand_x_coeff(rng, 4), _rand_nonzero(rng, -4, 4)
+    c, d = _rand_x_coeff(rng, 4), _rand_nonzero(rng, -4, 4)
+    e, f = _rand_x_coeff(rng, 4), _rand_nonzero(rng, -4, 4)
 
     expanded = sp.expand((a * X + b) * (c * X + d) * (e * X + f))
     poly = sp.Poly(expanded, X)

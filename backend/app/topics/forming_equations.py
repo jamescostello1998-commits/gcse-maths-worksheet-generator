@@ -3,7 +3,7 @@ import random
 
 import sympy as sp
 
-from app.core.models import ModelledExample, Question, Tier
+from app.core.models import DiagramSpec, ModelledExample, Question, Tier
 from app.topics.algebra_utils import X, fmt_linear, fmt_num, solve_linear_with_steps
 from app.topics.base import TopicDefinition
 
@@ -41,6 +41,23 @@ def _words_foundation(rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=fmt_num(solution),
         dedup_key=f"form_words:{a}:{b}:{c}",
+    )
+
+
+def _angle_fact_diagram(fact: str, values: list, labels: list) -> DiagramSpec:
+    """Shared by the Foundation (straight/point/triangle) and Higher
+    (quadrilateral) angle branches - `values` are the real numeric angle
+    values (so the rays/vertices are laid out with correct geometry) while
+    `labels` are the pre-formatted display strings, algebraic where
+    unknown, per the app's established "pass pre-formatted labels, not
+    bare values" convention."""
+    if fact == "triangle":
+        return DiagramSpec(kind="triangle_angles", params={"angle_labels": labels})
+    if fact == "quadrilateral":
+        return DiagramSpec(kind="polygon_angles", params={"n_sides": 4, "angle_labels": labels})
+    return DiagramSpec(
+        kind="angle_line",
+        params={"angle_values": values, "labels": labels, "around_point": fact == "point"},
     )
 
 
@@ -102,6 +119,9 @@ def _angles_foundation(rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=fmt_num(solution),
         dedup_key=f"form_angle:{fact}:{coeff}:{const}:{'-'.join(map(str, known))}",
+        diagram=_angle_fact_diagram(
+            fact, known + [algebraic_angle], [f"{k}°" for k in known] + [f"({expr})°"]
+        ),
     )
 
 
@@ -123,14 +143,17 @@ def _area_foundation(rng: random.Random) -> Question:
         if computed != total:
             raise ValueError("forming_equations area (foundation, perimeter) verification failed")
 
-        prompt = (
-            f"A rectangle has one side of length {m} cm and the other side of length "
-            f"({other_expr}) cm. The perimeter of the rectangle is {total} cm. "
-            "Form an equation and solve it to find x."
-        )
+        prompt = f"The perimeter of the rectangle shown is {total} cm. Form an equation and solve it to find x."
         equation_line = f"2({other_expr}) + 2({m}) = {total}"
         steps = ["Perimeter = 2 × (sum of two different side lengths)."] + [equation_line] + solve_steps
         dedup_key = f"form_area:perimeter:{m}:{k}:{x_val}"
+        diagram = DiagramSpec(
+            kind="rectangle",
+            params={
+                "width": other_val, "height": m,
+                "width_label": f"({other_expr}) cm", "height_label": f"{m} cm",
+            },
+        )
     else:
         m = rng.randint(3, 12)
         x_val = rng.randint(2, 20)
@@ -143,13 +166,14 @@ def _area_foundation(rng: random.Random) -> Question:
         if computed != total:
             raise ValueError("forming_equations area (foundation, area) verification failed")
 
-        prompt = (
-            f"A rectangle has one side of length {m} cm and the other side of length x cm. "
-            f"The area of the rectangle is {total} cm². Form an equation and solve it to find x."
-        )
+        prompt = f"The area of the rectangle shown is {total} cm². Form an equation and solve it to find x."
         equation_line = f"{m}x = {total}"
         steps = ["Area of a rectangle = length × width."] + [equation_line] + solve_steps
         dedup_key = f"form_area:area:{m}:{x_val}"
+        diagram = DiagramSpec(
+            kind="rectangle",
+            params={"width": x_val, "height": m, "width_label": "x cm", "height_label": f"{m} cm"},
+        )
 
     return Question(
         topic_id="forming_equations_foundation",
@@ -158,6 +182,7 @@ def _area_foundation(rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=fmt_num(solution),
         dedup_key=dedup_key,
+        diagram=diagram,
     )
 
 
@@ -175,6 +200,31 @@ def generate_forming_equations_foundation(tier: Tier, rng: random.Random) -> Que
 # ---------------------------------------------------------------------------
 # Higher: brackets, x-terms to collect, harder geometric contexts.
 # ---------------------------------------------------------------------------
+
+
+def _l_shape_perimeter_diagram(m: int, n: int, k: int, x_val: int) -> DiagramSpec:
+    """The Higher perimeter scenario's shape is an L-shape whose bottom
+    width is the algebraic (x + k) - a real, correctly-drawable L-shape
+    (perimeter = 2 x outer width + 2 x outer height) rather than an
+    abstract "three independent side pairs" description with no actual
+    polygon behind it. The notch height is set to exactly m, so the
+    right-hand edge is genuinely split by the notch into two real
+    segments of length n (upper) and m (lower) - each labelled directly,
+    rather than showing a single misleading "(m + n) cm" combined label
+    that reads like unevaluated arithmetic. The notch width is purely
+    illustrative (it doesn't affect the perimeter)."""
+    outer_w, outer_h = x_val + k, m + n
+    inner_w = max(1, min(outer_w - 1, round(outer_w * 0.35)))
+    inner_h = m
+    return DiagramSpec(
+        kind="l_shape",
+        params={
+            "outer_w": outer_w, "outer_h": outer_h, "inner_w": inner_w, "inner_h": inner_h,
+            "notch": "corner",
+            "outer_labels": [f"(x + {k}) cm", f"({m} + {n}) cm"],
+            "right_labels": [f"{n} cm", f"{m} cm"],
+        },
+    )
 
 
 def _words_higher(rng: random.Random) -> Question:
@@ -268,6 +318,11 @@ def _angles_higher(rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=fmt_num(solution),
         dedup_key=f"form_angle_h:{c1}:{d1}:{c2}:{d2}:{known[0]}:{known[1]}",
+        diagram=_angle_fact_diagram(
+            "quadrilateral",
+            [known[0], known[1], angle1, angle2],
+            [f"{known[0]}°", f"{known[1]}°", f"({expr1})°", f"({expr2})°"],
+        ),
     )
 
 
@@ -283,23 +338,20 @@ def _area_higher(rng: random.Random) -> Question:
         coeff, const = 2, 2 * m + 2 * n + 2 * k
         solve_steps, solution = solve_linear_with_steps(coeff, const, 0, total)
         # Independent verification: substitute back into the original
-        # (unexpanded) composite perimeter formula.
+        # (unexpanded) L-shape perimeter formula.
         computed = 2 * m + 2 * n + 2 * (solution + k)
         if computed != total:
             raise ValueError("forming_equations area (higher, perimeter) verification failed")
 
-        prompt = (
-            f"A composite shape's perimeter is made up of two sides of length {m} cm, "
-            f"two sides of length {n} cm, and two sides of length (x + {k}) cm. "
-            f"The total perimeter is {total} cm. Form an equation and solve it to find x."
-        )
-        equation_line = f"2({m}) + 2({n}) + 2(x + {k}) = {total}"
+        prompt = f"The perimeter of the L-shape shown is {total} cm. Form an equation and solve it to find x."
+        equation_line = f"2(x + {k}) + 2({m} + {n}) = {total}"
         steps = [
-            "Perimeter = sum of all side lengths.",
+            "Perimeter of an L-shape = 2 × (outer width) + 2 × (outer height).",
             equation_line,
-            "Expand the bracket and collect the constants:",
+            "Expand the brackets and collect the constants:",
         ] + solve_steps
         dedup_key = f"form_area_h:perimeter:{m}:{n}:{k}:{x_val}"
+        diagram = _l_shape_perimeter_diagram(m, n, k, x_val)
     else:
         m = rng.randint(3, 12)
         k = rng.randint(1, 10)
@@ -314,14 +366,17 @@ def _area_higher(rng: random.Random) -> Question:
         if computed != total:
             raise ValueError("forming_equations area (higher, area) verification failed")
 
-        prompt = (
-            f"A rectangle has one side of length {m} cm and the other side of length "
-            f"(x + {k}) cm. The area of the rectangle is {total} cm². "
-            "Form an equation and solve it to find x."
-        )
+        prompt = f"The area of the rectangle shown is {total} cm². Form an equation and solve it to find x."
         equation_line = f"{m}(x + {k}) = {total}"
         steps = ["Area of a rectangle = length × width.", equation_line, "Expand the bracket:"] + solve_steps
         dedup_key = f"form_area_h:area:{m}:{k}:{x_val}"
+        diagram = DiagramSpec(
+            kind="rectangle",
+            params={
+                "width": x_val + k, "height": m,
+                "width_label": f"(x + {k}) cm", "height_label": f"{m} cm",
+            },
+        )
 
     return Question(
         topic_id="forming_equations_higher",
@@ -330,6 +385,7 @@ def _area_higher(rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=fmt_num(solution),
         dedup_key=dedup_key,
+        diagram=diagram,
     )
 
 
@@ -457,6 +513,9 @@ def _modelled_angles_foundation(rng: random.Random) -> ModelledExample:
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=fmt_num(solution),
+        diagram=_angle_fact_diagram(
+            fact, known + [algebraic_angle], [f"{k}°" for k in known] + [f"({expr})°"]
+        ),
     )
 
 
@@ -476,11 +535,7 @@ def _modelled_area_foundation(rng: random.Random) -> ModelledExample:
         if computed != total:
             raise ValueError("modelled example forming_equations area (foundation, perimeter) verification failed")
 
-        prompt = (
-            f"A rectangle has one side of length {m} cm and the other side of length "
-            f"({other_expr}) cm. The perimeter of the rectangle is {total} cm. "
-            "Form an equation and solve it to find x."
-        )
+        prompt = f"The perimeter of the rectangle shown is {total} cm. Form an equation and solve it to find x."
         equation_line = f"2({other_expr}) + 2({m}) = {total}"
         teaching_steps = [
             "The perimeter of a rectangle is the total distance all the way around it - twice "
@@ -493,6 +548,13 @@ def _modelled_area_foundation(rng: random.Random) -> ModelledExample:
             f"perimeter formula: 2 × ({fmt_num(solution)} + {k}) + 2 × {m} = {total}.",
         ]
         worked_calculation = [equation_line, f"2x = {total - 2 * k - 2 * m}", f"x = {fmt_num(solution)}"]
+        diagram = DiagramSpec(
+            kind="rectangle",
+            params={
+                "width": other_val, "height": m,
+                "width_label": f"({other_expr}) cm", "height_label": f"{m} cm",
+            },
+        )
     else:
         m = rng.randint(3, 12)
         x_val = rng.randint(2, 20)
@@ -504,10 +566,7 @@ def _modelled_area_foundation(rng: random.Random) -> ModelledExample:
         if computed != total:
             raise ValueError("modelled example forming_equations area (foundation, area) verification failed")
 
-        prompt = (
-            f"A rectangle has one side of length {m} cm and the other side of length x cm. "
-            f"The area of the rectangle is {total} cm². Form an equation and solve it to find x."
-        )
+        prompt = f"The area of the rectangle shown is {total} cm². Form an equation and solve it to find x."
         equation_line = f"{m}x = {total}"
         teaching_steps = [
             "The area of a rectangle is length × width - here one side is a known number and "
@@ -519,6 +578,10 @@ def _modelled_area_foundation(rng: random.Random) -> ModelledExample:
             "area we were given.",
         ]
         worked_calculation = [equation_line, f"x = {total}/{m}", f"x = {fmt_num(solution)}"]
+        diagram = DiagramSpec(
+            kind="rectangle",
+            params={"width": x_val, "height": m, "width_label": "x cm", "height_label": f"{m} cm"},
+        )
 
     return ModelledExample(
         topic_id="forming_equations_foundation",
@@ -527,6 +590,7 @@ def _modelled_area_foundation(rng: random.Random) -> ModelledExample:
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=fmt_num(solution),
+        diagram=diagram,
     )
 
 
@@ -650,6 +714,11 @@ def _modelled_angles_higher(rng: random.Random) -> ModelledExample:
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=fmt_num(solution),
+        diagram=_angle_fact_diagram(
+            "quadrilateral",
+            [known[0], known[1], angle1, angle2],
+            [f"{known[0]}°", f"{known[1]}°", f"({expr1})°", f"({expr2})°"],
+        ),
     )
 
 
@@ -668,26 +737,23 @@ def _modelled_area_higher(rng: random.Random) -> ModelledExample:
         if computed != total:
             raise ValueError("modelled example forming_equations area (higher, perimeter) verification failed")
 
-        prompt = (
-            f"A composite shape's perimeter is made up of two sides of length {m} cm, "
-            f"two sides of length {n} cm, and two sides of length (x + {k}) cm. "
-            f"The total perimeter is {total} cm. Form an equation and solve it to find x."
-        )
-        equation_line = f"2({m}) + 2({n}) + 2(x + {k}) = {total}"
+        prompt = f"The perimeter of the L-shape shown is {total} cm. Form an equation and solve it to find x."
+        equation_line = f"2(x + {k}) + 2({m} + {n}) = {total}"
         expanded_line = f"{fmt_linear(coeff, const)} = {total}"
         teaching_steps = [
-            "A composite shape's perimeter is still just the sum of every side length around "
-            "the outside - here that's three pairs of sides, one pair given as a bracketed "
-            "expression.",
-            f"Write down the full perimeter sum and set it equal to the total we're given: "
+            "An L-shape's perimeter is still just the sum of the side lengths around the "
+            "outside - and because opposite sides are equal, that's always 2 × the outer "
+            "width plus 2 × the outer height, whatever size the notch is.",
+            f"Write down that perimeter sum and set it equal to the total we're given: "
             f"{equation_line}.",
             f"Expand the bracket (2 × x and 2 × {k}) and collect all the plain-number terms "
             f"together, leaving a simple equation: {expanded_line}.",
             f"Solve for x to get x = {fmt_num(solution)}.",
             f"Check by substituting back into the original, unexpanded formula: "
-            f"2×{m} + 2×{n} + 2×({fmt_num(solution)} + {k}) = {total}.",
+            f"2×({fmt_num(solution)} + {k}) + 2×({m} + {n}) = {total}.",
         ]
         worked_calculation = [equation_line, expanded_line, f"x = {fmt_num(solution)}"]
+        diagram = _l_shape_perimeter_diagram(m, n, k, x_val)
     else:
         m = rng.randint(3, 12)
         k = rng.randint(1, 10)
@@ -700,11 +766,7 @@ def _modelled_area_higher(rng: random.Random) -> ModelledExample:
         if computed != total:
             raise ValueError("modelled example forming_equations area (higher, area) verification failed")
 
-        prompt = (
-            f"A rectangle has one side of length {m} cm and the other side of length "
-            f"(x + {k}) cm. The area of the rectangle is {total} cm². "
-            "Form an equation and solve it to find x."
-        )
+        prompt = f"The area of the rectangle shown is {total} cm². Form an equation and solve it to find x."
         equation_line = f"{m}(x + {k}) = {total}"
         expanded_line = f"{fmt_linear(coeff, const)} = {total}"
         teaching_steps = [
@@ -718,6 +780,13 @@ def _modelled_area_higher(rng: random.Random) -> ModelledExample:
             f"{m} × ({fmt_num(solution)} + {k}) = {total}.",
         ]
         worked_calculation = [equation_line, expanded_line, f"x = {fmt_num(solution)}"]
+        diagram = DiagramSpec(
+            kind="rectangle",
+            params={
+                "width": x_val + k, "height": m,
+                "width_label": f"(x + {k}) cm", "height_label": f"{m} cm",
+            },
+        )
 
     return ModelledExample(
         topic_id="forming_equations_higher",
@@ -726,6 +795,7 @@ def _modelled_area_higher(rng: random.Random) -> ModelledExample:
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=fmt_num(solution),
+        diagram=diagram,
     )
 
 

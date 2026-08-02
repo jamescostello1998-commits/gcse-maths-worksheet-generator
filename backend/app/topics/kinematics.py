@@ -165,9 +165,9 @@ def _prompt_and_steps_eq1(b: dict) -> tuple[str, list[str], str]:
         steps = [
             reason,
             "v = u + at",
-            "Rearrange to make a the subject: a = (v - u)/t",
+            "Rearrange to make a the subject: a = \\frac{v - u}{t}",
             f"Substitute u = {u}, v = {v}, t = {t}: "
-            f"a = ({v} - {u})/{t} = {v - u}/{t} = {display}",
+            f"a = \\frac{{{v} - {u}}}{{{t}}} = {v - u}/{t} = {display}",
         ]
         final_answer = f"{display} m/s^2"
     else:  # unknown == "t"
@@ -178,9 +178,9 @@ def _prompt_and_steps_eq1(b: dict) -> tuple[str, list[str], str]:
         steps = [
             reason,
             "v = u + at",
-            "Rearrange to make t the subject: t = (v - u)/a",
+            "Rearrange to make t the subject: t = \\frac{v - u}{a}",
             f"Substitute u = {u}, v = {v}, a = {a}: "
-            f"t = ({v} - {u})/{a} = {v - u}/{a} = {display}",
+            f"t = \\frac{{{v} - {u}}}{{{a}}} = \\frac{{{v - u}}}{{{a}}} = {display}",
         ]
         final_answer = f"{display} s"
 
@@ -263,9 +263,9 @@ def _prompt_and_steps_eq2(b: dict) -> tuple[str, list[str], str]:
         steps = [
             reason,
             "s = ut + (1/2)at^2",
-            "Rearrange to make u the subject: u = (s - (1/2)at^2)/t",
+            "Rearrange to make u the subject: u = \\frac{s - (1/2)at^2}{t}",
             f"Substitute s = {s_display}, a = {a}, t = {t}: "
-            f"u = ({s_display} - (1/2) × {a} × {t}^2)/{t} = {display}",
+            f"u = \\frac{{{s_display} - (1/2) × {a} × {t}^2}}{{{t}}} = {display}",
         ]
         final_answer = f"{display} m/s"
     else:  # unknown == "a"
@@ -276,9 +276,9 @@ def _prompt_and_steps_eq2(b: dict) -> tuple[str, list[str], str]:
         steps = [
             reason,
             "s = ut + (1/2)at^2",
-            "Rearrange to make a the subject: a = 2(s - ut)/t^2",
+            "Rearrange to make a the subject: a = \\frac{2(s - ut)}{t^2}",
             f"Substitute s = {s_display}, u = {u}, t = {t}: "
-            f"a = 2({s_display} - {u} × {t})/{t}^2 = {display}",
+            f"a = \\frac{{2({s_display} - {u} × {t})}}{{{t}^2}} = {display}",
         ]
         final_answer = f"{display} m/s^2"
 
@@ -415,9 +415,9 @@ def _prompt_and_steps_eq3(b: dict) -> tuple[str, list[str], str]:
         steps = [
             reason,
             "v^2 = u^2 + 2as",
-            "Rearrange to make a the subject: a = (v^2 - u^2)/(2s)",
+            "Rearrange to make a the subject: a = \\frac{v^2 - u^2}{2s}",
             f"Substitute u = {u}, v = {v}, s = {s}: "
-            f"a = ({v}^2 - {u}^2)/(2 × {s}) = ({v * v} - {u * u})/{2 * s} = {display}",
+            f"a = \\frac{{{v}^2 - {u}^2}}{{2 × {s}}} = \\frac{{{v * v} - {u * u}}}{{{2 * s}}} = {display}",
         ]
         final_answer = f"{display} m/s^2"
     else:  # unknown == "s"
@@ -429,9 +429,9 @@ def _prompt_and_steps_eq3(b: dict) -> tuple[str, list[str], str]:
         steps = [
             reason,
             "v^2 = u^2 + 2as",
-            "Rearrange to make s the subject: s = (v^2 - u^2)/(2a)",
+            "Rearrange to make s the subject: s = \\frac{v^2 - u^2}{2a}",
             f"Substitute u = {u}, v = {v}, a = {a}: "
-            f"s = ({v}^2 - {u}^2)/(2 × {a}) = ({v * v} - {u * u})/{2 * a} = {display}",
+            f"s = \\frac{{{v}^2 - {u}^2}}{{2 × {a}}} = \\frac{{{v * v} - {u * u}}}{{{2 * a}}} = {display}",
         ]
         final_answer = f"{display} m"
 
@@ -512,17 +512,17 @@ def _modelled_eq1(rng: random.Random) -> ModelledExample:
             "This time a is wanted, so rearrange v = u + at: subtract u from both sides to "
             "get v - u = at, then divide both sides by t to isolate a.",
             f"Substitute u = {u}, v = {v}, t = {t}: "
-            f"a = ({v} - {u})/{t} = {v - u}/{t} = {display} m/s^2.",
+            f"a = \\frac{{{v} - {u}}}{{{t}}} = {v - u}/{t} = {display} m/s^2.",
         ]
-        worked_calculation = [f"a = ({v} - {u})/{t}", f"a = {display} m/s^2"]
+        worked_calculation = [f"a = \\frac{{{v} - {u}}}{{{t}}}", f"a = {display} m/s^2"]
     else:
         teaching_steps += [
             "This time t is wanted, so rearrange v = u + at the same way as for a, but "
-            "divide by a instead of t: t = (v - u)/a.",
+            "divide by a instead of t: t = \\frac{v - u}{a}.",
             f"Substitute u = {u}, v = {v}, a = {a}: "
-            f"t = ({v} - {u})/{a} = {v - u}/{a} = {display} s.",
+            f"t = \\frac{{{v} - {u}}}{{{a}}} = \\frac{{{v - u}}}{{{a}}} = {display} s.",
         ]
-        worked_calculation = [f"t = ({v} - {u})/{a}", f"t = {display} s"]
+        worked_calculation = [f"t = \\frac{{{v} - {u}}}{{{a}}}", f"t = {display} s"]
 
     teaching_steps.append(
         "As a check, this is exactly the same relationship sympy's own equation solver "
@@ -571,28 +571,28 @@ def _modelled_eq2(rng: random.Random) -> ModelledExample:
         teaching_steps.append(
             "This time u is wanted, so rearrange first: subtract the (1/2)at^2 term from "
             "both sides, then divide both sides by t to isolate u, giving "
-            "u = (s - (1/2)at^2)/t."
+            "u = \\frac{s - (1/2)at^2}{t}."
         )
         teaching_steps.append(
             f"Substitute s = {s_display}, a = {a}, t = {t}: "
-            f"u = ({s_display} - (1/2) × {a} × {t}^2)/{t} = {display} m/s."
+            f"u = \\frac{{{s_display} - (1/2) × {a} × {t}^2}}{{{t}}} = {display} m/s."
         )
         worked_calculation = [
-            f"u = ({s_display} - (1/2) × {a} × {t}^2)/{t}",
+            f"u = \\frac{{{s_display} - (1/2) × {a} × {t}^2}}{{{t}}}",
             f"u = {display} m/s",
         ]
     else:
         teaching_steps.append(
             "This time a is wanted, so rearrange first: subtract ut from both sides, then "
             "divide both sides by (1/2)t^2 (equivalently, multiply by 2 and divide by t^2), "
-            "giving a = 2(s - ut)/t^2."
+            "giving a = \\frac{2(s - ut)}{t^2}."
         )
         teaching_steps.append(
             f"Substitute s = {s_display}, u = {u}, t = {t}: "
-            f"a = 2({s_display} - {u} × {t})/{t}^2 = {display} m/s^2."
+            f"a = \\frac{{2({s_display} - {u} × {t})}}{{{t}^2}} = {display} m/s^2."
         )
         worked_calculation = [
-            f"a = 2({s_display} - {u} × {t})/{t}^2",
+            f"a = \\frac{{2({s_display} - {u} × {t})}}{{{t}^2}}",
             f"a = {display} m/s^2",
         ]
 
@@ -651,12 +651,12 @@ def _modelled_eq3(rng: random.Random) -> ModelledExample:
         teaching_steps += [
             "This time a is wanted, and it only appears once here (not squared or "
             "square-rooted), so this rearrangement is purely linear: subtract u^2 from "
-            "both sides, then divide by 2s, giving a = (v^2 - u^2)/(2s).",
+            "both sides, then divide by 2s, giving a = \\frac{v^2 - u^2}{2s}.",
             f"Substitute u = {u}, v = {v}, s = {s}: "
-            f"a = ({v}^2 - {u}^2)/(2 × {s}) = {display} m/s^2.",
+            f"a = \\frac{{{v}^2 - {u}^2}}{{2 × {s}}} = {display} m/s^2.",
         ]
         worked_calculation = [
-            f"a = ({v}^2 - {u}^2)/(2 × {s})",
+            f"a = \\frac{{{v}^2 - {u}^2}}{{2 × {s}}}",
             f"a = {display} m/s^2",
         ]
     else:
@@ -664,12 +664,12 @@ def _modelled_eq3(rng: random.Random) -> ModelledExample:
         teaching_steps += [
             "This time s is wanted, and like a, it only appears once, so this "
             "rearrangement is purely linear too: subtract u^2 from both sides, then "
-            "divide by 2a, giving s = (v^2 - u^2)/(2a).",
+            "divide by 2a, giving s = \\frac{v^2 - u^2}{2a}.",
             f"Substitute u = {u}, v = {v}, a = {a}: "
-            f"s = ({v}^2 - {u}^2)/(2 × {a}) = {display} m.",
+            f"s = \\frac{{{v}^2 - {u}^2}}{{2 × {a}}} = {display} m.",
         ]
         worked_calculation = [
-            f"s = ({v}^2 - {u}^2)/(2 × {a})",
+            f"s = \\frac{{{v}^2 - {u}^2}}{{2 × {a}}}",
             f"s = {display} m",
         ]
 
@@ -705,4 +705,5 @@ TOPIC_KINEMATICS_SUVAT = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_kinematics_suvat,
+    preamble_lines=("v = u + at", "s = ut + (1/2)at^2", "v^2 = u^2 + 2as"),
 )

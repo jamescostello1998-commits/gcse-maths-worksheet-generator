@@ -127,7 +127,7 @@ def generate_nth_term(tier: Tier, rng: random.Random) -> Question:
         topic_id="sequences_nth_term",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"Here are the first four terms of a sequence: {', '.join(map(str, terms))}. "
+            f"Here are the first four terms of a sequence: {', '.join(map(str, terms))}.\n"
             "Find an expression for the nth term."
         ),
         solution_steps=tuple(steps),
@@ -172,7 +172,7 @@ def generate_quadratic_nth_term(tier: Tier, rng: random.Random) -> Question:
         topic_id="sequences_quadratic_nth_term",
         tier=Tier.HIGHER,
         prompt=(
-            f"Here are the first four terms of a quadratic sequence: {', '.join(map(str, terms))}. "
+            f"Here are the first four terms of a quadratic sequence: {', '.join(map(str, terms))}.\n"
             "Find an expression for the nth term."
         ),
         solution_steps=tuple(steps),
@@ -190,7 +190,7 @@ _SPECIAL_NAMES = {
 }
 
 _SPECIAL_FORMULA = {
-    "triangular": "n(n + 1)/2",
+    "triangular": "\\frac{n(n + 1)}{2}",
     "square": "n^2",
     "cube": "n^3",
 }
@@ -247,7 +247,7 @@ def _special_term_iterative(kind: str, n: int) -> int:
 
 def _special_step_text(kind: str, n: int, value: int) -> str:
     if kind == "triangular":
-        return f"Term {n} = {n}({n} + 1)/2 = {n * (n + 1)}/2 = {value}"
+        return f"Term {n} = \\frac{{{n}({n} + 1)}}{{2}} = {n * (n + 1)}/2 = {value}"
     if kind == "square":
         return f"Term {n} = {n}^2 = {value}"
     return f"Term {n} = {n}^3 = {value}"
@@ -342,7 +342,7 @@ def generate_special_sequences_foundation(tier: Tier, rng: random.Random) -> Que
         if offset == 1:
             ask = "Find the next term in the sequence."
         else:
-            ask = f"Find the {_ordinal(target_n)} term of the sequence (term number {target_n})."
+            ask = f"Find the {_ordinal(target_n)} term of the sequence."
 
         steps = [
             f"These are the {name}: the nth term is given by {formula}.",
@@ -424,9 +424,8 @@ def generate_special_sequences_higher(tier: Tier, rng: random.Random) -> Questio
             f"Term {target_n} = {_fmt_fraction(target_direct)}",
         ]
         prompt = (
-            f"The first {num_shown} terms of a geometric sequence are: {shown_str}. Each term is found by "
-            f"multiplying the previous term by a common ratio. Find the {_ordinal(target_n)} term of the "
-            "sequence."
+            f"The first {num_shown} terms of a geometric sequence are: {shown_str}. "
+            f"Find the {_ordinal(target_n)} term of the sequence."
         )
         answer = _fmt_fraction(target_direct)
         dedup_key = f"seq_special_high:geometric:{a}:{r.numerator}:{r.denominator}:{num_shown}:{offset}"
@@ -568,7 +567,7 @@ def generate_modelled_example_nth_term(tier: Tier, rng: random.Random) -> Modell
         topic_id="sequences_nth_term",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"Here are the first four terms of a sequence: {', '.join(map(str, terms))}. "
+            f"Here are the first four terms of a sequence: {', '.join(map(str, terms))}.\n"
             "Find an expression for the nth term."
         ),
         worked_calculation=tuple(worked_calculation),
@@ -622,7 +621,7 @@ def generate_modelled_example_quadratic_nth_term(tier: Tier, rng: random.Random)
         topic_id="sequences_quadratic_nth_term",
         tier=Tier.HIGHER,
         prompt=(
-            f"Here are the first four terms of a quadratic sequence: {', '.join(map(str, terms))}. "
+            f"Here are the first four terms of a quadratic sequence: {', '.join(map(str, terms))}.\n"
             "Find an expression for the nth term."
         ),
         worked_calculation=tuple(worked_calculation),
@@ -684,7 +683,7 @@ def generate_modelled_example_special_sequences_foundation(tier: Tier, rng: rand
         ask = (
             "Find the next term in the sequence."
             if offset == 1
-            else f"Find the {_ordinal(target_n)} term of the sequence (term number {target_n})."
+            else f"Find the {_ordinal(target_n)} term of the sequence."
         )
         teaching_steps = [
             f"The {name} are a special sequence with a known formula for the nth term: {formula}. "
@@ -778,9 +777,8 @@ def generate_modelled_example_special_sequences_higher(tier: Tier, rng: random.R
         r_str = _fmt_fraction(r)
         shown_str = ", ".join(_fmt_fraction(t) for t in shown_terms)
         prompt = (
-            f"The first {num_shown} terms of a geometric sequence are: {shown_str}. Each term is found by "
-            f"multiplying the previous term by a common ratio. Find the {_ordinal(target_n)} term of the "
-            "sequence."
+            f"The first {num_shown} terms of a geometric sequence are: {shown_str}. "
+            f"Find the {_ordinal(target_n)} term of the sequence."
         )
         teaching_steps = [
             "A geometric sequence has a constant common ratio between consecutive terms, rather than a "

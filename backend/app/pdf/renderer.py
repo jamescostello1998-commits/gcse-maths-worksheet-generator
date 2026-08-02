@@ -8,6 +8,8 @@ from reportlab.platypus import (
     Paragraph,
     SimpleDocTemplate,
     Spacer,
+    Table,
+    TableStyle,
 )
 
 from reportlab.lib.styles import ParagraphStyle
@@ -16,7 +18,9 @@ from app.core.errors import PdfRenderError
 from app.core.models import Question, Worksheet
 from app.pdf.diagrams import render_diagram
 from app.pdf.mathtext import to_markup
-from app.pdf.styles import FONT_BOLD, MARGIN, RULE, build_styles
+from app.pdf.styles import ACCENT, FONT_BOLD, HIGHLIGHT, MARGIN, RULE, build_styles
+
+_PAGE_WIDTH = A4[0] - 2 * MARGIN
 
 
 def _escape(text: str) -> str:
@@ -25,6 +29,30 @@ def _escape(text: str) -> str:
 
 def _fmt(text: str, style: ParagraphStyle) -> str:
     return to_markup(_escape(text), font_size=style.fontSize, color=style.textColor, bold=style.fontName == FONT_BOLD)
+
+
+def _preamble_box(lines: tuple[str, ...], styles: dict) -> Table:
+    """A boxed panel of fixed reference lines (e.g. formulae) shown once at
+    the top of a worksheet, before Q1 - reuses the same boxed styling as
+    the modelled-example page's worked-calculation box for a consistent
+    house style."""
+    cell = [Paragraph("Formulae", styles["TeachingHeading"])]
+    cell += [Paragraph(_fmt(line, styles["WorkedCalcLine"]), styles["WorkedCalcLine"]) for line in lines]
+    box = Table([[cell]], colWidths=[_PAGE_WIDTH])
+    box.setStyle(
+        TableStyle(
+            [
+                ("BACKGROUND", (0, 0), (-1, -1), HIGHLIGHT),
+                ("BOX", (0, 0), (-1, -1), 0.75, ACCENT),
+                ("TOPPADDING", (0, 0), (-1, -1), 12),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 12),
+                ("LEFTPADDING", (0, 0), (-1, -1), 16),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 16),
+                ("VALIGN", (0, 0), (-1, -1), "TOP"),
+            ]
+        )
+    )
+    return box
 
 
 def _question_block(number: int, question: Question, styles: dict) -> KeepTogether:
@@ -82,6 +110,9 @@ def _render(worksheet: Worksheet, answers_only: bool = False) -> bytes:
         ),
         HRFlowable(width="100%", thickness=0.75, color=RULE, spaceAfter=16),
     ]
+    if worksheet.preamble_lines:
+        story.append(_preamble_box(worksheet.preamble_lines, styles))
+        story.append(Spacer(1, 12))
 
     for i, question in enumerate(worksheet.questions, start=1):
         story.append(_question_block(i, question, styles))

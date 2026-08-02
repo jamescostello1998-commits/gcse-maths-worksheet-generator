@@ -23,13 +23,11 @@ def test_all_generators_produce_valid_verified_questions():
             assert q.final_answer
 
 
-def test_turning_point_has_a_parabola_diagram():
+def test_turning_point_has_no_diagram():
     rng = random.Random(131)
     for _ in range(TRIALS):
         q = quadratic_graphs.generate_turning_point(Tier.HIGHER, rng)
-        assert q.diagram is not None
-        assert q.diagram.kind == "parabola"
-        assert q.diagram.params["vertex_label"] == q.final_answer
+        assert q.diagram is None
 
 
 def test_dedup_keys_vary_per_generator():
@@ -102,10 +100,8 @@ def test_negative_constant_term_is_never_shown_as_a_double_sign():
                 assert "+ -" not in text, f"double-sign bug in {generate.__name__}: {text!r}"
 
 
-def test_modelled_example_turning_point_has_a_parabola_diagram():
+def test_modelled_example_turning_point_has_no_diagram():
     rng = random.Random(231)
     for _ in range(TRIALS):
         example = quadratic_graphs.generate_modelled_example_turning_point(Tier.HIGHER, rng)
-        assert example.diagram is not None
-        assert example.diagram.kind == "parabola"
-        assert example.diagram.params["vertex_label"] == example.final_answer
+        assert example.diagram is None
