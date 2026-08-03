@@ -19,27 +19,33 @@ authoritative source for exactly what's done and what's left** — it has its ow
 section (updated at the end of session 1) marking every item done/not-done with file-level
 detail, so read it directly rather than re-deriving scope from this summary. In short:
 
-- **Phases 1, 2, 3, 4 are DONE** (cross-cutting diagram/engine fixes; the rounding-
-  precision randomization engine; Area & Perimeter topic fixes; Angles/Pythagoras/
-  Trigonometry) — 4 commits, pushed. Phase 4 turned out to be almost entirely a side
-  effect of Phase 1's engine work — the only genuine unstarted item was
+- **Phases 1, 2, 3, 4, 5 are DONE** (cross-cutting diagram/engine fixes; the
+  rounding-precision randomization engine; Area & Perimeter topic fixes; Angles/
+  Pythagoras/Trigonometry; Vectors/Congruence/Circle Theorems/Nets/Plans &
+  Elevations/Cube) — 5 commits, pushed. Phase 4 turned out to be almost entirely a
+  side effect of Phase 1's engine work — the only genuine unstarted item was
   `angles_polygon_interior_foundation`'s diagram: the "interior_sum" branch now has no
   diagram at all, and the "exterior_angle" branch's diagram was found to have a real
   pre-existing bug (always marked an *interior* angle regardless of what was asked) —
-  fixed with a new `"mode": "exterior"` option on `draw_polygon`.
-- **Phase 5 (Vectors, Congruence, Circle Theorems, Nets, Plans & Elevations, Cube) is
-  next** — the plan file's Phase 5 section already marks 2 of its 8 items as
-  incidentally completed during Phase 1 too (geometric_vectors arrowheads,
-  volume_surface_area_cube's is_cube diagram flag) — only 6 items are genuinely
-  unstarted. Read the plan file's Phase 5 section first.
-- **Phase 6 is not started** (Transformations/Bearings) — same caveat, 1 of its 4 items
-  (bearings_foundation's longer north arrow) was already completed during Phase 1.
+  fixed with a new `"mode": "exterior"` option on `draw_polygon`. Phase 5 built a new
+  `app/pdf/vector_images.py` + `\colvec{}{}` marker for real column-vector bracket
+  notation, fixed a vector-arithmetic double-minus sign, trimmed genuinely redundant
+  `circle_theorems` prompt clauses (narrower than originally scoped, since the
+  diagrams don't label any points at all), redesigned
+  `congruent_triangle_proof_foundation` to a shuffled lettered multiple-choice
+  format, moved `nets_3d_shapes`'s diagram off the question page, and capped
+  `plans_and_elevations`' dimensions at 8 while adding a blank-squared-grid diagram
+  to its question page — the last of which surfaced and fixed a real pre-existing
+  caption-overlap bug (see chronology step 39 for full detail on all of it).
+- **Phase 6 is next** (Transformations/Bearings) — 1 of its 4 items
+  (bearings_foundation's longer north arrow) was already completed during Phase 1;
+  read the plan file's Phase 6 section first.
 
-Freshly regenerated review PDFs reflecting Phase 4
+Freshly regenerated review PDFs reflecting Phase 5
 (`backend/all_topics_review_questions.pdf` / `all_topics_review_answers.pdf` — same
 fixed-seed script, `backend/scripts/generate_review_pdfs.py`, deliberately untracked) were
-sent back at the end of that phase. Continue straight into Phase 5 (or whichever phase the
-user wants) using the same session pattern already established across Phases 1-4:
+sent back at the end of that phase. Continue straight into Phase 6 (or whichever phase the
+user wants) using the same session pattern already established across Phases 1-5:
 
 1. Read the plan file's section for the phase you're starting — it already has exact
    file/function/line references and confirmed scope decisions, so you shouldn't need to
@@ -72,7 +78,7 @@ PR (`gh pr view 3` or the repo's PR list — pushing to this branch updates it a
 no separate action needed). The PR has not been merged yet, so check its status before
 assuming `master` already has any of this. 296 topics total (unchanged since step 33 —
 step 39 so far, like steps 35-38, is entirely rendering/wording/diagram/formatting fixes,
-no new or retired topics), backend suite 913/913, frontend 61/61, no known bugs.
+no new or retired topics), backend suite 930/930, frontend 61/61, no known bugs.
 
 If the user hasn't given new Geometry-batch feedback and Phases 4-6 are somehow already
 finished, check "Ideas for a future session" (bottom of this file) for candidate follow-ups
@@ -3247,6 +3253,122 @@ fixes), is committed and pushed (see `git log`).
     rendered and visually inspected before considering its phase done, and the
     review PDFs (`generate_review_pdfs.py`) were regenerated and sent back to the
     user after each phase, not just at the end.
+
+    **Phase 5 (Vectors, Congruence, Circle Theorems, Nets, Plans & Elevations,
+    Cube)**, continued in a later session: re-reading the plan file's Phase 5
+    section confirmed items 3 (`geometric_vectors` arrowheads) and 8
+    (`volume_surface_area_cube`'s `is_cube` flag) were already done in Phase 1 -
+    the remaining 6 items were built this session.
+
+    `vectors_arithmetic_foundation`/`_higher`'s `_fmt_vector` rendered a plain
+    `(x, y)` coordinate pair - real GCSE convention is a column vector, two
+    stacked numbers inside a single tall bracket. Built new
+    `app/pdf/vector_images.py` (mirrors `fraction_images.py`'s PIL/cache/tempdir
+    architecture exactly) and a new `\colvec{TOP}{BOTTOM}` mathtext marker.
+    The brackets themselves are real `"("`/`")"` glyphs from the same TrueType
+    font, scaled to a point size whose own ink height spans the two stacked
+    rows - not hand-drawn curves, since a font glyph already has the right
+    shape at any size. **A real design problem was caught via a rendered-PDF
+    spike before wiring this in anywhere** (this project's own "verify the
+    riskiest piece first" precedent): a first version drew the two rows at
+    full text size, making the whole image roughly 2 line-heights tall, which
+    visibly collided with the line below wherever it appeared inline (the
+    same class of issue as step 36's wide-fraction-image overlap finding) -
+    fixed by shrinking the rows (mirroring fraction images' own digit-shrink
+    precedent) so the total height stays close enough to one line's normal
+    leading that no paragraph-style spacing changes were needed anywhere it's
+    used. Separately, `vectors_arithmetic_higher`'s expression builder could
+    print a literal double sign, `"2a - -4b"`, whenever the second scalar was
+    itself negative - fixed with a new `_join_vector_terms` helper that
+    parenthesises it (`"2a - (-4b)"`), matching the plan's exact scope (only
+    when `op == "-"` and the second scalar is negative; the `op == "+"` case,
+    e.g. `"3a + -2b"`, was deliberately left as-is).
+
+    `circle_theorems`'s prompt-trimming item turned out narrower than
+    originally scoped once the actual diagrams were checked: none of the 6
+    shape kinds (`draw_circle_angle_centre`, `_semicircle`, `_cyclic_quad`,
+    `_two_tangents`, `_same_segment`, `_alternate_segment`) label any point at
+    all - only angle *values* are drawn - so almost every "A, B, C are points
+    on a circle where..." sentence is the *only* place a point's identity is
+    established, not redundant restating of something the diagram already
+    shows. Trimmed only the two clauses that genuinely were pure restating:
+    `_cyclic_quadrilateral`'s "(all four vertices lie on a circle)"
+    parenthetical (the diagram already visibly shows exactly that), and
+    `_alternate_segment`'s "...the tangent to the circle at P **is shown**"
+    (a clear diagram-narrating tell, tightened to "with a tangent at P").
+
+    `congruent_triangle_proof_foundation` redesigned to a shuffled lettered
+    multiple-choice prompt (`A) SSS  B) SAS  C) ASA  D) RHS`, order randomised
+    per question via a new `_shuffled_mc_options` helper reused by both the
+    generator and its modelled example), `final_answer` now e.g. `"C) ASA"` -
+    matching the practice-test mark scheme's existing `^[A-D]\)` convention
+    for a multiple-choice-style answer (a single independent B1 mark there,
+    should this topic ever be frozen into a paper).
+
+    `nets_3d_shapes`'s diagram no longer appears on the question page - all 3
+    prompt variants (`describe`/`what 2D shapes`/`how many X`) ask the student
+    to reason from the solid's name alone, per the user's literal instruction -
+    moved from `diagram` to `solution_diagram` so the net is still revealed as
+    the answer, matching this app's established blank-question/completed-
+    solution split. The modelled-example twin is unaffected (`ModelledExample`
+    has only one `diagram` field, and its page always shows the full solved
+    answer regardless).
+
+    `plans_and_elevations`: dimensions capped at 8 via a new, topic-local
+    `_PLANS_TRIANGLE_TRIPLES`/`_plans_triangular_prism_dims` - deliberately
+    NOT touching `solids_prisms.py`'s shared `_triangular_prism_values`, which
+    legitimately goes larger for its own volume/surface-area topic and must
+    stay untouched. The question page previously showed only the oblique 3D
+    sketch, with the actual plans/elevations appearing solely on the solution
+    page; added a blank squared grid for the student to sketch into, via two
+    new diagram pieces - `draw_plans_and_elevations_blank` (3 empty ruled
+    boxes, fixed equal size regardless of the real solid's proportions, so the
+    blank grid itself never leaks shape/proportion information) and
+    `draw_plans_and_elevations_question` (stacks the existing oblique solid
+    sketch above the blank grid into one composed Drawing, since a `Question`
+    only carries a single question-page diagram slot) - registered as a new
+    `"plans_and_elevations_question"` diagram kind used only for this topic's
+    question-page `diagram`; the solution page's existing `"plans_and_
+    elevations"` kind is unchanged. The composition technique itself (nesting
+    one already-built `Drawing` inside another via a translated child, `outer.
+    add(inner); inner.transform = (1, 0, 0, 1, dx, dy)`) was spiked and
+    confirmed working in total isolation before being relied on anywhere -
+    ReportLab's `Drawing` is itself a `Group` subclass, so this "just works"
+    with no special-casing needed, a genuinely new technique for this
+    codebase (no prior diagram had needed to embed one whole existing Drawing
+    inside another).
+
+    **A real, pre-existing bug was found and fixed via this session's own
+    visual verification, not by any unit test** - the same story as most
+    gotchas in this file: `draw_plans_and_elevations`'s "Front elevation"/
+    "Side elevation" captions are centred over their own box, but a small
+    solid shrinks both boxes (and the gap between them) while the caption
+    text itself stays a fixed width - for a small enough solid the two
+    captions ran together with zero gap at all ("Front elevationSide
+    elevation"), only actually noticed once a modelled-example page (which
+    renders this diagram smaller than the worksheet solution page does) was
+    rendered and read closely. This was latent since the diagram kind was
+    first built (step 31) - unrelated to this session's own 8-cap change,
+    which if anything made solids on average *larger* relative to the
+    diagram's fixed target cell size, not smaller. Fixed by measuring the two
+    captions' own text width (`stringWidth`) and widening the gap between the
+    front/side boxes whenever they would otherwise overlap - confirmed via a
+    zoomed rendered-PDF comparison before/after, plus a new direct regression
+    test in `test_diagrams.py` that reads the actual `String` elements'
+    positions out of the rendered `Drawing` and asserts the two captions'
+    real pixel extents don't overlap (not just a proxy check).
+
+    Backend suite grew from 913 to 930 tests (new `test_vector_images.py`,
+    plus extensions to `test_mathtext.py`, `test_vectors.py`,
+    `test_congruent_triangle_proof.py`, `test_solids_properties.py`,
+    `test_plans_elevations.py`, `test_diagrams.py`); frontend unaffected
+    (61/61 - no frontend files touched this session). No topic count change
+    (still 296 - this phase, like the others in this batch, is entirely
+    rendering/wording/diagram/behaviour fixes to existing topics). Every
+    changed topic was rendered and visually inspected before considering its
+    item done, and the review PDFs were regenerated (296 question pages,
+    unchanged; 303 answer pages, unchanged from step 38) and sent back to the
+    user at the end of the phase.
 
 ## Environment gotchas (Windows, this machine specifically)
 
