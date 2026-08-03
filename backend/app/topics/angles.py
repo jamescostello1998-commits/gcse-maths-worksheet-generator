@@ -877,6 +877,7 @@ def generate_polygon_interior_foundation(tier: Tier, rng: random.Random) -> Ques
     if 180 - exterior != interior:
         raise ValueError("polygon_interior_foundation verification failed")
 
+    diagram = None
     if measure == "interior_sum":
         prompt = f"A polygon has {n} sides. Find the sum of its interior angles."
         steps = [f"Sum of interior angles = (n - 2) × 180 = ({n} - 2) × 180 = {total}°"]
@@ -888,10 +889,14 @@ def generate_polygon_interior_foundation(tier: Tier, rng: random.Random) -> Ques
             f"This is a regular polygon, so each interior angle = {total} ÷ {n} = {interior}°",
         ]
         answer = f"{interior}°"
+        diagram = DiagramSpec(kind="polygon", params={"n_sides": min(n, 12), "marked_angle_label": "?"})
     else:
         prompt = f"A regular polygon has {n} sides. Find the size of one exterior angle."
         steps = [f"Exterior angles of a regular polygon sum to 360°: each exterior angle = 360 ÷ {n} = {exterior}°"]
         answer = f"{exterior}°"
+        diagram = DiagramSpec(
+            kind="polygon", params={"n_sides": min(n, 12), "marked_angle_label": "?", "mode": "exterior"}
+        )
 
     return Question(
         topic_id="angles_polygon_interior_foundation",
@@ -900,7 +905,7 @@ def generate_polygon_interior_foundation(tier: Tier, rng: random.Random) -> Ques
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=f"polygon_interior_f:{n}:{measure}",
-        diagram=DiagramSpec(kind="polygon", params={"n_sides": min(n, 12), "marked_angle_label": "?"}),
+        diagram=diagram,
     )
 
 
@@ -919,6 +924,7 @@ def generate_modelled_example_polygon_interior_foundation(tier: Tier, rng: rando
     if 180 - exterior != interior:
         raise ValueError("modelled example polygon_interior_foundation verification failed")
 
+    diagram = None
     if measure == "interior_sum":
         prompt = f"A polygon has {n} sides. Find the sum of its interior angles."
         teaching_steps = [
@@ -953,6 +959,7 @@ def generate_modelled_example_polygon_interior_foundation(tier: Tier, rng: rando
             f"= {interior}°",
         ]
         answer = f"{interior}°"
+        diagram = DiagramSpec(kind="polygon", params={"n_sides": min(n, 12), "marked_angle_label": "?"})
     else:
         prompt = f"A regular polygon has {n} sides. Find the size of one exterior angle."
         teaching_steps = [
@@ -969,6 +976,9 @@ def generate_modelled_example_polygon_interior_foundation(tier: Tier, rng: rando
             f"= {exterior}°",
         ]
         answer = f"{exterior}°"
+        diagram = DiagramSpec(
+            kind="polygon", params={"n_sides": min(n, 12), "marked_angle_label": "?", "mode": "exterior"}
+        )
 
     return ModelledExample(
         topic_id="angles_polygon_interior_foundation",
@@ -977,7 +987,7 @@ def generate_modelled_example_polygon_interior_foundation(tier: Tier, rng: rando
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
-        diagram=DiagramSpec(kind="polygon", params={"n_sides": min(n, 12), "marked_angle_label": "?"}),
+        diagram=diagram,
     )
 
 

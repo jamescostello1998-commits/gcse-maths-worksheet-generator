@@ -731,10 +731,24 @@ def draw_polygon(params: dict) -> Drawing:
     pts = [coord for vertex in vertices for coord in vertex]
     d.add(Polygon(pts, strokeColor=INK, fillColor=None, strokeWidth=1.2))
 
-    d.add(_vertex_angle_arc(vertices[0], vertices[-1], vertices[1], radius=8))
-    vx, vy = vertices[0]
-    lx, ly = vx + (cx - vx) * 0.45, vy + (cy - vy) * 0.45
-    d.add(_label(lx, ly, params["marked_angle_label"], size=9.5))
+    if params.get("mode") == "exterior":
+        # Mark the exterior angle at vertices[0]: extend the side coming
+        # into it (from vertices[-1]) past the vertex, then arc between
+        # that extension and the outgoing side to vertices[1] - mirrors
+        # draw_exterior_triangle's own extend-a-side approach.
+        prev_v, v0, v1 = vertices[-1], vertices[0], vertices[1]
+        ext_x = v0[0] + (v0[0] - prev_v[0]) * 0.5
+        ext_y = v0[1] + (v0[1] - prev_v[1]) * 0.5
+        ext_point = (ext_x, ext_y)
+        d.add(Line(v0[0], v0[1], ext_x, ext_y, strokeColor=INK, strokeWidth=1.2))
+        d.add(_vertex_angle_arc(v0, ext_point, v1, radius=10))
+        lx, ly = ext_x + (v1[0] - v0[0]) * 0.18, ext_y + (v1[1] - v0[1]) * 0.18
+        d.add(_label(lx, ly, params["marked_angle_label"], size=9.5))
+    else:
+        d.add(_vertex_angle_arc(vertices[0], vertices[-1], vertices[1], radius=8))
+        vx, vy = vertices[0]
+        lx, ly = vx + (cx - vx) * 0.45, vy + (cy - vy) * 0.45
+        d.add(_label(lx, ly, params["marked_angle_label"], size=9.5))
     return d
 
 
