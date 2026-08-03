@@ -27,7 +27,16 @@ _TARGETS = ["OP", "AP", "PB"]
 
 
 def _fmt_vector(v) -> str:
-    return f"({v[0]}, {v[1]})"
+    return f"\\colvec{{{v[0]}}}{{{v[1]}}}"
+
+
+def _join_vector_terms(k_term: str, op: str, m_term: str, m: int) -> str:
+    """Join "{k_term} {op} {m_term}" the way a real exam would print it -
+    parenthesising m_term when op == "-" and m is itself negative, so e.g.
+    "2a - -4b" (unclear double sign) reads as "2a - (-4b)" instead."""
+    if op == "-" and m < 0:
+        return f"{k_term} - ({m_term})"
+    return f"{k_term} {op} {m_term}"
 
 
 def _nonzero_int(rng: random.Random, lo: int, hi: int) -> int:
@@ -65,7 +74,7 @@ def _vector_arithmetic(rng: random.Random, *, coord_range: int, k_range, m_range
 
     k_term = _VEC_A if k == 1 else f"{k}{_VEC_A}"
     m_term = _VEC_B if m == 1 else f"{m}{_VEC_B}"
-    expr = f"{k_term} {op} {m_term}"
+    expr = _join_vector_terms(k_term, op, m_term, m)
 
     steps = [
         f"{_VEC_A} = {_fmt_vector((ax, ay))}, {_VEC_B} = {_fmt_vector((bx, by))}",
@@ -103,7 +112,7 @@ def _modelled_vector_arithmetic(rng: random.Random, *, coord_range: int, k_range
 
     k_term = _VEC_A if k == 1 else f"{k}{_VEC_A}"
     m_term = _VEC_B if m == 1 else f"{m}{_VEC_B}"
-    expr = f"{k_term} {op} {m_term}"
+    expr = _join_vector_terms(k_term, op, m_term, m)
     verb = "adding" if op == "+" else "subtracting"
 
     teaching_steps = [

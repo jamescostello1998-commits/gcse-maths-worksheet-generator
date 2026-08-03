@@ -483,6 +483,38 @@ def test_box_plot_label_column_keeps_labels_clear_of_the_whiskers():
         assert s.x < whisker_left_edge  # labels sit strictly left of every whisker/box edge
 
 
+def test_plans_and_elevations_captions_never_overlap_for_a_small_solid():
+    # A small solid (well under the ~60pt target cell size) used to leave
+    # "Front elevation"/"Side elevation" with no gap at all between them,
+    # running together as "Front elevationSide elevation" - found via
+    # rendering an actual modelled-example page and looking closely, not by
+    # any unit test written in advance.
+    from reportlab.graphics.shapes import Group, String
+    from reportlab.pdfbase.pdfmetrics import stringWidth
+
+    from app.pdf.diagrams import draw_plans_and_elevations
+
+    def _all_strings(shape):
+        if isinstance(shape, String):
+            yield shape
+        elif isinstance(shape, Group):
+            for child in shape.contents:
+                yield from _all_strings(child)
+
+    d = draw_plans_and_elevations({
+        "shape": "triangular_prism",
+        "base": 5, "tri_height": 8, "length": 3,
+        "base_label": "5 cm", "tri_height_label": "8 cm", "length_label": "3 cm",
+    })
+    strings = list(_all_strings(d))
+    # Captions are built from single-run _label() calls (plain text, no
+    # math substitution), so each is one String with the full caption text.
+    front_label = next(s for s in strings if s.text == "Front elevation")
+    side_label = next(s for s in strings if s.text == "Side elevation")
+    front_right = front_label.x + stringWidth(front_label.text, front_label.fontName, front_label.fontSize)
+    assert front_right < side_label.x
+
+
 def test_grid_transformation_blank_omits_the_image_but_keeps_given_annotations():
     base_params = {
         "x_min": -8, "x_max": 8, "y_min": -8, "y_max": 8,

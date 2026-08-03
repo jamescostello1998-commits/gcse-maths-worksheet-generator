@@ -322,6 +322,36 @@ def test_recur_marker_and_frac_marker_can_coexist():
     assert markup == f"{matches[0].group(0)} = {matches[1].group(0)}"
 
 
+def test_colvec_marker_renders_a_column_vector_image():
+    markup = _markup(r"\colvec{2}{3}")
+    m = _IMG_RE.search(markup)
+    assert m is not None, markup
+    assert markup == m.group(0)
+    assert os.path.isfile(m.group(1))
+
+
+def test_colvec_marker_handles_negative_components():
+    markup = _markup(r"a = \colvec{-2}{5}")
+    m = _IMG_RE.search(markup)
+    assert m is not None, markup
+    assert markup == f"a = {m.group(0)}"
+
+
+def test_colvec_marker_content_is_not_re_scanned_by_italics_pass():
+    # A bare "n" inside a \colvec{}{} component must not get corrupted by the
+    # earlier italics pass - same bug class as the \frac{}{} marker test above.
+    markup = _markup(r"\colvec{n}{2} + 1")
+    matches = list(_IMG_RE.finditer(markup))
+    assert len(matches) == 1
+    assert markup == f"{matches[0].group(0)} + 1"
+
+
+def test_colvec_and_frac_markers_can_coexist():
+    markup = _markup(r"\colvec{2}{3} = \frac{1}{2}\colvec{4}{6}")
+    matches = list(_IMG_RE.finditer(markup))
+    assert len(matches) == 3
+
+
 # ---------------------------------------------------------------------------
 # \plain{X} - opts a bare letter OUT of the default x/n italics.
 # ---------------------------------------------------------------------------

@@ -96,6 +96,10 @@ def test_properties_diagrams_match_expected_kinds_where_present():
 
 
 def test_nets_diagrams_always_present_with_expected_shape_param():
+    # No diagram on the question page - every prompt variant asks the
+    # student to reason from the solid's name alone - but the net itself is
+    # still revealed on the solution page (solution_diagram), matching this
+    # app's established blank-question/completed-solution split.
     expected_shapes = {
         "cuboid": "cuboid",
         "cube": "cube",
@@ -110,9 +114,10 @@ def test_nets_diagrams_always_present_with_expected_shape_param():
         q = solids_properties.generate_nets_3d_shapes(Tier.FOUNDATION, rng)
         shape_id = q.dedup_key.split(":")[1]
         seen_ids.add(shape_id)
-        assert q.diagram is not None
-        assert q.diagram.kind == "net"
-        assert q.diagram.params["shape"] == expected_shapes[shape_id]
+        assert q.diagram is None
+        assert q.solution_diagram is not None
+        assert q.solution_diagram.kind == "net"
+        assert q.solution_diagram.params["shape"] == expected_shapes[shape_id]
     assert seen_ids == set(expected_shapes)
 
 

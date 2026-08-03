@@ -36,6 +36,23 @@ def test_foundation_vector_arithmetic_never_uses_negative_scalars():
         assert all(not t.startswith("-") for t in terms)
 
 
+def test_higher_vector_arithmetic_never_shows_a_double_minus_sign():
+    # Higher's scalars can be negative, so "k*a - m*b" with m itself negative
+    # used to render as e.g. "2a - -4b" - must now be parenthesised instead
+    # ("2a - (-4b)"), never a literal "- -".
+    rng = random.Random(96)
+    for _ in range(TRIALS):
+        q = vectors.generate_vectors_arithmetic_higher(Tier.HIGHER, rng)
+        find_clause = q.prompt.split("Find ", 1)[1].rstrip(".")
+        assert " - -" not in find_clause
+
+
+def test_vector_answers_use_the_colvec_marker():
+    rng = random.Random(97)
+    q = vectors.generate_vectors_arithmetic_foundation(Tier.FOUNDATION, rng)
+    assert q.final_answer.startswith("\\colvec{")
+
+
 def test_geometric_vectors_has_a_diagram_and_coefficients_sum_to_one():
     import sympy as sp
 

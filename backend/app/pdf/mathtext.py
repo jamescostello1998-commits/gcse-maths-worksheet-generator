@@ -129,11 +129,28 @@ opposite direction (opt OUT of styling rather than opt IN) - `x`/`n` are
 italicised by default everywhere else, so this stays a rare, explicit
 exception, not a new default.
 
+**A fourth sentinel, `\colvec{TOP}{BOTTOM}`, renders a real two-row column
+vector** (app/pdf/vector_images.py) - e.g. "(2, 3)" as a genuine stacked
+"(2 / 3)" bracket notation, matching standard GCSE vector display, rather
+than a coordinate-pair string. Built the same way as the fraction/recurring-
+decimal images (PIL, since ReportLab's own rasteriser isn't installed here),
+using real "(" / ")" glyphs from the same TrueType font scaled to a point
+size whose own ink height spans the two stacked rows, rather than hand-drawn
+curves - a font glyph already has the right curved shape at any size, so
+there's no need to draw one from scratch. Its two rows are drawn at a
+reduced size (mirroring fraction images' own digit-shrink) specifically so
+the whole image's height stays close enough to one line's normal leading
+that no paragraph-style spacing changes were needed anywhere it's used -
+confirmed via a real rendered-PDF spike comparing it against full-size rows
+first, which sat roughly two line-heights tall and visibly collided with
+the line below wherever it appeared inline.
+
 **Marker content is protected from the italics/vector passes via an early
-extraction step.** `\frac{}{}`/`\recur{}{}`/`\plain{}` spans are pulled out
-and replaced with an opaque placeholder *before* `_VARIABLE_RE`/`_VECTOR_RE`
-run, then the real markup (rendered `<img>` for the first two, the bare
-literal content for `\plain{}`) is spliced back in after `_MATH_RE`'s pass. This
+extraction step.** `\frac{}{}`/`\recur{}{}`/`\plain{}`/`\colvec{}{}` spans
+are pulled out and replaced with an opaque placeholder *before*
+`_VARIABLE_RE`/`_VECTOR_RE` run, then the real markup (rendered `<img>` for
+the image-producing ones, the bare literal content for `\plain{}`) is
+spliced back in after `_MATH_RE`'s pass. This
 forecloses the exact bug class already documented below for the fraction-
 image temp-path: a bare `x`/`n` or `\vec{}` sitting inside a marker's braces
 (plausible for an algebraic numerator) would otherwise get corrupted by the
@@ -221,6 +238,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 from app.pdf.fraction_images import get_fraction_image
 from app.pdf.radical_images import get_radical_image
 from app.pdf.recurring_decimal_images import get_recurring_decimal_image
+from app.pdf.vector_images import get_column_vector_image
 
 # Registered once at import time - see the module docstring for why a
 # registered TTF + explicit <font name> tag is used instead of <i>.
@@ -258,12 +276,14 @@ _VARIABLE_RE = re.compile(r"(?<![A-Za-z^])[xn](?![A-Za-z])")
 # matched by a blanket letter pattern, since "a" collides constantly with
 # the English indefinite article and can't be disambiguated by regex alone.
 _VECTOR_RE = re.compile(r"\\vec\{([ab])\}")
-# The three explicit sentinel markers - see the module docstring's "Two
-# explicit ASCII sentinel markers" and "A third sentinel, \plain{X}" sections.
+# The four explicit sentinel markers - see the module docstring's "Two
+# explicit ASCII sentinel markers", "A third sentinel, \plain{X}", and
+# "A fourth sentinel, \colvec{TOP}{BOTTOM}" sections.
 _MARKER_RE = re.compile(
     r"\\frac\{(?P<mnum>[^{}]*)\}\{(?P<mden>[^{}]*)\}"
     r"|\\recur\{(?P<mprefix>[^{}]*)\}\{(?P<mblock>[^{}]*)\}"
     r"|\\plain\{(?P<mplain>[^{}]*)\}"
+    r"|\\colvec\{(?P<mvectop>[^{}]*)\}\{(?P<mvecbot>[^{}]*)\}"
 )
 # A literal "." immediately after a decimal number, at the very end of the
 # string - see the module docstring's final paragraph.
@@ -293,6 +313,9 @@ def _extract_markers(text: str, font_size: float, color: Color, bold: bool) -> t
             return chr(_PLACEHOLDER_BASE + len(placeholders) - 1)
         if m.group("mnum") is not None:
             img = get_fraction_image(m.group("mnum"), m.group("mden"), font_size, bold, color)
+            valign = "bottom"
+        elif m.group("mvectop") is not None:
+            img = get_column_vector_image(m.group("mvectop"), m.group("mvecbot"), font_size, bold, color)
             valign = "bottom"
         else:
             img = get_recurring_decimal_image(m.group("mprefix"), m.group("mblock"), font_size, bold, color)

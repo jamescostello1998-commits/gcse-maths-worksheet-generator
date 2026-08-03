@@ -2956,7 +2956,17 @@ def draw_plans_and_elevations(params: dict) -> Drawing:
     scale = cell / max(dim_x, dim_y, dim_z)
     sx, sy, sz = dim_x * scale, dim_y * scale, dim_z * scale
 
-    gap = 16
+    # The "Front elevation"/"Side elevation" captions are centred over their
+    # own box, but a small solid shrinks both boxes (and the gap between
+    # them) while the caption text itself stays a fixed width - a real bug
+    # found via rendering an actual modelled-example page and looking
+    # closely (not a unit test): a small solid's captions ran together with
+    # no gap at all ("Front elevationSide elevation"). Widen the gap
+    # whenever the two captions' own widths would otherwise overlap.
+    front_caption_w = stringWidth("Front elevation", "Helvetica", 7.5)
+    side_caption_w = stringWidth("Side elevation", "Helvetica", 7.5)
+    min_gap = front_caption_w / 2 + side_caption_w / 2 + 6 - sx / 2 - sz / 2
+    gap = max(16, min_gap)
     margin_l, margin_bottom = 50, 26
     fx0 = margin_l
     fy0 = margin_bottom + sz + gap
@@ -2986,6 +2996,80 @@ def draw_plans_and_elevations(params: dict) -> Drawing:
     d.add(_label(fx0 - 8, fy0 + sy / 2, y_label, anchor="end", size=8))
     d.add(_label(fx0 + sx + gap + sz / 2, fy0 - 10, z_label, size=8))
     d.add(_label(fx0 - 8, margin_bottom + sz / 2, z_label, anchor="end", size=8))
+
+    return d
+
+
+def draw_plans_and_elevations_blank(params: dict) -> Drawing:
+    """Three empty ruled/squared boxes in the same front/side/plan layout as
+    draw_plans_and_elevations' real answer, for the student to sketch their
+    own views into on the question page. Deliberately fixed equal-sized
+    boxes, NOT scaled to the solid's real proportions (unlike the answer
+    version) - the blank grid must never hint at the solid's actual shape or
+    dimensions before the student has worked it out."""
+    box = 60
+    grid_step = 12
+    gap = 16
+    margin_l, margin_bottom = 50, 26
+    fx0 = margin_l
+    fy0 = margin_bottom + box + gap
+
+    d_width = fx0 + box + gap + box + 20
+    d_height = fy0 + box + 22
+    d = Drawing(d_width, d_height)
+
+    d.add(_label(fx0 + box / 2, fy0 + box + 14, "Front elevation", size=7.5))
+    d.add(_label(fx0 + box + gap + box / 2, fy0 + box + 14, "Side elevation", size=7.5))
+    d.add(_label(fx0 + box / 2, margin_bottom - 12, "Plan view", size=7.5))
+
+    def squared_box(x0: float, y0: float) -> None:
+        n = round(box / grid_step)
+        for i in range(1, n):
+            d.add(Line(x0 + i * grid_step, y0, x0 + i * grid_step, y0 + box, strokeColor=GRID, strokeWidth=0.4))
+            d.add(Line(x0, y0 + i * grid_step, x0 + box, y0 + i * grid_step, strokeColor=GRID, strokeWidth=0.4))
+        d.add(Rect(x0, y0, box, box, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+
+    squared_box(fx0, fy0)
+    squared_box(fx0, margin_bottom)
+    squared_box(fx0 + box + gap, fy0)
+
+    return d
+
+
+def draw_plans_and_elevations_question(params: dict) -> Drawing:
+    """The question-page diagram for plans_and_elevations: the existing
+    oblique 3D sketch (reusing draw_cuboid/draw_triangular_prism unchanged)
+    stacked above a blank squared grid (draw_plans_and_elevations_blank) for
+    the student to sketch their answer into - composed as one Drawing (via
+    a nested, translated child Drawing) since a Question only carries one
+    diagram slot for its question page."""
+    shape = params["shape"]
+    if shape == "cuboid":
+        solid = draw_cuboid({
+            "length_label": params["length_label"],
+            "width_label": params["width_label"],
+            "height_label": params["height_label"],
+        })
+    elif shape == "triangular_prism":
+        solid = draw_triangular_prism({
+            "base_label": params["base_label"],
+            "triangle_height_label": params["triangle_height_label"],
+            "length_label": params["length_label"],
+        })
+    else:
+        raise ValueError(f"unknown plans/elevations shape: {shape!r}")
+
+    blank = draw_plans_and_elevations_blank({"shape": shape})
+
+    gap = 10
+    d_width = max(solid.width, blank.width)
+    d_height = solid.height + gap + blank.height
+    d = Drawing(d_width, d_height)
+
+    blank.transform = (1, 0, 0, 1, 0, 0)
+    d.add(blank)
+    solid.transform = (1, 0, 0, 1, 0, blank.height + gap)
+    d.add(solid)
 
     return d
 
@@ -3306,6 +3390,7 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "time_series": draw_time_series,
     "scatter_graph": draw_scatter_graph,
     "plans_and_elevations": draw_plans_and_elevations,
+    "plans_and_elevations_question": draw_plans_and_elevations_question,
     "number_line": draw_number_line,
     "fraction_shapes": draw_fraction_shapes,
     "dice": draw_dice,

@@ -82,10 +82,7 @@ def _cyclic_quadrilateral(rng: random.Random) -> Question:
     return Question(
         topic_id="circle_theorems",
         tier=Tier.HIGHER,
-        prompt=(
-            "ABCD is a cyclic quadrilateral (all four vertices lie on a circle). "
-            f"Angle A = {given_angle}°. Find angle C, x, the angle opposite A."
-        ),
+        prompt=f"ABCD is a cyclic quadrilateral. Angle A = {given_angle}°. Find angle C, x, the angle opposite A.",
         solution_steps=tuple(steps),
         final_answer=f"{unknown_angle}°",
         dedup_key=f"circ_cyclic:{given_angle}",
@@ -183,7 +180,7 @@ def _alternate_segment(rng: random.Random) -> Question:
         topic_id="circle_theorems",
         tier=Tier.HIGHER,
         prompt=(
-            "PQ is a chord of a circle, and the tangent to the circle at P is shown. R is a point on "
+            "PQ is a chord of a circle, with a tangent at P. R is a point on "
             f"the circle in the alternate segment. Find {ask}."
         ),
         solution_steps=tuple(steps),
@@ -318,10 +315,7 @@ def _modelled_cyclic_quadrilateral(rng: random.Random) -> ModelledExample:
     return ModelledExample(
         topic_id="circle_theorems",
         tier=Tier.HIGHER,
-        prompt=(
-            "ABCD is a cyclic quadrilateral (all four vertices lie on a circle). "
-            f"Angle A = {given_angle}°. Find angle C, x, the angle opposite A."
-        ),
+        prompt=f"ABCD is a cyclic quadrilateral. Angle A = {given_angle}°. Find angle C, x, the angle opposite A.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{unknown_angle}°",
@@ -449,7 +443,7 @@ def _modelled_alternate_segment(rng: random.Random) -> ModelledExample:
         topic_id="circle_theorems",
         tier=Tier.HIGHER,
         prompt=(
-            "PQ is a chord of a circle, and the tangent to the circle at P is shown. R is a point on "
+            "PQ is a chord of a circle, with a tangent at P. R is a point on "
             f"the circle in the alternate segment. Find {ask}."
         ),
         worked_calculation=tuple(worked_calculation),

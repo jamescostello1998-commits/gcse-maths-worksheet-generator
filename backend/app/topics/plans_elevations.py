@@ -1,26 +1,46 @@
 """Plans and elevations of 3D solids (AQA 3.4.1 G13): the question page shows
 the familiar oblique 3D sketch (reusing the existing draw_cuboid/
-draw_triangular_prism diagram kinds unchanged, with dimensions labelled),
-and the solution page shows all three orthographic views via the new
+draw_triangular_prism diagram kinds unchanged, with dimensions labelled)
+stacked above a blank squared grid for the student to sketch their own
+answer into (draw_plans_and_elevations_question - one composed Drawing,
+since a Question only carries a single question-page diagram slot), and the
+solution page shows all three orthographic views via the new
 draw_plans_and_elevations diagram (app/pdf/diagrams.py) - genuinely new
 drawing code, since every other 3D diagram in this file uses oblique
 projection, not true orthographic views. Scoped to two solids (cuboid,
-triangular prism) rather than every 3D shape in the app, reusing
-solids_prisms.py's own validated dimension generation as the data source.
+triangular prism) rather than every 3D shape in the app.
+
+All dimensions are capped at 8 (both here and via a locally-scoped triple
+pool for the triangular prism, NOT solids_prisms.py's own shared
+`_triangular_prism_values`, which legitimately goes larger for its own
+volume/surface-area topic and must stay untouched) - a small, legible
+solid is more important here than a wide numeric range, since the point of
+this topic is reading off a shape's views, not practising arithmetic.
 """
 
 import random
 
 from app.core.models import DiagramSpec, ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
-from app.topics.solids_prisms import _triangular_prism_values
 
 SECTION = "geometry"
 GROUP = "3D Shapes"
 
+# Right-angled triples with both legs <= 8 (the base (3, 4, 5) triple, plus
+# its x2 scaling) - deliberately not reusing solids_prisms.py's own
+# `_TRIPLES`/scale-up-to-x3 approach, which allows legs as large as (8, 15,
+# 17) x3, well past this topic's own 8-max cap.
+_PLANS_TRIANGLE_TRIPLES = [(3, 4, 5), (6, 8, 10)]
+
+
+def _plans_triangular_prism_dims(rng: random.Random) -> tuple[int, int, int, int]:
+    p, q, hyp = rng.choice(_PLANS_TRIANGLE_TRIPLES)
+    length = rng.randint(3, 8)
+    return p, q, hyp, length
+
 
 def _cuboid_case(rng: random.Random) -> dict:
-    length, width, height = rng.randint(3, 12), rng.randint(3, 12), rng.randint(3, 12)
+    length, width, height = rng.randint(3, 8), rng.randint(3, 8), rng.randint(3, 8)
     return {
         "shape": "cuboid",
         "length": length, "width": width, "height": height,
@@ -29,8 +49,11 @@ def _cuboid_case(rng: random.Random) -> dict:
         "plan": f"a rectangle, {length} cm by {width} cm",
         "dedup_key": f"plans_cuboid:{length}:{width}:{height}",
         "question_diagram": DiagramSpec(
-            kind="cuboid",
-            params={"length_label": f"{length} cm", "width_label": f"{width} cm", "height_label": f"{height} cm"},
+            kind="plans_and_elevations_question",
+            params={
+                "shape": "cuboid",
+                "length_label": f"{length} cm", "width_label": f"{width} cm", "height_label": f"{height} cm",
+            },
         ),
         "solution_diagram": DiagramSpec(
             kind="plans_and_elevations",
@@ -43,7 +66,7 @@ def _cuboid_case(rng: random.Random) -> dict:
 
 
 def _triangular_prism_case(rng: random.Random) -> dict:
-    p, q, hyp, length, _measure = _triangular_prism_values(rng)
+    p, q, hyp, length = _plans_triangular_prism_dims(rng)
     # Independent check: the cross-section really is right-angled (the same
     # constraint solids_prisms.py's own generator checks), since the "front
     # elevation is a right-angled triangle" framing depends on it.
@@ -57,8 +80,11 @@ def _triangular_prism_case(rng: random.Random) -> dict:
         "plan": f"a rectangle, {p} cm by {length} cm",
         "dedup_key": f"plans_tri_prism:{p}:{q}:{length}",
         "question_diagram": DiagramSpec(
-            kind="triangular_prism",
-            params={"base_label": f"{p} cm", "triangle_height_label": f"{q} cm", "length_label": f"{length} cm"},
+            kind="plans_and_elevations_question",
+            params={
+                "shape": "triangular_prism",
+                "base_label": f"{p} cm", "triangle_height_label": f"{q} cm", "length_label": f"{length} cm",
+            },
         ),
         "solution_diagram": DiagramSpec(
             kind="plans_and_elevations",

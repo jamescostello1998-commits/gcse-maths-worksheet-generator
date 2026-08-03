@@ -20,7 +20,7 @@ def test_all_generators_produce_valid_verified_questions():
             assert q.solution_steps
             assert q.final_answer
             assert q.diagram is not None
-            assert q.diagram.kind in ("cuboid", "triangular_prism")
+            assert q.diagram.kind == "plans_and_elevations_question"
             assert q.solution_diagram is not None
             assert q.solution_diagram.kind == "plans_and_elevations"
 
@@ -67,9 +67,27 @@ def test_triangular_prism_cross_section_is_right_angled():
 
 
 def test_dedup_keys_vary_widely():
+    # All dimensions are capped at 8 (per direct user request - a small,
+    # legible solid matters more here than a wide numeric range), so the
+    # real ceiling is much smaller than most topics: 6x6x6 = 216 cuboid
+    # combinations + 2 triples x 6 lengths = 12 triangular-prism
+    # combinations = 228 total - comfortably above the default 20-question
+    # worksheet, but well under half of TRIALS, so this uses a lower,
+    # topic-appropriate bar instead (measured directly, not guessed).
     rng = random.Random(1104)
     keys = {plans_elevations.generate_plans_and_elevations(Tier.FOUNDATION, rng).dedup_key for _ in range(TRIALS)}
-    assert len(keys) > TRIALS * 0.5
+    assert len(keys) > 90
+
+
+def test_all_dimensions_are_capped_at_eight():
+    rng = random.Random(1106)
+    for _ in range(TRIALS):
+        q = plans_elevations.generate_plans_and_elevations(Tier.FOUNDATION, rng)
+        p = q.solution_diagram.params
+        if p["shape"] == "cuboid":
+            assert p["length"] <= 8 and p["width"] <= 8 and p["height"] <= 8
+        else:
+            assert p["base"] <= 8 and p["tri_height"] <= 8 and p["length"] <= 8
 
 
 def test_topic_definition_metadata():

@@ -323,7 +323,12 @@ def generate_nets_3d_shapes(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=final_answer,
         dedup_key=f"nets3d:{template.id}:{angle}",
-        diagram=DiagramSpec(kind="net", params={"shape": template.diagram_shape}),
+        # No diagram on the question page - every prompt variant ("describe
+        # the net", "what 2D shapes", "how many X") asks the student to
+        # reason from the solid's name alone, not from a picture. The net
+        # itself is revealed on the solution page instead, matching this
+        # app's established blank-question/completed-solution split.
+        solution_diagram=DiagramSpec(kind="net", params={"shape": template.diagram_shape}),
     )
 
 
