@@ -246,7 +246,7 @@ SAMPLE_SPECS = [
     DiagramSpec(kind="spinner_pair", params={"sectors_a": ["1", "2", "3"], "sectors_b": ["R", "B", "G", "Y"]}),
     DiagramSpec(
         kind="bag_of_counters",
-        params={"counts": {"red": 4, "blue": 6, "green": 3}, "highlight": "blue"},
+        params={"counts": {"red": 4, "blue": 6, "green": 3}},
     ),
     DiagramSpec(
         kind="parallelogram",

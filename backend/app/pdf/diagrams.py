@@ -2001,45 +2001,89 @@ def draw_tree_diagram(params: dict) -> Drawing:
     """A two-stage probability tree. stage1 = [(label, prob_str), ...];
     stage2 = one list of (label, prob_str) branches per stage1 node;
     leaf_probs (optional) = matching nested list of combined-outcome
-    probability strings shown at each leaf."""
+    probability strings shown at each leaf. A branch's prob_str may be ""
+    (or omitted/falsy) to draw a short blank placeholder line instead of a
+    value, for a tree the student is meant to complete themselves.
+    params['stage1_header']/['stage2_header'] (optional) caption the two
+    columns of branches (e.g. the name of each stage's random event), drawn
+    above the diagram - matching real exam-style labelled trees."""
     stage1: list[tuple[str, str]] = params["stage1"]
     stage2: list[list[tuple[str, str]]] = params["stage2"]
     leaf_probs: list[list[str]] | None = params.get("leaf_probs")
+    stage1_header = params.get("stage1_header")
+    stage2_header = params.get("stage2_header")
 
     branch_counts = [len(b) for b in stage2]
     total_leaves = sum(branch_counts)
-    width = 260
-    height = max(120, total_leaves * 24 + 16)
+
+    leaf_spacing, group_spacing = 46.0, 20.0
+    header_h = 26.0 if (stage1_header or stage2_header) else 0.0
+    top_pad, bottom_pad = 14.0 + header_h, 14.0
+    height = max(
+        150.0,
+        top_pad + bottom_pad + total_leaves * leaf_spacing + max(0, len(branch_counts) - 1) * group_spacing,
+    )
+    width = 460.0 if leaf_probs is not None else 400.0
     d = Drawing(width, height)
 
-    root_x, root_y = 12.0, height / 2
-    x1 = width * 0.32
-    x2 = width * 0.62
-    x3 = width * 0.86
+    x1, x2, x3 = width * 0.30, width * 0.58, width * 0.85
+    root_x = 16.0
 
     leaf_ys: list[list[float]] = []
-    cursor = 8.0
+    cursor = bottom_pad + leaf_spacing / 2
     for count in branch_counts:
-        ys = [cursor + i * 22 + 11 for i in range(count)]
+        ys = [cursor + i * leaf_spacing for i in range(count)]
         leaf_ys.append(ys)
-        cursor += count * 22 + 8
+        cursor += count * leaf_spacing + group_spacing
 
     node1_ys = [sum(ys) / len(ys) for ys in leaf_ys]
+    root_y = sum(node1_ys) / len(node1_ys)
+
+    if stage1_header:
+        d.add(String(x1, height - 16, str(stage1_header), textAnchor="middle", fontSize=10, fillColor=INK, fontName=_LABEL_FONT_BOLD))
+    if stage2_header:
+        d.add(String(x2, height - 16, str(stage2_header), textAnchor="middle", fontSize=10, fillColor=INK, fontName=_LABEL_FONT_BOLD))
+
+    def _branch_prob(x_from: float, y_from: float, x_to: float, y_to: float, prob: str, size: float) -> None:
+        # Offset the probability label perpendicular to the branch line
+        # (rather than a fixed vertical amount) so it clears the line itself
+        # regardless of the branch's slope - dx is always positive here
+        # (every branch runs left to right), so this normal always points
+        # "up" on the page, matching how real tree diagrams caption branches.
+        dx, dy = x_to - x_from, y_to - y_from
+        length = math.hypot(dx, dy) or 1.0
+        nx, ny = -dy / length, dx / length
+        lx, ly = (x_from + x_to) / 2 + nx * 12, (y_from + y_to) / 2 + ny * 12
+        if prob:
+            d.add(_label(lx, ly, prob, size=size))
+        else:
+            d.add(Line(lx - 9, ly - 2, lx + 9, ly - 2, strokeColor=INK, strokeWidth=0.9))
+
+    def _node_label(x: float, y: float, text: str, size: float) -> None:
+        # Every line/dash leaving this node starts exactly at (x, y) and
+        # only ever extends to the right (greater x) - so a label centred
+        # directly ABOVE the node (same x, y offset only) never touches any
+        # of them, unlike a label offset to the right, which sat inside the
+        # narrow wedge those lines fan out into and collided with one of
+        # them as soon as the branches spread more than a few points apart.
+        d.add(_label(x, y + 10, text, size=size))
 
     for i, ((label1, prob1), y1) in enumerate(zip(stage1, node1_ys)):
-        d.add(Line(root_x, root_y, x1, y1, strokeColor=INK, strokeWidth=1.1))
-        d.add(_label((root_x + x1) / 2, (root_y + y1) / 2 + 6, prob1, size=7))
-        d.add(_label(x1 + 4, y1 + 3, label1, anchor="start", size=7.5))
+        d.add(Line(root_x, root_y, x1, y1, strokeColor=INK, strokeWidth=1.2))
+        _branch_prob(root_x, root_y, x1, y1, prob1, 9)
+        _node_label(x1, y1, label1, 9.5)
 
         for j, ((label2, prob2), y2) in enumerate(zip(stage2[i], leaf_ys[i])):
-            d.add(Line(x1, y1, x2, y2, strokeColor=INK, strokeWidth=1.1))
-            d.add(_label((x1 + x2) / 2, (y1 + y2) / 2 + 6, prob2, size=7))
-            d.add(_label(x2 + 4, y2 + 3, label2, anchor="start", size=7.5))
+            d.add(Line(x1, y1, x2, y2, strokeColor=INK, strokeWidth=1.2))
+            _branch_prob(x1, y1, x2, y2, prob2, 9)
             if leaf_probs is not None:
                 d.add(Line(x2, y2, x3, y2, strokeColor=MUTED, strokeWidth=0.5, strokeDashArray=[2, 2]))
-                d.add(_label(x3 + 4, y2 + 3, leaf_probs[i][j], anchor="start", color=ACCENT, size=7))
+                _node_label(x2, y2, label2, 9.5)
+                d.add(_label(x3 + 6, y2 + 3, leaf_probs[i][j], anchor="start", color=ACCENT, size=8.5))
+            else:
+                d.add(_label(x2 + 6, y2 + 3, label2, anchor="start", size=9.5))
 
-    d.add(Circle(root_x, root_y, 1.8, strokeColor=INK, fillColor=INK))
+    d.add(Circle(root_x, root_y, 2.2, strokeColor=INK, fillColor=INK))
     return d
 
 
@@ -2191,8 +2235,8 @@ def draw_venn_diagram(params: dict) -> Drawing:
     d.add(Circle(_VENN_CX_B, _VENN_CY, _VENN_R, fillColor=None, strokeColor=INK, strokeWidth=0.9))
 
     d.add(_label(x0 + 8, y1 - 10, universal_label, anchor="start", size=9))
-    d.add(_label(_VENN_CX_A - 20, _VENN_CY + _VENN_R - 12, str(labels[0]), size=9))
-    d.add(_label(_VENN_CX_B + 20, _VENN_CY + _VENN_R - 12, str(labels[1]), size=9))
+    d.add(_label(_VENN_CX_A, _VENN_CY + _VENN_R + 10, str(labels[0]), size=9))
+    d.add(_label(_VENN_CX_B, _VENN_CY + _VENN_R + 10, str(labels[1]), size=9))
 
     region_positions = {
         "a_only": (_VENN_CX_A - 22, _VENN_CY - 4),
@@ -2781,6 +2825,57 @@ def draw_spinner_pair(params: dict) -> Drawing:
     return d
 
 
+def draw_coin(params: dict) -> Drawing:
+    """One or two coin faces, each shown split into its two possible
+    outcomes (H on the top half, T on the bottom half) - matching how
+    draw_spinner shows every sector at once, since this is meant to
+    illustrate the object, not one specific flip result. params['count']:
+    how many coins to draw side by side (default 1)."""
+    count = params.get("count", 1)
+    r, gap = 32.0, 22.0
+    width = count * (2 * r) + (count + 1) * gap
+    height = 2 * r + 2 * gap
+    d = Drawing(width, height)
+    cy = height / 2
+    for i in range(count):
+        cx = gap + r + i * (2 * r + gap)
+        d.add(Circle(cx, cy, r, fillColor=PAPER, strokeColor=INK, strokeWidth=1.2))
+        d.add(Line(cx - r, cy, cx + r, cy, strokeColor=INK, strokeWidth=0.7))
+        d.add(_label(cx, cy + r * 0.32, "H", size=12))
+        d.add(_label(cx, cy - r * 0.62, "T", size=12))
+    return d
+
+
+def draw_event_pair(params: dict) -> Drawing:
+    """Two independent single-object illustrations (a coin, a die, and/or a
+    spinner) side by side, for questions combining two different random
+    objects (e.g. 'a coin is flipped and a die is rolled'). params
+    ['event_a']/['event_b']: each a dict {"kind": "coin"|"dice"|"spinner",
+    **kind-specific params, matching draw_coin/draw_dice/draw_spinner's own
+    params contract} - composed via the same nested-translated-Drawing
+    technique already used by draw_plans_and_elevations_question."""
+
+    def _build(event: dict) -> Drawing:
+        kind = event["kind"]
+        if kind == "coin":
+            return draw_coin({"count": event.get("count", 1)})
+        if kind == "dice":
+            return draw_dice({"values": event["values"], "highlight": event.get("highlight", [])})
+        return draw_spinner({"sectors": event["sectors"], "highlight": event.get("highlight", [])})
+
+    a = _build(params["event_a"])
+    b = _build(params["event_b"])
+    gap = 20.0
+    width = a.width + gap + b.width
+    height = max(a.height, b.height)
+    d = Drawing(width, height)
+    a.transform = (1, 0, 0, 1, 0, (height - a.height) / 2)
+    d.add(a)
+    b.transform = (1, 0, 0, 1, a.width + gap, (height - b.height) / 2)
+    d.add(b)
+    return d
+
+
 _COUNTER_COLOURS = {
     "red": colors.HexColor("#c0555f"),
     "blue": colors.HexColor("#4a72b0"),
@@ -2791,36 +2886,41 @@ _COUNTER_COLOURS = {
 
 
 def draw_bag(params: dict) -> Drawing:
-    """A bag outline containing small filled counters, grouped by colour.
-    params['counts']: dict of colour name -> count. params['highlight']:
-    optional colour name noted as the target, captioned below the bag."""
+    """A rectangular bag outline packed with small filled counters. params
+    ['counts']: dict of colour name -> count. The counters are interleaved
+    round-robin across colours (not grouped into colour blocks) so they read
+    as a freely-mixed handful, and the counter size/grid is sized from the
+    total count so they fill the rectangle as fully as possible regardless
+    of how many there are."""
     counts: dict[str, int] = params["counts"]
-    highlight = params.get("highlight")
-    width = 160
-    d = Drawing(width, 145)
+    width, height = 160, 120
+    d = Drawing(width, height)
 
-    body_x, body_y, body_w, body_h = 20, 15, width - 40, 90
-    d.add(Rect(body_x, body_y, body_w, body_h, rx=16, ry=16, fillColor=PAPER, strokeColor=INK, strokeWidth=1.3))
-    neck_y = body_y + body_h
-    d.add(Line(body_x + 10, neck_y, body_x + body_w - 10, neck_y, strokeColor=INK, strokeWidth=1.3))
-    d.add(Circle(width / 2, neck_y + 6, 4, fillColor=None, strokeColor=INK, strokeWidth=1.3))
+    body_x, body_y, body_w, body_h = 12, 12, width - 24, height - 24
+    d.add(Rect(body_x, body_y, body_w, body_h, fillColor=PAPER, strokeColor=INK, strokeWidth=1.3))
 
-    r, pad = 4.3, 10
-    x, y = body_x + pad, body_y + body_h - pad
-    row_limit, bottom_limit = body_x + body_w - pad, body_y + pad
-    for colour, count in counts.items():
+    order = list(counts.keys())
+    remaining = dict(counts)
+    tokens: list[str] = []
+    while any(remaining[c] > 0 for c in order):
+        for c in order:
+            if remaining[c] > 0:
+                tokens.append(c)
+                remaining[c] -= 1
+
+    total = max(1, len(tokens))
+    cols = max(1, math.ceil(math.sqrt(total * body_w / body_h)))
+    rows = max(1, math.ceil(total / cols))
+    cell_w, cell_h = body_w / cols, body_h / rows
+    r = max(3.2, min(cell_w, cell_h) / 2 * 0.85)
+    r = min(r, 7.0)
+
+    for i, colour in enumerate(tokens):
+        row, col = divmod(i, cols)
+        cx = body_x + cell_w * (col + 0.5)
+        cy = body_y + body_h - cell_h * (row + 0.5)
         fill = _COUNTER_COLOURS.get(colour, MUTED)
-        for _ in range(count):
-            if y < bottom_limit:
-                break
-            d.add(Circle(x, y, r, fillColor=fill, strokeColor=INK, strokeWidth=0.4))
-            x += r * 2.3
-            if x > row_limit:
-                x = body_x + pad
-                y -= r * 2.3
-
-    if highlight:
-        d.add(_label(width / 2, 3, f"Target colour: {highlight}", size=7.5, color=MUTED))
+        d.add(Circle(cx, cy, r, fillColor=fill, strokeColor=INK, strokeWidth=0.4))
 
     return d
 
@@ -3396,6 +3496,8 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "dice": draw_dice,
     "spinner": draw_spinner,
     "spinner_pair": draw_spinner_pair,
+    "coin": draw_coin,
+    "event_pair": draw_event_pair,
     "bag_of_counters": draw_bag,
     "parallelogram": draw_parallelogram,
     "trapezium": draw_trapezium,
