@@ -19,22 +19,27 @@ authoritative source for exactly what's done and what's left** — it has its ow
 section (updated at the end of session 1) marking every item done/not-done with file-level
 detail, so read it directly rather than re-deriving scope from this summary. In short:
 
-- **Phases 1, 2, 3 are DONE** (cross-cutting diagram/engine fixes; the rounding-precision
-  randomization engine; Area & Perimeter topic fixes) — 3 commits, pushed.
-- **Phase 4 (Angles, Pythagoras, Trigonometry) is next** — the plan file notes most of it
-  was actually already completed as a side effect of Phase 1's engine work (confirmed via
-  render at the time); only `angles_polygon_interior_foundation`'s conditional-diagram
-  item is genuinely unstarted. Read the plan file's Phase 4 section first — it already
-  says exactly which sub-items are done vs not.
-- **Phases 5, 6 are not started** (Vectors/Congruence/Circle Theorems/Nets/Plans/Cube;
-  Transformations/Bearings) — same caveat, the plan file's Phase 5 section already marks
-  2 of its 8 items as incidentally completed during Phase 1 too.
+- **Phases 1, 2, 3, 4 are DONE** (cross-cutting diagram/engine fixes; the rounding-
+  precision randomization engine; Area & Perimeter topic fixes; Angles/Pythagoras/
+  Trigonometry) — 4 commits, pushed. Phase 4 turned out to be almost entirely a side
+  effect of Phase 1's engine work — the only genuine unstarted item was
+  `angles_polygon_interior_foundation`'s diagram: the "interior_sum" branch now has no
+  diagram at all, and the "exterior_angle" branch's diagram was found to have a real
+  pre-existing bug (always marked an *interior* angle regardless of what was asked) —
+  fixed with a new `"mode": "exterior"` option on `draw_polygon`.
+- **Phase 5 (Vectors, Congruence, Circle Theorems, Nets, Plans & Elevations, Cube) is
+  next** — the plan file's Phase 5 section already marks 2 of its 8 items as
+  incidentally completed during Phase 1 too (geometric_vectors arrowheads,
+  volume_surface_area_cube's is_cube diagram flag) — only 6 items are genuinely
+  unstarted. Read the plan file's Phase 5 section first.
+- **Phase 6 is not started** (Transformations/Bearings) — same caveat, 1 of its 4 items
+  (bearings_foundation's longer north arrow) was already completed during Phase 1.
 
-Freshly regenerated review PDFs reflecting Phase 3
+Freshly regenerated review PDFs reflecting Phase 4
 (`backend/all_topics_review_questions.pdf` / `all_topics_review_answers.pdf` — same
 fixed-seed script, `backend/scripts/generate_review_pdfs.py`, deliberately untracked) were
-sent back at the end of that phase. Continue straight into Phase 4 (or whichever phase the
-user wants) using the same session pattern already established across Phases 1-3:
+sent back at the end of that phase. Continue straight into Phase 5 (or whichever phase the
+user wants) using the same session pattern already established across Phases 1-4:
 
 1. Read the plan file's section for the phase you're starting — it already has exact
    file/function/line references and confirmed scope decisions, so you shouldn't need to
@@ -67,7 +72,7 @@ PR (`gh pr view 3` or the repo's PR list — pushing to this branch updates it a
 no separate action needed). The PR has not been merged yet, so check its status before
 assuming `master` already has any of this. 296 topics total (unchanged since step 33 —
 step 39 so far, like steps 35-38, is entirely rendering/wording/diagram/formatting fixes,
-no new or retired topics), backend suite 912/912, frontend 61/61, no known bugs.
+no new or retired topics), backend suite 913/913, frontend 61/61, no known bugs.
 
 If the user hasn't given new Geometry-batch feedback and Phases 4-6 are somehow already
 finished, check "Ideas for a future session" (bottom of this file) for candidate follow-ups
@@ -3204,14 +3209,40 @@ fixes), is committed and pushed (see `git log`).
     via `python -m app.practice_tests.build` (confirmed still exactly 100 marks each
     afterward).
 
-    Central verification after each phase: full backend suite grew from 892 to 912
-    across the 3 phases (Phase 1 added no new tests - pure diagram/wording work, no
+    **Phase 4 (Angles, Pythagoras, Trigonometry)**: re-reading the plan file's Phase 4
+    section (continued in a later session) confirmed 6 of its 7 items were already
+    completed as a side effect of Phase 1's own diagram-engine work (the "find x"
+    Pythagoras convention, legs→sides rename, cuboid vertex letters, trig-triangle
+    label fix, right-angled-triangle wording removal — all done in the same pass as
+    the shared engine changes, since the files were already open). Only
+    `angles_polygon_interior_foundation` (`app/topics/angles.py`) was genuine unstarted
+    work: its `interior_sum` branch (asking for the *whole shape's* angle total) now
+    has no diagram at all - a marked angle adds nothing to a question about the sum -
+    while its `interior_angle` and `exterior_angle` branches keep a diagram, per the
+    original feedback's "sum vs one interior angle" distinction. Implementing this
+    surfaced a real pre-existing bug, not caught until this item was actually built:
+    `draw_polygon` (`app/pdf/diagrams.py`) always marked an *interior* angle with "?"
+    regardless of which angle the question asked about, so the `exterior_angle`
+    branch's diagram was silently showing the wrong angle - fixed with a new
+    `"mode": "exterior"` option that extends one polygon side past its vertex and arcs
+    the angle between that extension and the next side, mirroring
+    `draw_exterior_triangle`'s existing extend-a-side technique exactly. Both the
+    generator and its modelled-example twin were updated together;
+    `test_angles.py`'s two "every generator/modelled-example attaches a diagram" tests
+    were adjusted to allow `None` for this one topic's `interior_sum` branch, plus a
+    new dedicated test confirms all 3 measure branches get the exactly-right diagram
+    treatment across 200 trials. Rendered and visually confirmed both fixes (the
+    exterior-angle wedge is correctly marked outside the extended side; the sum
+    question has no diagram at all).
+
+    Central verification after each phase: full backend suite grew from 892 to 913
+    across the 4 phases (Phase 1 added no new tests - pure diagram/wording work, no
     new tests needed beyond updating a couple of existing assertions in
     `test_pythagoras.py`; Phase 2 added the new `test_rounding.py` plus a
     rounding-variety test per touched file; Phase 3 added mixed-compound variety/
-    combination coverage), frontend unaffected throughout (61/61 - no frontend
-    files touched this session). No topic count
-    change (296, unchanged - this batch is entirely rendering/wording/diagram/
+    combination coverage; Phase 4 added 1 new test in `test_angles.py`), frontend
+    unaffected throughout (61/61 - no frontend files touched this session). No topic
+    count change (296, unchanged - this batch is entirely rendering/wording/diagram/
     verification-precision fixes to existing topics). Every changed topic was
     rendered and visually inspected before considering its phase done, and the
     review PDFs (`generate_review_pdfs.py`) were regenerated and sent back to the
