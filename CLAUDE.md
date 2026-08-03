@@ -12,82 +12,46 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-Step 39 (in progress across sessions — see its chronology entry for full detail) is
-executing a large, explicitly-phased Geometry review-feedback batch from a plan file at
-`C:\Users\James\.claude\plans\adaptive-coalescing-gosling.md`. **That plan file is the
-authoritative source for exactly what's done and what's left** — it has its own "Status"
-section (updated at the end of session 1) marking every item done/not-done with file-level
-detail, so read it directly rather than re-deriving scope from this summary. In short:
+Step 39's large, explicitly-phased Geometry review-feedback batch (from a plan file at
+`C:\Users\James\.claude\plans\adaptive-coalescing-gosling.md`) is **now fully complete —
+all 6 phases done, committed, and pushed** (6 commits on `aqa-spec-gap-topics`). The plan
+file's own "Status" section has the full done/not-done detail for every phase if you need
+to double-check anything, but there is nothing left to pick up from it. In short, across
+the whole batch: cross-cutting diagram/engine fixes (font sizes, removed the "Diagram NOT
+accurately drawn" caption, parallel-line arrows, sector/trapezium/cuboid fixes, vector
+arrowheads, formula preambles, Pythagoras "find x" convention); a new rounding-precision
+randomization engine rolled out across 11 files; Area & Perimeter topic reworks; an
+Angles/Pythagoras/Trigonometry pass (mostly already covered by the engine work, plus a
+genuine polygon-interior/exterior diagram fix); Vectors (new real column-vector bracket
+notation + a sign-formatting fix), Congruence (a multiple-choice redesign), Circle
+Theorems (prompt trimming), Nets and Plans & Elevations (diagram/dimension reworks); and
+finally Transformations (reflection mirror-line reweighting, which surfaced and fixed a
+genuine pre-existing dead-branch bug, plus translation diagram/wording tweaks). See
+chronology step 39 below for the full session-by-session detail on all of it, and
+"Verifying new topics visually" for the render-and-look-closely discipline that caught
+most of the real bugs found along the way (never the unit tests alone).
 
-- **Phases 1, 2, 3, 4, 5 are DONE** (cross-cutting diagram/engine fixes; the
-  rounding-precision randomization engine; Area & Perimeter topic fixes; Angles/
-  Pythagoras/Trigonometry; Vectors/Congruence/Circle Theorems/Nets/Plans &
-  Elevations/Cube) — 5 commits, pushed. Phase 4 turned out to be almost entirely a
-  side effect of Phase 1's engine work — the only genuine unstarted item was
-  `angles_polygon_interior_foundation`'s diagram: the "interior_sum" branch now has no
-  diagram at all, and the "exterior_angle" branch's diagram was found to have a real
-  pre-existing bug (always marked an *interior* angle regardless of what was asked) —
-  fixed with a new `"mode": "exterior"` option on `draw_polygon`. Phase 5 built a new
-  `app/pdf/vector_images.py` + `\colvec{}{}` marker for real column-vector bracket
-  notation, fixed a vector-arithmetic double-minus sign, trimmed genuinely redundant
-  `circle_theorems` prompt clauses (narrower than originally scoped, since the
-  diagrams don't label any points at all), redesigned
-  `congruent_triangle_proof_foundation` to a shuffled lettered multiple-choice
-  format, moved `nets_3d_shapes`'s diagram off the question page, and capped
-  `plans_and_elevations`' dimensions at 8 while adding a blank-squared-grid diagram
-  to its question page — the last of which surfaced and fixed a real pre-existing
-  caption-overlap bug (see chronology step 39 for full detail on all of it).
-- **Phase 6 is next** (Transformations/Bearings) — 1 of its 4 items
-  (bearings_foundation's longer north arrow) was already completed during Phase 1;
-  read the plan file's Phase 6 section first.
-
-Freshly regenerated review PDFs reflecting Phase 5
+Freshly regenerated review PDFs reflecting the *entire* batch
 (`backend/all_topics_review_questions.pdf` / `all_topics_review_answers.pdf` — same
 fixed-seed script, `backend/scripts/generate_review_pdfs.py`, deliberately untracked) were
-sent back at the end of that phase. Continue straight into Phase 6 (or whichever phase the
-user wants) using the same session pattern already established across Phases 1-5:
+sent back at the end of Phase 6. **The natural next step is simply to ask the user for
+their next round of feedback** on this fresh pair, now that every phase of this
+particular batch is closed out.
 
-1. Read the plan file's section for the phase you're starting — it already has exact
-   file/function/line references and confirmed scope decisions, so you shouldn't need to
-   re-research from scratch (re-confirm line numbers if a lot has changed since, though).
-2. Check whether a request is really an engine-level fix — touch
-   `app/pdf/mathtext.py`/`diagrams.py`/`fraction_images.py`/`radical_images.py`/
-   `recurring_decimal_images.py`/`app/pdf/styles.py`/`app/topics/rounding.py` once and it
-   benefits every topic that uses the same convention — before treating it as a one-topic
-   content tweak. This is exactly how Phases 1-2 worked (a diagrams.py fix like the
-   trig-triangle label repositioning fixed `trig_missing_side_foundation`, `sine_rule`,
-   `cosine_rule`, `triangle_area`, and `exact_trig_values_triangles` all at once).
-3. Render the actual PDF and look closely before calling anything done — nearly every
-   real bug found in Phases 1-3 (a reflex-angle sector arc, several label-overlap bugs in
-   both new and pre-existing diagrams, a radical-image regex gap, two real regressions in
-   `bell_tasks`/Practice Tests) was caught this way, never by the unit tests alone. See
-   "Verifying new topics visually" below.
-4. After a diagram param shape changes (like `area_mixed_compound`'s did in step 39),
-   check whether the frozen Practice Test JSON (`backend/app/practice_tests/data/*.json`)
-   references it — if so, regenerate via `python -m app.practice_tests.build` or the
-   renderer will crash on old frozen diagrams. Also check `bell_tasks`' own tests if a
-   topic's prompt text becomes less distinguishing (its "5 distinct questions" test had to
-   be taught to also compare diagram image bytes, not just text, in step 39).
-5. Re-run the script (`.venv\Scripts\python.exe -m scripts.generate_review_pdfs` from
-   `backend/`) to regenerate both PDFs after making changes, and send the fresh pair
-   back to the user for their next comparison pass — do this at the end of each phase,
-   not just at the very end of the whole batch.
-
-All work through step 39 (Phases 1-3) is committed, pushed, and already part of the open
-PR (`gh pr view 3` or the repo's PR list — pushing to this branch updates it automatically,
+All of step 39's work is committed, pushed, and already part of the open PR
+(`gh pr view 3` or the repo's PR list — pushing to this branch updates it automatically,
 no separate action needed). The PR has not been merged yet, so check its status before
 assuming `master` already has any of this. 296 topics total (unchanged since step 33 —
-step 39 so far, like steps 35-38, is entirely rendering/wording/diagram/formatting fixes,
-no new or retired topics), backend suite 930/930, frontend 61/61, no known bugs.
+step 39, like steps 35-38, was entirely rendering/wording/diagram/formatting fixes, no new
+or retired topics), backend suite 935/935, frontend 61/61, no known bugs.
 
-If the user hasn't given new Geometry-batch feedback and Phases 4-6 are somehow already
-finished, check "Ideas for a future session" (bottom of this file) for candidate follow-ups
-(the remaining medium-confidence OCR-spec gaps from step 32's audit, the remaining
-medium/low-confidence AQA-spec gaps from step 31's audit, stem-and-leaf diagrams, standard
-deviation, a handful of lower-confidence
-curriculum-audit candidates, saved worksheet history, deployment, a KS3 Bell Tasks tier,
-the full language-variety rollout beyond the 4 files step 35 piloted it on, etc.), or ask
-directly what they'd like to work on next.
+If the user hasn't given new review feedback, check "Ideas for a future session" (bottom
+of this file) for candidate follow-ups (the remaining medium-confidence OCR-spec gaps from
+step 32's audit, the remaining medium/low-confidence AQA-spec gaps from step 31's audit,
+stem-and-leaf diagrams, standard deviation, a handful of lower-confidence curriculum-audit
+candidates, saved worksheet history, deployment, a KS3 Bell Tasks tier, the full
+language-variety rollout beyond the 4 files step 35 piloted it on, etc.), or ask directly
+what they'd like to work on next.
 
 ## Current state
 
@@ -3369,6 +3333,59 @@ fixes), is committed and pushed (see `git log`).
     item done, and the review PDFs were regenerated (296 question pages,
     unchanged; 303 answer pages, unchanged from step 38) and sent back to the
     user at the end of the phase.
+
+    **Phase 6 (Transformations & Bearings)** - the final phase of this whole
+    batch, continued in a later session: item 4 (`bearings_foundation`'s
+    longer north arrow) was already done in Phase 1; the remaining 3 items
+    were built this session.
+
+    `transform_reflect_complete`/`_describe` (both Foundation-only) had their
+    mirror-line pool reweighted: vertical/horizontal (the easiest reflections)
+    dominate, `"y = x"` is occasional, and `"y = -x"` (genuinely the hardest -
+    neither coordinate keeps its sign) is excluded entirely at Foundation, via
+    a new per-tier `_MIRROR_KIND_WEIGHTS` dict threaded through
+    `_random_mirror_line`/`_random_reflect_instance`. **Threading `tier`
+    through surfaced a real, genuinely pre-existing bug, found via property-
+    based sampling (not visual inspection this time) rather than trusting the
+    reweighting alone**: every one of the 4 shared `_SHAPE_TEMPLATES` spans
+    7-9 units in the y - x direction, which made a `"y = x"` reflection
+    geometrically impossible to ever satisfy within the grid's own +/-7 fit
+    range, no matter how the shape was positioned or how the mirror line's
+    offset was chosen - confirmed via direct simulation (0 successes in
+    200,000 attempts) that this was already true in the code exactly as it
+    stood before this session, not something the reweighting introduced (only
+    `"y = -x"` had ever actually been reachable, since those templates happen
+    to be far more compact in the y + x direction). Fixed with a new small
+    compact triangle template (`_COMPACT_REFLECT_TEMPLATE`, `((0,0),(3,0),
+    (0,2))`), deliberately used ONLY by a new `_random_reflect_shape` (kept
+    separate from the shared `_random_shape` used by rotate/translate/
+    enlarge, so those three topics are completely unaffected) - confirmed via
+    the same direct-simulation approach that `"y = x"` now succeeds at a
+    realistic rate (~1.6% of draws) comfortably within the existing
+    4000-attempt reroll budget, then confirmed again via a real rendered PDF.
+
+    `transform_translate_complete`'s diagram no longer draws a direction arrow
+    for the translation vector (dropped `translation_vector`/`vector_label`
+    from both the question and solution `DiagramSpec` params) - the vector is
+    still stated in the prompt/solution text exactly as before, just not
+    visualised with an arrow. `transform_translate_describe` was reworded to
+    refer to generic "shape A"/"shape B" rather than per-vertex `ABC`/`A'B'C'`
+    names, with both diagrams now passed an all-empty label list per vertex -
+    confirmed (rather than assumed) that `draw_grid_transformation`'s existing
+    "empty label = no text drawn, dot only" behaviour renders correctly with
+    zero `diagrams.py` changes needed, exactly as a prior session's research
+    had anticipated.
+
+    Central verification: full backend suite grew from 930 to 935 tests (new
+    tests in `test_transformations.py` covering the tier-weighted mirror pool,
+    the compact-triangle fix, and the no-arrow/no-label diagram changes);
+    frontend unaffected (61/61). No topic count change (still 296). Every
+    changed topic was rendered and visually inspected, and the review PDFs
+    were regenerated (296 question pages, unchanged; 304 answer pages, up by
+    one from step 38's 303) and sent back to the user.
+
+    **This closed out the entire 6-phase Geometry review-feedback batch** -
+    every phase in the plan file is now done, committed, and pushed.
 
 ## Environment gotchas (Windows, this machine specifically)
 
