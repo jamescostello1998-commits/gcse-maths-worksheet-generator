@@ -12,51 +12,68 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-Step 38 handled a full batch of Ratio & Proportion review feedback (6 named items,
-`best_buys` through `direct_proportion`) — see its chronology entry. Freshly regenerated
-review PDFs reflecting all of it
+Step 39 (in progress across sessions — see its chronology entry for full detail) is
+executing a large, explicitly-phased Geometry review-feedback batch from a plan file at
+`C:\Users\James\.claude\plans\adaptive-coalescing-gosling.md`. **That plan file is the
+authoritative source for exactly what's done and what's left** — it has its own "Status"
+section (updated at the end of session 1) marking every item done/not-done with file-level
+detail, so read it directly rather than re-deriving scope from this summary. In short:
+
+- **Phases 1, 2, 3 are DONE** (cross-cutting diagram/engine fixes; the rounding-precision
+  randomization engine; Area & Perimeter topic fixes) — 3 commits, pushed.
+- **Phase 4 (Angles, Pythagoras, Trigonometry) is next** — the plan file notes most of it
+  was actually already completed as a side effect of Phase 1's engine work (confirmed via
+  render at the time); only `angles_polygon_interior_foundation`'s conditional-diagram
+  item is genuinely unstarted. Read the plan file's Phase 4 section first — it already
+  says exactly which sub-items are done vs not.
+- **Phases 5, 6 are not started** (Vectors/Congruence/Circle Theorems/Nets/Plans/Cube;
+  Transformations/Bearings) — same caveat, the plan file's Phase 5 section already marks
+  2 of its 8 items as incidentally completed during Phase 1 too.
+
+Freshly regenerated review PDFs reflecting Phase 3
 (`backend/all_topics_review_questions.pdf` / `all_topics_review_answers.pdf` — same
 fixed-seed script, `backend/scripts/generate_review_pdfs.py`, deliberately untracked) were
-sent back at the end of step 38. The user is continuing their topic-by-topic review and
-will come back with further batches of feedback — **the next session's actual work is
-whatever concrete changes they list next**, following the same pattern as steps 35-38:
+sent back at the end of that phase. Continue straight into Phase 4 (or whichever phase the
+user wants) using the same session pattern already established across Phases 1-3:
 
-1. Read the actual current generator code for anything named in the feedback before
-   assuming what it does — several step-35/36 items turned out to need a different fix
-   than the literal wording suggested (e.g. step 36's "not a horizontal fraction" items
-   needed the `\frac{}{}` marker, not a wording change; "composite shape" needed a real
-   drawable L-shape, not just a renamed prompt).
+1. Read the plan file's section for the phase you're starting — it already has exact
+   file/function/line references and confirmed scope decisions, so you shouldn't need to
+   re-research from scratch (re-confirm line numbers if a lot has changed since, though).
 2. Check whether a request is really an engine-level fix — touch
    `app/pdf/mathtext.py`/`diagrams.py`/`fraction_images.py`/`radical_images.py`/
-   `recurring_decimal_images.py`/`app/pdf/styles.py` once and it benefits every topic
-   that uses the same convention — before treating it as a one-topic content tweak. Grep
-   for the same pattern elsewhere in `app/topics/` before assuming a fix is topic-local —
-   step 36's "fix the fraction line" request turned out to affect **12 files and ~90
-   individual lines** across the whole codebase, found only via a systematic audit, not
-   by fixing the one topic named in the feedback.
+   `recurring_decimal_images.py`/`app/pdf/styles.py`/`app/topics/rounding.py` once and it
+   benefits every topic that uses the same convention — before treating it as a one-topic
+   content tweak. This is exactly how Phases 1-2 worked (a diagrams.py fix like the
+   trig-triangle label repositioning fixed `trig_missing_side_foundation`, `sine_rule`,
+   `cosine_rule`, `triangle_area`, and `exact_trig_values_triangles` all at once).
 3. Render the actual PDF and look closely before calling anything done — nearly every
-   real bug found in this project's history (including at least four in step 36 alone —
-   see its chronology entry) was caught this way, never by the unit tests alone. See
-   "Verifying new topics visually" below. Step 36 specifically found that fixing a
-   flat-slash fraction into a real `\frac{}{}` image can itself introduce a NEW visual
-   bug (the image can be taller than the surrounding line and overlap the text above it)
-   that only shows up on rendered output, never in a unit test — if you add more
-   `\frac{}{}` markers to dense/multi-fraction lines, render and check.
-4. Re-run the script (`.venv\Scripts\python.exe -m scripts.generate_review_pdfs` from
+   real bug found in Phases 1-3 (a reflex-angle sector arc, several label-overlap bugs in
+   both new and pre-existing diagrams, a radical-image regex gap, two real regressions in
+   `bell_tasks`/Practice Tests) was caught this way, never by the unit tests alone. See
+   "Verifying new topics visually" below.
+4. After a diagram param shape changes (like `area_mixed_compound`'s did in step 39),
+   check whether the frozen Practice Test JSON (`backend/app/practice_tests/data/*.json`)
+   references it — if so, regenerate via `python -m app.practice_tests.build` or the
+   renderer will crash on old frozen diagrams. Also check `bell_tasks`' own tests if a
+   topic's prompt text becomes less distinguishing (its "5 distinct questions" test had to
+   be taught to also compare diagram image bytes, not just text, in step 39).
+5. Re-run the script (`.venv\Scripts\python.exe -m scripts.generate_review_pdfs` from
    `backend/`) to regenerate both PDFs after making changes, and send the fresh pair
-   back to the user for their next comparison pass.
+   back to the user for their next comparison pass — do this at the end of each phase,
+   not just at the very end of the whole batch.
 
-All work through step 38 is committed, pushed, and already part of the open PR
-(`gh pr view 3` or the repo's PR list — pushing to this branch updates it automatically,
+All work through step 39 (Phases 1-3) is committed, pushed, and already part of the open
+PR (`gh pr view 3` or the repo's PR list — pushing to this branch updates it automatically,
 no separate action needed). The PR has not been merged yet, so check its status before
 assuming `master` already has any of this. 296 topics total (unchanged since step 33 —
-steps 35-38 were rendering/wording/formatting fixes, no new or retired topics), backend
-suite 892/892, frontend 61/61, no known bugs.
+step 39 so far, like steps 35-38, is entirely rendering/wording/diagram/formatting fixes,
+no new or retired topics), backend suite 912/912, frontend 61/61, no known bugs.
 
-If the user hasn't given new feedback yet, check "Ideas for a future session" (bottom of
-this file) for candidate follow-ups (the remaining medium-confidence OCR-spec gaps from
-step 32's audit, the remaining medium/low-confidence AQA-spec gaps from step 31's audit,
-stem-and-leaf diagrams, standard deviation, a handful of lower-confidence
+If the user hasn't given new Geometry-batch feedback and Phases 4-6 are somehow already
+finished, check "Ideas for a future session" (bottom of this file) for candidate follow-ups
+(the remaining medium-confidence OCR-spec gaps from step 32's audit, the remaining
+medium/low-confidence AQA-spec gaps from step 31's audit, stem-and-leaf diagrams, standard
+deviation, a handful of lower-confidence
 curriculum-audit candidates, saved worksheet history, deployment, a KS3 Bell Tasks tier,
 the full language-variety rollout beyond the 4 files step 35 piloted it on, etc.), or ask
 directly what they'd like to work on next.
@@ -3036,6 +3053,169 @@ fixes), is committed and pushed (see `git log`).
     question pages, unchanged; 303 answer pages, up from 302 - expected, since the two
     similar-shapes topics' worked solutions now include a diagram) and sent back to the
     user.
+
+39. New session, a large Geometry review-feedback batch (~35 named items across
+    diagrams/wording/behaviour, plus several items explicitly marked "change
+    throughout" meaning all 296 topics, not just Geometry) — by far the largest
+    single batch since step 34's review process began, comparable in scope to the
+    biggest past multi-session phases (steps 23-27, 31, 32, 36). Two items were
+    ambiguous enough to need clarification up front (resolved via `AskUserQuestion`):
+    the rounding-instruction change is a **real behavioural change** (each applicable
+    question randomly picks 1 dp/2 dp/3 sig figs and the actual answer is rounded to
+    that precision, not just a wording swap), and `congruent_triangle_proof_foundation`
+    redesigns to a lettered multiple-choice format. Per the user's explicit choice,
+    the batch was split into 6 phases (cross-cutting engine work first, then named
+    topic fixes grouped by area) and planned via `EnterPlanMode`, with the full plan
+    (including exact file/function/line references from research) written to
+    `C:\Users\James\.claude\plans\adaptive-coalescing-gosling.md` — kept as the
+    authoritative, continuously-updated tracker across sessions rather than
+    duplicated in full here (see "Where to pick up next" above). **This session
+    completed Phases 1-3**; Phases 4-6 are picked up in a future session.
+
+    **Phase 1 (cross-cutting diagram/engine fixes, all in `app/pdf/diagrams.py`
+    unless noted)**: larger angle-label font size app-wide; `_not_to_scale`
+    neutered to a no-op so "Diagram NOT accurately drawn" no longer renders anywhere
+    (kept as a real function, not deleted, for easy re-enabling); double-chevron
+    arrow marks added to `draw_parallel_lines`; `_north_arrow`'s length constant
+    increased (fixes both bearings topics via the one shared default);
+    `draw_sector` reworked (dropped the dashed full-circle outline, enlarged the
+    sector, added a real angle arc); `draw_trapezium`'s label-overlap fixed;
+    `draw_cuboid` gained an `is_cube` flag (square front face, wired into
+    `volume_surface_area_cube`) and a `vertex_labels` param (A-H lettering, wired
+    into `pythagoras_3d`/`trig_3d`); `draw_vector_triangle` gained direction
+    arrowheads; formula preamble boxes (reusing the `TopicDefinition.preamble_lines`
+    mechanism from `kinematics_suvat`, step 36) added to the 6 cone/sphere/pyramid/
+    frustum/compound-3D topics; "right-angled triangle" wording removed from
+    `trigonometry.py`/`exact_trig_values.py` prompts where the diagram already shows
+    the right-angle marker; Pythagoras topics switched to a consistent "find x"
+    convention (diagram unknown label + prompt both say "x" instead of "?"/
+    descriptive wording) and "legs" renamed to "sides" throughout `pythagoras.py`/
+    `solids_prisms.py`/`congruent_triangle_proof.py`.
+
+    Rendering during this phase's own checkpoint found and fixed 4 real bugs, none
+    caught by unit tests: (1) `draw_sector`'s new angle arc used `_angle_arc`, which
+    always takes the shortest of the two possible sweeps between two rays - wrong
+    for a sector, whose own angle is routinely reflex (>180°), drawing the
+    complementary arc outside the wedge instead; fixed with a direct `ArcPath.addArc`
+    matching the wedge's own sweep. (2) The same rework's narrow-angle labels (<40°)
+    collided with the sector's own radius label, which always anchors near the same
+    "top" ray tip the bisector approaches for a narrow angle; fixed by placing a
+    narrow angle's label *behind* the vertex (opposite the wedge's own opening
+    direction) instead of along the bisector. (3) `draw_trig_triangle`'s angle label
+    used a fixed `(dx, dy)` offset from vertex B that, for some adjacent/opposite
+    ratios, landed close enough to the hypotenuse to visibly overlap it (this is the
+    exact "overlap on angle size and shape" bug the user flagged for
+    `trig_missing_side_foundation`, which shares this diagram kind, and it also
+    fixed `sine_rule`/`cosine_rule`/`triangle_area`/`exact_trig_values_triangles`
+    for free via the shared `draw_general_triangle`/`draw_trig_triangle` functions)
+    - fixed with a centroid-direction push (same fix pattern already established for
+    `draw_general_triangle`'s own angle labels). (4) The new cuboid diagonal label
+    (`"?"`) sat at the exact midpoint of the diagonal, which - once vertex letters
+    were added - put it right on top of vertex D (a hidden-vertex dashed-edge
+    cluster); fixed by moving the label 60% of the way along the diagonal instead
+    of 50%.
+
+    **Phase 2 (rounding-precision randomization engine)**: confirmed via a fresh
+    grep that the "always 3 significant figures" pattern was **not centralized** -
+    ~50+ hand-written occurrences across 11 files, no shared helper. Built
+    `app/topics/rounding.py` (a `pick_rounding(rng) -> RoundingSpec` returning one
+    of "1 decimal place"/"2 decimal places"/"3 significant figures" plus a
+    Decimal-based `round_fn` that avoids the scientific-notation display bug already
+    documented elsewhere in this file), proved the pattern directly on
+    `trigonometry.py` and `area_perimeter.py` (two different existing verification
+    styles), then rolled out to the remaining 7 files via 3 parallel background
+    agents (`solids_curved_compound.py` alone; `solids_cylinders_cones.py` +
+    `solids_3d_trig.py`; `bearings.py` + `substitution.py` + `triangle_rules.py`),
+    each given the exact proven pattern and told to decouple display rounding from
+    verification (compare full-precision values via two computation paths, never an
+    already-rounded one) rather than just swapping the display text. Deliberately
+    left untouched: angle answers (always 1 d.p. by real exam convention, never
+    swappable to significant figures), the standard-form mantissa's own "round to 3
+    s.f." convention (part of standard form's own notation, not a final-answer
+    instruction), and the `rounding_to_significant_figures` topic itself (teaches
+    the skill, wording changes would undermine it). One agent found and flagged
+    (rather than fixed, correctly out of its assigned scope) a real pre-existing
+    bug: `mathtext.py`'s radical regex only matched bare-integer radicands, so an
+    intermediate 4-s.f. decimal like `bearings.py`'s `ac_sq_str` (e.g. "205.1")
+    rendered with only "205" under the radical bar and ".1" stranded as plain text
+    right after it - fixed directly in this session by extending the regex to
+    `√(?P<radn>\d+(?:\.\d+)?)`, confirmed via a real rendered PDF (`√591.1` now
+    fully covered) and a new regression test.
+
+    **Phase 3 (Area & Perimeter topics)**: stripped restated prose from every area
+    topic whose diagram already carries the needed measurement(s) -
+    `area_rectangle`, `area_triangle` (no redesign, per the confirmed clarifying
+    answer - just render-verified for overlap), `area_composite_rectangles`,
+    `area_parallelogram`, `area_trapezium`, `area_circle`/`_foundation`,
+    `arc_length`/`_foundation`, `area_sector`/`_foundation` - e.g. "A rectangle has
+    length X cm and width Y cm. Find its area." became "Find the area of the
+    following rectangle." `area_subtract_compound`/`_foundation` redesigned: a new
+    `shade_frame` mode on `draw_l_shape` (fill-then-erase, the same trick already
+    used by `draw_mixed_compound`'s quarter-circle cut and `draw_venn_diagram`'s
+    "neither" region) shades the remaining region, with exactly 2 real edge labels
+    per shape (outer rectangle + inner hole) replacing the old 4-outer-label-plus-
+    combined-caption style; prompts reworded to "Find the shaded area."
+    `area_mixed_compound` fully reworked from one fixed rectangle+triangle+
+    quarter-circle-cut shape into a genuine 3-piece composite: a rectangle body with
+    a randomly chosen top piece (triangular roof or semicircular dome) and cut piece
+    (quarter-circle corner cut or semicircular edge notch) - 4 real combinations,
+    each independently verified (full-precision cross-check via a second π source,
+    same discipline as every other topic in this file) and wired into the new Phase
+    2 rounding engine.
+
+    Rendering found and fixed 3 more real bugs in this phase: (1) a narrow inner
+    hole (small `ih_s`) made the new shaded L-shape's 2 stacked inner labels cross
+    the hole's own top/bottom edges - fixed with an adaptive layout (side-by-side
+    instead of stacked, smaller font, when the hole is too short to stack). (2) The
+    plain `draw_circle`'s radius label sat directly on the radius line itself (a
+    pre-existing bug, only now consequential since the label is often the *only*
+    place the radius appears once the prose was stripped) - fixed with more vertical
+    clearance. (3) The new `draw_mixed_compound`'s own labels needed two rounds of
+    fixing: the triangular-roof label used a fixed offset that crossed the sloped
+    roof edge for a shallow/wide roof (fixed with a proper outward-perpendicular-
+    from-the-edge offset, the same technique already used for `draw_trig_triangle`'s
+    hypotenuse label this session), and the semicircular-dome label's fixed offset
+    crossed the dome's own arc for a large-radius dome even after an initial "move
+    it lower" attempt didn't fully solve it - the robust fix was moving the label
+    entirely outside the dome, into the always-clear canvas margin above the apex,
+    rather than trying to find a horizontal offset that works for every dome size.
+    Also fixed, matching the exact overlap the user originally flagged for
+    `area_triangle`: `draw_triangle_area`'s height label used a fixed offset from
+    the dashed height line that crossed the triangle's own sloped right edge for a
+    narrow/tall triangle (computed algebraically that for a sufficiently narrow
+    triangle there is *no* position along that edge with enough horizontal
+    clearance) - fixed by moving the label entirely outside the triangle, to the
+    right of its widest point, matching the same "guaranteed clear space" principle
+    used for the dome fix.
+
+    This phase's changes also surfaced two real regressions, both found and fixed
+    via the full test suite rather than visual inspection: `bell_tasks`' own
+    "5 distinct questions across the week" test assumed prompt text alone proves two
+    questions differ, which broke once `area_rectangle`'s prompt stopped repeating
+    its numbers (two different rectangles can now share the identical prompt text,
+    distinguished only by their diagram) - fixed by teaching the test to also
+    compare each box's embedded diagram image bytes (matched to its box via
+    position, since `diagram_rect` always places a box's picture within that box's
+    own cell bounds), not just text - a fix that will keep working as more topics
+    get the same prose-stripping treatment in future phases. Separately,
+    `area_mixed_compound`'s diagram param shape change (`top_kind`/`cut_kind` now
+    required, where the old shape had neither) made the frozen Practice Test JSON's
+    saved diagrams for that topic unrenderable - fixed by regenerating all 60 papers
+    via `python -m app.practice_tests.build` (confirmed still exactly 100 marks each
+    afterward).
+
+    Central verification after each phase: full backend suite grew from 892 to 912
+    across the 3 phases (Phase 1 added no new tests - pure diagram/wording work, no
+    new tests needed beyond updating a couple of existing assertions in
+    `test_pythagoras.py`; Phase 2 added the new `test_rounding.py` plus a
+    rounding-variety test per touched file; Phase 3 added mixed-compound variety/
+    combination coverage), frontend unaffected throughout (61/61 - no frontend
+    files touched this session). No topic count
+    change (296, unchanged - this batch is entirely rendering/wording/diagram/
+    verification-precision fixes to existing topics). Every changed topic was
+    rendered and visually inspected before considering its phase done, and the
+    review PDFs (`generate_review_pdfs.py`) were regenerated and sent back to the
+    user after each phase, not just at the end.
 
 ## Environment gotchas (Windows, this machine specifically)
 
