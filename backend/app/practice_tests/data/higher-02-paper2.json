@@ -43,11 +43,11 @@
     },
     {
       "topic_id": "simplifying_indices_challenging",
-      "prompt": "Simplify 9^(1/2) × 9^-1, giving your answer as a fraction where necessary.",
+      "prompt": "Fully simplify 9^(1/2) × 9^-1, giving your answer as a fraction where necessary.",
       "solution_steps": [
         "9^(1/2) is the square root of 9, which is 3, so 9^(1/2) = 3^1",
-        "9^-1 = 1/9^1 = 1/3^2",
-        "9^(1/2) × 9^-1 = 3^1 × 1/3^2 = 3^(1-2) = 3^-1",
+        "9^-1 = \\frac{1}{9¹} = \\frac{1}{3²}",
+        "9^(1/2) × 9^-1 = 3^1 × \\frac{1}{3²} = 3^(1-2) = 3^-1",
         "3^-1 = 1/3"
       ],
       "final_answer": "1/3",
@@ -60,12 +60,12 @@
         },
         {
           "code": "M1",
-          "description": "9^-1 = 1/9^1 = 1/3^2",
+          "description": "9^-1 = \\frac{1}{9¹} = \\frac{1}{3²}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "9^(1/2) × 9^-1 = 3^1 × 1/3^2 = 3^(1-2) = 3^-1",
+          "description": "9^(1/2) × 9^-1 = 3^1 × \\frac{1}{3²} = 3^(1-2) = 3^-1",
           "marks": 1
         },
         {
@@ -84,7 +84,7 @@
     },
     {
       "topic_id": "fractions_mixed_number_arithmetic",
-      "prompt": "Work out 2 6/7 - 2 1/3. Give your answer as a mixed number.",
+      "prompt": "Evaluate 2 6/7 - 2 1/3. Give your answer as a mixed number.",
       "solution_steps": [
         "Convert to improper fractions: 2 6/7 = 20/7, 2 1/3 = 7/3",
         "Subtract the improper fractions: 20/7 - 7/3 = 11/21",
@@ -119,9 +119,9 @@
     },
     {
       "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal 0.6(81) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.6}{81} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.6(81)",
+        "Let x = \\recur{0.6}{81}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
         "This gives x = 675/990",
         "Simplify: 15/22"
@@ -131,7 +131,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.6(81)",
+          "description": "Let x = \\recur{0.6}{81}",
           "marks": 1
         },
         {
@@ -571,16 +571,16 @@
     },
     {
       "topic_id": "ratio_difference_higher",
-      "prompt": "Amounts are in the ratio 7:5:9. The difference between the largest and smallest amount is 12. Find all three amounts and their total.",
+      "prompt": "s : t : u = 7 : 5 : 9. u - t = 12. Find s, t and u, and their total.",
       "solution_steps": [
         "Difference in parts = 9 - 5 = 4 parts",
         "Value of one part = 12 ÷ 4 = 3",
-        "Amount 1 = 7 × 3 = 21",
-        "Amount 2 = 5 × 3 = 15",
-        "Amount 3 = 9 × 3 = 27",
-        "Total = 21 + 15 + 27 = 63"
+        "s = 7 × 3 = 21",
+        "t = 5 × 3 = 15",
+        "u = 9 × 3 = 27",
+        "s + t + u = 21 + 15 + 27 = 63"
       ],
-      "final_answer": "21 : 15 : 27 (total 63)",
+      "final_answer": "s = 21, t = 15, u = 27 (total 63)",
       "marks": 5,
       "mark_scheme": [
         {
@@ -595,17 +595,17 @@
         },
         {
           "code": "M1",
-          "description": "Amount 1 = 7 × 3 = 21",
+          "description": "s = 7 × 3 = 21",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Amount 2 = 5 × 3 = 15 Amount 3 = 9 × 3 = 27 Total = 21 + 15 + 27 = 63",
+          "description": "t = 5 × 3 = 15 u = 9 × 3 = 27 s + t + u = 21 + 15 + 27 = 63",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "21 : 15 : 27 (total 63) oe",
+          "description": "s = 21, t = 15, u = 27 (total 63) oe",
           "marks": 1
         }
       ],
@@ -643,12 +643,12 @@
     },
     {
       "topic_id": "combined_transformations",
-      "prompt": "Shape ABC is rotated 180° about the centre (1, -4) to give shape A'B'C'. Shape A'B'C' is then rotated 90° anticlockwise about the same centre to give shape A''B''C''. Describe fully the single transformation that maps ABC directly onto A''B''C''.",
+      "prompt": "Shape ABCDEF is rotated 90° anticlockwise about the centre (0, 0) to give shape A'B'C'D'E'F'. Shape A'B'C'D'E'F' is then rotated 180° about the same centre to give shape A''B''C''D''E''F''. Describe fully the single transformation that maps ABCDEF directly onto A''B''C''D''E''F''.",
       "solution_steps": [
         "Two rotations about the same centre combine into a single rotation about that centre, by the sum of the two angles.",
-        "Measuring both turns anticlockwise: 180° + 90° = 270°, which is the same as 90° clockwise."
+        "Measuring both turns anticlockwise: 90° + 180° = 270°, which is the same as 90° clockwise."
       ],
-      "final_answer": "Rotation 90° clockwise about (1, -4)",
+      "final_answer": "Rotation 90° clockwise about (0, 0)",
       "marks": 3,
       "mark_scheme": [
         {
@@ -658,12 +658,12 @@
         },
         {
           "code": "M1",
-          "description": "Measuring both turns anticlockwise: 180° + 90° = 270°, which is the same as 90° clockwise.",
+          "description": "Measuring both turns anticlockwise: 90° + 180° = 270°, which is the same as 90° clockwise.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Rotation 90° clockwise about (1, -4) oe",
+          "description": "Rotation 90° clockwise about (0, 0) oe",
           "marks": 1
         }
       ],
@@ -676,41 +676,71 @@
           "y_max": 8,
           "original_vertices": [
             [
-              -1,
-              -3
+              3,
+              2
             ],
             [
-              4,
-              -3
+              7,
+              2
             ],
             [
-              0,
-              1
+              7,
+              4
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              7
+            ],
+            [
+              3,
+              7
             ]
           ],
           "original_labels": [
             "A",
             "B",
-            "C"
+            "C",
+            "D",
+            "E",
+            "F"
           ],
           "image_vertices": [
             [
               2,
-              -2
+              -3
             ],
             [
               2,
               -7
             ],
             [
-              6,
+              4,
+              -7
+            ],
+            [
+              4,
+              -5
+            ],
+            [
+              7,
+              -5
+            ],
+            [
+              7,
               -3
             ]
           ],
           "image_labels": [
             "A''",
             "B''",
-            "C''"
+            "C''",
+            "D''",
+            "E''",
+            "F''"
           ]
         }
       },
@@ -746,7 +776,7 @@
         "kind": "right_triangle",
         "params": {
           "leg1_label": "6 m",
-          "leg2_label": "?",
+          "leg2_label": "x",
           "hyp_label": "16 m"
         }
       },
@@ -754,7 +784,7 @@
     },
     {
       "topic_id": "pythagoras_surd_hypotenuse",
-      "prompt": "A right-angled triangle has legs 13 cm and 14 cm. Find the exact length of the hypotenuse, giving your answer as a simplified surd.",
+      "prompt": "A right-angled triangle has sides 13 cm and 14 cm. Find the exact length of x, giving your answer as a simplified surd.",
       "solution_steps": [
         "c² = a² + b² = 13² + 14² = 169 + 196 = 365",
         "c = √365 = √365 cm (exact form)"
@@ -783,7 +813,7 @@
         "params": {
           "leg1_label": "13 cm",
           "leg2_label": "14 cm",
-          "hyp_label": "?"
+          "hyp_label": "x"
         }
       },
       "solution_diagram": null

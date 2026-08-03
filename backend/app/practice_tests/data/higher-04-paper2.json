@@ -84,7 +84,7 @@
     },
     {
       "topic_id": "fractions_mixed_number_arithmetic",
-      "prompt": "Work out 4 2/4 - 4 1/6. Give your answer as a mixed number.",
+      "prompt": "Calculate 4 2/4 - 4 1/6. Give your answer as a mixed number.",
       "solution_steps": [
         "Convert to improper fractions: 4 2/4 = 9/2, 4 1/6 = 25/6",
         "Subtract the improper fractions: 9/2 - 25/6 = 1/3",
@@ -119,7 +119,7 @@
     },
     {
       "topic_id": "roots_higher",
-      "prompt": "Simplify √75, giving your answer in the form a√b.",
+      "prompt": "Fully simplify √75, giving your answer in the form a√b.",
       "solution_steps": [
         "Find the largest square factor of 75: 5^2 × 3 = 75",
         "√75 = √(5^2 × 3) = 5√3"
@@ -747,39 +747,39 @@
     },
     {
       "topic_id": "area_mixed_compound",
-      "prompt": "A shape is made from a rectangle 11 cm by 15 cm, with a triangular roof of height 8 cm on top, and a quarter-circle of radius 2 cm cut from one bottom corner. Find the total area, correct to 3 significant figures.",
+      "prompt": "Find the total area of the following compound shape, correct to 2 decimal places.",
       "solution_steps": [
-        "Rectangle area = 11 × 15 = 165 cm²",
-        "Triangle roof area = ½ × 11 × 8 = 44 cm²",
-        "Quarter-circle cut area = (π × 2²) ÷ 4 ≈ 3.14 cm²",
-        "Total area = 165 + 44 - 3.14 ≈ 206 cm²"
+        "Rectangle area = 11 × 8 = 88 cm²",
+        "Triangular top area = ½ × 11 × 8 = 44 cm²",
+        "Semicircular cut area = ½ × π × 4² ≈ 25.1 cm²",
+        "Total area = 88 + 44.0 - 25.1 ≈ 106.87 cm² (2 d.p.)"
       ],
-      "final_answer": "206 cm²",
+      "final_answer": "106.87 cm²",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rectangle area = 11 × 15 = 165 cm²",
+          "description": "Rectangle area = 11 × 8 = 88 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Triangle roof area = ½ × 11 × 8 = 44 cm²",
+          "description": "Triangular top area = ½ × 11 × 8 = 44 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Quarter-circle cut area = (π × 2²) ÷ 4 ≈ 3.14 cm²",
+          "description": "Semicircular cut area = ½ × π × 4² ≈ 25.1 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total area = 165 + 44 - 3.14 ≈ 206 cm²",
+          "description": "Total area = 88 + 44.0 - 25.1 ≈ 106.87 cm² (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "206 cm² oe",
+          "description": "106.87 cm² oe",
           "marks": 1
         }
       ],
@@ -787,20 +787,22 @@
         "kind": "mixed_compound",
         "params": {
           "width": 11,
-          "height": 15,
-          "roof_height": 8,
-          "cut_radius": 2,
+          "height": 8,
+          "top_kind": "triangle",
+          "cut_kind": "semicircle_notch",
           "width_label": "11 cm",
-          "height_label": "15 cm",
-          "roof_label": "8 cm",
-          "cut_label": "2 cm"
+          "height_label": "8 cm",
+          "roof_height": 8,
+          "top_label": "8 cm",
+          "notch_radius": 4,
+          "cut_label": "4 cm"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "area_circle",
-      "prompt": "A circle has radius 5 cm. Find its circumference in terms of π.",
+      "prompt": "Find the circumference of the following circle, in terms of π.",
       "solution_steps": [
         "Circumference = 2 × π × r = 2 × π × 5 = 10π cm",
         "≈ 31.4 cm (3 s.f.)"
@@ -1041,9 +1043,9 @@
         "y = 2x + 6x + 3",
         "Subtract 3 from both sides: y - 3 = 2x + 6x",
         "Factorise the right-hand side: y - 3 = (8)x",
-        "Divide both sides by 8: x = (y - 3)/8"
+        "Divide both sides by 8: x = \\frac{y - 3}{8}"
       ],
-      "final_answer": "x = (y - 3)/8",
+      "final_answer": "x = \\frac{y - 3}{8}",
       "marks": 5,
       "mark_scheme": [
         {
@@ -1063,12 +1065,12 @@
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 8: x = (y - 3)/8",
+          "description": "Divide both sides by 8: x = \\frac{y - 3}{8}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = (y - 3)/8 oe",
+          "description": "x = \\frac{y - 3}{8} oe",
           "marks": 1
         }
       ],

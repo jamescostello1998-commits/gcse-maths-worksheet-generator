@@ -91,7 +91,7 @@
     },
     {
       "topic_id": "surds_multiply_divide",
-      "prompt": "Simplify √250 ÷ √2, giving your answer in the form a√b.",
+      "prompt": "Fully simplify √250 ÷ √2, giving your answer in the form a√b.",
       "solution_steps": [
         "√250 ÷ √2 = √(250/2) = √125",
         "Find the largest square factor of 125: 5^2 × 5 = 125",
@@ -155,15 +155,16 @@
     },
     {
       "topic_id": "rationalise_denominator",
-      "prompt": "Rationalise the denominator of 8/(9 + √14), giving your answer in its simplest form.",
+      "prompt": "Rationalise the denominator of \\frac{8}{9 + √14}, giving your answer in its simplest form.",
       "solution_steps": [
         "Multiply the numerator and denominator by the conjugate of the denominator, (9 - √14):",
-        "8/(9 + √14) = 8(9 - √14) / [(9 + √14)(9 - √14)]",
+        "\\frac{8}{9 + √14}",
+        "= \\frac{8(9 - √14)}{[(9 + √14)(9 - √14)]}",
         "The denominator is a difference of two squares: 9^2 - 14 = 67",
         "The numerator is 8(9 - √14) = 72 - 8√14",
-        "= (72 - 8√14)/67"
+        "= \\frac{72 - 8√14}{67}"
       ],
-      "final_answer": "(72 - 8√14)/67",
+      "final_answer": "\\frac{72 - 8√14}{67}",
       "marks": 5,
       "mark_scheme": [
         {
@@ -173,22 +174,22 @@
         },
         {
           "code": "M1",
-          "description": "8/(9 + √14) = 8(9 - √14) / [(9 + √14)(9 - √14)]",
+          "description": "\\frac{8}{9 + √14}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The denominator is a difference of two squares: 9^2 - 14 = 67",
+          "description": "= \\frac{8(9 - √14)}{[(9 + √14)(9 - √14)]}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The numerator is 8(9 - √14) = 72 - 8√14 = (72 - 8√14)/67",
+          "description": "The denominator is a difference of two squares: 9^2 - 14 = 67 The numerator is 8(9 - √14) = 72 - 8√14 = \\frac{72 - 8√14}{67}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(72 - 8√14)/67 oe",
+          "description": "\\frac{72 - 8√14}{67} oe",
           "marks": 1
         }
       ],
@@ -275,33 +276,33 @@
     },
     {
       "topic_id": "expand_triple_brackets",
-      "prompt": "Expand and simplify: (2x - 2)(-x - 3)(-3x - 1)",
+      "prompt": "Expand and simplify: (4x - 3)(x - 2)(3x - 3)",
       "solution_steps": [
-        "First expand two of the brackets: (2x - 2)(-x - 3) = -2x^2 - 4x + 6",
-        "Multiply the result by (-3x - 1) and collect like terms",
-        "= 6x^3 + 14x^2 - 14x - 6"
+        "First expand two of the brackets: (4x - 3)(x - 2) = 4x^2 - 11x + 6",
+        "Multiply the result by (3x - 3) and collect like terms",
+        "= 12x^3 - 45x^2 + 51x - 18"
       ],
-      "final_answer": "6x^3 + 14x^2 - 14x - 6",
+      "final_answer": "12x^3 - 45x^2 + 51x - 18",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First expand two of the brackets: (2x - 2)(-x - 3) = -2x^2 - 4x + 6",
+          "description": "First expand two of the brackets: (4x - 3)(x - 2) = 4x^2 - 11x + 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the result by (-3x - 1) and collect like terms",
+          "description": "Multiply the result by (3x - 3) and collect like terms",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 6x^3 + 14x^2 - 14x - 6",
+          "description": "= 12x^3 - 45x^2 + 51x - 18",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6x^3 + 14x^2 - 14x - 6 oe",
+          "description": "12x^3 - 45x^2 + 51x - 18 oe",
           "marks": 1
         }
       ],
@@ -429,31 +430,26 @@
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "parabola",
-        "params": {
-          "vertex_label": "(1, -13)"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
       "topic_id": "change_subject_higher",
-      "prompt": "Make x the subject of the formula y = (x + 8)/(x - 3).",
+      "prompt": "Make x the subject of the formula y = \\frac{x + 8}{x - 3}.",
       "solution_steps": [
-        "y = (x + 8)/(x - 3)",
+        "y = \\frac{x + 8}{x - 3}",
         "Multiply both sides by (x - 3): y(x - 3) = x + 8",
         "Expand the bracket: yx - 3y = x + 8",
         "Collect the x-terms on one side: yx - x = 8 + 3y",
         "Factorise: x(y - 1) = 8 + 3y",
-        "Divide both sides by (y - 1): x = (8 + 3y)/(y - 1)"
+        "Divide both sides by (y - 1): x = \\frac{8 + 3y}{y - 1}"
       ],
-      "final_answer": "x = (8 + 3y)/(y - 1)",
+      "final_answer": "x = \\frac{8 + 3y}{y - 1}",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = (x + 8)/(x - 3)",
+          "description": "y = \\frac{x + 8}{x - 3}",
           "marks": 1
         },
         {
@@ -468,12 +464,12 @@
         },
         {
           "code": "M1",
-          "description": "Collect the x-terms on one side: yx - x = 8 + 3y Factorise: x(y - 1) = 8 + 3y Divide both sides by (y - 1): x = (8 + 3y)/(y - 1)",
+          "description": "Collect the x-terms on one side: yx - x = 8 + 3y Factorise: x(y - 1) = 8 + 3y Divide both sides by (y - 1): x = \\frac{8 + 3y}{y - 1}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = (8 + 3y)/(y - 1) oe",
+          "description": "x = \\frac{8 + 3y}{y - 1} oe",
           "marks": 1
         }
       ],

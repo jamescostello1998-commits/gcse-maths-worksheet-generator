@@ -121,6 +121,28 @@ def test_mixed_compound_gives_a_decimal_answer():
         assert "cm²" in q.final_answer
 
 
+def test_mixed_compound_reaches_all_three_rounding_phrasings():
+    rng = random.Random(49)
+    phrasings = {"1 decimal place", "2 decimal places", "3 significant figures"}
+    seen = set()
+    for _ in range(200):
+        q = area_perimeter.generate_area_mixed_compound(Tier.HIGHER, rng)
+        seen |= {p for p in phrasings if p in q.prompt}
+    assert seen == phrasings
+
+
+def test_mixed_compound_reaches_every_top_and_cut_kind_combination():
+    rng = random.Random(50)
+    seen = set()
+    for _ in range(200):
+        q = area_perimeter.generate_area_mixed_compound(Tier.HIGHER, rng)
+        seen.add((q.diagram.params["top_kind"], q.diagram.params["cut_kind"]))
+    assert seen == {
+        ("triangle", "quarter_circle"), ("triangle", "semicircle_notch"),
+        ("semicircle", "quarter_circle"), ("semicircle", "semicircle_notch"),
+    }
+
+
 def test_dedup_keys_vary_per_generator():
     # generate_circle's parameter space is small (13 radii x 2 measures = 26 max
     # distinct keys), so this uses a lower bar than other topic files' equivalent test.

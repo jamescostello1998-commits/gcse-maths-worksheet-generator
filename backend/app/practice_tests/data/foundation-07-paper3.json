@@ -8,7 +8,7 @@
   "questions": [
     {
       "topic_id": "decimals_divide",
-      "prompt": "Work out 5.4 ÷ 0.9.",
+      "prompt": "Evaluate 5.4 ÷ 0.9.",
       "solution_steps": [
         "Multiply both numbers by 10 so the divisor becomes a whole number: 5.4 × 10 = 54, 0.9 × 10 = 9",
         "54 ÷ 9 = 6"
@@ -101,7 +101,7 @@
     },
     {
       "topic_id": "fractions_add_subtract",
-      "prompt": "Work out 4/12 + 1/5. Give your answer as a fraction in its simplest form.",
+      "prompt": "Calculate 4/12 + 1/5. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Find a common denominator: LCM(12, 5) = 60",
         "Convert: 4/12 = 20/60, 1/5 = 12/60",
@@ -142,10 +142,10 @@
     },
     {
       "topic_id": "fractions_divide_foundation",
-      "prompt": "Work out 1/4 ÷ 6/5. Give your answer as a fraction in its simplest form.",
+      "prompt": "Evaluate 1/4 ÷ 6/5. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Keep-change-flip: 1/4 ÷ 6/5 = 1/4 × 5/6",
-        "Multiply: (1×5)/(4×6) = 5/24",
+        "Multiply: \\frac{(1×5)}{(4×6)} = 5/24",
         "Simplify: 5/24"
       ],
       "final_answer": "5/24",
@@ -158,7 +158,7 @@
         },
         {
           "code": "M1",
-          "description": "Multiply: (1×5)/(4×6) = 5/24",
+          "description": "Multiply: \\frac{(1×5)}{(4×6)} = 5/24",
           "marks": 1
         },
         {
@@ -206,11 +206,11 @@
     },
     {
       "topic_id": "fractions_ordering",
-      "prompt": "Write these fractions in order, largest to smallest: 1/2, 4/5, 7/12, 1/8, 1/4",
+      "prompt": "Write these fractions in descending order: 1/2, 4/5, 7/12, 1/8, 1/4",
       "solution_steps": [
         "Convert every fraction to the same denominator, the LCM of 2, 5, 12, 8, 4: 120",
         "Rewrite each fraction over 120: 1/2 = 60/120, 4/5 = 96/120, 7/12 = 70/120, 1/8 = 15/120, 1/4 = 30/120",
-        "Order the numerators from largest to smallest and convert back: 4/5, 7/12, 1/2, 1/4, 1/8"
+        "Order the numerators in descending order and convert back: 4/5, 7/12, 1/2, 1/4, 1/8"
       ],
       "final_answer": "4/5, 7/12, 1/2, 1/4, 1/8",
       "marks": 4,
@@ -227,7 +227,7 @@
         },
         {
           "code": "M1",
-          "description": "Order the numerators from largest to smallest and convert back: 4/5, 7/12, 1/2, 1/4, 1/8",
+          "description": "Order the numerators in descending order and convert back: 4/5, 7/12, 1/2, 1/4, 1/8",
           "marks": 1
         },
         {
@@ -506,7 +506,7 @@
     },
     {
       "topic_id": "expand_double_brackets_foundation",
-      "prompt": "Expand: (3x + 5)(x + 7)",
+      "prompt": "Expand and simplify: (3x + 5)(x + 7)",
       "solution_steps": [
         "First: 3x × 1x = 3x^2",
         "Outer: 3x × 7 = 21x",
@@ -583,11 +583,11 @@
     },
     {
       "topic_id": "solving_inequalities_foundation",
-      "prompt": "Solve the inequality: x/4 + 4 ≤ -11",
+      "prompt": "Solve the inequality: \\frac{x}{4} + 4 ≤ -11",
       "solution_steps": [
-        "x/4 + 4 ≤ -11",
+        "\\frac{x}{4} + 4 ≤ -11",
         "Subtract 4 from both sides:",
-        "x/4 ≤ -15",
+        "\\frac{x}{4} ≤ -15",
         "Multiply both sides by 4:",
         "x ≤ -60"
       ],
@@ -596,7 +596,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "x/4 + 4 ≤ -11",
+          "description": "\\frac{x}{4} + 4 ≤ -11",
           "marks": 1
         },
         {
@@ -606,7 +606,7 @@
         },
         {
           "code": "M1",
-          "description": "x/4 ≤ -15",
+          "description": "\\frac{x}{4} ≤ -15",
           "marks": 1
         },
         {
@@ -712,7 +712,7 @@
     },
     {
       "topic_id": "direct_proportion",
-      "prompt": "7 rulers cost £5.18. How much would 14 rulers cost?",
+      "prompt": "If 7 rulers cost £5.18, how much would 14 rulers cost?",
       "solution_steps": [
         "Unit value = £5.18 ÷ 7 = £0.74",
         "Answer = £0.74 × 14 = £10.36"
@@ -783,7 +783,7 @@
     },
     {
       "topic_id": "pythagoras_hypotenuse_decimal",
-      "prompt": "A right-angled triangle has legs 13 cm and 12 cm. Find the length of the hypotenuse, correct to 1 decimal place.",
+      "prompt": "A right-angled triangle has sides 13 cm and 12 cm. Find the length of x, correct to 1 decimal place.",
       "solution_steps": [
         "c² = a² + b² = 13² + 12² = 169 + 144 = 313",
         "c = √313 ≈ 17.7 cm (1 d.p.)"
@@ -812,7 +812,7 @@
         "params": {
           "leg1_label": "13 cm",
           "leg2_label": "12 cm",
-          "hyp_label": "?"
+          "hyp_label": "x"
         }
       },
       "solution_diagram": null
@@ -869,7 +869,7 @@
     },
     {
       "topic_id": "pythagoras_hypotenuse_triple",
-      "prompt": "A right-angled triangle has legs 60 cm and 63 cm. Find the length of the hypotenuse.",
+      "prompt": "A right-angled triangle has sides 60 cm and 63 cm. Find the length of x.",
       "solution_steps": [
         "c² = a² + b² = 60² + 63² = 3600 + 3969 = 7569",
         "c = √7569 = 87"
@@ -898,17 +898,17 @@
         "params": {
           "leg1_label": "60 cm",
           "leg2_label": "63 cm",
-          "hyp_label": "?"
+          "hyp_label": "x"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "area_circle_foundation",
-      "prompt": "A circle has radius 12 cm. Find its circumference, correct to 3 significant figures.",
+      "prompt": "Find the circumference of the following circle, correct to 1 decimal place.",
       "solution_steps": [
         "Circumference = 2 × π × r = 2 × π × 12",
-        "= 75.4 cm (3 s.f., using a calculator value of π)"
+        "= 75.4 cm (1 d.p., using a calculator value of π)"
       ],
       "final_answer": "75.4 cm",
       "marks": 3,
@@ -920,7 +920,7 @@
         },
         {
           "code": "M1",
-          "description": "= 75.4 cm (3 s.f., using a calculator value of π)",
+          "description": "= 75.4 cm (1 d.p., using a calculator value of π)",
           "marks": 1
         },
         {

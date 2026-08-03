@@ -8,9 +8,9 @@
   "questions": [
     {
       "topic_id": "recurring_decimal_single_digit",
-      "prompt": "The recurring decimal 0.(3) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.}{3} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(3), so 10x = 3.333... (only one digit repeats, so multiply by 10 to shift it one place)",
+        "Let x = \\recur{0.}{3}, so 10x = 3.333... (only one digit repeats, so multiply by 10 to shift it one place)",
         "Subtract: 10x - x = 3 - 0, so 9x = 3",
         "x = 3/9 = 1/3"
       ],
@@ -19,7 +19,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(3), so 10x = 3.333... (only one digit repeats, so multiply by 10 to shift it one place)",
+          "description": "Let x = \\recur{0.}{3}, so 10x = 3.333... (only one digit repeats, so multiply by 10 to shift it one place)",
           "marks": 1
         },
         {
@@ -43,10 +43,10 @@
     },
     {
       "topic_id": "fractions_simplify",
-      "prompt": "Simplify the fraction 8/56 fully.",
+      "prompt": "Simplify the fraction 8/56.",
       "solution_steps": [
         "Find the highest common factor of 8 and 56: 8",
-        "Divide numerator and denominator by 8: 8÷8 / 56÷8 = 1/7"
+        "Divide numerator and denominator by 8: \\frac{8÷8}{56÷8} = 1/7"
       ],
       "final_answer": "1/7",
       "marks": 3,
@@ -58,7 +58,7 @@
         },
         {
           "code": "M1",
-          "description": "Divide numerator and denominator by 8: 8÷8 / 56÷8 = 1/7",
+          "description": "Divide numerator and denominator by 8: \\frac{8÷8}{56÷8} = 1/7",
           "marks": 1
         },
         {
@@ -72,7 +72,7 @@
     },
     {
       "topic_id": "fractions_add_subtract",
-      "prompt": "Work out 4/5 - 4/9. Give your answer as a fraction in its simplest form.",
+      "prompt": "Evaluate 4/5 - 4/9. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Find a common denominator: LCM(5, 9) = 45",
         "Convert: 4/5 = 36/45, 4/9 = 20/45",
@@ -155,9 +155,9 @@
     },
     {
       "topic_id": "negative_indices",
-      "prompt": "Work out 3^-2. Give your answer as a fraction.",
+      "prompt": "Evaluate 3^-2. Give your answer as a fraction.",
       "solution_steps": [
-        "A negative index means take the reciprocal: 3^-2 = 1/3^2",
+        "A negative index means take the reciprocal: 3^-2 = \\frac{1}{3²}",
         "3^2 = 9",
         "3^-2 = 1/9"
       ],
@@ -166,7 +166,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A negative index means take the reciprocal: 3^-2 = 1/3^2",
+          "description": "A negative index means take the reciprocal: 3^-2 = \\frac{1}{3²}",
           "marks": 1
         },
         {
@@ -193,7 +193,7 @@
       "prompt": "Work out 4/3 ÷ 6/7. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Keep-change-flip: 4/3 ÷ 6/7 = 4/3 × 7/6",
-        "Multiply: (4×7)/(3×6) = 28/18",
+        "Multiply: \\frac{(4×7)}{(3×6)} = 28/18",
         "Simplify: 14/9"
       ],
       "final_answer": "14/9",
@@ -206,7 +206,7 @@
         },
         {
           "code": "M1",
-          "description": "Multiply: (4×7)/(3×6) = 28/18",
+          "description": "Multiply: \\frac{(4×7)}{(3×6)} = 28/18",
           "marks": 1
         },
         {
@@ -225,11 +225,11 @@
     },
     {
       "topic_id": "fractions_ordering",
-      "prompt": "Write these fractions in order, smallest to largest: 1/10, 2/9, 6/7, 1/2, 2/3",
+      "prompt": "Write these fractions in ascending order: 1/10, 2/9, 6/7, 1/2, 2/3",
       "solution_steps": [
         "Convert every fraction to the same denominator, the LCM of 10, 9, 7, 2, 3: 630",
         "Rewrite each fraction over 630: 1/10 = 63/630, 2/9 = 140/630, 6/7 = 540/630, 1/2 = 315/630, 2/3 = 420/630",
-        "Order the numerators from smallest to largest and convert back: 1/10, 2/9, 1/2, 2/3, 6/7"
+        "Order the numerators in ascending order and convert back: 1/10, 2/9, 1/2, 2/3, 6/7"
       ],
       "final_answer": "1/10, 2/9, 1/2, 2/3, 6/7",
       "marks": 4,
@@ -246,7 +246,7 @@
         },
         {
           "code": "M1",
-          "description": "Order the numerators from smallest to largest and convert back: 1/10, 2/9, 1/2, 2/3, 6/7",
+          "description": "Order the numerators in ascending order and convert back: 1/10, 2/9, 1/2, 2/3, 6/7",
           "marks": 1
         },
         {
@@ -473,32 +473,37 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_rectangle",
-      "prompt": "A rectangle has length 3 cm and width 5 cm. Find its area.",
+      "topic_id": "pythagoras_shorter_leg",
+      "prompt": "A right-angled triangle has hypotenuse 148 cm and one side 48 cm. Find the length of x.",
       "solution_steps": [
-        "Area = length × width = 3 × 5 = 15 cm²"
+        "b² = c² - a² = 148² - 48² = 21904 - 2304 = 19600",
+        "b = √19600 = 140"
       ],
-      "final_answer": "15 cm²",
-      "marks": 2,
+      "final_answer": "140 cm",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = length × width = 3 × 5 = 15 cm²",
+          "description": "b² = c² - a² = 148² - 48² = 21904 - 2304 = 19600",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "b = √19600 = 140",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "15 cm² oe",
+          "description": "140 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "rectangle",
+        "kind": "right_triangle",
         "params": {
-          "width": 3,
-          "height": 5,
-          "width_label": "3 cm",
-          "height_label": "5 cm"
+          "leg1_label": "48 cm",
+          "leg2_label": "x",
+          "hyp_label": "148 cm"
         }
       },
       "solution_diagram": null
@@ -546,7 +551,7 @@
     },
     {
       "topic_id": "ratio_1_to_n",
-      "prompt": "Write the ratio 3:7 in the form 1:n.",
+      "prompt": "Write the ratio 3:7 in the form 1:\\plain{n}.",
       "solution_steps": [
         "Divide both parts of the ratio by 3 (the first part) so the first part becomes 1.",
         "3 ÷ 3 = 1, 7 ÷ 3 ≈ 2.33"
@@ -575,7 +580,7 @@
     },
     {
       "topic_id": "ratio_shape_similar_foundation",
-      "prompt": "Shape A and Shape B are similar. A side on shape A is 6 cm. The corresponding side on shape B is 24 cm. Another side on shape A is 5 cm. Find the length of the corresponding side on shape B.",
+      "prompt": "Shape A and Shape B are similar. Find the length of side z.",
       "solution_steps": [
         "Scale factor = 24 ÷ 6 = 4",
         "Corresponding length = 5 × 4 = 20"
@@ -599,19 +604,26 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "a_width_label": "6 cm",
+          "a_height_label": "5 cm",
+          "b_width_label": "24 cm",
+          "b_height_label": "z"
+        }
+      },
       "solution_diagram": null
     },
     {
       "topic_id": "ratio_find_missing_share",
-      "prompt": "Two amounts are in the ratio 7:9. The first amount is 140. Find the total of both amounts.",
+      "prompt": "s : t = 7 : 9. s = 140. What is the value of t?",
       "solution_steps": [
         "Value of one part = 140 ÷ 7 = 20",
-        "Second amount = 9 × 20 = 180",
-        "Total = 140 + 180 = 320"
+        "t = 9 × 20 = 180"
       ],
-      "final_answer": "320",
-      "marks": 4,
+      "final_answer": "180",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
@@ -620,17 +632,12 @@
         },
         {
           "code": "M1",
-          "description": "Second amount = 9 × 20 = 180",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total = 140 + 180 = 320",
+          "description": "t = 9 × 20 = 180",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "320 oe",
+          "description": "180 oe",
           "marks": 1
         }
       ],

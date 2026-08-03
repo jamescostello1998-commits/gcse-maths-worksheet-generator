@@ -7,173 +7,28 @@
   "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "roots_foundation",
-      "prompt": "Without using a calculator, show that √26 lies between two consecutive whole numbers, and state them.",
+      "topic_id": "decimals_add_subtract",
+      "prompt": "Calculate 40.12 + 23.7.",
       "solution_steps": [
-        "5^2 = 25 and 6^2 = 36",
-        "Since 25 < 26 < 36, √26 is between 5 and 6."
+        "Line up the decimal points, padding with a zero so both numbers have the same number of decimal places.",
+        "40.12 + 23.7 = 63.82"
       ],
-      "final_answer": "between 5 and 6",
+      "final_answer": "63.82",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5^2 = 25 and 6^2 = 36",
+          "description": "Line up the decimal points, padding with a zero so both numbers have the same number of decimal places.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Since 25 < 26 < 36, √26 is between 5 and 6.",
+          "description": "40.12 + 23.7 = 63.82",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "between 5 and 6 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "decimals_round_dp",
-      "prompt": "Round 36.353 to 1 decimal place.",
-      "solution_steps": [
-        "Look at the digit after the 1 decimal place we want: 5, so round up.",
-        "36.353 rounded to 1 decimal place = 36.4"
-      ],
-      "final_answer": "36.4",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Look at the digit after the 1 decimal place we want: 5, so round up.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "36.353 rounded to 1 decimal place = 36.4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "36.4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "decimals_ordering",
-      "prompt": "Write these values in order, starting with the smallest: 0.56, 0.47, 11%, 6/25",
-      "solution_steps": [
-        "Convert each value to a decimal: 0.56 = 0.56, 0.47 = 0.47, 11% = 0.11, 6/25 = 0.24",
-        "Order from smallest to largest: 11%, 6/25, 0.47, 0.56"
-      ],
-      "final_answer": "11%, 6/25, 0.47, 0.56",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert each value to a decimal: 0.56 = 0.56, 0.47 = 0.47, 11% = 0.11, 6/25 = 0.24",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Order from smallest to largest: 11%, 6/25, 0.47, 0.56",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "11%, 6/25, 0.47, 0.56 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "standard_form_from_large",
-      "prompt": "Write 5.37 × 10^6 as an ordinary number.",
-      "solution_steps": [
-        "Multiply 5.37 by 10^6, which means moving the decimal point 6 place(s) right.",
-        "5.37 × 10^6 = 5370000"
-      ],
-      "final_answer": "5370000",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiply 5.37 by 10^6, which means moving the decimal point 6 place(s) right.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "5.37 × 10^6 = 5370000",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "5370000 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "negative_ordering",
-      "prompt": "Write these numbers in order, from smallest to largest: 4, -9, 6, 7, 5, 0",
-      "solution_steps": [
-        "Place the numbers on a number line: 4, -9, 6, 7, 5, 0.",
-        "Reading them in order from smallest to largest gives: -9, 0, 4, 5, 6, 7."
-      ],
-      "final_answer": "-9, 0, 4, 5, 6, 7",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Place the numbers on a number line: 4, -9, 6, 7, 5, 0.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Reading them in order from smallest to largest gives: -9, 0, 4, 5, 6, 7.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-9, 0, 4, 5, 6, 7 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "fractions_of_amount",
-      "prompt": "Find 4/6 of 216.",
-      "solution_steps": [
-        "Divide by the denominator: 216 ÷ 6 = 36",
-        "Multiply by the numerator: 36 × 4 = 144"
-      ],
-      "final_answer": "144",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Divide by the denominator: 216 ÷ 6 = 36",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply by the numerator: 36 × 4 = 144",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "144 oe",
+          "description": "63.82 oe",
           "marks": 1
         }
       ],
@@ -182,21 +37,21 @@
     },
     {
       "topic_id": "negative_multiply_divide",
-      "prompt": "Work out -80 ÷ 8.",
+      "prompt": "Work out 108 ÷ (-9).",
       "solution_steps": [
-        "-80 ÷ 8 = -10"
+        "108 ÷ (-9) = -12"
       ],
-      "final_answer": "-10",
+      "final_answer": "-12",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "-80 ÷ 8 = -10",
+          "description": "108 ÷ (-9) = -12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-10 oe",
+          "description": "-12 oe",
           "marks": 1
         }
       ],
@@ -205,27 +60,85 @@
     },
     {
       "topic_id": "number_powers_of_ten",
-      "prompt": "Work out 13.31 × 1000.",
+      "prompt": "Evaluate 635 ÷ 1000.",
       "solution_steps": [
-        "Multiplying by 1000 moves the decimal point 3 places to the right.",
-        "13.31 × 1000 = 13310"
+        "Dividing by 1000 moves the decimal point 3 places to the left.",
+        "635 ÷ 1000 = 0.635"
       ],
-      "final_answer": "13310",
+      "final_answer": "0.635",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiplying by 1000 moves the decimal point 3 places to the right.",
+          "description": "Dividing by 1000 moves the decimal point 3 places to the left.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "13.31 × 1000 = 13310",
+          "description": "635 ÷ 1000 = 0.635",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "13310 oe",
+          "description": "0.635 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "decimals_round_sf",
+      "prompt": "Round 462.318 to 1 significant figure.",
+      "solution_steps": [
+        "Identify the first 1 significant figure of 462.318.",
+        "462.318 rounded to 1 significant figure = 500"
+      ],
+      "final_answer": "500",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Identify the first 1 significant figure of 462.318.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "462.318 rounded to 1 significant figure = 500",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "500 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "estimation_rounding",
+      "prompt": "Work out an estimate for (52.1 × 6.2) ÷ 7.7 by rounding each number to 1 significant figure.",
+      "solution_steps": [
+        "Round each value to 1 significant figure: 52.1 ≈ 50, 6.2 ≈ 6, 7.7 ≈ 8",
+        "(50 × 6) ÷ 8 = 37.5"
+      ],
+      "final_answer": "37.5",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Round each value to 1 significant figure: 52.1 ≈ 50, 6.2 ≈ 6, 7.7 ≈ 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(50 × 6) ÷ 8 = 37.5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "37.5 oe",
           "marks": 1
         }
       ],
@@ -234,33 +147,74 @@
     },
     {
       "topic_id": "standard_form_calculator",
-      "prompt": "Use a calculator to work out (8.3 × 10^-2) ÷ (3.1 × 10^0). Give your answer in standard form, rounded to 3 significant figures if necessary.",
+      "prompt": "Use a calculator to work out (4.5 × 10^-1) ÷ (5.1 × 10^0). Give your answer in standard form, rounded to 3 significant figures if necessary.",
       "solution_steps": [
-        "Divide the mantissas on your calculator: 8.3 ÷ 3.1 = 2.677419",
-        "Subtract the powers of 10: -2 - 0 = -2",
-        "Round the mantissa to 3 significant figures: 2.68 × 10^-2"
+        "Divide the mantissas on your calculator: 4.5 ÷ 5.1 = 0.882353",
+        "Subtract the powers of 10: -1 - 0 = -1",
+        "Renormalise so the mantissa is between 1 and 10: 8.823529 × 10^-2",
+        "Round the mantissa to 3 significant figures: 8.82 × 10^-2"
       ],
-      "final_answer": "2.68 × 10^-2",
+      "final_answer": "8.82 × 10^-2",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Divide the mantissas on your calculator: 4.5 ÷ 5.1 = 0.882353",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract the powers of 10: -1 - 0 = -1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Renormalise so the mantissa is between 1 and 10: 8.823529 × 10^-2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Round the mantissa to 3 significant figures: 8.82 × 10^-2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "8.82 × 10^-2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "recurring_decimal_single_digit",
+      "prompt": "The recurring decimal \\recur{0.}{3} can be written as a fraction. Find this fraction in its simplest form.",
+      "solution_steps": [
+        "Let x = \\recur{0.}{3}, so 10x = 3.333... (only one digit repeats, so multiply by 10 to shift it one place)",
+        "Subtract: 10x - x = 3 - 0, so 9x = 3",
+        "x = 3/9 = 1/3"
+      ],
+      "final_answer": "1/3",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide the mantissas on your calculator: 8.3 ÷ 3.1 = 2.677419",
+          "description": "Let x = \\recur{0.}{3}, so 10x = 3.333... (only one digit repeats, so multiply by 10 to shift it one place)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract the powers of 10: -2 - 0 = -2",
+          "description": "Subtract: 10x - x = 3 - 0, so 9x = 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Round the mantissa to 3 significant figures: 2.68 × 10^-2",
+          "description": "x = 3/9 = 1/3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2.68 × 10^-2 oe",
+          "description": "1/3 oe",
           "marks": 1
         }
       ],
@@ -268,125 +222,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "functions_evaluate",
-      "prompt": "f(x) = 5x - 8. Find the value of x for which f(x) = 9.",
+      "topic_id": "powers_foundation",
+      "prompt": "Simplify (2^3)^2, giving your answer as a single power of 2.",
       "solution_steps": [
-        "5x - 8 = 9",
-        "Add 8 to both sides:",
-        "5x = 17",
-        "Divide both sides by 5:",
-        "x = 17/5"
+        "Multiply the powers: 3 × 2 = 6",
+        "(2^3)^2 = 2^6"
       ],
-      "final_answer": "17/5",
-      "marks": 5,
+      "final_answer": "2^6",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5x - 8 = 9",
+          "description": "Multiply the powers: 3 × 2 = 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add 8 to both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "5x = 17",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by 5: x = 17/5",
+          "description": "(2^3)^2 = 2^6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "17/5 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simultaneous_common_coefficient",
-      "prompt": "Solve the simultaneous equations: 2x + 2y = 14 and 6x + 2y = 38",
-      "solution_steps": [
-        "2x + 2y = 14  (1)",
-        "6x + 2y = 38  (2)",
-        "Subtract the equations to eliminate y: -4x = -24, so x = 6",
-        "Substitute x = 6 into (1): 2y = 2, so y = 1"
-      ],
-      "final_answer": "x = 6, y = 1",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "2x + 2y = 14  (1)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "6x + 2y = 38  (2)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract the equations to eliminate y: -4x = -24, so x = 6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute x = 6 into (1): 2y = 2, so y = 1",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = 6, y = 1 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "linear_multi_step",
-      "prompt": "Solve: 4x + 4 + 2x + 5 = 39",
-      "solution_steps": [
-        "Collect like terms: 4x + 2x = 6x, 4 + 5 = 9",
-        "6x + 9 = 39",
-        "Subtract 9 from both sides:",
-        "6x = 30",
-        "Divide both sides by 6:",
-        "x = 5"
-      ],
-      "final_answer": "5",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Collect like terms: 4x + 2x = 6x, 4 + 5 = 9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "6x + 9 = 39",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 9 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "6x = 30 Divide both sides by 6: x = 5",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "5 oe",
+          "description": "2^6 oe",
           "marks": 1
         }
       ],
@@ -395,33 +252,33 @@
     },
     {
       "topic_id": "expand_single_bracket",
-      "prompt": "Expand: -7(2x + 9)",
+      "prompt": "Expand: -6(-8x - 3)",
       "solution_steps": [
-        "Multiply -7 by 2x: -14x",
-        "Multiply -7 by 9: -63",
-        "Combine: -14x - 63"
+        "Multiply -6 by -8x: 48x",
+        "Multiply -6 by -3: 18",
+        "Combine: 48x + 18"
       ],
-      "final_answer": "-14x - 63",
+      "final_answer": "48x + 18",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply -7 by 2x: -14x",
+          "description": "Multiply -6 by -8x: 48x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply -7 by 9: -63",
+          "description": "Multiply -6 by -3: 18",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Combine: -14x - 63",
+          "description": "Combine: 48x + 18",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-14x - 63 oe",
+          "description": "48x + 18 oe",
           "marks": 1
         }
       ],
@@ -429,128 +286,276 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_straight_line",
-      "prompt": "Complete a table of values for y = 2x - 4 for x = -3 to 3, then plot the graph.",
+      "topic_id": "sequences_term_to_term_rule",
+      "prompt": "Here are the first four terms of a sequence: -3, -6, -12, -24. Describe the term-to-term rule, and find the next term.",
       "solution_steps": [
-        "Table of values for y = 2x - 4:",
-        "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: -10, -8, -6, -4, -2, 0, 2",
-        "Plot each (x, y) point and join them with a single ruled straight line."
+        "Term-to-term rule: multiply by 2",
+        "Next term = -48"
       ],
-      "final_answer": "Straight line: y = 2x - 4",
-      "marks": 5,
+      "final_answer": "Rule: multiply by 2. Next term = -48",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = 2x - 4:",
+          "description": "Term-to-term rule: multiply by 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -3, -2, -1, 0, 1, 2, 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y: -10, -8, -6, -4, -2, 0, 2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
+          "description": "Next term = -48",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Straight line: y = 2x - 4 oe",
+          "description": "Rule: multiply by 2. Next term = -48 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "parallel_lines_equation",
+      "prompt": "A line is parallel to y = -2x + 5 and passes through the point (6, 5). Find the equation of the line.",
+      "solution_steps": [
+        "Parallel lines have the same gradient, so m = -2.",
+        "Substitute (6, 5) into y = -2x + c: 5 = -2×(6) + c, so c = 17",
+        "Equation of the line: y = -2x + 17"
+      ],
+      "final_answer": "y = -2x + 17",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Parallel lines have the same gradient, so m = -2.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute (6, 5) into y = -2x + c: 5 = -2×(6) + c, so c = 17",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Equation of the line: y = -2x + 17",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y = -2x + 17 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_two_step",
+      "prompt": "Solve: 5x + 15 = 65",
+      "solution_steps": [
+        "5x + 15 = 65",
+        "Subtract 15 from both sides:",
+        "5x = 50",
+        "Divide both sides by 5:",
+        "x = 10"
+      ],
+      "final_answer": "10",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "5x + 15 = 65",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 15 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x = 50",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 5: x = 10",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "10 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_brackets_foundation",
+      "prompt": "Solve: 4(3x) = 36",
+      "solution_steps": [
+        "Expand the bracket: 4(3x) = 12x",
+        "12x = 36",
+        "Divide both sides by 12:",
+        "x = 3"
+      ],
+      "final_answer": "3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: 4(3x) = 12x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "12x = 36",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 12:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_distance_time",
+      "prompt": "A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop 10 km away after 15 minutes. They stay at the shop until 20 minutes, then cycle straight back home at a constant speed, arriving home at 50 minutes. Draw a distance-time graph to show this journey, and find the total distance travelled.",
+      "solution_steps": [
+        "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 10 km after 15 minutes.",
+        "Stay at 10 km until 20 minutes.",
+        "Return at a constant speed to 0 km, arriving home at 50 minutes.",
+        "Plot these points and join each stage with a straight line segment.",
+        "Total distance travelled = 10 km out + 10 km back = 20 km"
+      ],
+      "final_answer": "20 km",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 10 km after 15 minutes.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Stay at 10 km until 20 minutes.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Return at a constant speed to 0 km, arriving home at 50 minutes.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot these points and join each stage with a straight line segment. Total distance travelled = 10 km out + 10 km back = 20 km",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "20 km oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "function_graph",
+        "kind": "piecewise_graph",
         "params": {
-          "kind": "linear",
-          "m": 2,
-          "c": -4,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -11,
-          "y_max": 3,
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              15,
+              10
+            ],
+            [
+              20,
+              10
+            ],
+            [
+              50,
+              0
+            ]
+          ],
+          "x_max": 55,
+          "y_max": 12,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)",
           "blank": true
         }
       },
       "solution_diagram": {
-        "kind": "function_graph",
+        "kind": "piecewise_graph",
         "params": {
-          "kind": "linear",
-          "m": 2,
-          "c": -4,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -11,
-          "y_max": 3,
-          "table_points": [
-            [
-              -3,
-              -10
-            ],
-            [
-              -2,
-              -8
-            ],
-            [
-              -1,
-              -6
-            ],
+          "points": [
             [
               0,
-              -4
-            ],
-            [
-              1,
-              -2
-            ],
-            [
-              2,
               0
             ],
             [
-              3,
-              2
+              15,
+              10
+            ],
+            [
+              20,
+              10
+            ],
+            [
+              50,
+              0
             ]
-          ]
+          ],
+          "x_max": 55,
+          "y_max": 12,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)"
         }
       }
     },
     {
-      "topic_id": "change_subject_foundation",
-      "prompt": "Make x the subject of the formula y = 9x + 13.",
+      "topic_id": "sequences_nth_term",
+      "prompt": "Here are the first four terms of a sequence: -8, -3, 2, 7.\nFind an expression for the nth term.",
       "solution_steps": [
-        "y = 9x + 13",
-        "Subtract 13 from both sides: y - 13 = 9x",
-        "Divide both sides by 9: x = (y - 13)/9"
+        "Common difference = 5",
+        "nth term = 5n - 13",
+        "nth term = 5n - 13"
       ],
-      "final_answer": "x = (y - 13)/9",
+      "final_answer": "5n - 13",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = 9x + 13",
+          "description": "Common difference = 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 13 from both sides: y - 13 = 9x",
+          "description": "nth term = 5n - 13",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 9: x = (y - 13)/9",
+          "description": "nth term = 5n - 13",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = (y - 13)/9 oe",
+          "description": "5n - 13 oe",
           "marks": 1
         }
       ],
@@ -558,70 +563,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solving_inequalities_foundation",
-      "prompt": "Solve the inequality: x/3 - 5 > -2",
+      "topic_id": "reverse_percentage_foundation",
+      "prompt": "After a 25% increase, an item costs £50. Find the original price.",
       "solution_steps": [
-        "x/3 - 5 > -2",
-        "Add 5 to both sides:",
-        "x/3 > 3",
-        "Multiply both sides by 3:",
-        "x > 9"
+        "Convert 25% to a multiplier: 1.25 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 50 ÷ 1.25 = 40"
       ],
-      "final_answer": "x > 9",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "x/3 - 5 > -2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add 5 to both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x/3 > 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply both sides by 3: x > 9",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x > 9 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "inverse_proportion",
-      "prompt": "It takes 9 painters 50 hours to paint a fence. Working at the same rate, how long would it take 10 painters?",
-      "solution_steps": [
-        "Constant = 9 × 50 = 450",
-        "Time for 10 painters = 450 ÷ 10 = 45"
-      ],
-      "final_answer": "45 hours",
+      "final_answer": "£40",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Constant = 9 × 50 = 450",
+          "description": "Convert 25% to a multiplier: 1.25 (original × multiplier = new value)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Time for 10 painters = 450 ÷ 10 = 45",
+          "description": "Divide the new value by the multiplier: 50 ÷ 1.25 = 40",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "45 hours oe",
+          "description": "£40 oe",
           "marks": 1
         }
       ],
@@ -629,209 +592,222 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "density",
-      "prompt": "A sculpture has a mass of 271 g and a density of 11 g/cm³. Find its volume, correct to 2 decimal places.",
+      "topic_id": "ratio_shape_similar_foundation",
+      "prompt": "Shape A and Shape B are similar. Find the length of side z.",
       "solution_steps": [
-        "volume = mass ÷ density",
-        "volume = 271 ÷ 11 = 24.64 cm³ (2 d.p.)"
+        "Scale factor = 15 ÷ 6 = 5/2",
+        "Corresponding length = 6 × 5/2 = 15"
       ],
-      "final_answer": "24.64 cm³",
+      "final_answer": "15 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "volume = mass ÷ density",
+          "description": "Scale factor = 15 ÷ 6 = 5/2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "volume = 271 ÷ 11 = 24.64 cm³ (2 d.p.)",
+          "description": "Corresponding length = 6 × 5/2 = 15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "24.64 cm³ oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "direct_proportion",
-      "prompt": "11 notebooks cost £30.58. How much would 2 notebooks cost?",
-      "solution_steps": [
-        "Unit value = £30.58 ÷ 11 = £2.78",
-        "Answer = £2.78 × 2 = £5.56"
-      ],
-      "final_answer": "£5.56",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Unit value = £30.58 ÷ 11 = £2.78",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Answer = £2.78 × 2 = £5.56",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£5.56 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_share_three_part_foundation",
-      "prompt": "Share 126 in the ratio 4:5:5.",
-      "solution_steps": [
-        "Total parts = 4 + 5 + 5 = 14",
-        "Value of one part = 126 ÷ 14 = 9",
-        "Share 1 = 4 × 9 = 36",
-        "Share 2 = 5 × 9 = 45",
-        "Share 3 = 5 × 9 = 45"
-      ],
-      "final_answer": "36 : 45 : 45",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total parts = 4 + 5 + 5 = 14",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Value of one part = 126 ÷ 14 = 9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 4 × 9 = 36",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 5 × 9 = 45 Share 3 = 5 × 9 = 45",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "36 : 45 : 45 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "best_buys",
-      "prompt": "A shop sells orange juice in different sizes: A: £31.20 for 1000ml; B: £36.60 for 1500ml. Which option is the better value for money? Show your working.",
-      "solution_steps": [
-        "Work out the price per 100ml for each option:",
-        "A: £31.20 ÷ 1000 × 100 = 312.00p per 100ml",
-        "B: £36.60 ÷ 1500 × 100 = 244.00p per 100ml",
-        "The lowest price per 100ml is B at 244.00p per 100ml, so B is the best value."
-      ],
-      "final_answer": "B (£36.60 for 1500ml)",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Work out the price per 100ml for each option:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A: £31.20 ÷ 1000 × 100 = 312.00p per 100ml",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "B: £36.60 ÷ 1500 × 100 = 244.00p per 100ml",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The lowest price per 100ml is B at 244.00p per 100ml, so B is the best value.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "B (£36.60 for 1500ml) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "nets_3d_shapes",
-      "prompt": "What 2D shapes make up the net of a cylinder?",
-      "solution_steps": [
-        "Imagine unfolding a cylinder flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
-        "A cylinder's net is made up of: 2 circles and 1 rectangle (the curved surface unrolled flat).",
-        "So the answer is: 2 circles and 1 rectangle (the curved surface unrolled flat)."
-      ],
-      "final_answer": "2 circles and 1 rectangle (the curved surface unrolled flat)",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Imagine unfolding a cylinder flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A cylinder's net is made up of: 2 circles and 1 rectangle (the curved surface unrolled flat).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "So the answer is: 2 circles and 1 rectangle (the curved surface unrolled flat).",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2 circles and 1 rectangle (the curved surface unrolled flat) oe",
+          "description": "15 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "net",
+        "kind": "two_similar_rectangles",
         "params": {
-          "shape": "cylinder"
+          "a_width_label": "6 cm",
+          "a_height_label": "6 cm",
+          "b_width_label": "15 cm",
+          "b_height_label": "z"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "map_scale_drawings",
-      "prompt": "A map has a scale of 1 : 10000. The distance between two towns on the map is 12 cm. Find the real-life distance between the towns, in m.",
+      "topic_id": "percentage_change",
+      "prompt": "Decrease 200 by 25%.",
       "solution_steps": [
-        "The scale 1 : 10000 means 1 cm on the map represents 10000 cm in real life, which is 100 m.",
-        "Real-life distance = 12 × 100 = 1200 m"
+        "Convert 25% to a multiplier: 0.75",
+        "Multiply: 200 × 0.75 = 150"
       ],
-      "final_answer": "1200 m",
+      "final_answer": "150",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The scale 1 : 10000 means 1 cm on the map represents 10000 cm in real life, which is 100 m.",
+          "description": "Convert 25% to a multiplier: 0.75",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Real-life distance = 12 × 100 = 1200 m",
+          "description": "Multiply: 200 × 0.75 = 150",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1200 m oe",
+          "description": "150 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simple_interest",
+      "prompt": "£4800 is invested at a simple interest rate of 2% per year for 3 years. Find the total amount in the account after 3 years.",
+      "solution_steps": [
+        "Simple interest formula: I = P × r × t ÷ 100",
+        "I = 4800 × 2 × 3 ÷ 100 = £288",
+        "Total in the account = P + I = £4800 + £288 = £5088"
+      ],
+      "final_answer": "£5088",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Simple interest formula: I = P × r × t ÷ 100",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "I = 4800 × 2 × 3 ÷ 100 = £288",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total in the account = P + I = £4800 + £288 = £5088",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£5088 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_composite_rectangles",
+      "prompt": "Find the area of this compound shape.",
+      "solution_steps": [
+        "Area of full rectangle = 11 × 22 = 242 cm²",
+        "Area of the cut-out corner = 8 × 15 = 120 cm²",
+        "Area of the shape = 242 - 120 = 122 cm²"
+      ],
+      "final_answer": "122 cm²",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area of full rectangle = 11 × 22 = 242 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of the cut-out corner = 8 × 15 = 120 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of the shape = 242 - 120 = 122 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "122 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "l_shape",
+        "params": {
+          "outer_w": 11,
+          "outer_h": 22,
+          "inner_w": 8,
+          "inner_h": 15,
+          "notch": "corner",
+          "outer_labels": [
+            "11 cm",
+            "22 cm"
+          ],
+          "inner_labels": [
+            "8 cm",
+            "15 cm"
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "construction_angle_bisector",
+      "prompt": "Angle MSD = 76°. Describe, step by step, how to construct the bisector of angle MSD using only a ruler and a pair of compasses.",
+      "solution_steps": [
+        "Open the compasses to any radius and place the point on S (the vertex of the angle).",
+        "Draw an arc that crosses both arms of the angle, at a point on SM and a point on SD.",
+        "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
+        "Draw a straight line from S through the point where the two arcs intersect. This line is the bisector of angle MSD."
+      ],
+      "final_answer": "The straight line from S through the intersection of the two equal-radius arcs bisects angle MSD into two equal angles.",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Open the compasses to any radius and place the point on S (the vertex of the angle).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Draw an arc that crosses both arms of the angle, at a point on SM and a point on SD.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Draw a straight line from S through the point where the two arcs intersect. This line is the bisector of angle MSD.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "The straight line from S through the intersection of the two equal-radius arcs bisects angle MSD into two equal angles. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "map_scale_drawings",
+      "prompt": "A map has a scale of 1 : 50000. The distance between two towns on the map is 2 cm. Find the real-life distance between the towns, in m.",
+      "solution_steps": [
+        "The scale 1 : 50000 means 1 cm on the map represents 50000 cm in real life, which is 500 m.",
+        "Real-life distance = 2 × 500 = 1000 m"
+      ],
+      "final_answer": "1000 m",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The scale 1 : 50000 means 1 cm on the map represents 50000 cm in real life, which is 500 m.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Real-life distance = 2 × 500 = 1000 m",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1000 m oe",
           "marks": 1
         }
       ],
@@ -840,13 +816,13 @@
     },
     {
       "topic_id": "trig_missing_angle_foundation",
-      "prompt": "In the right-angled triangle shown, find the angle x, correct to 1 decimal place.",
+      "prompt": "In the triangle shown, find the angle x, correct to 1 decimal place.",
       "solution_steps": [
         "Use tan, since we know two of the three sides.",
-        "tan(x) = 14 ÷ 5",
-        "x = tan^-1(14 ÷ 5) = 70.3° (1 d.p.)"
+        "tan(x) = 15 ÷ 10",
+        "x = tan^-1(15 ÷ 10) = 56.3° (1 d.p.)"
       ],
-      "final_answer": "70.3°",
+      "final_answer": "56.3°",
       "marks": 4,
       "mark_scheme": [
         {
@@ -856,25 +832,25 @@
         },
         {
           "code": "M1",
-          "description": "tan(x) = 14 ÷ 5",
+          "description": "tan(x) = 15 ÷ 10",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = tan^-1(14 ÷ 5) = 70.3° (1 d.p.)",
+          "description": "x = tan^-1(15 ÷ 10) = 56.3° (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "70.3° oe",
+          "description": "56.3° oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "trig_triangle",
         "params": {
-          "adjacent_label": "5 cm",
-          "opposite_label": "14 cm",
+          "adjacent_label": "10 cm",
+          "opposite_label": "15 cm",
           "hyp_label": null,
           "angle_label": "x°"
         }
@@ -882,65 +858,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_triangle",
-      "prompt": "A triangle has base 12 cm and height 11 cm. Find its area.",
+      "topic_id": "inverse_proportion",
+      "prompt": "It takes 12 pipes 4 hours to fill a tank. Working at the same rate, how long would it take 2 pipes?",
       "solution_steps": [
-        "Area = (1/2) × base × height = (1/2) × 12 × 11 = 66 cm²"
+        "Constant = 12 × 4 = 48",
+        "Time for 2 pipes = 48 ÷ 2 = 24"
       ],
-      "final_answer": "66 cm²",
-      "marks": 2,
+      "final_answer": "24 hours",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = (1/2) × base × height = (1/2) × 12 × 11 = 66 cm²",
+          "description": "Constant = 12 × 4 = 48",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Time for 2 pipes = 48 ÷ 2 = 24",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "66 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "triangle_area",
-        "params": {
-          "base": 12,
-          "height": 11,
-          "base_label": "12 cm",
-          "height_label": "11 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "vectors_arithmetic_foundation",
-      "prompt": "\\vec{a} = (-7, -2) and \\vec{b} = (-6, 8). Find 2\\vec{a} + 2\\vec{b}.",
-      "solution_steps": [
-        "\\vec{a} = (-7, -2), \\vec{b} = (-6, 8)",
-        "2\\vec{a} = (-14, -4) and 2\\vec{b} = (-12, 16)",
-        "2\\vec{a} + 2\\vec{b} = (-26, 12)"
-      ],
-      "final_answer": "(-26, 12)",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "\\vec{a} = (-7, -2), \\vec{b} = (-6, 8)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2\\vec{a} = (-14, -4) and 2\\vec{b} = (-12, 16)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2\\vec{a} + 2\\vec{b} = (-26, 12)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(-26, 12) oe",
+          "description": "24 hours oe",
           "marks": 1
         }
       ],
@@ -948,58 +887,199 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "venn_diagram_shading",
-      "prompt": "Shade the region that represents the elements in N but not in M.",
+      "topic_id": "two_way_tables",
+      "prompt": "The two-way table shows the number of boys and girls who prefer bus or walk. Copy and complete the table, and state the missing value marked '?'.",
       "solution_steps": [
-        "The Venn diagram has two circles, M and N, inside a rectangle representing everything being considered.",
-        "'Shade the region that represents the elements in N but not in M.' tells you which of the four regions (in M only, in N only, in both, or in neither) needs shading.",
-        "The region inside N only (not in M)."
+        "The missing value is in the 'Girls' row and 'Walk' column.",
+        "Using the row total: 29 - 19 = 10",
+        "Using the column total: 27 - 17 = 10",
+        "Missing value = 10"
       ],
-      "final_answer": "The region inside N only (not in M).",
-      "marks": 4,
+      "final_answer": "10",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The Venn diagram has two circles, M and N, inside a rectangle representing everything being considered.",
+          "description": "The missing value is in the 'Girls' row and 'Walk' column.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "'Shade the region that represents the elements in N but not in M.' tells you which of the four regions (in M only, in N only, in both, or in neither) needs shading.",
+          "description": "Using the row total: 29 - 19 = 10",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The region inside N only (not in M).",
+          "description": "Using the column total: 27 - 17 = 10",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Missing value = 10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "The region inside N only (not in M). oe",
+          "description": "10 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "venn_diagram",
+        "kind": "two_way_table",
         "params": {
-          "labels": [
-            "M",
-            "N"
+          "row_labels": [
+            "Boys",
+            "Girls",
+            "Total"
+          ],
+          "col_labels": [
+            "Bus",
+            "Walk",
+            "Total"
+          ],
+          "cells": [
+            [
+              "4",
+              "17",
+              "21"
+            ],
+            [
+              "19",
+              "?",
+              "29"
+            ],
+            [
+              "23",
+              "27",
+              "50"
+            ]
           ]
         }
       },
       "solution_diagram": {
-        "kind": "venn_diagram",
+        "kind": "two_way_table",
         "params": {
-          "labels": [
-            "M",
-            "N"
+          "row_labels": [
+            "Boys",
+            "Girls",
+            "Total"
           ],
-          "shade": [
-            "b_only"
+          "col_labels": [
+            "Bus",
+            "Walk",
+            "Total"
+          ],
+          "cells": [
+            [
+              "4",
+              "17",
+              "21"
+            ],
+            [
+              "19",
+              "10",
+              "29"
+            ],
+            [
+              "23",
+              "27",
+              "50"
+            ]
           ]
         }
       }
+    },
+    {
+      "topic_id": "composite_bar_chart",
+      "prompt": "The composite bar chart shows the number of students split by Boys and Girls. Find the grand total across every category and segment.",
+      "solution_steps": [
+        "Add up every segment in every bar, category by category.",
+        "Total = 41."
+      ],
+      "final_answer": "41",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Add up every segment in every bar, category by category.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total = 41.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "41 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "bar_chart",
+        "params": {
+          "categories": [
+            "Mon",
+            "Tue",
+            "Wed"
+          ],
+          "series": [
+            [
+              12,
+              6
+            ],
+            [
+              12,
+              3
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "series_labels": [
+            "Boys",
+            "Girls"
+          ],
+          "y_label": "Frequency"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "error_interval",
+      "prompt": "A number, x, is 69 rounded to the nearest whole number. Write down the error interval for x.",
+      "solution_steps": [
+        "69 is rounded to the nearest whole number, so x can be up to half of that precision above or below 69.",
+        "Lower bound: 69 - 0.5 = 68.5",
+        "Upper bound: 69 + 0.5 = 69.5"
+      ],
+      "final_answer": "68.5 ≤ x < 69.5",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "69 is rounded to the nearest whole number, so x can be up to half of that precision above or below 69.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Lower bound: 69 - 0.5 = 68.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Upper bound: 69 + 0.5 = 69.5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "68.5 ≤ x < 69.5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
     }
   ]
 }

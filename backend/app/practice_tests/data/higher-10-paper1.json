@@ -8,7 +8,7 @@
   "questions": [
     {
       "topic_id": "roots_higher",
-      "prompt": "Simplify √180, giving your answer in the form a√b.",
+      "prompt": "Fully simplify √180, giving your answer in the form a√b.",
       "solution_steps": [
         "Find the largest square factor of 180: 6^2 × 5 = 180",
         "√180 = √(6^2 × 5) = 6√5"
@@ -148,11 +148,11 @@
     },
     {
       "topic_id": "simplifying_indices_challenging",
-      "prompt": "Simplify 25^(1/2) × 25^-3, giving your answer as a fraction where necessary.",
+      "prompt": "Fully simplify 25^(1/2) × 25^-3, giving your answer as a fraction where necessary.",
       "solution_steps": [
         "25^(1/2) is the square root of 25, which is 5, so 25^(1/2) = 5^1",
-        "25^-3 = 1/25^3 = 1/5^6",
-        "25^(1/2) × 25^-3 = 5^1 × 1/5^6 = 5^(1-6) = 5^-5",
+        "25^-3 = \\frac{1}{25³} = \\frac{1}{5⁶}",
+        "25^(1/2) × 25^-3 = 5^1 × \\frac{1}{5⁶} = 5^(1-6) = 5^-5",
         "5^-5 = 1/3125"
       ],
       "final_answer": "1/3125",
@@ -165,12 +165,12 @@
         },
         {
           "code": "M1",
-          "description": "25^-3 = 1/25^3 = 1/5^6",
+          "description": "25^-3 = \\frac{1}{25³} = \\frac{1}{5⁶}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "25^(1/2) × 25^-3 = 5^1 × 1/5^6 = 5^(1-6) = 5^-5",
+          "description": "25^(1/2) × 25^-3 = 5^1 × \\frac{1}{5⁶} = 5^(1-6) = 5^-5",
           "marks": 1
         },
         {
@@ -189,15 +189,16 @@
     },
     {
       "topic_id": "rationalise_denominator",
-      "prompt": "Rationalise the denominator of 10/(9 - √14), giving your answer in its simplest form.",
+      "prompt": "Rationalise the denominator of \\frac{10}{9 - √14}, giving your answer in its simplest form.",
       "solution_steps": [
         "Multiply the numerator and denominator by the conjugate of the denominator, (9 + √14):",
-        "10/(9 - √14) = 10(9 + √14) / [(9 - √14)(9 + √14)]",
+        "\\frac{10}{9 - √14}",
+        "= \\frac{10(9 + √14)}{[(9 - √14)(9 + √14)]}",
         "The denominator is a difference of two squares: 9^2 - 14 = 67",
         "The numerator is 10(9 + √14) = 90 + 10√14",
-        "= (90 + 10√14)/67"
+        "= \\frac{90 + 10√14}{67}"
       ],
-      "final_answer": "(90 + 10√14)/67",
+      "final_answer": "\\frac{90 + 10√14}{67}",
       "marks": 5,
       "mark_scheme": [
         {
@@ -207,22 +208,22 @@
         },
         {
           "code": "M1",
-          "description": "10/(9 - √14) = 10(9 + √14) / [(9 - √14)(9 + √14)]",
+          "description": "\\frac{10}{9 - √14}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The denominator is a difference of two squares: 9^2 - 14 = 67",
+          "description": "= \\frac{10(9 + √14)}{[(9 - √14)(9 + √14)]}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The numerator is 10(9 + √14) = 90 + 10√14 = (90 + 10√14)/67",
+          "description": "The denominator is a difference of two squares: 9^2 - 14 = 67 The numerator is 10(9 + √14) = 90 + 10√14 = \\frac{90 + 10√14}{67}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(90 + 10√14)/67 oe",
+          "description": "\\frac{90 + 10√14}{67} oe",
           "marks": 1
         }
       ],
@@ -300,7 +301,18 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "polygon_angles",
+        "params": {
+          "n_sides": 4,
+          "angle_labels": [
+            "82°",
+            "52°",
+            "(2x + 8)°",
+            "(4x + 140)°"
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -476,19 +488,19 @@
     },
     {
       "topic_id": "plot_reciprocal",
-      "prompt": "Complete a table of values for y = -36/x for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
+      "prompt": "Complete a table of values for y = -\\frac{36}{x} for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = -36/x:",
+        "Table of values for y = -\\frac{36}{x}:",
         "x: -4, -3, -2, -1, 1, 2, 3, 4",
         "y: 9, 12, 18, 36, -36, -18, -12, -9",
         "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
       ],
-      "final_answer": "Reciprocal curve: y = -36/x",
+      "final_answer": "Reciprocal curve: y = -\\frac{36}{x}",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = -36/x:",
+          "description": "Table of values for y = -\\frac{36}{x}:",
           "marks": 1
         },
         {
@@ -508,7 +520,7 @@
         },
         {
           "code": "A1",
-          "description": "Reciprocal curve: y = -36/x oe",
+          "description": "Reciprocal curve: y = -\\frac{36}{x} oe",
           "marks": 1
         }
       ],
@@ -650,7 +662,7 @@
     },
     {
       "topic_id": "ratio_shape_similar_higher",
-      "prompt": "Shape A and Shape B are similar. A length on shape A is 4 cm and the corresponding length on shape B is 6 cm. The volume of shape A is 16 cm^3. Find the volume of shape B.",
+      "prompt": "Shape A and Shape B are similar. The volume of shape A is 16 cm^3. Find the volume of shape B.",
       "solution_steps": [
         "Linear scale factor = 6 ÷ 4 = 3/2",
         "Volume scale factor = (3/2)^3 = 27/8",
@@ -680,7 +692,13 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "a_width_label": "4 cm",
+          "b_width_label": "6 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -778,12 +796,12 @@
     },
     {
       "topic_id": "trig_missing_side_higher",
-      "prompt": "In the right-angled triangle shown, find the length of x, correct to 3 significant figures.",
+      "prompt": "In the triangle shown, find the length of x, correct to 2 decimal places.",
       "solution_steps": [
         "We know the opposite and want the hypotenuse, so use sin.",
-        "x = 26 ÷ sin(28°) = 55.4 (to 3 s.f.)"
+        "x = 26 ÷ sin(28°) = 55.38 (2 d.p.)"
       ],
-      "final_answer": "55.4 cm",
+      "final_answer": "55.38 cm",
       "marks": 3,
       "mark_scheme": [
         {
@@ -793,12 +811,12 @@
         },
         {
           "code": "M1",
-          "description": "x = 26 ÷ sin(28°) = 55.4 (to 3 s.f.)",
+          "description": "x = 26 ÷ sin(28°) = 55.38 (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "55.4 cm oe",
+          "description": "55.38 cm oe",
           "marks": 1
         }
       ],
@@ -873,13 +891,13 @@
     },
     {
       "topic_id": "volume_surface_area_pyramid",
-      "prompt": "A square-based pyramid has a base of side 16 cm and a perpendicular height of 9 cm. Find its total surface area, correct to 3 significant figures.",
+      "prompt": "A square-based pyramid has a base of side 16 cm and a perpendicular height of 9 cm. Find its total surface area, correct to 1 decimal place.",
       "solution_steps": [
         "Slant height l = √(height² + (base ÷ 2)²) = √(9² + (16 ÷ 2)²) ≈ 12.0 cm",
         "Surface area = base² + 2 × base × l = 16² + 2 × 16 × 12.0",
-        "= 641 cm² (3 s.f.)"
+        "= 641.3 cm² (1 d.p.)"
       ],
-      "final_answer": "641 cm²",
+      "final_answer": "641.3 cm²",
       "marks": 4,
       "mark_scheme": [
         {
@@ -894,12 +912,12 @@
         },
         {
           "code": "M1",
-          "description": "= 641 cm² (3 s.f.)",
+          "description": "= 641.3 cm² (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "641 cm² oe",
+          "description": "641.3 cm² oe",
           "marks": 1
         }
       ],
@@ -915,7 +933,7 @@
     },
     {
       "topic_id": "area_circle",
-      "prompt": "A circle has radius 9 cm. Find its circumference in terms of π.",
+      "prompt": "Find the circumference of the following circle, in terms of π.",
       "solution_steps": [
         "Circumference = 2 × π × r = 2 × π × 9 = 18π cm",
         "≈ 56.5 cm (3 s.f.)"

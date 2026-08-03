@@ -37,33 +37,17 @@
     },
     {
       "topic_id": "fractions_equivalent_diagram",
-      "prompt": "Shape A is divided into 2 equal parts, with 1 shaded. Shape B is divided into 6 equal parts. How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
+      "prompt": "The first shape shows 1/6 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
       "solution_steps": [
-        "Shape A shows 1/2 shaded; Shape B has 6 equal parts.",
-        "Find the scale factor between the denominators: 6 ÷ 2 = 3",
-        "Multiply the shaded count by the same scale factor: 1 × 3 = 3"
+        "Cross-multiply 1/6 against each labelled shape: a shape shows an equivalent fraction only if 1 × (its denominator) = (its shaded count) × 6.",
+        "Only shape B) 2/12 works: 1 × 12 = 2 × 6 = 12."
       ],
-      "final_answer": "3",
-      "marks": 4,
+      "final_answer": "B) 2/12",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "Shape A shows 1/2 shaded; Shape B has 6 equal parts.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Find the scale factor between the denominators: 6 ÷ 2 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the shaded count by the same scale factor: 1 × 3 = 3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "3 oe",
+          "code": "B1",
+          "description": "B) 2/12 (selecting the correct option)",
           "marks": 1
         }
       ],
@@ -73,38 +57,31 @@
           "shapes": [
             {
               "kind": "bar",
-              "parts": 2,
-              "shaded": 1,
-              "label": "1/2"
+              "parts": 6,
+              "shaded": 1
             },
             {
               "kind": "bar",
-              "parts": 6,
-              "shaded": 0,
-              "label": "?/6"
+              "parts": 9,
+              "shaded": 1,
+              "label": "A)"
+            },
+            {
+              "kind": "bar",
+              "parts": 12,
+              "shaded": 2,
+              "label": "B)"
+            },
+            {
+              "kind": "bar",
+              "parts": 8,
+              "shaded": 6,
+              "label": "C)"
             }
           ]
         }
       },
-      "solution_diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "bar",
-              "parts": 2,
-              "shaded": 1,
-              "label": "1/2"
-            },
-            {
-              "kind": "bar",
-              "parts": 6,
-              "shaded": 3,
-              "label": "3/6"
-            }
-          ]
-        }
-      }
+      "solution_diagram": null
     },
     {
       "topic_id": "fractions_of_amount",
@@ -166,10 +143,10 @@
     },
     {
       "topic_id": "fractions_simplify",
-      "prompt": "Simplify the fraction 42/60 fully.",
+      "prompt": "Fully simplify the fraction 42/60.",
       "solution_steps": [
         "Find the highest common factor of 42 and 60: 6",
-        "Divide numerator and denominator by 6: 42÷6 / 60÷6 = 7/10"
+        "Divide numerator and denominator by 6: \\frac{42÷6}{60÷6} = 7/10"
       ],
       "final_answer": "7/10",
       "marks": 3,
@@ -181,7 +158,7 @@
         },
         {
           "code": "M1",
-          "description": "Divide numerator and denominator by 6: 42÷6 / 60÷6 = 7/10",
+          "description": "Divide numerator and denominator by 6: \\frac{42÷6}{60÷6} = 7/10",
           "marks": 1
         },
         {
@@ -271,28 +248,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "prime_numbers",
-      "prompt": "From this list, write down all the prime numbers: 41, 5, 12, 7, 40, 20",
+      "topic_id": "sequences_next_term",
+      "prompt": "Find the next term in the sequence: 0, 1, 2, 3, ...",
       "solution_steps": [
-        "Check each number for factors other than 1 and itself: 41, 5, 12, 7, 40, 20",
-        "Prime numbers: 5, 7, 41"
+        "Add 1 each time.",
+        "Next term = 3 + 1 = 4"
       ],
-      "final_answer": "5, 7, 41",
+      "final_answer": "4",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Check each number for factors other than 1 and itself: 41, 5, 12, 7, 40, 20",
+          "description": "Add 1 each time.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Prime numbers: 5, 7, 41",
+          "description": "Next term = 3 + 1 = 4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5, 7, 41 oe",
+          "description": "4 oe",
           "marks": 1
         }
       ],
@@ -300,42 +277,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "satisfying_inequalities_foundation",
-      "prompt": "Solve the inequality 0 ≤ 3x - 1 < 16, then list the integer values of x that satisfy it.",
+      "topic_id": "solving_inequalities_foundation",
+      "prompt": "Solve the inequality: 4x - 5 < 12",
       "solution_steps": [
-        "0 ≤ 3x - 1 < 16",
-        "Add 1 to all three parts:",
-        "1 ≤ 3x < 17",
-        "Divide all three parts by 3:",
-        "1/3 ≤ x < 17/3",
-        "The integers satisfying this are: 1, 2, 3, 4, 5"
+        "4x - 5 < 12",
+        "Add 5 to both sides:",
+        "4x < 17",
+        "Divide both sides by 4:",
+        "x < 17/4"
       ],
-      "final_answer": "1, 2, 3, 4, 5",
+      "final_answer": "x < 17/4",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "0 ≤ 3x - 1 < 16",
+          "description": "4x - 5 < 12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add 1 to all three parts:",
+          "description": "Add 5 to both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "1 ≤ 3x < 17",
+          "description": "4x < 17",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide all three parts by 3: 1/3 ≤ x < 17/3 The integers satisfying this are: 1, 2, 3, 4, 5",
+          "description": "Divide both sides by 4: x < 17/4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1, 2, 3, 4, 5 oe",
+          "description": "x < 17/4 oe",
           "marks": 1
         }
       ],
@@ -343,41 +319,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "functions_evaluate",
-      "prompt": "f(x) = -5x + 10. Find the value of x for which f(x) = 0.",
+      "topic_id": "algebraic_indices_foundation",
+      "prompt": "Simplify (3x^4)^3",
       "solution_steps": [
-        "-5x + 10 = 0",
-        "Subtract 10 from both sides:",
-        "-5x = -10",
-        "Divide both sides by -5:",
-        "x = 2"
+        "Raising a power to another power: multiply the exponents, and raise the coefficient to that power too.",
+        "(3x^4)^3 = 3^3 x^(4×3)",
+        "= 27x^12"
       ],
-      "final_answer": "2",
-      "marks": 5,
+      "final_answer": "27x^12",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "-5x + 10 = 0",
+          "description": "Raising a power to another power: multiply the exponents, and raise the coefficient to that power too.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 10 from both sides:",
+          "description": "(3x^4)^3 = 3^3 x^(4×3)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-5x = -10",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by -5: x = 2",
+          "description": "= 27x^12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2 oe",
+          "description": "27x^12 oe",
           "marks": 1
         }
       ],
@@ -386,7 +355,7 @@
     },
     {
       "topic_id": "sequences_nth_term",
-      "prompt": "Here are the first four terms of a sequence: 17, 13, 9, 5. Find an expression for the nth term.",
+      "prompt": "Here are the first four terms of a sequence: 17, 13, 9, 5.\nFind an expression for the nth term.",
       "solution_steps": [
         "Common difference = -4",
         "nth term = -4n + 21",
@@ -497,7 +466,7 @@
     },
     {
       "topic_id": "special_sequences_foundation",
-      "prompt": "The first 4 cube numbers are: 1, 8, 27, 64. Find the 7th term of the sequence (term number 7).",
+      "prompt": "The first 4 cube numbers are: 1, 8, 27, 64. Find the 7th term of the sequence.",
       "solution_steps": [
         "These are the cube numbers: the nth term is given by n^3.",
         "Term 7 = 7^3 = 343"
@@ -525,34 +494,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_single_bracket",
-      "prompt": "Expand: 1(8x + 6)",
+      "topic_id": "substitution_foundation",
+      "prompt": "v = u + at. Find the value of v when u = 18, a = 4 and t = 10.",
       "solution_steps": [
-        "Multiply 1 by 8x: 8x",
-        "Multiply 1 by 6: 6",
-        "Combine: 8x + 6"
+        "v = u + at",
+        "v = 18 + 4 × 10",
+        "v = 18 + 40",
+        "v = 58"
       ],
-      "final_answer": "8x + 6",
-      "marks": 4,
+      "final_answer": "v = 58",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply 1 by 8x: 8x",
+          "description": "v = u + at",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply 1 by 6: 6",
+          "description": "v = 18 + 4 × 10",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Combine: 8x + 6",
+          "description": "v = 18 + 40",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "v = 58",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8x + 6 oe",
+          "description": "v = 58 oe",
           "marks": 1
         }
       ],
@@ -631,15 +606,15 @@
     },
     {
       "topic_id": "ratio_difference",
-      "prompt": "Two amounts are in the ratio 3:6. The difference between them is 30. Find both amounts and their total.",
+      "prompt": "a : b = 3 : 6. b - a = 30. Find a and b, and their total.",
       "solution_steps": [
         "Difference in parts = 6 - 3 = 3 parts",
         "Value of one part = 30 ÷ 3 = 10",
-        "First amount = 3 × 10 = 30",
-        "Second amount = 6 × 10 = 60",
-        "Total = 30 + 60 = 90"
+        "a = 3 × 10 = 30",
+        "b = 6 × 10 = 60",
+        "a + b = 30 + 60 = 90"
       ],
-      "final_answer": "30 : 60 (total 90)",
+      "final_answer": "a = 30, b = 60 (total 90)",
       "marks": 5,
       "mark_scheme": [
         {
@@ -654,17 +629,17 @@
         },
         {
           "code": "M1",
-          "description": "First amount = 3 × 10 = 30",
+          "description": "a = 3 × 10 = 30",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Second amount = 6 × 10 = 60 Total = 30 + 60 = 90",
+          "description": "b = 6 × 10 = 60 a + b = 30 + 60 = 90",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "30 : 60 (total 90) oe",
+          "description": "a = 30, b = 60 (total 90) oe",
           "marks": 1
         }
       ],
@@ -701,70 +676,93 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_straight_line",
-      "prompt": "The angles 79°, 35° and x° lie on a straight line. Find x.",
+      "topic_id": "linear_two_step",
+      "prompt": "Solve: 8x + 8 = 32",
       "solution_steps": [
-        "Angles on a straight line sum to 180°.",
-        "x = 180 - (79 + 35) = 180 - 114 = 66"
+        "8x + 8 = 32",
+        "Subtract 8 from both sides:",
+        "8x = 24",
+        "Divide both sides by 8:",
+        "x = 3"
       ],
-      "final_answer": "66",
-      "marks": 3,
+      "final_answer": "3",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles on a straight line sum to 180°.",
+          "description": "8x + 8 = 32",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 180 - (79 + 35) = 180 - 114 = 66",
+          "description": "Subtract 8 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "8x = 24",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 8: x = 3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "66 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "angle_line",
-        "params": {
-          "angle_values": [
-            79,
-            35,
-            66
-          ],
-          "labels": [
-            "79°",
-            "35°",
-            "x"
-          ],
-          "around_point": false
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "stats_median",
-      "prompt": "Find the median of this data set: 8, 13, 13, 29, 7.",
-      "solution_steps": [
-        "Sort the data: 7, 8, 13, 13, 29. The middle value is 13."
-      ],
-      "final_answer": "13",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Sort the data: 7, 8, 13, 13, 29. The middle value is 13.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "13 oe",
+          "description": "3 oe",
           "marks": 1
         }
       ],
       "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "volume_surface_area_triangular_prism",
+      "prompt": "A triangular prism has a right-angled triangular cross-section with sides 6 cm and 8 cm (hypotenuse 10 cm), and length 9 cm. Find its surface area.",
+      "solution_steps": [
+        "Area of the two triangular ends = 2 × (1/2) × 6 × 8 = 48 cm²",
+        "Perimeter of the triangular cross-section = 6 + 8 + 10 = 24 cm",
+        "Area of the three rectangular faces = 24 × 9 = 216 cm²",
+        "Surface area = 48 + 216 = 264 cm²"
+      ],
+      "final_answer": "264 cm²",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area of the two triangular ends = 2 × (1/2) × 6 × 8 = 48 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Perimeter of the triangular cross-section = 6 + 8 + 10 = 24 cm",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of the three rectangular faces = 24 × 9 = 216 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Surface area = 48 + 216 = 264 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "264 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "triangular_prism",
+        "params": {
+          "base_label": "6 cm",
+          "triangle_height_label": "8 cm",
+          "length_label": "9 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -995,29 +993,6 @@
           ]
         }
       },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "stats_range",
-      "prompt": "Find the range of this data set: 29, 15, 28, 18, 21, 3.",
-      "solution_steps": [
-        "Range = largest - smallest = 29 - 3 = 26"
-      ],
-      "final_answer": "26",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Range = largest - smallest = 29 - 3 = 26",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "26 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
       "solution_diagram": null
     }
   ]

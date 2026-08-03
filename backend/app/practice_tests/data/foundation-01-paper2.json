@@ -95,7 +95,7 @@
     },
     {
       "topic_id": "fractions_of_amount",
-      "prompt": "Find 9/10 of 40.",
+      "prompt": "Work out 9/10 of 40.",
       "solution_steps": [
         "Divide by the denominator: 40 ÷ 10 = 4",
         "Multiply by the numerator: 4 × 9 = 36"
@@ -166,7 +166,7 @@
     },
     {
       "topic_id": "number_powers_of_ten",
-      "prompt": "Work out 470 × 10.",
+      "prompt": "Evaluate 470 × 10.",
       "solution_steps": [
         "Multiplying by 10 moves the decimal point 1 place to the right.",
         "470 × 10 = 4700"
@@ -195,11 +195,11 @@
     },
     {
       "topic_id": "fractions_ordering",
-      "prompt": "Write these fractions in order, smallest to largest: 7/12, 5/6, 1/7, 2/3",
+      "prompt": "Write these fractions in ascending order: 7/12, 5/6, 1/7, 2/3",
       "solution_steps": [
         "Convert every fraction to the same denominator, the LCM of 12, 6, 7, 3: 84",
         "Rewrite each fraction over 84: 7/12 = 49/84, 5/6 = 70/84, 1/7 = 12/84, 2/3 = 56/84",
-        "Order the numerators from smallest to largest and convert back: 1/7, 7/12, 2/3, 5/6"
+        "Order the numerators in ascending order and convert back: 1/7, 7/12, 2/3, 5/6"
       ],
       "final_answer": "1/7, 7/12, 2/3, 5/6",
       "marks": 4,
@@ -216,7 +216,7 @@
         },
         {
           "code": "M1",
-          "description": "Order the numerators from smallest to largest and convert back: 1/7, 7/12, 2/3, 5/6",
+          "description": "Order the numerators in ascending order and convert back: 1/7, 7/12, 2/3, 5/6",
           "marks": 1
         },
         {
@@ -379,9 +379,9 @@
     },
     {
       "topic_id": "substitution_foundation",
-      "prompt": "P = 2l + 2w. Find the value of P when l = 13 and w = 8.",
+      "prompt": "P = 2L + 2w. Find the value of P when L = 13 and w = 8.",
       "solution_steps": [
-        "P = 2l + 2w",
+        "P = 2L + 2w",
         "P = 2 × 13 + 2 × 8",
         "P = 26 + 16",
         "P = 42"
@@ -391,7 +391,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "P = 2l + 2w",
+          "description": "P = 2L + 2w",
           "marks": 1
         },
         {
@@ -807,7 +807,8 @@
         "params": {
           "width_label": "11 cm",
           "height_label": "11 cm",
-          "length_label": "11 cm"
+          "length_label": "11 cm",
+          "is_cube": true
         }
       },
       "solution_diagram": null

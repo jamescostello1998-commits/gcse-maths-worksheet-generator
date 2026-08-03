@@ -187,7 +187,7 @@
       "prompt": "Work out 4/2 ÷ 4/6. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Keep-change-flip: 4/2 ÷ 4/6 = 4/2 × 6/4",
-        "Multiply: (4×6)/(2×4) = 24/8",
+        "Multiply: \\frac{(4×6)}{(2×4)} = 24/8",
         "Simplify: 3"
       ],
       "final_answer": "3",
@@ -200,7 +200,7 @@
         },
         {
           "code": "M1",
-          "description": "Multiply: (4×6)/(2×4) = 24/8",
+          "description": "Multiply: \\frac{(4×6)}{(2×4)} = 24/8",
           "marks": 1
         },
         {
@@ -423,29 +423,24 @@
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "parabola",
-        "params": {
-          "vertex_label": "(-7, -42)"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
       "topic_id": "plot_reciprocal",
-      "prompt": "Complete a table of values for y = 12/x for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
+      "prompt": "Complete a table of values for y = \\frac{12}{x} for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = 12/x:",
+        "Table of values for y = \\frac{12}{x}:",
         "x: -4, -3, -2, -1, 1, 2, 3, 4",
         "y: -3, -4, -6, -12, 12, 6, 4, 3",
         "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
       ],
-      "final_answer": "Reciprocal curve: y = 12/x",
+      "final_answer": "Reciprocal curve: y = \\frac{12}{x}",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = 12/x:",
+          "description": "Table of values for y = \\frac{12}{x}:",
           "marks": 1
         },
         {
@@ -465,7 +460,7 @@
         },
         {
           "code": "A1",
-          "description": "Reciprocal curve: y = 12/x oe",
+          "description": "Reciprocal curve: y = \\frac{12}{x} oe",
           "marks": 1
         }
       ],
@@ -529,33 +524,33 @@
     },
     {
       "topic_id": "expand_triple_brackets",
-      "prompt": "Expand and simplify: (2x - 3)(3x + 2)(3x + 1)",
+      "prompt": "Expand and simplify: (4x - 3)(4x + 2)(4x + 4)",
       "solution_steps": [
-        "First expand two of the brackets: (2x - 3)(3x + 2) = 6x^2 - 5x - 6",
-        "Multiply the result by (3x + 1) and collect like terms",
-        "= 18x^3 - 9x^2 - 23x - 6"
+        "First expand two of the brackets: (4x - 3)(4x + 2) = 16x^2 - 4x - 6",
+        "Multiply the result by (4x + 4) and collect like terms",
+        "= 64x^3 + 48x^2 - 40x - 24"
       ],
-      "final_answer": "18x^3 - 9x^2 - 23x - 6",
+      "final_answer": "64x^3 + 48x^2 - 40x - 24",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First expand two of the brackets: (2x - 3)(3x + 2) = 6x^2 - 5x - 6",
+          "description": "First expand two of the brackets: (4x - 3)(4x + 2) = 16x^2 - 4x - 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the result by (3x + 1) and collect like terms",
+          "description": "Multiply the result by (4x + 4) and collect like terms",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 18x^3 - 9x^2 - 23x - 6",
+          "description": "= 64x^3 + 48x^2 - 40x - 24",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "18x^3 - 9x^2 - 23x - 6 oe",
+          "description": "64x^3 + 48x^2 - 40x - 24 oe",
           "marks": 1
         }
       ],
@@ -740,16 +735,16 @@
     },
     {
       "topic_id": "ratio_difference_higher",
-      "prompt": "Amounts are in the ratio 1:6:3. The difference between the largest and smallest amount is 55. Find all three amounts and their total.",
+      "prompt": "s : t : u = 1 : 6 : 3. t - s = 55. Find s, t and u, and their total.",
       "solution_steps": [
         "Difference in parts = 6 - 1 = 5 parts",
         "Value of one part = 55 ÷ 5 = 11",
-        "Amount 1 = 1 × 11 = 11",
-        "Amount 2 = 6 × 11 = 66",
-        "Amount 3 = 3 × 11 = 33",
-        "Total = 11 + 66 + 33 = 110"
+        "s = 1 × 11 = 11",
+        "t = 6 × 11 = 66",
+        "u = 3 × 11 = 33",
+        "s + t + u = 11 + 66 + 33 = 110"
       ],
-      "final_answer": "11 : 66 : 33 (total 110)",
+      "final_answer": "s = 11, t = 66, u = 33 (total 110)",
       "marks": 5,
       "mark_scheme": [
         {
@@ -764,17 +759,17 @@
         },
         {
           "code": "M1",
-          "description": "Amount 1 = 1 × 11 = 11",
+          "description": "s = 1 × 11 = 11",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Amount 2 = 6 × 11 = 66 Amount 3 = 3 × 11 = 33 Total = 11 + 66 + 33 = 110",
+          "description": "t = 6 × 11 = 66 u = 3 × 11 = 33 s + t + u = 11 + 66 + 33 = 110",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "11 : 66 : 33 (total 110) oe",
+          "description": "s = 11, t = 66, u = 33 (total 110) oe",
           "marks": 1
         }
       ],
@@ -783,11 +778,11 @@
     },
     {
       "topic_id": "area_subtract_compound",
-      "prompt": "A rectangular sheet of metal 17 cm by 25 cm has a rectangular hole 7 cm by 19 cm cut from its centre. Find the remaining area.",
+      "prompt": "Find the shaded area.",
       "solution_steps": [
         "Area of large rectangle = 17 × 25 = 425 cm²",
         "Area of rectangular hole = 7 × 19 = 133 cm²",
-        "Remaining area = 425 - 133 = 292 cm²"
+        "Shaded area = 425 - 133 = 292 cm²"
       ],
       "final_answer": "292 cm²",
       "marks": 4,
@@ -804,7 +799,7 @@
         },
         {
           "code": "M1",
-          "description": "Remaining area = 425 - 133 = 292 cm²",
+          "description": "Shaded area = 425 - 133 = 292 cm²",
           "marks": 1
         },
         {
@@ -821,6 +816,7 @@
           "inner_w": 7,
           "inner_h": 19,
           "notch": "center",
+          "shade_frame": true,
           "outer_labels": [
             "17 cm",
             "25 cm"
@@ -945,12 +941,12 @@
     },
     {
       "topic_id": "combined_transformations",
-      "prompt": "Shape ABC is rotated 90° clockwise about the centre (1, -2) to give shape A'B'C'. Shape A'B'C' is then rotated 180° about the same centre to give shape A''B''C''. Describe fully the single transformation that maps ABC directly onto A''B''C''.",
+      "prompt": "Shape ABCD is rotated 90° anticlockwise about the centre (0, 0) to give shape A'B'C'D'. Shape A'B'C'D' is then rotated 90° anticlockwise about the same centre to give shape A''B''C''D''. Describe fully the single transformation that maps ABCD directly onto A''B''C''D''.",
       "solution_steps": [
         "Two rotations about the same centre combine into a single rotation about that centre, by the sum of the two angles.",
-        "Measuring both turns anticlockwise: 270° + 180° = 450°, which is the same as 90° anticlockwise."
+        "Measuring both turns anticlockwise: 90° + 90° = 180°, which is the same as 180°."
       ],
-      "final_answer": "Rotation 90° anticlockwise about (1, -2)",
+      "final_answer": "Rotation 180° about (0, 0)",
       "marks": 3,
       "mark_scheme": [
         {
@@ -960,12 +956,12 @@
         },
         {
           "code": "M1",
-          "description": "Measuring both turns anticlockwise: 270° + 180° = 450°, which is the same as 90° anticlockwise.",
+          "description": "Measuring both turns anticlockwise: 90° + 90° = 180°, which is the same as 180°.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Rotation 90° anticlockwise about (1, -2) oe",
+          "description": "Rotation 180° about (0, 0) oe",
           "marks": 1
         }
       ],
@@ -978,41 +974,51 @@
           "y_max": 8,
           "original_vertices": [
             [
-              1,
+              -1,
               -1
             ],
             [
-              6,
+              3,
               -1
             ],
             [
               2,
               3
+            ],
+            [
+              -2,
+              2
             ]
           ],
           "original_labels": [
             "A",
             "B",
-            "C"
+            "C",
+            "D"
           ],
           "image_vertices": [
             [
-              0,
+              1,
+              1
+            ],
+            [
+              -3,
+              1
+            ],
+            [
+              -2,
+              -3
+            ],
+            [
+              2,
               -2
-            ],
-            [
-              0,
-              3
-            ],
-            [
-              -4,
-              -1
             ]
           ],
           "image_labels": [
             "A''",
             "B''",
-            "C''"
+            "C''",
+            "D''"
           ]
         }
       },

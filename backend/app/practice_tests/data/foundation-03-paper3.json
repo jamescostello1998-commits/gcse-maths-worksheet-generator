@@ -78,11 +78,11 @@
     },
     {
       "topic_id": "fractions_ordering",
-      "prompt": "Write these fractions in order, smallest to largest: 1/6, 4/5, 4/11, 4/9, 3/4",
+      "prompt": "Write these fractions in ascending order: 1/6, 4/5, 4/11, 4/9, 3/4",
       "solution_steps": [
         "Convert every fraction to the same denominator, the LCM of 6, 5, 11, 9, 4: 1980",
         "Rewrite each fraction over 1980: 1/6 = 330/1980, 4/5 = 1584/1980, 4/11 = 720/1980, 4/9 = 880/1980, 3/4 = 1485/1980",
-        "Order the numerators from smallest to largest and convert back: 1/6, 4/11, 4/9, 3/4, 4/5"
+        "Order the numerators in ascending order and convert back: 1/6, 4/11, 4/9, 3/4, 4/5"
       ],
       "final_answer": "1/6, 4/11, 4/9, 3/4, 4/5",
       "marks": 4,
@@ -99,7 +99,7 @@
         },
         {
           "code": "M1",
-          "description": "Order the numerators from smallest to largest and convert back: 1/6, 4/11, 4/9, 3/4, 4/5",
+          "description": "Order the numerators in ascending order and convert back: 1/6, 4/11, 4/9, 3/4, 4/5",
           "marks": 1
         },
         {
@@ -212,7 +212,7 @@
     },
     {
       "topic_id": "fractions_of_amount",
-      "prompt": "Find 4/7 of 189.",
+      "prompt": "Work out 4/7 of 189.",
       "solution_steps": [
         "Divide by the denominator: 189 ÷ 7 = 27",
         "Multiply by the numerator: 27 × 4 = 108"
@@ -648,14 +648,14 @@
     },
     {
       "topic_id": "ratio_difference",
-      "prompt": "Two amounts are in the ratio 1:2. The difference between them is 17. Find both amounts.",
+      "prompt": "s : t = 1 : 2. t - s = 17. Find s and t.",
       "solution_steps": [
         "Difference in parts = 2 - 1 = 1 parts",
         "Value of one part = 17 ÷ 1 = 17",
-        "First amount = 1 × 17 = 17",
-        "Second amount = 2 × 17 = 34"
+        "s = 1 × 17 = 17",
+        "t = 2 × 17 = 34"
       ],
-      "final_answer": "17 : 34",
+      "final_answer": "s = 17, t = 34",
       "marks": 5,
       "mark_scheme": [
         {
@@ -670,17 +670,17 @@
         },
         {
           "code": "M1",
-          "description": "First amount = 1 × 17 = 17",
+          "description": "s = 1 × 17 = 17",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Second amount = 2 × 17 = 34",
+          "description": "t = 2 × 17 = 34",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "17 : 34 oe",
+          "description": "s = 17, t = 34 oe",
           "marks": 1
         }
       ],
@@ -765,7 +765,7 @@
     },
     {
       "topic_id": "area_rectangle",
-      "prompt": "A rectangle has length 4 cm and width 3 cm. Find its area.",
+      "prompt": "Find the area of the following rectangle.",
       "solution_steps": [
         "Area = length × width = 4 × 3 = 12 cm²"
       ],

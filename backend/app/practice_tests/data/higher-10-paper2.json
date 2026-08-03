@@ -8,7 +8,7 @@
   "questions": [
     {
       "topic_id": "fractions_mixed_number_arithmetic",
-      "prompt": "Work out 3 4/8 + 1 1/2. Give your answer as a mixed number.",
+      "prompt": "Evaluate 3 4/8 + 1 1/2. Give your answer as a mixed number.",
       "solution_steps": [
         "Convert to improper fractions: 3 4/8 = 7/2, 1 1/2 = 3/2",
         "Add the improper fractions: 7/2 + 3/2 = 5/1",
@@ -43,9 +43,9 @@
     },
     {
       "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal 0.(49) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.}{49} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(49), so 100x = 49.4949... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Let x = \\recur{0.}{49}, so 100x = 49.4949... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 49 - 0, so 99x = 49",
         "x = 49/99 = 49/99"
       ],
@@ -54,7 +54,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(49), so 100x = 49.4949... (two digits repeat, so multiply by 100 to shift a full block)",
+          "description": "Let x = \\recur{0.}{49}, so 100x = 49.4949... (two digits repeat, so multiply by 100 to shift a full block)",
           "marks": 1
         },
         {
@@ -154,9 +154,9 @@
     },
     {
       "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal 0.9(3) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.9}{3} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.9(3)",
+        "Let x = \\recur{0.9}{3}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
         "This gives x = 84/90",
         "Simplify: 14/15"
@@ -166,7 +166,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.9(3)",
+          "description": "Let x = \\recur{0.9}{3}",
           "marks": 1
         },
         {
@@ -195,7 +195,7 @@
     },
     {
       "topic_id": "simplifying_indices_challenging",
-      "prompt": "Simplify (3^-2)^3 ÷ 3^-3, giving your answer as a fraction where necessary.",
+      "prompt": "Fully simplify (3^-2)^3 ÷ 3^-3, giving your answer as a fraction where necessary.",
       "solution_steps": [
         "Multiply the powers in the bracket: -2 × 3 = -6",
         "(3^-2)^3 = 3^-6",
@@ -390,14 +390,14 @@
     },
     {
       "topic_id": "algebraic_fractions_add_subtract",
-      "prompt": "Simplify 5/(x - 8) + 1/(x - 3), giving your answer as a single fraction.",
+      "prompt": "Simplify \\frac{5}{(x - 8)} + \\frac{1}{(x - 3)}, giving your answer as a single fraction.",
       "solution_steps": [
         "Write both fractions over the common denominator (x - 8)(x - 3):",
-        "5/(x - 8) + 1/(x - 3) = (5(x - 3) + 1(x - 8))/(x - 8)(x - 3)",
+        "\\frac{5}{(x - 8)} + \\frac{1}{(x - 3)} = \\frac{5(x - 3) + 1(x - 8)}{(x - 8)(x - 3)}",
         "Expand the numerator: 5(x - 3) + 1(x - 8) = 6x - 23",
-        "= (6x - 23)/(x - 8)(x - 3)"
+        "= \\frac{6x - 23}{(x - 8)(x - 3)}"
       ],
-      "final_answer": "(6x - 23)/(x - 8)(x - 3)",
+      "final_answer": "\\frac{6x - 23}{(x - 8)(x - 3)}",
       "marks": 5,
       "mark_scheme": [
         {
@@ -407,7 +407,7 @@
         },
         {
           "code": "M1",
-          "description": "5/(x - 8) + 1/(x - 3) = (5(x - 3) + 1(x - 8))/(x - 8)(x - 3)",
+          "description": "\\frac{5}{(x - 8)} + \\frac{1}{(x - 3)} = \\frac{5(x - 3) + 1(x - 8)}{(x - 8)(x - 3)}",
           "marks": 1
         },
         {
@@ -417,12 +417,12 @@
         },
         {
           "code": "M1",
-          "description": "= (6x - 23)/(x - 8)(x - 3)",
+          "description": "= \\frac{6x - 23}{(x - 8)(x - 3)}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(6x - 23)/(x - 8)(x - 3) oe",
+          "description": "\\frac{6x - 23}{(x - 8)(x - 3)} oe",
           "marks": 1
         }
       ],
@@ -471,16 +471,27 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "polygon_angles",
+        "params": {
+          "n_sides": 4,
+          "angle_labels": [
+            "37°",
+            "44°",
+            "(3x + 11)°",
+            "(x + 232)°"
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
       "topic_id": "algebraic_fractions_multiply_divide",
-      "prompt": "Simplify (x^2 - 4)/(x + 5) ÷ (x - 2)/(x + 5), giving your answer in its simplest form.",
+      "prompt": "Simplify \\frac{(x^2 - 4)}{(x + 5)} ÷ \\frac{(x - 2)}{(x + 5)}, giving your answer in its simplest form.",
       "solution_steps": [
         "Factorise the difference of two squares: (x^2 - 4) = (x - 2)(x + 2)",
-        "Dividing by a fraction means multiplying by its reciprocal: ÷ (x - 2)/(x + 5) becomes × (x + 5)/(x - 2)",
-        "(x - 2)(x + 2)/(x + 5) × (x + 5)/(x - 2)",
+        "Dividing by a fraction means multiplying by its reciprocal: ÷ \\frac{(x - 2)}{(x + 5)} becomes × \\frac{(x + 5)}{(x - 2)}",
+        "\\frac{(x - 2)(x + 2)}{(x + 5)} × \\frac{(x + 5)}{(x - 2)}",
         "Cancel the common factors (x + 5) and (x - 2):",
         "= x + 2"
       ],
@@ -494,12 +505,12 @@
         },
         {
           "code": "M1",
-          "description": "Dividing by a fraction means multiplying by its reciprocal: ÷ (x - 2)/(x + 5) becomes × (x + 5)/(x - 2)",
+          "description": "Dividing by a fraction means multiplying by its reciprocal: ÷ \\frac{(x - 2)}{(x + 5)} becomes × \\frac{(x + 5)}{(x - 2)}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(x - 2)(x + 2)/(x + 5) × (x + 5)/(x - 2)",
+          "description": "\\frac{(x - 2)(x + 2)}{(x + 5)} × \\frac{(x + 5)}{(x - 2)}",
           "marks": 1
         },
         {
@@ -608,7 +619,7 @@
     },
     {
       "topic_id": "ratio_shape_similar_higher",
-      "prompt": "Shape A and Shape B are similar. A length on shape A is 2 cm and the corresponding length on shape B is 6 cm. The volume of shape A is 8 cm^3. Find the volume of shape B.",
+      "prompt": "Shape A and Shape B are similar. The volume of shape A is 8 cm^3. Find the volume of shape B.",
       "solution_steps": [
         "Linear scale factor = 6 ÷ 2 = 3",
         "Volume scale factor = (3)^3 = 27",
@@ -638,7 +649,13 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "a_width_label": "2 cm",
+          "b_width_label": "6 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -713,7 +730,7 @@
     },
     {
       "topic_id": "pythagoras_surd_hypotenuse",
-      "prompt": "A right-angled triangle has legs 14 cm and 9 cm. Find the exact length of the hypotenuse, giving your answer as a simplified surd.",
+      "prompt": "A right-angled triangle has sides 14 cm and 9 cm. Find the exact length of x, giving your answer as a simplified surd.",
       "solution_steps": [
         "c² = a² + b² = 14² + 9² = 196 + 81 = 277",
         "c = √277 = √277 cm (exact form)"
@@ -742,7 +759,7 @@
         "params": {
           "leg1_label": "14 cm",
           "leg2_label": "9 cm",
-          "hyp_label": "?"
+          "hyp_label": "x"
         }
       },
       "solution_diagram": null

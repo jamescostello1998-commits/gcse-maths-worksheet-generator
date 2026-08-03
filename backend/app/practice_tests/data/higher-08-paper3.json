@@ -8,9 +8,9 @@
   "questions": [
     {
       "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal 0.(36) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.}{36} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(36), so 100x = 36.3636... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Let x = \\recur{0.}{36}, so 100x = 36.3636... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 36 - 0, so 99x = 36",
         "x = 36/99 = 4/11"
       ],
@@ -19,7 +19,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(36), so 100x = 36.3636... (two digits repeat, so multiply by 100 to shift a full block)",
+          "description": "Let x = \\recur{0.}{36}, so 100x = 36.3636... (two digits repeat, so multiply by 100 to shift a full block)",
           "marks": 1
         },
         {
@@ -43,11 +43,11 @@
     },
     {
       "topic_id": "simplifying_indices_challenging",
-      "prompt": "Simplify 25^(3/2) × 25^-2, giving your answer as a fraction where necessary.",
+      "prompt": "Fully simplify 25^(3/2) × 25^-2, giving your answer as a fraction where necessary.",
       "solution_steps": [
         "25^(1/2) is the square root of 25, which is 5, so 25^(3/2) = 5^3",
-        "25^-2 = 1/25^2 = 1/5^4",
-        "25^(3/2) × 25^-2 = 5^3 × 1/5^4 = 5^(3-4) = 5^-1",
+        "25^-2 = \\frac{1}{25²} = \\frac{1}{5⁴}",
+        "25^(3/2) × 25^-2 = 5^3 × \\frac{1}{5⁴} = 5^(3-4) = 5^-1",
         "5^-1 = 1/5"
       ],
       "final_answer": "1/5",
@@ -60,12 +60,12 @@
         },
         {
           "code": "M1",
-          "description": "25^-2 = 1/25^2 = 1/5^4",
+          "description": "25^-2 = \\frac{1}{25²} = \\frac{1}{5⁴}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "25^(3/2) × 25^-2 = 5^3 × 1/5^4 = 5^(3-4) = 5^-1",
+          "description": "25^(3/2) × 25^-2 = 5^3 × \\frac{1}{5⁴} = 5^(3-4) = 5^-1",
           "marks": 1
         },
         {
@@ -119,9 +119,9 @@
     },
     {
       "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal 0.8(3) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.8}{3} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.8(3)",
+        "Let x = \\recur{0.8}{3}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
         "This gives x = 75/90",
         "Simplify: 5/6"
@@ -131,7 +131,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.8(3)",
+          "description": "Let x = \\recur{0.8}{3}",
           "marks": 1
         },
         {
@@ -258,7 +258,7 @@
         "kind": "right_triangle",
         "params": {
           "leg1_label": "7 m",
-          "leg2_label": "?",
+          "leg2_label": "x",
           "hyp_label": "12 m"
         }
       },
@@ -308,18 +308,18 @@
     },
     {
       "topic_id": "inequalities_region_higher",
-      "prompt": "On the grid, shade the region that satisfies both y > x/2 + 2 and y ≥ x - 1.",
+      "prompt": "On the grid, shade the region that satisfies both y > \\frac{x}{2} + 2 and y ≥ x - 1.",
       "solution_steps": [
-        "Draw the line y = x/2 + 2 (dashed - the line itself is not included in the region).",
+        "Draw the line y = \\frac{x}{2} + 2 (dashed - the line itself is not included in the region).",
         "Draw the line y = x - 1 (solid - the line itself is included in the region).",
-        "Shade the region where both y > x/2 + 2 and y ≥ x - 1 are true at the same time."
+        "Shade the region where both y > \\frac{x}{2} + 2 and y ≥ x - 1 are true at the same time."
       ],
-      "final_answer": "y > x/2 + 2 and y ≥ x - 1",
+      "final_answer": "y > \\frac{x}{2} + 2 and y ≥ x - 1",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw the line y = x/2 + 2 (dashed - the line itself is not included in the region).",
+          "description": "Draw the line y = \\frac{x}{2} + 2 (dashed - the line itself is not included in the region).",
           "marks": 1
         },
         {
@@ -329,12 +329,12 @@
         },
         {
           "code": "M1",
-          "description": "Shade the region where both y > x/2 + 2 and y ≥ x - 1 are true at the same time.",
+          "description": "Shade the region where both y > \\frac{x}{2} + 2 and y ≥ x - 1 are true at the same time.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y > x/2 + 2 and y ≥ x - 1 oe",
+          "description": "y > \\frac{x}{2} + 2 and y ≥ x - 1 oe",
           "marks": 1
         }
       ],
@@ -414,7 +414,7 @@
     },
     {
       "topic_id": "special_sequences_higher",
-      "prompt": "The first 3 terms of a geometric sequence are: 6, 4, 8/3. Each term is found by multiplying the previous term by a common ratio. Find the 4th term of the sequence.",
+      "prompt": "The first 3 terms of a geometric sequence are: 6, 4, 8/3. Find the 4th term of the sequence.",
       "solution_steps": [
         "Common ratio r = 2/3 (divide any term by the term before it).",
         "nth term = a × r^(n - 1) = 6 × (2/3)^3",
@@ -494,8 +494,8 @@
       "solution_steps": [
         "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
         "v = u + at",
-        "Rearrange to make a the subject: a = (v - u)/t",
-        "Substitute u = 20, v = 14, t = 6: a = (14 - 20)/6 = -6/6 = -1"
+        "Rearrange to make a the subject: a = \\frac{v - u}{t}",
+        "Substitute u = 20, v = 14, t = 6: a = \\frac{14 - 20}{6} = -6/6 = -1"
       ],
       "final_answer": "-1 m/s^2",
       "marks": 5,
@@ -512,12 +512,12 @@
         },
         {
           "code": "M1",
-          "description": "Rearrange to make a the subject: a = (v - u)/t",
+          "description": "Rearrange to make a the subject: a = \\frac{v - u}{t}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute u = 20, v = 14, t = 6: a = (14 - 20)/6 = -6/6 = -1",
+          "description": "Substitute u = 20, v = 14, t = 6: a = \\frac{14 - 20}{6} = -6/6 = -1",
           "marks": 1
         },
         {
@@ -665,7 +665,7 @@
     },
     {
       "topic_id": "trig_mixed",
-      "prompt": "In the right-angled triangle shown, find the angle x, correct to 1 decimal place.",
+      "prompt": "In the triangle shown, find the angle x, correct to 1 decimal place.",
       "solution_steps": [
         "Use sin, since we know two of the three sides.",
         "sin(x) = 27 ÷ 35",
@@ -708,11 +708,11 @@
     },
     {
       "topic_id": "cosine_rule",
-      "prompt": "In triangle ABC, side b = 5 cm, side c = 8 cm, and the angle between them, angle A = 120°. Find the length of side a, correct to 3 significant figures.",
+      "prompt": "In triangle ABC, side b = 5 cm, side c = 8 cm, and the angle between them, angle A = 120°. Find the length of side a, correct to 1 decimal place.",
       "solution_steps": [
         "Use the cosine rule: a² = b² + c² - 2bc cos(A)",
         "a² = 5² + 8² - 2×5×8×cos(120°) = 129.0",
-        "a = √129.0 = 11.4 cm (3 s.f.)"
+        "a = √129.0 = 11.4 cm (1 d.p.)"
       ],
       "final_answer": "11.4 cm",
       "marks": 4,
@@ -729,7 +729,7 @@
         },
         {
           "code": "M1",
-          "description": "a = √129.0 = 11.4 cm (3 s.f.)",
+          "description": "a = √129.0 = 11.4 cm (1 d.p.)",
           "marks": 1
         },
         {

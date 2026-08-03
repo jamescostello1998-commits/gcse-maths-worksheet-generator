@@ -8,7 +8,7 @@
   "questions": [
     {
       "topic_id": "decimals_add_subtract",
-      "prompt": "Work out 62.1 + 63.7.",
+      "prompt": "Calculate 62.1 + 63.7.",
       "solution_steps": [
         "Line up the decimal points, padding with a zero so both numbers have the same number of decimal places.",
         "62.1 + 63.7 = 125.8"
@@ -118,7 +118,7 @@
     },
     {
       "topic_id": "fractions_improper_mixed",
-      "prompt": "Write 27/4 as a mixed number.",
+      "prompt": "Convert 27/4 to a mixed number.",
       "solution_steps": [
         "Divide the numerator by the denominator: 27 ÷ 4 = 6 remainder 3",
         "Write as a mixed number: 6 3/4"
@@ -147,12 +147,12 @@
     },
     {
       "topic_id": "decimals_ordering",
-      "prompt": "Write these values in order, starting with the smallest: 39%, 50%, 0.44, 0.93",
+      "prompt": "Write these values in descending order: 39%, 50%, 0.44, 0.93",
       "solution_steps": [
         "Convert each value to a decimal: 39% = 0.39, 50% = 0.50, 0.44 = 0.44, 0.93 = 0.93",
-        "Order from smallest to largest: 39%, 0.44, 50%, 0.93"
+        "Order in descending order: 0.93, 50%, 0.44, 39%"
       ],
-      "final_answer": "39%, 0.44, 50%, 0.93",
+      "final_answer": "0.93, 50%, 0.44, 39%",
       "marks": 3,
       "mark_scheme": [
         {
@@ -162,12 +162,12 @@
         },
         {
           "code": "M1",
-          "description": "Order from smallest to largest: 39%, 0.44, 50%, 0.93",
+          "description": "Order in descending order: 0.93, 50%, 0.44, 39%",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "39%, 0.44, 50%, 0.93 oe",
+          "description": "0.93, 50%, 0.44, 39% oe",
           "marks": 1
         }
       ],
@@ -338,7 +338,7 @@
     },
     {
       "topic_id": "expand_double_brackets_foundation",
-      "prompt": "Expand: (4x + 5)(4x + 2)",
+      "prompt": "Expand and simplify: (4x + 5)(4x + 2)",
       "solution_steps": [
         "First: 4x × 4x = 16x^2",
         "Outer: 4x × 2 = 8x",

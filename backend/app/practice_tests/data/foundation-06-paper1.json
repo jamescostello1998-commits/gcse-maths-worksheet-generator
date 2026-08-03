@@ -72,21 +72,27 @@
     },
     {
       "topic_id": "factors",
-      "prompt": "Write down all the factors of 42.",
+      "prompt": "Is 11 a factor of 13?",
       "solution_steps": [
-        "Check every whole number from 1 to 42 to see if it divides exactly: 1, 2, 3, 6, 7, 14, 21, 42"
+        "13 ÷ 11 = 1 remainder 2",
+        "No, 11 is not a factor of 13."
       ],
-      "final_answer": "1, 2, 3, 6, 7, 14, 21, 42",
-      "marks": 2,
+      "final_answer": "No",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Check every whole number from 1 to 42 to see if it divides exactly: 1, 2, 3, 6, 7, 14, 21, 42",
+          "description": "13 ÷ 11 = 1 remainder 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "No, 11 is not a factor of 13.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1, 2, 3, 6, 7, 14, 21, 42 oe",
+          "description": "No oe",
           "marks": 1
         }
       ],
@@ -146,73 +152,43 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "tree_diagram_independent",
-      "prompt": "A bag contains 8 yellow and 4 blue counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that the first counter is blue and the second counter is blue.",
+      "topic_id": "linear_one_step",
+      "prompt": "Solve: 9x = 54",
       "solution_steps": [
-        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(yellow) = 2/3, P(blue) = 1/3.",
-        "P(blue then blue) = 1/3 × 1/3 = 1/9"
+        "9x = 54",
+        "Divide both sides by 9:",
+        "x = 6"
       ],
-      "final_answer": "1/9",
-      "marks": 3,
+      "final_answer": "6",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(yellow) = 2/3, P(blue) = 1/3.",
+          "description": "9x = 54",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(blue then blue) = 1/3 × 1/3 = 1/9",
+          "description": "Divide both sides by 9:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/9 oe",
+          "description": "6 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "tree_diagram",
-        "params": {
-          "stage1": [
-            [
-              "Yellow",
-              "2/3"
-            ],
-            [
-              "Blue",
-              "1/3"
-            ]
-          ],
-          "stage2": [
-            [
-              [
-                "Yellow",
-                "2/3"
-              ],
-              [
-                "Blue",
-                "1/3"
-              ]
-            ],
-            [
-              [
-                "Yellow",
-                "2/3"
-              ],
-              [
-                "Blue",
-                "1/3"
-              ]
-            ]
-          ]
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
       "topic_id": "fractions_add_subtract",
-      "prompt": "Work out 7/10 - 8/12. Give your answer as a fraction in its simplest form.",
+      "prompt": "Evaluate 7/10 - 8/12. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Find a common denominator: LCM(10, 12) = 60",
         "Convert: 7/10 = 42/60, 8/12 = 40/60",
@@ -315,7 +291,6 @@
       "diagram": {
         "kind": "linear_graph_pair",
         "params": {
-          "intersection_label": "?",
           "label1": "y = 2x + 5",
           "label2": "y = 4x + 13"
         }
@@ -324,7 +299,7 @@
     },
     {
       "topic_id": "expand_double_brackets_foundation",
-      "prompt": "Expand: (2x + 6)(4x + 9)",
+      "prompt": "Expand and simplify: (2x + 6)(4x + 9)",
       "solution_steps": [
         "First: 2x × 4x = 8x^2",
         "Outer: 2x × 9 = 18x",
@@ -635,40 +610,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solve_quadratic_factorising_foundation",
-      "prompt": "Solve x^2 + 12x + 32 = 0 by factorising.",
+      "topic_id": "ratio_1_to_n",
+      "prompt": "Write the ratio 3:5 in the form 1:\\plain{n}.",
       "solution_steps": [
-        "Find two numbers that multiply to 32 and add to 12: 4 and 8",
-        "Factorise: (x + 4)(x + 8) = 0",
-        "Either x + 4 = 0 or x + 8 = 0",
-        "x = -4 or x = -8"
+        "Divide both parts of the ratio by 3 (the first part) so the first part becomes 1.",
+        "3 ÷ 3 = 1, 5 ÷ 3 ≈ 1.67"
       ],
-      "final_answer": "x = -4 or x = -8",
-      "marks": 5,
+      "final_answer": "1 : 1.67 (to 2 d.p.)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to 32 and add to 12: 4 and 8",
+          "description": "Divide both parts of the ratio by 3 (the first part) so the first part becomes 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: (x + 4)(x + 8) = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Either x + 4 = 0 or x + 8 = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = -4 or x = -8",
+          "description": "3 ÷ 3 = 1, 5 ÷ 3 ≈ 1.67",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -4 or x = -8 oe",
+          "description": "1 : 1.67 (to 2 d.p.) oe",
           "marks": 1
         }
       ],
@@ -852,7 +815,7 @@
     },
     {
       "topic_id": "area_parallelogram",
-      "prompt": "A parallelogram has a base of 10 cm and a perpendicular height of 14 cm. Find its area.",
+      "prompt": "Find the area of the following parallelogram.",
       "solution_steps": [
         "Area = base × height = 10 × 14 = 140 cm²"
       ],
@@ -883,7 +846,7 @@
     },
     {
       "topic_id": "pythagoras_hypotenuse_triple",
-      "prompt": "A right-angled triangle has legs 36 cm and 105 cm. Find the length of the hypotenuse.",
+      "prompt": "A right-angled triangle has sides 36 cm and 105 cm. Find the length of x.",
       "solution_steps": [
         "c² = a² + b² = 36² + 105² = 1296 + 11025 = 12321",
         "c = √12321 = 111"
@@ -912,7 +875,7 @@
         "params": {
           "leg1_label": "36 cm",
           "leg2_label": "105 cm",
-          "hyp_label": "?"
+          "hyp_label": "x"
         }
       },
       "solution_diagram": null

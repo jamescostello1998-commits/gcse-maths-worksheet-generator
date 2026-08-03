@@ -36,7 +36,8 @@ SAMPLE_SPECS = [
         kind="l_shape",
         params={
             "outer_w": 20, "outer_h": 15, "inner_w": 6, "inner_h": 5,
-            "notch": "center", "outer_labels": ["20 cm", "15 cm"], "inner_labels": [6, 5],
+            "notch": "center", "shade_frame": True,
+            "outer_labels": ["20 cm", "15 cm"], "inner_labels": ["6 cm", "5 cm"],
         },
     ),
     DiagramSpec(kind="circle", params={"radius": 7, "label": "7 cm"}),
@@ -260,8 +261,33 @@ SAMPLE_SPECS = [
     DiagramSpec(
         kind="mixed_compound",
         params={
-            "width": 16, "height": 10, "roof_height": 5, "cut_radius": 4,
-            "width_label": "16 cm", "height_label": "10 cm", "roof_label": "5 cm", "cut_label": "4 cm",
+            "width": 16, "height": 10, "top_kind": "triangle", "cut_kind": "quarter_circle",
+            "roof_height": 5, "cut_radius": 4,
+            "width_label": "16 cm", "height_label": "10 cm", "top_label": "5 cm", "cut_label": "4 cm",
+        },
+    ),
+    DiagramSpec(
+        kind="mixed_compound",
+        params={
+            "width": 16, "height": 10, "top_kind": "semicircle", "cut_kind": "quarter_circle",
+            "top_radius": 8, "cut_radius": 4,
+            "width_label": "16 cm", "height_label": "10 cm", "top_label": "8 cm", "cut_label": "4 cm",
+        },
+    ),
+    DiagramSpec(
+        kind="mixed_compound",
+        params={
+            "width": 16, "height": 10, "top_kind": "triangle", "cut_kind": "semicircle_notch",
+            "roof_height": 5, "notch_radius": 3,
+            "width_label": "16 cm", "height_label": "10 cm", "top_label": "5 cm", "cut_label": "3 cm",
+        },
+    ),
+    DiagramSpec(
+        kind="mixed_compound",
+        params={
+            "width": 16, "height": 10, "top_kind": "semicircle", "cut_kind": "semicircle_notch",
+            "top_radius": 8, "notch_radius": 3,
+            "width_label": "16 cm", "height_label": "10 cm", "top_label": "8 cm", "cut_label": "3 cm",
         },
     ),
     DiagramSpec(

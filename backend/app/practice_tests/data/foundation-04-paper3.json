@@ -101,7 +101,7 @@
     },
     {
       "topic_id": "decimals_multiply",
-      "prompt": "Work out 4.7 × 2.61.",
+      "prompt": "Calculate 4.7 × 2.61.",
       "solution_steps": [
         "Ignore the decimal points and multiply the whole numbers: 47 × 261 = 12267",
         "Count the total decimal places in the question: 1 + 2 = 3",
@@ -165,7 +165,7 @@
     },
     {
       "topic_id": "fractions_add_subtract",
-      "prompt": "Work out 8/10 - 2/4. Give your answer as a fraction in its simplest form.",
+      "prompt": "Calculate 8/10 - 2/4. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Find a common denominator: LCM(10, 4) = 20",
         "Convert: 8/10 = 16/20, 2/4 = 10/20",
@@ -206,27 +206,27 @@
     },
     {
       "topic_id": "fractions_equivalent",
-      "prompt": "5/6 = ?/48. Find the missing numerator.",
+      "prompt": "3/4 = \\frac{24}{?}. Find the missing denominator.",
       "solution_steps": [
-        "Find the scale factor between the denominators: 48 ÷ 6 = 8",
-        "Multiply the numerator by the same scale factor: 5 × 8 = 40"
+        "Find the scale factor between the numerators: 24 ÷ 3 = 8",
+        "Multiply the denominator by the same scale factor: 4 × 8 = 32"
       ],
-      "final_answer": "40",
+      "final_answer": "32",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the scale factor between the denominators: 48 ÷ 6 = 8",
+          "description": "Find the scale factor between the numerators: 24 ÷ 3 = 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the numerator by the same scale factor: 5 × 8 = 40",
+          "description": "Multiply the denominator by the same scale factor: 4 × 8 = 32",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "40 oe",
+          "description": "32 oe",
           "marks": 1
         }
       ],
@@ -270,7 +270,7 @@
     },
     {
       "topic_id": "sequences_nth_term",
-      "prompt": "Here are the first four terms of a sequence: -1, 2, 5, 8. Find an expression for the nth term.",
+      "prompt": "Here are the first four terms of a sequence: -1, 2, 5, 8.\nFind an expression for the nth term.",
       "solution_steps": [
         "Common difference = 3",
         "nth term = 3n - 4",
@@ -460,7 +460,7 @@
     },
     {
       "topic_id": "forming_equations_foundation",
-      "prompt": "A rectangle has one side of length 12 cm and the other side of length (x + 3) cm. The perimeter of the rectangle is 52 cm. Form an equation and solve it to find x.",
+      "prompt": "The perimeter of the rectangle shown is 52 cm. Form an equation and solve it to find x.",
       "solution_steps": [
         "Perimeter = 2 × (sum of two different side lengths).",
         "2(x + 3) + 2(12) = 52",
@@ -499,7 +499,15 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "rectangle",
+        "params": {
+          "width": 14,
+          "height": 12,
+          "width_label": "(x + 3) cm",
+          "height_label": "12 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -539,10 +547,10 @@
     },
     {
       "topic_id": "ratio_find_missing_share",
-      "prompt": "Two amounts are in the ratio 9:1. The first amount is 18. Find the second amount.",
+      "prompt": "p : q = 9 : 1. p = 18. What is the value of q?",
       "solution_steps": [
         "Value of one part = 18 ÷ 9 = 2",
-        "Second amount = 1 × 2 = 2"
+        "q = 1 × 2 = 2"
       ],
       "final_answer": "2",
       "marks": 3,
@@ -554,7 +562,7 @@
         },
         {
           "code": "M1",
-          "description": "Second amount = 1 × 2 = 2",
+          "description": "q = 1 × 2 = 2",
           "marks": 1
         },
         {
@@ -668,7 +676,7 @@
     },
     {
       "topic_id": "direct_proportion",
-      "prompt": "2 rulers cost £5.02. How much would 6 rulers cost?",
+      "prompt": "If 2 rulers cost £5.02, how much would 6 rulers cost?",
       "solution_steps": [
         "Unit value = £5.02 ÷ 2 = £2.51",
         "Answer = £2.51 × 6 = £15.06"
@@ -697,7 +705,7 @@
     },
     {
       "topic_id": "pythagoras_hypotenuse_triple",
-      "prompt": "A right-angled triangle has legs 24 cm and 70 cm. Find the length of the hypotenuse.",
+      "prompt": "A right-angled triangle has sides 24 cm and 70 cm. Find the length of x.",
       "solution_steps": [
         "c² = a² + b² = 24² + 70² = 576 + 4900 = 5476",
         "c = √5476 = 74"
@@ -726,14 +734,14 @@
         "params": {
           "leg1_label": "24 cm",
           "leg2_label": "70 cm",
-          "hyp_label": "?"
+          "hyp_label": "x"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "area_rectangle",
-      "prompt": "A rectangle has length 15 cm and width 8 cm. Find its perimeter.",
+      "prompt": "Find the perimeter of the following rectangle.",
       "solution_steps": [
         "Perimeter = 2 × (length + width) = 2 × (15 + 8) = 46 cm"
       ],
@@ -805,7 +813,7 @@
     },
     {
       "topic_id": "trig_missing_angle_foundation",
-      "prompt": "In the right-angled triangle shown, find the angle x, correct to 1 decimal place.",
+      "prompt": "In the triangle shown, find the angle x, correct to 1 decimal place.",
       "solution_steps": [
         "Use sin, since we know two of the three sides.",
         "sin(x) = 18 ÷ 19",
@@ -848,12 +856,12 @@
     },
     {
       "topic_id": "trig_missing_side_foundation",
-      "prompt": "In the right-angled triangle shown, find the length of x, correct to 3 significant figures.",
+      "prompt": "In the triangle shown, find the length of x, correct to 1 decimal place.",
       "solution_steps": [
         "We know the hypotenuse and want the adjacent, so use cos.",
-        "x = 17 × cos(69°) = 6.09 (to 3 s.f.)"
+        "x = 17 × cos(69°) = 6.1 (1 d.p.)"
       ],
-      "final_answer": "6.09 cm",
+      "final_answer": "6.1 cm",
       "marks": 3,
       "mark_scheme": [
         {
@@ -863,12 +871,12 @@
         },
         {
           "code": "M1",
-          "description": "x = 17 × cos(69°) = 6.09 (to 3 s.f.)",
+          "description": "x = 17 × cos(69°) = 6.1 (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6.09 cm oe",
+          "description": "6.1 cm oe",
           "marks": 1
         }
       ],

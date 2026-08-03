@@ -8,7 +8,7 @@
   "questions": [
     {
       "topic_id": "number_powers_of_ten",
-      "prompt": "Work out 2.90 × 10.",
+      "prompt": "Evaluate 2.90 × 10.",
       "solution_steps": [
         "Multiplying by 10 moves the decimal point 1 place to the right.",
         "2.90 × 10 = 29.0"
@@ -193,22 +193,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "negative_add_subtract",
-      "prompt": "Work out -14 + (-12).",
+      "topic_id": "solving_inequalities_foundation",
+      "prompt": "Solve the inequality: 6x + 2 ≥ 7",
       "solution_steps": [
-        "-14 + (-12) = -26"
+        "6x + 2 ≥ 7",
+        "Subtract 2 from both sides:",
+        "6x ≥ 5",
+        "Divide both sides by 6:",
+        "x ≥ 5/6"
       ],
-      "final_answer": "-26",
-      "marks": 2,
+      "final_answer": "x ≥ 5/6",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "-14 + (-12) = -26",
+          "description": "6x + 2 ≥ 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 2 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "6x ≥ 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 6: x ≥ 5/6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-26 oe",
+          "description": "x ≥ 5/6 oe",
           "marks": 1
         }
       ],
@@ -217,17 +236,17 @@
     },
     {
       "topic_id": "fractions_equivalent_diagram",
-      "prompt": "The first shape shows 5/6 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
+      "prompt": "The first shape shows 3/4 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
       "solution_steps": [
-        "Cross-multiply 5/6 against each labelled shape: a shape shows an equivalent fraction only if 5 × (its denominator) = (its shaded count) × 6.",
-        "Only shape A) 10/12 works: 5 × 12 = 10 × 6 = 60."
+        "Cross-multiply 3/4 against each labelled shape: a shape shows an equivalent fraction only if 3 × (its denominator) = (its shaded count) × 4.",
+        "Only shape A) 9/12 works: 3 × 12 = 9 × 4 = 36."
       ],
-      "final_answer": "A) 10/12",
+      "final_answer": "A) 9/12",
       "marks": 1,
       "mark_scheme": [
         {
           "code": "B1",
-          "description": "A) 10/12 (selecting the correct option)",
+          "description": "A) 9/12 (selecting the correct option)",
           "marks": 1
         }
       ],
@@ -237,27 +256,26 @@
           "shapes": [
             {
               "kind": "bar",
-              "parts": 6,
-              "shaded": 5,
-              "label": "5/6"
+              "parts": 4,
+              "shaded": 3
             },
             {
               "kind": "bar",
               "parts": 12,
-              "shaded": 10,
-              "label": "A) 10/12"
+              "shaded": 9,
+              "label": "A)"
             },
             {
               "kind": "bar",
               "parts": 12,
               "shaded": 11,
-              "label": "B) 11/12"
+              "label": "B)"
             },
             {
               "kind": "bar",
               "parts": 12,
               "shaded": 6,
-              "label": "C) 6/12"
+              "label": "C)"
             }
           ]
         }
@@ -265,34 +283,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "error_interval",
-      "prompt": "A number, x, is 8.7 rounded to 1 decimal place. Write down the error interval for x.",
+      "topic_id": "sequences_next_term",
+      "prompt": "Find the next term in the sequence: 9, 15, 21, 27, 33, ...",
       "solution_steps": [
-        "8.7 is rounded to 1 decimal place, so x can be up to half of that precision above or below 8.7.",
-        "Lower bound: 8.7 - 0.05 = 8.65",
-        "Upper bound: 8.7 + 0.05 = 8.75"
+        "Add 6 each time.",
+        "Next term = 33 + 6 = 39"
       ],
-      "final_answer": "8.65 ≤ x < 8.75",
-      "marks": 4,
+      "final_answer": "39",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "8.7 is rounded to 1 decimal place, so x can be up to half of that precision above or below 8.7.",
+          "description": "Add 6 each time.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Lower bound: 8.7 - 0.05 = 8.65",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Upper bound: 8.7 + 0.05 = 8.75",
+          "description": "Next term = 33 + 6 = 39",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8.65 ≤ x < 8.75 oe",
+          "description": "39 oe",
           "marks": 1
         }
       ],
@@ -300,43 +312,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_both_sides_foundation",
-      "prompt": "Solve: 6x + 4 = 2x + 44",
+      "topic_id": "linear_multi_step",
+      "prompt": "Solve: 4x + 14 + 4x + 3 = 81",
       "solution_steps": [
-        "6x + 4 = 2x + 44",
-        "Subtract 2x from both sides:",
-        "4x + 4 = 44",
-        "Subtract 4 from both sides:",
-        "4x = 40",
-        "Divide both sides by 4:",
-        "x = 10"
+        "Collect like terms: 4x + 4x = 8x, 14 + 3 = 17",
+        "8x + 17 = 81",
+        "Subtract 17 from both sides:",
+        "8x = 64",
+        "Divide both sides by 8:",
+        "x = 8"
       ],
-      "final_answer": "10",
+      "final_answer": "8",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "6x + 4 = 2x + 44",
+          "description": "Collect like terms: 4x + 4x = 8x, 14 + 3 = 17",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 2x from both sides:",
+          "description": "8x + 17 = 81",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x + 4 = 44",
+          "description": "Subtract 17 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 4 from both sides: 4x = 40 Divide both sides by 4: x = 10",
+          "description": "8x = 64 Divide both sides by 8: x = 8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10 oe",
+          "description": "8 oe",
           "marks": 1
         }
       ],
@@ -483,35 +494,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_next_term",
-      "prompt": "Find the next term in the sequence: 9, 15, 21, 27, 33, ...",
-      "solution_steps": [
-        "Add 6 each time.",
-        "Next term = 33 + 6 = 39"
-      ],
-      "final_answer": "39",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Add 6 each time.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Next term = 33 + 6 = 39",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "39 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
       "topic_id": "sequences_term_to_term_rule",
       "prompt": "Here are the first four terms of a sequence: 1, 3, 9, 27. Describe the term-to-term rule, and find the next term.",
       "solution_steps": [
@@ -541,23 +523,67 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "special_sequences_foundation",
-      "prompt": "The first 3 triangular numbers are: 1, 3, 6. Find the 6th term of the sequence (term number 6).",
+      "topic_id": "inequalities_number_line_foundation",
+      "prompt": "Write down the inequality shown by the number line below.",
       "solution_steps": [
-        "These are the triangular numbers: the nth term is given by n(n + 1)/2.",
-        "Term 6 = 6(6 + 1)/2 = 42/2 = 21"
+        "The circle at 5 is filled, so 5 is included in the solution set.",
+        "The shading and arrow point to the left, so the solution is x ≤ 5."
+      ],
+      "final_answer": "x ≤ 5",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The circle at 5 is filled, so 5 is included in the solution set.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The shading and arrow point to the left, so the solution is x ≤ 5.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x ≤ 5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -6,
+            6
+          ],
+          "boundaries": [
+            {
+              "value": 5,
+              "closed": true
+            }
+          ],
+          "shade": "left"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "special_sequences_foundation",
+      "prompt": "The first 3 triangular numbers are: 1, 3, 6. Find the 6th term of the sequence.",
+      "solution_steps": [
+        "These are the triangular numbers: the nth term is given by \\frac{n(n + 1)}{2}.",
+        "Term 6 = \\frac{6(6 + 1)}{2} = 42/2 = 21"
       ],
       "final_answer": "21",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "These are the triangular numbers: the nth term is given by n(n + 1)/2.",
+          "description": "These are the triangular numbers: the nth term is given by \\frac{n(n + 1)}{2}.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Term 6 = 6(6 + 1)/2 = 42/2 = 21",
+          "description": "Term 6 = \\frac{6(6 + 1)}{2} = 42/2 = 21",
           "marks": 1
         },
         {
@@ -571,7 +597,7 @@
     },
     {
       "topic_id": "expand_double_brackets_foundation",
-      "prompt": "Expand: (2x + 4)(2x + 1)",
+      "prompt": "Expand and simplify: (2x + 4)(2x + 1)",
       "solution_steps": [
         "First: 2x × 2x = 4x^2",
         "Outer: 2x × 1 = 2x",
@@ -612,28 +638,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_common_factor",
-      "prompt": "Factorise: -25x - 20",
+      "topic_id": "ratio_share_two_part",
+      "prompt": "Share 105 in the ratio 7:8.",
       "solution_steps": [
-        "Find the highest common factor of -25 and -20: 5",
-        "Factorise: 5(-5x - 4)"
+        "Total parts = 7 + 8 = 15",
+        "Value of one part = 105 ÷ 15 = 7",
+        "Share 1 = 7 × 7 = 49",
+        "Share 2 = 8 × 7 = 56"
       ],
-      "final_answer": "5(-5x - 4)",
-      "marks": 3,
+      "final_answer": "49 : 56",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the highest common factor of -25 and -20: 5",
+          "description": "Total parts = 7 + 8 = 15",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: 5(-5x - 4)",
+          "description": "Value of one part = 105 ÷ 15 = 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 1 = 7 × 7 = 49",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 2 = 8 × 7 = 56",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5(-5x - 4) oe",
+          "description": "49 : 56 oe",
           "marks": 1
         }
       ],
@@ -671,15 +709,15 @@
     },
     {
       "topic_id": "ratio_difference",
-      "prompt": "Two amounts are in the ratio 2:3. The difference between them is 17. Find both amounts and their total.",
+      "prompt": "a : b = 2 : 3. b - a = 17. Find a and b, and their total.",
       "solution_steps": [
         "Difference in parts = 3 - 2 = 1 parts",
         "Value of one part = 17 ÷ 1 = 17",
-        "First amount = 2 × 17 = 34",
-        "Second amount = 3 × 17 = 51",
-        "Total = 34 + 51 = 85"
+        "a = 2 × 17 = 34",
+        "b = 3 × 17 = 51",
+        "a + b = 34 + 51 = 85"
       ],
-      "final_answer": "34 : 51 (total 85)",
+      "final_answer": "a = 34, b = 51 (total 85)",
       "marks": 5,
       "mark_scheme": [
         {
@@ -694,17 +732,17 @@
         },
         {
           "code": "M1",
-          "description": "First amount = 2 × 17 = 34",
+          "description": "a = 2 × 17 = 34",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Second amount = 3 × 17 = 51 Total = 34 + 51 = 85",
+          "description": "b = 3 × 17 = 51 a + b = 34 + 51 = 85",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "34 : 51 (total 85) oe",
+          "description": "a = 34, b = 51 (total 85) oe",
           "marks": 1
         }
       ],
@@ -741,66 +779,129 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "compound_percentage_foundation",
-      "prompt": "A price of £40 decreases by 50%, then decreases by 10%. Find the final price.",
+      "topic_id": "angles_exterior_foundation",
+      "prompt": "An exterior angle of a triangle is x°. The two remote interior angles are 64° and 28°. Find x.",
       "solution_steps": [
-        "After the first change: 40 × 0.50 = 20",
-        "After the second change: 20 × 0.90 = 18"
+        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+        "x = 64 + 28 = 92"
       ],
-      "final_answer": "£18",
+      "final_answer": "92",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first change: 40 × 0.50 = 20",
+          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "After the second change: 20 × 0.90 = 18",
+          "description": "x = 64 + 28 = 92",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£18 oe",
+          "description": "92 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "exterior_triangle",
+        "params": {
+          "interior1_label": "64°",
+          "interior2_label": "28°",
+          "exterior_label": "x"
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "direct_proportion",
-      "prompt": "On a map, 10 cm represents 90 km in real life. How many km does 15 cm represent?",
+      "topic_id": "transform_translate_describe",
+      "prompt": "Shape ABCD is translated to give shape A'B'C'D', shown on the grid. Describe fully the single transformation that maps ABCD onto A'B'C'D'.",
       "solution_steps": [
-        "Unit value = 90 km ÷ 10 = 9 km",
-        "Answer = 9 km × 15 = 135 km"
+        "Every vertex moves by exactly the same amount: comparing A(1, 0) with A'(1, -3) gives the vector (0, -3).",
+        "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
       ],
-      "final_answer": "135 km",
+      "final_answer": "Translation by the vector (0, -3)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Unit value = 90 km ÷ 10 = 9 km",
+          "description": "Every vertex moves by exactly the same amount: comparing A(1, 0) with A'(1, -3) gives the vector (0, -3).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer = 9 km × 15 = 135 km",
+          "description": "Checking the other vertices confirms the same vector applies throughout, so this is a translation.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "135 km oe",
+          "description": "Translation by the vector (0, -3) oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              1,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "image_vertices": [
+            [
+              1,
+              -3
+            ],
+            [
+              5,
+              -3
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'",
+            "D'"
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
       "topic_id": "area_parallelogram",
-      "prompt": "A parallelogram has a base of 6 cm and a perpendicular height of 12 cm. Find its area.",
+      "prompt": "Find the area of the following parallelogram.",
       "solution_steps": [
         "Area = base × height = 6 × 12 = 72 cm²"
       ],
@@ -830,30 +931,37 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_polygon_interior_foundation",
-      "prompt": "A polygon has 45 sides. Find the sum of its interior angles.",
+      "topic_id": "pythagoras_hypotenuse_triple",
+      "prompt": "A right-angled triangle has sides 24 cm and 70 cm. Find the length of x.",
       "solution_steps": [
-        "Sum of interior angles = (n - 2) × 180 = (45 - 2) × 180 = 7740°"
+        "c² = a² + b² = 24² + 70² = 576 + 4900 = 5476",
+        "c = √5476 = 74"
       ],
-      "final_answer": "7740°",
-      "marks": 2,
+      "final_answer": "74 cm",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Sum of interior angles = (n - 2) × 180 = (45 - 2) × 180 = 7740°",
+          "description": "c² = a² + b² = 24² + 70² = 576 + 4900 = 5476",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "c = √5476 = 74",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7740° oe",
+          "description": "74 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "polygon",
+        "kind": "right_triangle",
         "params": {
-          "n_sides": 12,
-          "marked_angle_label": "?"
+          "leg1_label": "24 cm",
+          "leg2_label": "70 cm",
+          "hyp_label": "x"
         }
       },
       "solution_diagram": null
@@ -900,274 +1008,148 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_rotate_complete",
-      "prompt": "Rotate shape ABCD 180° about the centre (2, 2). Draw and label the image A'B'C'D'.",
+      "topic_id": "two_way_tables",
+      "prompt": "The two-way table shows the number of year 10 and year 11 who prefer cats or dogs. Copy and complete the table, and state the missing value marked '?'.",
       "solution_steps": [
-        "Rotate each vertex 180° about the centre (2, 2): every point stays the same distance from the centre and turns through the same angle.",
-        "A(-2, -2) -> A'(6, 6), B(2, -2) -> B'(2, 6), C(1, 2) -> C'(3, 2), D(-3, 1) -> D'(7, 3)"
+        "The missing value is in the 'Year 11' row and 'Cats' column.",
+        "Using the row total: 24 - 7 = 17",
+        "Using the column total: 27 - 10 = 17",
+        "Missing value = 17"
       ],
-      "final_answer": "A'(6, 6), B'(2, 6), C'(3, 2), D'(7, 3)",
-      "marks": 3,
+      "final_answer": "17",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rotate each vertex 180° about the centre (2, 2): every point stays the same distance from the centre and turns through the same angle.",
+          "description": "The missing value is in the 'Year 11' row and 'Cats' column.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A(-2, -2) -> A'(6, 6), B(2, -2) -> B'(2, 6), C(1, 2) -> C'(3, 2), D(-3, 1) -> D'(7, 3)",
+          "description": "Using the row total: 24 - 7 = 17",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Using the column total: 27 - 10 = 17",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Missing value = 17",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(6, 6), B'(2, 6), C'(3, 2), D'(7, 3) oe",
+          "description": "17 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "grid_transformation",
+        "kind": "two_way_table",
         "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
+          "row_labels": [
+            "Year 10",
+            "Year 11",
+            "Total"
+          ],
+          "col_labels": [
+            "Cats",
+            "Dogs",
+            "Total"
+          ],
+          "cells": [
             [
-              -2,
-              -2
+              "10",
+              "17",
+              "27"
             ],
             [
-              2,
-              -2
+              "?",
+              "7",
+              "24"
             ],
             [
-              1,
-              2
-            ],
-            [
-              -3,
-              1
+              "27",
+              "24",
+              "51"
             ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
-          ],
-          "centre": [
-            2,
-            2
           ]
         }
       },
       "solution_diagram": {
-        "kind": "grid_transformation",
+        "kind": "two_way_table",
         "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
+          "row_labels": [
+            "Year 10",
+            "Year 11",
+            "Total"
+          ],
+          "col_labels": [
+            "Cats",
+            "Dogs",
+            "Total"
+          ],
+          "cells": [
             [
-              -2,
-              -2
+              "10",
+              "17",
+              "27"
             ],
             [
-              2,
-              -2
+              "17",
+              "7",
+              "24"
             ],
             [
-              1,
-              2
-            ],
-            [
-              -3,
-              1
+              "27",
+              "24",
+              "51"
             ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
-          ],
-          "centre": [
-            2,
-            2
-          ],
-          "image_vertices": [
-            [
-              6,
-              6
-            ],
-            [
-              2,
-              6
-            ],
-            [
-              3,
-              2
-            ],
-            [
-              7,
-              3
-            ]
-          ],
-          "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'"
           ]
         }
       }
     },
     {
-      "topic_id": "area_composite_rectangles",
-      "prompt": "An L-shaped room is formed by taking a rectangle 17 cm by 16 cm and removing a corner rectangle 14 cm by 4 cm. Find the area of the room.",
+      "topic_id": "linear_two_step",
+      "prompt": "Solve: 2x + 10 = 14",
       "solution_steps": [
-        "Area of full rectangle = 17 × 16 = 272 cm²",
-        "Area of the cut-out corner = 14 × 4 = 56 cm²",
-        "Area of the shape = 272 - 56 = 216 cm²"
+        "2x + 10 = 14",
+        "Subtract 10 from both sides:",
+        "2x = 4",
+        "Divide both sides by 2:",
+        "x = 2"
       ],
-      "final_answer": "216 cm²",
-      "marks": 4,
+      "final_answer": "2",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area of full rectangle = 17 × 16 = 272 cm²",
+          "description": "2x + 10 = 14",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Area of the cut-out corner = 14 × 4 = 56 cm²",
+          "description": "Subtract 10 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Area of the shape = 272 - 56 = 216 cm²",
+          "description": "2x = 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 2: x = 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "216 cm² oe",
+          "description": "2 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "l_shape",
-        "params": {
-          "outer_w": 17,
-          "outer_h": 16,
-          "inner_w": 14,
-          "inner_h": 4,
-          "notch": "corner",
-          "outer_labels": [
-            "17 cm",
-            "16 cm"
-          ],
-          "inner_labels": [
-            "14 cm",
-            "4 cm"
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "venn_diagram_probability",
-      "prompt": "The Venn diagram shows the number of students in each region for sets A and B. Find P(B only).",
-      "solution_steps": [
-        "Total number of elements = 2 + 14 + 11 + 5 = 32",
-        "Number of outcomes in B only = 14 = 14",
-        "P(B only) = 14/32 = 7/16"
-      ],
-      "final_answer": "7/16",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total number of elements = 2 + 14 + 11 + 5 = 32",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Number of outcomes in B only = 14 = 14",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(B only) = 14/32 = 7/16",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "7/16 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "venn_diagram",
-        "params": {
-          "labels": [
-            "A",
-            "B"
-          ],
-          "region_text": {
-            "a_only": "2",
-            "b_only": "14",
-            "both": "11",
-            "neither": "5"
-          }
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "probability_single_event",
-      "prompt": "A bag contains 3 red, 2 blue, 2 yellow counters. A counter is picked at random. Find the probability that it is yellow.",
-      "solution_steps": [
-        "Total counters = 7",
-        "Number of yellow counters = 2",
-        "P(yellow) = 2/7 = 2/7"
-      ],
-      "final_answer": "2/7",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total counters = 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Number of yellow counters = 2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(yellow) = 2/7 = 2/7",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2/7 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "bag_of_counters",
-        "params": {
-          "counts": {
-            "red": 3,
-            "blue": 2,
-            "yellow": 2
-          },
-          "highlight": "yellow"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     }
   ]

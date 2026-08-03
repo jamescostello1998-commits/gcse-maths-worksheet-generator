@@ -124,9 +124,9 @@
     },
     {
       "topic_id": "recurring_decimal_single_digit",
-      "prompt": "The recurring decimal 0.(2) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.}{2} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(2), so 10x = 2.222... (only one digit repeats, so multiply by 10 to shift it one place)",
+        "Let x = \\recur{0.}{2}, so 10x = 2.222... (only one digit repeats, so multiply by 10 to shift it one place)",
         "Subtract: 10x - x = 2 - 0, so 9x = 2",
         "x = 2/9 = 2/9"
       ],
@@ -135,7 +135,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(2), so 10x = 2.222... (only one digit repeats, so multiply by 10 to shift it one place)",
+          "description": "Let x = \\recur{0.}{2}, so 10x = 2.222... (only one digit repeats, so multiply by 10 to shift it one place)",
           "marks": 1
         },
         {
@@ -196,14 +196,12 @@
             {
               "kind": "bar",
               "parts": 4,
-              "shaded": 1,
-              "label": "1/4"
+              "shaded": 1
             },
             {
               "kind": "bar",
               "parts": 8,
-              "shaded": 0,
-              "label": "?/8"
+              "shaded": 0
             }
           ]
         }
@@ -215,14 +213,12 @@
             {
               "kind": "bar",
               "parts": 4,
-              "shaded": 1,
-              "label": "1/4"
+              "shaded": 1
             },
             {
               "kind": "bar",
               "parts": 8,
-              "shaded": 2,
-              "label": "2/8"
+              "shaded": 2
             }
           ]
         }
@@ -287,34 +283,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "error_interval",
-      "prompt": "A number, x, is 8.3 rounded to 1 decimal place. Write down the error interval for x.",
+      "topic_id": "sequences_next_term",
+      "prompt": "Find the next term in the sequence: 6, 9, 12, 15, ...",
       "solution_steps": [
-        "8.3 is rounded to 1 decimal place, so x can be up to half of that precision above or below 8.3.",
-        "Lower bound: 8.3 - 0.05 = 8.25",
-        "Upper bound: 8.3 + 0.05 = 8.35"
+        "Add 3 each time.",
+        "Next term = 15 + 3 = 18"
       ],
-      "final_answer": "8.25 ≤ x < 8.35",
-      "marks": 4,
+      "final_answer": "18",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "8.3 is rounded to 1 decimal place, so x can be up to half of that precision above or below 8.3.",
+          "description": "Add 3 each time.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Lower bound: 8.3 - 0.05 = 8.25",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Upper bound: 8.3 + 0.05 = 8.35",
+          "description": "Next term = 15 + 3 = 18",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8.25 ≤ x < 8.35 oe",
+          "description": "18 oe",
           "marks": 1
         }
       ],
@@ -419,8 +409,37 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "special_sequences_foundation",
+      "prompt": "The first 5 square numbers are: 1, 4, 9, 16, 25. Find the 8th term of the sequence.",
+      "solution_steps": [
+        "These are the square numbers: the nth term is given by n^2.",
+        "Term 8 = 8^2 = 64"
+      ],
+      "final_answer": "64",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "These are the square numbers: the nth term is given by n^2.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Term 8 = 8^2 = 64",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "64 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "expand_double_brackets_foundation",
-      "prompt": "Expand: (4x + 5)(2x + 9)",
+      "prompt": "Expand and simplify: (4x + 5)(2x + 9)",
       "solution_steps": [
         "First: 4x × 2x = 8x^2",
         "Outer: 4x × 9 = 36x",
@@ -627,28 +646,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_next_term",
-      "prompt": "Find the next term in the sequence: 6, 9, 12, 15, ...",
+      "topic_id": "direct_proportion",
+      "prompt": "If 4 cm on a map represents 112 km in real life, how many km does 2 cm represent?",
       "solution_steps": [
-        "Add 3 each time.",
-        "Next term = 15 + 3 = 18"
+        "Unit value = 112 km ÷ 4 = 28 km",
+        "Answer = 28 km × 2 = 56 km"
       ],
-      "final_answer": "18",
+      "final_answer": "56 km",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Add 3 each time.",
+          "description": "Unit value = 112 km ÷ 4 = 28 km",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Next term = 15 + 3 = 18",
+          "description": "Answer = 28 km × 2 = 56 km",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "18 oe",
+          "description": "56 km oe",
           "marks": 1
         }
       ],
@@ -656,28 +675,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_shape_similar_foundation",
-      "prompt": "Shape A and Shape B are similar. A side on shape A is 10 cm. The corresponding side on shape B is 5 cm. Another side on shape A is 6 cm. Find the length of the corresponding side on shape B.",
+      "topic_id": "ratio_difference",
+      "prompt": "p : q = 3 : 7. q - p = 68. Find p and q.",
       "solution_steps": [
-        "Scale factor = 5 ÷ 10 = 1/2",
-        "Corresponding length = 6 × 1/2 = 3"
+        "Difference in parts = 7 - 3 = 4 parts",
+        "Value of one part = 68 ÷ 4 = 17",
+        "p = 3 × 17 = 51",
+        "q = 7 × 17 = 119"
       ],
-      "final_answer": "3 cm",
-      "marks": 3,
+      "final_answer": "p = 51, q = 119",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Scale factor = 5 ÷ 10 = 1/2",
+          "description": "Difference in parts = 7 - 3 = 4 parts",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Corresponding length = 6 × 1/2 = 3",
+          "description": "Value of one part = 68 ÷ 4 = 17",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "p = 3 × 17 = 51",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "q = 7 × 17 = 119",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 cm oe",
+          "description": "p = 51, q = 119 oe",
           "marks": 1
         }
       ],
@@ -715,10 +746,10 @@
     },
     {
       "topic_id": "ratio_find_missing_share",
-      "prompt": "Two amounts are in the ratio 7:6. The first amount is 49. Find the second amount.",
+      "prompt": "p : q = 7 : 6. p = 49. What is the value of q?",
       "solution_steps": [
         "Value of one part = 49 ÷ 7 = 7",
-        "Second amount = 6 × 7 = 42"
+        "q = 6 × 7 = 42"
       ],
       "final_answer": "42",
       "marks": 3,
@@ -730,7 +761,7 @@
         },
         {
           "code": "M1",
-          "description": "Second amount = 6 × 7 = 42",
+          "description": "q = 6 × 7 = 42",
           "marks": 1
         },
         {
@@ -743,97 +774,277 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "direct_proportion",
-      "prompt": "On a map, 4 cm represents 112 km in real life. How many km does 2 cm represent?",
+      "topic_id": "ratio_shape_similar_foundation",
+      "prompt": "Shape A and Shape B are similar. Find the length of side z.",
       "solution_steps": [
-        "Unit value = 112 km ÷ 4 = 28 km",
-        "Answer = 28 km × 2 = 56 km"
+        "Scale factor = 5 ÷ 10 = 1/2",
+        "Corresponding length = 6 × 1/2 = 3"
       ],
-      "final_answer": "56 km",
+      "final_answer": "3 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Unit value = 112 km ÷ 4 = 28 km",
+          "description": "Scale factor = 5 ÷ 10 = 1/2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer = 28 km × 2 = 56 km",
+          "description": "Corresponding length = 6 × 1/2 = 3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "56 km oe",
+          "description": "3 cm oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "a_width_label": "10 cm",
+          "a_height_label": "6 cm",
+          "b_width_label": "5 cm",
+          "b_height_label": "z"
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_difference",
-      "prompt": "Two amounts are in the ratio 3:7. The difference between them is 68. Find both amounts.",
+      "topic_id": "symmetry_rotational",
+      "prompt": "The diagram shows a rectangle. State the order of rotational symmetry.",
       "solution_steps": [
-        "Difference in parts = 7 - 3 = 4 parts",
-        "Value of one part = 68 ÷ 4 = 17",
-        "First amount = 3 × 17 = 51",
-        "Second amount = 7 × 17 = 119"
+        "Rotating the rectangle about its centre, it looks exactly the same 2 times during a full 360° turn.",
+        "So the order of rotational symmetry is 2."
       ],
-      "final_answer": "51 : 119",
-      "marks": 5,
+      "final_answer": "order 2",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Difference in parts = 7 - 3 = 4 parts",
+          "description": "Rotating the rectangle about its centre, it looks exactly the same 2 times during a full 360° turn.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 68 ÷ 4 = 17",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "First amount = 3 × 17 = 51",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Second amount = 7 × 17 = 119",
+          "description": "So the order of rotational symmetry is 2.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "51 : 119 oe",
+          "description": "order 2 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "symmetry_shape",
+        "params": {
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "symmetry_shape",
+        "params": {
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "rotation_centre": [
+            3.0,
+            2.0
+          ],
+          "rotation_order": 2
+        }
+      }
     },
     {
-      "topic_id": "negative_add_subtract",
-      "prompt": "Work out -11 - (-6).",
+      "topic_id": "transform_translate_complete",
+      "prompt": "Translate shape ABCDEF by the vector (-5, -1). Draw and label the image A'B'C'D'E'F'.",
       "solution_steps": [
-        "-11 - (-6) = -5"
+        "Translate every vertex by the vector (-5, -1): move each point 5 squares left and 1 square down.",
+        "A(0, 1) -> A'(-5, 0), B(5, 1) -> B'(0, 0), C(5, 3) -> C'(0, 2), D(3, 3) -> D'(-2, 2), E(3, 5) -> E'(-2, 4), F(0, 5) -> F'(-5, 4)"
       ],
-      "final_answer": "-5",
-      "marks": 2,
+      "final_answer": "A'(-5, 0), B'(0, 0), C'(0, 2), D'(-2, 2), E'(-2, 4), F'(-5, 4)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "-11 - (-6) = -5",
+          "description": "Translate every vertex by the vector (-5, -1): move each point 5 squares left and 1 square down.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A(0, 1) -> A'(-5, 0), B(5, 1) -> B'(0, 0), C(5, 3) -> C'(0, 2), D(3, 3) -> D'(-2, 2), E(3, 5) -> E'(-2, 4), F(0, 5) -> F'(-5, 4)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-5 oe",
+          "description": "A'(-5, 0), B'(0, 0), C'(0, 2), D'(-2, 2), E'(-2, 4), F'(-5, 4) oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              0,
+              1
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              0,
+              5
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "translation_vector": [
+            -5,
+            -1
+          ],
+          "vector_label": "(-5, -1)"
+        }
+      },
+      "solution_diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              0,
+              1
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              0,
+              5
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "translation_vector": [
+            -5,
+            -1
+          ],
+          "vector_label": "(-5, -1)",
+          "image_vertices": [
+            [
+              -5,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              -2,
+              2
+            ],
+            [
+              -2,
+              4
+            ],
+            [
+              -5,
+              4
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'",
+            "D'",
+            "E'",
+            "F'"
+          ]
+        }
+      }
     },
     {
       "topic_id": "construction_perpendicular_bisector",
@@ -946,33 +1157,75 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "roots_foundation",
-      "prompt": "Without using a calculator, show that √55 lies between two consecutive whole numbers, and state them.",
+      "topic_id": "tree_diagram_drawing",
+      "prompt": "A bag contains 2 red and 5 blue counters. A counter is picked at random, replaced, and then a second counter is picked at random. Draw a fully-labelled tree diagram to show this information, and use it to find the probability that the first counter is red and the second counter is blue.",
       "solution_steps": [
-        "7^2 = 49 and 8^2 = 64",
-        "Since 49 < 55 < 64, √55 is between 7 and 8."
+        "Draw two branches from the start: P(red) = 2/7, P(blue) = 5/7.",
+        "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
+        "P(red then blue) = 2/7 × 5/7 = 10/49"
       ],
-      "final_answer": "between 7 and 8",
-      "marks": 3,
+      "final_answer": "10/49",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "7^2 = 49 and 8^2 = 64",
+          "description": "Draw two branches from the start: P(red) = 2/7, P(blue) = 5/7.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Since 49 < 55 < 64, √55 is between 7 and 8.",
+          "description": "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(red then blue) = 2/7 × 5/7 = 10/49",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "between 7 and 8 oe",
+          "description": "10/49 oe",
           "marks": 1
         }
       ],
       "diagram": null,
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Red",
+              "2/7"
+            ],
+            [
+              "Blue",
+              "5/7"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Red",
+                "2/7"
+              ],
+              [
+                "Blue",
+                "5/7"
+              ]
+            ],
+            [
+              [
+                "Red",
+                "2/7"
+              ],
+              [
+                "Blue",
+                "5/7"
+              ]
+            ]
+          ]
+        }
+      }
     },
     {
       "topic_id": "venn_diagram_probability",
@@ -1021,41 +1274,6 @@
           }
         }
       },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "algebraic_indices_foundation",
-      "prompt": "Simplify 6x^6 × 2x^5",
-      "solution_steps": [
-        "Multiplying powers of the same base: add the exponents, and multiply the coefficients.",
-        "6x^6 × 2x^5 = (6×2) x^(6+5)",
-        "= 12x^11"
-      ],
-      "final_answer": "12x^11",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiplying powers of the same base: add the exponents, and multiply the coefficients.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "6x^6 × 2x^5 = (6×2) x^(6+5)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 12x^11",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "12x^11 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
       "solution_diagram": null
     }
   ]

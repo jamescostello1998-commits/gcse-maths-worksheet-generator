@@ -8,7 +8,7 @@
   "questions": [
     {
       "topic_id": "fractions_add_subtract",
-      "prompt": "Work out 1/2 - 5/11. Give your answer as a fraction in its simplest form.",
+      "prompt": "Calculate 1/2 - 5/11. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Find a common denominator: LCM(2, 11) = 22",
         "Convert: 1/2 = 11/22, 5/11 = 10/22",
@@ -223,10 +223,10 @@
     },
     {
       "topic_id": "fractions_divide_foundation",
-      "prompt": "Work out 5/7 ÷ 1/3. Give your answer as a fraction in its simplest form.",
+      "prompt": "Evaluate 5/7 ÷ 1/3. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Keep-change-flip: 5/7 ÷ 1/3 = 5/7 × 3/1",
-        "Multiply: (5×3)/(7×1) = 15/7",
+        "Multiply: \\frac{(5×3)}{(7×1)} = 15/7",
         "Simplify: 15/7"
       ],
       "final_answer": "15/7",
@@ -239,7 +239,7 @@
         },
         {
           "code": "M1",
-          "description": "Multiply: (5×3)/(7×1) = 15/7",
+          "description": "Multiply: \\frac{(5×3)}{(7×1)} = 15/7",
           "marks": 1
         },
         {
@@ -393,7 +393,16 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "triangle_angles",
+        "params": {
+          "angle_labels": [
+            "90°",
+            "58°",
+            "(2x + 14)°"
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -538,7 +547,6 @@
       "diagram": {
         "kind": "linear_graph_pair",
         "params": {
-          "intersection_label": "?",
           "label1": "y = -x + 3",
           "label2": "y = -4x - 3"
         }
@@ -705,27 +713,27 @@
     },
     {
       "topic_id": "ratio_find_missing_share",
-      "prompt": "Two amounts are in the ratio 1:9. The first amount is 14. Find the second amount.",
+      "prompt": "p : q = 1 : 9. q = 126. What is the value of p?",
       "solution_steps": [
-        "Value of one part = 14 ÷ 1 = 14",
-        "Second amount = 9 × 14 = 126"
+        "Value of one part = 126 ÷ 9 = 14",
+        "p = 1 × 14 = 14"
       ],
-      "final_answer": "126",
+      "final_answer": "14",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Value of one part = 14 ÷ 1 = 14",
+          "description": "Value of one part = 126 ÷ 9 = 14",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Second amount = 9 × 14 = 126",
+          "description": "p = 1 × 14 = 14",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "126 oe",
+          "description": "14 oe",
           "marks": 1
         }
       ],
@@ -734,7 +742,7 @@
     },
     {
       "topic_id": "pythagoras_hypotenuse_triple",
-      "prompt": "A right-angled triangle has legs 9 cm and 12 cm. Find the length of the hypotenuse.",
+      "prompt": "A right-angled triangle has sides 9 cm and 12 cm. Find the length of x.",
       "solution_steps": [
         "c² = a² + b² = 9² + 12² = 81 + 144 = 225",
         "c = √225 = 15"
@@ -763,7 +771,7 @@
         "params": {
           "leg1_label": "9 cm",
           "leg2_label": "12 cm",
-          "hyp_label": "?"
+          "hyp_label": "x"
         }
       },
       "solution_diagram": null
@@ -927,7 +935,7 @@
     },
     {
       "topic_id": "arc_length_foundation",
-      "prompt": "A sector of a circle has radius 3 cm and angle 271°. Find the arc length, correct to 3 significant figures.",
+      "prompt": "Find the arc length of the following sector, correct to 3 significant figures.",
       "solution_steps": [
         "Arc length = (θ ÷ 360) × 2 × π × r = (271 ÷ 360) × 2 × π × 3",
         "= 14.2 cm (3 s.f., using a calculator value of π)"
@@ -963,7 +971,7 @@
     },
     {
       "topic_id": "volume_surface_area_triangular_prism",
-      "prompt": "A triangular prism has a right-angled triangular cross-section with legs 5 cm and 12 cm (hypotenuse 13 cm), and length 14 cm. Find its surface area.",
+      "prompt": "A triangular prism has a right-angled triangular cross-section with sides 5 cm and 12 cm (hypotenuse 13 cm), and length 14 cm. Find its surface area.",
       "solution_steps": [
         "Area of the two triangular ends = 2 × (1/2) × 5 × 12 = 60 cm²",
         "Perimeter of the triangular cross-section = 5 + 12 + 13 = 30 cm",

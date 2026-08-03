@@ -107,9 +107,9 @@
     },
     {
       "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal 0.(3) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.}{3} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(3)",
+        "Let x = \\recur{0.}{3}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
         "This gives x = 3/9",
         "Simplify: 1/3"
@@ -119,7 +119,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(3)",
+          "description": "Let x = \\recur{0.}{3}",
           "marks": 1
         },
         {
@@ -193,8 +193,8 @@
       "solution_steps": [
         "x = (-b ± √(b^2 - 4ac)) / 2a",
         "a = 3, b = 12, c = 7",
-        "x = (-12 ± √(12^2 - 4×3×7)) / (2×3)",
-        "x = (-12 ± √60) / 6",
+        "x = \\frac{-12 ± √(12^2 - 4×3×7)}{2×3}",
+        "x = \\frac{-12 ± √60}{6}",
         "x = -0.71 or x = -3.29"
       ],
       "final_answer": "x = -0.71 or x = -3.29",
@@ -212,12 +212,12 @@
         },
         {
           "code": "M1",
-          "description": "x = (-12 ± √(12^2 - 4×3×7)) / (2×3)",
+          "description": "x = \\frac{-12 ± √(12^2 - 4×3×7)}{2×3}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = (-12 ± √60) / 6 x = -0.71 or x = -3.29",
+          "description": "x = \\frac{-12 ± √60}{6} x = -0.71 or x = -3.29",
           "marks": 1
         },
         {
@@ -317,40 +317,40 @@
     },
     {
       "topic_id": "expand_double_brackets",
-      "prompt": "Expand: (6x - 4)(5x - 4)",
+      "prompt": "Expand and simplify: (4x + 5)(4x - 2)",
       "solution_steps": [
-        "First: 6x × 5x = 30x^2",
-        "Outer: 6x × -4 = -24x",
-        "Inner: -4 × 5x = -20x",
-        "Last: -4 × -4 = 16",
-        "Combine like terms: 30x^2 - 44x + 16"
+        "First: 4x × 4x = 16x^2",
+        "Outer: 4x × -2 = -8x",
+        "Inner: 5 × 4x = 20x",
+        "Last: 5 × -2 = -10",
+        "Combine like terms: 16x^2 + 12x - 10"
       ],
-      "final_answer": "30x^2 - 44x + 16",
+      "final_answer": "16x^2 + 12x - 10",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First: 6x × 5x = 30x^2",
+          "description": "First: 4x × 4x = 16x^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Outer: 6x × -4 = -24x",
+          "description": "Outer: 4x × -2 = -8x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Inner: -4 × 5x = -20x",
+          "description": "Inner: 5 × 4x = 20x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Last: -4 × -4 = 16 Combine like terms: 30x^2 - 44x + 16",
+          "description": "Last: 5 × -2 = -10 Combine like terms: 16x^2 + 12x - 10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "30x^2 - 44x + 16 oe",
+          "description": "16x^2 + 12x - 10 oe",
           "marks": 1
         }
       ],
@@ -441,38 +441,49 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "polygon_angles",
+        "params": {
+          "n_sides": 4,
+          "angle_labels": [
+            "44°",
+            "93°",
+            "(4x - 16)°",
+            "(4x + 151)°"
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
       "topic_id": "expand_triple_brackets",
-      "prompt": "Expand and simplify: (3x + 3)(x + 3)(x - 1)",
+      "prompt": "Expand and simplify: (4x + 3)(3x + 3)(3x + 3)",
       "solution_steps": [
-        "First expand two of the brackets: (3x + 3)(x + 3) = 3x^2 + 12x + 9",
-        "Multiply the result by (x - 1) and collect like terms",
-        "= 3x^3 + 9x^2 - 3x - 9"
+        "First expand two of the brackets: (4x + 3)(3x + 3) = 12x^2 + 21x + 9",
+        "Multiply the result by (3x + 3) and collect like terms",
+        "= 36x^3 + 99x^2 + 90x + 27"
       ],
-      "final_answer": "3x^3 + 9x^2 - 3x - 9",
+      "final_answer": "36x^3 + 99x^2 + 90x + 27",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First expand two of the brackets: (3x + 3)(x + 3) = 3x^2 + 12x + 9",
+          "description": "First expand two of the brackets: (4x + 3)(3x + 3) = 12x^2 + 21x + 9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the result by (x - 1) and collect like terms",
+          "description": "Multiply the result by (3x + 3) and collect like terms",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 3x^3 + 9x^2 - 3x - 9",
+          "description": "= 36x^3 + 99x^2 + 90x + 27",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3x^3 + 9x^2 - 3x - 9 oe",
+          "description": "36x^3 + 99x^2 + 90x + 27 oe",
           "marks": 1
         }
       ],
@@ -724,39 +735,39 @@
     },
     {
       "topic_id": "compound_3d_surface_area",
-      "prompt": "A capsule-shaped solid is made from a cylinder of radius 8 cm and height 5 cm, with a hemisphere of the same radius attached to one end. Find the total surface area, correct to 3 significant figures.",
+      "prompt": "A capsule-shaped solid is made from a cylinder of radius 3 cm and height 12 cm, with a hemisphere of the same radius attached to one end. Find the total surface area, correct to 2 decimal places.",
       "solution_steps": [
-        "Cylinder curved surface = 2 × π × r × h = 2 × π × 8 × 5",
-        "Cylinder base = π × r² = π × 8² (the top is covered by the hemisphere, so it's excluded)",
-        "Hemisphere curved surface = 2 × π × r² = 2 × π × 8² (its flat face is glued to the cylinder, so it's excluded too)",
-        "Total surface area ≈ 855 cm² (3 s.f.)"
+        "Cylinder curved surface = 2 × π × r × h = 2 × π × 3 × 12",
+        "Cylinder base = π × r² = π × 3² (the top is covered by the hemisphere, so it's excluded)",
+        "Hemisphere curved surface = 2 × π × r² = 2 × π × 3² (its flat face is glued to the cylinder, so it's excluded too)",
+        "Total surface area ≈ 311.02 cm² (2 d.p.)"
       ],
-      "final_answer": "855 cm²",
+      "final_answer": "311.02 cm²",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Cylinder curved surface = 2 × π × r × h = 2 × π × 8 × 5",
+          "description": "Cylinder curved surface = 2 × π × r × h = 2 × π × 3 × 12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Cylinder base = π × r² = π × 8² (the top is covered by the hemisphere, so it's excluded)",
+          "description": "Cylinder base = π × r² = π × 3² (the top is covered by the hemisphere, so it's excluded)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Hemisphere curved surface = 2 × π × r² = 2 × π × 8² (its flat face is glued to the cylinder, so it's excluded too)",
+          "description": "Hemisphere curved surface = 2 × π × r² = 2 × π × 3² (its flat face is glued to the cylinder, so it's excluded too)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total surface area ≈ 855 cm² (3 s.f.)",
+          "description": "Total surface area ≈ 311.02 cm² (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "855 cm² oe",
+          "description": "311.02 cm² oe",
           "marks": 1
         }
       ],
@@ -764,8 +775,8 @@
         "kind": "compound_3d",
         "params": {
           "variant": "cylinder_hemisphere",
-          "radius_label": "8 cm",
-          "height_label": "5 cm"
+          "radius_label": "3 cm",
+          "height_label": "12 cm"
         }
       },
       "solution_diagram": null
@@ -919,33 +930,33 @@
     },
     {
       "topic_id": "compound_3d_volume",
-      "prompt": "An ice-cream-shaped solid is made from a cone of radius 4 cm and height 20 cm, with a hemisphere of the same radius attached to its open end. Find the total volume, correct to 3 significant figures.",
+      "prompt": "An ice-cream-shaped solid is made from a cone of radius 10 cm and height 19 cm, with a hemisphere of the same radius attached to its open end. Find the total volume, correct to 1 decimal place.",
       "solution_steps": [
-        "Cone volume = (1/3) × π × r² × h = (1/3) × π × 4² × 20",
-        "Hemisphere volume = (2/3) × π × r³ = (2/3) × π × 4³",
-        "Total volume = cone + hemisphere ≈ 469 cm³ (3 s.f.)"
+        "Cone volume = (1/3) × π × r² × h = (1/3) × π × 10² × 19",
+        "Hemisphere volume = (2/3) × π × r³ = (2/3) × π × 10³",
+        "Total volume = cone + hemisphere ≈ 4084.1 cm³ (1 d.p.)"
       ],
-      "final_answer": "469 cm³",
+      "final_answer": "4084.1 cm³",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Cone volume = (1/3) × π × r² × h = (1/3) × π × 4² × 20",
+          "description": "Cone volume = (1/3) × π × r² × h = (1/3) × π × 10² × 19",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Hemisphere volume = (2/3) × π × r³ = (2/3) × π × 4³",
+          "description": "Hemisphere volume = (2/3) × π × r³ = (2/3) × π × 10³",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total volume = cone + hemisphere ≈ 469 cm³ (3 s.f.)",
+          "description": "Total volume = cone + hemisphere ≈ 4084.1 cm³ (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "469 cm³ oe",
+          "description": "4084.1 cm³ oe",
           "marks": 1
         }
       ],
@@ -953,8 +964,8 @@
         "kind": "compound_3d",
         "params": {
           "variant": "cone_hemisphere",
-          "radius_label": "4 cm",
-          "cone_height_label": "20 cm"
+          "radius_label": "10 cm",
+          "cone_height_label": "19 cm"
         }
       },
       "solution_diagram": null

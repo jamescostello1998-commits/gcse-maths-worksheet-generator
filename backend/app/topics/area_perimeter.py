@@ -41,7 +41,7 @@ def generate_rectangle(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="area_rectangle",
         tier=Tier.FOUNDATION,
-        prompt=f"A rectangle has length {length} cm and width {width} cm. Find its {measure}.",
+        prompt=f"Find the {measure} of the following rectangle.",
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=f"rectangle:{length}:{width}:{measure}",
@@ -107,7 +107,7 @@ def generate_modelled_example_rectangle(tier: Tier, rng: random.Random) -> Model
     return ModelledExample(
         topic_id="area_rectangle",
         tier=Tier.FOUNDATION,
-        prompt=f"A rectangle has length {length} cm and width {width} cm. Find its {measure}.",
+        prompt=f"Find the {measure} of the following rectangle.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
@@ -208,10 +208,7 @@ def generate_composite_rectangles(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="area_composite_rectangles",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"An L-shaped room is formed by taking a rectangle {outer_w} cm by {outer_h} cm "
-            f"and removing a corner rectangle {inner_w} cm by {inner_h} cm. Find the area of the room."
-        ),
+        prompt="Find the area of this compound shape.",
         solution_steps=tuple(steps),
         final_answer=f"{total_area} cm²",
         dedup_key=f"composite_rect:{outer_w}:{outer_h}:{inner_w}:{inner_h}",
@@ -258,7 +255,7 @@ def generate_modelled_example_composite_rectangles(tier: Tier, rng: random.Rando
         f"{outer_w} × {outer_h} = {outer_area} cm².",
         f"The missing corner is itself a rectangle, {inner_w} cm by {inner_h} cm, with area "
         f"{inner_w} × {inner_h} = {inner_area} cm².",
-        f"Since that corner isn't actually part of the room, subtract it from the full "
+        f"Since that corner isn't actually part of the shape, subtract it from the full "
         f"rectangle: {outer_area} - {inner_area} = {total_area} cm².",
     ]
     worked_calculation = [
@@ -269,10 +266,7 @@ def generate_modelled_example_composite_rectangles(tier: Tier, rng: random.Rando
     return ModelledExample(
         topic_id="area_composite_rectangles",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"An L-shaped room is formed by taking a rectangle {outer_w} cm by {outer_h} cm "
-            f"and removing a corner rectangle {inner_w} cm by {inner_h} cm. Find the area of the room."
-        ),
+        prompt="Find the area of this compound shape.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{total_area} cm²",
@@ -312,7 +306,7 @@ def generate_circle(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="area_circle",
         tier=Tier.HIGHER,
-        prompt=f"A circle has radius {radius} cm. Find its {measure} in terms of π.",
+        prompt=f"Find the {measure} of the following circle, in terms of π.",
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=f"circle:{radius}:{measure}",
@@ -371,7 +365,7 @@ def generate_modelled_example_circle(tier: Tier, rng: random.Random) -> Modelled
     return ModelledExample(
         topic_id="area_circle",
         tier=Tier.HIGHER,
-        prompt=f"A circle has radius {radius} cm. Find its {measure} in terms of π.",
+        prompt=f"Find the {measure} of the following circle, in terms of π.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
@@ -413,7 +407,7 @@ def generate_circle_foundation(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="area_circle_foundation",
         tier=Tier.FOUNDATION,
-        prompt=f"A circle has radius {radius} cm. Find its {measure}, correct to {rounding.phrase}.",
+        prompt=f"Find the {measure} of the following circle, correct to {rounding.phrase}.",
         solution_steps=tuple(steps),
         final_answer=f"{decimal_answer} {unit}",
         dedup_key=f"circle_f:{radius}:{measure}",
@@ -471,7 +465,7 @@ def generate_modelled_example_circle_foundation(tier: Tier, rng: random.Random) 
     return ModelledExample(
         topic_id="area_circle_foundation",
         tier=Tier.FOUNDATION,
-        prompt=f"A circle has radius {radius} cm. Find its {measure}, correct to {rounding.phrase}.",
+        prompt=f"Find the {measure} of the following circle, correct to {rounding.phrase}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{decimal_answer} {unit}",
@@ -695,15 +689,12 @@ def generate_subtract_compound(tier: Tier, rng: random.Random) -> Question:
     steps = [
         f"Area of large rectangle = {outer_w} × {outer_h} = {outer_area} cm²",
         f"Area of rectangular hole = {inner_w} × {inner_h} = {inner_area} cm²",
-        f"Remaining area = {outer_area} - {inner_area} = {total_area} cm²",
+        f"Shaded area = {outer_area} - {inner_area} = {total_area} cm²",
     ]
     return Question(
         topic_id="area_subtract_compound",
         tier=Tier.HIGHER,
-        prompt=(
-            f"A rectangular sheet of metal {outer_w} cm by {outer_h} cm has a rectangular hole "
-            f"{inner_w} cm by {inner_h} cm cut from its centre. Find the remaining area."
-        ),
+        prompt="Find the shaded area.",
         solution_steps=tuple(steps),
         final_answer=f"{total_area} cm²",
         dedup_key=f"subtract_compound:{outer_w}:{outer_h}:{inner_w}:{inner_h}",
@@ -712,6 +703,7 @@ def generate_subtract_compound(tier: Tier, rng: random.Random) -> Question:
             params={
                 "outer_w": outer_w, "outer_h": outer_h, "inner_w": inner_w, "inner_h": inner_h,
                 "notch": "center",
+                "shade_frame": True,
                 "outer_labels": [f"{outer_w} cm", f"{outer_h} cm"],
                 "inner_labels": [f"{inner_w} cm", f"{inner_h} cm"],
             },
@@ -745,27 +737,24 @@ def generate_modelled_example_subtract_compound(tier: Tier, rng: random.Random) 
         raise ValueError("modelled example subtract_compound cross-check failed")
 
     teaching_steps = [
-        "When a shape has a hole cut out of it, the remaining area is simply the area of the "
-        "whole sheet minus the area of the piece that's been removed.",
-        f"Start with the full sheet: {outer_w} cm by {outer_h} cm, giving an area of "
+        "When a shape has a hole cut out of it, the shaded (remaining) area is simply the "
+        "area of the whole outer shape minus the area of the unshaded hole.",
+        f"Start with the full outer rectangle: {outer_w} cm by {outer_h} cm, giving an area of "
         f"{outer_w} × {outer_h} = {outer_area} cm².",
-        f"The hole is also a rectangle, {inner_w} cm by {inner_h} cm, with area "
+        f"The unshaded hole is also a rectangle, {inner_w} cm by {inner_h} cm, with area "
         f"{inner_w} × {inner_h} = {inner_area} cm².",
-        f"Subtract the hole's area from the sheet's area to find what's left: "
+        f"Subtract the hole's area from the outer rectangle's area to find the shaded area: "
         f"{outer_area} - {inner_area} = {total_area} cm².",
     ]
     worked_calculation = [
         f"Large rectangle = {outer_w} × {outer_h} = {outer_area} cm²",
         f"Hole = {inner_w} × {inner_h} = {inner_area} cm²",
-        f"Remaining area = {outer_area} - {inner_area} = {total_area} cm²",
+        f"Shaded area = {outer_area} - {inner_area} = {total_area} cm²",
     ]
     return ModelledExample(
         topic_id="area_subtract_compound",
         tier=Tier.HIGHER,
-        prompt=(
-            f"A rectangular sheet of metal {outer_w} cm by {outer_h} cm has a rectangular hole "
-            f"{inner_w} cm by {inner_h} cm cut from its centre. Find the remaining area."
-        ),
+        prompt="Find the shaded area.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{total_area} cm²",
@@ -774,6 +763,7 @@ def generate_modelled_example_subtract_compound(tier: Tier, rng: random.Random) 
             params={
                 "outer_w": outer_w, "outer_h": outer_h, "inner_w": inner_w, "inner_h": inner_h,
                 "notch": "center",
+                "shade_frame": True,
                 "outer_labels": [f"{outer_w} cm", f"{outer_h} cm"],
                 "inner_labels": [f"{inner_w} cm", f"{inner_h} cm"],
             },
@@ -799,15 +789,12 @@ def generate_subtract_compound_foundation(tier: Tier, rng: random.Random) -> Que
     steps = [
         f"Area of large rectangle = {outer_w} × {outer_h} = {outer_area} cm²",
         f"Area of rectangular hole = {inner_w} × {inner_h} = {inner_area} cm²",
-        f"Remaining area = {outer_area} - {inner_area} = {total_area} cm²",
+        f"Shaded area = {outer_area} - {inner_area} = {total_area} cm²",
     ]
     return Question(
         topic_id="area_subtract_compound_foundation",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"A rectangular sheet of card {outer_w} cm by {outer_h} cm has a rectangular hole "
-            f"{inner_w} cm by {inner_h} cm cut from its centre. Find the remaining area."
-        ),
+        prompt="Find the shaded area.",
         solution_steps=tuple(steps),
         final_answer=f"{total_area} cm²",
         dedup_key=f"subtract_compound_f:{outer_w}:{outer_h}:{inner_w}:{inner_h}",
@@ -816,6 +803,7 @@ def generate_subtract_compound_foundation(tier: Tier, rng: random.Random) -> Que
             params={
                 "outer_w": outer_w, "outer_h": outer_h, "inner_w": inner_w, "inner_h": inner_h,
                 "notch": "center",
+                "shade_frame": True,
                 "outer_labels": [f"{outer_w} cm", f"{outer_h} cm"],
                 "inner_labels": [f"{inner_w} cm", f"{inner_h} cm"],
             },
@@ -849,27 +837,24 @@ def generate_modelled_example_subtract_compound_foundation(tier: Tier, rng: rand
         raise ValueError("modelled example subtract_compound_foundation cross-check failed")
 
     teaching_steps = [
-        "When a shape has a hole cut out of it, the remaining area is simply the area of the "
-        "whole sheet minus the area of the piece that's been removed.",
-        f"Start with the full sheet: {outer_w} cm by {outer_h} cm, giving an area of "
+        "When a shape has a hole cut out of it, the shaded (remaining) area is simply the "
+        "area of the whole outer shape minus the area of the unshaded hole.",
+        f"Start with the full outer rectangle: {outer_w} cm by {outer_h} cm, giving an area of "
         f"{outer_w} × {outer_h} = {outer_area} cm².",
-        f"The hole is also a rectangle, {inner_w} cm by {inner_h} cm, with area "
+        f"The unshaded hole is also a rectangle, {inner_w} cm by {inner_h} cm, with area "
         f"{inner_w} × {inner_h} = {inner_area} cm².",
-        f"Subtract the hole's area from the sheet's area to find what's left: "
+        f"Subtract the hole's area from the outer rectangle's area to find the shaded area: "
         f"{outer_area} - {inner_area} = {total_area} cm².",
     ]
     worked_calculation = [
         f"Large rectangle = {outer_w} × {outer_h} = {outer_area} cm²",
         f"Hole = {inner_w} × {inner_h} = {inner_area} cm²",
-        f"Remaining area = {outer_area} - {inner_area} = {total_area} cm²",
+        f"Shaded area = {outer_area} - {inner_area} = {total_area} cm²",
     ]
     return ModelledExample(
         topic_id="area_subtract_compound_foundation",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"A rectangular sheet of card {outer_w} cm by {outer_h} cm has a rectangular hole "
-            f"{inner_w} cm by {inner_h} cm cut from its centre. Find the remaining area."
-        ),
+        prompt="Find the shaded area.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{total_area} cm²",
@@ -878,6 +863,7 @@ def generate_modelled_example_subtract_compound_foundation(tier: Tier, rng: rand
             params={
                 "outer_w": outer_w, "outer_h": outer_h, "inner_w": inner_w, "inner_h": inner_h,
                 "notch": "center",
+                "shade_frame": True,
                 "outer_labels": [f"{outer_w} cm", f"{outer_h} cm"],
                 "inner_labels": [f"{inner_w} cm", f"{inner_h} cm"],
             },
@@ -912,7 +898,7 @@ def generate_area_parallelogram(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="area_parallelogram",
         tier=Tier.FOUNDATION,
-        prompt=f"A parallelogram has a base of {base} cm and a perpendicular height of {height} cm. Find its area.",
+        prompt="Find the area of the following parallelogram.",
         solution_steps=tuple(steps),
         final_answer=f"{area} cm²",
         dedup_key=f"parallelogram:{base}:{height}",
@@ -944,7 +930,7 @@ def generate_modelled_example_area_parallelogram(tier: Tier, rng: random.Random)
     return ModelledExample(
         topic_id="area_parallelogram",
         tier=Tier.FOUNDATION,
-        prompt=f"A parallelogram has a base of {base} cm and a perpendicular height of {height} cm. Find its area.",
+        prompt="Find the area of the following parallelogram.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{area} cm²",
@@ -971,10 +957,7 @@ def generate_area_trapezium(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="area_trapezium",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"A trapezium has parallel sides of length {a} cm and {b} cm, and a perpendicular "
-            f"height of {height} cm. Find its area."
-        ),
+        prompt="Find the area of the following trapezium.",
         solution_steps=tuple(steps),
         final_answer=f"{area} cm²",
         dedup_key=f"trapezium:{a}:{b}:{height}",
@@ -1009,10 +992,7 @@ def generate_modelled_example_area_trapezium(tier: Tier, rng: random.Random) -> 
     return ModelledExample(
         topic_id="area_trapezium",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"A trapezium has parallel sides of length {a} cm and {b} cm, and a perpendicular "
-            f"height of {height} cm. Find its area."
-        ),
+        prompt="Find the area of the following trapezium.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{area} cm²",
@@ -1023,105 +1003,189 @@ def generate_modelled_example_area_trapezium(tier: Tier, rng: random.Random) -> 
     )
 
 
-def _mixed_compound_values(rng: random.Random):
-    width = rng.randint(10, 20)
+_TOP_KINDS = ["triangle", "semicircle"]
+_CUT_KINDS = ["quarter_circle", "semicircle_notch"]
+
+
+def _mixed_compound_values(rng: random.Random) -> dict:
+    """3 pieces glued together: a rectangle 'body', a top piece added (a
+    triangular roof or a semicircular dome), and a bottom piece removed (a
+    quarter-circle corner cut or a semicircular edge notch) - a genuine mix
+    of rectangles/triangles/circle-parts, not always the same fixed
+    combination."""
+    top_kind = rng.choice(_TOP_KINDS)
+    cut_kind = rng.choice(_CUT_KINDS)
+
+    # A semicircular dome's diameter is the full width, so keep width even
+    # for a clean integer radius rather than an untidy ".5" display value.
+    width = rng.randrange(10, 21, 2) if top_kind == "semicircle" else rng.randint(10, 20)
     height = rng.randint(6, 15)
-    roof_height = rng.randint(3, 10)
-    cut_radius = rng.randint(2, min(width, height) // 2)
-    return width, height, roof_height, cut_radius
+
+    roof_height = None
+    top_radius = None
+    if top_kind == "triangle":
+        roof_height = rng.randint(3, 10)
+        # Reroll until the triangle's own area is a whole number, matching
+        # this file's existing "keep intermediate areas clean" convention
+        # (e.g. area_trapezium's identical while-loop) - avoids an ugly
+        # fraction in the solution steps.
+        while (width * roof_height) % 2 != 0:
+            roof_height = rng.randint(3, 10)
+    else:
+        top_radius = width // 2
+
+    cut_radius = None
+    notch_radius = None
+    if cut_kind == "quarter_circle":
+        cut_radius = rng.randint(2, max(2, min(width, height) // 2))
+    else:
+        # Diameter (2 x notch_radius) must stay comfortably inside the
+        # width, and the radius itself inside the height, so the bite never
+        # reaches the rectangle's top edge or side edges.
+        max_notch_r = max(2, min(width // 2 - 1, height - 1))
+        notch_radius = rng.randint(2, max_notch_r)
+
+    return {
+        "width": width, "height": height,
+        "top_kind": top_kind, "roof_height": roof_height, "top_radius": top_radius,
+        "cut_kind": cut_kind, "cut_radius": cut_radius, "notch_radius": notch_radius,
+    }
+
+
+def _mixed_compound_areas(v: dict) -> tuple:
+    """Returns (rect_area, top_area_exact, top_independent, cut_area_exact,
+    cut_independent) - the exact (sympy) and independent (plain-float,
+    different π source) values for each piece, so callers can both display
+    an exact intermediate value and verify against a genuinely different
+    computation path."""
+    rect_area = v["width"] * v["height"]
+
+    if v["top_kind"] == "triangle":
+        top_area_exact = sp.Rational(v["width"] * v["roof_height"], 2)
+        top_independent = v["width"] * v["roof_height"] / 2
+    else:
+        top_area_exact = sp.pi * v["top_radius"] ** 2 / 2
+        top_independent = math.pi * v["top_radius"] ** 2 / 2
+
+    if v["cut_kind"] == "quarter_circle":
+        cut_area_exact = sp.pi * v["cut_radius"] ** 2 / 4
+        cut_independent = math.pi * v["cut_radius"] ** 2 / 4
+    else:
+        cut_area_exact = sp.pi * v["notch_radius"] ** 2 / 2
+        cut_independent = math.pi * v["notch_radius"] ** 2 / 2
+
+    return rect_area, top_area_exact, top_independent, cut_area_exact, cut_independent
+
+
+def _mixed_compound_diagram(v: dict) -> DiagramSpec:
+    params = {
+        "width": v["width"], "height": v["height"],
+        "top_kind": v["top_kind"], "cut_kind": v["cut_kind"],
+        "width_label": f"{v['width']} cm", "height_label": f"{v['height']} cm",
+    }
+    if v["top_kind"] == "triangle":
+        params["roof_height"] = v["roof_height"]
+        params["top_label"] = f"{v['roof_height']} cm"
+    else:
+        params["top_radius"] = v["top_radius"]
+        params["top_label"] = f"{v['top_radius']} cm"
+    if v["cut_kind"] == "quarter_circle":
+        params["cut_radius"] = v["cut_radius"]
+        params["cut_label"] = f"{v['cut_radius']} cm"
+    else:
+        params["notch_radius"] = v["notch_radius"]
+        params["cut_label"] = f"{v['notch_radius']} cm"
+    return DiagramSpec(kind="mixed_compound", params=params)
+
+
+def _mixed_compound_step_lines(v: dict, rect_area, top_area_exact, cut_area_exact) -> tuple:
+    top_line = (
+        f"Triangular top area = ½ × {v['width']} × {v['roof_height']} = {int(top_area_exact)} cm²"
+        if v["top_kind"] == "triangle"
+        else f"Semicircular top area = ½ × π × {v['top_radius']}² ≈ {sp.N(top_area_exact, 3)} cm²"
+    )
+    cut_line = (
+        f"Quarter-circle cut area = (π × {v['cut_radius']}²) ÷ 4 ≈ {sp.N(cut_area_exact, 3)} cm²"
+        if v["cut_kind"] == "quarter_circle"
+        else f"Semicircular cut area = ½ × π × {v['notch_radius']}² ≈ {sp.N(cut_area_exact, 3)} cm²"
+    )
+    return top_line, cut_line
 
 
 def generate_area_mixed_compound(tier: Tier, rng: random.Random) -> Question:
-    width, height, roof_height, cut_radius = _mixed_compound_values(rng)
+    v = _mixed_compound_values(rng)
+    rect_area, top_area_exact, top_independent, cut_area_exact, cut_independent = _mixed_compound_areas(v)
+    total_exact = rect_area + top_area_exact - cut_area_exact
+    independent_total = rect_area + top_independent - cut_independent
 
-    rect_area = width * height
-    triangle_area = sp.Rational(width * roof_height, 2)
-    cut_area_exact = sp.pi * cut_radius**2 / 4
-    total_exact = rect_area + triangle_area - cut_area_exact
-    decimal_answer = sp.N(total_exact, 3)
-
-    # Independent check: recompute the quarter-circle cut via Python's math.pi -
-    # a different π implementation than sympy's symbolic pi used above.
-    independent_cut = math.pi * cut_radius**2 / 4
-    independent_total = rect_area + float(triangle_area) - independent_cut
-    if abs(float(decimal_answer) - independent_total) / independent_total > 0.01:
+    # Independent check: Python's math.pi (a different π implementation than
+    # sympy's symbolic pi) against the full-precision exact total - never
+    # against an already-rounded display value, so the tolerance stays tight
+    # regardless of which display precision gets chosen below.
+    if independent_total <= 0 or abs(float(sp.N(total_exact, 15)) - independent_total) / independent_total > 1e-9:
         raise ValueError("area_mixed_compound verification failed")
 
-    cut_area_decimal = sp.N(cut_area_exact, 3)
+    rounding = pick_rounding(rng)
+    decimal_answer = format(rounding.round_fn(independent_total), "f")
+    top_line, cut_line = _mixed_compound_step_lines(v, rect_area, top_area_exact, cut_area_exact)
     steps = [
-        f"Rectangle area = {width} × {height} = {rect_area} cm²",
-        f"Triangle roof area = ½ × {width} × {roof_height} = {triangle_area} cm²",
-        f"Quarter-circle cut area = (π × {cut_radius}²) ÷ 4 ≈ {cut_area_decimal} cm²",
-        f"Total area = {rect_area} + {triangle_area} - {cut_area_decimal} ≈ {decimal_answer} cm²",
+        f"Rectangle area = {v['width']} × {v['height']} = {rect_area} cm²",
+        top_line,
+        cut_line,
+        f"Total area = {rect_area} + {sp.N(top_area_exact, 3)} - {sp.N(cut_area_exact, 3)} "
+        f"≈ {decimal_answer} cm² ({rounding.short})",
     ]
     return Question(
         topic_id="area_mixed_compound",
         tier=Tier.HIGHER,
-        prompt=(
-            f"A shape is made from a rectangle {width} cm by {height} cm, with a triangular roof of "
-            f"height {roof_height} cm on top, and a quarter-circle of radius {cut_radius} cm cut from "
-            "one bottom corner. Find the total area, correct to 3 significant figures."
-        ),
+        prompt=f"Find the total area of the following compound shape, correct to {rounding.phrase}.",
         solution_steps=tuple(steps),
         final_answer=f"{decimal_answer} cm²",
-        dedup_key=f"mixed_compound:{width}:{height}:{roof_height}:{cut_radius}",
-        diagram=DiagramSpec(
-            kind="mixed_compound",
-            params={
-                "width": width, "height": height, "roof_height": roof_height, "cut_radius": cut_radius,
-                "width_label": f"{width} cm", "height_label": f"{height} cm",
-                "roof_label": f"{roof_height} cm", "cut_label": f"{cut_radius} cm",
-            },
+        dedup_key=(
+            f"mixed_compound:{v['width']}:{v['height']}:{v['top_kind']}:{v['roof_height']}:"
+            f"{v['top_radius']}:{v['cut_kind']}:{v['cut_radius']}:{v['notch_radius']}"
         ),
+        diagram=_mixed_compound_diagram(v),
     )
 
 
 def generate_modelled_example_area_mixed_compound(tier: Tier, rng: random.Random) -> ModelledExample:
-    width, height, roof_height, cut_radius = _mixed_compound_values(rng)
+    v = _mixed_compound_values(rng)
+    rect_area, top_area_exact, top_independent, cut_area_exact, cut_independent = _mixed_compound_areas(v)
+    total_exact = rect_area + top_area_exact - cut_area_exact
+    independent_total = rect_area + top_independent - cut_independent
 
-    rect_area = width * height
-    triangle_area = sp.Rational(width * roof_height, 2)
-    cut_area_exact = sp.pi * cut_radius**2 / 4
-    total_exact = rect_area + triangle_area - cut_area_exact
-    decimal_answer = sp.N(total_exact, 3)
-
-    independent_cut = math.pi * cut_radius**2 / 4
-    independent_total = rect_area + float(triangle_area) - independent_cut
-    if abs(float(decimal_answer) - independent_total) / independent_total > 0.01:
+    if independent_total <= 0 or abs(float(sp.N(total_exact, 15)) - independent_total) / independent_total > 1e-9:
         raise ValueError("modelled example area_mixed_compound verification failed")
 
-    cut_area_decimal = sp.N(cut_area_exact, 3)
+    rounding = pick_rounding(rng)
+    decimal_answer = format(rounding.round_fn(independent_total), "f")
+    top_desc = "triangular top" if v["top_kind"] == "triangle" else "semicircular dome on top"
+    cut_desc = "quarter-circle cut from a corner" if v["cut_kind"] == "quarter_circle" else "semicircular notch cut from an edge"
+    top_line, cut_line = _mixed_compound_step_lines(v, rect_area, top_area_exact, cut_area_exact)
     teaching_steps = [
         "A compound shape like this is split into simple pieces you already know the area of, added "
         "together where a piece is present, and subtracted where a piece has been removed.",
-        f"The rectangle contributes {width} × {height} = {rect_area} cm².",
-        f"The triangular roof adds ½ × {width} × {roof_height} = {triangle_area} cm² on top.",
-        f"The quarter-circle cut removes (π × {cut_radius}²) ÷ 4 ≈ {cut_area_decimal} cm² from a corner.",
-        f"Total = {rect_area} + {triangle_area} - {cut_area_decimal} ≈ {decimal_answer} cm².",
+        f"The rectangle contributes {v['width']} × {v['height']} = {rect_area} cm².",
+        f"The {top_desc} adds {sp.N(top_area_exact, 3)} cm².",
+        f"The {cut_desc} removes {sp.N(cut_area_exact, 3)} cm².",
+        f"Total = {rect_area} + {sp.N(top_area_exact, 3)} - {sp.N(cut_area_exact, 3)} "
+        f"≈ {decimal_answer} cm², rounded to {rounding.phrase}.",
     ]
     worked_calculation = [
-        f"{rect_area} + {triangle_area} - {cut_area_decimal}",
-        f"≈ {decimal_answer} cm²",
+        top_line,
+        cut_line,
+        f"Total = {rect_area} + {sp.N(top_area_exact, 3)} - {sp.N(cut_area_exact, 3)} "
+        f"≈ {decimal_answer} cm² ({rounding.short})",
     ]
     return ModelledExample(
         topic_id="area_mixed_compound",
         tier=Tier.HIGHER,
-        prompt=(
-            f"A shape is made from a rectangle {width} cm by {height} cm, with a triangular roof of "
-            f"height {roof_height} cm on top, and a quarter-circle of radius {cut_radius} cm cut from "
-            "one bottom corner. Find the total area, correct to 3 significant figures."
-        ),
+        prompt=f"Find the total area of the following compound shape, correct to {rounding.phrase}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{decimal_answer} cm²",
-        diagram=DiagramSpec(
-            kind="mixed_compound",
-            params={
-                "width": width, "height": height, "roof_height": roof_height, "cut_radius": cut_radius,
-                "width_label": f"{width} cm", "height_label": f"{height} cm",
-                "roof_label": f"{roof_height} cm", "cut_label": f"{cut_radius} cm",
-            },
-        ),
+        diagram=_mixed_compound_diagram(v),
     )
 
 
@@ -1155,10 +1219,7 @@ def generate_arc_length_foundation(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="arc_length_foundation",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"A sector of a circle has radius {radius} cm and angle {angle}°. Find the arc length, "
-            f"correct to {rounding.phrase}."
-        ),
+        prompt=f"Find the arc length of the following sector, correct to {rounding.phrase}.",
         solution_steps=tuple(steps),
         final_answer=f"{decimal_answer} cm",
         dedup_key=f"arc_f:{radius}:{angle}",
@@ -1188,10 +1249,7 @@ def generate_modelled_example_arc_length_foundation(tier: Tier, rng: random.Rand
     return ModelledExample(
         topic_id="arc_length_foundation",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"A sector of a circle has radius {radius} cm and angle {angle}°. Find the arc length, "
-            f"correct to {rounding.phrase}."
-        ),
+        prompt=f"Find the arc length of the following sector, correct to {rounding.phrase}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{decimal_answer} cm",
@@ -1219,7 +1277,7 @@ def generate_arc_length(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="arc_length",
         tier=Tier.HIGHER,
-        prompt=f"A sector of a circle has radius {radius} cm and angle {angle}°. Find the exact arc length, in terms of π.",
+        prompt="Find the exact arc length of the following sector, in terms of π.",
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=f"arc_h:{radius}:{angle}",
@@ -1251,7 +1309,7 @@ def generate_modelled_example_arc_length(tier: Tier, rng: random.Random) -> Mode
     return ModelledExample(
         topic_id="arc_length",
         tier=Tier.HIGHER,
-        prompt=f"A sector of a circle has radius {radius} cm and angle {angle}°. Find the exact arc length, in terms of π.",
+        prompt="Find the exact arc length of the following sector, in terms of π.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
@@ -1283,10 +1341,7 @@ def generate_area_sector_foundation(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="area_sector_foundation",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"A sector of a circle has radius {radius} cm and angle {angle}°. Find the area of the "
-            f"sector, correct to {rounding.phrase}."
-        ),
+        prompt=f"Find the area of the following sector, correct to {rounding.phrase}.",
         solution_steps=tuple(steps),
         final_answer=f"{decimal_answer} cm²",
         dedup_key=f"sector_f:{radius}:{angle}",
@@ -1316,10 +1371,7 @@ def generate_modelled_example_area_sector_foundation(tier: Tier, rng: random.Ran
     return ModelledExample(
         topic_id="area_sector_foundation",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"A sector of a circle has radius {radius} cm and angle {angle}°. Find the area of the "
-            f"sector, correct to {rounding.phrase}."
-        ),
+        prompt=f"Find the area of the following sector, correct to {rounding.phrase}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{decimal_answer} cm²",
@@ -1347,7 +1399,7 @@ def generate_area_sector(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="area_sector",
         tier=Tier.HIGHER,
-        prompt=f"A sector of a circle has radius {radius} cm and angle {angle}°. Find the exact area of the sector, in terms of π.",
+        prompt="Find the exact area of the following sector, in terms of π.",
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=f"sector_h:{radius}:{angle}",
@@ -1379,7 +1431,7 @@ def generate_modelled_example_area_sector(tier: Tier, rng: random.Random) -> Mod
     return ModelledExample(
         topic_id="area_sector",
         tier=Tier.HIGHER,
-        prompt=f"A sector of a circle has radius {radius} cm and angle {angle}°. Find the exact area of the sector, in terms of π.",
+        prompt="Find the exact area of the following sector, in terms of π.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,

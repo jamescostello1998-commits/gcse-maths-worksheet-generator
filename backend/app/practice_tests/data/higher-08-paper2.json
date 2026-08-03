@@ -37,9 +37,9 @@
     },
     {
       "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal 0.(94) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.}{94} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(94), so 100x = 94.9494... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Let x = \\recur{0.}{94}, so 100x = 94.9494... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 94 - 0, so 99x = 94",
         "x = 94/99 = 94/99"
       ],
@@ -48,7 +48,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(94), so 100x = 94.9494... (two digits repeat, so multiply by 100 to shift a full block)",
+          "description": "Let x = \\recur{0.}{94}, so 100x = 94.9494... (two digits repeat, so multiply by 100 to shift a full block)",
           "marks": 1
         },
         {
@@ -129,7 +129,7 @@
         "kind": "right_triangle",
         "params": {
           "leg1_label": "10 m",
-          "leg2_label": "?",
+          "leg2_label": "x",
           "hyp_label": "20 m"
         }
       },
@@ -239,7 +239,7 @@
       "prompt": "Work out 4/11 ÷ 9/6. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Keep-change-flip: 4/11 ÷ 9/6 = 4/11 × 6/9",
-        "Multiply: (4×6)/(11×9) = 24/99",
+        "Multiply: \\frac{(4×6)}{(11×9)} = 24/99",
         "Simplify: 8/33"
       ],
       "final_answer": "8/33",
@@ -252,7 +252,7 @@
         },
         {
           "code": "M1",
-          "description": "Multiply: (4×6)/(11×9) = 24/99",
+          "description": "Multiply: \\frac{(4×6)}{(11×9)} = 24/99",
           "marks": 1
         },
         {
@@ -433,19 +433,19 @@
     },
     {
       "topic_id": "plot_reciprocal",
-      "prompt": "Complete a table of values for y = 48/x for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
+      "prompt": "Complete a table of values for y = \\frac{48}{x} for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = 48/x:",
+        "Table of values for y = \\frac{48}{x}:",
         "x: -4, -3, -2, -1, 1, 2, 3, 4",
         "y: -12, -16, -24, -48, 48, 24, 16, 12",
         "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
       ],
-      "final_answer": "Reciprocal curve: y = 48/x",
+      "final_answer": "Reciprocal curve: y = \\frac{48}{x}",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = 48/x:",
+          "description": "Table of values for y = \\frac{48}{x}:",
           "marks": 1
         },
         {
@@ -465,7 +465,7 @@
         },
         {
           "code": "A1",
-          "description": "Reciprocal curve: y = 48/x oe",
+          "description": "Reciprocal curve: y = \\frac{48}{x} oe",
           "marks": 1
         }
       ],
@@ -925,11 +925,11 @@
     },
     {
       "topic_id": "area_subtract_compound",
-      "prompt": "A rectangular sheet of metal 13 cm by 24 cm has a rectangular hole 8 cm by 11 cm cut from its centre. Find the remaining area.",
+      "prompt": "Find the shaded area.",
       "solution_steps": [
         "Area of large rectangle = 13 × 24 = 312 cm²",
         "Area of rectangular hole = 8 × 11 = 88 cm²",
-        "Remaining area = 312 - 88 = 224 cm²"
+        "Shaded area = 312 - 88 = 224 cm²"
       ],
       "final_answer": "224 cm²",
       "marks": 4,
@@ -946,7 +946,7 @@
         },
         {
           "code": "M1",
-          "description": "Remaining area = 312 - 88 = 224 cm²",
+          "description": "Shaded area = 312 - 88 = 224 cm²",
           "marks": 1
         },
         {
@@ -963,6 +963,7 @@
           "inner_w": 8,
           "inner_h": 11,
           "notch": "center",
+          "shade_frame": true,
           "outer_labels": [
             "13 cm",
             "24 cm"
@@ -1085,7 +1086,7 @@
     },
     {
       "topic_id": "arc_length",
-      "prompt": "A sector of a circle has radius 3 cm and angle 270°. Find the exact arc length, in terms of π.",
+      "prompt": "Find the exact arc length of the following sector, in terms of π.",
       "solution_steps": [
         "Arc length = (θ ÷ 360) × 2 × π × r = (270 ÷ 360) × 2 × π × 3",
         "= (9/2)π cm"

@@ -40,8 +40,8 @@
       "prompt": "Simplify 4^(3/2) × 4^-3, giving your answer as a fraction where necessary.",
       "solution_steps": [
         "4^(1/2) is the square root of 4, which is 2, so 4^(3/2) = 2^3",
-        "4^-3 = 1/4^3 = 1/2^6",
-        "4^(3/2) × 4^-3 = 2^3 × 1/2^6 = 2^(3-6) = 2^-3",
+        "4^-3 = \\frac{1}{4³} = \\frac{1}{2⁶}",
+        "4^(3/2) × 4^-3 = 2^3 × \\frac{1}{2⁶} = 2^(3-6) = 2^-3",
         "2^-3 = 1/8"
       ],
       "final_answer": "1/8",
@@ -54,12 +54,12 @@
         },
         {
           "code": "M1",
-          "description": "4^-3 = 1/4^3 = 1/2^6",
+          "description": "4^-3 = \\frac{1}{4³} = \\frac{1}{2⁶}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4^(3/2) × 4^-3 = 2^3 × 1/2^6 = 2^(3-6) = 2^-3",
+          "description": "4^(3/2) × 4^-3 = 2^3 × \\frac{1}{2⁶} = 2^(3-6) = 2^-3",
           "marks": 1
         },
         {
@@ -113,10 +113,11 @@
     },
     {
       "topic_id": "rationalise_denominator",
-      "prompt": "Rationalise the denominator of 12/(3 - √7), giving your answer in its simplest form.",
+      "prompt": "Rationalise the denominator of \\frac{12}{3 - √7}, giving your answer in its simplest form.",
       "solution_steps": [
         "Multiply the numerator and denominator by the conjugate of the denominator, (3 + √7):",
-        "12/(3 - √7) = 12(3 + √7) / [(3 - √7)(3 + √7)]",
+        "\\frac{12}{3 - √7}",
+        "= \\frac{12(3 + √7)}{[(3 - √7)(3 + √7)]}",
         "The denominator is a difference of two squares: 3^2 - 7 = 2",
         "The numerator is 12(3 + √7) = 36 + 12√7",
         "Simplify by dividing numerator and denominator by 2: 18 + 6√7"
@@ -131,17 +132,17 @@
         },
         {
           "code": "M1",
-          "description": "12/(3 - √7) = 12(3 + √7) / [(3 - √7)(3 + √7)]",
+          "description": "\\frac{12}{3 - √7}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The denominator is a difference of two squares: 3^2 - 7 = 2",
+          "description": "= \\frac{12(3 + √7)}{[(3 - √7)(3 + √7)]}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The numerator is 12(3 + √7) = 36 + 12√7 Simplify by dividing numerator and denominator by 2: 18 + 6√7",
+          "description": "The denominator is a difference of two squares: 3^2 - 7 = 2 The numerator is 12(3 + √7) = 36 + 12√7 Simplify by dividing numerator and denominator by 2: 18 + 6√7",
           "marks": 1
         },
         {
@@ -183,7 +184,7 @@
         "kind": "right_triangle",
         "params": {
           "leg1_label": "5 m",
-          "leg2_label": "?",
+          "leg2_label": "x",
           "hyp_label": "9 m"
         }
       },
@@ -191,9 +192,9 @@
     },
     {
       "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal 0.(10) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.}{10} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(10), so 100x = 10.1010... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Let x = \\recur{0.}{10}, so 100x = 10.1010... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 10 - 0, so 99x = 10",
         "x = 10/99 = 10/99"
       ],
@@ -202,7 +203,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(10), so 100x = 10.1010... (two digits repeat, so multiply by 100 to shift a full block)",
+          "description": "Let x = \\recur{0.}{10}, so 100x = 10.1010... (two digits repeat, so multiply by 100 to shift a full block)",
           "marks": 1
         },
         {
@@ -367,7 +368,7 @@
     },
     {
       "topic_id": "special_sequences_higher",
-      "prompt": "The first 4 terms of a geometric sequence are: 6, 18, 54, 162. Each term is found by multiplying the previous term by a common ratio. Find the 5th term of the sequence.",
+      "prompt": "The first 4 terms of a geometric sequence are: 6, 18, 54, 162. Find the 5th term of the sequence.",
       "solution_steps": [
         "Common ratio r = 3 (divide any term by the term before it).",
         "nth term = a × r^(n - 1) = 6 × (3)^4",
@@ -583,11 +584,11 @@
     },
     {
       "topic_id": "algebraic_fractions_multiply_divide",
-      "prompt": "Simplify (x^2 - 64)/(x + 1) ÷ (x - 8)/(x + 1), giving your answer in its simplest form.",
+      "prompt": "Simplify \\frac{(x^2 - 64)}{(x + 1)} ÷ \\frac{(x - 8)}{(x + 1)}, giving your answer in its simplest form.",
       "solution_steps": [
         "Factorise the difference of two squares: (x^2 - 64) = (x - 8)(x + 8)",
-        "Dividing by a fraction means multiplying by its reciprocal: ÷ (x - 8)/(x + 1) becomes × (x + 1)/(x - 8)",
-        "(x - 8)(x + 8)/(x + 1) × (x + 1)/(x - 8)",
+        "Dividing by a fraction means multiplying by its reciprocal: ÷ \\frac{(x - 8)}{(x + 1)} becomes × \\frac{(x + 1)}{(x - 8)}",
+        "\\frac{(x - 8)(x + 8)}{(x + 1)} × \\frac{(x + 1)}{(x - 8)}",
         "Cancel the common factors (x + 1) and (x - 8):",
         "= x + 8"
       ],
@@ -601,12 +602,12 @@
         },
         {
           "code": "M1",
-          "description": "Dividing by a fraction means multiplying by its reciprocal: ÷ (x - 8)/(x + 1) becomes × (x + 1)/(x - 8)",
+          "description": "Dividing by a fraction means multiplying by its reciprocal: ÷ \\frac{(x - 8)}{(x + 1)} becomes × \\frac{(x + 1)}{(x - 8)}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(x - 8)(x + 8)/(x + 1) × (x + 1)/(x - 8)",
+          "description": "\\frac{(x - 8)(x + 8)}{(x + 1)} × \\frac{(x + 1)}{(x - 8)}",
           "marks": 1
         },
         {

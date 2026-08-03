@@ -8,10 +8,10 @@
   "questions": [
     {
       "topic_id": "fractions_simplify",
-      "prompt": "Simplify the fraction 30/36 fully.",
+      "prompt": "Simplify the fraction 30/36.",
       "solution_steps": [
         "Find the highest common factor of 30 and 36: 6",
-        "Divide numerator and denominator by 6: 30÷6 / 36÷6 = 5/6"
+        "Divide numerator and denominator by 6: \\frac{30÷6}{36÷6} = 5/6"
       ],
       "final_answer": "5/6",
       "marks": 3,
@@ -23,7 +23,7 @@
         },
         {
           "code": "M1",
-          "description": "Divide numerator and denominator by 6: 30÷6 / 36÷6 = 5/6",
+          "description": "Divide numerator and denominator by 6: \\frac{30÷6}{36÷6} = 5/6",
           "marks": 1
         },
         {
@@ -101,7 +101,7 @@
     },
     {
       "topic_id": "fractions_improper_mixed",
-      "prompt": "Write 23/10 as a mixed number.",
+      "prompt": "Express 23/10 as a mixed number.",
       "solution_steps": [
         "Divide the numerator by the denominator: 23 ÷ 10 = 2 remainder 3",
         "Write as a mixed number: 2 3/10"
@@ -165,7 +165,7 @@
     },
     {
       "topic_id": "fractions_add_subtract",
-      "prompt": "Work out 4/5 + 4/7. Give your answer as a fraction in its simplest form.",
+      "prompt": "Calculate 4/5 + 4/7. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Find a common denominator: LCM(5, 7) = 35",
         "Convert: 4/5 = 28/35, 4/7 = 20/35",
@@ -206,7 +206,7 @@
     },
     {
       "topic_id": "fractions_of_amount",
-      "prompt": "Find 3/5 of 155.",
+      "prompt": "Work out 3/5 of 155.",
       "solution_steps": [
         "Divide by the denominator: 155 ÷ 5 = 31",
         "Multiply by the numerator: 31 × 3 = 93"
@@ -307,9 +307,9 @@
     },
     {
       "topic_id": "substitution_foundation",
-      "prompt": "A = lw. Find the value of A when l = 7 and w = 13.",
+      "prompt": "A = LW. Find the value of A when L = 7 and w = 13.",
       "solution_steps": [
-        "A = lw",
+        "A = LW",
         "A = 7 × 13",
         "A = 91"
       ],
@@ -318,7 +318,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A = lw",
+          "description": "A = LW",
           "marks": 1
         },
         {
@@ -344,7 +344,7 @@
       "topic_id": "line_equation_from_graph",
       "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
       "solution_steps": [
-        "Gradient = rise/run = (-21 - 11) / (4 - -4) = -4",
+        "Gradient = rise/run = \\frac{-21 - 11}{4 - -4} = -4",
         "Using y = mx + c with the point (-4, 11): 11 = -4×(-4) + c, so c = -5",
         "Equation of the line: y = -4x - 5"
       ],
@@ -353,7 +353,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Gradient = rise/run = (-21 - 11) / (4 - -4) = -4",
+          "description": "Gradient = rise/run = \\frac{-21 - 11}{4 - -4} = -4",
           "marks": 1
         },
         {
@@ -381,17 +381,7 @@
           "x_min": -5,
           "x_max": 5,
           "y_min": -26,
-          "y_max": 16,
-          "table_points": [
-            [
-              -4,
-              11
-            ],
-            [
-              4,
-              -21
-            ]
-          ]
+          "y_max": 16
         }
       },
       "solution_diagram": null
@@ -481,7 +471,7 @@
     },
     {
       "topic_id": "expand_double_brackets_foundation",
-      "prompt": "Expand: (3x + 5)(x + 9)",
+      "prompt": "Expand and simplify: (3x + 5)(x + 9)",
       "solution_steps": [
         "First: 3x × 1x = 3x^2",
         "Outer: 3x × 9 = 27x",
@@ -552,7 +542,7 @@
     },
     {
       "topic_id": "direct_proportion",
-      "prompt": "On a map, 3 cm represents 72 km in real life. How many km does 9 cm represent?",
+      "prompt": "If 3 cm on a map represents 72 km in real life, how many km does 9 cm represent?",
       "solution_steps": [
         "Unit value = 72 km ÷ 3 = 24 km",
         "Answer = 24 km × 9 = 216 km"
@@ -867,7 +857,7 @@
     },
     {
       "topic_id": "area_trapezium",
-      "prompt": "A trapezium has parallel sides of length 10 cm and 14 cm, and a perpendicular height of 6 cm. Find its area.",
+      "prompt": "Find the area of the following trapezium.",
       "solution_steps": [
         "Area = ½ × (a + b) × height = ½ × (10 + 14) × 6 = 72 cm²"
       ],

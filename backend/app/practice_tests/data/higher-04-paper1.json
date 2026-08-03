@@ -11,7 +11,7 @@
       "prompt": "Work out 7/2 ÷ 1/3. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Keep-change-flip: 7/2 ÷ 1/3 = 7/2 × 3/1",
-        "Multiply: (7×3)/(2×1) = 21/2",
+        "Multiply: \\frac{(7×3)}{(2×1)} = 21/2",
         "Simplify: 21/2"
       ],
       "final_answer": "21/2",
@@ -24,7 +24,7 @@
         },
         {
           "code": "M1",
-          "description": "Multiply: (7×3)/(2×1) = 21/2",
+          "description": "Multiply: \\frac{(7×3)}{(2×1)} = 21/2",
           "marks": 1
         },
         {
@@ -119,9 +119,9 @@
     },
     {
       "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal 0.(42) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.}{42} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(42), so 100x = 42.4242... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Let x = \\recur{0.}{42}, so 100x = 42.4242... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 42 - 0, so 99x = 42",
         "x = 42/99 = 14/33"
       ],
@@ -130,7 +130,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(42), so 100x = 42.4242... (two digits repeat, so multiply by 100 to shift a full block)",
+          "description": "Let x = \\recur{0.}{42}, so 100x = 42.4242... (two digits repeat, so multiply by 100 to shift a full block)",
           "marks": 1
         },
         {
@@ -154,7 +154,7 @@
     },
     {
       "topic_id": "fractions_mixed_number_arithmetic",
-      "prompt": "Work out 4 3/5 - 3 2/8. Give your answer as a mixed number.",
+      "prompt": "Calculate 4 3/5 - 3 2/8. Give your answer as a mixed number.",
       "solution_steps": [
         "Convert to improper fractions: 4 3/5 = 23/5, 3 2/8 = 13/4",
         "Subtract the improper fractions: 23/5 - 13/4 = 27/20",
@@ -358,12 +358,12 @@
       "solution_steps": [
         "x = (-b ± √(b^2 - 4ac)) / 2a",
         "a = 3, b = -6, c = 1",
-        "x = (6 ± √(-6^2 - 4×3×1)) / 6",
-        "x = (6 ± √24) / 6",
+        "x = \\frac{6 ± √(-6^2 - 4×3×1)}{6}",
+        "x = \\frac{6 ± √24}{6}",
         "√24 = √(2^2 × 6) = 2√6",
-        "x = (6 ± 2√6) / 6 = (3 ± √6)/3 (dividing numerator and denominator by 2)"
+        "x = \\frac{6 ± 2√6}{6} = \\frac{3 ± √6}{3} (dividing numerator and denominator by 2)"
       ],
-      "final_answer": "x = (3 ± √6)/3",
+      "final_answer": "x = \\frac{3 ± √6}{3}",
       "marks": 5,
       "mark_scheme": [
         {
@@ -378,17 +378,17 @@
         },
         {
           "code": "M1",
-          "description": "x = (6 ± √(-6^2 - 4×3×1)) / 6",
+          "description": "x = \\frac{6 ± √(-6^2 - 4×3×1)}{6}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = (6 ± √24) / 6 √24 = √(2^2 × 6) = 2√6 x = (6 ± 2√6) / 6 = (3 ± √6)/3 (dividing numerator and denominator by 2)",
+          "description": "x = \\frac{6 ± √24}{6} √24 = √(2^2 × 6) = 2√6 x = \\frac{6 ± 2√6}{6} = \\frac{3 ± √6}{3} (dividing numerator and denominator by 2)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = (3 ± √6)/3 oe",
+          "description": "x = \\frac{3 ± √6}{3} oe",
           "marks": 1
         }
       ],
@@ -427,12 +427,7 @@
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "parabola",
-        "params": {
-          "vertex_label": "(-6, -36)"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -440,7 +435,7 @@
       "prompt": "Simplify 4x^(3/4) × 3x^(1/4)",
       "solution_steps": [
         "Multiplying powers of the same base: add the exponents, even when they're fractions.",
-        "4x^(3/4) × 3x^(1/4) = (4×3) x^(3/4+1/4)",
+        "4x^(3/4) × 3x^(1/4) = (4×3) x^(\\frac{3}{4}+\\frac{1}{4})",
         "= 12x"
       ],
       "final_answer": "12x",
@@ -453,7 +448,7 @@
         },
         {
           "code": "M1",
-          "description": "4x^(3/4) × 3x^(1/4) = (4×3) x^(3/4+1/4)",
+          "description": "4x^(3/4) × 3x^(1/4) = (4×3) x^(\\frac{3}{4}+\\frac{1}{4})",
           "marks": 1
         },
         {
@@ -475,10 +470,10 @@
       "prompt": "Make r the subject of the formula A = πr^2.",
       "solution_steps": [
         "A = πr^2",
-        "Divide both sides by π: A/π = r^2",
-        "Take the square root of both sides: r = √(A/π)"
+        "Divide both sides by π: \\frac{A}{π} = r^2",
+        "Take the square root of both sides: r = √(\\frac{A}{π})"
       ],
-      "final_answer": "r = √(A/π)",
+      "final_answer": "r = √(\\frac{A}{π})",
       "marks": 4,
       "mark_scheme": [
         {
@@ -488,17 +483,17 @@
         },
         {
           "code": "M1",
-          "description": "Divide both sides by π: A/π = r^2",
+          "description": "Divide both sides by π: \\frac{A}{π} = r^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Take the square root of both sides: r = √(A/π)",
+          "description": "Take the square root of both sides: r = √(\\frac{A}{π})",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "r = √(A/π) oe",
+          "description": "r = √(\\frac{A}{π}) oe",
           "marks": 1
         }
       ],
@@ -507,7 +502,7 @@
     },
     {
       "topic_id": "ratio_shape_similar_higher",
-      "prompt": "Shape A and Shape B are similar. A length on shape A is 4 cm and the corresponding length on shape B is 3 cm. The area of shape A is 48 cm². Find the area of shape B.",
+      "prompt": "Shape A and Shape B are similar. The area of shape A is 48 cm². Find the area of shape B.",
       "solution_steps": [
         "Linear scale factor = 3 ÷ 4 = 3/4",
         "Area scale factor = (3/4)^2 = 9/16",
@@ -537,7 +532,13 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "a_width_label": "4 cm",
+          "b_width_label": "3 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -577,15 +578,15 @@
     },
     {
       "topic_id": "ratio_difference_higher",
-      "prompt": "Amounts are in the ratio 7:9:1. The difference between the largest and smallest amount is 120. Find all three amounts.",
+      "prompt": "a : b : c = 7 : 9 : 1. b - c = 120. Find a, b and c.",
       "solution_steps": [
         "Difference in parts = 9 - 1 = 8 parts",
         "Value of one part = 120 ÷ 8 = 15",
-        "Amount 1 = 7 × 15 = 105",
-        "Amount 2 = 9 × 15 = 135",
-        "Amount 3 = 1 × 15 = 15"
+        "a = 7 × 15 = 105",
+        "b = 9 × 15 = 135",
+        "c = 1 × 15 = 15"
       ],
-      "final_answer": "105 : 135 : 15",
+      "final_answer": "a = 105, b = 135, c = 15",
       "marks": 5,
       "mark_scheme": [
         {
@@ -600,17 +601,17 @@
         },
         {
           "code": "M1",
-          "description": "Amount 1 = 7 × 15 = 105",
+          "description": "a = 7 × 15 = 105",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Amount 2 = 9 × 15 = 135 Amount 3 = 1 × 15 = 15",
+          "description": "b = 9 × 15 = 135 c = 1 × 15 = 15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "105 : 135 : 15 oe",
+          "description": "a = 105, b = 135, c = 15 oe",
           "marks": 1
         }
       ],
@@ -987,13 +988,13 @@
     },
     {
       "topic_id": "bearings_cosine_rule",
-      "prompt": "A ship sails from port A on a bearing of 307° for 14 km to point B. It then changes course and sails on a bearing of 209° for 24 km to point C. Find the direct distance from A to C, correct to 3 significant figures.",
+      "prompt": "A ship sails from port A on a bearing of 307° for 14 km to point B. It then changes course and sails on a bearing of 209° for 24 km to point C. Find the direct distance from A to C, correct to 1 decimal place.",
       "solution_steps": [
         "The back bearing of A from B is 307° + 180° = 127°.",
         "Angle ABC is the difference between this back bearing and the bearing of C from B: angle ABC = 82°.",
         "Use the cosine rule: AC² = AB² + BC² - 2×AB×BC×cos(ABC)",
         "AC² = 14² + 24² - 2×14×24×cos(82°) = 678.5",
-        "AC = √678.5 = 26.0 km (3 s.f.)"
+        "AC = √678.5 = 26.0 km (1 d.p.)"
       ],
       "final_answer": "26.0 km",
       "marks": 5,
@@ -1015,7 +1016,7 @@
         },
         {
           "code": "M1",
-          "description": "AC² = 14² + 24² - 2×14×24×cos(82°) = 678.5 AC = √678.5 = 26.0 km (3 s.f.)",
+          "description": "AC² = 14² + 24² - 2×14×24×cos(82°) = 678.5 AC = √678.5 = 26.0 km (1 d.p.)",
           "marks": 1
         },
         {

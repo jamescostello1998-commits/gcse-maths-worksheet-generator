@@ -3,6 +3,7 @@ import io
 import pytest
 from lxml import etree
 from pptx import Presentation
+from pptx.enum.shapes import MSO_SHAPE_TYPE
 
 from app.bell_tasks.generator import NUM_BOXES, NUM_SLIDES, QUESTIONS_PER_TOPIC, generate_bell_tasks_pptx
 from app.bell_tasks.layout import BOX_TO_ROW_COL, box_bounds
@@ -65,18 +66,43 @@ def test_generates_five_slides_with_six_distinct_boxes_each():
             assert len(text) > len(f"{box}. ")
 
 
+def _box_picture_blobs(slide, box) -> tuple:
+    """Raw image bytes of every picture shape positioned inside `box`'s own
+    cell bounds on this slide - `diagram_rect` always places a box's diagram
+    picture within `box_bounds(box)`, so geometric containment reliably
+    matches a picture to its box without needing to intercept generation
+    order."""
+    bx, by, bw, bh = box_bounds(box)
+    blobs = []
+    for shape in slide.shapes:
+        if shape.shape_type != MSO_SHAPE_TYPE.PICTURE:
+            continue
+        if bx <= shape.left < bx + bw and by <= shape.top < by + bh:
+            blobs.append(shape.image.blob)
+    return tuple(blobs)
+
+
 def test_each_box_shows_five_distinct_questions_across_the_week():
     data = generate_bell_tasks_pptx(SIX_TOPIC_IDS)
     prs = Presentation(io.BytesIO(data))
 
     for box in range(1, NUM_BOXES + 1):
         row, col = BOX_TO_ROW_COL[box]
-        texts = set()
+        seen = set()
         for slide in prs.slides:
             table = _grid_table(slide)
             cell = table.cell(row, col)
-            texts.add(_cell_full_text(cell))
-        assert len(texts) == QUESTIONS_PER_TOPIC, f"box {box} did not get {QUESTIONS_PER_TOPIC} distinct questions"
+            text = _cell_full_text(cell)
+            # Text alone doesn't always prove two questions differ: some
+            # topics move their distinguishing numbers onto the diagram and
+            # leave the prompt itself generic (e.g. area_rectangle, after
+            # this project's own prose-stripping pass), so two genuinely
+            # different questions can share identical prompt text. Fold in
+            # each box's own diagram image bytes too, so distinctness is
+            # judged on what's actually rendered, not just the text run.
+            key = (text, _box_picture_blobs(slide, box))
+            seen.add(key)
+        assert len(seen) == QUESTIONS_PER_TOPIC, f"box {box} did not get {QUESTIONS_PER_TOPIC} distinct questions"
 
 
 def test_runs_use_calibri_for_words_and_cambria_math_for_numbers():

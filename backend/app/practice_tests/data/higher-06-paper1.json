@@ -43,7 +43,7 @@
     },
     {
       "topic_id": "roots_higher",
-      "prompt": "Simplify √75, giving your answer in the form a√b.",
+      "prompt": "Fully simplify √75, giving your answer in the form a√b.",
       "solution_steps": [
         "Find the largest square factor of 75: 5^2 × 3 = 75",
         "√75 = √(5^2 × 3) = 5√3"
@@ -107,27 +107,27 @@
     },
     {
       "topic_id": "rationalise_denominator",
-      "prompt": "Rationalise the denominator of 7/√13, giving your answer in its simplest form.",
+      "prompt": "Rationalise the denominator of \\frac{7}{√13}, giving your answer in its simplest form.",
       "solution_steps": [
-        "Multiply the top and bottom by √13: 7/√13 = 7√13/13",
-        "= 7√13/13"
+        "Multiply the top and bottom by √13: \\frac{7}{√13} = \\frac{7√13}{13}",
+        "= \\frac{7√13}{13}"
       ],
-      "final_answer": "7√13/13",
+      "final_answer": "\\frac{7√13}{13}",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply the top and bottom by √13: 7/√13 = 7√13/13",
+          "description": "Multiply the top and bottom by √13: \\frac{7}{√13} = \\frac{7√13}{13}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 7√13/13",
+          "description": "= \\frac{7√13}{13}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7√13/13 oe",
+          "description": "\\frac{7√13}{13} oe",
           "marks": 1
         }
       ],
@@ -171,9 +171,9 @@
     },
     {
       "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal 0.1(6) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.1}{6} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.1(6)",
+        "Let x = \\recur{0.1}{6}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
         "This gives x = 15/90",
         "Simplify: 1/6"
@@ -183,7 +183,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.1(6)",
+          "description": "Let x = \\recur{0.1}{6}",
           "marks": 1
         },
         {
@@ -568,7 +568,7 @@
     },
     {
       "topic_id": "ratio_shape_similar_higher",
-      "prompt": "Shape A and Shape B are similar. A length on shape A is 4 cm and the corresponding length on shape B is 5 cm. The area of shape A is 112 cm². Find the area of shape B.",
+      "prompt": "Shape A and Shape B are similar. The area of shape A is 112 cm². Find the area of shape B.",
       "solution_steps": [
         "Linear scale factor = 5 ÷ 4 = 5/4",
         "Area scale factor = (5/4)^2 = 25/16",
@@ -598,7 +598,13 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "a_width_label": "4 cm",
+          "b_width_label": "5 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -632,16 +638,16 @@
     },
     {
       "topic_id": "ratio_difference_higher",
-      "prompt": "Amounts are in the ratio 1:7:5. The difference between the largest and smallest amount is 78. Find all three amounts and their total.",
+      "prompt": "p : q : r = 1 : 7 : 5. q - p = 78. Find p, q and r, and their total.",
       "solution_steps": [
         "Difference in parts = 7 - 1 = 6 parts",
         "Value of one part = 78 ÷ 6 = 13",
-        "Amount 1 = 1 × 13 = 13",
-        "Amount 2 = 7 × 13 = 91",
-        "Amount 3 = 5 × 13 = 65",
-        "Total = 13 + 91 + 65 = 169"
+        "p = 1 × 13 = 13",
+        "q = 7 × 13 = 91",
+        "r = 5 × 13 = 65",
+        "p + q + r = 13 + 91 + 65 = 169"
       ],
-      "final_answer": "13 : 91 : 65 (total 169)",
+      "final_answer": "p = 13, q = 91, r = 65 (total 169)",
       "marks": 5,
       "mark_scheme": [
         {
@@ -656,17 +662,17 @@
         },
         {
           "code": "M1",
-          "description": "Amount 1 = 1 × 13 = 13",
+          "description": "p = 1 × 13 = 13",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Amount 2 = 7 × 13 = 91 Amount 3 = 5 × 13 = 65 Total = 13 + 91 + 65 = 169",
+          "description": "q = 7 × 13 = 91 r = 5 × 13 = 65 p + q + r = 13 + 91 + 65 = 169",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "13 : 91 : 65 (total 169) oe",
+          "description": "p = 13, q = 91, r = 65 (total 169) oe",
           "marks": 1
         }
       ],
@@ -710,15 +716,15 @@
     },
     {
       "topic_id": "bearings_cosine_rule",
-      "prompt": "A ship sails from port A on a bearing of 103° for 22 km to point B. It then changes course and sails on a bearing of 318° for 9 km to point C. Find the direct distance from A to C, correct to 3 significant figures.",
+      "prompt": "A ship sails from port A on a bearing of 103° for 22 km to point B. It then changes course and sails on a bearing of 318° for 9 km to point C. Find the direct distance from A to C, correct to 2 decimal places.",
       "solution_steps": [
         "The back bearing of A from B is 103° + 180° = 283°.",
         "Angle ABC is the difference between this back bearing and the bearing of C from B: angle ABC = 35°.",
         "Use the cosine rule: AC² = AB² + BC² - 2×AB×BC×cos(ABC)",
         "AC² = 22² + 9² - 2×22×9×cos(35°) = 240.6",
-        "AC = √240.6 = 15.5 km (3 s.f.)"
+        "AC = √240.6 = 15.51 km (2 d.p.)"
       ],
-      "final_answer": "15.5 km",
+      "final_answer": "15.51 km",
       "marks": 5,
       "mark_scheme": [
         {
@@ -738,12 +744,12 @@
         },
         {
           "code": "M1",
-          "description": "AC² = 22² + 9² - 2×22×9×cos(35°) = 240.6 AC = √240.6 = 15.5 km (3 s.f.)",
+          "description": "AC² = 22² + 9² - 2×22×9×cos(35°) = 240.6 AC = √240.6 = 15.51 km (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "15.5 km oe",
+          "description": "15.51 km oe",
           "marks": 1
         }
       ],
@@ -876,53 +882,55 @@
     },
     {
       "topic_id": "area_mixed_compound",
-      "prompt": "A shape is made from a rectangle 20 cm by 8 cm, with a triangular roof of height 4 cm on top, and a quarter-circle of radius 3 cm cut from one bottom corner. Find the total area, correct to 3 significant figures.",
+      "prompt": "Find the total area of the following compound shape, correct to 3 significant figures.",
       "solution_steps": [
-        "Rectangle area = 20 × 8 = 160 cm²",
-        "Triangle roof area = ½ × 20 × 4 = 40 cm²",
-        "Quarter-circle cut area = (π × 3²) ÷ 4 ≈ 7.07 cm²",
-        "Total area = 160 + 40 - 7.07 ≈ 193 cm²"
+        "Rectangle area = 16 × 10 = 160 cm²",
+        "Triangular top area = ½ × 16 × 5 = 40 cm²",
+        "Quarter-circle cut area = (π × 5²) ÷ 4 ≈ 19.6 cm²",
+        "Total area = 160 + 40.0 - 19.6 ≈ 180 cm² (3 s.f.)"
       ],
-      "final_answer": "193 cm²",
+      "final_answer": "180 cm²",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rectangle area = 20 × 8 = 160 cm²",
+          "description": "Rectangle area = 16 × 10 = 160 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Triangle roof area = ½ × 20 × 4 = 40 cm²",
+          "description": "Triangular top area = ½ × 16 × 5 = 40 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Quarter-circle cut area = (π × 3²) ÷ 4 ≈ 7.07 cm²",
+          "description": "Quarter-circle cut area = (π × 5²) ÷ 4 ≈ 19.6 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total area = 160 + 40 - 7.07 ≈ 193 cm²",
+          "description": "Total area = 160 + 40.0 - 19.6 ≈ 180 cm² (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "193 cm² oe",
+          "description": "180 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "mixed_compound",
         "params": {
-          "width": 20,
-          "height": 8,
-          "roof_height": 4,
-          "cut_radius": 3,
-          "width_label": "20 cm",
-          "height_label": "8 cm",
-          "roof_label": "4 cm",
-          "cut_label": "3 cm"
+          "width": 16,
+          "height": 10,
+          "top_kind": "triangle",
+          "cut_kind": "quarter_circle",
+          "width_label": "16 cm",
+          "height_label": "10 cm",
+          "roof_height": 5,
+          "top_label": "5 cm",
+          "cut_radius": 5,
+          "cut_label": "5 cm"
         }
       },
       "solution_diagram": null

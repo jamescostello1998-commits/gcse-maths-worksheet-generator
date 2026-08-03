@@ -72,7 +72,7 @@
     },
     {
       "topic_id": "fractions_mixed_number_arithmetic",
-      "prompt": "Work out 5 6/7 + 1 4/8. Give your answer as a mixed number.",
+      "prompt": "Evaluate 5 6/7 + 1 4/8. Give your answer as a mixed number.",
       "solution_steps": [
         "Convert to improper fractions: 5 6/7 = 41/7, 1 4/8 = 3/2",
         "Add the improper fractions: 41/7 + 3/2 = 103/14",
@@ -165,9 +165,9 @@
     },
     {
       "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal 0.(04) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.}{04} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(04), so 100x = 04.0404... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Let x = \\recur{0.}{04}, so 100x = 04.0404... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 4 - 0, so 99x = 4",
         "x = 4/99 = 4/99"
       ],
@@ -176,7 +176,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(04), so 100x = 04.0404... (two digits repeat, so multiply by 100 to shift a full block)",
+          "description": "Let x = \\recur{0.}{04}, so 100x = 04.0404... (two digits repeat, so multiply by 100 to shift a full block)",
           "marks": 1
         },
         {
@@ -200,9 +200,9 @@
     },
     {
       "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal 0.9(3) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.9}{3} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.9(3)",
+        "Let x = \\recur{0.9}{3}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
         "This gives x = 84/90",
         "Simplify: 14/15"
@@ -212,7 +212,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.9(3)",
+          "description": "Let x = \\recur{0.9}{3}",
           "marks": 1
         },
         {
@@ -283,7 +283,7 @@
     },
     {
       "topic_id": "inequalities_number_line_higher",
-      "prompt": "Draw the solution set of x ≤ 2 or x ≥ 6 on a number line.",
+      "prompt": "Draw the inequality/ies of x ≤ 2 or x ≥ 6 on a number line.",
       "solution_steps": [
         "Draw a filled circle at 2 and a filled circle at 6.",
         "Shade to the left of 2 and to the right of 6, with arrows showing both continue indefinitely."
@@ -344,10 +344,10 @@
       "prompt": "Make r the subject of the formula A = 2πr^2.",
       "solution_steps": [
         "A = 2πr^2",
-        "Divide both sides by 2π: A/(2π) = r^2",
-        "Take the square root of both sides: r = √(A/(2π))"
+        "Divide both sides by 2π: \\frac{A}{2π} = r^2",
+        "Take the square root of both sides: r = √(\\frac{A}{2π})"
       ],
-      "final_answer": "r = √(A/(2π))",
+      "final_answer": "r = √(\\frac{A}{2π})",
       "marks": 4,
       "mark_scheme": [
         {
@@ -357,17 +357,17 @@
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 2π: A/(2π) = r^2",
+          "description": "Divide both sides by 2π: \\frac{A}{2π} = r^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Take the square root of both sides: r = √(A/(2π))",
+          "description": "Take the square root of both sides: r = √(\\frac{A}{2π})",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "r = √(A/(2π)) oe",
+          "description": "r = √(\\frac{A}{2π}) oe",
           "marks": 1
         }
       ],
@@ -578,16 +578,16 @@
     },
     {
       "topic_id": "ratio_difference_higher",
-      "prompt": "Amounts are in the ratio 5:2:1. The difference between the largest and smallest amount is 56. Find all three amounts and their total.",
+      "prompt": "a : b : c = 5 : 2 : 1. a - c = 56. Find a, b and c, and their total.",
       "solution_steps": [
         "Difference in parts = 5 - 1 = 4 parts",
         "Value of one part = 56 ÷ 4 = 14",
-        "Amount 1 = 5 × 14 = 70",
-        "Amount 2 = 2 × 14 = 28",
-        "Amount 3 = 1 × 14 = 14",
-        "Total = 70 + 28 + 14 = 112"
+        "a = 5 × 14 = 70",
+        "b = 2 × 14 = 28",
+        "c = 1 × 14 = 14",
+        "a + b + c = 70 + 28 + 14 = 112"
       ],
-      "final_answer": "70 : 28 : 14 (total 112)",
+      "final_answer": "a = 70, b = 28, c = 14 (total 112)",
       "marks": 5,
       "mark_scheme": [
         {
@@ -602,17 +602,17 @@
         },
         {
           "code": "M1",
-          "description": "Amount 1 = 5 × 14 = 70",
+          "description": "a = 5 × 14 = 70",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Amount 2 = 2 × 14 = 28 Amount 3 = 1 × 14 = 14 Total = 70 + 28 + 14 = 112",
+          "description": "b = 2 × 14 = 28 c = 1 × 14 = 14 a + b + c = 70 + 28 + 14 = 112",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "70 : 28 : 14 (total 112) oe",
+          "description": "a = 70, b = 28, c = 14 (total 112) oe",
           "marks": 1
         }
       ],
@@ -765,13 +765,13 @@
     },
     {
       "topic_id": "cosine_rule",
-      "prompt": "In triangle ABC, side b = 18 cm, side c = 16 cm, and the angle between them, angle A = 100°. Find the length of side a, correct to 3 significant figures.",
+      "prompt": "In triangle ABC, side b = 18 cm, side c = 16 cm, and the angle between them, angle A = 100°. Find the length of side a, correct to 2 decimal places.",
       "solution_steps": [
         "Use the cosine rule: a² = b² + c² - 2bc cos(A)",
         "a² = 18² + 16² - 2×18×16×cos(100°) = 680.0",
-        "a = √680.0 = 26.1 cm (3 s.f.)"
+        "a = √680.0 = 26.08 cm (2 d.p.)"
       ],
-      "final_answer": "26.1 cm",
+      "final_answer": "26.08 cm",
       "marks": 4,
       "mark_scheme": [
         {
@@ -786,12 +786,12 @@
         },
         {
           "code": "M1",
-          "description": "a = √680.0 = 26.1 cm (3 s.f.)",
+          "description": "a = √680.0 = 26.08 cm (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "26.1 cm oe",
+          "description": "26.08 cm oe",
           "marks": 1
         }
       ],

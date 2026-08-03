@@ -8,7 +8,7 @@
   "questions": [
     {
       "topic_id": "decimals_divide",
-      "prompt": "Work out 6.6 ÷ 2.",
+      "prompt": "Calculate 6.6 ÷ 2.",
       "solution_steps": [
         "6.6 ÷ 2 = 3.3"
       ],
@@ -31,11 +31,11 @@
     },
     {
       "topic_id": "fractions_ordering",
-      "prompt": "Write these fractions in order, largest to smallest: 2/5, 1/2, 1/6, 1/12",
+      "prompt": "Write these fractions in descending order: 2/5, 1/2, 1/6, 1/12",
       "solution_steps": [
         "Convert every fraction to the same denominator, the LCM of 5, 2, 6, 12: 60",
         "Rewrite each fraction over 60: 2/5 = 24/60, 1/2 = 30/60, 1/6 = 10/60, 1/12 = 5/60",
-        "Order the numerators from largest to smallest and convert back: 1/2, 2/5, 1/6, 1/12"
+        "Order the numerators in descending order and convert back: 1/2, 2/5, 1/6, 1/12"
       ],
       "final_answer": "1/2, 2/5, 1/6, 1/12",
       "marks": 4,
@@ -52,7 +52,7 @@
         },
         {
           "code": "M1",
-          "description": "Order the numerators from largest to smallest and convert back: 1/2, 2/5, 1/6, 1/12",
+          "description": "Order the numerators in descending order and convert back: 1/2, 2/5, 1/6, 1/12",
           "marks": 1
         },
         {
@@ -65,34 +65,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_one_step",
-      "prompt": "Solve: 5x = 25",
+      "topic_id": "classify_expressions",
+      "prompt": "Is the following an expression, equation, formula, or identity?\n8x^2 + 3x",
       "solution_steps": [
-        "5x = 25",
-        "Divide both sides by 5:",
-        "x = 5"
+        "Look at the statement: 8x^2 + 3x.",
+        "There is no '=' sign and no '≡' sign anywhere in it, so it isn't claiming that two things are equal at all.",
+        "It's just a single algebraic object built from numbers and a letter using +, -, ×, ÷ and powers - it can be simplified or evaluated for a given x, but there is nothing here to 'solve' or 'prove'.",
+        "Since it makes no equality claim whatsoever, this is an expression."
       ],
-      "final_answer": "5",
-      "marks": 4,
+      "final_answer": "expression",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5x = 25",
+          "description": "Look at the statement: 8x^2 + 3x.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 5:",
+          "description": "There is no '=' sign and no '≡' sign anywhere in it, so it isn't claiming that two things are equal at all.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 5",
+          "description": "It's just a single algebraic object built from numbers and a letter using +, -, ×, ÷ and powers - it can be simplified or evaluated for a given x, but there is nothing here to 'solve' or 'prove'.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Since it makes no equality claim whatsoever, this is an expression.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5 oe",
+          "description": "expression oe",
           "marks": 1
         }
       ],
@@ -159,33 +165,33 @@
     },
     {
       "topic_id": "fractions_divide_foundation",
-      "prompt": "Work out 3/3 ÷ 5/3. Give your answer as a fraction in its simplest form.",
+      "prompt": "Evaluate 5/3 ÷ 6/2. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
-        "Keep-change-flip: 3/3 ÷ 5/3 = 3/3 × 3/5",
-        "Multiply: (3×3)/(3×5) = 9/15",
-        "Simplify: 3/5"
+        "Keep-change-flip: 5/3 ÷ 6/2 = 5/3 × 2/6",
+        "Multiply: \\frac{(5×2)}{(3×6)} = 10/18",
+        "Simplify: 5/9"
       ],
-      "final_answer": "3/5",
+      "final_answer": "5/9",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Keep-change-flip: 3/3 ÷ 5/3 = 3/3 × 3/5",
+          "description": "Keep-change-flip: 5/3 ÷ 6/2 = 5/3 × 2/6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: (3×3)/(3×5) = 9/15",
+          "description": "Multiply: \\frac{(5×2)}{(3×6)} = 10/18",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify: 3/5",
+          "description": "Simplify: 5/9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3/5 oe",
+          "description": "5/9 oe",
           "marks": 1
         }
       ],
@@ -194,9 +200,9 @@
     },
     {
       "topic_id": "recurring_decimal_single_digit",
-      "prompt": "The recurring decimal 0.(1) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.}{1} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(1), so 10x = 1.111... (only one digit repeats, so multiply by 10 to shift it one place)",
+        "Let x = \\recur{0.}{1}, so 10x = 1.111... (only one digit repeats, so multiply by 10 to shift it one place)",
         "Subtract: 10x - x = 1 - 0, so 9x = 1",
         "x = 1/9 = 1/9"
       ],
@@ -205,7 +211,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(1), so 10x = 1.111... (only one digit repeats, so multiply by 10 to shift it one place)",
+          "description": "Let x = \\recur{0.}{1}, so 10x = 1.111... (only one digit repeats, so multiply by 10 to shift it one place)",
           "marks": 1
         },
         {
@@ -260,7 +266,7 @@
       "topic_id": "line_equation_from_graph",
       "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
       "solution_steps": [
-        "Gradient = rise/run = (7 - -2) / (1 - -2) = 3",
+        "Gradient = rise/run = \\frac{7 - -2}{1 - -2} = 3",
         "Using y = mx + c with the point (-2, -2): -2 = 3×(-2) + c, so c = 4",
         "Equation of the line: y = 3x + 4"
       ],
@@ -269,7 +275,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Gradient = rise/run = (7 - -2) / (1 - -2) = 3",
+          "description": "Gradient = rise/run = \\frac{7 - -2}{1 - -2} = 3",
           "marks": 1
         },
         {
@@ -297,17 +303,7 @@
           "x_min": -3,
           "x_max": 2,
           "y_min": -6,
-          "y_max": 11,
-          "table_points": [
-            [
-              -2,
-              -2
-            ],
-            [
-              1,
-              7
-            ]
-          ]
+          "y_max": 11
         }
       },
       "solution_diagram": null
@@ -497,98 +493,39 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_straight_line",
-      "prompt": "Complete a table of values for y = 3x - 5 for x = -3 to 3, then plot the graph.",
+      "topic_id": "decimals_multiply",
+      "prompt": "Work out 13.41 × 12.8.",
       "solution_steps": [
-        "Table of values for y = 3x - 5:",
-        "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: -14, -11, -8, -5, -2, 1, 4",
-        "Plot each (x, y) point and join them with a single ruled straight line."
+        "Ignore the decimal points and multiply the whole numbers: 1341 × 128 = 171648",
+        "Count the total decimal places in the question: 2 + 1 = 3",
+        "Place the decimal point 3 places from the right: 171.648"
       ],
-      "final_answer": "Straight line: y = 3x - 5",
-      "marks": 5,
+      "final_answer": "171.648",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = 3x - 5:",
+          "description": "Ignore the decimal points and multiply the whole numbers: 1341 × 128 = 171648",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "description": "Count the total decimal places in the question: 2 + 1 = 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: -14, -11, -8, -5, -2, 1, 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
+          "description": "Place the decimal point 3 places from the right: 171.648",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Straight line: y = 3x - 5 oe",
+          "description": "171.648 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "linear",
-          "m": 3,
-          "c": -5,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -15,
-          "y_max": 5,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "linear",
-          "m": 3,
-          "c": -5,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -15,
-          "y_max": 5,
-          "table_points": [
-            [
-              -3,
-              -14
-            ],
-            [
-              -2,
-              -11
-            ],
-            [
-              -1,
-              -8
-            ],
-            [
-              0,
-              -5
-            ],
-            [
-              1,
-              -2
-            ],
-            [
-              2,
-              1
-            ],
-            [
-              3,
-              4
-            ]
-          ]
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     },
     {
       "topic_id": "ratio_share_three_part_foundation",
@@ -790,39 +727,32 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_parallel_lines_foundation",
-      "prompt": "A line crosses two parallel lines. The angle 93° and the angle x° are alternate angles. Find x.",
+      "topic_id": "roots_foundation",
+      "prompt": "Without using a calculator, show that √46 lies between two consecutive whole numbers, and state them.",
       "solution_steps": [
-        "Alternate angles are equal.",
-        "x = 93"
+        "6^2 = 36 and 7^2 = 49",
+        "Since 36 < 46 < 49, √46 is between 6 and 7."
       ],
-      "final_answer": "93",
+      "final_answer": "between 6 and 7",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Alternate angles are equal.",
+          "description": "6^2 = 36 and 7^2 = 49",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 93",
+          "description": "Since 36 < 46 < 49, √46 is between 6 and 7.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "93 oe",
+          "description": "between 6 and 7 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "parallel_lines",
-        "params": {
-          "known_label": "93°",
-          "unknown_label": "x",
-          "relation": "alternate"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -961,7 +891,7 @@
     },
     {
       "topic_id": "area_rectangle",
-      "prompt": "A rectangle has length 4 cm and width 19 cm. Find its perimeter.",
+      "prompt": "Find the perimeter of the following rectangle.",
       "solution_steps": [
         "Perimeter = 2 × (length + width) = 2 × (4 + 19) = 46 cm"
       ],

@@ -189,9 +189,9 @@
     },
     {
       "topic_id": "recurring_decimal_single_digit",
-      "prompt": "The recurring decimal 0.(6) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.}{6} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(6), so 10x = 6.666... (only one digit repeats, so multiply by 10 to shift it one place)",
+        "Let x = \\recur{0.}{6}, so 10x = 6.666... (only one digit repeats, so multiply by 10 to shift it one place)",
         "Subtract: 10x - x = 6 - 0, so 9x = 6",
         "x = 6/9 = 2/3"
       ],
@@ -200,7 +200,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(6), so 10x = 6.666... (only one digit repeats, so multiply by 10 to shift it one place)",
+          "description": "Let x = \\recur{0.}{6}, so 10x = 6.666... (only one digit repeats, so multiply by 10 to shift it one place)",
           "marks": 1
         },
         {
@@ -392,9 +392,9 @@
       "solution_steps": [
         "v = u + 13t",
         "Subtract u from both sides: v - u = 13t",
-        "Divide both sides by 13: t = (v - u)/13"
+        "Divide both sides by 13: t = \\frac{v - u}{13}"
       ],
-      "final_answer": "t = (v - u)/13",
+      "final_answer": "t = \\frac{v - u}{13}",
       "marks": 4,
       "mark_scheme": [
         {
@@ -409,12 +409,12 @@
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 13: t = (v - u)/13",
+          "description": "Divide both sides by 13: t = \\frac{v - u}{13}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "t = (v - u)/13 oe",
+          "description": "t = \\frac{v - u}{13} oe",
           "marks": 1
         }
       ],
@@ -480,7 +480,7 @@
       "topic_id": "line_equation_from_graph",
       "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
       "solution_steps": [
-        "Gradient = rise/run = (-8 - 4) / (1 - -2) = -4",
+        "Gradient = rise/run = \\frac{-8 - 4}{1 - -2} = -4",
         "Using y = mx + c with the point (-2, 4): 4 = -4×(-2) + c, so c = -4",
         "Equation of the line: y = -4x - 4"
       ],
@@ -489,7 +489,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Gradient = rise/run = (-8 - 4) / (1 - -2) = -4",
+          "description": "Gradient = rise/run = \\frac{-8 - 4}{1 - -2} = -4",
           "marks": 1
         },
         {
@@ -517,17 +517,7 @@
           "x_min": -3,
           "x_max": 2,
           "y_min": -13,
-          "y_max": 9,
-          "table_points": [
-            [
-              -2,
-              4
-            ],
-            [
-              1,
-              -8
-            ]
-          ]
+          "y_max": 9
         }
       },
       "solution_diagram": null
@@ -699,27 +689,27 @@
     },
     {
       "topic_id": "ratio_find_missing_share",
-      "prompt": "Two amounts are in the ratio 2:3. The first amount is 8. Find the second amount.",
+      "prompt": "p : q = 2 : 3. q = 12. What is the value of p?",
       "solution_steps": [
-        "Value of one part = 8 ÷ 2 = 4",
-        "Second amount = 3 × 4 = 12"
+        "Value of one part = 12 ÷ 3 = 4",
+        "p = 2 × 4 = 8"
       ],
-      "final_answer": "12",
+      "final_answer": "8",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Value of one part = 8 ÷ 2 = 4",
+          "description": "Value of one part = 12 ÷ 3 = 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Second amount = 3 × 4 = 12",
+          "description": "p = 2 × 4 = 8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 oe",
+          "description": "8 oe",
           "marks": 1
         }
       ],

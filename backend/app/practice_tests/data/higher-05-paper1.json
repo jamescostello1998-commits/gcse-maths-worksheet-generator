@@ -8,7 +8,7 @@
   "questions": [
     {
       "topic_id": "surds_multiply_divide",
-      "prompt": "Simplify √320 ÷ √2, giving your answer in the form a√b.",
+      "prompt": "Fully simplify √320 ÷ √2, giving your answer in the form a√b.",
       "solution_steps": [
         "√320 ÷ √2 = √(320/2) = √160",
         "Find the largest square factor of 160: 4^2 × 10 = 160",
@@ -43,10 +43,10 @@
     },
     {
       "topic_id": "fractions_divide",
-      "prompt": "Work out 9/6 ÷ 7/9. Give your answer as a fraction in its simplest form.",
+      "prompt": "Evaluate 9/6 ÷ 7/9. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Keep-change-flip: 9/6 ÷ 7/9 = 9/6 × 9/7",
-        "Multiply: (9×9)/(6×7) = 81/42",
+        "Multiply: \\frac{(9×9)}{(6×7)} = 81/42",
         "Simplify: 27/14"
       ],
       "final_answer": "27/14",
@@ -59,7 +59,7 @@
         },
         {
           "code": "M1",
-          "description": "Multiply: (9×9)/(6×7) = 81/42",
+          "description": "Multiply: \\frac{(9×9)}{(6×7)} = 81/42",
           "marks": 1
         },
         {
@@ -145,8 +145,8 @@
       "prompt": "Simplify 25^(3/2) × 25^-2, giving your answer as a fraction where necessary.",
       "solution_steps": [
         "25^(1/2) is the square root of 25, which is 5, so 25^(3/2) = 5^3",
-        "25^-2 = 1/25^2 = 1/5^4",
-        "25^(3/2) × 25^-2 = 5^3 × 1/5^4 = 5^(3-4) = 5^-1",
+        "25^-2 = \\frac{1}{25²} = \\frac{1}{5⁴}",
+        "25^(3/2) × 25^-2 = 5^3 × \\frac{1}{5⁴} = 5^(3-4) = 5^-1",
         "5^-1 = 1/5"
       ],
       "final_answer": "1/5",
@@ -159,12 +159,12 @@
         },
         {
           "code": "M1",
-          "description": "25^-2 = 1/25^2 = 1/5^4",
+          "description": "25^-2 = \\frac{1}{25²} = \\frac{1}{5⁴}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "25^(3/2) × 25^-2 = 5^3 × 1/5^4 = 5^(3-4) = 5^-1",
+          "description": "25^(3/2) × 25^-2 = 5^3 × \\frac{1}{5⁴} = 5^(3-4) = 5^-1",
           "marks": 1
         },
         {
@@ -255,33 +255,33 @@
     },
     {
       "topic_id": "expand_triple_brackets",
-      "prompt": "Expand and simplify: (3x + 1)(-3x - 4)(-3x + 3)",
+      "prompt": "Expand and simplify: (4x - 3)(3x + 3)(4x + 3)",
       "solution_steps": [
-        "First expand two of the brackets: (3x + 1)(-3x - 4) = -9x^2 - 15x - 4",
-        "Multiply the result by (-3x + 3) and collect like terms",
-        "= 27x^3 + 18x^2 - 33x - 12"
+        "First expand two of the brackets: (4x - 3)(3x + 3) = 12x^2 + 3x - 9",
+        "Multiply the result by (4x + 3) and collect like terms",
+        "= 48x^3 + 48x^2 - 27x - 27"
       ],
-      "final_answer": "27x^3 + 18x^2 - 33x - 12",
+      "final_answer": "48x^3 + 48x^2 - 27x - 27",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First expand two of the brackets: (3x + 1)(-3x - 4) = -9x^2 - 15x - 4",
+          "description": "First expand two of the brackets: (4x - 3)(3x + 3) = 12x^2 + 3x - 9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the result by (-3x + 3) and collect like terms",
+          "description": "Multiply the result by (4x + 3) and collect like terms",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 27x^3 + 18x^2 - 33x - 12",
+          "description": "= 48x^3 + 48x^2 - 27x - 27",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "27x^3 + 18x^2 - 33x - 12 oe",
+          "description": "48x^3 + 48x^2 - 27x - 27 oe",
           "marks": 1
         }
       ],
@@ -373,8 +373,8 @@
       "solution_steps": [
         "This question gives three of s, u, a and t and asks for another, so use s = ut + (1/2)at^2, the equation linking exactly those four (note: t is never the unknown here, since solving this equation for t needs the quadratic formula).",
         "s = ut + (1/2)at^2",
-        "Rearrange to make u the subject: u = (s - (1/2)at^2)/t",
-        "Substitute s = 98, a = 4, t = 7: u = (98 - (1/2) × 4 × 7^2)/7 = 0"
+        "Rearrange to make u the subject: u = \\frac{s - (1/2)at^2}{t}",
+        "Substitute s = 98, a = 4, t = 7: u = \\frac{98 - (1/2) × 4 × 7^2}{7} = 0"
       ],
       "final_answer": "0 m/s",
       "marks": 5,
@@ -391,12 +391,12 @@
         },
         {
           "code": "M1",
-          "description": "Rearrange to make u the subject: u = (s - (1/2)at^2)/t",
+          "description": "Rearrange to make u the subject: u = \\frac{s - (1/2)at^2}{t}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute s = 98, a = 4, t = 7: u = (98 - (1/2) × 4 × 7^2)/7 = 0",
+          "description": "Substitute s = 98, a = 4, t = 7: u = \\frac{98 - (1/2) × 4 × 7^2}{7} = 0",
           "marks": 1
         },
         {
@@ -410,7 +410,7 @@
     },
     {
       "topic_id": "sequences_quadratic_nth_term",
-      "prompt": "Here are the first four terms of a quadratic sequence: 5, 9, 15, 23. Find an expression for the nth term.",
+      "prompt": "Here are the first four terms of a quadratic sequence: 5, 9, 15, 23.\nFind an expression for the nth term.",
       "solution_steps": [
         "First differences: 4, 6, 8",
         "Second difference is constant: 2, so the coefficient of n^2 is 2 ÷ 2 = 1",
@@ -445,20 +445,20 @@
     },
     {
       "topic_id": "iteration",
-      "prompt": "The iterative formula x_(n+1) = sqrt(11 - x_n) is used with x_0 = 2. Find the values of x_1, x_2 and x_3, giving each answer to 3 decimal places.",
+      "prompt": "The iterative formula x_(n+1) = √(11 - x_n) is used with x_0 = 2. Find the values of x_1, x_2 and x_3, giving each answer to 3 decimal places.",
       "solution_steps": [
-        "Iterative formula: x_(n+1) = sqrt(11 - x_n)",
+        "Iterative formula: x_(n+1) = √(11 - x_n)",
         "x_0 = 2",
-        "x_1 = g(x_0) = sqrt(11 - 2) = 3.000",
-        "x_2 = g(x_1) = sqrt(11 - 3.000) = 2.828",
-        "x_3 = g(x_2) = sqrt(11 - 2.828) = 2.859"
+        "x_1 = g(x_0) = √(11 - 2) = 3.000",
+        "x_2 = g(x_1) = √(11 - 3.000) = 2.828",
+        "x_3 = g(x_2) = √(11 - 2.828) = 2.859"
       ],
       "final_answer": "x_1 = 3.000, x_2 = 2.828, x_3 = 2.859",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Iterative formula: x_(n+1) = sqrt(11 - x_n)",
+          "description": "Iterative formula: x_(n+1) = √(11 - x_n)",
           "marks": 1
         },
         {
@@ -468,12 +468,12 @@
         },
         {
           "code": "M1",
-          "description": "x_1 = g(x_0) = sqrt(11 - 2) = 3.000",
+          "description": "x_1 = g(x_0) = √(11 - 2) = 3.000",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x_2 = g(x_1) = sqrt(11 - 3.000) = 2.828 x_3 = g(x_2) = sqrt(11 - 2.828) = 2.859",
+          "description": "x_2 = g(x_1) = √(11 - 3.000) = 2.828 x_3 = g(x_2) = √(11 - 2.828) = 2.859",
           "marks": 1
         },
         {
@@ -527,7 +527,18 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "polygon_angles",
+        "params": {
+          "n_sides": 4,
+          "angle_labels": [
+            "68°",
+            "29°",
+            "(4x - 17)°",
+            "(2x + 166)°"
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -561,7 +572,7 @@
     },
     {
       "topic_id": "ratio_shape_similar_higher",
-      "prompt": "Shape A and Shape B are similar. A length on shape A is 2 cm and the corresponding length on shape B is 5 cm. The area of shape B is 25 cm². Find the area of shape A.",
+      "prompt": "Shape A and Shape B are similar. The area of shape B is 25 cm². Find the area of shape A.",
       "solution_steps": [
         "Linear scale factor = 5 ÷ 2 = 5/2",
         "Area scale factor = (5/2)^2 = 25/4",
@@ -591,7 +602,13 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "a_width_label": "2 cm",
+          "b_width_label": "5 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -716,7 +733,7 @@
     },
     {
       "topic_id": "trig_mixed",
-      "prompt": "In the right-angled triangle shown, find the angle x, correct to 1 decimal place.",
+      "prompt": "In the triangle shown, find the angle x, correct to 1 decimal place.",
       "solution_steps": [
         "Use sin, since we know two of the three sides.",
         "sin(x) = 17 ÷ 28",

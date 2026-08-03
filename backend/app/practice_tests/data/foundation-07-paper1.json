@@ -78,7 +78,7 @@
     },
     {
       "topic_id": "fractions_add_subtract",
-      "prompt": "Work out 1/3 + 3/5. Give your answer as a fraction in its simplest form.",
+      "prompt": "Calculate 1/3 + 3/5. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Find a common denominator: LCM(3, 5) = 15",
         "Convert: 1/3 = 5/15, 3/5 = 9/15",
@@ -119,7 +119,7 @@
     },
     {
       "topic_id": "fractions_of_amount",
-      "prompt": "Find 8/10 of 20.",
+      "prompt": "Calculate 8/10 of 20.",
       "solution_steps": [
         "Divide by the denominator: 20 ÷ 10 = 2",
         "Multiply by the numerator: 2 × 8 = 16"
@@ -148,7 +148,7 @@
     },
     {
       "topic_id": "fractions_multiply",
-      "prompt": "Work out 9/10 × 8/6. Give your answer as a fraction in its simplest form.",
+      "prompt": "Calculate 9/10 × 8/6. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Multiply numerators: 9 × 8 = 72",
         "Multiply denominators: 10 × 6 = 60",
@@ -183,17 +183,17 @@
     },
     {
       "topic_id": "fractions_equivalent_diagram",
-      "prompt": "The first shape shows 1/3 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
+      "prompt": "The first shape shows 1/6 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
       "solution_steps": [
-        "Cross-multiply 1/3 against each labelled shape: a shape shows an equivalent fraction only if 1 × (its denominator) = (its shaded count) × 3.",
-        "Only shape B) 2/6 works: 1 × 6 = 2 × 3 = 6."
+        "Cross-multiply 1/6 against each labelled shape: a shape shows an equivalent fraction only if 1 × (its denominator) = (its shaded count) × 6.",
+        "Only shape B) 2/12 works: 1 × 12 = 2 × 6 = 12."
       ],
-      "final_answer": "B) 2/6",
+      "final_answer": "B) 2/12",
       "marks": 1,
       "mark_scheme": [
         {
           "code": "B1",
-          "description": "B) 2/6 (selecting the correct option)",
+          "description": "B) 2/12 (selecting the correct option)",
           "marks": 1
         }
       ],
@@ -203,27 +203,26 @@
           "shapes": [
             {
               "kind": "circle",
-              "parts": 3,
-              "shaded": 1,
-              "label": "1/3"
+              "parts": 6,
+              "shaded": 1
             },
             {
               "kind": "circle",
               "parts": 9,
               "shaded": 6,
-              "label": "A) 6/9"
+              "label": "A)"
             },
             {
               "kind": "circle",
-              "parts": 6,
+              "parts": 12,
               "shaded": 2,
-              "label": "B) 2/6"
+              "label": "B)"
             },
             {
               "kind": "circle",
               "parts": 8,
               "shaded": 1,
-              "label": "C) 1/8"
+              "label": "C)"
             }
           ]
         }
@@ -310,7 +309,7 @@
       "topic_id": "line_equation_from_graph",
       "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
       "solution_steps": [
-        "Gradient = rise/run = (4 - 8) / (1 - -3) = -1",
+        "Gradient = rise/run = \\frac{4 - 8}{1 - -3} = -1",
         "Using y = mx + c with the point (-3, 8): 8 = -1×(-3) + c, so c = 5",
         "Equation of the line: y = -x + 5"
       ],
@@ -319,7 +318,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Gradient = rise/run = (4 - 8) / (1 - -3) = -1",
+          "description": "Gradient = rise/run = \\frac{4 - 8}{1 - -3} = -1",
           "marks": 1
         },
         {
@@ -347,17 +346,7 @@
           "x_min": -4,
           "x_max": 2,
           "y_min": 2,
-          "y_max": 10,
-          "table_points": [
-            [
-              -3,
-              8
-            ],
-            [
-              1,
-              4
-            ]
-          ]
+          "y_max": 10
         }
       },
       "solution_diagram": null
@@ -399,7 +388,7 @@
     },
     {
       "topic_id": "expand_double_brackets_foundation",
-      "prompt": "Expand: (2x + 2)(x + 8)",
+      "prompt": "Expand and simplify: (2x + 2)(x + 8)",
       "solution_steps": [
         "First: 2x × 1x = 2x^2",
         "Outer: 2x × 8 = 16x",
@@ -487,9 +476,9 @@
       "prompt": "Make r the subject of the formula C = 2πr.",
       "solution_steps": [
         "C = 2πr",
-        "Divide both sides by 2π: r = C/(2π)"
+        "Divide both sides by 2π: r = \\frac{C}{2π}"
       ],
-      "final_answer": "r = C/(2π)",
+      "final_answer": "r = \\frac{C}{2π}",
       "marks": 3,
       "mark_scheme": [
         {
@@ -499,12 +488,12 @@
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 2π: r = C/(2π)",
+          "description": "Divide both sides by 2π: r = \\frac{C}{2π}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "r = C/(2π) oe",
+          "description": "r = \\frac{C}{2π} oe",
           "marks": 1
         }
       ],
@@ -540,7 +529,6 @@
       "diagram": {
         "kind": "linear_graph_pair",
         "params": {
-          "intersection_label": "?",
           "label1": "y = 4x - 2",
           "label2": "y = x - 2"
         }
@@ -607,7 +595,7 @@
     },
     {
       "topic_id": "ratio_1_to_n",
-      "prompt": "Write the ratio 1:2 in the form 1:n.",
+      "prompt": "Write the ratio 1:2 in the form 1:\\plain{n}.",
       "solution_steps": [
         "Divide both parts of the ratio by 1 (the first part) so the first part becomes 1.",
         "1 ÷ 1 = 1, 2 ÷ 1 = 2"
@@ -686,35 +674,6 @@
         {
           "code": "A1",
           "description": "£440 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_shape_similar_foundation",
-      "prompt": "Shape A and Shape B are similar. A side on shape A is 12 cm. The corresponding side on shape B is 9 cm. Another side on shape A is 20 cm. Find the length of the corresponding side on shape B.",
-      "solution_steps": [
-        "Scale factor = 9 ÷ 12 = 3/4",
-        "Corresponding length = 20 × 3/4 = 15"
-      ],
-      "final_answer": "15 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Scale factor = 9 ÷ 12 = 3/4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Corresponding length = 20 × 3/4 = 15",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "15 cm oe",
           "marks": 1
         }
       ],
@@ -815,10 +774,10 @@
     },
     {
       "topic_id": "area_sector_foundation",
-      "prompt": "A sector of a circle has radius 6 cm and angle 217°. Find the area of the sector, correct to 3 significant figures.",
+      "prompt": "Find the area of the following sector, correct to 1 decimal place.",
       "solution_steps": [
         "Area = (θ ÷ 360) × π × r² = (217 ÷ 360) × π × 6²",
-        "= 68.2 cm² (3 s.f., using a calculator value of π)"
+        "= 68.2 cm² (1 d.p., using a calculator value of π)"
       ],
       "final_answer": "68.2 cm²",
       "marks": 3,
@@ -830,7 +789,7 @@
         },
         {
           "code": "M1",
-          "description": "= 68.2 cm² (3 s.f., using a calculator value of π)",
+          "description": "= 68.2 cm² (1 d.p., using a calculator value of π)",
           "marks": 1
         },
         {
@@ -850,40 +809,53 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_polygon_interior_foundation",
-      "prompt": "A polygon has 36 sides. Find the sum of its interior angles.",
+      "topic_id": "solving_inequalities_foundation",
+      "prompt": "Solve the inequality: \\frac{x}{2} + 10 ≤ 9",
       "solution_steps": [
-        "Sum of interior angles = (n - 2) × 180 = (36 - 2) × 180 = 6120°"
+        "\\frac{x}{2} + 10 ≤ 9",
+        "Subtract 10 from both sides:",
+        "\\frac{x}{2} ≤ -1",
+        "Multiply both sides by 2:",
+        "x ≤ -2"
       ],
-      "final_answer": "6120°",
-      "marks": 2,
+      "final_answer": "x ≤ -2",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Sum of interior angles = (n - 2) × 180 = (36 - 2) × 180 = 6120°",
+          "description": "\\frac{x}{2} + 10 ≤ 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 10 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "\\frac{x}{2} ≤ -1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply both sides by 2: x ≤ -2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6120° oe",
+          "description": "x ≤ -2 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "polygon",
-        "params": {
-          "n_sides": 12,
-          "marked_angle_label": "?"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
       "topic_id": "arc_length_foundation",
-      "prompt": "A sector of a circle has radius 7 cm and angle 286°. Find the arc length, correct to 3 significant figures.",
+      "prompt": "Find the arc length of the following sector, correct to 1 decimal place.",
       "solution_steps": [
         "Arc length = (θ ÷ 360) × 2 × π × r = (286 ÷ 360) × 2 × π × 7",
-        "= 34.9 cm (3 s.f., using a calculator value of π)"
+        "= 34.9 cm (1 d.p., using a calculator value of π)"
       ],
       "final_answer": "34.9 cm",
       "marks": 3,
@@ -895,7 +867,7 @@
         },
         {
           "code": "M1",
-          "description": "= 34.9 cm (3 s.f., using a calculator value of π)",
+          "description": "= 34.9 cm (1 d.p., using a calculator value of π)",
           "marks": 1
         },
         {
@@ -916,12 +888,12 @@
     },
     {
       "topic_id": "area_circle_foundation",
-      "prompt": "A circle has radius 12 cm. Find its circumference, correct to 3 significant figures.",
+      "prompt": "Find the circumference of the following circle, correct to 2 decimal places.",
       "solution_steps": [
         "Circumference = 2 × π × r = 2 × π × 12",
-        "= 75.4 cm (3 s.f., using a calculator value of π)"
+        "= 75.40 cm (2 d.p., using a calculator value of π)"
       ],
-      "final_answer": "75.4 cm",
+      "final_answer": "75.40 cm",
       "marks": 3,
       "mark_scheme": [
         {
@@ -931,12 +903,12 @@
         },
         {
           "code": "M1",
-          "description": "= 75.4 cm (3 s.f., using a calculator value of π)",
+          "description": "= 75.40 cm (2 d.p., using a calculator value of π)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "75.4 cm oe",
+          "description": "75.40 cm oe",
           "marks": 1
         }
       ],
@@ -1040,38 +1012,56 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "stats_median_frequency_table",
-      "prompt": "A survey recorded the number of pets owned by each household: 5 (3 times), 6 (7 times), 7 (5 times), 8 (6 times). Find the median number of pets.",
+      "topic_id": "area_subtract_compound_foundation",
+      "prompt": "Find the shaded area.",
       "solution_steps": [
-        "Total frequency = 3 + 7 + 5 + 6 = 21 data items.",
-        "Imagine the data written out in full, in order (each value repeated as many times as its frequency), then find the middle of that list.",
-        "Median = 7"
+        "Area of large rectangle = 9 × 14 = 126 cm²",
+        "Area of rectangular hole = 3 × 8 = 24 cm²",
+        "Shaded area = 126 - 24 = 102 cm²"
       ],
-      "final_answer": "7",
+      "final_answer": "102 cm²",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total frequency = 3 + 7 + 5 + 6 = 21 data items.",
+          "description": "Area of large rectangle = 9 × 14 = 126 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Imagine the data written out in full, in order (each value repeated as many times as its frequency), then find the middle of that list.",
+          "description": "Area of rectangular hole = 3 × 8 = 24 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Median = 7",
+          "description": "Shaded area = 126 - 24 = 102 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7 oe",
+          "description": "102 cm² oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "l_shape",
+        "params": {
+          "outer_w": 9,
+          "outer_h": 14,
+          "inner_w": 3,
+          "inner_h": 8,
+          "notch": "center",
+          "shade_frame": true,
+          "outer_labels": [
+            "9 cm",
+            "14 cm"
+          ],
+          "inner_labels": [
+            "3 cm",
+            "8 cm"
+          ]
+        }
+      },
       "solution_diagram": null
     }
   ]

@@ -84,15 +84,16 @@
     },
     {
       "topic_id": "rationalise_denominator",
-      "prompt": "Rationalise the denominator of 12/(6 - √14), giving your answer in its simplest form.",
+      "prompt": "Rationalise the denominator of \\frac{12}{6 - √14}, giving your answer in its simplest form.",
       "solution_steps": [
         "Multiply the numerator and denominator by the conjugate of the denominator, (6 + √14):",
-        "12/(6 - √14) = 12(6 + √14) / [(6 - √14)(6 + √14)]",
+        "\\frac{12}{6 - √14}",
+        "= \\frac{12(6 + √14)}{[(6 - √14)(6 + √14)]}",
         "The denominator is a difference of two squares: 6^2 - 14 = 22",
         "The numerator is 12(6 + √14) = 72 + 12√14",
-        "Simplify by dividing numerator and denominator by 2: (36 + 6√14)/11"
+        "Simplify by dividing numerator and denominator by 2: \\frac{36 + 6√14}{11}"
       ],
-      "final_answer": "(36 + 6√14)/11",
+      "final_answer": "\\frac{36 + 6√14}{11}",
       "marks": 5,
       "mark_scheme": [
         {
@@ -102,22 +103,22 @@
         },
         {
           "code": "M1",
-          "description": "12/(6 - √14) = 12(6 + √14) / [(6 - √14)(6 + √14)]",
+          "description": "\\frac{12}{6 - √14}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The denominator is a difference of two squares: 6^2 - 14 = 22",
+          "description": "= \\frac{12(6 + √14)}{[(6 - √14)(6 + √14)]}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The numerator is 12(6 + √14) = 72 + 12√14 Simplify by dividing numerator and denominator by 2: (36 + 6√14)/11",
+          "description": "The denominator is a difference of two squares: 6^2 - 14 = 22 The numerator is 12(6 + √14) = 72 + 12√14 Simplify by dividing numerator and denominator by 2: \\frac{36 + 6√14}{11}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(36 + 6√14)/11 oe",
+          "description": "\\frac{36 + 6√14}{11} oe",
           "marks": 1
         }
       ],
@@ -229,10 +230,10 @@
       "solution_steps": [
         "x = (-b ± √(b^2 - 4ac)) / 2a",
         "a = 2, b = -4, c = -2",
-        "x = (4 ± √(-4^2 - 4×2×-2)) / 4",
-        "x = (4 ± √32) / 4",
+        "x = \\frac{4 ± √(-4^2 - 4×2×-2)}{4}",
+        "x = \\frac{4 ± √32}{4}",
         "√32 = √(4^2 × 2) = 4√2",
-        "x = (4 ± 4√2) / 4 = 1 ± √2 (dividing numerator and denominator by 4)"
+        "x = \\frac{4 ± 4√2}{4} = 1 ± √2 (dividing numerator and denominator by 4)"
       ],
       "final_answer": "x = 1 ± √2",
       "marks": 5,
@@ -249,12 +250,12 @@
         },
         {
           "code": "M1",
-          "description": "x = (4 ± √(-4^2 - 4×2×-2)) / 4",
+          "description": "x = \\frac{4 ± √(-4^2 - 4×2×-2)}{4}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = (4 ± √32) / 4 √32 = √(4^2 × 2) = 4√2 x = (4 ± 4√2) / 4 = 1 ± √2 (dividing numerator and denominator by 4)",
+          "description": "x = \\frac{4 ± √32}{4} √32 = √(4^2 × 2) = 4√2 x = \\frac{4 ± 4√2}{4} = 1 ± √2 (dividing numerator and denominator by 4)",
           "marks": 1
         },
         {
@@ -401,10 +402,10 @@
       "prompt": "Make r the subject of the formula A = πr^2.",
       "solution_steps": [
         "A = πr^2",
-        "Divide both sides by π: A/π = r^2",
-        "Take the square root of both sides: r = √(A/π)"
+        "Divide both sides by π: \\frac{A}{π} = r^2",
+        "Take the square root of both sides: r = √(\\frac{A}{π})"
       ],
-      "final_answer": "r = √(A/π)",
+      "final_answer": "r = √(\\frac{A}{π})",
       "marks": 4,
       "mark_scheme": [
         {
@@ -414,17 +415,17 @@
         },
         {
           "code": "M1",
-          "description": "Divide both sides by π: A/π = r^2",
+          "description": "Divide both sides by π: \\frac{A}{π} = r^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Take the square root of both sides: r = √(A/π)",
+          "description": "Take the square root of both sides: r = √(\\frac{A}{π})",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "r = √(A/π) oe",
+          "description": "r = √(\\frac{A}{π}) oe",
           "marks": 1
         }
       ],
@@ -433,20 +434,20 @@
     },
     {
       "topic_id": "iteration",
-      "prompt": "The iterative formula x_(n+1) = sqrt(21 - 2x_n) is used with x_0 = 4. Find the values of x_1, x_2 and x_3, giving each answer to 3 decimal places.",
+      "prompt": "The iterative formula x_(n+1) = √(21 - 2x_n) is used with x_0 = 4. Find the values of x_1, x_2 and x_3, giving each answer to 3 decimal places.",
       "solution_steps": [
-        "Iterative formula: x_(n+1) = sqrt(21 - 2x_n)",
+        "Iterative formula: x_(n+1) = √(21 - 2x_n)",
         "x_0 = 4",
-        "x_1 = g(x_0) = sqrt(21 - 2×4) = 3.606",
-        "x_2 = g(x_1) = sqrt(21 - 2×3.606) = 3.713",
-        "x_3 = g(x_2) = sqrt(21 - 2×3.713) = 3.684"
+        "x_1 = g(x_0) = √(21 - 2×4) = 3.606",
+        "x_2 = g(x_1) = √(21 - 2×3.606) = 3.713",
+        "x_3 = g(x_2) = √(21 - 2×3.713) = 3.684"
       ],
       "final_answer": "x_1 = 3.606, x_2 = 3.713, x_3 = 3.684",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Iterative formula: x_(n+1) = sqrt(21 - 2x_n)",
+          "description": "Iterative formula: x_(n+1) = √(21 - 2x_n)",
           "marks": 1
         },
         {
@@ -456,12 +457,12 @@
         },
         {
           "code": "M1",
-          "description": "x_1 = g(x_0) = sqrt(21 - 2×4) = 3.606",
+          "description": "x_1 = g(x_0) = √(21 - 2×4) = 3.606",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x_2 = g(x_1) = sqrt(21 - 2×3.606) = 3.713 x_3 = g(x_2) = sqrt(21 - 2×3.713) = 3.684",
+          "description": "x_2 = g(x_1) = √(21 - 2×3.606) = 3.713 x_3 = g(x_2) = √(21 - 2×3.713) = 3.684",
           "marks": 1
         },
         {
@@ -475,7 +476,7 @@
     },
     {
       "topic_id": "inequalities_number_line_higher",
-      "prompt": "Draw the solution set of x < -5 or x ≥ -1 on a number line.",
+      "prompt": "Draw the inequality/ies of x < -5 or x ≥ -1 on a number line.",
       "solution_steps": [
         "Draw an open circle at -5 and a filled circle at -1.",
         "Shade to the left of -5 and to the right of -1, with arrows showing both continue indefinitely."
@@ -738,53 +739,55 @@
     },
     {
       "topic_id": "area_mixed_compound",
-      "prompt": "A shape is made from a rectangle 12 cm by 14 cm, with a triangular roof of height 9 cm on top, and a quarter-circle of radius 2 cm cut from one bottom corner. Find the total area, correct to 3 significant figures.",
+      "prompt": "Find the total area of the following compound shape, correct to 1 decimal place.",
       "solution_steps": [
-        "Rectangle area = 12 × 14 = 168 cm²",
-        "Triangle roof area = ½ × 12 × 9 = 54 cm²",
-        "Quarter-circle cut area = (π × 2²) ÷ 4 ≈ 3.14 cm²",
-        "Total area = 168 + 54 - 3.14 ≈ 219 cm²"
+        "Rectangle area = 10 × 7 = 70 cm²",
+        "Triangular top area = ½ × 10 × 10 = 50 cm²",
+        "Semicircular cut area = ½ × π × 3² ≈ 14.1 cm²",
+        "Total area = 70 + 50.0 - 14.1 ≈ 105.9 cm² (1 d.p.)"
       ],
-      "final_answer": "219 cm²",
+      "final_answer": "105.9 cm²",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rectangle area = 12 × 14 = 168 cm²",
+          "description": "Rectangle area = 10 × 7 = 70 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Triangle roof area = ½ × 12 × 9 = 54 cm²",
+          "description": "Triangular top area = ½ × 10 × 10 = 50 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Quarter-circle cut area = (π × 2²) ÷ 4 ≈ 3.14 cm²",
+          "description": "Semicircular cut area = ½ × π × 3² ≈ 14.1 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total area = 168 + 54 - 3.14 ≈ 219 cm²",
+          "description": "Total area = 70 + 50.0 - 14.1 ≈ 105.9 cm² (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "219 cm² oe",
+          "description": "105.9 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "mixed_compound",
         "params": {
-          "width": 12,
-          "height": 14,
-          "roof_height": 9,
-          "cut_radius": 2,
-          "width_label": "12 cm",
-          "height_label": "14 cm",
-          "roof_label": "9 cm",
-          "cut_label": "2 cm"
+          "width": 10,
+          "height": 7,
+          "top_kind": "triangle",
+          "cut_kind": "semicircle_notch",
+          "width_label": "10 cm",
+          "height_label": "7 cm",
+          "roof_height": 10,
+          "top_label": "10 cm",
+          "notch_radius": 3,
+          "cut_label": "3 cm"
         }
       },
       "solution_diagram": null

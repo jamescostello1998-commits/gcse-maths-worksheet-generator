@@ -166,15 +166,16 @@
     },
     {
       "topic_id": "rationalise_denominator",
-      "prompt": "Rationalise the denominator of 11/(4 + √14), giving your answer in its simplest form.",
+      "prompt": "Rationalise the denominator of \\frac{11}{4 + √14}, giving your answer in its simplest form.",
       "solution_steps": [
         "Multiply the numerator and denominator by the conjugate of the denominator, (4 - √14):",
-        "11/(4 + √14) = 11(4 - √14) / [(4 + √14)(4 - √14)]",
+        "\\frac{11}{4 + √14}",
+        "= \\frac{11(4 - √14)}{[(4 + √14)(4 - √14)]}",
         "The denominator is a difference of two squares: 4^2 - 14 = 2",
         "The numerator is 11(4 - √14) = 44 - 11√14",
-        "= (44 - 11√14)/2"
+        "= \\frac{44 - 11√14}{2}"
       ],
-      "final_answer": "(44 - 11√14)/2",
+      "final_answer": "\\frac{44 - 11√14}{2}",
       "marks": 5,
       "mark_scheme": [
         {
@@ -184,22 +185,22 @@
         },
         {
           "code": "M1",
-          "description": "11/(4 + √14) = 11(4 - √14) / [(4 + √14)(4 - √14)]",
+          "description": "\\frac{11}{4 + √14}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The denominator is a difference of two squares: 4^2 - 14 = 2",
+          "description": "= \\frac{11(4 - √14)}{[(4 + √14)(4 - √14)]}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The numerator is 11(4 - √14) = 44 - 11√14 = (44 - 11√14)/2",
+          "description": "The denominator is a difference of two squares: 4^2 - 14 = 2 The numerator is 11(4 - √14) = 44 - 11√14 = \\frac{44 - 11√14}{2}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(44 - 11√14)/2 oe",
+          "description": "\\frac{44 - 11√14}{2} oe",
           "marks": 1
         }
       ],
@@ -272,40 +273,40 @@
     },
     {
       "topic_id": "expand_double_brackets",
-      "prompt": "Expand: (6x + 1)(-2x + 6)",
+      "prompt": "Expand and simplify: (4x + 6)(x + 4)",
       "solution_steps": [
-        "First: 6x × -2x = -12x^2",
-        "Outer: 6x × 6 = 36x",
-        "Inner: 1 × -2x = -2x",
-        "Last: 1 × 6 = 6",
-        "Combine like terms: -12x^2 + 34x + 6"
+        "First: 4x × 1x = 4x^2",
+        "Outer: 4x × 4 = 16x",
+        "Inner: 6 × 1x = 6x",
+        "Last: 6 × 4 = 24",
+        "Combine like terms: 4x^2 + 22x + 24"
       ],
-      "final_answer": "-12x^2 + 34x + 6",
+      "final_answer": "4x^2 + 22x + 24",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First: 6x × -2x = -12x^2",
+          "description": "First: 4x × 1x = 4x^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Outer: 6x × 6 = 36x",
+          "description": "Outer: 4x × 4 = 16x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Inner: 1 × -2x = -2x",
+          "description": "Inner: 6 × 1x = 6x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Last: 1 × 6 = 6 Combine like terms: -12x^2 + 34x + 6",
+          "description": "Last: 6 × 4 = 24 Combine like terms: 4x^2 + 22x + 24",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-12x^2 + 34x + 6 oe",
+          "description": "4x^2 + 22x + 24 oe",
           "marks": 1
         }
       ],
@@ -363,7 +364,7 @@
     },
     {
       "topic_id": "special_sequences_higher",
-      "prompt": "The first 3 terms of a geometric sequence are: 6, 3, 3/2. Each term is found by multiplying the previous term by a common ratio. Find the 5th term of the sequence.",
+      "prompt": "The first 3 terms of a geometric sequence are: 6, 3, 3/2. Find the 5th term of the sequence.",
       "solution_steps": [
         "Common ratio r = 1/2 (divide any term by the term before it).",
         "nth term = a × r^(n - 1) = 6 × (1/2)^4",
@@ -398,19 +399,19 @@
     },
     {
       "topic_id": "plot_reciprocal",
-      "prompt": "Complete a table of values for y = 36/x for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
+      "prompt": "Complete a table of values for y = \\frac{36}{x} for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = 36/x:",
+        "Table of values for y = \\frac{36}{x}:",
         "x: -4, -3, -2, -1, 1, 2, 3, 4",
         "y: -9, -12, -18, -36, 36, 18, 12, 9",
         "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
       ],
-      "final_answer": "Reciprocal curve: y = 36/x",
+      "final_answer": "Reciprocal curve: y = \\frac{36}{x}",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = 36/x:",
+          "description": "Table of values for y = \\frac{36}{x}:",
           "marks": 1
         },
         {
@@ -430,7 +431,7 @@
         },
         {
           "code": "A1",
-          "description": "Reciprocal curve: y = 36/x oe",
+          "description": "Reciprocal curve: y = \\frac{36}{x} oe",
           "marks": 1
         }
       ],
@@ -793,7 +794,7 @@
     },
     {
       "topic_id": "exact_trig_values_triangles",
-      "prompt": "In the right-angled triangle shown, find the exact length of x. Give your answer in surd form where appropriate.",
+      "prompt": "In the triangle shown, find the exact length of x. Give your answer in surd form where appropriate.",
       "solution_steps": [
         "We know the opposite and want the adjacent, so use tan(45°) = 1 - its exact value, not a decimal approximation.",
         "x = 2 ÷ 1 = 2 cm"
@@ -865,12 +866,12 @@
     },
     {
       "topic_id": "volume_surface_area_cone",
-      "prompt": "A cone has radius 10 cm and (perpendicular) height 16 cm. Find its total surface area, correct to 3 significant figures.",
+      "prompt": "A cone has radius 10 cm and (perpendicular) height 16 cm. Find its total surface area, correct to 1 decimal place.",
       "solution_steps": [
         "Surface area = πr² + πrl = πr(r + l) = π × 10 × (10 + 18.868)",
-        "= 907 cm² (3 s.f., using a calculator value of π)"
+        "= 906.9 cm² (1 d.p., using a calculator value of π)"
       ],
-      "final_answer": "907 cm²",
+      "final_answer": "906.9 cm²",
       "marks": 3,
       "mark_scheme": [
         {
@@ -880,12 +881,12 @@
         },
         {
           "code": "M1",
-          "description": "= 907 cm² (3 s.f., using a calculator value of π)",
+          "description": "= 906.9 cm² (1 d.p., using a calculator value of π)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "907 cm² oe",
+          "description": "906.9 cm² oe",
           "marks": 1
         }
       ],
@@ -909,53 +910,55 @@
     },
     {
       "topic_id": "area_mixed_compound",
-      "prompt": "A shape is made from a rectangle 18 cm by 10 cm, with a triangular roof of height 9 cm on top, and a quarter-circle of radius 2 cm cut from one bottom corner. Find the total area, correct to 3 significant figures.",
+      "prompt": "Find the total area of the following compound shape, correct to 3 significant figures.",
       "solution_steps": [
-        "Rectangle area = 18 × 10 = 180 cm²",
-        "Triangle roof area = ½ × 18 × 9 = 81 cm²",
-        "Quarter-circle cut area = (π × 2²) ÷ 4 ≈ 3.14 cm²",
-        "Total area = 180 + 81 - 3.14 ≈ 258 cm²"
+        "Rectangle area = 10 × 11 = 110 cm²",
+        "Semicircular top area = ½ × π × 5² ≈ 39.3 cm²",
+        "Semicircular cut area = ½ × π × 4² ≈ 25.1 cm²",
+        "Total area = 110 + 39.3 - 25.1 ≈ 124 cm² (3 s.f.)"
       ],
-      "final_answer": "258 cm²",
+      "final_answer": "124 cm²",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rectangle area = 18 × 10 = 180 cm²",
+          "description": "Rectangle area = 10 × 11 = 110 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Triangle roof area = ½ × 18 × 9 = 81 cm²",
+          "description": "Semicircular top area = ½ × π × 5² ≈ 39.3 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Quarter-circle cut area = (π × 2²) ÷ 4 ≈ 3.14 cm²",
+          "description": "Semicircular cut area = ½ × π × 4² ≈ 25.1 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total area = 180 + 81 - 3.14 ≈ 258 cm²",
+          "description": "Total area = 110 + 39.3 - 25.1 ≈ 124 cm² (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "258 cm² oe",
+          "description": "124 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "mixed_compound",
         "params": {
-          "width": 18,
-          "height": 10,
-          "roof_height": 9,
-          "cut_radius": 2,
-          "width_label": "18 cm",
-          "height_label": "10 cm",
-          "roof_label": "9 cm",
-          "cut_label": "2 cm"
+          "width": 10,
+          "height": 11,
+          "top_kind": "semicircle",
+          "cut_kind": "semicircle_notch",
+          "width_label": "10 cm",
+          "height_label": "11 cm",
+          "top_radius": 5,
+          "top_label": "5 cm",
+          "notch_radius": 4,
+          "cut_label": "4 cm"
         }
       },
       "solution_diagram": null

@@ -101,11 +101,11 @@
     },
     {
       "topic_id": "fractions_ordering",
-      "prompt": "Write these fractions in order, largest to smallest: 3/4, 1/2, 9/11, 1/6",
+      "prompt": "Write these fractions in descending order: 3/4, 1/2, 9/11, 1/6",
       "solution_steps": [
         "Convert every fraction to the same denominator, the LCM of 4, 2, 11, 6: 132",
         "Rewrite each fraction over 132: 3/4 = 99/132, 1/2 = 66/132, 9/11 = 108/132, 1/6 = 22/132",
-        "Order the numerators from largest to smallest and convert back: 9/11, 3/4, 1/2, 1/6"
+        "Order the numerators in descending order and convert back: 9/11, 3/4, 1/2, 1/6"
       ],
       "final_answer": "9/11, 3/4, 1/2, 1/6",
       "marks": 4,
@@ -122,7 +122,7 @@
         },
         {
           "code": "M1",
-          "description": "Order the numerators from largest to smallest and convert back: 9/11, 3/4, 1/2, 1/6",
+          "description": "Order the numerators in descending order and convert back: 9/11, 3/4, 1/2, 1/6",
           "marks": 1
         },
         {
@@ -577,7 +577,7 @@
     },
     {
       "topic_id": "direct_proportion",
-      "prompt": "£8 exchanges for $13.84. How much is £3 worth in dollars?",
+      "prompt": "If £8 exchanges for $13.84, how much is £3 worth in dollars ($)?",
       "solution_steps": [
         "Unit value = $13.84 ÷ 8 = $1.73",
         "Answer = $1.73 × 3 = $5.19"

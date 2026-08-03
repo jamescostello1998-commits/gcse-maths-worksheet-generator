@@ -43,18 +43,18 @@
     },
     {
       "topic_id": "fractions_multiply",
-      "prompt": "Work out 6/10 × 5/5. Give your answer as a fraction in its simplest form.",
+      "prompt": "Work out 6/10 × 9/5. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
-        "Multiply numerators: 6 × 5 = 30",
+        "Multiply numerators: 6 × 9 = 54",
         "Multiply denominators: 10 × 5 = 50",
-        "Simplify 30/50 = 3/5"
+        "Simplify 54/50 = 27/25"
       ],
-      "final_answer": "3/5",
+      "final_answer": "27/25",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply numerators: 6 × 5 = 30",
+          "description": "Multiply numerators: 6 × 9 = 54",
           "marks": 1
         },
         {
@@ -64,12 +64,12 @@
         },
         {
           "code": "M1",
-          "description": "Simplify 30/50 = 3/5",
+          "description": "Simplify 54/50 = 27/25",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3/5 oe",
+          "description": "27/25 oe",
           "marks": 1
         }
       ],
@@ -183,11 +183,11 @@
     },
     {
       "topic_id": "fractions_ordering",
-      "prompt": "Write these fractions in order, largest to smallest: 1/4, 1/2, 1/5, 5/6",
+      "prompt": "Write these fractions in descending order: 1/4, 1/2, 1/5, 5/6",
       "solution_steps": [
         "Convert every fraction to the same denominator, the LCM of 4, 2, 5, 6: 60",
         "Rewrite each fraction over 60: 1/4 = 15/60, 1/2 = 30/60, 1/5 = 12/60, 5/6 = 50/60",
-        "Order the numerators from largest to smallest and convert back: 5/6, 1/2, 1/4, 1/5"
+        "Order the numerators in descending order and convert back: 5/6, 1/2, 1/4, 1/5"
       ],
       "final_answer": "5/6, 1/2, 1/4, 1/5",
       "marks": 4,
@@ -204,7 +204,7 @@
         },
         {
           "code": "M1",
-          "description": "Order the numerators from largest to smallest and convert back: 5/6, 1/2, 1/4, 1/5",
+          "description": "Order the numerators in descending order and convert back: 5/6, 1/2, 1/4, 1/5",
           "marks": 1
         },
         {
@@ -638,7 +638,7 @@
     },
     {
       "topic_id": "ratio_1_to_n",
-      "prompt": "Write the ratio 8:6 in the form n:1.",
+      "prompt": "Write the ratio 8:6 in the form \\plain{n}:1.",
       "solution_steps": [
         "Divide both parts of the ratio by 6 (the second part) so the second part becomes 1.",
         "8 ÷ 6 ≈ 1.33, 6 ÷ 6 = 1"
@@ -725,12 +725,12 @@
     },
     {
       "topic_id": "area_circle_foundation",
-      "prompt": "A circle has radius 7 cm. Find its area, correct to 3 significant figures.",
+      "prompt": "Find the area of the following circle, correct to 2 decimal places.",
       "solution_steps": [
         "Area = π × r² = π × 7² = π × 49",
-        "= 154 cm² (3 s.f., using a calculator value of π)"
+        "= 153.94 cm² (2 d.p., using a calculator value of π)"
       ],
-      "final_answer": "154 cm²",
+      "final_answer": "153.94 cm²",
       "marks": 3,
       "mark_scheme": [
         {
@@ -740,12 +740,12 @@
         },
         {
           "code": "M1",
-          "description": "= 154 cm² (3 s.f., using a calculator value of π)",
+          "description": "= 153.94 cm² (2 d.p., using a calculator value of π)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "154 cm² oe",
+          "description": "153.94 cm² oe",
           "marks": 1
         }
       ],
@@ -928,7 +928,7 @@
     },
     {
       "topic_id": "volume_surface_area_triangular_prism",
-      "prompt": "A triangular prism has a right-angled triangular cross-section with legs 16 cm and 30 cm (hypotenuse 34 cm), and length 12 cm. Find its surface area.",
+      "prompt": "A triangular prism has a right-angled triangular cross-section with sides 16 cm and 30 cm (hypotenuse 34 cm), and length 12 cm. Find its surface area.",
       "solution_steps": [
         "Area of the two triangular ends = 2 × (1/2) × 16 × 30 = 480 cm²",
         "Perimeter of the triangular cross-section = 16 + 30 + 34 = 80 cm",

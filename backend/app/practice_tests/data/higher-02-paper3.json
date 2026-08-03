@@ -8,9 +8,9 @@
   "questions": [
     {
       "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal 0.(60) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.}{60} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(60), so 100x = 60.6060... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Let x = \\recur{0.}{60}, so 100x = 60.6060... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 60 - 0, so 99x = 60",
         "x = 60/99 = 20/33"
       ],
@@ -19,7 +19,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(60), so 100x = 60.6060... (two digits repeat, so multiply by 100 to shift a full block)",
+          "description": "Let x = \\recur{0.}{60}, so 100x = 60.6060... (two digits repeat, so multiply by 100 to shift a full block)",
           "marks": 1
         },
         {
@@ -119,7 +119,7 @@
     },
     {
       "topic_id": "fractions_mixed_number_arithmetic",
-      "prompt": "Work out 5 1/4 - 2 4/8. Give your answer as a mixed number.",
+      "prompt": "Calculate 5 1/4 - 2 4/8. Give your answer as a mixed number.",
       "solution_steps": [
         "Convert to improper fractions: 5 1/4 = 21/4, 2 4/8 = 5/2",
         "Subtract the improper fractions: 21/4 - 5/2 = 11/4",
@@ -154,7 +154,7 @@
     },
     {
       "topic_id": "powers_higher",
-      "prompt": "Work out 25^(3/2).",
+      "prompt": "Calculate 25^(3/2).",
       "solution_steps": [
         "25^(3/2) = (25^(1/2))^3",
         "25^(1/2) = 5",
@@ -384,10 +384,10 @@
       "prompt": "Make r the subject of the formula A = 5πr^2.",
       "solution_steps": [
         "A = 5πr^2",
-        "Divide both sides by 5π: A/(5π) = r^2",
-        "Take the square root of both sides: r = √(A/(5π))"
+        "Divide both sides by 5π: \\frac{A}{5π} = r^2",
+        "Take the square root of both sides: r = √(\\frac{A}{5π})"
       ],
-      "final_answer": "r = √(A/(5π))",
+      "final_answer": "r = √(\\frac{A}{5π})",
       "marks": 4,
       "mark_scheme": [
         {
@@ -397,17 +397,17 @@
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 5π: A/(5π) = r^2",
+          "description": "Divide both sides by 5π: \\frac{A}{5π} = r^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Take the square root of both sides: r = √(A/(5π))",
+          "description": "Take the square root of both sides: r = √(\\frac{A}{5π})",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "r = √(A/(5π)) oe",
+          "description": "r = √(\\frac{A}{5π}) oe",
           "marks": 1
         }
       ],
@@ -569,7 +569,7 @@
     },
     {
       "topic_id": "ratio_shape_similar_higher",
-      "prompt": "Shape A and Shape B are similar. A length on shape A is 4 cm and the corresponding length on shape B is 5 cm. The area of shape B is 25 cm². Find the area of shape A.",
+      "prompt": "Shape A and Shape B are similar. The area of shape B is 25 cm². Find the area of shape A.",
       "solution_steps": [
         "Linear scale factor = 5 ÷ 4 = 5/4",
         "Area scale factor = (5/4)^2 = 25/16",
@@ -599,7 +599,13 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "a_width_label": "4 cm",
+          "b_width_label": "5 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -703,11 +709,11 @@
     },
     {
       "topic_id": "cosine_rule",
-      "prompt": "In triangle ABC, side b = 13 cm, side c = 19 cm, and the angle between them, angle A = 61°. Find the length of side a, correct to 3 significant figures.",
+      "prompt": "In triangle ABC, side b = 13 cm, side c = 19 cm, and the angle between them, angle A = 61°. Find the length of side a, correct to 1 decimal place.",
       "solution_steps": [
         "Use the cosine rule: a² = b² + c² - 2bc cos(A)",
         "a² = 13² + 19² - 2×13×19×cos(61°) = 290.5",
-        "a = √290.5 = 17.0 cm (3 s.f.)"
+        "a = √290.5 = 17.0 cm (1 d.p.)"
       ],
       "final_answer": "17.0 cm",
       "marks": 4,
@@ -724,7 +730,7 @@
         },
         {
           "code": "M1",
-          "description": "a = √290.5 = 17.0 cm (3 s.f.)",
+          "description": "a = √290.5 = 17.0 cm (1 d.p.)",
           "marks": 1
         },
         {
@@ -748,12 +754,12 @@
     },
     {
       "topic_id": "volume_surface_area_cone",
-      "prompt": "A cone has radius 6 cm and slant height 17 cm. Find its volume, correct to 3 significant figures.",
+      "prompt": "A cone has radius 6 cm and slant height 17 cm. Find its volume, correct to 1 decimal place.",
       "solution_steps": [
         "Volume = (1/3) × π × r² × h = (1/3) × π × 6² × 15.906",
-        "= 600 cm³ (3 s.f., using a calculator value of π)"
+        "= 599.6 cm³ (1 d.p., using a calculator value of π)"
       ],
-      "final_answer": "600 cm³",
+      "final_answer": "599.6 cm³",
       "marks": 3,
       "mark_scheme": [
         {
@@ -763,12 +769,12 @@
         },
         {
           "code": "M1",
-          "description": "= 600 cm³ (3 s.f., using a calculator value of π)",
+          "description": "= 599.6 cm³ (1 d.p., using a calculator value of π)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "600 cm³ oe",
+          "description": "599.6 cm³ oe",
           "marks": 1
         }
       ],
@@ -922,10 +928,10 @@
     },
     {
       "topic_id": "substitution_higher",
-      "prompt": "a = (v - u)/t. Find the value of a when u = 42, v = 43 and t = 2.",
+      "prompt": "a = \\frac{v - u}{t}. Find the value of a when u = 42, v = 43 and t = 2.",
       "solution_steps": [
-        "a = (v - u)/t",
-        "a = (43 - 42)/2",
+        "a = \\frac{v - u}{t}",
+        "a = \\frac{43 - 42}{2}",
         "a = 1/2",
         "a = 1/2"
       ],
@@ -934,12 +940,12 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "a = (v - u)/t",
+          "description": "a = \\frac{v - u}{t}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "a = (43 - 42)/2",
+          "description": "a = \\frac{43 - 42}{2}",
           "marks": 1
         },
         {

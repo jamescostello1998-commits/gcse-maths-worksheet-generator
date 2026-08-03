@@ -78,10 +78,11 @@
     },
     {
       "topic_id": "rationalise_denominator",
-      "prompt": "Rationalise the denominator of 10/(2 - √3), giving your answer in its simplest form.",
+      "prompt": "Rationalise the denominator of \\frac{10}{2 - √3}, giving your answer in its simplest form.",
       "solution_steps": [
         "Multiply the numerator and denominator by the conjugate of the denominator, (2 + √3):",
-        "10/(2 - √3) = 10(2 + √3) / [(2 - √3)(2 + √3)]",
+        "\\frac{10}{2 - √3}",
+        "= \\frac{10(2 + √3)}{[(2 - √3)(2 + √3)]}",
         "The denominator is a difference of two squares: 2^2 - 3 = 1",
         "The numerator is 10(2 + √3) = 20 + 10√3",
         "= 20 + 10√3"
@@ -96,17 +97,17 @@
         },
         {
           "code": "M1",
-          "description": "10/(2 - √3) = 10(2 + √3) / [(2 - √3)(2 + √3)]",
+          "description": "\\frac{10}{2 - √3}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The denominator is a difference of two squares: 2^2 - 3 = 1",
+          "description": "= \\frac{10(2 + √3)}{[(2 - √3)(2 + √3)]}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The numerator is 10(2 + √3) = 20 + 10√3 = 20 + 10√3",
+          "description": "The denominator is a difference of two squares: 2^2 - 3 = 1 The numerator is 10(2 + √3) = 20 + 10√3 = 20 + 10√3",
           "marks": 1
         },
         {
@@ -155,10 +156,10 @@
     },
     {
       "topic_id": "fractions_divide",
-      "prompt": "Work out 7/12 ÷ 1/9. Give your answer as a fraction in its simplest form.",
+      "prompt": "Evaluate 7/12 ÷ 1/9. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Keep-change-flip: 7/12 ÷ 1/9 = 7/12 × 9/1",
-        "Multiply: (7×9)/(12×1) = 63/12",
+        "Multiply: \\frac{(7×9)}{(12×1)} = 63/12",
         "Simplify: 21/4"
       ],
       "final_answer": "21/4",
@@ -171,7 +172,7 @@
         },
         {
           "code": "M1",
-          "description": "Multiply: (7×9)/(12×1) = 63/12",
+          "description": "Multiply: \\frac{(7×9)}{(12×1)} = 63/12",
           "marks": 1
         },
         {
@@ -231,14 +232,14 @@
     },
     {
       "topic_id": "algebraic_fractions_add_subtract",
-      "prompt": "Simplify 4/(x + 7) - 9/(x - 4), giving your answer as a single fraction.",
+      "prompt": "Simplify \\frac{4}{(x + 7)} - \\frac{9}{(x - 4)}, giving your answer as a single fraction.",
       "solution_steps": [
         "Write both fractions over the common denominator (x + 7)(x - 4):",
-        "4/(x + 7) - 9/(x - 4) = (4(x - 4) - 9(x + 7))/(x + 7)(x - 4)",
+        "\\frac{4}{(x + 7)} - \\frac{9}{(x - 4)} = \\frac{4(x - 4) - 9(x + 7)}{(x + 7)(x - 4)}",
         "Expand the numerator: 4(x - 4) - 9(x + 7) = -5x - 79",
-        "= (-5x - 79)/(x + 7)(x - 4)"
+        "= \\frac{-5x - 79}{(x + 7)(x - 4)}"
       ],
-      "final_answer": "(-5x - 79)/(x + 7)(x - 4)",
+      "final_answer": "\\frac{-5x - 79}{(x + 7)(x - 4)}",
       "marks": 5,
       "mark_scheme": [
         {
@@ -248,7 +249,7 @@
         },
         {
           "code": "M1",
-          "description": "4/(x + 7) - 9/(x - 4) = (4(x - 4) - 9(x + 7))/(x + 7)(x - 4)",
+          "description": "\\frac{4}{(x + 7)} - \\frac{9}{(x - 4)} = \\frac{4(x - 4) - 9(x + 7)}{(x + 7)(x - 4)}",
           "marks": 1
         },
         {
@@ -258,12 +259,12 @@
         },
         {
           "code": "M1",
-          "description": "= (-5x - 79)/(x + 7)(x - 4)",
+          "description": "= \\frac{-5x - 79}{(x + 7)(x - 4)}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(-5x - 79)/(x + 7)(x - 4) oe",
+          "description": "\\frac{-5x - 79}{(x + 7)(x - 4)} oe",
           "marks": 1
         }
       ],
@@ -321,7 +322,7 @@
     },
     {
       "topic_id": "forming_equations_higher",
-      "prompt": "A rectangle has one side of length 11 cm and the other side of length (x + 6) cm. The area of the rectangle is 187 cm². Form an equation and solve it to find x.",
+      "prompt": "The area of the rectangle shown is 187 cm². Form an equation and solve it to find x.",
       "solution_steps": [
         "Area of a rectangle = length × width.",
         "11(x + 6) = 187",
@@ -361,7 +362,15 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "rectangle",
+        "params": {
+          "width": 17,
+          "height": 11,
+          "width_label": "(x + 6) cm",
+          "height_label": "11 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -369,7 +378,7 @@
       "prompt": "The point (3, -4) lies on the circle x^2 + y^2 = 25. Find the equation of the tangent to the circle at this point.",
       "solution_steps": [
         "The point (3, -4) lies on the circle x^2 + y^2 = 25, since 3^2 + -4^2 = 25.",
-        "The radius to (3, -4) has gradient -4/3, so the tangent (perpendicular to the radius) has gradient -3/-4.",
+        "The radius to (3, -4) has gradient \\frac{-4}{3}, so the tangent (perpendicular to the radius) has gradient -\\frac{3}{-4}.",
         "The tangent line through (3, -4) with that gradient simplifies to 3x - 4y = 25."
       ],
       "final_answer": "3x - 4y = 25",
@@ -382,7 +391,7 @@
         },
         {
           "code": "M1",
-          "description": "The radius to (3, -4) has gradient -4/3, so the tangent (perpendicular to the radius) has gradient -3/-4.",
+          "description": "The radius to (3, -4) has gradient \\frac{-4}{3}, so the tangent (perpendicular to the radius) has gradient -\\frac{3}{-4}.",
           "marks": 1
         },
         {
@@ -472,15 +481,15 @@
       "topic_id": "inequalities_region_higher",
       "prompt": "The shaded region on the grid satisfies two inequalities. State both inequalities.",
       "solution_steps": [
-        "The boundary line y = -x/2 - 2 is dashed, and the shading lies on the lower side of it, giving y < -x/2 - 2.",
+        "The boundary line y = -\\frac{x}{2} - 2 is dashed, and the shading lies on the lower side of it, giving y < -\\frac{x}{2} - 2.",
         "The boundary line y = -x - 1 is solid, and the shading lies on the lower side of it, giving y ≤ -x - 1."
       ],
-      "final_answer": "y < -x/2 - 2 and y ≤ -x - 1",
+      "final_answer": "y < -\\frac{x}{2} - 2 and y ≤ -x - 1",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The boundary line y = -x/2 - 2 is dashed, and the shading lies on the lower side of it, giving y < -x/2 - 2.",
+          "description": "The boundary line y = -\\frac{x}{2} - 2 is dashed, and the shading lies on the lower side of it, giving y < -\\frac{x}{2} - 2.",
           "marks": 1
         },
         {
@@ -490,7 +499,7 @@
         },
         {
           "code": "A1",
-          "description": "y < -x/2 - 2 and y ≤ -x - 1 oe",
+          "description": "y < -\\frac{x}{2} - 2 and y ≤ -x - 1 oe",
           "marks": 1
         }
       ],
@@ -549,12 +558,7 @@
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "parabola",
-        "params": {
-          "vertex_label": "(3, -23)"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -600,15 +604,15 @@
     },
     {
       "topic_id": "ratio_difference_higher",
-      "prompt": "Amounts are in the ratio 7:9:3. The difference between the largest and smallest amount is 78. Find all three amounts.",
+      "prompt": "s : t : u = 7 : 9 : 3. t - u = 78. Find s, t and u.",
       "solution_steps": [
         "Difference in parts = 9 - 3 = 6 parts",
         "Value of one part = 78 ÷ 6 = 13",
-        "Amount 1 = 7 × 13 = 91",
-        "Amount 2 = 9 × 13 = 117",
-        "Amount 3 = 3 × 13 = 39"
+        "s = 7 × 13 = 91",
+        "t = 9 × 13 = 117",
+        "u = 3 × 13 = 39"
       ],
-      "final_answer": "91 : 117 : 39",
+      "final_answer": "s = 91, t = 117, u = 39",
       "marks": 5,
       "mark_scheme": [
         {
@@ -623,17 +627,17 @@
         },
         {
           "code": "M1",
-          "description": "Amount 1 = 7 × 13 = 91",
+          "description": "s = 7 × 13 = 91",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Amount 2 = 9 × 13 = 117 Amount 3 = 3 × 13 = 39",
+          "description": "t = 9 × 13 = 117 u = 3 × 13 = 39",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "91 : 117 : 39 oe",
+          "description": "s = 91, t = 117, u = 39 oe",
           "marks": 1
         }
       ],
@@ -642,7 +646,7 @@
     },
     {
       "topic_id": "ratio_shape_similar_higher",
-      "prompt": "Shape A and Shape B are similar. A length on shape A is 2 cm and the corresponding length on shape B is 3 cm. The area of shape B is 9 cm². Find the area of shape A.",
+      "prompt": "Shape A and Shape B are similar. The area of shape B is 9 cm². Find the area of shape A.",
       "solution_steps": [
         "Linear scale factor = 3 ÷ 2 = 3/2",
         "Area scale factor = (3/2)^2 = 9/4",
@@ -672,7 +676,13 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "a_width_label": "2 cm",
+          "b_width_label": "3 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -747,13 +757,13 @@
     },
     {
       "topic_id": "bearings_cosine_rule",
-      "prompt": "A ship sails from port A on a bearing of 224° for 26 km to point B. It then changes course and sails on a bearing of 144° for 15 km to point C. Find the direct distance from A to C, correct to 3 significant figures.",
+      "prompt": "A ship sails from port A on a bearing of 224° for 26 km to point B. It then changes course and sails on a bearing of 144° for 15 km to point C. Find the direct distance from A to C, correct to 1 decimal place.",
       "solution_steps": [
         "The back bearing of A from B is 224° + 180° = 044°.",
         "Angle ABC is the difference between this back bearing and the bearing of C from B: angle ABC = 100°.",
         "Use the cosine rule: AC² = AB² + BC² - 2×AB×BC×cos(ABC)",
         "AC² = 26² + 15² - 2×26×15×cos(100°) = 1036",
-        "AC = √1036 = 32.2 km (3 s.f.)"
+        "AC = √1036 = 32.2 km (1 d.p.)"
       ],
       "final_answer": "32.2 km",
       "marks": 5,
@@ -775,7 +785,7 @@
         },
         {
           "code": "M1",
-          "description": "AC² = 26² + 15² - 2×26×15×cos(100°) = 1036 AC = √1036 = 32.2 km (3 s.f.)",
+          "description": "AC² = 26² + 15² - 2×26×15×cos(100°) = 1036 AC = √1036 = 32.2 km (1 d.p.)",
           "marks": 1
         },
         {

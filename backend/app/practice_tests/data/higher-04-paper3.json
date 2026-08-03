@@ -72,7 +72,7 @@
     },
     {
       "topic_id": "fractions_mixed_number_arithmetic",
-      "prompt": "Work out 4 3/4 + 3 1/2. Give your answer as a mixed number.",
+      "prompt": "Evaluate 4 3/4 + 3 1/2. Give your answer as a mixed number.",
       "solution_steps": [
         "Convert to improper fractions: 4 3/4 = 19/4, 3 1/2 = 7/2",
         "Add the improper fractions: 19/4 + 7/2 = 33/4",
@@ -107,9 +107,9 @@
     },
     {
       "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal 0.0(45) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.0}{45} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.0(45)",
+        "Let x = \\recur{0.0}{45}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
         "This gives x = 45/990",
         "Simplify: 1/22"
@@ -119,7 +119,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.0(45)",
+          "description": "Let x = \\recur{0.0}{45}",
           "marks": 1
         },
         {
@@ -148,7 +148,7 @@
     },
     {
       "topic_id": "roots_higher",
-      "prompt": "Simplify √27, giving your answer in the form a√b.",
+      "prompt": "Fully simplify √27, giving your answer in the form a√b.",
       "solution_steps": [
         "Find the largest square factor of 27: 3^2 × 3 = 27",
         "√27 = √(3^2 × 3) = 3√3"
@@ -466,33 +466,33 @@
     },
     {
       "topic_id": "expand_triple_brackets",
-      "prompt": "Expand and simplify: (-x + 3)(3x + 4)(2x + 4)",
+      "prompt": "Expand and simplify: (2x + 3)(3x + 4)(4x - 2)",
       "solution_steps": [
-        "First expand two of the brackets: (-x + 3)(3x + 4) = -3x^2 + 5x + 12",
-        "Multiply the result by (2x + 4) and collect like terms",
-        "= -6x^3 - 2x^2 + 44x + 48"
+        "First expand two of the brackets: (2x + 3)(3x + 4) = 6x^2 + 17x + 12",
+        "Multiply the result by (4x - 2) and collect like terms",
+        "= 24x^3 + 56x^2 + 14x - 24"
       ],
-      "final_answer": "-6x^3 - 2x^2 + 44x + 48",
+      "final_answer": "24x^3 + 56x^2 + 14x - 24",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First expand two of the brackets: (-x + 3)(3x + 4) = -3x^2 + 5x + 12",
+          "description": "First expand two of the brackets: (2x + 3)(3x + 4) = 6x^2 + 17x + 12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the result by (2x + 4) and collect like terms",
+          "description": "Multiply the result by (4x - 2) and collect like terms",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= -6x^3 - 2x^2 + 44x + 48",
+          "description": "= 24x^3 + 56x^2 + 14x - 24",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-6x^3 - 2x^2 + 44x + 48 oe",
+          "description": "24x^3 + 56x^2 + 14x - 24 oe",
           "marks": 1
         }
       ],
@@ -504,10 +504,10 @@
       "prompt": "Make r the subject of the formula A = 2πr^2.",
       "solution_steps": [
         "A = 2πr^2",
-        "Divide both sides by 2π: A/(2π) = r^2",
-        "Take the square root of both sides: r = √(A/(2π))"
+        "Divide both sides by 2π: \\frac{A}{2π} = r^2",
+        "Take the square root of both sides: r = √(\\frac{A}{2π})"
       ],
-      "final_answer": "r = √(A/(2π))",
+      "final_answer": "r = √(\\frac{A}{2π})",
       "marks": 4,
       "mark_scheme": [
         {
@@ -517,17 +517,17 @@
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 2π: A/(2π) = r^2",
+          "description": "Divide both sides by 2π: \\frac{A}{2π} = r^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Take the square root of both sides: r = √(A/(2π))",
+          "description": "Take the square root of both sides: r = √(\\frac{A}{2π})",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "r = √(A/(2π)) oe",
+          "description": "r = √(\\frac{A}{2π}) oe",
           "marks": 1
         }
       ],
@@ -579,10 +579,10 @@
     },
     {
       "topic_id": "algebraic_fractions_multiply_divide",
-      "prompt": "Simplify (x^2 - 4)/(x - 4) × (x - 4)/(x - 2), giving your answer in its simplest form.",
+      "prompt": "Simplify \\frac{(x^2 - 4)}{(x - 4)} × \\frac{(x - 4)}{(x - 2)}, giving your answer in its simplest form.",
       "solution_steps": [
         "Factorise the difference of two squares: (x^2 - 4) = (x - 2)(x + 2)",
-        "(x - 2)(x + 2)/(x - 4) × (x - 4)/(x - 2)",
+        "\\frac{(x - 2)(x + 2)}{(x - 4)} × \\frac{(x - 4)}{(x - 2)}",
         "Cancel the common factors (x - 4) and (x - 2):",
         "= x + 2"
       ],
@@ -596,7 +596,7 @@
         },
         {
           "code": "M1",
-          "description": "(x - 2)(x + 2)/(x - 4) × (x - 4)/(x - 2)",
+          "description": "\\frac{(x - 2)(x + 2)}{(x - 4)} × \\frac{(x - 4)}{(x - 2)}",
           "marks": 1
         },
         {
@@ -791,7 +791,7 @@
     },
     {
       "topic_id": "pythagoras_surd_hypotenuse",
-      "prompt": "A right-angled triangle has legs 5 cm and 10 cm. Find the exact length of the hypotenuse, giving your answer as a simplified surd.",
+      "prompt": "A right-angled triangle has sides 5 cm and 10 cm. Find the exact length of x, giving your answer as a simplified surd.",
       "solution_steps": [
         "c² = a² + b² = 5² + 10² = 25 + 100 = 125",
         "c = √125 = 5√5 cm (exact form)"
@@ -820,7 +820,7 @@
         "params": {
           "leg1_label": "5 cm",
           "leg2_label": "10 cm",
-          "hyp_label": "?"
+          "hyp_label": "x"
         }
       },
       "solution_diagram": null
@@ -872,12 +872,12 @@
     },
     {
       "topic_id": "trig_missing_side_higher",
-      "prompt": "In the right-angled triangle shown, find the length of x, correct to 3 significant figures.",
+      "prompt": "In the triangle shown, find the length of x, correct to 2 decimal places.",
       "solution_steps": [
         "We know the hypotenuse and want the adjacent, so use cos.",
-        "x = 33 × cos(58°) = 17.5 (to 3 s.f.)"
+        "x = 33 × cos(58°) = 17.49 (2 d.p.)"
       ],
-      "final_answer": "17.5 cm",
+      "final_answer": "17.49 cm",
       "marks": 3,
       "mark_scheme": [
         {
@@ -887,12 +887,12 @@
         },
         {
           "code": "M1",
-          "description": "x = 33 × cos(58°) = 17.5 (to 3 s.f.)",
+          "description": "x = 33 × cos(58°) = 17.49 (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "17.5 cm oe",
+          "description": "17.49 cm oe",
           "marks": 1
         }
       ],
@@ -909,33 +909,33 @@
     },
     {
       "topic_id": "compound_3d_volume",
-      "prompt": "An ice-cream-shaped solid is made from a cone of radius 10 cm and height 17 cm, with a hemisphere of the same radius attached to its open end. Find the total volume, correct to 3 significant figures.",
+      "prompt": "An ice-cream-shaped solid is made from a cone of radius 9 cm and height 6 cm, with a hemisphere of the same radius attached to its open end. Find the total volume, correct to 3 significant figures.",
       "solution_steps": [
-        "Cone volume = (1/3) × π × r² × h = (1/3) × π × 10² × 17",
-        "Hemisphere volume = (2/3) × π × r³ = (2/3) × π × 10³",
-        "Total volume = cone + hemisphere ≈ 3870 cm³ (3 s.f.)"
+        "Cone volume = (1/3) × π × r² × h = (1/3) × π × 9² × 6",
+        "Hemisphere volume = (2/3) × π × r³ = (2/3) × π × 9³",
+        "Total volume = cone + hemisphere ≈ 2040 cm³ (3 s.f.)"
       ],
-      "final_answer": "3870 cm³",
+      "final_answer": "2040 cm³",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Cone volume = (1/3) × π × r² × h = (1/3) × π × 10² × 17",
+          "description": "Cone volume = (1/3) × π × r² × h = (1/3) × π × 9² × 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Hemisphere volume = (2/3) × π × r³ = (2/3) × π × 10³",
+          "description": "Hemisphere volume = (2/3) × π × r³ = (2/3) × π × 9³",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total volume = cone + hemisphere ≈ 3870 cm³ (3 s.f.)",
+          "description": "Total volume = cone + hemisphere ≈ 2040 cm³ (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3870 cm³ oe",
+          "description": "2040 cm³ oe",
           "marks": 1
         }
       ],
@@ -943,47 +943,47 @@
         "kind": "compound_3d",
         "params": {
           "variant": "cone_hemisphere",
-          "radius_label": "10 cm",
-          "cone_height_label": "17 cm"
+          "radius_label": "9 cm",
+          "cone_height_label": "6 cm"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "area_mixed_compound",
-      "prompt": "A shape is made from a rectangle 16 cm by 9 cm, with a triangular roof of height 10 cm on top, and a quarter-circle of radius 3 cm cut from one bottom corner. Find the total area, correct to 3 significant figures.",
+      "prompt": "Find the total area of the following compound shape, correct to 3 significant figures.",
       "solution_steps": [
-        "Rectangle area = 16 × 9 = 144 cm²",
-        "Triangle roof area = ½ × 16 × 10 = 80 cm²",
-        "Quarter-circle cut area = (π × 3²) ÷ 4 ≈ 7.07 cm²",
-        "Total area = 144 + 80 - 7.07 ≈ 217 cm²"
+        "Rectangle area = 16 × 10 = 160 cm²",
+        "Semicircular top area = ½ × π × 8² ≈ 101 cm²",
+        "Quarter-circle cut area = (π × 5²) ÷ 4 ≈ 19.6 cm²",
+        "Total area = 160 + 101 - 19.6 ≈ 241 cm² (3 s.f.)"
       ],
-      "final_answer": "217 cm²",
+      "final_answer": "241 cm²",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rectangle area = 16 × 9 = 144 cm²",
+          "description": "Rectangle area = 16 × 10 = 160 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Triangle roof area = ½ × 16 × 10 = 80 cm²",
+          "description": "Semicircular top area = ½ × π × 8² ≈ 101 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Quarter-circle cut area = (π × 3²) ÷ 4 ≈ 7.07 cm²",
+          "description": "Quarter-circle cut area = (π × 5²) ÷ 4 ≈ 19.6 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total area = 144 + 80 - 7.07 ≈ 217 cm²",
+          "description": "Total area = 160 + 101 - 19.6 ≈ 241 cm² (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "217 cm² oe",
+          "description": "241 cm² oe",
           "marks": 1
         }
       ],
@@ -991,13 +991,15 @@
         "kind": "mixed_compound",
         "params": {
           "width": 16,
-          "height": 9,
-          "roof_height": 10,
-          "cut_radius": 3,
+          "height": 10,
+          "top_kind": "semicircle",
+          "cut_kind": "quarter_circle",
           "width_label": "16 cm",
-          "height_label": "9 cm",
-          "roof_label": "10 cm",
-          "cut_label": "3 cm"
+          "height_label": "10 cm",
+          "top_radius": 8,
+          "top_label": "8 cm",
+          "cut_radius": 5,
+          "cut_label": "5 cm"
         }
       },
       "solution_diagram": null

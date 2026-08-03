@@ -8,9 +8,9 @@
   "questions": [
     {
       "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal 0.(96) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.}{96} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(96), so 100x = 96.9696... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Let x = \\recur{0.}{96}, so 100x = 96.9696... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 96 - 0, so 99x = 96",
         "x = 96/99 = 32/33"
       ],
@@ -19,7 +19,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(96), so 100x = 96.9696... (two digits repeat, so multiply by 100 to shift a full block)",
+          "description": "Let x = \\recur{0.}{96}, so 100x = 96.9696... (two digits repeat, so multiply by 100 to shift a full block)",
           "marks": 1
         },
         {
@@ -43,9 +43,9 @@
     },
     {
       "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal 0.(7) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.}{7} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(7)",
+        "Let x = \\recur{0.}{7}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
         "This gives x = 7/9",
         "Simplify: 7/9"
@@ -55,7 +55,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(7)",
+          "description": "Let x = \\recur{0.}{7}",
           "marks": 1
         },
         {
@@ -84,27 +84,27 @@
     },
     {
       "topic_id": "rationalise_denominator",
-      "prompt": "Rationalise the denominator of 2/√15, giving your answer in its simplest form.",
+      "prompt": "Rationalise the denominator of \\frac{2}{√15}, giving your answer in its simplest form.",
       "solution_steps": [
-        "Multiply the top and bottom by √15: 2/√15 = 2√15/15",
-        "= 2√15/15"
+        "Multiply the top and bottom by √15: \\frac{2}{√15} = \\frac{2√15}{15}",
+        "= \\frac{2√15}{15}"
       ],
-      "final_answer": "2√15/15",
+      "final_answer": "\\frac{2√15}{15}",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply the top and bottom by √15: 2/√15 = 2√15/15",
+          "description": "Multiply the top and bottom by √15: \\frac{2}{√15} = \\frac{2√15}{15}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 2√15/15",
+          "description": "= \\frac{2√15}{15}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2√15/15 oe",
+          "description": "\\frac{2√15}{15} oe",
           "marks": 1
         }
       ],
@@ -148,7 +148,7 @@
     },
     {
       "topic_id": "fractions_mixed_number_arithmetic",
-      "prompt": "Work out 4 2/7 + 1 2/4. Give your answer as a mixed number.",
+      "prompt": "Calculate 4 2/7 + 1 2/4. Give your answer as a mixed number.",
       "solution_steps": [
         "Convert to improper fractions: 4 2/7 = 30/7, 1 2/4 = 3/2",
         "Add the improper fractions: 30/7 + 3/2 = 81/14",
@@ -260,40 +260,40 @@
     },
     {
       "topic_id": "expand_double_brackets",
-      "prompt": "Expand: (2x + 3)(-x + 5)",
+      "prompt": "Expand and simplify: (5x - 1)(4x - 1)",
       "solution_steps": [
-        "First: 2x × -1x = -2x^2",
-        "Outer: 2x × 5 = 10x",
-        "Inner: 3 × -1x = -3x",
-        "Last: 3 × 5 = 15",
-        "Combine like terms: -2x^2 + 7x + 15"
+        "First: 5x × 4x = 20x^2",
+        "Outer: 5x × -1 = -5x",
+        "Inner: -1 × 4x = -4x",
+        "Last: -1 × -1 = 1",
+        "Combine like terms: 20x^2 - 9x + 1"
       ],
-      "final_answer": "-2x^2 + 7x + 15",
+      "final_answer": "20x^2 - 9x + 1",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First: 2x × -1x = -2x^2",
+          "description": "First: 5x × 4x = 20x^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Outer: 2x × 5 = 10x",
+          "description": "Outer: 5x × -1 = -5x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Inner: 3 × -1x = -3x",
+          "description": "Inner: -1 × 4x = -4x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Last: 3 × 5 = 15 Combine like terms: -2x^2 + 7x + 15",
+          "description": "Last: -1 × -1 = 1 Combine like terms: 20x^2 - 9x + 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-2x^2 + 7x + 15 oe",
+          "description": "20x^2 - 9x + 1 oe",
           "marks": 1
         }
       ],
@@ -505,7 +505,7 @@
     },
     {
       "topic_id": "inequalities_number_line_higher",
-      "prompt": "Draw the solution set of x < -3 or x > 0 on a number line.",
+      "prompt": "Draw the inequality/ies of x < -3 or x > 0 on a number line.",
       "solution_steps": [
         "Draw an open circle at -3 and an open circle at 0.",
         "Shade to the left of -3 and to the right of 0, with arrows showing both continue indefinitely."
@@ -563,7 +563,7 @@
     },
     {
       "topic_id": "ratio_shape_similar_higher",
-      "prompt": "Shape A and Shape B are similar. A length on shape A is 6 cm and the corresponding length on shape B is 4 cm. The volume of shape B is 16 cm^3. Find the volume of shape A.",
+      "prompt": "Shape A and Shape B are similar. The volume of shape B is 16 cm^3. Find the volume of shape A.",
       "solution_steps": [
         "Linear scale factor = 4 ÷ 6 = 2/3",
         "Volume scale factor = (2/3)^3 = 8/27",
@@ -593,24 +593,30 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "a_width_label": "6 cm",
+          "b_width_label": "4 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
       "topic_id": "quadratic_inequalities",
-      "prompt": "Solve the inequality: -x^2 - 11x - 18 < 0",
+      "prompt": "Solve the inequality: x^2 + 11x + 18 ≤ 0",
       "solution_steps": [
-        "Factorise: -x^2 - 11x - 18 = -(x + 9)(x + 2)",
+        "Factorise: x^2 + 11x + 18 = (x + 9)(x + 2)",
         "The critical values are x = -9 and x = -2.",
-        "The coefficient of x^2 is negative, so the graph is a upside-down U-shaped parabola, and < 0 is satisfied outside the two roots.",
-        "Answer: x < -9 or x > -2"
+        "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and ≤ 0 is satisfied between the two roots.",
+        "Answer: -9 ≤ x ≤ -2"
       ],
-      "final_answer": "x < -9 or x > -2",
+      "final_answer": "-9 ≤ x ≤ -2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Factorise: -x^2 - 11x - 18 = -(x + 9)(x + 2)",
+          "description": "Factorise: x^2 + 11x + 18 = (x + 9)(x + 2)",
           "marks": 1
         },
         {
@@ -620,17 +626,17 @@
         },
         {
           "code": "M1",
-          "description": "The coefficient of x^2 is negative, so the graph is a upside-down U-shaped parabola, and < 0 is satisfied outside the two roots.",
+          "description": "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and ≤ 0 is satisfied between the two roots.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer: x < -9 or x > -2",
+          "description": "Answer: -9 ≤ x ≤ -2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x < -9 or x > -2 oe",
+          "description": "-9 ≤ x ≤ -2 oe",
           "marks": 1
         }
       ],
@@ -732,11 +738,11 @@
     },
     {
       "topic_id": "area_subtract_compound",
-      "prompt": "A rectangular sheet of metal 11 cm by 14 cm has a rectangular hole 8 cm by 5 cm cut from its centre. Find the remaining area.",
+      "prompt": "Find the shaded area.",
       "solution_steps": [
         "Area of large rectangle = 11 × 14 = 154 cm²",
         "Area of rectangular hole = 8 × 5 = 40 cm²",
-        "Remaining area = 154 - 40 = 114 cm²"
+        "Shaded area = 154 - 40 = 114 cm²"
       ],
       "final_answer": "114 cm²",
       "marks": 4,
@@ -753,7 +759,7 @@
         },
         {
           "code": "M1",
-          "description": "Remaining area = 154 - 40 = 114 cm²",
+          "description": "Shaded area = 154 - 40 = 114 cm²",
           "marks": 1
         },
         {
@@ -770,6 +776,7 @@
           "inner_w": 8,
           "inner_h": 5,
           "notch": "center",
+          "shade_frame": true,
           "outer_labels": [
             "11 cm",
             "14 cm"

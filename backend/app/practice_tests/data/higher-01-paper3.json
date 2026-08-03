@@ -8,7 +8,7 @@
   "questions": [
     {
       "topic_id": "fractions_mixed_number_arithmetic",
-      "prompt": "Work out 3 2/3 - 1 2/3. Give your answer as a mixed number.",
+      "prompt": "Evaluate 3 2/3 - 1 2/3. Give your answer as a mixed number.",
       "solution_steps": [
         "Convert to improper fractions: 3 2/3 = 11/3, 1 2/3 = 5/3",
         "Subtract the improper fractions: 11/3 - 5/3 = 2/1",
@@ -43,11 +43,11 @@
     },
     {
       "topic_id": "simplifying_indices_challenging",
-      "prompt": "Simplify 125^(1/3) × 125^-3, giving your answer as a fraction where necessary.",
+      "prompt": "Fully simplify 125^(1/3) × 125^-3, giving your answer as a fraction where necessary.",
       "solution_steps": [
         "125^(1/3) is the cube root of 125, which is 5, so 125^(1/3) = 5^1",
-        "125^-3 = 1/125^3 = 1/5^9",
-        "125^(1/3) × 125^-3 = 5^1 × 1/5^9 = 5^(1-9) = 5^-8",
+        "125^-3 = \\frac{1}{125³} = \\frac{1}{5⁹}",
+        "125^(1/3) × 125^-3 = 5^1 × \\frac{1}{5⁹} = 5^(1-9) = 5^-8",
         "5^-8 = 1/390625"
       ],
       "final_answer": "1/390625",
@@ -60,12 +60,12 @@
         },
         {
           "code": "M1",
-          "description": "125^-3 = 1/125^3 = 1/5^9",
+          "description": "125^-3 = \\frac{1}{125³} = \\frac{1}{5⁹}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "125^(1/3) × 125^-3 = 5^1 × 1/5^9 = 5^(1-9) = 5^-8",
+          "description": "125^(1/3) × 125^-3 = 5^1 × \\frac{1}{5⁹} = 5^(1-9) = 5^-8",
           "marks": 1
         },
         {
@@ -84,7 +84,7 @@
     },
     {
       "topic_id": "surds_multiply_divide",
-      "prompt": "Work out √99 × √11, giving your answer as an integer.",
+      "prompt": "Calculate √99 × √11, giving your answer as an integer.",
       "solution_steps": [
         "√99 × √11 = √(99 × 11) = √1089",
         "√1089 = 33"
@@ -142,33 +142,33 @@
     },
     {
       "topic_id": "fractions_divide",
-      "prompt": "Work out 3/7 ÷ 4/4. Give your answer as a fraction in its simplest form.",
+      "prompt": "Work out 3/7 ÷ 6/4. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
-        "Keep-change-flip: 3/7 ÷ 4/4 = 3/7 × 4/4",
-        "Multiply: (3×4)/(7×4) = 12/28",
-        "Simplify: 3/7"
+        "Keep-change-flip: 3/7 ÷ 6/4 = 3/7 × 4/6",
+        "Multiply: \\frac{(3×4)}{(7×6)} = 12/42",
+        "Simplify: 2/7"
       ],
-      "final_answer": "3/7",
+      "final_answer": "2/7",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Keep-change-flip: 3/7 ÷ 4/4 = 3/7 × 4/4",
+          "description": "Keep-change-flip: 3/7 ÷ 6/4 = 3/7 × 4/6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: (3×4)/(7×4) = 12/28",
+          "description": "Multiply: \\frac{(3×4)}{(7×6)} = 12/42",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify: 3/7",
+          "description": "Simplify: 2/7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3/7 oe",
+          "description": "2/7 oe",
           "marks": 1
         }
       ],
@@ -177,7 +177,7 @@
     },
     {
       "topic_id": "powers_higher",
-      "prompt": "Work out 10^0.",
+      "prompt": "Calculate 10^0.",
       "solution_steps": [
         "Any nonzero number raised to the power 0 equals 1.",
         "10^0 = 1"
@@ -206,15 +206,16 @@
     },
     {
       "topic_id": "rationalise_denominator",
-      "prompt": "Rationalise the denominator of 4/(3 + √3), giving your answer in its simplest form.",
+      "prompt": "Rationalise the denominator of \\frac{4}{3 + √3}, giving your answer in its simplest form.",
       "solution_steps": [
         "Multiply the numerator and denominator by the conjugate of the denominator, (3 - √3):",
-        "4/(3 + √3) = 4(3 - √3) / [(3 + √3)(3 - √3)]",
+        "\\frac{4}{3 + √3}",
+        "= \\frac{4(3 - √3)}{[(3 + √3)(3 - √3)]}",
         "The denominator is a difference of two squares: 3^2 - 3 = 6",
         "The numerator is 4(3 - √3) = 12 - 4√3",
-        "Simplify by dividing numerator and denominator by 2: (6 - 2√3)/3"
+        "Simplify by dividing numerator and denominator by 2: \\frac{6 - 2√3}{3}"
       ],
-      "final_answer": "(6 - 2√3)/3",
+      "final_answer": "\\frac{6 - 2√3}{3}",
       "marks": 5,
       "mark_scheme": [
         {
@@ -224,22 +225,22 @@
         },
         {
           "code": "M1",
-          "description": "4/(3 + √3) = 4(3 - √3) / [(3 + √3)(3 - √3)]",
+          "description": "\\frac{4}{3 + √3}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The denominator is a difference of two squares: 3^2 - 3 = 6",
+          "description": "= \\frac{4(3 - √3)}{[(3 + √3)(3 - √3)]}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The numerator is 4(3 - √3) = 12 - 4√3 Simplify by dividing numerator and denominator by 2: (6 - 2√3)/3",
+          "description": "The denominator is a difference of two squares: 3^2 - 3 = 6 The numerator is 4(3 - √3) = 12 - 4√3 Simplify by dividing numerator and denominator by 2: \\frac{6 - 2√3}{3}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(6 - 2√3)/3 oe",
+          "description": "\\frac{6 - 2√3}{3} oe",
           "marks": 1
         }
       ],
@@ -342,10 +343,10 @@
     },
     {
       "topic_id": "algebraic_fractions_multiply_divide",
-      "prompt": "Simplify (x^2 - 81)/(x - 2) × (x - 2)/(x - 9), giving your answer in its simplest form.",
+      "prompt": "Simplify \\frac{(x^2 - 81)}{(x - 2)} × \\frac{(x - 2)}{(x - 9)}, giving your answer in its simplest form.",
       "solution_steps": [
         "Factorise the difference of two squares: (x^2 - 81) = (x - 9)(x + 9)",
-        "(x - 9)(x + 9)/(x - 2) × (x - 2)/(x - 9)",
+        "\\frac{(x - 9)(x + 9)}{(x - 2)} × \\frac{(x - 2)}{(x - 9)}",
         "Cancel the common factors (x - 2) and (x - 9):",
         "= x + 9"
       ],
@@ -359,7 +360,7 @@
         },
         {
           "code": "M1",
-          "description": "(x - 9)(x + 9)/(x - 2) × (x - 2)/(x - 9)",
+          "description": "\\frac{(x - 9)(x + 9)}{(x - 2)} × \\frac{(x - 2)}{(x - 9)}",
           "marks": 1
         },
         {
@@ -383,14 +384,14 @@
     },
     {
       "topic_id": "algebraic_fractions_add_subtract",
-      "prompt": "Simplify 6/(x + 1) - 1/(x - 7), giving your answer as a single fraction.",
+      "prompt": "Simplify \\frac{6}{(x + 1)} - \\frac{1}{(x - 7)}, giving your answer as a single fraction.",
       "solution_steps": [
         "Write both fractions over the common denominator (x + 1)(x - 7):",
-        "6/(x + 1) - 1/(x - 7) = (6(x - 7) - 1(x + 1))/(x + 1)(x - 7)",
+        "\\frac{6}{(x + 1)} - \\frac{1}{(x - 7)} = \\frac{6(x - 7) - 1(x + 1)}{(x + 1)(x - 7)}",
         "Expand the numerator: 6(x - 7) - 1(x + 1) = 5x - 43",
-        "= (5x - 43)/(x + 1)(x - 7)"
+        "= \\frac{5x - 43}{(x + 1)(x - 7)}"
       ],
-      "final_answer": "(5x - 43)/(x + 1)(x - 7)",
+      "final_answer": "\\frac{5x - 43}{(x + 1)(x - 7)}",
       "marks": 5,
       "mark_scheme": [
         {
@@ -400,7 +401,7 @@
         },
         {
           "code": "M1",
-          "description": "6/(x + 1) - 1/(x - 7) = (6(x - 7) - 1(x + 1))/(x + 1)(x - 7)",
+          "description": "\\frac{6}{(x + 1)} - \\frac{1}{(x - 7)} = \\frac{6(x - 7) - 1(x + 1)}{(x + 1)(x - 7)}",
           "marks": 1
         },
         {
@@ -410,12 +411,12 @@
         },
         {
           "code": "M1",
-          "description": "= (5x - 43)/(x + 1)(x - 7)",
+          "description": "= \\frac{5x - 43}{(x + 1)(x - 7)}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(5x - 43)/(x + 1)(x - 7) oe",
+          "description": "\\frac{5x - 43}{(x + 1)(x - 7)} oe",
           "marks": 1
         }
       ],
@@ -424,21 +425,21 @@
     },
     {
       "topic_id": "change_subject_higher",
-      "prompt": "Make x the subject of the formula y = (x + 8)/(x - 10).",
+      "prompt": "Make x the subject of the formula y = \\frac{x + 8}{x - 10}.",
       "solution_steps": [
-        "y = (x + 8)/(x - 10)",
+        "y = \\frac{x + 8}{x - 10}",
         "Multiply both sides by (x - 10): y(x - 10) = x + 8",
         "Expand the bracket: yx - 10y = x + 8",
         "Collect the x-terms on one side: yx - x = 8 + 10y",
         "Factorise: x(y - 1) = 8 + 10y",
-        "Divide both sides by (y - 1): x = (8 + 10y)/(y - 1)"
+        "Divide both sides by (y - 1): x = \\frac{8 + 10y}{y - 1}"
       ],
-      "final_answer": "x = (8 + 10y)/(y - 1)",
+      "final_answer": "x = \\frac{8 + 10y}{y - 1}",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = (x + 8)/(x - 10)",
+          "description": "y = \\frac{x + 8}{x - 10}",
           "marks": 1
         },
         {
@@ -453,12 +454,12 @@
         },
         {
           "code": "M1",
-          "description": "Collect the x-terms on one side: yx - x = 8 + 10y Factorise: x(y - 1) = 8 + 10y Divide both sides by (y - 1): x = (8 + 10y)/(y - 1)",
+          "description": "Collect the x-terms on one side: yx - x = 8 + 10y Factorise: x(y - 1) = 8 + 10y Divide both sides by (y - 1): x = \\frac{8 + 10y}{y - 1}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = (8 + 10y)/(y - 1) oe",
+          "description": "x = \\frac{8 + 10y}{y - 1} oe",
           "marks": 1
         }
       ],
@@ -557,8 +558,8 @@
       "solution_steps": [
         "This question gives three of s, u, a and t and asks for another, so use s = ut + (1/2)at^2, the equation linking exactly those four (note: t is never the unknown here, since solving this equation for t needs the quadratic formula).",
         "s = ut + (1/2)at^2",
-        "Rearrange to make a the subject: a = 2(s - ut)/t^2",
-        "Substitute s = 9, u = 10, t = 9: a = 2(9 - 10 × 9)/9^2 = -2"
+        "Rearrange to make a the subject: a = \\frac{2(s - ut)}{t^2}",
+        "Substitute s = 9, u = 10, t = 9: a = \\frac{2(9 - 10 × 9)}{9^2} = -2"
       ],
       "final_answer": "-2 m/s^2",
       "marks": 5,
@@ -575,12 +576,12 @@
         },
         {
           "code": "M1",
-          "description": "Rearrange to make a the subject: a = 2(s - ut)/t^2",
+          "description": "Rearrange to make a the subject: a = \\frac{2(s - ut)}{t^2}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute s = 9, u = 10, t = 9: a = 2(9 - 10 × 9)/9^2 = -2",
+          "description": "Substitute s = 9, u = 10, t = 9: a = \\frac{2(9 - 10 × 9)}{9^2} = -2",
           "marks": 1
         },
         {
@@ -735,7 +736,7 @@
     },
     {
       "topic_id": "trig_missing_angle_higher",
-      "prompt": "In the right-angled triangle shown, find the angle x, correct to 1 decimal place.",
+      "prompt": "In the triangle shown, find the angle x, correct to 1 decimal place.",
       "solution_steps": [
         "Use cos, since we know two of the three sides.",
         "cos(x) = 16 ÷ 32",
@@ -778,11 +779,11 @@
     },
     {
       "topic_id": "area_subtract_compound",
-      "prompt": "A rectangular sheet of metal 25 cm by 14 cm has a rectangular hole 8 cm by 3 cm cut from its centre. Find the remaining area.",
+      "prompt": "Find the shaded area.",
       "solution_steps": [
         "Area of large rectangle = 25 × 14 = 350 cm²",
         "Area of rectangular hole = 8 × 3 = 24 cm²",
-        "Remaining area = 350 - 24 = 326 cm²"
+        "Shaded area = 350 - 24 = 326 cm²"
       ],
       "final_answer": "326 cm²",
       "marks": 4,
@@ -799,7 +800,7 @@
         },
         {
           "code": "M1",
-          "description": "Remaining area = 350 - 24 = 326 cm²",
+          "description": "Shaded area = 350 - 24 = 326 cm²",
           "marks": 1
         },
         {
@@ -816,6 +817,7 @@
           "inner_w": 8,
           "inner_h": 3,
           "notch": "center",
+          "shade_frame": true,
           "outer_labels": [
             "25 cm",
             "14 cm"
@@ -830,7 +832,7 @@
     },
     {
       "topic_id": "arc_length",
-      "prompt": "A sector of a circle has radius 11 cm and angle 240°. Find the exact arc length, in terms of π.",
+      "prompt": "Find the exact arc length of the following sector, in terms of π.",
       "solution_steps": [
         "Arc length = (θ ÷ 360) × 2 × π × r = (240 ÷ 360) × 2 × π × 11",
         "= (44/3)π cm"

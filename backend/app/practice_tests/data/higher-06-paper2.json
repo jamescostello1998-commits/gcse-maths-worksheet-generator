@@ -8,7 +8,7 @@
   "questions": [
     {
       "topic_id": "powers_higher",
-      "prompt": "Work out 18^0.",
+      "prompt": "Calculate 18^0.",
       "solution_steps": [
         "Any nonzero number raised to the power 0 equals 1.",
         "18^0 = 1"
@@ -108,9 +108,9 @@
     },
     {
       "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal 0.(90) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.}{90} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(90)",
+        "Let x = \\recur{0.}{90}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
         "This gives x = 90/99",
         "Simplify: 10/11"
@@ -120,7 +120,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(90)",
+          "description": "Let x = \\recur{0.}{90}",
           "marks": 1
         },
         {
@@ -363,14 +363,14 @@
     },
     {
       "topic_id": "quadratic_inequalities",
-      "prompt": "Solve the inequality: x^2 - x < 0",
+      "prompt": "Solve the inequality: x^2 - x > 0",
       "solution_steps": [
         "Factorise: x^2 - x = (x - 1)(x)",
         "The critical values are x = 0 and x = 1.",
-        "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and < 0 is satisfied between the two roots.",
-        "Answer: 0 < x < 1"
+        "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and > 0 is satisfied outside the two roots.",
+        "Answer: x < 0 or x > 1"
       ],
-      "final_answer": "0 < x < 1",
+      "final_answer": "x < 0 or x > 1",
       "marks": 5,
       "mark_scheme": [
         {
@@ -385,17 +385,17 @@
         },
         {
           "code": "M1",
-          "description": "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and < 0 is satisfied between the two roots.",
+          "description": "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and > 0 is satisfied outside the two roots.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer: 0 < x < 1",
+          "description": "Answer: x < 0 or x > 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0 < x < 1 oe",
+          "description": "x < 0 or x > 1 oe",
           "marks": 1
         }
       ],
@@ -404,19 +404,19 @@
     },
     {
       "topic_id": "plot_reciprocal",
-      "prompt": "Complete a table of values for y = -24/x for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
+      "prompt": "Complete a table of values for y = -\\frac{24}{x} for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = -24/x:",
+        "Table of values for y = -\\frac{24}{x}:",
         "x: -4, -3, -2, -1, 1, 2, 3, 4",
         "y: 6, 8, 12, 24, -24, -12, -8, -6",
         "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
       ],
-      "final_answer": "Reciprocal curve: y = -24/x",
+      "final_answer": "Reciprocal curve: y = -\\frac{24}{x}",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = -24/x:",
+          "description": "Table of values for y = -\\frac{24}{x}:",
           "marks": 1
         },
         {
@@ -436,7 +436,7 @@
         },
         {
           "code": "A1",
-          "description": "Reciprocal curve: y = -24/x oe",
+          "description": "Reciprocal curve: y = -\\frac{24}{x} oe",
           "marks": 1
         }
       ],
@@ -684,16 +684,16 @@
     },
     {
       "topic_id": "ratio_difference_higher",
-      "prompt": "Amounts are in the ratio 6:1:9. The difference between the largest and smallest amount is 104. Find all three amounts and their total.",
+      "prompt": "a : b : c = 6 : 1 : 9. c - b = 104. Find a, b and c, and their total.",
       "solution_steps": [
         "Difference in parts = 9 - 1 = 8 parts",
         "Value of one part = 104 ÷ 8 = 13",
-        "Amount 1 = 6 × 13 = 78",
-        "Amount 2 = 1 × 13 = 13",
-        "Amount 3 = 9 × 13 = 117",
-        "Total = 78 + 13 + 117 = 208"
+        "a = 6 × 13 = 78",
+        "b = 1 × 13 = 13",
+        "c = 9 × 13 = 117",
+        "a + b + c = 78 + 13 + 117 = 208"
       ],
-      "final_answer": "78 : 13 : 117 (total 208)",
+      "final_answer": "a = 78, b = 13, c = 117 (total 208)",
       "marks": 5,
       "mark_scheme": [
         {
@@ -708,17 +708,17 @@
         },
         {
           "code": "M1",
-          "description": "Amount 1 = 6 × 13 = 78",
+          "description": "a = 6 × 13 = 78",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Amount 2 = 1 × 13 = 13 Amount 3 = 9 × 13 = 117 Total = 78 + 13 + 117 = 208",
+          "description": "b = 1 × 13 = 13 c = 9 × 13 = 117 a + b + c = 78 + 13 + 117 = 208",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "78 : 13 : 117 (total 208) oe",
+          "description": "a = 78, b = 13, c = 117 (total 208) oe",
           "marks": 1
         }
       ],
@@ -797,7 +797,7 @@
     },
     {
       "topic_id": "area_circle",
-      "prompt": "A circle has radius 7 cm. Find its circumference in terms of π.",
+      "prompt": "Find the circumference of the following circle, in terms of π.",
       "solution_steps": [
         "Circumference = 2 × π × r = 2 × π × 7 = 14π cm",
         "≈ 44.0 cm (3 s.f.)"

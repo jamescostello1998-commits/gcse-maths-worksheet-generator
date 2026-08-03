@@ -8,9 +8,9 @@
   "questions": [
     {
       "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal 0.(75) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.}{75} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(75), so 100x = 75.7575... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Let x = \\recur{0.}{75}, so 100x = 75.7575... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 75 - 0, so 99x = 75",
         "x = 75/99 = 25/33"
       ],
@@ -19,7 +19,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(75), so 100x = 75.7575... (two digits repeat, so multiply by 100 to shift a full block)",
+          "description": "Let x = \\recur{0.}{75}, so 100x = 75.7575... (two digits repeat, so multiply by 100 to shift a full block)",
           "marks": 1
         },
         {
@@ -72,15 +72,16 @@
     },
     {
       "topic_id": "rationalise_denominator",
-      "prompt": "Rationalise the denominator of 8/(7 + √6), giving your answer in its simplest form.",
+      "prompt": "Rationalise the denominator of \\frac{8}{7 + √6}, giving your answer in its simplest form.",
       "solution_steps": [
         "Multiply the numerator and denominator by the conjugate of the denominator, (7 - √6):",
-        "8/(7 + √6) = 8(7 - √6) / [(7 + √6)(7 - √6)]",
+        "\\frac{8}{7 + √6}",
+        "= \\frac{8(7 - √6)}{[(7 + √6)(7 - √6)]}",
         "The denominator is a difference of two squares: 7^2 - 6 = 43",
         "The numerator is 8(7 - √6) = 56 - 8√6",
-        "= (56 - 8√6)/43"
+        "= \\frac{56 - 8√6}{43}"
       ],
-      "final_answer": "(56 - 8√6)/43",
+      "final_answer": "\\frac{56 - 8√6}{43}",
       "marks": 5,
       "mark_scheme": [
         {
@@ -90,22 +91,22 @@
         },
         {
           "code": "M1",
-          "description": "8/(7 + √6) = 8(7 - √6) / [(7 + √6)(7 - √6)]",
+          "description": "\\frac{8}{7 + √6}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The denominator is a difference of two squares: 7^2 - 6 = 43",
+          "description": "= \\frac{8(7 - √6)}{[(7 + √6)(7 - √6)]}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The numerator is 8(7 - √6) = 56 - 8√6 = (56 - 8√6)/43",
+          "description": "The denominator is a difference of two squares: 7^2 - 6 = 43 The numerator is 8(7 - √6) = 56 - 8√6 = \\frac{56 - 8√6}{43}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(56 - 8√6)/43 oe",
+          "description": "\\frac{56 - 8√6}{43} oe",
           "marks": 1
         }
       ],
@@ -114,7 +115,7 @@
     },
     {
       "topic_id": "simplifying_indices_challenging",
-      "prompt": "Simplify (6^3)^2 ÷ 6^2, giving your answer as a fraction where necessary.",
+      "prompt": "Fully simplify (6^3)^2 ÷ 6^2, giving your answer as a fraction where necessary.",
       "solution_steps": [
         "Multiply the powers in the bracket: 3 × 2 = 6",
         "(6^3)^2 = 6^6",
@@ -155,9 +156,9 @@
     },
     {
       "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal 0.7(2) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.7}{2} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.7(2)",
+        "Let x = \\recur{0.7}{2}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
         "This gives x = 65/90",
         "Simplify: 13/18"
@@ -167,7 +168,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.7(2)",
+          "description": "Let x = \\recur{0.7}{2}",
           "marks": 1
         },
         {
@@ -225,16 +226,16 @@
     },
     {
       "topic_id": "substitution_higher",
-      "prompt": "v^2 = u^2 + 2as. Find the value of v when u = 2, a = 4 and s = 14. Give your answer to 3 significant figures if it is not exact.",
+      "prompt": "v^2 = u^2 + 2as. Find the value of v when u = 2, a = 4 and s = 14. Give your answer to 2 decimal places if it is not exact.",
       "solution_steps": [
         "v^2 = u^2 + 2as",
         "v^2 = 2^2 + 2 × 4 × 14",
         "v^2 = 4 + 112",
         "v^2 = 116",
-        "v = √116 = 10.8 (3 s.f.)",
+        "v = √116 = 10.77 (2 d.p.)",
         "Take the positive square root only, since v represents a speed and must be positive."
       ],
-      "final_answer": "v = 10.8 (3 s.f.)",
+      "final_answer": "v = 10.77 (2 d.p.)",
       "marks": 5,
       "mark_scheme": [
         {
@@ -254,12 +255,12 @@
         },
         {
           "code": "M1",
-          "description": "v^2 = 116 v = √116 = 10.8 (3 s.f.) Take the positive square root only, since v represents a speed and must be positive.",
+          "description": "v^2 = 116 v = √116 = 10.77 (2 d.p.) Take the positive square root only, since v represents a speed and must be positive.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "v = 10.8 (3 s.f.) oe",
+          "description": "v = 10.77 (2 d.p.) oe",
           "marks": 1
         }
       ],
@@ -603,15 +604,15 @@
     },
     {
       "topic_id": "ratio_difference_higher",
-      "prompt": "Amounts are in the ratio 8:4:6. The difference between the largest and smallest amount is 8. Find all three amounts.",
+      "prompt": "p : q : r = 8 : 4 : 6. p - q = 8. Find p, q and r.",
       "solution_steps": [
         "Difference in parts = 8 - 4 = 4 parts",
         "Value of one part = 8 ÷ 4 = 2",
-        "Amount 1 = 8 × 2 = 16",
-        "Amount 2 = 4 × 2 = 8",
-        "Amount 3 = 6 × 2 = 12"
+        "p = 8 × 2 = 16",
+        "q = 4 × 2 = 8",
+        "r = 6 × 2 = 12"
       ],
-      "final_answer": "16 : 8 : 12",
+      "final_answer": "p = 16, q = 8, r = 12",
       "marks": 5,
       "mark_scheme": [
         {
@@ -626,17 +627,17 @@
         },
         {
           "code": "M1",
-          "description": "Amount 1 = 8 × 2 = 16",
+          "description": "p = 8 × 2 = 16",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Amount 2 = 4 × 2 = 8 Amount 3 = 6 × 2 = 12",
+          "description": "q = 4 × 2 = 8 r = 6 × 2 = 12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "16 : 8 : 12 oe",
+          "description": "p = 16, q = 8, r = 12 oe",
           "marks": 1
         }
       ],
@@ -715,60 +716,62 @@
     },
     {
       "topic_id": "area_mixed_compound",
-      "prompt": "A shape is made from a rectangle 16 cm by 7 cm, with a triangular roof of height 8 cm on top, and a quarter-circle of radius 2 cm cut from one bottom corner. Find the total area, correct to 3 significant figures.",
+      "prompt": "Find the total area of the following compound shape, correct to 1 decimal place.",
       "solution_steps": [
-        "Rectangle area = 16 × 7 = 112 cm²",
-        "Triangle roof area = ½ × 16 × 8 = 64 cm²",
-        "Quarter-circle cut area = (π × 2²) ÷ 4 ≈ 3.14 cm²",
-        "Total area = 112 + 64 - 3.14 ≈ 173 cm²"
+        "Rectangle area = 14 × 8 = 112 cm²",
+        "Semicircular top area = ½ × π × 7² ≈ 77.0 cm²",
+        "Quarter-circle cut area = (π × 4²) ÷ 4 ≈ 12.6 cm²",
+        "Total area = 112 + 77.0 - 12.6 ≈ 176.4 cm² (1 d.p.)"
       ],
-      "final_answer": "173 cm²",
+      "final_answer": "176.4 cm²",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rectangle area = 16 × 7 = 112 cm²",
+          "description": "Rectangle area = 14 × 8 = 112 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Triangle roof area = ½ × 16 × 8 = 64 cm²",
+          "description": "Semicircular top area = ½ × π × 7² ≈ 77.0 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Quarter-circle cut area = (π × 2²) ÷ 4 ≈ 3.14 cm²",
+          "description": "Quarter-circle cut area = (π × 4²) ÷ 4 ≈ 12.6 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total area = 112 + 64 - 3.14 ≈ 173 cm²",
+          "description": "Total area = 112 + 77.0 - 12.6 ≈ 176.4 cm² (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "173 cm² oe",
+          "description": "176.4 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "mixed_compound",
         "params": {
-          "width": 16,
-          "height": 7,
-          "roof_height": 8,
-          "cut_radius": 2,
-          "width_label": "16 cm",
-          "height_label": "7 cm",
-          "roof_label": "8 cm",
-          "cut_label": "2 cm"
+          "width": 14,
+          "height": 8,
+          "top_kind": "semicircle",
+          "cut_kind": "quarter_circle",
+          "width_label": "14 cm",
+          "height_label": "8 cm",
+          "top_radius": 7,
+          "top_label": "7 cm",
+          "cut_radius": 4,
+          "cut_label": "4 cm"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "arc_length",
-      "prompt": "A sector of a circle has radius 11 cm and angle 225°. Find the exact arc length, in terms of π.",
+      "prompt": "Find the exact arc length of the following sector, in terms of π.",
       "solution_steps": [
         "Arc length = (θ ÷ 360) × 2 × π × r = (225 ÷ 360) × 2 × π × 11",
         "= (55/4)π cm"

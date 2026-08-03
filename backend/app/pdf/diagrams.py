@@ -252,7 +252,12 @@ def draw_triangle_area(params: dict) -> Drawing:
     d.add(Polygon([x0, y0, x0 + bw, y0, apex_x, y0 + bh], strokeColor=INK, fillColor=None, strokeWidth=1.2))
     d.add(Line(apex_x, y0 + bh, apex_x, y0, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
     d.add(_label(x0 + bw / 2, y0 - 14, params["base_label"]))
-    d.add(_label(apex_x + 6, y0 + bh / 2, params["height_label"], anchor="start"))
+    # Outside the triangle entirely, not just past the dashed line - a
+    # narrow/tall triangle's sloped right edge can sit closer to the dashed
+    # height line than the label's own text width, so a small fixed offset
+    # from the line still crossed the sloped edge (found by rendering a
+    # narrow case, not assumed up front).
+    d.add(_label(x0 + bw + 8, y0 + bh / 2, params["height_label"], anchor="start"))
     return d
 
 
@@ -265,6 +270,8 @@ def draw_l_shape(params: dict) -> Drawing:
     ow_s, oh_s, iw_s, ih_s = ow * scale, oh * scale, iw * scale, ih * scale
     x0, y0 = (DIAGRAM_WIDTH - ow_s) / 2, (DIAGRAM_HEIGHT - oh_s) / 2
 
+    ix0, iy0 = x0 + (ow_s - iw_s) / 2, y0 + (oh_s - ih_s) / 2
+
     if params.get("notch") == "corner":
         pts = [
             x0, y0,
@@ -275,9 +282,18 @@ def draw_l_shape(params: dict) -> Drawing:
             x0, y0 + oh_s,
         ]
         d.add(Polygon(pts, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    elif params.get("shade_frame"):
+        # Shade the remaining "frame" region (outer minus the inner hole) so
+        # the question can ask for the shaded area directly - fill-then-erase,
+        # the same trick already used elsewhere in this file (e.g.
+        # draw_mixed_compound's quarter-circle cut, draw_venn_diagram's
+        # "neither" region).
+        d.add(Rect(x0, y0, ow_s, oh_s, fillColor=HIGHLIGHT, strokeColor=None))
+        d.add(Rect(ix0, iy0, iw_s, ih_s, fillColor=PAPER, strokeColor=None))
+        d.add(Rect(x0, y0, ow_s, oh_s, fillColor=None, strokeColor=INK, strokeWidth=1.2))
+        d.add(Rect(ix0, iy0, iw_s, ih_s, fillColor=None, strokeColor=INK, strokeWidth=1.0))
     else:
         d.add(Rect(x0, y0, ow_s, oh_s, strokeColor=INK, fillColor=None, strokeWidth=1.2))
-        ix0, iy0 = x0 + (ow_s - iw_s) / 2, y0 + (oh_s - ih_s) / 2
         d.add(Rect(ix0, iy0, iw_s, ih_s, strokeColor=INK, fillColor=None, strokeWidth=1.0))
 
     d.add(_label(x0 + ow_s / 2, y0 - 14, params["outer_labels"][0]))
@@ -291,7 +307,25 @@ def draw_l_shape(params: dict) -> Drawing:
         d.add(_label(x0 + ow_s - iw_s + 8, y0 + oh_s - ih_s / 2, lower_label, anchor="start", size=7.5))
     else:
         d.add(_label(x0 - 10, y0 + oh_s / 2, params["outer_labels"][1], anchor="end"))
-    if params.get("inner_labels"):
+    if params.get("shade_frame") and params.get("inner_labels"):
+        # Two real edge labels for the inner (hole) rectangle, placed inside
+        # its own unshaded interior where they're always legible - replaces
+        # the old combined "6 × 5" caption, which only ever stated the hole's
+        # two numbers together rather than attaching each to a real side.
+        # Stacking them vertically only works when the hole is tall enough;
+        # a short/wide hole needs them side by side instead, or they cross
+        # the hole's own top/bottom edges (found via rendering a thin-hole
+        # case, not assumed up front).
+        cx, cy = ix0 + iw_s / 2, iy0 + ih_s / 2
+        w_label, h_label = params["inner_labels"]
+        label_size = 7.5 if min(iw_s, ih_s) >= 24 else 6.5
+        if ih_s < 26:
+            d.add(_label(cx - iw_s * 0.22, cy, w_label, size=label_size))
+            d.add(_label(cx + iw_s * 0.22, cy, h_label, size=label_size))
+        else:
+            d.add(_label(cx, cy + 6, w_label, size=label_size))
+            d.add(_label(cx, cy - 10, h_label, size=label_size))
+    elif params.get("inner_labels"):
         inner_text = f"{params['inner_labels'][0]} × {params['inner_labels'][1]}"
         d.add(_label(x0 + ow_s / 2, y0 + oh_s + 12, inner_text, color=MUTED, size=8))
     return d
@@ -304,7 +338,10 @@ def draw_circle(params: dict) -> Drawing:
 
     d.add(Circle(cx, cy, r, strokeColor=INK, fillColor=None, strokeWidth=1.2))
     d.add(Line(cx, cy, cx + r, cy, strokeColor=INK, strokeWidth=1))
-    d.add(_label(cx + r / 2, cy + 5, params["label"]))
+    # Above the radius line, not touching it - a +5 offset wasn't enough
+    # clearance and visibly crossed the line (found by rendering, now that
+    # this label is often the only place the radius value appears at all).
+    d.add(_label(cx + r / 2, cy + 9, params["label"]))
     return d
 
 
@@ -427,32 +464,71 @@ def draw_sector(params: dict) -> Drawing:
 
 
 def draw_mixed_compound(params: dict) -> Drawing:
+    """A 3-piece compound shape: a rectangle 'body', with a top piece added
+    (a triangular roof or a semicircular dome, params['top_kind']) and a
+    bottom piece removed (a quarter-circle corner cut or a semicircular edge
+    notch, params['cut_kind']) - genuinely mixing rectangles/triangles/
+    circle-parts rather than always the same fixed combination."""
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    w_val, h_val, roof_val, cut_val = (
-        params["width"], params["height"], params["roof_height"], params["cut_radius"],
-    )
-    total_h_val = h_val + roof_val
+    w_val, h_val = params["width"], params["height"]
+    top_kind = params["top_kind"]
+    cut_kind = params["cut_kind"]
+    top_extent_val = params["roof_height"] if top_kind == "triangle" else params["top_radius"]
+
+    total_h_val = h_val + top_extent_val
     margin = 28
     scale = min((DIAGRAM_WIDTH - 2 * margin) / w_val, (DIAGRAM_HEIGHT - 2 * margin) / total_h_val)
-    rw, rh, roof_h, cut_r = w_val * scale, h_val * scale, roof_val * scale, cut_val * scale
-    x0, y0 = (DIAGRAM_WIDTH - rw) / 2, (DIAGRAM_HEIGHT - (rh + roof_h)) / 2
+    rw, rh, top_extent = w_val * scale, h_val * scale, top_extent_val * scale
+    x0, y0 = (DIAGRAM_WIDTH - rw) / 2, (DIAGRAM_HEIGHT - (rh + top_extent)) / 2
     apex_x = x0 + rw / 2
 
     d.add(Rect(x0, y0, rw, rh, strokeColor=INK, fillColor=None, strokeWidth=1.2))
-    d.add(Polygon(
-        [x0, y0 + rh, x0 + rw, y0 + rh, apex_x, y0 + rh + roof_h],
-        strokeColor=INK, fillColor=None, strokeWidth=1.2,
-    ))
-    # Quarter-circle cut from the bottom-left corner: erase that corner's pie
-    # slice in the page background colour, then stroke the arc as the new
-    # visible boundary - the straight rectangle edges already drawn above
-    # stop cleanly at the two tangent points.
-    d.add(Wedge(x0, y0, cut_r, 0, 90, fillColor=PAPER, strokeColor=None))
-    d.add(Wedge(x0, y0, cut_r, 0, 90, fillColor=None, strokeColor=INK, strokeWidth=1.2))
+
+    if top_kind == "triangle":
+        d.add(Polygon(
+            [x0, y0 + rh, x0 + rw, y0 + rh, apex_x, y0 + rh + top_extent],
+            strokeColor=INK, fillColor=None, strokeWidth=1.2,
+        ))
+        # Offset outward, perpendicular to the right roof edge, rather than a
+        # fixed (dx, dy) - a fixed offset sits well inside a shallow/wide
+        # roof (small top_extent relative to rw), landing on top of the
+        # sloped edge instead of clear of it (found by rendering a shallow
+        # case, not assumed up front).
+        mid_x, mid_y = apex_x + rw / 4, y0 + rh + top_extent / 2
+        edge_dx, edge_dy = rw / 2, -top_extent
+        norm = math.hypot(edge_dx, edge_dy) or 1.0
+        perp_x, perp_y = -edge_dy / norm, edge_dx / norm
+        d.add(_label(mid_x + perp_x * 8, mid_y + perp_y * 8, params["top_label"], anchor="start"))
+    else:
+        d.add(Wedge(apex_x, y0 + rh, rw / 2, 0, 180, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+        d.add(Line(apex_x, y0 + rh, apex_x, y0 + rh + top_extent, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
+        # Above the apex, in the always-clear canvas margin, rather than
+        # beside the radius line - the horizontal clearance between the line
+        # and the dome's own curve shrinks the higher up the line you go
+        # (and depends on the dome's radius), so no single fixed side offset
+        # reliably avoided the curve for every radius (found via rendering
+        # several sizes, not assumed up front).
+        d.add(_label(apex_x, y0 + rh + top_extent + 8, params["top_label"], size=8))
+
+    if cut_kind == "quarter_circle":
+        # Erase that corner's pie slice in the page background colour, then
+        # stroke the arc as the new visible boundary - the straight
+        # rectangle edges already drawn above stop cleanly at the two
+        # tangent points.
+        cut_r = params["cut_radius"] * scale
+        d.add(Wedge(x0, y0, cut_r, 0, 90, fillColor=PAPER, strokeColor=None))
+        d.add(Wedge(x0, y0, cut_r, 0, 90, fillColor=None, strokeColor=INK, strokeWidth=1.2))
+        d.add(_label(x0 - 4, y0 - 2, params["cut_label"], size=7, color=MUTED, anchor="end"))
+    else:
+        # A semicircular bite taken out of the middle of the bottom edge,
+        # same fill-then-erase-then-stroke-arc trick as the corner cut.
+        notch_r = params["notch_radius"] * scale
+        d.add(Wedge(apex_x, y0, notch_r, 0, 180, fillColor=PAPER, strokeColor=None))
+        d.add(Wedge(apex_x, y0, notch_r, 0, 180, fillColor=None, strokeColor=INK, strokeWidth=1.2))
+        d.add(_label(apex_x + notch_r + 6, y0 + 4, params["cut_label"], size=7, color=MUTED, anchor="start"))
+
     d.add(_label(x0 + rw / 2, y0 - 14, params["width_label"]))
     d.add(_label(x0 - 10, y0 + rh / 2, params["height_label"], anchor="end"))
-    d.add(_label(apex_x + 6, y0 + rh + roof_h / 2, params["roof_label"], anchor="start"))
-    d.add(_label(x0 - 4, y0 - 2, params["cut_label"], size=7, color=MUTED, anchor="end"))
     return d
 
 

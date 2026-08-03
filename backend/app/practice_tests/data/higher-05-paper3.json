@@ -49,15 +49,16 @@
     },
     {
       "topic_id": "rationalise_denominator",
-      "prompt": "Rationalise the denominator of 11/(6 - √11), giving your answer in its simplest form.",
+      "prompt": "Rationalise the denominator of \\frac{11}{6 - √11}, giving your answer in its simplest form.",
       "solution_steps": [
         "Multiply the numerator and denominator by the conjugate of the denominator, (6 + √11):",
-        "11/(6 - √11) = 11(6 + √11) / [(6 - √11)(6 + √11)]",
+        "\\frac{11}{6 - √11}",
+        "= \\frac{11(6 + √11)}{[(6 - √11)(6 + √11)]}",
         "The denominator is a difference of two squares: 6^2 - 11 = 25",
         "The numerator is 11(6 + √11) = 66 + 11√11",
-        "= (66 + 11√11)/25"
+        "= \\frac{66 + 11√11}{25}"
       ],
-      "final_answer": "(66 + 11√11)/25",
+      "final_answer": "\\frac{66 + 11√11}{25}",
       "marks": 5,
       "mark_scheme": [
         {
@@ -67,22 +68,22 @@
         },
         {
           "code": "M1",
-          "description": "11/(6 - √11) = 11(6 + √11) / [(6 - √11)(6 + √11)]",
+          "description": "\\frac{11}{6 - √11}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The denominator is a difference of two squares: 6^2 - 11 = 25",
+          "description": "= \\frac{11(6 + √11)}{[(6 - √11)(6 + √11)]}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The numerator is 11(6 + √11) = 66 + 11√11 = (66 + 11√11)/25",
+          "description": "The denominator is a difference of two squares: 6^2 - 11 = 25 The numerator is 11(6 + √11) = 66 + 11√11 = \\frac{66 + 11√11}{25}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(66 + 11√11)/25 oe",
+          "description": "\\frac{66 + 11√11}{25} oe",
           "marks": 1
         }
       ],
@@ -91,7 +92,7 @@
     },
     {
       "topic_id": "simplifying_indices_challenging",
-      "prompt": "Simplify (3^-1)^2 ÷ 3^2, giving your answer as a fraction where necessary.",
+      "prompt": "Fully simplify (3^-1)^2 ÷ 3^2, giving your answer as a fraction where necessary.",
       "solution_steps": [
         "Multiply the powers in the bracket: -1 × 2 = -2",
         "(3^-1)^2 = 3^-2",
@@ -132,9 +133,9 @@
     },
     {
       "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal 0.(42) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.}{42} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(42), so 100x = 42.4242... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Let x = \\recur{0.}{42}, so 100x = 42.4242... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 42 - 0, so 99x = 42",
         "x = 42/99 = 14/33"
       ],
@@ -143,7 +144,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(42), so 100x = 42.4242... (two digits repeat, so multiply by 100 to shift a full block)",
+          "description": "Let x = \\recur{0.}{42}, so 100x = 42.4242... (two digits repeat, so multiply by 100 to shift a full block)",
           "marks": 1
         },
         {
@@ -167,7 +168,7 @@
     },
     {
       "topic_id": "surds_multiply_divide",
-      "prompt": "Simplify √702 ÷ √6, giving your answer in the form a√b.",
+      "prompt": "Fully simplify √702 ÷ √6, giving your answer in the form a√b.",
       "solution_steps": [
         "√702 ÷ √6 = √(702/6) = √117",
         "Find the largest square factor of 117: 3^2 × 13 = 117",
@@ -202,7 +203,7 @@
     },
     {
       "topic_id": "powers_higher",
-      "prompt": "Work out 216^(2/3).",
+      "prompt": "Evaluate 216^(2/3).",
       "solution_steps": [
         "216^(2/3) = (216^(1/3))^2",
         "216^(1/3) = 6",
@@ -323,11 +324,11 @@
     },
     {
       "topic_id": "forming_equations_higher",
-      "prompt": "A composite shape's perimeter is made up of two sides of length 14 cm, two sides of length 6 cm, and two sides of length (x + 4) cm. The total perimeter is 66 cm. Form an equation and solve it to find x.",
+      "prompt": "The perimeter of the L-shape shown is 66 cm. Form an equation and solve it to find x.",
       "solution_steps": [
-        "Perimeter = sum of all side lengths.",
-        "2(14) + 2(6) + 2(x + 4) = 66",
-        "Expand the bracket and collect the constants:",
+        "Perimeter of an L-shape = 2 × (outer width) + 2 × (outer height).",
+        "2(x + 4) + 2(14 + 6) = 66",
+        "Expand the brackets and collect the constants:",
         "2x + 48 = 66",
         "Subtract 48 from both sides:",
         "2x = 18",
@@ -339,17 +340,17 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Perimeter = sum of all side lengths.",
+          "description": "Perimeter of an L-shape = 2 × (outer width) + 2 × (outer height).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2(14) + 2(6) + 2(x + 4) = 66",
+          "description": "2(x + 4) + 2(14 + 6) = 66",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand the bracket and collect the constants:",
+          "description": "Expand the brackets and collect the constants:",
           "marks": 1
         },
         {
@@ -363,38 +364,55 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "l_shape",
+        "params": {
+          "outer_w": 13,
+          "outer_h": 20,
+          "inner_w": 5,
+          "inner_h": 14,
+          "notch": "corner",
+          "outer_labels": [
+            "(x + 4) cm",
+            "(14 + 6) cm"
+          ],
+          "right_labels": [
+            "6 cm",
+            "14 cm"
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
       "topic_id": "expand_triple_brackets",
-      "prompt": "Expand and simplify: (4x + 1)(-2x - 4)(2x - 1)",
+      "prompt": "Expand and simplify: (3x - 4)(4x - 1)(x + 1)",
       "solution_steps": [
-        "First expand two of the brackets: (4x + 1)(-2x - 4) = -8x^2 - 18x - 4",
-        "Multiply the result by (2x - 1) and collect like terms",
-        "= -16x^3 - 28x^2 + 10x + 4"
+        "First expand two of the brackets: (3x - 4)(4x - 1) = 12x^2 - 19x + 4",
+        "Multiply the result by (x + 1) and collect like terms",
+        "= 12x^3 - 7x^2 - 15x + 4"
       ],
-      "final_answer": "-16x^3 - 28x^2 + 10x + 4",
+      "final_answer": "12x^3 - 7x^2 - 15x + 4",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First expand two of the brackets: (4x + 1)(-2x - 4) = -8x^2 - 18x - 4",
+          "description": "First expand two of the brackets: (3x - 4)(4x - 1) = 12x^2 - 19x + 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the result by (2x - 1) and collect like terms",
+          "description": "Multiply the result by (x + 1) and collect like terms",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= -16x^3 - 28x^2 + 10x + 4",
+          "description": "= 12x^3 - 7x^2 - 15x + 4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-16x^3 - 28x^2 + 10x + 4 oe",
+          "description": "12x^3 - 7x^2 - 15x + 4 oe",
           "marks": 1
         }
       ],
@@ -475,10 +493,10 @@
     },
     {
       "topic_id": "substitution_higher",
-      "prompt": "a = (v - u)/t. Find the value of a when u = 28, v = 22 and t = 3.",
+      "prompt": "a = \\frac{v - u}{t}. Find the value of a when u = 28, v = 22 and t = 3.",
       "solution_steps": [
-        "a = (v - u)/t",
-        "a = (22 - 28)/3",
+        "a = \\frac{v - u}{t}",
+        "a = \\frac{22 - 28}{3}",
         "a = -6/3",
         "a = -2"
       ],
@@ -487,12 +505,12 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "a = (v - u)/t",
+          "description": "a = \\frac{v - u}{t}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "a = (22 - 28)/3",
+          "description": "a = \\frac{22 - 28}{3}",
           "marks": 1
         },
         {
@@ -557,15 +575,15 @@
     },
     {
       "topic_id": "ratio_difference_higher",
-      "prompt": "Amounts are in the ratio 3:1:6. The difference between the largest and smallest amount is 25. Find all three amounts.",
+      "prompt": "s : t : u = 3 : 1 : 6. u - t = 25. Find s, t and u.",
       "solution_steps": [
         "Difference in parts = 6 - 1 = 5 parts",
         "Value of one part = 25 ÷ 5 = 5",
-        "Amount 1 = 3 × 5 = 15",
-        "Amount 2 = 1 × 5 = 5",
-        "Amount 3 = 6 × 5 = 30"
+        "s = 3 × 5 = 15",
+        "t = 1 × 5 = 5",
+        "u = 6 × 5 = 30"
       ],
-      "final_answer": "15 : 5 : 30",
+      "final_answer": "s = 15, t = 5, u = 30",
       "marks": 5,
       "mark_scheme": [
         {
@@ -580,17 +598,17 @@
         },
         {
           "code": "M1",
-          "description": "Amount 1 = 3 × 5 = 15",
+          "description": "s = 3 × 5 = 15",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Amount 2 = 1 × 5 = 5 Amount 3 = 6 × 5 = 30",
+          "description": "t = 1 × 5 = 5 u = 6 × 5 = 30",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "15 : 5 : 30 oe",
+          "description": "s = 15, t = 5, u = 30 oe",
           "marks": 1
         }
       ],
@@ -687,53 +705,55 @@
     },
     {
       "topic_id": "area_mixed_compound",
-      "prompt": "A shape is made from a rectangle 13 cm by 6 cm, with a triangular roof of height 9 cm on top, and a quarter-circle of radius 2 cm cut from one bottom corner. Find the total area, correct to 3 significant figures.",
+      "prompt": "Find the total area of the following compound shape, correct to 3 significant figures.",
       "solution_steps": [
-        "Rectangle area = 13 × 6 = 78 cm²",
-        "Triangle roof area = ½ × 13 × 9 = 117/2 cm²",
-        "Quarter-circle cut area = (π × 2²) ÷ 4 ≈ 3.14 cm²",
-        "Total area = 78 + 117/2 - 3.14 ≈ 133 cm²"
+        "Rectangle area = 20 × 12 = 240 cm²",
+        "Triangular top area = ½ × 20 × 5 = 50 cm²",
+        "Quarter-circle cut area = (π × 3²) ÷ 4 ≈ 7.07 cm²",
+        "Total area = 240 + 50.0 - 7.07 ≈ 283 cm² (3 s.f.)"
       ],
-      "final_answer": "133 cm²",
+      "final_answer": "283 cm²",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rectangle area = 13 × 6 = 78 cm²",
+          "description": "Rectangle area = 20 × 12 = 240 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Triangle roof area = ½ × 13 × 9 = 117/2 cm²",
+          "description": "Triangular top area = ½ × 20 × 5 = 50 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Quarter-circle cut area = (π × 2²) ÷ 4 ≈ 3.14 cm²",
+          "description": "Quarter-circle cut area = (π × 3²) ÷ 4 ≈ 7.07 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total area = 78 + 117/2 - 3.14 ≈ 133 cm²",
+          "description": "Total area = 240 + 50.0 - 7.07 ≈ 283 cm² (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "133 cm² oe",
+          "description": "283 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "mixed_compound",
         "params": {
-          "width": 13,
-          "height": 6,
-          "roof_height": 9,
-          "cut_radius": 2,
-          "width_label": "13 cm",
-          "height_label": "6 cm",
-          "roof_label": "9 cm",
-          "cut_label": "2 cm"
+          "width": 20,
+          "height": 12,
+          "top_kind": "triangle",
+          "cut_kind": "quarter_circle",
+          "width_label": "20 cm",
+          "height_label": "12 cm",
+          "roof_height": 5,
+          "top_label": "5 cm",
+          "cut_radius": 3,
+          "cut_label": "3 cm"
         }
       },
       "solution_diagram": null

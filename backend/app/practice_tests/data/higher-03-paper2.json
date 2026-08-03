@@ -8,7 +8,7 @@
   "questions": [
     {
       "topic_id": "fractions_mixed_number_arithmetic",
-      "prompt": "Work out 2 4/5 - 1 3/4. Give your answer as a mixed number.",
+      "prompt": "Calculate 2 4/5 - 1 3/4. Give your answer as a mixed number.",
       "solution_steps": [
         "Convert to improper fractions: 2 4/5 = 14/5, 1 3/4 = 7/4",
         "Subtract the improper fractions: 14/5 - 7/4 = 21/20",
@@ -43,9 +43,9 @@
     },
     {
       "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal 0.(27) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "The recurring decimal \\recur{0.}{27} can be written as a fraction. Find this fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(27), so 100x = 27.2727... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Let x = \\recur{0.}{27}, so 100x = 27.2727... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 27 - 0, so 99x = 27",
         "x = 27/99 = 3/11"
       ],
@@ -54,7 +54,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(27), so 100x = 27.2727... (two digits repeat, so multiply by 100 to shift a full block)",
+          "description": "Let x = \\recur{0.}{27}, so 100x = 27.2727... (two digits repeat, so multiply by 100 to shift a full block)",
           "marks": 1
         },
         {
@@ -183,7 +183,7 @@
     },
     {
       "topic_id": "powers_higher",
-      "prompt": "Work out 27^(2/3).",
+      "prompt": "Evaluate 27^(2/3).",
       "solution_steps": [
         "27^(2/3) = (27^(1/3))^2",
         "27^(1/3) = 3",
@@ -335,7 +335,18 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "polygon_angles",
+        "params": {
+          "n_sides": 4,
+          "angle_labels": [
+            "67°",
+            "66°",
+            "(4x - 8)°",
+            "(3x + 102)°"
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -506,14 +517,14 @@
     },
     {
       "topic_id": "algebraic_fractions_add_subtract",
-      "prompt": "Simplify 9/(x - 2) - 9/(x - 8), giving your answer as a single fraction.",
+      "prompt": "Simplify \\frac{9}{(x - 2)} - \\frac{9}{(x - 8)}, giving your answer as a single fraction.",
       "solution_steps": [
         "Write both fractions over the common denominator (x - 2)(x - 8):",
-        "9/(x - 2) - 9/(x - 8) = (9(x - 8) - 9(x - 2))/(x - 2)(x - 8)",
+        "\\frac{9}{(x - 2)} - \\frac{9}{(x - 8)} = \\frac{9(x - 8) - 9(x - 2)}{(x - 2)(x - 8)}",
         "Expand the numerator: 9(x - 8) - 9(x - 2) = -54",
-        "= (-54)/(x - 2)(x - 8)"
+        "= \\frac{-54}{(x - 2)(x - 8)}"
       ],
-      "final_answer": "(-54)/(x - 2)(x - 8)",
+      "final_answer": "\\frac{-54}{(x - 2)(x - 8)}",
       "marks": 5,
       "mark_scheme": [
         {
@@ -523,7 +534,7 @@
         },
         {
           "code": "M1",
-          "description": "9/(x - 2) - 9/(x - 8) = (9(x - 8) - 9(x - 2))/(x - 2)(x - 8)",
+          "description": "\\frac{9}{(x - 2)} - \\frac{9}{(x - 8)} = \\frac{9(x - 8) - 9(x - 2)}{(x - 2)(x - 8)}",
           "marks": 1
         },
         {
@@ -533,12 +544,12 @@
         },
         {
           "code": "M1",
-          "description": "= (-54)/(x - 2)(x - 8)",
+          "description": "= \\frac{-54}{(x - 2)(x - 8)}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(-54)/(x - 2)(x - 8) oe",
+          "description": "\\frac{-54}{(x - 2)(x - 8)} oe",
           "marks": 1
         }
       ],
@@ -682,7 +693,7 @@
     },
     {
       "topic_id": "arc_length",
-      "prompt": "A sector of a circle has radius 12 cm and angle 255°. Find the exact arc length, in terms of π.",
+      "prompt": "Find the exact arc length of the following sector, in terms of π.",
       "solution_steps": [
         "Arc length = (θ ÷ 360) × 2 × π × r = (255 ÷ 360) × 2 × π × 12",
         "= 17π cm"
