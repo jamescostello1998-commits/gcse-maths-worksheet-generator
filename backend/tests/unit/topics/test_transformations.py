@@ -71,6 +71,29 @@ def test_reflect_complete_image_is_a_true_reflection_independently_rechecked():
                 assert my == mirror["sign"] * mx
 
 
+def test_reflect_foundation_never_uses_y_equals_minus_x():
+    # "y = -x" is the hardest of the four mirror-line kinds (neither
+    # coordinate keeps its sign) and is excluded entirely at Foundation -
+    # both transform_reflect_complete/_describe are Foundation-only.
+    rng = random.Random(407)
+    for _ in range(TRIALS):
+        q = transformations.generate_transform_reflect_complete(Tier.FOUNDATION, rng)
+        assert q.solution_diagram.params["mirror_line"]["label"] != "y = -x"
+        q2 = transformations.generate_transform_reflect_describe(Tier.FOUNDATION, rng)
+        # reflect_describe doesn't expose mirror_line directly, but the
+        # final answer states it in the same "y = ..." form.
+        assert "y = -x" not in q2.final_answer
+
+
+def test_reflect_foundation_mirror_kinds_still_include_vertical_horizontal_and_y_equals_x():
+    rng = random.Random(408)
+    kinds_seen = set()
+    for _ in range(TRIALS):
+        q = transformations.generate_transform_reflect_complete(Tier.FOUNDATION, rng)
+        kinds_seen.add(q.solution_diagram.params["mirror_line"]["type"])
+    assert kinds_seen == {"vertical", "horizontal", "diagonal"}
+
+
 def test_rotate_complete_uses_only_90_180_270():
     rng = random.Random(404)
     for _ in range(TRIALS):
@@ -82,8 +105,21 @@ def test_translate_complete_never_uses_the_zero_vector():
     rng = random.Random(405)
     for _ in range(TRIALS):
         q = transformations.generate_transform_translate_complete(Tier.FOUNDATION, rng)
-        vector = q.diagram.params["translation_vector"]
+        original = q.solution_diagram.params["original_vertices"]
+        image = q.solution_diagram.params["image_vertices"]
+        vector = (image[0][0] - original[0][0], image[0][1] - original[0][1])
         assert vector != (0, 0)
+
+
+def test_translate_complete_diagram_has_no_direction_arrow():
+    # The question/solution diagrams no longer carry "translation_vector" -
+    # the vector is still given in the prompt/solution text, just not drawn
+    # as an arrow on the diagram itself.
+    rng = random.Random(410)
+    for _ in range(TRIALS):
+        q = transformations.generate_transform_translate_complete(Tier.FOUNDATION, rng)
+        assert "translation_vector" not in q.diagram.params
+        assert "translation_vector" not in q.solution_diagram.params
 
 
 def test_enlarge_foundation_never_uses_negative_or_fractional_scale_factor():
@@ -144,6 +180,34 @@ def test_shape_templates_are_asymmetric():
         lines, order = transformations._count_symmetries(template)
         assert lines == 0
         assert order == 1
+
+
+def test_compact_reflect_template_is_asymmetric():
+    lines, order = transformations._count_symmetries(transformations._COMPACT_REFLECT_TEMPLATE)
+    assert lines == 0
+    assert order == 1
+
+
+def test_y_equals_x_reflection_is_actually_reachable():
+    # A real pre-existing bug, found via property-based sampling while
+    # reweighting the mirror-line pool (this phase's actual task): every one
+    # of the 4 original _SHAPE_TEMPLATES spans 7-9 units in the y - x
+    # direction, which - given the grid's own +/-7 fit range - made a
+    # "y = x" reflection geometrically impossible to ever satisfy
+    # (0 successes in 200,000 simulated attempts) regardless of how the
+    # mirror-line weights were set. _COMPACT_REFLECT_TEMPLATE (used only by
+    # reflection, via _random_reflect_shape) is small enough that "y = x"
+    # can actually succeed - confirm it really does show up in real
+    # generator output, not just in isolated sampling.
+    rng = random.Random(409)
+    seen_diagonal_pos = False
+    for _ in range(2000):
+        q = transformations.generate_transform_reflect_complete(Tier.FOUNDATION, rng)
+        mirror = q.solution_diagram.params["mirror_line"]
+        if mirror["type"] == "diagonal" and mirror["sign"] == 1:
+            seen_diagonal_pos = True
+            break
+    assert seen_diagonal_pos
 
 
 def test_symmetry_shapes_match_their_claimed_counts():

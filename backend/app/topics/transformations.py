@@ -54,9 +54,37 @@ _SHAPE_TEMPLATES: tuple[tuple[Point, ...], ...] = (
     ((0, 0), (5, 0), (1, 4)),                            # scalene triangle
 )
 
+# A small compact right-angled triangle, used ONLY for reflection (see
+# _random_reflect_shape below) - not added to the shared _SHAPE_TEMPLATES
+# pool, so rotate/translate/enlarge are completely unaffected. Every one of
+# the 4 shapes above spans 7-9 units diagonally (in the y - x direction) -
+# reflecting any of them in "y = x" would need the image to land roughly
+# twice that span away to keep the required clearance from the mirror line,
+# which can never fit inside this diagram's +/-7 grid no matter how the
+# shape is positioned (confirmed empirically: 0 successes in 200,000
+# simulated attempts) - a genuine pre-existing dead branch, since this has
+# been true since the diagram kind was first built, not something this
+# session's reweighting introduced. This much smaller, more compact triangle
+# (diagonal span of ~5, instead of 7-9) is the targeted fix: just large
+# enough to still give clearly separated/legible vertex labels, small enough
+# that a "y = x" reflection can actually be found within the grid at a
+# realistic rate (~1.6% of random draws - well within the existing reroll
+# budget) - confirmed via the same kind of direct empirical measurement used
+# throughout this app rather than guessed.
+_COMPACT_REFLECT_TEMPLATE: tuple[Point, ...] = ((0, 0), (3, 0), (0, 2))
+
 
 def _random_shape(rng: random.Random) -> list[Point]:
     template = rng.choice(_SHAPE_TEMPLATES)
+    ox, oy = rng.randint(-3, 3), rng.randint(-3, 3)
+    return [(x + ox, y + oy) for x, y in template]
+
+
+def _random_reflect_shape(rng: random.Random) -> list[Point]:
+    """Like _random_shape, but also offers the small compact triangle - see
+    _COMPACT_REFLECT_TEMPLATE - so a "y = x" mirror line has at least one
+    template it can actually succeed against."""
+    template = rng.choice(_SHAPE_TEMPLATES + (_COMPACT_REFLECT_TEMPLATE,))
     ox, oy = rng.randint(-3, 3), rng.randint(-3, 3)
     return [(x + ox, y + oy) for x, y in template]
 
@@ -288,9 +316,27 @@ def _image_not_too_small(image: list) -> bool:
 
 _MIRROR_OFFSETS = (-4, -3, -2, -1, 1, 2, 3, 4)  # excludes 0 - see below
 
+# Mirror-line kind weights per tier: vertical/horizontal (y = k / x = k)
+# dominate at every tier - the easiest lines to reflect in - "y = x" is an
+# occasional step up, and "y = -x" (genuinely the hardest of the four, since
+# neither coordinate keeps its sign) never appears at Foundation and is only
+# occasional even at Higher. There is currently no Higher sibling of
+# transform_reflect_complete/_describe (both topics that call this are
+# Foundation-only), so in practice only the FOUNDATION weights are ever
+# reached - tier is still threaded through here (rather than hardcoding the
+# Foundation weights directly) so this degrades correctly if a Higher
+# sibling is ever added, matching what this reweighting was actually asked
+# to do.
+_MIRROR_KIND_WEIGHTS = {
+    Tier.FOUNDATION: {"vertical": 40, "horizontal": 40, "diagonal_pos": 20, "diagonal_neg": 0},
+    Tier.HIGHER: {"vertical": 35, "horizontal": 35, "diagonal_pos": 20, "diagonal_neg": 10},
+}
 
-def _random_mirror_line(rng: random.Random) -> dict:
-    kind = rng.choice(("vertical", "horizontal", "diagonal_pos", "diagonal_neg"))
+
+def _random_mirror_line(rng: random.Random, tier: Tier) -> dict:
+    weights = _MIRROR_KIND_WEIGHTS[tier]
+    kinds = list(weights)
+    kind = rng.choices(kinds, weights=[weights[k] for k in kinds])[0]
     if kind == "vertical":
         # x = 0 is excluded: it coincides exactly with the y-axis, so the
         # dashed mirror line draws directly on top of the solid axis line and
@@ -344,10 +390,10 @@ _REROLL_ATTEMPTS = 4000  # generous - each attempt is cheap, and the combined
 # ~1600 tries in a 3000-trial empirical check.
 
 
-def _random_reflect_instance(rng: random.Random) -> tuple[list, dict, list]:
+def _random_reflect_instance(rng: random.Random, tier: Tier = Tier.FOUNDATION) -> tuple[list, dict, list]:
     for _ in range(_REROLL_ATTEMPTS):
-        shape = _random_shape(rng)
-        mirror = _random_mirror_line(rng)
+        shape = _random_reflect_shape(rng)
+        mirror = _random_mirror_line(rng, tier)
         image = [_reflect_point(p, mirror) for p in shape]
         if (_fits_grid(shape) and _fits_grid(image) and _well_separated(shape, image)
                 and _shape_clear_of_mirror(shape, mirror)
@@ -790,7 +836,7 @@ def generate_modelled_example_symmetry_rotational(tier: Tier, rng: random.Random
 
 
 def generate_transform_reflect_complete(tier: Tier, rng: random.Random) -> Question:
-    shape, mirror, image = _random_reflect_instance(rng)
+    shape, mirror, image = _random_reflect_instance(rng, tier)
     _verify_reflection(shape, mirror, image)
     labels = _VERTEX_LABELS[: len(shape)]
     image_labels = tuple(f"{l}'" for l in labels)
@@ -827,7 +873,7 @@ def generate_transform_reflect_complete(tier: Tier, rng: random.Random) -> Quest
 
 
 def generate_modelled_example_transform_reflect_complete(tier: Tier, rng: random.Random) -> ModelledExample:
-    shape, mirror, image = _random_reflect_instance(rng)
+    shape, mirror, image = _random_reflect_instance(rng, tier)
     _verify_reflection(shape, mirror, image)
     labels = _VERTEX_LABELS[: len(shape)]
     image_labels = tuple(f"{l}'" for l in labels)
@@ -863,7 +909,7 @@ def generate_modelled_example_transform_reflect_complete(tier: Tier, rng: random
 
 
 def generate_transform_reflect_describe(tier: Tier, rng: random.Random) -> Question:
-    shape, mirror, image = _random_reflect_instance(rng)
+    shape, mirror, image = _random_reflect_instance(rng, tier)
     _verify_reflection(shape, mirror, image)
     labels = _VERTEX_LABELS[: len(shape)]
     image_labels = tuple(f"{l}'" for l in labels)
@@ -896,7 +942,7 @@ def generate_transform_reflect_describe(tier: Tier, rng: random.Random) -> Quest
 
 
 def generate_modelled_example_transform_reflect_describe(tier: Tier, rng: random.Random) -> ModelledExample:
-    shape, mirror, image = _random_reflect_instance(rng)
+    shape, mirror, image = _random_reflect_instance(rng, tier)
     _verify_reflection(shape, mirror, image)
     labels = _VERTEX_LABELS[: len(shape)]
     image_labels = tuple(f"{l}'" for l in labels)
@@ -1118,12 +1164,14 @@ def generate_transform_translate_complete(tier: Tier, rng: random.Random) -> Que
         solution_steps=tuple(steps),
         final_answer=", ".join(f"{il}{_fmt_point(p)}" for il, p in zip(image_labels, image)),
         dedup_key=f"translate:{shape}:{vector}",
+        # No direction arrow on the diagram (see draw_grid_transformation's
+        # "translation_vector" handling) - the vector is still given in the
+        # prompt/solution text above, just not visualised with an arrow.
         diagram=DiagramSpec(
             kind="grid_transformation",
             params={
                 "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
                 "original_vertices": shape, "original_labels": labels,
-                "translation_vector": vector, "vector_label": _fmt_vector(vector),
             },
         ),
         solution_diagram=DiagramSpec(
@@ -1131,7 +1179,6 @@ def generate_transform_translate_complete(tier: Tier, rng: random.Random) -> Que
             params={
                 "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
                 "original_vertices": shape, "original_labels": labels,
-                "translation_vector": vector, "vector_label": _fmt_vector(vector),
                 "image_vertices": image, "image_labels": image_labels,
             },
         ),
@@ -1167,7 +1214,6 @@ def generate_modelled_example_transform_translate_complete(tier: Tier, rng: rand
             params={
                 "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
                 "original_vertices": shape, "original_labels": labels,
-                "translation_vector": vector, "vector_label": _fmt_vector(vector),
                 "image_vertices": image, "image_labels": image_labels,
             },
         ),
@@ -1177,22 +1223,21 @@ def generate_modelled_example_transform_translate_complete(tier: Tier, rng: rand
 def generate_transform_translate_describe(tier: Tier, rng: random.Random) -> Question:
     shape, vector, image = _random_translate_instance(rng)
     _verify_translation(shape, vector, image)
-    labels = _VERTEX_LABELS[: len(shape)]
-    image_labels = tuple(f"{l}'" for l in labels)
-    name, image_name = _shape_name(labels), _shape_name(image_labels)
+    # No vertex labels on this topic's diagram (see the blank_labels comment
+    # below) - the two shapes are referred to simply as "shape A"/"shape B"
+    # as whole units, not per-vertex, since the answer (a single translation
+    # vector) never needs to name a specific vertex.
+    blank_labels = tuple("" for _ in shape)
 
     steps = [
-        f"Every vertex moves by exactly the same amount: comparing {labels[0]}{_fmt_point(shape[0])} with "
-        f"{image_labels[0]}{_fmt_point(image[0])} gives the vector {_fmt_vector(vector)}.",
+        f"Every vertex moves by exactly the same amount: comparing a vertex of shape A, {_fmt_point(shape[0])}, "
+        f"with the matching vertex of shape B, {_fmt_point(image[0])}, gives the vector {_fmt_vector(vector)}.",
         "Checking the other vertices confirms the same vector applies throughout, so this is a translation.",
     ]
     return Question(
         topic_id="transform_translate_describe",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"Shape {name} is translated to give shape {image_name}, shown on the grid. Describe fully the "
-            f"single transformation that maps {name} onto {image_name}."
-        ),
+        prompt="Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
         solution_steps=tuple(steps),
         final_answer=f"Translation by the vector {_fmt_vector(vector)}",
         dedup_key=f"translate_describe:{shape}:{vector}",
@@ -1200,8 +1245,8 @@ def generate_transform_translate_describe(tier: Tier, rng: random.Random) -> Que
             kind="grid_transformation",
             params={
                 "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": labels,
-                "image_vertices": image, "image_labels": image_labels,
+                "original_vertices": shape, "original_labels": blank_labels,
+                "image_vertices": image, "image_labels": blank_labels,
             },
         ),
     )
@@ -1210,27 +1255,22 @@ def generate_transform_translate_describe(tier: Tier, rng: random.Random) -> Que
 def generate_modelled_example_transform_translate_describe(tier: Tier, rng: random.Random) -> ModelledExample:
     shape, vector, image = _random_translate_instance(rng)
     _verify_translation(shape, vector, image)
-    labels = _VERTEX_LABELS[: len(shape)]
-    image_labels = tuple(f"{l}'" for l in labels)
-    name, image_name = _shape_name(labels), _shape_name(image_labels)
+    blank_labels = tuple("" for _ in shape)
 
     teaching_steps = [
         "If the image is the same size and orientation as the original, just slid to a new position, it's a "
         "translation - described fully by a single column vector.",
-        f"Pick any vertex and its image, e.g. {labels[0]}{_fmt_point(shape[0])} to "
-        f"{image_labels[0]}{_fmt_point(image[0])}: subtract to get the vector {_fmt_vector(vector)}.",
+        f"Pick any vertex of shape A and the matching vertex of shape B, e.g. {_fmt_point(shape[0])} to "
+        f"{_fmt_point(image[0])}: subtract to get the vector {_fmt_vector(vector)}.",
         "Check a second vertex pair gives the same vector, to confirm it isn't a rotation or reflection that "
         "happens to move that one point the same way.",
     ]
     return ModelledExample(
         topic_id="transform_translate_describe",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"Shape {name} is translated to give shape {image_name}, shown on the grid. Describe fully the "
-            f"single transformation that maps {name} onto {image_name}."
-        ),
+        prompt="Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
         worked_calculation=(
-            f"{image_labels[0]}{_fmt_point(image[0])} - {labels[0]}{_fmt_point(shape[0])} = {_fmt_vector(vector)}",
+            f"{_fmt_point(image[0])} - {_fmt_point(shape[0])} = {_fmt_vector(vector)}",
             f"vector: {_fmt_vector(vector)}",
         ),
         teaching_steps=tuple(teaching_steps),
@@ -1239,8 +1279,8 @@ def generate_modelled_example_transform_translate_describe(tier: Tier, rng: rand
             kind="grid_transformation",
             params={
                 "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": labels,
-                "image_vertices": image, "image_labels": image_labels,
+                "original_vertices": shape, "original_labels": blank_labels,
+                "image_vertices": image, "image_labels": blank_labels,
             },
         ),
     )
