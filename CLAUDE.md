@@ -12,46 +12,44 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-Step 39's large, explicitly-phased Geometry review-feedback batch (from a plan file at
-`C:\Users\James\.claude\plans\adaptive-coalescing-gosling.md`) is **now fully complete —
-all 6 phases done, committed, and pushed** (6 commits on `aqa-spec-gap-topics`). The plan
-file's own "Status" section has the full done/not-done detail for every phase if you need
-to double-check anything, but there is nothing left to pick up from it. In short, across
-the whole batch: cross-cutting diagram/engine fixes (font sizes, removed the "Diagram NOT
-accurately drawn" caption, parallel-line arrows, sector/trapezium/cuboid fixes, vector
-arrowheads, formula preambles, Pythagoras "find x" convention); a new rounding-precision
-randomization engine rolled out across 11 files; Area & Perimeter topic reworks; an
-Angles/Pythagoras/Trigonometry pass (mostly already covered by the engine work, plus a
-genuine polygon-interior/exterior diagram fix); Vectors (new real column-vector bracket
-notation + a sign-formatting fix), Congruence (a multiple-choice redesign), Circle
-Theorems (prompt trimming), Nets and Plans & Elevations (diagram/dimension reworks); and
-finally Transformations (reflection mirror-line reweighting, which surfaced and fixed a
-genuine pre-existing dead-branch bug, plus translation diagram/wording tweaks). See
-chronology step 39 below for the full session-by-session detail on all of it, and
-"Verifying new topics visually" for the render-and-look-closely discipline that caught
-most of the real bugs found along the way (never the unit tests alone).
+Step 40 completed two review-feedback batches — Probability and Statistics — which
+finishes the **first full review-feedback pass across all 6 curriculum sections**
+(Number: step 35; Algebra: steps 36-37; Ratio & Proportion: step 38; Geometry: step 39;
+Probability + Statistics: step 40). Both batches are committed and pushed (two separate
+commits on `aqa-spec-gap-topics`). See chronology step 40 below for the full detail — in
+short: a large cross-cutting diagram-engine pass (tree diagrams overhauled to fix
+overlapping branches, a shared cross/X point-marker replacing filled dots app-wide, a
+new adaptive squared-paper grid capability in `_draw_stats_axes`, a real smooth
+cumulative-frequency curve, bar/pie chart fixes) plus per-topic prose-to-table
+conversions and wording fixes across ~25 named items total. "Verifying new topics
+visually" below is still the discipline that caught nearly every real bug in both
+batches — never the unit tests alone.
 
-Freshly regenerated review PDFs reflecting the *entire* batch
+Freshly regenerated review PDFs reflecting *both* batches
 (`backend/all_topics_review_questions.pdf` / `all_topics_review_answers.pdf` — same
-fixed-seed script, `backend/scripts/generate_review_pdfs.py`, deliberately untracked) were
-sent back at the end of Phase 6. **The natural next step is simply to ask the user for
-their next round of feedback** on this fresh pair, now that every phase of this
-particular batch is closed out.
+fixed-seed script, `backend/scripts/generate_review_pdfs.py`, deliberately untracked)
+were sent back after each batch. **Since every one of the 6 sections has now had at
+least one review pass, the natural next step is to ask the user directly**: do they have
+further feedback on any section (a second pass, now that they've seen the fixes), or is
+this review process considered done for now? Don't assume silence means "done" — just
+ask.
 
-All of step 39's work is committed, pushed, and already part of the open PR
-(`gh pr view 3` or the repo's PR list — pushing to this branch updates it automatically,
-no separate action needed). The PR has not been merged yet, so check its status before
-assuming `master` already has any of this. 296 topics total (unchanged since step 33 —
-step 39, like steps 35-38, was entirely rendering/wording/diagram/formatting fixes, no new
-or retired topics), backend suite 935/935, frontend 61/61, no known bugs.
+All of step 40's work is committed, pushed, and already part of the open PR
+(`gh pr view 3`, or the full path `& "C:\Program Files\GitHub CLI\gh.exe" pr view 3` if
+`gh` isn't on PATH in a fresh shell — see "Environment gotchas" below — pushing to this
+branch updates it automatically, no separate action needed). The PR has not been merged
+yet, so check its status before assuming `master` already has any of this. 296 topics
+total (unchanged since step 33 — steps 35-40 were entirely rendering/wording/diagram/
+behaviour fixes, no new or retired topics), backend suite 936/936, frontend 61/61, no
+known bugs.
 
-If the user hasn't given new review feedback, check "Ideas for a future session" (bottom
-of this file) for candidate follow-ups (the remaining medium-confidence OCR-spec gaps from
-step 32's audit, the remaining medium/low-confidence AQA-spec gaps from step 31's audit,
-stem-and-leaf diagrams, standard deviation, a handful of lower-confidence curriculum-audit
-candidates, saved worksheet history, deployment, a KS3 Bell Tasks tier, the full
-language-variety rollout beyond the 4 files step 35 piloted it on, etc.), or ask directly
-what they'd like to work on next.
+If the user hasn't given new review feedback and doesn't want another pass, check "Ideas
+for a future session" (bottom of this file) for candidate follow-ups (the remaining
+medium-confidence OCR-spec gaps from step 32's audit, the remaining medium/low-confidence
+AQA-spec gaps from step 31's audit, stem-and-leaf diagrams, standard deviation, a handful
+of lower-confidence curriculum-audit candidates, saved worksheet history, deployment, a
+KS3 Bell Tasks tier, the full language-variety rollout beyond the 4 files step 35 piloted
+it on, etc.), or ask directly what they'd like to work on next.
 
 ## Current state
 
@@ -66,7 +64,9 @@ stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.),
 "describe the method" text questions with no way to numerically check a
 described construction — author-review only, no `verify()` at all (see
 chronology step 27).
-Full backend suite: **756/756 passing**. Frontend suite: **46/46 passing**.
+Full backend and frontend suites passing (see "Where to pick up next" above for the
+current counts — this line is deliberately not a hardcoded snapshot, since it drifted
+out of date for many sessions in a row before being replaced with this pointer).
 
 **Practice Tests (fixed/static content, not procedural — the one deliberate exception
 to the paragraph above)**: a 7th homepage section, `backend/app/practice_tests/`,
@@ -3386,6 +3386,160 @@ fixes), is committed and pushed (see `git log`).
 
     **This closed out the entire 6-phase Geometry review-feedback batch** -
     every phase in the plan file is now done, committed, and pushed.
+
+40. New session, two more review-feedback batches - Probability and Statistics -
+    completing the full first-pass review cycle across all 6 curriculum sections
+    (Number: step 35; Algebra: steps 36-37; Ratio & Proportion: step 38; Geometry:
+    step 39; Probability + Statistics: this step). Both batches were scoped via
+    `AskUserQuestion` clarifying rounds up front (matching this project's established
+    pattern), then implemented directly session-long rather than via parallel
+    subagents, given how much of both batches was genuinely cross-cutting diagram-
+    engine work touching many topic files at once.
+
+    **Probability batch** (~10 named items): `draw_bag` reworked from a rounded
+    "pouch" shape to a plain rectangle, with counters interleaved round-robin across
+    colours (not grouped into blocks) and auto-sized/gridded to fill the available
+    space regardless of count - and the old "Target colour: X" caption text removed
+    entirely (used by `probability_single_event`/`_complement`/`_and_or_rule`'s OR
+    branch). `probability_combined_dice` dropped its unrelated decorative dice
+    diagram. `probability_conditional` swapped its bag diagram for a tree diagram -
+    blank (branch structure and labels only) on the question page, fully solved on
+    the solution page - reusing a genuinely overhauled `draw_tree_diagram`: much
+    larger and better-spaced (the old version's branch/probability labels collided
+    as soon as a tree had more than a couple of branches, the concrete complaint
+    that started this item), with new optional column headers and a blank-
+    probability placeholder (a short underscore instead of a fraction) for exactly
+    this "student fills it in" case. Two new diagram kinds, `draw_coin` (a circle
+    split H/T, matching how `draw_spinner` already shows every sector at once
+    rather than one outcome) and `draw_event_pair` (composes two single-object
+    diagrams side by side via the same nested-translated-Drawing technique
+    `draw_plans_and_elevations_question` established) - wired into
+    `probability_listing_outcomes`'s two previously-undiagrammed scenarios (coin+
+    die, two coins) and into `probability_and_or_rule`'s AND branch, which
+    previously only ever illustrated ONE of its two events (a `kind_a=="die" or
+    kind_b=="die": ... elif ... else: diagram=None` priority chain - the `else`
+    branch turned out to be dead code, since the two events can never both be
+    "coin" given how `_independent_event`'s `exclude_kind` works, but the AND
+    branch still only ever showed one object, never both) - now every
+    `and_or_rule` question shows both events. `draw_venn_diagram`'s A/B set-name
+    labels moved from inside the circles to just above them, still inside the
+    bounding rectangle. `set_notation`/`_foundation` gained a genuinely new
+    fillable Venn diagram (blank on the question page, all four regions filled
+    with their real elements on the solution page) - previously these two topics
+    had no diagram at all, unlike their `venn_diagrams.py` siblings. `two_way_
+    tables` now leaves its missing cells genuinely blank (not "?") and always has
+    exactly 2 of them (solved via whichever margin - row or column total - has
+    only one unknown in it, always resolvable for any 2 cells chosen from a 2x2
+    grid), with the prompt trimmed to "Find the missing values." `sample_space_
+    diagrams`' question-page grid is now blank except the given axis numbers,
+    with a genuinely new `solution_diagram` showing the completed, highlighted
+    grid - fixing a real pre-existing bug (found by an Explore agent's research
+    pass, not assumed) where the full answer was shown on the question page with
+    no solution diagram at all.
+
+    **Statistics batch** (~15 named items) - the larger of the two, requiring
+    several genuinely new shared `_draw_stats_axes` capabilities used across five
+    diagram kinds at once. A new `_cross_marker` helper (two crossing `Line`s)
+    replaces every filled-dot plotted-point marker app-wide - not just
+    Statistics's `draw_scatter_graph`/`draw_cumulative_frequency`/
+    `draw_time_series`, but also the Algebra Plotting-Graphs group's `draw_
+    function_graph`'s `table_points` and `draw_piecewise_graph` (confirmed via a
+    full-file grep this was every genuine plotted-data-point `Circle(` call in
+    `diagrams.py`, as opposed to a geometry vertex/centre dot or a decorative one,
+    which were all left alone). A new `_draw_square_grid`/`_grid_minor_step`
+    capability in `_draw_stats_axes` (`square_grid=True`) draws a light squared-
+    paper background whose square size is derived from each axis's own "nice"
+    tick step (e.g. a step of 10 gives squares worth 5, not an arbitrary always-1
+    unit) - applied to `draw_bar_chart`, `draw_box_plot` (which needed its dummy
+    `plot_h=1` replaced with the real canvas height first, since its y-axis
+    carries no numeric meaning and the grid needs a real pixel span to fill),
+    `draw_histogram`, `draw_cumulative_frequency`, and `draw_scatter_graph`.
+    `draw_cumulative_frequency`'s curve is now a real smooth curve
+    (`_smooth_curve`, a Catmull-Rom spline sampled densely into one dense
+    `PolyLine`, each segment's x/y clamped between its own two endpoints so it
+    never overshoots past a neighbouring point) instead of straight `PolyLine`
+    segments - already started at (0,0), confirmed unchanged. `draw_bar_chart`'s
+    gap math was fixed so the axis-to-first-bar gap equals the inter-bar gap
+    (previously exactly half, since the gap used to be split evenly either side
+    of a centred bar) - the gap now sits consistently before every bar instead.
+    `draw_pie_chart` dropped its per-slice `CHART_COLORS` fill and legend
+    entirely; every wedge is now unfilled and labelled with its own category name
+    and angle out of 360 directly on (or, for a narrow slice, just outside) the
+    wedge - mirroring `draw_spinner`'s existing narrow-sector label handling.
+    `draw_histogram`/`draw_cumulative_frequency` switched their x-axis from ticks
+    fixed to the class boundaries to the normal computed "nice" spacing, so a
+    histogram's bar placement isn't given away by the tick marks (cumulative
+    frequency deliberately kept boundary-aligned ticks, since its points
+    genuinely sit at those boundaries and reading them off the axis is part of
+    the point).
+
+    Topic-level: `stats_mean/_mode/_median/_range_frequency_table` and the
+    grouped-mean sibling pair all gained a real value/frequency (or class/
+    frequency) table - reusing `draw_two_way_table` directly rather than any new
+    table-drawing code, since a plain row-per-value table with one data column
+    already fits that function's existing row-label/col-label/cells contract -
+    with prompts trimmed to "Find the mean/mode/median/range number of X."
+    (previously long prose listings). `stats_reverse_mean`/`_foundation` now
+    spell out the stated count in words ("The mean of four numbers is...") via a
+    new shared `num_word()` helper in `number_format.py` (moved there from a
+    first draft in `statistics.py` once `box_plot_construct` turned out to need
+    the exact same "Here are {n} {context}" pattern) - deliberately NOT applied
+    to numbers appearing only in solution-step prose (a natural-language aside,
+    not the question text itself), matching the audit's actual scope.
+    `pie_chart_construct` gained a new `pie_chart_with_table` composed diagram
+    kind (Category/Frequency/Angle table, blank Angle column on the question page
+    via a plain `two_way_table`, stacked above the completed pie chart on the
+    solution page via the same nested-Drawing composition technique used
+    elsewhere this session) - the prompt no longer restates the survey counts in
+    prose either. `scatter_graph_construct` gained a two-row x/y data table (row
+    labels the axis names, columns numbered 1..9) replacing its own prose pair
+    listing. `scatter_graph_interpret`'s `read_value` question no longer shows
+    the line of best fit already drawn - the student draws it themselves (blank
+    scatter diagram on the question page, the line only appearing on the
+    solution page) - `correlation_type` questions were unaffected (never needed a
+    line at all). `cumulative_frequency_plot` gained a new `cumulative_frequency_
+    question` composed diagram kind (class/frequency table stacked above the
+    blank squared axes) for its question page. `box_plot_construct` dropped the
+    "the five number summary (min, Q1, median, Q3, max)" phrase from its prompt
+    (which was essentially handing over the method) in favour of "Draw a box plot
+    for this data," and `draw_box_plot` gained a `blank` param so the question
+    page can show the squared axis with no box drawn yet, matching every other
+    "construct" topic's blank/solved split. `histogram_plot` gained a
+    `histogram_question` composed diagram kind (class/frequency table above blank
+    regular-axis squared paper). `histogram_interpret`'s highest-frequency
+    question dropped its "(not frequency density)" parenthetical hint from the
+    prompt.
+
+    **One real, pre-existing bug was found and fixed via this session's own
+    visual verification, not by any unit test** - the same story as most gotchas
+    in this file: `draw_two_way_table`'s row-label column used a fixed 66-unit
+    width regardless of the actual label text, which visibly overflowed through
+    the header/first-cell border for any label longer than a couple of words
+    (first surfaced by `scatter_graph_construct`'s new "Weekly sales (£1000s)"
+    row label) - fixed by sizing the header column to the longest row label's
+    real measured width (via `stringWidth`), with the old 66 kept only as a floor
+    for short labels.
+
+    Central verification: full backend suite grew from 935 to 936 tests (one new
+    test for `probability_conditional`'s blank/solved tree split; the Statistics
+    batch's changes were covered by updating existing tests' assertions to match
+    the new diagram shapes, not by adding new test functions); frontend
+    unaffected throughout (61/61 - no frontend files were touched in either
+    batch). No topic count change (still 296 - both batches were entirely
+    rendering/wording/diagram/behaviour fixes to existing topics). Every changed
+    topic in both batches was rendered and visually inspected before being
+    considered done, and the review PDFs were regenerated and sent back to the
+    user after each batch (296 question pages throughout; answer pages went
+    304 → 305 after the Probability batch, then 305 → 307 after the Statistics
+    batch, both expected from the taller composed table+diagram pages). Both
+    batches were committed and pushed separately (two commits on
+    `aqa-spec-gap-topics`).
+
+    **This completes the first full review-feedback pass across all 6
+    sections** - Number (step 35), Algebra (steps 36-37), Ratio & Proportion
+    (step 38), Geometry (step 39), and now Probability + Statistics (this step).
+    See "Where to pick up next" above for what a future session should do with
+    that milestone.
 
 ## Environment gotchas (Windows, this machine specifically)
 
