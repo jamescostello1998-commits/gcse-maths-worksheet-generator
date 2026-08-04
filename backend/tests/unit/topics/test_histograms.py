@@ -65,7 +65,8 @@ def test_histogram_plot_diagram_blank_and_solution_complete():
     rng = random.Random(703)
     for _ in range(TRIALS):
         q = h.generate_histogram_plot(Tier.HIGHER, rng)
-        assert q.diagram.params.get("blank") is True
+        assert q.diagram.kind == "histogram_question"
+        assert q.diagram.params["frequencies"]
         assert q.solution_diagram is not None
         assert not q.solution_diagram.params.get("blank")
         assert q.solution_diagram.params["boundaries"] == q.diagram.params["boundaries"]

@@ -8,23 +8,23 @@ SECTION = "statistics"
 GROUP = "Charts and Graphs"
 
 _BAR_CONTEXTS = [
-    ("favourite colour", ["Red", "Blue", "Green", "Yellow"]),
-    ("favourite fruit", ["Apple", "Banana", "Orange", "Grape"]),
-    ("day of the week absent", ["Mon", "Tue", "Wed", "Thu", "Fri"]),
-    ("mode of transport to school", ["Walk", "Bus", "Car", "Bike"]),
+    ("favourite colour", "Colour", ["Red", "Blue", "Green", "Yellow"]),
+    ("favourite fruit", "Fruit", ["Apple", "Banana", "Orange", "Grape"]),
+    ("day of the week absent", "Day", ["Mon", "Tue", "Wed", "Thu", "Fri"]),
+    ("mode of transport to school", "Transport", ["Walk", "Bus", "Car", "Bike"]),
 ]
 
 
-def _random_table(rng: random.Random) -> tuple[str, list[str], list[int]]:
-    context, all_cats = rng.choice(_BAR_CONTEXTS)
+def _random_table(rng: random.Random) -> tuple[str, str, list[str], list[int]]:
+    context, axis_label, all_cats = rng.choice(_BAR_CONTEXTS)
     n = rng.randint(3, min(4, len(all_cats)))
     categories = rng.sample(all_cats, n)
     values = [rng.randint(2, 20) for _ in categories]
-    return context, categories, values
+    return context, axis_label, categories, values
 
 
 def generate_bar_chart_construct(tier: Tier, rng: random.Random) -> Question:
-    context, categories, values = _random_table(rng)
+    context, axis_label, categories, values = _random_table(rng)
     table_desc = ", ".join(f"{c}: {v}" for c, v in zip(categories, values))
 
     # Independent check: rebuild the series via a dict round-trip rather than
@@ -47,13 +47,17 @@ def generate_bar_chart_construct(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=final_answer,
         dedup_key=f"bar_construct:{categories}:{values}",
-        diagram=DiagramSpec(kind="bar_chart", params={"categories": categories, "series": values, "blank": True}),
-        solution_diagram=DiagramSpec(kind="bar_chart", params={"categories": categories, "series": values}),
+        diagram=DiagramSpec(
+            kind="bar_chart", params={"categories": categories, "series": values, "x_label": axis_label, "blank": True}
+        ),
+        solution_diagram=DiagramSpec(
+            kind="bar_chart", params={"categories": categories, "series": values, "x_label": axis_label}
+        ),
     )
 
 
 def generate_modelled_example_bar_chart_construct(tier: Tier, rng: random.Random) -> ModelledExample:
-    context, categories, values = _random_table(rng)
+    context, axis_label, categories, values = _random_table(rng)
     as_dict = dict(zip(categories, values))
     rebuilt = [as_dict[c] for c in categories]
     if rebuilt != values:
@@ -77,7 +81,7 @@ def generate_modelled_example_bar_chart_construct(tier: Tier, rng: random.Random
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=final_answer,
-        diagram=DiagramSpec(kind="bar_chart", params={"categories": categories, "series": values}),
+        diagram=DiagramSpec(kind="bar_chart", params={"categories": categories, "series": values, "x_label": axis_label}),
     )
 
 
@@ -131,7 +135,7 @@ def _bar_interpret_body(categories: list[str], values: list[int], kind: str, rng
 
 
 def generate_bar_chart_interpret(tier: Tier, rng: random.Random) -> Question:
-    context, categories, values = _random_table(rng)
+    context, axis_label, categories, values = _random_table(rng)
     kind = rng.choice(_BAR_INTERPRET_KINDS)
     prompt_tail, steps, answer = _bar_interpret_body(categories, values, kind, rng)
     table_desc = ", ".join(f"{c}: {v}" for c, v in zip(categories, values))
@@ -143,12 +147,12 @@ def generate_bar_chart_interpret(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=f"bar_interpret:{categories}:{values}:{kind}",
-        diagram=DiagramSpec(kind="bar_chart", params={"categories": categories, "series": values}),
+        diagram=DiagramSpec(kind="bar_chart", params={"categories": categories, "series": values, "x_label": axis_label}),
     )
 
 
 def generate_modelled_example_bar_chart_interpret(tier: Tier, rng: random.Random) -> ModelledExample:
-    context, categories, values = _random_table(rng)
+    context, axis_label, categories, values = _random_table(rng)
     kind = rng.choice(_BAR_INTERPRET_KINDS)
     prompt_tail, steps, answer = _bar_interpret_body(categories, values, kind, rng)
 
@@ -164,7 +168,7 @@ def generate_modelled_example_bar_chart_interpret(tier: Tier, rng: random.Random
         worked_calculation=tuple(steps),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
-        diagram=DiagramSpec(kind="bar_chart", params={"categories": categories, "series": values}),
+        diagram=DiagramSpec(kind="bar_chart", params={"categories": categories, "series": values, "x_label": axis_label}),
     )
 
 
@@ -293,9 +297,16 @@ def _random_pie(rng: random.Random):
     return context, categories, values, total
 
 
+def _pie_angle_degrees(values: list, angles: list) -> list:
+    """The displayed degree for each angle, using the exact same
+    round-to-whole-number convention as `angle_strs`/`final_answer` below -
+    kept as one shared computation so the diagram's angle column can never
+    drift from the topic's own stated answer."""
+    return [int(a) if a == int(a) else round(float(a)) for a in angles]
+
+
 def generate_pie_chart_construct(tier: Tier, rng: random.Random) -> Question:
     context, categories, values, total = _random_pie(rng)
-    table_desc = ", ".join(f"{c}: {v}" for c, v in zip(categories, values))
 
     angles = [Fraction(v, total) * 360 for v in values]
     if sum(angles) != 360:
@@ -305,19 +316,30 @@ def generate_pie_chart_construct(tier: Tier, rng: random.Random) -> Question:
         if (360 * v) % total == 0 and 360 * v // total != a:
             raise ValueError("pie_chart_construct verification failed: angle mismatch")
 
-    angle_strs = [f"{c}: {int(a) if a == int(a) else float(a):.0f}°" for c, a in zip(categories, angles)]
+    angle_degrees = _pie_angle_degrees(values, angles)
+    angle_strs = [f"{c}: {a}°" for c, a in zip(categories, angle_degrees)]
     final_answer = ", ".join(angle_strs)
     steps = [f"Total = {total}."] + [
-        f"{c}: {v}/{total} × 360° = {int(a) if a == int(a) else float(a):.0f}°" for c, v, a in zip(categories, values, angles)
+        f"{c}: {v}/{total} × 360° = {a}°" for c, v, a in zip(categories, values, angle_degrees)
     ] + [final_answer]
     return Question(
         topic_id="pie_chart_construct",
         tier=Tier.FOUNDATION,
-        prompt=f"A survey of {total} people asked about their {context}: {table_desc}. Calculate the angle for each category, and draw a pie chart.",
+        prompt=f"A survey asked {total} people about their {context}. Calculate the angle for each category, and draw a pie chart.",
         solution_steps=tuple(steps),
         final_answer=final_answer,
         dedup_key=f"pie_construct:{categories}:{values}:{total}",
-        solution_diagram=DiagramSpec(kind="pie_chart", params={"categories": categories, "values": values, "show": "value"}),
+        diagram=DiagramSpec(
+            kind="two_way_table",
+            params={
+                "row_labels": [str(c) for c in categories], "col_labels": ["Frequency", "Angle"],
+                "cells": [[str(v), ""] for v in values],
+            },
+        ),
+        solution_diagram=DiagramSpec(
+            kind="pie_chart_with_table",
+            params={"categories": categories, "values": values, "angle_degrees": angle_degrees},
+        ),
     )
 
 
@@ -327,9 +349,10 @@ def generate_modelled_example_pie_chart_construct(tier: Tier, rng: random.Random
     if sum(angles) != 360:
         raise ValueError("modelled example pie_chart_construct verification failed")
 
-    table_desc = ", ".join(f"{c}: {v}" for c, v in zip(categories, values))
-    angle_strs = [f"{c}: {int(a) if a == int(a) else float(a):.0f}°" for c, a in zip(categories, angles)]
+    angle_degrees = _pie_angle_degrees(values, angles)
+    angle_strs = [f"{c}: {a}°" for c, a in zip(categories, angle_degrees)]
     final_answer = ", ".join(angle_strs)
+    table_desc = ", ".join(f"{c}: {v}" for c, v in zip(categories, values))
     teaching_steps = [
         f"A pie chart shares 360° between the categories in proportion to their frequency, out of a "
         f"total of {total}.",
@@ -337,15 +360,18 @@ def generate_modelled_example_pie_chart_construct(tier: Tier, rng: random.Random
         "fraction by 360° to get its angle.",
         f"{table_desc}. Check the angles add back up to 360° as a sanity check.",
     ]
-    worked_calculation = [f"{c}: {v}/{total} × 360° = {s.split(': ')[1]}" for c, v, s in zip(categories, values, angle_strs)]
+    worked_calculation = [f"{c}: {v}/{total} × 360° = {a}°" for c, v, a in zip(categories, values, angle_degrees)]
     return ModelledExample(
         topic_id="pie_chart_construct",
         tier=Tier.FOUNDATION,
-        prompt=f"A survey of {total} people asked about their {context}: {table_desc}. Calculate the angle for each category, and draw a pie chart.",
+        prompt=f"A survey asked {total} people about their {context}. Calculate the angle for each category, and draw a pie chart.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=final_answer,
-        diagram=DiagramSpec(kind="pie_chart", params={"categories": categories, "values": values, "show": "value"}),
+        diagram=DiagramSpec(
+            kind="pie_chart_with_table",
+            params={"categories": categories, "values": values, "angle_degrees": angle_degrees},
+        ),
     )
 
 
@@ -401,7 +427,7 @@ def generate_pie_chart_interpret(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=f"pie_interpret:{categories}:{values}:{total}:{kind}",
-        diagram=DiagramSpec(kind="pie_chart", params={"categories": categories, "values": values, "show": "value"}),
+        diagram=DiagramSpec(kind="pie_chart", params={"categories": categories, "values": values}),
     )
 
 
@@ -421,7 +447,7 @@ def generate_modelled_example_pie_chart_interpret(tier: Tier, rng: random.Random
         worked_calculation=tuple(steps),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
-        diagram=DiagramSpec(kind="pie_chart", params={"categories": categories, "values": values, "show": "value"}),
+        diagram=DiagramSpec(kind="pie_chart", params={"categories": categories, "values": values}),
     )
 
 

@@ -81,10 +81,23 @@ def _scatter_case(rng: random.Random) -> dict:
     return {"ctx": ctx, "points": points, "correlation": correlation}
 
 
+def _scatter_table(ctx: dict, points: list) -> DiagramSpec:
+    """A two-row x/y data table, reusing the generic two_way_table renderer -
+    replaces the old prose listing of (x, y) pairs."""
+    n = len(points)
+    return DiagramSpec(
+        kind="two_way_table",
+        params={
+            "row_labels": [ctx["x_label"], ctx["y_label"]],
+            "col_labels": [str(i + 1) for i in range(n)],
+            "cells": [[str(x) for x, _y in points], [str(y) for _x, y in points]],
+        },
+    )
+
+
 def generate_scatter_graph_construct(tier: Tier, rng: random.Random) -> Question:
     c = _scatter_case(rng)
     ctx, points = c["ctx"], c["points"]
-    table = ", ".join(f"({x}, {y})" for x, y in points)
     steps = [
         f"Plot each ({ctx['x_label']}, {ctx['y_label']}) pair as a single point - do not join the points "
         "up with a line or curve.",
@@ -95,11 +108,12 @@ def generate_scatter_graph_construct(tier: Tier, rng: random.Random) -> Question
     return Question(
         topic_id="scatter_graph_construct",
         tier=Tier.FOUNDATION,
-        prompt=f"The table shows {ctx['context']}: {table}. Draw a scatter graph of this data, and "
+        prompt=f"The table shows {ctx['context']}. Draw a scatter graph of this data, and "
         "describe the correlation.",
         solution_steps=tuple(steps),
         final_answer=f"{c['correlation'].capitalize()} correlation",
         dedup_key=f"scatter_construct:{ctx['x_label']}:{tuple(points)}",
+        diagram=_scatter_table(ctx, points),
         solution_diagram=DiagramSpec(
             kind="scatter_graph",
             params={"points": points, "x_label": ctx["x_label"], "y_label": ctx["y_label"]},
@@ -127,7 +141,7 @@ def generate_modelled_example_scatter_graph_construct(tier: Tier, rng: random.Ra
     return ModelledExample(
         topic_id="scatter_graph_construct",
         tier=Tier.FOUNDATION,
-        prompt=f"The table shows {ctx['context']}: {table}. Draw a scatter graph of this data, and "
+        prompt=f"The table shows {ctx['context']}. Draw a scatter graph of this data, and "
         "describe the correlation.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
@@ -143,11 +157,8 @@ def generate_scatter_graph_interpret(tier: Tier, rng: random.Random) -> Question
     c = _scatter_case(rng)
     ctx, points = c["ctx"], c["points"]
     xs = [p[0] for p in points]
+    base_params = {"points": points, "x_label": ctx["x_label"], "y_label": ctx["y_label"]}
     best_fit = {"m": ctx["m"], "c": ctx["c"]}
-    diagram = DiagramSpec(
-        kind="scatter_graph",
-        params={"points": points, "x_label": ctx["x_label"], "y_label": ctx["y_label"], "best_fit": best_fit},
-    )
 
     shape = rng.choice(["read_value", "correlation_type"])
     if shape == "read_value":
@@ -164,18 +175,21 @@ def generate_scatter_graph_interpret(tier: Tier, rng: random.Random) -> Question
         if abs(recovered_x - query_x) > tolerance:
             raise ValueError("scatter_graph_interpret verification failed: read_value round-trip mismatch")
         steps = [
-            f"Find {query_x} on the {ctx['x_label'].lower()} axis and read up to the line of best fit.",
+            f"Find {query_x} on the {ctx['x_label'].lower()} axis and read up to your line of best fit.",
             f"Read across to the {ctx['y_label'].lower()} axis: approximately {query_y}.",
         ]
         return Question(
             topic_id="scatter_graph_interpret",
             tier=Tier.FOUNDATION,
-            prompt=f"The scatter graph shows {ctx['context']}, with a line of best fit. Use the line of "
-            f"best fit to estimate {ctx['y_label'].lower()} when {ctx['x_label'].lower()} is {query_x}.",
+            prompt=f"The scatter graph shows {ctx['context']}. Draw a line of best fit, and use it to "
+            f"estimate {ctx['y_label'].lower()} when {ctx['x_label'].lower()} is {query_x}.",
             solution_steps=tuple(steps),
             final_answer=f"Approximately {query_y}",
             dedup_key=f"scatter_interpret_read:{ctx['x_label']}:{tuple(points)}:{query_x}",
-            diagram=diagram,
+            diagram=DiagramSpec(kind="scatter_graph", params=base_params),
+            solution_diagram=DiagramSpec(
+                kind="scatter_graph", params={**base_params, "best_fit": best_fit}
+            ),
         )
 
     steps = [
@@ -190,7 +204,7 @@ def generate_scatter_graph_interpret(tier: Tier, rng: random.Random) -> Question
         solution_steps=tuple(steps),
         final_answer=f"{c['correlation'].capitalize()} correlation",
         dedup_key=f"scatter_interpret_corr:{ctx['x_label']}:{tuple(points)}",
-        diagram=diagram,
+        diagram=DiagramSpec(kind="scatter_graph", params=base_params),
     )
 
 
@@ -225,8 +239,8 @@ def generate_modelled_example_scatter_graph_interpret(tier: Tier, rng: random.Ra
     return ModelledExample(
         topic_id="scatter_graph_interpret",
         tier=Tier.FOUNDATION,
-        prompt=f"The scatter graph shows {ctx['context']}, with a line of best fit. Use the line of "
-        f"best fit to estimate {ctx['y_label'].lower()} when {ctx['x_label'].lower()} is {query_x}.",
+        prompt=f"The scatter graph shows {ctx['context']}. Draw a line of best fit, and use it to "
+        f"estimate {ctx['y_label'].lower()} when {ctx['x_label'].lower()} is {query_x}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"Approximately {query_y}",

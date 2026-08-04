@@ -51,7 +51,6 @@ def generate_histogram_plot(tier: Tier, rng: random.Random) -> Question:
         if d * w != Fraction(f):
             raise ValueError("histogram_plot verification failed")
 
-    table_desc = ", ".join(f"{boundaries[i]}-{boundaries[i+1]}: {f}" for i, f in enumerate(frequencies))
     density_strs = [f"{float(d):.2f}".rstrip("0").rstrip(".") for d in densities]
     density_desc = ", ".join(density_strs)
     final_answer = f"Frequency densities: {density_desc}"
@@ -63,16 +62,16 @@ def generate_histogram_plot(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="histogram_plot",
         tier=Tier.HIGHER,
-        prompt=(
-            f"The table shows {context}: {table_desc} (class: frequency). "
-            "Complete a frequency density column and draw a histogram."
-        ),
+        prompt=f"The table shows {context}. Complete a frequency density column and draw a histogram.",
         solution_steps=tuple(steps),
         final_answer=final_answer,
         dedup_key=f"hist_plot:{boundaries}:{frequencies}",
         diagram=DiagramSpec(
-            kind="histogram",
-            params={"boundaries": boundaries, "frequency_densities": [float(d) for d in densities], "x_label": x_label, "blank": True},
+            kind="histogram_question",
+            params={
+                "boundaries": boundaries, "frequencies": frequencies,
+                "frequency_densities": [float(d) for d in densities], "x_label": x_label,
+            },
         ),
         solution_diagram=DiagramSpec(
             kind="histogram",
@@ -134,7 +133,7 @@ def generate_histogram_interpret(tier: Tier, rng: random.Random) -> Question:
             f"{boundaries[j]}-{boundaries[j+1]}: {float(densities[j]):.2f}×{widths[j]}={frequencies[j]}"
             for j in range(len(frequencies))
         )
-        prompt = "Which class has the highest FREQUENCY (not frequency density)?"
+        prompt = "Which class has the highest frequency?"
         steps = [
             f"The tallest bar is not necessarily the highest frequency, since classes have different widths.",
             f"Frequency = density × width for each class: {density_lines}.",

@@ -22,24 +22,34 @@ def test_all_generators_produce_valid_verified_questions():
             assert q.final_answer
 
 
-def test_construct_has_no_diagram_on_the_question_page_but_one_on_the_solution():
-    # Same "student draws it" pattern as tree_diagram_drawing.
+def test_construct_has_a_data_table_on_the_question_page_and_the_plot_on_the_solution():
     rng = random.Random(1001)
     for _ in range(TRIALS):
         q = scatter_graphs.generate_scatter_graph_construct(Tier.FOUNDATION, rng)
-        assert q.diagram is None
+        assert q.diagram is not None
+        assert q.diagram.kind == "two_way_table"
         assert q.solution_diagram is not None
         assert q.solution_diagram.kind == "scatter_graph"
         assert "best_fit" not in q.solution_diagram.params
 
 
-def test_interpret_diagram_always_includes_a_line_of_best_fit():
+def test_interpret_read_value_has_a_blank_question_diagram_and_a_solved_solution():
+    # The student now draws their own line of best fit - the question page
+    # must not already show it, unlike the solution page.
     rng = random.Random(1002)
+    saw_read_value = False
     for _ in range(TRIALS):
         q = scatter_graphs.generate_scatter_graph_interpret(Tier.FOUNDATION, rng)
         assert q.diagram is not None
         assert q.diagram.kind == "scatter_graph"
-        assert "best_fit" in q.diagram.params
+        assert "best_fit" not in q.diagram.params
+        if q.dedup_key.startswith("scatter_interpret_read"):
+            saw_read_value = True
+            assert q.solution_diagram is not None
+            assert "best_fit" in q.solution_diagram.params
+        else:
+            assert q.solution_diagram is None
+    assert saw_read_value
 
 
 def test_correlation_sign_matches_the_actual_plotted_points():

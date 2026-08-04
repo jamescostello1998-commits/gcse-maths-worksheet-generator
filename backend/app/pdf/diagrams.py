@@ -1562,6 +1562,14 @@ def _fn_value(kind: str, x: float, params: dict) -> float:
     raise ValueError(f"unknown function graph kind: {kind!r}")
 
 
+def _cross_marker(d: Drawing, x: float, y: float, size: float = 2.2, color=INK, width: float = 1.1) -> None:
+    """A small X/cross marking one plotted data point - the standard exam-
+    graph convention, used everywhere a single value is plotted on any
+    graph (never a filled dot)."""
+    d.add(Line(x - size, y - size, x + size, y + size, strokeColor=color, strokeWidth=width))
+    d.add(Line(x - size, y + size, x + size, y - size, strokeColor=color, strokeWidth=width))
+
+
 def draw_function_graph(params: dict) -> Drawing:
     """A real-scale, gridded plot of a linear/quadratic/cubic/reciprocal
     function. If params['blank'] is True, only the axes are drawn (used for
@@ -1594,7 +1602,7 @@ def draw_function_graph(params: dict) -> Drawing:
 
         for tx, ty in params.get("table_points", []):
             px, py = to_px(tx, ty)
-            d.add(Circle(px, py, 2, strokeColor=INK, fillColor=INK))
+            _cross_marker(d, px, py)
 
     return d
 
@@ -1615,7 +1623,7 @@ def draw_piecewise_graph(params: dict) -> Drawing:
         d.add(PolyLine(pts, strokeColor=INK, strokeWidth=1.3))
         for t, v in params["points"]:
             px, py = to_px(t, v)
-            d.add(Circle(px, py, 1.8, strokeColor=INK, fillColor=INK))
+            _cross_marker(d, px, py)
 
     return d
 
@@ -2096,7 +2104,11 @@ def draw_two_way_table(params: dict) -> Drawing:
     col_labels: list[str] = params["col_labels"]
     cells: list[list[str]] = params["cells"]
 
-    header_w, cell_w, cell_h = 66, 44, 22
+    cell_w, cell_h = 44, 22
+    # Wide enough for the longest row label (e.g. "Weekly sales (£1000s)"),
+    # not just the original fixed 66 - a label longer than that was
+    # overflowing straight through the header/first cell border.
+    header_w = max(66.0, max((stringWidth(str(rl), _LABEL_FONT, 7.5) for rl in row_labels), default=0) + 10)
     n_rows, n_cols = len(row_labels), len(col_labels)
     width = header_w + cell_w * n_cols
     height = cell_h * (n_rows + 1)
@@ -2255,12 +2267,56 @@ def _fmt_tick(v: float) -> str:
     return str(int(round(v))) if abs(v - round(v)) < 1e-9 else f"{v:.1f}"
 
 
+def _grid_minor_step(major_step: float) -> float:
+    """Half the major tick step, when that lands on a clean whole number
+    (e.g. a major step of 10 gives minor squares worth 5) - otherwise one
+    square per major tick, rather than an arbitrary/always-1 subdivision
+    regardless of the axis's real scale."""
+    half = major_step / 2
+    return half if abs(half - round(half)) < 1e-9 else major_step
+
+
+def _draw_square_grid(
+    d: Drawing, to_px: Callable, x0: float, y0: float, plot_w: float, plot_h: float,
+    x_min: float, x_max: float, y_min: float, y_max: float, show_y_axis: bool,
+) -> None:
+    """A light squared-paper background, drawn underneath the real axes/
+    ticks - square size is derived from each axis's own 'nice' tick step
+    (never a flat 1-unit square regardless of scale, e.g. a y-axis running
+    in 10s gets squares worth 5). When the y-axis has no real numeric
+    meaning (show_y_axis=False, e.g. a box plot), the horizontal lines
+    instead mirror the x minor step's own pixel size, so the grid still
+    reads as genuine squares rather than an invented numeric scale."""
+    x_major = _nice_tick_step(x_min, x_max)
+    x_minor = _grid_minor_step(x_major)
+    xv = math.ceil(x_min / x_minor) * x_minor
+    while xv <= x_max + 1e-9:
+        px, _ = to_px(xv, y_min)
+        d.add(Line(px, y0, px, y0 + plot_h, strokeColor=GRID, strokeWidth=0.3))
+        xv += x_minor
+
+    if show_y_axis:
+        y_major = _nice_tick_step(y_min, y_max)
+        y_minor = _grid_minor_step(y_major)
+        yv = math.ceil(y_min / y_minor) * y_minor
+        while yv <= y_max + 1e-9:
+            _, py = to_px(x_min, yv)
+            d.add(Line(x0, py, x0 + plot_w, py, strokeColor=GRID, strokeWidth=0.3))
+            yv += y_minor
+    else:
+        x_square_px = x_minor * plot_w / (x_max - x_min)
+        py = y0
+        while py <= y0 + plot_h + 1e-6:
+            d.add(Line(x0, py, x0 + plot_w, py, strokeColor=GRID, strokeWidth=0.3))
+            py += x_square_px
+
+
 def _draw_stats_axes(
     d: Drawing, x0: float, y0: float, plot_w: float, plot_h: float,
     x_min: float, x_max: float, y_min: float, y_max: float,
     x_label: str = "", y_label: str = "",
     x_ticks: "list[float] | None" = None, y_ticks: "list[float] | None" = None,
-    y_step: "float | None" = None, show_y_axis: bool = True,
+    y_step: "float | None" = None, show_y_axis: bool = True, square_grid: bool = False,
 ) -> Callable[[float, float], tuple[float, float]]:
     """Draw a plain linear pair of axes (bold axis lines, a handful of ticks
     spaced via `_nice_tick_step` so the tick/gridline count never depends on
@@ -2272,12 +2328,17 @@ def _draw_stats_axes(
     x-axes, e.g. histograms and cumulative frequency graphs) - pass `[]` to
     suppress ticks on that axis entirely. `show_y_axis=False` omits the
     vertical axis line and all y-axis ticks/labels (for a chart with no
-    meaningful y-scale, e.g. a box plot)."""
+    meaningful y-scale, e.g. a box plot). `square_grid=True` adds a light
+    squared-paper background (see `_draw_square_grid`) for charts the
+    student draws onto or reads values off precisely."""
 
     def to_px(x: float, y: float) -> tuple[float, float]:
         px = x0 + (x - x_min) / (x_max - x_min) * plot_w
         py = y0 + (y - y_min) / (y_max - y_min) * plot_h
         return px, py
+
+    if square_grid:
+        _draw_square_grid(d, to_px, x0, y0, plot_w, plot_h, x_min, x_max, y_min, y_max, show_y_axis)
 
     ax0, ay0 = to_px(x_min, y_min)
     ax1, _ = to_px(x_max, y_min)
@@ -2357,15 +2418,21 @@ def draw_bar_chart(params: dict) -> Drawing:
     n = len(categories)
     bar_slot = plot_w / n
     bar_w = bar_slot * 0.6
+    gap = bar_slot - bar_w  # the same gap sits before every bar, including the first (see bx below)
 
     to_px = _draw_stats_axes(
         d, margin_l, y0, plot_w, plot_h, 0, n, 0, y_max, y_label=y_label,
-        x_ticks=[],
+        x_ticks=[], square_grid=True,
     )
 
     if not blank:
         for i in range(n):
-            bx = margin_l + i * bar_slot + (bar_slot - bar_w) / 2
+            # The gap is placed BEFORE each bar (not split/centred either
+            # side of it), so the axis-to-first-bar gap and every
+            # between-bar gap all come out equal to `gap` - a centred bar
+            # only gets half that gap on its left, since the other half
+            # sits after it instead.
+            bx = margin_l + i * bar_slot + gap
             if stacked:
                 cursor = 0.0
                 for seg_idx, seg_val in enumerate(series[i]):
@@ -2380,7 +2447,7 @@ def draw_bar_chart(params: dict) -> Drawing:
                 d.add(Rect(bx, py0, bar_w, py1 - py0, fillColor=HIGHLIGHT, strokeColor=INK, strokeWidth=0.6))
 
     for i, cat in enumerate(categories):
-        cx = margin_l + i * bar_slot + bar_slot / 2
+        cx = margin_l + i * bar_slot + gap + bar_w / 2
         d.add(_label(cx, y0 - 10, str(cat), size=7))
 
     if stacked and series_labels:
@@ -2395,50 +2462,79 @@ def draw_bar_chart(params: dict) -> Drawing:
 
 
 def draw_pie_chart(params: dict) -> Drawing:
-    """A pie chart. params['categories']: list of slice names. params['values']:
-    list of numbers (proportional to slice angle). params['show'] controls
-    what's written on each slice: "value" (default), "percentage", or "none"
-    (blank slices with only a legend - for a "construct the chart" question,
-    combined with params['blank']=True to omit the legend colours' meaning
-    from the values shown)."""
+    """A pie chart. params['categories']: list of slice names. params
+    ['values']: list of numbers (proportional to slice angle). Every wedge
+    is unfilled (no colour) and labelled with its own category name and
+    angle out of 360 (e.g. "Football (72°)") - real GCSE convention reads a
+    pie chart's angles directly, not a colour key, so no legend is drawn.
+    A label sits inside its wedge when there's room, otherwise just outside
+    the circle (mirroring draw_spinner's narrow-sector handling)."""
     categories: list = params["categories"]
     values: list = params["values"]
-    show = params.get("show", "value")
-    blank = params.get("blank", False)
 
     total = sum(values)
-    cx, cy, r = 90, 75, 60
-    d = Drawing(230, 150)
+    cx, cy, r = 100, 82, 62
+    d = Drawing(230, 164)
 
     cumulative = 0.0
     for i, v in enumerate(values):
         start = 90 + cumulative / total * 360
         cumulative += v
         end = 90 + cumulative / total * 360
-        color = PAPER if blank else CHART_COLORS[i % len(CHART_COLORS)]
-        d.add(Wedge(cx, cy, r, start, end, fillColor=color, strokeColor=INK, strokeWidth=0.8))
+        d.add(Wedge(cx, cy, r, start, end, fillColor=PAPER, strokeColor=INK, strokeWidth=0.8))
 
-    lx, ly = 170, 130
-    for i, cat in enumerate(categories):
-        color = PAPER if blank else CHART_COLORS[i % len(CHART_COLORS)]
-        d.add(Rect(lx, ly - 6, 8, 8, fillColor=color, strokeColor=INK, strokeWidth=0.5))
-        label_text = str(cat)
-        if not blank and show != "none":
-            if show == "percentage":
-                label_text += f" ({round(values[i] / total * 100)}%)"
-            else:
-                label_text += f" ({values[i]})"
-        d.add(_label(lx + 11, ly - 5, label_text, anchor="start", size=7))
-        ly -= 13
+        mid = math.radians((start + end) / 2)
+        angle_span = end - start
+        angle_deg = round(v / total * 360)
+        label_text = f"{categories[i]} ({angle_deg}°)"
 
+        if angle_span >= 35:
+            lx, ly = cx + r * 0.62 * math.cos(mid), cy + r * 0.62 * math.sin(mid) - 3
+            d.add(_label(lx, ly, label_text, size=7))
+        else:
+            lx, ly = cx + (r + 14) * math.cos(mid), cy + (r + 14) * math.sin(mid) - 3
+            anchor = "start" if math.cos(mid) >= 0 else "end"
+            d.add(_label(lx, ly, label_text, size=7, anchor=anchor))
+
+    return d
+
+
+def draw_pie_chart_with_table(params: dict) -> Drawing:
+    """The solution-page diagram for pie_chart_construct: the completed
+    Category/Frequency/Angle table stacked above the completed pie chart -
+    composed as one Drawing (via a nested, translated child Drawing, since
+    a Question only carries one diagram slot per page) mirroring
+    draw_plans_and_elevations_question's precedent."""
+    categories: list = params["categories"]
+    values: list = params["values"]
+    angle_degrees: list = params["angle_degrees"]
+
+    table = draw_two_way_table({
+        "row_labels": [str(c) for c in categories],
+        "col_labels": ["Frequency", "Angle"],
+        "cells": [[str(v), f"{a}°"] for v, a in zip(values, angle_degrees)],
+    })
+    pie = draw_pie_chart({"categories": categories, "values": values})
+
+    gap = 10
+    width = max(table.width, pie.width)
+    height = table.height + gap + pie.height
+    d = Drawing(width, height)
+    pie.transform = (1, 0, 0, 1, 0, 0)
+    d.add(pie)
+    table.transform = (1, 0, 0, 1, 0, pie.height + gap)
+    d.add(table)
     return d
 
 
 def draw_box_plot(params: dict) -> Drawing:
     """One or more box plots sharing a numeric axis. params['box_plots'] is a
-    list of {"label": str (optional), "min", "q1", "median", "q3", "max"}."""
+    list of {"label": str (optional), "min", "q1", "median", "q3", "max"}.
+    params['blank'] draws the axis (and square grid) only, no boxes - for
+    the question page of a 'draw this yourself' question."""
     box_plots: list = params["box_plots"]
     x_label = params.get("x_label", "")
+    blank = params.get("blank", False)
 
     all_values = [v for bp in box_plots for v in (bp["min"], bp["max"])]
     x_min, x_max = min(all_values), max(all_values)
@@ -2457,9 +2553,12 @@ def draw_box_plot(params: dict) -> Drawing:
 
     axis_y = 24
     to_px = _draw_stats_axes(
-        d, margin_l, axis_y, plot_w, 1, x_min, x_max, 0, 1, x_label=x_label,
-        show_y_axis=False,
+        d, margin_l, axis_y, plot_w, height - axis_y, x_min, x_max, 0, 1, x_label=x_label,
+        show_y_axis=False, square_grid=True,
     )
+
+    if blank:
+        return d
 
     for i, bp in enumerate(box_plots):
         mid_y = axis_y + 30 + i * row_h
@@ -2583,7 +2682,7 @@ def draw_histogram(params: dict) -> Drawing:
 
     to_px = _draw_stats_axes(
         d, margin_l, margin_b, plot_w, plot_h, x_min, x_max, 0, y_max,
-        x_label=x_label, y_label=y_label, x_ticks=boundaries,
+        x_label=x_label, y_label=y_label, square_grid=True,
     )
 
     if not blank:
@@ -2592,6 +2691,78 @@ def draw_histogram(params: dict) -> Drawing:
             x1, y1 = to_px(boundaries[i + 1], densities[i])
             d.add(Rect(x0, y0, x1 - x0, y1 - y0, fillColor=HIGHLIGHT, strokeColor=INK, strokeWidth=0.7))
 
+    return d
+
+
+def _smooth_curve(points: list, **kwargs) -> PolyLine:
+    """A smooth curve through `points` (pixel coordinates), built from a
+    Catmull-Rom spline sampled densely and joined as one PolyLine - real
+    exam convention draws a cumulative frequency curve smoothly, not as
+    straight line segments. Each segment's interpolated x/y is clamped
+    between its own two endpoints' values, so the curve never overshoots
+    past a neighbouring point - kept safe for a graph the student reads
+    real values off."""
+    if len(points) < 3:
+        return PolyLine([c for pt in points for c in pt], **kwargs)
+
+    def catmull_rom(p0, p1, p2, p3, t):
+        t2, t3 = t * t, t * t * t
+        x = 0.5 * (
+            2 * p1[0] + (-p0[0] + p2[0]) * t
+            + (2 * p0[0] - 5 * p1[0] + 4 * p2[0] - p3[0]) * t2
+            + (-p0[0] + 3 * p1[0] - 3 * p2[0] + p3[0]) * t3
+        )
+        y = 0.5 * (
+            2 * p1[1] + (-p0[1] + p2[1]) * t
+            + (2 * p0[1] - 5 * p1[1] + 4 * p2[1] - p3[1]) * t2
+            + (-p0[1] + 3 * p1[1] - 3 * p2[1] + p3[1]) * t3
+        )
+        return x, y
+
+    samples = 14
+    n = len(points)
+    out: list[float] = []
+    for i in range(n - 1):
+        p0 = points[i - 1] if i > 0 else points[i]
+        p1 = points[i]
+        p2 = points[i + 1]
+        p3 = points[i + 2] if i + 2 < n else points[i + 1]
+        x_lo, x_hi = min(p1[0], p2[0]), max(p1[0], p2[0])
+        y_lo, y_hi = min(p1[1], p2[1]), max(p1[1], p2[1])
+        steps = samples if i < n - 2 else samples + 1
+        for s in range(steps):
+            t = s / samples
+            x, y = catmull_rom(p0, p1, p2, p3, t)
+            out.extend([min(max(x, x_lo), x_hi), min(max(y, y_lo), y_hi)])
+    return PolyLine(out, **kwargs)
+
+
+def draw_histogram_question(params: dict) -> Drawing:
+    """The question-page diagram for histogram_plot: the class/frequency
+    data table stacked above the blank (squared-paper) axes the student
+    draws their bars onto - composed as one Drawing, mirroring
+    draw_cumulative_frequency_question's precedent."""
+    boundaries: list = params["boundaries"]
+    frequencies: list = params["frequencies"]
+
+    table = draw_two_way_table({
+        "row_labels": [f"{boundaries[i]}-{boundaries[i + 1]}" for i in range(len(frequencies))],
+        "col_labels": ["Frequency"],
+        "cells": [[str(f)] for f in frequencies],
+    })
+    axes = draw_histogram({
+        "boundaries": boundaries, "frequency_densities": params["frequency_densities"],
+        "x_label": params.get("x_label", ""), "blank": True,
+    })
+
+    gap = 10
+    width = max(table.width, axes.width)
+    height = table.height + gap + axes.height
+    d = Drawing(width, height)
+    axes.transform = (1, 0, 0, 1, 0, 0)
+    d.add(axes)
+    table.transform = (1, 0, 0, 1, 0, axes.height + gap)
+    d.add(table)
     return d
 
 
@@ -2619,17 +2790,42 @@ def draw_cumulative_frequency(params: dict) -> Drawing:
 
     to_px = _draw_stats_axes(
         d, margin_l, margin_b, plot_w, plot_h, x_min, x_max, 0, y_max,
-        x_label=x_label, y_label=y_label, x_ticks=xs,
+        x_label=x_label, y_label=y_label, x_ticks=xs, square_grid=True,
     )
 
     if not blank:
         px_points = [to_px(x, y) for x, y in points]
-        d.add(PolyLine(
-            [c for pt in px_points for c in pt], strokeColor=ACCENT, strokeWidth=1.3,
-        ))
+        d.add(_smooth_curve(px_points, strokeColor=ACCENT, strokeWidth=1.3))
         for px, py in px_points:
-            d.add(Circle(px, py, 1.6, fillColor=ACCENT, strokeColor=None))
+            _cross_marker(d, px, py, color=ACCENT)
 
+    return d
+
+
+def draw_cumulative_frequency_question(params: dict) -> Drawing:
+    """The question-page diagram for cumulative_frequency_plot: the class/
+    frequency data table stacked above the blank (squared-paper) axes the
+    student draws their curve onto - composed as one Drawing since a
+    Question only carries one diagram slot per page, mirroring
+    draw_plans_and_elevations_question's precedent."""
+    boundaries: list = params["boundaries"]
+    frequencies: list = params["frequencies"]
+
+    table = draw_two_way_table({
+        "row_labels": [f"{boundaries[i]}-{boundaries[i + 1]}" for i in range(len(frequencies))],
+        "col_labels": ["Frequency"],
+        "cells": [[str(f)] for f in frequencies],
+    })
+    axes = draw_cumulative_frequency({"points": params["points"], "x_label": params.get("x_label", ""), "blank": True})
+
+    gap = 10
+    width = max(table.width, axes.width)
+    height = table.height + gap + axes.height
+    d = Drawing(width, height)
+    axes.transform = (1, 0, 0, 1, 0, 0)
+    d.add(axes)
+    table.transform = (1, 0, 0, 1, 0, axes.height + gap)
+    d.add(table)
     return d
 
 
@@ -2666,7 +2862,7 @@ def draw_time_series(params: dict) -> Drawing:
             [c for pt in px_points for c in pt], strokeColor=ACCENT, strokeWidth=1.3,
         ))
         for px, py in px_points:
-            d.add(Circle(px, py, 1.6, fillColor=ACCENT, strokeColor=None))
+            _cross_marker(d, px, py, color=ACCENT)
 
     return d
 
@@ -2703,13 +2899,13 @@ def draw_scatter_graph(params: dict) -> Drawing:
 
     to_px = _draw_stats_axes(
         d, margin_l, margin_b, plot_w, plot_h, x_min, x_max, y_min, y_max,
-        x_label=x_label, y_label=y_label,
+        x_label=x_label, y_label=y_label, square_grid=True,
     )
 
     if not blank:
         for x, y in points:
             px, py = to_px(x, y)
-            d.add(Circle(px, py, 1.8, strokeColor=INK, fillColor=None, strokeWidth=1.1))
+            _cross_marker(d, px, py)
 
         if best_fit is not None:
             m, c = best_fit["m"], best_fit["c"]
@@ -3481,9 +3677,12 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "tree_diagram": draw_tree_diagram,
     "two_way_table": draw_two_way_table,
     "sample_space_diagram": draw_sample_space_diagram,
+    "cumulative_frequency_question": draw_cumulative_frequency_question,
+    "histogram_question": draw_histogram_question,
     "venn_diagram": draw_venn_diagram,
     "bar_chart": draw_bar_chart,
     "pie_chart": draw_pie_chart,
+    "pie_chart_with_table": draw_pie_chart_with_table,
     "box_plot": draw_box_plot,
     "histogram": draw_histogram,
     "cumulative_frequency": draw_cumulative_frequency,

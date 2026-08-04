@@ -86,13 +86,16 @@ def test_bar_chart_construct_diagram_blank_and_solution_complete():
         assert q.solution_diagram.params["series"] == q.diagram.params["series"]
 
 
-def test_pie_chart_construct_has_no_question_diagram_but_a_solution_diagram():
+def test_pie_chart_construct_has_a_blank_angle_table_and_a_solved_solution():
     rng = random.Random(504)
     for _ in range(TRIALS):
         q = charts.generate_pie_chart_construct(Tier.FOUNDATION, rng)
-        assert q.diagram is None
+        assert q.diagram is not None
+        assert q.diagram.kind == "two_way_table"
+        assert q.diagram.params["col_labels"] == ["Frequency", "Angle"]
+        assert all(row[1] == "" for row in q.diagram.params["cells"])
         assert q.solution_diagram is not None
-        assert q.solution_diagram.kind == "pie_chart"
+        assert q.solution_diagram.kind == "pie_chart_with_table"
 
 
 def test_composite_bar_chart_uses_stacked_series():

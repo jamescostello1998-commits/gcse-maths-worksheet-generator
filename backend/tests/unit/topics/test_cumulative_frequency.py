@@ -74,19 +74,23 @@ def test_cumulative_frequency_plot_diagram_blank_and_solution_complete():
     rng = random.Random(603)
     for _ in range(TRIALS):
         q = cf.generate_cumulative_frequency_plot(Tier.HIGHER, rng)
-        assert q.diagram.params.get("blank") is True
+        assert q.diagram.kind == "cumulative_frequency_question"
+        assert q.diagram.params["boundaries"] and q.diagram.params["frequencies"]
         assert q.solution_diagram is not None
         assert not q.solution_diagram.params.get("blank")
         assert q.solution_diagram.params["points"] == q.diagram.params["points"]
 
 
-def test_box_plot_construct_has_no_question_diagram_but_a_solution_diagram():
+def test_box_plot_construct_has_a_blank_question_diagram_and_a_solved_solution():
     rng = random.Random(604)
     for _ in range(TRIALS):
         q = cf.generate_box_plot_construct(Tier.HIGHER, rng)
-        assert q.diagram is None
+        assert q.diagram is not None
+        assert q.diagram.kind == "box_plot"
+        assert q.diagram.params.get("blank") is True
         assert q.solution_diagram is not None
         assert q.solution_diagram.kind == "box_plot"
+        assert not q.solution_diagram.params.get("blank")
         assert len(q.solution_diagram.params["box_plots"]) == 1
 
 

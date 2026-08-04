@@ -4,6 +4,7 @@ from itertools import accumulate
 
 from app.core.models import DiagramSpec, ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
+from app.topics.number_format import num_word as _num_word
 
 SECTION = "statistics"
 GROUP = "Cumulative Frequency & Box Plots"
@@ -55,14 +56,14 @@ def generate_cumulative_frequency_plot(tier: Tier, rng: random.Random) -> Questi
     return Question(
         topic_id="cumulative_frequency_plot",
         tier=Tier.HIGHER,
-        prompt=(
-            f"The table shows {context}: {table_desc} (class: frequency). "
-            "Draw a cumulative frequency graph to show this information."
-        ),
+        prompt=f"The table shows {context}. Draw a cumulative frequency graph to show this information.",
         solution_steps=tuple(steps),
         final_answer=final_answer,
         dedup_key=f"cf_plot:{boundaries}:{frequencies}",
-        diagram=DiagramSpec(kind="cumulative_frequency", params={"points": points, "x_label": x_label, "blank": True}),
+        diagram=DiagramSpec(
+            kind="cumulative_frequency_question",
+            params={"points": points, "boundaries": boundaries, "frequencies": frequencies, "x_label": x_label},
+        ),
         solution_diagram=DiagramSpec(kind="cumulative_frequency", params={"points": points, "x_label": x_label}),
     )
 
@@ -94,10 +95,7 @@ def generate_modelled_example_cumulative_frequency_plot(tier: Tier, rng: random.
     return ModelledExample(
         topic_id="cumulative_frequency_plot",
         tier=Tier.HIGHER,
-        prompt=(
-            f"The table shows {context}: {table_desc} (class: frequency). "
-            "Draw a cumulative frequency graph to show this information."
-        ),
+        prompt=f"The table shows {context}. Draw a cumulative frequency graph to show this information.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=final_answer,
@@ -277,16 +275,19 @@ def generate_box_plot_construct(tier: Tier, rng: random.Random) -> Question:
         f"Median splits the data in half; Q1 is the median of the lower half, Q3 the median of the upper half.",
         final_answer,
     ]
+    box_plots = [{"min": data[0], "q1": float(q1), "median": float(median), "q3": float(q3), "max": data[-1]}]
     return Question(
         topic_id="box_plot_construct",
         tier=Tier.HIGHER,
-        prompt=f"Here are {n} {context}: {data}. Find the five-number summary (min, Q1, median, Q3, max) and draw a box plot.",
+        prompt=f"Here are {_num_word(n)} {context}: {data}. Draw a box plot for this data.",
         solution_steps=tuple(steps),
         final_answer=final_answer,
         dedup_key=f"boxplot_construct:{data}",
+        diagram=DiagramSpec(
+            kind="box_plot", params={"box_plots": box_plots, "x_label": context.title(), "blank": True}
+        ),
         solution_diagram=DiagramSpec(
-            kind="box_plot",
-            params={"box_plots": [{"min": data[0], "q1": float(q1), "median": float(median), "q3": float(q3), "max": data[-1]}], "x_label": context.title()},
+            kind="box_plot", params={"box_plots": box_plots, "x_label": context.title()}
         ),
     )
 
