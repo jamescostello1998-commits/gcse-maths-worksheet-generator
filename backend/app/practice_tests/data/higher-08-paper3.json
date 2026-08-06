@@ -233,10 +233,10 @@
       "prompt": "Find the shaded area.",
       "solution_steps": [
         "Area of large rectangle = 12 × 18 = 216 cm²",
-        "Area of rectangular hole = 2 × 5 = 10 cm²",
-        "Shaded area = 216 - 10 = 206 cm²"
+        "Area of rectangular hole = 3 × 6 = 18 cm²",
+        "Shaded area = 216 - 18 = 198 cm²"
       ],
-      "final_answer": "206 cm²",
+      "final_answer": "198 cm²",
       "marks": 4,
       "mark_scheme": [
         {
@@ -246,17 +246,17 @@
         },
         {
           "code": "M1",
-          "description": "Area of rectangular hole = 2 × 5 = 10 cm²",
+          "description": "Area of rectangular hole = 3 × 6 = 18 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Shaded area = 216 - 10 = 206 cm²",
+          "description": "Shaded area = 216 - 18 = 198 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "206 cm² oe",
+          "description": "198 cm² oe",
           "marks": 1
         }
       ],
@@ -265,8 +265,8 @@
         "params": {
           "outer_w": 12,
           "outer_h": 18,
-          "inner_w": 2,
-          "inner_h": 5,
+          "inner_w": 3,
+          "inner_h": 6,
           "notch": "center",
           "shade_frame": true,
           "outer_labels": [
@@ -274,8 +274,8 @@
             "18 cm"
           ],
           "inner_labels": [
-            "2 cm",
-            "5 cm"
+            "3 cm",
+            "6 cm"
           ]
         }
       },
@@ -782,7 +782,9 @@
         "params": {
           "known_label": "50°",
           "unknown_label": "(3x - 7)°",
-          "relation": "alternate"
+          "relation": "alternate",
+          "known_value": 50,
+          "x_frac": 0.44
         }
       },
       "solution_diagram": null

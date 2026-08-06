@@ -764,10 +764,10 @@
       "prompt": "Find the shaded area.",
       "solution_steps": [
         "Area of large rectangle = 19 × 20 = 380 cm²",
-        "Area of rectangular hole = 14 × 13 = 182 cm²",
-        "Shaded area = 380 - 182 = 198 cm²"
+        "Area of rectangular hole = 15 × 15 = 225 cm²",
+        "Shaded area = 380 - 225 = 155 cm²"
       ],
-      "final_answer": "198 cm²",
+      "final_answer": "155 cm²",
       "marks": 4,
       "mark_scheme": [
         {
@@ -777,17 +777,17 @@
         },
         {
           "code": "M1",
-          "description": "Area of rectangular hole = 14 × 13 = 182 cm²",
+          "description": "Area of rectangular hole = 15 × 15 = 225 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Shaded area = 380 - 182 = 198 cm²",
+          "description": "Shaded area = 380 - 225 = 155 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "198 cm² oe",
+          "description": "155 cm² oe",
           "marks": 1
         }
       ],
@@ -796,8 +796,8 @@
         "params": {
           "outer_w": 19,
           "outer_h": 20,
-          "inner_w": 14,
-          "inner_h": 13,
+          "inner_w": 15,
+          "inner_h": 15,
           "notch": "center",
           "shade_frame": true,
           "outer_labels": [
@@ -805,8 +805,8 @@
             "20 cm"
           ],
           "inner_labels": [
-            "14 cm",
-            "13 cm"
+            "15 cm",
+            "15 cm"
           ]
         }
       },

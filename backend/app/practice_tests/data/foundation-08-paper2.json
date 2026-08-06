@@ -633,7 +633,7 @@
     },
     {
       "topic_id": "ratio_difference",
-      "prompt": "a : b = 3 : 6. b - a = 30. Find a and b, and their total.",
+      "prompt": "a : b = 3 : 6.\nb - a = 30.\nFind a and b, and their total.",
       "solution_steps": [
         "Difference in parts = 6 - 3 = 3 parts",
         "Value of one part = 30 ÷ 3 = 10",
@@ -674,28 +674,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "find_percentage_change",
-      "prompt": "The price of an item changes from £400 to £320. Find the percentage decrease.",
+      "topic_id": "percentage_change",
+      "prompt": "Increase 420 by 25%.",
       "solution_steps": [
-        "Find the difference between the two values: £320 and £400 differ by £80",
-        "Divide by the ORIGINAL value and convert to a percentage: £80 ÷ £400 × 100 = 20%"
+        "Convert 25% to a multiplier: 1.25",
+        "Multiply: 420 × 1.25 = 525"
       ],
-      "final_answer": "20% decrease",
+      "final_answer": "525",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the difference between the two values: £320 and £400 differ by £80",
+          "description": "Convert 25% to a multiplier: 1.25",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide by the ORIGINAL value and convert to a percentage: £80 ÷ £400 × 100 = 20%",
+          "description": "Multiply: 420 × 1.25 = 525",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "20% decrease oe",
+          "description": "525 oe",
           "marks": 1
         }
       ],

@@ -671,28 +671,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "compound_percentage_foundation",
-      "prompt": "A price of £400 decreases by 25%, then decreases by 20%. Find the final price.",
+      "topic_id": "simple_interest",
+      "prompt": "£3000 is invested at a simple interest rate of 6% per year for 1 years. Find the interest earned.",
       "solution_steps": [
-        "After the first change: 400 × 0.75 = 300",
-        "After the second change: 300 × 0.80 = 240"
+        "Simple interest formula: I = P × r × t ÷ 100",
+        "I = 3000 × 6 × 1 ÷ 100 = £180"
       ],
-      "final_answer": "£240",
+      "final_answer": "£180",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first change: 400 × 0.75 = 300",
+          "description": "Simple interest formula: I = P × r × t ÷ 100",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "After the second change: 300 × 0.80 = 240",
+          "description": "I = 3000 × 6 × 1 ÷ 100 = £180",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£240 oe",
+          "description": "£180 oe",
           "marks": 1
         }
       ],
@@ -729,28 +729,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_find_missing_share",
-      "prompt": "p : q = 2 : 3. q = 12. What is the value of p?",
+      "topic_id": "ratio_share_three_part_foundation",
+      "prompt": "Share 162 in the ratio 7:7:4.",
       "solution_steps": [
-        "Value of one part = 12 ÷ 3 = 4",
-        "p = 2 × 4 = 8"
+        "Total parts = 7 + 7 + 4 = 18",
+        "Value of one part = 162 ÷ 18 = 9",
+        "Share 1 = 7 × 9 = 63",
+        "Share 2 = 7 × 9 = 63",
+        "Share 3 = 4 × 9 = 36"
       ],
-      "final_answer": "8",
-      "marks": 3,
+      "final_answer": "63 : 63 : 36",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Value of one part = 12 ÷ 3 = 4",
+          "description": "Total parts = 7 + 7 + 4 = 18",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "p = 2 × 4 = 8",
+          "description": "Value of one part = 162 ÷ 18 = 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 1 = 7 × 9 = 63",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 2 = 7 × 9 = 63 Share 3 = 4 × 9 = 36",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8 oe",
+          "description": "63 : 63 : 36 oe",
           "marks": 1
         }
       ],
@@ -787,28 +800,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simple_interest",
-      "prompt": "£3000 is invested at a simple interest rate of 6% per year for 1 years. Find the interest earned.",
+      "topic_id": "best_buys",
+      "prompt": "A shop sells breakfast cereal in different sizes: A: £13.92 for 600g; B: £18.60 for 750g; C: £8.84 for 650g. Which option is the better value for money? Show your working.",
       "solution_steps": [
-        "Simple interest formula: I = P × r × t ÷ 100",
-        "I = 3000 × 6 × 1 ÷ 100 = £180"
+        "Work out the price per 100g for each option:",
+        "A: £13.92 ÷ 600 × 100 = 232.00p per 100g",
+        "B: £18.60 ÷ 750 × 100 = 248.00p per 100g",
+        "C: £8.84 ÷ 650 × 100 = 136.00p per 100g",
+        "The lowest price per 100g is C at 136.00p per 100g, so C is the best value."
       ],
-      "final_answer": "£180",
-      "marks": 3,
+      "final_answer": "C (£8.84 for 650g)",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Simple interest formula: I = P × r × t ÷ 100",
+          "description": "Work out the price per 100g for each option:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "I = 3000 × 6 × 1 ÷ 100 = £180",
+          "description": "A: £13.92 ÷ 600 × 100 = 232.00p per 100g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B: £18.60 ÷ 750 × 100 = 248.00p per 100g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "C: £8.84 ÷ 650 × 100 = 136.00p per 100g The lowest price per 100g is C at 136.00p per 100g, so C is the best value.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£180 oe",
+          "description": "C (£8.84 for 650g) oe",
           "marks": 1
         }
       ],
@@ -846,7 +872,9 @@
         "params": {
           "interior1_label": "46°",
           "interior2_label": "32°",
-          "exterior_label": "x"
+          "exterior_label": "x",
+          "interior1_value": 46,
+          "shape_variant": 1
         }
       },
       "solution_diagram": null
@@ -882,7 +910,9 @@
         "params": {
           "known_label": "130°",
           "unknown_label": "x",
-          "relation": "corresponding"
+          "relation": "corresponding",
+          "known_value": 130,
+          "x_frac": 0.32
         }
       },
       "solution_diagram": null
@@ -1216,70 +1246,73 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "set_notation_foundation",
-      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, A = {2, 4, 6, 10}, B = {2, 3, 8}. List the elements that are in A but not in B.",
+      "topic_id": "congruent_triangle_proof_foundation",
+      "prompt": "ABCD is a parallelogram with AB parallel to DC. Its diagonals AC and BD cross at O. Which congruence criterion proves that the two triangles are congruent? A) RHS  B) ASA  C) SSS  D) SAS",
       "solution_steps": [
-        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
-        "A = {2, 4, 6, 10}",
-        "B = {2, 3, 8}",
-        "Check each element of ξ in turn to see whether it are in A but not in B.",
-        "Elements that are in A but not in B: {4, 6, 10}"
+        "angle OAB = angle OCD (alternate angles, AB parallel to DC)",
+        "AB = CD (opposite sides of a parallelogram)",
+        "angle OBA = angle ODC (alternate angles, AB parallel to DC)",
+        "These facts match the Angle-Side-Angle (ASA) congruence criterion."
       ],
-      "final_answer": "{4, 6, 10}",
-      "marks": 5,
+      "final_answer": "B) ASA",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A = {2, 4, 6, 10}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "B = {2, 3, 8}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Check each element of ξ in turn to see whether it are in A but not in B. Elements that are in A but not in B: {4, 6, 10}",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "{4, 6, 10} oe",
+          "code": "B1",
+          "description": "B) ASA (selecting the correct option)",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "venn_diagram",
+        "kind": "two_triangle_congruence",
         "params": {
-          "labels": [
+          "labels_1": [
             "A",
-            "B"
+            "B",
+            "O"
           ],
-          "universal_label": "ξ"
+          "labels_2": [
+            "C",
+            "D",
+            "O"
+          ],
+          "ticks_1": [
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "ticks_2": [
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "arcs_1": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "arcs_2": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ]
         }
       },
-      "solution_diagram": {
-        "kind": "venn_diagram",
-        "params": {
-          "labels": [
-            "A",
-            "B"
-          ],
-          "universal_label": "ξ",
-          "region_text": {
-            "a_only": "4, 6, 10",
-            "b_only": "3, 8",
-            "both": "2",
-            "neither": "1, 5, 7, 9"
-          }
-        }
-      }
+      "solution_diagram": null
     }
   ]
 }

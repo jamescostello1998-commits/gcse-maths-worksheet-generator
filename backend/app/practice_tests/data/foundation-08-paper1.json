@@ -416,28 +416,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "prime_factors_foundation",
-      "prompt": "Write 84 as a product of its prime factors.",
+      "topic_id": "recurring_decimal_single_digit",
+      "prompt": "Show that \\recur{0.}{5} can be written as 5/9.",
       "solution_steps": [
-        "Divide 84 repeatedly by the smallest prime that fits: 2 × 2 × 3 × 7",
-        "84 = 2 × 2 × 3 × 7"
+        "Let x = \\recur{0.}{5}, so 10x = 5.555... (only one digit repeats, so multiply by 10 to shift it one place)",
+        "Subtract: 10x - x = 5 - 0, so 9x = 5",
+        "x = 5/9 = 5/9"
       ],
-      "final_answer": "2 × 2 × 3 × 7",
-      "marks": 3,
+      "final_answer": "5/9",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide 84 repeatedly by the smallest prime that fits: 2 × 2 × 3 × 7",
+          "description": "Let x = \\recur{0.}{5}, so 10x = 5.555... (only one digit repeats, so multiply by 10 to shift it one place)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "84 = 2 × 2 × 3 × 7",
+          "description": "Subtract: 10x - x = 5 - 0, so 9x = 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 5/9 = 5/9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2 × 2 × 3 × 7 oe",
+          "description": "5/9 oe",
           "marks": 1
         }
       ],
@@ -581,28 +587,28 @@
       }
     },
     {
-      "topic_id": "direct_proportion",
-      "prompt": "If £8 exchanges for $13.84, how much is £3 worth in dollars ($)?",
+      "topic_id": "direct_proportion_noncalculator",
+      "prompt": "If a recipe for 15 people uses 30g of flour, how much flour is needed for 5 people?",
       "solution_steps": [
-        "Unit value = $13.84 ÷ 8 = $1.73",
-        "Answer = $1.73 × 3 = $5.19"
+        "Unit value = 30g ÷ 15 = 2g",
+        "Answer = 2g × 5 = 10g"
       ],
-      "final_answer": "$5.19",
+      "final_answer": "10g",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Unit value = $13.84 ÷ 8 = $1.73",
+          "description": "Unit value = 30g ÷ 15 = 2g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer = $1.73 × 3 = $5.19",
+          "description": "Answer = 2g × 5 = 10g",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "$5.19 oe",
+          "description": "10g oe",
           "marks": 1
         }
       ],
@@ -639,34 +645,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simple_interest",
-      "prompt": "£700 is invested at a simple interest rate of 6% per year for 1 years. Find the total amount in the account after 1 years.",
+      "topic_id": "best_buys",
+      "prompt": "A shop sells pasta in different sizes: A: £8.88 for 600g; B: £17.60 for 800g; C: £2.86 for 650g. Which option is the better value for money? Show your working.",
       "solution_steps": [
-        "Simple interest formula: I = P × r × t ÷ 100",
-        "I = 700 × 6 × 1 ÷ 100 = £42",
-        "Total in the account = P + I = £700 + £42 = £742"
+        "Work out the price per 100g for each option:",
+        "A: £8.88 ÷ 600 × 100 = 148.00p per 100g",
+        "B: £17.60 ÷ 800 × 100 = 220.00p per 100g",
+        "C: £2.86 ÷ 650 × 100 = 44.00p per 100g",
+        "The lowest price per 100g is C at 44.00p per 100g, so C is the best value."
       ],
-      "final_answer": "£742",
-      "marks": 4,
+      "final_answer": "C (£2.86 for 650g)",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Simple interest formula: I = P × r × t ÷ 100",
+          "description": "Work out the price per 100g for each option:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "I = 700 × 6 × 1 ÷ 100 = £42",
+          "description": "A: £8.88 ÷ 600 × 100 = 148.00p per 100g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total in the account = P + I = £700 + £42 = £742",
+          "description": "B: £17.60 ÷ 800 × 100 = 220.00p per 100g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "C: £2.86 ÷ 650 × 100 = 44.00p per 100g The lowest price per 100g is C at 44.00p per 100g, so C is the best value.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£742 oe",
+          "description": "C (£2.86 for 650g) oe",
           "marks": 1
         }
       ],
@@ -703,40 +716,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_two_part",
-      "prompt": "Share 238 in the ratio 7:7.",
+      "topic_id": "ratio_find_missing_share",
+      "prompt": "p : q = 1 : 4. q = 76. What is the value of p?",
       "solution_steps": [
-        "Total parts = 7 + 7 = 14",
-        "Value of one part = 238 ÷ 14 = 17",
-        "Share 1 = 7 × 17 = 119",
-        "Share 2 = 7 × 17 = 119"
+        "Value of one part = 76 ÷ 4 = 19",
+        "p = 1 × 19 = 19"
       ],
-      "final_answer": "119 : 119",
-      "marks": 5,
+      "final_answer": "19",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 7 + 7 = 14",
+          "description": "Value of one part = 76 ÷ 4 = 19",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 238 ÷ 14 = 17",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 7 × 17 = 119",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 7 × 17 = 119",
+          "description": "p = 1 × 19 = 19",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "119 : 119 oe",
+          "description": "19 oe",
           "marks": 1
         }
       ],

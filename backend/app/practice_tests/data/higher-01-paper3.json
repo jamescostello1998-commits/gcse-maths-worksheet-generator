@@ -540,7 +540,7 @@
     },
     {
       "topic_id": "kinematics_suvat",
-      "prompt": "An object starts with a velocity of 10 m/s and travels a displacement of 9 m in 9 s. Find its acceleration.",
+      "prompt": "An object starts with a velocity of 10 m/s and travels a displacement of 9 m in 9 s. Find its acceleration (a).",
       "solution_steps": [
         "This question gives three of s, u, a and t and asks for another, so use s = ut + (1/2)at^2, the equation linking exactly those four (note: t is never the unknown here, since solving this equation for t needs the quadratic formula).",
         "s = ut + (1/2)at^2",
@@ -762,10 +762,10 @@
       "prompt": "Find the shaded area.",
       "solution_steps": [
         "Area of large rectangle = 25 × 14 = 350 cm²",
-        "Area of rectangular hole = 8 × 3 = 24 cm²",
-        "Shaded area = 350 - 24 = 326 cm²"
+        "Area of rectangular hole = 9 × 4 = 36 cm²",
+        "Shaded area = 350 - 36 = 314 cm²"
       ],
-      "final_answer": "326 cm²",
+      "final_answer": "314 cm²",
       "marks": 4,
       "mark_scheme": [
         {
@@ -775,17 +775,17 @@
         },
         {
           "code": "M1",
-          "description": "Area of rectangular hole = 8 × 3 = 24 cm²",
+          "description": "Area of rectangular hole = 9 × 4 = 36 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Shaded area = 350 - 24 = 326 cm²",
+          "description": "Shaded area = 350 - 36 = 314 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "326 cm² oe",
+          "description": "314 cm² oe",
           "marks": 1
         }
       ],
@@ -794,8 +794,8 @@
         "params": {
           "outer_w": 25,
           "outer_h": 14,
-          "inner_w": 8,
-          "inner_h": 3,
+          "inner_w": 9,
+          "inner_h": 4,
           "notch": "center",
           "shade_frame": true,
           "outer_labels": [
@@ -803,8 +803,8 @@
             "14 cm"
           ],
           "inner_labels": [
-            "8 cm",
-            "3 cm"
+            "9 cm",
+            "4 cm"
           ]
         }
       },

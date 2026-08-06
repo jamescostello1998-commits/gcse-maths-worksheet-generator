@@ -697,28 +697,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inverse_proportion",
-      "prompt": "It takes 3 pipes 24 hours to fill a tank. Working at the same rate, how long would it take 6 pipes?",
+      "topic_id": "inverse_proportion_noncalculator",
+      "prompt": "It takes 5 pipes 24 hours to fill a tank. Working at the same rate, how long would it take 6 pipes?",
       "solution_steps": [
-        "Constant = 3 × 24 = 72",
-        "Time for 6 pipes = 72 ÷ 6 = 12"
+        "Constant = 5 × 24 = 120",
+        "Time for 6 pipes = 120 ÷ 6 = 20"
       ],
-      "final_answer": "12 hours",
+      "final_answer": "20 hours",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Constant = 3 × 24 = 72",
+          "description": "Constant = 5 × 24 = 120",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Time for 6 pipes = 72 ÷ 6 = 12",
+          "description": "Time for 6 pipes = 120 ÷ 6 = 20",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 hours oe",
+          "description": "20 hours oe",
           "marks": 1
         }
       ],
@@ -1005,38 +1005,31 @@
     },
     {
       "topic_id": "pythagoras_ladder_context_foundation",
-      "prompt": "A ladder of length 82 m leans against a vertical wall with its base 18 m from the wall. Find the height the ladder reaches up the wall.",
+      "prompt": "A ladder of length 34 m leans against a vertical wall with its base 16 m from the wall. Find the height the ladder reaches up the wall.",
       "solution_steps": [
-        "height² = ladder² - base² = 82² - 18² = 6724 - 324 = 6400",
-        "height = √6400 = 80 m"
+        "height² = ladder² - base² = 34² - 16² = 1156 - 256 = 900",
+        "height = √900 = 30 m"
       ],
-      "final_answer": "80 m",
+      "final_answer": "30 m",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "height² = ladder² - base² = 82² - 18² = 6724 - 324 = 6400",
+          "description": "height² = ladder² - base² = 34² - 16² = 1156 - 256 = 900",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "height = √6400 = 80 m",
+          "description": "height = √900 = 30 m",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "80 m oe",
+          "description": "30 m oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "right_triangle",
-        "params": {
-          "leg1_label": "18 m",
-          "leg2_label": "x",
-          "hyp_label": "82 m"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {

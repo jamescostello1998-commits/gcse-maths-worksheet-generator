@@ -588,40 +588,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "best_buys",
-      "prompt": "A shop sells orange juice in different sizes: A: £2.60 for 500ml; B: £18.30 for 750ml. Which option is the better value for money? Show your working.",
+      "topic_id": "best_buys_noncalculator",
+      "prompt": "A shop sells rice in different sizes: A: £11.20 for 700g; B: £1.80 for 600g; C: £0.50 for 100g. Which option is the better value for money? Show your working.",
       "solution_steps": [
-        "Work out the price per 100ml for each option:",
-        "A: £2.60 ÷ 500 × 100 = 52.00p per 100ml",
-        "B: £18.30 ÷ 750 × 100 = 244.00p per 100ml",
-        "The lowest price per 100ml is A at 52.00p per 100ml, so A is the best value."
+        "Work out the price per 100g for each option:",
+        "A: £11.20 ÷ 700 × 100 = 160p per 100g",
+        "B: £1.80 ÷ 600 × 100 = 30p per 100g",
+        "C: £0.50 ÷ 100 × 100 = 50p per 100g",
+        "The lowest price per 100g is B at 30p per 100g, so B is the best value."
       ],
-      "final_answer": "A (£2.60 for 500ml)",
+      "final_answer": "B (£1.80 for 600g)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Work out the price per 100ml for each option:",
+          "description": "Work out the price per 100g for each option:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A: £2.60 ÷ 500 × 100 = 52.00p per 100ml",
+          "description": "A: £11.20 ÷ 700 × 100 = 160p per 100g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "B: £18.30 ÷ 750 × 100 = 244.00p per 100ml",
+          "description": "B: £1.80 ÷ 600 × 100 = 30p per 100g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The lowest price per 100ml is A at 52.00p per 100ml, so A is the best value.",
+          "description": "C: £0.50 ÷ 100 × 100 = 50p per 100g The lowest price per 100g is B at 30p per 100g, so B is the best value.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A (£2.60 for 500ml) oe",
+          "description": "B (£1.80 for 600g) oe",
           "marks": 1
         }
       ],
@@ -629,28 +630,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "find_percentage_change",
-      "prompt": "The price of an item changes from £320 to £352. Find the percentage increase.",
+      "topic_id": "reverse_percentage_foundation",
+      "prompt": "After a 10% decrease, an item costs £72. Find the original price.",
       "solution_steps": [
-        "Find the difference between the two values: £352 and £320 differ by £32",
-        "Divide by the ORIGINAL value and convert to a percentage: £32 ÷ £320 × 100 = 10%"
+        "Convert 10% to a multiplier: 0.90 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 72 ÷ 0.90 = 80"
       ],
-      "final_answer": "10% increase",
+      "final_answer": "£80",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the difference between the two values: £352 and £320 differ by £32",
+          "description": "Convert 10% to a multiplier: 0.90 (original × multiplier = new value)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide by the ORIGINAL value and convert to a percentage: £32 ÷ £320 × 100 = 10%",
+          "description": "Divide the new value by the multiplier: 72 ÷ 0.90 = 80",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10% increase oe",
+          "description": "£80 oe",
           "marks": 1
         }
       ],
@@ -658,78 +659,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_shape_similar_foundation",
-      "prompt": "Shape A and Shape B are similar. Find the length of side x.",
+      "topic_id": "direct_proportion",
+      "prompt": "If 12 notebooks cost £57.96, how much would 15 notebooks cost?",
       "solution_steps": [
-        "Scale factor = 10 ÷ 15 = 2/3",
-        "Corresponding length = 18 × 2/3 = 12"
+        "Unit value = £57.96 ÷ 12 = £4.83",
+        "Answer = £4.83 × 15 = £72.45"
       ],
-      "final_answer": "12 cm",
+      "final_answer": "£72.45",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Scale factor = 10 ÷ 15 = 2/3",
+          "description": "Unit value = £57.96 ÷ 12 = £4.83",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Corresponding length = 18 × 2/3 = 12",
+          "description": "Answer = £4.83 × 15 = £72.45",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "two_similar_rectangles",
-        "params": {
-          "a_width_label": "15 cm",
-          "a_height_label": "18 cm",
-          "b_width_label": "10 cm",
-          "b_height_label": "x"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_share_three_part_foundation",
-      "prompt": "Share 66 in the ratio 5:8:9.",
-      "solution_steps": [
-        "Total parts = 5 + 8 + 9 = 22",
-        "Value of one part = 66 ÷ 22 = 3",
-        "Share 1 = 5 × 3 = 15",
-        "Share 2 = 8 × 3 = 24",
-        "Share 3 = 9 × 3 = 27"
-      ],
-      "final_answer": "15 : 24 : 27",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total parts = 5 + 8 + 9 = 22",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Value of one part = 66 ÷ 22 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 5 × 3 = 15",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 8 × 3 = 24 Share 3 = 9 × 3 = 27",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "15 : 24 : 27 oe",
+          "description": "£72.45 oe",
           "marks": 1
         }
       ],
@@ -737,56 +688,61 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_subtract_compound_foundation",
-      "prompt": "Find the shaded area.",
+      "topic_id": "ratio_1_to_n",
+      "prompt": "Write the ratio 3:9 in the form \\plain{n}:1.",
       "solution_steps": [
-        "Area of large rectangle = 10 × 7 = 70 cm²",
-        "Area of rectangular hole = 7 × 5 = 35 cm²",
-        "Shaded area = 70 - 35 = 35 cm²"
+        "Divide both parts of the ratio by 9 (the second part) so the second part becomes 1.",
+        "3 ÷ 9 ≈ 0.33, 9 ÷ 9 = 1"
       ],
-      "final_answer": "35 cm²",
-      "marks": 4,
+      "final_answer": "0.33 : 1 (to 2 d.p.)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area of large rectangle = 10 × 7 = 70 cm²",
+          "description": "Divide both parts of the ratio by 9 (the second part) so the second part becomes 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Area of rectangular hole = 7 × 5 = 35 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Shaded area = 70 - 35 = 35 cm²",
+          "description": "3 ÷ 9 ≈ 0.33, 9 ÷ 9 = 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "35 cm² oe",
+          "description": "0.33 : 1 (to 2 d.p.) oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "l_shape",
-        "params": {
-          "outer_w": 10,
-          "outer_h": 7,
-          "inner_w": 7,
-          "inner_h": 5,
-          "notch": "center",
-          "shade_frame": true,
-          "outer_labels": [
-            "10 cm",
-            "7 cm"
-          ],
-          "inner_labels": [
-            "7 cm",
-            "5 cm"
-          ]
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "percentage_change",
+      "prompt": "Decrease 440 by 25%.",
+      "solution_steps": [
+        "Convert 25% to a multiplier: 0.75",
+        "Multiply: 440 × 0.75 = 330"
+      ],
+      "final_answer": "330",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 25% to a multiplier: 0.75",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply: 440 × 0.75 = 330",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "330 oe",
+          "marks": 1
         }
-      },
+      ],
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -900,28 +856,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "symmetry_rotational",
-      "prompt": "The diagram shows a parallelogram. State the order of rotational symmetry.",
+      "topic_id": "symmetry_lines",
+      "prompt": "The diagram shows an isosceles triangle. How many lines of symmetry does it have?",
       "solution_steps": [
-        "Rotating the parallelogram about its centre, it looks exactly the same 2 times during a full 360° turn.",
-        "So the order of rotational symmetry is 2."
+        "An isosceles triangle has 1 line of symmetry.",
+        "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram."
       ],
-      "final_answer": "order 2",
+      "final_answer": "1 line of symmetry",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rotating the parallelogram about its centre, it looks exactly the same 2 times during a full 360° turn.",
+          "description": "An isosceles triangle has 1 line of symmetry.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "So the order of rotational symmetry is 2.",
+          "description": "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "order 2 oe",
+          "description": "1 line of symmetry oe",
           "marks": 1
         }
       ],
@@ -934,16 +890,12 @@
               0
             ],
             [
-              5,
+              6,
               0
             ],
             [
-              7,
-              3
-            ],
-            [
-              2,
-              3
+              3,
+              4
             ]
           ],
           "blank": true
@@ -958,89 +910,66 @@
               0
             ],
             [
-              5,
+              6,
               0
             ],
             [
-              7,
-              3
-            ],
-            [
-              2,
-              3
+              3,
+              4
             ]
           ],
-          "rotation_centre": [
-            3.5,
-            1.5
-          ],
-          "rotation_order": 2
+          "symmetry_lines": [
+            {
+              "p1": [
+                3,
+                -1
+              ],
+              "p2": [
+                3,
+                5
+              ]
+            }
+          ]
         }
       }
     },
     {
-      "topic_id": "set_notation_foundation",
-      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9}, A = {3, 5, 6}, B = {2, 3, 5, 7, 8}. List the elements that are in A but not in B.",
+      "topic_id": "nets_3d_shapes",
+      "prompt": "How many sectors does the net of a cone contain?",
       "solution_steps": [
-        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9}",
-        "A = {3, 5, 6}",
-        "B = {2, 3, 5, 7, 8}",
-        "Check each element of ξ in turn to see whether it are in A but not in B.",
-        "Elements that are in A but not in B: {6}"
+        "Imagine unfolding a cone flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
+        "A cone's net is made up of: 1 circle and 1 sector (the curved surface unrolled flat).",
+        "So the answer is: 1."
       ],
-      "final_answer": "{6}",
-      "marks": 5,
+      "final_answer": "1",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9}",
+          "description": "Imagine unfolding a cone flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A = {3, 5, 6}",
+          "description": "A cone's net is made up of: 1 circle and 1 sector (the curved surface unrolled flat).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "B = {2, 3, 5, 7, 8}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Check each element of ξ in turn to see whether it are in A but not in B. Elements that are in A but not in B: {6}",
+          "description": "So the answer is: 1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "{6} oe",
+          "description": "1 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "venn_diagram",
-        "params": {
-          "labels": [
-            "A",
-            "B"
-          ],
-          "universal_label": "ξ"
-        }
-      },
+      "diagram": null,
       "solution_diagram": {
-        "kind": "venn_diagram",
+        "kind": "net",
         "params": {
-          "labels": [
-            "A",
-            "B"
-          ],
-          "universal_label": "ξ",
-          "region_text": {
-            "a_only": "6",
-            "b_only": "2, 7, 8",
-            "both": "3, 5",
-            "neither": "1, 4, 9"
-          }
+          "shape": "cone"
         }
       }
     },
@@ -1110,76 +1039,155 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof_foundation",
-      "prompt": "Triangles ABC and ABD are both right-angled (at C and at D respectively) and share hypotenuse AB, with AC = AD. Which congruence criterion proves that the two triangles are congruent? A) SAS  B) SSS  C) RHS  D) ASA",
+      "topic_id": "sample_space_diagrams",
+      "prompt": "Two fair spinners, one numbered 1 to 4 and the other numbered 1 to 6, are spun together. Complete the sample space diagram showing the product of the two spinners, and use it to find the probability that the product is 9.",
       "solution_steps": [
-        "angle ACB = angle ADB = 90° (given)",
-        "AB is the common hypotenuse",
-        "AC = AD (given)",
-        "These facts match the Right angle-Hypotenuse-Side (RHS) congruence criterion."
+        "The sample space diagram shows every possible product of the two spinners.",
+        "Number of favourable outcomes (the product is 9) = 1",
+        "Total number of equally likely outcomes = 24",
+        "P(the product is 9) = 1/24"
       ],
-      "final_answer": "C) RHS",
-      "marks": 1,
+      "final_answer": "1/24",
+      "marks": 5,
       "mark_scheme": [
         {
-          "code": "B1",
-          "description": "C) RHS (selecting the correct option)",
+          "code": "M1",
+          "description": "The sample space diagram shows every possible product of the two spinners.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Number of favourable outcomes (the product is 9) = 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total number of equally likely outcomes = 24",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(the product is 9) = 1/24",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/24 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "two_triangle_congruence",
+        "kind": "sample_space_diagram",
         "params": {
-          "labels_1": [
-            "A",
-            "C",
-            "B"
+          "row_values": [
+            1,
+            2,
+            3,
+            4
           ],
-          "labels_2": [
-            "A",
-            "D",
-            "B"
+          "col_values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
           ],
-          "ticks_1": [
+          "cells": [
             [
-              0,
-              2,
-              1
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
             ],
             [
-              0,
-              1,
-              2
-            ]
-          ],
-          "ticks_2": [
-            [
-              0,
-              2,
-              1
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
             ],
             [
-              0,
-              1,
-              2
-            ]
-          ],
-          "arcs_1": [
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
             [
-              1,
-              1
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
             ]
-          ],
-          "arcs_2": [
-            [
-              1,
-              1
-            ]
-          ],
-          "note": "AB is the common hypotenuse."
+          ]
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "sample_space_diagram",
+        "params": {
+          "row_values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "col_values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "cells": [
+            [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ],
+            [
+              "2",
+              "4",
+              "6",
+              "8",
+              "10",
+              "12"
+            ],
+            [
+              "3",
+              "6",
+              "9",
+              "12",
+              "15",
+              "18"
+            ],
+            [
+              "4",
+              "8",
+              "12",
+              "16",
+              "20",
+              "24"
+            ]
+          ],
+          "highlight": [
+            [
+              2,
+              2
+            ]
+          ]
+        }
+      }
     }
   ]
 }

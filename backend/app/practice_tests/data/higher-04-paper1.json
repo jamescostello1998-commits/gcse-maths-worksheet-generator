@@ -260,7 +260,7 @@
     },
     {
       "topic_id": "kinematics_suvat",
-      "prompt": "An object starts with a velocity of 4 m/s and has a constant acceleration of 4 m/s^2 over a displacement of 121 m. Find its final velocity. Give your answer correct to 1 decimal place.",
+      "prompt": "An object starts with a velocity of 4 m/s and has a constant acceleration of 4 m/s^2 over a displacement of 121 m. Find its final velocity (v). Give your answer correct to 1 decimal place.",
       "solution_steps": [
         "This question gives three of v, u, a and s and asks for the fourth, so use v^2 = u^2 + 2as, the equation linking exactly those four (note: no t appears here).",
         "v^2 = u^2 + 2as",
@@ -530,7 +530,7 @@
     },
     {
       "topic_id": "ratio_difference_higher",
-      "prompt": "a : b : c = 7 : 9 : 1. b - c = 120. Find a, b and c.",
+      "prompt": "a : b : c = 7 : 9 : 1.\nb - c = 120.\nFind a, b and c.",
       "solution_steps": [
         "Difference in parts = 9 - 1 = 8 parts",
         "Value of one part = 120 ÷ 8 = 15",
@@ -766,7 +766,9 @@
         "params": {
           "known_label": "140°",
           "unknown_label": "(3x - 17)°",
-          "relation": "co_interior"
+          "relation": "co_interior",
+          "known_value": 140,
+          "x_frac": 0.32
         }
       },
       "solution_diagram": null

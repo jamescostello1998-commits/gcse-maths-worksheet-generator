@@ -461,7 +461,7 @@
     },
     {
       "topic_id": "kinematics_suvat",
-      "prompt": "An object starts with a velocity of 15 m/s and has a constant acceleration of -5 m/s^2 for 1 s. Find the total displacement.",
+      "prompt": "An object starts with a velocity of 15 m/s and has a constant acceleration of -5 m/s^2 for 1 s. Find the total displacement (s).",
       "solution_steps": [
         "This question gives three of s, u, a and t and asks for another, so use s = ut + (1/2)at^2, the equation linking exactly those four (note: t is never the unknown here, since solving this equation for t needs the quadratic formula).",
         "s = ut + (1/2)at^2",

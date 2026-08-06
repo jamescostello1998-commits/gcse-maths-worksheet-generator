@@ -818,10 +818,10 @@
       "prompt": "Find the shaded area.",
       "solution_steps": [
         "Area of large rectangle = 17 × 25 = 425 cm²",
-        "Area of rectangular hole = 7 × 19 = 133 cm²",
-        "Shaded area = 425 - 133 = 292 cm²"
+        "Area of rectangular hole = 8 × 20 = 160 cm²",
+        "Shaded area = 425 - 160 = 265 cm²"
       ],
-      "final_answer": "292 cm²",
+      "final_answer": "265 cm²",
       "marks": 4,
       "mark_scheme": [
         {
@@ -831,17 +831,17 @@
         },
         {
           "code": "M1",
-          "description": "Area of rectangular hole = 7 × 19 = 133 cm²",
+          "description": "Area of rectangular hole = 8 × 20 = 160 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Shaded area = 425 - 133 = 292 cm²",
+          "description": "Shaded area = 425 - 160 = 265 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "292 cm² oe",
+          "description": "265 cm² oe",
           "marks": 1
         }
       ],
@@ -850,8 +850,8 @@
         "params": {
           "outer_w": 17,
           "outer_h": 25,
-          "inner_w": 7,
-          "inner_h": 19,
+          "inner_w": 8,
+          "inner_h": 20,
           "notch": "center",
           "shade_frame": true,
           "outer_labels": [
@@ -859,8 +859,8 @@
             "25 cm"
           ],
           "inner_labels": [
-            "7 cm",
-            "19 cm"
+            "8 cm",
+            "20 cm"
           ]
         }
       },

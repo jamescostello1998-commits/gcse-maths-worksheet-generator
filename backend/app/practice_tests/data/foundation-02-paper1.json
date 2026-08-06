@@ -610,28 +610,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "direct_proportion",
-      "prompt": "If 2 pencils cost £8.02, how much would 14 pencils cost?",
+      "topic_id": "direct_proportion_noncalculator",
+      "prompt": "If 6 rulers cost 96p, how much would 12 rulers cost?",
       "solution_steps": [
-        "Unit value = £8.02 ÷ 2 = £4.01",
-        "Answer = £4.01 × 14 = £56.14"
+        "Unit value = 96p ÷ 6 = 16p",
+        "Answer = 16p × 12 = 192p"
       ],
-      "final_answer": "£56.14",
+      "final_answer": "192p",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Unit value = £8.02 ÷ 2 = £4.01",
+          "description": "Unit value = 96p ÷ 6 = 16p",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer = £4.01 × 14 = £56.14",
+          "description": "Answer = 16p × 12 = 192p",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£56.14 oe",
+          "description": "192p oe",
           "marks": 1
         }
       ],
@@ -639,28 +639,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "reverse_percentage_foundation",
-      "prompt": "After a 20% decrease, an item costs £144. Find the original price.",
+      "topic_id": "compound_percentage_foundation",
+      "prompt": "A price of £100 decreases by 25%, then decreases by 10%. Find the final price.",
       "solution_steps": [
-        "Convert 20% to a multiplier: 0.80 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 144 ÷ 0.80 = 180"
+        "After the first change: 100 × 0.75 = 75",
+        "After the second change: 75 × 0.90 = 67.50"
       ],
-      "final_answer": "£180",
+      "final_answer": "£67.50",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 20% to a multiplier: 0.80 (original × multiplier = new value)",
+          "description": "After the first change: 100 × 0.75 = 75",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide the new value by the multiplier: 144 ÷ 0.80 = 180",
+          "description": "After the second change: 75 × 0.90 = 67.50",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£180 oe",
+          "description": "£67.50 oe",
           "marks": 1
         }
       ],
@@ -668,69 +668,77 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_difference",
-      "prompt": "a : b = 6 : 8. b - a = 38. Find a and b.",
+      "topic_id": "ratio_shape_similar_foundation",
+      "prompt": "Shape A and Shape B are similar. Find the length of side x.",
       "solution_steps": [
-        "Difference in parts = 8 - 6 = 2 parts",
-        "Value of one part = 38 ÷ 2 = 19",
-        "a = 6 × 19 = 114",
-        "b = 8 × 19 = 152"
+        "Scale factor = 4 ÷ 8 = 1/2",
+        "Corresponding length = 16 × 1/2 = 8"
       ],
-      "final_answer": "a = 114, b = 152",
+      "final_answer": "8 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Scale factor = 4 ÷ 8 = 1/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Corresponding length = 16 × 1/2 = 8",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "8 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "a_width_label": "8 cm",
+          "a_height_label": "16 cm",
+          "b_width_label": "4 cm",
+          "b_height_label": "x"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "best_buys",
+      "prompt": "A shop sells shampoo in different sizes: A: £6.48 for 450ml; B: £14.20 for 500ml. Which option is the better value for money? Show your working.",
+      "solution_steps": [
+        "Work out the price per 100ml for each option:",
+        "A: £6.48 ÷ 450 × 100 = 144.00p per 100ml",
+        "B: £14.20 ÷ 500 × 100 = 284.00p per 100ml",
+        "The lowest price per 100ml is A at 144.00p per 100ml, so A is the best value."
+      ],
+      "final_answer": "A (£6.48 for 450ml)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Difference in parts = 8 - 6 = 2 parts",
+          "description": "Work out the price per 100ml for each option:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 38 ÷ 2 = 19",
+          "description": "A: £6.48 ÷ 450 × 100 = 144.00p per 100ml",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "a = 6 × 19 = 114",
+          "description": "B: £14.20 ÷ 500 × 100 = 284.00p per 100ml",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "b = 8 × 19 = 152",
+          "description": "The lowest price per 100ml is A at 144.00p per 100ml, so A is the best value.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "a = 114, b = 152 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simple_interest",
-      "prompt": "£3700 is invested at a simple interest rate of 5% per year for 3 years. Find the interest earned.",
-      "solution_steps": [
-        "Simple interest formula: I = P × r × t ÷ 100",
-        "I = 3700 × 5 × 3 ÷ 100 = £555"
-      ],
-      "final_answer": "£555",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Simple interest formula: I = P × r × t ÷ 100",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "I = 3700 × 5 × 3 ÷ 100 = £555",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£555 oe",
+          "description": "A (£6.48 for 450ml) oe",
           "marks": 1
         }
       ],
@@ -881,50 +889,45 @@
       "topic_id": "area_composite_rectangles",
       "prompt": "Find the area of this compound shape.",
       "solution_steps": [
-        "Area of full rectangle = 19 × 14 = 266 cm²",
-        "Area of the cut-out corner = 6 × 6 = 36 cm²",
-        "Area of the shape = 266 - 36 = 230 cm²"
+        "Area of the top bar = 20 × 3 = 60 cm²",
+        "Area of the stem = 6 × 8 = 48 cm²",
+        "Total area = 60 + 48 = 108 cm²"
       ],
-      "final_answer": "230 cm²",
+      "final_answer": "108 cm²",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area of full rectangle = 19 × 14 = 266 cm²",
+          "description": "Area of the top bar = 20 × 3 = 60 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Area of the cut-out corner = 6 × 6 = 36 cm²",
+          "description": "Area of the stem = 6 × 8 = 48 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Area of the shape = 266 - 36 = 230 cm²",
+          "description": "Total area = 60 + 48 = 108 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "230 cm² oe",
+          "description": "108 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "l_shape",
+        "kind": "t_shape",
         "params": {
-          "outer_w": 19,
-          "outer_h": 14,
-          "inner_w": 6,
-          "inner_h": 6,
-          "notch": "corner",
-          "outer_labels": [
-            "19 cm",
-            "14 cm"
-          ],
-          "inner_labels": [
-            "6 cm",
-            "6 cm"
-          ]
+          "top_w": 20,
+          "top_h": 3,
+          "stem_w": 6,
+          "stem_h": 8,
+          "top_label": "20 cm",
+          "side_label": "3 cm",
+          "stem_w_label": "6 cm",
+          "stem_h_label": "8 cm"
         }
       },
       "solution_diagram": null

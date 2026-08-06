@@ -622,28 +622,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sdt_mixed",
-      "prompt": "A runner travels 232 miles at an average speed of 58 mph. Find how long the journey takes.",
+      "topic_id": "inverse_proportion_noncalculator",
+      "prompt": "It takes 5 pipes 9 hours to fill a tank. Working at the same rate, how long would it take 3 pipes?",
       "solution_steps": [
-        "time = distance ÷ speed",
-        "time = 232 ÷ 58 = 4 hours"
+        "Constant = 5 × 9 = 45",
+        "Time for 3 pipes = 45 ÷ 3 = 15"
       ],
-      "final_answer": "4 hours",
+      "final_answer": "15 hours",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "time = distance ÷ speed",
+          "description": "Constant = 5 × 9 = 45",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "time = 232 ÷ 58 = 4 hours",
+          "description": "Time for 3 pipes = 45 ÷ 3 = 15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4 hours oe",
+          "description": "15 hours oe",
           "marks": 1
         }
       ],
@@ -709,28 +709,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "direct_proportion",
-      "prompt": "If 7 rulers cost £5.18, how much would 14 rulers cost?",
+      "topic_id": "inverse_proportion",
+      "prompt": "It takes 9 pipes 15 hours to fill a tank. Working at the same rate, how long would it take 3 pipes?",
       "solution_steps": [
-        "Unit value = £5.18 ÷ 7 = £0.74",
-        "Answer = £0.74 × 14 = £10.36"
+        "Constant = 9 × 15 = 135",
+        "Time for 3 pipes = 135 ÷ 3 = 45"
       ],
-      "final_answer": "£10.36",
+      "final_answer": "45 hours",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Unit value = £5.18 ÷ 7 = £0.74",
+          "description": "Constant = 9 × 15 = 135",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer = £0.74 × 14 = £10.36",
+          "description": "Time for 3 pipes = 135 ÷ 3 = 45",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£10.36 oe",
+          "description": "45 hours oe",
           "marks": 1
         }
       ],
@@ -738,41 +738,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_three_part_foundation",
-      "prompt": "Share 168 in the ratio 8:7:9.",
+      "topic_id": "ratio_1_to_n",
+      "prompt": "Write the ratio 1:8 in the form \\plain{n}:1.",
       "solution_steps": [
-        "Total parts = 8 + 7 + 9 = 24",
-        "Value of one part = 168 ÷ 24 = 7",
-        "Share 1 = 8 × 7 = 56",
-        "Share 2 = 7 × 7 = 49",
-        "Share 3 = 9 × 7 = 63"
+        "Divide both parts of the ratio by 8 (the second part) so the second part becomes 1.",
+        "1 ÷ 8 ≈ 0.13, 8 ÷ 8 = 1"
       ],
-      "final_answer": "56 : 49 : 63",
-      "marks": 5,
+      "final_answer": "0.13 : 1 (to 2 d.p.)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 8 + 7 + 9 = 24",
+          "description": "Divide both parts of the ratio by 8 (the second part) so the second part becomes 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 168 ÷ 24 = 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 8 × 7 = 56",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 7 × 7 = 49 Share 3 = 9 × 7 = 63",
+          "description": "1 ÷ 8 ≈ 0.13, 8 ÷ 8 = 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "56 : 49 : 63 oe",
+          "description": "0.13 : 1 (to 2 d.p.) oe",
           "marks": 1
         }
       ],
@@ -1062,26 +1049,137 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "stats_mean",
-      "prompt": "Find the mean of this data set: 18, 7, 8, 9, 23, 22, 1, 8.",
+      "topic_id": "composite_bar_chart",
+      "prompt": "The composite bar chart shows the number of students split by Boys and Girls. Find the grand total across every category and segment.",
       "solution_steps": [
-        "Mean = sum ÷ count = (18 + 7 + 8 + 9 + 23 + 22 + 1 + 8) ÷ 8 = 96 ÷ 8 = 12"
+        "Add up every segment in every bar, category by category.",
+        "Total = 87."
       ],
-      "final_answer": "12",
-      "marks": 2,
+      "final_answer": "87",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Mean = sum ÷ count = (18 + 7 + 8 + 9 + 23 + 22 + 1 + 8) ÷ 8 = 96 ÷ 8 = 12",
+          "description": "Add up every segment in every bar, category by category.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total = 87.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 oe",
+          "description": "87 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "bar_chart",
+        "params": {
+          "categories": [
+            "Mon",
+            "Tue",
+            "Wed",
+            "Thu"
+          ],
+          "series": [
+            [
+              13,
+              3
+            ],
+            [
+              13,
+              4
+            ],
+            [
+              14,
+              15
+            ],
+            [
+              11,
+              14
+            ]
+          ],
+          "series_labels": [
+            "Boys",
+            "Girls"
+          ],
+          "y_label": "Frequency"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "congruent_triangle_proof_foundation",
+      "prompt": "Triangles ABC and ABD are both right-angled (at C and at D respectively) and share hypotenuse AB, with AC = AD. Which congruence criterion proves that the two triangles are congruent? A) ASA  B) SAS  C) RHS  D) SSS",
+      "solution_steps": [
+        "angle ACB = angle ADB = 90° (given)",
+        "AB is the common hypotenuse",
+        "AC = AD (given)",
+        "These facts match the Right angle-Hypotenuse-Side (RHS) congruence criterion."
+      ],
+      "final_answer": "C) RHS",
+      "marks": 1,
+      "mark_scheme": [
+        {
+          "code": "B1",
+          "description": "C) RHS (selecting the correct option)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "two_triangle_congruence",
+        "params": {
+          "labels_1": [
+            "A",
+            "C",
+            "B"
+          ],
+          "labels_2": [
+            "A",
+            "D",
+            "B"
+          ],
+          "ticks_1": [
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              0,
+              1,
+              2
+            ]
+          ],
+          "ticks_2": [
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              0,
+              1,
+              2
+            ]
+          ],
+          "arcs_1": [
+            [
+              1,
+              1
+            ]
+          ],
+          "arcs_2": [
+            [
+              1,
+              1
+            ]
+          ],
+          "note": "AB is the common hypotenuse."
+        }
+      },
       "solution_diagram": null
     }
   ]

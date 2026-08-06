@@ -655,28 +655,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "reverse_percentage_foundation",
-      "prompt": "After a 10% increase, an item costs £44. Find the original price.",
+      "topic_id": "compound_percentage_foundation",
+      "prompt": "A price of £300 increases by 50%, then decreases by 50%. Find the final price.",
       "solution_steps": [
-        "Convert 10% to a multiplier: 1.10 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 44 ÷ 1.10 = 40"
+        "After the first change: 300 × 1.50 = 450",
+        "After the second change: 450 × 0.50 = 225"
       ],
-      "final_answer": "£40",
+      "final_answer": "£225",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 10% to a multiplier: 1.10 (original × multiplier = new value)",
+          "description": "After the first change: 300 × 1.50 = 450",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide the new value by the multiplier: 44 ÷ 1.10 = 40",
+          "description": "After the second change: 450 × 0.50 = 225",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£40 oe",
+          "description": "£225 oe",
           "marks": 1
         }
       ],
@@ -684,28 +684,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "density",
-      "prompt": "A block of alloy has a mass of 6032 kg and a volume of 11 m³. Find its density, correct to 2 decimal places.",
+      "topic_id": "unit_conversions",
+      "prompt": "Convert 315 cm to mm.",
       "solution_steps": [
-        "density = mass ÷ volume",
-        "density = 6032 ÷ 11 = 548.36 kg/m³ (2 d.p.)"
+        "1 cm = 10 mm",
+        "315 cm = 315 × 10 = 3150 mm"
       ],
-      "final_answer": "548.36 kg/m³",
+      "final_answer": "3150 mm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "density = mass ÷ volume",
+          "description": "1 cm = 10 mm",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "density = 6032 ÷ 11 = 548.36 kg/m³ (2 d.p.)",
+          "description": "315 cm = 315 × 10 = 3150 mm",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "548.36 kg/m³ oe",
+          "description": "3150 mm oe",
           "marks": 1
         }
       ],
@@ -895,10 +895,10 @@
       "prompt": "Find the shaded area.",
       "solution_steps": [
         "Area of large rectangle = 11 × 14 = 154 cm²",
-        "Area of rectangular hole = 6 × 3 = 18 cm²",
-        "Shaded area = 154 - 18 = 136 cm²"
+        "Area of rectangular hole = 7 × 7 = 49 cm²",
+        "Shaded area = 154 - 49 = 105 cm²"
       ],
-      "final_answer": "136 cm²",
+      "final_answer": "105 cm²",
       "marks": 4,
       "mark_scheme": [
         {
@@ -908,17 +908,17 @@
         },
         {
           "code": "M1",
-          "description": "Area of rectangular hole = 6 × 3 = 18 cm²",
+          "description": "Area of rectangular hole = 7 × 7 = 49 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Shaded area = 154 - 18 = 136 cm²",
+          "description": "Shaded area = 154 - 49 = 105 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "136 cm² oe",
+          "description": "105 cm² oe",
           "marks": 1
         }
       ],
@@ -927,8 +927,8 @@
         "params": {
           "outer_w": 11,
           "outer_h": 14,
-          "inner_w": 6,
-          "inner_h": 3,
+          "inner_w": 7,
+          "inner_h": 7,
           "notch": "center",
           "shade_frame": true,
           "outer_labels": [
@@ -936,8 +936,8 @@
             "14 cm"
           ],
           "inner_labels": [
-            "6 cm",
-            "3 cm"
+            "7 cm",
+            "7 cm"
           ]
         }
       },

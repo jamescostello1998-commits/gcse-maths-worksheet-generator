@@ -28,7 +28,10 @@ GENERATORS = [
 EXPECTED_DIAGRAM_KINDS = {
     area_perimeter.generate_rectangle: "rectangle",
     area_perimeter.generate_triangle: "triangle_area",
-    area_perimeter.generate_composite_rectangles: "l_shape",
+    # 4 distinct compound-shape branches (2 L orientations + a T-shape + a
+    # "find x" reverse branch, both L variants and the reverse branch use
+    # kind="l_shape") - either diagram kind is valid for a single draw.
+    area_perimeter.generate_composite_rectangles: {"l_shape", "t_shape"},
     area_perimeter.generate_circle_foundation: "circle",
     area_perimeter.generate_circle: "circle",
     area_perimeter.generate_semicircle_compound: "rectangle_semicircle",
@@ -61,7 +64,9 @@ def test_all_generators_attach_a_matching_diagram():
         rng = random.Random(41)
         q = generate(tier, rng)
         assert q.diagram is not None
-        assert q.diagram.kind == EXPECTED_DIAGRAM_KINDS[generate]
+        expected = EXPECTED_DIAGRAM_KINDS[generate]
+        expected_kinds = expected if isinstance(expected, (set, frozenset)) else {expected}
+        assert q.diagram.kind in expected_kinds
 
 
 def test_rectangle_diagram_params_match_generated_values():
@@ -198,7 +203,7 @@ MODELLED_EXAMPLE_GENERATORS = [
         area_perimeter.generate_modelled_example_composite_rectangles,
         Tier.FOUNDATION,
         "area_composite_rectangles",
-        "l_shape",
+        {"l_shape", "t_shape"},
     ),
     (
         area_perimeter.generate_modelled_example_circle_foundation,
@@ -273,4 +278,5 @@ def test_modelled_examples_produce_verified_examples_with_diagrams():
             assert len(example.teaching_steps) >= 3
             assert example.final_answer
             assert example.diagram is not None
-            assert example.diagram.kind == diagram_kind
+            expected_kinds = diagram_kind if isinstance(diagram_kind, (set, frozenset)) else {diagram_kind}
+            assert example.diagram.kind in expected_kinds

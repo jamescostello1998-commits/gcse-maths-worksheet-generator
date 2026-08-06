@@ -385,10 +385,6 @@ def generate_ladder_context(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=answer_str,
         dedup_key=f"ladder:{base}:{ladder}",
-        diagram=DiagramSpec(
-            kind="right_triangle",
-            params={"leg1_label": f"{base} m", "leg2_label": "x", "hyp_label": f"{ladder} m"},
-        ),
     )
 
 
@@ -435,16 +431,31 @@ def generate_modelled_example_ladder_context(tier: Tier, rng: random.Random) -> 
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer_str,
-        diagram=DiagramSpec(
-            kind="right_triangle",
-            params={"leg1_label": f"{base} m", "leg2_label": "x", "hyp_label": f"{ladder} m"},
-        ),
     )
 
 
+def _ladder_foundation_triple(rng: random.Random) -> tuple[int, int, int]:
+    # The shared PRIMITIVE_TRIPLES/k combination used by other Pythagoras
+    # topics can reach a ladder over 180m (e.g. the (11, 60, 61) triple at
+    # k=3) - a genuine pre-existing bug in this specific context (found
+    # while removing this topic's diagram, not the original ask, but fixed
+    # here since it was noticed in passing). 125 still isn't a fully
+    # realistic ladder length, but a first attempt at a stricter cap (80)
+    # left only 18 distinct (triple, k) combinations - too few for this
+    # topic's real default worksheet of 20 unique questions, caught by
+    # test_all_topics_produce_their_full_distinct_question_count_at_their_fixed_tier,
+    # not assumed. 125 excludes only the single most egregious 183m
+    # combination while keeping the other 23 (up to 123m).
+    for _ in range(100):
+        a, b, c = rng.choice(PRIMITIVE_TRIPLES)
+        k = rng.randint(1, 3)
+        if c * k <= 125:
+            return a, b, c, k
+    raise ValueError("ladder_context_foundation: could not find a realistic triple")
+
+
 def generate_ladder_context_foundation(tier: Tier, rng: random.Random) -> Question:
-    a, b, c = rng.choice(PRIMITIVE_TRIPLES)
-    k = rng.randint(1, 3)
+    a, b, c, k = _ladder_foundation_triple(rng)
     ladder, base, height = c * k, a * k, b * k
     if base**2 + height**2 != ladder**2:
         raise ValueError("ladder_context_foundation verification failed")
@@ -463,16 +474,11 @@ def generate_ladder_context_foundation(tier: Tier, rng: random.Random) -> Questi
         solution_steps=tuple(steps),
         final_answer=f"{height} m",
         dedup_key=f"ladder_f:{base}:{ladder}",
-        diagram=DiagramSpec(
-            kind="right_triangle",
-            params={"leg1_label": f"{base} m", "leg2_label": "x", "hyp_label": f"{ladder} m"},
-        ),
     )
 
 
 def generate_modelled_example_ladder_context_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
-    a, b, c = rng.choice(PRIMITIVE_TRIPLES)
-    k = rng.randint(1, 3)
+    a, b, c, k = _ladder_foundation_triple(rng)
     ladder, base, height = c * k, a * k, b * k
     if base**2 + height**2 != ladder**2:
         raise ValueError("modelled example ladder_context_foundation verification failed")
@@ -506,10 +512,6 @@ def generate_modelled_example_ladder_context_foundation(tier: Tier, rng: random.
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{height} m",
-        diagram=DiagramSpec(
-            kind="right_triangle",
-            params={"leg1_label": f"{base} m", "leg2_label": "x", "hyp_label": f"{ladder} m"},
-        ),
     )
 
 

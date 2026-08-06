@@ -558,28 +558,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "direct_proportion",
-      "prompt": "If a recipe for 4 people uses 612g of butter, how much butter is needed for 5 people?",
+      "topic_id": "direct_proportion_noncalculator",
+      "prompt": "If 2 cm on a map represents 36 km in real life, how many km does 10 cm represent?",
       "solution_steps": [
-        "Unit value = 612g ÷ 4 = 153g",
-        "Answer = 153g × 5 = 765g"
+        "Unit value = 36 km ÷ 2 = 18 km",
+        "Answer = 18 km × 10 = 180 km"
       ],
-      "final_answer": "765g",
+      "final_answer": "180 km",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Unit value = 612g ÷ 4 = 153g",
+          "description": "Unit value = 36 km ÷ 2 = 18 km",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer = 153g × 5 = 765g",
+          "description": "Answer = 18 km × 10 = 180 km",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "765g oe",
+          "description": "180 km oe",
           "marks": 1
         }
       ],
@@ -587,40 +587,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_two_part",
-      "prompt": "Share 96 in the ratio 8:8.",
+      "topic_id": "ratio_find_missing_share",
+      "prompt": "p : q = 5 : 9. q = 99. What is the value of p?",
       "solution_steps": [
-        "Total parts = 8 + 8 = 16",
-        "Value of one part = 96 ÷ 16 = 6",
-        "Share 1 = 8 × 6 = 48",
-        "Share 2 = 8 × 6 = 48"
+        "Value of one part = 99 ÷ 9 = 11",
+        "p = 5 × 11 = 55"
       ],
-      "final_answer": "48 : 48",
-      "marks": 5,
+      "final_answer": "55",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 8 + 8 = 16",
+          "description": "Value of one part = 99 ÷ 9 = 11",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 96 ÷ 16 = 6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 8 × 6 = 48",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 8 × 6 = 48",
+          "description": "p = 5 × 11 = 55",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "48 : 48 oe",
+          "description": "55 oe",
           "marks": 1
         }
       ],
@@ -686,28 +674,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_find_missing_share",
-      "prompt": "p : q = 5 : 9. q = 99. What is the value of p?",
+      "topic_id": "ratio_share_two_part",
+      "prompt": "Share 96 in the ratio 8:8.",
       "solution_steps": [
-        "Value of one part = 99 ÷ 9 = 11",
-        "p = 5 × 11 = 55"
+        "Total parts = 8 + 8 = 16",
+        "Value of one part = 96 ÷ 16 = 6",
+        "Share 1 = 8 × 6 = 48",
+        "Share 2 = 8 × 6 = 48"
       ],
-      "final_answer": "55",
-      "marks": 3,
+      "final_answer": "48 : 48",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Value of one part = 99 ÷ 9 = 11",
+          "description": "Total parts = 8 + 8 = 16",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "p = 5 × 11 = 55",
+          "description": "Value of one part = 96 ÷ 16 = 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 1 = 8 × 6 = 48",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 2 = 8 × 6 = 48",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "55 oe",
+          "description": "48 : 48 oe",
           "marks": 1
         }
       ],

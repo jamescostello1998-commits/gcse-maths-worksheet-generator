@@ -528,41 +528,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_three_part_foundation",
-      "prompt": "Share 225 in the ratio 9:8:8.",
+      "topic_id": "ratio_find_missing_share",
+      "prompt": "a : b = 9 : 6. b = 30. What is the value of a?",
       "solution_steps": [
-        "Total parts = 9 + 8 + 8 = 25",
-        "Value of one part = 225 ÷ 25 = 9",
-        "Share 1 = 9 × 9 = 81",
-        "Share 2 = 8 × 9 = 72",
-        "Share 3 = 8 × 9 = 72"
+        "Value of one part = 30 ÷ 6 = 5",
+        "a = 9 × 5 = 45"
       ],
-      "final_answer": "81 : 72 : 72",
-      "marks": 5,
+      "final_answer": "45",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 9 + 8 + 8 = 25",
+          "description": "Value of one part = 30 ÷ 6 = 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 225 ÷ 25 = 9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 9 × 9 = 81",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 8 × 9 = 72 Share 3 = 8 × 9 = 72",
+          "description": "a = 9 × 5 = 45",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "81 : 72 : 72 oe",
+          "description": "45 oe",
           "marks": 1
         }
       ],
@@ -757,7 +744,9 @@
         "params": {
           "known_label": "93°",
           "unknown_label": "x",
-          "relation": "alternate"
+          "relation": "alternate",
+          "known_value": 93,
+          "x_frac": 0.32
         }
       },
       "solution_diagram": null
@@ -1194,26 +1183,69 @@
       }
     },
     {
-      "topic_id": "stats_range",
-      "prompt": "Find the range of this data set: 4, 8, 29, 13, 20.",
+      "topic_id": "stats_mean_frequency_table",
+      "prompt": "Find the mean number of pets.",
       "solution_steps": [
-        "Range = largest - smallest = 29 - 4 = 25"
+        "Multiply each value by its frequency and sum: 0×3 + 1×4 + 2×9 + 3×5 + 4×3 = 49",
+        "Total frequency = 3 + 4 + 9 + 5 + 3 = 24",
+        "Mean = 49 ÷ 24 = 49/24"
       ],
-      "final_answer": "25",
-      "marks": 2,
+      "final_answer": "49/24",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Range = largest - smallest = 29 - 4 = 25",
+          "description": "Multiply each value by its frequency and sum: 0×3 + 1×4 + 2×9 + 3×5 + 4×3 = 49",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total frequency = 3 + 4 + 9 + 5 + 3 = 24",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Mean = 49 ÷ 24 = 49/24",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "25 oe",
+          "description": "49/24 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_way_table",
+        "params": {
+          "row_labels": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "col_labels": [
+            "Frequency"
+          ],
+          "cells": [
+            [
+              "3"
+            ],
+            [
+              "4"
+            ],
+            [
+              "9"
+            ],
+            [
+              "5"
+            ],
+            [
+              "3"
+            ]
+          ]
+        }
+      },
       "solution_diagram": null
     }
   ]

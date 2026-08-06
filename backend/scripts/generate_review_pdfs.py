@@ -63,10 +63,18 @@ def _build_doc(*, include_solutions: bool) -> bytes:
                 if index > 1:
                     story.append(PageBreak())
 
-                breadcrumb = (
-                    f"{section.name} › {group.name} › {topic.display_name} "
-                    f"({TIER_LABELS[topic.fixed_tier]})"
+                tier_suffix = f" ({TIER_LABELS[topic.fixed_tier]})"
+                # Some topic names already end with their own tier
+                # disambiguator by this app's naming convention (e.g.
+                # "Ladder Context (Foundation)", for a Foundation/Higher
+                # sibling pair) - appending it again doubled up to
+                # "... (Foundation) (Foundation)".
+                name_part = (
+                    topic.display_name
+                    if topic.display_name.endswith(tier_suffix)
+                    else f"{topic.display_name}{tier_suffix}"
                 )
+                breadcrumb = f"{section.name} › {group.name} › {name_part}"
                 story.append(Paragraph(breadcrumb, styles["SectionHeading"]))
                 story.append(Paragraph(f"Topic {index} of {total} &nbsp;•&nbsp; id: {topic.id}", styles["Meta"]))
                 story.append(HRFlowable(width="100%", thickness=0.75, color=RULE, spaceAfter=14))

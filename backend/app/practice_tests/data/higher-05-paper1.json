@@ -380,7 +380,7 @@
     },
     {
       "topic_id": "kinematics_suvat",
-      "prompt": "An object has a constant acceleration of 4 m/s^2 for 7 s, and travels a displacement of 98 m in that time. Find its initial velocity.",
+      "prompt": "An object has a constant acceleration of 4 m/s^2 for 7 s, and travels a displacement of 98 m in that time. Find its initial velocity (u).",
       "solution_steps": [
         "This question gives three of s, u, a and t and asks for another, so use s = ut + (1/2)at^2, the equation linking exactly those four (note: t is never the unknown here, since solving this equation for t needs the quadratic formula).",
         "s = ut + (1/2)at^2",
@@ -737,7 +737,9 @@
         "params": {
           "interior1_label": "54°",
           "interior2_label": "(5x - 77)°",
-          "exterior_label": "77°"
+          "exterior_label": "77°",
+          "interior1_value": 54,
+          "shape_variant": 0
         }
       },
       "solution_diagram": null

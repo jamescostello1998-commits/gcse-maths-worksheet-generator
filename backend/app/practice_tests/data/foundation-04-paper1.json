@@ -567,28 +567,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simple_interest",
-      "prompt": "£2500 is invested at a simple interest rate of 3% per year for 2 years. Find the interest earned.",
+      "topic_id": "best_buys",
+      "prompt": "A shop sells breakfast cereal in different sizes: A: £1.36 for 200g; B: £4.06 for 350g. Which option is the better value for money? Show your working.",
       "solution_steps": [
-        "Simple interest formula: I = P × r × t ÷ 100",
-        "I = 2500 × 3 × 2 ÷ 100 = £150"
+        "Work out the price per 100g for each option:",
+        "A: £1.36 ÷ 200 × 100 = 68.00p per 100g",
+        "B: £4.06 ÷ 350 × 100 = 116.00p per 100g",
+        "The lowest price per 100g is A at 68.00p per 100g, so A is the best value."
       ],
-      "final_answer": "£150",
-      "marks": 3,
+      "final_answer": "A (£1.36 for 200g)",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Simple interest formula: I = P × r × t ÷ 100",
+          "description": "Work out the price per 100g for each option:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "I = 2500 × 3 × 2 ÷ 100 = £150",
+          "description": "A: £1.36 ÷ 200 × 100 = 68.00p per 100g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B: £4.06 ÷ 350 × 100 = 116.00p per 100g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The lowest price per 100g is A at 68.00p per 100g, so A is the best value.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£150 oe",
+          "description": "A (£1.36 for 200g) oe",
           "marks": 1
         }
       ],
@@ -625,98 +637,98 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_two_part",
-      "prompt": "Share 162 in the ratio 4:5.",
+      "topic_id": "ratio_find_missing_share",
+      "prompt": "a : b = 6 : 1. a = 30. What is the value of b?",
       "solution_steps": [
-        "Total parts = 4 + 5 = 9",
-        "Value of one part = 162 ÷ 9 = 18",
-        "Share 1 = 4 × 18 = 72",
-        "Share 2 = 5 × 18 = 90"
+        "Value of one part = 30 ÷ 6 = 5",
+        "b = 1 × 5 = 5"
       ],
-      "final_answer": "72 : 90",
+      "final_answer": "5",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Value of one part = 30 ÷ 6 = 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "b = 1 × 5 = 5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simple_interest",
+      "prompt": "£2500 is invested at a simple interest rate of 3% per year for 2 years. Find the interest earned.",
+      "solution_steps": [
+        "Simple interest formula: I = P × r × t ÷ 100",
+        "I = 2500 × 3 × 2 ÷ 100 = £150"
+      ],
+      "final_answer": "£150",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Simple interest formula: I = P × r × t ÷ 100",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "I = 2500 × 3 × 2 ÷ 100 = £150",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£150 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "best_buys_noncalculator",
+      "prompt": "A shop sells rice in different sizes: A: £1.50 for 500g; B: £0.80 for 100g. Which option is the better value for money? Show your working.",
+      "solution_steps": [
+        "Work out the price per 100g for each option:",
+        "A: £1.50 ÷ 500 × 100 = 30p per 100g",
+        "B: £0.80 ÷ 100 × 100 = 80p per 100g",
+        "The lowest price per 100g is A at 30p per 100g, so A is the best value."
+      ],
+      "final_answer": "A (£1.50 for 500g)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 4 + 5 = 9",
+          "description": "Work out the price per 100g for each option:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 162 ÷ 9 = 18",
+          "description": "A: £1.50 ÷ 500 × 100 = 30p per 100g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 1 = 4 × 18 = 72",
+          "description": "B: £0.80 ÷ 100 × 100 = 80p per 100g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 2 = 5 × 18 = 90",
+          "description": "The lowest price per 100g is A at 30p per 100g, so A is the best value.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "72 : 90 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "compound_percentage_foundation",
-      "prompt": "A price of £140 increases by 10%, then increases by 50%. Find the final price.",
-      "solution_steps": [
-        "After the first change: 140 × 1.10 = 154",
-        "After the second change: 154 × 1.50 = 231"
-      ],
-      "final_answer": "£231",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "After the first change: 140 × 1.10 = 154",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "After the second change: 154 × 1.50 = 231",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£231 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "reverse_percentage_foundation",
-      "prompt": "After a 25% increase, an item costs £400. Find the original price.",
-      "solution_steps": [
-        "Convert 25% to a multiplier: 1.25 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 400 ÷ 1.25 = 320"
-      ],
-      "final_answer": "£320",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert 25% to a multiplier: 1.25 (original × multiplier = new value)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide the new value by the multiplier: 400 ÷ 1.25 = 320",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£320 oe",
+          "description": "A (£1.50 for 500g) oe",
           "marks": 1
         }
       ],
@@ -765,44 +777,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "construction_triangle",
-      "prompt": "Triangle QKG has QK = 14 cm, the angle at K equal to 56°, and KG = 7 cm. Describe, step by step, how to construct triangle QKG using a ruler, a protractor, and a pair of compasses.",
+      "topic_id": "area_rectangle",
+      "prompt": "Find the area of the following rectangle.",
       "solution_steps": [
-        "Draw the line segment QK = 14 cm using a ruler.",
-        "At K, use a protractor to draw a ray at 56° from the line KQ.",
-        "Along this new ray, measure 7 cm from K using a ruler and mark the point G.",
-        "Draw a straight line from Q to G to complete the triangle."
+        "Area = length × width = 17 × 7 = 119 cm²"
       ],
-      "final_answer": "Triangle QKG, with G marked 7 cm from K along the 56° ray at K.",
-      "marks": 5,
+      "final_answer": "119 cm²",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw the line segment QK = 14 cm using a ruler.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "At K, use a protractor to draw a ray at 56° from the line KQ.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Along this new ray, measure 7 cm from K using a ruler and mark the point G.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Draw a straight line from Q to G to complete the triangle.",
+          "description": "Area = length × width = 17 × 7 = 119 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Triangle QKG, with G marked 7 cm from K along the 56° ray at K. oe",
+          "description": "119 cm² oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "rectangle",
+        "params": {
+          "width": 17,
+          "height": 7,
+          "width_label": "17 cm",
+          "height_label": "7 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -1016,47 +1018,71 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_listing_outcomes",
-      "prompt": "Two 3-sided spinners are spun: one labelled B, P, R and the other labelled 1, 2, 3. List all the possible outcomes.",
+      "topic_id": "fractions_equivalent_diagram",
+      "prompt": "How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
       "solution_steps": [
-        "There are 3 possible outcomes for the first event and 3 for the second, so there are 3 × 3 = 9 possible combined outcomes.",
-        "For each outcome of the first event, list every outcome of the second event: B1, B2, B3, P1, P2, P3, R1, R2, R3"
+        "Shape A shows 2/3 shaded; Shape B has 9 equal parts.",
+        "Find the scale factor between the denominators: 9 ÷ 3 = 3",
+        "Multiply the shaded count by the same scale factor: 2 × 3 = 6"
       ],
-      "final_answer": "B1, B2, B3, P1, P2, P3, R1, R2, R3",
-      "marks": 3,
+      "final_answer": "6",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "There are 3 possible outcomes for the first event and 3 for the second, so there are 3 × 3 = 9 possible combined outcomes.",
+          "description": "Shape A shows 2/3 shaded; Shape B has 9 equal parts.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For each outcome of the first event, list every outcome of the second event: B1, B2, B3, P1, P2, P3, R1, R2, R3",
+          "description": "Find the scale factor between the denominators: 9 ÷ 3 = 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply the shaded count by the same scale factor: 2 × 3 = 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "B1, B2, B3, P1, P2, P3, R1, R2, R3 oe",
+          "description": "6 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "spinner_pair",
+        "kind": "fraction_shapes",
         "params": {
-          "sectors_a": [
-            "B",
-            "P",
-            "R"
-          ],
-          "sectors_b": [
-            "1",
-            "2",
-            "3"
+          "shapes": [
+            {
+              "kind": "bar",
+              "parts": 3,
+              "shaded": 2
+            },
+            {
+              "kind": "bar",
+              "parts": 9,
+              "shaded": 0
+            }
           ]
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "fraction_shapes",
+        "params": {
+          "shapes": [
+            {
+              "kind": "bar",
+              "parts": 3,
+              "shaded": 2
+            },
+            {
+              "kind": "bar",
+              "parts": 9,
+              "shaded": 6
+            }
+          ]
+        }
+      }
     }
   ]
 }

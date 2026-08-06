@@ -634,15 +634,16 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "best_buys",
-      "prompt": "A shop sells ground coffee in different sizes: A: £11.36 for 400g; B: £8.04 for 300g. Which option is the better value for money? Show your working.",
+      "topic_id": "best_buys_noncalculator",
+      "prompt": "A shop sells breakfast cereal in different sizes: A: £9.00 for 600g; B: £3.60 for 200g; C: £1.40 for 700g. Which option is the better value for money? Show your working.",
       "solution_steps": [
         "Work out the price per 100g for each option:",
-        "A: £11.36 ÷ 400 × 100 = 284.00p per 100g",
-        "B: £8.04 ÷ 300 × 100 = 268.00p per 100g",
-        "The lowest price per 100g is B at 268.00p per 100g, so B is the best value."
+        "A: £9.00 ÷ 600 × 100 = 150p per 100g",
+        "B: £3.60 ÷ 200 × 100 = 180p per 100g",
+        "C: £1.40 ÷ 700 × 100 = 20p per 100g",
+        "The lowest price per 100g is C at 20p per 100g, so C is the best value."
       ],
-      "final_answer": "B (£8.04 for 300g)",
+      "final_answer": "C (£1.40 for 700g)",
       "marks": 5,
       "mark_scheme": [
         {
@@ -652,22 +653,22 @@
         },
         {
           "code": "M1",
-          "description": "A: £11.36 ÷ 400 × 100 = 284.00p per 100g",
+          "description": "A: £9.00 ÷ 600 × 100 = 150p per 100g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "B: £8.04 ÷ 300 × 100 = 268.00p per 100g",
+          "description": "B: £3.60 ÷ 200 × 100 = 180p per 100g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The lowest price per 100g is B at 268.00p per 100g, so B is the best value.",
+          "description": "C: £1.40 ÷ 700 × 100 = 20p per 100g The lowest price per 100g is C at 20p per 100g, so C is the best value.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "B (£8.04 for 300g) oe",
+          "description": "C (£1.40 for 700g) oe",
           "marks": 1
         }
       ],

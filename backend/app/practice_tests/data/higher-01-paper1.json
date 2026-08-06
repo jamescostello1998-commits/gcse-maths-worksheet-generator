@@ -745,10 +745,10 @@
       "prompt": "Find the shaded area.",
       "solution_steps": [
         "Area of large rectangle = 11 × 14 = 154 cm²",
-        "Area of rectangular hole = 8 × 5 = 40 cm²",
-        "Shaded area = 154 - 40 = 114 cm²"
+        "Area of rectangular hole = 9 × 9 = 81 cm²",
+        "Shaded area = 154 - 81 = 73 cm²"
       ],
-      "final_answer": "114 cm²",
+      "final_answer": "73 cm²",
       "marks": 4,
       "mark_scheme": [
         {
@@ -758,17 +758,17 @@
         },
         {
           "code": "M1",
-          "description": "Area of rectangular hole = 8 × 5 = 40 cm²",
+          "description": "Area of rectangular hole = 9 × 9 = 81 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Shaded area = 154 - 40 = 114 cm²",
+          "description": "Shaded area = 154 - 81 = 73 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "114 cm² oe",
+          "description": "73 cm² oe",
           "marks": 1
         }
       ],
@@ -777,8 +777,8 @@
         "params": {
           "outer_w": 11,
           "outer_h": 14,
-          "inner_w": 8,
-          "inner_h": 5,
+          "inner_w": 9,
+          "inner_h": 9,
           "notch": "center",
           "shade_frame": true,
           "outer_labels": [
@@ -786,8 +786,8 @@
             "14 cm"
           ],
           "inner_labels": [
-            "8 cm",
-            "5 cm"
+            "9 cm",
+            "9 cm"
           ]
         }
       },

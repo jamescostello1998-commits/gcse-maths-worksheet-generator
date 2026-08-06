@@ -525,7 +525,9 @@
         "params": {
           "interior1_label": "55°",
           "interior2_label": "59°",
-          "exterior_label": "x"
+          "exterior_label": "x",
+          "interior1_value": 55,
+          "shape_variant": 0
         }
       },
       "solution_diagram": null
@@ -567,7 +569,7 @@
     },
     {
       "topic_id": "ratio_difference",
-      "prompt": "p : q = 8 : 7. p - q = 7. Find p and q, and their total.",
+      "prompt": "p : q = 8 : 7.\np - q = 7.\nFind p and q, and their total.",
       "solution_steps": [
         "Difference in parts = 8 - 7 = 1 parts",
         "Value of one part = 7 ÷ 1 = 7",
@@ -608,32 +610,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "direct_proportion",
-      "prompt": "If 2 cm on a map represents 62 km in real life, how many km does 8 cm represent?",
+      "topic_id": "ratio_shape_similar_foundation",
+      "prompt": "Shape A and Shape B are similar. Find the length of side z.",
       "solution_steps": [
-        "Unit value = 62 km ÷ 2 = 31 km",
-        "Answer = 31 km × 8 = 248 km"
+        "Scale factor = 24 ÷ 6 = 4",
+        "Corresponding length = 5 × 4 = 20"
       ],
-      "final_answer": "248 km",
+      "final_answer": "20 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Unit value = 62 km ÷ 2 = 31 km",
+          "description": "Scale factor = 24 ÷ 6 = 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer = 31 km × 8 = 248 km",
+          "description": "Corresponding length = 5 × 4 = 20",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "248 km oe",
+          "description": "20 cm oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "a_width_label": "6 cm",
+          "a_height_label": "5 cm",
+          "b_width_label": "24 cm",
+          "b_height_label": "z"
+        }
+      },
       "solution_diagram": null
     },
     {

@@ -84,8 +84,14 @@ CALCULATOR_ONLY_TOPIC_IDS: frozenset[str] = frozenset(
     {
         # Number
         "standard_form_calculator",
-        # Ratio & Proportion
+        # Ratio & Proportion - now that a genuinely non-calculator-friendly
+        # sibling exists for each of these (best_buys_noncalculator,
+        # direct_proportion_noncalculator, inverse_proportion_noncalculator),
+        # the original topics move here so a non-calculator paper picks the
+        # friendly sibling instead - their own numbers were never guaranteed
+        # to avoid a calculator (best_buys' sticker-price division especially).
         "percentage_increase_decrease_calculator",
+        "best_buys", "direct_proportion", "inverse_proportion",
         # Geometry - decimal/calculator-pi area & perimeter
         "area_circle_foundation", "area_semicircle_compound",
         "arc_length_foundation", "area_sector_foundation",

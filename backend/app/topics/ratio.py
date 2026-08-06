@@ -609,10 +609,10 @@ def generate_ratio_difference(tier: Tier, rng: random.Random) -> Question:
     if ask_total:
         total = share_a + share_b
         steps.append(f"{l1} + {l2} = {share_a} + {share_b} = {total}")
-        prompt = f"{l1} : {l2} = {a} : {b}. {diff_clause}. Find {l1} and {l2}, and their total."
+        prompt = f"{l1} : {l2} = {a} : {b}.\n{diff_clause}.\nFind {l1} and {l2}, and their total."
         answer = f"{l1} = {share_a}, {l2} = {share_b} (total {total})"
     else:
-        prompt = f"{l1} : {l2} = {a} : {b}. {diff_clause}. Find {l1} and {l2}."
+        prompt = f"{l1} : {l2} = {a} : {b}.\n{diff_clause}.\nFind {l1} and {l2}."
         answer = f"{l1} = {share_a}, {l2} = {share_b}"
 
     return Question(
@@ -668,10 +668,10 @@ def generate_modelled_example_ratio_difference(tier: Tier, rng: random.Random) -
     ]
     if ask_total:
         worked_calculation.append(f"{l1} + {l2} = {share_a} + {share_b} = {total}")
-        prompt = f"{l1} : {l2} = {a} : {b}. {diff_clause}. Find {l1} and {l2}, and their total."
+        prompt = f"{l1} : {l2} = {a} : {b}.\n{diff_clause}.\nFind {l1} and {l2}, and their total."
         answer = f"{l1} = {share_a}, {l2} = {share_b} (total {total})"
     else:
-        prompt = f"{l1} : {l2} = {a} : {b}. {diff_clause}. Find {l1} and {l2}."
+        prompt = f"{l1} : {l2} = {a} : {b}.\n{diff_clause}.\nFind {l1} and {l2}."
         answer = f"{l1} = {share_a}, {l2} = {share_b}"
 
     return ModelledExample(
@@ -719,12 +719,12 @@ def generate_ratio_difference_higher(tier: Tier, rng: random.Random) -> Question
     if ask_total:
         steps.append(f"{l1} + {l2} + {l3} = {share_a} + {share_b} + {share_c} = {total}")
         prompt = (
-            f"{l1} : {l2} : {l3} = {a} : {b} : {c}. {diff_clause}. "
+            f"{l1} : {l2} : {l3} = {a} : {b} : {c}.\n{diff_clause}.\n"
             f"Find {l1}, {l2} and {l3}, and their total."
         )
         answer = f"{l1} = {share_a}, {l2} = {share_b}, {l3} = {share_c} (total {total})"
     else:
-        prompt = f"{l1} : {l2} : {l3} = {a} : {b} : {c}. {diff_clause}. Find {l1}, {l2} and {l3}."
+        prompt = f"{l1} : {l2} : {l3} = {a} : {b} : {c}.\n{diff_clause}.\nFind {l1}, {l2} and {l3}."
         answer = f"{l1} = {share_a}, {l2} = {share_b}, {l3} = {share_c}"
 
     return Question(
@@ -789,12 +789,12 @@ def generate_modelled_example_ratio_difference_higher(tier: Tier, rng: random.Ra
     if ask_total:
         worked_calculation.append(f"{l1} + {l2} + {l3} = {share_a} + {share_b} + {share_c} = {total}")
         prompt = (
-            f"{l1} : {l2} : {l3} = {a} : {b} : {c}. {diff_clause}. "
+            f"{l1} : {l2} : {l3} = {a} : {b} : {c}.\n{diff_clause}.\n"
             f"Find {l1}, {l2} and {l3}, and their total."
         )
         answer = f"{l1} = {share_a}, {l2} = {share_b}, {l3} = {share_c} (total {total})"
     else:
-        prompt = f"{l1} : {l2} : {l3} = {a} : {b} : {c}. {diff_clause}. Find {l1}, {l2} and {l3}."
+        prompt = f"{l1} : {l2} : {l3} = {a} : {b} : {c}.\n{diff_clause}.\nFind {l1}, {l2} and {l3}."
         answer = f"{l1} = {share_a}, {l2} = {share_b}, {l3} = {share_c}"
 
     return ModelledExample(

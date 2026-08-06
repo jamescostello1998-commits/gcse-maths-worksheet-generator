@@ -701,7 +701,7 @@
     },
     {
       "topic_id": "ratio_difference",
-      "prompt": "a : b = 2 : 3. b - a = 17. Find a and b, and their total.",
+      "prompt": "a : b = 2 : 3.\nb - a = 17.\nFind a and b, and their total.",
       "solution_steps": [
         "Difference in parts = 3 - 2 = 1 parts",
         "Value of one part = 17 ÷ 1 = 17",
@@ -801,7 +801,9 @@
         "params": {
           "interior1_label": "64°",
           "interior2_label": "28°",
-          "exterior_label": "x"
+          "exterior_label": "x",
+          "interior1_value": 64,
+          "shape_variant": 1
         }
       },
       "solution_diagram": null

@@ -185,100 +185,262 @@ def generate_modelled_example_triangle(tier: Tier, rng: random.Random) -> Modell
     )
 
 
-def generate_composite_rectangles(tier: Tier, rng: random.Random) -> Question:
+# ---------------------------------------------------------------------------
+# area_composite_rectangles - 4 distinct compound-shape branches (both L-shape
+# orientations, a T-shape, and a "given the total area, find x" reverse
+# branch), rather than always the same single top-right-notch L-shape -
+# modelled on real exam-style compound-shape variety (Corbett Maths' "Area of
+# Compound Shapes" worksheet).
+# ---------------------------------------------------------------------------
+
+
+def _build_composite_l(rng: random.Random, corner: str) -> dict:
     outer_w = rng.randint(10, 25)
     outer_h = rng.randint(10, 25)
     inner_w = rng.randint(2, outer_w - 2)
     inner_h = rng.randint(2, outer_h - 2)
-
     if not (inner_w < outer_w and inner_h < outer_h):
-        raise ValueError("composite_rectangles sanity constraint failed")
+        raise ValueError("composite_rectangles(l): sanity constraint failed")
 
     outer_area = outer_w * outer_h
     inner_area = inner_w * inner_h
     total_area = outer_area - inner_area
     if total_area <= 0:
-        raise ValueError("composite_rectangles produced non-positive area")
-
-    steps = [
-        f"Area of full rectangle = {outer_w} × {outer_h} = {outer_area} cm²",
-        f"Area of the cut-out corner = {inner_w} × {inner_h} = {inner_area} cm²",
-        f"Area of the shape = {outer_area} - {inner_area} = {total_area} cm²",
-    ]
-    return Question(
-        topic_id="area_composite_rectangles",
-        tier=Tier.FOUNDATION,
-        prompt="Find the area of this compound shape.",
-        solution_steps=tuple(steps),
-        final_answer=f"{total_area} cm²",
-        dedup_key=f"composite_rect:{outer_w}:{outer_h}:{inner_w}:{inner_h}",
-        diagram=DiagramSpec(
-            kind="l_shape",
-            params={
-                "outer_w": outer_w, "outer_h": outer_h, "inner_w": inner_w, "inner_h": inner_h,
-                "notch": "corner",
-                "outer_labels": [f"{outer_w} cm", f"{outer_h} cm"],
-                "inner_labels": [f"{inner_w} cm", f"{inner_h} cm"],
-            },
-        ),
-    )
-
-
-def generate_modelled_example_composite_rectangles(tier: Tier, rng: random.Random) -> ModelledExample:
-    outer_w = rng.randint(10, 25)
-    outer_h = rng.randint(10, 25)
-    inner_w = rng.randint(2, outer_w - 2)
-    inner_h = rng.randint(2, outer_h - 2)
-
-    if not (inner_w < outer_w and inner_h < outer_h):
-        raise ValueError("modelled example composite_rectangles sanity constraint failed")
-
-    outer_area = outer_w * outer_h
-    inner_area = inner_w * inner_h
-    total_area = outer_area - inner_area
-    if total_area <= 0:
-        raise ValueError("modelled example composite_rectangles produced non-positive area")
+        raise ValueError("composite_rectangles(l): non-positive area")
 
     # Independent check: split the L-shape into two non-overlapping rectangles
     # instead of subtracting a cut-out corner from the full rectangle - a
     # genuinely different decomposition of the same shape.
     strip_h = outer_h - inner_h
-    rect1 = outer_w * strip_h
-    rect2 = (outer_w - inner_w) * inner_h
-    if rect1 + rect2 != total_area:
-        raise ValueError("modelled example composite_rectangles cross-check failed")
+    if outer_w * strip_h + (outer_w - inner_w) * inner_h != total_area:
+        raise ValueError("composite_rectangles(l): cross-check failed")
 
-    teaching_steps = [
-        "An L-shape like this is easiest to handle by treating it as a big rectangle with a "
-        "corner missing - so start by imagining the shape 'filled in' to make a complete rectangle.",
-        f"The full rectangle would measure {outer_w} cm by {outer_h} cm, giving an area of "
-        f"{outer_w} × {outer_h} = {outer_area} cm².",
-        f"The missing corner is itself a rectangle, {inner_w} cm by {inner_h} cm, with area "
-        f"{inner_w} × {inner_h} = {inner_area} cm².",
-        f"Since that corner isn't actually part of the shape, subtract it from the full "
-        f"rectangle: {outer_area} - {inner_area} = {total_area} cm².",
-    ]
-    worked_calculation = [
-        f"Full rectangle = {outer_w} × {outer_h} = {outer_area} cm²",
-        f"Cut-out corner = {inner_w} × {inner_h} = {inner_area} cm²",
-        f"Area = {outer_area} - {inner_area} = {total_area} cm²",
-    ]
+    return {
+        "branch": "l", "corner": corner,
+        "outer_w": outer_w, "outer_h": outer_h, "inner_w": inner_w, "inner_h": inner_h,
+        "outer_area": outer_area, "inner_area": inner_area, "total_area": total_area,
+    }
+
+
+def _build_composite_t(rng: random.Random) -> dict:
+    top_w = rng.randint(10, 20)
+    stem_w = rng.randint(2, top_w - 2)
+    top_h = rng.randint(2, 8)
+    stem_h = rng.randint(4, 16)
+
+    top_area = top_w * top_h
+    stem_area = stem_w * stem_h
+    total_area = top_area + stem_area
+    if total_area <= 0:
+        raise ValueError("composite_rectangles(t): non-positive area")
+
+    # Independent check: the full bounding box (top_w wide, the whole height
+    # tall) minus the two side notches removed to leave the T-shape - a
+    # genuinely different decomposition than the bar-plus-stem addition above.
+    bbox_area = top_w * (top_h + stem_h)
+    notch_area = (top_w - stem_w) * stem_h
+    if bbox_area - notch_area != total_area:
+        raise ValueError("composite_rectangles(t): cross-check failed")
+
+    return {
+        "branch": "t",
+        "top_w": top_w, "top_h": top_h, "stem_w": stem_w, "stem_h": stem_h,
+        "top_area": top_area, "stem_area": stem_area, "total_area": total_area,
+    }
+
+
+def _build_composite_find_x(rng: random.Random) -> dict:
+    inner_w = rng.randint(2, 10)
+    inner_h = rng.randint(2, 10)
+    outer_h = rng.randint(inner_h + 2, 20)
+    outer_w = rng.randint(inner_w + 2, 25)
+
+    outer_area = outer_w * outer_h
+    inner_area = inner_w * inner_h
+    total_area = outer_area - inner_area
+    if total_area <= 0:
+        raise ValueError("composite_rectangles(find_x): non-positive area")
+
+    # Independent check: solve the linear equation for outer_w (the unknown
+    # "x") directly via sympy - a genuinely different route than the forward
+    # multiplication used to construct total_area above.
+    x_sym = sp.symbols("x")
+    solved = sp.solve(sp.Eq(x_sym * outer_h - inner_w * inner_h, total_area), x_sym)
+    if len(solved) != 1 or solved[0] != outer_w:
+        raise ValueError("composite_rectangles(find_x): verification failed")
+
+    return {
+        "branch": "find_x",
+        "outer_w": outer_w, "outer_h": outer_h, "inner_w": inner_w, "inner_h": inner_h,
+        "outer_area": outer_area, "inner_area": inner_area, "total_area": total_area,
+    }
+
+
+def _build_composite_scenario(rng: random.Random) -> dict:
+    branch = rng.choice(["l_top_right", "l_top_left", "t", "find_x"])
+    if branch == "l_top_right":
+        return _build_composite_l(rng, "top_right")
+    if branch == "l_top_left":
+        return _build_composite_l(rng, "top_left")
+    if branch == "t":
+        return _build_composite_t(rng)
+    return _build_composite_find_x(rng)
+
+
+def _composite_l_diagram(b: dict) -> DiagramSpec:
+    return DiagramSpec(
+        kind="l_shape",
+        params={
+            "outer_w": b["outer_w"], "outer_h": b["outer_h"],
+            "inner_w": b["inner_w"], "inner_h": b["inner_h"],
+            "notch": "corner", "corner": b["corner"],
+            "outer_labels": [f"{b['outer_w']} cm", f"{b['outer_h']} cm"],
+            "inner_labels": [f"{b['inner_w']} cm", f"{b['inner_h']} cm"],
+        },
+    )
+
+
+def _composite_t_diagram(b: dict) -> DiagramSpec:
+    return DiagramSpec(
+        kind="t_shape",
+        params={
+            "top_w": b["top_w"], "top_h": b["top_h"], "stem_w": b["stem_w"], "stem_h": b["stem_h"],
+            "top_label": f"{b['top_w']} cm", "side_label": f"{b['top_h']} cm",
+            "stem_w_label": f"{b['stem_w']} cm", "stem_h_label": f"{b['stem_h']} cm",
+        },
+    )
+
+
+def _composite_find_x_diagram(b: dict) -> DiagramSpec:
+    return DiagramSpec(
+        kind="l_shape",
+        params={
+            "outer_w": b["outer_w"], "outer_h": b["outer_h"],
+            "inner_w": b["inner_w"], "inner_h": b["inner_h"],
+            "notch": "corner", "corner": "top_right",
+            "outer_labels": ["x", f"{b['outer_h']} cm"],
+            "inner_labels": [f"{b['inner_w']} cm", f"{b['inner_h']} cm"],
+        },
+    )
+
+
+def generate_composite_rectangles(tier: Tier, rng: random.Random) -> Question:
+    b = _build_composite_scenario(rng)
+
+    if b["branch"] == "l":
+        steps = [
+            f"Area of full rectangle = {b['outer_w']} × {b['outer_h']} = {b['outer_area']} cm²",
+            f"Area of the cut-out corner = {b['inner_w']} × {b['inner_h']} = {b['inner_area']} cm²",
+            f"Area of the shape = {b['outer_area']} - {b['inner_area']} = {b['total_area']} cm²",
+        ]
+        prompt = "Find the area of this compound shape."
+        diagram = _composite_l_diagram(b)
+        dedup_key = f"composite_rect:l:{b['corner']}:{b['outer_w']}:{b['outer_h']}:{b['inner_w']}:{b['inner_h']}"
+    elif b["branch"] == "t":
+        steps = [
+            f"Area of the top bar = {b['top_w']} × {b['top_h']} = {b['top_area']} cm²",
+            f"Area of the stem = {b['stem_w']} × {b['stem_h']} = {b['stem_area']} cm²",
+            f"Total area = {b['top_area']} + {b['stem_area']} = {b['total_area']} cm²",
+        ]
+        prompt = "Find the area of this compound shape."
+        diagram = _composite_t_diagram(b)
+        dedup_key = f"composite_rect:t:{b['top_w']}:{b['top_h']}:{b['stem_w']}:{b['stem_h']}"
+    else:  # find_x
+        steps = [
+            f"Area of the shape = (outer rectangle) - (cut-out corner) = "
+            f"x × {b['outer_h']} - {b['inner_w']} × {b['inner_h']}",
+            f"{b['total_area']} = {b['outer_h']}x - {b['inner_area']}",
+            f"x = ({b['total_area']} + {b['inner_area']}) ÷ {b['outer_h']} = {b['outer_w']}",
+        ]
+        prompt = f"The area of this compound shape is {b['total_area']} cm². Find the value of x."
+        diagram = _composite_find_x_diagram(b)
+        dedup_key = f"composite_rect:x:{b['outer_w']}:{b['outer_h']}:{b['inner_w']}:{b['inner_h']}"
+
+    final_answer = f"{b['total_area']} cm²" if b["branch"] != "find_x" else f"x = {b['outer_w']} cm"
+    return Question(
+        topic_id="area_composite_rectangles",
+        tier=Tier.FOUNDATION,
+        prompt=prompt,
+        solution_steps=tuple(steps),
+        final_answer=final_answer,
+        dedup_key=dedup_key,
+        diagram=diagram,
+    )
+
+
+def generate_modelled_example_composite_rectangles(tier: Tier, rng: random.Random) -> ModelledExample:
+    b = _build_composite_scenario(rng)
+
+    if b["branch"] == "l":
+        prompt = "Find the area of this compound shape."
+        teaching_steps = [
+            "A compound shape like this is easiest to handle by treating it as a big rectangle "
+            "with a corner missing - so start by imagining the shape 'filled in' to make a "
+            "complete rectangle.",
+            f"The full rectangle would measure {b['outer_w']} cm by {b['outer_h']} cm, giving an "
+            f"area of {b['outer_w']} × {b['outer_h']} = {b['outer_area']} cm².",
+            f"The missing corner is itself a rectangle, {b['inner_w']} cm by {b['inner_h']} cm, "
+            f"with area {b['inner_w']} × {b['inner_h']} = {b['inner_area']} cm².",
+            f"Since that corner isn't actually part of the shape, subtract it from the full "
+            f"rectangle: {b['outer_area']} - {b['inner_area']} = {b['total_area']} cm².",
+        ]
+        worked_calculation = [
+            f"Full rectangle = {b['outer_w']} × {b['outer_h']} = {b['outer_area']} cm²",
+            f"Cut-out corner = {b['inner_w']} × {b['inner_h']} = {b['inner_area']} cm²",
+            f"Area = {b['outer_area']} - {b['inner_area']} = {b['total_area']} cm²",
+        ]
+        diagram = _composite_l_diagram(b)
+        final_answer = f"{b['total_area']} cm²"
+    elif b["branch"] == "t":
+        prompt = "Find the area of this compound shape."
+        teaching_steps = [
+            "A T-shaped compound shape like this splits naturally into two rectangles - the "
+            "horizontal bar across the top, and the narrower stem hanging below it.",
+            f"The top bar measures {b['top_w']} cm by {b['top_h']} cm, giving an area of "
+            f"{b['top_w']} × {b['top_h']} = {b['top_area']} cm².",
+            f"The stem measures {b['stem_w']} cm by {b['stem_h']} cm, giving an area of "
+            f"{b['stem_w']} × {b['stem_h']} = {b['stem_area']} cm².",
+            f"Since the bar and the stem together make up the whole shape with no overlap, add "
+            f"the two areas: {b['top_area']} + {b['stem_area']} = {b['total_area']} cm².",
+        ]
+        worked_calculation = [
+            f"Top bar = {b['top_w']} × {b['top_h']} = {b['top_area']} cm²",
+            f"Stem = {b['stem_w']} × {b['stem_h']} = {b['stem_area']} cm²",
+            f"Area = {b['top_area']} + {b['stem_area']} = {b['total_area']} cm²",
+        ]
+        diagram = _composite_t_diagram(b)
+        final_answer = f"{b['total_area']} cm²"
+    else:  # find_x
+        prompt = f"The area of this compound shape is {b['total_area']} cm². Find the value of x."
+        teaching_steps = [
+            "This is the same compound-shape method as usual, just worked backwards - instead of "
+            "computing the area from known side lengths, we're given the area and must find a "
+            "missing side length, x.",
+            f"Write the area the same way as always, as (outer rectangle) - (cut-out corner), but "
+            f"using x for the unknown outer width: x × {b['outer_h']} - "
+            f"{b['inner_w']} × {b['inner_h']} = x × {b['outer_h']} - {b['inner_area']}.",
+            f"Set that equal to the given area and solve for x: "
+            f"{b['total_area']} = {b['outer_h']}x - {b['inner_area']}, so "
+            f"{b['outer_h']}x = {b['total_area']} + {b['inner_area']} = {b['total_area'] + b['inner_area']}.",
+            f"Divide both sides by {b['outer_h']}: "
+            f"x = {b['total_area'] + b['inner_area']} ÷ {b['outer_h']} = {b['outer_w']}.",
+        ]
+        worked_calculation = [
+            f"{b['total_area']} = {b['outer_h']}x - {b['inner_area']}",
+            f"{b['outer_h']}x = {b['total_area'] + b['inner_area']}",
+            f"x = {b['total_area'] + b['inner_area']} ÷ {b['outer_h']} = {b['outer_w']}",
+        ]
+        diagram = _composite_find_x_diagram(b)
+        final_answer = f"x = {b['outer_w']} cm"
+
     return ModelledExample(
         topic_id="area_composite_rectangles",
         tier=Tier.FOUNDATION,
-        prompt="Find the area of this compound shape.",
+        prompt=prompt,
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
-        final_answer=f"{total_area} cm²",
-        diagram=DiagramSpec(
-            kind="l_shape",
-            params={
-                "outer_w": outer_w, "outer_h": outer_h, "inner_w": inner_w, "inner_h": inner_h,
-                "notch": "corner",
-                "outer_labels": [f"{outer_w} cm", f"{outer_h} cm"],
-                "inner_labels": [f"{inner_w} cm", f"{inner_h} cm"],
-            },
-        ),
+        final_answer=final_answer,
+        diagram=diagram,
     )
 
 
@@ -674,8 +836,8 @@ def generate_modelled_example_semicircle_compound_higher(tier: Tier, rng: random
 def generate_subtract_compound(tier: Tier, rng: random.Random) -> Question:
     outer_w = rng.randint(10, 25)
     outer_h = rng.randint(10, 25)
-    inner_w = rng.randint(2, outer_w - 2)
-    inner_h = rng.randint(2, outer_h - 2)
+    inner_w = rng.randint(3, outer_w - 2)
+    inner_h = rng.randint(3, outer_h - 2)
 
     if not (inner_w < outer_w and inner_h < outer_h):
         raise ValueError("subtract_compound sanity constraint failed")
@@ -714,8 +876,8 @@ def generate_subtract_compound(tier: Tier, rng: random.Random) -> Question:
 def generate_modelled_example_subtract_compound(tier: Tier, rng: random.Random) -> ModelledExample:
     outer_w = rng.randint(10, 25)
     outer_h = rng.randint(10, 25)
-    inner_w = rng.randint(2, outer_w - 2)
-    inner_h = rng.randint(2, outer_h - 2)
+    inner_w = rng.randint(3, outer_w - 2)
+    inner_h = rng.randint(3, outer_h - 2)
 
     if not (inner_w < outer_w and inner_h < outer_h):
         raise ValueError("modelled example subtract_compound sanity constraint failed")
@@ -774,8 +936,8 @@ def generate_modelled_example_subtract_compound(tier: Tier, rng: random.Random) 
 def generate_subtract_compound_foundation(tier: Tier, rng: random.Random) -> Question:
     outer_w = rng.randint(6, 15)
     outer_h = rng.randint(6, 15)
-    inner_w = rng.randint(2, outer_w - 2)
-    inner_h = rng.randint(2, outer_h - 2)
+    inner_w = rng.randint(3, outer_w - 2)
+    inner_h = rng.randint(3, outer_h - 2)
 
     if not (inner_w < outer_w and inner_h < outer_h):
         raise ValueError("subtract_compound_foundation sanity constraint failed")
@@ -814,8 +976,8 @@ def generate_subtract_compound_foundation(tier: Tier, rng: random.Random) -> Que
 def generate_modelled_example_subtract_compound_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
     outer_w = rng.randint(6, 15)
     outer_h = rng.randint(6, 15)
-    inner_w = rng.randint(2, outer_w - 2)
-    inner_h = rng.randint(2, outer_h - 2)
+    inner_w = rng.randint(3, outer_w - 2)
+    inner_h = rng.randint(3, outer_h - 2)
 
     if not (inner_w < outer_w and inner_h < outer_h):
         raise ValueError("modelled example subtract_compound_foundation sanity constraint failed")

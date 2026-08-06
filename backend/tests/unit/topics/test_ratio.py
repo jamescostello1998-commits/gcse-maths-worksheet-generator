@@ -243,10 +243,13 @@ def test_find_share_uses_the_letter_equation_style():
 
 
 def test_ratio_difference_uses_the_letter_equation_style():
+    # Each clause is on its own line (a literal "\n", rendered as a real
+    # line break by mathtext.py's to_markup) - the initial ratio statement,
+    # then the difference clause, then the "Find" instruction.
     rng = random.Random(322)
     for _ in range(TRIALS):
         q = ratio.generate_ratio_difference(Tier.FOUNDATION, rng)
-        assert re.match(r"^\w+ : \w+ = \d+ : \d+\. \w+ - \w+ = \d+\. Find \w+ and \w+", q.prompt)
+        assert re.match(r"^\w+ : \w+ = \d+ : \d+\.\n\w+ - \w+ = \d+\.\nFind \w+ and \w+", q.prompt)
 
 
 def test_ratio_difference_higher_uses_the_letter_equation_style():
@@ -254,7 +257,7 @@ def test_ratio_difference_higher_uses_the_letter_equation_style():
     for _ in range(TRIALS):
         q = ratio.generate_ratio_difference_higher(Tier.HIGHER, rng)
         assert re.match(
-            r"^\w+ : \w+ : \w+ = \d+ : \d+ : \d+\. \w+ - \w+ = \d+\. Find \w+, \w+ and \w+", q.prompt
+            r"^\w+ : \w+ : \w+ = \d+ : \d+ : \d+\.\n\w+ - \w+ = \d+\.\nFind \w+, \w+ and \w+", q.prompt
         )
 
 

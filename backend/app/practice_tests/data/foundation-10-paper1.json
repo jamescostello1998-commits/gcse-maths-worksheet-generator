@@ -570,72 +570,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "reverse_percentage_foundation",
-      "prompt": "After a 25% increase, an item costs £50. Find the original price.",
-      "solution_steps": [
-        "Convert 25% to a multiplier: 1.25 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 50 ÷ 1.25 = 40"
-      ],
-      "final_answer": "£40",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert 25% to a multiplier: 1.25 (original × multiplier = new value)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide the new value by the multiplier: 50 ÷ 1.25 = 40",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£40 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_shape_similar_foundation",
-      "prompt": "Shape A and Shape B are similar. Find the length of side z.",
-      "solution_steps": [
-        "Scale factor = 15 ÷ 6 = 5/2",
-        "Corresponding length = 6 × 5/2 = 15"
-      ],
-      "final_answer": "15 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Scale factor = 15 ÷ 6 = 5/2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Corresponding length = 6 × 5/2 = 15",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "15 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "two_similar_rectangles",
-        "params": {
-          "a_width_label": "6 cm",
-          "a_height_label": "6 cm",
-          "b_width_label": "15 cm",
-          "b_height_label": "z"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
       "topic_id": "compound_percentage_foundation",
       "prompt": "A price of £300 increases by 20%, then increases by 10%. Find the final price.",
       "solution_steps": [
@@ -658,6 +592,64 @@
         {
           "code": "A1",
           "description": "£396 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "direct_proportion",
+      "prompt": "If 6 rulers cost £7.62, how much would 7 rulers cost?",
+      "solution_steps": [
+        "Unit value = £7.62 ÷ 6 = £1.27",
+        "Answer = £1.27 × 7 = £8.89"
+      ],
+      "final_answer": "£8.89",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Unit value = £7.62 ÷ 6 = £1.27",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Answer = £1.27 × 7 = £8.89",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£8.89 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "reverse_percentage_foundation",
+      "prompt": "After a 25% increase, an item costs £50. Find the original price.",
+      "solution_steps": [
+        "Convert 25% to a multiplier: 1.25 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 50 ÷ 1.25 = 40"
+      ],
+      "final_answer": "£40",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 25% to a multiplier: 1.25 (original × multiplier = new value)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide the new value by the multiplier: 50 ÷ 1.25 = 40",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£40 oe",
           "marks": 1
         }
       ],
@@ -732,49 +724,50 @@
       "topic_id": "area_composite_rectangles",
       "prompt": "Find the area of this compound shape.",
       "solution_steps": [
-        "Area of full rectangle = 11 × 22 = 242 cm²",
-        "Area of the cut-out corner = 8 × 15 = 120 cm²",
-        "Area of the shape = 242 - 120 = 122 cm²"
+        "Area of full rectangle = 22 × 22 = 484 cm²",
+        "Area of the cut-out corner = 15 × 14 = 210 cm²",
+        "Area of the shape = 484 - 210 = 274 cm²"
       ],
-      "final_answer": "122 cm²",
+      "final_answer": "274 cm²",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area of full rectangle = 11 × 22 = 242 cm²",
+          "description": "Area of full rectangle = 22 × 22 = 484 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Area of the cut-out corner = 8 × 15 = 120 cm²",
+          "description": "Area of the cut-out corner = 15 × 14 = 210 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Area of the shape = 242 - 120 = 122 cm²",
+          "description": "Area of the shape = 484 - 210 = 274 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "122 cm² oe",
+          "description": "274 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "l_shape",
         "params": {
-          "outer_w": 11,
+          "outer_w": 22,
           "outer_h": 22,
-          "inner_w": 8,
-          "inner_h": 15,
+          "inner_w": 15,
+          "inner_h": 14,
           "notch": "corner",
+          "corner": "top_right",
           "outer_labels": [
-            "11 cm",
+            "22 cm",
             "22 cm"
           ],
           "inner_labels": [
-            "8 cm",
-            "15 cm"
+            "15 cm",
+            "14 cm"
           ]
         }
       },

@@ -175,75 +175,38 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof_foundation",
-      "prompt": "M is the midpoint of AB. P is a point such that PM is perpendicular to AB. Which congruence criterion proves that the two triangles are congruent? A) SSS  B) SAS  C) ASA  D) RHS",
+      "topic_id": "hcf_by_listing",
+      "prompt": "Find the highest common factor (HCF) of 33 and 48.",
       "solution_steps": [
-        "AM = BM (M is the midpoint of AB)",
-        "angle AMP = angle BMP = 90° (PM is perpendicular to AB)",
-        "PM is common to both triangles",
-        "These facts match the Side-Angle-Side (SAS) congruence criterion."
+        "Factors of 33: 1, 3, 11, 33",
+        "Factors of 48: 1, 2, 3, 4, 6, 8, 12, 16, 24, 48",
+        "Highest common factor = 3"
       ],
-      "final_answer": "B) SAS",
-      "marks": 1,
+      "final_answer": "3",
+      "marks": 4,
       "mark_scheme": [
         {
-          "code": "B1",
-          "description": "B) SAS (selecting the correct option)",
+          "code": "M1",
+          "description": "Factors of 33: 1, 3, 11, 33",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factors of 48: 1, 2, 3, 4, 6, 8, 12, 16, 24, 48",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Highest common factor = 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "two_triangle_congruence",
-        "params": {
-          "labels_1": [
-            "A",
-            "M",
-            "P"
-          ],
-          "labels_2": [
-            "B",
-            "M",
-            "P"
-          ],
-          "ticks_1": [
-            [
-              0,
-              1,
-              2
-            ],
-            [
-              1,
-              2,
-              1
-            ]
-          ],
-          "ticks_2": [
-            [
-              0,
-              1,
-              2
-            ],
-            [
-              1,
-              2,
-              1
-            ]
-          ],
-          "arcs_1": [
-            [
-              1,
-              1
-            ]
-          ],
-          "arcs_2": [
-            [
-              1,
-              1
-            ]
-          ],
-          "note": "MP is common to both triangles."
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -630,41 +593,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_three_part_foundation",
-      "prompt": "Share 50 in the ratio 9:7:9.",
+      "topic_id": "ratio_find_missing_share",
+      "prompt": "p : q = 5 : 4. p = 25. What is the value of q?",
       "solution_steps": [
-        "Total parts = 9 + 7 + 9 = 25",
-        "Value of one part = 50 ÷ 25 = 2",
-        "Share 1 = 9 × 2 = 18",
-        "Share 2 = 7 × 2 = 14",
-        "Share 3 = 9 × 2 = 18"
+        "Value of one part = 25 ÷ 5 = 5",
+        "q = 4 × 5 = 20"
       ],
-      "final_answer": "18 : 14 : 18",
-      "marks": 5,
+      "final_answer": "20",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 9 + 7 + 9 = 25",
+          "description": "Value of one part = 25 ÷ 5 = 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 50 ÷ 25 = 2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 9 × 2 = 18",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 7 × 2 = 14 Share 3 = 9 × 2 = 18",
+          "description": "q = 4 × 5 = 20",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "18 : 14 : 18 oe",
+          "description": "20 oe",
           "marks": 1
         }
       ],
@@ -730,168 +680,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "symmetry_lines",
-      "prompt": "The diagram shows a regular pentagon. How many lines of symmetry does it have?",
+      "topic_id": "direct_proportion_noncalculator",
+      "prompt": "If 4 cm on a map represents 12 km in real life, how many km does 12 cm represent?",
       "solution_steps": [
-        "A regular pentagon has 5 lines of symmetry.",
-        "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram."
+        "Unit value = 12 km ÷ 4 = 3 km",
+        "Answer = 3 km × 12 = 36 km"
       ],
-      "final_answer": "5 lines of symmetry",
+      "final_answer": "36 km",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A regular pentagon has 5 lines of symmetry.",
+          "description": "Unit value = 12 km ÷ 4 = 3 km",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram.",
+          "description": "Answer = 3 km × 12 = 36 km",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5 lines of symmetry oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "symmetry_shape",
-        "params": {
-          "vertices": [
-            [
-              2.4492935982947064e-16,
-              4.0
-            ],
-            [
-              -3.804226065180614,
-              1.23606797749979
-            ],
-            [
-              -2.351141009169893,
-              -3.2360679774997894
-            ],
-            [
-              2.3511410091698917,
-              -3.2360679774997902
-            ],
-            [
-              3.8042260651806146,
-              1.2360679774997887
-            ]
-          ],
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "symmetry_shape",
-        "params": {
-          "vertices": [
-            [
-              2.4492935982947064e-16,
-              4.0
-            ],
-            [
-              -3.804226065180614,
-              1.23606797749979
-            ],
-            [
-              -2.351141009169893,
-              -3.2360679774997894
-            ],
-            [
-              2.3511410091698917,
-              -3.2360679774997902
-            ],
-            [
-              3.8042260651806146,
-              1.2360679774997887
-            ]
-          ],
-          "symmetry_lines": [
-            {
-              "p1": [
-                -3.1840816777831187e-16,
-                -5.2
-              ],
-              "p2": [
-                3.1840816777831187e-16,
-                5.2
-              ]
-            },
-            {
-              "p1": [
-                3.05648331192086,
-                -4.206888370749727
-              ],
-              "p2": [
-                -3.05648331192086,
-                4.206888370749727
-              ]
-            },
-            {
-              "p1": [
-                4.945493884734798,
-                -1.606888370749727
-              ],
-              "p2": [
-                -4.945493884734798,
-                1.606888370749727
-              ]
-            },
-            {
-              "p1": [
-                4.945493884734799,
-                1.606888370749726
-              ],
-              "p2": [
-                -4.945493884734799,
-                -1.606888370749726
-              ]
-            },
-            {
-              "p1": [
-                3.056483311920861,
-                4.206888370749726
-              ],
-              "p2": [
-                -3.056483311920861,
-                -4.206888370749726
-              ]
-            }
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "vectors_arithmetic_foundation",
-      "prompt": "\\vec{a} = \\colvec{8}{7} and \\vec{b} = \\colvec{-7}{-1}. Find \\vec{a} + 2\\vec{b}.",
-      "solution_steps": [
-        "\\vec{a} = \\colvec{8}{7}, \\vec{b} = \\colvec{-7}{-1}",
-        "\\vec{a} = \\colvec{8}{7} and 2\\vec{b} = \\colvec{-14}{-2}",
-        "\\vec{a} + 2\\vec{b} = \\colvec{-6}{5}"
-      ],
-      "final_answer": "\\colvec{-6}{5}",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "\\vec{a} = \\colvec{8}{7}, \\vec{b} = \\colvec{-7}{-1}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "\\vec{a} = \\colvec{8}{7} and 2\\vec{b} = \\colvec{-14}{-2}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "\\vec{a} + 2\\vec{b} = \\colvec{-6}{5}",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "\\colvec{-6}{5} oe",
+          "description": "36 km oe",
           "marks": 1
         }
       ],
@@ -899,28 +709,63 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_straight_line",
-      "prompt": "The angles 69° and x° lie on a straight line. Find x.",
+      "topic_id": "properties_3d_shapes",
+      "prompt": "How many faces does a tetrahedron (triangular-based pyramid) have?",
       "solution_steps": [
-        "Angles on a straight line sum to 180°.",
-        "x = 180 - (69) = 180 - 69 = 111"
+        "A face is a flat or curved surface on the outside of a 3D shape.",
+        "A tetrahedron has 4 triangular faces, 6 edges, and 4 vertices (corners) - every face is a triangle, including the base.",
+        "So a tetrahedron (triangular-based pyramid) has 4 faces."
       ],
-      "final_answer": "111",
-      "marks": 3,
+      "final_answer": "4",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles on a straight line sum to 180°.",
+          "description": "A face is a flat or curved surface on the outside of a 3D shape.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 180 - (69) = 180 - 69 = 111",
+          "description": "A tetrahedron has 4 triangular faces, 6 edges, and 4 vertices (corners) - every face is a triangle, including the base.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "So a tetrahedron (triangular-based pyramid) has 4 faces.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "111 oe",
+          "description": "4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_around_point",
+      "prompt": "The angles 109°, 23°, 148° and x° are angles around a point. Find x.",
+      "solution_steps": [
+        "Angles around a point sum to 360°.",
+        "x = 360 - (109 + 23 + 148) = 360 - 280 = 80"
+      ],
+      "final_answer": "80",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles around a point sum to 360°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 360 - (109 + 23 + 148) = 360 - 280 = 80",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "80 oe",
           "marks": 1
         }
       ],
@@ -928,14 +773,18 @@
         "kind": "angle_line",
         "params": {
           "angle_values": [
-            69,
-            111
+            109,
+            23,
+            148,
+            80
           ],
           "labels": [
-            "69°",
+            "109°",
+            "23°",
+            "148°",
             "x"
           ],
-          "around_point": false
+          "around_point": true
         }
       },
       "solution_diagram": null
@@ -982,45 +831,37 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_expectation",
-      "prompt": "A spinner has P(landing on purple) = 2/5. The spinner is spun 30 times. How many times would you expect it to land on purple?",
+      "topic_id": "pythagoras_shorter_leg",
+      "prompt": "A right-angled triangle has hypotenuse 148 cm and one side 48 cm. Find the length of x.",
       "solution_steps": [
-        "Expected number of times = probability × number of trials = 2/5 × 30",
-        "= 12"
+        "b² = c² - a² = 148² - 48² = 21904 - 2304 = 19600",
+        "b = √19600 = 140"
       ],
-      "final_answer": "12",
+      "final_answer": "140 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expected number of times = probability × number of trials = 2/5 × 30",
+          "description": "b² = c² - a² = 148² - 48² = 21904 - 2304 = 19600",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 12",
+          "description": "b = √19600 = 140",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 oe",
+          "description": "140 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "spinner",
+        "kind": "right_triangle",
         "params": {
-          "sectors": [
-            "P",
-            "P",
-            "",
-            "",
-            ""
-          ],
-          "highlight": [
-            0,
-            1
-          ]
+          "leg1_label": "48 cm",
+          "leg2_label": "x",
+          "hyp_label": "148 cm"
         }
       },
       "solution_diagram": null
@@ -1104,71 +945,48 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_equivalent_diagram",
-      "prompt": "How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
+      "topic_id": "probability_expectation",
+      "prompt": "A spinner has P(landing on purple) = 2/5. The spinner is spun 30 times. How many times would you expect it to land on purple?",
       "solution_steps": [
-        "Shape A shows 1/3 shaded; Shape B has 9 equal parts.",
-        "Find the scale factor between the denominators: 9 ÷ 3 = 3",
-        "Multiply the shaded count by the same scale factor: 1 × 3 = 3"
+        "Expected number of times = probability × number of trials = 2/5 × 30",
+        "= 12"
       ],
-      "final_answer": "3",
-      "marks": 4,
+      "final_answer": "12",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Shape A shows 1/3 shaded; Shape B has 9 equal parts.",
+          "description": "Expected number of times = probability × number of trials = 2/5 × 30",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Find the scale factor between the denominators: 9 ÷ 3 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the shaded count by the same scale factor: 1 × 3 = 3",
+          "description": "= 12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 oe",
+          "description": "12 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "fraction_shapes",
+        "kind": "spinner",
         "params": {
-          "shapes": [
-            {
-              "kind": "bar",
-              "parts": 3,
-              "shaded": 1
-            },
-            {
-              "kind": "bar",
-              "parts": 9,
-              "shaded": 0
-            }
+          "sectors": [
+            "P",
+            "P",
+            "",
+            "",
+            ""
+          ],
+          "highlight": [
+            0,
+            1
           ]
         }
       },
-      "solution_diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "bar",
-              "parts": 3,
-              "shaded": 1
-            },
-            {
-              "kind": "bar",
-              "parts": 9,
-              "shaded": 3
-            }
-          ]
-        }
-      }
+      "solution_diagram": null
     }
   ]
 }

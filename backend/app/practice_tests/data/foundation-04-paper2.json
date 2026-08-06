@@ -596,28 +596,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "direct_proportion",
-      "prompt": "If 6 rulers cost £26.70, how much would 8 rulers cost?",
+      "topic_id": "direct_proportion_noncalculator",
+      "prompt": "If 2 cm on a map represents 14 km in real life, how many km does 8 cm represent?",
       "solution_steps": [
-        "Unit value = £26.70 ÷ 6 = £4.45",
-        "Answer = £4.45 × 8 = £35.60"
+        "Unit value = 14 km ÷ 2 = 7 km",
+        "Answer = 7 km × 8 = 56 km"
       ],
-      "final_answer": "£35.60",
+      "final_answer": "56 km",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Unit value = £26.70 ÷ 6 = £4.45",
+          "description": "Unit value = 14 km ÷ 2 = 7 km",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer = £4.45 × 8 = £35.60",
+          "description": "Answer = 7 km × 8 = 56 km",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£35.60 oe",
+          "description": "56 km oe",
           "marks": 1
         }
       ],
@@ -625,41 +625,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "best_buys",
-      "prompt": "A shop sells ground coffee in different sizes: A: £5.22 for 225g; B: £8.64 for 400g; C: £6.60 for 375g. Which option is the better value for money? Show your working.",
+      "topic_id": "best_buys_noncalculator",
+      "prompt": "A shop sells orange juice in different sizes: A: £10.50 for 700ml; B: £4.80 for 400ml. Which option is the better value for money? Show your working.",
       "solution_steps": [
-        "Work out the price per 100g for each option:",
-        "A: £5.22 ÷ 225 × 100 = 232.00p per 100g",
-        "B: £8.64 ÷ 400 × 100 = 216.00p per 100g",
-        "C: £6.60 ÷ 375 × 100 = 176.00p per 100g",
-        "The lowest price per 100g is C at 176.00p per 100g, so C is the best value."
+        "Work out the price per 100ml for each option:",
+        "A: £10.50 ÷ 700 × 100 = 150p per 100ml",
+        "B: £4.80 ÷ 400 × 100 = 120p per 100ml",
+        "The lowest price per 100ml is B at 120p per 100ml, so B is the best value."
       ],
-      "final_answer": "C (£6.60 for 375g)",
+      "final_answer": "B (£4.80 for 400ml)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Work out the price per 100g for each option:",
+          "description": "Work out the price per 100ml for each option:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A: £5.22 ÷ 225 × 100 = 232.00p per 100g",
+          "description": "A: £10.50 ÷ 700 × 100 = 150p per 100ml",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "B: £8.64 ÷ 400 × 100 = 216.00p per 100g",
+          "description": "B: £4.80 ÷ 400 × 100 = 120p per 100ml",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "C: £6.60 ÷ 375 × 100 = 176.00p per 100g The lowest price per 100g is C at 176.00p per 100g, so C is the best value.",
+          "description": "The lowest price per 100ml is B at 120p per 100ml, so B is the best value.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "C (£6.60 for 375g) oe",
+          "description": "B (£4.80 for 400ml) oe",
           "marks": 1
         }
       ],
@@ -898,7 +897,9 @@
         "params": {
           "interior1_label": "40°",
           "interior2_label": "20°",
-          "exterior_label": "x"
+          "exterior_label": "x",
+          "interior1_value": 40,
+          "shape_variant": 0
         }
       },
       "solution_diagram": null

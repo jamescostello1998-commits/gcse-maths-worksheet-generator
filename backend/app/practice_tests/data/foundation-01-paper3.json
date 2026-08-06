@@ -752,28 +752,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "find_percentage_change",
-      "prompt": "The price of an item changes from £100 to £75. Find the percentage decrease.",
+      "topic_id": "reverse_percentage_foundation",
+      "prompt": "After a 50% increase, an item costs £240. Find the original price.",
       "solution_steps": [
-        "Find the difference between the two values: £75 and £100 differ by £25",
-        "Divide by the ORIGINAL value and convert to a percentage: £25 ÷ £100 × 100 = 25%"
+        "Convert 50% to a multiplier: 1.50 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 240 ÷ 1.50 = 160"
       ],
-      "final_answer": "25% decrease",
+      "final_answer": "£160",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the difference between the two values: £75 and £100 differ by £25",
+          "description": "Convert 50% to a multiplier: 1.50 (original × multiplier = new value)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide by the ORIGINAL value and convert to a percentage: £25 ÷ £100 × 100 = 25%",
+          "description": "Divide the new value by the multiplier: 240 ÷ 1.50 = 160",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "25% decrease oe",
+          "description": "£160 oe",
           "marks": 1
         }
       ],
@@ -803,48 +803,6 @@
         {
           "code": "A1",
           "description": "£35.60 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_difference",
-      "prompt": "p : q = 7 : 6. p - q = 3. Find p and q, and their total.",
-      "solution_steps": [
-        "Difference in parts = 7 - 6 = 1 parts",
-        "Value of one part = 3 ÷ 1 = 3",
-        "p = 7 × 3 = 21",
-        "q = 6 × 3 = 18",
-        "p + q = 21 + 18 = 39"
-      ],
-      "final_answer": "p = 21, q = 18 (total 39)",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Difference in parts = 7 - 6 = 1 parts",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Value of one part = 3 ÷ 1 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "p = 7 × 3 = 21",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "q = 6 × 3 = 18 p + q = 21 + 18 = 39",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "p = 21, q = 18 (total 39) oe",
           "marks": 1
         }
       ],
@@ -886,6 +844,35 @@
           "b_height_label": "z"
         }
       },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "direct_proportion_noncalculator",
+      "prompt": "If a recipe for 20 people uses 400g of sugar, how much sugar is needed for 4 people?",
+      "solution_steps": [
+        "Unit value = 400g ÷ 20 = 20g",
+        "Answer = 20g × 4 = 80g"
+      ],
+      "final_answer": "80g",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Unit value = 400g ÷ 20 = 20g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Answer = 20g × 4 = 80g",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "80g oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -1328,26 +1315,48 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "stats_range",
-      "prompt": "Find the range of this data set: 24, 6, 13, 15, 8, 17.",
+      "topic_id": "probability_single_event",
+      "prompt": "A bag contains 4 purple, 8 yellow, 5 blue, 7 red counters. A counter is picked at random. Find the probability that it is blue.",
       "solution_steps": [
-        "Range = largest - smallest = 24 - 6 = 18"
+        "Total counters = 24",
+        "Number of blue counters = 5",
+        "P(blue) = 5/24 = 5/24"
       ],
-      "final_answer": "18",
-      "marks": 2,
+      "final_answer": "5/24",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Range = largest - smallest = 24 - 6 = 18",
+          "description": "Total counters = 24",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Number of blue counters = 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(blue) = 5/24 = 5/24",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "18 oe",
+          "description": "5/24 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "bag_of_counters",
+        "params": {
+          "counts": {
+            "purple": 4,
+            "yellow": 8,
+            "blue": 5,
+            "red": 7
+          }
+        }
+      },
       "solution_diagram": null
     }
   ]

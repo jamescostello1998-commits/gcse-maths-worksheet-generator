@@ -529,6 +529,8 @@ def generate_parallel_lines(tier: Tier, rng: random.Random) -> Question:
                 "known_label": f"{known}°",
                 "unknown_label": f"({fmt_linear(coeff, const)})°",
                 "relation": fact,
+                "known_value": known,
+                "x_frac": rng.choice([0.32, 0.38, 0.44]),
             },
         ),
     )
@@ -592,6 +594,8 @@ def generate_modelled_example_parallel_lines(tier: Tier, rng: random.Random) -> 
                 "known_label": f"{known}°",
                 "unknown_label": f"({fmt_linear(coeff, const)})°",
                 "relation": fact,
+                "known_value": known,
+                "x_frac": rng.choice([0.32, 0.38, 0.44]),
             },
         ),
     )
@@ -632,6 +636,8 @@ def generate_exterior_angle(tier: Tier, rng: random.Random) -> Question:
                 "interior1_label": f"{known_interior}°",
                 "interior2_label": f"({fmt_linear(coeff, const)})°",
                 "exterior_label": f"{exterior}°",
+                "interior1_value": known_interior,
+                "shape_variant": rng.choice([0, 1]),
             },
         ),
     )
@@ -686,6 +692,8 @@ def generate_modelled_example_exterior_angle(tier: Tier, rng: random.Random) -> 
                 "interior1_label": f"{known_interior}°",
                 "interior2_label": f"({fmt_linear(coeff, const)})°",
                 "exterior_label": f"{exterior}°",
+                "interior1_value": known_interior,
+                "shape_variant": rng.choice([0, 1]),
             },
         ),
     )
@@ -722,7 +730,10 @@ def generate_parallel_lines_foundation(tier: Tier, rng: random.Random) -> Questi
         dedup_key=f"parallel_lines_f:{fact}:{known}",
         diagram=DiagramSpec(
             kind="parallel_lines",
-            params={"known_label": f"{known}°", "unknown_label": "x", "relation": fact},
+            params={
+                "known_label": f"{known}°", "unknown_label": "x", "relation": fact,
+                "known_value": known, "x_frac": rng.choice([0.32, 0.38, 0.44]),
+            },
         ),
     )
 
@@ -775,7 +786,10 @@ def generate_modelled_example_parallel_lines_foundation(tier: Tier, rng: random.
         final_answer=str(target),
         diagram=DiagramSpec(
             kind="parallel_lines",
-            params={"known_label": f"{known}°", "unknown_label": "x", "relation": fact},
+            params={
+                "known_label": f"{known}°", "unknown_label": "x", "relation": fact,
+                "known_value": known, "x_frac": rng.choice([0.32, 0.38, 0.44]),
+            },
         ),
     )
 
@@ -809,7 +823,10 @@ def generate_exterior_foundation(tier: Tier, rng: random.Random) -> Question:
         dedup_key=f"exterior_f:{a}:{b}",
         diagram=DiagramSpec(
             kind="exterior_triangle",
-            params={"interior1_label": f"{a}°", "interior2_label": f"{b}°", "exterior_label": "x"},
+            params={
+                "interior1_label": f"{a}°", "interior2_label": f"{b}°", "exterior_label": "x",
+                "interior1_value": a, "shape_variant": rng.choice([0, 1]),
+            },
         ),
     )
 
@@ -854,7 +871,10 @@ def generate_modelled_example_exterior_foundation(tier: Tier, rng: random.Random
         final_answer=str(exterior),
         diagram=DiagramSpec(
             kind="exterior_triangle",
-            params={"interior1_label": f"{a}°", "interior2_label": f"{b}°", "exterior_label": "x"},
+            params={
+                "interior1_label": f"{a}°", "interior2_label": f"{b}°", "exterior_label": "x",
+                "interior1_value": a, "shape_variant": rng.choice([0, 1]),
+            },
         ),
     )
 

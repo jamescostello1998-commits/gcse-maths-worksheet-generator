@@ -158,6 +158,22 @@ def _angle_arc(cx: float, cy: float, angle1_deg: float, angle2_deg: float, radiu
     return arc
 
 
+def _swept_angle_arc(cx: float, cy: float, start_deg: float, end_deg: float, radius: float = 12, color=INK) -> ArcPath:
+    """An arc tracing the EXACT sweep from start_deg to end_deg (always in
+    the increasing-angle direction), unlike `_angle_arc` which always picks
+    whichever of the two possible sweeps between two ray directions is
+    non-reflex (<=180 deg). Two ray directions alone can't disambiguate
+    which of two different labelled angles a wedge represents - needed for
+    `draw_angle_line`'s "around a point" layout, where the last/missing
+    angle is routinely reflex (e.g. two 10 deg givens leave a 340 deg gap)
+    and `_angle_arc` was silently drawing the small 20 deg complementary
+    wedge on the opposite side instead - same fix pattern `draw_sector`
+    already uses for its own routinely-reflex sector angle."""
+    arc = ArcPath(strokeColor=color, fillColor=None, strokeWidth=0.9)
+    arc.addArc(cx, cy, radius, start_deg, end_deg, moveTo=True)
+    return arc
+
+
 def _vertex_angle_arc(vertex: tuple, other1: tuple, other2: tuple, radius: float = 12, color=INK) -> ArcPath:
     """The arc marking the angle at `vertex` between the two rays
     vertex->other1 and vertex->other2 (e.g. two sides of a triangle, or two
@@ -213,6 +229,16 @@ def draw_rectangle(params: dict) -> Drawing:
     return d
 
 
+def _parse_leading_number(label: str) -> float:
+    """The leading numeric value of a label like "10 cm" - returns 0.0 for a
+    label with no leading number at all (e.g. a bare unknown letter "x"),
+    which is fine here since the width labels this is used on are always
+    real given numbers, never the unknown itself (see draw_two_similar_
+    rectangles)."""
+    m = re.match(r"[-+]?[\d.]+", label.strip())
+    return float(m.group()) if m else 0.0
+
+
 def draw_two_similar_rectangles(params: dict) -> Drawing:
     """Two separate rectangles - "Shape A" and "Shape B" - side by side, for
     a similar-shapes ratio question where the student must identify
@@ -220,7 +246,11 @@ def draw_two_similar_rectangles(params: dict) -> Drawing:
     height<->height, but the two rectangles are NOT drawn in their true
     relative proportions - one side is often the unknown the student must
     find, and drawing it at its real scaled size would let a careful
-    ruler-measurement leak the answer - see `_not_to_scale`).
+    ruler-measurement leak the answer - see `_not_to_scale`). The shape
+    with the numerically larger given width IS drawn moderately larger
+    (though never to true scale) and placed first/left, so it's visually
+    obvious which side a given measurement belongs to - whichever of Shape
+    A/Shape B that turns out to be, per the real generated values.
 
     params: a_width_label/a_height_label (Shape A's two side labels), b_width_label/
     b_height_label (Shape B's two corresponding side labels - one is the known
@@ -228,10 +258,29 @@ def draw_two_similar_rectangles(params: dict) -> Drawing:
     four is optional (omit a key entirely to leave that side unlabelled) -
     the area/volume version of this question only ever states ONE
     corresponding length pair (the area/volume itself, not a second length,
-    is what's given/asked for), so only one width/height pair is passed."""
+    is what's given/asked for), so only one width/height pair is passed.
+    The width labels are always real given numbers (never the unknown
+    itself), so they're always safe to compare numerically."""
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    ax0, ay0, aw, ah = 8, 38, 48, 42
-    bx0, by0, bw, bh = 96, 34, 55, 58
+    a_bigger = _parse_leading_number(params.get("a_width_label", "0")) >= _parse_leading_number(
+        params.get("b_width_label", "0")
+    )
+
+    # "left" always means "the bigger shape" (by design - see docstring), so
+    # left_w/right_w are fixed regardless of which of A/B ends up there;
+    # only the ax0/bx0 assignment below depends on a_bigger.
+    left_w, left_h = 64, 56
+    right_w, right_h = 42, 36
+    gap = 34
+    x0 = (DIAGRAM_WIDTH - (left_w + gap + right_w)) / 2
+    base_y = 26
+
+    if a_bigger:
+        ax0, ay0, aw, ah = x0, base_y, left_w, left_h
+        bx0, by0, bw, bh = x0 + left_w + gap, base_y, right_w, right_h
+    else:
+        bx0, by0, bw, bh = x0, base_y, left_w, left_h
+        ax0, ay0, aw, ah = x0 + left_w + gap, base_y, right_w, right_h
 
     d.add(Rect(ax0, ay0, aw, ah, strokeColor=INK, fillColor=None, strokeWidth=1.2))
     d.add(Rect(bx0, by0, bw, bh, strokeColor=INK, fillColor=None, strokeWidth=1.2))
@@ -241,12 +290,25 @@ def draw_two_similar_rectangles(params: dict) -> Drawing:
 
     if params.get("a_width_label"):
         d.add(_label(ax0 + aw / 2, ay0 - 14, params["a_width_label"]))
-    if params.get("a_height_label"):
-        d.add(_label(ax0 + aw + 8, ay0 + ah / 2, params["a_height_label"], anchor="start"))
     if params.get("b_width_label"):
         d.add(_label(bx0 + bw / 2, by0 - 14, params["b_width_label"]))
+    # A height label on the LEFT-positioned shape sits in the gap toward the
+    # other shape - centre it there so it can never collide with the other
+    # box regardless of which of A/B ends up left this time (a fixed small
+    # offset from the box edge, tried first, could still reach into the
+    # gap's far side for a wide label like "20 cm"). The RIGHT-positioned
+    # shape's height label has open canvas space to its own right instead,
+    # so it keeps the simple fixed-offset placement.
+    if params.get("a_height_label"):
+        if a_bigger:
+            d.add(_label(ax0 + aw + gap / 2, ay0 + ah / 2, params["a_height_label"], anchor="middle"))
+        else:
+            d.add(_label(ax0 + aw + 8, ay0 + ah / 2, params["a_height_label"], anchor="start"))
     if params.get("b_height_label"):
-        d.add(_label(bx0 + bw + 8, by0 + bh / 2, params["b_height_label"], anchor="start"))
+        if a_bigger:
+            d.add(_label(bx0 + bw + 8, by0 + bh / 2, params["b_height_label"], anchor="start"))
+        else:
+            d.add(_label(bx0 + bw + gap / 2, by0 + bh / 2, params["b_height_label"], anchor="middle"))
 
     _not_to_scale(d)
     return d
@@ -255,7 +317,7 @@ def draw_two_similar_rectangles(params: dict) -> Drawing:
 def draw_triangle_area(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     base_val, height_val = params["base"], params["height"]
-    margin = 32
+    margin = 26
     scale = min((DIAGRAM_WIDTH - 2 * margin) / base_val, (DIAGRAM_HEIGHT - 2 * margin) / height_val)
     bw, bh = base_val * scale, height_val * scale
     x0, y0 = (DIAGRAM_WIDTH - bw) / 2, (DIAGRAM_HEIGHT - bh) / 2 - 5
@@ -264,12 +326,21 @@ def draw_triangle_area(params: dict) -> Drawing:
     d.add(Polygon([x0, y0, x0 + bw, y0, apex_x, y0 + bh], strokeColor=INK, fillColor=None, strokeWidth=1.2))
     d.add(Line(apex_x, y0 + bh, apex_x, y0, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
     d.add(_label(x0 + bw / 2, y0 - 14, params["base_label"]))
-    # Outside the triangle entirely, not just past the dashed line - a
-    # narrow/tall triangle's sloped right edge can sit closer to the dashed
-    # height line than the label's own text width, so a small fixed offset
-    # from the line still crossed the sloped edge (found by rendering a
-    # narrow case, not assumed up front).
-    d.add(_label(x0 + bw + 8, y0 + bh / 2, params["height_label"], anchor="start"))
+
+    height_label = params["height_label"]
+    label_w = stringWidth(str(height_label), _LABEL_FONT, _LABEL_SIZE)
+    # Room between the dashed height line and the sloped right edge, measured
+    # at the triangle's vertical midpoint - the widest that gap ever gets,
+    # since the sloped edge converges toward the dashed line as it rises to
+    # the apex. When the label genuinely fits there without crossing either
+    # line, keep it inside the triangle (real exam-diagram convention);
+    # otherwise - a narrow/tall triangle, where a fixed offset was previously
+    # found to cross the sloped edge - fall back to fully outside instead.
+    inside_gap = (x0 + bw - apex_x) / 2
+    if inside_gap - 12 >= label_w:
+        d.add(_label(apex_x + 6, y0 + bh / 2, height_label, anchor="start"))
+    else:
+        d.add(_label(x0 + bw + 8, y0 + bh / 2, height_label, anchor="start"))
     return d
 
 
@@ -283,16 +354,30 @@ def draw_l_shape(params: dict) -> Drawing:
     x0, y0 = (DIAGRAM_WIDTH - ow_s) / 2, (DIAGRAM_HEIGHT - oh_s) / 2
 
     ix0, iy0 = x0 + (ow_s - iw_s) / 2, y0 + (oh_s - ih_s) / 2
+    corner = params.get("corner", "top_right")
 
     if params.get("notch") == "corner":
-        pts = [
-            x0, y0,
-            x0 + ow_s, y0,
-            x0 + ow_s, y0 + oh_s - ih_s,
-            x0 + ow_s - iw_s, y0 + oh_s - ih_s,
-            x0 + ow_s - iw_s, y0 + oh_s,
-            x0, y0 + oh_s,
-        ]
+        if corner == "top_left":
+            # Mirror of the default top-right cut - a second L orientation
+            # (cut from the opposite corner), so a worksheet showing several
+            # of these doesn't always look identical.
+            pts = [
+                x0, y0,
+                x0 + ow_s, y0,
+                x0 + ow_s, y0 + oh_s,
+                x0 + iw_s, y0 + oh_s,
+                x0 + iw_s, y0 + oh_s - ih_s,
+                x0, y0 + oh_s - ih_s,
+            ]
+        else:
+            pts = [
+                x0, y0,
+                x0 + ow_s, y0,
+                x0 + ow_s, y0 + oh_s - ih_s,
+                x0 + ow_s - iw_s, y0 + oh_s - ih_s,
+                x0 + ow_s - iw_s, y0 + oh_s,
+                x0, y0 + oh_s,
+            ]
         d.add(Polygon(pts, strokeColor=INK, fillColor=None, strokeWidth=1.2))
     elif params.get("shade_frame"):
         # Shade the remaining "frame" region (outer minus the inner hole) so
@@ -309,7 +394,7 @@ def draw_l_shape(params: dict) -> Drawing:
         d.add(Rect(ix0, iy0, iw_s, ih_s, strokeColor=INK, fillColor=None, strokeWidth=1.0))
 
     d.add(_label(x0 + ow_s / 2, y0 - 14, params["outer_labels"][0]))
-    if params.get("notch") == "corner" and params.get("right_labels"):
+    if params.get("notch") == "corner" and corner == "top_right" and params.get("right_labels"):
         # The notch genuinely splits the right-hand edge into two real
         # segments - label each one directly instead of a single combined
         # "outer height" label, so students see two real side lengths
@@ -317,6 +402,11 @@ def draw_l_shape(params: dict) -> Drawing:
         upper_label, lower_label = params["right_labels"]
         d.add(_label(x0 + ow_s + 8, y0 + (oh_s - ih_s) / 2, upper_label, anchor="start", size=7.5))
         d.add(_label(x0 + ow_s - iw_s + 8, y0 + oh_s - ih_s / 2, lower_label, anchor="start", size=7.5))
+    elif params.get("notch") == "corner" and corner == "top_left":
+        # The top-left cut leaves the RIGHT edge as the shape's one full,
+        # uncut side (the mirror image of the top-right case, whose full
+        # side is the left edge) - put the single outer-height label there.
+        d.add(_label(x0 + ow_s + 10, y0 + oh_s / 2, params["outer_labels"][1], anchor="start"))
     else:
         d.add(_label(x0 - 10, y0 + oh_s / 2, params["outer_labels"][1], anchor="end"))
     if params.get("shade_frame") and params.get("inner_labels"):
@@ -326,20 +416,66 @@ def draw_l_shape(params: dict) -> Drawing:
         # two numbers together rather than attaching each to a real side.
         # Stacking them vertically only works when the hole is tall enough;
         # a short/wide hole needs them side by side instead, or they cross
-        # the hole's own top/bottom edges (found via rendering a thin-hole
-        # case, not assumed up front).
+        # the hole's own top/bottom edges. For a genuinely tiny hole, neither
+        # layout has real room even at the smaller font (found via rendering
+        # a small-hole case, not assumed up front) - fall back to a single
+        # combined caption just below the hole, in the shaded frame, which
+        # always has plenty of room.
         cx, cy = ix0 + iw_s / 2, iy0 + ih_s / 2
         w_label, h_label = params["inner_labels"]
         label_size = 7.5 if min(iw_s, ih_s) >= 24 else 6.5
-        if ih_s < 26:
+        w_width = stringWidth(str(w_label), _LABEL_FONT, label_size)
+        h_width = stringWidth(str(h_label), _LABEL_FONT, label_size)
+        side_by_side_fits = iw_s >= w_width + h_width + 6
+        stacked_fits = ih_s >= 26 and iw_s >= max(w_width, h_width) + 4
+        if stacked_fits:
+            d.add(_label(cx, cy + 6, w_label, size=label_size))
+            d.add(_label(cx, cy - 10, h_label, size=label_size))
+        elif side_by_side_fits:
             d.add(_label(cx - iw_s * 0.22, cy, w_label, size=label_size))
             d.add(_label(cx + iw_s * 0.22, cy, h_label, size=label_size))
         else:
-            d.add(_label(cx, cy + 6, w_label, size=label_size))
-            d.add(_label(cx, cy - 10, h_label, size=label_size))
+            d.add(_label(cx, iy0 - 10, f"{w_label} × {h_label}", size=7.5))
     elif params.get("inner_labels"):
         inner_text = f"{params['inner_labels'][0]} × {params['inner_labels'][1]}"
         d.add(_label(x0 + ow_s / 2, y0 + oh_s + 12, inner_text, color=MUTED, size=8))
+    return d
+
+
+def draw_t_shape(params: dict) -> Drawing:
+    """A T-shaped compound of two rectangles - a horizontal 'bar' across the
+    top, and a narrower 'stem' hanging below it, centred under the bar -
+    genuinely different geometry from draw_l_shape's single-corner-cut
+    polygon, for compound-area variety. params: top_w/top_h (the bar's own
+    width/height), stem_w/stem_h (the stem's own width/height, stem_w must
+    be < top_w), and top_label/side_label/stem_w_label/stem_h_label (the 4
+    edge labels needed to compute area = top_w*top_h + stem_w*stem_h)."""
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    top_w, top_h = params["top_w"], params["top_h"]
+    stem_w, stem_h = params["stem_w"], params["stem_h"]
+    total_h = top_h + stem_h
+    margin = 28
+    scale = min((DIAGRAM_WIDTH - 2 * margin) / top_w, (DIAGRAM_HEIGHT - 2 * margin) / total_h)
+    tw_s, th_s, sw_s, sh_s = top_w * scale, top_h * scale, stem_w * scale, stem_h * scale
+    x0, y0 = (DIAGRAM_WIDTH - tw_s) / 2, (DIAGRAM_HEIGHT - (th_s + sh_s)) / 2
+    stem_x0 = x0 + (tw_s - sw_s) / 2
+
+    pts = [
+        stem_x0, y0,
+        stem_x0 + sw_s, y0,
+        stem_x0 + sw_s, y0 + sh_s,
+        x0 + tw_s, y0 + sh_s,
+        x0 + tw_s, y0 + sh_s + th_s,
+        x0, y0 + sh_s + th_s,
+        x0, y0 + sh_s,
+        stem_x0, y0 + sh_s,
+    ]
+    d.add(Polygon(pts, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+
+    d.add(_label(x0 + tw_s / 2, y0 + sh_s + th_s + 14, params["top_label"]))
+    d.add(_label(x0 + tw_s + 8, y0 + sh_s + th_s / 2, params["side_label"], anchor="start"))
+    d.add(_label(stem_x0 + sw_s / 2, y0 - 14, params["stem_w_label"]))
+    d.add(_label(stem_x0 - 8, y0 + sh_s / 2, params["stem_h_label"], anchor="end"))
     return d
 
 
@@ -376,7 +512,7 @@ def draw_rectangle_semicircle(params: dict) -> Drawing:
 def draw_parallelogram(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     base_val, height_val = params["base"], params["height"]
-    margin = 32
+    margin = 26
     slant_frac = 0.3
     scale = min(
         (DIAGRAM_WIDTH - 2 * margin) / (base_val * (1 + slant_frac)),
@@ -392,7 +528,13 @@ def draw_parallelogram(params: dict) -> Drawing:
     ))
     d.add(Line(x0 + slant, y0 + bh, x0 + slant, y0, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
     d.add(_label(x0 + bw / 2, y0 - 14, params["base_label"]))
-    d.add(_label(x0 + slant - 8, y0 + bh / 2, params["height_label"], anchor="end"))
+    # To the RIGHT of the dashed height line, inside the shape's own much
+    # larger right-hand body, rather than the old left-hand placement -
+    # only slant/2 wide there (the previous 8pt-clearance spot was the
+    # single tightest label in this file). The body to the right of the
+    # dashed line is (bw - slant/2) wide, comfortably larger for any
+    # realistic label, so no dynamic width check is needed here.
+    d.add(_label(x0 + slant + 8, y0 + bh / 2, params["height_label"], anchor="start"))
     return d
 
 
@@ -447,14 +589,16 @@ def draw_sector(params: dict) -> Drawing:
     arc = ArcPath(strokeColor=INK, fillColor=None, strokeWidth=0.9)
     arc.addArc(cx, cy, arc_r, start, end, moveTo=True)
     d.add(arc)
-    d.add(_label(cx + 4, cy + r + 10, params["radius_label"], anchor="start"))
+    # Next to the straight radius edge itself (the fixed top ray, at 90 deg)
+    # rather than out near the arc's own endpoint - anchored at that ray's
+    # midpoint so it reads as labelling the radius line specifically, even
+    # though that puts it inside the sector for a wide-angle wedge.
+    d.add(_label(cx + 8, cy + r * 0.5, params["radius_label"], anchor="start"))
     mid = math.radians((start + end) / 2)
     # A narrow sector's own straight width (2 x radius x sin(angle/2)) can be
     # far smaller than the label text at any radius up to the sector's own
-    # edge, and the sector always opens toward the fixed top ray (end=90) -
-    # so "just outside the arc, along the bisector" (tried first) still
-    # collides with the radius_label above, which anchors near that same
-    # top ray's tip regardless of angle. Instead, for a narrow angle, place
+    # edge. "Just outside the arc, along the bisector" (tried first) still
+    # crams into that narrow sliver. Instead, for a narrow angle, place
     # the label just behind the vertex - directly opposite the wedge's own
     # opening direction - where there is always clear space, matching real
     # exam diagrams' convention of writing a narrow angle's value beside the
@@ -565,7 +709,7 @@ def draw_angle_line(params: dict) -> Drawing:
 
     running = 0.0
     for v, lbl in zip(angle_values, labels):
-        d.add(_angle_arc(cx, cy, running, running + v, radius=arc_r))
+        d.add(_swept_angle_arc(cx, cy, running, running + v, radius=arc_r))
         if v < 20:
             # Narrow wedges: the arc itself has little room, so place the
             # label just beyond the ray tips entirely rather than cramming
@@ -599,7 +743,7 @@ def draw_angle_line(params: dict) -> Drawing:
 def draw_triangle_angles(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     cx, cy = DIAGRAM_WIDTH / 2, DIAGRAM_HEIGHT / 2 - 5
-    r = 45
+    r = 52
     vertices = []
     for ang in (90, 210, 330):
         rad = math.radians(ang)
@@ -679,8 +823,26 @@ def draw_parallel_lines(params: dict) -> Drawing:
     d.add(_parallel_arrow_mark(x_left + 28, y_top))
     d.add(_parallel_arrow_mark(x_left + 28, y_bottom))
 
-    ix_top, ix_bottom = DIAGRAM_WIDTH * 0.4, DIAGRAM_WIDTH * 0.62
-    dx, dy = ix_bottom - ix_top, y_bottom - y_top
+    # The transversal's own steepness is chosen from the real known angle
+    # value, bucketed into 3 pre-verified-safe slopes (rather than a
+    # continuous function of the angle - the label-offset table below was
+    # tuned against one moderate slope, and an untested extreme slope risks
+    # a new overlap) so a roughly-90-degree angle reads as roughly a right
+    # angle instead of every angle looking geometrically identical. x_frac
+    # varies the transversal's own horizontal starting position too, so
+    # repeated renders of the same angle bucket don't all look identical.
+    known_value = params.get("known_value", 55)
+    if known_value < 70:
+        dx_ratio = 1.05
+    elif known_value <= 110:
+        dx_ratio = 0.15
+    else:
+        dx_ratio = 0.55
+    x_frac = params.get("x_frac", 0.4)
+    ix_top = DIAGRAM_WIDTH * x_frac
+    dy = y_bottom - y_top
+    dx = abs(dy) * dx_ratio
+    ix_bottom = ix_top + dx
     length = math.hypot(dx, dy)
     ux, uy = dx / length, dy / length
     ext = 15
@@ -710,7 +872,22 @@ def draw_parallel_lines(params: dict) -> Drawing:
 
 def draw_exterior_triangle(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    A, B, C = (35, 30), (150, 30), (75, 100)
+    A, B = (35, 30), (150, 30)
+    # The apex position varies with the real interior angle at A (a narrow
+    # angle looks narrow, a wide one looks wide) instead of an identical
+    # fixed triangle every render - bucketed into a couple of pre-verified-
+    # safe apex positions per bucket (rather than a continuous function)
+    # since the label-inset logic below was tuned against one shape and an
+    # untested extreme apex position risks a new overlap.
+    known_interior = params.get("interior1_value", 45)
+    variant = params.get("shape_variant", 0)
+    if known_interior < 40:
+        apex_choices = [(52, 105), (60, 112)]
+    elif known_interior <= 75:
+        apex_choices = [(75, 100), (68, 108)]
+    else:
+        apex_choices = [(100, 95), (108, 102)]
+    C = apex_choices[variant % len(apex_choices)]
     d.add(Polygon([A[0], A[1], B[0], B[1], C[0], C[1]], strokeColor=INK, fillColor=None, strokeWidth=1.2))
 
     ext_x = B[0] + (B[0] - A[0]) * 0.4
@@ -724,15 +901,22 @@ def draw_exterior_triangle(params: dict) -> Drawing:
 
     centroid = ((A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3)
 
-    def _inset(vertex, factor=0.35):
+    def _inset(vertex, label):
+        # Scale the inset distance by the label's own rendered width - a
+        # fixed 0.35 (tuned against short labels like "25°") left a wide
+        # algebraic label like "(2x + 4)°" close enough to the vertex that
+        # even centred text reached back far enough to cross its own angle
+        # arc. anchor="start" (text growing away from the vertex instead of
+        # centred on the inset point) was tried first and made it worse -
+        # the inset point itself was still too close to the vertex, so the
+        # text immediately ran into the sloped edge on its way out. The fix
+        # is a genuinely bigger inset distance, not a different anchor.
+        width = stringWidth(str(label), _LABEL_FONT, 10)
+        factor = min(0.85, 0.25 + width / 100)
         return (vertex[0] + (centroid[0] - vertex[0]) * factor, vertex[1] + (centroid[1] - vertex[1]) * factor)
 
-    # A 0.7 inset (most of the way to the centroid) sat much further from
-    # each vertex's own arc (radius=9) than the arc itself - "far away from
-    # the angles" - brought in close enough to read as attached to the arc
-    # while still clearing the vertex point itself.
-    ax, ay = _inset(A)
-    bx, by = _inset(B)
+    ax, ay = _inset(A, params["interior1_label"])
+    bx, by = _inset(B, params["interior2_label"])
     d.add(_label(ax, ay, params["interior1_label"], size=10))
     d.add(_label(bx, by, params["interior2_label"], size=10))
     d.add(_label(B[0] + 20, B[1] + 10, params["exterior_label"], anchor="start", size=10))
@@ -850,11 +1034,34 @@ def _not_to_scale(d: Drawing, x: float = DIAGRAM_WIDTH / 2, y: float = 10) -> No
     return
 
 
+def _shape_variant(params: dict, n: int) -> int:
+    """A small index (0..n-1) derived deterministically from this diagram's
+    own label content - NOT Python's built-in hash(), which is randomised
+    per-process for strings (see CLAUDE.md) and would make the same
+    question render a different shape on every run. Gives real per-question
+    shape variety (this diagram kind's vertex layout was previously 100%
+    fixed every single render) with no change needed at any of this
+    diagram kind's many call sites, since every real caller already passes
+    different label text per question."""
+    seed_str = "".join(str(v) for v in params.values())
+    return sum(ord(c) for c in seed_str) % n
+
+
+# 3 pre-verified-safe (A, B, C) vertex layouts for draw_trig_triangle - right
+# angle always at A, varying how far B/C reach so triangles genuinely look
+# different across questions instead of an identical fixed shape every time.
+_TRIG_TRIANGLE_VARIANTS = [
+    ((40, 25), (165, 25), (40, 105)),
+    ((40, 25), (140, 25), (40, 115)),
+    ((40, 25), (172, 25), (40, 85)),
+]
+
+
 def draw_trig_triangle(params: dict) -> Drawing:
     """Right triangle for SOH CAH TOA questions: right angle at A (bottom-left),
     marked angle at B (bottom-right). Opposite/adjacent are relative to that angle."""
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    A, B, C = (40, 25), (165, 25), (40, 105)
+    A, B, C = _TRIG_TRIANGLE_VARIANTS[_shape_variant(params, len(_TRIG_TRIANGLE_VARIANTS))]
     d.add(Polygon([A[0], A[1], B[0], B[1], C[0], C[1]], strokeColor=INK, fillColor=None, strokeWidth=1.2))
 
     s = 8
@@ -881,11 +1088,26 @@ def draw_trig_triangle(params: dict) -> Drawing:
     # bisector direction, so for some adjacent/opposite ratios it swung
     # close enough to the hypotenuse (B-C) to visibly overlap it. The
     # direction to the centroid always sits inside the wedge at B, matching
-    # the same fix already used by draw_general_triangle's angle labels.
+    # the same fix already used by draw_general_triangle's angle labels. A
+    # fixed 0.4 factor still wasn't enough clearance for a wide algebraic
+    # label (e.g. "(2x+15)°") on the flatter/wider triangle variant, whose
+    # hypotenuse sits closer to B - the same stringWidth-based scaling
+    # draw_general_triangle already uses fixes it here too (found by
+    # rendering across this diagram's own new shape variants, not assumed).
     centroid = ((A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3)
-    bx, by = B[0] + (centroid[0] - B[0]) * 0.4, B[1] + (centroid[1] - B[1]) * 0.4
-    d.add(_label(bx, by, params["angle_label"], size=10))
+    angle_label = params["angle_label"]
+    angle_width = stringWidth(str(angle_label), _LABEL_FONT, 10)
+    factor = min(0.75, 0.4 + angle_width / 220)
+    bx, by = B[0] + (centroid[0] - B[0]) * factor, B[1] + (centroid[1] - B[1]) * factor
+    d.add(_label(bx, by, angle_label, size=10))
     return d
+
+
+# 3 pre-verified-safe apex positions for draw_general_triangle - base A/B
+# fixed, apex C varies, so this diagram's genuinely wide blast radius (sine
+# rule, cosine rule, triangle area, exact trig values, the Formulae Sheet)
+# doesn't render an identical fixed triangle every time.
+_GENERAL_TRIANGLE_APEX_VARIANTS = [(95, 108), (72, 112), (122, 100)]
 
 
 def draw_general_triangle(params: dict) -> Drawing:
@@ -893,7 +1115,8 @@ def draw_general_triangle(params: dict) -> Drawing:
     questions, with any combination of the three sides and three angles
     labelled by the caller."""
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    A, B, C = (30, 28), (172, 28), (95, 108)
+    A, B = (30, 28), (172, 28)
+    C = _GENERAL_TRIANGLE_APEX_VARIANTS[_shape_variant(params, len(_GENERAL_TRIANGLE_APEX_VARIANTS))]
     d.add(Polygon([A[0], A[1], B[0], B[1], C[0], C[1]], strokeColor=INK, fillColor=None, strokeWidth=1.2))
 
     def midpoint(p, q):
@@ -1553,16 +1776,28 @@ def _draw_scaled_axes(
     px_per_unit_x = plot_w / x_span
     px_per_unit_y = plot_h / y_span
 
-    # Prefer a true square grid (equal px-per-unit on both axes, matching
-    # real squared exercise-book paper) whenever the tighter of the two
-    # per-axis scales still gives a legible unit-square size. Fall back to
-    # the old independently-scaled (rectangular) axes only when the data's
-    # x/y ranges are too lopsided for that to work (e.g. a 360-degree trig
-    # sweep against a y range of +-1.4, or a distance-time graph running to
-    # 65 minutes against 12 km) - forcing square there would shrink the
-    # constrained axis's unit squares to sub-pixel slivers.
+    # Prefer a true square UNIT grid (equal px-per-unit on both axes, one
+    # square = 1 unit by 1 unit, matching real squared exercise-book paper)
+    # whenever the tighter of the two per-axis scales still gives a legible
+    # unit-square size. For a lopsided range (e.g. a 360-degree trig sweep
+    # against a y range of +-1.4, or a distance-time graph running to 65
+    # minutes against 12 km), forcing 1-unit squares at a single shared
+    # scale would shrink the constrained axis's squares to sub-pixel
+    # slivers - the fix isn't to give up on square cells, it's to let a
+    # square be worth a DIFFERENT number of units on each axis (exactly
+    # like real squared paper used for e.g. a sin/cos graph, where one
+    # square might be 50 degrees by 0.2), while still rendering every
+    # square the same pixel size on both axes so cells never look
+    # rectangular. Picking a "nice" per-axis step (the same helper already
+    # used for numbered ticks) keeps the grid legible instead of packing
+    # hundreds of 1-unit lines into a narrow span (found via a real render
+    # of trig_graph/plot_cubic: the old code always used a raw 1-unit
+    # gridline step regardless of which branch fired, so the rectangular
+    # fallback still crammed e.g. 360 lines into ~170px on the constrained
+    # axis - a dense grey smear, not a fallback to something legible).
     square_px = min(px_per_unit_x, px_per_unit_y)
     if square_px >= _MIN_SQUARE_UNIT_PX:
+        grid_step_x = grid_step_y = 1.0
         used_w, used_h = x_span * square_px, y_span * square_px
         origin_x = _GRAPH_MARGIN_L + (plot_w - used_w) / 2
         origin_y = _GRAPH_MARGIN_B + (plot_h - used_h) / 2
@@ -1570,24 +1805,33 @@ def _draw_scaled_axes(
         def to_px(x: float, y: float) -> tuple[float, float]:
             return origin_x + (x - x_min) * square_px, origin_y + (y - y_min) * square_px
     else:
-        def to_px(x: float, y: float) -> tuple[float, float]:
-            px = _GRAPH_MARGIN_L + (x - x_min) / x_span * plot_w
-            py = _GRAPH_MARGIN_B + (y - y_min) / y_span * plot_h
-            return px, py
+        grid_step_x = _nice_tick_step(x_min, x_max)
+        grid_step_y = _nice_tick_step(y_min, y_max)
+        nx, ny = x_span / grid_step_x, y_span / grid_step_y
+        px_per_square = min(plot_w / nx, plot_h / ny)
+        used_w, used_h = nx * px_per_square, ny * px_per_square
+        origin_x = _GRAPH_MARGIN_L + (plot_w - used_w) / 2
+        origin_y = _GRAPH_MARGIN_B + (plot_h - used_h) / 2
 
-    # Fine unit gridlines.
-    x = math.ceil(x_min)
+        def to_px(x: float, y: float) -> tuple[float, float]:
+            return (
+                origin_x + (x - x_min) / grid_step_x * px_per_square,
+                origin_y + (y - y_min) / grid_step_y * px_per_square,
+            )
+
+    # Square gridlines, spaced at grid_step_x/grid_step_y on each axis.
+    x = math.ceil(x_min / grid_step_x) * grid_step_x
     while x <= x_max + 1e-9:
         px, y0 = to_px(x, y_min)
         _, y1 = to_px(x, y_max)
         d.add(Line(px, y0, px, y1, strokeColor=GRID, strokeWidth=0.4))
-        x += 1
-    y = math.ceil(y_min)
+        x += grid_step_x
+    y = math.ceil(y_min / grid_step_y) * grid_step_y
     while y <= y_max + 1e-9:
         x0, py = to_px(x_min, y)
         x1, _ = to_px(x_max, y)
         d.add(Line(x0, py, x1, py, strokeColor=GRID, strokeWidth=0.4))
-        y += 1
+        y += grid_step_y
 
     # Bold axis lines through the origin (guaranteed in range by the clamp above).
     axis_x0 = 0
@@ -3269,9 +3513,26 @@ def draw_cuboid(params: dict) -> Drawing:
         cx_all = sum(p[0] for p in points_order) / len(points_order)
         cy_all = sum(p[1] for p in points_order) / len(points_order)
         for pt, lbl in zip(points_order, vertex_labels):
-            dx_l, dy_l = pt[0] - cx_all, pt[1] - cy_all
-            dist = math.hypot(dx_l, dy_l) or 1.0
-            lx, ly = pt[0] + dx_l / dist * 13, pt[1] + dy_l / dist * 13
+            if pt == BBL:
+                # D (the one hidden vertex) projects visually INSIDE the
+                # front face's own silhouette in oblique projection, unlike
+                # every other vertex, which sits on the outer boundary of
+                # the drawn shape - pushing it outward from the overall
+                # centroid by the same small fixed distance used for every
+                # other vertex left it still inside the front face's
+                # rectangle, overlapping the dashed lines converging there
+                # (found by rendering, not assumed). The one direction genuinely
+                # clear of D's own three dashed edges (down-left to FBL,
+                # right to BBR, up to BTL) is straight down, below the
+                # front face's own bottom edge - far enough below (not just
+                # past y0) to clear the width_label's own row too, which a
+                # first attempt collided with (found by rendering, not
+                # assumed - "D14 cm" running together).
+                lx, ly = BBL[0], y0 - 26
+            else:
+                dx_l, dy_l = pt[0] - cx_all, pt[1] - cy_all
+                dist = math.hypot(dx_l, dy_l) or 1.0
+                lx, ly = pt[0] + dx_l / dist * 13, pt[1] + dy_l / dist * 13
             d.add(_label(lx, ly, lbl, size=7.5))
 
     _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
@@ -3729,6 +3990,7 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "two_similar_rectangles": draw_two_similar_rectangles,
     "triangle_area": draw_triangle_area,
     "l_shape": draw_l_shape,
+    "t_shape": draw_t_shape,
     "circle": draw_circle,
     "rectangle_semicircle": draw_rectangle_semicircle,
     "angle_line": draw_angle_line,

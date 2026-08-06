@@ -910,10 +910,10 @@
       "prompt": "Find the shaded area.",
       "solution_steps": [
         "Area of large rectangle = 13 × 24 = 312 cm²",
-        "Area of rectangular hole = 8 × 11 = 88 cm²",
-        "Shaded area = 312 - 88 = 224 cm²"
+        "Area of rectangular hole = 9 × 12 = 108 cm²",
+        "Shaded area = 312 - 108 = 204 cm²"
       ],
-      "final_answer": "224 cm²",
+      "final_answer": "204 cm²",
       "marks": 4,
       "mark_scheme": [
         {
@@ -923,17 +923,17 @@
         },
         {
           "code": "M1",
-          "description": "Area of rectangular hole = 8 × 11 = 88 cm²",
+          "description": "Area of rectangular hole = 9 × 12 = 108 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Shaded area = 312 - 88 = 224 cm²",
+          "description": "Shaded area = 312 - 108 = 204 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "224 cm² oe",
+          "description": "204 cm² oe",
           "marks": 1
         }
       ],
@@ -942,8 +942,8 @@
         "params": {
           "outer_w": 13,
           "outer_h": 24,
-          "inner_w": 8,
-          "inner_h": 11,
+          "inner_w": 9,
+          "inner_h": 12,
           "notch": "center",
           "shade_frame": true,
           "outer_labels": [
@@ -951,8 +951,8 @@
             "24 cm"
           ],
           "inner_labels": [
-            "8 cm",
-            "11 cm"
+            "9 cm",
+            "12 cm"
           ]
         }
       },

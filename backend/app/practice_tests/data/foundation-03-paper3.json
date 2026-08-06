@@ -501,34 +501,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "direct_proportion",
-      "prompt": "If a recipe for 3 people uses 195g of sugar, how much sugar is needed for 16 people?",
+      "topic_id": "direct_proportion_noncalculator",
+      "prompt": "If 6 cm on a map represents 12 km in real life, how many km does 24 cm represent?",
       "solution_steps": [
-        "Unit value = 195g ÷ 3 = 65g",
-        "Answer = 65g × 16 = 1040g",
-        "1040g = 1.04kg"
+        "Unit value = 12 km ÷ 6 = 2 km",
+        "Answer = 2 km × 24 = 48 km"
       ],
-      "final_answer": "1.04kg",
-      "marks": 4,
+      "final_answer": "48 km",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Unit value = 195g ÷ 3 = 65g",
+          "description": "Unit value = 12 km ÷ 6 = 2 km",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer = 65g × 16 = 1040g",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "1040g = 1.04kg",
+          "description": "Answer = 2 km × 24 = 48 km",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1.04kg oe",
+          "description": "48 km oe",
           "marks": 1
         }
       ],
@@ -565,40 +559,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "best_buys",
-      "prompt": "A shop sells rice in different sizes: A: £16.92 for 900g; B: £11.70 for 450g. Which option is the better value for money? Show your working.",
+      "topic_id": "best_buys_noncalculator",
+      "prompt": "A shop sells orange juice in different sizes: A: £3.60 for 200ml; B: £7.70 for 700ml. Which option is the better value for money? Show your working.",
       "solution_steps": [
-        "Work out the price per 100g for each option:",
-        "A: £16.92 ÷ 900 × 100 = 188.00p per 100g",
-        "B: £11.70 ÷ 450 × 100 = 260.00p per 100g",
-        "The lowest price per 100g is A at 188.00p per 100g, so A is the best value."
+        "Work out the price per 100ml for each option:",
+        "A: £3.60 ÷ 200 × 100 = 180p per 100ml",
+        "B: £7.70 ÷ 700 × 100 = 110p per 100ml",
+        "The lowest price per 100ml is B at 110p per 100ml, so B is the best value."
       ],
-      "final_answer": "A (£16.92 for 900g)",
+      "final_answer": "B (£7.70 for 700ml)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Work out the price per 100g for each option:",
+          "description": "Work out the price per 100ml for each option:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A: £16.92 ÷ 900 × 100 = 188.00p per 100g",
+          "description": "A: £3.60 ÷ 200 × 100 = 180p per 100ml",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "B: £11.70 ÷ 450 × 100 = 260.00p per 100g",
+          "description": "B: £7.70 ÷ 700 × 100 = 110p per 100ml",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The lowest price per 100g is A at 188.00p per 100g, so A is the best value.",
+          "description": "The lowest price per 100ml is B at 110p per 100ml, so B is the best value.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A (£16.92 for 900g) oe",
+          "description": "B (£7.70 for 700ml) oe",
           "marks": 1
         }
       ],
@@ -606,28 +600,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inverse_proportion",
-      "prompt": "It takes 12 painters 22 hours to paint a fence. Working at the same rate, how long would it take 11 painters?",
+      "topic_id": "inverse_proportion_noncalculator",
+      "prompt": "It takes 3 painters 20 hours to paint a fence. Working at the same rate, how long would it take 5 painters?",
       "solution_steps": [
-        "Constant = 12 × 22 = 264",
-        "Time for 11 painters = 264 ÷ 11 = 24"
+        "Constant = 3 × 20 = 60",
+        "Time for 5 painters = 60 ÷ 5 = 12"
       ],
-      "final_answer": "24 hours",
+      "final_answer": "12 hours",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Constant = 12 × 22 = 264",
+          "description": "Constant = 3 × 20 = 60",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Time for 11 painters = 264 ÷ 11 = 24",
+          "description": "Time for 5 painters = 60 ÷ 5 = 12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "24 hours oe",
+          "description": "12 hours oe",
           "marks": 1
         }
       ],
@@ -730,7 +724,9 @@
         "params": {
           "known_label": "138°",
           "unknown_label": "x",
-          "relation": "co_interior"
+          "relation": "co_interior",
+          "known_value": 138,
+          "x_frac": 0.44
         }
       },
       "solution_diagram": null
@@ -777,32 +773,72 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_rectangle",
-      "prompt": "Find the area of the following rectangle.",
+      "topic_id": "congruent_triangle_proof_foundation",
+      "prompt": "Lines AC and BD cross at point O, with OA = OC and OB = OD. Which congruence criterion proves that the two triangles are congruent? A) RHS  B) SAS  C) ASA  D) SSS",
       "solution_steps": [
-        "Area = length × width = 4 × 3 = 12 cm²"
+        "OA = OC (given)",
+        "angle AOB = angle COD (vertically opposite angles)",
+        "OB = OD (given)",
+        "These facts match the Side-Angle-Side (SAS) congruence criterion."
       ],
-      "final_answer": "12 cm²",
-      "marks": 2,
+      "final_answer": "B) SAS",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "Area = length × width = 4 × 3 = 12 cm²",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "12 cm² oe",
+          "code": "B1",
+          "description": "B) SAS (selecting the correct option)",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "rectangle",
+        "kind": "two_triangle_congruence",
         "params": {
-          "width": 4,
-          "height": 3,
-          "width_label": "4 cm",
-          "height_label": "3 cm"
+          "labels_1": [
+            "A",
+            "O",
+            "B"
+          ],
+          "labels_2": [
+            "C",
+            "O",
+            "D"
+          ],
+          "ticks_1": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              2
+            ]
+          ],
+          "ticks_2": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              2
+            ]
+          ],
+          "arcs_1": [
+            [
+              1,
+              1
+            ]
+          ],
+          "arcs_2": [
+            [
+              1,
+              1
+            ]
+          ]
         }
       },
       "solution_diagram": null
@@ -909,72 +945,39 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof_foundation",
-      "prompt": "Lines AC and BD cross at point O, with OA = OC and OB = OD. Which congruence criterion proves that the two triangles are congruent? A) RHS  B) SAS  C) ASA  D) SSS",
+      "topic_id": "probability_complement",
+      "prompt": "A bag contains 3 red, 8 blue, 4 yellow counters. A counter is picked at random. Find the probability that it is NOT yellow.",
       "solution_steps": [
-        "OA = OC (given)",
-        "angle AOB = angle COD (vertically opposite angles)",
-        "OB = OD (given)",
-        "These facts match the Side-Angle-Side (SAS) congruence criterion."
+        "P(yellow) = 4/15 = 4/15",
+        "P(not yellow) = 1 - 4/15 = 11/15"
       ],
-      "final_answer": "B) SAS",
-      "marks": 1,
+      "final_answer": "11/15",
+      "marks": 3,
       "mark_scheme": [
         {
-          "code": "B1",
-          "description": "B) SAS (selecting the correct option)",
+          "code": "M1",
+          "description": "P(yellow) = 4/15 = 4/15",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(not yellow) = 1 - 4/15 = 11/15",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "11/15 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "two_triangle_congruence",
+        "kind": "bag_of_counters",
         "params": {
-          "labels_1": [
-            "A",
-            "O",
-            "B"
-          ],
-          "labels_2": [
-            "C",
-            "O",
-            "D"
-          ],
-          "ticks_1": [
-            [
-              0,
-              1,
-              1
-            ],
-            [
-              1,
-              2,
-              2
-            ]
-          ],
-          "ticks_2": [
-            [
-              0,
-              1,
-              1
-            ],
-            [
-              1,
-              2,
-              2
-            ]
-          ],
-          "arcs_1": [
-            [
-              1,
-              1
-            ]
-          ],
-          "arcs_2": [
-            [
-              1,
-              1
-            ]
-          ]
+          "counts": {
+            "red": 3,
+            "blue": 8,
+            "yellow": 4
+          }
         }
       },
       "solution_diagram": null

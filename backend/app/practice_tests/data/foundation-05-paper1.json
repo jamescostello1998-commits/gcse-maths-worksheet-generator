@@ -579,6 +579,64 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "ratio_1_to_n",
+      "prompt": "Write the ratio 8:6 in the form \\plain{n}:1.",
+      "solution_steps": [
+        "Divide both parts of the ratio by 6 (the second part) so the second part becomes 1.",
+        "8 ÷ 6 ≈ 1.33, 6 ÷ 6 = 1"
+      ],
+      "final_answer": "1.33 : 1 (to 2 d.p.)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Divide both parts of the ratio by 6 (the second part) so the second part becomes 1.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "8 ÷ 6 ≈ 1.33, 6 ÷ 6 = 1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1.33 : 1 (to 2 d.p.) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "inverse_proportion",
+      "prompt": "It takes 9 machines 20 hours to complete a production run. Working at the same rate, how long would it take 10 machines?",
+      "solution_steps": [
+        "Constant = 9 × 20 = 180",
+        "Time for 10 machines = 180 ÷ 10 = 18"
+      ],
+      "final_answer": "18 hours",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Constant = 9 × 20 = 180",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Time for 10 machines = 180 ÷ 10 = 18",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "18 hours oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "ratio_share_three_part_foundation",
       "prompt": "Share 140 in the ratio 2:9:9.",
       "solution_steps": [
@@ -621,28 +679,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inverse_proportion",
-      "prompt": "It takes 9 machines 20 hours to complete a production run. Working at the same rate, how long would it take 10 machines?",
+      "topic_id": "inverse_proportion_noncalculator",
+      "prompt": "It takes 4 machines 15 hours to complete a production run. Working at the same rate, how long would it take 5 machines?",
       "solution_steps": [
-        "Constant = 9 × 20 = 180",
-        "Time for 10 machines = 180 ÷ 10 = 18"
+        "Constant = 4 × 15 = 60",
+        "Time for 5 machines = 60 ÷ 5 = 12"
       ],
-      "final_answer": "18 hours",
+      "final_answer": "12 hours",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Constant = 9 × 20 = 180",
+          "description": "Constant = 4 × 15 = 60",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Time for 10 machines = 180 ÷ 10 = 18",
+          "description": "Time for 5 machines = 60 ÷ 5 = 12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "18 hours oe",
+          "description": "12 hours oe",
           "marks": 1
         }
       ],
@@ -650,86 +708,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_1_to_n",
-      "prompt": "Write the ratio 8:6 in the form \\plain{n}:1.",
+      "topic_id": "best_buys",
+      "prompt": "A shop sells washing-up liquid in different sizes: A: £15.84 for 900ml; B: £4.18 for 550ml. Which option is the better value for money? Show your working.",
       "solution_steps": [
-        "Divide both parts of the ratio by 6 (the second part) so the second part becomes 1.",
-        "8 ÷ 6 ≈ 1.33, 6 ÷ 6 = 1"
+        "Work out the price per 100ml for each option:",
+        "A: £15.84 ÷ 900 × 100 = 176.00p per 100ml",
+        "B: £4.18 ÷ 550 × 100 = 76.00p per 100ml",
+        "The lowest price per 100ml is B at 76.00p per 100ml, so B is the best value."
       ],
-      "final_answer": "1.33 : 1 (to 2 d.p.)",
-      "marks": 3,
+      "final_answer": "B (£4.18 for 550ml)",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide both parts of the ratio by 6 (the second part) so the second part becomes 1.",
+          "description": "Work out the price per 100ml for each option:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "8 ÷ 6 ≈ 1.33, 6 ÷ 6 = 1",
+          "description": "A: £15.84 ÷ 900 × 100 = 176.00p per 100ml",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B: £4.18 ÷ 550 × 100 = 76.00p per 100ml",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The lowest price per 100ml is B at 76.00p per 100ml, so B is the best value.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1.33 : 1 (to 2 d.p.) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "sdt_mixed",
-      "prompt": "A delivery van travels 568 km in 8 hours. Find its average speed in km/h.",
-      "solution_steps": [
-        "speed = distance ÷ time",
-        "speed = 568 ÷ 8 = 71 km/h"
-      ],
-      "final_answer": "71 km/h",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "speed = distance ÷ time",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "speed = 568 ÷ 8 = 71 km/h",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "71 km/h oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simple_interest",
-      "prompt": "£3500 is invested at a simple interest rate of 2% per year for 3 years. Find the interest earned.",
-      "solution_steps": [
-        "Simple interest formula: I = P × r × t ÷ 100",
-        "I = 3500 × 2 × 3 ÷ 100 = £210"
-      ],
-      "final_answer": "£210",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Simple interest formula: I = P × r × t ÷ 100",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "I = 3500 × 2 × 3 ÷ 100 = £210",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£210 oe",
+          "description": "B (£4.18 for 550ml) oe",
           "marks": 1
         }
       ],
@@ -988,129 +1000,75 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "tree_diagram_independent",
-      "prompt": "A bag contains 5 yellow and 3 red counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that both counters are the same colour.",
+      "topic_id": "tree_diagram_drawing",
+      "prompt": "A bag contains 6 yellow and 8 green counters. A counter is picked at random, replaced, and then a second counter is picked at random. Draw a fully-labelled tree diagram to show this information, and use it to find the probability that the first counter is green and the second counter is green.",
       "solution_steps": [
-        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(yellow) = 5/8, P(red) = 3/8.",
-        "P(both yellow) = 5/8 × 5/8 = 25/64",
-        "P(both red) = 3/8 × 3/8 = 9/64",
-        "P(same colour) = 25/64 + 9/64 = 17/32"
+        "Draw two branches from the start: P(yellow) = 3/7, P(green) = 4/7.",
+        "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
+        "P(green then green) = 4/7 × 4/7 = 16/49"
       ],
-      "final_answer": "17/32",
-      "marks": 5,
+      "final_answer": "16/49",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(yellow) = 5/8, P(red) = 3/8.",
+          "description": "Draw two branches from the start: P(yellow) = 3/7, P(green) = 4/7.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(both yellow) = 5/8 × 5/8 = 25/64",
+          "description": "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(both red) = 3/8 × 3/8 = 9/64",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(same colour) = 25/64 + 9/64 = 17/32",
+          "description": "P(green then green) = 4/7 × 4/7 = 16/49",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "17/32 oe",
+          "description": "16/49 oe",
           "marks": 1
         }
       ],
-      "diagram": {
+      "diagram": null,
+      "solution_diagram": {
         "kind": "tree_diagram",
         "params": {
           "stage1": [
             [
               "Yellow",
-              "5/8"
+              "3/7"
             ],
             [
-              "Red",
-              "3/8"
+              "Green",
+              "4/7"
             ]
           ],
           "stage2": [
             [
               [
                 "Yellow",
-                "5/8"
+                "3/7"
               ],
               [
-                "Red",
-                "3/8"
+                "Green",
+                "4/7"
               ]
             ],
             [
               [
                 "Yellow",
-                "5/8"
+                "3/7"
               ],
               [
-                "Red",
-                "3/8"
+                "Green",
+                "4/7"
               ]
             ]
           ]
         }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "fractions_equivalent_diagram",
-      "prompt": "The first shape shows 3/4 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
-      "solution_steps": [
-        "Cross-multiply 3/4 against each labelled shape: a shape shows an equivalent fraction only if 3 × (its denominator) = (its shaded count) × 4.",
-        "Only shape A) 9/12 works: 3 × 12 = 9 × 4 = 36."
-      ],
-      "final_answer": "A) 9/12",
-      "marks": 1,
-      "mark_scheme": [
-        {
-          "code": "B1",
-          "description": "A) 9/12 (selecting the correct option)",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "circle",
-              "parts": 4,
-              "shaded": 3
-            },
-            {
-              "kind": "circle",
-              "parts": 12,
-              "shaded": 9,
-              "label": "A)"
-            },
-            {
-              "kind": "circle",
-              "parts": 4,
-              "shaded": 1,
-              "label": "B)"
-            },
-            {
-              "kind": "circle",
-              "parts": 6,
-              "shaded": 1,
-              "label": "C)"
-            }
-          ]
-        }
-      },
-      "solution_diagram": null
+      }
     }
   ]
 }

@@ -523,7 +523,7 @@
     },
     {
       "topic_id": "kinematics_suvat",
-      "prompt": "An object starts with a velocity of 2 m/s and has a constant acceleration of 3 m/s^2 for 2 s. Find its final velocity.",
+      "prompt": "An object starts with a velocity of 2 m/s and has a constant acceleration of 3 m/s^2 for 2 s. Find its final velocity (v).",
       "solution_steps": [
         "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
         "v = u + at",
@@ -674,7 +674,7 @@
     },
     {
       "topic_id": "ratio_difference_higher",
-      "prompt": "s : t : u = 3 : 6 : 2. t - u = 60. Find s, t and u.",
+      "prompt": "s : t : u = 3 : 6 : 2.\nt - u = 60.\nFind s, t and u.",
       "solution_steps": [
         "Difference in parts = 6 - 2 = 4 parts",
         "Value of one part = 60 ÷ 4 = 15",
@@ -719,10 +719,10 @@
       "prompt": "Find the shaded area.",
       "solution_steps": [
         "Area of large rectangle = 18 × 15 = 270 cm²",
-        "Area of rectangular hole = 5 × 12 = 60 cm²",
-        "Shaded area = 270 - 60 = 210 cm²"
+        "Area of rectangular hole = 6 × 13 = 78 cm²",
+        "Shaded area = 270 - 78 = 192 cm²"
       ],
-      "final_answer": "210 cm²",
+      "final_answer": "192 cm²",
       "marks": 4,
       "mark_scheme": [
         {
@@ -732,17 +732,17 @@
         },
         {
           "code": "M1",
-          "description": "Area of rectangular hole = 5 × 12 = 60 cm²",
+          "description": "Area of rectangular hole = 6 × 13 = 78 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Shaded area = 270 - 60 = 210 cm²",
+          "description": "Shaded area = 270 - 78 = 192 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "210 cm² oe",
+          "description": "192 cm² oe",
           "marks": 1
         }
       ],
@@ -751,8 +751,8 @@
         "params": {
           "outer_w": 18,
           "outer_h": 15,
-          "inner_w": 5,
-          "inner_h": 12,
+          "inner_w": 6,
+          "inner_h": 13,
           "notch": "center",
           "shade_frame": true,
           "outer_labels": [
@@ -760,8 +760,8 @@
             "15 cm"
           ],
           "inner_labels": [
-            "5 cm",
-            "12 cm"
+            "6 cm",
+            "13 cm"
           ]
         }
       },

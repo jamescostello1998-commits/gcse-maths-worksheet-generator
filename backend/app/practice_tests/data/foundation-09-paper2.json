@@ -825,28 +825,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "direct_proportion",
-      "prompt": "If 4 cm on a map represents 112 km in real life, how many km does 2 cm represent?",
+      "topic_id": "direct_proportion_noncalculator",
+      "prompt": "If 4 pencils cost 52p, how much would 2 pencils cost?",
       "solution_steps": [
-        "Unit value = 112 km ÷ 4 = 28 km",
-        "Answer = 28 km × 2 = 56 km"
+        "Unit value = 52p ÷ 4 = 13p",
+        "Answer = 13p × 2 = 26p"
       ],
-      "final_answer": "56 km",
+      "final_answer": "26p",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Unit value = 112 km ÷ 4 = 28 km",
+          "description": "Unit value = 52p ÷ 4 = 13p",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer = 28 km × 2 = 56 km",
+          "description": "Answer = 13p × 2 = 26p",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "56 km oe",
+          "description": "26p oe",
           "marks": 1
         }
       ],
@@ -855,7 +855,7 @@
     },
     {
       "topic_id": "ratio_difference",
-      "prompt": "p : q = 3 : 7. q - p = 68. Find p and q.",
+      "prompt": "p : q = 3 : 7.\nq - p = 68.\nFind p and q.",
       "solution_steps": [
         "Difference in parts = 7 - 3 = 4 parts",
         "Value of one part = 68 ÷ 4 = 17",
