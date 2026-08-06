@@ -4,13 +4,14 @@
   "tier": "higher",
   "sitting_id": "higher-04",
   "paper_number": 1,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "fractions_divide",
       "prompt": "Work out 7/2 ÷ 1/3. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Keep-change-flip: 7/2 ÷ 1/3 = 7/2 × 3/1",
-        "Multiply: (7×3)/(2×1) = 21/2",
+        "Multiply: \\frac{(7×3)}{(2×1)} = 21/2",
         "Simplify: 21/2"
       ],
       "final_answer": "21/2",
@@ -23,7 +24,7 @@
         },
         {
           "code": "M1",
-          "description": "Multiply: (7×3)/(2×1) = 21/2",
+          "description": "Multiply: \\frac{(7×3)}{(2×1)} = 21/2",
           "marks": 1
         },
         {
@@ -118,9 +119,9 @@
     },
     {
       "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal 0.(42) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Write \\recur{0.}{42} as a fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(42), so 100x = 42.4242... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Let x = \\recur{0.}{42}, so 100x = 42.4242... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 42 - 0, so 99x = 42",
         "x = 42/99 = 14/33"
       ],
@@ -129,7 +130,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(42), so 100x = 42.4242... (two digits repeat, so multiply by 100 to shift a full block)",
+          "description": "Let x = \\recur{0.}{42}, so 100x = 42.4242... (two digits repeat, so multiply by 100 to shift a full block)",
           "marks": 1
         },
         {
@@ -153,7 +154,7 @@
     },
     {
       "topic_id": "fractions_mixed_number_arithmetic",
-      "prompt": "Work out 4 3/5 - 3 2/8. Give your answer as a mixed number.",
+      "prompt": "Calculate 4 3/5 - 3 2/8. Give your answer as a mixed number.",
       "solution_steps": [
         "Convert to improper fractions: 4 3/5 = 23/5, 3 2/8 = 13/4",
         "Subtract the improper fractions: 23/5 - 13/4 = 27/20",
@@ -258,168 +259,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_cubic",
-      "prompt": "Complete a table of values for y = -x^3 for x = -3 to 3, then plot the graph.",
+      "topic_id": "kinematics_suvat",
+      "prompt": "An object starts with a velocity of 4 m/s and has a constant acceleration of 4 m/s^2 over a displacement of 121 m. Find its final velocity (v). Give your answer correct to 1 decimal place.",
       "solution_steps": [
-        "Table of values for y = -x^3:",
-        "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: 27, 8, 1, 0, -1, -8, -27",
-        "Plot each (x, y) point and join them with a single smooth curve."
+        "This question gives three of v, u, a and s and asks for the fourth, so use v^2 = u^2 + 2as, the equation linking exactly those four (note: no t appears here).",
+        "v^2 = u^2 + 2as",
+        "Substitute u = 4, a = 4, s = 121: v^2 = 4^2 + 2 × 4 × 121 = 16 + 968 = 984",
+        "v = √984 = 31.4 m/s (taking the positive root, since speed cannot be negative)"
       ],
-      "final_answer": "Cubic curve: y = -x^3",
+      "final_answer": "31.4 m/s (taking the positive root)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = -x^3:",
+          "description": "This question gives three of v, u, a and s and asks for the fourth, so use v^2 = u^2 + 2as, the equation linking exactly those four (note: no t appears here).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "description": "v^2 = u^2 + 2as",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: 27, 8, 1, 0, -1, -8, -27",
+          "description": "Substitute u = 4, a = 4, s = 121: v^2 = 4^2 + 2 × 4 × 121 = 16 + 968 = 984",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "description": "v = √984 = 31.4 m/s (taking the positive root, since speed cannot be negative)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Cubic curve: y = -x^3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "cubic",
-          "a": -1,
-          "b": 0,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -29,
-          "y_max": 29,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "cubic",
-          "a": -1,
-          "b": 0,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -29,
-          "y_max": 29,
-          "table_points": [
-            [
-              -3,
-              27
-            ],
-            [
-              -2,
-              8
-            ],
-            [
-              -1,
-              1
-            ],
-            [
-              0,
-              0
-            ],
-            [
-              1,
-              -1
-            ],
-            [
-              2,
-              -8
-            ],
-            [
-              3,
-              -27
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "turning_point_of_graph",
-      "prompt": "Find the coordinates of the turning point of the curve y = x^2 + 12x.",
-      "solution_steps": [
-        "Complete the square: x^2 + 12x + 0 = (x + 6)^2 - 36",
-        "The turning point of y = (x + p)^2 + q is (-p, q).",
-        "Turning point = (-6, -36)"
-      ],
-      "final_answer": "(-6, -36)",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Complete the square: x^2 + 12x + 0 = (x + 6)^2 - 36",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Turning point = (-6, -36)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(-6, -36) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "parabola",
-        "params": {
-          "vertex_label": "(-6, -36)"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "algebraic_indices_higher",
-      "prompt": "Simplify 4x^(3/4) × 3x^(1/4)",
-      "solution_steps": [
-        "Multiplying powers of the same base: add the exponents, even when they're fractions.",
-        "4x^(3/4) × 3x^(1/4) = (4×3) x^(3/4+1/4)",
-        "= 12x"
-      ],
-      "final_answer": "12x",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiplying powers of the same base: add the exponents, even when they're fractions.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "4x^(3/4) × 3x^(1/4) = (4×3) x^(3/4+1/4)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 12x",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "12x oe",
+          "description": "31.4 m/s (taking the positive root) oe",
           "marks": 1
         }
       ],
@@ -427,73 +300,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_quadratics",
-      "prompt": "Factorise: x^2 - 25",
+      "topic_id": "solve_quadratic_completing_square",
+      "prompt": "Solve x^2 - 14x - 77 = 0 by completing the square, giving your answers in exact surd form.",
       "solution_steps": [
-        "Find two numbers that multiply to -25 and add to 0: 5 and -5",
-        "Write as two brackets: (x + 5)(x - 5)"
+        "Half the coefficient of x: -14 ÷ 2 = -7",
+        "Complete the square: x^2 - 14x - 77 = (x - 7)^2 - 126",
+        "Set (x - 7)^2 - 126 = 0, so (x - 7)^2 = 126",
+        "(x - 7) = ±√126 = ±3√14",
+        "x = 7 + 3√14 or x = 7 - 3√14"
       ],
-      "final_answer": "(x + 5)(x - 5)",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find two numbers that multiply to -25 and add to 0: 5 and -5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Write as two brackets: (x + 5)(x - 5)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(x + 5)(x - 5) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "forming_equations_higher",
-      "prompt": "A quadrilateral has angles 53°, 69°, (2x + 9)°, and (3x + 209)°. Form an equation and solve it to find x.",
-      "solution_steps": [
-        "Angles in a quadrilateral sum to 360°.",
-        "53 + 69 + (2x + 9) + (3x + 209) = 360",
-        "Collect the x-terms and constants together:",
-        "5x + 218 = 238",
-        "Subtract 218 from both sides:",
-        "5x = 20",
-        "Divide both sides by 5:",
-        "x = 4"
-      ],
-      "final_answer": "4",
+      "final_answer": "x = 7 + 3√14 or x = 7 - 3√14",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles in a quadrilateral sum to 360°.",
+          "description": "Half the coefficient of x: -14 ÷ 2 = -7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "53 + 69 + (2x + 9) + (3x + 209) = 360",
+          "description": "Complete the square: x^2 - 14x - 77 = (x - 7)^2 - 126",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Collect the x-terms and constants together:",
+          "description": "Set (x - 7)^2 - 126 = 0, so (x - 7)^2 = 126",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x + 218 = 238 Subtract 218 from both sides: 5x = 20 Divide both sides by 5: x = 4",
+          "description": "(x - 7) = ±√126 = ±3√14 x = 7 + 3√14 or x = 7 - 3√14",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4 oe",
+          "description": "x = 7 + 3√14 or x = 7 - 3√14 oe",
           "marks": 1
         }
       ],
@@ -501,34 +342,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_triple_brackets",
-      "prompt": "Expand and simplify: (x + 1)(-4x - 1)(-2x - 2)",
+      "topic_id": "completing_the_square",
+      "prompt": "Write x^2 - 14x + 4 in the form (x + p)^2 + q.",
       "solution_steps": [
-        "First expand two of the brackets: (x + 1)(-4x - 1) = -4x^2 - 5x - 1",
-        "Multiply the result by (-2x - 2) and collect like terms",
-        "= 8x^3 + 18x^2 + 12x + 2"
+        "Half the coefficient of x: -14 ÷ 2 = -7",
+        "(x - 7)^2 = x^2 - 14x + 49",
+        "x^2 - 14x + 4 = (x - 7)^2 + (4 - 49) = (x - 7)^2 - 45"
       ],
-      "final_answer": "8x^3 + 18x^2 + 12x + 2",
+      "final_answer": "(x - 7)^2 - 45",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First expand two of the brackets: (x + 1)(-4x - 1) = -4x^2 - 5x - 1",
+          "description": "Half the coefficient of x: -14 ÷ 2 = -7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the result by (-2x - 2) and collect like terms",
+          "description": "(x - 7)^2 = x^2 - 14x + 49",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 8x^3 + 18x^2 + 12x + 2",
+          "description": "x^2 - 14x + 4 = (x - 7)^2 + (4 - 49) = (x - 7)^2 - 45",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8x^3 + 18x^2 + 12x + 2 oe",
+          "description": "(x - 7)^2 - 45 oe",
           "marks": 1
         }
       ],
@@ -536,91 +377,193 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "velocity_time_interpret",
-      "prompt": "The velocity-time graph shows a car's journey. Find its deceleration during the final phase.",
+      "topic_id": "solve_quadratic_factorising",
+      "prompt": "Solve x^2 + 13x + 36 = 0 by factorising.",
       "solution_steps": [
-        "Deceleration = change in velocity ÷ time = 15 ÷ 12 = 5/4 m/s^2"
+        "Find two numbers that multiply to 36 and add to 13: 4 and 9",
+        "Factorise: (x + 4)(x + 9) = 0",
+        "Either x + 4 = 0 or x + 9 = 0",
+        "x = -4 or x = -9"
       ],
-      "final_answer": "5/4 m/s^2",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Deceleration = change in velocity ÷ time = 15 ÷ 12 = 5/4 m/s^2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "5/4 m/s^2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              10,
-              15
-            ],
-            [
-              25,
-              15
-            ],
-            [
-              37,
-              0
-            ]
-          ],
-          "x_max": 42,
-          "y_max": 20,
-          "x_label": "Time (s)",
-          "y_label": "Velocity (m/s)"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simultaneous_different_coefficient",
-      "prompt": "Solve the simultaneous equations: 5x + 5y = -10 and 2x + 4y = 4",
-      "solution_steps": [
-        "5x + 5y = -10  (1)",
-        "2x + 4y = 4  (2)",
-        "(1) × 4: 20x + 20y = -40  (3)",
-        "(2) × 5: 10x + 20y = 20  (4)",
-        "(3) - (4): 10x = -60, so x = -6",
-        "Substitute x = -6 into (1): 5y = 20, so y = 4"
-      ],
-      "final_answer": "x = -6, y = 4",
+      "final_answer": "x = -4 or x = -9",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5x + 5y = -10  (1)",
+          "description": "Find two numbers that multiply to 36 and add to 13: 4 and 9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x + 4y = 4  (2)",
+          "description": "Factorise: (x + 4)(x + 9) = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(1) × 4: 20x + 20y = -40  (3)",
+          "description": "Either x + 4 = 0 or x + 9 = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(2) × 5: 10x + 20y = 20  (4) (3) - (4): 10x = -60, so x = -6 Substitute x = -6 into (1): 5y = 20, so y = 4",
+          "description": "x = -4 or x = -9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -6, y = 4 oe",
+          "description": "x = -4 or x = -9 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "change_subject_higher",
+      "prompt": "Make r the subject of the formula A = πr^2.",
+      "solution_steps": [
+        "A = πr^2",
+        "Divide both sides by π: \\frac{A}{π} = r^2",
+        "Take the square root of both sides: r = √(\\frac{A}{π})"
+      ],
+      "final_answer": "r = √(\\frac{A}{π})",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A = πr^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by π: \\frac{A}{π} = r^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Take the square root of both sides: r = √(\\frac{A}{π})",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "r = √(\\frac{A}{π}) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "quadratic_inequalities",
+      "prompt": "Solve the inequality: x^2 - 14x + 48 > 0",
+      "solution_steps": [
+        "Factorise: x^2 - 14x + 48 = (x - 6)(x - 8)",
+        "The critical values are x = 6 and x = 8.",
+        "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and > 0 is satisfied outside the two roots.",
+        "Answer: x < 6 or x > 8"
+      ],
+      "final_answer": "x < 6 or x > 8",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Factorise: x^2 - 14x + 48 = (x - 6)(x - 8)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The critical values are x = 6 and x = 8.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and > 0 is satisfied outside the two roots.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Answer: x < 6 or x > 8",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x < 6 or x > 8 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "perpendicular_lines_equation",
+      "prompt": "A line is perpendicular to y = -5x - 7 and passes through the point (4, 7). Find the equation of the line.",
+      "solution_steps": [
+        "Perpendicular gradients multiply to give -1: m × -5 = -1, so m = 1/5",
+        "Substitute (4, 7) into y = 1/5x + c: 7 = 1/5×(4) + c, so c = 31/5",
+        "Equation of the line: y = 1/5x + 31/5"
+      ],
+      "final_answer": "y = 1/5x + 31/5",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Perpendicular gradients multiply to give -1: m × -5 = -1, so m = 1/5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute (4, 7) into y = 1/5x + c: 7 = 1/5×(4) + c, so c = 31/5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Equation of the line: y = 1/5x + 31/5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y = 1/5x + 31/5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_difference_higher",
+      "prompt": "a : b : c = 7 : 9 : 1.\nb - c = 120.\nFind a, b and c.",
+      "solution_steps": [
+        "Difference in parts = 9 - 1 = 8 parts",
+        "Value of one part = 120 ÷ 8 = 15",
+        "a = 7 × 15 = 105",
+        "b = 9 × 15 = 135",
+        "c = 1 × 15 = 15"
+      ],
+      "final_answer": "a = 105, b = 135, c = 15",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Difference in parts = 9 - 1 = 8 parts",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Value of one part = 120 ÷ 8 = 15",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "a = 7 × 15 = 105",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "b = 9 × 15 = 135 c = 1 × 15 = 15",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "a = 105, b = 135, c = 15 oe",
           "marks": 1
         }
       ],
@@ -744,44 +687,38 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_direct_proportion",
-      "prompt": "y is directly proportional to x^2. When x = 2, y = 28. Find the value of y when x = 3.",
+      "topic_id": "circle_theorems",
+      "prompt": "PQ is a chord of a circle, with a tangent at P. R is a point on the circle in the alternate segment. Find the angle between the tangent and the chord PQ, x.",
       "solution_steps": [
-        "y = kx^2",
-        "28 = k × 2^2 = k × 4",
-        "k = 28 ÷ 4 = 7",
-        "y = 7 × 3^2 = 7 × 9 = 63"
+        "The alternate segment theorem: the angle between a tangent and a chord equals the angle subtended by that chord in the alternate segment.",
+        "x = 64°"
       ],
-      "final_answer": "63",
-      "marks": 5,
+      "final_answer": "64°",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = kx^2",
+          "description": "The alternate segment theorem: the angle between a tangent and a chord equals the angle subtended by that chord in the alternate segment.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "28 = k × 2^2 = k × 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "k = 28 ÷ 4 = 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y = 7 × 3^2 = 7 × 9 = 63",
+          "description": "x = 64°",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "63 oe",
+          "description": "64° oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "circle_alternate_segment",
+        "params": {
+          "tangent_angle_label": "x°",
+          "segment_angle_label": "64°"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -829,34 +766,48 @@
         "params": {
           "known_label": "140°",
           "unknown_label": "(3x - 17)°",
-          "relation": "co_interior"
+          "relation": "co_interior",
+          "known_value": 140,
+          "x_frac": 0.32
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_rotate_describe",
-      "prompt": "Shape ABCDEF is rotated to give shape A'B'C'D'E'F', shown on the grid. Describe fully the single transformation that maps ABCDEF onto A'B'C'D'E'F'.",
+      "topic_id": "transform_enlarge_complete_higher",
+      "prompt": "Enlarge shape ABCDEF by scale factor -1, centre (2, -1). Draw and label the image A'B'C'D'E'F'.",
       "solution_steps": [
-        "The centre of rotation is the one point that is the same distance from a vertex and its image, for every vertex - it can be found where the perpendicular bisectors of two such pairs cross.",
-        "Measuring the turn from a vertex to its image about that point gives 90° clockwise about (-1, 3)."
+        "The centre of enlargement is (2, -1) and the scale factor is -1.",
+        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-4, 2) from the centre, so A' = (2, -1) + -1 × (-4, 2) = (6, -3).",
+        "Repeat for every vertex: A(-2, 1) -> A'(6, -3), B(3, 1) -> B'(1, -3), C(3, 3) -> C'(1, -5), D(1, 3) -> D'(3, -5), E(1, 5) -> E'(3, -7), F(-2, 5) -> F'(6, -7)",
+        "A negative scale factor puts the image on the opposite side of the centre from the original shape."
       ],
-      "final_answer": "Rotation 90° clockwise about (-1, 3)",
-      "marks": 3,
+      "final_answer": "A'(6, -3), B'(1, -3), C'(1, -5), D'(3, -5), E'(3, -7), F'(6, -7)",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The centre of rotation is the one point that is the same distance from a vertex and its image, for every vertex - it can be found where the perpendicular bisectors of two such pairs cross.",
+          "description": "The centre of enlargement is (2, -1) and the scale factor is -1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Measuring the turn from a vertex to its image about that point gives 90° clockwise about (-1, 3).",
+          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-4, 2) from the centre, so A' = (2, -1) + -1 × (-4, 2) = (6, -3).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Repeat for every vertex: A(-2, 1) -> A'(6, -3), B(3, 1) -> B'(1, -3), C(3, 3) -> C'(1, -5), D(1, 3) -> D'(3, -5), E(1, 5) -> E'(3, -7), F(-2, 5) -> F'(6, -7)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A negative scale factor puts the image on the opposite side of the centre from the original shape.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Rotation 90° clockwise about (-1, 3) oe",
+          "description": "A'(6, -3), B'(1, -3), C'(1, -5), D'(3, -5), E'(3, -7), F'(6, -7) oe",
           "marks": 1
         }
       ],
@@ -869,28 +820,28 @@
           "y_max": 8,
           "original_vertices": [
             [
-              1,
-              -3
-            ],
-            [
-              6,
-              -3
-            ],
-            [
-              6,
-              -1
-            ],
-            [
-              4,
-              -1
-            ],
-            [
-              4,
+              -2,
               1
             ],
             [
-              1,
+              3,
               1
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              -2,
+              5
             ]
           ],
           "original_labels": [
@@ -901,30 +852,81 @@
             "E",
             "F"
           ],
+          "centre": [
+            2,
+            -1
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              -2,
+              1
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              -2,
+              5
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "centre": [
+            2,
+            -1
+          ],
           "image_vertices": [
             [
-              -7,
-              1
+              6,
+              -3
             ],
             [
-              -7,
-              -4
+              1,
+              -3
             ],
             [
-              -5,
-              -4
+              1,
+              -5
             ],
             [
-              -5,
-              -2
+              3,
+              -5
             ],
             [
-              -3,
-              -2
+              3,
+              -7
             ],
             [
-              -3,
-              1
+              6,
+              -7
             ]
           ],
           "image_labels": [
@@ -936,18 +938,17 @@
             "F'"
           ]
         }
-      },
-      "solution_diagram": null
+      }
     },
     {
       "topic_id": "bearings_cosine_rule",
-      "prompt": "A ship sails from port A on a bearing of 307° for 14 km to point B. It then changes course and sails on a bearing of 209° for 24 km to point C. Find the direct distance from A to C, correct to 3 significant figures.",
+      "prompt": "A ship sails from port A on a bearing of 307° for 14 km to point B. It then changes course and sails on a bearing of 209° for 24 km to point C. Find the direct distance from A to C, correct to 1 decimal place.",
       "solution_steps": [
         "The back bearing of A from B is 307° + 180° = 127°.",
         "Angle ABC is the difference between this back bearing and the bearing of C from B: angle ABC = 82°.",
         "Use the cosine rule: AC² = AB² + BC² - 2×AB×BC×cos(ABC)",
         "AC² = 14² + 24² - 2×14×24×cos(82°) = 678.5",
-        "AC = √678.5 = 26.0 km (3 s.f.)"
+        "AC = √678.5 = 26.0 km (1 d.p.)"
       ],
       "final_answer": "26.0 km",
       "marks": 5,
@@ -969,7 +970,7 @@
         },
         {
           "code": "M1",
-          "description": "AC² = 14² + 24² - 2×14×24×cos(82°) = 678.5 AC = √678.5 = 26.0 km (3 s.f.)",
+          "description": "AC² = 14² + 24² - 2×14×24×cos(82°) = 678.5 AC = √678.5 = 26.0 km (1 d.p.)",
           "marks": 1
         },
         {
@@ -996,60 +997,8 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_triangle_higher",
-      "prompt": "A triangle has angles 46°, 73°, and (2x + 33)°. Find x.",
-      "solution_steps": [
-        "Angles in a triangle sum to 180°.",
-        "2x + 33 = 61",
-        "Subtract 33 from both sides:",
-        "2x = 28",
-        "Divide both sides by 2:",
-        "x = 14"
-      ],
-      "final_answer": "14",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Angles in a triangle sum to 180°.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2x + 33 = 61",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 33 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2x = 28 Divide both sides by 2: x = 14",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "14 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "triangle_angles",
-        "params": {
-          "angle_labels": [
-            "46°",
-            "73°",
-            "(2x + 33)°"
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
       "topic_id": "probability_conditional",
-      "prompt": "A bag contains 4 purple and 5 blue counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour.",
+      "prompt": "A bag contains 4 purple and 5 blue counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
       "solution_steps": [
         "P(both purple) = 4/9 × 3/8 = 1/6",
         "P(both blue) = 5/9 × 4/8 = 5/18",
@@ -1080,15 +1029,79 @@
         }
       ],
       "diagram": {
-        "kind": "bag_of_counters",
+        "kind": "tree_diagram",
         "params": {
-          "counts": {
-            "purple": 4,
-            "blue": 5
-          }
+          "stage1": [
+            [
+              "Purple",
+              ""
+            ],
+            [
+              "Blue",
+              ""
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Purple",
+                ""
+              ],
+              [
+                "Blue",
+                ""
+              ]
+            ],
+            [
+              [
+                "Purple",
+                ""
+              ],
+              [
+                "Blue",
+                ""
+              ]
+            ]
+          ]
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Purple",
+              "4/9"
+            ],
+            [
+              "Blue",
+              "5/9"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Purple",
+                "3/8"
+              ],
+              [
+                "Blue",
+                "5/8"
+              ]
+            ],
+            [
+              [
+                "Purple",
+                "4/8"
+              ],
+              [
+                "Blue",
+                "4/8"
+              ]
+            ]
+          ]
+        }
+      }
     }
   ]
 }

@@ -5,6 +5,7 @@ from fractions import Fraction
 
 from app.core.models import ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
+from app.topics.phrasing import evaluate_verb
 
 SECTION = "number"
 GROUP = "Decimals"
@@ -87,7 +88,11 @@ def generate_round_to_significant_figures(tier: Tier, rng: random.Random) -> Que
 
 
 def generate_ordering(tier: Tier, rng: random.Random) -> Question:
-    ks = rng.sample(range(5, 96), 4)
+    # Cap the spread at 20 (i.e. 0.20 as a decimal) - a random window within
+    # the full 5-95 range - so the four values stay close enough together
+    # that ordering them is a genuine comparison, not an obvious spread.
+    window_lo = rng.randint(5, 75)
+    ks = rng.sample(range(window_lo, window_lo + 21), 4)
     formats = [rng.choice(["decimal", "fraction", "percent"]) for _ in ks]
 
     display_strs = []
@@ -113,22 +118,34 @@ def generate_ordering(tier: Tier, rng: random.Random) -> Question:
         if parsed != Fraction(k, 100):
             raise ValueError("ordering verification failed")
 
-    order = sorted(range(4), key=lambda i: ks[i])
+    direction = rng.choice(["ascending", "descending"])
+    order_phrase = f"{direction} order"
+    order = sorted(range(4), key=lambda i: ks[i], reverse=(direction == "descending"))
     ordered_display = [display_strs[i] for i in order]
     common_form = ", ".join(f"{display_strs[i]} = {float(Fraction(ks[i], 100)):.2f}" for i in range(4))
 
     steps = [
         f"Convert each value to a decimal: {common_form}",
-        f"Order from smallest to largest: {', '.join(ordered_display)}",
+        f"Order in {order_phrase}: {', '.join(ordered_display)}",
     ]
     return Question(
         topic_id="decimals_ordering",
         tier=Tier.FOUNDATION,
-        prompt=f"Write these values in order, starting with the smallest: {', '.join(display_strs)}",
+        prompt=f"Write these values in {order_phrase}: {', '.join(display_strs)}",
         solution_steps=tuple(steps),
         final_answer=", ".join(ordered_display),
-        dedup_key=f"ordering:{sorted(ks)}:{formats}",
+        dedup_key=f"ordering:{sorted(ks)}:{formats}:{direction}",
     )
+
+
+def _recurring_fraction_prompt(rng: random.Random, display_str: str, p: int, q: int) -> str:
+    """A 50/50 choice between asking the student to derive the fraction from
+    scratch, or a "show that" style prompt that states the target fraction up
+    front and asks the student to prove it - shared by all 3 recurring-
+    decimal-to-fraction topics (and their modelled-example twins)."""
+    if rng.random() < 0.5:
+        return f"Write {display_str} as a fraction in its simplest form."
+    return f"Show that {display_str} can be written as {p}/{q}."
 
 
 def _decimal_expansion(p: int, q: int, max_digits: int = 20):
@@ -169,7 +186,7 @@ def generate_recurring_decimal_to_fraction(tier: Tier, rng: random.Random) -> Qu
 
     prefix_str = "".join(map(str, non_recurring))
     recurring_str = "".join(map(str, recurring))
-    display_str = f"0.{prefix_str}({recurring_str})"
+    display_str = f"\\recur{{0.{prefix_str}}}{{{recurring_str}}}"
 
     steps = [
         f"Let x = {display_str}",
@@ -180,7 +197,7 @@ def generate_recurring_decimal_to_fraction(tier: Tier, rng: random.Random) -> Qu
     return Question(
         topic_id="decimals_recurring_to_fraction",
         tier=Tier.HIGHER,
-        prompt=f"The recurring decimal {display_str} can be written as a fraction. Find this fraction in its simplest form.",
+        prompt=_recurring_fraction_prompt(rng, display_str, p, q),
         solution_steps=tuple(steps),
         final_answer=f"{p}/{q}",
         dedup_key=f"recurring:{p}:{q}",
@@ -204,7 +221,7 @@ def generate_recurring_decimal_single_digit(tier: Tier, rng: random.Random) -> Q
         raise ValueError("recurring_decimal_single_digit could not find valid parameters")
 
     digit = recurring[0]
-    display_str = f"0.({digit})"
+    display_str = f"\\recur{{0.}}{{{digit}}}"
 
     # Independent verification: a single purely-recurring digit d means the decimal equals
     # d/9 exactly - a separate closed-form derivation from the digit-counting expansion above.
@@ -227,7 +244,7 @@ def generate_recurring_decimal_single_digit(tier: Tier, rng: random.Random) -> Q
     return Question(
         topic_id="recurring_decimal_single_digit",
         tier=Tier.FOUNDATION,
-        prompt=f"The recurring decimal {display_str} can be written as a fraction. Find this fraction in its simplest form.",
+        prompt=_recurring_fraction_prompt(rng, display_str, p, q),
         solution_steps=tuple(steps),
         final_answer=f"{p}/{q}",
         dedup_key=f"recurring_1d:{p}:{q}",
@@ -247,7 +264,7 @@ def generate_recurring_decimal_two_digit(tier: Tier, rng: random.Random) -> Ques
         raise ValueError("recurring_decimal_two_digit could not find valid parameters")
 
     block = "".join(map(str, recurring))
-    display_str = f"0.({block})"
+    display_str = f"\\recur{{0.}}{{{block}}}"
 
     # Independent verification: a purely-recurring two-digit block "ab" means the decimal
     # equals ab/99 exactly - a separate closed-form derivation from the digit-counting
@@ -271,7 +288,7 @@ def generate_recurring_decimal_two_digit(tier: Tier, rng: random.Random) -> Ques
     return Question(
         topic_id="recurring_decimal_two_digit",
         tier=Tier.HIGHER,
-        prompt=f"The recurring decimal {display_str} can be written as a fraction. Find this fraction in its simplest form.",
+        prompt=_recurring_fraction_prompt(rng, display_str, p, q),
         solution_steps=tuple(steps),
         final_answer=f"{p}/{q}",
         dedup_key=f"recurring_2d:{p}:{q}",
@@ -309,7 +326,7 @@ def generate_decimals_add_subtract(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="decimals_add_subtract",
         tier=Tier.FOUNDATION,
-        prompt=f"Work out {v1} {op} {v2}.",
+        prompt=f"{evaluate_verb(rng)} {v1} {op} {v2}.",
         solution_steps=tuple(steps),
         final_answer=_fmt_decimal_fixed(result),
         dedup_key=f"add_sub_dec:{v1}:{v2}:{op}",
@@ -343,7 +360,7 @@ def generate_decimals_multiply(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="decimals_multiply",
         tier=Tier.FOUNDATION,
-        prompt=f"Work out {v1} × {v2}.",
+        prompt=f"{evaluate_verb(rng)} {v1} × {v2}.",
         solution_steps=tuple(steps),
         final_answer=_fmt_decimal_fixed(result),
         dedup_key=f"multiply_dec:{v1}:{v2}",
@@ -389,7 +406,7 @@ def generate_dividing_decimals(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="decimals_divide",
         tier=Tier.FOUNDATION,
-        prompt=f"Work out {dividend} ÷ {divisor}.",
+        prompt=f"{evaluate_verb(rng)} {dividend} ÷ {divisor}.",
         solution_steps=tuple(steps),
         final_answer=str(quotient),
         dedup_key=dedup_key,
@@ -426,7 +443,7 @@ def generate_powers_of_ten(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="number_powers_of_ten",
         tier=Tier.FOUNDATION,
-        prompt=f"Work out {_fmt_decimal_fixed(value)} {sign} {power}.",
+        prompt=f"{evaluate_verb(rng)} {_fmt_decimal_fixed(value)} {sign} {power}.",
         solution_steps=tuple(steps),
         final_answer=_fmt_decimal_fixed(result),
         dedup_key=f"pow10:{value}:{power}:{op}",
@@ -526,7 +543,11 @@ def generate_modelled_example_round_to_significant_figures(tier: Tier, rng: rand
 
 
 def generate_modelled_example_ordering(tier: Tier, rng: random.Random) -> ModelledExample:
-    ks = rng.sample(range(5, 96), 4)
+    # Cap the spread at 20 (i.e. 0.20 as a decimal) - a random window within
+    # the full 5-95 range - so the four values stay close enough together
+    # that ordering them is a genuine comparison, not an obvious spread.
+    window_lo = rng.randint(5, 75)
+    ks = rng.sample(range(window_lo, window_lo + 21), 4)
     formats = [rng.choice(["decimal", "fraction", "percent"]) for _ in ks]
 
     display_strs = []
@@ -552,7 +573,9 @@ def generate_modelled_example_ordering(tier: Tier, rng: random.Random) -> Modell
         if parsed != Fraction(k, 100):
             raise ValueError("modelled example ordering verification failed")
 
-    order = sorted(range(4), key=lambda i: ks[i])
+    direction = rng.choice(["ascending", "descending"])
+    order_phrase = f"{direction} order"
+    order = sorted(range(4), key=lambda i: ks[i], reverse=(direction == "descending"))
     ordered_display = [display_strs[i] for i in order]
     conversions = [f"{display_strs[i]} = {float(Fraction(ks[i], 100)):.2f}" for i in range(4)]
 
@@ -564,20 +587,20 @@ def generate_modelled_example_ordering(tier: Tier, rng: random.Random) -> Modell
         "To convert a percentage to a decimal, divide by 100. To convert a fraction to a decimal, "
         "divide the numerator by the denominator.",
         f"Converting each value here: {', '.join(conversions)}.",
-        "Now that every value is a decimal, compare them place by place (ones, then tenths, then "
-        "hundredths) to put them in order from smallest to largest.",
+        f"Now that every value is a decimal, compare them place by place (ones, then tenths, then "
+        f"hundredths) to put them in {order_phrase}.",
         "Finally, write the answer using each value's ORIGINAL format — we only converted to decimals "
         "to compare them, not to change how the answer should be presented.",
     ]
     worked_calculation = [
         f"{', '.join(display_strs)}",
         f"= {', '.join(conversions)}",
-        f"order: {', '.join(ordered_display)}",
+        f"{order_phrase}: {', '.join(ordered_display)}",
     ]
     return ModelledExample(
         topic_id="decimals_ordering",
         tier=Tier.FOUNDATION,
-        prompt=f"Write these values in order, starting with the smallest: {', '.join(display_strs)}",
+        prompt=f"Write these values in {order_phrase}: {', '.join(display_strs)}",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=", ".join(ordered_display),
@@ -607,7 +630,7 @@ def generate_modelled_example_recurring_decimal_to_fraction(tier: Tier, rng: ran
 
     prefix_str = "".join(map(str, non_recurring))
     recurring_str = "".join(map(str, recurring))
-    display_str = f"0.{prefix_str}({recurring_str})"
+    display_str = f"\\recur{{0.{prefix_str}}}{{{recurring_str}}}"
     shift_small = 10**n
     shift_large = 10 ** (n + r)
 
@@ -637,7 +660,7 @@ def generate_modelled_example_recurring_decimal_to_fraction(tier: Tier, rng: ran
     return ModelledExample(
         topic_id="decimals_recurring_to_fraction",
         tier=Tier.HIGHER,
-        prompt=f"The recurring decimal {display_str} can be written as a fraction. Find this fraction in its simplest form.",
+        prompt=_recurring_fraction_prompt(rng, display_str, p, q),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{p}/{q}",
@@ -657,7 +680,7 @@ def generate_modelled_example_recurring_decimal_single_digit(tier: Tier, rng: ra
         raise ValueError("modelled example recurring_decimal_single_digit could not find valid parameters")
 
     digit = recurring[0]
-    display_str = f"0.({digit})"
+    display_str = f"\\recur{{0.}}{{{digit}}}"
 
     derived = Fraction(digit, 9)
     if derived != Fraction(p, q):
@@ -690,7 +713,7 @@ def generate_modelled_example_recurring_decimal_single_digit(tier: Tier, rng: ra
     return ModelledExample(
         topic_id="recurring_decimal_single_digit",
         tier=Tier.FOUNDATION,
-        prompt=f"The recurring decimal {display_str} can be written as a fraction. Find this fraction in its simplest form.",
+        prompt=_recurring_fraction_prompt(rng, display_str, p, q),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{p}/{q}",
@@ -710,7 +733,7 @@ def generate_modelled_example_recurring_decimal_two_digit(tier: Tier, rng: rando
         raise ValueError("modelled example recurring_decimal_two_digit could not find valid parameters")
 
     block = "".join(map(str, recurring))
-    display_str = f"0.({block})"
+    display_str = f"\\recur{{0.}}{{{block}}}"
     block_value = int(block)
 
     derived = Fraction(block_value, 99)
@@ -744,7 +767,7 @@ def generate_modelled_example_recurring_decimal_two_digit(tier: Tier, rng: rando
     return ModelledExample(
         topic_id="recurring_decimal_two_digit",
         tier=Tier.HIGHER,
-        prompt=f"The recurring decimal {display_str} can be written as a fraction. Find this fraction in its simplest form.",
+        prompt=_recurring_fraction_prompt(rng, display_str, p, q),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{p}/{q}",
@@ -785,7 +808,7 @@ def generate_modelled_example_decimals_add_subtract(tier: Tier, rng: random.Rand
     return ModelledExample(
         topic_id="decimals_add_subtract",
         tier=Tier.FOUNDATION,
-        prompt=f"Work out {v1} {op} {v2}.",
+        prompt=f"{evaluate_verb(rng)} {v1} {op} {v2}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=_fmt_decimal_fixed(result),
@@ -830,7 +853,7 @@ def generate_modelled_example_decimals_multiply(tier: Tier, rng: random.Random) 
     return ModelledExample(
         topic_id="decimals_multiply",
         tier=Tier.FOUNDATION,
-        prompt=f"Work out {v1} × {v2}.",
+        prompt=f"{evaluate_verb(rng)} {v1} × {v2}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=_fmt_decimal_fixed(result),
@@ -948,7 +971,7 @@ def generate_modelled_example_powers_of_ten(tier: Tier, rng: random.Random) -> M
     return ModelledExample(
         topic_id="number_powers_of_ten",
         tier=Tier.FOUNDATION,
-        prompt=f"Work out {_fmt_decimal_fixed(value)} {sign} {power}.",
+        prompt=f"{evaluate_verb(rng)} {_fmt_decimal_fixed(value)} {sign} {power}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=_fmt_decimal_fixed(result),

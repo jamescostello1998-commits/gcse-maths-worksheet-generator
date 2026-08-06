@@ -11,6 +11,20 @@ GROUP_COUNTING = "Sets and Counting"
 GROUP_DATA = "Tables and Diagrams"
 
 
+def _venn_region_text(universal: list, a_set: set, b_set: set) -> dict:
+    """The four atomic Venn regions (a_only/b_only/both/neither) for
+    draw_venn_diagram's region_text param - always the full partition of the
+    universal set, independent of which specific notation a question asks
+    about, so the solution diagram shows exactly where every element went."""
+    regions = {
+        "a_only": sorted(a_set - b_set),
+        "b_only": sorted(b_set - a_set),
+        "both": sorted(a_set & b_set),
+        "neither": sorted(set(universal) - (a_set | b_set)),
+    }
+    return {key: (", ".join(str(x) for x in elems) if elems else "-") for key, elems in regions.items()}
+
+
 def generate_set_notation(tier: Tier, rng: random.Random) -> Question:
     universal = list(range(1, rng.choice([10, 11, 12]) + 1))
     a_set = set(rng.sample(universal, rng.randint(3, 6)))
@@ -80,6 +94,14 @@ def generate_set_notation(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=f"set_notation:{universal[-1]}:{sorted(a_set)}:{sorted(b_set)}:{operation}",
+        diagram=DiagramSpec(kind="venn_diagram", params={"labels": ["A", "B"], "universal_label": "ξ"}),
+        solution_diagram=DiagramSpec(
+            kind="venn_diagram",
+            params={
+                "labels": ["A", "B"], "universal_label": "ξ",
+                "region_text": _venn_region_text(universal, a_set, b_set),
+            },
+        ),
     )
 
 
@@ -160,6 +182,13 @@ def generate_modelled_example_set_notation(tier: Tier, rng: random.Random) -> Mo
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
+        diagram=DiagramSpec(
+            kind="venn_diagram",
+            params={
+                "labels": ["A", "B"], "universal_label": "ξ",
+                "region_text": _venn_region_text(universal, a_set, b_set),
+            },
+        ),
     )
 
 
@@ -220,6 +249,14 @@ def generate_set_notation_foundation(tier: Tier, rng: random.Random) -> Question
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=f"set_notation_f:{universal[-1]}:{sorted(a_set)}:{sorted(b_set)}:{operation}",
+        diagram=DiagramSpec(kind="venn_diagram", params={"labels": ["A", "B"], "universal_label": "ξ"}),
+        solution_diagram=DiagramSpec(
+            kind="venn_diagram",
+            params={
+                "labels": ["A", "B"], "universal_label": "ξ",
+                "region_text": _venn_region_text(universal, a_set, b_set),
+            },
+        ),
     )
 
 
@@ -289,6 +326,13 @@ def generate_modelled_example_set_notation_foundation(tier: Tier, rng: random.Ra
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
+        diagram=DiagramSpec(
+            kind="venn_diagram",
+            params={
+                "labels": ["A", "B"], "universal_label": "ξ",
+                "region_text": _venn_region_text(universal, a_set, b_set),
+            },
+        ),
     )
 
 
@@ -500,21 +544,36 @@ def generate_two_way_tables(tier: Tier, rng: random.Random) -> Question:
     if sum(row_totals) != sum(col_totals) or sum(row_totals) != grand_total:
         raise ValueError("two_way_tables verification failed: totals do not reconcile")
 
-    blank_r, blank_c = rng.randrange(2), rng.randrange(2)
-    target_value = grid[blank_r][blank_c]
-    other_in_row = grid[blank_r][1 - blank_c]
-    other_in_col = grid[1 - blank_r][blank_c]
-    via_row = row_totals[blank_r] - other_in_row
-    via_col = col_totals[blank_c] - other_in_col
+    blanks = rng.sample([(0, 0), (0, 1), (1, 0), (1, 1)], 2)
 
-    # Independent check: the blank cell must be recoverable two separate
-    # ways - from its row total, and from its column total - and both must
-    # agree with the true value.
-    if via_row != target_value or via_col != target_value:
-        raise ValueError("two_way_tables verification failed: blank cell not consistently recoverable")
+    def _derive(r: int, cidx: int) -> tuple:
+        # Recover the missing cell from whichever margin - its row total, or
+        # its column total - has exactly one unknown cell in it. For any 2
+        # distinct cells chosen from a 2x2 grid, at least one direction
+        # always qualifies (both do for a diagonal pair).
+        if sum(1 for (rr, _cc) in blanks if rr == r) == 1:
+            other_c = 1 - cidx
+            value = row_totals[r] - grid[r][other_c]
+            desc = f"the '{row_labels[r]}' row total: {row_totals[r]} - {grid[r][other_c]} = {value}"
+        else:
+            other_r = 1 - r
+            value = col_totals[cidx] - grid[other_r][cidx]
+            desc = f"the '{col_labels[cidx]}' column total: {col_totals[cidx]} - {grid[other_r][cidx]} = {value}"
+        return value, desc
+
+    steps = []
+    for r, cidx in blanks:
+        value, desc = _derive(r, cidx)
+        # Independent check: the value recovered from the margin totals
+        # must match the true (known) grid value it was generated from.
+        if value != grid[r][cidx]:
+            raise ValueError("two_way_tables verification failed: blank cell not consistently recoverable")
+        steps.append(f"'{row_labels[r]}' / '{col_labels[cidx]}': using {desc}")
+
+    final_answer = "; ".join(f"'{row_labels[r]}' / '{col_labels[cidx]}' = {grid[r][cidx]}" for r, cidx in blanks)
 
     def cell_text(r: int, cidx: int) -> str:
-        return "?" if (r, cidx) == (blank_r, blank_c) else str(grid[r][cidx])
+        return "" if (r, cidx) in blanks else str(grid[r][cidx])
 
     display_cells = [
         [cell_text(0, 0), cell_text(0, 1), str(row_totals[0])],
@@ -529,23 +588,16 @@ def generate_two_way_tables(tier: Tier, rng: random.Random) -> Question:
     table_row_labels = [row_labels[0], row_labels[1], "Total"]
     table_col_labels = [col_labels[0], col_labels[1], "Total"]
 
-    steps = [
-        f"The missing value is in the '{row_labels[blank_r]}' row and '{col_labels[blank_c]}' column.",
-        f"Using the row total: {row_totals[blank_r]} - {other_in_row} = {via_row}",
-        f"Using the column total: {col_totals[blank_c]} - {other_in_col} = {via_col}",
-        f"Missing value = {target_value}",
-    ]
     return Question(
         topic_id="two_way_tables",
         tier=Tier.FOUNDATION,
         prompt=(
             f"The two-way table shows the number of {row_labels[0].lower()} and {row_labels[1].lower()} who "
-            f"prefer {col_labels[0].lower()} or {col_labels[1].lower()}. Copy and complete the table, and state "
-            "the missing value marked '?'."
+            f"prefer {col_labels[0].lower()} or {col_labels[1].lower()}. Find the missing values."
         ),
         solution_steps=tuple(steps),
-        final_answer=str(target_value),
-        dedup_key=f"twoway:{row_labels}:{col_labels}:{a}:{b}:{c}:{d}:{blank_r}:{blank_c}",
+        final_answer=final_answer,
+        dedup_key=f"twoway:{row_labels}:{col_labels}:{a}:{b}:{c}:{d}:{sorted(blanks)}",
         diagram=DiagramSpec(
             kind="two_way_table",
             params={"row_labels": table_row_labels, "col_labels": table_col_labels, "cells": display_cells},
@@ -573,20 +625,43 @@ def generate_modelled_example_two_way_tables(tier: Tier, rng: random.Random) -> 
     if sum(row_totals) != sum(col_totals) or sum(row_totals) != grand_total:
         raise ValueError("modelled example two_way_tables verification failed: totals do not reconcile")
 
-    blank_r, blank_c = rng.randrange(2), rng.randrange(2)
-    target_value = grid[blank_r][blank_c]
-    other_in_row = grid[blank_r][1 - blank_c]
-    other_in_col = grid[1 - blank_r][blank_c]
-    via_row = row_totals[blank_r] - other_in_row
-    via_col = col_totals[blank_c] - other_in_col
+    blanks = rng.sample([(0, 0), (0, 1), (1, 0), (1, 1)], 2)
 
-    # Independent check: the blank cell must be recoverable two separate
-    # ways - from its row total, and from its column total - and both must
-    # agree with the true value.
-    if via_row != target_value or via_col != target_value:
-        raise ValueError(
-            "modelled example two_way_tables verification failed: blank cell not consistently recoverable"
-        )
+    def _derive(r: int, cidx: int) -> tuple:
+        if sum(1 for (rr, _cc) in blanks if rr == r) == 1:
+            other_c = 1 - cidx
+            value = row_totals[r] - grid[r][other_c]
+            desc = (
+                f"the '{row_labels[r]}' row totals {row_totals[r]}, and the other entry in that row is "
+                f"{grid[r][other_c]}, so {row_totals[r]} - {grid[r][other_c]} = {value}"
+            )
+        else:
+            other_r = 1 - r
+            value = col_totals[cidx] - grid[other_r][cidx]
+            desc = (
+                f"the '{col_labels[cidx]}' column totals {col_totals[cidx]}, and the other entry in that "
+                f"column is {grid[other_r][cidx]}, so {col_totals[cidx]} - {grid[other_r][cidx]} = {value}"
+            )
+        return value, desc
+
+    worked_calculation = []
+    teaching_steps = [
+        "A two-way table organises data by two categories at once - here, by "
+        f"{row_labels[0].lower()}/{row_labels[1].lower()} and by {col_labels[0].lower()}/{col_labels[1].lower()} "
+        "- with row and column totals along the edges as a built-in check.",
+        "Every row must add up to its row total, and every column must add up to its column total - work out "
+        "each missing value from whichever total (row or column) has only that one unknown in it.",
+    ]
+    for r, cidx in blanks:
+        value, desc = _derive(r, cidx)
+        # Independent check: the value recovered from the margin totals
+        # must match the true (known) grid value it was generated from.
+        if value != grid[r][cidx]:
+            raise ValueError(
+                "modelled example two_way_tables verification failed: blank cell not consistently recoverable"
+            )
+        teaching_steps.append(f"For '{row_labels[r]}' / '{col_labels[cidx]}': {desc}.")
+        worked_calculation.append(f"'{row_labels[r]}' / '{col_labels[cidx]}' = {value}")
 
     solved_cells = [
         [str(grid[0][0]), str(grid[0][1]), str(row_totals[0])],
@@ -595,37 +670,18 @@ def generate_modelled_example_two_way_tables(tier: Tier, rng: random.Random) -> 
     ]
     table_row_labels = [row_labels[0], row_labels[1], "Total"]
     table_col_labels = [col_labels[0], col_labels[1], "Total"]
-
-    teaching_steps = [
-        "A two-way table organises data by two categories at once - here, by "
-        f"{row_labels[0].lower()}/{row_labels[1].lower()} and by {col_labels[0].lower()}/{col_labels[1].lower()} "
-        "- with row and column totals along the edges as a built-in check.",
-        "Every row must add up to its row total, and every column must add up to its column total - the "
-        "missing value can be found from EITHER direction, which is a useful way to check your answer.",
-        f"Using the row: the '{row_labels[blank_r]}' row totals {row_totals[blank_r]}, and the other entry "
-        f"in that row is {other_in_row}, so the missing value is {row_totals[blank_r]} - {other_in_row} = "
-        f"{via_row}.",
-        f"Using the column instead: the '{col_labels[blank_c]}' column totals {col_totals[blank_c]}, and "
-        f"the other entry in that column is {other_in_col}, so {col_totals[blank_c]} - {other_in_col} = "
-        f"{via_col} - the same answer both ways, confirming it's correct.",
-    ]
-    worked_calculation = [
-        f"Row total: {row_totals[blank_r]} - {other_in_row} = {via_row}",
-        f"Column total: {col_totals[blank_c]} - {other_in_col} = {via_col}",
-        f"Missing value = {target_value}",
-    ]
+    final_answer = "; ".join(f"'{row_labels[r]}' / '{col_labels[cidx]}' = {grid[r][cidx]}" for r, cidx in blanks)
 
     return ModelledExample(
         topic_id="two_way_tables",
         tier=Tier.FOUNDATION,
         prompt=(
             f"The two-way table shows the number of {row_labels[0].lower()} and {row_labels[1].lower()} who "
-            f"prefer {col_labels[0].lower()} or {col_labels[1].lower()}. Copy and complete the table, and "
-            "state the missing value marked '?'."
+            f"prefer {col_labels[0].lower()} or {col_labels[1].lower()}. Find the missing values."
         ),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
-        final_answer=str(target_value),
+        final_answer=final_answer,
         diagram=DiagramSpec(
             kind="two_way_table",
             params={"row_labels": table_row_labels, "col_labels": table_col_labels, "cells": solved_cells},
@@ -697,6 +753,13 @@ def generate_sample_space_diagrams(tier: Tier, rng: random.Random) -> Question:
         final_answer=f"{formula_prob.numerator}/{formula_prob.denominator}",
         dedup_key=f"samplespace:{faces1}:{faces2}:{op}:{event_kind}:{target}",
         diagram=DiagramSpec(
+            kind="sample_space_diagram",
+            params={
+                "row_values": rows, "col_values": cols,
+                "cells": [["" for _ in row] for row in grid],
+            },
+        ),
+        solution_diagram=DiagramSpec(
             kind="sample_space_diagram",
             params={
                 "row_values": rows, "col_values": cols,

@@ -18,11 +18,27 @@ def _rand_nonzero(rng: random.Random, lo: int, hi: int) -> int:
 
 
 def _fmt_binom(a: int) -> str:
-    """Render (x + a) or (x - a), for the linear factor x + a."""
+    """Render (x + a) or (x - a), for the linear factor x + a - WITH wrapping
+    parens, needed whenever this is juxtaposed with something else (another
+    factor, a coefficient) to form an unambiguous product. Do NOT use this
+    when the factor is the entire content of a \\frac{}{} marker by itself -
+    the vinculum bar already visually groups it, so self-wrapping parens
+    there are redundant/read like double-bracketing - use _fmt_binom_bare
+    instead."""
     if a > 0:
         return f"(x + {a})"
     if a < 0:
         return f"(x - {-a})"
+    return "x"
+
+
+def _fmt_binom_bare(a: int) -> str:
+    """Render x + a or x - a, with NO wrapping parens - see _fmt_binom's
+    docstring for when this is safe to use instead."""
+    if a > 0:
+        return f"x + {a}"
+    if a < 0:
+        return f"x - {-a}"
     return "x"
 
 
@@ -51,12 +67,13 @@ def generate_algebraic_fractions_add_subtract(tier: Tier, rng: random.Random) ->
 
     numerator_str = fmt_linear(new_coeff, new_const)
     denom_str = f"{_fmt_binom(a)}{_fmt_binom(b)}"
-    answer = f"({numerator_str})/{denom_str}"
+    answer = f"\\frac{{{numerator_str}}}{{{denom_str}}}"
 
-    prompt = f"Simplify {p}/{_fmt_binom(a)} {op} {q}/{_fmt_binom(b)}, giving your answer as a single fraction."
+    den_a_bare, den_b_bare = _fmt_binom_bare(a), _fmt_binom_bare(b)
+    prompt = f"Simplify \\frac{{{p}}}{{{den_a_bare}}} {op} \\frac{{{q}}}{{{den_b_bare}}}, giving your answer as a single fraction."
     steps = [
         f"Write both fractions over the common denominator {denom_str}:",
-        f"{p}/{_fmt_binom(a)} {op} {q}/{_fmt_binom(b)} = ({p}{_fmt_binom(b)} {op} {q}{_fmt_binom(a)})/{denom_str}",
+        f"\\frac{{{p}}}{{{den_a_bare}}} {op} \\frac{{{q}}}{{{den_b_bare}}} = \\frac{{{p}{_fmt_binom(b)} {op} {q}{_fmt_binom(a)}}}{{{denom_str}}}",
         f"Expand the numerator: {p}{_fmt_binom(b)} {op} {q}{_fmt_binom(a)} = {numerator_str}",
         f"= {answer}",
     ]
@@ -78,16 +95,16 @@ def generate_algebraic_fractions_multiply_divide(tier: Tier, rng: random.Random)
     op = rng.choice(["×", "÷"])
 
     d2 = d * d
-    frac1_num = f"(x^2 - {d2})"
-    frac1_den = _fmt_binom(s)
+    frac1_num = f"x^2 - {d2}"
+    frac1_den = _fmt_binom_bare(s)
 
     if op == "×":
-        frac2_num = _fmt_binom(s)
-        frac2_den = _fmt_binom(-d)
+        frac2_num = _fmt_binom_bare(s)
+        frac2_den = _fmt_binom_bare(-d)
         combined = (X**2 - d2) / (X + s) * (X + s) / (X - d)
     else:
-        frac2_num = _fmt_binom(-d)
-        frac2_den = _fmt_binom(s)
+        frac2_num = _fmt_binom_bare(-d)
+        frac2_den = _fmt_binom_bare(s)
         combined = ((X**2 - d2) / (X + s)) / ((X - d) / (X + s))
 
     # Independent verification: build the original combined expression and
@@ -98,18 +115,18 @@ def generate_algebraic_fractions_multiply_divide(tier: Tier, rng: random.Random)
         raise ValueError("algebraic_fractions_multiply_divide verification failed")
 
     answer = fmt_linear(1, d)
-    prompt = f"Simplify {frac1_num}/{frac1_den} {op} {frac2_num}/{frac2_den}, giving your answer in its simplest form."
+    prompt = f"Simplify \\frac{{{frac1_num}}}{{{frac1_den}}} {op} \\frac{{{frac2_num}}}{{{frac2_den}}}, giving your answer in its simplest form."
 
     steps = [f"Factorise the difference of two squares: {frac1_num} = {_fmt_binom(-d)}{_fmt_binom(d)}"]
     if op == "÷":
         steps.append(
             f"Dividing by a fraction means multiplying by its reciprocal: "
-            f"÷ {frac2_num}/{frac2_den} becomes × {frac2_den}/{frac2_num}"
+            f"÷ \\frac{{{frac2_num}}}{{{frac2_den}}} becomes × \\frac{{{frac2_den}}}{{{frac2_num}}}"
         )
-        steps.append(f"{_fmt_binom(-d)}{_fmt_binom(d)}/{frac1_den} × {frac2_den}/{frac2_num}")
+        steps.append(f"\\frac{{{_fmt_binom(-d)}{_fmt_binom(d)}}}{{{frac1_den}}} × \\frac{{{frac2_den}}}{{{frac2_num}}}")
     else:
-        steps.append(f"{_fmt_binom(-d)}{_fmt_binom(d)}/{frac1_den} × {frac2_num}/{frac2_den}")
-    steps.append(f"Cancel the common factors {frac1_den} and {_fmt_binom(-d)}:")
+        steps.append(f"\\frac{{{_fmt_binom(-d)}{_fmt_binom(d)}}}{{{frac1_den}}} × \\frac{{{frac2_num}}}{{{frac2_den}}}")
+    steps.append(f"Cancel the common factors {frac1_den} and {_fmt_binom_bare(-d)}:")
     steps.append(f"= {answer}")
 
     return Question(
@@ -142,28 +159,29 @@ def generate_modelled_example_algebraic_fractions_add_subtract(tier: Tier, rng: 
 
     numerator_str = fmt_linear(new_coeff, new_const)
     denom_str = f"{_fmt_binom(a)}{_fmt_binom(b)}"
-    answer = f"({numerator_str})/{denom_str}"
+    answer = f"\\frac{{{numerator_str}}}{{{denom_str}}}"
 
-    prompt = f"Simplify {p}/{_fmt_binom(a)} {op} {q}/{_fmt_binom(b)}, giving your answer as a single fraction."
+    den_a_bare, den_b_bare = _fmt_binom_bare(a), _fmt_binom_bare(b)
+    prompt = f"Simplify \\frac{{{p}}}{{{den_a_bare}}} {op} \\frac{{{q}}}{{{den_b_bare}}}, giving your answer as a single fraction."
 
     teaching_steps = [
         "Fractions can only be added or subtracted once they share a common denominator - and for two "
         f"algebraic fractions with different linear denominators like {_fmt_binom(a)} and {_fmt_binom(b)}, "
         f"the common denominator is simply their product, {denom_str}.",
-        f"Multiply each fraction so it has that common denominator: {p}/{_fmt_binom(a)} becomes "
-        f"{p}{_fmt_binom(b)}/{denom_str} (multiplying top and bottom by {_fmt_binom(b)}), and "
-        f"{q}/{_fmt_binom(b)} becomes {q}{_fmt_binom(a)}/{denom_str} (multiplying top and bottom by "
+        f"Multiply each fraction so it has that common denominator: \\frac{{{p}}}{{{den_a_bare}}} becomes "
+        f"\\frac{{{p}{_fmt_binom(b)}}}{{{denom_str}}} (multiplying top and bottom by {_fmt_binom(b)}), and "
+        f"\\frac{{{q}}}{{{den_b_bare}}} becomes \\frac{{{q}{_fmt_binom(a)}}}{{{denom_str}}} (multiplying top and bottom by "
         f"{_fmt_binom(a)}).",
         f"With a shared denominator, the fractions can now be combined into one: "
-        f"({p}{_fmt_binom(b)} {op} {q}{_fmt_binom(a)})/{denom_str}.",
+        f"\\frac{{{p}{_fmt_binom(b)} {op} {q}{_fmt_binom(a)}}}{{{denom_str}}}.",
         f"Expand and collect like terms in the numerator: {p}{_fmt_binom(b)} {op} {q}{_fmt_binom(a)} "
         f"simplifies to {numerator_str}.",
         f"The denominator is left factorised rather than expanded out, since that's the standard way to "
         f"present an algebraic fraction answer: {answer}.",
     ]
     worked_calculation = [
-        f"{p}/{_fmt_binom(a)} {op} {q}/{_fmt_binom(b)}",
-        f"= ({p}{_fmt_binom(b)} {op} {q}{_fmt_binom(a)})/{denom_str}",
+        f"\\frac{{{p}}}{{{den_a_bare}}} {op} \\frac{{{q}}}{{{den_b_bare}}}",
+        f"= \\frac{{{p}{_fmt_binom(b)} {op} {q}{_fmt_binom(a)}}}{{{denom_str}}}",
         f"= {answer}",
     ]
     return ModelledExample(
@@ -184,16 +202,16 @@ def generate_modelled_example_algebraic_fractions_multiply_divide(tier: Tier, rn
     op = rng.choice(["×", "÷"])
 
     d2 = d * d
-    frac1_num = f"(x^2 - {d2})"
-    frac1_den = _fmt_binom(s)
+    frac1_num = f"x^2 - {d2}"
+    frac1_den = _fmt_binom_bare(s)
 
     if op == "×":
-        frac2_num = _fmt_binom(s)
-        frac2_den = _fmt_binom(-d)
+        frac2_num = _fmt_binom_bare(s)
+        frac2_den = _fmt_binom_bare(-d)
         combined = (X**2 - d2) / (X + s) * (X + s) / (X - d)
     else:
-        frac2_num = _fmt_binom(-d)
-        frac2_den = _fmt_binom(s)
+        frac2_num = _fmt_binom_bare(-d)
+        frac2_den = _fmt_binom_bare(s)
         combined = ((X**2 - d2) / (X + s)) / ((X - d) / (X + s))
 
     answer_expr = X + d
@@ -201,19 +219,19 @@ def generate_modelled_example_algebraic_fractions_multiply_divide(tier: Tier, rn
         raise ValueError("modelled example algebraic_fractions_multiply_divide verification failed")
 
     answer = fmt_linear(1, d)
-    prompt = f"Simplify {frac1_num}/{frac1_den} {op} {frac2_num}/{frac2_den}, giving your answer in its simplest form."
+    prompt = f"Simplify \\frac{{{frac1_num}}}{{{frac1_den}}} {op} \\frac{{{frac2_num}}}{{{frac2_den}}}, giving your answer in its simplest form."
 
     op_explainer = (
         f"Dividing by a fraction means multiplying by its reciprocal (flip it upside down), so "
-        f"÷ {frac2_num}/{frac2_den} becomes × {frac2_den}/{frac2_num}."
+        f"÷ \\frac{{{frac2_num}}}{{{frac2_den}}} becomes × \\frac{{{frac2_den}}}{{{frac2_num}}}."
         if op == "÷"
         else "Multiplying two fractions together just means multiplying the numerators together and the "
         "denominators together."
     )
     written_out = (
-        f"Writing everything out: {_fmt_binom(-d)}{_fmt_binom(d)}/{frac1_den} × {frac2_den}/{frac2_num}"
+        f"Writing everything out: \\frac{{{_fmt_binom(-d)}{_fmt_binom(d)}}}{{{frac1_den}}} × \\frac{{{frac2_den}}}{{{frac2_num}}}"
         if op == "÷"
-        else f"Writing everything out: {_fmt_binom(-d)}{_fmt_binom(d)}/{frac1_den} × {frac2_num}/{frac2_den}"
+        else f"Writing everything out: \\frac{{{_fmt_binom(-d)}{_fmt_binom(d)}}}{{{frac1_den}}} × \\frac{{{frac2_num}}}{{{frac2_den}}}"
     )
     teaching_steps = [
         f"Before multiplying anything out, always check whether either numerator or denominator "
@@ -223,12 +241,12 @@ def generate_modelled_example_algebraic_fractions_multiply_divide(tier: Tier, rn
         written_out,
         f"Before multiplying across, look for factors common to a numerator and a denominator that can "
         f"be cancelled first - here {frac1_den} appears in one denominator and one numerator, and "
-        f"{_fmt_binom(-d)} appears in one numerator and one denominator, so both cancel completely.",
+        f"{_fmt_binom_bare(-d)} appears in one numerator and one denominator, so both cancel completely.",
         f"After cancelling, all that remains is {answer}.",
     ]
     worked_calculation = [
         f"{frac1_num} = {_fmt_binom(-d)}{_fmt_binom(d)}",
-        f"{frac1_num}/{frac1_den} {op} {frac2_num}/{frac2_den}",
+        f"\\frac{{{frac1_num}}}{{{frac1_den}}} {op} \\frac{{{frac2_num}}}{{{frac2_den}}}",
         f"= {answer}",
     ]
     return ModelledExample(

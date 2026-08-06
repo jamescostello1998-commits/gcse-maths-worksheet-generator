@@ -378,7 +378,7 @@ TEMPLATES: list[_CongruenceTemplate] = [
     _t(
         "isosceles_trapezium_diagonal_sas",
         "ABCD is an isosceles trapezium with AB parallel to DC and AD = BC. AC and BD are its diagonals.",
-        ("AB is common to both triangles", "angle DAB = angle CBA (base angles of an isosceles trapezium are equal)", "AD = BC (given, the equal legs of the trapezium)"),
+        ("AB is common to both triangles", "angle DAB = angle CBA (base angles of an isosceles trapezium are equal)", "AD = BC (given, the equal sides of the trapezium)"),
         "SAS",
         "Since two sides and the included angle match, triangles ABD and BAC are congruent - so AC = BD, the diagonals of an isosceles trapezium are equal.",
         {
@@ -480,6 +480,19 @@ _ids = [t.id for t in TEMPLATES]
 if len(_ids) != len(set(_ids)):
     raise ValueError("congruent_triangle_proof: duplicate template id found in TEMPLATES")
 
+_MC_CRITERIA = ["SSS", "SAS", "ASA", "RHS"]
+_MC_LETTERS = ["A", "B", "C", "D"]
+
+
+def _shuffled_mc_options(rng: random.Random, correct: str) -> tuple[str, str]:
+    """A lettered multiple-choice line ("A) SSS  B) ASA  C) SAS  D) RHS"),
+    shuffled per question, plus the matching answer string ("C) SAS")."""
+    order = _MC_CRITERIA[:]
+    rng.shuffle(order)
+    options_line = "  ".join(f"{letter}) {crit}" for letter, crit in zip(_MC_LETTERS, order))
+    answer_letter = _MC_LETTERS[order.index(correct)]
+    return options_line, f"{answer_letter}) {correct}"
+
 
 def generate_congruent_triangle_proof_higher(tier: Tier, rng: random.Random) -> Question:
     template = rng.choice(TEMPLATES)
@@ -532,6 +545,7 @@ def generate_modelled_example_congruent_triangle_proof_higher(tier: Tier, rng: r
 def generate_congruent_triangle_proof_foundation(tier: Tier, rng: random.Random) -> Question:
     template = rng.choice(TEMPLATES)
     template.verify()
+    options_line, answer = _shuffled_mc_options(rng, template.criterion)
 
     steps = list(template.given_facts) + [
         f"These facts match the {_CRITERION_FULL_NAME[template.criterion]} congruence criterion.",
@@ -540,11 +554,11 @@ def generate_congruent_triangle_proof_foundation(tier: Tier, rng: random.Random)
         topic_id="congruent_triangle_proof_foundation",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"{template.scenario} State which congruence criterion (SSS, SAS, ASA or RHS) proves "
-            "that the two triangles are congruent."
+            f"{template.scenario} Which congruence criterion proves that the two triangles are "
+            f"congruent? {options_line}"
         ),
         solution_steps=tuple(steps),
-        final_answer=template.criterion,
+        final_answer=answer,
         dedup_key=f"congruence_f:{template.id}",
         diagram=DiagramSpec(kind="two_triangle_congruence", params=template.diagram_params),
     )
@@ -553,6 +567,7 @@ def generate_congruent_triangle_proof_foundation(tier: Tier, rng: random.Random)
 def generate_modelled_example_congruent_triangle_proof_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
     template = rng.choice(TEMPLATES)
     template.verify()
+    options_line, answer = _shuffled_mc_options(rng, template.criterion)
 
     teaching_steps = [
         "There are four combinations of matching sides/angles that guarantee two triangles are "
@@ -568,12 +583,12 @@ def generate_modelled_example_congruent_triangle_proof_foundation(tier: Tier, rn
         topic_id="congruent_triangle_proof_foundation",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"{template.scenario} State which congruence criterion (SSS, SAS, ASA or RHS) proves "
-            "that the two triangles are congruent."
+            f"{template.scenario} Which congruence criterion proves that the two triangles are "
+            f"congruent? {options_line}"
         ),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
-        final_answer=template.criterion,
+        final_answer=answer,
         diagram=DiagramSpec(kind="two_triangle_congruence", params=template.diagram_params),
     )
 

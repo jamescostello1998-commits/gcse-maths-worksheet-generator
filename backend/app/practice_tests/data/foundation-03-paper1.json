@@ -4,6 +4,7 @@
   "tier": "foundation",
   "sitting_id": "foundation-03",
   "paper_number": 1,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "powers_foundation",
@@ -36,10 +37,10 @@
     },
     {
       "topic_id": "fractions_divide_foundation",
-      "prompt": "Work out 4/5 ÷ 4/8. Give your answer as a fraction in its simplest form.",
+      "prompt": "Evaluate 4/5 ÷ 4/8. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Keep-change-flip: 4/5 ÷ 4/8 = 4/5 × 8/4",
-        "Multiply: (4×8)/(5×4) = 32/20",
+        "Multiply: \\frac{(4×8)}{(5×4)} = 32/20",
         "Simplify: 8/5"
       ],
       "final_answer": "8/5",
@@ -52,7 +53,7 @@
         },
         {
           "code": "M1",
-          "description": "Multiply: (4×8)/(5×4) = 32/20",
+          "description": "Multiply: \\frac{(4×8)}{(5×4)} = 32/20",
           "marks": 1
         },
         {
@@ -71,10 +72,10 @@
     },
     {
       "topic_id": "fractions_simplify",
-      "prompt": "Simplify the fraction 28/63 fully.",
+      "prompt": "Fully simplify 28/63.",
       "solution_steps": [
         "Find the highest common factor of 28 and 63: 7",
-        "Divide numerator and denominator by 7: 28÷7 / 63÷7 = 4/9"
+        "Divide numerator and denominator by 7: \\frac{28÷7}{63÷7} = 4/9"
       ],
       "final_answer": "4/9",
       "marks": 3,
@@ -86,7 +87,7 @@
         },
         {
           "code": "M1",
-          "description": "Divide numerator and denominator by 7: 28÷7 / 63÷7 = 4/9",
+          "description": "Divide numerator and denominator by 7: \\frac{28÷7}{63÷7} = 4/9",
           "marks": 1
         },
         {
@@ -99,33 +100,38 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cube",
-      "prompt": "A cube has side length 9 cm. Find its surface area.",
+      "topic_id": "algebraic_indices_foundation",
+      "prompt": "Simplify 5x^2 × 4x^5",
       "solution_steps": [
-        "Surface area = 6 × side² = 6 × 9² = 6 × 81 = 486 cm²"
+        "Multiplying powers of the same base: add the exponents, and multiply the coefficients.",
+        "5x^2 × 4x^5 = (5×4) x^(2+5)",
+        "= 20x^7"
       ],
-      "final_answer": "486 cm²",
-      "marks": 2,
+      "final_answer": "20x^7",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Surface area = 6 × side² = 6 × 9² = 6 × 81 = 486 cm²",
+          "description": "Multiplying powers of the same base: add the exponents, and multiply the coefficients.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x^2 × 4x^5 = (5×4) x^(2+5)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 20x^7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "486 cm² oe",
+          "description": "20x^7 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "cuboid",
-        "params": {
-          "width_label": "9 cm",
-          "height_label": "9 cm",
-          "length_label": "9 cm"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -188,7 +194,7 @@
     },
     {
       "topic_id": "decimals_divide",
-      "prompt": "Work out 60.0 ÷ 5.",
+      "prompt": "Calculate 60.0 ÷ 5.",
       "solution_steps": [
         "60.0 ÷ 5 = 12.0"
       ],
@@ -211,7 +217,7 @@
     },
     {
       "topic_id": "decimals_add_subtract",
-      "prompt": "Work out 36.9 - 2.10.",
+      "prompt": "Calculate 36.9 - 2.10.",
       "solution_steps": [
         "Line up the decimal points, padding with a zero so both numbers have the same number of decimal places.",
         "36.9 - 2.10 = 34.80"
@@ -268,70 +274,75 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_graphically",
-      "prompt": "The graphs of y = -3x + 6 and y = -2x + 4 are shown below. Use the graphs to write down the solution to the simultaneous equations.",
+      "topic_id": "simultaneous_forming_and_solving",
+      "prompt": "4 tickets and 2 programmes cost £2.48 in total. 1 ticket and 2 programmes cost £1.76 in total. Form and solve a pair of simultaneous equations to find the cost of one ticket and one programme.",
       "solution_steps": [
-        "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
-        "The lines cross at x = 2, y = 0."
+        "Let x = cost of one ticket (pence), y = cost of one programme (pence).",
+        "4x + 2y = 248  (1)",
+        "1x + 2y = 176  (2)",
+        "Solving simultaneously: x = 24, y = 76"
       ],
-      "final_answer": "x = 2, y = 0",
-      "marks": 3,
+      "final_answer": "ticket = £0.24, programme = £0.76",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
+          "description": "Let x = cost of one ticket (pence), y = cost of one programme (pence).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The lines cross at x = 2, y = 0.",
+          "description": "4x + 2y = 248  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "1x + 2y = 176  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Solving simultaneously: x = 24, y = 76",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 2, y = 0 oe",
+          "description": "ticket = £0.24, programme = £0.76 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "linear_graph_pair",
-        "params": {
-          "intersection_label": "?",
-          "label1": "y = -3x + 6",
-          "label2": "y = -2x + 4"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "change_subject_foundation",
-      "prompt": "Make t the subject of the formula v = u + 14t.",
+      "topic_id": "substitution_foundation",
+      "prompt": "A = LW. Find the value of A when L = 11 and w = 16.",
       "solution_steps": [
-        "v = u + 14t",
-        "Subtract u from both sides: v - u = 14t",
-        "Divide both sides by 14: t = (v - u)/14"
+        "A = LW",
+        "A = 11 × 16",
+        "A = 176"
       ],
-      "final_answer": "t = (v - u)/14",
+      "final_answer": "A = 176",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "v = u + 14t",
+          "description": "A = LW",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract u from both sides: v - u = 14t",
+          "description": "A = 11 × 16",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 14: t = (v - u)/14",
+          "description": "A = 176",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "t = (v - u)/14 oe",
+          "description": "A = 176 oe",
           "marks": 1
         }
       ],
@@ -368,193 +379,166 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "line_equation_from_graph",
-      "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
+      "topic_id": "plot_distance_time",
+      "prompt": "A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop 4 km away after 20 minutes. They stay at the shop until 30 minutes, then cycle straight back home at a constant speed, arriving home at 55 minutes. Draw a distance-time graph to show this journey, and find the total distance travelled.",
       "solution_steps": [
-        "Gradient = rise/run = (-2 - 12) / (3 - -4) = -2",
-        "Using y = mx + c with the point (-4, 12): 12 = -2×(-4) + c, so c = 4",
-        "Equation of the line: y = -2x + 4"
+        "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 4 km after 20 minutes.",
+        "Stay at 4 km until 30 minutes.",
+        "Return at a constant speed to 0 km, arriving home at 55 minutes.",
+        "Plot these points and join each stage with a straight line segment.",
+        "Total distance travelled = 4 km out + 4 km back = 8 km"
       ],
-      "final_answer": "y = -2x + 4",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Gradient = rise/run = (-2 - 12) / (3 - -4) = -2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Using y = mx + c with the point (-4, 12): 12 = -2×(-4) + c, so c = 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Equation of the line: y = -2x + 4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "y = -2x + 4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "linear",
-          "m": -2,
-          "c": 4,
-          "x_min": -5,
-          "x_max": 4,
-          "y_min": -5,
-          "y_max": 15,
-          "table_points": [
-            [
-              -4,
-              12
-            ],
-            [
-              3,
-              -2
-            ]
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "plot_straight_line",
-      "prompt": "Complete a table of values for y = 2x - 5 for x = -3 to 3, then plot the graph.",
-      "solution_steps": [
-        "Table of values for y = 2x - 5:",
-        "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: -11, -9, -7, -5, -3, -1, 1",
-        "Plot each (x, y) point and join them with a single ruled straight line."
-      ],
-      "final_answer": "Straight line: y = 2x - 5",
+      "final_answer": "8 km",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = 2x - 5:",
+          "description": "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 4 km after 20 minutes.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "description": "Stay at 4 km until 30 minutes.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: -11, -9, -7, -5, -3, -1, 1",
+          "description": "Return at a constant speed to 0 km, arriving home at 55 minutes.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
+          "description": "Plot these points and join each stage with a straight line segment. Total distance travelled = 4 km out + 4 km back = 8 km",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Straight line: y = 2x - 5 oe",
+          "description": "8 km oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "function_graph",
+        "kind": "piecewise_graph",
         "params": {
-          "kind": "linear",
-          "m": 2,
-          "c": -5,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -12,
-          "y_max": 2,
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              20,
+              4
+            ],
+            [
+              30,
+              4
+            ],
+            [
+              55,
+              0
+            ]
+          ],
+          "x_max": 60,
+          "y_max": 6,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)",
           "blank": true
         }
       },
       "solution_diagram": {
-        "kind": "function_graph",
+        "kind": "piecewise_graph",
         "params": {
-          "kind": "linear",
-          "m": 2,
-          "c": -5,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -12,
-          "y_max": 2,
-          "table_points": [
-            [
-              -3,
-              -11
-            ],
-            [
-              -2,
-              -9
-            ],
-            [
-              -1,
-              -7
-            ],
+          "points": [
             [
               0,
-              -5
+              0
             ],
             [
-              1,
-              -3
+              20,
+              4
             ],
             [
-              2,
-              -1
+              30,
+              4
             ],
             [
-              3,
-              1
+              55,
+              0
             ]
-          ]
+          ],
+          "x_max": 60,
+          "y_max": 6,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)"
         }
       }
     },
     {
-      "topic_id": "linear_both_sides_foundation",
-      "prompt": "Solve: 5x + 2 = 6x - 4",
+      "topic_id": "special_sequences_foundation",
+      "prompt": "The first 3 cube numbers are: 1, 8, 27. Find the 5th term of the sequence.",
       "solution_steps": [
-        "5x + 2 = 6x - 4",
-        "Subtract 6x from both sides:",
-        "-x + 2 = -4",
-        "Subtract 2 from both sides:",
-        "-x = -6",
-        "Divide both sides by -1:",
-        "x = 6"
+        "These are the cube numbers: the nth term is given by n^3.",
+        "Term 5 = 5^3 = 125"
       ],
-      "final_answer": "6",
-      "marks": 5,
+      "final_answer": "125",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5x + 2 = 6x - 4",
+          "description": "These are the cube numbers: the nth term is given by n^3.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 6x from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "-x + 2 = -4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 2 from both sides: -x = -6 Divide both sides by -1: x = 6",
+          "description": "Term 5 = 5^3 = 125",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6 oe",
+          "description": "125 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_brackets_foundation",
+      "prompt": "Solve: 5(5x + 4) = 95",
+      "solution_steps": [
+        "Expand the bracket: 5(5x + 4) = 25x + 20",
+        "25x + 20 = 95",
+        "Subtract 20 from both sides:",
+        "25x = 75",
+        "Divide both sides by 25:",
+        "x = 3"
+      ],
+      "final_answer": "3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: 5(5x + 4) = 25x + 20",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "25x + 20 = 95",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 20 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "25x = 75 Divide both sides by 25: x = 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3 oe",
           "marks": 1
         }
       ],
@@ -604,128 +588,128 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_common_factor",
-      "prompt": "Factorise: -3x - 18",
+      "topic_id": "best_buys_noncalculator",
+      "prompt": "A shop sells rice in different sizes: A: £11.20 for 700g; B: £1.80 for 600g; C: £0.50 for 100g. Which option is the better value for money? Show your working.",
       "solution_steps": [
-        "Find the highest common factor of -3 and -18: 3",
-        "Factorise: 3(-x - 6)"
+        "Work out the price per 100g for each option:",
+        "A: £11.20 ÷ 700 × 100 = 160p per 100g",
+        "B: £1.80 ÷ 600 × 100 = 30p per 100g",
+        "C: £0.50 ÷ 100 × 100 = 50p per 100g",
+        "The lowest price per 100g is B at 30p per 100g, so B is the best value."
       ],
-      "final_answer": "3(-x - 6)",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find the highest common factor of -3 and -18: 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise: 3(-x - 6)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "3(-x - 6) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "find_percentage_change",
-      "prompt": "The price of an item changes from £320 to £352. Find the percentage increase.",
-      "solution_steps": [
-        "Find the difference between the two values: £352 and £320 differ by £32",
-        "Divide by the ORIGINAL value and convert to a percentage: £32 ÷ £320 × 100 = 10%"
-      ],
-      "final_answer": "10% increase",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find the difference between the two values: £352 and £320 differ by £32",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide by the ORIGINAL value and convert to a percentage: £32 ÷ £320 × 100 = 10%",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "10% increase oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_shape_similar_foundation",
-      "prompt": "Shape A and Shape B are similar. A side on shape A is 15 cm. The corresponding side on shape B is 10 cm. Another side on shape A is 18 cm. Find the length of the corresponding side on shape B.",
-      "solution_steps": [
-        "Scale factor = 10 ÷ 15 = 2/3",
-        "Corresponding length = 18 × 2/3 = 12"
-      ],
-      "final_answer": "12 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Scale factor = 10 ÷ 15 = 2/3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Corresponding length = 18 × 2/3 = 12",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "12 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_share_three_part_foundation",
-      "prompt": "Share 66 in the ratio 5:8:9.",
-      "solution_steps": [
-        "Total parts = 5 + 8 + 9 = 22",
-        "Value of one part = 66 ÷ 22 = 3",
-        "Share 1 = 5 × 3 = 15",
-        "Share 2 = 8 × 3 = 24",
-        "Share 3 = 9 × 3 = 27"
-      ],
-      "final_answer": "15 : 24 : 27",
+      "final_answer": "B (£1.80 for 600g)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 5 + 8 + 9 = 22",
+          "description": "Work out the price per 100g for each option:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 66 ÷ 22 = 3",
+          "description": "A: £11.20 ÷ 700 × 100 = 160p per 100g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 1 = 5 × 3 = 15",
+          "description": "B: £1.80 ÷ 600 × 100 = 30p per 100g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 2 = 8 × 3 = 24 Share 3 = 9 × 3 = 27",
+          "description": "C: £0.50 ÷ 100 × 100 = 50p per 100g The lowest price per 100g is B at 30p per 100g, so B is the best value.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "15 : 24 : 27 oe",
+          "description": "B (£1.80 for 600g) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "reverse_percentage_foundation",
+      "prompt": "After a 10% decrease, an item costs £72. Find the original price.",
+      "solution_steps": [
+        "Convert 10% to a multiplier: 0.90 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 72 ÷ 0.90 = 80"
+      ],
+      "final_answer": "£80",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 10% to a multiplier: 0.90 (original × multiplier = new value)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide the new value by the multiplier: 72 ÷ 0.90 = 80",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£80 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "direct_proportion",
+      "prompt": "If 12 notebooks cost £57.96, how much would 15 notebooks cost?",
+      "solution_steps": [
+        "Unit value = £57.96 ÷ 12 = £4.83",
+        "Answer = £4.83 × 15 = £72.45"
+      ],
+      "final_answer": "£72.45",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Unit value = £57.96 ÷ 12 = £4.83",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Answer = £4.83 × 15 = £72.45",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£72.45 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_1_to_n",
+      "prompt": "Write the ratio 3:9 in the form \\plain{n}:1.",
+      "solution_steps": [
+        "Divide both parts of the ratio by 9 (the second part) so the second part becomes 1.",
+        "3 ÷ 9 ≈ 0.33, 9 ÷ 9 = 1"
+      ],
+      "final_answer": "0.33 : 1 (to 2 d.p.)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Divide both parts of the ratio by 9 (the second part) so the second part becomes 1.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3 ÷ 9 ≈ 0.33, 9 ÷ 9 = 1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "0.33 : 1 (to 2 d.p.) oe",
           "marks": 1
         }
       ],
@@ -762,28 +746,109 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "percentage_of_amount",
-      "prompt": "Find 10% of 240.",
+      "topic_id": "area_triangle",
+      "prompt": "A triangle has base 13 cm and height 13 cm. Find its area.",
       "solution_steps": [
-        "Convert 10% to a fraction: 10/100",
-        "Multiply: 10/100 × 240 = 24"
+        "Area = (1/2) × base × height = (1/2) × 13 × 13 = 169/2 cm²"
       ],
-      "final_answer": "24",
-      "marks": 3,
+      "final_answer": "169/2 cm²",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 10% to a fraction: 10/100",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply: 10/100 × 240 = 24",
+          "description": "Area = (1/2) × base × height = (1/2) × 13 × 13 = 169/2 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "24 oe",
+          "description": "169/2 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "triangle_area",
+        "params": {
+          "base": 13,
+          "height": 13,
+          "base_label": "13 cm",
+          "height_label": "13 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_triangle",
+      "prompt": "A triangle has angles 29°, 80°, and x°. Find x.",
+      "solution_steps": [
+        "Angles in a triangle sum to 180°.",
+        "x = 180 - (29 + 80) = 180 - 109 = 71"
+      ],
+      "final_answer": "71",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles in a triangle sum to 180°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 180 - (29 + 80) = 180 - 109 = 71",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "71 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "triangle_angles",
+        "params": {
+          "angle_labels": [
+            "29°",
+            "80°",
+            "x"
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "construction_angle_bisector",
+      "prompt": "Angle WDJ = 101°. Describe, step by step, how to construct the bisector of angle WDJ using only a ruler and a pair of compasses.",
+      "solution_steps": [
+        "Open the compasses to any radius and place the point on D (the vertex of the angle).",
+        "Draw an arc that crosses both arms of the angle, at a point on DW and a point on DJ.",
+        "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
+        "Draw a straight line from D through the point where the two arcs intersect. This line is the bisector of angle WDJ."
+      ],
+      "final_answer": "The straight line from D through the intersection of the two equal-radius arcs bisects angle WDJ into two equal angles.",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Open the compasses to any radius and place the point on D (the vertex of the angle).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Draw an arc that crosses both arms of the angle, at a point on DW and a point on DJ.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Draw a straight line from D through the point where the two arcs intersect. This line is the bisector of angle WDJ.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "The straight line from D through the intersection of the two equal-radius arcs bisects angle WDJ into two equal angles. oe",
           "marks": 1
         }
       ],
@@ -791,335 +856,122 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_straight_line",
-      "prompt": "The angles 82° and x° lie on a straight line. Find x.",
+      "topic_id": "symmetry_lines",
+      "prompt": "The diagram shows an isosceles triangle. How many lines of symmetry does it have?",
       "solution_steps": [
-        "Angles on a straight line sum to 180°.",
-        "x = 180 - (82) = 180 - 82 = 98"
+        "An isosceles triangle has 1 line of symmetry.",
+        "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram."
       ],
-      "final_answer": "98",
+      "final_answer": "1 line of symmetry",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles on a straight line sum to 180°.",
+          "description": "An isosceles triangle has 1 line of symmetry.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 180 - (82) = 180 - 82 = 98",
+          "description": "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "98 oe",
+          "description": "1 line of symmetry oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "angle_line",
+        "kind": "symmetry_shape",
         "params": {
-          "angle_values": [
-            82,
-            98
-          ],
-          "labels": [
-            "82°",
-            "x"
-          ],
-          "around_point": false
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "transform_enlarge_complete_foundation",
-      "prompt": "Enlarge shape ABCDEF by scale factor 2, centre (-3, 8). Draw and label the image A'B'C'D'E'F'.",
-      "solution_steps": [
-        "The centre of enlargement is (-3, 8) and the scale factor is 2.",
-        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (0, -7) from the centre, so A' = (-3, 8) + 2 × (0, -7) = (-3, -6).",
-        "Repeat for every vertex: A(-3, 1) -> A'(-3, -6), B(1, 1) -> B'(5, -6), C(1, 3) -> C'(5, -2), D(-1, 3) -> D'(1, -2), E(-1, 6) -> E'(1, 4), F(-3, 6) -> F'(-3, 4)"
-      ],
-      "final_answer": "A'(-3, -6), B'(5, -6), C'(5, -2), D'(1, -2), E'(1, 4), F'(-3, 4)",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The centre of enlargement is (-3, 8) and the scale factor is 2.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (0, -7) from the centre, so A' = (-3, 8) + 2 × (0, -7) = (-3, -6).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Repeat for every vertex: A(-3, 1) -> A'(-3, -6), B(1, 1) -> B'(5, -6), C(1, 3) -> C'(5, -2), D(-1, 3) -> D'(1, -2), E(-1, 6) -> E'(1, 4), F(-3, 6) -> F'(-3, 4)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "A'(-3, -6), B'(5, -6), C'(5, -2), D'(1, -2), E'(1, 4), F'(-3, 4) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
+          "vertices": [
             [
-              -3,
-              1
+              0,
+              0
             ],
             [
-              1,
-              1
+              6,
+              0
             ],
             [
-              1,
-              3
-            ],
-            [
-              -1,
-              3
-            ],
-            [
-              -1,
-              6
-            ],
-            [
-              -3,
-              6
+              3,
+              4
             ]
           ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
-          ],
-          "centre": [
-            -3,
-            8
-          ]
+          "blank": true
         }
       },
       "solution_diagram": {
-        "kind": "grid_transformation",
+        "kind": "symmetry_shape",
         "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
+          "vertices": [
             [
-              -3,
-              1
+              0,
+              0
             ],
             [
-              1,
-              1
+              6,
+              0
             ],
             [
-              1,
-              3
-            ],
-            [
-              -1,
-              3
-            ],
-            [
-              -1,
-              6
-            ],
-            [
-              -3,
-              6
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
-          ],
-          "centre": [
-            -3,
-            8
-          ],
-          "image_vertices": [
-            [
-              -3,
-              -6
-            ],
-            [
-              5,
-              -6
-            ],
-            [
-              5,
-              -2
-            ],
-            [
-              1,
-              -2
-            ],
-            [
-              1,
-              4
-            ],
-            [
-              -3,
+              3,
               4
             ]
           ],
-          "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'",
-            "E'",
-            "F'"
+          "symmetry_lines": [
+            {
+              "p1": [
+                3,
+                -1
+              ],
+              "p2": [
+                3,
+                5
+              ]
+            }
           ]
         }
       }
     },
     {
-      "topic_id": "volume_surface_area_triangular_prism",
-      "prompt": "A triangular prism has a right-angled triangular cross-section with legs 8 cm and 15 cm (hypotenuse 17 cm), and length 4 cm. Find its volume.",
+      "topic_id": "nets_3d_shapes",
+      "prompt": "How many sectors does the net of a cone contain?",
       "solution_steps": [
-        "Cross-section area = (1/2) × 8 × 15 = 60 cm²",
-        "Volume = cross-section area × length = 60 × 4 = 240 cm³"
+        "Imagine unfolding a cone flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
+        "A cone's net is made up of: 1 circle and 1 sector (the curved surface unrolled flat).",
+        "So the answer is: 1."
       ],
-      "final_answer": "240 cm³",
-      "marks": 3,
+      "final_answer": "1",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Cross-section area = (1/2) × 8 × 15 = 60 cm²",
+          "description": "Imagine unfolding a cone flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Volume = cross-section area × length = 60 × 4 = 240 cm³",
+          "description": "A cone's net is made up of: 1 circle and 1 sector (the curved surface unrolled flat).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "So the answer is: 1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "240 cm³ oe",
+          "description": "1 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "triangular_prism",
+      "diagram": null,
+      "solution_diagram": {
+        "kind": "net",
         "params": {
-          "base_label": "8 cm",
-          "triangle_height_label": "15 cm",
-          "length_label": "4 cm"
+          "shape": "cone"
         }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "congruent_triangle_proof_foundation",
-      "prompt": "Triangles ABC and ABD are both right-angled (at C and at D respectively) and share hypotenuse AB, with AC = AD. State which congruence criterion (SSS, SAS, ASA or RHS) proves that the two triangles are congruent.",
-      "solution_steps": [
-        "angle ACB = angle ADB = 90° (given)",
-        "AB is the common hypotenuse",
-        "AC = AD (given)",
-        "These facts match the Right angle-Hypotenuse-Side (RHS) congruence criterion."
-      ],
-      "final_answer": "RHS",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "angle ACB = angle ADB = 90° (given)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "AB is the common hypotenuse",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "AC = AD (given)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "These facts match the Right angle-Hypotenuse-Side (RHS) congruence criterion.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "RHS oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "two_triangle_congruence",
-        "params": {
-          "labels_1": [
-            "A",
-            "C",
-            "B"
-          ],
-          "labels_2": [
-            "A",
-            "D",
-            "B"
-          ],
-          "ticks_1": [
-            [
-              0,
-              2,
-              1
-            ],
-            [
-              0,
-              1,
-              2
-            ]
-          ],
-          "ticks_2": [
-            [
-              0,
-              2,
-              1
-            ],
-            [
-              0,
-              1,
-              2
-            ]
-          ],
-          "arcs_1": [
-            [
-              1,
-              1
-            ]
-          ],
-          "arcs_2": [
-            [
-              1,
-              1
-            ]
-          ],
-          "note": "AB is the common hypotenuse."
-        }
-      },
-      "solution_diagram": null
+      }
     },
     {
       "topic_id": "tree_diagram_independent",
@@ -1187,127 +1039,152 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_expectation",
-      "prompt": "A spinner has P(landing on yellow) = 6/12. The spinner is spun 60 times. How many times would you expect it to land on yellow?",
+      "topic_id": "sample_space_diagrams",
+      "prompt": "Two fair spinners, one numbered 1 to 4 and the other numbered 1 to 6, are spun together. Complete the sample space diagram showing the product of the two spinners, and use it to find the probability that the product is 9.",
       "solution_steps": [
-        "Expected number of times = probability × number of trials = 6/12 × 60",
-        "= 30"
+        "The sample space diagram shows every possible product of the two spinners.",
+        "Number of favourable outcomes (the product is 9) = 1",
+        "Total number of equally likely outcomes = 24",
+        "P(the product is 9) = 1/24"
       ],
-      "final_answer": "30",
-      "marks": 3,
+      "final_answer": "1/24",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expected number of times = probability × number of trials = 6/12 × 60",
+          "description": "The sample space diagram shows every possible product of the two spinners.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 30",
+          "description": "Number of favourable outcomes (the product is 9) = 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total number of equally likely outcomes = 24",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(the product is 9) = 1/24",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "30 oe",
+          "description": "1/24 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "spinner",
+        "kind": "sample_space_diagram",
         "params": {
-          "sectors": [
-            "Y",
-            "Y",
-            "Y",
-            "Y",
-            "Y",
-            "Y",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
+          "row_values": [
+            1,
+            2,
+            3,
+            4
           ],
-          "highlight": [
-            0,
+          "col_values": [
             1,
             2,
             3,
             4,
-            5
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "fractions_equivalent_diagram",
-      "prompt": "Shape A is divided into 2 equal parts, with 1 shaded. Shape B is divided into 4 equal parts. How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
-      "solution_steps": [
-        "Shape A shows 1/2 shaded; Shape B has 4 equal parts.",
-        "Find the scale factor between the denominators: 4 ÷ 2 = 2",
-        "Multiply the shaded count by the same scale factor: 1 × 2 = 2"
-      ],
-      "final_answer": "2",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Shape A shows 1/2 shaded; Shape B has 4 equal parts.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Find the scale factor between the denominators: 4 ÷ 2 = 2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the shaded count by the same scale factor: 1 × 2 = 2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "circle",
-              "parts": 2,
-              "shaded": 1,
-              "label": "1/2"
-            },
-            {
-              "kind": "circle",
-              "parts": 4,
-              "shaded": 0,
-              "label": "?/4"
-            }
+            5,
+            6
+          ],
+          "cells": [
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ]
           ]
         }
       },
       "solution_diagram": {
-        "kind": "fraction_shapes",
+        "kind": "sample_space_diagram",
         "params": {
-          "shapes": [
-            {
-              "kind": "circle",
-              "parts": 2,
-              "shaded": 1,
-              "label": "1/2"
-            },
-            {
-              "kind": "circle",
-              "parts": 4,
-              "shaded": 2,
-              "label": "2/4"
-            }
+          "row_values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "col_values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "cells": [
+            [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ],
+            [
+              "2",
+              "4",
+              "6",
+              "8",
+              "10",
+              "12"
+            ],
+            [
+              "3",
+              "6",
+              "9",
+              "12",
+              "15",
+              "18"
+            ],
+            [
+              "4",
+              "8",
+              "12",
+              "16",
+              "20",
+              "24"
+            ]
+          ],
+          "highlight": [
+            [
+              2,
+              2
+            ]
           ]
         }
       }

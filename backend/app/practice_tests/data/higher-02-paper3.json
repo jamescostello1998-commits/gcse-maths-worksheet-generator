@@ -4,12 +4,13 @@
   "tier": "higher",
   "sitting_id": "higher-02",
   "paper_number": 3,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal 0.(60) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Show that \\recur{0.}{60} can be written as 20/33.",
       "solution_steps": [
-        "Let x = 0.(60), so 100x = 60.6060... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Let x = \\recur{0.}{60}, so 100x = 60.6060... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 60 - 0, so 99x = 60",
         "x = 60/99 = 20/33"
       ],
@@ -18,7 +19,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(60), so 100x = 60.6060... (two digits repeat, so multiply by 100 to shift a full block)",
+          "description": "Let x = \\recur{0.}{60}, so 100x = 60.6060... (two digits repeat, so multiply by 100 to shift a full block)",
           "marks": 1
         },
         {
@@ -118,7 +119,7 @@
     },
     {
       "topic_id": "fractions_mixed_number_arithmetic",
-      "prompt": "Work out 5 1/4 - 2 4/8. Give your answer as a mixed number.",
+      "prompt": "Calculate 5 1/4 - 2 4/8. Give your answer as a mixed number.",
       "solution_steps": [
         "Convert to improper fractions: 5 1/4 = 21/4, 2 4/8 = 5/2",
         "Subtract the improper fractions: 21/4 - 5/2 = 11/4",
@@ -153,33 +154,27 @@
     },
     {
       "topic_id": "powers_higher",
-      "prompt": "Work out 25^(3/2).",
+      "prompt": "Evaluate 125^(1/3).",
       "solution_steps": [
-        "25^(3/2) = (25^(1/2))^3",
-        "25^(1/2) = 5",
-        "5^3 = 125"
+        "125^(1/3) means the cube root of 125.",
+        "125^(1/3) = 5"
       ],
-      "final_answer": "125",
-      "marks": 4,
+      "final_answer": "5",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "25^(3/2) = (25^(1/2))^3",
+          "description": "125^(1/3) means the cube root of 125.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "25^(1/2) = 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "5^3 = 125",
+          "description": "125^(1/3) = 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "125 oe",
+          "description": "5 oe",
           "marks": 1
         }
       ],
@@ -251,40 +246,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_fractions_add_subtract",
-      "prompt": "Simplify 4/(x - 1) - 9/(x - 7), giving your answer as a single fraction.",
+      "topic_id": "functions_inverse_evaluate",
+      "prompt": "f(x) = 5x + 9. Find f^-1(-8).",
       "solution_steps": [
-        "Write both fractions over the common denominator (x - 1)(x - 7):",
-        "4/(x - 1) - 9/(x - 7) = (4(x - 7) - 9(x - 1))/(x - 1)(x - 7)",
-        "Expand the numerator: 4(x - 7) - 9(x - 1) = -5x - 19",
-        "= (-5x - 19)/(x - 1)(x - 7)"
+        "f^-1(x) = \\frac{x - 9}{5}",
+        "f^-1(-8) = \\frac{-8 - 9}{5}",
+        "f^-1(-8) = -17/5"
       ],
-      "final_answer": "(-5x - 19)/(x - 1)(x - 7)",
-      "marks": 5,
+      "final_answer": "-17/5",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Write both fractions over the common denominator (x - 1)(x - 7):",
+          "description": "f^-1(x) = \\frac{x - 9}{5}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4/(x - 1) - 9/(x - 7) = (4(x - 7) - 9(x - 1))/(x - 1)(x - 7)",
+          "description": "f^-1(-8) = \\frac{-8 - 9}{5}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand the numerator: 4(x - 7) - 9(x - 1) = -5x - 19",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= (-5x - 19)/(x - 1)(x - 7)",
+          "description": "f^-1(-8) = -17/5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(-5x - 19)/(x - 1)(x - 7) oe",
+          "description": "-17/5 oe",
           "marks": 1
         }
       ],
@@ -378,44 +367,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "forming_equations_higher",
-      "prompt": "A composite shape's perimeter is made up of two sides of length 9 cm, two sides of length 5 cm, and two sides of length (x + 7) cm. The total perimeter is 66 cm. Form an equation and solve it to find x.",
+      "topic_id": "change_subject_higher",
+      "prompt": "Make r the subject of the formula A = 5πr^2.",
       "solution_steps": [
-        "Perimeter = sum of all side lengths.",
-        "2(9) + 2(5) + 2(x + 7) = 66",
-        "Expand the bracket and collect the constants:",
-        "2x + 42 = 66",
-        "Subtract 42 from both sides:",
-        "2x = 24",
-        "Divide both sides by 2:",
-        "x = 12"
+        "A = 5πr^2",
+        "Divide both sides by 5π: \\frac{A}{5π} = r^2",
+        "Take the square root of both sides: r = √(\\frac{A}{5π})"
       ],
-      "final_answer": "12",
-      "marks": 5,
+      "final_answer": "r = √(\\frac{A}{5π})",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Perimeter = sum of all side lengths.",
+          "description": "A = 5πr^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2(9) + 2(5) + 2(x + 7) = 66",
+          "description": "Divide both sides by 5π: \\frac{A}{5π} = r^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand the bracket and collect the constants:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2x + 42 = 66 Subtract 42 from both sides: 2x = 24 Divide both sides by 2: x = 12",
+          "description": "Take the square root of both sides: r = √(\\frac{A}{5π})",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 oe",
+          "description": "r = √(\\frac{A}{5π}) oe",
           "marks": 1
         }
       ],
@@ -467,34 +446,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_triple_brackets",
-      "prompt": "Expand and simplify: (-2x + 4)(4x - 3)(x - 3)",
+      "topic_id": "expand_double_brackets",
+      "prompt": "Expand and simplify: (4x + 2)(3x + 3)",
       "solution_steps": [
-        "First expand two of the brackets: (-2x + 4)(4x - 3) = -8x^2 + 22x - 12",
-        "Multiply the result by (x - 3) and collect like terms",
-        "= -8x^3 + 46x^2 - 78x + 36"
+        "First: 4x × 3x = 12x^2",
+        "Outer: 4x × 3 = 12x",
+        "Inner: 2 × 3x = 6x",
+        "Last: 2 × 3 = 6",
+        "Combine like terms: 12x^2 + 18x + 6"
       ],
-      "final_answer": "-8x^3 + 46x^2 - 78x + 36",
-      "marks": 4,
+      "final_answer": "12x^2 + 18x + 6",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First expand two of the brackets: (-2x + 4)(4x - 3) = -8x^2 + 22x - 12",
+          "description": "First: 4x × 3x = 12x^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the result by (x - 3) and collect like terms",
+          "description": "Outer: 4x × 3 = 12x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= -8x^3 + 46x^2 - 78x + 36",
+          "description": "Inner: 2 × 3x = 6x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Last: 2 × 3 = 6 Combine like terms: 12x^2 + 18x + 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-8x^3 + 46x^2 - 78x + 36 oe",
+          "description": "12x^2 + 18x + 6 oe",
           "marks": 1
         }
       ],
@@ -546,22 +532,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "product_rule_counting",
-      "prompt": "A shop sells 4 different fonts, 2 different colours and 6 different paper sizes. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "topic_id": "algebraic_inverse_proportion",
+      "prompt": "y is inversely proportional to x^3. When x = 6, y = 8. Find the value of y when x = 2.",
       "solution_steps": [
-        "Total combinations = 4 × 2 × 6 = 48"
+        "y = k ÷ x^3",
+        "k = y × x^3 = 8 × 6^3 = 8 × 216 = 1728",
+        "y = k ÷ x^3 = 1728 ÷ 2^3 = 1728 ÷ 8 = 216"
       ],
-      "final_answer": "48",
-      "marks": 2,
+      "final_answer": "216",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total combinations = 4 × 2 × 6 = 48",
+          "description": "y = k ÷ x^3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "k = y × x^3 = 8 × 6^3 = 8 × 216 = 1728",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y = k ÷ x^3 = 1728 ÷ 2^3 = 1728 ÷ 8 = 216",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "48 oe",
+          "description": "216 oe",
           "marks": 1
         }
       ],
@@ -570,7 +568,7 @@
     },
     {
       "topic_id": "ratio_shape_similar_higher",
-      "prompt": "Shape A and Shape B are similar. A length on shape A is 4 cm and the corresponding length on shape B is 5 cm. The area of shape B is 25 cm². Find the area of shape A.",
+      "prompt": "Shape A and Shape B are similar. The area of shape B is 25 cm². Find the area of shape A.",
       "solution_steps": [
         "Linear scale factor = 5 ÷ 4 = 5/4",
         "Area scale factor = (5/4)^2 = 25/16",
@@ -600,7 +598,13 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "a_width_label": "4 cm",
+          "b_width_label": "5 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -703,79 +707,81 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_3d",
-      "prompt": "A cuboid has length 3 cm, width 13 cm and height 7 cm. Find the angle between the diagonal AG (from one corner to the opposite corner) and the base of the cuboid, correct to 1 decimal place.",
+      "topic_id": "cosine_rule",
+      "prompt": "In triangle ABC, side b = 13 cm, side c = 19 cm, and the angle between them, angle A = 61°. Find the length of side a, correct to 1 decimal place.",
       "solution_steps": [
-        "First find the diagonal across the base: base diagonal = √(l² + w²) = √(3² + 13²) = 13.342 cm - this is the projection of AG onto the base.",
-        "The angle between AG and the base, height and base diagonal form a right-angled triangle: tan(angle) = height ÷ base diagonal = 7 ÷ 13.342.",
-        "angle = tan^-1(7 ÷ 13.342) = 27.7° (1 d.p.)"
+        "Use the cosine rule: a² = b² + c² - 2bc cos(A)",
+        "a² = 13² + 19² - 2×13×19×cos(61°) = 290.5",
+        "a = √290.5 = 17.0 cm (1 d.p.)"
       ],
-      "final_answer": "27.7°",
+      "final_answer": "17.0 cm",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First find the diagonal across the base: base diagonal = √(l² + w²) = √(3² + 13²) = 13.342 cm - this is the projection of AG onto the base.",
+          "description": "Use the cosine rule: a² = b² + c² - 2bc cos(A)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The angle between AG and the base, height and base diagonal form a right-angled triangle: tan(angle) = height ÷ base diagonal = 7 ÷ 13.342.",
+          "description": "a² = 13² + 19² - 2×13×19×cos(61°) = 290.5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "angle = tan^-1(7 ÷ 13.342) = 27.7° (1 d.p.)",
+          "description": "a = √290.5 = 17.0 cm (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "27.7° oe",
+          "description": "17.0 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cuboid",
+        "kind": "general_triangle",
         "params": {
-          "length_label": "3 cm",
-          "width_label": "13 cm",
-          "height_label": "7 cm",
-          "diagonal_label": "θ"
+          "side_a_label": "x cm",
+          "side_b_label": "13 cm",
+          "side_c_label": "19 cm",
+          "angle_A_label": "61°",
+          "angle_B_label": null,
+          "angle_C_label": null
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cylinder",
-      "prompt": "A cylinder has radius 12 cm and height 14 cm. Find the exact total surface area, in terms of π.",
+      "topic_id": "volume_surface_area_cone",
+      "prompt": "A cone has radius 6 cm and slant height 17 cm. Find its volume, correct to 1 decimal place.",
       "solution_steps": [
-        "Surface area = 2πr(r + h) = 2 × π × 12 × (12 + 14)",
-        "= 624π cm²"
+        "Volume = (1/3) × π × r² × h = (1/3) × π × 6² × 15.906",
+        "= 599.6 cm³ (1 d.p., using a calculator value of π)"
       ],
-      "final_answer": "624π cm²",
+      "final_answer": "599.6 cm³",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Surface area = 2πr(r + h) = 2 × π × 12 × (12 + 14)",
+          "description": "Volume = (1/3) × π × r² × h = (1/3) × π × 6² × 15.906",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 624π cm²",
+          "description": "= 599.6 cm³ (1 d.p., using a calculator value of π)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "624π cm² oe",
+          "description": "599.6 cm³ oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cylinder",
+        "kind": "cone",
         "params": {
-          "radius_label": "12 cm",
-          "height_label": "14 cm"
+          "radius_label": "6 cm",
+          "slant_label": "17 cm"
         }
       },
       "solution_diagram": null
@@ -825,7 +831,9 @@
         "params": {
           "interior1_label": "44°",
           "interior2_label": "(2x - 10)°",
-          "exterior_label": "60°"
+          "exterior_label": "60°",
+          "interior1_value": 44,
+          "shape_variant": 1
         }
       },
       "solution_diagram": null

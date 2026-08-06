@@ -4,12 +4,13 @@
   "tier": "higher",
   "sitting_id": "higher-08",
   "paper_number": 3,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal 0.(36) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Show that \\recur{0.}{36} can be written as 4/11.",
       "solution_steps": [
-        "Let x = 0.(36), so 100x = 36.3636... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Let x = \\recur{0.}{36}, so 100x = 36.3636... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 36 - 0, so 99x = 36",
         "x = 36/99 = 4/11"
       ],
@@ -18,7 +19,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(36), so 100x = 36.3636... (two digits repeat, so multiply by 100 to shift a full block)",
+          "description": "Let x = \\recur{0.}{36}, so 100x = 36.3636... (two digits repeat, so multiply by 100 to shift a full block)",
           "marks": 1
         },
         {
@@ -42,11 +43,11 @@
     },
     {
       "topic_id": "simplifying_indices_challenging",
-      "prompt": "Simplify 25^(3/2) × 25^-2, giving your answer as a fraction where necessary.",
+      "prompt": "Fully simplify 25^(3/2) × 25^-2, giving your answer as a fraction where necessary.",
       "solution_steps": [
         "25^(1/2) is the square root of 25, which is 5, so 25^(3/2) = 5^3",
-        "25^-2 = 1/25^2 = 1/5^4",
-        "25^(3/2) × 25^-2 = 5^3 × 1/5^4 = 5^(3-4) = 5^-1",
+        "25^-2 = \\frac{1}{25²} = \\frac{1}{5⁴}",
+        "25^(3/2) × 25^-2 = 5^3 × \\frac{1}{5⁴} = 5^(3-4) = 5^-1",
         "5^-1 = 1/5"
       ],
       "final_answer": "1/5",
@@ -59,12 +60,12 @@
         },
         {
           "code": "M1",
-          "description": "25^-2 = 1/25^2 = 1/5^4",
+          "description": "25^-2 = \\frac{1}{25²} = \\frac{1}{5⁴}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "25^(3/2) × 25^-2 = 5^3 × 1/5^4 = 5^(3-4) = 5^-1",
+          "description": "25^(3/2) × 25^-2 = 5^3 × \\frac{1}{5⁴} = 5^(3-4) = 5^-1",
           "marks": 1
         },
         {
@@ -118,9 +119,9 @@
     },
     {
       "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal 0.8(3) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Show that \\recur{0.8}{3} can be written as 5/6.",
       "solution_steps": [
-        "Let x = 0.8(3)",
+        "Let x = \\recur{0.8}{3}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
         "This gives x = 75/90",
         "Simplify: 5/6"
@@ -130,7 +131,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.8(3)",
+          "description": "Let x = \\recur{0.8}{3}",
           "marks": 1
         },
         {
@@ -228,44 +229,56 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_fractions_multiply_divide",
-      "prompt": "Simplify (x^2 - 81)/(x - 7) × (x - 7)/(x - 9), giving your answer in its simplest form.",
+      "topic_id": "area_subtract_compound",
+      "prompt": "Find the shaded area.",
       "solution_steps": [
-        "Factorise the difference of two squares: (x^2 - 81) = (x - 9)(x + 9)",
-        "(x - 9)(x + 9)/(x - 7) × (x - 7)/(x - 9)",
-        "Cancel the common factors (x - 7) and (x - 9):",
-        "= x + 9"
+        "Area of large rectangle = 12 × 18 = 216 cm²",
+        "Area of rectangular hole = 3 × 6 = 18 cm²",
+        "Shaded area = 216 - 18 = 198 cm²"
       ],
-      "final_answer": "x + 9",
-      "marks": 5,
+      "final_answer": "198 cm²",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Factorise the difference of two squares: (x^2 - 81) = (x - 9)(x + 9)",
+          "description": "Area of large rectangle = 12 × 18 = 216 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(x - 9)(x + 9)/(x - 7) × (x - 7)/(x - 9)",
+          "description": "Area of rectangular hole = 3 × 6 = 18 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Cancel the common factors (x - 7) and (x - 9):",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= x + 9",
+          "description": "Shaded area = 216 - 18 = 198 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x + 9 oe",
+          "description": "198 cm² oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "l_shape",
+        "params": {
+          "outer_w": 12,
+          "outer_h": 18,
+          "inner_w": 3,
+          "inner_h": 6,
+          "notch": "center",
+          "shade_frame": true,
+          "outer_labels": [
+            "12 cm",
+            "18 cm"
+          ],
+          "inner_labels": [
+            "3 cm",
+            "6 cm"
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -312,42 +325,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "satisfying_inequalities_higher",
-      "prompt": "Solve the inequality -10 < -4x - 3 < 3, then list the integer values of x that satisfy it.",
+      "topic_id": "quadratic_inequalities",
+      "prompt": "Solve the inequality: x^2 + 13x + 36 > 0",
       "solution_steps": [
-        "-10 < -4x - 3 < 3",
-        "Add 3 to all three parts:",
-        "-7 < -4x < 6",
-        "Divide all three parts by -4 - since this is negative, every inequality sign reverses, and the low/high sides swap around:",
-        "-3/2 < x < 7/4",
-        "The integers satisfying this are: -1, 0, 1"
+        "Factorise: x^2 + 13x + 36 = (x + 4)(x + 9)",
+        "The critical values are x = -9 and x = -4.",
+        "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and > 0 is satisfied outside the two roots.",
+        "Answer: x < -9 or x > -4"
       ],
-      "final_answer": "-1, 0, 1",
+      "final_answer": "x < -9 or x > -4",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "-10 < -4x - 3 < 3",
+          "description": "Factorise: x^2 + 13x + 36 = (x + 4)(x + 9)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add 3 to all three parts:",
+          "description": "The critical values are x = -9 and x = -4.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-7 < -4x < 6",
+          "description": "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and > 0 is satisfied outside the two roots.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide all three parts by -4 - since this is negative, every inequality sign reverses, and the low/high sides swap around: -3/2 < x < 7/4 The integers satisfying this are: -1, 0, 1",
+          "description": "Answer: x < -9 or x > -4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-1, 0, 1 oe",
+          "description": "x < -9 or x > -4 oe",
           "marks": 1
         }
       ],
@@ -355,34 +366,76 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "change_subject_higher",
-      "prompt": "Make r the subject of the formula A = 2πr^2.",
+      "topic_id": "substitution_higher",
+      "prompt": "E = (1/2)mv^2. Find the value of E when m = 5 and v = -13.",
       "solution_steps": [
-        "A = 2πr^2",
-        "Divide both sides by 2π: A/(2π) = r^2",
-        "Take the square root of both sides: r = √(A/(2π))"
+        "E = (1/2)mv^2",
+        "E = (1/2) × 5 × (-13)^2",
+        "E = (1/2) × 5 × 169",
+        "E = 845/2",
+        "E = 845/2"
       ],
-      "final_answer": "r = √(A/(2π))",
+      "final_answer": "E = 845/2",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "E = (1/2)mv^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "E = (1/2) × 5 × (-13)^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "E = (1/2) × 5 × 169",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "E = 845/2 E = 845/2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "E = 845/2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "sequences_quadratic_nth_term",
+      "prompt": "Here are the first four terms of a quadratic sequence: 10, 25, 46, 73.\nFind an expression for the nth term.",
+      "solution_steps": [
+        "First differences: 15, 21, 27",
+        "Second difference is constant: 6, so the coefficient of n^2 is 6 ÷ 2 = 3",
+        "nth term = 3n^2 + 6n + 1"
+      ],
+      "final_answer": "3n^2 + 6n + 1",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A = 2πr^2",
+          "description": "First differences: 15, 21, 27",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 2π: A/(2π) = r^2",
+          "description": "Second difference is constant: 6, so the coefficient of n^2 is 6 ÷ 2 = 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Take the square root of both sides: r = √(A/(2π))",
+          "description": "nth term = 3n^2 + 6n + 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "r = √(A/(2π)) oe",
+          "description": "3n^2 + 6n + 1 oe",
           "marks": 1
         }
       ],
@@ -390,92 +443,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inequalities_number_line_higher",
-      "prompt": "Draw the solution set of -4 ≤ x < 1 on a number line.",
+      "topic_id": "factorise_quadratics",
+      "prompt": "Factorise: x^2 + 8x - 9",
       "solution_steps": [
-        "Draw a filled circle at -4 and an open circle at 1.",
-        "Shade the segment of the line between the two circles."
+        "Find two numbers that multiply to -9 and add to 8: -1 and 9",
+        "Write as two brackets: (x - 1)(x + 9)"
       ],
-      "final_answer": "-4 ≤ x < 1",
+      "final_answer": "(x - 1)(x + 9)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw a filled circle at -4 and an open circle at 1.",
+          "description": "Find two numbers that multiply to -9 and add to 8: -1 and 9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Shade the segment of the line between the two circles.",
+          "description": "Write as two brackets: (x - 1)(x + 9)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-4 ≤ x < 1 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -8,
-            8
-          ],
-          "boundaries": [],
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -8,
-            8
-          ],
-          "boundaries": [
-            {
-              "value": -4,
-              "closed": true
-            },
-            {
-              "value": 1,
-              "closed": false
-            }
-          ],
-          "shade": "between"
-        }
-      }
-    },
-    {
-      "topic_id": "expand_triple_brackets",
-      "prompt": "Expand and simplify: (x + 1)(-2x + 2)(2x + 3)",
-      "solution_steps": [
-        "First expand two of the brackets: (x + 1)(-2x + 2) = -2x^2 + 2",
-        "Multiply the result by (2x + 3) and collect like terms",
-        "= -4x^3 - 6x^2 + 4x + 6"
-      ],
-      "final_answer": "-4x^3 - 6x^2 + 4x + 6",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "First expand two of the brackets: (x + 1)(-2x + 2) = -2x^2 + 2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the result by (2x + 3) and collect like terms",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= -4x^3 - 6x^2 + 4x + 6",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-4x^3 - 6x^2 + 4x + 6 oe",
+          "description": "(x - 1)(x + 9) oe",
           "marks": 1
         }
       ],
@@ -483,41 +472,43 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "iteration",
-      "prompt": "The iterative formula x_(n+1) = 10 / (x_n + 6) is used with x_0 = 0. Find the values of x_1, x_2 and x_3, giving each answer to 3 decimal places.",
+      "topic_id": "trial_and_improvement",
+      "prompt": "f(x) = x^3 + 3x - 40. Show that f(x) = 0 has a root between x = 3 and x = 4, then use trial and improvement to find this root correct to 1 decimal place.",
       "solution_steps": [
-        "Iterative formula: x_(n+1) = 10 / (x_n + 6)",
-        "x_0 = 0",
-        "x_1 = g(x_0) = 10 / (0 + 6) = 1.667",
-        "x_2 = g(x_1) = 10 / (1.667 + 6) = 1.304",
-        "x_3 = g(x_2) = 10 / (1.304 + 6) = 1.369"
+        "f(x) = x^3 + 3x - 40",
+        "f(3) = -4.00 (negative)",
+        "f(4) = 36.00 (positive)",
+        "f(3.1) = -0.91 (negative)",
+        "f(3.2) = 2.37 (positive)",
+        "The sign changes between x = 3.1 and x = 3.2, so try the midpoint x = 3.15: f(3.15) = 0.71.",
+        "f(3.15) has the same sign as f(3.2), so the root lies between 3.1 and 3.15 - to 1 decimal place, this rounds down to 3.1."
       ],
-      "final_answer": "x_1 = 1.667, x_2 = 1.304, x_3 = 1.369",
+      "final_answer": "x = 3.1",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Iterative formula: x_(n+1) = 10 / (x_n + 6)",
+          "description": "f(x) = x^3 + 3x - 40",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x_0 = 0",
+          "description": "f(3) = -4.00 (negative)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x_1 = g(x_0) = 10 / (0 + 6) = 1.667",
+          "description": "f(4) = 36.00 (positive)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x_2 = g(x_1) = 10 / (1.667 + 6) = 1.304 x_3 = g(x_2) = 10 / (1.304 + 6) = 1.369",
+          "description": "f(3.1) = -0.91 (negative) f(3.2) = 2.37 (positive) The sign changes between x = 3.1 and x = 3.2, so try the midpoint x = 3.15: f(3.15) = 0.71. f(3.15) has the same sign as f(3.2), so the root lies between 3.1 and 3.15 - to 1 decimal place, this rounds down to 3.1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x_1 = 1.667, x_2 = 1.304, x_3 = 1.369 oe",
+          "description": "x = 3.1 oe",
           "marks": 1
         }
       ],
@@ -589,50 +580,32 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "geometric_vectors",
-      "prompt": "OAB is a triangle with OA = \\vec{a} and OB = \\vec{b}. Point P lies on AB such that AP:PB = 3:5. Find the vector PB in terms of \\vec{a} and \\vec{b}, giving your answer in its simplest form.",
+      "topic_id": "unit_conversions_higher",
+      "prompt": "Convert 2937 mm³ to cm³.",
       "solution_steps": [
-        "AB = OB - OA = \\vec{b} - \\vec{a}",
-        "AP = (3/8)AB = (3/8)(\\vec{b} - \\vec{a})",
-        "PB = OB - OP = -(5/8)\\vec{a} + (5/8)\\vec{b}"
+        "Linear conversion factor: 1 cm = 10 mm, so for volume, 1 cm³ = 10^3 = 1000 mm³",
+        "2937 mm³ = 2937 ÷ 1000 = 2.937 cm³"
       ],
-      "final_answer": "-(5/8)\\vec{a} + (5/8)\\vec{b}",
-      "marks": 4,
+      "final_answer": "2.937 cm³",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "AB = OB - OA = \\vec{b} - \\vec{a}",
+          "description": "Linear conversion factor: 1 cm = 10 mm, so for volume, 1 cm³ = 10^3 = 1000 mm³",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "AP = (3/8)AB = (3/8)(\\vec{b} - \\vec{a})",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "PB = OB - OP = -(5/8)\\vec{a} + (5/8)\\vec{b}",
+          "description": "2937 mm³ = 2937 ÷ 1000 = 2.937 cm³",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-(5/8)\\vec{a} + (5/8)\\vec{b} oe",
+          "description": "2.937 cm³ oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "vector_triangle",
-        "params": {
-          "ratio": [
-            3,
-            5
-          ],
-          "point_label": "P",
-          "a_label": "\\vec{a}",
-          "b_label": "\\vec{b}",
-          "origin_label": "O"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -677,184 +650,246 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_missing_angle_higher",
-      "prompt": "In the right-angled triangle shown, find the angle x, correct to 1 decimal place.",
+      "topic_id": "trig_mixed",
+      "prompt": "In the triangle shown, find the angle x, correct to 1 decimal place.",
       "solution_steps": [
-        "Use tan, since we know two of the three sides.",
-        "tan(x) = 24 ÷ 11",
-        "x = tan^-1(24 ÷ 11) = 65.4° (1 d.p.)"
+        "Use sin, since we know two of the three sides.",
+        "sin(x) = 27 ÷ 35",
+        "x = sin^-1(27 ÷ 35) = 50.5° (1 d.p.)"
       ],
-      "final_answer": "65.4°",
+      "final_answer": "50.5°",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Use tan, since we know two of the three sides.",
+          "description": "Use sin, since we know two of the three sides.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "tan(x) = 24 ÷ 11",
+          "description": "sin(x) = 27 ÷ 35",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = tan^-1(24 ÷ 11) = 65.4° (1 d.p.)",
+          "description": "x = sin^-1(27 ÷ 35) = 50.5° (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "65.4° oe",
+          "description": "50.5° oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "trig_triangle",
         "params": {
-          "adjacent_label": "11 cm",
-          "opposite_label": "24 cm",
-          "hyp_label": null,
+          "adjacent_label": null,
+          "opposite_label": "27 cm",
+          "hyp_label": "35 cm",
           "angle_label": "x°"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "sine_rule",
-      "prompt": "In triangle ABC, angle A = 90°, angle B = 47°, and side a = 25 cm. Find the length of side b, correct to 3 significant figures.",
+      "topic_id": "cosine_rule",
+      "prompt": "In triangle ABC, side b = 5 cm, side c = 8 cm, and the angle between them, angle A = 120°. Find the length of side a, correct to 1 decimal place.",
       "solution_steps": [
-        "Use the sine rule: a / sin(A) = b / sin(B)",
-        "b = (25 × sin(47°)) ÷ sin(90°) = 18.3 cm (3 s.f.)"
+        "Use the cosine rule: a² = b² + c² - 2bc cos(A)",
+        "a² = 5² + 8² - 2×5×8×cos(120°) = 129.0",
+        "a = √129.0 = 11.4 cm (1 d.p.)"
       ],
-      "final_answer": "18.3 cm",
-      "marks": 3,
+      "final_answer": "11.4 cm",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Use the sine rule: a / sin(A) = b / sin(B)",
+          "description": "Use the cosine rule: a² = b² + c² - 2bc cos(A)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "b = (25 × sin(47°)) ÷ sin(90°) = 18.3 cm (3 s.f.)",
+          "description": "a² = 5² + 8² - 2×5×8×cos(120°) = 129.0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "a = √129.0 = 11.4 cm (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "18.3 cm oe",
+          "description": "11.4 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "general_triangle",
         "params": {
-          "side_a_label": "25 cm",
-          "side_b_label": "x cm",
-          "side_c_label": null,
-          "angle_A_label": "90°",
-          "angle_B_label": "47°",
+          "side_a_label": "x cm",
+          "side_b_label": "5 cm",
+          "side_c_label": "8 cm",
+          "angle_A_label": "120°",
+          "angle_B_label": null,
           "angle_C_label": null
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_triangle_higher",
-      "prompt": "A triangle has angles 96°, 23°, and (4x + 37)°. Find x.",
+      "topic_id": "angles_parallel_lines",
+      "prompt": "A line crosses two parallel lines. The angle 50° and the angle (3x - 7)° are alternate angles. Find x.",
       "solution_steps": [
-        "Angles in a triangle sum to 180°.",
-        "4x + 37 = 61",
-        "Subtract 37 from both sides:",
-        "4x = 24",
-        "Divide both sides by 4:",
-        "x = 6"
+        "Alternate angles are equal.",
+        "3x - 7 = 50",
+        "Add 7 to both sides:",
+        "3x = 57",
+        "Divide both sides by 3:",
+        "x = 19"
       ],
-      "final_answer": "6",
+      "final_answer": "19",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles in a triangle sum to 180°.",
+          "description": "Alternate angles are equal.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x + 37 = 61",
+          "description": "3x - 7 = 50",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 37 from both sides:",
+          "description": "Add 7 to both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x = 24 Divide both sides by 4: x = 6",
+          "description": "3x = 57 Divide both sides by 3: x = 19",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6 oe",
+          "description": "19 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "triangle_angles",
+        "kind": "parallel_lines",
         "params": {
-          "angle_labels": [
-            "96°",
-            "23°",
-            "(4x + 37)°"
-          ]
+          "known_label": "50°",
+          "unknown_label": "(3x - 7)°",
+          "relation": "alternate",
+          "known_value": 50,
+          "x_frac": 0.44
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "compound_3d_surface_area",
-      "prompt": "A silo-shaped solid is made from a cuboid with a square base of side 14 cm and height 15 cm, with a square-based pyramid of height 3 cm on top (sharing the same square base). Find the total surface area, correct to 3 significant figures.",
+      "topic_id": "transform_rotate_describe",
+      "prompt": "Shape ABCDEF is rotated to give shape A'B'C'D'E'F', shown on the grid. Describe fully the single transformation that maps ABCDEF onto A'B'C'D'E'F'.",
       "solution_steps": [
-        "Slant height of a triangular face l = √(roof height² + (base ÷ 2)²) = √(3² + (14 ÷ 2)²) ≈ 7.62 cm",
-        "Cuboid's 4 vertical faces = 4 × base × height = 4 × 14 × 15",
-        "Cuboid's base = base² = 14² (the top is covered by the pyramid, and the pyramid's own base is the same internal square, so neither is exposed)",
-        "Pyramid's 4 triangular faces = 2 × base × l = 2 × 14 × 7.62",
-        "Total surface area ≈ 1250 cm² (3 s.f.)"
+        "The centre of rotation is the one point that is the same distance from a vertex and its image, for every vertex - it can be found where the perpendicular bisectors of two such pairs cross.",
+        "Measuring the turn from a vertex to its image about that point gives 90° anticlockwise about (2, 3)."
       ],
-      "final_answer": "1250 cm²",
-      "marks": 5,
+      "final_answer": "Rotation 90° anticlockwise about (2, 3)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Slant height of a triangular face l = √(roof height² + (base ÷ 2)²) = √(3² + (14 ÷ 2)²) ≈ 7.62 cm",
+          "description": "The centre of rotation is the one point that is the same distance from a vertex and its image, for every vertex - it can be found where the perpendicular bisectors of two such pairs cross.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Cuboid's 4 vertical faces = 4 × base × height = 4 × 14 × 15",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Cuboid's base = base² = 14² (the top is covered by the pyramid, and the pyramid's own base is the same internal square, so neither is exposed)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Pyramid's 4 triangular faces = 2 × base × l = 2 × 14 × 7.62 Total surface area ≈ 1250 cm² (3 s.f.)",
+          "description": "Measuring the turn from a vertex to its image about that point gives 90° anticlockwise about (2, 3).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1250 cm² oe",
+          "description": "Rotation 90° anticlockwise about (2, 3) oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "compound_3d",
+        "kind": "grid_transformation",
         "params": {
-          "variant": "cuboid_pyramid",
-          "base_label": "14 cm",
-          "roof_height_label": "3 cm"
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              -3,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              -1,
+              2
+            ],
+            [
+              -1,
+              5
+            ],
+            [
+              -3,
+              5
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "image_vertices": [
+            [
+              5,
+              -2
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              -2
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'",
+            "D'",
+            "E'",
+            "F'"
+          ]
         }
       },
       "solution_diagram": null
@@ -1035,6 +1070,29 @@
           ]
         }
       },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "product_rule_counting",
+      "prompt": "A shop sells 4 different shirts and 2 different pairs of trousers. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "solution_steps": [
+        "Total combinations = 4 × 2 = 8"
+      ],
+      "final_answer": "8",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total combinations = 4 × 2 = 8",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "8 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     }
   ]

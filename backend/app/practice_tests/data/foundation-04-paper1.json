@@ -4,13 +4,14 @@
   "tier": "foundation",
   "sitting_id": "foundation-04",
   "paper_number": 1,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "fractions_simplify",
-      "prompt": "Simplify the fraction 30/36 fully.",
+      "prompt": "Simplify 30/36.",
       "solution_steps": [
         "Find the highest common factor of 30 and 36: 6",
-        "Divide numerator and denominator by 6: 30÷6 / 36÷6 = 5/6"
+        "Divide numerator and denominator by 6: \\frac{30÷6}{36÷6} = 5/6"
       ],
       "final_answer": "5/6",
       "marks": 3,
@@ -22,7 +23,7 @@
         },
         {
           "code": "M1",
-          "description": "Divide numerator and denominator by 6: 30÷6 / 36÷6 = 5/6",
+          "description": "Divide numerator and denominator by 6: \\frac{30÷6}{36÷6} = 5/6",
           "marks": 1
         },
         {
@@ -100,7 +101,7 @@
     },
     {
       "topic_id": "fractions_improper_mixed",
-      "prompt": "Write 23/10 as a mixed number.",
+      "prompt": "Express 23/10 as a mixed number.",
       "solution_steps": [
         "Divide the numerator by the denominator: 23 ÷ 10 = 2 remainder 3",
         "Write as a mixed number: 2 3/10"
@@ -164,7 +165,7 @@
     },
     {
       "topic_id": "fractions_add_subtract",
-      "prompt": "Work out 4/5 + 4/7. Give your answer as a fraction in its simplest form.",
+      "prompt": "Calculate 4/5 + 4/7. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Find a common denominator: LCM(5, 7) = 35",
         "Convert: 4/5 = 28/35, 4/7 = 20/35",
@@ -205,7 +206,7 @@
     },
     {
       "topic_id": "fractions_of_amount",
-      "prompt": "Find 3/5 of 155.",
+      "prompt": "Work out 3/5 of 155.",
       "solution_steps": [
         "Divide by the denominator: 155 ÷ 5 = 31",
         "Multiply by the numerator: 31 × 3 = 93"
@@ -276,28 +277,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_quadratics_foundation",
-      "prompt": "Factorise: x^2 + 15x + 54",
+      "topic_id": "factorise_common_factor",
+      "prompt": "Factorise: 28x - 49",
       "solution_steps": [
-        "Find two numbers that multiply to 54 and add to 15: 9 and 6",
-        "Write as two brackets: (x + 9)(x + 6)"
+        "Find the highest common factor of 28 and -49: 7",
+        "Factorise: 7(4x - 7)"
       ],
-      "final_answer": "(x + 9)(x + 6)",
+      "final_answer": "7(4x - 7)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to 54 and add to 15: 9 and 6",
+          "description": "Find the highest common factor of 28 and -49: 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write as two brackets: (x + 9)(x + 6)",
+          "description": "Factorise: 7(4x - 7)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(x + 9)(x + 6) oe",
+          "description": "7(4x - 7) oe",
           "marks": 1
         }
       ],
@@ -305,131 +306,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_single_bracket",
-      "prompt": "Expand: -2(4x - 5)",
+      "topic_id": "substitution_rearrange_foundation",
+      "prompt": "A = LW. Make L the subject of the formula, then find the value of L when A = 49 and w = 7.",
       "solution_steps": [
-        "Multiply -2 by 4x: -8x",
-        "Multiply -2 by -5: 10",
-        "Combine: -8x + 10"
+        "A = LW",
+        "Rearrange to make L the subject: L = \\frac{A}{w}",
+        "Substitute A = 49 and w = 7: L = \\frac{49}{7}",
+        "L = 7"
       ],
-      "final_answer": "-8x + 10",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiply -2 by 4x: -8x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply -2 by -5: 10",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Combine: -8x + 10",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-8x + 10 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "line_equation_from_graph",
-      "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
-      "solution_steps": [
-        "Gradient = rise/run = (-21 - 11) / (4 - -4) = -4",
-        "Using y = mx + c with the point (-4, 11): 11 = -4×(-4) + c, so c = -5",
-        "Equation of the line: y = -4x - 5"
-      ],
-      "final_answer": "y = -4x - 5",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Gradient = rise/run = (-21 - 11) / (4 - -4) = -4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Using y = mx + c with the point (-4, 11): 11 = -4×(-4) + c, so c = -5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Equation of the line: y = -4x - 5",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "y = -4x - 5 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "linear",
-          "m": -4,
-          "c": -5,
-          "x_min": -5,
-          "x_max": 5,
-          "y_min": -26,
-          "y_max": 16,
-          "table_points": [
-            [
-              -4,
-              11
-            ],
-            [
-              4,
-              -21
-            ]
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simultaneous_forming_and_solving",
-      "prompt": "2 pens and 1 pencil cost £1.75 in total. 3 pens and 1 pencil cost £2.38 in total. Form and solve a pair of simultaneous equations to find the cost of one pen and one pencil.",
-      "solution_steps": [
-        "Let x = cost of one pen (pence), y = cost of one pencil (pence).",
-        "2x + 1y = 175  (1)",
-        "3x + 1y = 238  (2)",
-        "Solving simultaneously: x = 63, y = 49"
-      ],
-      "final_answer": "pen = £0.63, pencil = £0.49",
+      "final_answer": "L = 7",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = cost of one pen (pence), y = cost of one pencil (pence).",
+          "description": "A = LW",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x + 1y = 175  (1)",
+          "description": "Rearrange to make L the subject: L = \\frac{A}{w}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3x + 1y = 238  (2)",
+          "description": "Substitute A = 49 and w = 7: L = \\frac{49}{7}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Solving simultaneously: x = 63, y = 49",
+          "description": "L = 7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "pen = £0.63, pencil = £0.49 oe",
+          "description": "L = 7 oe",
           "marks": 1
         }
       ],
@@ -437,34 +347,177 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_one_step",
-      "prompt": "Solve: 5x = 45",
+      "topic_id": "plot_distance_time",
+      "prompt": "A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop 5 km away after 20 minutes. They stay at the shop until 30 minutes, then cycle straight back home at a constant speed, arriving home at 40 minutes. Draw a distance-time graph to show this journey, and find the total distance travelled.",
       "solution_steps": [
-        "5x = 45",
-        "Divide both sides by 5:",
-        "x = 9"
+        "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 5 km after 20 minutes.",
+        "Stay at 5 km until 30 minutes.",
+        "Return at a constant speed to 0 km, arriving home at 40 minutes.",
+        "Plot these points and join each stage with a straight line segment.",
+        "Total distance travelled = 5 km out + 5 km back = 10 km"
       ],
-      "final_answer": "9",
-      "marks": 4,
+      "final_answer": "10 km",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5x = 45",
+          "description": "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 5 km after 20 minutes.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 5:",
+          "description": "Stay at 5 km until 30 minutes.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 9",
+          "description": "Return at a constant speed to 0 km, arriving home at 40 minutes.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot these points and join each stage with a straight line segment. Total distance travelled = 5 km out + 5 km back = 10 km",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9 oe",
+          "description": "10 km oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              20,
+              5
+            ],
+            [
+              30,
+              5
+            ],
+            [
+              40,
+              0
+            ]
+          ],
+          "x_max": 45,
+          "y_max": 7,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)",
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              20,
+              5
+            ],
+            [
+              30,
+              5
+            ],
+            [
+              40,
+              0
+            ]
+          ],
+          "x_max": 45,
+          "y_max": 7,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)"
+        }
+      }
+    },
+    {
+      "topic_id": "simultaneous_common_coefficient",
+      "prompt": "Solve the simultaneous equations: x + 3y = 10 and 2x - 3y = -16",
+      "solution_steps": [
+        "x + 3y = 10  (1)",
+        "2x - 3y = -16  (2)",
+        "Add the equations to eliminate y: 3x = -6, so x = -2",
+        "Substitute x = -2 into (1): 3y = 12, so y = 4"
+      ],
+      "final_answer": "x = -2, y = 4",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "x + 3y = 10  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x - 3y = -16  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add the equations to eliminate y: 3x = -6, so x = -2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute x = -2 into (1): 3y = 12, so y = 4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = -2, y = 4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_two_step",
+      "prompt": "Solve: 9x + 1 = 73",
+      "solution_steps": [
+        "9x + 1 = 73",
+        "Subtract 1 from both sides:",
+        "9x = 72",
+        "Divide both sides by 9:",
+        "x = 8"
+      ],
+      "final_answer": "8",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "9x + 1 = 73",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 1 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "9x = 72",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 9: x = 8",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "8 oe",
           "marks": 1
         }
       ],
@@ -473,7 +526,7 @@
     },
     {
       "topic_id": "expand_double_brackets_foundation",
-      "prompt": "Expand: (3x + 5)(x + 9)",
+      "prompt": "Expand and simplify: (3x + 5)(x + 9)",
       "solution_steps": [
         "First: 3x × 1x = 3x^2",
         "Outer: 3x × 9 = 27x",
@@ -514,6 +567,105 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "best_buys",
+      "prompt": "A shop sells breakfast cereal in different sizes: A: £1.36 for 200g; B: £4.06 for 350g. Which option is the better value for money? Show your working.",
+      "solution_steps": [
+        "Work out the price per 100g for each option:",
+        "A: £1.36 ÷ 200 × 100 = 68.00p per 100g",
+        "B: £4.06 ÷ 350 × 100 = 116.00p per 100g",
+        "The lowest price per 100g is A at 68.00p per 100g, so A is the best value."
+      ],
+      "final_answer": "A (£1.36 for 200g)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Work out the price per 100g for each option:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A: £1.36 ÷ 200 × 100 = 68.00p per 100g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B: £4.06 ÷ 350 × 100 = 116.00p per 100g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The lowest price per 100g is A at 68.00p per 100g, so A is the best value.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "A (£1.36 for 200g) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "direct_proportion",
+      "prompt": "If 3 cm on a map represents 72 km in real life, how many km does 9 cm represent?",
+      "solution_steps": [
+        "Unit value = 72 km ÷ 3 = 24 km",
+        "Answer = 24 km × 9 = 216 km"
+      ],
+      "final_answer": "216 km",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Unit value = 72 km ÷ 3 = 24 km",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Answer = 24 km × 9 = 216 km",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "216 km oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_find_missing_share",
+      "prompt": "a : b = 6 : 1. a = 30. What is the value of b?",
+      "solution_steps": [
+        "Value of one part = 30 ÷ 6 = 5",
+        "b = 1 × 5 = 5"
+      ],
+      "final_answer": "5",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Value of one part = 30 ÷ 6 = 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "b = 1 × 5 = 5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "simple_interest",
       "prompt": "£2500 is invested at a simple interest rate of 3% per year for 2 years. Find the interest earned.",
       "solution_steps": [
@@ -543,69 +695,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "direct_proportion",
-      "prompt": "On a map, 3 cm represents 72 km in real life. How many km does 9 cm represent?",
+      "topic_id": "best_buys_noncalculator",
+      "prompt": "A shop sells rice in different sizes: A: £1.50 for 500g; B: £0.80 for 100g. Which option is the better value for money? Show your working.",
       "solution_steps": [
-        "Unit value = 72 km ÷ 3 = 24 km",
-        "Answer = 24 km × 9 = 216 km"
+        "Work out the price per 100g for each option:",
+        "A: £1.50 ÷ 500 × 100 = 30p per 100g",
+        "B: £0.80 ÷ 100 × 100 = 80p per 100g",
+        "The lowest price per 100g is A at 30p per 100g, so A is the best value."
       ],
-      "final_answer": "216 km",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Unit value = 72 km ÷ 3 = 24 km",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Answer = 24 km × 9 = 216 km",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "216 km oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_share_two_part",
-      "prompt": "Share 162 in the ratio 4:5.",
-      "solution_steps": [
-        "Total parts = 4 + 5 = 9",
-        "Value of one part = 162 ÷ 9 = 18",
-        "Share 1 = 4 × 18 = 72",
-        "Share 2 = 5 × 18 = 90"
-      ],
-      "final_answer": "72 : 90",
+      "final_answer": "A (£1.50 for 500g)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 4 + 5 = 9",
+          "description": "Work out the price per 100g for each option:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 162 ÷ 9 = 18",
+          "description": "A: £1.50 ÷ 500 × 100 = 30p per 100g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 1 = 4 × 18 = 72",
+          "description": "B: £0.80 ÷ 100 × 100 = 80p per 100g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 2 = 5 × 18 = 90",
+          "description": "The lowest price per 100g is A at 30p per 100g, so A is the best value.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "72 : 90 oe",
+          "description": "A (£1.50 for 500g) oe",
           "marks": 1
         }
       ],
@@ -613,227 +736,49 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "compound_percentage_foundation",
-      "prompt": "A price of £140 increases by 10%, then increases by 50%. Find the final price.",
+      "topic_id": "construction_angle_bisector",
+      "prompt": "Angle XAW = 83°. Describe, step by step, how to construct the bisector of angle XAW using only a ruler and a pair of compasses.",
       "solution_steps": [
-        "After the first change: 140 × 1.10 = 154",
-        "After the second change: 154 × 1.50 = 231"
+        "Open the compasses to any radius and place the point on A (the vertex of the angle).",
+        "Draw an arc that crosses both arms of the angle, at a point on AX and a point on AW.",
+        "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
+        "Draw a straight line from A through the point where the two arcs intersect. This line is the bisector of angle XAW."
       ],
-      "final_answer": "£231",
-      "marks": 3,
+      "final_answer": "The straight line from A through the intersection of the two equal-radius arcs bisects angle XAW into two equal angles.",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first change: 140 × 1.10 = 154",
+          "description": "Open the compasses to any radius and place the point on A (the vertex of the angle).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "After the second change: 154 × 1.50 = 231",
+          "description": "Draw an arc that crosses both arms of the angle, at a point on AX and a point on AW.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Draw a straight line from A through the point where the two arcs intersect. This line is the bisector of angle XAW.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£231 oe",
+          "description": "The straight line from A through the intersection of the two equal-radius arcs bisects angle XAW into two equal angles. oe",
           "marks": 1
         }
       ],
       "diagram": null,
       "solution_diagram": null
-    },
-    {
-      "topic_id": "reverse_percentage_foundation",
-      "prompt": "After a 25% increase, an item costs £400. Find the original price.",
-      "solution_steps": [
-        "Convert 25% to a multiplier: 1.25 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 400 ÷ 1.25 = 320"
-      ],
-      "final_answer": "£320",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert 25% to a multiplier: 1.25 (original × multiplier = new value)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide the new value by the multiplier: 400 ÷ 1.25 = 320",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£320 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "transform_enlarge_complete_foundation",
-      "prompt": "Enlarge shape ABCDEF by scale factor 2, centre (6, 6). Draw and label the image A'B'C'D'E'F'.",
-      "solution_steps": [
-        "The centre of enlargement is (6, 6) and the scale factor is 2.",
-        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-6, -5) from the centre, so A' = (6, 6) + 2 × (-6, -5) = (-6, -4).",
-        "Repeat for every vertex: A(0, 1) -> A'(-6, -4), B(4, 1) -> B'(2, -4), C(4, 3) -> C'(2, 0), D(2, 3) -> D'(-2, 0), E(2, 6) -> E'(-2, 6), F(0, 6) -> F'(-6, 6)"
-      ],
-      "final_answer": "A'(-6, -4), B'(2, -4), C'(2, 0), D'(-2, 0), E'(-2, 6), F'(-6, 6)",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The centre of enlargement is (6, 6) and the scale factor is 2.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-6, -5) from the centre, so A' = (6, 6) + 2 × (-6, -5) = (-6, -4).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Repeat for every vertex: A(0, 1) -> A'(-6, -4), B(4, 1) -> B'(2, -4), C(4, 3) -> C'(2, 0), D(2, 3) -> D'(-2, 0), E(2, 6) -> E'(-2, 6), F(0, 6) -> F'(-6, 6)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "A'(-6, -4), B'(2, -4), C'(2, 0), D'(-2, 0), E'(-2, 6), F'(-6, 6) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              0,
-              1
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              4,
-              3
-            ],
-            [
-              2,
-              3
-            ],
-            [
-              2,
-              6
-            ],
-            [
-              0,
-              6
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
-          ],
-          "centre": [
-            6,
-            6
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              0,
-              1
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              4,
-              3
-            ],
-            [
-              2,
-              3
-            ],
-            [
-              2,
-              6
-            ],
-            [
-              0,
-              6
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
-          ],
-          "centre": [
-            6,
-            6
-          ],
-          "image_vertices": [
-            [
-              -6,
-              -4
-            ],
-            [
-              2,
-              -4
-            ],
-            [
-              2,
-              0
-            ],
-            [
-              -2,
-              0
-            ],
-            [
-              -2,
-              6
-            ],
-            [
-              -6,
-              6
-            ]
-          ],
-          "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'",
-            "E'",
-            "F'"
-          ]
-        }
-      }
     },
     {
       "topic_id": "area_rectangle",
-      "prompt": "A rectangle has length 17 cm and width 7 cm. Find its area.",
+      "prompt": "Find the area of the following rectangle.",
       "solution_steps": [
         "Area = length × width = 17 × 7 = 119 cm²"
       ],
@@ -863,28 +808,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_rotate_complete",
-      "prompt": "Rotate shape ABC 90° clockwise about the centre (-3, 0). Draw and label the image A'B'C'.",
+      "topic_id": "transform_translate_describe",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
       "solution_steps": [
-        "Rotate each vertex 90° clockwise about the centre (-3, 0): every point stays the same distance from the centre and turns through the same angle.",
-        "A(-3, 3) -> A'(0, 0), B(2, 3) -> B'(0, -5), C(-2, 7) -> C'(4, -1)"
+        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (2, -1), with the matching vertex of shape B, (-1, -6), gives the vector (-3, -5).",
+        "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
       ],
-      "final_answer": "A'(0, 0), B'(0, -5), C'(4, -1)",
+      "final_answer": "Translation by the vector (-3, -5)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rotate each vertex 90° clockwise about the centre (-3, 0): every point stays the same distance from the centre and turns through the same angle.",
+          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (2, -1), with the matching vertex of shape B, (-1, -6), gives the vector (-3, -5).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A(-3, 3) -> A'(0, 0), B(2, 3) -> B'(0, -5), C(-2, 7) -> C'(4, -1)",
+          "description": "Checking the other vertices confirms the same vector applies throughout, so this is a translation.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(0, 0), B'(0, -5), C'(4, -1) oe",
+          "description": "Translation by the vector (-3, -5) oe",
           "marks": 1
         }
       ],
@@ -897,208 +842,138 @@
           "y_max": 8,
           "original_vertices": [
             [
-              -3,
-              3
-            ],
-            [
               2,
-              3
+              -1
             ],
             [
-              -2,
-              7
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C"
-          ],
-          "centre": [
-            -3,
-            0
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              -3,
-              3
+              6,
+              -1
             ],
             [
-              2,
-              3
-            ],
-            [
-              -2,
-              7
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C"
-          ],
-          "centre": [
-            -3,
-            0
-          ],
-          "image_vertices": [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              -5
+              6,
+              1
             ],
             [
               4,
+              1
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          "original_labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "image_vertices": [
+            [
+              -1,
+              -6
+            ],
+            [
+              3,
+              -6
+            ],
+            [
+              3,
+              -4
+            ],
+            [
+              1,
+              -4
+            ],
+            [
+              1,
+              -1
+            ],
+            [
+              -1,
               -1
             ]
           ],
           "image_labels": [
-            "A'",
-            "B'",
-            "C'"
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ]
         }
-      }
+      },
+      "solution_diagram": null
     },
     {
-      "topic_id": "area_parallelogram",
-      "prompt": "A parallelogram has a base of 17 cm and a perpendicular height of 8 cm. Find its area.",
+      "topic_id": "area_trapezium",
+      "prompt": "Find the area of the following trapezium.",
       "solution_steps": [
-        "Area = base × height = 17 × 8 = 136 cm²"
+        "Area = ½ × (a + b) × height = ½ × (10 + 14) × 6 = 72 cm²"
       ],
-      "final_answer": "136 cm²",
+      "final_answer": "72 cm²",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = base × height = 17 × 8 = 136 cm²",
+          "description": "Area = ½ × (a + b) × height = ½ × (10 + 14) × 6 = 72 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "136 cm² oe",
+          "description": "72 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "parallelogram",
+        "kind": "trapezium",
         "params": {
-          "base": 17,
-          "height": 8,
-          "base_label": "17 cm",
-          "height_label": "8 cm"
+          "a": 10,
+          "b": 14,
+          "height": 6,
+          "a_label": "10 cm",
+          "b_label": "14 cm",
+          "height_label": "6 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "area_triangle",
-      "prompt": "A triangle has base 20 cm and height 10 cm. Find its area.",
+      "topic_id": "probability_single_event",
+      "prompt": "A bag contains 2 blue, 4 red counters. A counter is picked at random. Find the probability that it is red.",
       "solution_steps": [
-        "Area = (1/2) × base × height = (1/2) × 20 × 10 = 100 cm²"
+        "Total counters = 6",
+        "Number of red counters = 4",
+        "P(red) = 4/6 = 2/3"
       ],
-      "final_answer": "100 cm²",
-      "marks": 2,
+      "final_answer": "2/3",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = (1/2) × base × height = (1/2) × 20 × 10 = 100 cm²",
+          "description": "Total counters = 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Number of red counters = 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(red) = 4/6 = 2/3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "100 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "triangle_area",
-        "params": {
-          "base": 20,
-          "height": 10,
-          "base_label": "20 cm",
-          "height_label": "10 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "set_notation_foundation",
-      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9}, A = {1, 3, 8, 9}, B = {1, 2, 4, 7, 8}. List the elements that are in A but not in B.",
-      "solution_steps": [
-        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9}",
-        "A = {1, 3, 8, 9}",
-        "B = {1, 2, 4, 7, 8}",
-        "Check each element of ξ in turn to see whether it are in A but not in B.",
-        "Elements that are in A but not in B: {3, 9}"
-      ],
-      "final_answer": "{3, 9}",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A = {1, 3, 8, 9}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "B = {1, 2, 4, 7, 8}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Check each element of ξ in turn to see whether it are in A but not in B. Elements that are in A but not in B: {3, 9}",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "{3, 9} oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "probability_complement",
-      "prompt": "A bag contains 3 yellow, 2 green, 6 red counters. A counter is picked at random. Find the probability that it is NOT red.",
-      "solution_steps": [
-        "P(red) = 6/11 = 6/11",
-        "P(not red) = 1 - 6/11 = 5/11"
-      ],
-      "final_answer": "5/11",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "P(red) = 6/11 = 6/11",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(not red) = 1 - 6/11 = 5/11",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "5/11 oe",
+          "description": "2/3 oe",
           "marks": 1
         }
       ],
@@ -1106,79 +981,45 @@
         "kind": "bag_of_counters",
         "params": {
           "counts": {
-            "yellow": 3,
-            "green": 2,
-            "red": 6
-          },
-          "highlight": "red"
+            "blue": 2,
+            "red": 4
+          }
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "time_series_graph",
-      "prompt": "The time series graph shows the number of visitors over time. At which period was the value highest?",
+      "topic_id": "relative_frequency",
+      "prompt": "A drawing pin is tested 50 times, and it lands point up 18 times. Use this relative frequency to estimate how many times this would happen in 300 trials.",
       "solution_steps": [
-        "Compare every plotted value: 25, 32, 34, 29, 20, 8.",
-        "The highest value, 34, occurs at period 3."
+        "Relative frequency = frequency ÷ number of trials = 18/50 = 9/25",
+        "Estimated number of times in 300 trials = 9/25 × 300 = 108"
       ],
-      "final_answer": "3",
+      "final_answer": "108",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Compare every plotted value: 25, 32, 34, 29, 20, 8.",
+          "description": "Relative frequency = frequency ÷ number of trials = 18/50 = 9/25",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The highest value, 34, occurs at period 3.",
+          "description": "Estimated number of times in 300 trials = 9/25 × 300 = 108",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 oe",
+          "description": "108 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "time_series",
-        "params": {
-          "points": [
-            [
-              1,
-              25
-            ],
-            [
-              2,
-              32
-            ],
-            [
-              3,
-              34
-            ],
-            [
-              4,
-              29
-            ],
-            [
-              5,
-              20
-            ],
-            [
-              6,
-              8
-            ]
-          ],
-          "x_label": "Week",
-          "y_label": "Visitors"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
       "topic_id": "fractions_equivalent_diagram",
-      "prompt": "Shape A is divided into 3 equal parts, with 2 shaded. Shape B is divided into 9 equal parts. How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
+      "prompt": "How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
       "solution_steps": [
         "Shape A shows 2/3 shaded; Shape B has 9 equal parts.",
         "Find the scale factor between the denominators: 9 ÷ 3 = 3",
@@ -1215,14 +1056,12 @@
             {
               "kind": "bar",
               "parts": 3,
-              "shaded": 2,
-              "label": "2/3"
+              "shaded": 2
             },
             {
               "kind": "bar",
               "parts": 9,
-              "shaded": 0,
-              "label": "?/9"
+              "shaded": 0
             }
           ]
         }
@@ -1234,14 +1073,12 @@
             {
               "kind": "bar",
               "parts": 3,
-              "shaded": 2,
-              "label": "2/3"
+              "shaded": 2
             },
             {
               "kind": "bar",
               "parts": 9,
-              "shaded": 6,
-              "label": "6/9"
+              "shaded": 6
             }
           ]
         }

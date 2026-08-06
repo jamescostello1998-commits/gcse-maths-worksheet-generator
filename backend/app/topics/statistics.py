@@ -2,9 +2,33 @@ import random
 import statistics
 from fractions import Fraction
 
-from app.core.models import ModelledExample, Question, Tier
+from app.core.models import DiagramSpec, ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
 from app.topics.number_format import fmt_money
+from app.topics.number_format import num_word as _num_word
+
+
+def _freq_table_diagram(values: list, frequencies: list) -> DiagramSpec:
+    """A simple value/frequency table, reusing the generic two-column
+    two_way_table renderer (one row per value, a single 'Frequency'
+    column) - replaces the old prose listing with a real rendered table."""
+    return DiagramSpec(
+        kind="two_way_table",
+        params={"row_labels": [str(v) for v in values], "col_labels": ["Frequency"], "cells": [[str(f)] for f in frequencies]},
+    )
+
+
+def _grouped_freq_table_diagram(classes: list, frequencies: list) -> DiagramSpec:
+    """Same as `_freq_table_diagram` but for grouped/class-interval data -
+    each row is a class range string (e.g. "10-19") rather than a single
+    value."""
+    return DiagramSpec(
+        kind="two_way_table",
+        params={
+            "row_labels": [f"{lo}-{hi}" for lo, hi in classes], "col_labels": ["Frequency"],
+            "cells": [[str(f)] for f in frequencies],
+        },
+    )
 
 SECTION = "statistics"
 GROUP_AVERAGES = "Averages from a List"
@@ -519,7 +543,6 @@ def generate_mean_frequency_table(tier: Tier, rng: random.Random) -> Question:
     if abs(float(mean) - statistics.mean(flat)) > 1e-9:
         raise ValueError("mean_frequency_table verification failed")
 
-    table_desc = ", ".join(f"{v} ({f} times)" for v, f in zip(values, frequencies))
     product_terms = " + ".join(f"{v}×{f}" for v, f in zip(values, frequencies))
     steps = [
         f"Multiply each value by its frequency and sum: {product_terms} = {weighted_sum}",
@@ -529,13 +552,11 @@ def generate_mean_frequency_table(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="stats_mean_frequency_table",
         tier=Tier.FOUNDATION,
-        prompt=(
-            "A survey recorded the number of pets owned by each household: "
-            f"{table_desc}. Find the mean number of pets."
-        ),
+        prompt="Find the mean number of pets.",
         solution_steps=tuple(steps),
         final_answer=fmt_money(mean),
         dedup_key=f"freq_table:{values}:{frequencies}",
+        diagram=_freq_table_diagram(values, frequencies),
     )
 
 
@@ -552,7 +573,6 @@ def generate_modelled_example_mean_frequency_table(tier: Tier, rng: random.Rando
     if abs(float(mean) - statistics.mean(flat)) > 1e-9:
         raise ValueError("modelled example mean_frequency_table verification failed")
 
-    table_desc = ", ".join(f"{v} ({f} times)" for v, f in zip(values, frequencies))
     product_terms = " + ".join(f"{v}×{f}" for v, f in zip(values, frequencies))
 
     teaching_steps = [
@@ -575,13 +595,11 @@ def generate_modelled_example_mean_frequency_table(tier: Tier, rng: random.Rando
     return ModelledExample(
         topic_id="stats_mean_frequency_table",
         tier=Tier.FOUNDATION,
-        prompt=(
-            "A survey recorded the number of pets owned by each household: "
-            f"{table_desc}. Find the mean number of pets."
-        ),
+        prompt="Find the mean number of pets.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=fmt_money(mean),
+        diagram=_freq_table_diagram(values, frequencies),
     )
 
 
@@ -604,7 +622,6 @@ def generate_mean_grouped_frequency_table(tier: Tier, rng: random.Random) -> Que
     if not (float(midpoints[0]) <= float(mean) <= float(midpoints[-1])):
         raise ValueError("mean_grouped_frequency_table produced an out-of-range estimate")
 
-    table_desc = ", ".join(f"{lo}-{hi} ({f})" for (lo, hi), f in zip(classes, frequencies))
     midpoint_terms = " + ".join(f"{fmt_money(m)}×{f}" for m, f in zip(midpoints, frequencies))
     steps = [
         f"Midpoints of each class: {', '.join(fmt_money(m) for m in midpoints)}",
@@ -615,13 +632,11 @@ def generate_mean_grouped_frequency_table(tier: Tier, rng: random.Random) -> Que
     return Question(
         topic_id="stats_mean_grouped_frequency_table",
         tier=Tier.HIGHER,
-        prompt=(
-            "The table shows the times (in minutes) taken by a group of runners: "
-            f"{table_desc} (class: frequency). Find an estimate of the mean time."
-        ),
+        prompt="The table shows the times (in minutes) taken by a group of runners. Find an estimate of the mean time.",
         solution_steps=tuple(steps),
         final_answer=f"≈ {fmt_money(mean)}",
         dedup_key=f"grouped_freq:{classes}:{frequencies}",
+        diagram=_grouped_freq_table_diagram(classes, frequencies),
     )
 
 
@@ -644,7 +659,6 @@ def generate_modelled_example_mean_grouped_frequency_table(tier: Tier, rng: rand
     if not (float(midpoints[0]) <= float(mean) <= float(midpoints[-1])):
         raise ValueError("modelled example mean_grouped_frequency_table produced an out-of-range estimate")
 
-    table_desc = ", ".join(f"{lo}-{hi} ({f})" for (lo, hi), f in zip(classes, frequencies))
     midpoint_terms = " + ".join(f"{fmt_money(m)}×{f}" for m, f in zip(midpoints, frequencies))
 
     teaching_steps = [
@@ -668,13 +682,11 @@ def generate_modelled_example_mean_grouped_frequency_table(tier: Tier, rng: rand
     return ModelledExample(
         topic_id="stats_mean_grouped_frequency_table",
         tier=Tier.HIGHER,
-        prompt=(
-            "The table shows the times (in minutes) taken by a group of runners: "
-            f"{table_desc} (class: frequency). Find an estimate of the mean time."
-        ),
+        prompt="The table shows the times (in minutes) taken by a group of runners. Find an estimate of the mean time.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"≈ {fmt_money(mean)}",
+        diagram=_grouped_freq_table_diagram(classes, frequencies),
     )
 
 
@@ -695,7 +707,6 @@ def generate_mean_grouped_frequency_table_foundation(tier: Tier, rng: random.Ran
     if not (float(midpoints[0]) <= float(mean) <= float(midpoints[-1])):
         raise ValueError("mean_grouped_frequency_table_foundation produced an out-of-range estimate")
 
-    table_desc = ", ".join(f"{lo}-{hi} ({f})" for (lo, hi), f in zip(classes, frequencies))
     midpoint_terms = " + ".join(f"{fmt_money(m)}×{f}" for m, f in zip(midpoints, frequencies))
     steps = [
         f"Midpoints of each class: {', '.join(fmt_money(m) for m in midpoints)}",
@@ -706,13 +717,11 @@ def generate_mean_grouped_frequency_table_foundation(tier: Tier, rng: random.Ran
     return Question(
         topic_id="stats_mean_grouped_frequency_table_foundation",
         tier=Tier.FOUNDATION,
-        prompt=(
-            "The table shows the times (in minutes) taken by a group of runners: "
-            f"{table_desc} (class: frequency). Find an estimate of the mean time."
-        ),
+        prompt="The table shows the times (in minutes) taken by a group of runners. Find an estimate of the mean time.",
         solution_steps=tuple(steps),
         final_answer=f"≈ {fmt_money(mean)}",
         dedup_key=f"grouped_freq_f:{frequencies}",
+        diagram=_grouped_freq_table_diagram(classes, frequencies),
     )
 
 
@@ -737,7 +746,6 @@ def generate_modelled_example_mean_grouped_frequency_table_foundation(
             "modelled example mean_grouped_frequency_table_foundation produced an out-of-range estimate"
         )
 
-    table_desc = ", ".join(f"{lo}-{hi} ({f})" for (lo, hi), f in zip(classes, frequencies))
     midpoint_terms = " + ".join(f"{fmt_money(m)}×{f}" for m, f in zip(midpoints, frequencies))
 
     teaching_steps = [
@@ -761,13 +769,11 @@ def generate_modelled_example_mean_grouped_frequency_table_foundation(
     return ModelledExample(
         topic_id="stats_mean_grouped_frequency_table_foundation",
         tier=Tier.FOUNDATION,
-        prompt=(
-            "The table shows the times (in minutes) taken by a group of runners: "
-            f"{table_desc} (class: frequency). Find an estimate of the mean time."
-        ),
+        prompt="The table shows the times (in minutes) taken by a group of runners. Find an estimate of the mean time.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"≈ {fmt_money(mean)}",
+        diagram=_grouped_freq_table_diagram(classes, frequencies),
     )
 
 
@@ -807,13 +813,11 @@ def generate_mode_frequency_table(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="stats_mode_frequency_table",
         tier=Tier.FOUNDATION,
-        prompt=(
-            "A survey recorded the number of pets owned by each household: "
-            f"{table_desc}. Find the modal number of pets."
-        ),
+        prompt="Find the modal number of pets.",
         solution_steps=tuple(steps),
         final_answer=str(modal_value),
         dedup_key=f"mode_freq:{values}:{frequencies}",
+        diagram=_freq_table_diagram(values, frequencies),
     )
 
 
@@ -832,7 +836,6 @@ def generate_modelled_example_mode_frequency_table(tier: Tier, rng: random.Rando
     if statistics.mode(flat) != modal_value:
         raise ValueError("modelled example mode_frequency_table verification failed")
 
-    table_desc = ", ".join(f"{v} ({f} times)" for v, f in zip(values, frequencies))
     teaching_steps = [
         "The mode of a frequency table is just the value with the highest frequency - you're reading "
         "the table, not calculating anything from it.",
@@ -849,13 +852,11 @@ def generate_modelled_example_mode_frequency_table(tier: Tier, rng: random.Rando
     return ModelledExample(
         topic_id="stats_mode_frequency_table",
         tier=Tier.FOUNDATION,
-        prompt=(
-            "A survey recorded the number of pets owned by each household: "
-            f"{table_desc}. Find the modal number of pets."
-        ),
+        prompt="Find the modal number of pets.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=str(modal_value),
+        diagram=_freq_table_diagram(values, frequencies),
     )
 
 
@@ -873,7 +874,6 @@ def generate_median_frequency_table(tier: Tier, rng: random.Random) -> Question:
     if abs(float(median) - statistics.median(flat)) > 1e-9:
         raise ValueError("median_frequency_table verification failed")
 
-    table_desc = ", ".join(f"{v} ({f} times)" for v, f in zip(values, frequencies))
     steps = [
         f"Total frequency = {' + '.join(str(f) for f in frequencies)} = {total} data items.",
         "Imagine the data written out in full, in order (each value repeated as many times as its "
@@ -883,13 +883,11 @@ def generate_median_frequency_table(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="stats_median_frequency_table",
         tier=Tier.FOUNDATION,
-        prompt=(
-            "A survey recorded the number of pets owned by each household: "
-            f"{table_desc}. Find the median number of pets."
-        ),
+        prompt="Find the median number of pets.",
         solution_steps=tuple(steps),
         final_answer=fmt_money(median),
         dedup_key=f"median_freq:{values}:{frequencies}",
+        diagram=_freq_table_diagram(values, frequencies),
     )
 
 
@@ -906,7 +904,6 @@ def generate_modelled_example_median_frequency_table(tier: Tier, rng: random.Ran
     if abs(float(median) - statistics.median(flat)) > 1e-9:
         raise ValueError("modelled example median_frequency_table verification failed")
 
-    table_desc = ", ".join(f"{v} ({f} times)" for v, f in zip(values, frequencies))
     teaching_steps = [
         "A frequency table is shorthand for a long list of data - to find the median, it helps to "
         "picture that full list written out in order, even though you never actually write it all down.",
@@ -924,13 +921,11 @@ def generate_modelled_example_median_frequency_table(tier: Tier, rng: random.Ran
     return ModelledExample(
         topic_id="stats_median_frequency_table",
         tier=Tier.FOUNDATION,
-        prompt=(
-            "A survey recorded the number of pets owned by each household: "
-            f"{table_desc}. Find the median number of pets."
-        ),
+        prompt="Find the median number of pets.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=fmt_money(median),
+        diagram=_freq_table_diagram(values, frequencies),
     )
 
 
@@ -946,7 +941,6 @@ def generate_range_frequency_table(tier: Tier, rng: random.Random) -> Question:
     if data_range != check_range:
         raise ValueError("range_frequency_table verification failed")
 
-    table_desc = ", ".join(f"{v} ({f} times)" for v, f in zip(values, frequencies))
     steps = [
         f"The listed values run from {values[0]} to {values[-1]} (every value in between has a "
         "frequency of at least 1, so these are the true extremes).",
@@ -955,13 +949,11 @@ def generate_range_frequency_table(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="stats_range_frequency_table",
         tier=Tier.FOUNDATION,
-        prompt=(
-            "A survey recorded the number of pets owned by each household: "
-            f"{table_desc}. Find the range of the number of pets."
-        ),
+        prompt="Find the range of the number of pets.",
         solution_steps=tuple(steps),
         final_answer=str(data_range),
         dedup_key=f"range_freq:{values}:{frequencies}",
+        diagram=_freq_table_diagram(values, frequencies),
     )
 
 
@@ -974,7 +966,6 @@ def generate_modelled_example_range_frequency_table(tier: Tier, rng: random.Rand
     if data_range != check_range:
         raise ValueError("modelled example range_frequency_table verification failed")
 
-    table_desc = ", ".join(f"{v} ({f} times)" for v, f in zip(values, frequencies))
     teaching_steps = [
         "The range only cares about the smallest and largest values that actually occur - the "
         "frequencies (how OFTEN each value occurs) don't matter for this one, as long as the frequency "
@@ -991,13 +982,11 @@ def generate_modelled_example_range_frequency_table(tier: Tier, rng: random.Rand
     return ModelledExample(
         topic_id="stats_range_frequency_table",
         tier=Tier.FOUNDATION,
-        prompt=(
-            "A survey recorded the number of pets owned by each household: "
-            f"{table_desc}. Find the range of the number of pets."
-        ),
+        prompt="Find the range of the number of pets.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=str(data_range),
+        diagram=_freq_table_diagram(values, frequencies),
     )
 
 
@@ -1030,8 +1019,8 @@ def generate_reverse_mean(tier: Tier, rng: random.Random) -> Question:
         topic_id="stats_reverse_mean",
         tier=Tier.HIGHER,
         prompt=(
-            f"The mean of {n} numbers is {mean_value}. {n - 1} of the numbers are {known_str}. "
-            "Find the missing number."
+            f"The mean of {_num_word(n)} numbers is {mean_value}. "
+            f"{_num_word(n - 1).capitalize()} of the numbers are {known_str}. Find the missing number."
         ),
         solution_steps=tuple(steps),
         final_answer=str(missing),
@@ -1077,8 +1066,8 @@ def generate_modelled_example_reverse_mean(tier: Tier, rng: random.Random) -> Mo
         topic_id="stats_reverse_mean",
         tier=Tier.HIGHER,
         prompt=(
-            f"The mean of {n} numbers is {mean_value}. {n - 1} of the numbers are {known_str}. "
-            "Find the missing number."
+            f"The mean of {_num_word(n)} numbers is {mean_value}. "
+            f"{_num_word(n - 1).capitalize()} of the numbers are {known_str}. Find the missing number."
         ),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
@@ -1114,8 +1103,8 @@ def generate_reverse_mean_foundation(tier: Tier, rng: random.Random) -> Question
         topic_id="stats_reverse_mean_foundation",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"The mean of {n} numbers is {mean_value}. {n - 1} of the numbers are {known_str}. "
-            "Find the missing number."
+            f"The mean of {_num_word(n)} numbers is {mean_value}. "
+            f"{_num_word(n - 1).capitalize()} of the numbers are {known_str}. Find the missing number."
         ),
         solution_steps=tuple(steps),
         final_answer=str(missing),
@@ -1160,8 +1149,8 @@ def generate_modelled_example_reverse_mean_foundation(tier: Tier, rng: random.Ra
         topic_id="stats_reverse_mean_foundation",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"The mean of {n} numbers is {mean_value}. {n - 1} of the numbers are {known_str}. "
-            "Find the missing number."
+            f"The mean of {_num_word(n)} numbers is {mean_value}. "
+            f"{_num_word(n - 1).capitalize()} of the numbers are {known_str}. Find the missing number."
         ),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),

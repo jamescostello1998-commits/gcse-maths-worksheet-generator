@@ -4,10 +4,11 @@
   "tier": "higher",
   "sitting_id": "higher-03",
   "paper_number": 2,
+  "calculator_allowed": false,
   "questions": [
     {
       "topic_id": "fractions_mixed_number_arithmetic",
-      "prompt": "Work out 2 4/5 - 1 3/4. Give your answer as a mixed number.",
+      "prompt": "Calculate 2 4/5 - 1 3/4. Give your answer as a mixed number.",
       "solution_steps": [
         "Convert to improper fractions: 2 4/5 = 14/5, 1 3/4 = 7/4",
         "Subtract the improper fractions: 14/5 - 7/4 = 21/20",
@@ -42,9 +43,9 @@
     },
     {
       "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal 0.(27) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Write \\recur{0.}{27} as a fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(27), so 100x = 27.2727... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Let x = \\recur{0.}{27}, so 100x = 27.2727... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 27 - 0, so 99x = 27",
         "x = 27/99 = 3/11"
       ],
@@ -53,7 +54,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(27), so 100x = 27.2727... (two digits repeat, so multiply by 100 to shift a full block)",
+          "description": "Let x = \\recur{0.}{27}, so 100x = 27.2727... (two digits repeat, so multiply by 100 to shift a full block)",
           "marks": 1
         },
         {
@@ -188,18 +189,17 @@
     },
     {
       "topic_id": "powers_higher",
-      "prompt": "Work out 27^(2/3).",
+      "prompt": "Evaluate 27^(1/3).",
       "solution_steps": [
-        "27^(2/3) = (27^(1/3))^2",
-        "27^(1/3) = 3",
-        "3^2 = 9"
+        "27^(1/3) means the cube root of 27.",
+        "27^(1/3) = 3"
       ],
-      "final_answer": "9",
-      "marks": 4,
+      "final_answer": "3",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "27^(2/3) = (27^(1/3))^2",
+          "description": "27^(1/3) means the cube root of 27.",
           "marks": 1
         },
         {
@@ -208,13 +208,8 @@
           "marks": 1
         },
         {
-          "code": "M1",
-          "description": "3^2 = 9",
-          "marks": 1
-        },
-        {
           "code": "A1",
-          "description": "9 oe",
+          "description": "3 oe",
           "marks": 1
         }
       ],
@@ -257,40 +252,242 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "quadratic_inequalities",
-      "prompt": "Solve the inequality: -x^2 + 6x + 16 ≥ 0",
+      "topic_id": "inequalities_region_higher",
+      "prompt": "On the grid, shade the region that satisfies both y > \\frac{x}{2} - 3 and y < 2x - 4.",
       "solution_steps": [
-        "Factorise: -x^2 + 6x + 16 = -(x - 8)(x + 2)",
-        "The critical values are x = -2 and x = 8.",
-        "The coefficient of x^2 is negative, so the graph is a upside-down U-shaped parabola, and ≥ 0 is satisfied between the two roots.",
-        "Answer: -2 ≤ x ≤ 8"
+        "Draw the line y = \\frac{x}{2} - 3 (dashed - the line itself is not included in the region).",
+        "Draw the line y = 2x - 4 (dashed - the line itself is not included in the region).",
+        "Shade the region where both y > \\frac{x}{2} - 3 and y < 2x - 4 are true at the same time."
       ],
-      "final_answer": "-2 ≤ x ≤ 8",
-      "marks": 5,
+      "final_answer": "y > \\frac{x}{2} - 3 and y < 2x - 4",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Factorise: -x^2 + 6x + 16 = -(x - 8)(x + 2)",
+          "description": "Draw the line y = \\frac{x}{2} - 3 (dashed - the line itself is not included in the region).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The critical values are x = -2 and x = 8.",
+          "description": "Draw the line y = 2x - 4 (dashed - the line itself is not included in the region).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The coefficient of x^2 is negative, so the graph is a upside-down U-shaped parabola, and ≥ 0 is satisfied between the two roots.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Answer: -2 ≤ x ≤ 8",
+          "description": "Shade the region where both y > \\frac{x}{2} - 3 and y < 2x - 4 are true at the same time.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-2 ≤ x ≤ 8 oe",
+          "description": "y > \\frac{x}{2} - 3 and y < 2x - 4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "inequality_region",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "inequality_region",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "lines": [
+            {
+              "m": 0.5,
+              "c": -3,
+              "op": ">"
+            },
+            {
+              "m": 2.0,
+              "c": -4,
+              "op": "<"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "forming_equations_higher",
+      "prompt": "A quadrilateral has angles 67°, 66°, (4x - 8)°, and (3x + 102)°. Form an equation and solve it to find x.",
+      "solution_steps": [
+        "Angles in a quadrilateral sum to 360°.",
+        "67 + 66 + (4x - 8) + (3x + 102) = 360",
+        "Collect the x-terms and constants together:",
+        "7x + 94 = 227",
+        "Subtract 94 from both sides:",
+        "7x = 133",
+        "Divide both sides by 7:",
+        "x = 19"
+      ],
+      "final_answer": "19",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles in a quadrilateral sum to 360°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "67 + 66 + (4x - 8) + (3x + 102) = 360",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Collect the x-terms and constants together:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "7x + 94 = 227 Subtract 94 from both sides: 7x = 133 Divide both sides by 7: x = 19",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "19 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "polygon_angles",
+        "params": {
+          "n_sides": 4,
+          "angle_labels": [
+            "67°",
+            "66°",
+            "(4x - 8)°",
+            "(3x + 102)°"
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "trig_graph",
+      "prompt": "Complete a table of values for y = sin(x°) for x = 0 to 360 (in steps of 90°), then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = sin(x°):",
+        "x: 0, 90, 180, 270, 360",
+        "y: 0, 1, 0, -1, 0",
+        "Plot each (x, y) point and join them with a single smooth curve - y = sin(x°) repeats the same shape every 360°, and never goes above 1 or below -1."
+      ],
+      "final_answer": "y = sin(x°)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = sin(x°):",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: 0, 90, 180, 270, 360",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 0, 1, 0, -1, 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve - y = sin(x°) repeats the same shape every 360°, and never goes above 1 or below -1.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y = sin(x°) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "trigonometric",
+          "fn": "sin",
+          "sign": 1,
+          "x_min": 0,
+          "x_max": 360,
+          "y_min": -1.4,
+          "y_max": 1.4,
+          "x_label": "x (degrees)",
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "trigonometric",
+          "fn": "sin",
+          "sign": 1,
+          "x_min": 0,
+          "x_max": 360,
+          "y_min": -1.4,
+          "y_max": 1.4,
+          "x_label": "x (degrees)",
+          "table_points": [
+            [
+              0,
+              0
+            ],
+            [
+              90,
+              1
+            ],
+            [
+              180,
+              0
+            ],
+            [
+              270,
+              -1
+            ],
+            [
+              360,
+              0
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "kinematics_suvat",
+      "prompt": "An object starts with a velocity of 15 m/s and has a constant acceleration of -5 m/s^2 for 1 s. Find the total displacement (s).",
+      "solution_steps": [
+        "This question gives three of s, u, a and t and asks for another, so use s = ut + (1/2)at^2, the equation linking exactly those four (note: t is never the unknown here, since solving this equation for t needs the quadratic formula).",
+        "s = ut + (1/2)at^2",
+        "Substitute u = 15, a = -5, t = 1: s = 15 × 1 + (1/2) × -5 × 1^2 = 15 + -5/2 = 12.5"
+      ],
+      "final_answer": "12.5 m",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "This question gives three of s, u, a and t and asks for another, so use s = ut + (1/2)at^2, the equation linking exactly those four (note: t is never the unknown here, since solving this equation for t needs the quadratic formula).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "s = ut + (1/2)at^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute u = 15, a = -5, t = 1: s = 15 × 1 + (1/2) × -5 × 1^2 = 15 + -5/2 = 12.5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "12.5 m oe",
           "marks": 1
         }
       ],
@@ -341,208 +538,62 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_reciprocal",
-      "prompt": "Complete a table of values for y = 24/x for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
+      "topic_id": "circle_equation",
+      "prompt": "The point (11, -60) lies on the circle x^2 + y^2 = 3721. Find the equation of the tangent to the circle at this point.",
       "solution_steps": [
-        "Table of values for y = 24/x:",
-        "x: -4, -3, -2, -1, 1, 2, 3, 4",
-        "y: -6, -8, -12, -24, 24, 12, 8, 6",
-        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
+        "The point (11, -60) lies on the circle x^2 + y^2 = 3721, since 11^2 + -60^2 = 3721.",
+        "The radius to (11, -60) has gradient \\frac{-60}{11}, so the tangent (perpendicular to the radius) has gradient -\\frac{11}{-60}.",
+        "The tangent line through (11, -60) with that gradient simplifies to 11x - 60y = 3721."
       ],
-      "final_answer": "Reciprocal curve: y = 24/x",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Table of values for y = 24/x:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y: -6, -8, -12, -24, 24, 12, 8, 6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Reciprocal curve: y = 24/x oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "reciprocal",
-          "a": 24,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -26,
-          "y_max": 26,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "reciprocal",
-          "a": 24,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -26,
-          "y_max": 26,
-          "table_points": [
-            [
-              -4,
-              -6
-            ],
-            [
-              -3,
-              -8
-            ],
-            [
-              -2,
-              -12
-            ],
-            [
-              -1,
-              -24
-            ],
-            [
-              1,
-              24
-            ],
-            [
-              2,
-              12
-            ],
-            [
-              3,
-              8
-            ],
-            [
-              4,
-              6
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "sequences_quadratic_nth_term",
-      "prompt": "Here are the first four terms of a quadratic sequence: 8, 6, 0, -10. Find an expression for the nth term.",
-      "solution_steps": [
-        "First differences: -2, -6, -10",
-        "Second difference is constant: -4, so the coefficient of n^2 is -4 ÷ 2 = -2",
-        "nth term = -2n^2 + 4n + 6"
-      ],
-      "final_answer": "-2n^2 + 4n + 6",
+      "final_answer": "11x - 60y = 3721",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First differences: -2, -6, -10",
+          "description": "The point (11, -60) lies on the circle x^2 + y^2 = 3721, since 11^2 + -60^2 = 3721.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Second difference is constant: -4, so the coefficient of n^2 is -4 ÷ 2 = -2",
+          "description": "The radius to (11, -60) has gradient \\frac{-60}{11}, so the tangent (perpendicular to the radius) has gradient -\\frac{11}{-60}.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = -2n^2 + 4n + 6",
+          "description": "The tangent line through (11, -60) with that gradient simplifies to 11x - 60y = 3721.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-2n^2 + 4n + 6 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "forming_equations_higher",
-      "prompt": "A quadrilateral has angles 67°, 66°, (4x - 8)°, and (3x + 102)°. Form an equation and solve it to find x.",
-      "solution_steps": [
-        "Angles in a quadrilateral sum to 360°.",
-        "67 + 66 + (4x - 8) + (3x + 102) = 360",
-        "Collect the x-terms and constants together:",
-        "7x + 94 = 227",
-        "Subtract 94 from both sides:",
-        "7x = 133",
-        "Divide both sides by 7:",
-        "x = 19"
-      ],
-      "final_answer": "19",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Angles in a quadrilateral sum to 360°.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "67 + 66 + (4x - 8) + (3x + 102) = 360",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Collect the x-terms and constants together:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "7x + 94 = 227 Subtract 94 from both sides: 7x = 133 Divide both sides by 7: x = 19",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "19 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "graph_transformations",
-      "prompt": "The graph of y = f(x) undergoes a translation by vector (0, 2). Write down the equation of the transformed graph in terms of f(x).",
-      "solution_steps": [
-        "y = f(x) + 2 corresponds to a translation by vector (0, 2)."
-      ],
-      "final_answer": "y = f(x) + 2",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "y = f(x) + 2 corresponds to a translation by vector (0, 2).",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "y = f(x) + 2 oe",
+          "description": "11x - 60y = 3721 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "graph_transformation",
+        "kind": "loci_construction",
         "params": {
-          "transform": "translate_up",
-          "shift": 2,
-          "original_label": "y = f(x)",
-          "transformed_label": "y = f(x) + 2"
+          "x_min": -62,
+          "x_max": 62,
+          "y_min": -62,
+          "y_max": 62,
+          "points": [
+            {
+              "xy": [
+                11,
+                -60
+              ],
+              "label": null
+            }
+          ],
+          "given_lines": [],
+          "circle": {
+            "centre": [
+              0,
+              0
+            ],
+            "radius": 61
+          },
+          "segment": null
         }
       },
       "solution_diagram": null
@@ -603,38 +654,51 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_inverse_proportion",
-      "prompt": "y is inversely proportional to x^3. When x = 3, y = 64. Find the value of y when x = 4.",
+      "topic_id": "inequalities_number_line_higher",
+      "prompt": "Write down the inequality (or pair of inequalities) shown by the number line below.",
       "solution_steps": [
-        "y = k ÷ x^3",
-        "k = y × x^3 = 64 × 3^3 = 64 × 27 = 1728",
-        "y = k ÷ x^3 = 1728 ÷ 4^3 = 1728 ÷ 64 = 27"
+        "The circle at -4 is filled and the circle at -1 is open.",
+        "The shading lies outside the two circles, so either bound alone is enough: x ≤ -4 or x > -1."
       ],
-      "final_answer": "27",
-      "marks": 4,
+      "final_answer": "x ≤ -4 or x > -1",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = k ÷ x^3",
+          "description": "The circle at -4 is filled and the circle at -1 is open.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "k = y × x^3 = 64 × 3^3 = 64 × 27 = 1728",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y = k ÷ x^3 = 1728 ÷ 4^3 = 1728 ÷ 64 = 27",
+          "description": "The shading lies outside the two circles, so either bound alone is enough: x ≤ -4 or x > -1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "27 oe",
+          "description": "x ≤ -4 or x > -1 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [
+            {
+              "value": -4,
+              "closed": true
+            },
+            {
+              "value": -1,
+              "closed": false
+            }
+          ],
+          "shade": "outside"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -660,6 +724,48 @@
         {
           "code": "A1",
           "description": "41.49 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_share_three_part",
+      "prompt": "Share 27 in the ratio 2:2:5.",
+      "solution_steps": [
+        "Total parts = 2 + 2 + 5 = 9",
+        "Value of one part = 27 ÷ 9 = 3",
+        "Share 1 = 2 × 3 = 6",
+        "Share 2 = 2 × 3 = 6",
+        "Share 3 = 5 × 3 = 15"
+      ],
+      "final_answer": "6 : 6 : 15",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total parts = 2 + 2 + 5 = 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Value of one part = 27 ÷ 9 = 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 1 = 2 × 3 = 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 2 = 2 × 3 = 6 Share 3 = 5 × 3 = 15",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6 : 6 : 15 oe",
           "marks": 1
         }
       ],
@@ -696,28 +802,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "compound_percentage",
-      "prompt": "A price of £36 decreases by 12%, then increases by 12%. Find the final price.",
+      "topic_id": "reverse_percentage",
+      "prompt": "After a 42.5% increase, an item costs £364.80. Find the original price.",
       "solution_steps": [
-        "After the first change: 36 × 0.88 = 31.68",
-        "After the second change: 31.68 × 1.12 = 35.48"
+        "Convert 42.5% to a multiplier: 1.43 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 364.80 ÷ 1.43 = 256"
       ],
-      "final_answer": "£35.48",
+      "final_answer": "£256",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first change: 36 × 0.88 = 31.68",
+          "description": "Convert 42.5% to a multiplier: 1.43 (original × multiplier = new value)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "After the second change: 31.68 × 1.12 = 35.48",
+          "description": "Divide the new value by the multiplier: 364.80 ÷ 1.43 = 256",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£35.48 oe",
+          "description": "£256 oe",
           "marks": 1
         }
       ],
@@ -725,117 +831,32 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "percentage_increase_decrease_calculator",
-      "prompt": "Using a calculator, increase £284.05 by 13.5%. Give your answer to 2 decimal places.",
+      "topic_id": "speed_with_conversions",
+      "prompt": "A car travels 684 km in 6 hours. Find its average speed in m/s, correct to 1 decimal place.",
       "solution_steps": [
-        "Convert 13.5% to a multiplier: 1.135",
-        "Multiply: £284.05 × 1.135 = £322.40 (calculator, 2 d.p.)"
+        "speed = distance ÷ time = 684 ÷ 6 = 114 km/h",
+        "Convert to m/s: 114 ÷ 3.6 = 31.7 m/s (1 d.p.)"
       ],
-      "final_answer": "£322.40",
+      "final_answer": "31.7 m/s",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 13.5% to a multiplier: 1.135",
+          "description": "speed = distance ÷ time = 684 ÷ 6 = 114 km/h",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: £284.05 × 1.135 = £322.40 (calculator, 2 d.p.)",
+          "description": "Convert to m/s: 114 ÷ 3.6 = 31.7 m/s (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£322.40 oe",
+          "description": "31.7 m/s oe",
           "marks": 1
         }
       ],
       "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "volume_surface_area_pyramid",
-      "prompt": "A square-based pyramid has a base of side 12 cm and a perpendicular height of 19 cm. Find its total surface area, correct to 3 significant figures.",
-      "solution_steps": [
-        "Slant height l = √(height² + (base ÷ 2)²) = √(19² + (12 ÷ 2)²) ≈ 19.9 cm",
-        "Surface area = base² + 2 × base × l = 12² + 2 × 12 × 19.9",
-        "= 622 cm² (3 s.f.)"
-      ],
-      "final_answer": "622 cm²",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Slant height l = √(height² + (base ÷ 2)²) = √(19² + (12 ÷ 2)²) ≈ 19.9 cm",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Surface area = base² + 2 × base × l = 12² + 2 × 12 × 19.9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 622 cm² (3 s.f.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "622 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "pyramid",
-        "params": {
-          "base_label": "12 cm",
-          "height_label": "19 cm",
-          "slant_label": "19.92 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "trig_missing_angle_higher",
-      "prompt": "In the right-angled triangle shown, find the angle x, correct to 1 decimal place.",
-      "solution_steps": [
-        "Use sin, since we know two of the three sides.",
-        "sin(x) = 24 ÷ 28",
-        "x = sin^-1(24 ÷ 28) = 59.0° (1 d.p.)"
-      ],
-      "final_answer": "59.0°",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Use sin, since we know two of the three sides.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "sin(x) = 24 ÷ 28",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = sin^-1(24 ÷ 28) = 59.0° (1 d.p.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "59.0° oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "trig_triangle",
-        "params": {
-          "adjacent_label": null,
-          "opposite_label": "24 cm",
-          "hyp_label": "28 cm",
-          "angle_label": "x°"
-        }
-      },
       "solution_diagram": null
     },
     {
@@ -885,6 +906,58 @@
         "params": {
           "n_sides": 5,
           "marked_angle_label": "(4x + 40)°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_triangle_higher",
+      "prompt": "A triangle has angles 88°, 43°, and (4x - 7)°. Find x.",
+      "solution_steps": [
+        "Angles in a triangle sum to 180°.",
+        "4x - 7 = 49",
+        "Add 7 to both sides:",
+        "4x = 56",
+        "Divide both sides by 4:",
+        "x = 14"
+      ],
+      "final_answer": "14",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles in a triangle sum to 180°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x - 7 = 49",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add 7 to both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x = 56 Divide both sides by 4: x = 14",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "14 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "triangle_angles",
+        "params": {
+          "angle_labels": [
+            "88°",
+            "43°",
+            "(4x - 7)°"
+          ]
         }
       },
       "solution_diagram": null
@@ -1039,38 +1112,32 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_combined_dice",
-      "prompt": "Two fair six-sided dice are rolled. Find the probability that both dice show 5.",
+      "topic_id": "graph_transformations",
+      "prompt": "The graph of y = f(x) undergoes a translation by vector (0, 2). Write down the equation of the transformed graph in terms of f(x).",
       "solution_steps": [
-        "P(first die is 5) = 1/6, P(second die is 5) = 1/6",
-        "Independent events multiply: P(both 5) = 1/6 × 1/6 = 1/36"
+        "y = f(x) + 2 corresponds to a translation by vector (0, 2)."
       ],
-      "final_answer": "1/36",
-      "marks": 3,
+      "final_answer": "y = f(x) + 2",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "P(first die is 5) = 1/6, P(second die is 5) = 1/6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Independent events multiply: P(both 5) = 1/6 × 1/6 = 1/36",
+          "description": "y = f(x) + 2 corresponds to a translation by vector (0, 2).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/36 oe",
+          "description": "y = f(x) + 2 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "dice",
+        "kind": "graph_transformation",
         "params": {
-          "values": [
-            4,
-            4
-          ]
+          "transform": "translate_up",
+          "shift": 2,
+          "original_label": "y = f(x)",
+          "transformed_label": "y = f(x) + 2"
         }
       },
       "solution_diagram": null

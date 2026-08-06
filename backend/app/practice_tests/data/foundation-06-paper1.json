@@ -4,6 +4,7 @@
   "tier": "foundation",
   "sitting_id": "foundation-06",
   "paper_number": 1,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "error_interval",
@@ -71,21 +72,27 @@
     },
     {
       "topic_id": "factors",
-      "prompt": "Write down all the factors of 42.",
+      "prompt": "Is 11 a factor of 13?",
       "solution_steps": [
-        "Check every whole number from 1 to 42 to see if it divides exactly: 1, 2, 3, 6, 7, 14, 21, 42"
+        "13 ÷ 11 = 1 remainder 2",
+        "No, 11 is not a factor of 13."
       ],
-      "final_answer": "1, 2, 3, 6, 7, 14, 21, 42",
-      "marks": 2,
+      "final_answer": "No",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Check every whole number from 1 to 42 to see if it divides exactly: 1, 2, 3, 6, 7, 14, 21, 42",
+          "description": "13 ÷ 11 = 1 remainder 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "No, 11 is not a factor of 13.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1, 2, 3, 6, 7, 14, 21, 42 oe",
+          "description": "No oe",
           "marks": 1
         }
       ],
@@ -145,22 +152,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "stats_mean",
-      "prompt": "Find the mean of this data set: 10, 22, 12, 30, 28, 2.",
+      "topic_id": "construction_triangle",
+      "prompt": "Triangle PST has PS = 11 cm, the angle at P equal to 38°, and the angle at S equal to 60°. Describe, step by step, how to construct triangle PST using a ruler and a protractor.",
       "solution_steps": [
-        "Mean = sum ÷ count = (10 + 22 + 12 + 30 + 28 + 2) ÷ 6 = 104 ÷ 6 = 52/3"
+        "Draw the line segment PS = 11 cm using a ruler.",
+        "At P, use a protractor to draw a ray at 38° from the line PS.",
+        "At S, use a protractor to draw a ray at 60° from the line SP.",
+        "Label the point where the two new rays cross as T. This completes triangle PST."
       ],
-      "final_answer": "52/3",
-      "marks": 2,
+      "final_answer": "Triangle PST, with T located where the two angle rays from P and S cross.",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Mean = sum ÷ count = (10 + 22 + 12 + 30 + 28 + 2) ÷ 6 = 104 ÷ 6 = 52/3",
+          "description": "Draw the line segment PS = 11 cm using a ruler.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "At P, use a protractor to draw a ray at 38° from the line PS.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "At S, use a protractor to draw a ray at 60° from the line SP.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Label the point where the two new rays cross as T. This completes triangle PST.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "52/3 oe",
+          "description": "Triangle PST, with T located where the two angle rays from P and S cross. oe",
           "marks": 1
         }
       ],
@@ -169,7 +194,7 @@
     },
     {
       "topic_id": "fractions_add_subtract",
-      "prompt": "Work out 7/10 - 8/12. Give your answer as a fraction in its simplest form.",
+      "prompt": "Evaluate 7/10 - 8/12. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Find a common denominator: LCM(10, 12) = 60",
         "Convert: 7/10 = 42/60, 8/12 = 40/60",
@@ -244,77 +269,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_graphically",
-      "prompt": "The graphs of y = 2x + 5 and y = 4x + 13 are shown below. Use the graphs to write down the solution to the simultaneous equations.",
+      "topic_id": "simultaneous_forming_and_solving",
+      "prompt": "1 apple and 5 bananas cost £3.97 in total. 2 apples and 2 bananas cost £1.94 in total. Form and solve a pair of simultaneous equations to find the cost of one apple and one banana.",
       "solution_steps": [
-        "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
-        "The lines cross at x = -4, y = -3."
+        "Let x = cost of one apple (pence), y = cost of one banana (pence).",
+        "1x + 5y = 397  (1)",
+        "2x + 2y = 194  (2)",
+        "Solving simultaneously: x = 22, y = 75"
       ],
-      "final_answer": "x = -4, y = -3",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The lines cross at x = -4, y = -3.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = -4, y = -3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "linear_graph_pair",
-        "params": {
-          "intersection_label": "?",
-          "label1": "y = 2x + 5",
-          "label2": "y = 4x + 13"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "expand_double_brackets_foundation",
-      "prompt": "Expand: (2x + 6)(4x + 9)",
-      "solution_steps": [
-        "First: 2x × 4x = 8x^2",
-        "Outer: 2x × 9 = 18x",
-        "Inner: 6 × 4x = 24x",
-        "Last: 6 × 9 = 54",
-        "Combine like terms: 8x^2 + 42x + 54"
-      ],
-      "final_answer": "8x^2 + 42x + 54",
+      "final_answer": "apple = £0.22, banana = £0.75",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First: 2x × 4x = 8x^2",
+          "description": "Let x = cost of one apple (pence), y = cost of one banana (pence).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Outer: 2x × 9 = 18x",
+          "description": "1x + 5y = 397  (1)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Inner: 6 × 4x = 24x",
+          "description": "2x + 2y = 194  (2)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Last: 6 × 9 = 54 Combine like terms: 8x^2 + 42x + 54",
+          "description": "Solving simultaneously: x = 22, y = 75",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8x^2 + 42x + 54 oe",
+          "description": "apple = £0.22, banana = £0.75 oe",
           "marks": 1
         }
       ],
@@ -357,40 +345,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_forming_and_solving",
-      "prompt": "1 apple and 5 bananas cost £3.97 in total. 2 apples and 2 bananas cost £1.94 in total. Form and solve a pair of simultaneous equations to find the cost of one apple and one banana.",
+      "topic_id": "expand_double_brackets_no_coefficient_foundation",
+      "prompt": "Expand and simplify: (x + 1)(x + 2)",
       "solution_steps": [
-        "Let x = cost of one apple (pence), y = cost of one banana (pence).",
-        "1x + 5y = 397  (1)",
-        "2x + 2y = 194  (2)",
-        "Solving simultaneously: x = 22, y = 75"
+        "First: x × x = x^2",
+        "Outer: x × 2 = 2x",
+        "Inner: 1 × x = 1x",
+        "Last: 1 × 2 = 2",
+        "Combine like terms: x^2 + 3x + 2"
       ],
-      "final_answer": "apple = £0.22, banana = £0.75",
+      "final_answer": "x^2 + 3x + 2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = cost of one apple (pence), y = cost of one banana (pence).",
+          "description": "First: x × x = x^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "1x + 5y = 397  (1)",
+          "description": "Outer: x × 2 = 2x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x + 2y = 194  (2)",
+          "description": "Inner: 1 × x = 1x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Solving simultaneously: x = 22, y = 75",
+          "description": "Last: 1 × 2 = 2 Combine like terms: x^2 + 3x + 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "apple = £0.22, banana = £0.75 oe",
+          "description": "x^2 + 3x + 2 oe",
           "marks": 1
         }
       ],
@@ -398,58 +387,76 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inequalities_number_line_foundation",
-      "prompt": "Draw the solution set of x ≤ 2 on a number line.",
+      "topic_id": "functions_evaluate",
+      "prompt": "f(x) = 5x + 6. Find f(4).",
       "solution_steps": [
-        "Draw a filled circle at 2 (the boundary value is included).",
-        "Shade the line to the left of 2, with an arrow showing it continues indefinitely."
+        "f(4) = 5×(4) + 6",
+        "f(4) = 26"
       ],
-      "final_answer": "x ≤ 2",
+      "final_answer": "26",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw a filled circle at 2 (the boundary value is included).",
+          "description": "f(4) = 5×(4) + 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Shade the line to the left of 2, with an arrow showing it continues indefinitely.",
+          "description": "f(4) = 26",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x ≤ 2 oe",
+          "description": "26 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -6,
-            6
-          ],
-          "boundaries": [],
-          "blank": true
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "satisfying_inequalities_foundation",
+      "prompt": "Solve the inequality 5 ≤ 4x + 3 ≤ 13, then list the integer values of x that satisfy it.",
+      "solution_steps": [
+        "5 ≤ 4x + 3 ≤ 13",
+        "Subtract 3 from all three parts:",
+        "2 ≤ 4x ≤ 10",
+        "Divide all three parts by 4:",
+        "1/2 ≤ x ≤ 5/2",
+        "The integers satisfying this are: 1, 2"
+      ],
+      "final_answer": "1, 2",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "5 ≤ 4x + 3 ≤ 13",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 3 from all three parts:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2 ≤ 4x ≤ 10",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide all three parts by 4: 1/2 ≤ x ≤ 5/2 The integers satisfying this are: 1, 2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1, 2 oe",
+          "marks": 1
         }
-      },
-      "solution_diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -6,
-            6
-          ],
-          "boundaries": [
-            {
-              "value": 2,
-              "closed": true
-            }
-          ],
-          "shade": "left"
-        }
-      }
+      ],
+      "diagram": null,
+      "solution_diagram": null
     },
     {
       "topic_id": "linear_multi_step",
@@ -495,113 +502,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_both_sides_foundation",
-      "prompt": "Solve: 3x + 6 = 2x + 16",
+      "topic_id": "linear_brackets_foundation",
+      "prompt": "Solve: 3(3x + 3) = 81",
       "solution_steps": [
-        "3x + 6 = 2x + 16",
-        "Subtract 2x from both sides:",
-        "x + 6 = 16",
-        "Subtract 6 from both sides:",
-        "x = 10",
-        "x = 10"
+        "Expand the bracket: 3(3x + 3) = 9x + 9",
+        "9x + 9 = 81",
+        "Subtract 9 from both sides:",
+        "9x = 72",
+        "Divide both sides by 9:",
+        "x = 8"
       ],
-      "final_answer": "10",
+      "final_answer": "8",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "3x + 6 = 2x + 16",
+          "description": "Expand the bracket: 3(3x + 3) = 9x + 9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 2x from both sides:",
+          "description": "9x + 9 = 81",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x + 6 = 16",
+          "description": "Subtract 9 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 6 from both sides: x = 10 x = 10",
+          "description": "9x = 72 Divide both sides by 9: x = 8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_share_three_part_foundation",
-      "prompt": "Share 45 in the ratio 1:3:5.",
-      "solution_steps": [
-        "Total parts = 1 + 3 + 5 = 9",
-        "Value of one part = 45 ÷ 9 = 5",
-        "Share 1 = 1 × 5 = 5",
-        "Share 2 = 3 × 5 = 15",
-        "Share 3 = 5 × 5 = 25"
-      ],
-      "final_answer": "5 : 15 : 25",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total parts = 1 + 3 + 5 = 9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Value of one part = 45 ÷ 9 = 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 1 × 5 = 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 3 × 5 = 15 Share 3 = 5 × 5 = 25",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "5 : 15 : 25 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "density",
-      "prompt": "A piece of wood has a mass of 4648 kg and a density of 149 kg/m³. Find its volume, correct to 2 decimal places.",
-      "solution_steps": [
-        "volume = mass ÷ density",
-        "volume = 4648 ÷ 149 = 31.19 m³ (2 d.p.)"
-      ],
-      "final_answer": "31.19 m³",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "volume = mass ÷ density",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "volume = 4648 ÷ 149 = 31.19 m³ (2 d.p.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "31.19 m³ oe",
+          "description": "8 oe",
           "marks": 1
         }
       ],
@@ -610,7 +546,7 @@
     },
     {
       "topic_id": "ratio_1_to_n",
-      "prompt": "Write the ratio 3:5 in the form 1:n.",
+      "prompt": "Write the ratio 3:5 in the form 1:\\plain{n}.",
       "solution_steps": [
         "Divide both parts of the ratio by 3 (the first part) so the first part becomes 1.",
         "3 ÷ 3 = 1, 5 ÷ 3 ≈ 1.67"
@@ -638,28 +574,105 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "compound_percentage_foundation",
-      "prompt": "A price of £60 decreases by 10%, then decreases by 50%. Find the final price.",
+      "topic_id": "unit_conversions",
+      "prompt": "Convert 270.1 km to m.",
       "solution_steps": [
-        "After the first change: 60 × 0.90 = 54",
-        "After the second change: 54 × 0.50 = 27"
+        "1 km = 1000 m",
+        "270.1 km = 270.1 × 1000 = 270100 m"
       ],
-      "final_answer": "£27",
+      "final_answer": "270100 m",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first change: 60 × 0.90 = 54",
+          "description": "1 km = 1000 m",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "After the second change: 54 × 0.50 = 27",
+          "description": "270.1 km = 270.1 × 1000 = 270100 m",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£27 oe",
+          "description": "270100 m oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_difference",
+      "prompt": "s : t = 6 : 4.\ns - t = 28.\nFind s and t, and their total.",
+      "solution_steps": [
+        "Difference in parts = 6 - 4 = 2 parts",
+        "Value of one part = 28 ÷ 2 = 14",
+        "s = 6 × 14 = 84",
+        "t = 4 × 14 = 56",
+        "s + t = 84 + 56 = 140"
+      ],
+      "final_answer": "s = 84, t = 56 (total 140)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Difference in parts = 6 - 4 = 2 parts",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Value of one part = 28 ÷ 2 = 14",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "s = 6 × 14 = 84",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "t = 4 × 14 = 56 s + t = 84 + 56 = 140",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "s = 84, t = 56 (total 140) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simple_interest",
+      "prompt": "£3600 is invested at a simple interest rate of 4% per year for 5 years. Find the total amount in the account after 5 years.",
+      "solution_steps": [
+        "Simple interest formula: I = P × r × t ÷ 100",
+        "I = 3600 × 4 × 5 ÷ 100 = £720",
+        "Total in the account = P + I = £3600 + £720 = £4320"
+      ],
+      "final_answer": "£4320",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Simple interest formula: I = P × r × t ÷ 100",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "I = 3600 × 4 × 5 ÷ 100 = £720",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total in the account = P + I = £3600 + £720 = £4320",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£4320 oe",
           "marks": 1
         }
       ],
@@ -708,28 +721,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_rotate_complete",
-      "prompt": "Rotate shape ABCD 180° about the centre (2, 1). Draw and label the image A'B'C'D'.",
+      "topic_id": "transform_translate_describe",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
       "solution_steps": [
-        "Rotate each vertex 180° about the centre (2, 1): every point stays the same distance from the centre and turns through the same angle.",
-        "A(1, 2) -> A'(3, 0), B(5, 2) -> B'(-1, 0), C(4, 6) -> C'(0, -4), D(0, 5) -> D'(4, -3)"
+        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-2, -2), with the matching vertex of shape B, (-1, -5), gives the vector (1, -3).",
+        "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
       ],
-      "final_answer": "A'(3, 0), B'(-1, 0), C'(0, -4), D'(4, -3)",
+      "final_answer": "Translation by the vector (1, -3)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rotate each vertex 180° about the centre (2, 1): every point stays the same distance from the centre and turns through the same angle.",
+          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-2, -2), with the matching vertex of shape B, (-1, -5), gives the vector (1, -3).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A(1, 2) -> A'(3, 0), B(5, 2) -> B'(-1, 0), C(4, 6) -> C'(0, -4), D(0, 5) -> D'(4, -3)",
+          "description": "Checking the other vertices confirms the same vector applies throughout, so this is a translation.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(3, 0), B'(-1, 0), C'(0, -4), D'(4, -3) oe",
+          "description": "Translation by the vector (1, -3) oe",
           "marks": 1
         }
       ],
@@ -742,99 +755,79 @@
           "y_max": 8,
           "original_vertices": [
             [
-              1,
-              2
+              -2,
+              -2
             ],
             [
-              5,
-              2
+              2,
+              -2
             ],
             [
-              4,
-              6
-            ],
-            [
-              0,
-              5
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
-          ],
-          "centre": [
-            2,
-            1
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              1,
-              2
-            ],
-            [
-              5,
-              2
-            ],
-            [
-              4,
-              6
+              2,
+              0
             ],
             [
               0,
-              5
+              0
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              -2,
+              3
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
-          ],
-          "centre": [
-            2,
-            1
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ],
           "image_vertices": [
             [
+              -1,
+              -5
+            ],
+            [
               3,
+              -5
+            ],
+            [
+              3,
+              -3
+            ],
+            [
+              1,
+              -3
+            ],
+            [
+              1,
               0
             ],
             [
               -1,
               0
-            ],
-            [
-              0,
-              -4
-            ],
-            [
-              4,
-              -3
             ]
           ],
           "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'"
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ]
         }
-      }
+      },
+      "solution_diagram": null
     },
     {
       "topic_id": "area_parallelogram",
-      "prompt": "A parallelogram has a base of 10 cm and a perpendicular height of 14 cm. Find its area.",
+      "prompt": "Find the area of the following parallelogram.",
       "solution_steps": [
         "Area = base × height = 10 × 14 = 140 cm²"
       ],
@@ -864,101 +857,136 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_exterior_foundation",
-      "prompt": "An exterior angle of a triangle is x°. The two remote interior angles are 55° and 70°. Find x.",
+      "topic_id": "pythagoras_hypotenuse_triple",
+      "prompt": "A right-angled triangle has sides 36 cm and 105 cm. Find the length of x.",
       "solution_steps": [
-        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
-        "x = 55 + 70 = 125"
+        "c² = a² + b² = 36² + 105² = 1296 + 11025 = 12321",
+        "c = √12321 = 111"
       ],
-      "final_answer": "125",
+      "final_answer": "111 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+          "description": "c² = a² + b² = 36² + 105² = 1296 + 11025 = 12321",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 55 + 70 = 125",
+          "description": "c = √12321 = 111",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "125 oe",
+          "description": "111 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "exterior_triangle",
+        "kind": "right_triangle",
         "params": {
-          "interior1_label": "55°",
-          "interior2_label": "70°",
-          "exterior_label": "x"
+          "leg1_label": "36 cm",
+          "leg2_label": "105 cm",
+          "hyp_label": "x"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_missing_side_foundation",
-      "prompt": "In the right-angled triangle shown, find the length of x, correct to 3 significant figures.",
+      "topic_id": "congruent_triangle_proof_foundation",
+      "prompt": "Triangles ABC and ADC share side AC, with AB = AD and BC = DC. Which congruence criterion proves that the two triangles are congruent? A) SSS  B) RHS  C) SAS  D) ASA",
       "solution_steps": [
-        "We know the adjacent and want the opposite, so use tan.",
-        "x = 16 × tan(26°) = 7.80 (to 3 s.f.)"
+        "AB = AD (given)",
+        "BC = DC (given)",
+        "AC is common to both triangles",
+        "These facts match the Side-Side-Side (SSS) congruence criterion."
       ],
-      "final_answer": "7.80 cm",
-      "marks": 3,
+      "final_answer": "A) SSS",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "We know the adjacent and want the opposite, so use tan.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 16 × tan(26°) = 7.80 (to 3 s.f.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "7.80 cm oe",
+          "code": "B1",
+          "description": "A) SSS (selecting the correct option)",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "trig_triangle",
+        "kind": "two_triangle_congruence",
         "params": {
-          "adjacent_label": "16 cm",
-          "opposite_label": "x cm",
-          "hyp_label": null,
-          "angle_label": "26°"
+          "labels_1": [
+            "A",
+            "B",
+            "C"
+          ],
+          "labels_2": [
+            "A",
+            "D",
+            "C"
+          ],
+          "ticks_1": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              0,
+              2,
+              1
+            ]
+          ],
+          "ticks_2": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              0,
+              2,
+              1
+            ]
+          ],
+          "arcs_1": [],
+          "arcs_2": [],
+          "note": "AC is common to both triangles."
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_reflect_describe",
-      "prompt": "Shape ABCD is reflected to give shape A'B'C'D', shown on the grid. Describe fully the single transformation that maps ABCD onto A'B'C'D'.",
+      "topic_id": "transform_translate_complete",
+      "prompt": "Translate shape ABC by the vector (-2, 5). Draw and label the image A'B'C'.",
       "solution_steps": [
-        "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
-        "Comparing corresponding vertices shows the mirror line is y = 1."
+        "Translate every vertex by the vector (-2, 5): move each point 2 squares left and 5 squares up.",
+        "A(-3, -2) -> A'(-5, 3), B(2, -2) -> B'(0, 3), C(-2, 2) -> C'(-4, 7)"
       ],
-      "final_answer": "Reflection in the line y = 1",
+      "final_answer": "A'(-5, 3), B'(0, 3), C'(-4, 7)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
+          "description": "Translate every vertex by the vector (-2, 5): move each point 2 squares left and 5 squares up.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Comparing corresponding vertices shows the mirror line is y = 1.",
+          "description": "A(-3, -2) -> A'(-5, 3), B(2, -2) -> B'(0, 3), C(-2, 2) -> C'(-4, 7)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Reflection in the line y = 1 oe",
+          "description": "A'(-5, 3), B'(0, 3), C'(-4, 7) oe",
           "marks": 1
         }
       ],
@@ -971,331 +999,136 @@
           "y_max": 8,
           "original_vertices": [
             [
+              -3,
+              -2
+            ],
+            [
+              2,
+              -2
+            ],
+            [
+              -2,
+              2
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C"
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              -3,
+              -2
+            ],
+            [
+              2,
+              -2
+            ],
+            [
+              -2,
+              2
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "image_vertices": [
+            [
+              -5,
+              3
+            ],
+            [
               0,
               3
             ],
             [
-              4,
-              3
-            ],
-            [
-              3,
+              -4,
               7
-            ],
-            [
-              -1,
-              6
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
-          ],
-          "image_vertices": [
-            [
-              0,
-              -1
-            ],
-            [
-              4,
-              -1
-            ],
-            [
-              3,
-              -5
-            ],
-            [
-              -1,
-              -4
             ]
           ],
           "image_labels": [
             "A'",
             "B'",
-            "C'",
-            "D'"
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "transform_enlarge_complete_foundation",
-      "prompt": "Enlarge shape ABCDEF by scale factor 2, centre (2, 9). Draw and label the image A'B'C'D'E'F'.",
-      "solution_steps": [
-        "The centre of enlargement is (2, 9) and the scale factor is 2.",
-        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-2, -8) from the centre, so A' = (2, 9) + 2 × (-2, -8) = (-2, -7).",
-        "Repeat for every vertex: A(0, 1) -> A'(-2, -7), B(4, 1) -> B'(6, -7), C(4, 3) -> C'(6, -3), D(2, 3) -> D'(2, -3), E(2, 6) -> E'(2, 3), F(0, 6) -> F'(-2, 3)"
-      ],
-      "final_answer": "A'(-2, -7), B'(6, -7), C'(6, -3), D'(2, -3), E'(2, 3), F'(-2, 3)",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The centre of enlargement is (2, 9) and the scale factor is 2.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-2, -8) from the centre, so A' = (2, 9) + 2 × (-2, -8) = (-2, -7).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Repeat for every vertex: A(0, 1) -> A'(-2, -7), B(4, 1) -> B'(6, -7), C(4, 3) -> C'(6, -3), D(2, 3) -> D'(2, -3), E(2, 6) -> E'(2, 3), F(0, 6) -> F'(-2, 3)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "A'(-2, -7), B'(6, -7), C'(6, -3), D'(2, -3), E'(2, 3), F'(-2, 3) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              0,
-              1
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              4,
-              3
-            ],
-            [
-              2,
-              3
-            ],
-            [
-              2,
-              6
-            ],
-            [
-              0,
-              6
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
-          ],
-          "centre": [
-            2,
-            9
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              0,
-              1
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              4,
-              3
-            ],
-            [
-              2,
-              3
-            ],
-            [
-              2,
-              6
-            ],
-            [
-              0,
-              6
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
-          ],
-          "centre": [
-            2,
-            9
-          ],
-          "image_vertices": [
-            [
-              -2,
-              -7
-            ],
-            [
-              6,
-              -7
-            ],
-            [
-              6,
-              -3
-            ],
-            [
-              2,
-              -3
-            ],
-            [
-              2,
-              3
-            ],
-            [
-              -2,
-              3
-            ]
-          ],
-          "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'",
-            "E'",
-            "F'"
+            "C'"
           ]
         }
       }
     },
     {
-      "topic_id": "probability_single_event",
-      "prompt": "A bag contains 3 yellow, 8 red counters. A counter is picked at random. Find the probability that it is red.",
+      "topic_id": "construction_angle_bisector",
+      "prompt": "Angle YUL = 49°. Describe, step by step, how to construct the bisector of angle YUL using only a ruler and a pair of compasses.",
       "solution_steps": [
-        "Total counters = 11",
-        "Number of red counters = 8",
-        "P(red) = 8/11 = 8/11"
+        "Open the compasses to any radius and place the point on U (the vertex of the angle).",
+        "Draw an arc that crosses both arms of the angle, at a point on UY and a point on UL.",
+        "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
+        "Draw a straight line from U through the point where the two arcs intersect. This line is the bisector of angle YUL."
       ],
-      "final_answer": "8/11",
-      "marks": 4,
+      "final_answer": "The straight line from U through the intersection of the two equal-radius arcs bisects angle YUL into two equal angles.",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total counters = 11",
+          "description": "Open the compasses to any radius and place the point on U (the vertex of the angle).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Number of red counters = 8",
+          "description": "Draw an arc that crosses both arms of the angle, at a point on UY and a point on UL.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(red) = 8/11 = 8/11",
+          "description": "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Draw a straight line from U through the point where the two arcs intersect. This line is the bisector of angle YUL.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8/11 oe",
+          "description": "The straight line from U through the intersection of the two equal-radius arcs bisects angle YUL into two equal angles. oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "bag_of_counters",
-        "params": {
-          "counts": {
-            "yellow": 3,
-            "red": 8
-          },
-          "highlight": "red"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_equivalent_diagram",
-      "prompt": "Shape A is divided into 4 equal parts, with 1 shaded. Shape B is divided into 12 equal parts. How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
+      "topic_id": "stats_mean",
+      "prompt": "Find the mean of this data set: 10, 22, 12, 30, 28, 2.",
       "solution_steps": [
-        "Shape A shows 1/4 shaded; Shape B has 12 equal parts.",
-        "Find the scale factor between the denominators: 12 ÷ 4 = 3",
-        "Multiply the shaded count by the same scale factor: 1 × 3 = 3"
+        "Mean = sum ÷ count = (10 + 22 + 12 + 30 + 28 + 2) ÷ 6 = 104 ÷ 6 = 52/3"
       ],
-      "final_answer": "3",
-      "marks": 4,
+      "final_answer": "52/3",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Shape A shows 1/4 shaded; Shape B has 12 equal parts.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Find the scale factor between the denominators: 12 ÷ 4 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the shaded count by the same scale factor: 1 × 3 = 3",
+          "description": "Mean = sum ÷ count = (10 + 22 + 12 + 30 + 28 + 2) ÷ 6 = 104 ÷ 6 = 52/3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 oe",
+          "description": "52/3 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "bar",
-              "parts": 4,
-              "shaded": 1,
-              "label": "1/4"
-            },
-            {
-              "kind": "bar",
-              "parts": 12,
-              "shaded": 0,
-              "label": "?/12"
-            }
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "bar",
-              "parts": 4,
-              "shaded": 1,
-              "label": "1/4"
-            },
-            {
-              "kind": "bar",
-              "parts": 12,
-              "shaded": 3,
-              "label": "3/12"
-            }
-          ]
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     }
   ]
 }

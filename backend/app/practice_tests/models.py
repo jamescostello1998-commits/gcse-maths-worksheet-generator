@@ -38,6 +38,7 @@ class PracticeTestPaper:
     tier: Tier
     sitting_id: str
     paper_number: int
+    calculator_allowed: bool
     questions: tuple[PracticeQuestion, ...]
 
     @property
@@ -62,6 +63,7 @@ def paper_to_dict(paper: PracticeTestPaper) -> dict:
         "tier": paper.tier.value,
         "sitting_id": paper.sitting_id,
         "paper_number": paper.paper_number,
+        "calculator_allowed": paper.calculator_allowed,
         "questions": [
             {
                 "topic_id": q.topic_id,
@@ -100,5 +102,6 @@ def paper_from_dict(data: dict) -> PracticeTestPaper:
         tier=Tier(data["tier"]),
         sitting_id=data["sitting_id"],
         paper_number=data["paper_number"],
+        calculator_allowed=data.get("calculator_allowed", True),
         questions=questions,
     )

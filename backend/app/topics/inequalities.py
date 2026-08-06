@@ -28,11 +28,11 @@ def _fmt_ineq_lhs(coeff, const) -> str:
         elif coeff.q == 1:
             parts.append(f"{fmt_num(coeff)}x")
         elif coeff.p == 1:
-            parts.append(f"x/{coeff.q}")
+            parts.append(f"\\frac{{x}}{{{coeff.q}}}")
         elif coeff.p == -1:
-            parts.append(f"-x/{coeff.q}")
+            parts.append(f"-\\frac{{x}}{{{coeff.q}}}")
         else:
-            parts.append(f"{coeff.p}x/{coeff.q}")
+            parts.append(f"\\frac{{{coeff.p}x}}{{{coeff.q}}}")
     if const != 0:
         sign = "+" if const > 0 else "-"
         term = fmt_num(sp.Abs(const))
@@ -483,7 +483,7 @@ def generate_quadratic_inequalities(tier: Tier, rng: random.Random) -> Question:
     while r2 == r1:
         r2 = rng.randint(-9, 9)
     lo, hi = sorted((r1, r2))
-    leading = rng.choice([1, -1])
+    leading = 1  # per direct user request: never an "upside-down" (negative-leading) quadratic here
     symbol = rng.choice(["<", ">", "<=", ">="])
 
     expanded = sp.expand(leading * (X - r1) * (X - r2))
@@ -888,7 +888,7 @@ def generate_modelled_example_quadratic_inequalities(tier: Tier, rng: random.Ran
     while r2 == r1:
         r2 = rng.randint(-9, 9)
     lo, hi = sorted((r1, r2))
-    leading = rng.choice([1, -1])
+    leading = 1  # per direct user request: never an "upside-down" (negative-leading) quadratic here
     symbol = rng.choice(["<", ">", "<=", ">="])
 
     expanded = sp.expand(leading * (X - r1) * (X - r2))

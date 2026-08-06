@@ -4,10 +4,11 @@
   "tier": "foundation",
   "sitting_id": "foundation-07",
   "paper_number": 3,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "decimals_divide",
-      "prompt": "Work out 5.4 ÷ 0.9.",
+      "prompt": "Evaluate 5.4 ÷ 0.9.",
       "solution_steps": [
         "Multiply both numbers by 10 so the divisor becomes a whole number: 5.4 × 10 = 54, 0.9 × 10 = 9",
         "54 ÷ 9 = 6"
@@ -100,7 +101,7 @@
     },
     {
       "topic_id": "fractions_add_subtract",
-      "prompt": "Work out 4/12 + 1/5. Give your answer as a fraction in its simplest form.",
+      "prompt": "Calculate 4/12 + 1/5. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Find a common denominator: LCM(12, 5) = 60",
         "Convert: 4/12 = 20/60, 1/5 = 12/60",
@@ -141,10 +142,10 @@
     },
     {
       "topic_id": "fractions_divide_foundation",
-      "prompt": "Work out 1/4 ÷ 6/5. Give your answer as a fraction in its simplest form.",
+      "prompt": "Evaluate 1/4 ÷ 6/5. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Keep-change-flip: 1/4 ÷ 6/5 = 1/4 × 5/6",
-        "Multiply: (1×5)/(4×6) = 5/24",
+        "Multiply: \\frac{(1×5)}{(4×6)} = 5/24",
         "Simplify: 5/24"
       ],
       "final_answer": "5/24",
@@ -157,7 +158,7 @@
         },
         {
           "code": "M1",
-          "description": "Multiply: (1×5)/(4×6) = 5/24",
+          "description": "Multiply: \\frac{(1×5)}{(4×6)} = 5/24",
           "marks": 1
         },
         {
@@ -205,11 +206,11 @@
     },
     {
       "topic_id": "fractions_ordering",
-      "prompt": "Write these fractions in order, largest to smallest: 1/2, 4/5, 7/12, 1/8, 1/4",
+      "prompt": "Write these fractions in descending order: 1/2, 4/5, 7/12, 1/8, 1/4",
       "solution_steps": [
         "Convert every fraction to the same denominator, the LCM of 2, 5, 12, 8, 4: 120",
         "Rewrite each fraction over 120: 1/2 = 60/120, 4/5 = 96/120, 7/12 = 70/120, 1/8 = 15/120, 1/4 = 30/120",
-        "Order the numerators from largest to smallest and convert back: 4/5, 7/12, 1/2, 1/4, 1/8"
+        "Order the numerators in descending order and convert back: 4/5, 7/12, 1/2, 1/4, 1/8"
       ],
       "final_answer": "4/5, 7/12, 1/2, 1/4, 1/8",
       "marks": 4,
@@ -226,7 +227,7 @@
         },
         {
           "code": "M1",
-          "description": "Order the numerators from largest to smallest and convert back: 4/5, 7/12, 1/2, 1/4, 1/8",
+          "description": "Order the numerators in descending order and convert back: 4/5, 7/12, 1/2, 1/4, 1/8",
           "marks": 1
         },
         {
@@ -239,34 +240,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "change_subject_foundation",
-      "prompt": "Make x the subject of the formula y = 2x + 17.",
+      "topic_id": "substitution_foundation",
+      "prompt": "A = (1/2)bh. Find the value of A when b = 5 and h = 20.",
       "solution_steps": [
-        "y = 2x + 17",
-        "Subtract 17 from both sides: y - 17 = 2x",
-        "Divide both sides by 2: x = (y - 17)/2"
+        "A = (1/2)bh",
+        "A = (1/2) × 5 × 20",
+        "A = 100/2",
+        "A = 50"
       ],
-      "final_answer": "x = (y - 17)/2",
-      "marks": 4,
+      "final_answer": "A = 50",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = 2x + 17",
+          "description": "A = (1/2)bh",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 17 from both sides: y - 17 = 2x",
+          "description": "A = (1/2) × 5 × 20",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 2: x = (y - 17)/2",
+          "description": "A = 100/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = 50",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = (y - 17)/2 oe",
+          "description": "A = 50 oe",
           "marks": 1
         }
       ],
@@ -274,43 +281,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_both_sides_foundation",
-      "prompt": "Solve: 4x + 10 = 6x + 4",
+      "topic_id": "linear_brackets_foundation",
+      "prompt": "Solve: 5(4x + 5) = 125",
       "solution_steps": [
-        "4x + 10 = 6x + 4",
-        "Subtract 6x from both sides:",
-        "-2x + 10 = 4",
-        "Subtract 10 from both sides:",
-        "-2x = -6",
-        "Divide both sides by -2:",
-        "x = 3"
+        "Expand the bracket: 5(4x + 5) = 20x + 25",
+        "20x + 25 = 125",
+        "Subtract 25 from both sides:",
+        "20x = 100",
+        "Divide both sides by 20:",
+        "x = 5"
       ],
-      "final_answer": "3",
+      "final_answer": "5",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "4x + 10 = 6x + 4",
+          "description": "Expand the bracket: 5(4x + 5) = 20x + 25",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 6x from both sides:",
+          "description": "20x + 25 = 125",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-2x + 10 = 4",
+          "description": "Subtract 25 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 10 from both sides: -2x = -6 Divide both sides by -2: x = 3",
+          "description": "20x = 100 Divide both sides by 20: x = 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 oe",
+          "description": "5 oe",
           "marks": 1
         }
       ],
@@ -318,97 +324,98 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_distance_time",
-      "prompt": "A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop 6 km away after 25 minutes. They stay at the shop until 40 minutes, then cycle straight back home at a constant speed, arriving home at 65 minutes. Draw a distance-time graph to show this journey, and find the total distance travelled.",
+      "topic_id": "plot_quadratic",
+      "prompt": "Complete a table of values for y = -x^2 + x + 3 for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 6 km after 25 minutes.",
-        "Stay at 6 km until 40 minutes.",
-        "Return at a constant speed to 0 km, arriving home at 65 minutes.",
-        "Plot these points and join each stage with a straight line segment.",
-        "Total distance travelled = 6 km out + 6 km back = 12 km"
+        "Table of values for y = -x^2 + x + 3:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: -9, -3, 1, 3, 3, 1, -3",
+        "Plot each (x, y) point and join them with a single smooth curve."
       ],
-      "final_answer": "12 km",
+      "final_answer": "Quadratic curve: y = -x^2 + x + 3",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 6 km after 25 minutes.",
+          "description": "Table of values for y = -x^2 + x + 3:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Stay at 6 km until 40 minutes.",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Return at a constant speed to 0 km, arriving home at 65 minutes.",
+          "description": "y: -9, -3, 1, 3, 3, 1, -3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot these points and join each stage with a straight line segment. Total distance travelled = 6 km out + 6 km back = 12 km",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 km oe",
+          "description": "Quadratic curve: y = -x^2 + x + 3 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "piecewise_graph",
+        "kind": "function_graph",
         "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              25,
-              6
-            ],
-            [
-              40,
-              6
-            ],
-            [
-              65,
-              0
-            ]
-          ],
-          "x_max": 70,
-          "y_max": 8,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)",
+          "kind": "quadratic",
+          "a": -1,
+          "b": 1,
+          "c": 3,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -10,
+          "y_max": 4,
           "blank": true
         }
       },
       "solution_diagram": {
-        "kind": "piecewise_graph",
+        "kind": "function_graph",
         "params": {
-          "points": [
+          "kind": "quadratic",
+          "a": -1,
+          "b": 1,
+          "c": 3,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -10,
+          "y_max": 4,
+          "table_points": [
+            [
+              -3,
+              -9
+            ],
+            [
+              -2,
+              -3
+            ],
+            [
+              -1,
+              1
+            ],
             [
               0,
-              0
+              3
             ],
             [
-              25,
-              6
+              1,
+              3
             ],
             [
-              40,
-              6
+              2,
+              1
             ],
             [
-              65,
-              0
+              3,
+              -3
             ]
-          ],
-          "x_max": 70,
-          "y_max": 8,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)"
+          ]
         }
       }
     },
@@ -498,7 +505,7 @@
     },
     {
       "topic_id": "expand_double_brackets_foundation",
-      "prompt": "Expand: (3x + 5)(x + 7)",
+      "prompt": "Expand and simplify: (3x + 5)(x + 7)",
       "solution_steps": [
         "First: 3x × 1x = 3x^2",
         "Outer: 3x × 7 = 21x",
@@ -574,70 +581,69 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solving_inequalities_foundation",
-      "prompt": "Solve the inequality: x/4 + 4 ≤ -11",
+      "topic_id": "simultaneous_graphically",
+      "prompt": "The graphs of y = 3x + 3 and y = x + 3 are shown below. Use the graphs to write down the solution to the simultaneous equations.",
       "solution_steps": [
-        "x/4 + 4 ≤ -11",
-        "Subtract 4 from both sides:",
-        "x/4 ≤ -15",
-        "Multiply both sides by 4:",
-        "x ≤ -60"
+        "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
+        "The lines cross at x = 0, y = 3."
       ],
-      "final_answer": "x ≤ -60",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "x/4 + 4 ≤ -11",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 4 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x/4 ≤ -15",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply both sides by 4: x ≤ -60",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x ≤ -60 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "sdt_mixed",
-      "prompt": "A runner travels 232 miles at an average speed of 58 mph. Find how long the journey takes.",
-      "solution_steps": [
-        "time = distance ÷ speed",
-        "time = 232 ÷ 58 = 4 hours"
-      ],
-      "final_answer": "4 hours",
+      "final_answer": "x = 0, y = 3",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "time = distance ÷ speed",
+          "description": "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "time = 232 ÷ 58 = 4 hours",
+          "description": "The lines cross at x = 0, y = 3.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4 hours oe",
+          "description": "x = 0, y = 3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "linear_graph_pair",
+        "params": {
+          "label1": "y = 3x + 3",
+          "label2": "y = x + 3",
+          "m1": 3,
+          "c1": 3,
+          "m2": 1,
+          "c2": 3,
+          "sol_x": 0,
+          "sol_y": 3
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "inverse_proportion_noncalculator",
+      "prompt": "It takes 5 pipes 9 hours to fill a tank. Working at the same rate, how long would it take 3 pipes?",
+      "solution_steps": [
+        "Constant = 5 × 9 = 45",
+        "Time for 3 pipes = 45 ÷ 3 = 15"
+      ],
+      "final_answer": "15 hours",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Constant = 5 × 9 = 45",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Time for 3 pipes = 45 ÷ 3 = 15",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "15 hours oe",
           "marks": 1
         }
       ],
@@ -703,28 +709,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "direct_proportion",
-      "prompt": "7 rulers cost £5.18. How much would 14 rulers cost?",
+      "topic_id": "inverse_proportion",
+      "prompt": "It takes 9 pipes 15 hours to fill a tank. Working at the same rate, how long would it take 3 pipes?",
       "solution_steps": [
-        "Unit value = £5.18 ÷ 7 = £0.74",
-        "Answer = £0.74 × 14 = £10.36"
+        "Constant = 9 × 15 = 135",
+        "Time for 3 pipes = 135 ÷ 3 = 45"
       ],
-      "final_answer": "£10.36",
+      "final_answer": "45 hours",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Unit value = £5.18 ÷ 7 = £0.74",
+          "description": "Constant = 9 × 15 = 135",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer = £0.74 × 14 = £10.36",
+          "description": "Time for 3 pipes = 135 ÷ 3 = 45",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£10.36 oe",
+          "description": "45 hours oe",
           "marks": 1
         }
       ],
@@ -732,41 +738,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_three_part_foundation",
-      "prompt": "Share 168 in the ratio 8:7:9.",
+      "topic_id": "ratio_1_to_n",
+      "prompt": "Write the ratio 1:8 in the form \\plain{n}:1.",
       "solution_steps": [
-        "Total parts = 8 + 7 + 9 = 24",
-        "Value of one part = 168 ÷ 24 = 7",
-        "Share 1 = 8 × 7 = 56",
-        "Share 2 = 7 × 7 = 49",
-        "Share 3 = 9 × 7 = 63"
+        "Divide both parts of the ratio by 8 (the second part) so the second part becomes 1.",
+        "1 ÷ 8 ≈ 0.13, 8 ÷ 8 = 1"
       ],
-      "final_answer": "56 : 49 : 63",
-      "marks": 5,
+      "final_answer": "0.13 : 1 (to 2 d.p.)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 8 + 7 + 9 = 24",
+          "description": "Divide both parts of the ratio by 8 (the second part) so the second part becomes 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 168 ÷ 24 = 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 8 × 7 = 56",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 7 × 7 = 49 Share 3 = 9 × 7 = 63",
+          "description": "1 ÷ 8 ≈ 0.13, 8 ÷ 8 = 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "56 : 49 : 63 oe",
+          "description": "0.13 : 1 (to 2 d.p.) oe",
           "marks": 1
         }
       ],
@@ -774,37 +767,37 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_hypotenuse_triple",
-      "prompt": "A right-angled triangle has legs 60 cm and 63 cm. Find the length of the hypotenuse.",
+      "topic_id": "pythagoras_hypotenuse_decimal",
+      "prompt": "A right-angled triangle has sides 13 cm and 12 cm. Find the length of x, correct to 1 decimal place.",
       "solution_steps": [
-        "c² = a² + b² = 60² + 63² = 3600 + 3969 = 7569",
-        "c = √7569 = 87"
+        "c² = a² + b² = 13² + 12² = 169 + 144 = 313",
+        "c = √313 ≈ 17.7 cm (1 d.p.)"
       ],
-      "final_answer": "87 cm",
+      "final_answer": "17.7 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "c² = a² + b² = 60² + 63² = 3600 + 3969 = 7569",
+          "description": "c² = a² + b² = 13² + 12² = 169 + 144 = 313",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "c = √7569 = 87",
+          "description": "c = √313 ≈ 17.7 cm (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "87 cm oe",
+          "description": "17.7 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "right_triangle",
         "params": {
-          "leg1_label": "60 cm",
-          "leg2_label": "63 cm",
-          "hyp_label": "?"
+          "leg1_label": "13 cm",
+          "leg2_label": "12 cm",
+          "hyp_label": "x"
         }
       },
       "solution_diagram": null
@@ -860,46 +853,47 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_polygon_interior_foundation",
-      "prompt": "A regular polygon has 90 sides. Find the size of one interior angle.",
+      "topic_id": "pythagoras_hypotenuse_triple",
+      "prompt": "A right-angled triangle has sides 60 cm and 63 cm. Find the length of x.",
       "solution_steps": [
-        "Sum of interior angles = (n - 2) × 180 = (90 - 2) × 180 = 15840°",
-        "This is a regular polygon, so each interior angle = 15840 ÷ 90 = 176°"
+        "c² = a² + b² = 60² + 63² = 3600 + 3969 = 7569",
+        "c = √7569 = 87"
       ],
-      "final_answer": "176°",
+      "final_answer": "87 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Sum of interior angles = (n - 2) × 180 = (90 - 2) × 180 = 15840°",
+          "description": "c² = a² + b² = 60² + 63² = 3600 + 3969 = 7569",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "This is a regular polygon, so each interior angle = 15840 ÷ 90 = 176°",
+          "description": "c = √7569 = 87",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "176° oe",
+          "description": "87 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "polygon",
+        "kind": "right_triangle",
         "params": {
-          "n_sides": 12,
-          "marked_angle_label": "?"
+          "leg1_label": "60 cm",
+          "leg2_label": "63 cm",
+          "hyp_label": "x"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "area_circle_foundation",
-      "prompt": "A circle has radius 12 cm. Find its circumference, correct to 3 significant figures.",
+      "prompt": "Find the circumference of the following circle, correct to 1 decimal place.",
       "solution_steps": [
         "Circumference = 2 × π × r = 2 × π × 12",
-        "= 75.4 cm (3 s.f., using a calculator value of π)"
+        "= 75.4 cm (1 d.p., using a calculator value of π)"
       ],
       "final_answer": "75.4 cm",
       "marks": 3,
@@ -911,7 +905,7 @@
         },
         {
           "code": "M1",
-          "description": "= 75.4 cm (3 s.f., using a calculator value of π)",
+          "description": "= 75.4 cm (1 d.p., using a calculator value of π)",
           "marks": 1
         },
         {
@@ -930,50 +924,32 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_equivalent_diagram",
-      "prompt": "The first shape shows 1/5 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
+      "topic_id": "area_triangle",
+      "prompt": "A triangle has base 15 cm and height 9 cm. Find its area.",
       "solution_steps": [
-        "Cross-multiply 1/5 against each labelled shape: a shape shows an equivalent fraction only if 1 × (its denominator) = (its shaded count) × 5.",
-        "Only shape A) 2/10 works: 1 × 10 = 2 × 5 = 10."
+        "Area = (1/2) × base × height = (1/2) × 15 × 9 = 135/2 cm²"
       ],
-      "final_answer": "A) 2/10",
-      "marks": 1,
+      "final_answer": "135/2 cm²",
+      "marks": 2,
       "mark_scheme": [
         {
-          "code": "B1",
-          "description": "A) 2/10 (selecting the correct option)",
+          "code": "M1",
+          "description": "Area = (1/2) × base × height = (1/2) × 15 × 9 = 135/2 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "135/2 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "fraction_shapes",
+        "kind": "triangle_area",
         "params": {
-          "shapes": [
-            {
-              "kind": "circle",
-              "parts": 5,
-              "shaded": 1,
-              "label": "1/5"
-            },
-            {
-              "kind": "circle",
-              "parts": 10,
-              "shaded": 2,
-              "label": "A) 2/10"
-            },
-            {
-              "kind": "circle",
-              "parts": 9,
-              "shaded": 1,
-              "label": "B) 1/9"
-            },
-            {
-              "kind": "circle",
-              "parts": 12,
-              "shaded": 9,
-              "label": "C) 9/12"
-            }
-          ]
+          "base": 15,
+          "height": 9,
+          "base_label": "15 cm",
+          "height_label": "9 cm"
         }
       },
       "solution_diagram": null
@@ -1073,26 +1049,137 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "stats_mean",
-      "prompt": "Find the mean of this data set: 18, 7, 8, 9, 23, 22, 1, 8.",
+      "topic_id": "composite_bar_chart",
+      "prompt": "The composite bar chart shows the number of students split by Boys and Girls. Find the grand total across every category and segment.",
       "solution_steps": [
-        "Mean = sum ÷ count = (18 + 7 + 8 + 9 + 23 + 22 + 1 + 8) ÷ 8 = 96 ÷ 8 = 12"
+        "Add up every segment in every bar, category by category.",
+        "Total = 87."
       ],
-      "final_answer": "12",
-      "marks": 2,
+      "final_answer": "87",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Mean = sum ÷ count = (18 + 7 + 8 + 9 + 23 + 22 + 1 + 8) ÷ 8 = 96 ÷ 8 = 12",
+          "description": "Add up every segment in every bar, category by category.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total = 87.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 oe",
+          "description": "87 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "bar_chart",
+        "params": {
+          "categories": [
+            "Mon",
+            "Tue",
+            "Wed",
+            "Thu"
+          ],
+          "series": [
+            [
+              13,
+              3
+            ],
+            [
+              13,
+              4
+            ],
+            [
+              14,
+              15
+            ],
+            [
+              11,
+              14
+            ]
+          ],
+          "series_labels": [
+            "Boys",
+            "Girls"
+          ],
+          "y_label": "Frequency"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "congruent_triangle_proof_foundation",
+      "prompt": "Triangles ABC and ABD are both right-angled (at C and at D respectively) and share hypotenuse AB, with AC = AD. Which congruence criterion proves that the two triangles are congruent? A) ASA  B) SAS  C) RHS  D) SSS",
+      "solution_steps": [
+        "angle ACB = angle ADB = 90° (given)",
+        "AB is the common hypotenuse",
+        "AC = AD (given)",
+        "These facts match the Right angle-Hypotenuse-Side (RHS) congruence criterion."
+      ],
+      "final_answer": "C) RHS",
+      "marks": 1,
+      "mark_scheme": [
+        {
+          "code": "B1",
+          "description": "C) RHS (selecting the correct option)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "two_triangle_congruence",
+        "params": {
+          "labels_1": [
+            "A",
+            "C",
+            "B"
+          ],
+          "labels_2": [
+            "A",
+            "D",
+            "B"
+          ],
+          "ticks_1": [
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              0,
+              1,
+              2
+            ]
+          ],
+          "ticks_2": [
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              0,
+              1,
+              2
+            ]
+          ],
+          "arcs_1": [
+            [
+              1,
+              1
+            ]
+          ],
+          "arcs_2": [
+            [
+              1,
+              1
+            ]
+          ],
+          "note": "AB is the common hypotenuse."
+        }
+      },
       "solution_diagram": null
     }
   ]

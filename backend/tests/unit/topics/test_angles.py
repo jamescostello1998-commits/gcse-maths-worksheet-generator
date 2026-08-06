@@ -52,8 +52,33 @@ def test_all_generators_attach_a_matching_diagram():
     for generate, tier in GENERATORS:
         rng = random.Random(51)
         q = generate(tier, rng)
+        if generate is angles.generate_polygon_interior_foundation and q.diagram is None:
+            # The "interior_sum" branch deliberately has no diagram - the sum
+            # is a property of the whole shape, not a single marked angle.
+            continue
         assert q.diagram is not None
         assert q.diagram.kind == EXPECTED_DIAGRAM_KINDS[generate]
+
+
+def test_polygon_interior_foundation_diagram_matches_its_measure():
+    rng = random.Random(55)
+    seen_measures = set()
+    for _ in range(TRIALS):
+        q = angles.generate_polygon_interior_foundation(Tier.FOUNDATION, rng)
+        if "sum" in q.prompt:
+            assert q.diagram is None
+            seen_measures.add("interior_sum")
+        elif "exterior" in q.prompt:
+            assert q.diagram is not None
+            assert q.diagram.kind == "polygon"
+            assert q.diagram.params["mode"] == "exterior"
+            seen_measures.add("exterior_angle")
+        else:
+            assert q.diagram is not None
+            assert q.diagram.kind == "polygon"
+            assert q.diagram.params.get("mode") != "exterior"
+            seen_measures.add("interior_angle")
+    assert seen_measures == {"interior_sum", "interior_angle", "exterior_angle"}
 
 
 def test_straight_line_and_around_point_diagram_angles_sum_correctly():
@@ -198,5 +223,12 @@ def test_modelled_examples_produce_verified_examples_with_diagrams():
             assert len(example.worked_calculation) >= 2
             assert len(example.teaching_steps) >= 3
             assert example.final_answer
+            if (
+                generate_example is angles.generate_modelled_example_polygon_interior_foundation
+                and example.diagram is None
+            ):
+                # The "interior_sum" branch deliberately has no diagram - see
+                # test_polygon_interior_foundation_diagram_matches_its_measure.
+                continue
             assert example.diagram is not None
             assert example.diagram.kind == diagram_kind

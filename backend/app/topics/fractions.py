@@ -4,6 +4,7 @@ from fractions import Fraction
 
 from app.core.models import DiagramSpec, ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
+from app.topics.phrasing import amount_verb, convert_phrasing, evaluate_verb, simplify_verb
 
 SECTION = "number"
 GROUP = "Fractions"
@@ -30,12 +31,12 @@ def generate_simplify_fraction(tier: Tier, rng: random.Random) -> Question:
 
     steps = [
         f"Find the highest common factor of {num} and {den}: {hcf}",
-        f"Divide numerator and denominator by {hcf}: {num}÷{hcf} / {den}÷{hcf} = {p}/{q}",
+        f"Divide numerator and denominator by {hcf}: \\frac{{{num}÷{hcf}}}{{{den}÷{hcf}}} = {p}/{q}",
     ]
     return Question(
         topic_id="fractions_simplify",
         tier=Tier.FOUNDATION,
-        prompt=f"Simplify the fraction {num}/{den} fully.",
+        prompt=f"{simplify_verb(rng)} {num}/{den}.",
         solution_steps=tuple(steps),
         final_answer=f"{p}/{q}",
         dedup_key=f"simplify:{num}:{den}",
@@ -75,7 +76,7 @@ def generate_add_subtract_fractions(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="fractions_add_subtract",
         tier=Tier.FOUNDATION,
-        prompt=f"Work out {a}/{b} {op} {c}/{d}. Give your answer as a fraction in its simplest form.",
+        prompt=f"{evaluate_verb(rng)} {a}/{b} {op} {c}/{d}. Give your answer as a fraction in its simplest form.",
         solution_steps=tuple(steps),
         final_answer=_fmt_fraction(result),
         dedup_key=f"add_sub:{a}:{b}:{c}:{d}:{op}",
@@ -84,7 +85,11 @@ def generate_add_subtract_fractions(tier: Tier, rng: random.Random) -> Question:
 
 def generate_multiply_fractions(tier: Tier, rng: random.Random) -> Question:
     a, b = rng.randint(1, 9), rng.randint(2, 12)
+    while a == b:  # avoid a numerator/denominator pair that would display as a disguised integer, e.g. "5/5"
+        a = rng.randint(1, 9)
     c, d = rng.randint(1, 9), rng.randint(2, 12)
+    while c == d:
+        c = rng.randint(1, 9)
     result = Fraction(a, b) * Fraction(c, d)
 
     # Independent verification via plain float arithmetic.
@@ -99,7 +104,7 @@ def generate_multiply_fractions(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="fractions_multiply",
         tier=Tier.FOUNDATION,
-        prompt=f"Work out {a}/{b} × {c}/{d}. Give your answer as a fraction in its simplest form.",
+        prompt=f"{evaluate_verb(rng)} {a}/{b} × {c}/{d}. Give your answer as a fraction in its simplest form.",
         solution_steps=tuple(steps),
         final_answer=_fmt_fraction(result),
         dedup_key=f"multiply:{a}:{b}:{c}:{d}",
@@ -108,7 +113,11 @@ def generate_multiply_fractions(tier: Tier, rng: random.Random) -> Question:
 
 def generate_divide_fractions(tier: Tier, rng: random.Random) -> Question:
     a, b = rng.randint(1, 9), rng.randint(2, 12)
+    while a == b:  # avoid a numerator/denominator pair that would display as a disguised integer, e.g. "5/5"
+        a = rng.randint(1, 9)
     c, d = rng.randint(1, 9), rng.randint(2, 12)
+    while c == d:
+        c = rng.randint(1, 9)
     result = Fraction(a, b) / Fraction(c, d)
 
     # Independent verification: re-multiplying by the divisor must reconstruct the dividend exactly.
@@ -117,13 +126,13 @@ def generate_divide_fractions(tier: Tier, rng: random.Random) -> Question:
 
     steps = [
         f"Keep-change-flip: {a}/{b} ÷ {c}/{d} = {a}/{b} × {d}/{c}",
-        f"Multiply: ({a}×{d})/({b}×{c}) = {a * d}/{b * c}",
+        f"Multiply: \\frac{{({a}×{d})}}{{({b}×{c})}} = {a * d}/{b * c}",
         f"Simplify: {_fmt_fraction(result)}",
     ]
     return Question(
         topic_id="fractions_divide",
         tier=Tier.HIGHER,
-        prompt=f"Work out {a}/{b} ÷ {c}/{d}. Give your answer as a fraction in its simplest form.",
+        prompt=f"{evaluate_verb(rng)} {a}/{b} ÷ {c}/{d}. Give your answer as a fraction in its simplest form.",
         solution_steps=tuple(steps),
         final_answer=_fmt_fraction(result),
         dedup_key=f"divide:{a}:{b}:{c}:{d}",
@@ -132,7 +141,11 @@ def generate_divide_fractions(tier: Tier, rng: random.Random) -> Question:
 
 def generate_divide_fractions_foundation(tier: Tier, rng: random.Random) -> Question:
     a, b = rng.randint(1, 6), rng.randint(2, 8)
+    while a == b:  # avoid a numerator/denominator pair that would display as a disguised integer, e.g. "5/5"
+        a = rng.randint(1, 6)
     c, d = rng.randint(1, 6), rng.randint(2, 8)
+    while c == d:
+        c = rng.randint(1, 6)
     result = Fraction(a, b) / Fraction(c, d)
 
     # Independent verification: re-multiplying by the divisor must reconstruct the dividend exactly.
@@ -141,13 +154,13 @@ def generate_divide_fractions_foundation(tier: Tier, rng: random.Random) -> Ques
 
     steps = [
         f"Keep-change-flip: {a}/{b} ÷ {c}/{d} = {a}/{b} × {d}/{c}",
-        f"Multiply: ({a}×{d})/({b}×{c}) = {a * d}/{b * c}",
+        f"Multiply: \\frac{{({a}×{d})}}{{({b}×{c})}} = {a * d}/{b * c}",
         f"Simplify: {_fmt_fraction(result)}",
     ]
     return Question(
         topic_id="fractions_divide_foundation",
         tier=Tier.FOUNDATION,
-        prompt=f"Work out {a}/{b} ÷ {c}/{d}. Give your answer as a fraction in its simplest form.",
+        prompt=f"{evaluate_verb(rng)} {a}/{b} ÷ {c}/{d}. Give your answer as a fraction in its simplest form.",
         solution_steps=tuple(steps),
         final_answer=_fmt_fraction(result),
         dedup_key=f"divide_f:{a}:{b}:{c}:{d}",
@@ -195,7 +208,7 @@ def generate_mixed_number_arithmetic(tier: Tier, rng: random.Random) -> Question
         topic_id="fractions_mixed_number_arithmetic",
         tier=Tier.HIGHER,
         prompt=(
-            f"Work out {whole1} {num1}/{den1} {op} {whole2} {num2}/{den2}. "
+            f"{evaluate_verb(rng)} {whole1} {num1}/{den1} {op} {whole2} {num2}/{den2}. "
             "Give your answer as a mixed number."
         ),
         solution_steps=tuple(steps),
@@ -224,7 +237,7 @@ def generate_fraction_of_amount(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="fractions_of_amount",
         tier=Tier.FOUNDATION,
-        prompt=f"Find {a}/{b} of {amount}.",
+        prompt=f"{amount_verb(rng)} {a}/{b} of {amount}.",
         solution_steps=tuple(steps),
         final_answer=str(result),
         dedup_key=f"frac_of_amount:{a}:{b}:{amount}",
@@ -232,9 +245,10 @@ def generate_fraction_of_amount(tier: Tier, rng: random.Random) -> Question:
 
 
 def generate_fractions_equivalent(tier: Tier, rng: random.Random) -> Question:
-    shape = rng.choice(["missing_numerator", "identify_equivalent"])
+    shape = rng.choice(["missing_value", "identify_equivalent"])
 
-    if shape == "missing_numerator":
+    if shape == "missing_value":
+        unknown = rng.choice(["numerator", "denominator"])
         b = rng.randint(2, 10)
         a = rng.randint(1, b - 1)
         while math.gcd(a, b) != 1:
@@ -246,19 +260,30 @@ def generate_fractions_equivalent(tier: Tier, rng: random.Random) -> Question:
         # Independent verification via cross-multiplication - a different check than the
         # scale-factor multiplication used to build the answer.
         if a * d != missing_num * b:
-            raise ValueError("fractions_equivalent (missing_numerator) verification failed")
+            raise ValueError("fractions_equivalent (missing_value) verification failed")
 
-        steps = [
-            f"Find the scale factor between the denominators: {d} ÷ {b} = {k}",
-            f"Multiply the numerator by the same scale factor: {a} × {k} = {missing_num}",
-        ]
+        if unknown == "numerator":
+            other_fraction = f"\\frac{{?}}{{{d}}}"
+            answer = missing_num
+            steps = [
+                f"Find the scale factor between the denominators: {d} ÷ {b} = {k}",
+                f"Multiply the numerator by the same scale factor: {a} × {k} = {missing_num}",
+            ]
+        else:
+            other_fraction = f"\\frac{{{missing_num}}}{{?}}"
+            answer = d
+            steps = [
+                f"Find the scale factor between the numerators: {missing_num} ÷ {a} = {k}",
+                f"Multiply the denominator by the same scale factor: {b} × {k} = {d}",
+            ]
+
         return Question(
             topic_id="fractions_equivalent",
             tier=Tier.FOUNDATION,
-            prompt=f"{a}/{b} = ?/{d}. Find the missing numerator.",
+            prompt=f"{a}/{b} = {other_fraction}. Find the missing number.",
             solution_steps=tuple(steps),
-            final_answer=str(missing_num),
-            dedup_key=f"equiv_num:{a}:{b}:{d}",
+            final_answer=str(answer),
+            dedup_key=f"equiv_num:{a}:{b}:{d}:{unknown}",
         )
 
     # identify_equivalent: build 3 non-equivalent distractors alongside the genuine
@@ -337,6 +362,11 @@ def _proper_divisors(n: int) -> list[int]:
 
 
 def generate_fractions_equivalent_diagram(tier: Tier, rng: random.Random) -> Question:
+    # Diagram shapes never carry a numeric fraction caption (in any of the
+    # shapes below) - the student reads the fraction from the shading itself,
+    # not from a label restating it. The prompt is likewise just the bare
+    # question - no "Shape A is divided into N equal parts..." context, since
+    # the (caption-free) diagrams already show that visually.
     shape = rng.choice(["fill_missing_diagram", "identify_equivalent_diagram"])
 
     if shape == "fill_missing_diagram":
@@ -355,12 +385,12 @@ def generate_fractions_equivalent_diagram(tier: Tier, rng: random.Random) -> Que
 
         kind = rng.choice(["bar", "circle"])
         diagram = DiagramSpec(kind="fraction_shapes", params={"shapes": [
-            {"kind": kind, "parts": b, "shaded": a, "label": f"{a}/{b}"},
-            {"kind": kind, "parts": d, "shaded": 0, "label": f"?/{d}"},
+            {"kind": kind, "parts": b, "shaded": a},
+            {"kind": kind, "parts": d, "shaded": 0},
         ]})
         solution_diagram = DiagramSpec(kind="fraction_shapes", params={"shapes": [
-            {"kind": kind, "parts": b, "shaded": a, "label": f"{a}/{b}"},
-            {"kind": kind, "parts": d, "shaded": target_shaded, "label": f"{target_shaded}/{d}"},
+            {"kind": kind, "parts": b, "shaded": a},
+            {"kind": kind, "parts": d, "shaded": target_shaded},
         ]})
 
         steps = [
@@ -368,17 +398,14 @@ def generate_fractions_equivalent_diagram(tier: Tier, rng: random.Random) -> Que
             f"Find the scale factor between the denominators: {d} ÷ {b} = {k}",
             f"Multiply the shaded count by the same scale factor: {a} × {k} = {target_shaded}",
         ]
+        prompt = "How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?"
         return Question(
             topic_id="fractions_equivalent_diagram",
             tier=Tier.FOUNDATION,
-            prompt=(
-                f"Shape A is divided into {b} equal parts, with {a} shaded. Shape B is divided into "
-                f"{d} equal parts. How many parts of Shape B must be shaded to show a fraction "
-                "equivalent to Shape A?"
-            ),
+            prompt=prompt,
             solution_steps=tuple(steps),
             final_answer=str(target_shaded),
-            dedup_key=f"diagram_fill:{a}:{b}:{d}:{kind}",
+            dedup_key=f"diagram_fill:{a}:{b}:{d}:{kind}:{shape}",
             diagram=diagram,
             solution_diagram=solution_diagram,
         )
@@ -424,9 +451,9 @@ def generate_fractions_equivalent_diagram(tier: Tier, rng: random.Random) -> Que
     correct_num, correct_den = candidates[correct_index]
 
     kind = rng.choice(["bar", "circle"])
-    shapes = [{"kind": kind, "parts": b, "shaded": a, "label": f"{a}/{b}"}]
+    shapes = [{"kind": kind, "parts": b, "shaded": a}]
     for letter, (num, den) in zip(letters, candidates):
-        shapes.append({"kind": kind, "parts": den, "shaded": num, "label": f"{letter}) {num}/{den}"})
+        shapes.append({"kind": kind, "parts": den, "shaded": num, "label": f"{letter})"})
     diagram = DiagramSpec(kind="fraction_shapes", params={"shapes": shapes})
 
     steps = [
@@ -488,19 +515,18 @@ def generate_fractions_ordering(tier: Tier, rng: random.Random) -> Question:
     common_form = ", ".join(
         f"{_fmt_fraction(f)} = {f.numerator * (lcm_val // f.denominator)}/{lcm_val}" for f in fracs
     )
-    direction_words = "smallest to largest" if direction == "ascending" else "largest to smallest"
+    order_phrase = f"{direction} order"
 
     steps = [
         f"Convert every fraction to the same denominator, the LCM of "
         f"{', '.join(str(f.denominator) for f in fracs)}: {lcm_val}",
         f"Rewrite each fraction over {lcm_val}: {common_form}",
-        f"Order the numerators {direction_words.replace('smallest to largest', 'from smallest to largest').replace('largest to smallest', 'from largest to smallest')} "
-        f"and convert back: {', '.join(ordered_strs)}",
+        f"Order the numerators in {order_phrase} and convert back: {', '.join(ordered_strs)}",
     ]
     return Question(
         topic_id="fractions_ordering",
         tier=Tier.FOUNDATION,
-        prompt=f"Write these fractions in order, {direction_words}: {', '.join(display_strs)}",
+        prompt=f"Write these fractions in {order_phrase}: {', '.join(display_strs)}",
         solution_steps=tuple(steps),
         final_answer=", ".join(ordered_strs),
         dedup_key=f"order:{[(f.numerator, f.denominator) for f in fracs]}:{direction}",
@@ -528,10 +554,11 @@ def generate_fractions_improper_mixed(tier: Tier, rng: random.Random) -> Questio
             f"Divide the numerator by the denominator: {improper_num} ÷ {den} = {whole} remainder {num}",
             f"Write as a mixed number: {whole} {num}/{den}",
         ]
+        verb, prep = convert_phrasing(rng)
         return Question(
             topic_id="fractions_improper_mixed",
             tier=Tier.FOUNDATION,
-            prompt=f"Write {improper_num}/{den} as a mixed number.",
+            prompt=f"{verb} {improper_num}/{den} {prep} a mixed number.",
             solution_steps=tuple(steps),
             final_answer=f"{whole} {num}/{den}",
             dedup_key=f"imp_to_mixed:{improper_num}:{den}",
@@ -542,10 +569,11 @@ def generate_fractions_improper_mixed(tier: Tier, rng: random.Random) -> Questio
             f"Add the numerator: {whole * den} + {num} = {improper_num}",
             f"Write over the same denominator: {improper_num}/{den}",
         ]
+        verb, prep = convert_phrasing(rng)
         return Question(
             topic_id="fractions_improper_mixed",
             tier=Tier.FOUNDATION,
-            prompt=f"Write {whole} {num}/{den} as an improper fraction.",
+            prompt=f"{verb} {whole} {num}/{den} {prep} an improper fraction.",
             solution_steps=tuple(steps),
             final_answer=f"{improper_num}/{den}",
             dedup_key=f"mixed_to_imp:{whole}:{num}:{den}",
@@ -605,7 +633,7 @@ def generate_modelled_example_add_subtract(tier: Tier, rng: random.Random) -> Mo
     return ModelledExample(
         topic_id="fractions_add_subtract",
         tier=Tier.FOUNDATION,
-        prompt=f"Work out {a}/{b} {op} {c}/{d}. Give your answer as a fraction in its simplest form.",
+        prompt=f"{evaluate_verb(rng)} {a}/{b} {op} {c}/{d}. Give your answer as a fraction in its simplest form.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=_fmt_fraction(result),
@@ -640,13 +668,13 @@ def generate_modelled_example_simplify_fraction(tier: Tier, rng: random.Random) 
     worked_calculation = [
         f"{num}/{den}",
         f"HCF({num}, {den}) = {hcf}",
-        f"= ({num}÷{hcf})/({den}÷{hcf})",
+        f"= \\frac{{({num}÷{hcf})}}{{({den}÷{hcf})}}",
         f"= {p}/{q}",
     ]
     return ModelledExample(
         topic_id="fractions_simplify",
         tier=Tier.FOUNDATION,
-        prompt=f"Simplify the fraction {num}/{den} fully.",
+        prompt=f"{simplify_verb(rng)} {num}/{den}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{p}/{q}",
@@ -655,7 +683,11 @@ def generate_modelled_example_simplify_fraction(tier: Tier, rng: random.Random) 
 
 def generate_modelled_example_multiply_fractions(tier: Tier, rng: random.Random) -> ModelledExample:
     a, b = rng.randint(1, 9), rng.randint(2, 12)
+    while a == b:  # avoid a numerator/denominator pair that would display as a disguised integer, e.g. "5/5"
+        a = rng.randint(1, 9)
     c, d = rng.randint(1, 9), rng.randint(2, 12)
+    while c == d:
+        c = rng.randint(1, 9)
     result = Fraction(a, b) * Fraction(c, d)
 
     if abs((a / b) * (c / d) - float(result)) > 1e-9:
@@ -682,7 +714,7 @@ def generate_modelled_example_multiply_fractions(tier: Tier, rng: random.Random)
     ]
     worked_calculation = [
         f"{a}/{b} × {c}/{d}",
-        f"= ({a}×{c})/({b}×{d})",
+        f"= \\frac{{({a}×{c})}}{{({b}×{d})}}",
         f"= {product_num}/{product_den}",
     ]
     if common > 1:
@@ -691,7 +723,7 @@ def generate_modelled_example_multiply_fractions(tier: Tier, rng: random.Random)
     return ModelledExample(
         topic_id="fractions_multiply",
         tier=Tier.FOUNDATION,
-        prompt=f"Work out {a}/{b} × {c}/{d}. Give your answer as a fraction in its simplest form.",
+        prompt=f"{evaluate_verb(rng)} {a}/{b} × {c}/{d}. Give your answer as a fraction in its simplest form.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=_fmt_fraction(result),
@@ -700,7 +732,11 @@ def generate_modelled_example_multiply_fractions(tier: Tier, rng: random.Random)
 
 def generate_modelled_example_divide_fractions(tier: Tier, rng: random.Random) -> ModelledExample:
     a, b = rng.randint(1, 9), rng.randint(2, 12)
+    while a == b:  # avoid a numerator/denominator pair that would display as a disguised integer, e.g. "5/5"
+        a = rng.randint(1, 9)
     c, d = rng.randint(1, 9), rng.randint(2, 12)
+    while c == d:
+        c = rng.randint(1, 9)
     result = Fraction(a, b) / Fraction(c, d)
 
     if result * Fraction(c, d) != Fraction(a, b):
@@ -728,7 +764,7 @@ def generate_modelled_example_divide_fractions(tier: Tier, rng: random.Random) -
     worked_calculation = [
         f"{a}/{b} ÷ {c}/{d}",
         f"= {a}/{b} × {d}/{c}",
-        f"= ({a}×{d})/({b}×{c})",
+        f"= \\frac{{({a}×{d})}}{{({b}×{c})}}",
         f"= {product_num}/{product_den}",
     ]
     if common > 1:
@@ -737,7 +773,7 @@ def generate_modelled_example_divide_fractions(tier: Tier, rng: random.Random) -
     return ModelledExample(
         topic_id="fractions_divide",
         tier=Tier.HIGHER,
-        prompt=f"Work out {a}/{b} ÷ {c}/{d}. Give your answer as a fraction in its simplest form.",
+        prompt=f"{evaluate_verb(rng)} {a}/{b} ÷ {c}/{d}. Give your answer as a fraction in its simplest form.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=_fmt_fraction(result),
@@ -746,7 +782,11 @@ def generate_modelled_example_divide_fractions(tier: Tier, rng: random.Random) -
 
 def generate_modelled_example_divide_fractions_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
     a, b = rng.randint(1, 6), rng.randint(2, 8)
+    while a == b:  # avoid a numerator/denominator pair that would display as a disguised integer, e.g. "5/5"
+        a = rng.randint(1, 6)
     c, d = rng.randint(1, 6), rng.randint(2, 8)
+    while c == d:
+        c = rng.randint(1, 6)
     result = Fraction(a, b) / Fraction(c, d)
 
     if result * Fraction(c, d) != Fraction(a, b):
@@ -774,7 +814,7 @@ def generate_modelled_example_divide_fractions_foundation(tier: Tier, rng: rando
     worked_calculation = [
         f"{a}/{b} ÷ {c}/{d}",
         f"= {a}/{b} × {d}/{c}",
-        f"= ({a}×{d})/({b}×{c})",
+        f"= \\frac{{({a}×{d})}}{{({b}×{c})}}",
         f"= {product_num}/{product_den}",
     ]
     if common > 1:
@@ -783,7 +823,7 @@ def generate_modelled_example_divide_fractions_foundation(tier: Tier, rng: rando
     return ModelledExample(
         topic_id="fractions_divide_foundation",
         tier=Tier.FOUNDATION,
-        prompt=f"Work out {a}/{b} ÷ {c}/{d}. Give your answer as a fraction in its simplest form.",
+        prompt=f"{evaluate_verb(rng)} {a}/{b} ÷ {c}/{d}. Give your answer as a fraction in its simplest form.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=_fmt_fraction(result),
@@ -829,8 +869,8 @@ def generate_modelled_example_mixed_number_arithmetic(tier: Tier, rng: random.Ra
         "subtract directly, so the standard method is to first convert both into improper (top-heavy) "
         "fractions: multiply the whole number by the denominator, then add the numerator, all over the "
         "same denominator.",
-        f"{whole1} {num1}/{den1} = ({whole1}×{den1}+{num1})/{den1} = {raw_num1}/{den1}, and "
-        f"{whole2} {num2}/{den2} = ({whole2}×{den2}+{num2})/{den2} = {raw_num2}/{den2}.",
+        f"{whole1} {num1}/{den1} = \\frac{{({whole1}×{den1}+{num1})}}{{{den1}}} = {raw_num1}/{den1}, and "
+        f"{whole2} {num2}/{den2} = \\frac{{({whole2}×{den2}+{num2})}}{{{den2}}} = {raw_num2}/{den2}.",
         f"Now it's a normal fraction {verb}, so we need a common denominator: the LCM of {den1} and "
         f"{den2} is {lcm_val}. Converting: {raw_num1}/{den1} = {scaled_num1}/{lcm_val} and "
         f"{raw_num2}/{den2} = {scaled_num2}/{lcm_val}.",
@@ -850,7 +890,7 @@ def generate_modelled_example_mixed_number_arithmetic(tier: Tier, rng: random.Ra
         topic_id="fractions_mixed_number_arithmetic",
         tier=Tier.HIGHER,
         prompt=(
-            f"Work out {whole1} {num1}/{den1} {op} {whole2} {num2}/{den2}. "
+            f"{evaluate_verb(rng)} {whole1} {num1}/{den1} {op} {whole2} {num2}/{den2}. "
             "Give your answer as a mixed number."
         ),
         worked_calculation=tuple(worked_calculation),
@@ -890,7 +930,7 @@ def generate_modelled_example_fraction_of_amount(tier: Tier, rng: random.Random)
     return ModelledExample(
         topic_id="fractions_of_amount",
         tier=Tier.FOUNDATION,
-        prompt=f"Find {a}/{b} of {amount}.",
+        prompt=f"{amount_verb(rng)} {a}/{b} of {amount}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=str(result),
@@ -898,9 +938,10 @@ def generate_modelled_example_fraction_of_amount(tier: Tier, rng: random.Random)
 
 
 def generate_modelled_example_fractions_equivalent(tier: Tier, rng: random.Random) -> ModelledExample:
-    shape = rng.choice(["missing_numerator", "identify_equivalent"])
+    shape = rng.choice(["missing_value", "identify_equivalent"])
 
-    if shape == "missing_numerator":
+    if shape == "missing_value":
+        unknown = rng.choice(["numerator", "denominator"])
         b = rng.randint(2, 10)
         a = rng.randint(1, b - 1)
         while math.gcd(a, b) != 1:
@@ -910,30 +951,54 @@ def generate_modelled_example_fractions_equivalent(tier: Tier, rng: random.Rando
         missing_num = a * k
 
         if a * d != missing_num * b:
-            raise ValueError("modelled example fractions_equivalent (missing_numerator) verification failed")
+            raise ValueError("modelled example fractions_equivalent (missing_value) verification failed")
 
-        teaching_steps = [
-            f"Equivalent fractions represent the same value even though their numerators and "
-            f"denominators are different - you get from one to the other by multiplying (or dividing) "
-            f"both the top and bottom by the SAME number.",
-            f"Here we know the new denominator is {d}, so first work out what {b} was multiplied by to "
-            f"become {d}: {d} ÷ {b} = {k}. This {k} is the scale factor.",
-            f"Whatever we do to the denominator, we must do to the numerator too, to keep the fraction's "
-            f"value unchanged. So multiply the numerator by the same scale factor: {a} × {k} = {missing_num}.",
-            f"So {a}/{b} = {missing_num}/{d}.",
-        ]
-        worked_calculation = [
-            f"{a}/{b} = ?/{d}",
-            f"{d} ÷ {b} = {k}",
-            f"{a} × {k} = {missing_num}",
-        ]
+        if unknown == "numerator":
+            other_fraction = f"\\frac{{?}}{{{d}}}"
+            answer = missing_num
+            teaching_steps = [
+                f"Equivalent fractions represent the same value even though their numerators and "
+                f"denominators are different - you get from one to the other by multiplying (or dividing) "
+                f"both the top and bottom by the SAME number.",
+                f"Here we know the new denominator is {d}, so first work out what {b} was multiplied by to "
+                f"become {d}: {d} ÷ {b} = {k}. This {k} is the scale factor.",
+                f"Whatever we do to the denominator, we must do to the numerator too, to keep the fraction's "
+                f"value unchanged. So multiply the numerator by the same scale factor: {a} × {k} = {missing_num}.",
+                f"So {a}/{b} = {missing_num}/{d}.",
+            ]
+            worked_calculation = [
+                f"{a}/{b} = \\frac{{?}}{{{d}}}",
+                f"{d} ÷ {b} = {k}",
+                f"{a} × {k} = {missing_num}",
+            ]
+        else:
+            other_fraction = f"\\frac{{{missing_num}}}{{?}}"
+            answer = d
+            teaching_steps = [
+                f"Equivalent fractions represent the same value even though their numerators and "
+                f"denominators are different - you get from one to the other by multiplying (or dividing) "
+                f"both the top and bottom by the SAME number.",
+                f"Here we know the new numerator is {missing_num}, so first work out what {a} was "
+                f"multiplied by to become {missing_num}: {missing_num} ÷ {a} = {k}. This {k} is the scale "
+                "factor.",
+                f"Whatever we do to the numerator, we must do to the denominator too, to keep the "
+                f"fraction's value unchanged. So multiply the denominator by the same scale factor: "
+                f"{b} × {k} = {d}.",
+                f"So {a}/{b} = {missing_num}/{d}.",
+            ]
+            worked_calculation = [
+                f"{a}/{b} = \\frac{{{missing_num}}}{{?}}",
+                f"{missing_num} ÷ {a} = {k}",
+                f"{b} × {k} = {d}",
+            ]
+
         return ModelledExample(
             topic_id="fractions_equivalent",
             tier=Tier.FOUNDATION,
-            prompt=f"{a}/{b} = ?/{d}. Find the missing numerator.",
+            prompt=f"{a}/{b} = {other_fraction}. Find the missing number.",
             worked_calculation=tuple(worked_calculation),
             teaching_steps=tuple(teaching_steps),
-            final_answer=str(missing_num),
+            final_answer=str(answer),
         )
 
     b = rng.randint(2, 10)
@@ -1029,8 +1094,8 @@ def generate_modelled_example_fractions_equivalent_diagram(tier: Tier, rng: rand
 
         kind = rng.choice(["bar", "circle"])
         diagram = DiagramSpec(kind="fraction_shapes", params={"shapes": [
-            {"kind": kind, "parts": b, "shaded": a, "label": f"{a}/{b}"},
-            {"kind": kind, "parts": d, "shaded": target_shaded, "label": f"{target_shaded}/{d}"},
+            {"kind": kind, "parts": b, "shaded": a},
+            {"kind": kind, "parts": d, "shaded": target_shaded},
         ]})
 
         teaching_steps = [
@@ -1045,18 +1110,15 @@ def generate_modelled_example_fractions_equivalent_diagram(tier: Tier, rng: rand
             "amount of the whole shape, just cut into different numbers of pieces.",
         ]
         worked_calculation = [
-            f"{a}/{b} = ?/{d}",
+            f"{a}/{b} = \\frac{{?}}{{{d}}}",
             f"{d} ÷ {b} = {k}",
             f"{a} × {k} = {target_shaded}",
         ]
+        prompt = "How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?"
         return ModelledExample(
             topic_id="fractions_equivalent_diagram",
             tier=Tier.FOUNDATION,
-            prompt=(
-                f"Shape A is divided into {b} equal parts, with {a} shaded. Shape B is divided into "
-                f"{d} equal parts. How many parts of Shape B must be shaded to show a fraction "
-                "equivalent to Shape A?"
-            ),
+            prompt=prompt,
             worked_calculation=tuple(worked_calculation),
             teaching_steps=tuple(teaching_steps),
             final_answer=str(target_shaded),
@@ -1102,9 +1164,9 @@ def generate_modelled_example_fractions_equivalent_diagram(tier: Tier, rng: rand
     correct_num, correct_den = candidates[correct_index]
 
     kind = rng.choice(["bar", "circle"])
-    shapes = [{"kind": kind, "parts": b, "shaded": a, "label": f"{a}/{b}"}]
+    shapes = [{"kind": kind, "parts": b, "shaded": a}]
     for letter, (num, den) in zip(letters, candidates):
-        shapes.append({"kind": kind, "parts": den, "shaded": num, "label": f"{letter}) {num}/{den}"})
+        shapes.append({"kind": kind, "parts": den, "shaded": num, "label": f"{letter})"})
     diagram = DiagramSpec(kind="fraction_shapes", params={"shapes": shapes})
 
     teaching_steps = [
@@ -1171,7 +1233,7 @@ def generate_modelled_example_fractions_ordering(tier: Tier, rng: random.Random)
     common_form = ", ".join(
         f"{_fmt_fraction(f)} = {f.numerator * (lcm_val // f.denominator)}/{lcm_val}" for f in fracs
     )
-    direction_words = "smallest to largest" if direction == "ascending" else "largest to smallest"
+    order_phrase = f"{direction} order"
 
     teaching_steps = [
         "Fractions with different denominators can't be compared just by looking at their numerators - "
@@ -1182,19 +1244,19 @@ def generate_modelled_example_fractions_ordering(tier: Tier, rng: random.Random)
         f"Convert every fraction to have denominator {lcm_val}: {common_form}.",
         f"Now that all the denominators match, the fraction with the biggest numerator is the biggest "
         f"value, and the fraction with the smallest numerator is the smallest value - so just order the "
-        f"numerators {direction_words}.",
+        f"numerators in {order_phrase}.",
         f"Finally, write the answer using the ORIGINAL fractions (not the common-denominator versions), "
         f"in that same order: {', '.join(ordered_strs)}.",
     ]
     worked_calculation = [
         f"{', '.join(display_strs)}",
         f"= {common_form}",
-        f"order ({direction_words}): {', '.join(ordered_strs)}",
+        f"{order_phrase}: {', '.join(ordered_strs)}",
     ]
     return ModelledExample(
         topic_id="fractions_ordering",
         tier=Tier.FOUNDATION,
-        prompt=f"Write these fractions in order, {direction_words}: {', '.join(display_strs)}",
+        prompt=f"Write these fractions in {order_phrase}: {', '.join(display_strs)}",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=", ".join(ordered_strs),
@@ -1232,10 +1294,11 @@ def generate_modelled_example_fractions_improper_mixed(tier: Tier, rng: random.R
             f"{improper_num} ÷ {den} = {whole} remainder {num}",
             f"= {whole} {num}/{den}",
         ]
+        verb, prep = convert_phrasing(rng)
         return ModelledExample(
             topic_id="fractions_improper_mixed",
             tier=Tier.FOUNDATION,
-            prompt=f"Write {improper_num}/{den} as a mixed number.",
+            prompt=f"{verb} {improper_num}/{den} {prep} a mixed number.",
             worked_calculation=tuple(worked_calculation),
             teaching_steps=tuple(teaching_steps),
             final_answer=f"{whole} {num}/{den}",
@@ -1256,10 +1319,11 @@ def generate_modelled_example_fractions_improper_mixed(tier: Tier, rng: random.R
             f"{whole} × {den} + {num} = {improper_num}",
             f"= {improper_num}/{den}",
         ]
+        verb, prep = convert_phrasing(rng)
         return ModelledExample(
             topic_id="fractions_improper_mixed",
             tier=Tier.FOUNDATION,
-            prompt=f"Write {whole} {num}/{den} as an improper fraction.",
+            prompt=f"{verb} {whole} {num}/{den} {prep} an improper fraction.",
             worked_calculation=tuple(worked_calculation),
             teaching_steps=tuple(teaching_steps),
             final_answer=f"{improper_num}/{den}",

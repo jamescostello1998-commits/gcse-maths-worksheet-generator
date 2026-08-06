@@ -1,15 +1,18 @@
 import random
+from datetime import date
 from typing import Optional
 
 from fastapi import APIRouter, HTTPException, Response
 
 from app.api.schemas import (
+    GenerateBellTasksRequest,
     GenerateWorksheetRequest,
     GroupSchema,
     PracticeTestSummary,
     SectionSchema,
     TopicSummary,
 )
+from app.bell_tasks.generator import generate_bell_tasks_pptx
 from app.core.models import Tier
 from app.core.registry import get_topic, list_topics, sections_tree
 from app.pdf.modelled_example_renderer import render_modelled_example
@@ -90,11 +93,24 @@ def create_modelled_example(payload: GenerateWorksheetRequest) -> Response:
     rng = random.Random()
     example = topic.generate_modelled_example(tier, rng)
     practice_worksheet = build_worksheet(payload.topic_id, tier, count=PRACTICE_QUESTION_COUNT, rng=rng)
-    pdf_bytes = render_modelled_example(topic.display_name, tier, example, practice_worksheet.questions)
+    pdf_bytes = render_modelled_example(
+        topic.display_name, tier, example, practice_worksheet.questions, topic.preamble_lines or ()
+    )
     filename = f"{payload.topic_id}-{tier.value}-modelled-example.pdf"
     return Response(
         content=pdf_bytes,
         media_type="application/pdf",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
+
+
+@router.post("/bell-tasks")
+def create_bell_tasks(payload: GenerateBellTasksRequest) -> Response:
+    pptx_bytes = generate_bell_tasks_pptx(payload.topic_ids)
+    filename = f"bell-tasks-{date.today().isoformat()}.pptx"
+    return Response(
+        content=pptx_bytes,
+        media_type="application/vnd.openxmlformats-officedocument.presentationml.presentation",
         headers={"Content-Disposition": f'attachment; filename="{filename}"'},
     )
 
@@ -106,6 +122,7 @@ def _to_practice_test_summary(paper: PracticeTestPaper) -> PracticeTestSummary:
         tier=paper.tier,
         sitting_id=paper.sitting_id,
         paper_number=paper.paper_number,
+        calculator_allowed=paper.calculator_allowed,
         total_marks=paper.total_marks,
         question_count=len(paper.questions),
     )

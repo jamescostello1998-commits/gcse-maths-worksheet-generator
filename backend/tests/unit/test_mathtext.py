@@ -5,37 +5,74 @@ from reportlab.lib.colors import HexColor
 
 import app.pdf.mathtext as mathtext_module
 from app.pdf.fraction_images import FractionImage
-from app.pdf.mathtext import to_markup
+from app.pdf.mathtext import _VAR_FONT_BOLD_ITALIC, _VAR_FONT_ITALIC, to_markup
 
 INK = HexColor("#1a1a1a")
 ACCENT = HexColor("#2f6f4f")
 
-_IMG_RE = re.compile(r'<img src="([^"]+)" width="([^"]+)" height="([^"]+)" valign="bottom"/>')
+_IMG_RE = re.compile(r'<img src="([^"]+)" width="([^"]+)" height="([^"]+)" valign="(?:bottom|baseline)"/>')
+
+# The registered curved-italic font is used via an explicit <font name="...">
+# tag instead of <i> - see mathtext.py's module docstring for why. Tests
+# reference the real registered names rather than hardcoding the string, so
+# they stay correct if the font is ever swapped.
+_ITALIC = f'<font name="{_VAR_FONT_ITALIC}">'
+_BOLD_ITALIC = f'<font name="{_VAR_FONT_BOLD_ITALIC}">'
 
 
 def _markup(text: str, font_size: float = 11.5, color=INK, bold: bool = False) -> str:
     return to_markup(text, font_size=font_size, color=color, bold=bold)
 
 
+def _italic(letter: str) -> str:
+    return f"{_ITALIC}{letter}</font>"
+
+
 def test_exponents_become_superscript():
-    assert _markup("3x^2 + 5") == "3<i>x</i><super>2</super> + 5"
+    assert _markup("3x^2 + 5") == f"3{_italic('x')}<super>2</super> + 5"
     assert _markup("10^-3") == "10<super>-3</super>"
 
 
-def test_fractional_exponent_is_raised_as_one_unit():
-    assert _markup("x^(1/4)") == "<i>x</i><super>(1/4)</super>"
-    assert _markup("(9x^6)^(1/2)") == "(9<i>x</i><super>6</super>)<super>(1/2)</super>"
-    assert _markup("x^(-1/2)") == "<i>x</i><super>(-1/2)</super>"
+def test_fractional_exponent_is_raised_as_a_true_vinculum_in_superscript():
+    # Reverses the earlier flat-text decision once a spike confirmed a
+    # reduced-size fraction image rises/aligns correctly inside <super>,
+    # including at the smallest font size fractions appear anywhere in the
+    # app - see the module docstring.
+    markup = _markup("x^(1/4)")
+    m = re.search(r"^" + re.escape(_italic("x")) + r"<super>(<img[^>]+>)</super>$", markup)
+    assert m is not None, markup
+    img_tag = m.group(1)
+    img_m = _IMG_RE.match(img_tag)
+    assert img_m is not None
+    assert os.path.isfile(img_m.group(1))
+
+
+def test_compound_exponent_is_raised_as_flat_text():
+    # An exponent that ISN'T a plain numeric fraction (e.g. an algebraic
+    # expression) has no vinculum-shaped sub-content to draw, so it's just
+    # wrapped flat in <super> - its inner x has already been italicised by
+    # the earlier pass.
+    assert _markup("9^(x+2)") == f"9<super>({_italic('x')}+2)</super>"
+    assert _markup("5^(3x)") == f"5<super>(3{_italic('x')})</super>"
+
+
+def test_bare_variable_exponent_is_raised_and_italicised():
+    assert _markup("8^x = 512") == f"8<super>{_italic('x')}</super> = 512"
+    assert _markup("p^n") == f"p<super>{_italic('n')}</super>"
 
 
 def test_bare_x_is_italicised():
-    assert _markup("Solve for x.") == "Solve for <i>x</i>."
-    assert _markup("3x + 1 = 7") == "3<i>x</i> + 1 = 7"
+    assert _markup("Solve for x.") == f"Solve for {_italic('x')}."
+    assert _markup("3x + 1 = 7") == f"3{_italic('x')} + 1 = 7"
 
 
 def test_bare_n_is_italicised():
-    assert _markup("Find n.") == "Find <i>n</i>."
-    assert _markup("(n - 2) × 180") == "(<i>n</i> - 2) × 180"
+    assert _markup("Find n.") == f"Find {_italic('n')}."
+    assert _markup("(n - 2) × 180") == f"({_italic('n')} - 2) × 180"
+
+
+def test_bold_context_uses_the_bold_italic_font():
+    assert _markup("x = 5", bold=True) == f"{_BOLD_ITALIC}x</font> = 5"
 
 
 def test_x_or_n_glued_to_another_letter_is_left_alone():
@@ -65,22 +102,24 @@ def test_indefinite_article_a_is_not_italicised():
 
 def test_real_ratio_1_to_n_sentence():
     assert _markup("Write the ratio 3:5 in the form 1:n.") == (
-        "Write the ratio 3:5 in the form 1:<i>n</i>."
+        f"Write the ratio 3:5 in the form 1:{_italic('n')}."
     )
 
 
 def test_real_polygon_interior_sentence():
     text = "the interior angles always add up to (n - 2) × 180 degrees, where n is the number of sides."
     markup = _markup(text)
-    assert markup.count("<i>n</i>") == 2
+    assert markup.count(_italic("n")) == 2
     assert "number of sides" in markup
 
 
 def test_surd_over_integer_is_left_as_plain_text():
     # A surd-over-integer exact trig value (see exact_trig_values.py) is a
     # single already-clear unit, deliberately not run through the standalone-
-    # fraction path - the trailing digits are the radicand of the preceding
-    # "√", not an independent numerator to raise/lower.
+    # fraction OR the radical-image path - the trailing digits are the
+    # radicand of the preceding "√", not an independent numerator to raise/
+    # lower, and "√2" here must not become a full-length-radical image with a
+    # dangling literal "/2" left after it.
     assert _markup("√2/2") == "√2/2"
     assert _markup("√3/2") == "√3/2"
     assert _markup("sin(45°) = √2/2") == "sin(45°) = √2/2"
@@ -185,6 +224,177 @@ def test_a_bare_x_or_n_inside_the_generated_file_path_is_never_italicised(monkey
 
 
 # ---------------------------------------------------------------------------
+# Full-length radical ("√n") - rendered as an inline <img> (hook + bar
+# spanning the radicand, see app/pdf/radical_images.py).
+# ---------------------------------------------------------------------------
+
+def test_radical_is_rendered_as_an_inline_image():
+    markup = _markup("√72")
+    m = _IMG_RE.search(markup)
+    assert m is not None, markup
+    assert markup == m.group(0)
+    assert os.path.isfile(m.group(1))
+
+
+def test_radical_within_a_sentence():
+    # Only the genuine bare-digit radicand ("72") is matched - the literal
+    # "a√b" phrasing (an instructional placeholder, not a real radical) has
+    # no digits after its "√" and correctly stays plain text.
+    markup = _markup("Simplify √72, giving your answer in the form a√b.")
+    matches = list(_IMG_RE.finditer(markup))
+    assert len(matches) == 1
+    assert markup == (
+        f"Simplify {matches[0].group(0)}, giving your answer in the form a√b."
+    )
+
+
+def test_radical_wrapping_non_digit_content_is_left_as_plain_text():
+    # Only bare-digit radicands are matched - a radical wrapping an
+    # unevaluated expression stays plain literal text, unchanged.
+    assert _markup("√(4^2 × 3)") == "√(4<super>2</super> × 3)"
+
+
+def test_radical_with_a_decimal_radicand_covers_the_whole_number():
+    # Real bug found via rendering: "√205.1" (an intermediate decimal value,
+    # e.g. bearings_cosine_rule's AC² display) only matched the integer part
+    # "205" originally, leaving ".1" stranded as plain text right after the
+    # radical image instead of under its bar. The whole decimal must now be
+    # part of one match/image.
+    markup = _markup("AC = √205.1 = 14.32 km")
+    matches = list(_IMG_RE.finditer(markup))
+    assert len(matches) == 1
+    assert markup == f"AC = {matches[0].group(0)} = 14.32 km"
+
+
+# ---------------------------------------------------------------------------
+# Explicit \frac{}{} / \recur{}{} sentinel markers - for content the
+# automatic digit-only regexes above can't safely auto-detect (an unknown
+# placeholder, an algebraic/surd numerator, or a specific recurring block).
+# ---------------------------------------------------------------------------
+
+def test_frac_marker_renders_an_unknown_placeholder():
+    markup = _markup(r"\frac{?}{12}")
+    m = _IMG_RE.search(markup)
+    assert m is not None, markup
+    assert markup == m.group(0)
+    assert os.path.isfile(m.group(1))
+
+
+def test_frac_marker_renders_an_algebraic_surd_numerator():
+    markup = _markup(r"\frac{21 - 4√5}{11}")
+    m = _IMG_RE.search(markup)
+    assert m is not None, markup
+    assert markup == m.group(0)
+
+
+def test_frac_marker_content_is_not_re_scanned_by_italics_pass():
+    # A bare "n" inside a \frac{}{} numerator must render as part of the
+    # fraction image, not get corrupted by the earlier italics pass (the
+    # same bug class as the file-path regression above, now for marker
+    # content instead of a random temp path).
+    markup = _markup(r"\frac{n}{2} + 1")
+    matches = list(_IMG_RE.finditer(markup))
+    assert len(matches) == 1
+    assert markup == f"{matches[0].group(0)} + 1"
+
+
+def test_recur_marker_single_digit_block():
+    markup = _markup(r"The recurring decimal \recur{0.}{3} can be written as a fraction.")
+    matches = list(_IMG_RE.finditer(markup))
+    assert len(matches) == 1
+    assert markup == (
+        f"The recurring decimal {matches[0].group(0)} can be written as a fraction."
+    )
+    assert os.path.isfile(matches[0].group(1))
+
+
+def test_recur_marker_multi_digit_block():
+    markup = _markup(r"\recur{0.1}{428571}")
+    m = _IMG_RE.search(markup)
+    assert m is not None, markup
+    assert markup == m.group(0)
+
+
+def test_recur_marker_and_frac_marker_can_coexist():
+    markup = _markup(r"\recur{0.}{3} = \frac{1}{3}")
+    matches = list(_IMG_RE.finditer(markup))
+    assert len(matches) == 2
+    assert markup == f"{matches[0].group(0)} = {matches[1].group(0)}"
+
+
+def test_colvec_marker_renders_a_column_vector_image():
+    markup = _markup(r"\colvec{2}{3}")
+    m = _IMG_RE.search(markup)
+    assert m is not None, markup
+    assert markup == m.group(0)
+    assert os.path.isfile(m.group(1))
+
+
+def test_colvec_marker_handles_negative_components():
+    markup = _markup(r"a = \colvec{-2}{5}")
+    m = _IMG_RE.search(markup)
+    assert m is not None, markup
+    assert markup == f"a = {m.group(0)}"
+
+
+def test_colvec_marker_content_is_not_re_scanned_by_italics_pass():
+    # A bare "n" inside a \colvec{}{} component must not get corrupted by the
+    # earlier italics pass - same bug class as the \frac{}{} marker test above.
+    markup = _markup(r"\colvec{n}{2} + 1")
+    matches = list(_IMG_RE.finditer(markup))
+    assert len(matches) == 1
+    assert markup == f"{matches[0].group(0)} + 1"
+
+
+def test_colvec_and_frac_markers_can_coexist():
+    markup = _markup(r"\colvec{2}{3} = \frac{1}{2}\colvec{4}{6}")
+    matches = list(_IMG_RE.finditer(markup))
+    assert len(matches) == 3
+
+
+# ---------------------------------------------------------------------------
+# \plain{X} - opts a bare letter OUT of the default x/n italics.
+# ---------------------------------------------------------------------------
+
+def test_plain_marker_renders_n_upright():
+    assert _markup(r"Write the ratio in the form 1:\plain{n}.") == "Write the ratio in the form 1:n."
+
+
+def test_plain_marker_leaves_other_bare_n_occurrences_italicised():
+    # Only the explicitly-marked occurrence is exempted - a different, unmarked
+    # "n" elsewhere in the same string is still italicised as normal.
+    assert _markup(r"n and \plain{n}") == f"{_italic('n')} and n"
+
+
+def test_plain_marker_content_is_not_re_scanned_by_other_passes():
+    # The bare content is spliced back verbatim after every other pass - a
+    # fraction-looking "1/2" inside \plain{} must NOT become a vinculum image.
+    assert _markup(r"\plain{1/2}") == "1/2"
+
+
+# ---------------------------------------------------------------------------
+# Trailing full stop directly after a decimal number.
+# ---------------------------------------------------------------------------
+
+def test_trailing_period_after_decimal_is_stripped():
+    assert _markup("Work out 3.5 × 2.1.") == "Work out 3.5 × 2.1"
+    assert _markup("The answer is 12.75.") == "The answer is 12.75"
+
+
+def test_trailing_period_is_only_stripped_at_the_very_end():
+    # A decimal followed by more prose (not the end of the string) must be
+    # left completely untouched - only a literal end-of-sentence period
+    # directly after a decimal number is in scope.
+    assert _markup("3.5 is bigger than 2.1. Now try the next one.") == (
+        "3.5 is bigger than 2.1. Now try the next one."
+    )
+
+
+def test_period_after_an_integer_is_not_touched():
+    assert _markup("Work out 3 + 4.") == "Work out 3 + 4."
+
+
+# ---------------------------------------------------------------------------
 # Bold vector labels (\vec{a} / \vec{b}) - see app/topics/vectors.py, which
 # writes this marker directly in generator source rather than relying on a
 # blanket regex (bare "a" collides constantly with the English article).
@@ -209,3 +419,38 @@ def test_plain_unmarked_a_or_b_stays_untouched():
 
 def test_vec_sentinel_survives_alongside_a_coefficient():
     assert _markup("3\\vec{a} - \\vec{b}") == "3<b>a</b> - <b>b</b>"
+
+
+def test_subscript_bare_digit():
+    assert _markup("x_0 = 2") == f"{_italic('x')}<sub>0</sub> = 2"
+
+
+def test_subscript_bare_letter_is_italicised_inside_sub():
+    assert _markup("x_n") == f"{_italic('x')}<sub>{_italic('n')}</sub>"
+
+
+def test_subscript_parenthesised_expression_drops_the_parens():
+    assert _markup("x_(n+1) = g(x_n)") == (
+        f"{_italic('x')}<sub>{_italic('n')}+1</sub> = g({_italic('x')}<sub>{_italic('n')}</sub>)"
+    )
+
+
+def test_subscript_composes_with_a_trailing_exponent():
+    # "x_n^2" means (x_n)^2 - the subscript and superscript both attach to
+    # the same x, giving a real subscript immediately followed by a real
+    # superscript, not a nested "n^2".
+    assert _markup("x_n^2") == f"{_italic('x')}<sub>{_italic('n')}</sub><super>2</super>"
+
+
+def test_subscript_followed_by_comma_gets_a_thin_space_not_a_glued_comma():
+    # Reintroducing <sub> revives a documented ReportLab quirk (a comma
+    # glued/raised immediately after </sub> with zero gap) - confirmed via a
+    # real rendered-PDF spike before shipping. A thin space (U+2009) fixes
+    # it with a negligible visible gap.
+    assert _markup("x_1, x_2") == (
+        f"{_italic('x')}<sub>1</sub> , {_italic('x')}<sub>2</sub>"
+    )
+
+
+def test_subscript_not_followed_by_comma_is_untouched():
+    assert _markup("x_1 = 2") == f"{_italic('x')}<sub>1</sub> = 2"

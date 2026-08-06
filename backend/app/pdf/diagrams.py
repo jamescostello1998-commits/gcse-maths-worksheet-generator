@@ -16,6 +16,7 @@ from reportlab.lib import colors
 from reportlab.pdfbase.pdfmetrics import stringWidth
 
 from app.core.models import DiagramSpec
+from app.pdf.mathtext import _VAR_FONT_ITALIC
 from app.pdf.styles import ACCENT, CHART_COLORS, GRID, HIGHLIGHT, INK, MUTED, PAPER
 
 DIAGRAM_WIDTH = 200
@@ -23,7 +24,12 @@ DIAGRAM_HEIGHT = 130
 
 _LABEL_SIZE = 9
 _LABEL_FONT = "Helvetica"
-_LABEL_FONT_ITALIC = "Helvetica-Oblique"
+# Same registered curved-italic TTF used by app/pdf/mathtext.py's prose text
+# (imported directly so both call sites always agree, and so the font is
+# guaranteed registered with ReportLab before any diagram label uses it -
+# see mathtext.py's module docstring for why <i>/Helvetica-Oblique was
+# replaced with an explicit registered font).
+_LABEL_FONT_ITALIC = _VAR_FONT_ITALIC
 _LABEL_FONT_BOLD = "Helvetica-Bold"
 
 
@@ -152,6 +158,22 @@ def _angle_arc(cx: float, cy: float, angle1_deg: float, angle2_deg: float, radiu
     return arc
 
 
+def _swept_angle_arc(cx: float, cy: float, start_deg: float, end_deg: float, radius: float = 12, color=INK) -> ArcPath:
+    """An arc tracing the EXACT sweep from start_deg to end_deg (always in
+    the increasing-angle direction), unlike `_angle_arc` which always picks
+    whichever of the two possible sweeps between two ray directions is
+    non-reflex (<=180 deg). Two ray directions alone can't disambiguate
+    which of two different labelled angles a wedge represents - needed for
+    `draw_angle_line`'s "around a point" layout, where the last/missing
+    angle is routinely reflex (e.g. two 10 deg givens leave a 340 deg gap)
+    and `_angle_arc` was silently drawing the small 20 deg complementary
+    wedge on the opposite side instead - same fix pattern `draw_sector`
+    already uses for its own routinely-reflex sector angle."""
+    arc = ArcPath(strokeColor=color, fillColor=None, strokeWidth=0.9)
+    arc.addArc(cx, cy, radius, start_deg, end_deg, moveTo=True)
+    return arc
+
+
 def _vertex_angle_arc(vertex: tuple, other1: tuple, other2: tuple, radius: float = 12, color=INK) -> ArcPath:
     """The arc marking the angle at `vertex` between the two rays
     vertex->other1 and vertex->other2 (e.g. two sides of a triangle, or two
@@ -191,14 +213,111 @@ def draw_rectangle(params: dict) -> Drawing:
 
     d.add(Rect(x0, y0, rw, rh, strokeColor=INK, fillColor=None, strokeWidth=1.2))
     d.add(_label(x0 + rw / 2, y0 - 14, params["width_label"]))
-    d.add(_label(x0 + rw + 10, y0 + rh / 2, params["height_label"], anchor="start"))
+    # The height_label sits to the right of the rectangle with no stringWidth
+    # awareness at all previously - for a wide rectangle (width scale-bound,
+    # pushing x0+rw close to the canvas's own right edge) a two-digit-or-
+    # longer height_label routinely overflowed past DIAGRAM_WIDTH (confirmed
+    # via a real rendered-PDF check across many seeds, not assumed - the
+    # overflow is small, ~2-3pt, but consistent). Clamp the anchor so the
+    # label's own rendered width always fits inside the canvas, matching the
+    # clamp pattern draw_sector already uses for its own labels.
+    height_label = params["height_label"]
+    label_x = x0 + rw + 10
+    label_w = stringWidth(height_label, _LABEL_FONT, _LABEL_SIZE)
+    label_x = min(label_x, DIAGRAM_WIDTH - 4 - label_w)
+    d.add(_label(label_x, y0 + rh / 2, height_label, anchor="start"))
+    return d
+
+
+def _parse_leading_number(label: str) -> float:
+    """The leading numeric value of a label like "10 cm" - returns 0.0 for a
+    label with no leading number at all (e.g. a bare unknown letter "x"),
+    which is fine here since the width labels this is used on are always
+    real given numbers, never the unknown itself (see draw_two_similar_
+    rectangles)."""
+    m = re.match(r"[-+]?[\d.]+", label.strip())
+    return float(m.group()) if m else 0.0
+
+
+def draw_two_similar_rectangles(params: dict) -> Drawing:
+    """Two separate rectangles - "Shape A" and "Shape B" - side by side, for
+    a similar-shapes ratio question where the student must identify
+    corresponding sides themselves (same orientation, so width<->width and
+    height<->height, but the two rectangles are NOT drawn in their true
+    relative proportions - one side is often the unknown the student must
+    find, and drawing it at its real scaled size would let a careful
+    ruler-measurement leak the answer - see `_not_to_scale`). The shape
+    with the numerically larger given width IS drawn moderately larger
+    (though never to true scale) and placed first/left, so it's visually
+    obvious which side a given measurement belongs to - whichever of Shape
+    A/Shape B that turns out to be, per the real generated values.
+
+    params: a_width_label/a_height_label (Shape A's two side labels), b_width_label/
+    b_height_label (Shape B's two corresponding side labels - one is the known
+    scale-factor partner, the other may be the unknown, e.g. "x"). Any of the
+    four is optional (omit a key entirely to leave that side unlabelled) -
+    the area/volume version of this question only ever states ONE
+    corresponding length pair (the area/volume itself, not a second length,
+    is what's given/asked for), so only one width/height pair is passed.
+    The width labels are always real given numbers (never the unknown
+    itself), so they're always safe to compare numerically."""
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    a_bigger = _parse_leading_number(params.get("a_width_label", "0")) >= _parse_leading_number(
+        params.get("b_width_label", "0")
+    )
+
+    # "left" always means "the bigger shape" (by design - see docstring), so
+    # left_w/right_w are fixed regardless of which of A/B ends up there;
+    # only the ax0/bx0 assignment below depends on a_bigger.
+    left_w, left_h = 64, 56
+    right_w, right_h = 42, 36
+    gap = 34
+    x0 = (DIAGRAM_WIDTH - (left_w + gap + right_w)) / 2
+    base_y = 26
+
+    if a_bigger:
+        ax0, ay0, aw, ah = x0, base_y, left_w, left_h
+        bx0, by0, bw, bh = x0 + left_w + gap, base_y, right_w, right_h
+    else:
+        bx0, by0, bw, bh = x0, base_y, left_w, left_h
+        ax0, ay0, aw, ah = x0 + left_w + gap, base_y, right_w, right_h
+
+    d.add(Rect(ax0, ay0, aw, ah, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    d.add(Rect(bx0, by0, bw, bh, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+
+    d.add(_label(ax0 + aw / 2, ay0 + ah + 8, "Shape A", size=8, color=MUTED))
+    d.add(_label(bx0 + bw / 2, by0 + bh + 8, "Shape B", size=8, color=MUTED))
+
+    if params.get("a_width_label"):
+        d.add(_label(ax0 + aw / 2, ay0 - 14, params["a_width_label"]))
+    if params.get("b_width_label"):
+        d.add(_label(bx0 + bw / 2, by0 - 14, params["b_width_label"]))
+    # A height label on the LEFT-positioned shape sits in the gap toward the
+    # other shape - centre it there so it can never collide with the other
+    # box regardless of which of A/B ends up left this time (a fixed small
+    # offset from the box edge, tried first, could still reach into the
+    # gap's far side for a wide label like "20 cm"). The RIGHT-positioned
+    # shape's height label has open canvas space to its own right instead,
+    # so it keeps the simple fixed-offset placement.
+    if params.get("a_height_label"):
+        if a_bigger:
+            d.add(_label(ax0 + aw + gap / 2, ay0 + ah / 2, params["a_height_label"], anchor="middle"))
+        else:
+            d.add(_label(ax0 + aw + 8, ay0 + ah / 2, params["a_height_label"], anchor="start"))
+    if params.get("b_height_label"):
+        if a_bigger:
+            d.add(_label(bx0 + bw + 8, by0 + bh / 2, params["b_height_label"], anchor="start"))
+        else:
+            d.add(_label(bx0 + bw + gap / 2, by0 + bh / 2, params["b_height_label"], anchor="middle"))
+
+    _not_to_scale(d)
     return d
 
 
 def draw_triangle_area(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     base_val, height_val = params["base"], params["height"]
-    margin = 32
+    margin = 26
     scale = min((DIAGRAM_WIDTH - 2 * margin) / base_val, (DIAGRAM_HEIGHT - 2 * margin) / height_val)
     bw, bh = base_val * scale, height_val * scale
     x0, y0 = (DIAGRAM_WIDTH - bw) / 2, (DIAGRAM_HEIGHT - bh) / 2 - 5
@@ -207,7 +326,21 @@ def draw_triangle_area(params: dict) -> Drawing:
     d.add(Polygon([x0, y0, x0 + bw, y0, apex_x, y0 + bh], strokeColor=INK, fillColor=None, strokeWidth=1.2))
     d.add(Line(apex_x, y0 + bh, apex_x, y0, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
     d.add(_label(x0 + bw / 2, y0 - 14, params["base_label"]))
-    d.add(_label(apex_x + 6, y0 + bh / 2, params["height_label"], anchor="start"))
+
+    height_label = params["height_label"]
+    label_w = stringWidth(str(height_label), _LABEL_FONT, _LABEL_SIZE)
+    # Room between the dashed height line and the sloped right edge, measured
+    # at the triangle's vertical midpoint - the widest that gap ever gets,
+    # since the sloped edge converges toward the dashed line as it rises to
+    # the apex. When the label genuinely fits there without crossing either
+    # line, keep it inside the triangle (real exam-diagram convention);
+    # otherwise - a narrow/tall triangle, where a fixed offset was previously
+    # found to cross the sloped edge - fall back to fully outside instead.
+    inside_gap = (x0 + bw - apex_x) / 2
+    if inside_gap - 12 >= label_w:
+        d.add(_label(apex_x + 6, y0 + bh / 2, height_label, anchor="start"))
+    else:
+        d.add(_label(x0 + bw + 8, y0 + bh / 2, height_label, anchor="start"))
     return d
 
 
@@ -220,25 +353,129 @@ def draw_l_shape(params: dict) -> Drawing:
     ow_s, oh_s, iw_s, ih_s = ow * scale, oh * scale, iw * scale, ih * scale
     x0, y0 = (DIAGRAM_WIDTH - ow_s) / 2, (DIAGRAM_HEIGHT - oh_s) / 2
 
+    ix0, iy0 = x0 + (ow_s - iw_s) / 2, y0 + (oh_s - ih_s) / 2
+    corner = params.get("corner", "top_right")
+
     if params.get("notch") == "corner":
-        pts = [
-            x0, y0,
-            x0 + ow_s, y0,
-            x0 + ow_s, y0 + oh_s - ih_s,
-            x0 + ow_s - iw_s, y0 + oh_s - ih_s,
-            x0 + ow_s - iw_s, y0 + oh_s,
-            x0, y0 + oh_s,
-        ]
+        if corner == "top_left":
+            # Mirror of the default top-right cut - a second L orientation
+            # (cut from the opposite corner), so a worksheet showing several
+            # of these doesn't always look identical.
+            pts = [
+                x0, y0,
+                x0 + ow_s, y0,
+                x0 + ow_s, y0 + oh_s,
+                x0 + iw_s, y0 + oh_s,
+                x0 + iw_s, y0 + oh_s - ih_s,
+                x0, y0 + oh_s - ih_s,
+            ]
+        else:
+            pts = [
+                x0, y0,
+                x0 + ow_s, y0,
+                x0 + ow_s, y0 + oh_s - ih_s,
+                x0 + ow_s - iw_s, y0 + oh_s - ih_s,
+                x0 + ow_s - iw_s, y0 + oh_s,
+                x0, y0 + oh_s,
+            ]
         d.add(Polygon(pts, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    elif params.get("shade_frame"):
+        # Shade the remaining "frame" region (outer minus the inner hole) so
+        # the question can ask for the shaded area directly - fill-then-erase,
+        # the same trick already used elsewhere in this file (e.g.
+        # draw_mixed_compound's quarter-circle cut, draw_venn_diagram's
+        # "neither" region).
+        d.add(Rect(x0, y0, ow_s, oh_s, fillColor=HIGHLIGHT, strokeColor=None))
+        d.add(Rect(ix0, iy0, iw_s, ih_s, fillColor=PAPER, strokeColor=None))
+        d.add(Rect(x0, y0, ow_s, oh_s, fillColor=None, strokeColor=INK, strokeWidth=1.2))
+        d.add(Rect(ix0, iy0, iw_s, ih_s, fillColor=None, strokeColor=INK, strokeWidth=1.0))
     else:
         d.add(Rect(x0, y0, ow_s, oh_s, strokeColor=INK, fillColor=None, strokeWidth=1.2))
-        ix0, iy0 = x0 + (ow_s - iw_s) / 2, y0 + (oh_s - ih_s) / 2
         d.add(Rect(ix0, iy0, iw_s, ih_s, strokeColor=INK, fillColor=None, strokeWidth=1.0))
 
     d.add(_label(x0 + ow_s / 2, y0 - 14, params["outer_labels"][0]))
-    d.add(_label(x0 - 10, y0 + oh_s / 2, params["outer_labels"][1], anchor="end"))
-    inner_text = f"{params['inner_labels'][0]} × {params['inner_labels'][1]}"
-    d.add(_label(x0 + ow_s / 2, y0 + oh_s + 12, inner_text, color=MUTED, size=8))
+    if params.get("notch") == "corner" and corner == "top_right" and params.get("right_labels"):
+        # The notch genuinely splits the right-hand edge into two real
+        # segments - label each one directly instead of a single combined
+        # "outer height" label, so students see two real side lengths
+        # rather than unevaluated arithmetic like "(12 + 12) cm".
+        upper_label, lower_label = params["right_labels"]
+        d.add(_label(x0 + ow_s + 8, y0 + (oh_s - ih_s) / 2, upper_label, anchor="start", size=7.5))
+        d.add(_label(x0 + ow_s - iw_s + 8, y0 + oh_s - ih_s / 2, lower_label, anchor="start", size=7.5))
+    elif params.get("notch") == "corner" and corner == "top_left":
+        # The top-left cut leaves the RIGHT edge as the shape's one full,
+        # uncut side (the mirror image of the top-right case, whose full
+        # side is the left edge) - put the single outer-height label there.
+        d.add(_label(x0 + ow_s + 10, y0 + oh_s / 2, params["outer_labels"][1], anchor="start"))
+    else:
+        d.add(_label(x0 - 10, y0 + oh_s / 2, params["outer_labels"][1], anchor="end"))
+    if params.get("shade_frame") and params.get("inner_labels"):
+        # Two real edge labels for the inner (hole) rectangle, placed inside
+        # its own unshaded interior where they're always legible - replaces
+        # the old combined "6 × 5" caption, which only ever stated the hole's
+        # two numbers together rather than attaching each to a real side.
+        # Stacking them vertically only works when the hole is tall enough;
+        # a short/wide hole needs them side by side instead, or they cross
+        # the hole's own top/bottom edges. For a genuinely tiny hole, neither
+        # layout has real room even at the smaller font (found via rendering
+        # a small-hole case, not assumed up front) - fall back to a single
+        # combined caption just below the hole, in the shaded frame, which
+        # always has plenty of room.
+        cx, cy = ix0 + iw_s / 2, iy0 + ih_s / 2
+        w_label, h_label = params["inner_labels"]
+        label_size = 7.5 if min(iw_s, ih_s) >= 24 else 6.5
+        w_width = stringWidth(str(w_label), _LABEL_FONT, label_size)
+        h_width = stringWidth(str(h_label), _LABEL_FONT, label_size)
+        side_by_side_fits = iw_s >= w_width + h_width + 6
+        stacked_fits = ih_s >= 26 and iw_s >= max(w_width, h_width) + 4
+        if stacked_fits:
+            d.add(_label(cx, cy + 6, w_label, size=label_size))
+            d.add(_label(cx, cy - 10, h_label, size=label_size))
+        elif side_by_side_fits:
+            d.add(_label(cx - iw_s * 0.22, cy, w_label, size=label_size))
+            d.add(_label(cx + iw_s * 0.22, cy, h_label, size=label_size))
+        else:
+            d.add(_label(cx, iy0 - 10, f"{w_label} × {h_label}", size=7.5))
+    elif params.get("inner_labels"):
+        inner_text = f"{params['inner_labels'][0]} × {params['inner_labels'][1]}"
+        d.add(_label(x0 + ow_s / 2, y0 + oh_s + 12, inner_text, color=MUTED, size=8))
+    return d
+
+
+def draw_t_shape(params: dict) -> Drawing:
+    """A T-shaped compound of two rectangles - a horizontal 'bar' across the
+    top, and a narrower 'stem' hanging below it, centred under the bar -
+    genuinely different geometry from draw_l_shape's single-corner-cut
+    polygon, for compound-area variety. params: top_w/top_h (the bar's own
+    width/height), stem_w/stem_h (the stem's own width/height, stem_w must
+    be < top_w), and top_label/side_label/stem_w_label/stem_h_label (the 4
+    edge labels needed to compute area = top_w*top_h + stem_w*stem_h)."""
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    top_w, top_h = params["top_w"], params["top_h"]
+    stem_w, stem_h = params["stem_w"], params["stem_h"]
+    total_h = top_h + stem_h
+    margin = 28
+    scale = min((DIAGRAM_WIDTH - 2 * margin) / top_w, (DIAGRAM_HEIGHT - 2 * margin) / total_h)
+    tw_s, th_s, sw_s, sh_s = top_w * scale, top_h * scale, stem_w * scale, stem_h * scale
+    x0, y0 = (DIAGRAM_WIDTH - tw_s) / 2, (DIAGRAM_HEIGHT - (th_s + sh_s)) / 2
+    stem_x0 = x0 + (tw_s - sw_s) / 2
+
+    pts = [
+        stem_x0, y0,
+        stem_x0 + sw_s, y0,
+        stem_x0 + sw_s, y0 + sh_s,
+        x0 + tw_s, y0 + sh_s,
+        x0 + tw_s, y0 + sh_s + th_s,
+        x0, y0 + sh_s + th_s,
+        x0, y0 + sh_s,
+        stem_x0, y0 + sh_s,
+    ]
+    d.add(Polygon(pts, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+
+    d.add(_label(x0 + tw_s / 2, y0 + sh_s + th_s + 14, params["top_label"]))
+    d.add(_label(x0 + tw_s + 8, y0 + sh_s + th_s / 2, params["side_label"], anchor="start"))
+    d.add(_label(stem_x0 + sw_s / 2, y0 - 14, params["stem_w_label"]))
+    d.add(_label(stem_x0 - 8, y0 + sh_s / 2, params["stem_h_label"], anchor="end"))
     return d
 
 
@@ -249,7 +486,10 @@ def draw_circle(params: dict) -> Drawing:
 
     d.add(Circle(cx, cy, r, strokeColor=INK, fillColor=None, strokeWidth=1.2))
     d.add(Line(cx, cy, cx + r, cy, strokeColor=INK, strokeWidth=1))
-    d.add(_label(cx + r / 2, cy + 5, params["label"]))
+    # Above the radius line, not touching it - a +5 offset wasn't enough
+    # clearance and visibly crossed the line (found by rendering, now that
+    # this label is often the only place the radius value appears at all).
+    d.add(_label(cx + r / 2, cy + 9, params["label"]))
     return d
 
 
@@ -272,7 +512,7 @@ def draw_rectangle_semicircle(params: dict) -> Drawing:
 def draw_parallelogram(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     base_val, height_val = params["base"], params["height"]
-    margin = 32
+    margin = 26
     slant_frac = 0.3
     scale = min(
         (DIAGRAM_WIDTH - 2 * margin) / (base_val * (1 + slant_frac)),
@@ -288,7 +528,13 @@ def draw_parallelogram(params: dict) -> Drawing:
     ))
     d.add(Line(x0 + slant, y0 + bh, x0 + slant, y0, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
     d.add(_label(x0 + bw / 2, y0 - 14, params["base_label"]))
-    d.add(_label(x0 + slant - 8, y0 + bh / 2, params["height_label"], anchor="end"))
+    # To the RIGHT of the dashed height line, inside the shape's own much
+    # larger right-hand body, rather than the old left-hand placement -
+    # only slant/2 wide there (the previous 8pt-clearance spot was the
+    # single tightest label in this file). The body to the right of the
+    # dashed line is (bw - slant/2) wide, comfortably larger for any
+    # realistic label, so no dynamic width check is needed here.
+    d.add(_label(x0 + slant + 8, y0 + bh / 2, params["height_label"], anchor="start"))
     return d
 
 
@@ -306,55 +552,139 @@ def draw_trapezium(params: dict) -> Drawing:
         strokeColor=INK, fillColor=None, strokeWidth=1.2,
     ))
     d.add(Line(top_x0, y0 + bh, top_x0, y0, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
-    d.add(_label(top_x0 + aw / 2, y0 + bh + 12, params["a_label"]))
-    d.add(_label(x0 + bw / 2, y0 - 14, params["b_label"]))
-    d.add(_label(top_x0 - 8, y0 + bh / 2, params["height_label"], anchor="end"))
+    d.add(_label(top_x0 + aw / 2, y0 + bh + 14, params["a_label"]))
+    d.add(_label(x0 + bw / 2, y0 - 16, params["b_label"]))
+    # The dashed height line sits at top_x0, which can land very close to
+    # (or even left of) the shape's own bottom-left corner x0 when the
+    # slant is shallow (a close to b) or reversed (a > b) - anchoring the
+    # height label a fixed 8px left of top_x0 alone let it sit on top of
+    # the sloped left edge. Anchor left of whichever of x0/top_x0 is
+    # further left instead, so it always clears the edge regardless of
+    # slope direction.
+    left_edge = min(x0, top_x0)
+    d.add(_label(left_edge - 8, y0 + bh / 2, params["height_label"], anchor="end"))
     return d
 
 
 def draw_sector(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     cx, cy = DIAGRAM_WIDTH / 2, DIAGRAM_HEIGHT / 2
-    r = min(DIAGRAM_WIDTH, DIAGRAM_HEIGHT) / 2 - 25
+    # No full-circle outline any more (see below) - the sector itself is the
+    # only thing that needs to fit, so it can fill noticeably more of the
+    # canvas than when a same-radius dashed circle also had to fit.
+    r = min(DIAGRAM_WIDTH, DIAGRAM_HEIGHT) / 2 - 14
     angle = params["angle"]
     start, end = 90 - angle, 90
 
-    d.add(Circle(cx, cy, r, strokeColor=GRID, fillColor=None, strokeWidth=0.75, strokeDashArray=[2, 2]))
     d.add(Wedge(cx, cy, r, start, end, fillColor=HIGHLIGHT, strokeColor=INK, strokeWidth=1.2))
-    d.add(_label(cx + 4, cy + r + 10, params["radius_label"], anchor="start"))
+    # Mark the sector's own angle at the centre with a small arc, matching
+    # every other angle-labelling diagram kind in this file (there was
+    # previously no arc here at all, just the numeric label). Built directly
+    # (not via _angle_arc, which always takes the shortest of the two
+    # possible sweeps between the rays) since a sector's own angle is
+    # routinely reflex (>180°) - _angle_arc would draw the short
+    # complementary arc outside the wedge instead of tracing the sector's
+    # actual angle, which is exactly wrong for a reflex sector.
+    arc_r = min(18, r * 0.35)
+    arc = ArcPath(strokeColor=INK, fillColor=None, strokeWidth=0.9)
+    arc.addArc(cx, cy, arc_r, start, end, moveTo=True)
+    d.add(arc)
+    # Next to the straight radius edge itself (the fixed top ray, at 90 deg)
+    # rather than out near the arc's own endpoint - anchored at that ray's
+    # midpoint so it reads as labelling the radius line specifically, even
+    # though that puts it inside the sector for a wide-angle wedge.
+    d.add(_label(cx + 8, cy + r * 0.5, params["radius_label"], anchor="start"))
     mid = math.radians((start + end) / 2)
-    label_r = min(r * 0.55, r - 14)
-    d.add(_label(cx + label_r * math.cos(mid), cy + label_r * math.sin(mid), params["angle_label"], size=8))
+    # A narrow sector's own straight width (2 x radius x sin(angle/2)) can be
+    # far smaller than the label text at any radius up to the sector's own
+    # edge. "Just outside the arc, along the bisector" (tried first) still
+    # crams into that narrow sliver. Instead, for a narrow angle, place
+    # the label just behind the vertex - directly opposite the wedge's own
+    # opening direction - where there is always clear space, matching real
+    # exam diagrams' convention of writing a narrow angle's value beside the
+    # sharp point rather than cramming it inside the sliver.
+    if angle < 40:
+        label_r = 20
+        label_angle = mid + math.pi
+        label_size = 8 if angle < 22 else 9
+    else:
+        label_r = arc_r + 15
+        label_angle = mid
+        label_size = 10
+    lx = cx + label_r * math.cos(label_angle)
+    ly = cy + label_r * math.sin(label_angle)
+    lx = max(10, min(DIAGRAM_WIDTH - 10, lx))
+    ly = max(8, min(DIAGRAM_HEIGHT - 8, ly))
+    d.add(_label(lx, ly, params["angle_label"], size=label_size))
     return d
 
 
 def draw_mixed_compound(params: dict) -> Drawing:
+    """A 3-piece compound shape: a rectangle 'body', with a top piece added
+    (a triangular roof or a semicircular dome, params['top_kind']) and a
+    bottom piece removed (a quarter-circle corner cut or a semicircular edge
+    notch, params['cut_kind']) - genuinely mixing rectangles/triangles/
+    circle-parts rather than always the same fixed combination."""
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    w_val, h_val, roof_val, cut_val = (
-        params["width"], params["height"], params["roof_height"], params["cut_radius"],
-    )
-    total_h_val = h_val + roof_val
+    w_val, h_val = params["width"], params["height"]
+    top_kind = params["top_kind"]
+    cut_kind = params["cut_kind"]
+    top_extent_val = params["roof_height"] if top_kind == "triangle" else params["top_radius"]
+
+    total_h_val = h_val + top_extent_val
     margin = 28
     scale = min((DIAGRAM_WIDTH - 2 * margin) / w_val, (DIAGRAM_HEIGHT - 2 * margin) / total_h_val)
-    rw, rh, roof_h, cut_r = w_val * scale, h_val * scale, roof_val * scale, cut_val * scale
-    x0, y0 = (DIAGRAM_WIDTH - rw) / 2, (DIAGRAM_HEIGHT - (rh + roof_h)) / 2
+    rw, rh, top_extent = w_val * scale, h_val * scale, top_extent_val * scale
+    x0, y0 = (DIAGRAM_WIDTH - rw) / 2, (DIAGRAM_HEIGHT - (rh + top_extent)) / 2
     apex_x = x0 + rw / 2
 
     d.add(Rect(x0, y0, rw, rh, strokeColor=INK, fillColor=None, strokeWidth=1.2))
-    d.add(Polygon(
-        [x0, y0 + rh, x0 + rw, y0 + rh, apex_x, y0 + rh + roof_h],
-        strokeColor=INK, fillColor=None, strokeWidth=1.2,
-    ))
-    # Quarter-circle cut from the bottom-left corner: erase that corner's pie
-    # slice in the page background colour, then stroke the arc as the new
-    # visible boundary - the straight rectangle edges already drawn above
-    # stop cleanly at the two tangent points.
-    d.add(Wedge(x0, y0, cut_r, 0, 90, fillColor=PAPER, strokeColor=None))
-    d.add(Wedge(x0, y0, cut_r, 0, 90, fillColor=None, strokeColor=INK, strokeWidth=1.2))
+
+    if top_kind == "triangle":
+        d.add(Polygon(
+            [x0, y0 + rh, x0 + rw, y0 + rh, apex_x, y0 + rh + top_extent],
+            strokeColor=INK, fillColor=None, strokeWidth=1.2,
+        ))
+        # Offset outward, perpendicular to the right roof edge, rather than a
+        # fixed (dx, dy) - a fixed offset sits well inside a shallow/wide
+        # roof (small top_extent relative to rw), landing on top of the
+        # sloped edge instead of clear of it (found by rendering a shallow
+        # case, not assumed up front).
+        mid_x, mid_y = apex_x + rw / 4, y0 + rh + top_extent / 2
+        edge_dx, edge_dy = rw / 2, -top_extent
+        norm = math.hypot(edge_dx, edge_dy) or 1.0
+        perp_x, perp_y = -edge_dy / norm, edge_dx / norm
+        d.add(_label(mid_x + perp_x * 8, mid_y + perp_y * 8, params["top_label"], anchor="start"))
+    else:
+        d.add(Wedge(apex_x, y0 + rh, rw / 2, 0, 180, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+        d.add(Line(apex_x, y0 + rh, apex_x, y0 + rh + top_extent, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
+        # Above the apex, in the always-clear canvas margin, rather than
+        # beside the radius line - the horizontal clearance between the line
+        # and the dome's own curve shrinks the higher up the line you go
+        # (and depends on the dome's radius), so no single fixed side offset
+        # reliably avoided the curve for every radius (found via rendering
+        # several sizes, not assumed up front).
+        d.add(_label(apex_x, y0 + rh + top_extent + 8, params["top_label"], size=8))
+
+    if cut_kind == "quarter_circle":
+        # Erase that corner's pie slice in the page background colour, then
+        # stroke the arc as the new visible boundary - the straight
+        # rectangle edges already drawn above stop cleanly at the two
+        # tangent points.
+        cut_r = params["cut_radius"] * scale
+        d.add(Wedge(x0, y0, cut_r, 0, 90, fillColor=PAPER, strokeColor=None))
+        d.add(Wedge(x0, y0, cut_r, 0, 90, fillColor=None, strokeColor=INK, strokeWidth=1.2))
+        d.add(_label(x0 - 4, y0 - 2, params["cut_label"], size=7, color=MUTED, anchor="end"))
+    else:
+        # A semicircular bite taken out of the middle of the bottom edge,
+        # same fill-then-erase-then-stroke-arc trick as the corner cut.
+        notch_r = params["notch_radius"] * scale
+        d.add(Wedge(apex_x, y0, notch_r, 0, 180, fillColor=PAPER, strokeColor=None))
+        d.add(Wedge(apex_x, y0, notch_r, 0, 180, fillColor=None, strokeColor=INK, strokeWidth=1.2))
+        d.add(_label(apex_x + notch_r + 6, y0 + 4, params["cut_label"], size=7, color=MUTED, anchor="start"))
+
     d.add(_label(x0 + rw / 2, y0 - 14, params["width_label"]))
     d.add(_label(x0 - 10, y0 + rh / 2, params["height_label"], anchor="end"))
-    d.add(_label(apex_x + 6, y0 + rh + roof_h / 2, params["roof_label"], anchor="start"))
-    d.add(_label(x0 - 4, y0 - 2, params["cut_label"], size=7, color=MUTED, anchor="end"))
     return d
 
 
@@ -363,6 +693,7 @@ def draw_angle_line(params: dict) -> Drawing:
     around_point = params["around_point"]
     cx, cy = DIAGRAM_WIDTH / 2, DIAGRAM_HEIGHT / 2 - (0 if around_point else 10)
     radius = 65
+    arc_r = 15
     angle_values = params["angle_values"]
     labels = params["labels"]
 
@@ -378,16 +709,31 @@ def draw_angle_line(params: dict) -> Drawing:
 
     running = 0.0
     for v, lbl in zip(angle_values, labels):
-        d.add(_angle_arc(cx, cy, running, running + v, radius=15))
+        d.add(_swept_angle_arc(cx, cy, running, running + v, radius=arc_r))
         if v < 20:
-            label_radius = radius + 13  # narrow wedges: place the label just beyond the ray tips
+            # Narrow wedges: the arc itself has little room, so place the
+            # label just beyond the ray tips entirely rather than cramming
+            # it into the wedge.
+            label_radius = radius + 13
         elif v < 35:
-            label_radius = radius * 0.85
+            label_radius = arc_r + 20
         else:
-            label_radius = radius * 0.78
+            # Sit close to the arc rather than most of the way out to the
+            # ray tips - a fixed radius*0.78 (~51 units, vs. this arc's own
+            # 15) read as "far higher than the angle it's labelling".
+            label_radius = arc_r + 15
         mid_rad = math.radians(running + v / 2)
         lx, ly = cx + label_radius * math.cos(mid_rad), cy + label_radius * math.sin(mid_rad)
-        d.add(_label(lx, ly, lbl, size=7.5))
+        # A narrow wedge's label_radius pushes well past the ray tips with no
+        # canvas clamp at all - for the "around_point" layout (rays centred
+        # at cy=DIAGRAM_HEIGHT/2, so the least headroom of any layout here) a
+        # near-vertical narrow wedge can push the label past the top edge by
+        # ~20pt (confirmed via a real rendered check across many seeds, not
+        # assumed). Clamp to the canvas, matching the same pattern
+        # draw_sector already uses for its own labels.
+        lx = max(10, min(DIAGRAM_WIDTH - 10, lx))
+        ly = max(8, min(DIAGRAM_HEIGHT - 8, ly))
+        d.add(_label(lx, ly, lbl, size=9.5))
         running += v
 
     d.add(Circle(cx, cy, 2, strokeColor=INK, fillColor=INK))
@@ -397,7 +743,7 @@ def draw_angle_line(params: dict) -> Drawing:
 def draw_triangle_angles(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     cx, cy = DIAGRAM_WIDTH / 2, DIAGRAM_HEIGHT / 2 - 5
-    r = 45
+    r = 52
     vertices = []
     for ang in (90, 210, 330):
         rad = math.radians(ang)
@@ -415,11 +761,53 @@ def draw_triangle_angles(params: dict) -> Drawing:
         # centroid than short ones like "31°" or "x", so they have more clearance
         # from the two sloped edges either side of the vertex - a fixed 0.58 inset
         # only worked while every label was short enough to fit near the vertex.
-        width = stringWidth(str(lbl), _LABEL_FONT, 7.5)
+        width = stringWidth(str(lbl), _LABEL_FONT, 9.5)
         inset = min(0.8, 0.5 + width / 220)
         lx, ly = vx + (cx - vx) * inset, vy + (cy - vy) * inset
-        d.add(_label(lx, ly, lbl, size=7.5))
+        d.add(_label(lx, ly, lbl, size=9.5))
     return d
+
+
+def draw_polygon_angles(params: dict) -> Drawing:
+    """A schematic n-sided polygon with every interior angle labelled - a
+    generalisation of draw_triangle_angles to params['n_sides'] vertices
+    (e.g. 4 for a quadrilateral), reusing the same vertex-arc + centroid-
+    inset label placement so wide algebraic labels get the same
+    collision-safe treatment triangles already have."""
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    cx, cy = DIAGRAM_WIDTH / 2, DIAGRAM_HEIGHT / 2 - 5
+    n = params["n_sides"]
+    r = 45
+    vertices = []
+    for i in range(n):
+        rad = math.radians(90 + i * 360 / n)
+        vertices.append((cx + r * math.cos(rad), cy + r * math.sin(rad)))
+
+    pts = [coord for vertex in vertices for coord in vertex]
+    d.add(Polygon(pts, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+
+    for i, (vertex, lbl) in enumerate(zip(vertices, params["angle_labels"])):
+        other1, other2 = vertices[(i - 1) % n], vertices[(i + 1) % n]
+        d.add(_vertex_angle_arc(vertex, other1, other2, radius=9))
+        vx, vy = vertex
+        width = stringWidth(str(lbl), _LABEL_FONT, 9.5)
+        inset = min(0.8, 0.5 + width / 220)
+        lx, ly = vx + (cx - vx) * inset, vy + (cy - vy) * inset
+        d.add(_label(lx, ly, lbl, size=9.5))
+    return d
+
+
+def _parallel_arrow_mark(cx: float, cy: float, size: float = 5, color=INK) -> Group:
+    """A double-chevron ('>>') tick mark centred at (cx, cy) on a horizontal
+    line, pointing right - the standard GCSE convention marking two lines as
+    parallel. Two small '>' chevrons side by side, each made of two strokes
+    meeting at an apex."""
+    group = Group()
+    for dx in (-3.5, 3.5):
+        apex = (cx + dx + size * 0.6, cy)
+        group.add(Line(cx + dx - size * 0.4, cy - size * 0.6, apex[0], apex[1], strokeColor=color, strokeWidth=1.1))
+        group.add(Line(apex[0], apex[1], cx + dx - size * 0.4, cy + size * 0.6, strokeColor=color, strokeWidth=1.1))
+    return group
 
 
 def draw_parallel_lines(params: dict) -> Drawing:
@@ -428,9 +816,33 @@ def draw_parallel_lines(params: dict) -> Drawing:
     y_top, y_bottom = DIAGRAM_HEIGHT - 35, 35
     d.add(Line(x_left, y_top, x_right, y_top, strokeColor=INK, strokeWidth=1.2))
     d.add(Line(x_left, y_bottom, x_right, y_bottom, strokeColor=INK, strokeWidth=1.2))
+    # Double-chevron arrow marks on both lines, standard GCSE convention for
+    # "these two lines are parallel" - placed near the left edge, well away
+    # from the transversal intersection points so they never collide with
+    # the angle arcs.
+    d.add(_parallel_arrow_mark(x_left + 28, y_top))
+    d.add(_parallel_arrow_mark(x_left + 28, y_bottom))
 
-    ix_top, ix_bottom = DIAGRAM_WIDTH * 0.4, DIAGRAM_WIDTH * 0.62
-    dx, dy = ix_bottom - ix_top, y_bottom - y_top
+    # The transversal's own steepness is chosen from the real known angle
+    # value, bucketed into 3 pre-verified-safe slopes (rather than a
+    # continuous function of the angle - the label-offset table below was
+    # tuned against one moderate slope, and an untested extreme slope risks
+    # a new overlap) so a roughly-90-degree angle reads as roughly a right
+    # angle instead of every angle looking geometrically identical. x_frac
+    # varies the transversal's own horizontal starting position too, so
+    # repeated renders of the same angle bucket don't all look identical.
+    known_value = params.get("known_value", 55)
+    if known_value < 70:
+        dx_ratio = 1.05
+    elif known_value <= 110:
+        dx_ratio = 0.15
+    else:
+        dx_ratio = 0.55
+    x_frac = params.get("x_frac", 0.4)
+    ix_top = DIAGRAM_WIDTH * x_frac
+    dy = y_bottom - y_top
+    dx = abs(dy) * dx_ratio
+    ix_bottom = ix_top + dx
     length = math.hypot(dx, dy)
     ux, uy = dx / length, dy / length
     ext = 15
@@ -453,14 +865,29 @@ def draw_parallel_lines(params: dict) -> Drawing:
     # while every label was as short as "x".
     known_anchor = "start" if kx >= 0 else "end"
     unknown_anchor = "start" if ux2 >= 0 else "end"
-    d.add(_label(ix_top + kx, y_top + ky, params["known_label"], anchor=known_anchor, size=8))
-    d.add(_label(ix_bottom + ux2, y_bottom + uy2, params["unknown_label"], anchor=unknown_anchor, size=8))
+    d.add(_label(ix_top + kx, y_top + ky, params["known_label"], anchor=known_anchor, size=10))
+    d.add(_label(ix_bottom + ux2, y_bottom + uy2, params["unknown_label"], anchor=unknown_anchor, size=10))
     return d
 
 
 def draw_exterior_triangle(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    A, B, C = (35, 30), (150, 30), (75, 100)
+    A, B = (35, 30), (150, 30)
+    # The apex position varies with the real interior angle at A (a narrow
+    # angle looks narrow, a wide one looks wide) instead of an identical
+    # fixed triangle every render - bucketed into a couple of pre-verified-
+    # safe apex positions per bucket (rather than a continuous function)
+    # since the label-inset logic below was tuned against one shape and an
+    # untested extreme apex position risks a new overlap.
+    known_interior = params.get("interior1_value", 45)
+    variant = params.get("shape_variant", 0)
+    if known_interior < 40:
+        apex_choices = [(52, 105), (60, 112)]
+    elif known_interior <= 75:
+        apex_choices = [(75, 100), (68, 108)]
+    else:
+        apex_choices = [(100, 95), (108, 102)]
+    C = apex_choices[variant % len(apex_choices)]
     d.add(Polygon([A[0], A[1], B[0], B[1], C[0], C[1]], strokeColor=INK, fillColor=None, strokeWidth=1.2))
 
     ext_x = B[0] + (B[0] - A[0]) * 0.4
@@ -474,14 +901,25 @@ def draw_exterior_triangle(params: dict) -> Drawing:
 
     centroid = ((A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3)
 
-    def _inset(vertex, factor=0.7):
+    def _inset(vertex, label):
+        # Scale the inset distance by the label's own rendered width - a
+        # fixed 0.35 (tuned against short labels like "25°") left a wide
+        # algebraic label like "(2x + 4)°" close enough to the vertex that
+        # even centred text reached back far enough to cross its own angle
+        # arc. anchor="start" (text growing away from the vertex instead of
+        # centred on the inset point) was tried first and made it worse -
+        # the inset point itself was still too close to the vertex, so the
+        # text immediately ran into the sloped edge on its way out. The fix
+        # is a genuinely bigger inset distance, not a different anchor.
+        width = stringWidth(str(label), _LABEL_FONT, 10)
+        factor = min(0.85, 0.25 + width / 100)
         return (vertex[0] + (centroid[0] - vertex[0]) * factor, vertex[1] + (centroid[1] - vertex[1]) * factor)
 
-    ax, ay = _inset(A)
-    bx, by = _inset(B)
-    d.add(_label(ax, ay, params["interior1_label"], size=8))
-    d.add(_label(bx, by, params["interior2_label"], size=8))
-    d.add(_label(B[0] + 20, B[1] + 10, params["exterior_label"], anchor="start", size=8))
+    ax, ay = _inset(A, params["interior1_label"])
+    bx, by = _inset(B, params["interior2_label"])
+    d.add(_label(ax, ay, params["interior1_label"], size=10))
+    d.add(_label(bx, by, params["interior2_label"], size=10))
+    d.add(_label(B[0] + 20, B[1] + 10, params["exterior_label"], anchor="start", size=10))
     return d
 
 
@@ -498,10 +936,24 @@ def draw_polygon(params: dict) -> Drawing:
     pts = [coord for vertex in vertices for coord in vertex]
     d.add(Polygon(pts, strokeColor=INK, fillColor=None, strokeWidth=1.2))
 
-    d.add(_vertex_angle_arc(vertices[0], vertices[-1], vertices[1], radius=8))
-    vx, vy = vertices[0]
-    lx, ly = vx + (cx - vx) * 0.45, vy + (cy - vy) * 0.45
-    d.add(_label(lx, ly, params["marked_angle_label"], size=7.5))
+    if params.get("mode") == "exterior":
+        # Mark the exterior angle at vertices[0]: extend the side coming
+        # into it (from vertices[-1]) past the vertex, then arc between
+        # that extension and the outgoing side to vertices[1] - mirrors
+        # draw_exterior_triangle's own extend-a-side approach.
+        prev_v, v0, v1 = vertices[-1], vertices[0], vertices[1]
+        ext_x = v0[0] + (v0[0] - prev_v[0]) * 0.5
+        ext_y = v0[1] + (v0[1] - prev_v[1]) * 0.5
+        ext_point = (ext_x, ext_y)
+        d.add(Line(v0[0], v0[1], ext_x, ext_y, strokeColor=INK, strokeWidth=1.2))
+        d.add(_vertex_angle_arc(v0, ext_point, v1, radius=10))
+        lx, ly = ext_x + (v1[0] - v0[0]) * 0.18, ext_y + (v1[1] - v0[1]) * 0.18
+        d.add(_label(lx, ly, params["marked_angle_label"], size=9.5))
+    else:
+        d.add(_vertex_angle_arc(vertices[0], vertices[-1], vertices[1], radius=8))
+        vx, vy = vertices[0]
+        lx, ly = vx + (cx - vx) * 0.45, vy + (cy - vy) * 0.45
+        d.add(_label(lx, ly, params["marked_angle_label"], size=9.5))
     return d
 
 
@@ -573,14 +1025,43 @@ def draw_right_triangle(params: dict) -> Drawing:
 
 
 def _not_to_scale(d: Drawing, x: float = DIAGRAM_WIDTH / 2, y: float = 10) -> None:
-    d.add(_label(x, y, "Diagram NOT accurately drawn", color=MUTED, size=6.5))
+    """No-op by user request - the "Diagram NOT accurately drawn" caption is
+    no longer rendered anywhere. Every diagram this is called from is still
+    genuinely schematic (not drawn to true relative scale), so nothing about
+    correctness/scale-cheating risk changes - only the caption text itself
+    is gone. Kept as a real function (not deleted, not its ~20 call sites
+    stripped out) so re-enabling it later is a one-line change."""
+    return
+
+
+def _shape_variant(params: dict, n: int) -> int:
+    """A small index (0..n-1) derived deterministically from this diagram's
+    own label content - NOT Python's built-in hash(), which is randomised
+    per-process for strings (see CLAUDE.md) and would make the same
+    question render a different shape on every run. Gives real per-question
+    shape variety (this diagram kind's vertex layout was previously 100%
+    fixed every single render) with no change needed at any of this
+    diagram kind's many call sites, since every real caller already passes
+    different label text per question."""
+    seed_str = "".join(str(v) for v in params.values())
+    return sum(ord(c) for c in seed_str) % n
+
+
+# 3 pre-verified-safe (A, B, C) vertex layouts for draw_trig_triangle - right
+# angle always at A, varying how far B/C reach so triangles genuinely look
+# different across questions instead of an identical fixed shape every time.
+_TRIG_TRIANGLE_VARIANTS = [
+    ((40, 25), (165, 25), (40, 105)),
+    ((40, 25), (140, 25), (40, 115)),
+    ((40, 25), (172, 25), (40, 85)),
+]
 
 
 def draw_trig_triangle(params: dict) -> Drawing:
     """Right triangle for SOH CAH TOA questions: right angle at A (bottom-left),
     marked angle at B (bottom-right). Opposite/adjacent are relative to that angle."""
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    A, B, C = (40, 25), (165, 25), (40, 105)
+    A, B, C = _TRIG_TRIANGLE_VARIANTS[_shape_variant(params, len(_TRIG_TRIANGLE_VARIANTS))]
     d.add(Polygon([A[0], A[1], B[0], B[1], C[0], C[1]], strokeColor=INK, fillColor=None, strokeWidth=1.2))
 
     s = 8
@@ -590,10 +1071,43 @@ def draw_trig_triangle(params: dict) -> Drawing:
     if params.get("opposite_label"):
         d.add(_label(A[0] - 10, (A[1] + C[1]) / 2, params["opposite_label"], anchor="end"))
     if params.get("hyp_label"):
-        d.add(_label((B[0] + C[0]) / 2 + 12, (B[1] + C[1]) / 2 + 6, params["hyp_label"], anchor="start"))
+        # Push the label outward from the hypotenuse's midpoint, away from
+        # the third vertex A (i.e. away from the triangle's interior) rather
+        # than always growing rightward from a fixed offset - a wide
+        # hypotenuse label previously swung back toward B's own corner,
+        # where the angle label also sits.
+        mid_x, mid_y = (B[0] + C[0]) / 2, (B[1] + C[1]) / 2
+        ox, oy = mid_x - A[0], mid_y - A[1]
+        norm = math.hypot(ox, oy) or 1.0
+        ox, oy = ox / norm, oy / norm
+        lx, ly = mid_x + ox * 12, mid_y + oy * 12
+        d.add(_label(lx, ly, params["hyp_label"], anchor="start" if ox >= 0 else "end"))
     d.add(_vertex_angle_arc(B, A, C, radius=9))
-    d.add(_label(B[0] - 20, B[1] + 9, params["angle_label"], size=8))
+    # Push the angle label from B toward the triangle's centroid rather than
+    # a fixed (dx, dy) offset - a fixed offset doesn't track the wedge's own
+    # bisector direction, so for some adjacent/opposite ratios it swung
+    # close enough to the hypotenuse (B-C) to visibly overlap it. The
+    # direction to the centroid always sits inside the wedge at B, matching
+    # the same fix already used by draw_general_triangle's angle labels. A
+    # fixed 0.4 factor still wasn't enough clearance for a wide algebraic
+    # label (e.g. "(2x+15)°") on the flatter/wider triangle variant, whose
+    # hypotenuse sits closer to B - the same stringWidth-based scaling
+    # draw_general_triangle already uses fixes it here too (found by
+    # rendering across this diagram's own new shape variants, not assumed).
+    centroid = ((A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3)
+    angle_label = params["angle_label"]
+    angle_width = stringWidth(str(angle_label), _LABEL_FONT, 10)
+    factor = min(0.75, 0.4 + angle_width / 220)
+    bx, by = B[0] + (centroid[0] - B[0]) * factor, B[1] + (centroid[1] - B[1]) * factor
+    d.add(_label(bx, by, angle_label, size=10))
     return d
+
+
+# 3 pre-verified-safe apex positions for draw_general_triangle - base A/B
+# fixed, apex C varies, so this diagram's genuinely wide blast radius (sine
+# rule, cosine rule, triangle area, exact trig values, the Formulae Sheet)
+# doesn't render an identical fixed triangle every time.
+_GENERAL_TRIANGLE_APEX_VARIANTS = [(95, 108), (72, 112), (122, 100)]
 
 
 def draw_general_triangle(params: dict) -> Drawing:
@@ -601,7 +1115,8 @@ def draw_general_triangle(params: dict) -> Drawing:
     questions, with any combination of the three sides and three angles
     labelled by the caller."""
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    A, B, C = (30, 28), (172, 28), (95, 108)
+    A, B = (30, 28), (172, 28)
+    C = _GENERAL_TRIANGLE_APEX_VARIANTS[_shape_variant(params, len(_GENERAL_TRIANGLE_APEX_VARIANTS))]
     d.add(Polygon([A[0], A[1], B[0], B[1], C[0], C[1]], strokeColor=INK, fillColor=None, strokeWidth=1.2))
 
     def midpoint(p, q):
@@ -623,7 +1138,7 @@ def draw_general_triangle(params: dict) -> Drawing:
 
     centroid = ((A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3)
 
-    def inset(v, factor=0.55):
+    def inset(v, factor):
         return (v[0] + (centroid[0] - v[0]) * factor, v[1] + (centroid[1] - v[1]) * factor)
 
     for vertex, other1, other2, key in (
@@ -631,8 +1146,17 @@ def draw_general_triangle(params: dict) -> Drawing:
     ):
         if params.get(key):
             d.add(_vertex_angle_arc(vertex, other1, other2, radius=8))
-            px, py = inset(vertex)
-            d.add(_label(px, py, params[key], size=8))
+            # Scale the inward pull by the label's own text width (same fix
+            # already used by draw_triangle_angles/draw_polygon_angles) - a
+            # fixed 0.55 factor only worked while every angle label was
+            # short; a wide one (e.g. from sine/cosine rule with an
+            # algebraic or decimal value) needs more clearance from the two
+            # sloped edges either side of the vertex.
+            lbl = params[key]
+            width = stringWidth(str(lbl), _LABEL_FONT, 10)
+            factor = min(0.75, 0.45 + width / 220)
+            px, py = inset(vertex, factor)
+            d.add(_label(px, py, lbl, size=10))
 
     _not_to_scale(d)
     return d
@@ -653,7 +1177,7 @@ def _bearing_arc(cx: float, cy: float, bearing_deg: float, radius: float = 11, c
     return arc
 
 
-def _north_arrow(x: float, y: float, length: float = 13, color=INK) -> Group:
+def _north_arrow(x: float, y: float, length: float = 20, color=INK) -> Group:
     """A short vertical line with an arrowhead pointing to true north (up the
     page) plus an 'N' label - the standard bearings-diagram convention for
     marking the reference direction at a point."""
@@ -663,6 +1187,76 @@ def _north_arrow(x: float, y: float, length: float = 13, color=INK) -> Group:
     group.add(_arrowhead(tip, (0.0, 1.0), color=color, length=5, half_width=2.3))
     group.add(_label(x, tip[1] + 3, "N", color=color, size=7))
     return group
+
+
+def _draw_bearings_single_leg(params: dict) -> Drawing:
+    """A simpler 2-point bearings diagram (a single leg from A to B), for
+    Foundation-level bearings questions (back bearings / reading a bearing
+    directly) that don't need the full cosine-rule triangle - draw_bearings
+    always drawing a third point/second leg/second arc had no clean way to
+    represent just one leg through params alone (found while adding this
+    mode: setting bearing_at_B to the back bearing degenerates point C onto
+    A instead of omitting it). North arrow + bearing arc are always drawn at
+    A (the given bearing); an arc at B is only added if
+    answer_bearing_at_B is given (the solution page revealing a derived
+    bearing, e.g. a back bearing - never shown on the question page)."""
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    label_A, label_B = params["labels"]
+    bearing_at_A = params["bearing_at_A"]
+    answer_bearing_at_B = params.get("answer_bearing_at_B")
+
+    def unit_vector(bearing_deg: float) -> tuple:
+        rad = math.radians(bearing_deg)
+        return (math.sin(rad), math.cos(rad))
+
+    A = (0.0, 0.0)
+    B = unit_vector(bearing_at_A)
+
+    xs, ys = (A[0], B[0]), (A[1], B[1])
+    x_span, y_span = (max(xs) - min(xs)) or 1.0, (max(ys) - min(ys)) or 1.0
+    margin_side, margin_top, margin_bottom = 40, 38, 34
+    scale = min(
+        (DIAGRAM_WIDTH - 2 * margin_side) / x_span,
+        (DIAGRAM_HEIGHT - margin_top - margin_bottom) / y_span,
+    )
+    ox = (DIAGRAM_WIDTH - x_span * scale) / 2 - min(xs) * scale
+    oy = margin_bottom - min(ys) * scale
+
+    def to_px(p: tuple) -> tuple:
+        return (p[0] * scale + ox, p[1] * scale + oy)
+
+    pA, pB = to_px(A), to_px(B)
+
+    d.add(Line(pA[0], pA[1], pB[0], pB[1], strokeColor=INK, strokeWidth=1.2))
+
+    mx, my = (pA[0] + pB[0]) / 2, (pA[1] + pB[1]) / 2
+    vx, vy = pB[0] - pA[0], pB[1] - pA[1]
+    length = math.hypot(vx, vy) or 1.0
+    perp = (-vy / length, vx / length)
+    anchor = "start" if perp[0] >= 0 else "end"
+    d.add(_label(mx + perp[0] * 14, my + perp[1] * 14, params["leg1_label"], anchor=anchor, size=8))
+
+    for p, label in ((pA, label_A), (pB, label_B)):
+        d.add(Circle(p[0], p[1], 1.8, strokeColor=INK, fillColor=INK))
+        vx2, vy2 = p[0] - mx, p[1] - my
+        vdist = math.hypot(vx2, vy2) or 1.0
+        ux, uy = vx2 / vdist, vy2 / vdist
+        if uy > 0.6:
+            # Same fix as the two-leg diagram: don't push a vertex label
+            # straight up into that point's own north arrow/arc/"N" label.
+            ux, uy = (1.0 if ux >= 0 else -1.0), 0.2
+            norm = math.hypot(ux, uy)
+            ux, uy = ux / norm, uy / norm
+        d.add(_label(p[0] + ux * 14, p[1] + uy * 14, label, size=8))
+
+    d.add(_north_arrow(pA[0], pA[1]))
+    d.add(_bearing_arc(pA[0], pA[1], bearing_at_A))
+    if answer_bearing_at_B is not None:
+        d.add(_north_arrow(pB[0], pB[1]))
+        d.add(_bearing_arc(pB[0], pB[1], answer_bearing_at_B, color=ACCENT))
+
+    _not_to_scale(d)
+    return d
 
 
 def draw_bearings(params: dict) -> Drawing:
@@ -676,7 +1270,13 @@ def draw_bearings(params: dict) -> Drawing:
     outward from the triangle's own centroid (same idiom as
     draw_general_triangle/draw_grid_transformation) since the shape's
     orientation varies with the random bearings, unlike those diagrams'
-    fixed schematic vertices."""
+    fixed schematic vertices.
+
+    A single-leg (2-point) variant is used instead whenever bearing_at_B is
+    omitted - see _draw_bearings_single_leg."""
+    if params.get("bearing_at_B") is None:
+        return _draw_bearings_single_leg(params)
+
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     label_A, label_B, label_C = params["labels"]
     bearing_at_A, bearing_at_B = params["bearing_at_A"], params["bearing_at_B"]
@@ -852,6 +1452,16 @@ def draw_vector_triangle(params: dict) -> Drawing:
     d.add(Line(O[0], O[1], B[0], B[1], strokeColor=INK, strokeWidth=1.2))
     d.add(Line(A[0], A[1], B[0], B[1], strokeColor=INK, strokeWidth=1.2))
 
+    # A vector is a directed quantity - mark the direction of travel (O->A,
+    # O->B) with a small arrowhead partway along each line, matching real
+    # exam-diagram convention (previously these were plain undirected
+    # strokes, indistinguishable from an ordinary triangle's sides).
+    for start, end in ((O, A), (O, B)):
+        mx, my = (start[0] + end[0]) / 2, (start[1] + end[1]) / 2
+        dx, dy = end[0] - start[0], end[1] - start[1]
+        length = math.hypot(dx, dy) or 1.0
+        d.add(_arrowhead((mx, my), (dx / length, dy / length)))
+
     m, n = params["ratio"]
     t = m / (m + n)
     P = (A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t)
@@ -923,7 +1533,13 @@ def draw_circle_cyclic_quad(params: dict) -> Drawing:
 
 
 def draw_circle_two_tangents(params: dict) -> Drawing:
-    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    # Taller than the usual DIAGRAM_HEIGHT: the external point T sits well
+    # above the circle (cy + r + 38 = 132), and its label further still - on
+    # the standard 130-tall canvas this silently overflowed the Drawing's own
+    # bounds, bleeding the label up into the prompt text above it (ReportLab
+    # doesn't clip a Drawing's overflowing content) - found via rendering an
+    # actual worksheet and looking closely, not a unit test.
+    d = Drawing(DIAGRAM_WIDTH, 160)
     cx, cy, r = 100, 60, 34
     d.add(Circle(cx, cy, r, strokeColor=INK, fillColor=None, strokeWidth=1.2))
     A, B = _circle_point(cx, cy, r, 145), _circle_point(cx, cy, r, 35)
@@ -936,6 +1552,45 @@ def draw_circle_two_tangents(params: dict) -> Drawing:
     d.add(_vertex_angle_arc((cx, cy), A, B, radius=14))
     d.add(_label(T[0], T[1] + 12, params["external_label"], size=8))
     d.add(_label(cx, cy - 14, params["centre_label"], size=8))
+    _not_to_scale(d)
+    return d
+
+
+def draw_circle_same_segment(params: dict) -> Drawing:
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    cx, cy, r = 100, 74, 42
+    d.add(Circle(cx, cy, r, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    A, B = _circle_point(cx, cy, r, 200), _circle_point(cx, cy, r, 340)
+    C, Dp = _circle_point(cx, cy, r, 70), _circle_point(cx, cy, r, 110)
+    d.add(Line(A[0], A[1], B[0], B[1], strokeColor=INK, strokeWidth=0.8))
+    for P in (C, Dp):
+        d.add(Line(P[0], P[1], A[0], A[1], strokeColor=INK, strokeWidth=1))
+        d.add(Line(P[0], P[1], B[0], B[1], strokeColor=INK, strokeWidth=1))
+    d.add(_vertex_angle_arc(C, A, B, radius=10))
+    d.add(_vertex_angle_arc(Dp, A, B, radius=10))
+    d.add(_label(C[0], C[1] + 10, params["angle_c_label"], size=7))
+    d.add(_label(Dp[0], Dp[1] + 10, params["angle_d_label"], size=7))
+    _not_to_scale(d)
+    return d
+
+
+def draw_circle_alternate_segment(params: dict) -> Drawing:
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    cx, cy, r = 100, 76, 40
+    d.add(Circle(cx, cy, r, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    P = _circle_point(cx, cy, r, 270)
+    Q = _circle_point(cx, cy, r, 190)
+    R = _circle_point(cx, cy, r, 30)
+    tangent_left = (P[0] - 46, P[1])
+    tangent_right = (P[0] + 46, P[1])
+    d.add(Line(tangent_left[0], tangent_left[1], tangent_right[0], tangent_right[1], strokeColor=INK, strokeWidth=1.2))
+    d.add(Line(P[0], P[1], Q[0], Q[1], strokeColor=INK, strokeWidth=1))
+    d.add(Line(Q[0], Q[1], R[0], R[1], strokeColor=INK, strokeWidth=1))
+    d.add(Line(R[0], R[1], P[0], P[1], strokeColor=INK, strokeWidth=1))
+    d.add(_vertex_angle_arc(P, tangent_left, Q, radius=14))
+    d.add(_vertex_angle_arc(R, Q, P, radius=10))
+    d.add(_label(P[0] - 14, P[1] - 12, params["tangent_angle_label"], size=7, anchor="end"))
+    d.add(_label(R[0], R[1] - 12, params["segment_angle_label"], size=7))
     _not_to_scale(d)
     return d
 
@@ -971,20 +1626,98 @@ def draw_parabola(params: dict) -> Drawing:
 
 
 def draw_linear_graph_pair(params: dict) -> Drawing:
-    """Two schematic straight lines (not to scale) crossing at a marked point."""
-    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    ox, oy = 25, 20
-    axis_len_x, axis_len_y = DIAGRAM_WIDTH - 45, DIAGRAM_HEIGHT - 35
-    _draw_axes(d, ox, oy, axis_len_x, axis_len_y)
+    """Two real straight lines plotted on a genuine gridded axes (square
+    unit grid whenever the range allows it, via _draw_scaled_axes) - the
+    student must read the intersection's exact coordinates off the grid, so
+    (unlike most of this file's schematic diagrams) this one is always to
+    scale. No point/label marks the crossing itself, since for a 'solve
+    simultaneously' question that intersection IS the answer the student
+    must find by reading the graph."""
+    m1, c1 = params["m1"], params["c1"]
+    m2, c2 = params["m2"], params["c2"]
+    sol_x, sol_y = params["sol_x"], params["sol_y"]
 
-    ix, iy = ox + axis_len_x * 0.55, oy + axis_len_y * 0.55
-    d.add(Line(ox + 5, oy + axis_len_y * 0.15, ox + axis_len_x - 5, oy + axis_len_y * 0.75, strokeColor=INK, strokeWidth=1.2))
-    d.add(Line(ox + 5, oy + axis_len_y * 0.85, ox + axis_len_x - 15, oy + 5, strokeColor=INK, strokeWidth=1.2))
-    d.add(Circle(ix, iy, 2, strokeColor=INK, fillColor=INK))
-    d.add(_label(ix + 10, iy + 6, params["intersection_label"], anchor="start", size=8))
-    d.add(_label(ox + axis_len_x * 0.88, oy + axis_len_y * 0.7, params["label1"], size=8))
-    d.add(_label(ox + axis_len_x * 0.25, oy + axis_len_y * 0.92, params["label2"], size=8))
-    _not_to_scale(d)
+    d = Drawing(GRAPH_WIDTH, GRAPH_HEIGHT)
+
+    half_span = 6
+    x_min, x_max = sol_x - half_span, sol_x + half_span
+    y_at_edges = [m1 * x_min + c1, m1 * x_max + c1, m2 * x_min + c2, m2 * x_max + c2]
+    y_min, y_max = min(y_at_edges), max(y_at_edges)
+    pad = max(1.0, (y_max - y_min) * 0.1)
+    y_min, y_max = y_min - pad, y_max + pad
+
+    to_px = _draw_scaled_axes(d, x_min, x_max, y_min, y_max)
+
+    def _plot_line(m: float, c: float) -> tuple[tuple[float, float], tuple[float, float]]:
+        y_lo = max(min(m * x_min + c, y_max), y_min)
+        y_hi = max(min(m * x_max + c, y_max), y_min)
+        p_lo = to_px(x_min, y_lo)
+        p_hi = to_px(x_max, y_hi)
+        d.add(PolyLine([p_lo[0], p_lo[1], p_hi[0], p_hi[1]], strokeColor=INK, strokeWidth=1.3))
+        return p_lo, p_hi
+
+    pts1 = _plot_line(m1, c1)
+    pts2 = _plot_line(m2, c2)
+
+    # Three earlier attempts all failed on real rendered spikes, not assumed:
+    # (1) anchoring at a line's own endpoint and growing inward was safe
+    # against that SAME line but not the OTHER one, which can sit close
+    # alongside when the two slopes are similar (e.g. m1=3, m2=4); (2) a
+    # single-point pixel offset ignored that a wide text label spans a real
+    # horizontal pixel range, and on a square unit grid a slope of 3-4 is
+    # visually very steep (pixel-slope roughly equals data-slope on a square
+    # grid), so the OTHER line can sweep vertically across the ENTIRE label
+    # width even when comfortably clear at the label's own centre point; (3)
+    # clearing only the OTHER line's span still let the label collide with
+    # its OWN line, for the same reason - the own line's value also varies
+    # across the label's own width, not just at its centre. Fixed by
+    # computing BOTH lines' y-range across the label's actual rendered
+    # width (via stringWidth) and placing the label entirely above or below
+    # that combined danger zone, whichever side sits closer to the line
+    # being labelled.
+    px_at_xmax, _ = to_px(x_max, 0)
+    px_at_xmin, _ = to_px(x_min, 0)
+    px_per_unit_x = abs(px_at_xmax - px_at_xmin) / (x_max - x_min)
+    y_axis_px, _ = to_px(0, 0)
+
+    def _label_along(m_own: float, c_own: float, m_other: float, c_other: float, t: float, text: str) -> None:
+        x_center = x_min + (x_max - x_min) * t
+        px_center, py_own_center = to_px(x_center, m_own * x_center + c_own)
+        # The y-axis's own tick-number labels sit just left of x=0 at every
+        # tick height - if the label's own x happens to land close to the
+        # y-axis (possible whenever the solution's own x is close to one of
+        # the fixed t=0.28/0.72 fractions of the window), nudge further
+        # toward the window edge to clear them, confirmed necessary via a
+        # real rendered spike across many seeds.
+        if abs(px_center - y_axis_px) < 22:
+            t = t + 0.15 if t >= 0.5 else t - 0.15
+            x_center = x_min + (x_max - x_min) * t
+            px_center, py_own_center = to_px(x_center, m_own * x_center + c_own)
+
+        text_w = stringWidth(text, "Helvetica", 8)
+        half_w_data = (text_w / 2 + 3) / px_per_unit_x
+        x_left = max(x_center - half_w_data, x_min)
+        x_right = min(x_center + half_w_data, x_max)
+
+        def _y_range(m: float, c: float) -> tuple[float, float]:
+            _, y_l = to_px(x_left, m * x_left + c)
+            _, y_r = to_px(x_right, m * x_right + c)
+            return min(y_l, y_r), max(y_l, y_r)
+
+        own_lo, own_hi = _y_range(m_own, c_own)
+        other_lo, other_hi = _y_range(m_other, c_other)
+        zone_lo, zone_hi = min(own_lo, other_lo), max(own_hi, other_hi)
+
+        clearance = 9.0
+        if abs(py_own_center - zone_hi) <= abs(py_own_center - zone_lo):
+            py_label = zone_hi + clearance
+        else:
+            py_label = zone_lo - clearance
+        py_label = max(min(py_label, GRAPH_HEIGHT - 8), 8)
+        d.add(_label(px_center, py_label, text, anchor="middle", size=8))
+
+    _label_along(m1, c1, m2, c2, 0.72, params["label1"])
+    _label_along(m2, c2, m1, c1, 0.28, params["label2"])
     return d
 
 
@@ -1005,7 +1738,21 @@ def _nice_tick_step(lo: float, hi: float) -> float:
         return 2
     if span <= 50:
         return 5
-    return 10
+    if span <= 100:
+        return 10
+    if span <= 200:
+        return 20
+    if span <= 500:
+        return 50
+    # No existing caller reached a span this large before trig_graph (0-360
+    # degrees) - found by rendering an actual worksheet and seeing every
+    # integer from 1 to 360 crammed into the tick labels, since the old
+    # flat "step=10 for any span>50" never scaled further. These extra
+    # tiers are purely additive for spans no prior topic ever used.
+    return 100
+
+
+_MIN_SQUARE_UNIT_PX = 8.0
 
 
 def _draw_scaled_axes(
@@ -1024,25 +1771,67 @@ def _draw_scaled_axes(
 
     plot_w = d.width - _GRAPH_MARGIN_L - _GRAPH_MARGIN_R
     plot_h = d.height - _GRAPH_MARGIN_T - _GRAPH_MARGIN_B
+    x_span = (x_max - x_min) or 1
+    y_span = (y_max - y_min) or 1
+    px_per_unit_x = plot_w / x_span
+    px_per_unit_y = plot_h / y_span
 
-    def to_px(x: float, y: float) -> tuple[float, float]:
-        px = _GRAPH_MARGIN_L + (x - x_min) / (x_max - x_min) * plot_w
-        py = _GRAPH_MARGIN_B + (y - y_min) / (y_max - y_min) * plot_h
-        return px, py
+    # Prefer a true square UNIT grid (equal px-per-unit on both axes, one
+    # square = 1 unit by 1 unit, matching real squared exercise-book paper)
+    # whenever the tighter of the two per-axis scales still gives a legible
+    # unit-square size. For a lopsided range (e.g. a 360-degree trig sweep
+    # against a y range of +-1.4, or a distance-time graph running to 65
+    # minutes against 12 km), forcing 1-unit squares at a single shared
+    # scale would shrink the constrained axis's squares to sub-pixel
+    # slivers - the fix isn't to give up on square cells, it's to let a
+    # square be worth a DIFFERENT number of units on each axis (exactly
+    # like real squared paper used for e.g. a sin/cos graph, where one
+    # square might be 50 degrees by 0.2), while still rendering every
+    # square the same pixel size on both axes so cells never look
+    # rectangular. Picking a "nice" per-axis step (the same helper already
+    # used for numbered ticks) keeps the grid legible instead of packing
+    # hundreds of 1-unit lines into a narrow span (found via a real render
+    # of trig_graph/plot_cubic: the old code always used a raw 1-unit
+    # gridline step regardless of which branch fired, so the rectangular
+    # fallback still crammed e.g. 360 lines into ~170px on the constrained
+    # axis - a dense grey smear, not a fallback to something legible).
+    square_px = min(px_per_unit_x, px_per_unit_y)
+    if square_px >= _MIN_SQUARE_UNIT_PX:
+        grid_step_x = grid_step_y = 1.0
+        used_w, used_h = x_span * square_px, y_span * square_px
+        origin_x = _GRAPH_MARGIN_L + (plot_w - used_w) / 2
+        origin_y = _GRAPH_MARGIN_B + (plot_h - used_h) / 2
 
-    # Fine unit gridlines.
-    x = math.ceil(x_min)
+        def to_px(x: float, y: float) -> tuple[float, float]:
+            return origin_x + (x - x_min) * square_px, origin_y + (y - y_min) * square_px
+    else:
+        grid_step_x = _nice_tick_step(x_min, x_max)
+        grid_step_y = _nice_tick_step(y_min, y_max)
+        nx, ny = x_span / grid_step_x, y_span / grid_step_y
+        px_per_square = min(plot_w / nx, plot_h / ny)
+        used_w, used_h = nx * px_per_square, ny * px_per_square
+        origin_x = _GRAPH_MARGIN_L + (plot_w - used_w) / 2
+        origin_y = _GRAPH_MARGIN_B + (plot_h - used_h) / 2
+
+        def to_px(x: float, y: float) -> tuple[float, float]:
+            return (
+                origin_x + (x - x_min) / grid_step_x * px_per_square,
+                origin_y + (y - y_min) / grid_step_y * px_per_square,
+            )
+
+    # Square gridlines, spaced at grid_step_x/grid_step_y on each axis.
+    x = math.ceil(x_min / grid_step_x) * grid_step_x
     while x <= x_max + 1e-9:
         px, y0 = to_px(x, y_min)
         _, y1 = to_px(x, y_max)
         d.add(Line(px, y0, px, y1, strokeColor=GRID, strokeWidth=0.4))
-        x += 1
-    y = math.ceil(y_min)
+        x += grid_step_x
+    y = math.ceil(y_min / grid_step_y) * grid_step_y
     while y <= y_max + 1e-9:
         x0, py = to_px(x_min, y)
         x1, _ = to_px(x_max, y)
         d.add(Line(x0, py, x1, py, strokeColor=GRID, strokeWidth=0.4))
-        y += 1
+        y += grid_step_y
 
     # Bold axis lines through the origin (guaranteed in range by the clamp above).
     axis_x0 = 0
@@ -1084,7 +1873,26 @@ def _fn_value(kind: str, x: float, params: dict) -> float:
         return params["a"] * x**3 + params["b"] * x
     if kind == "reciprocal":
         return params["a"] / x
+    if kind == "exponential":
+        return params["a"] * params["base"] ** x
+    if kind == "trigonometric":
+        # sin/cos are continuous everywhere. tan has vertical asymptotes at
+        # 90 + 180k degrees and would need the same branch-splitting
+        # draw_function_graph's reciprocal kind uses if plotted across one -
+        # callers using "tan" are expected to only ever pass an x_min/x_max
+        # window that stays strictly within one continuous branch (never
+        # spanning an asymptote), so a plain lookup is safe here.
+        fn = {"sin": math.sin, "cos": math.cos, "tan": math.tan}[params["fn"]]
+        return params.get("sign", 1) * fn(math.radians(x))
     raise ValueError(f"unknown function graph kind: {kind!r}")
+
+
+def _cross_marker(d: Drawing, x: float, y: float, size: float = 2.2, color=INK, width: float = 1.1) -> None:
+    """A small X/cross marking one plotted data point - the standard exam-
+    graph convention, used everywhere a single value is plotted on any
+    graph (never a filled dot)."""
+    d.add(Line(x - size, y - size, x + size, y + size, strokeColor=color, strokeWidth=width))
+    d.add(Line(x - size, y + size, x + size, y - size, strokeColor=color, strokeWidth=width))
 
 
 def draw_function_graph(params: dict) -> Drawing:
@@ -1119,7 +1927,7 @@ def draw_function_graph(params: dict) -> Drawing:
 
         for tx, ty in params.get("table_points", []):
             px, py = to_px(tx, ty)
-            d.add(Circle(px, py, 2, strokeColor=INK, fillColor=INK))
+            _cross_marker(d, px, py)
 
     return d
 
@@ -1140,7 +1948,7 @@ def draw_piecewise_graph(params: dict) -> Drawing:
         d.add(PolyLine(pts, strokeColor=INK, strokeWidth=1.3))
         for t, v in params["points"]:
             px, py = to_px(t, v)
-            d.add(Circle(px, py, 1.8, strokeColor=INK, fillColor=INK))
+            _cross_marker(d, px, py)
 
     return d
 
@@ -1371,7 +2179,105 @@ def draw_loci_region(params: dict) -> Drawing:
     return d
 
 
-_TRANSFORM_BASE_SHAPE = [(-3, 3), (-2, 0.5), (-1, -1), (0, -1.5), (1, -1), (2, 0.5), (3, 3)]
+def _clip_line_to_window(
+    m: float, c: float, x_min: float, x_max: float, y_min: float, y_max: float
+) -> tuple[tuple[float, float], tuple[float, float]] | None:
+    """The segment of the line y = m*x + c that lies within the rectangle
+    [x_min, x_max] x [y_min, y_max], as two endpoint (x, y) tuples - or None
+    if the line never crosses the rectangle at all. Finds every point where
+    the line crosses one of the rectangle's four edges, keeps only the ones
+    that actually land on that edge (not off the end of it), and returns the
+    two extreme candidates. Needed because a steep line's y-value at x_min or
+    x_max routinely lands far outside the window - drawing between those raw
+    endpoints (rather than this clipped segment) sends the line's pixel
+    coordinates far outside the Drawing's own canvas, which ReportLab does
+    not clip, so it bleeds into whatever page content sits above/below the
+    diagram - found via rendering an actual worksheet and looking closely,
+    not a unit test."""
+    candidates: list[tuple[float, float]] = []
+    for x in (x_min, x_max):
+        y = m * x + c
+        if y_min - 1e-9 <= y <= y_max + 1e-9:
+            candidates.append((x, y))
+    if m != 0:
+        for y in (y_min, y_max):
+            x = (y - c) / m
+            if x_min - 1e-9 <= x <= x_max + 1e-9:
+                candidates.append((x, y))
+    if len(candidates) < 2:
+        return None
+    candidates.sort(key=lambda p: p[0])
+    return candidates[0], candidates[-1]
+
+
+def _satisfies_inequality_lines(x: float, y: float, lines: list) -> bool:
+    for line in lines:
+        rhs = line["m"] * x + line["c"]
+        op = line["op"]
+        if op == "<" and not (y < rhs):
+            return False
+        if op == "<=" and not (y <= rhs):
+            return False
+        if op == ">" and not (y > rhs):
+            return False
+        if op == ">=" and not (y >= rhs):
+            return False
+    return True
+
+
+def draw_inequality_region(params: dict) -> Drawing:
+    """Shades the region on gridded axes satisfying every inequality in
+    params['lines'] (1-2 entries, each of the form y <op> m*x + c - never a
+    general ax+by=c or a vertical line, which covers the realistic GCSE
+    question shape). Each boundary is drawn full-width across the window,
+    dashed for a strict inequality (<, >) and solid for a non-strict one
+    (<=, >=), matching real exam convention. params['blank'] gives bare axes
+    only (the question page, matching inequalities_number_line.py's
+    blank-question/marked-solution split) - otherwise the boundary lines and
+    a rasterized-dot-mesh shaded region are both drawn, reusing the exact
+    sample-a-fine-grid-and-test-every-point technique draw_loci_region
+    already uses, generalised here to a linear-inequality predicate instead
+    of a circle/half-plane one."""
+    d = Drawing(GRAPH_WIDTH, GRAPH_HEIGHT)
+    x_min, x_max = params["x_min"], params["x_max"]
+    y_min, y_max = params["y_min"], params["y_max"]
+    to_px = _draw_scaled_axes(d, x_min, x_max, y_min, y_max)
+
+    if params.get("blank", False):
+        return d
+
+    lines = params.get("lines", [])
+    for line in lines:
+        clipped = _clip_line_to_window(line["m"], line["c"], x_min, x_max, y_min, y_max)
+        if clipped is None:
+            continue
+        (x0, y0), (x1, y1) = clipped
+        px0, py0 = to_px(x0, y0)
+        px1, py1 = to_px(x1, y1)
+        dashed = line["op"] in ("<", ">")
+        d.add(Line(px0, py0, px1, py1, strokeColor=INK, strokeWidth=1.2, strokeDashArray=[3, 2] if dashed else None))
+
+    step = 0.25
+    x_lo, x_hi = min(x_min, 0), max(x_max, 0)
+    y_lo, y_hi = min(y_min, 0), max(y_max, 0)
+    x = x_lo
+    while x <= x_hi + 1e-9:
+        y = y_lo
+        while y <= y_hi + 1e-9:
+            if _satisfies_inequality_lines(x, y, lines):
+                px, py = to_px(x, y)
+                d.add(Circle(px, py, 1.3, fillColor=ACCENT, strokeColor=None, fillOpacity=0.35))
+            y += step
+        x += step
+
+    return d
+
+
+def _transform_base_fn(x: float) -> float:
+    # A smooth symmetric bowl-shaped curve (exactly y = 0.5x^2 - 1.5) used
+    # as the generic "y = f(x)" schematic - sampled densely below rather
+    # than drawn as a coarse hand-picked-point polyline.
+    return 0.5 * x**2 - 1.5
 
 
 def _apply_transform(kind: str, shift: float, pt: tuple[float, float]) -> tuple[float, float]:
@@ -1402,14 +2308,17 @@ def draw_graph_transformation(params: dict) -> Drawing:
         x, y = pt
         return (max(min(x, x_max), x_min), max(min(y, y_max), y_min))
 
+    n = 40
+    base_pts = [(-3 + 6 * i / n, _transform_base_fn(-3 + 6 * i / n)) for i in range(n + 1)]
+
     orig_pts: list[float] = []
-    for pt in _TRANSFORM_BASE_SHAPE:
+    for pt in base_pts:
         px, py = to_px(*clamp(pt))
         orig_pts.extend([px, py])
     d.add(PolyLine(orig_pts, strokeColor=MUTED, strokeWidth=1.1, strokeDashArray=[3, 2]))
 
     trans_pts: list[float] = []
-    for pt in _TRANSFORM_BASE_SHAPE:
+    for pt in base_pts:
         tpt = _apply_transform(params["transform"], params.get("shift", 0), pt)
         px, py = to_px(*clamp(tpt))
         trans_pts.extend([px, py])
@@ -1425,45 +2334,89 @@ def draw_tree_diagram(params: dict) -> Drawing:
     """A two-stage probability tree. stage1 = [(label, prob_str), ...];
     stage2 = one list of (label, prob_str) branches per stage1 node;
     leaf_probs (optional) = matching nested list of combined-outcome
-    probability strings shown at each leaf."""
+    probability strings shown at each leaf. A branch's prob_str may be ""
+    (or omitted/falsy) to draw a short blank placeholder line instead of a
+    value, for a tree the student is meant to complete themselves.
+    params['stage1_header']/['stage2_header'] (optional) caption the two
+    columns of branches (e.g. the name of each stage's random event), drawn
+    above the diagram - matching real exam-style labelled trees."""
     stage1: list[tuple[str, str]] = params["stage1"]
     stage2: list[list[tuple[str, str]]] = params["stage2"]
     leaf_probs: list[list[str]] | None = params.get("leaf_probs")
+    stage1_header = params.get("stage1_header")
+    stage2_header = params.get("stage2_header")
 
     branch_counts = [len(b) for b in stage2]
     total_leaves = sum(branch_counts)
-    width = 260
-    height = max(120, total_leaves * 24 + 16)
+
+    leaf_spacing, group_spacing = 46.0, 20.0
+    header_h = 26.0 if (stage1_header or stage2_header) else 0.0
+    top_pad, bottom_pad = 14.0 + header_h, 14.0
+    height = max(
+        150.0,
+        top_pad + bottom_pad + total_leaves * leaf_spacing + max(0, len(branch_counts) - 1) * group_spacing,
+    )
+    width = 460.0 if leaf_probs is not None else 400.0
     d = Drawing(width, height)
 
-    root_x, root_y = 12.0, height / 2
-    x1 = width * 0.32
-    x2 = width * 0.62
-    x3 = width * 0.86
+    x1, x2, x3 = width * 0.30, width * 0.58, width * 0.85
+    root_x = 16.0
 
     leaf_ys: list[list[float]] = []
-    cursor = 8.0
+    cursor = bottom_pad + leaf_spacing / 2
     for count in branch_counts:
-        ys = [cursor + i * 22 + 11 for i in range(count)]
+        ys = [cursor + i * leaf_spacing for i in range(count)]
         leaf_ys.append(ys)
-        cursor += count * 22 + 8
+        cursor += count * leaf_spacing + group_spacing
 
     node1_ys = [sum(ys) / len(ys) for ys in leaf_ys]
+    root_y = sum(node1_ys) / len(node1_ys)
+
+    if stage1_header:
+        d.add(String(x1, height - 16, str(stage1_header), textAnchor="middle", fontSize=10, fillColor=INK, fontName=_LABEL_FONT_BOLD))
+    if stage2_header:
+        d.add(String(x2, height - 16, str(stage2_header), textAnchor="middle", fontSize=10, fillColor=INK, fontName=_LABEL_FONT_BOLD))
+
+    def _branch_prob(x_from: float, y_from: float, x_to: float, y_to: float, prob: str, size: float) -> None:
+        # Offset the probability label perpendicular to the branch line
+        # (rather than a fixed vertical amount) so it clears the line itself
+        # regardless of the branch's slope - dx is always positive here
+        # (every branch runs left to right), so this normal always points
+        # "up" on the page, matching how real tree diagrams caption branches.
+        dx, dy = x_to - x_from, y_to - y_from
+        length = math.hypot(dx, dy) or 1.0
+        nx, ny = -dy / length, dx / length
+        lx, ly = (x_from + x_to) / 2 + nx * 12, (y_from + y_to) / 2 + ny * 12
+        if prob:
+            d.add(_label(lx, ly, prob, size=size))
+        else:
+            d.add(Line(lx - 9, ly - 2, lx + 9, ly - 2, strokeColor=INK, strokeWidth=0.9))
+
+    def _node_label(x: float, y: float, text: str, size: float) -> None:
+        # Every line/dash leaving this node starts exactly at (x, y) and
+        # only ever extends to the right (greater x) - so a label centred
+        # directly ABOVE the node (same x, y offset only) never touches any
+        # of them, unlike a label offset to the right, which sat inside the
+        # narrow wedge those lines fan out into and collided with one of
+        # them as soon as the branches spread more than a few points apart.
+        d.add(_label(x, y + 10, text, size=size))
 
     for i, ((label1, prob1), y1) in enumerate(zip(stage1, node1_ys)):
-        d.add(Line(root_x, root_y, x1, y1, strokeColor=INK, strokeWidth=1.1))
-        d.add(_label((root_x + x1) / 2, (root_y + y1) / 2 + 6, prob1, size=7))
-        d.add(_label(x1 + 4, y1 + 3, label1, anchor="start", size=7.5))
+        d.add(Line(root_x, root_y, x1, y1, strokeColor=INK, strokeWidth=1.2))
+        _branch_prob(root_x, root_y, x1, y1, prob1, 9)
+        _node_label(x1, y1, label1, 9.5)
 
         for j, ((label2, prob2), y2) in enumerate(zip(stage2[i], leaf_ys[i])):
-            d.add(Line(x1, y1, x2, y2, strokeColor=INK, strokeWidth=1.1))
-            d.add(_label((x1 + x2) / 2, (y1 + y2) / 2 + 6, prob2, size=7))
-            d.add(_label(x2 + 4, y2 + 3, label2, anchor="start", size=7.5))
+            d.add(Line(x1, y1, x2, y2, strokeColor=INK, strokeWidth=1.2))
+            _branch_prob(x1, y1, x2, y2, prob2, 9)
             if leaf_probs is not None:
                 d.add(Line(x2, y2, x3, y2, strokeColor=MUTED, strokeWidth=0.5, strokeDashArray=[2, 2]))
-                d.add(_label(x3 + 4, y2 + 3, leaf_probs[i][j], anchor="start", color=ACCENT, size=7))
+                _node_label(x2, y2, label2, 9.5)
+                d.add(_label(x3 + 6, y2 + 3, leaf_probs[i][j], anchor="start", color=ACCENT, size=8.5))
+            else:
+                d.add(_label(x2 + 6, y2 + 3, label2, anchor="start", size=9.5))
 
-    d.add(Circle(root_x, root_y, 1.8, strokeColor=INK, fillColor=INK))
+    d.add(Circle(root_x, root_y, 2.2, strokeColor=INK, fillColor=INK))
     return d
 
 
@@ -1476,7 +2429,11 @@ def draw_two_way_table(params: dict) -> Drawing:
     col_labels: list[str] = params["col_labels"]
     cells: list[list[str]] = params["cells"]
 
-    header_w, cell_w, cell_h = 66, 44, 22
+    cell_w, cell_h = 44, 22
+    # Wide enough for the longest row label (e.g. "Weekly sales (£1000s)"),
+    # not just the original fixed 66 - a label longer than that was
+    # overflowing straight through the header/first cell border.
+    header_w = max(66.0, max((stringWidth(str(rl), _LABEL_FONT, 7.5) for rl in row_labels), default=0) + 10)
     n_rows, n_cols = len(row_labels), len(col_labels)
     width = header_w + cell_w * n_cols
     height = cell_h * (n_rows + 1)
@@ -1615,8 +2572,8 @@ def draw_venn_diagram(params: dict) -> Drawing:
     d.add(Circle(_VENN_CX_B, _VENN_CY, _VENN_R, fillColor=None, strokeColor=INK, strokeWidth=0.9))
 
     d.add(_label(x0 + 8, y1 - 10, universal_label, anchor="start", size=9))
-    d.add(_label(_VENN_CX_A - 20, _VENN_CY + _VENN_R - 12, str(labels[0]), size=9))
-    d.add(_label(_VENN_CX_B + 20, _VENN_CY + _VENN_R - 12, str(labels[1]), size=9))
+    d.add(_label(_VENN_CX_A, _VENN_CY + _VENN_R + 10, str(labels[0]), size=9))
+    d.add(_label(_VENN_CX_B, _VENN_CY + _VENN_R + 10, str(labels[1]), size=9))
 
     region_positions = {
         "a_only": (_VENN_CX_A - 22, _VENN_CY - 4),
@@ -1635,12 +2592,56 @@ def _fmt_tick(v: float) -> str:
     return str(int(round(v))) if abs(v - round(v)) < 1e-9 else f"{v:.1f}"
 
 
+def _grid_minor_step(major_step: float) -> float:
+    """Half the major tick step, when that lands on a clean whole number
+    (e.g. a major step of 10 gives minor squares worth 5) - otherwise one
+    square per major tick, rather than an arbitrary/always-1 subdivision
+    regardless of the axis's real scale."""
+    half = major_step / 2
+    return half if abs(half - round(half)) < 1e-9 else major_step
+
+
+def _draw_square_grid(
+    d: Drawing, to_px: Callable, x0: float, y0: float, plot_w: float, plot_h: float,
+    x_min: float, x_max: float, y_min: float, y_max: float, show_y_axis: bool,
+) -> None:
+    """A light squared-paper background, drawn underneath the real axes/
+    ticks - square size is derived from each axis's own 'nice' tick step
+    (never a flat 1-unit square regardless of scale, e.g. a y-axis running
+    in 10s gets squares worth 5). When the y-axis has no real numeric
+    meaning (show_y_axis=False, e.g. a box plot), the horizontal lines
+    instead mirror the x minor step's own pixel size, so the grid still
+    reads as genuine squares rather than an invented numeric scale."""
+    x_major = _nice_tick_step(x_min, x_max)
+    x_minor = _grid_minor_step(x_major)
+    xv = math.ceil(x_min / x_minor) * x_minor
+    while xv <= x_max + 1e-9:
+        px, _ = to_px(xv, y_min)
+        d.add(Line(px, y0, px, y0 + plot_h, strokeColor=GRID, strokeWidth=0.3))
+        xv += x_minor
+
+    if show_y_axis:
+        y_major = _nice_tick_step(y_min, y_max)
+        y_minor = _grid_minor_step(y_major)
+        yv = math.ceil(y_min / y_minor) * y_minor
+        while yv <= y_max + 1e-9:
+            _, py = to_px(x_min, yv)
+            d.add(Line(x0, py, x0 + plot_w, py, strokeColor=GRID, strokeWidth=0.3))
+            yv += y_minor
+    else:
+        x_square_px = x_minor * plot_w / (x_max - x_min)
+        py = y0
+        while py <= y0 + plot_h + 1e-6:
+            d.add(Line(x0, py, x0 + plot_w, py, strokeColor=GRID, strokeWidth=0.3))
+            py += x_square_px
+
+
 def _draw_stats_axes(
     d: Drawing, x0: float, y0: float, plot_w: float, plot_h: float,
     x_min: float, x_max: float, y_min: float, y_max: float,
     x_label: str = "", y_label: str = "",
     x_ticks: "list[float] | None" = None, y_ticks: "list[float] | None" = None,
-    y_step: "float | None" = None, show_y_axis: bool = True,
+    y_step: "float | None" = None, show_y_axis: bool = True, square_grid: bool = False,
 ) -> Callable[[float, float], tuple[float, float]]:
     """Draw a plain linear pair of axes (bold axis lines, a handful of ticks
     spaced via `_nice_tick_step` so the tick/gridline count never depends on
@@ -1652,12 +2653,17 @@ def _draw_stats_axes(
     x-axes, e.g. histograms and cumulative frequency graphs) - pass `[]` to
     suppress ticks on that axis entirely. `show_y_axis=False` omits the
     vertical axis line and all y-axis ticks/labels (for a chart with no
-    meaningful y-scale, e.g. a box plot)."""
+    meaningful y-scale, e.g. a box plot). `square_grid=True` adds a light
+    squared-paper background (see `_draw_square_grid`) for charts the
+    student draws onto or reads values off precisely."""
 
     def to_px(x: float, y: float) -> tuple[float, float]:
         px = x0 + (x - x_min) / (x_max - x_min) * plot_w
         py = y0 + (y - y_min) / (y_max - y_min) * plot_h
         return px, py
+
+    if square_grid:
+        _draw_square_grid(d, to_px, x0, y0, plot_w, plot_h, x_min, x_max, y_min, y_max, show_y_axis)
 
     ax0, ay0 = to_px(x_min, y_min)
     ax1, _ = to_px(x_max, y_min)
@@ -1737,15 +2743,21 @@ def draw_bar_chart(params: dict) -> Drawing:
     n = len(categories)
     bar_slot = plot_w / n
     bar_w = bar_slot * 0.6
+    gap = bar_slot - bar_w  # the same gap sits before every bar, including the first (see bx below)
 
     to_px = _draw_stats_axes(
         d, margin_l, y0, plot_w, plot_h, 0, n, 0, y_max, y_label=y_label,
-        x_ticks=[],
+        x_ticks=[], square_grid=True,
     )
 
     if not blank:
         for i in range(n):
-            bx = margin_l + i * bar_slot + (bar_slot - bar_w) / 2
+            # The gap is placed BEFORE each bar (not split/centred either
+            # side of it), so the axis-to-first-bar gap and every
+            # between-bar gap all come out equal to `gap` - a centred bar
+            # only gets half that gap on its left, since the other half
+            # sits after it instead.
+            bx = margin_l + i * bar_slot + gap
             if stacked:
                 cursor = 0.0
                 for seg_idx, seg_val in enumerate(series[i]):
@@ -1760,7 +2772,7 @@ def draw_bar_chart(params: dict) -> Drawing:
                 d.add(Rect(bx, py0, bar_w, py1 - py0, fillColor=HIGHLIGHT, strokeColor=INK, strokeWidth=0.6))
 
     for i, cat in enumerate(categories):
-        cx = margin_l + i * bar_slot + bar_slot / 2
+        cx = margin_l + i * bar_slot + gap + bar_w / 2
         d.add(_label(cx, y0 - 10, str(cat), size=7))
 
     if stacked and series_labels:
@@ -1775,50 +2787,79 @@ def draw_bar_chart(params: dict) -> Drawing:
 
 
 def draw_pie_chart(params: dict) -> Drawing:
-    """A pie chart. params['categories']: list of slice names. params['values']:
-    list of numbers (proportional to slice angle). params['show'] controls
-    what's written on each slice: "value" (default), "percentage", or "none"
-    (blank slices with only a legend - for a "construct the chart" question,
-    combined with params['blank']=True to omit the legend colours' meaning
-    from the values shown)."""
+    """A pie chart. params['categories']: list of slice names. params
+    ['values']: list of numbers (proportional to slice angle). Every wedge
+    is unfilled (no colour) and labelled with its own category name and
+    angle out of 360 (e.g. "Football (72°)") - real GCSE convention reads a
+    pie chart's angles directly, not a colour key, so no legend is drawn.
+    A label sits inside its wedge when there's room, otherwise just outside
+    the circle (mirroring draw_spinner's narrow-sector handling)."""
     categories: list = params["categories"]
     values: list = params["values"]
-    show = params.get("show", "value")
-    blank = params.get("blank", False)
 
     total = sum(values)
-    cx, cy, r = 90, 75, 60
-    d = Drawing(230, 150)
+    cx, cy, r = 100, 82, 62
+    d = Drawing(230, 164)
 
     cumulative = 0.0
     for i, v in enumerate(values):
         start = 90 + cumulative / total * 360
         cumulative += v
         end = 90 + cumulative / total * 360
-        color = PAPER if blank else CHART_COLORS[i % len(CHART_COLORS)]
-        d.add(Wedge(cx, cy, r, start, end, fillColor=color, strokeColor=INK, strokeWidth=0.8))
+        d.add(Wedge(cx, cy, r, start, end, fillColor=PAPER, strokeColor=INK, strokeWidth=0.8))
 
-    lx, ly = 170, 130
-    for i, cat in enumerate(categories):
-        color = PAPER if blank else CHART_COLORS[i % len(CHART_COLORS)]
-        d.add(Rect(lx, ly - 6, 8, 8, fillColor=color, strokeColor=INK, strokeWidth=0.5))
-        label_text = str(cat)
-        if not blank and show != "none":
-            if show == "percentage":
-                label_text += f" ({round(values[i] / total * 100)}%)"
-            else:
-                label_text += f" ({values[i]})"
-        d.add(_label(lx + 11, ly - 5, label_text, anchor="start", size=7))
-        ly -= 13
+        mid = math.radians((start + end) / 2)
+        angle_span = end - start
+        angle_deg = round(v / total * 360)
+        label_text = f"{categories[i]} ({angle_deg}°)"
 
+        if angle_span >= 35:
+            lx, ly = cx + r * 0.62 * math.cos(mid), cy + r * 0.62 * math.sin(mid) - 3
+            d.add(_label(lx, ly, label_text, size=7))
+        else:
+            lx, ly = cx + (r + 14) * math.cos(mid), cy + (r + 14) * math.sin(mid) - 3
+            anchor = "start" if math.cos(mid) >= 0 else "end"
+            d.add(_label(lx, ly, label_text, size=7, anchor=anchor))
+
+    return d
+
+
+def draw_pie_chart_with_table(params: dict) -> Drawing:
+    """The solution-page diagram for pie_chart_construct: the completed
+    Category/Frequency/Angle table stacked above the completed pie chart -
+    composed as one Drawing (via a nested, translated child Drawing, since
+    a Question only carries one diagram slot per page) mirroring
+    draw_plans_and_elevations_question's precedent."""
+    categories: list = params["categories"]
+    values: list = params["values"]
+    angle_degrees: list = params["angle_degrees"]
+
+    table = draw_two_way_table({
+        "row_labels": [str(c) for c in categories],
+        "col_labels": ["Frequency", "Angle"],
+        "cells": [[str(v), f"{a}°"] for v, a in zip(values, angle_degrees)],
+    })
+    pie = draw_pie_chart({"categories": categories, "values": values})
+
+    gap = 10
+    width = max(table.width, pie.width)
+    height = table.height + gap + pie.height
+    d = Drawing(width, height)
+    pie.transform = (1, 0, 0, 1, 0, 0)
+    d.add(pie)
+    table.transform = (1, 0, 0, 1, 0, pie.height + gap)
+    d.add(table)
     return d
 
 
 def draw_box_plot(params: dict) -> Drawing:
     """One or more box plots sharing a numeric axis. params['box_plots'] is a
-    list of {"label": str (optional), "min", "q1", "median", "q3", "max"}."""
+    list of {"label": str (optional), "min", "q1", "median", "q3", "max"}.
+    params['blank'] draws the axis (and square grid) only, no boxes - for
+    the question page of a 'draw this yourself' question."""
     box_plots: list = params["box_plots"]
     x_label = params.get("x_label", "")
+    blank = params.get("blank", False)
 
     all_values = [v for bp in box_plots for v in (bp["min"], bp["max"])]
     x_min, x_max = min(all_values), max(all_values)
@@ -1837,9 +2878,12 @@ def draw_box_plot(params: dict) -> Drawing:
 
     axis_y = 24
     to_px = _draw_stats_axes(
-        d, margin_l, axis_y, plot_w, 1, x_min, x_max, 0, 1, x_label=x_label,
-        show_y_axis=False,
+        d, margin_l, axis_y, plot_w, height - axis_y, x_min, x_max, 0, 1, x_label=x_label,
+        show_y_axis=False, square_grid=True,
     )
+
+    if blank:
+        return d
 
     for i, bp in enumerate(box_plots):
         mid_y = axis_y + 30 + i * row_h
@@ -1883,12 +2927,16 @@ def draw_number_line(params: dict) -> Drawing:
     shade = params.get("shade")
     blank = params.get("blank", False)
 
-    width, height = 200, 40
+    width, height = 200, 48
     margin_l, margin_r = 16, 14
     plot_w = width - margin_l - margin_r
     d = Drawing(width, height)
 
     axis_y = 22
+    # The solution mark (circle/segment/arrow) is drawn on its own line above
+    # the ticked axis, not directly on top of it - the ticks/numbers stay at
+    # axis_y, only the mark itself uses mark_y.
+    mark_y = axis_y + 10
     to_px = _draw_stats_axes(
         d, margin_l, axis_y, plot_w, 1, lo, hi, 0, 1,
         x_ticks=list(range(lo, hi + 1)), show_y_axis=False,
@@ -1904,12 +2952,12 @@ def draw_number_line(params: dict) -> Drawing:
     def _arrow(tip_x: float, direction: int) -> None:
         back_x = tip_x - direction * ARROW_LEN
         d.add(Polygon(
-            [tip_x, axis_y, back_x, axis_y + ARROW_HALF_W, back_x, axis_y - ARROW_HALF_W],
+            [tip_x, mark_y, back_x, mark_y + ARROW_HALF_W, back_x, mark_y - ARROW_HALF_W],
             fillColor=ACCENT, strokeColor=ACCENT,
         ))
 
     def _segment(xa: float, xb: float) -> None:
-        d.add(Line(xa, axis_y, xb, axis_y, strokeColor=ACCENT, strokeWidth=2.8))
+        d.add(Line(xa, mark_y, xb, mark_y, strokeColor=ACCENT, strokeWidth=2.8))
 
     if len(boundaries) == 1:
         value, closed = boundaries[0]["value"], boundaries[0]["closed"]
@@ -1920,7 +2968,7 @@ def draw_number_line(params: dict) -> Drawing:
         else:
             _segment(x0 - ARROW_LEN, px)
             _arrow(x0 - ARROW_LEN, -1)
-        d.add(Circle(px, axis_y, 3.2, fillColor=(PAPER if not closed else ACCENT), strokeColor=INK, strokeWidth=1.2))
+        d.add(Circle(px, mark_y, 3.2, fillColor=(PAPER if not closed else ACCENT), strokeColor=INK, strokeWidth=1.2))
     else:
         v1, c1 = boundaries[0]["value"], boundaries[0]["closed"]
         v2, c2 = boundaries[1]["value"], boundaries[1]["closed"]
@@ -1935,8 +2983,8 @@ def draw_number_line(params: dict) -> Drawing:
             _arrow(x1 + ARROW_LEN, 1)
         else:
             _segment(px_lo, px_hi)
-        d.add(Circle(px_lo, axis_y, 3.2, fillColor=(PAPER if not lo_closed else ACCENT), strokeColor=INK, strokeWidth=1.2))
-        d.add(Circle(px_hi, axis_y, 3.2, fillColor=(PAPER if not hi_closed else ACCENT), strokeColor=INK, strokeWidth=1.2))
+        d.add(Circle(px_lo, mark_y, 3.2, fillColor=(PAPER if not lo_closed else ACCENT), strokeColor=INK, strokeWidth=1.2))
+        d.add(Circle(px_hi, mark_y, 3.2, fillColor=(PAPER if not hi_closed else ACCENT), strokeColor=INK, strokeWidth=1.2))
 
     return d
 
@@ -1963,7 +3011,7 @@ def draw_histogram(params: dict) -> Drawing:
 
     to_px = _draw_stats_axes(
         d, margin_l, margin_b, plot_w, plot_h, x_min, x_max, 0, y_max,
-        x_label=x_label, y_label=y_label, x_ticks=boundaries,
+        x_label=x_label, y_label=y_label, square_grid=True,
     )
 
     if not blank:
@@ -1972,6 +3020,78 @@ def draw_histogram(params: dict) -> Drawing:
             x1, y1 = to_px(boundaries[i + 1], densities[i])
             d.add(Rect(x0, y0, x1 - x0, y1 - y0, fillColor=HIGHLIGHT, strokeColor=INK, strokeWidth=0.7))
 
+    return d
+
+
+def _smooth_curve(points: list, **kwargs) -> PolyLine:
+    """A smooth curve through `points` (pixel coordinates), built from a
+    Catmull-Rom spline sampled densely and joined as one PolyLine - real
+    exam convention draws a cumulative frequency curve smoothly, not as
+    straight line segments. Each segment's interpolated x/y is clamped
+    between its own two endpoints' values, so the curve never overshoots
+    past a neighbouring point - kept safe for a graph the student reads
+    real values off."""
+    if len(points) < 3:
+        return PolyLine([c for pt in points for c in pt], **kwargs)
+
+    def catmull_rom(p0, p1, p2, p3, t):
+        t2, t3 = t * t, t * t * t
+        x = 0.5 * (
+            2 * p1[0] + (-p0[0] + p2[0]) * t
+            + (2 * p0[0] - 5 * p1[0] + 4 * p2[0] - p3[0]) * t2
+            + (-p0[0] + 3 * p1[0] - 3 * p2[0] + p3[0]) * t3
+        )
+        y = 0.5 * (
+            2 * p1[1] + (-p0[1] + p2[1]) * t
+            + (2 * p0[1] - 5 * p1[1] + 4 * p2[1] - p3[1]) * t2
+            + (-p0[1] + 3 * p1[1] - 3 * p2[1] + p3[1]) * t3
+        )
+        return x, y
+
+    samples = 14
+    n = len(points)
+    out: list[float] = []
+    for i in range(n - 1):
+        p0 = points[i - 1] if i > 0 else points[i]
+        p1 = points[i]
+        p2 = points[i + 1]
+        p3 = points[i + 2] if i + 2 < n else points[i + 1]
+        x_lo, x_hi = min(p1[0], p2[0]), max(p1[0], p2[0])
+        y_lo, y_hi = min(p1[1], p2[1]), max(p1[1], p2[1])
+        steps = samples if i < n - 2 else samples + 1
+        for s in range(steps):
+            t = s / samples
+            x, y = catmull_rom(p0, p1, p2, p3, t)
+            out.extend([min(max(x, x_lo), x_hi), min(max(y, y_lo), y_hi)])
+    return PolyLine(out, **kwargs)
+
+
+def draw_histogram_question(params: dict) -> Drawing:
+    """The question-page diagram for histogram_plot: the class/frequency
+    data table stacked above the blank (squared-paper) axes the student
+    draws their bars onto - composed as one Drawing, mirroring
+    draw_cumulative_frequency_question's precedent."""
+    boundaries: list = params["boundaries"]
+    frequencies: list = params["frequencies"]
+
+    table = draw_two_way_table({
+        "row_labels": [f"{boundaries[i]}-{boundaries[i + 1]}" for i in range(len(frequencies))],
+        "col_labels": ["Frequency"],
+        "cells": [[str(f)] for f in frequencies],
+    })
+    axes = draw_histogram({
+        "boundaries": boundaries, "frequency_densities": params["frequency_densities"],
+        "x_label": params.get("x_label", ""), "blank": True,
+    })
+
+    gap = 10
+    width = max(table.width, axes.width)
+    height = table.height + gap + axes.height
+    d = Drawing(width, height)
+    axes.transform = (1, 0, 0, 1, 0, 0)
+    d.add(axes)
+    table.transform = (1, 0, 0, 1, 0, axes.height + gap)
+    d.add(table)
     return d
 
 
@@ -1999,17 +3119,42 @@ def draw_cumulative_frequency(params: dict) -> Drawing:
 
     to_px = _draw_stats_axes(
         d, margin_l, margin_b, plot_w, plot_h, x_min, x_max, 0, y_max,
-        x_label=x_label, y_label=y_label, x_ticks=xs,
+        x_label=x_label, y_label=y_label, x_ticks=xs, square_grid=True,
     )
 
     if not blank:
         px_points = [to_px(x, y) for x, y in points]
-        d.add(PolyLine(
-            [c for pt in px_points for c in pt], strokeColor=ACCENT, strokeWidth=1.3,
-        ))
+        d.add(_smooth_curve(px_points, strokeColor=ACCENT, strokeWidth=1.3))
         for px, py in px_points:
-            d.add(Circle(px, py, 1.6, fillColor=ACCENT, strokeColor=None))
+            _cross_marker(d, px, py, color=ACCENT)
 
+    return d
+
+
+def draw_cumulative_frequency_question(params: dict) -> Drawing:
+    """The question-page diagram for cumulative_frequency_plot: the class/
+    frequency data table stacked above the blank (squared-paper) axes the
+    student draws their curve onto - composed as one Drawing since a
+    Question only carries one diagram slot per page, mirroring
+    draw_plans_and_elevations_question's precedent."""
+    boundaries: list = params["boundaries"]
+    frequencies: list = params["frequencies"]
+
+    table = draw_two_way_table({
+        "row_labels": [f"{boundaries[i]}-{boundaries[i + 1]}" for i in range(len(frequencies))],
+        "col_labels": ["Frequency"],
+        "cells": [[str(f)] for f in frequencies],
+    })
+    axes = draw_cumulative_frequency({"points": params["points"], "x_label": params.get("x_label", ""), "blank": True})
+
+    gap = 10
+    width = max(table.width, axes.width)
+    height = table.height + gap + axes.height
+    d = Drawing(width, height)
+    axes.transform = (1, 0, 0, 1, 0, 0)
+    d.add(axes)
+    table.transform = (1, 0, 0, 1, 0, axes.height + gap)
+    d.add(table)
     return d
 
 
@@ -2046,7 +3191,58 @@ def draw_time_series(params: dict) -> Drawing:
             [c for pt in px_points for c in pt], strokeColor=ACCENT, strokeWidth=1.3,
         ))
         for px, py in px_points:
-            d.add(Circle(px, py, 1.6, fillColor=ACCENT, strokeColor=None))
+            _cross_marker(d, px, py, color=ACCENT)
+
+    return d
+
+
+def draw_scatter_graph(params: dict) -> Drawing:
+    """A scatter graph through params['points'] (a list of (x, y) pairs) -
+    unlike draw_time_series/draw_cumulative_frequency, points are plotted as
+    unconnected markers only (no PolyLine), since a scatter graph's x-values
+    have no implied order/sequence to join. params['blank'] draws axes only.
+    params['best_fit'] (optional {"m", "c"}) draws a single straight line of
+    best fit spanning the full x-range - a genuinely new element with no
+    precedent in draw_time_series/draw_cumulative_frequency, since neither
+    of those diagram kinds ever draws a second, independent line alongside
+    the data."""
+    points: list = params["points"]
+    blank = params.get("blank", False)
+    best_fit = params.get("best_fit")
+    x_label = params.get("x_label", "x")
+    y_label = params.get("y_label", "y")
+
+    xs = [p[0] for p in points]
+    ys = [p[1] for p in points]
+    x_span_raw = (max(xs) - min(xs)) or 1
+    y_span_raw = (max(ys) - min(ys)) or 1
+    x_min, x_max = min(xs) - x_span_raw * 0.1, max(xs) + x_span_raw * 0.1
+    y_min_raw, y_max_raw = min(ys) - y_span_raw * 0.15, max(ys) + y_span_raw * 0.15
+    y_min = max(0, y_min_raw) if min(ys) >= 0 else y_min_raw
+    y_max = y_max_raw
+
+    width, height = 230, 150
+    margin_l, margin_r, margin_t, margin_b = 30, 12, 10, 24
+    plot_w, plot_h = width - margin_l - margin_r, height - margin_t - margin_b
+    d = Drawing(width, height)
+
+    to_px = _draw_stats_axes(
+        d, margin_l, margin_b, plot_w, plot_h, x_min, x_max, y_min, y_max,
+        x_label=x_label, y_label=y_label, square_grid=True,
+    )
+
+    if not blank:
+        for x, y in points:
+            px, py = to_px(x, y)
+            _cross_marker(d, px, py)
+
+        if best_fit is not None:
+            m, c = best_fit["m"], best_fit["c"]
+            x0, x1 = x_min, x_max
+            y0, y1 = m * x0 + c, m * x1 + c
+            px0, py0 = to_px(x0, y0)
+            px1, py1 = to_px(x1, y1)
+            d.add(Line(px0, py0, px1, py1, strokeColor=ACCENT, strokeWidth=1.3))
 
     return d
 
@@ -2154,6 +3350,57 @@ def draw_spinner_pair(params: dict) -> Drawing:
     return d
 
 
+def draw_coin(params: dict) -> Drawing:
+    """One or two coin faces, each shown split into its two possible
+    outcomes (H on the top half, T on the bottom half) - matching how
+    draw_spinner shows every sector at once, since this is meant to
+    illustrate the object, not one specific flip result. params['count']:
+    how many coins to draw side by side (default 1)."""
+    count = params.get("count", 1)
+    r, gap = 32.0, 22.0
+    width = count * (2 * r) + (count + 1) * gap
+    height = 2 * r + 2 * gap
+    d = Drawing(width, height)
+    cy = height / 2
+    for i in range(count):
+        cx = gap + r + i * (2 * r + gap)
+        d.add(Circle(cx, cy, r, fillColor=PAPER, strokeColor=INK, strokeWidth=1.2))
+        d.add(Line(cx - r, cy, cx + r, cy, strokeColor=INK, strokeWidth=0.7))
+        d.add(_label(cx, cy + r * 0.32, "H", size=12))
+        d.add(_label(cx, cy - r * 0.62, "T", size=12))
+    return d
+
+
+def draw_event_pair(params: dict) -> Drawing:
+    """Two independent single-object illustrations (a coin, a die, and/or a
+    spinner) side by side, for questions combining two different random
+    objects (e.g. 'a coin is flipped and a die is rolled'). params
+    ['event_a']/['event_b']: each a dict {"kind": "coin"|"dice"|"spinner",
+    **kind-specific params, matching draw_coin/draw_dice/draw_spinner's own
+    params contract} - composed via the same nested-translated-Drawing
+    technique already used by draw_plans_and_elevations_question."""
+
+    def _build(event: dict) -> Drawing:
+        kind = event["kind"]
+        if kind == "coin":
+            return draw_coin({"count": event.get("count", 1)})
+        if kind == "dice":
+            return draw_dice({"values": event["values"], "highlight": event.get("highlight", [])})
+        return draw_spinner({"sectors": event["sectors"], "highlight": event.get("highlight", [])})
+
+    a = _build(params["event_a"])
+    b = _build(params["event_b"])
+    gap = 20.0
+    width = a.width + gap + b.width
+    height = max(a.height, b.height)
+    d = Drawing(width, height)
+    a.transform = (1, 0, 0, 1, 0, (height - a.height) / 2)
+    d.add(a)
+    b.transform = (1, 0, 0, 1, a.width + gap, (height - b.height) / 2)
+    d.add(b)
+    return d
+
+
 _COUNTER_COLOURS = {
     "red": colors.HexColor("#c0555f"),
     "blue": colors.HexColor("#4a72b0"),
@@ -2164,36 +3411,41 @@ _COUNTER_COLOURS = {
 
 
 def draw_bag(params: dict) -> Drawing:
-    """A bag outline containing small filled counters, grouped by colour.
-    params['counts']: dict of colour name -> count. params['highlight']:
-    optional colour name noted as the target, captioned below the bag."""
+    """A rectangular bag outline packed with small filled counters. params
+    ['counts']: dict of colour name -> count. The counters are interleaved
+    round-robin across colours (not grouped into colour blocks) so they read
+    as a freely-mixed handful, and the counter size/grid is sized from the
+    total count so they fill the rectangle as fully as possible regardless
+    of how many there are."""
     counts: dict[str, int] = params["counts"]
-    highlight = params.get("highlight")
-    width = 160
-    d = Drawing(width, 145)
+    width, height = 160, 120
+    d = Drawing(width, height)
 
-    body_x, body_y, body_w, body_h = 20, 15, width - 40, 90
-    d.add(Rect(body_x, body_y, body_w, body_h, rx=16, ry=16, fillColor=PAPER, strokeColor=INK, strokeWidth=1.3))
-    neck_y = body_y + body_h
-    d.add(Line(body_x + 10, neck_y, body_x + body_w - 10, neck_y, strokeColor=INK, strokeWidth=1.3))
-    d.add(Circle(width / 2, neck_y + 6, 4, fillColor=None, strokeColor=INK, strokeWidth=1.3))
+    body_x, body_y, body_w, body_h = 12, 12, width - 24, height - 24
+    d.add(Rect(body_x, body_y, body_w, body_h, fillColor=PAPER, strokeColor=INK, strokeWidth=1.3))
 
-    r, pad = 4.3, 10
-    x, y = body_x + pad, body_y + body_h - pad
-    row_limit, bottom_limit = body_x + body_w - pad, body_y + pad
-    for colour, count in counts.items():
+    order = list(counts.keys())
+    remaining = dict(counts)
+    tokens: list[str] = []
+    while any(remaining[c] > 0 for c in order):
+        for c in order:
+            if remaining[c] > 0:
+                tokens.append(c)
+                remaining[c] -= 1
+
+    total = max(1, len(tokens))
+    cols = max(1, math.ceil(math.sqrt(total * body_w / body_h)))
+    rows = max(1, math.ceil(total / cols))
+    cell_w, cell_h = body_w / cols, body_h / rows
+    r = max(3.2, min(cell_w, cell_h) / 2 * 0.85)
+    r = min(r, 7.0)
+
+    for i, colour in enumerate(tokens):
+        row, col = divmod(i, cols)
+        cx = body_x + cell_w * (col + 0.5)
+        cy = body_y + body_h - cell_h * (row + 0.5)
         fill = _COUNTER_COLOURS.get(colour, MUTED)
-        for _ in range(count):
-            if y < bottom_limit:
-                break
-            d.add(Circle(x, y, r, fillColor=fill, strokeColor=INK, strokeWidth=0.4))
-            x += r * 2.3
-            if x > row_limit:
-                x = body_x + pad
-                y -= r * 2.3
-
-    if highlight:
-        d.add(_label(width / 2, 3, f"Target colour: {highlight}", size=7.5, color=MUTED))
+        d.add(Circle(cx, cy, r, fillColor=fill, strokeColor=INK, strokeWidth=0.4))
 
     return d
 
@@ -2219,9 +3471,15 @@ def draw_cuboid(params: dict) -> Drawing:
     """A cuboid in oblique projection (front face + visible top/right faces
     solid; the three edges meeting at the hidden back-bottom-left vertex
     dashed). A cube is just this same diagram with all three edge labels
-    equal - no separate function needed."""
+    equal - no separate function needed, UNLESS params['is_cube'] is set, in
+    which case the front face is drawn genuinely square (rather than always
+    the same fixed 80x60 rectangle regardless of input) so it actually reads
+    as a cube on screen, not a generic cuboid."""
     d = Drawing(SOLID_WIDTH, SOLID_HEIGHT)
-    x0, y0, fw, fh = 55, 30, 80, 60
+    if params.get("is_cube"):
+        x0, y0, fw, fh = 60, 24, 66, 66
+    else:
+        x0, y0, fw, fh = 55, 30, 80, 60
     FBL, FBR, FTR, FTL = (x0, y0), (x0 + fw, y0), (x0 + fw, y0 + fh), (x0, y0 + fh)
     BBL, BBR, BTR, BTL = _offset(FBL), _offset(FBR), _offset(FTR), _offset(FTL)
 
@@ -2237,8 +3495,46 @@ def draw_cuboid(params: dict) -> Drawing:
     d.add(_label((FBR[0] + BBR[0]) / 2 + 6, (FBR[1] + BBR[1]) / 2 - 4, params["length_label"], anchor="start", size=8))
     if params.get("diagonal_label"):
         d.add(Line(*FBL, *BTR, strokeColor=INK, strokeWidth=0.9, strokeDashArray=[3, 2]))
-        mx, my = (FBL[0] + BTR[0]) / 2, (FBL[1] + BTR[1]) / 2
+        # Placed 60% of the way along the diagonal (toward G/BTR) rather than
+        # at the exact midpoint - the midpoint sits right in the cluster of
+        # hidden dashed edges near the back-bottom-left vertex (D), which
+        # collided with D's own vertex label once vertex_labels was added.
+        mx = FBL[0] + (BTR[0] - FBL[0]) * 0.6
+        my = FBL[1] + (BTR[1] - FBL[1]) * 0.6
         d.add(_label(mx + 6, my + 4, params["diagonal_label"], anchor="start", size=8))
+
+    vertex_labels = params.get("vertex_labels")
+    if vertex_labels:
+        # Standard ABCD/EFGH cuboid-vertex naming: base face A-B-C-D going
+        # front-left, front-right, back-right, back-left; top face E-F-G-H
+        # directly above. This makes AG (FBL<->BTR) the true space diagonal
+        # already drawn above when diagonal_label is set.
+        points_order = [FBL, FBR, BBR, BBL, FTL, FTR, BTR, BTL]
+        cx_all = sum(p[0] for p in points_order) / len(points_order)
+        cy_all = sum(p[1] for p in points_order) / len(points_order)
+        for pt, lbl in zip(points_order, vertex_labels):
+            if pt == BBL:
+                # D (the one hidden vertex) projects visually INSIDE the
+                # front face's own silhouette in oblique projection, unlike
+                # every other vertex, which sits on the outer boundary of
+                # the drawn shape - pushing it outward from the overall
+                # centroid by the same small fixed distance used for every
+                # other vertex left it still inside the front face's
+                # rectangle, overlapping the dashed lines converging there
+                # (found by rendering, not assumed). The one direction genuinely
+                # clear of D's own three dashed edges (down-left to FBL,
+                # right to BBR, up to BTL) is straight down, below the
+                # front face's own bottom edge - far enough below (not just
+                # past y0) to clear the width_label's own row too, which a
+                # first attempt collided with (found by rendering, not
+                # assumed - "D14 cm" running together).
+                lx, ly = BBL[0], y0 - 26
+            else:
+                dx_l, dy_l = pt[0] - cx_all, pt[1] - cy_all
+                dist = math.hypot(dx_l, dy_l) or 1.0
+                lx, ly = pt[0] + dx_l / dist * 13, pt[1] + dy_l / dist * 13
+            d.add(_label(lx, ly, lbl, size=7.5))
+
     _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
     return d
 
@@ -2265,6 +3561,158 @@ def draw_triangular_prism(params: dict) -> Drawing:
     d.add(_label(A[0] - 10, (A[1] + C[1]) / 2, params["triangle_height_label"], anchor="end"))
     d.add(_label((B[0] + B2[0]) / 2 + 6, (B[1] + B2[1]) / 2 - 4, params["length_label"], anchor="start", size=8))
     _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
+    return d
+
+
+def draw_plans_and_elevations(params: dict) -> Drawing:
+    """Three flat orthographic views (front elevation, side elevation, plan)
+    of a solid, laid out in the standard first-angle arrangement - plan
+    directly below the front view (sharing its width), side view directly
+    to the right of the front view (sharing its height). Genuinely
+    different in style from every other 3D diagram in this file
+    (draw_cuboid, draw_triangular_prism, etc.), which all use oblique/
+    cavalier projection via _offset() - no existing helper produces true
+    orthographic projections, so this is built from scratch with plain flat
+    Rect/Polygon shapes, each sized proportionally to the solid's real
+    dimensions from a single shared scale (not just topologically laid out,
+    unlike draw_net's unfolded-face diagrams).
+
+    Every solid here reduces to the same three shapes by the same
+    reasoning: the plan view and side view are always plain rectangles
+    (the silhouette swept along the length is constant), and only the
+    front view varies with the solid's actual cross-section (a rectangle
+    for a cuboid, a right-angled triangle for a triangular prism)."""
+    shape = params["shape"]
+    if shape == "cuboid":
+        dim_x, dim_y, dim_z = params["length"], params["height"], params["width"]
+        x_label, y_label, z_label = params["length_label"], params["height_label"], params["width_label"]
+        front_kind = "rect"
+    elif shape == "triangular_prism":
+        dim_x, dim_y, dim_z = params["base"], params["tri_height"], params["length"]
+        x_label, y_label, z_label = params["base_label"], params["tri_height_label"], params["length_label"]
+        front_kind = "triangle"
+    else:
+        raise ValueError(f"unknown plans/elevations shape: {shape!r}")
+
+    cell = 60
+    scale = cell / max(dim_x, dim_y, dim_z)
+    sx, sy, sz = dim_x * scale, dim_y * scale, dim_z * scale
+
+    # The "Front elevation"/"Side elevation" captions are centred over their
+    # own box, but a small solid shrinks both boxes (and the gap between
+    # them) while the caption text itself stays a fixed width - a real bug
+    # found via rendering an actual modelled-example page and looking
+    # closely (not a unit test): a small solid's captions ran together with
+    # no gap at all ("Front elevationSide elevation"). Widen the gap
+    # whenever the two captions' own widths would otherwise overlap.
+    front_caption_w = stringWidth("Front elevation", "Helvetica", 7.5)
+    side_caption_w = stringWidth("Side elevation", "Helvetica", 7.5)
+    min_gap = front_caption_w / 2 + side_caption_w / 2 + 6 - sx / 2 - sz / 2
+    gap = max(16, min_gap)
+    margin_l, margin_bottom = 50, 26
+    fx0 = margin_l
+    fy0 = margin_bottom + sz + gap
+
+    d_width = fx0 + sx + gap + sz + 20
+    d_height = fy0 + sy + 22
+    d = Drawing(d_width, d_height)
+
+    d.add(_label(fx0 + sx / 2, fy0 + sy + 14, "Front elevation", size=7.5))
+    d.add(_label(fx0 + sx + gap + sz / 2, fy0 + sy + 14, "Side elevation", size=7.5))
+    d.add(_label(fx0 + sx / 2, margin_bottom - 12, "Plan view", size=7.5))
+
+    if front_kind == "rect":
+        d.add(Rect(fx0, fy0, sx, sy, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    else:
+        d.add(Polygon(
+            [fx0, fy0, fx0 + sx, fy0, fx0, fy0 + sy],
+            strokeColor=INK, fillColor=None, strokeWidth=1.2,
+        ))
+        s = 7
+        d.add(Rect(fx0, fy0, s, s, strokeColor=INK, fillColor=None, strokeWidth=1))
+
+    d.add(Rect(fx0, margin_bottom, sx, sz, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    d.add(Rect(fx0 + sx + gap, fy0, sz, sy, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+
+    d.add(_label(fx0 + sx / 2, fy0 - 10, x_label, size=8))
+    d.add(_label(fx0 - 8, fy0 + sy / 2, y_label, anchor="end", size=8))
+    d.add(_label(fx0 + sx + gap + sz / 2, fy0 - 10, z_label, size=8))
+    d.add(_label(fx0 - 8, margin_bottom + sz / 2, z_label, anchor="end", size=8))
+
+    return d
+
+
+def draw_plans_and_elevations_blank(params: dict) -> Drawing:
+    """Three empty ruled/squared boxes in the same front/side/plan layout as
+    draw_plans_and_elevations' real answer, for the student to sketch their
+    own views into on the question page. Deliberately fixed equal-sized
+    boxes, NOT scaled to the solid's real proportions (unlike the answer
+    version) - the blank grid must never hint at the solid's actual shape or
+    dimensions before the student has worked it out."""
+    box = 60
+    grid_step = 12
+    gap = 16
+    margin_l, margin_bottom = 50, 26
+    fx0 = margin_l
+    fy0 = margin_bottom + box + gap
+
+    d_width = fx0 + box + gap + box + 20
+    d_height = fy0 + box + 22
+    d = Drawing(d_width, d_height)
+
+    d.add(_label(fx0 + box / 2, fy0 + box + 14, "Front elevation", size=7.5))
+    d.add(_label(fx0 + box + gap + box / 2, fy0 + box + 14, "Side elevation", size=7.5))
+    d.add(_label(fx0 + box / 2, margin_bottom - 12, "Plan view", size=7.5))
+
+    def squared_box(x0: float, y0: float) -> None:
+        n = round(box / grid_step)
+        for i in range(1, n):
+            d.add(Line(x0 + i * grid_step, y0, x0 + i * grid_step, y0 + box, strokeColor=GRID, strokeWidth=0.4))
+            d.add(Line(x0, y0 + i * grid_step, x0 + box, y0 + i * grid_step, strokeColor=GRID, strokeWidth=0.4))
+        d.add(Rect(x0, y0, box, box, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+
+    squared_box(fx0, fy0)
+    squared_box(fx0, margin_bottom)
+    squared_box(fx0 + box + gap, fy0)
+
+    return d
+
+
+def draw_plans_and_elevations_question(params: dict) -> Drawing:
+    """The question-page diagram for plans_and_elevations: the existing
+    oblique 3D sketch (reusing draw_cuboid/draw_triangular_prism unchanged)
+    stacked above a blank squared grid (draw_plans_and_elevations_blank) for
+    the student to sketch their answer into - composed as one Drawing (via
+    a nested, translated child Drawing) since a Question only carries one
+    diagram slot for its question page."""
+    shape = params["shape"]
+    if shape == "cuboid":
+        solid = draw_cuboid({
+            "length_label": params["length_label"],
+            "width_label": params["width_label"],
+            "height_label": params["height_label"],
+        })
+    elif shape == "triangular_prism":
+        solid = draw_triangular_prism({
+            "base_label": params["base_label"],
+            "triangle_height_label": params["triangle_height_label"],
+            "length_label": params["length_label"],
+        })
+    else:
+        raise ValueError(f"unknown plans/elevations shape: {shape!r}")
+
+    blank = draw_plans_and_elevations_blank({"shape": shape})
+
+    gap = 10
+    d_width = max(solid.width, blank.width)
+    d_height = solid.height + gap + blank.height
+    d = Drawing(d_width, d_height)
+
+    blank.transform = (1, 0, 0, 1, 0, 0)
+    d.add(blank)
+    solid.transform = (1, 0, 0, 1, 0, blank.height + gap)
+    d.add(solid)
+
     return d
 
 
@@ -2539,12 +3987,15 @@ def draw_compound_3d(params: dict) -> Drawing:
 
 _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "rectangle": draw_rectangle,
+    "two_similar_rectangles": draw_two_similar_rectangles,
     "triangle_area": draw_triangle_area,
     "l_shape": draw_l_shape,
+    "t_shape": draw_t_shape,
     "circle": draw_circle,
     "rectangle_semicircle": draw_rectangle_semicircle,
     "angle_line": draw_angle_line,
     "triangle_angles": draw_triangle_angles,
+    "polygon_angles": draw_polygon_angles,
     "parallel_lines": draw_parallel_lines,
     "exterior_triangle": draw_exterior_triangle,
     "polygon": draw_polygon,
@@ -2559,6 +4010,8 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "circle_semicircle": draw_circle_semicircle,
     "circle_cyclic_quad": draw_circle_cyclic_quad,
     "circle_two_tangents": draw_circle_two_tangents,
+    "circle_same_segment": draw_circle_same_segment,
+    "circle_alternate_segment": draw_circle_alternate_segment,
     "parabola": draw_parabola,
     "linear_graph_pair": draw_linear_graph_pair,
     "function_graph": draw_function_graph,
@@ -2567,21 +4020,30 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "grid_transformation": draw_grid_transformation,
     "loci_construction": draw_loci_construction,
     "loci_region": draw_loci_region,
+    "inequality_region": draw_inequality_region,
     "tree_diagram": draw_tree_diagram,
     "two_way_table": draw_two_way_table,
     "sample_space_diagram": draw_sample_space_diagram,
+    "cumulative_frequency_question": draw_cumulative_frequency_question,
+    "histogram_question": draw_histogram_question,
     "venn_diagram": draw_venn_diagram,
     "bar_chart": draw_bar_chart,
     "pie_chart": draw_pie_chart,
+    "pie_chart_with_table": draw_pie_chart_with_table,
     "box_plot": draw_box_plot,
     "histogram": draw_histogram,
     "cumulative_frequency": draw_cumulative_frequency,
     "time_series": draw_time_series,
+    "scatter_graph": draw_scatter_graph,
+    "plans_and_elevations": draw_plans_and_elevations,
+    "plans_and_elevations_question": draw_plans_and_elevations_question,
     "number_line": draw_number_line,
     "fraction_shapes": draw_fraction_shapes,
     "dice": draw_dice,
     "spinner": draw_spinner,
     "spinner_pair": draw_spinner_pair,
+    "coin": draw_coin,
+    "event_pair": draw_event_pair,
     "bag_of_counters": draw_bag,
     "parallelogram": draw_parallelogram,
     "trapezium": draw_trapezium,

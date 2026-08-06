@@ -6,11 +6,29 @@ import sympy as sp
 
 from app.core.models import ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
+from app.topics.phrasing import evaluate_verb, simplify_verb
 
 SECTION = "number"
 GROUP = "Powers, Roots & Indices"
 
 _SQUARE_FREE_FACTORS = [2, 3, 5, 6, 7, 10, 11, 13, 14, 15]
+
+_SUPERSCRIPT_DIGITS = str.maketrans("0123456789", "⁰¹²³⁴⁵⁶⁷⁸⁹")
+
+
+def _superscript(n: int) -> str:
+    """Render a plain non-negative integer exponent as true Unicode
+    superscript digits (e.g. 12 -> a raised "12") - needed inside a
+    \\frac{}{} marker's denominator text specifically, since fraction images
+    (app/pdf/fraction_images.py) are drawn as flat PIL text with no markup
+    support at all (no <super> tag reaches inside a marker - see mathtext.py's
+    docstring), so a literal "base^n" string would otherwise render with a
+    bare caret character instead of a raised exponent. Confirmed Arial (the
+    font fraction_images.py renders with) has real glyphs for all ten
+    superscript digits via a direct rendered-PNG spike before relying on it -
+    only used for denominators whose exponent is already a concrete integer,
+    never for an unevaluated expression like "b×c"."""
+    return str(n).translate(_SUPERSCRIPT_DIGITS)
 
 
 def generate_powers_foundation(tier: Tier, rng: random.Random) -> Question:
@@ -33,7 +51,7 @@ def generate_powers_foundation(tier: Tier, rng: random.Random) -> Question:
         return Question(
             topic_id="powers_foundation",
             tier=Tier.FOUNDATION,
-            prompt=f"Work out {base}^{exponent}.",
+            prompt=f"{evaluate_verb(rng)} {base}^{exponent}.",
             solution_steps=tuple(steps),
             final_answer=str(result),
             dedup_key=f"pow_eval:{base}:{exponent}",
@@ -47,7 +65,7 @@ def generate_powers_foundation(tier: Tier, rng: random.Random) -> Question:
         # they match - a different method than adding the exponents.
         if base**m * base**n != base**result_exp:
             raise ValueError("powers_foundation verification failed")
-        prompt = f"Simplify {base}^{m} × {base}^{n}, giving your answer as a single power of {base}."
+        prompt = f"{simplify_verb(rng)} {base}^{m} × {base}^{n}, giving your answer as a single power of {base}."
         steps = [f"Add the powers: {m} + {n} = {result_exp}", f"{base}^{m} × {base}^{n} = {base}^{result_exp}"]
         dedup_key = f"pow_mult:{base}:{m}:{n}"
     elif shape == "law_divide":
@@ -56,7 +74,7 @@ def generate_powers_foundation(tier: Tier, rng: random.Random) -> Question:
         result_exp = m - n
         if base**m // base**n != base**result_exp:
             raise ValueError("powers_foundation verification failed")
-        prompt = f"Simplify {base}^{m} ÷ {base}^{n}, giving your answer as a single power of {base}."
+        prompt = f"{simplify_verb(rng)} {base}^{m} ÷ {base}^{n}, giving your answer as a single power of {base}."
         steps = [f"Subtract the powers: {m} - {n} = {result_exp}", f"{base}^{m} ÷ {base}^{n} = {base}^{result_exp}"]
         dedup_key = f"pow_div:{base}:{m}:{n}"
     else:
@@ -64,7 +82,7 @@ def generate_powers_foundation(tier: Tier, rng: random.Random) -> Question:
         result_exp = m * n
         if (base**m) ** n != base**result_exp:
             raise ValueError("powers_foundation verification failed")
-        prompt = f"Simplify ({base}^{m})^{n}, giving your answer as a single power of {base}."
+        prompt = f"{simplify_verb(rng)} ({base}^{m})^{n}, giving your answer as a single power of {base}."
         steps = [f"Multiply the powers: {m} × {n} = {result_exp}", f"({base}^{m})^{n} = {base}^{result_exp}"]
         dedup_key = f"pow_pow:{base}:{m}:{n}"
 
@@ -79,7 +97,14 @@ def generate_powers_foundation(tier: Tier, rng: random.Random) -> Question:
 
 
 def generate_powers_higher(tier: Tier, rng: random.Random) -> Question:
-    shape = rng.choice(["negative_index", "zero_index", "fractional_root", "fractional_full"])
+    # Weighted towards the two fractional-exponent shapes - a genuine
+    # fractional power is the distinguishing content of this topic, so it
+    # should show up more often than an even 25% split would give it.
+    shape = rng.choices(
+        ["negative_index", "zero_index", "fractional_root", "fractional_full"],
+        weights=[15, 15, 35, 35],
+        k=1,
+    )[0]
 
     if shape == "negative_index":
         base = rng.randint(2, 6)
@@ -92,11 +117,11 @@ def generate_powers_higher(tier: Tier, rng: random.Random) -> Question:
         if check != result:
             raise ValueError("powers_higher verification failed")
 
-        steps = [f"{base}^-{exponent} = 1/{base}^{exponent} = 1/{base**exponent}"]
+        steps = [f"{base}^-{exponent} = \\frac{{1}}{{{base}{_superscript(exponent)}}} = 1/{base**exponent}"]
         return Question(
             topic_id="powers_higher",
             tier=Tier.HIGHER,
-            prompt=f"Work out {base}^-{exponent}. Give your answer as a fraction.",
+            prompt=f"{evaluate_verb(rng)} {base}^-{exponent}. Give your answer as a fraction.",
             solution_steps=tuple(steps),
             final_answer=f"1/{base**exponent}",
             dedup_key=f"pow_neg:{base}:{exponent}",
@@ -108,7 +133,7 @@ def generate_powers_higher(tier: Tier, rng: random.Random) -> Question:
         return Question(
             topic_id="powers_higher",
             tier=Tier.HIGHER,
-            prompt=f"Work out {base}^0.",
+            prompt=f"{evaluate_verb(rng)} {base}^0.",
             solution_steps=tuple(steps),
             final_answer="1",
             dedup_key=f"pow_zero:{base}",
@@ -129,7 +154,7 @@ def generate_powers_higher(tier: Tier, rng: random.Random) -> Question:
         return Question(
             topic_id="powers_higher",
             tier=Tier.HIGHER,
-            prompt=f"Work out {a}^(1/{n}).",
+            prompt=f"{evaluate_verb(rng)} {a}^(1/{n}).",
             solution_steps=tuple(steps),
             final_answer=str(root_val),
             dedup_key=f"pow_fracroot:{a}:{n}",
@@ -148,7 +173,7 @@ def generate_powers_higher(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="powers_higher",
         tier=Tier.HIGHER,
-        prompt=f"Work out {a}^({m}/{n}).",
+        prompt=f"{evaluate_verb(rng)} {a}^({m}/{n}).",
         solution_steps=tuple(steps),
         final_answer=str(result),
         dedup_key=f"pow_fracfull:{a}:{m}:{n}",
@@ -170,7 +195,7 @@ def generate_roots_foundation(tier: Tier, rng: random.Random) -> Question:
         return Question(
             topic_id="roots_foundation",
             tier=Tier.FOUNDATION,
-            prompt=f"Work out √{n}.",
+            prompt=f"{evaluate_verb(rng)} √{n}.",
             solution_steps=tuple(steps),
             final_answer=str(root_val),
             dedup_key=f"sqrt:{n}",
@@ -188,7 +213,7 @@ def generate_roots_foundation(tier: Tier, rng: random.Random) -> Question:
         return Question(
             topic_id="roots_foundation",
             tier=Tier.FOUNDATION,
-            prompt=f"Work out the cube root of {n}.",
+            prompt=f"{evaluate_verb(rng)} the cube root of {n}.",
             solution_steps=tuple(steps),
             final_answer=str(root_val),
             dedup_key=f"cbrt:{n}",
@@ -243,7 +268,7 @@ def generate_roots_higher(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="roots_higher",
         tier=Tier.HIGHER,
-        prompt=f"Simplify √{n}, giving your answer in the form a√b.",
+        prompt=f"{simplify_verb(rng)} √{n}, giving your answer in the form a√b.",
         solution_steps=tuple(steps),
         final_answer=f"{k}√{m}",
         dedup_key=f"surd:{n}",
@@ -278,7 +303,7 @@ def generate_modelled_example_powers_foundation(tier: Tier, rng: random.Random) 
         return ModelledExample(
             topic_id="powers_foundation",
             tier=Tier.FOUNDATION,
-            prompt=f"Work out {base}^{exponent}.",
+            prompt=f"{evaluate_verb(rng)} {base}^{exponent}.",
             worked_calculation=tuple(worked_calculation),
             teaching_steps=tuple(teaching_steps),
             final_answer=str(result),
@@ -290,7 +315,7 @@ def generate_modelled_example_powers_foundation(tier: Tier, rng: random.Random) 
         result_exp = m + n
         if base**m * base**n != base**result_exp:
             raise ValueError("modelled example powers_foundation verification failed")
-        prompt = f"Simplify {base}^{m} × {base}^{n}, giving your answer as a single power of {base}."
+        prompt = f"{simplify_verb(rng)} {base}^{m} × {base}^{n}, giving your answer as a single power of {base}."
         teaching_steps = [
             f"{base}^{m} means {m} copies of {base} multiplied together, and {base}^{n} means {n} more "
             f"copies. Multiplying {base}^{m} × {base}^{n} just joins all of those copies into one long "
@@ -308,7 +333,7 @@ def generate_modelled_example_powers_foundation(tier: Tier, rng: random.Random) 
         result_exp = m - n
         if base**m // base**n != base**result_exp:
             raise ValueError("modelled example powers_foundation verification failed")
-        prompt = f"Simplify {base}^{m} ÷ {base}^{n}, giving your answer as a single power of {base}."
+        prompt = f"{simplify_verb(rng)} {base}^{m} ÷ {base}^{n}, giving your answer as a single power of {base}."
         teaching_steps = [
             f"{base}^{m} ÷ {base}^{n} means {m} copies of {base} multiplied together on top, divided by "
             f"{n} copies of {base} on the bottom. Since dividing cancels matching factors, {n} of the "
@@ -325,7 +350,7 @@ def generate_modelled_example_powers_foundation(tier: Tier, rng: random.Random) 
         result_exp = m * n
         if (base**m) ** n != base**result_exp:
             raise ValueError("modelled example powers_foundation verification failed")
-        prompt = f"Simplify ({base}^{m})^{n}, giving your answer as a single power of {base}."
+        prompt = f"{simplify_verb(rng)} ({base}^{m})^{n}, giving your answer as a single power of {base}."
         teaching_steps = [
             f"({base}^{m})^{n} means {base}^{m} multiplied by itself {n} times over - that's {n} "
             f"separate groups, each containing {m} copies of {base}.",
@@ -348,7 +373,14 @@ def generate_modelled_example_powers_foundation(tier: Tier, rng: random.Random) 
 
 
 def generate_modelled_example_powers_higher(tier: Tier, rng: random.Random) -> ModelledExample:
-    shape = rng.choice(["negative_index", "zero_index", "fractional_root", "fractional_full"])
+    # Weighted towards the two fractional-exponent shapes - a genuine
+    # fractional power is the distinguishing content of this topic, so it
+    # should show up more often than an even 25% split would give it.
+    shape = rng.choices(
+        ["negative_index", "zero_index", "fractional_root", "fractional_full"],
+        weights=[15, 15, 35, 35],
+        k=1,
+    )[0]
 
     if shape == "negative_index":
         base = rng.randint(2, 6)
@@ -363,16 +395,16 @@ def generate_modelled_example_powers_higher(tier: Tier, rng: random.Random) -> M
             "A negative index doesn't make the answer come out negative - instead, it's an instruction "
             f"to take the reciprocal (flip the number to 1 over it). {base}^-{exponent} means "
             f"1 ÷ {base}^{exponent}, not -({base}^{exponent}).",
-            f"So rewrite {base}^-{exponent} as 1/{base}^{exponent}, keeping the exponent positive but "
+            f"So rewrite {base}^-{exponent} as \\frac{{1}}{{{base}{_superscript(exponent)}}}, keeping the exponent positive but "
             "moving the whole expression underneath a 1.",
             f"Now evaluate the positive power on the bottom as usual: {base}^{exponent} = {base**exponent}.",
             f"This gives {base}^-{exponent} = 1/{base**exponent}.",
         ]
-        worked_calculation = [f"{base}^-{exponent}", f"= 1/{base}^{exponent}", f"= 1/{base**exponent}"]
+        worked_calculation = [f"{base}^-{exponent}", f"= \\frac{{1}}{{{base}{_superscript(exponent)}}}", f"= 1/{base**exponent}"]
         return ModelledExample(
             topic_id="powers_higher",
             tier=Tier.HIGHER,
-            prompt=f"Work out {base}^-{exponent}. Give your answer as a fraction.",
+            prompt=f"{evaluate_verb(rng)} {base}^-{exponent}. Give your answer as a fraction.",
             worked_calculation=tuple(worked_calculation),
             teaching_steps=tuple(teaching_steps),
             final_answer=f"1/{base**exponent}",
@@ -393,7 +425,7 @@ def generate_modelled_example_powers_higher(tier: Tier, rng: random.Random) -> M
         return ModelledExample(
             topic_id="powers_higher",
             tier=Tier.HIGHER,
-            prompt=f"Work out {base}^0.",
+            prompt=f"{evaluate_verb(rng)} {base}^0.",
             worked_calculation=tuple(worked_calculation),
             teaching_steps=tuple(teaching_steps),
             final_answer="1",
@@ -419,7 +451,7 @@ def generate_modelled_example_powers_higher(tier: Tier, rng: random.Random) -> M
         return ModelledExample(
             topic_id="powers_higher",
             tier=Tier.HIGHER,
-            prompt=f"Work out {a}^(1/{n}).",
+            prompt=f"{evaluate_verb(rng)} {a}^(1/{n}).",
             worked_calculation=tuple(worked_calculation),
             teaching_steps=tuple(teaching_steps),
             final_answer=str(root_val),
@@ -449,7 +481,7 @@ def generate_modelled_example_powers_higher(tier: Tier, rng: random.Random) -> M
     return ModelledExample(
         topic_id="powers_higher",
         tier=Tier.HIGHER,
-        prompt=f"Work out {a}^({m}/{n}).",
+        prompt=f"{evaluate_verb(rng)} {a}^({m}/{n}).",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=str(result),
@@ -477,7 +509,7 @@ def generate_modelled_example_roots_foundation(tier: Tier, rng: random.Random) -
         return ModelledExample(
             topic_id="roots_foundation",
             tier=Tier.FOUNDATION,
-            prompt=f"Work out √{n}.",
+            prompt=f"{evaluate_verb(rng)} √{n}.",
             worked_calculation=tuple(worked_calculation),
             teaching_steps=tuple(teaching_steps),
             final_answer=str(root_val),
@@ -501,7 +533,7 @@ def generate_modelled_example_roots_foundation(tier: Tier, rng: random.Random) -
         return ModelledExample(
             topic_id="roots_foundation",
             tier=Tier.FOUNDATION,
-            prompt=f"Work out the cube root of {n}.",
+            prompt=f"{evaluate_verb(rng)} the cube root of {n}.",
             worked_calculation=tuple(worked_calculation),
             teaching_steps=tuple(teaching_steps),
             final_answer=str(root_val),
@@ -570,7 +602,7 @@ def generate_modelled_example_roots_higher(tier: Tier, rng: random.Random) -> Mo
     return ModelledExample(
         topic_id="roots_higher",
         tier=Tier.HIGHER,
-        prompt=f"Simplify √{n}, giving your answer in the form a√b.",
+        prompt=f"{simplify_verb(rng)} √{n}, giving your answer in the form a√b.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{k}√{m}",
@@ -578,9 +610,11 @@ def generate_modelled_example_roots_higher(tier: Tier, rng: random.Random) -> Mo
 
 
 def _fmt_simple_rationalised(a2: int, b: int, b2: int) -> str:
-    """Render a2*sqrt(b)/b2, omitting the denominator entirely when b2 == 1."""
+    """Render a2*sqrt(b)/b2 as a true vinculum fraction (via the \\frac{}{}
+    marker, since the numerator contains a surd, not just plain digits),
+    omitting the denominator entirely when b2 == 1."""
     term = f"{a2}√{b}" if a2 != 1 else f"√{b}"
-    return term if b2 == 1 else f"{term}/{b2}"
+    return term if b2 == 1 else f"\\frac{{{term}}}{{{b2}}}"
 
 
 def _build_rationalise_simple(rng: random.Random) -> Question:
@@ -606,7 +640,7 @@ def _build_rationalise_simple(rng: random.Random) -> Question:
         raise ValueError("rationalise_denominator simple verification failed")
 
     answer = _fmt_simple_rationalised(a2, b, b2)
-    steps = [f"Multiply the top and bottom by √{b}: {a}/√{b} = {a}√{b}/{b}"]
+    steps = [f"Multiply the top and bottom by √{b}: \\frac{{{a}}}{{√{b}}} = \\frac{{{a}√{b}}}{{{b}}}"]
     if g > 1:
         steps.append(f"Simplify {a}/{b} by dividing by {g}: {answer}")
     else:
@@ -615,7 +649,7 @@ def _build_rationalise_simple(rng: random.Random) -> Question:
     return Question(
         topic_id="rationalise_denominator",
         tier=Tier.HIGHER,
-        prompt=f"Rationalise the denominator of {a}/√{b}, giving your answer in its simplest form.",
+        prompt=f"Rationalise the denominator of \\frac{{{a}}}{{√{b}}}, giving your answer in its simplest form.",
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=f"rationalise_simple:{a}:{b}",
@@ -644,8 +678,13 @@ def _build_rationalise_conjugate(rng: random.Random) -> Question:
     g = math.gcd(a, D)
     a2, D2 = a // g, D // g
     nc, kc = a2 * b, a2
-    numerator_str = f"{nc} {'+' if conj_sign > 0 else '-'} {kc}√{c}"
-    answer = numerator_str if D2 == 1 else f"({numerator_str})/{D2}"
+    kc_term = f"{kc}√{c}" if kc != 1 else f"√{c}"
+    numerator_str = f"{nc} {'+' if conj_sign > 0 else '-'} {kc_term}"
+    # True vinculum fraction (via the \frac{}{} marker, since the numerator
+    # is an algebraic/surd expression, not just plain digits) - the fraction
+    # bar itself groups the numerator, so no extra parentheses are needed
+    # around it the way plain-text concatenation used to need.
+    answer = numerator_str if D2 == 1 else f"\\frac{{{numerator_str}}}{{{D2}}}"
 
     # Independent verification: evaluate both the original expression and
     # the claimed rationalised result to high precision and confirm they
@@ -656,10 +695,11 @@ def _build_rationalise_conjugate(rng: random.Random) -> Question:
     if abs(sp.N(original, 30) - sp.N(claimed, 30)) > sp.Float("1e-20"):
         raise ValueError("rationalise_denominator conjugate verification failed")
 
-    prompt = f"Rationalise the denominator of {a}/({denom_str}), giving your answer in its simplest form."
+    prompt = f"Rationalise the denominator of \\frac{{{a}}}{{{denom_str}}}, giving your answer in its simplest form."
     steps = [
         f"Multiply the numerator and denominator by the conjugate of the denominator, ({conj_str}):",
-        f"{a}/({denom_str}) = {a}({conj_str}) / [({denom_str})({conj_str})]",
+        f"\\frac{{{a}}}{{{denom_str}}}",
+        f"= \\frac{{{a}({conj_str})}}{{[({denom_str})({conj_str})]}}",
         f"The denominator is a difference of two squares: {b}^2 - {c} = {D}",
         f"The numerator is {a}({conj_str}) = {raw_numerator_str}",
     ]
@@ -706,29 +746,29 @@ def generate_modelled_example_rationalise_denominator(tier: Tier, rng: random.Ra
 
         answer = _fmt_simple_rationalised(a2, b, b2)
         teaching_steps = [
-            f"A fraction like {a}/√{b} has an irrational (never-terminating, non-repeating) number sitting "
+            f"A fraction like \\frac{{{a}}}{{√{b}}} has an irrational (never-terminating, non-repeating) number sitting "
             "in the denominator - by convention, GCSE answers avoid leaving a root on the bottom, so it "
             "needs to be moved to the top instead.",
-            f"The trick is to multiply the fraction by √{b}/√{b}, which equals 1, so the value of the "
+            f"The trick is to multiply the fraction by \\frac{{√{b}}}{{√{b}}}, which equals 1, so the value of the "
             f"fraction doesn't change - but on the bottom, √{b} × √{b} = {b}, a whole number.",
-            f"Applying this: {a}/√{b} = ({a} × √{b})/(√{b} × √{b}) = {a}√{b}/{b}.",
+            f"Applying this: \\frac{{{a}}}{{√{b}}} = \\frac{{({a} × √{b})}}{{(√{b} × √{b})}} = \\frac{{{a}√{b}}}{{{b}}}.",
             (
                 f"The fraction {a}/{b} still shares a common factor of {g}, so dividing both by it gives "
                 f"the fully simplified answer {answer}."
                 if g > 1
-                else f"{a} and {b} share no common factor, so {a}√{b}/{b} is already fully simplified."
+                else f"{a} and {b} share no common factor, so \\frac{{{a}√{b}}}{{{b}}} is already fully simplified."
             ),
-            f"So {a}/√{b} rationalises to {answer}.",
+            f"So \\frac{{{a}}}{{√{b}}} rationalises to {answer}.",
         ]
         worked_calculation = [
-            f"{a}/√{b}",
-            f"= {a}√{b}/{b}",
+            f"\\frac{{{a}}}{{√{b}}}",
+            f"= \\frac{{{a}√{b}}}{{{b}}}",
             f"= {answer}",
         ]
         return ModelledExample(
             topic_id="rationalise_denominator",
             tier=Tier.HIGHER,
-            prompt=f"Rationalise the denominator of {a}/√{b}, giving your answer in its simplest form.",
+            prompt=f"Rationalise the denominator of \\frac{{{a}}}{{√{b}}}, giving your answer in its simplest form.",
             worked_calculation=tuple(worked_calculation),
             teaching_steps=tuple(teaching_steps),
             final_answer=answer,
@@ -754,8 +794,10 @@ def generate_modelled_example_rationalise_denominator(tier: Tier, rng: random.Ra
     g = math.gcd(a, D)
     a2, D2 = a // g, D // g
     nc, kc = a2 * b, a2
-    numerator_str = f"{nc} {'+' if conj_sign > 0 else '-'} {kc}√{c}"
-    answer = numerator_str if D2 == 1 else f"({numerator_str})/{D2}"
+    kc_term = f"{kc}√{c}" if kc != 1 else f"√{c}"
+    numerator_str = f"{nc} {'+' if conj_sign > 0 else '-'} {kc_term}"
+    answer = numerator_str if D2 == 1 else f"\\frac{{{numerator_str}}}{{{D2}}}"
+    raw_over_d = f"\\frac{{{raw_numerator_str}}}{{{D}}}"
 
     original = sp.Rational(a) / (b + sign * sp.sqrt(c))
     claimed = (nc + conj_sign * kc * sp.sqrt(c)) / D2
@@ -763,31 +805,30 @@ def generate_modelled_example_rationalise_denominator(tier: Tier, rng: random.Ra
         raise ValueError("modelled example rationalise_denominator conjugate verification failed")
 
     teaching_steps = [
-        f"A denominator like ({denom_str}) can't be rationalised just by multiplying by √{c}/√{c}, since "
+        f"A denominator like ({denom_str}) can't be rationalised just by multiplying by \\frac{{√{c}}}{{√{c}}}, since "
         f"that would leave a mixed term - instead, the trick is to multiply by the 'conjugate', "
         f"({conj_str}), which has the opposite sign in front of the root.",
         f"Multiplying a bracket by its conjugate always gives a difference of two squares, which clears "
         f"the root completely: ({denom_str})({conj_str}) = {b}^2 - {c} = {D}, a whole number.",
         f"Multiply the numerator by the same conjugate to keep the fraction's value unchanged: "
         f"{a}({conj_str}) = {raw_numerator_str}.",
-        f"Putting the new numerator over the new denominator gives ({raw_numerator_str})/{D}.",
+        f"Putting the new numerator over the new denominator gives {raw_over_d}.",
         (
             f"{a} and {D} share a common factor of {g}, so dividing numerator and denominator by it gives "
             f"the fully simplified answer {answer}."
             if g > 1
-            else f"{a} and {D} share no common factor, so ({raw_numerator_str})/{D} is already fully "
-            "simplified."
+            else f"{a} and {D} share no common factor, so {raw_over_d} is already fully simplified."
         ),
     ]
     worked_calculation = [
-        f"{a}/({denom_str})",
-        f"= {a}({conj_str}) / ({b}^2 - {c})",
+        f"\\frac{{{a}}}{{{denom_str}}}",
+        f"= \\frac{{{a}({conj_str})}}{{({b}^2 - {c})}}",
         f"= {answer}",
     ]
     return ModelledExample(
         topic_id="rationalise_denominator",
         tier=Tier.HIGHER,
-        prompt=f"Rationalise the denominator of {a}/({denom_str}), giving your answer in its simplest form.",
+        prompt=f"Rationalise the denominator of \\frac{{{a}}}{{{denom_str}}}, giving your answer in its simplest form.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
@@ -831,14 +872,14 @@ def generate_negative_indices(tier: Tier, rng: random.Random) -> Question:
             raise ValueError("negative_indices verification failed")
 
         steps = [
-            f"A negative index means take the reciprocal: {base}^-{n} = 1/{base}^{n}",
+            f"A negative index means take the reciprocal: {base}^-{n} = \\frac{{1}}{{{base}{_superscript(n)}}}",
             f"{base}^{n} = {result}",
             f"{base}^-{n} = 1/{result}",
         ]
         return Question(
             topic_id="negative_indices",
             tier=Tier.FOUNDATION,
-            prompt=f"Work out {base}^-{n}. Give your answer as a fraction.",
+            prompt=f"{evaluate_verb(rng)} {base}^-{n}. Give your answer as a fraction.",
             solution_steps=tuple(steps),
             final_answer=f"1/{result}",
             dedup_key=f"negidx_eval:{base}:{n}",
@@ -857,7 +898,7 @@ def generate_negative_indices(tier: Tier, rng: random.Random) -> Question:
         if lhs != rhs:
             raise ValueError("negative_indices verification failed")
 
-        prompt = f"Simplify {base}^-{m} × {base}^-{n}, giving your answer as a single power of {base}."
+        prompt = f"{simplify_verb(rng)} {base}^-{m} × {base}^-{n}, giving your answer as a single power of {base}."
         steps = [
             f"Add the powers: -{m} + (-{n}) = {result_exp}",
             f"{base}^-{m} × {base}^-{n} = {base}^{result_exp}",
@@ -882,7 +923,7 @@ def generate_negative_indices(tier: Tier, rng: random.Random) -> Question:
         ):
             raise ValueError("negative_indices verification failed")
 
-        prompt = f"Simplify {base}^-{m} ÷ {base}^-{n}, giving your answer as a single power of {base}."
+        prompt = f"{simplify_verb(rng)} {base}^-{m} ÷ {base}^-{n}, giving your answer as a single power of {base}."
         steps = [
             f"Subtract the powers: -{m} - (-{n}) = {result_exp}",
             f"{base}^-{m} ÷ {base}^-{n} = {base}^{result_exp}",
@@ -915,16 +956,16 @@ def generate_modelled_example_negative_indices(tier: Tier, rng: random.Random) -
             "A negative index doesn't make the answer negative - it's an instruction to take the "
             f"reciprocal (flip the number to 1 over it). {base}^-{n} means 1 ÷ {base}^{n}, not "
             f"-({base}^{n}).",
-            f"Rewrite {base}^-{n} as 1/{base}^{n}, keeping the exponent positive but moving the whole "
+            f"Rewrite {base}^-{n} as \\frac{{1}}{{{base}{_superscript(n)}}}, keeping the exponent positive but moving the whole "
             "expression underneath a 1.",
             f"Now evaluate the positive power on the bottom as usual: {base}^{n} = {result}.",
             f"So {base}^-{n} = 1/{result}.",
         ]
-        worked_calculation = [f"{base}^-{n}", f"= 1/{base}^{n}", f"= 1/{result}"]
+        worked_calculation = [f"{base}^-{n}", f"= \\frac{{1}}{{{base}{_superscript(n)}}}", f"= 1/{result}"]
         return ModelledExample(
             topic_id="negative_indices",
             tier=Tier.FOUNDATION,
-            prompt=f"Work out {base}^-{n}. Give your answer as a fraction.",
+            prompt=f"{evaluate_verb(rng)} {base}^-{n}. Give your answer as a fraction.",
             worked_calculation=tuple(worked_calculation),
             teaching_steps=tuple(teaching_steps),
             final_answer=f"1/{result}",
@@ -939,7 +980,7 @@ def generate_modelled_example_negative_indices(tier: Tier, rng: random.Random) -
         if lhs != rhs:
             raise ValueError("modelled example negative_indices verification failed")
 
-        prompt = f"Simplify {base}^-{m} × {base}^-{n}, giving your answer as a single power of {base}."
+        prompt = f"{simplify_verb(rng)} {base}^-{m} × {base}^-{n}, giving your answer as a single power of {base}."
         teaching_steps = [
             f"{base}^-{m} and {base}^-{n} are both negative powers of the SAME base, so the usual "
             "multiplying-powers law still applies: add the exponents together, keeping their signs.",
@@ -961,7 +1002,7 @@ def generate_modelled_example_negative_indices(tier: Tier, rng: random.Random) -
         if lhs != rhs:
             raise ValueError("modelled example negative_indices verification failed")
 
-        prompt = f"Simplify {base}^-{m} ÷ {base}^-{n}, giving your answer as a single power of {base}."
+        prompt = f"{simplify_verb(rng)} {base}^-{m} ÷ {base}^-{n}, giving your answer as a single power of {base}."
         teaching_steps = [
             f"{base}^-{m} ÷ {base}^-{n} is still a division of powers of the SAME base, so the usual "
             "dividing-powers law applies: subtract the exponents, keeping their signs.",
@@ -983,7 +1024,14 @@ def generate_modelled_example_negative_indices(tier: Tier, rng: random.Random) -
 
 
 def generate_simplifying_indices_challenging(tier: Tier, rng: random.Random) -> Question:
-    shape = rng.choice(["mult_then_power", "frac_then_neg", "power_then_divide"])
+    # Weighted towards the one shape that shows a genuine fractional exponent
+    # in the prompt (frac_then_neg) - an even 3-way split under-represents
+    # this topic's own distinguishing content.
+    shape = rng.choices(
+        ["mult_then_power", "frac_then_neg", "power_then_divide"],
+        weights=[15, 70, 15],
+        k=1,
+    )[0]
 
     if shape == "mult_then_power":
         base = rng.randint(2, 6)
@@ -1005,7 +1053,7 @@ def generate_simplifying_indices_challenging(tier: Tier, rng: random.Random) -> 
         if original != sp.Rational(result.numerator, result.denominator):
             raise ValueError("simplifying_indices_challenging verification failed")
 
-        prompt = f"Simplify ({base}^{m} × {base}^{n})^{p}, giving your answer as a fraction where necessary."
+        prompt = f"{simplify_verb(rng)} ({base}^{m} × {base}^{n})^{p}, giving your answer as a fraction where necessary."
         answer = str(result.numerator) if result.denominator == 1 else f"{result.numerator}/{result.denominator}"
         steps = [
             f"Add the powers inside the bracket first: {m} + {n} = {m + n}",
@@ -1041,13 +1089,13 @@ def generate_simplifying_indices_challenging(tier: Tier, rng: random.Random) -> 
         if original != sp.Rational(result.numerator, result.denominator):
             raise ValueError("simplifying_indices_challenging verification failed")
 
-        prompt = f"Simplify {base}^({a}/{b}) × {base}^-{c}, giving your answer as a fraction where necessary."
+        prompt = f"{simplify_verb(rng)} {base}^({a}/{b}) × {base}^-{c}, giving your answer as a fraction where necessary."
         answer = str(result.numerator) if result.denominator == 1 else f"{result.numerator}/{result.denominator}"
         root_word = "square" if b == 2 else "cube"
         steps = [
             f"{base}^(1/{b}) is the {root_word} root of {base}, which is {r}, so {base}^({a}/{b}) = {r}^{a}",
-            f"{base}^-{c} = 1/{base}^{c} = 1/{r}^{b * c}",
-            f"{base}^({a}/{b}) × {base}^-{c} = {r}^{a} × 1/{r}^{b * c} = {r}^({a}-{b * c}) = {r}^{combined}",
+            f"{base}^-{c} = \\frac{{1}}{{{base}{_superscript(c)}}} = \\frac{{1}}{{{r}{_superscript(b * c)}}}",
+            f"{base}^({a}/{b}) × {base}^-{c} = {r}^{a} × \\frac{{1}}{{{r}{_superscript(b * c)}}} = {r}^({a}-{b * c}) = {r}^{combined}",
             f"{r}^{combined} = {answer}",
         ]
         return Question(
@@ -1078,7 +1126,7 @@ def generate_simplifying_indices_challenging(tier: Tier, rng: random.Random) -> 
     if original != sp.Rational(result.numerator, result.denominator):
         raise ValueError("simplifying_indices_challenging verification failed")
 
-    prompt = f"Simplify ({base}^{m})^{n} ÷ {base}^{p}, giving your answer as a fraction where necessary."
+    prompt = f"{simplify_verb(rng)} ({base}^{m})^{n} ÷ {base}^{p}, giving your answer as a fraction where necessary."
     answer = str(result.numerator) if result.denominator == 1 else f"{result.numerator}/{result.denominator}"
     steps = [
         f"Multiply the powers in the bracket: {m} × {n} = {m * n}",
@@ -1097,7 +1145,14 @@ def generate_simplifying_indices_challenging(tier: Tier, rng: random.Random) -> 
 
 
 def generate_modelled_example_simplifying_indices_challenging(tier: Tier, rng: random.Random) -> ModelledExample:
-    shape = rng.choice(["mult_then_power", "frac_then_neg", "power_then_divide"])
+    # Weighted towards the one shape that shows a genuine fractional exponent
+    # in the prompt (frac_then_neg) - an even 3-way split under-represents
+    # this topic's own distinguishing content.
+    shape = rng.choices(
+        ["mult_then_power", "frac_then_neg", "power_then_divide"],
+        weights=[15, 70, 15],
+        k=1,
+    )[0]
 
     if shape == "mult_then_power":
         base = rng.randint(2, 6)
@@ -1137,7 +1192,7 @@ def generate_modelled_example_simplifying_indices_challenging(tier: Tier, rng: r
         return ModelledExample(
             topic_id="simplifying_indices_challenging",
             tier=Tier.HIGHER,
-            prompt=f"Simplify ({base}^{m} × {base}^{n})^{p}, giving your answer as a fraction where necessary.",
+            prompt=f"{simplify_verb(rng)} ({base}^{m} × {base}^{n})^{p}, giving your answer as a fraction where necessary.",
             worked_calculation=tuple(worked_calculation),
             teaching_steps=tuple(teaching_steps),
             final_answer=answer,
@@ -1166,8 +1221,8 @@ def generate_modelled_example_simplifying_indices_challenging(tier: Tier, rng: r
             f"{base}^(1/{b}) means the {root_word} root of {base}, which is {r} (since {r}^{b} = {base}), "
             f"so {base}^({a}/{b}) = {r}^{a}.",
             f"{base}^-{c} means the reciprocal of {base}^{c}. Since {base} = {r}^{b}, that's "
-            f"1/{r}^({b}×{c}) = 1/{r}^{b * c}.",
-            f"Multiplying {r}^{a} by 1/{r}^{b * c} combines to a single power of {r}: "
+            f"1/({r}^({b}×{c})) = \\frac{{1}}{{{r}{_superscript(b * c)}}}.",
+            f"Multiplying {r}^{a} by \\frac{{1}}{{{r}{_superscript(b * c)}}} combines to a single power of {r}: "
             f"{r}^({a}-{b * c}) = {r}^{combined} = {answer}.",
         ]
         worked_calculation = [
@@ -1179,7 +1234,7 @@ def generate_modelled_example_simplifying_indices_challenging(tier: Tier, rng: r
         return ModelledExample(
             topic_id="simplifying_indices_challenging",
             tier=Tier.HIGHER,
-            prompt=f"Simplify {base}^({a}/{b}) × {base}^-{c}, giving your answer as a fraction where necessary.",
+            prompt=f"{simplify_verb(rng)} {base}^({a}/{b}) × {base}^-{c}, giving your answer as a fraction where necessary.",
             worked_calculation=tuple(worked_calculation),
             teaching_steps=tuple(teaching_steps),
             final_answer=answer,
@@ -1220,7 +1275,7 @@ def generate_modelled_example_simplifying_indices_challenging(tier: Tier, rng: r
     return ModelledExample(
         topic_id="simplifying_indices_challenging",
         tier=Tier.HIGHER,
-        prompt=f"Simplify ({base}^{m})^{n} ÷ {base}^{p}, giving your answer as a fraction where necessary.",
+        prompt=f"{simplify_verb(rng)} ({base}^{m})^{n} ÷ {base}^{p}, giving your answer as a fraction where necessary.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
@@ -1341,7 +1396,7 @@ def generate_indices_common_base_equations(tier: Tier, rng: random.Random) -> Qu
     coeff_str = "x" if c == 1 else f"{c}x"
     exp_str = coeff_str if c == 1 else f"({coeff_str})"
     steps = [
-        f"Write the right-hand side as a power of {p}: 1/{p}^{k} = {p}^-{k}",
+        f"Write the right-hand side as a power of {p}: \\frac{{1}}{{{p}{_superscript(k)}}} = {p}^-{k}",
         f"{p}^{exp_str} = {p}^-{k}",
         f"Since the bases match, the powers must be equal: {coeff_str} = -{k}",
         _show_solved_x(-k, c, x),
@@ -1461,9 +1516,9 @@ def generate_modelled_example_indices_common_base_equations(tier: Tier, rng: ran
     coeff_str = "x" if c == 1 else f"{c}x"
     exp_str = coeff_str if c == 1 else f"({coeff_str})"
     teaching_steps = [
-        f"The right-hand side, 1/{p}^{k}, looks different from a power of {p} at first glance, but a "
+        f"The right-hand side, \\frac{{1}}{{{p}{_superscript(k)}}}, looks different from a power of {p} at first glance, but a "
         "reciprocal of a power is just that power written with a negative exponent.",
-        f"Rewrite 1/{p}^{k} as {p}^-{k}. Now the equation {p}^{exp_str} = 1/{p**k} reads "
+        f"Rewrite \\frac{{1}}{{{p}{_superscript(k)}}} as {p}^-{k}. Now the equation {p}^{exp_str} = 1/{p**k} reads "
         f"{p}^{exp_str} = {p}^-{k}, with matching bases on both sides.",
         f"Since the bases match, the exponents themselves must be equal: {coeff_str} = -{k}.",
         (f"Dividing both sides by {c} gives {_show_solved_x(-k, c, x)}." if c != 1 else f"So {_show_solved_x(-k, c, x)}."),
@@ -1507,7 +1562,7 @@ def generate_surds_multiply_divide(tier: Tier, rng: random.Random) -> Question:
         return Question(
             topic_id="surds_multiply_divide",
             tier=Tier.HIGHER,
-            prompt=f"Work out √{a} × √{b}, giving your answer as an integer.",
+            prompt=f"{evaluate_verb(rng)} √{a} × √{b}, giving your answer as an integer.",
             solution_steps=tuple(steps),
             final_answer=str(result),
             dedup_key=f"surdmul_clean:{a}:{b}",
@@ -1545,7 +1600,7 @@ def generate_surds_multiply_divide(tier: Tier, rng: random.Random) -> Question:
         return Question(
             topic_id="surds_multiply_divide",
             tier=Tier.HIGHER,
-            prompt=f"Simplify √{a} × √{b}, giving your answer in the form a√b.",
+            prompt=f"{simplify_verb(rng)} √{a} × √{b}, giving your answer in the form a√b.",
             solution_steps=tuple(steps),
             final_answer=f"{k}√{m}",
             dedup_key=f"surdmul_surd:{a}:{b}",
@@ -1569,7 +1624,7 @@ def generate_surds_multiply_divide(tier: Tier, rng: random.Random) -> Question:
         return Question(
             topic_id="surds_multiply_divide",
             tier=Tier.HIGHER,
-            prompt=f"Work out √{a} ÷ √{b}, giving your answer as an integer.",
+            prompt=f"{evaluate_verb(rng)} √{a} ÷ √{b}, giving your answer as an integer.",
             solution_steps=tuple(steps),
             final_answer=str(result),
             dedup_key=f"surddiv_clean:{a}:{b}",
@@ -1602,7 +1657,7 @@ def generate_surds_multiply_divide(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="surds_multiply_divide",
         tier=Tier.HIGHER,
-        prompt=f"Simplify √{a} ÷ √{b}, giving your answer in the form a√b.",
+        prompt=f"{simplify_verb(rng)} √{a} ÷ √{b}, giving your answer in the form a√b.",
         solution_steps=tuple(steps),
         final_answer=f"{k}√{m}",
         dedup_key=f"surddiv_surd:{a}:{b}",
@@ -1634,7 +1689,7 @@ def generate_modelled_example_surds_multiply_divide(tier: Tier, rng: random.Rand
         return ModelledExample(
             topic_id="surds_multiply_divide",
             tier=Tier.HIGHER,
-            prompt=f"Work out √{a} × √{b}, giving your answer as an integer.",
+            prompt=f"{evaluate_verb(rng)} √{a} × √{b}, giving your answer as an integer.",
             worked_calculation=tuple(worked_calculation),
             teaching_steps=tuple(teaching_steps),
             final_answer=str(result),
@@ -1673,7 +1728,7 @@ def generate_modelled_example_surds_multiply_divide(tier: Tier, rng: random.Rand
         return ModelledExample(
             topic_id="surds_multiply_divide",
             tier=Tier.HIGHER,
-            prompt=f"Simplify √{a} × √{b}, giving your answer in the form a√b.",
+            prompt=f"{simplify_verb(rng)} √{a} × √{b}, giving your answer in the form a√b.",
             worked_calculation=tuple(worked_calculation),
             teaching_steps=tuple(teaching_steps),
             final_answer=f"{k}√{m}",
@@ -1701,7 +1756,7 @@ def generate_modelled_example_surds_multiply_divide(tier: Tier, rng: random.Rand
         return ModelledExample(
             topic_id="surds_multiply_divide",
             tier=Tier.HIGHER,
-            prompt=f"Work out √{a} ÷ √{b}, giving your answer as an integer.",
+            prompt=f"{evaluate_verb(rng)} √{a} ÷ √{b}, giving your answer as an integer.",
             worked_calculation=tuple(worked_calculation),
             teaching_steps=tuple(teaching_steps),
             final_answer=str(result),
@@ -1735,7 +1790,7 @@ def generate_modelled_example_surds_multiply_divide(tier: Tier, rng: random.Rand
     return ModelledExample(
         topic_id="surds_multiply_divide",
         tier=Tier.HIGHER,
-        prompt=f"Simplify √{a} ÷ √{b}, giving your answer in the form a√b.",
+        prompt=f"{simplify_verb(rng)} √{a} ÷ √{b}, giving your answer in the form a√b.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{k}√{m}",

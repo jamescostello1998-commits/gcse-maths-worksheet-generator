@@ -529,6 +529,8 @@ def generate_parallel_lines(tier: Tier, rng: random.Random) -> Question:
                 "known_label": f"{known}°",
                 "unknown_label": f"({fmt_linear(coeff, const)})°",
                 "relation": fact,
+                "known_value": known,
+                "x_frac": rng.choice([0.32, 0.38, 0.44]),
             },
         ),
     )
@@ -592,6 +594,8 @@ def generate_modelled_example_parallel_lines(tier: Tier, rng: random.Random) -> 
                 "known_label": f"{known}°",
                 "unknown_label": f"({fmt_linear(coeff, const)})°",
                 "relation": fact,
+                "known_value": known,
+                "x_frac": rng.choice([0.32, 0.38, 0.44]),
             },
         ),
     )
@@ -632,6 +636,8 @@ def generate_exterior_angle(tier: Tier, rng: random.Random) -> Question:
                 "interior1_label": f"{known_interior}°",
                 "interior2_label": f"({fmt_linear(coeff, const)})°",
                 "exterior_label": f"{exterior}°",
+                "interior1_value": known_interior,
+                "shape_variant": rng.choice([0, 1]),
             },
         ),
     )
@@ -686,6 +692,8 @@ def generate_modelled_example_exterior_angle(tier: Tier, rng: random.Random) -> 
                 "interior1_label": f"{known_interior}°",
                 "interior2_label": f"({fmt_linear(coeff, const)})°",
                 "exterior_label": f"{exterior}°",
+                "interior1_value": known_interior,
+                "shape_variant": rng.choice([0, 1]),
             },
         ),
     )
@@ -722,7 +730,10 @@ def generate_parallel_lines_foundation(tier: Tier, rng: random.Random) -> Questi
         dedup_key=f"parallel_lines_f:{fact}:{known}",
         diagram=DiagramSpec(
             kind="parallel_lines",
-            params={"known_label": f"{known}°", "unknown_label": "x", "relation": fact},
+            params={
+                "known_label": f"{known}°", "unknown_label": "x", "relation": fact,
+                "known_value": known, "x_frac": rng.choice([0.32, 0.38, 0.44]),
+            },
         ),
     )
 
@@ -775,7 +786,10 @@ def generate_modelled_example_parallel_lines_foundation(tier: Tier, rng: random.
         final_answer=str(target),
         diagram=DiagramSpec(
             kind="parallel_lines",
-            params={"known_label": f"{known}°", "unknown_label": "x", "relation": fact},
+            params={
+                "known_label": f"{known}°", "unknown_label": "x", "relation": fact,
+                "known_value": known, "x_frac": rng.choice([0.32, 0.38, 0.44]),
+            },
         ),
     )
 
@@ -809,7 +823,10 @@ def generate_exterior_foundation(tier: Tier, rng: random.Random) -> Question:
         dedup_key=f"exterior_f:{a}:{b}",
         diagram=DiagramSpec(
             kind="exterior_triangle",
-            params={"interior1_label": f"{a}°", "interior2_label": f"{b}°", "exterior_label": "x"},
+            params={
+                "interior1_label": f"{a}°", "interior2_label": f"{b}°", "exterior_label": "x",
+                "interior1_value": a, "shape_variant": rng.choice([0, 1]),
+            },
         ),
     )
 
@@ -854,7 +871,10 @@ def generate_modelled_example_exterior_foundation(tier: Tier, rng: random.Random
         final_answer=str(exterior),
         diagram=DiagramSpec(
             kind="exterior_triangle",
-            params={"interior1_label": f"{a}°", "interior2_label": f"{b}°", "exterior_label": "x"},
+            params={
+                "interior1_label": f"{a}°", "interior2_label": f"{b}°", "exterior_label": "x",
+                "interior1_value": a, "shape_variant": rng.choice([0, 1]),
+            },
         ),
     )
 
@@ -877,6 +897,7 @@ def generate_polygon_interior_foundation(tier: Tier, rng: random.Random) -> Ques
     if 180 - exterior != interior:
         raise ValueError("polygon_interior_foundation verification failed")
 
+    diagram = None
     if measure == "interior_sum":
         prompt = f"A polygon has {n} sides. Find the sum of its interior angles."
         steps = [f"Sum of interior angles = (n - 2) × 180 = ({n} - 2) × 180 = {total}°"]
@@ -888,10 +909,14 @@ def generate_polygon_interior_foundation(tier: Tier, rng: random.Random) -> Ques
             f"This is a regular polygon, so each interior angle = {total} ÷ {n} = {interior}°",
         ]
         answer = f"{interior}°"
+        diagram = DiagramSpec(kind="polygon", params={"n_sides": min(n, 12), "marked_angle_label": "?"})
     else:
         prompt = f"A regular polygon has {n} sides. Find the size of one exterior angle."
         steps = [f"Exterior angles of a regular polygon sum to 360°: each exterior angle = 360 ÷ {n} = {exterior}°"]
         answer = f"{exterior}°"
+        diagram = DiagramSpec(
+            kind="polygon", params={"n_sides": min(n, 12), "marked_angle_label": "?", "mode": "exterior"}
+        )
 
     return Question(
         topic_id="angles_polygon_interior_foundation",
@@ -900,7 +925,7 @@ def generate_polygon_interior_foundation(tier: Tier, rng: random.Random) -> Ques
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=f"polygon_interior_f:{n}:{measure}",
-        diagram=DiagramSpec(kind="polygon", params={"n_sides": min(n, 12), "marked_angle_label": "?"}),
+        diagram=diagram,
     )
 
 
@@ -919,6 +944,7 @@ def generate_modelled_example_polygon_interior_foundation(tier: Tier, rng: rando
     if 180 - exterior != interior:
         raise ValueError("modelled example polygon_interior_foundation verification failed")
 
+    diagram = None
     if measure == "interior_sum":
         prompt = f"A polygon has {n} sides. Find the sum of its interior angles."
         teaching_steps = [
@@ -953,6 +979,7 @@ def generate_modelled_example_polygon_interior_foundation(tier: Tier, rng: rando
             f"= {interior}°",
         ]
         answer = f"{interior}°"
+        diagram = DiagramSpec(kind="polygon", params={"n_sides": min(n, 12), "marked_angle_label": "?"})
     else:
         prompt = f"A regular polygon has {n} sides. Find the size of one exterior angle."
         teaching_steps = [
@@ -969,6 +996,9 @@ def generate_modelled_example_polygon_interior_foundation(tier: Tier, rng: rando
             f"= {exterior}°",
         ]
         answer = f"{exterior}°"
+        diagram = DiagramSpec(
+            kind="polygon", params={"n_sides": min(n, 12), "marked_angle_label": "?", "mode": "exterior"}
+        )
 
     return ModelledExample(
         topic_id="angles_polygon_interior_foundation",
@@ -977,7 +1007,7 @@ def generate_modelled_example_polygon_interior_foundation(tier: Tier, rng: rando
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
-        diagram=DiagramSpec(kind="polygon", params={"n_sides": min(n, 12), "marked_angle_label": "?"}),
+        diagram=diagram,
     )
 
 

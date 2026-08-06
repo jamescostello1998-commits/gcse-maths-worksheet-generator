@@ -12,28 +12,57 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-**The entire user-supplied Geometry expansion is complete (chronology steps
-23-27), the fraction-vinculum rendering fix landed (step 28), three more
-"Ideas" items the user picked directly were built in step 29 (compound-3D
-surface area, spinner diagrams for 3 previously text-only branches, and bold
-vector labels), and the Practice Tests feature was rebuilt to genuinely match
-a real OCR GCSE Maths sitting (step 30) — real 3-papers-per-sitting structure,
-mark-scheme conventions and a Formulae Sheet calibrated against actual OCR
-papers spanning June 2017-June 2024.** 275 topics total (unchanged this
-session — step 30 touched only the Practice Tests feature), backend suite
-684/684, frontend 45/45, no known bugs.
+Step 42 completed a review-feedback batch covering pages 101-200 of the
+`all_topics_review_*.pdf` documents (~20 named items spanning Algebra, Ratio &
+Proportion, and Geometry) — **this is explicitly a paginated continuation of the same
+review process** running since step 34, not a second full pass: the user is working
+through the 296-topic (now 304-topic) review PDF a chunk at a time. Freshly regenerated
+review PDFs reflecting this batch were sent back, and the batch is committed and pushed.
+The natural next step is simply to **wait for the user's next chunk of feedback** (pages
+201+, etc.) rather than assuming the review is done — this is the fourth review batch in
+a row to arrive as "the next chunk," not a sign the review is finished.
 
-There is no committed next step for this project right now — check "Ideas
-for a future session" (bottom of this file) for candidate follow-ups (stem-
-and-leaf diagrams, scatter graphs/correlation, standard deviation, a handful
-of lower-confidence curriculum-audit candidates, saved worksheet history,
-deployment, etc.), or ask the user directly what they'd like to work on next.
+See chronology step 42 (most recent) and step 41 below for full technical detail. Step
+41, in short: a Phase-0 engine spike
+extended `fraction_images.py`'s `\frac{}{}` rendering with three new token kinds (a bare
+"x"/"n" italic variable, a bare "^exp" superscript suffix, and a real hook+bar radical) -
+this went through **three genuinely wrong designs** before landing on the right one
+(each found via rendering real output, not assumed), documented in the module's own
+docstring/comments as a cautionary precedent for any future extension of this file. Also:
+5 new topics (`change_subject_factorise_higher`, `substitution_rearrange_foundation`/
+`_higher`, `expand_double_brackets_no_coefficient_foundation`, `functions_inverse_
+evaluate` — 296→301), a from-scratch rework of `draw_linear_graph_pair` onto a real
+square-unit grid (needed **four** iterations of its own to get label placement right —
+see step 41's own account of why each earlier attempt failed a real render), and two
+precise diagram-overflow fixes in `draw_rectangle`/`draw_angle_line` found via a
+dedicated research agent rather than guessed. All 60 Practice Test papers were
+regenerated (`python -m app.practice_tests.build`) since `simultaneous_graphically`'s
+diagram param shape changed — same "frozen JSON goes stale when a diagram param shape
+changes" gotcha already documented for `area_mixed_compound` in step 39.
+
+This work is on the `aqa-spec-gap-topics` branch, part of the same open PR (`gh pr view 3`,
+or the full path `& "C:\Program Files\GitHub CLI\gh.exe" pr view 3` if `gh` isn't on PATH
+in a fresh shell — see "Environment gotchas" below). **Committed and pushed** — commit
+`ef40d69` ("Review-feedback batch: pages 101-200 of Number/Algebra/Geometry review
+PDFs"), confirmed matching `origin/aqa-spec-gap-topics` exactly (only the two untracked
+review PDFs remain locally, which is correct — see "Regenerating the all-topics
+aesthetic-review PDFs" below for why they're deliberately not committed). 304 topics
+total, backend suite 958/958, frontend 61/61, no known bugs.
+
+Once the user's next chunk of feedback (or confirmation the review is fully done)
+arrives, check "Ideas for a future session" (bottom of this file) for candidate
+follow-ups (the remaining medium-confidence OCR-spec gaps from step 32's audit, the
+remaining medium/low-confidence AQA-spec gaps from step 31's audit, stem-and-leaf
+diagrams, standard deviation, a handful of lower-confidence curriculum-audit candidates,
+saved worksheet history, deployment, a KS3 Bell Tasks tier, the full language-variety
+rollout beyond the 4 files step 35 piloted it on, etc.) if there's ever a gap with no
+pending review feedback.
 
 ## Current state
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**275 topics across 6 sections**, all procedurally generated with independent
+**304 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.),
@@ -42,7 +71,9 @@ stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.),
 "describe the method" text questions with no way to numerically check a
 described construction — author-review only, no `verify()` at all (see
 chronology step 27).
-Full backend suite: **682/682 passing**. Frontend suite: **45/45 passing**.
+Full backend and frontend suites passing (see "Where to pick up next" above for the
+current counts — this line is deliberately not a hardcoded snapshot, since it drifted
+out of date for many sessions in a row before being replaced with this pointer).
 
 **Practice Tests (fixed/static content, not procedural — the one deliberate exception
 to the paragraph above)**: a 7th homepage section, `backend/app/practice_tests/`,
@@ -50,14 +81,26 @@ holds 60 committed papers (`data/*.json`) — **10 sittings per tier, each a rea
 OCR-shaped sitting of 3 separate 100-mark, 1h30m papers** (`foundation-01-paper1`
 .. `foundation-10-paper3`, `higher-01-paper1` .. `higher-10-paper3`), matching how a
 real OCR GCSE Maths series is actually structured (J560/01-03 Foundation, J560/04-06
-Higher, calculator allowed on all three papers — there is no non-calculator paper,
-unlike AQA/Edexcel). This structure, the mark-scheme conventions, and the Formulae
+Higher). This structure, the mark-scheme conventions, and the Formulae
 Sheet (all below) were calibrated in chronology step 30 by directly reading real OCR
 papers and mark schemes spanning June 2017 to June 2024 (via revisionmaths.com's past-
 papers page) — **never by copying their actual question or mark-scheme text**, only
 their structure, marking conventions, and generic mathematical facts (formulae are not
-copyrightable expression). Each paper is still assembled by *freezing* real output
-from the existing 275 generators rather than writing new exam-style content by hand —
+copyrightable expression). **Paper 2 (Foundation) and Paper 5 (Higher) — the middle
+paper of every 3-paper sitting — are non-calculator**, matching the real OCR J560
+specification read directly in chronology step 32 (this had been built wrong in step
+30 — assumed calculator-allowed throughout — until the actual spec PDF was read and
+said otherwise). `PracticeTestPaper.calculator_allowed` drives this: `build.py`
+computes a second, calculator-filtered topic pool per tier
+(`topic_selection.eligible_topics_by_section(tier, calculator_allowed=False)`, which
+excludes every topic in the curated `CALCULATOR_ONLY_TOPIC_IDS` frozenset — messy-
+decimal trigonometry, calculator-π area/volume topics, `standard_form_calculator`,
+`iteration`, etc., err-toward-inclusion since this only affects 1 of every 3 papers)
+and uses it whenever `paper_number == 2`; the cover page's instructions box and meta
+line both reflect this (`"You must NOT use a calculator for this paper"` /
+`"Non-calculator"`), and the frontend shows a "Non-calculator" badge on the affected
+paper card. Each paper is still assembled by *freezing* real output
+from the existing 296 generators rather than writing new exam-style content by hand —
 that identity is unchanged from when this feature was first built (step 22). Built via
 a one-time script (`build.py`, run manually — `python -m app.practice_tests.build` —
 not at request time): `topic_selection.py` picks a spread of topics per paper
@@ -100,7 +143,7 @@ a short, own-words summary of M/A/B marking convention and the abbreviation key 
 `practice_test_renderer.py`'s `_marking_instructions_box`) — paraphrased from what was
 read, not copied. **`PracticeQuestion`/`PracticeTestPaper`
 (`practice_tests/models.py`) are deliberately separate from `core/models.py`'s
-`Question`/`TopicDefinition`** — none of the 275 existing generators or their tests
+`Question`/`TopicDefinition`** — none of the 296 existing generators or their tests
 were touched to build this feature. `PracticeTestPaper` carries `sitting_id`/
 `paper_number` alongside the original `id`/`name`/`tier`/`questions`, so the API/
 frontend can group a sitting's 3 papers together without any route-shape changes —
@@ -112,7 +155,11 @@ from any real OCR paper — cover page with candidate-detail boxes and an instru
 box, now followed by a tier-specific **Formulae Sheet page** — `_formulae_sheet_elements`
 — before Q1, reusing the existing `right_triangle`/`general_triangle` diagram kinds for
 its reference figures; then numbered questions with marks shown as `[n]` in a
-right-aligned column) and `render_mark_scheme` (the marking-instructions box described
+right-aligned column, followed by real exam-style working space — `_working_lines`
+draws a number of ruled lines scaled to the question's own mark value
+(`_lines_for_marks`, roughly 2 lines per mark) — and a distinct boxed `_answer_line`
+below it, added in chronology step 32 per direct user request to make the paper look
+more like a real OCR script) and `render_mark_scheme` (the marking-instructions box described
 above, then a `Question | Answer | Marks | Guidance` table, one row per question, each
 M1/A1/B1 point stacked in the Guidance cell). Three GET routes (`GET /api/practice-tests`,
 `.../{id}/paper`, `.../{id}/mark-scheme`) since content is fully static per id — no
@@ -154,6 +201,153 @@ Fixed by reformatting through fixed-point notation (`Decimal(format(quantized, "
 inside `_round_to_1sf` itself, so every caller (both the normal generator and the
 modelled example) is fixed by the one change.
 
+**Bell Tasks (chronology step 33)**: a third homepage feature, `backend/app/bell_tasks/`,
+sitting alongside the 6-section grid and Practice Tests exactly like Practice Tests sits
+alongside the grid (its own sibling `<section>` in `App.tsx`, not folded into either). A
+teacher picks a KS3/KS4 sub-menu (KS3 is a disabled dead link, "for later", per direct
+request — only KS4 is built) then, for KS4, exactly 6 topics from the full flattened list
+of all 296 existing topics (no curation - every topic is eligible, including diagram-heavy
+ones) via 6 searchable topic pickers (`BellTasksView.tsx`, one per box — a plain `<select>`
+was tried first but a 296-option native dropdown is unusable, so each box is a
+`SearchableTopicSelect.tsx` combobox instead: a text input that shows the full topic list
+on focus and filters it live by substring as the teacher types, reusing `TopicSearch.tsx`'s
+established filter-as-you-type convention rather than inventing a new one), each excluding
+topics already chosen in another box so the 6 stay distinct without a separate validation
+error state. `POST /api/bell-tasks` (`GenerateBellTasksRequest.topic_ids`, a Pydantic
+`field_validator` enforcing exactly 6 distinct ids) returns a **fresh, freshly-random
+`.pptx` every single call** — no persistence anywhere, matching the plain Worksheet
+Generator's behaviour, not Practice Tests' frozen/static one. `generate_bell_tasks_pptx`
+(`app/bell_tasks/generator.py`) calls `build_worksheet(topic_id, topic.fixed_tier, count=5,
+rng=shared_rng)` once per chosen topic (one shared `random.Random()` across all 6, same
+precedent as `create_modelled_example`'s multi-call sharing) — **100% reuse of the existing
+verified generator pipeline**, no new question-generation logic anywhere in this feature.
+
+The output deck's exact visual style (a purple `#531D60` theme, two real logo images -
+Sparx and "Need to Know Book & Planners" - a page-number box, a live date field, and a
+3×2 grid of 6 numbered boxes per slide) was **not rebuilt from scratch** — the user
+supplied a real reference PowerPoint and explicitly chose "keep everything exactly as-is",
+so the reference file itself (already containing exactly 5 correctly-styled blank
+slides, one per weekday) was copied in verbatim as
+`app/bell_tasks/assets/bell_task_template.pptx` and is opened fresh per request via
+`python-pptx` (`Presentation(template_path)`) — never mutated on disk, only in memory,
+then saved to a `BytesIO` and returned as bytes. **Box numbering is column-major**,
+matching the template's own existing "1./3./5." (row 0) / "2./4./6." (row 1) cell
+content — confirmed by reading the real XML, not assumed — so box *N* is a fixed topic
+for the whole week: box *N*'s cell on weekday-slide *K* holds that topic's *K*th (of 5)
+generated question (`app/bell_tasks/layout.py`'s `BOX_TO_ROW_COL`). No answer key is
+generated at all (a deliberate, explicit user choice, unlike every other feature in this
+app) - purely question-only output, matching the reference file's own blank template.
+
+Three new supporting pieces, all built and verified in isolation before any pptx-specific
+code was written (this project's own established "verify the riskiest piece first"
+diagram-engine precedent): (1) `app/bell_tasks/diagram_raster.py` rasterizes a topic's
+existing ReportLab `Drawing` (from `render_diagram`, completely unchanged) to PNG bytes for
+embedding as a picture shape — via `reportlab.graphics.renderPDF` (pure vector-to-PDF, no
+Cairo/`renderPM` needed) to a small in-memory one-page PDF, then `fitz` (already pinned)
+rasterizes page 0 - reusing this project's own established PDF-to-PNG pattern (see
+"Verifying new topics visually" below) but applied to a single standalone `Drawing` instead
+of a whole rendered page; (2) `app/bell_tasks/math_tokenizer.py`'s `tokenize()` adapts
+`mathtext.py`'s existing fraction/exponent/variable/vector regexes, but instead of building
+ReportLab markup, splits a prompt into an ordered list of typed tokens - plain `TextSpan`s
+(rendered as a normal `python-pptx` run, `"Calibri"` for words or `"Cambria Math"` for
+bare digits/operators/`x`/`n`, a literal per-token **font** switch per the user's original
+instruction) plus three *structural* token types - `FractionSpan`, `ExponentSpan`,
+`FractionalExponentSpan` - promoted to real, native PowerPoint equation objects instead (see
+(3) below); (3) `app/bell_tasks/omml.py` builds those equation objects as raw OOXML (Office
+Math Markup Language) inserted directly into a paragraph's XML via `lxml`, since
+`python-pptx` has **no built-in support for equations at all**. A spike (build a minimal
+equation fragment, save, open in real PowerPoint via COM automation, look at the result)
+found the mechanism a slide actually needs: a bare `<m:oMath>` as a direct child of `<a:p>`
+is silently dropped - unlike a Word document, a PowerPoint slide's DrawingML text needs the
+Office-2010 math extension wrapper, `<mc:AlternateContent><mc:Choice Requires="a14"><a14:m>
+<m:oMathPara><m:oMath>...</m:oMath></m:oMathPara></a14:m></mc:Choice><mc:Fallback>` (plain-
+text run for older PowerPoint) `</mc:Fallback></mc:AlternateContent>`, coexisting inline
+with ordinary `<a:r>` runs before/after it on the same line - confirmed working for both a
+real stacked fraction (`<m:f>`) and a real superscript (`<m:sSup>`, including a fraction
+nested inside one for a fractional exponent), each sized/coloured correctly via an `<a:rPr>`
+nested inside each math run's own `<m:rPr>`. Given this real complexity, exponents are only
+promoted to a true native superscript when the base is unambiguous - a bare digit run or a
+single letter not itself preceded by another letter (`x^2`, `n^2`, `f^-1`, `10^-3`) - real
+generator output also has exponents on a whole bracketed expression (`(x - 3)^2`), a multi-
+letter identifier (`cos^-1`), or a run-together coefficient+variable (`at^2`, meaning
+`a * t^2`, not `(at)^2`); correctly identifying the true base in those cases would need
+balanced-parenthesis scanning or word-level disambiguation, judged a materially bigger
+undertaking than asked for, so they deliberately keep the pre-existing plain "^n" inline-
+text rendering instead of risking a wrongly-scoped superscript.
+
+**Diagram sizing was reworked after a user report that embedded diagrams looked squeezed**:
+the original `layout.diagram_rect` computed a (width, height) box from the cell alone and
+handed both dimensions straight to `add_picture`, which does not preserve an image's own
+aspect ratio when both dimensions are given explicitly - it stretches to fill whatever box
+it's told, regardless of the diagram's real proportions, and different diagram kinds have
+genuinely different native `Drawing` sizes (not always the same `DIAGRAM_WIDTH`/
+`DIAGRAM_HEIGHT` defaults). Fixed by threading the diagram's own native width/height (in
+points, straight from the rendered `Drawing`) through to `diagram_rect`, which now treats
+the cell-derived box as a maximum bounding area only and scales the native size down (never
+up, capped at 1.0×) to the largest size that fits inside it without distortion, centred
+horizontally within the reserved zone - the diagram may end up noticeably smaller than the
+old behaviour's box, but is never stretched, and stays crisp even at the smaller size since
+rasterization DPI is unchanged.
+
+**Several real bugs were found and fixed via this session's own end-to-end visual
+verification, not by any unit test written in advance** - the same story as most gotchas in
+this file: (1) the tokenizer's first version classified *any* bare `-` character as a
+math/minus-sign token, including the hyphen inside compound words like "right-angled" or
+"square-based" (real generator output), rendering half a word in Cambria Math - fixed with
+a lookahead (`-(?![A-Za-z])`) so a hyphen immediately followed by a letter is left as plain
+prose, while a genuine minus sign (followed by a digit or space) still counts as math; (2) a
+long, data-listing prompt (e.g. `bar_chart_construct`, which spells out several
+category:value pairs in the question text itself) wrapped to 4 lines and ran straight
+into a diagram placed at a fixed height fraction with no regard for how much text sat
+above it, visibly overlapping in a real rendered slide - fixed by estimating the prompt's
+own wrapped-line count from its character length and the cell's width first
+(`layout.estimate_text_line_count`), then shrinking the diagram's reserved height to
+whatever's genuinely left (`layout.diagram_rect`, returns `None` - skip the diagram
+entirely - when even a legible minimum wouldn't fit), plus a full extra line of headroom
+since a rough width-based estimate can legitimately run a touch long; (3) some topic
+*names* already end with their own tier disambiguator by this app's own naming convention
+(e.g. `"Dividing Fractions (Foundation)"`, for a Foundation/Higher sibling pair) - the
+frontend's dropdown label helper originally appended `"(Foundation)"`/`"(Higher)"`
+unconditionally, doubling up to `"... (Foundation) (Foundation)"` for those specific
+topics; fixed by checking whether the name already ends with that exact suffix first;
+(4) the single most subtle bug this feature produced: every native equation object
+(fraction or exponent) rendered as **completely blank** the first time real generator
+content was checked in PowerPoint, even though the inserted XML was well-formed and had
+already been proven correct in an isolated spike. Root cause - a real table cell, once
+`TextFrame.clear()`'d (exactly what `_set_cell_content` does before rebuilding it), leaves
+a trailing `<a:endParaRPr>` element behind, which the DrawingML schema requires to always
+be the **last** child of a paragraph; the isolated OMML spike used a brand-new textbox with
+no such element, so it never exposed the bug. `omml.py`'s equation-building code used a
+plain `etree.SubElement(paragraph_xml, ...)` append, which has no schema awareness and
+lands *after* `endParaRPr` - PowerPoint silently drops anything positioned there rather than
+erroring, which is also why this had nothing to do with the XML's own validity and nothing
+a schema-only check would have caught. Fixed with `_insert_before_end_para_rpr`, which finds
+any trailing `endParaRPr` and inserts before it instead of blindly appending - `python-pptx`'s
+own `add_run()` already gets this right internally, which is exactly why every plain-text
+run continued to work throughout and only the hand-built equation XML was affected.
+
+Verified end-to-end: full backend+frontend suites; a real generated `.pptx` opened via
+`python-pptx` read-back (structural assertions - correct slide/cell/box↔topic mapping,
+correct `font.name`/`font.size` per run, real `<m:f>`/`<m:sSup>` equation elements present
+and correctly positioned relative to `endParaRPr`, every added picture's bounding box
+contained within its own cell and its aspect ratio preserved) *and*, since this Windows
+machine has no LibreOffice installed (the project's pptx-authoring skill's usual visual-QA
+path doesn't work here - confirmed, its `soffice.py` wrapper throws on `socket.AF_UNIX`), a
+genuine visual check via COM-automating the real Microsoft PowerPoint already installed on
+this machine (`pywin32`, installed ad hoc for this one-off QA step only - deliberately
+**not** added to `requirements.txt`, since it's a local verification tool, not something
+the app itself depends on) to export real rendered slide images and look closely at them,
+exactly like this project's established "render and look closely" discipline, just via a
+different renderer than usual; plus a full live browser click-through (KS3 disabled, KS4
+topic-picker with live search-as-you-type and cross-box exclusion confirmed directly via
+the running app, Generate, a real `.pptx` downloaded with a 200 OK and no console errors).
+
+Backend suite grew from 756 to 828 tests (across 5 files mirroring the `practice_tests/`
+subpackage-test precedent - `test_diagram_raster.py`, `test_math_tokenizer.py`,
+`test_layout.py`, `test_omml.py` (new), `test_generator.py` - plus 4 new route tests);
+frontend grew from 46 to 61 (`BellTasksView.test.tsx` plus a new
+`SearchableTopicSelect.test.tsx`).
+
 **Modelled Example feature (on every topic, including new ones)**: a second button, "Generate
 Modelled Example," sits next to "Generate Worksheet" on every topic card
 (`TopicDefinition.generate_modelled_example` is set on every topic — the field
@@ -190,11 +384,11 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 | Section | Groups | Topics |
 |---|---|---|
 | Number | Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 54 |
-| Algebra | Expressions/Formulae/Equations/Identities, Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 57 |
+| Algebra | Expressions/Formulae/Equations/Identities, Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Substitution into Formulae, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Equation of a Circle, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Kinematics (SUVAT), Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 75 |
 | Ratio & Proportion | Percentages, Best Buys, Ratio, Proportion, Compound Measures | 34 |
-| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations, Bearings, Constructions, Loci | 82 |
+| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations, Bearings, Map Scales and Scale Drawings, Constructions, Loci | 87 |
 | Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams, Venn Diagrams | 22 |
-| Statistics | Averages from a List, Frequency Tables, Working Backwards, Charts and Graphs, Cumulative Frequency & Box Plots, Histograms | 26 |
+| Statistics | Averages from a List, Frequency Tables, Working Backwards, Charts and Graphs, Cumulative Frequency & Box Plots, Histograms, Sampling and Populations | 29 |
 
 **First curriculum-audit dual-tier siblings**: Foundation-difficulty siblings for three
 previously-Higher-only topics, flagged by an earlier audit and deliberately deferred
@@ -641,17 +835,33 @@ existing topics/shared rendering code). Frontend unaffected (45/45).
   missing-glyph box. Always write `f^-1(x)`, `cos^-1(...)` etc. and let `mathtext.py`
   superscript it properly. (`²`, `√`, `π`, `≤`, `°`, `×`, `÷`, `£` are all fine as
   literal Unicode — only `⁻` specifically is the problem.)
-- (Historical, resolved as of chronology step 28 — kept for context in case `<sub>`
-  markup is ever hand-written again) ReportLab renders a comma **glued and raised** to
-  the preceding digit when it immediately follows a closing `</sub>` with no space in
-  between (verified in isolation with a throwaway script — periods, colons, semicolons,
-  question marks and closing parens in the same position are all fine, and so is a
-  comma after `</super>`; only sub+comma with zero gap breaks). Standalone fractions
-  used to end in `</sub>` (the old `<super>`/`<sub>` approximation) and needed a
-  non-breaking-space workaround before a trailing comma; now that fractions are
-  `<img>` tags instead (see "A true vinculum in prose text" above), `<sub>` is never
-  emitted anywhere in this codebase, so the workaround was removed as dead code. If a
-  future change ever hand-writes `<sub>...</sub>` markup directly, watch for this again.
+- The Unicode Latin-subscript-letter block (`ₙ` U+2099, `ₓ` U+2093, subscript
+  digits/`+`/`-`) is NOT a usable shortcut for hand-rolled subscripts either —
+  Arial has no glyphs for most of them either (confirmed via a `font.getmask` spike:
+  they fall back to the exact same `.notdef` bbox as a deliberately-invalid
+  codepoint). Use a real `<sub>` tag (see mathtext.py's `_SUBSCRIPT_RE`, chronology
+  step 37) or manual multi-run drawing (see `fraction_images.py`'s `_draw_run`, for
+  content that must be drawn as raw PIL text instead of Paragraph markup) — never a
+  Unicode subscript character.
+- ReportLab renders a comma **glued and raised** to the preceding digit when it
+  immediately follows a closing `</sub>` with no space in between (verified in
+  isolation with a throwaway script — periods, colons, semicolons, question marks and
+  closing parens in the same position are all fine, and so is a comma after
+  `</super>`; only sub+comma with zero gap breaks). This first surfaced in chronology
+  step 16 (the old `<super>`/`<sub>` fraction approximation) and was worked around
+  with a non-breaking space; once fractions became `<img>` tags instead (step 28),
+  `<sub>` was removed from the codebase entirely and the workaround became dead code.
+  Step 37 reintroduced `<sub>` for real (`x_n`/`x_(n+1)` subscript notation, see
+  mathtext.py's `_SUBSCRIPT_RE`) and hit this again — confirmed still present via a
+  real rendered-PDF spike. **Fixed with a thin space (U+2009), not a non-breaking
+  space or zero-width space** — a zero-width space was tried first and rejected
+  (Helvetica has no glyph for it, same class of issue as the `⁻¹` gotcha below,
+  confirmed via a `font.getmask` spike showing it falls back to the exact same
+  `.notdef` bbox as a deliberately-invalid codepoint); a non-breaking space fixes the
+  glue but leaves a visibly larger gap than real typesetting would use. `mathtext.py`'s
+  `_SUB_COMMA_RE` inserts the thin space wherever `</sub>` is immediately followed by
+  a comma — if you ever hand-write more `<sub>...</sub>` markup directly elsewhere,
+  watch for this again.
 
 ## How this was built (chronology, for context)
 
@@ -1893,7 +2103,1809 @@ existing topics/shared rendering code). Frontend unaffected (45/45).
     200 OK for `foundation-01-paper1/paper` and `foundation-01-paper2/
     mark-scheme`).
 
-Everything above is committed and pushed (see `git log`).
+31. New session, a user-requested audit: read all 6 AQA 8300 spec pages
+    (Number, Algebra, Ratio & Proportion, Geometry & Measures, Probability,
+    Statistics) and cross-referenced every one against the app's 275 existing
+    topics to find genuine content gaps. Reported findings by confidence tier
+    (high/medium/low, matching this project's own curriculum-audit
+    convention) rather than building anything immediately, per the user's
+    explicit "ask any clarifying questions" instruction. Found 7 high-
+    confidence gaps: solving quadratics by factorising/completing the square
+    (only the quadratic-formula method existed as an actual "solve for x"
+    topic - factorise/complete-the-square topics only manipulated the
+    expression), graphs of exponential/trigonometric functions, equation of a
+    circle + tangent, plans and elevations of 3D solids, basic/Foundation
+    bearings (only the Higher cosine-rule application existed), scatter
+    graphs & correlation (previously flagged in this file's own "Ideas" list
+    but never built), and sampling/populations (a genuinely new finding).
+    Asked the user to prioritize; entered plan mode given the scope (research
+    via 3 parallel Explore agents covering: quadratic-solving/graph-plotting/
+    circle-equation code, bearings/3D-diagram code, stats-axes/no-diagram-
+    topic code) and confirmed via `AskUserQuestion` to build all 3 phases
+    (reuse-heavy quick wins → moderate diagram extensions → two brand-new
+    diagram engines) in one session.
+
+    **Phase 1** (reuse existing code, minimal new diagram work): solving
+    quadratics by factorising (`solve_quadratic_factorising_foundation`/
+    `_higher`, added to `expand_factorise.py`, reusing its existing
+    `_find_factor_pair`/root-construction helpers directly) and by completing
+    the square (`solve_quadratic_completing_square`, `quadratic_graphs.py`,
+    constructing a guaranteed-real-root quadratic via a square-free surd
+    offset, reusing `powers_roots._SQUARE_FREE_FACTORS`); `sampling_methods`
+    (new "Sampling and Populations" Statistics group, `sampling.py` - a
+    genuinely randomised stratified-sample calculation branch verified via
+    exact integer/Fraction round-half-up cross-checks, plus a scenario-bank
+    branch for bias/method-identification questions, each scenario still
+    randomising its own cosmetic numbers/locations for dedup-key variety);
+    `circle_equation` (new "Equation of a Circle" Algebra group,
+    `circle_equation.py`, Higher only - needed **zero new diagram code**,
+    since `draw_loci_construction` (built for `loci.py` in step 27) already
+    accepted exactly the `circle`/`segment` param shape this needed).
+
+    **Phase 2** (extend one existing function per item): `bearings_foundation`
+    (Foundation, same "Bearings" group as the existing Higher cosine-rule
+    topic) needed a genuine extension to `draw_bearings` - the existing
+    function always drew a full 3-point/2-leg/2-arc diagram with no clean way
+    to get a 2-point single-leg diagram through params alone (confirmed by
+    checking: setting the second bearing to the back-bearing degenerates
+    point C onto point A instead of omitting it), so a new
+    `_draw_bearings_single_leg` branch was added, dispatched whenever
+    `bearing_at_B` is omitted - back-bearing and reading-a-bearing question
+    types built on top. `plot_exponential`/`trig_graph` (new topics in
+    `graphs.py`'s existing "Plotting Graphs" group) needed one new `elif`
+    branch each in `diagrams.py`'s `_fn_value` (trig limited to sin/cos, not
+    tan, to avoid the asymptote-branch-splitting complexity `draw_function_
+    graph`'s reciprocal kind already needs).
+
+    **Phase 3** (new diagram engines, built and visually verified before any
+    topic code was written, per this project's established highest-risk-
+    first precedent): `draw_scatter_graph` (new diagram kind, built on the
+    existing `_draw_stats_axes` engine but deliberately *not* mirroring
+    `draw_time_series`/`draw_cumulative_frequency`'s connecting `PolyLine`,
+    since scatter points must never be joined; added a from-scratch line-of-
+    best-fit renderer, no precedent for that anywhere in this file) powers
+    `scatter_graph_construct`/`_interpret` (new topics in `charts.py`'s
+    sibling `scatter_graphs.py`, "Charts and Graphs" group) - data is
+    generated around a known line with random noise, then the actual (noisy)
+    data's Pearson correlation sign is independently recomputed and checked
+    against the intended direction, rerolling if unlucky noise flipped it,
+    rather than trusting the generating parameters alone. `draw_plans_and_
+    elevations` (genuinely new from-scratch diagram engine - confirmed no
+    existing helper produces true orthographic front/side/plan views, since
+    every other 3D diagram in `diagrams.py` uses oblique projection via the
+    shared `_offset()` helper) powers `plans_and_elevations` (new topic,
+    "3D Shapes" group, `plans_elevations.py`) for cuboids and triangular
+    prisms (reusing `solids_prisms.py`'s own validated dimension generation),
+    laid out in the standard first-angle arrangement (plan below the front
+    view sharing its width, side view beside the front view sharing its
+    height) - the question page reuses the existing oblique `draw_cuboid`/
+    `draw_triangular_prism` diagrams unchanged for the "given" solid, and the
+    new engine only appears on the solution page.
+
+    **Several real bugs were found and fixed via this session's own testing
+    and visual-verification passes, not by writing code and assuming it was
+    right:**
+    - A latent sign-formatting bug in `quadratic_graphs.py`, present since
+      the file was first written (chronology step 7): three step-text lines
+      hand-reconstructed `"x^2 {sign}x + {c}"` instead of calling the
+      already-correct `_fmt_quadratic` helper, so a negative constant term
+      printed as `"+ -3"` instead of `"- 3"` - caught only because the new
+      `solve_quadratic_completing_square` generator copied the same buggy
+      pattern and a console print surfaced it; fixed at the root in all
+      three pre-existing occurrences plus the new one, with a regression
+      test added across every generator in the file.
+    - `_draw_scaled_axes`'s tick-spacing helper (`_nice_tick_step`) had a
+      flat "step 10 for any span over 50" rule that no existing caller had
+      ever exceeded by much (the widest was `circle_equation`'s radius-25
+      case, span ≈ 52) - `trig_graph`'s 0-360-degree domain (span 360)
+      exposed it immediately: every integer from 1 to 360 was crammed into
+      the tick labels as unreadable overlapping text. Fixed by extending the
+      tiering (20/50/100 for larger spans) - purely additive, confirmed no
+      existing diagram's span reaches the tiers that changed.
+    - `trig_graph` was first built with only 2 truly distinct dedup keys
+      (sin, cos) and a `question_count` override to match - but a modelled
+      example always builds 5 distinct *practice* questions for its own
+      topic regardless of that override (`routes.py`'s hardcoded
+      `PRACTICE_QUESTION_COUNT`), so every modelled-example request failed.
+      Fixed by adding genuine further variety (reflection in the x-axis,
+      and a second 360-degree window) rather than papering over it, giving
+      8 real combinations and letting `question_count` return to the
+      sibling-topic default of 5 - caught by the full suite's existing
+      "render a modelled example for every topic" test, not a bug found by
+      inspection.
+    - `plot_exponential`'s curve visibly flattened at its right-hand edge in
+      the rendered PDF: the usual "+1 unit" x-margin the sibling plotting
+      topics use pushed the curve just far enough past `y_max` to trigger
+      `draw_function_graph`'s existing clamp-to-y_max behaviour, which
+      flattens rather than continues the curve - fixed by dropping that one
+      topic's right-hand margin only (exponential growth needs it far less
+      than the mild curves the shared margin was tuned for).
+    - `sampling_methods`'s stratified-sample calculation initially cross-
+      checked its exact-Fraction round-half-up answer against a plain
+      `round(float)` computation - passed a 300-trial smoke test, then
+      failed at a wider trial count from a genuine floating-point precision
+      issue exactly at .5 tie boundaries (not, as first suspected, Python's
+      round-half-to-even convention). Fixed by making the independent check
+      exact too (integer-arithmetic round-half-up cross-checked against
+      Fraction-based round-half-up - two different code paths through
+      Python's numeric stack, neither touching binary floats), then
+      confirmed clean across 180,000 trials.
+
+    Central integration (registry wiring for all 11 new topics across 8
+    files, the 4 hardcoded `275`-topic-count assertions updated to `286`,
+    dedicated test files written or extended for every new topic following
+    this project's established `GENERATORS` list + 200-400-trial pattern -
+    3 brand-new test files plus 4 existing ones extended, none of which had
+    any dedicated coverage before this step's "write proper tests" pass),
+    the full backend+frontend suite, and browser-driven end-to-end
+    verification (worksheet *and* modelled-example generation through the
+    real running app for a sample of the new topics, including a live
+    search confirming both new "Solving Quadratic Equations" siblings and
+    the new "Equation of a Circle" group render correctly) were all done
+    directly in this session. Backend suite grew from 684 to 715 tests;
+    frontend unaffected (45/45 - all new topics render generically through
+    the existing section/topic-card UI, confirmed live via the browser
+    preview).
+
+32. New session, two user requests handled in sequence. First: make Practice
+    Test papers look more like a real OCR script. Asked 2 clarifying
+    questions up front (both resolved to the recommended option): working
+    space scaled to a question's own mark value rather than a fixed amount,
+    and a distinct boxed "Answer" line beneath it, matching real exam
+    convention. Built `_lines_for_marks`/`_working_lines`/`_answer_line` in
+    `practice_test_renderer.py` and wired them into `_question_block` -
+    verified visually (papers grew from ~6-7 pages to ~18-20, as expected
+    once every question gets real working room) and confirmed diagrams and
+    working space don't collide.
+
+    Second: the user linked the real OCR GCSE Mathematics specification
+    (J560, ocr.org.uk) and asked to check every one of its content points
+    against this app's 286 existing topics. Downloaded the PDF directly
+    (`WebFetch` can't parse PDF binaries, same lesson as step 30) and read
+    the entire subject-content section (pages 12-51, all 12 strands) via
+    `fitz` text extraction - the extraction jumbles table-column order but
+    keeps every phrase intact, workable for a content audit. Every candidate
+    gap was verified against the *actual current generator code* (grep/read,
+    not just inferred from the spec text) before being reported - this
+    caught several false positives early (e.g. `decimals.TOPIC_ORDERING`
+    already mixes fraction/decimal/percent types, so "ordering mixed
+    fractions/decimals/percentages" wasn't actually a gap; `velocity_time_
+    interpret` already covers area-under-graph = distance). Found 10
+    genuinely missing high-confidence gaps plus 5 lower-confidence ones,
+    and one structural finding unrelated to topic coverage: the real spec
+    requires Paper 2 (Foundation)/Paper 5 (Higher) - the middle paper of
+    every 3-paper sitting - to be non-calculator, contradicting step 30's
+    build (which had concluded, from real past papers, that OCR was
+    calculator-allowed throughout - true for the papers checked, but not
+    the actual current spec). Asked the user via `AskUserQuestion` which
+    gaps to build and whether to fix the calculator-paper mismatch too -
+    both resolved to "everything, now."
+
+    Entered plan mode given the scope (10 topics across many files plus a
+    structural Practice Tests change), researched via 3 parallel Explore
+    agents (practice-tests calculator-tier plumbing; graphs.py/diagrams.py
+    conventions for a tan-graph extension and a new inequality-region
+    diagram; transformations.py/bearings.py/changing_subject.py conventions
+    for the remaining new topics) plus direct reads of `constructions.py`/
+    `circle_theorems.py`/`iteration.py`, then wrote the plan.
+
+    **Shared diagram infrastructure was built and visually verified first**
+    (this project's own established precedent), directly rather than
+    delegated: two new circle-theorem diagrams (`draw_circle_same_segment`,
+    `draw_circle_alternate_segment`, following the existing `draw_circle_
+    angle_centre`-family pattern exactly); tan(x) support for the trig-graph
+    plotting engine, deliberately scoped to x-windows that stay strictly
+    between two consecutive asymptotes (e.g. -80..80°) rather than general
+    asymptote branch-splitting (which the existing `reciprocal` kind already
+    needs and a general tan implementation would too) - just one line added
+    to `_fn_value`'s trig lookup; and a new `inequality_region` diagram kind
+    (`draw_inequality_region`), built on the existing `_draw_scaled_axes`
+    engine plus the exact rasterized-dot-mesh shading technique `draw_loci_
+    region` already proved, deliberately scoped to inequalities of the form
+    `y <op> m*x + c` (never general `ax+by=c` or a vertical line) - dashed
+    boundary for strict `<`/`>`, solid for `<=`/`>=`.
+
+    The 10 gaps were then delegated to 7 parallel background subagents by
+    independent file cluster (no shared files, so true parallelism): (1)
+    `substitution.py` - new Foundation/Higher pair for substituting given
+    values into a formula, verified via Fraction arithmetic vs. independent
+    sympy `.subs()`; (2) `kinematics.py` - new Higher `kinematics_suvat`
+    topic (the three SUVAT equations), deliberately scoped to avoid ever
+    solving `s = ut + ½at²` for `t` (a quadratic) - only `s`/`u`/`a` are
+    ever the unknown for that equation; (3) `sequences.py` + `iteration.py`
+    extensions - `special_sequences_foundation`/`_higher` (triangular/
+    square/cube-number sequences; Fibonacci-type and geometric progressions)
+    and `trial_and_improvement` (a genuinely different skill from the
+    file's existing `x_(n+1)=g(x_n)` recurrence topic - systematic decimal
+    search on a cubic with a confirmed sign-change interval); (4) `circle_
+    theorems.py` + `constructions.py` extensions - two new theorem shapes
+    ("angles in the same segment", "alternate segment theorem") added to
+    the existing `circle_theorems` topic's shape pool (4→6, no new topic
+    ID) using the new diagram kinds, plus a new `construction_perpendicular_
+    from_point` topic (both "from an external point" and "at a point on the
+    line" scenarios), following this file's unique no-`verify()` convention;
+    (5) `transformations.py` extension - `combined_transformations` (Higher),
+    scoped to 4 GCSE-safe composition rules with known closed forms (two
+    translations → vector sum; two reflections in parallel mirrors → a
+    translation; two rotations about the same centre → angle sum; reflect
+    in both axes → 180° rotation about the origin), verified by simulating
+    both transforms in sequence and confirming the claimed single transform
+    reproduces the identical final coordinates; (6) `map_scales.py` (new
+    "Map Scales and Scale Drawings" Geometry group) + `inequalities_region.py`
+    (new Higher topic using the new diagram kind, mirroring `inequalities_
+    number_line.py`'s exact draw/read question-direction split) + a `graphs.py`
+    extension teaching `trig_graph` a `tan` branch; (7) the Practice Tests
+    non-calculator retrofit - `calculator_allowed` added to `PracticeTestPaper`,
+    a curated `CALCULATOR_ONLY_TOPIC_IDS` frozenset in `topic_selection.py`
+    (every messy-decimal/calculator-labelled topic - trigonometry, calculator-
+    π area/volume topics, `standard_form_calculator`, `iteration`, etc., erring
+    toward inclusion since it only affects 1 of every 3 papers), `build.py`
+    building a second calculator-filtered topic pool and using it whenever
+    `paper_number == 2`, the cover page's instructions conditional on the new
+    flag, and the field threaded through the API schema and the frontend
+    (`PracticeTestCard` gained a "Non-calculator" badge).
+
+    **5 of the 7 background agents hit a hard monthly API spend limit mid-task
+    and were killed** - a real external constraint, not a bug to route around.
+    Rather than assume the work was lost, checked `git status` directly: every
+    agent (including the 5 killed ones) had already written its actual code,
+    tests, and new files to disk before dying, mid-verification at worst - the
+    only casualties were a handful of `.png` scratch files never cleaned up
+    and (for the transformations agent specifically) a diagram fix it had
+    identified but not yet applied. Confirmed every file's completeness
+    directly (tails ending in a real `TopicDefinition`, not mid-edit) before
+    trusting any of it, then ran the full suite (all 756 passed immediately,
+    even before central registry wiring, since each cluster's own test file
+    imports its module directly).
+
+    Central integration (registry wiring for all 10 new/extended topics -
+    286→296 - the 4 hardcoded `286`-topic-count assertions updated to `296`,
+    full backend+frontend suite, rebuilding all 60 Practice Test papers now
+    that the calculator-tier logic and new topics were registered, confirmed
+    via a direct JSON scan that every non-calculator paper is genuinely free
+    of every `CALCULATOR_ONLY_TOPIC_IDS` topic) was done directly. **Three
+    real bugs were found and fixed via this session's own visual-verification
+    pass, not by any unit test** - the same story as most gotchas in this
+    file: (1) a *pre-existing*, unrelated bug in `draw_circle_two_tangents`
+    (present since long before this session) - its external point/label sat
+    above the `Drawing`'s own declared canvas height, so the "117°"-style
+    label silently bled upward into the question's prompt text, only now
+    surfaced because verifying the two *new* theorem shapes meant rendering
+    this diagram kind closely for the first time in a while - fixed by
+    giving that one function a taller canvas; (2) `draw_inequality_region`
+    (this session's own new code) drew each boundary line between its raw
+    `x_min`/`x_max` endpoints without clipping to the visible window, so a
+    steep line's off-screen endpoint sent the drawn line far outside the
+    `Drawing`'s bounds, bleeding into the page title above - fixed with a
+    new `_clip_line_to_window` helper that finds the line's true intersection
+    with the rectangle's four edges, confirmed clean across 300 trials; (3)
+    `combined_transformations` (also this session's new code) - its wider
+    double-prime labels (`A''`) could land close enough to an axis to collide
+    with that axis's own numbered tick labels, a class of overlap the
+    existing `_clear_of_axis_name_labels` check doesn't cover (it only
+    guards the two axis-*name* spots, not every tick along the line) - fixed
+    with a new `_clear_of_axis_tick_labels` check added to all 4 combo
+    reroll functions, confirmed zero collisions across 500 trials. Browser-
+    driven end-to-end verification confirmed all 296 topics live, the
+    section/group counts match exactly (Algebra 63→70, Geometry 84→87,
+    others unchanged), search finds every new topic, a real worksheet
+    download returns 200 OK, and the Practice Tests "Non-calculator" badge
+    renders correctly on Paper 2 - which also surfaced and fixed one small
+    CSS nit (the paper label wrapping mid-text once the badge took up extra
+    row space; added `white-space: nowrap`).
+
+    The 5 medium-confidence gaps this session's audit found were **not**
+    built (reported, not actioned, per the user's explicit choice to build
+    only the 10 high-confidence ones) - see "Ideas for a future session".
+    Backend suite grew from 715 to 756 tests; frontend grew from 45 to 46.
+
+33. New session, a large brand-new feature ("Bell Tasks") built from a real
+    reference PowerPoint the user supplied for style ("Bell Task planning DO
+    NOT SAVE.pptx", from their Downloads - read directly by unzipping its raw
+    XML, since this project's `pptx`-authoring skill's usual `markitdown`/
+    LibreOffice tooling either wasn't installed (`markitdown`) or doesn't work
+    on this Windows machine (LibreOffice absent entirely; its `soffice.py`
+    wrapper throws on `socket.AF_UNIX`)). Asked two rounds of clarifying
+    questions up front per the user's explicit request (8 questions total,
+    covering topic-pool scope, the box↔topic↔day layout mapping, whether an
+    answer key was wanted, branding/logo handling, diagram handling inside a
+    small box, what a mystery "10" placeholder should show, and regeneration
+    behaviour) before writing anything, then entered plan mode given the
+    scope (3 parallel Explore agents covering backend generation/routes
+    architecture, frontend homepage/section architecture, and diagram-kind/
+    pptx-tooling availability, followed by 1 Plan agent) and read every
+    critical file directly before finalizing the plan.
+
+    Built the feature described in "Bell Tasks" above in `Current state`
+    (full technical detail there, not repeated here): a new
+    `backend/app/bell_tasks/` package (`diagram_raster.py`, `math_tokenizer.py`,
+    `layout.py`, `generator.py`, plus the reference file copied in verbatim as
+    a template asset), a new `POST /api/bell-tasks` route/schema, and a new
+    `BellTasksView.tsx` frontend screen wired in as a third homepage feature
+    alongside the 6-section grid and Practice Tests. `python-pptx` (1.0.2) was
+    added as a new pinned backend dependency - confirmed absent beforehand,
+    the first time this project has needed to read/write `.pptx` rather than
+    PDF output.
+
+    The single riskiest piece - rasterizing one of this app's existing
+    ReportLab `Drawing` diagrams to a PNG for embedding in a `.pptx` picture
+    shape, with no prior precedent anywhere in this codebase and CLAUDE.md's
+    own note that ReportLab's bitmap renderer (`renderPM`) isn't installed
+    here - was spiked and validated in complete isolation first, per this
+    project's own established discipline: `reportlab.graphics.renderPDF`
+    (pure vector-to-PDF, needs no Cairo bindings) renders the `Drawing` to a
+    small in-memory one-page PDF, then `fitz` (already pinned) rasterizes it -
+    confirmed working first against synthetic shapes, then against several
+    real diagram kinds (a triangle, a rectangle, a bar chart), before any
+    pptx-specific code was written.
+
+    Three real bugs were found and fixed via this session's own end-to-end
+    visual verification (not by any test written in advance) - see the full
+    writeup in "Bell Tasks" above: a tokenizer bug classifying compound-word
+    hyphens ("right-angled") as minus-sign math tokens; a genuine text/diagram
+    overlap for long, data-listing prompts once actually rendered in
+    PowerPoint (fixed with a text-length-aware shrink-or-skip layout, not just
+    a bigger fixed margin); and a doubled tier suffix
+    ("... (Foundation) (Foundation)") for the handful of topics whose own
+    display name already ends with their tier in parentheses.
+
+    Visual QA for the generated `.pptx` couldn't use this project's usual
+    LibreOffice-based render-and-look-closely workflow (not installed on this
+    machine), so `pywin32` was installed ad hoc (a one-off local QA tool, not
+    added to `requirements.txt`, since the app itself never depends on it) to
+    COM-automate the real Microsoft PowerPoint already installed here and
+    export actual rendered slide images - confirming the fixes above and
+    giving genuine confidence in fonts/colours/branding/diagram placement
+    that a structural-only check couldn't. Full backend+frontend suites and a
+    live browser click-through (KS3 disabled, KS4 6-topic picker, Generate, a
+    real 200 OK `.pptx` download with no console errors) were also run.
+    Backend suite grew from 756 to 808 tests; frontend grew from 46 to 52.
+
+    Same feature, continued in a follow-up conversation before step 33 had
+    ever been committed, per 3 pieces of direct user feedback on the first
+    real generated deck: diagrams looked squeezed/stretched, the 296-option
+    plain `<select>` dropdowns needed search, and Cambria Math should mean
+    PowerPoint's actual native equation objects, not just a font choice. See
+    "Bell Tasks" in `Current state` above for the full technical detail on
+    all three fixes (aspect-preserving diagram sizing; `SearchableTopicSelect.tsx`;
+    real OMML equations via a new `app/bell_tasks/omml.py`) and the fourth
+    real bug they surfaced (native equations silently rendering blank because
+    of paragraph-child ordering relative to `endParaRPr` - the single most
+    subtle gotcha this feature produced, found only by rendering real
+    generator content in real PowerPoint, not by any test written in
+    advance). Backend suite grew from 808 to 828 tests; frontend grew from 52
+    to 61.
+
+Everything above, including step 33 (Bell Tasks, and this follow-up round of
+fixes), is committed and pushed (see `git log`).
+
+34. New session. First, two small housekeeping requests: confirmed the two step-33
+    follow-up commits were already picked up by the open PR (`gh pr view 3`) automatically
+    (a PR tracks its head branch directly - `aqa-spec-gap-topics` - so nothing extra was
+    needed), then updated the PR's own description to mention Bell Tasks (it previously
+    only described steps 31's AQA-gap topics, the PR's original scope) and refreshed its
+    test-plan counts to the current 828/61.
+
+    Second, and the larger piece: the user is starting a broad aesthetic-review pass across
+    every topic and asked for a PDF with one question from every topic, plus a separate
+    answers PDF, so feedback could be given in stages. Asked 3 clarifying questions up front
+    (layout - one topic per page vs continuous flow; topic labelling - full Section/Group/
+    Tier breadcrumb vs bare name; answer-PDF depth - full worked solution vs answer-only),
+    all resolved to the recommended option. Built `backend/scripts/generate_review_pdfs.py`
+    - a one-off dev script, not part of the app itself - that reuses the real renderer's own
+    block-building helpers directly (`_question_block`/`_solution_block` from
+    `app/pdf/renderer.py`, `build_styles()` from `app/pdf/styles.py`) rather than
+    reimplementing them, so the output is a true preview of the app's actual current
+    styling. Walks `sections_tree()` in the app's own declared order, calling
+    `build_worksheet(topic.id, topic.fixed_tier, count=1, rng=shared_rng)` once per topic
+    (one shared, fixed-seed `random.Random(42)` across all 296 topics, so re-running the
+    script after a fix reproduces the *same* questions for direct before/after comparison,
+    the same "share one rng" precedent used elsewhere in this codebase) - each topic gets
+    its own page headed `Section › Group › Topic Name (Tier)` plus a `Topic N of 296 • id:
+    topic_id` line (the id makes it trivial to jump straight to the right generator file
+    from a piece of feedback). Generated both PDFs and sent them directly to the user (not
+    just written to disk) via the file-send tool. Verified before sending: page counts
+    (`all_topics_review_questions.pdf` is exactly 296 pages, one per topic, confirming no
+    topic was skipped or duplicated; `all_topics_review_answers.pdf` is 299 - 3 topics'
+    worked solutions genuinely spill onto a second page - `trig_graph`'s table-of-values,
+    `plot_distance_time`'s journey narrative, `loci_regions`'s two-constraint description -
+    confirmed by reading those specific pages' text directly, not just assumed, since a
+    stray page-count mismatch could just as easily have been a real bug) and spot-checked
+    rendered pages at both ends and the middle of each document, including one diagram-
+    bearing topic, all correct. No app code was touched this step - this was purely a new
+    internal tool built from 100% existing, already-verified rendering code, so no topic
+    count or test count change. The script was committed and pushed (see the intro's PR
+    note above).
+
+35. New session, a large batch of concrete review feedback on Number-section topics from
+    the aesthetic-review pass (step 34's PDFs), plus several items explicitly marked
+    "change throughout" - meaning fix the underlying typesetting capability once,
+    centrally, rather than per-topic. Asked two clarifying questions up front via
+    `AskUserQuestion` (both genuinely ambiguous, not guessable): "curved x" meant
+    switching the italic font used for variables app-wide from Helvetica-Oblique
+    (straight strokes, easily confused with ×) to a genuinely curved italic font; the
+    recurring-decimal notation should use dot(s) over the repeating digit(s) (confirmed
+    UK GCSE convention), not a bar over the block. Entered plan mode given the scope
+    (research via direct file reads plus one Plan agent, since the design was already
+    well understood from the codebase's own documented conventions) - the plan phased
+    the work as: spike the 4 riskiest new rendering pieces first, land them as shared
+    `app/pdf/mathtext.py` engine capabilities, then apply the specific Number-topic
+    content fixes on top, then pilot a language-variety helper.
+
+    **Phase 0 spikes** (all done and visually confirmed correct before any real topic
+    code was touched, matching this project's "verify the riskiest piece first"
+    precedent): (1) TTF font registration in ReportLab - genuinely new territory for
+    this codebase (`fraction_images.py`'s existing TTF usage is PIL-only, a separate
+    mechanism) - registered Times New Roman Italic/Bold Italic
+    (`C:\Windows\Fonts\timesi.ttf`/`timesbi.ttf`) via `pdfmetrics.registerFont(TTFont(...))`,
+    confirmed via a real rendered-PDF spike that an explicit `<font name="...">` tag
+    (not `<i>`, which only resolves to the Standard-14 family's own oblique face) works
+    standalone, nested inside `<super>`, in bold contexts, and at small (9pt) sizes -
+    and that `String(fontName=...)` in `diagrams.py`'s vector-shape labels accepts the
+    same registered name directly. (2) A full-length radical image (hook + bar spanning
+    the radicand) - hand-drawn via PIL polygon/line primitives sized to the radicand's
+    measured width, mirroring `fraction_images.py`'s architecture. (3) A fraction image
+    (via `get_fraction_image` at a reduced size) nested inside `<super>` - confirmed it
+    rises and aligns correctly even at the smallest font size fractions appear anywhere
+    in the app (the practice-test mark scheme's 9pt table), reversing an earlier
+    deliberate "not worth the complexity" decision documented in `mathtext.py`. (4) A
+    recurring-decimal dot-mark image (single dot over a lone repeating digit; dots over
+    both the first and last digit of a longer block) - rendered as one flat PIL image
+    per occurrence (not composited via Paragraph markup) since placing the dot(s)
+    accurately needs to measure each digit's own position.
+
+    **Engine changes**, all landed centrally in `app/pdf/mathtext.py` (plus two new
+    sibling modules, `app/pdf/radical_images.py` and `app/pdf/recurring_decimal_images.py`,
+    mirroring `fraction_images.py`'s caching/tempdir architecture) - each fixes every
+    topic using the same ASCII convention, not just the topic that surfaced the request:
+    (a) the curved-italic-x font swap, applied identically in `diagrams.py` (which now
+    imports the same registered font name directly from `mathtext.py` rather than
+    maintaining its own independent constant, so prose and diagram labels can never
+    drift apart); (b) `_MATH_RE` grew alternatives for a bare variable exponent (`8^x`)
+    and a generic compound-parenthesised exponent (`9^(x+2)`, `5^(3x)`) - both need
+    `_VARIABLE_RE` to leave an `x`/`n` immediately after `^` un-italicised (added `^` to
+    its negative-lookbehind class) so `_MATH_RE`'s own alternative can claim it and
+    superscript it correctly; (c) a `√(?P<radn>\d+)` alternative renders a full-length
+    radical for any bare-digit radicand, with a `(?!/\d)` lookahead deliberately
+    preserving the existing flat-text exact-trig-value convention (`√2/2` stays
+    untouched, per the module's own documented "Surd-over-integer gotcha"); (d) the
+    fractional-exponent alternative now renders a real reduced-size vinculum image
+    raised in `<super>` instead of flat `<super>(1/4)</super>` text; (e) two new
+    explicit ASCII sentinel markers, `\frac{NUM}{DEN}` and `\recur{PREFIX}{BLOCK}` -
+    the same precedent as the existing `\vec{a}`/`\vec{b}` marker (a blanket regex can't
+    safely auto-detect an unknown-value placeholder, an algebraic/surd numerator, or
+    which digits are a decimal's recurring block, so the generator marks it explicitly)
+    - protected from the earlier italics/vector passes via a new placeholder-extraction
+    step in `to_markup` (pulls marker spans out to opaque Private Use Area characters
+    before `_VARIABLE_RE`/`_VECTOR_RE` run, splices the real rendered `<img>` back in
+    after `_MATH_RE`), closing off the same bug class already documented for the
+    fraction-image temp-path corruption, this time for marker content instead of a
+    random tempfile suffix; (f) a defensive end-anchored regex strips a trailing "."
+    immediately after a decimal number (e.g. "...3.5." → "...3.5") - lives in the one
+    function shared by all three PDF renderers, so it covers every topic's prompt with
+    no per-topic-file changes needed at all.
+
+    **Real bug found via this session's own visual verification, not by any unit test**
+    (same story as most gotchas in this file): rendering `powers_higher`'s answer
+    exposed that `"1/{base}^{exponent}"`-style text (denominator immediately followed by
+    a bare `^exponent`, with nothing grouping them) had *always* rendered wrong - the
+    plain-fraction regex claimed just the "1/{base}" part, leaving the exponent to
+    superscript separately, reading as "(1/base)^exponent" instead of the intended
+    "1/(base^exponent)". This was latent since long before this session (the old flat
+    `<super>`/`<sub>` fraction markup had the exact same regex-matching behaviour), only
+    now made visually obvious by the new, much more prominent vinculum image. Found and
+    fixed **10 occurrences of the same pattern across `powers_roots.py`** (not just the
+    one topic that surfaced it) by wrapping the denominator in parentheses,
+    `"1/({base}^{exponent})"`. Also fixed, in the same file, a smaller pre-existing
+    cosmetic issue surfaced by the new vinculum's higher visual prominence: the
+    conjugate-rationalisation branch always showed an explicit coefficient of 1 in its
+    surd term (e.g. "7 + 1√7" instead of "7 + √7"), unlike the simple-rationalisation
+    branch which already special-cased this.
+
+    **Number-topic content fixes**, all built on top of the engine changes:
+    `fractions_ordering`/`decimals_ordering` reworded to "ascending order"/"descending
+    order" (`decimals_ordering` gained a genuine descending variant - it was previously
+    ascending-only); `fractions.py`'s `generate_multiply_fractions`/
+    `generate_divide_fractions`/`generate_divide_fractions_foundation` (+ modelled
+    twins) fixed via reroll-on-collision so numerator can never equal denominator (a
+    disguised-integer risk, e.g. "5/5") - deliberately NOT switched to the file's other
+    dependent-draw pattern, which would have also silently eliminated improper
+    fractions these Foundation topics are meant to produce; an Explore-agent audit of
+    every other topic file confirmed no further instances of this bug class exist
+    elsewhere in the app. `number_theory.py`'s `factors` gained a new low-probability
+    third branch ("How many factors does N have?", via weighted `rng.choices`, verified
+    independently via the prime-factorisation divisor-count formula) plus a matching
+    modelled-example path (previously unconditional, only ever demonstrating
+    "list_factors" style). `fractions_equivalent` now randomly asks for either the
+    missing numerator or denominator (previously always numerator) and uses the new
+    `\frac{?}{d}` marker for the unknown placeholder instead of plain literal text.
+    `fractions_equivalent_diagram` had its fraction-caption labels stripped from every
+    diagram shape in both existing branches (the student now reads the fraction from
+    the shading itself), plus a new third "diagram_only" branch with a short prompt and
+    none of the "Shape A is divided into N equal parts..." explanatory prose, since the
+    now-caption-free diagram communicates that visually. `rationalise_denominator`'s
+    both branches (simple and conjugate) now build their answers via the `\frac{}{}`
+    marker instead of raw string concatenation. All 3 recurring-decimal topics
+    (`recurring_decimal_single_digit`/`_two_digit`, `decimals_recurring_to_fraction`)
+    switched from parenthesised `"0.(digits)"` text to the `\recur{}{}` marker -
+    surfaced a second real bug via a rendered-PDF spike (not caught by the unit tests,
+    which only check the underlying regex/image logic): `valign="bottom"` (the
+    fraction/radical images' own proven-correct setting) visibly sank the recurring-
+    decimal image below the true text baseline, because unlike those two image kinds
+    (whose ink touches both the top AND bottom of the image), this image only has
+    padding ABOVE the digits (reserved for the dot mark) - `"bottom"` aligns to the
+    line's descender space instead of the true baseline in that specific case. Fixed by
+    using `valign="baseline"` for this one marker only, confirmed via the same
+    side-by-side valign-comparison spike technique `fraction_images.py`'s own docstring
+    already documents using originally.
+
+    **Language-variety pilot**: new `app/topics/phrasing.py` (small categorised
+    verb-pool helpers - `evaluate_verb`/`amount_verb`/`simplify_verb`/`convert_phrasing`,
+    each a thin `rng.choice` over a pool sized to fit one sentence shape, since not
+    every synonym fits every grammatical pattern) applied throughout `fractions.py`,
+    `decimals.py`, and `powers_roots.py` (every hardcoded "Work out"/"Simplify"/"Find X
+    of Y"/"Write X as Y" prompt in those 3 files now varies per-question). Full rollout
+    across the other ~250 topics is deliberately out of scope for this session -
+    flagged as a follow-up, matching this project's own pilot-then-rollout precedent
+    (e.g. Modelled Examples, step 10→11).
+
+    No topic count change (296 - this was entirely rendering/wording fixes, no new or
+    retired topics). Central verification: full backend suite, the review-PDF script
+    re-run to regenerate both all-topics PDFs (confirming the "change throughout" items
+    landed correctly on topics never directly touched this session, e.g. a Pythagoras
+    surd-hypotenuse answer and a plain linear-equations prompt both spot-checked and
+    confirmed correct), and a live browser click-through (worksheet + modelled example
+    downloads both 200 OK, no console errors) for `fractions_equivalent_diagram`'s new
+    branch. Backend suite grew from 828 to 862 tests (new `test_radical_images.py`,
+    `test_recurring_decimal_images.py`, `test_phrasing.py`, plus extended
+    `test_mathtext.py`/`test_fractions.py`/`test_powers_roots.py`); frontend unaffected
+    (61/61 - no frontend files were touched this session).
+
+36. New session, a large batch of concrete Algebra-section feedback from the same
+    aesthetic-review pass (step 34's PDFs), covering ~20 named items across diagrams,
+    wording, and one systemic "the fraction line is a plain slash, check this
+    everywhere" request. Entered plan mode given the scope; worked mostly directly
+    (diagram-engine and shared-renderer changes first, per this project's own
+    precedent), then dispatched parallel background agents once the remaining work
+    was well-isolated per-file. One item — `iteration` ("remove the underscore and
+    make it look like the picture attached") — is **still blocked**: no image
+    actually reached the conversation, so it was left untouched pending the user's
+    reference image next session (see "Where to pick up next").
+
+    **Shared diagram-engine changes** (`app/pdf/diagrams.py`), all done directly and
+    visually verified before any topic-level work: `_draw_scaled_axes` now prefers a
+    true square unit grid (equal px-per-unit on both axes, like real squared exercise
+    paper) whenever the tighter of the two per-axis scales still gives a legible
+    unit-square size (>= `_MIN_SQUARE_UNIT_PX`), falling back to the old independent
+    per-axis scaling only for genuinely lopsided ranges (e.g. a steep straight-line
+    gradient, or `trig_graph`'s 360°-vs-±1 domain) - decided per-render from the
+    actual data range, not hardcoded per topic, so e.g. `plot_straight_line` goes
+    square for shallow gradients and gracefully falls back for steep ones.
+    `draw_linear_graph_pair` (`simultaneous_graphically`) no longer marks the
+    intersection with a dot/`"?"` label at all (the intersection point IS the
+    answer the student must read off the graph) - each line's own label is now
+    anchored a fixed 85%/10% fraction along its own line, with an `anchor` chosen so
+    the label text always grows in the direction the line is moving away from (never
+    back over the line, the other line, or either axis name label) - found via two
+    real rendering iterations, not by inspection alone (a naive "extend past the
+    endpoint" version collided with the axis-name label at the corner; a
+    "midpoint + flat vertical offset" version had the text's trailing edge swing
+    back over a descending line). `draw_function_graph` no longer draws `table_points`
+    dots for `line_equation_from_graph` specifically (the two marked points on a
+    "read the equation off this line" question shouldn't be pre-marked) - achieved by
+    just not passing `table_points` for that one topic, not a diagram-kind change,
+    since every *other* plotting topic's dots (showing the table of values the
+    student computed) are correctly still shown. `draw_graph_transformation`'s
+    generic `y = f(x)` curve is now a genuinely smooth 40-point sample of a real
+    function (`_transform_base_fn`, `y = 0.5x^2 - 1.5` - confirmed algebraically to
+    exactly reproduce the 7 originally hand-picked points) instead of a coarse
+    7-point polyline. `turning_point_of_graph` no longer has a diagram at all (its
+    parabola diagram was showing the vertex label as the literal answer coordinates
+    anyway, so removing it was strictly simpler than fixing the leak). Two small new
+    diagram kinds/params: `polygon_angles` (a `draw_triangle_angles` generalisation
+    to n vertices, used for `forming_equations_higher`'s quadrilateral-angle branch)
+    and `draw_l_shape`'s new optional `right_labels` param (splits the notch-adjacent
+    edge into two independently labelled real segments instead of a single combined
+    "(m + n) cm" label that read like unevaluated arithmetic - found and fixed via
+    the same render-and-look-closely pass that built it).
+
+    **`forming_equations_foundation`/`_higher`** (`app/topics/forming_equations.py`):
+    per a scoped clarifying question, the "words" (think-of-a-number) branch stays
+    text-only (nothing to draw); the angles branch (straight/point/triangle for
+    Foundation, quadrilateral for Higher) now gets a real angle diagram via a new
+    shared `_angle_fact_diagram` helper (`angle_line`/`triangle_angles`/
+    `polygon_angles` depending on the fact), and the area/perimeter branch gets a
+    `rectangle` diagram, in both cases trimming the prompt down to just state the
+    total (e.g. "The perimeter of the rectangle shown is 32 cm...") since the side
+    lengths are now on the diagram instead of repeated in prose. Higher's perimeter
+    branch dropped the word "composite" entirely by becoming a real, correctly
+    geometric L-shape (`_l_shape_perimeter_diagram`) - the bottom width is the
+    algebraic `(x + k)`, and the notch height is deliberately set to exactly `m` so
+    the right-hand edge is a real notch-divided segment labelled `n`/`m` rather than
+    a fabricated "(m + n)" combined label. All 4 modelled-example counterparts got
+    the identical treatment.
+
+    **`kinematics_suvat`**: a new generic `TopicDefinition.preamble_lines` mechanism
+    (threaded through `Worksheet.preamble_lines`, `render_worksheet`'s new
+    `_preamble_box` helper, and `render_modelled_example`'s equivalent) shows all 3
+    SUVAT equations in a boxed "Formulae" panel at the top of both the worksheet and
+    the modelled-example PDF, before Q1 - reuses the exact same boxed styling as the
+    modelled-example page's existing worked-calculation box for a consistent house
+    style. This is genuinely new, reusable renderer plumbing (no prior topic had a
+    fixed preamble), not a one-off special case - any future topic that wants the
+    same "formulae shown once, up front" treatment just sets `preamble_lines` on its
+    `TopicDefinition`.
+
+    **Wording/behaviour tweaks** (each independently scoped, no shared mechanism):
+    `substitution_foundation`/`changing_subject.py`/`classify_expressions.py` - the
+    rectangle-length variable `l` (which reads as a capital `I`) is now `L`
+    throughout all three files (their formulas/prompts/steps/final answers), leaving
+    the unrelated slant-height `l` in the solids files untouched (genuine standard
+    exam notation, not the same collision). `expand_double_brackets_foundation`/
+    `expand_double_brackets` now say "Expand and simplify" (matching the sibling
+    triple-bracket topic, which already did); a new `_rand_x_coeff` helper makes a
+    bracket's own x-coefficient negative under 0.5% of the time instead of 50%
+    (constants can still be either sign as before) for `expand_double_brackets`/
+    `expand_triple_brackets`. `quadratic_inequalities`'s leading coefficient is now
+    always `1` (never the "upside-down U" `-1` case). `inequalities_number_line_higher`'s
+    "draw" prompt now reads "Draw the inequality/ies of ... on a number line."
+    `sequences_nth_term`/`sequences_quadratic_nth_term` now put "Find an expression
+    for the nth term." on its own line - via a new, generically-useful mechanism in
+    `mathtext.py`: a literal `"\n"` in any generator's prompt/step text (which
+    `_escape()` leaves untouched, unlike a hand-written `"<br/>"` which would get
+    escaped into visible text) is converted to a real ReportLab `<br/>` at the very
+    start of `to_markup`, available to any future topic that wants a forced line
+    break. `special_sequences_foundation` no longer shows "(term number x)" alongside
+    the ordinal ("Find the 6th term..." instead of "...(term number 6)").
+    `special_sequences_higher`'s geometric branch no longer states "Each term is
+    found by multiplying the previous term by a common ratio."
+
+    **The fraction-line audit** ("id: algebraic_fractions_add_subtract - fraction
+    line is a /, this must be checked on everything") turned out to be the largest
+    single piece of this session. `mathtext.py`'s auto-detect regex only converts a
+    standalone fraction to a real vinculum image when *both* numerator and
+    denominator are bare unsigned digit sequences - anything else (an algebraic
+    letter, brackets, a negative-signed denominator, a "?" placeholder, a surd
+    coefficient > 1) silently renders as a flat, un-typeset slash instead, with no
+    error or warning. Rather than fix just the one named topic, audited **every**
+    `app/topics/*.py` file (3 parallel research-only agents, ~65 files/functions
+    read, not just grepped) for genuine instances - explicitly excluding unit-rate
+    "per" expressions (`km/h`, `£/kg`) and already-safe bare-digit fractions,  which
+    correctly stay untouched. Found genuine instances in **12 files**: `fractions.py`,
+    `powers_roots.py` (mostly `rationalise_denominator`), `algebraic_fractions.py`
+    (systemic - every fraction in the file, including the final answer, was affected),
+    `changing_subject.py` (systemic - every rearranged-formula answer), `substitution.py`
+    (the acceleration shape), `sequences.py` (the triangular-number formula),
+    `kinematics.py` (most of the algebraic SUVAT rearrangements - several with a
+    denominator that can itself be negative, e.g. `(v-u)/a` when `a` is a
+    deceleration, which the auto-detect regex can't handle even when both sides are
+    otherwise plain digits), `quadratic_equations.py` (the surd-root final answer and
+    substituted quadratic-formula steps), `functions.py` (the inverse-function
+    shape), `iteration.py` (the quadratic/reciprocal formula shapes),
+    `inequalities.py`/`inequalities_region.py` (a unit-fraction coefficient
+    rendering as e.g. `"x/2"`), and `circle_equation.py` (gradient fractions with a
+    possibly-negative denominator). Fixed via 7 parallel write-capable agents (one
+    per cluster of unrelated files) plus 3 files done directly (`changing_subject.py`,
+    `substitution.py`, `kinematics.py` - already mid-edit this session for the `l`→`L`
+    and preamble work, so kept in-hand to avoid merge conflicts). Every fix follows
+    the established `\frac{NUM}{DEN}` marker convention (already precedented by
+    `\vec{a}`/`\vec{b}` and `\recur{}{}`), never touching the underlying
+    verification/arithmetic - purely a display-string change.
+
+    **Four real bugs were found and fixed via this session's own visual verification,
+    not by any unit test** - the same story as most gotchas in this file:
+    1. `exact_trig_values.py`'s `_fmt_exact` only special-cased a coefficient-1 surd
+       over an integer (e.g. "√3/2", deliberately left flat per an existing
+       documented gotcha) - a *computed* coefficient > 1 (e.g. `"5√3/2"`, reachable
+       from `exact_trig_values_triangles`'s triangle-side generator, never from the
+       base lookup table) fell through both the auto-detect and the flat-text
+       special case untouched. Fixed with an explicit `\frac{}{}` branch for that
+       specific case only, leaving the genuine coefficient-1 case exactly as before.
+    2. `algebraic_indices_higher`'s multiply-fractional-exponents step built a
+       compound exponent like `x^(1/2+3/2)` - individually-valid bare fractions, but
+       joined by a "+" inside the same `^(...)`, which defeats `_MATH_RE`'s
+       fractional-exponent alternative (it requires *exactly* `^(digits/digits)`)
+       and falls through to the generic flat-raised-text compound-exponent case
+       instead. Fixed by wrapping each half in its own `\frac{}{}` marker before
+       joining with "+" inside the `^(...)` - confirmed via a real render that two
+       correctly-scaled small vinculum fractions now sit side by side inside the
+       superscript, not a flat "1/2+3/2".
+    3. The single most significant finding: converting `rationalise_denominator`'s
+       conjugate-branch steps to `\frac{}{}` (per the audit above) introduced a
+       **new** visual bug the audit itself couldn't have caught, since it only
+       exists once real PDF output is inspected - a step combining two wide,
+       bracket-heavy fraction images on one line (`\frac{a}{denom} = \frac{a(conj)}
+       {[(denom)(conj)]}`) rendered tall enough to visibly overlap the *previous*
+       solution step's text line, because `SolutionStep`'s paragraph style
+       (`leading=15, spaceAfter=2`) was tuned years earlier against simple
+       plain-digit fractions (which happen to be almost exactly 15pt tall) and never
+       revisited for a wide algebraic fraction (measured at 16.5pt+ for content
+       involving brackets/surds). Root-caused via an isolated PIL bbox spike before
+       touching any real code (confirmed `font.getbbox()` genuinely returns a taller
+       box for bracket/surd-containing strings than for plain digits at the same
+       font size) - a first fix attempt (make every fraction image the same height,
+       based on the font's fixed ascent/descent metrics) was tried, rendered, and
+       **rejected**: it fixed the wide case but made every simple fraction *taller*
+       too, which broke previously-fine spacing across the whole document instead of
+       just the outlier - reverted in favour of two smaller, lower-risk fixes: (a)
+       splitting the one genuinely too-dense solution step into two separate steps
+       in `powers_roots.py` (one fraction's image per line, not two), and (b) a
+       modest `spaceAfter`/`spaceBefore` increase (2-6pt) to `SolutionStep`,
+       `FinalAnswer`, `WorkedCalcLine`, and `ScaffoldGiven` in `app/pdf/styles.py` -
+       general headroom for any inline fraction image slightly taller than a single
+       text line, benefiting every topic that uses these styles, not just this one.
+       Confirmed via a full re-render that the overlap is gone and page counts
+       didn't measurably bloat.
+    4. (Documented under "Compound-3D..." precedent, but worth restating here since
+       it directly follows from finding #3): any *future* addition of a
+       multi-fraction-per-line solution step should be rendered and visually checked
+       before being considered done - the underlying image-height-vs-leading gap is
+       now better cushioned, not eliminated, and a sufficiently dense line could
+       still in principle re-trigger it.
+
+    Central verification: full backend suite (862/862, unchanged count - this
+    session was entirely rendering/wording/formatting fixes to existing topics, no
+    new or retired topics), frontend suite (61/61, untouched - no frontend files
+    changed), and the review-PDF script re-run to send a fresh comparison pair back
+    to the user (296 question pages, unchanged; 302 answer pages, up from 299 -
+    expected, since a few more topics' solutions now spill onto a second page as a
+    direct, accepted consequence of the `SolutionStep` spacing increase in finding
+    #3). The `iteration` item remains open, blocked on the user's reference image
+    (see "Where to pick up next").
+
+37. New session, resolving the single item step 36 left blocked: the user supplied the
+    reference image (a "3 Minute Maths" slide showing `x_(n+1) = ∛(3 - x_n)` with a true
+    subscript - no visible underscore or parentheses - for the recurrence notation). Fixed
+    at the engine level in `app/pdf/mathtext.py`, not as a one-off patch to `iteration.py`'s
+    strings, per this project's own "engine-level fix, not topic-local" convention: a new
+    `_SUBSCRIPT_RE` matches `x_n`/`x_(n+1)`-style ASCII notation and converts it to a real
+    `<sub>` tag (parentheses stripped, not shown), run BEFORE the italics pass so the bare
+    letter inside is still italicised normally afterward. Confirmed via a full-codebase grep
+    that no topic other than `iteration.py` ever emits this exact "x_" pattern as real
+    rendered text (several dozen false-positive hits were all either Python variable names
+    in source code or unrelated dict keys like `params["x_label"]`, never actual prompt/step
+    string content) - so this is a zero-risk addition for every other topic.
+
+    **Reintroducing `<sub>` revived the historical "comma glued to `</sub>`" ReportLab
+    quirk** documented elsewhere in this file (previously marked resolved only in the sense
+    that the codebase no longer emitted `<sub>` at all) - confirmed still present via a real
+    rendered-PDF spike before shipping (iteration.py's own prompt text has exactly this
+    shape: "x_1, x_2 and x_3"). A zero-width space was tried first and rejected the same way
+    the `⁻¹`/`∕` gotchas were - Helvetica has no glyph for it, confirmed via a `font.getmask`
+    spike showing it falls back to the exact same `.notdef` bbox as a deliberately-invalid
+    codepoint. A thin space (U+2009, which Helvetica does have) fixes the glue with only a
+    negligible visible gap - `_SUB_COMMA_RE` inserts it wherever `</sub>` is immediately
+    followed by a comma.
+
+    A second, narrower problem: two of the topic's three shapes (quadratic, reciprocal)
+    embed a literal "x_n" *inside* a `\frac{}{}` marker's own numerator/denominator (e.g.
+    quadratic's formula numerator "a - x_n^2") - this content is drawn as raw PIL text by
+    `get_fraction_image` with no markup interpretation at all, so mathtext.py's new regex
+    never sees it (it's already extracted into an opaque placeholder and rendered to an
+    image before `_SUBSCRIPT_RE` would run). Fixed narrowly in
+    `app/pdf/fraction_images.py`: a new `_XN_RE` matches ONLY the exact literal substring
+    "x_n" (optionally with a trailing "^digits", so "x_n^2" composes correctly as a real
+    subscript immediately followed by a real superscript, both attached to the same "x" -
+    standard notation for "the square of the nth term"), and `_measure_run`/`_draw_run`
+    manually walk the numerator/denominator left to right, drawing "x_n" as a real
+    italic-font subscript instead of three literal characters. This is deliberately much
+    narrower than a general "any `^digits` inside any fraction becomes a superscript" rule,
+    which was considered and rejected - several *other* topics already use `\frac{}{}` for
+    fractions containing a genuine unrelated "^" (`changing_subject.py`, `kinematics.py`,
+    `quadratic_equations.py`, among the 12 files from step 36's fraction-line audit), and a
+    blanket rule would have risked altering their already-correct, already-shipped
+    rendering; matching only the literal "x_n" substring makes this a zero-risk addition for
+    every one of those files. The subscript "n" (and the base "x") are drawn in the same
+    Times Italic font `mathtext.py` uses for variables elsewhere, even though the
+    surrounding fraction digits stay in plain Arial (an accepted, pre-existing simplification
+    for `\frac{}{}` content generally - see mathtext.py's "Surd-over-integer gotcha" - and
+    invisible at this size, since no other topic's fraction content contains a bare "x_n"
+    for the font mismatch to affect).
+
+    Separately, swapped the sqrt shape's literal word "sqrt(...)" for a real "√(...)" symbol
+    in both `_formula_str` and `_subst_expr`, matching the rest of the app's convention
+    (confirmed safe: since the radicand is algebraic, not bare digits, this renders as a
+    plain literal "√" character per mathtext.py's already-documented behaviour for non-digit
+    radicands, not a full vinculum-radical image - no new radical-engine work needed).
+
+    All three shapes were rendered and visually inspected before considering this done (per
+    this project's own "render and look closely" discipline) - including a native-resolution
+    pixel check of the fraction-embedded subscript/superscript specifically, since an early
+    screenshot at a small crop size made the denominator digits look mis-sized purely from
+    image-scaling interpolation, not a real bug (re-confirmed correct once measured/viewed at
+    native resolution). `trial_and_improvement` (this topic's sibling, which never uses "x_"
+    notation) was re-rendered too, to confirm it's genuinely unaffected. Backend suite grew
+    from 862 to 873 tests (6 new subscript tests in `test_mathtext.py`, 4 new `\frac{}{}`
+    "x_n" tests in `test_fraction_images.py`, 1 new test in `test_iteration.py` confirming
+    the sqrt-symbol swap); frontend unaffected (61/61 - this session touched only backend
+    PDF rendering). No topic count change (still 296). The review PDFs were regenerated
+    (still 296/302 pages, as expected with no topic count change) and sent back to the user.
+
+38. New session, a batch of Ratio & Proportion review feedback (6 named items:
+    `best_buys`, `ratio_find_missing_share`/`ratio_difference`/`ratio_difference_higher`,
+    `ratio_1_to_n`, `ratio_shape_similar_foundation`/`_higher`, `direct_proportion`).
+    Asked clarifying questions up front via `AskUserQuestion` on the genuinely ambiguous
+    items before touching code: whether `ratio_difference`'s restyle should switch to
+    giving one share's value directly (matching the user's literal example) or keep
+    giving the difference with just terser wording (chosen: **keep the difference**,
+    since that's what makes the topic distinct from `ratio_find_missing_share` -
+    otherwise the two topics would test near-identical content); what shape/orientation
+    the new similar-shapes diagram should use (chosen: **two rectangles, same
+    orientation** - simplest, since a rectangle's own width/height already disambiguate
+    corresponding sides without needing rotation); and whether the best_buys g→kg
+    scope should extend to `direct_proportion`'s recipe template, which was found via
+    the "check for the same pattern elsewhere" pass to have the exact same issue
+    (chosen: **yes**, plus ml→L too, for symmetry).
+
+    **best_buys / direct_proportion g→kg, ml→L conversion**: new
+    `app/topics/units.py` (`display_qty`/`needs_larger_unit`) - a raw base-unit amount
+    (grams, millilitres) displays in the larger unit (kg, litres) once it reaches 1000,
+    e.g. `display_qty(1200, "g")` → `"1.2kg"`. Fixed-point formatting only
+    (`format(Decimal, "f")`, never a bare `Decimal` `.normalize()`/`str()`) - confirmed
+    via a real spike that the same "3E+1"-style scientific-notation bug documented for
+    `estimation_rounding` (chronology step 22) reproduces here too for a qty that
+    normalizes to a round number, even though no current caller's range actually reaches
+    it. Wired into `best_buys.py` (pack-size mentions in the prompt/option-list/final
+    answer) and `proportion.py`'s `direct_proportion` recipe template (`display_qty`
+    used for prompt/final-answer "narration", while the actual division/multiplication
+    steps still work in raw grams throughout) - both add an explicit
+    `"1.2kg = 1200g"`-style conversion clause wherever the two forms differ, so no step
+    ever jumps from a kg-displayed number straight into a gram-based division with no
+    explanation. `direct_proportion`'s other three templates (shopping, map, currency)
+    never reach this threshold, so are unaffected.
+
+    **`ratio_find_missing_share`/`ratio_difference`/`ratio_difference_higher` restyled
+    to a letter-equation format** (e.g. "a : b = 1 : 7. a = 10. What is the value of
+    b?"), replacing the old "Two amounts are in the ratio..." prose framing. New
+    `_LETTER_PAIRS`/`_LETTER_TRIPLES` pools (`ratio.py`) vary which letters are used per
+    question - **deliberately excludes "x" and "n"**, the only two letters
+    `mathtext.py`'s engine italicises by default, since pairing an italicised letter
+    with a plain one in the same ratio (e.g. "x : y") looks like a rendering
+    inconsistency even though each letter's styling is individually correct - found via
+    an actual render during this session, not assumed up front. `ratio_find_missing_share`
+    now always asks for the other letter's value directly (the old "or find the total"
+    branch was dropped, matching the user's literal example - it had no total-asking
+    variant); `ratio_difference`/`_higher` **keep** giving the difference (per the
+    clarifying-question answer above) and keep their existing "or also ask for the
+    total" branch, just restyled with letters (e.g. "a : b = 3 : 5. b - a = 12. Find a
+    and b, and their total.") - the bigger/smaller letter in the difference clause is
+    picked from the actual generated values (`bigger_letter, smaller_letter = (l1, l2)
+    if a > b else (l2, l1)`), not hardcoded, so it's always stated as a true positive
+    quantity.
+
+    **`ratio_1_to_n`'s "n" is no longer italicised** - a genuine gap in `mathtext.py`'s
+    "x/n are always italic" convention, since here "n" is a plain ratio-form
+    placeholder ("1:n"), not an algebraic variable, and real exam convention leaves it
+    upright. Rather than special-case this one topic, added a new general engine
+    capability: **`\plain{X}` opts a bare letter OUT of the automatic italics** - the
+    third explicit ASCII sentinel marker in `mathtext.py` (alongside `\frac{}{}`/
+    `\recur{}{}`), extracted into the same placeholder mechanism *before* the italics
+    pass runs, then spliced back as fully bare/literal content afterward (opting out of
+    every later pass, not just italics, since there's nothing else in `ratio_1_to_n`'s
+    content that would need markup applied to a bare "n" anyway). Every literal "n" in
+    `ratio_1_to_n`'s prompt/steps/worked_calculation/teaching_steps was audited and
+    converted to `\plain{n}` - confirmed via a real render that "n" now sits upright
+    everywhere it appears, prompt through modelled example.
+
+    **`ratio_shape_similar_foundation`/`_higher` restyled with a new diagram**, moving
+    the numeric side-length data out of the prompt text (which now just states "Shape A
+    and Shape B are similar. Find the length of side x." for Foundation, or "...The
+    area of shape B is 360 cm². Find the area of shape A." for Higher, unchanged from
+    the user's example) and into a new `two_similar_rectangles` diagram kind
+    (`app/pdf/diagrams.py`) - two separate, non-overlapping rectangles ("Shape A"/
+    "Shape B"), same orientation (so correspondence is just "width↔width, height↔
+    height", no rotation needed), explicitly **NOT drawn to true relative scale**
+    (`_not_to_scale`) since one side is often the very unknown the student must find -
+    drawing it at its real proportion would let a careful ruler-measurement leak the
+    answer, the same reasoning this app already applies to schematic triangles/circles
+    elsewhere. All four side labels are optional (`params.get(...)`, no KeyError if
+    omitted) since the Higher (area/volume) version only ever states ONE corresponding
+    length pair (the area/volume itself, not a second length, is what's given/asked
+    for) - Foundation passes all four (two full dimensions per shape, one of which is
+    the unknown letter), Higher passes only the two width labels. New
+    `_UNKNOWN_LETTERS = ["x", "y", "z"]` pool varies the Foundation topic's unknown-side
+    letter per question, matching the user's "(letters can be changed)" note. **A real
+    bug was found and fixed via this diagram's own first spike render**, before any
+    topic code was wired up (this project's established "verify the riskiest piece
+    first" precedent): the initial layout gave Shape B's height label too little
+    clearance from the canvas's right edge, so a two-digit label like "45 cm" clipped
+    off completely - fixed by narrowing both rectangles slightly and shifting Shape B
+    left, re-confirmed clean across several longer-label test cases before wiring it
+    into the real topics.
+
+    **`direct_proportion` wording**: every one of its 4 templates (shopping, recipe,
+    map, currency) now opens with "If ..." (e.g. "If 8 pencils cost £21.68, how much
+    would 15 pencils cost?"), restructuring what used to be two separate sentences into
+    one conditional clause. The currency template's `amount_noun` ("value in dollars")
+    and its prompt's own "in dollars" mention both gained a parenthetical "($)"
+    immediately after the bare word "dollars" - the one place in this file a currency
+    is ever named by word without its symbol sitting right next to a figure - so every
+    teaching-step sentence built from `amount_noun` picks up the clarification
+    automatically, with no separate per-sentence edit needed.
+
+    Central verification: full backend suite (873→892 tests - `test_units.py` (new),
+    plus new tests in `test_ratio.py`, `test_diagrams.py`, `test_best_buys.py`,
+    `test_proportion.py`, and 3 new `\plain{}` tests in `test_mathtext.py`); frontend
+    unaffected (61/61 - no frontend files touched). No topic count change (still 296 -
+    this was entirely rendering/wording/diagram fixes to existing topics). Every
+    changed topic was rendered and visually inspected (worksheet, worked solutions, and
+    modelled-example pages) before considering it done, plus a live browser
+    click-through (both similar-shapes topics generated a real worksheet/modelled
+    example, 200 OK, no console errors). The review PDFs were regenerated (296
+    question pages, unchanged; 303 answer pages, up from 302 - expected, since the two
+    similar-shapes topics' worked solutions now include a diagram) and sent back to the
+    user.
+
+39. New session, a large Geometry review-feedback batch (~35 named items across
+    diagrams/wording/behaviour, plus several items explicitly marked "change
+    throughout" meaning all 296 topics, not just Geometry) — by far the largest
+    single batch since step 34's review process began, comparable in scope to the
+    biggest past multi-session phases (steps 23-27, 31, 32, 36). Two items were
+    ambiguous enough to need clarification up front (resolved via `AskUserQuestion`):
+    the rounding-instruction change is a **real behavioural change** (each applicable
+    question randomly picks 1 dp/2 dp/3 sig figs and the actual answer is rounded to
+    that precision, not just a wording swap), and `congruent_triangle_proof_foundation`
+    redesigns to a lettered multiple-choice format. Per the user's explicit choice,
+    the batch was split into 6 phases (cross-cutting engine work first, then named
+    topic fixes grouped by area) and planned via `EnterPlanMode`, with the full plan
+    (including exact file/function/line references from research) written to
+    `C:\Users\James\.claude\plans\adaptive-coalescing-gosling.md` — kept as the
+    authoritative, continuously-updated tracker across sessions rather than
+    duplicated in full here (see "Where to pick up next" above). **This session
+    completed Phases 1-3**; Phases 4-6 are picked up in a future session.
+
+    **Phase 1 (cross-cutting diagram/engine fixes, all in `app/pdf/diagrams.py`
+    unless noted)**: larger angle-label font size app-wide; `_not_to_scale`
+    neutered to a no-op so "Diagram NOT accurately drawn" no longer renders anywhere
+    (kept as a real function, not deleted, for easy re-enabling); double-chevron
+    arrow marks added to `draw_parallel_lines`; `_north_arrow`'s length constant
+    increased (fixes both bearings topics via the one shared default);
+    `draw_sector` reworked (dropped the dashed full-circle outline, enlarged the
+    sector, added a real angle arc); `draw_trapezium`'s label-overlap fixed;
+    `draw_cuboid` gained an `is_cube` flag (square front face, wired into
+    `volume_surface_area_cube`) and a `vertex_labels` param (A-H lettering, wired
+    into `pythagoras_3d`/`trig_3d`); `draw_vector_triangle` gained direction
+    arrowheads; formula preamble boxes (reusing the `TopicDefinition.preamble_lines`
+    mechanism from `kinematics_suvat`, step 36) added to the 6 cone/sphere/pyramid/
+    frustum/compound-3D topics; "right-angled triangle" wording removed from
+    `trigonometry.py`/`exact_trig_values.py` prompts where the diagram already shows
+    the right-angle marker; Pythagoras topics switched to a consistent "find x"
+    convention (diagram unknown label + prompt both say "x" instead of "?"/
+    descriptive wording) and "legs" renamed to "sides" throughout `pythagoras.py`/
+    `solids_prisms.py`/`congruent_triangle_proof.py`.
+
+    Rendering during this phase's own checkpoint found and fixed 4 real bugs, none
+    caught by unit tests: (1) `draw_sector`'s new angle arc used `_angle_arc`, which
+    always takes the shortest of the two possible sweeps between two rays - wrong
+    for a sector, whose own angle is routinely reflex (>180°), drawing the
+    complementary arc outside the wedge instead; fixed with a direct `ArcPath.addArc`
+    matching the wedge's own sweep. (2) The same rework's narrow-angle labels (<40°)
+    collided with the sector's own radius label, which always anchors near the same
+    "top" ray tip the bisector approaches for a narrow angle; fixed by placing a
+    narrow angle's label *behind* the vertex (opposite the wedge's own opening
+    direction) instead of along the bisector. (3) `draw_trig_triangle`'s angle label
+    used a fixed `(dx, dy)` offset from vertex B that, for some adjacent/opposite
+    ratios, landed close enough to the hypotenuse to visibly overlap it (this is the
+    exact "overlap on angle size and shape" bug the user flagged for
+    `trig_missing_side_foundation`, which shares this diagram kind, and it also
+    fixed `sine_rule`/`cosine_rule`/`triangle_area`/`exact_trig_values_triangles`
+    for free via the shared `draw_general_triangle`/`draw_trig_triangle` functions)
+    - fixed with a centroid-direction push (same fix pattern already established for
+    `draw_general_triangle`'s own angle labels). (4) The new cuboid diagonal label
+    (`"?"`) sat at the exact midpoint of the diagonal, which - once vertex letters
+    were added - put it right on top of vertex D (a hidden-vertex dashed-edge
+    cluster); fixed by moving the label 60% of the way along the diagonal instead
+    of 50%.
+
+    **Phase 2 (rounding-precision randomization engine)**: confirmed via a fresh
+    grep that the "always 3 significant figures" pattern was **not centralized** -
+    ~50+ hand-written occurrences across 11 files, no shared helper. Built
+    `app/topics/rounding.py` (a `pick_rounding(rng) -> RoundingSpec` returning one
+    of "1 decimal place"/"2 decimal places"/"3 significant figures" plus a
+    Decimal-based `round_fn` that avoids the scientific-notation display bug already
+    documented elsewhere in this file), proved the pattern directly on
+    `trigonometry.py` and `area_perimeter.py` (two different existing verification
+    styles), then rolled out to the remaining 7 files via 3 parallel background
+    agents (`solids_curved_compound.py` alone; `solids_cylinders_cones.py` +
+    `solids_3d_trig.py`; `bearings.py` + `substitution.py` + `triangle_rules.py`),
+    each given the exact proven pattern and told to decouple display rounding from
+    verification (compare full-precision values via two computation paths, never an
+    already-rounded one) rather than just swapping the display text. Deliberately
+    left untouched: angle answers (always 1 d.p. by real exam convention, never
+    swappable to significant figures), the standard-form mantissa's own "round to 3
+    s.f." convention (part of standard form's own notation, not a final-answer
+    instruction), and the `rounding_to_significant_figures` topic itself (teaches
+    the skill, wording changes would undermine it). One agent found and flagged
+    (rather than fixed, correctly out of its assigned scope) a real pre-existing
+    bug: `mathtext.py`'s radical regex only matched bare-integer radicands, so an
+    intermediate 4-s.f. decimal like `bearings.py`'s `ac_sq_str` (e.g. "205.1")
+    rendered with only "205" under the radical bar and ".1" stranded as plain text
+    right after it - fixed directly in this session by extending the regex to
+    `√(?P<radn>\d+(?:\.\d+)?)`, confirmed via a real rendered PDF (`√591.1` now
+    fully covered) and a new regression test.
+
+    **Phase 3 (Area & Perimeter topics)**: stripped restated prose from every area
+    topic whose diagram already carries the needed measurement(s) -
+    `area_rectangle`, `area_triangle` (no redesign, per the confirmed clarifying
+    answer - just render-verified for overlap), `area_composite_rectangles`,
+    `area_parallelogram`, `area_trapezium`, `area_circle`/`_foundation`,
+    `arc_length`/`_foundation`, `area_sector`/`_foundation` - e.g. "A rectangle has
+    length X cm and width Y cm. Find its area." became "Find the area of the
+    following rectangle." `area_subtract_compound`/`_foundation` redesigned: a new
+    `shade_frame` mode on `draw_l_shape` (fill-then-erase, the same trick already
+    used by `draw_mixed_compound`'s quarter-circle cut and `draw_venn_diagram`'s
+    "neither" region) shades the remaining region, with exactly 2 real edge labels
+    per shape (outer rectangle + inner hole) replacing the old 4-outer-label-plus-
+    combined-caption style; prompts reworded to "Find the shaded area."
+    `area_mixed_compound` fully reworked from one fixed rectangle+triangle+
+    quarter-circle-cut shape into a genuine 3-piece composite: a rectangle body with
+    a randomly chosen top piece (triangular roof or semicircular dome) and cut piece
+    (quarter-circle corner cut or semicircular edge notch) - 4 real combinations,
+    each independently verified (full-precision cross-check via a second π source,
+    same discipline as every other topic in this file) and wired into the new Phase
+    2 rounding engine.
+
+    Rendering found and fixed 3 more real bugs in this phase: (1) a narrow inner
+    hole (small `ih_s`) made the new shaded L-shape's 2 stacked inner labels cross
+    the hole's own top/bottom edges - fixed with an adaptive layout (side-by-side
+    instead of stacked, smaller font, when the hole is too short to stack). (2) The
+    plain `draw_circle`'s radius label sat directly on the radius line itself (a
+    pre-existing bug, only now consequential since the label is often the *only*
+    place the radius appears once the prose was stripped) - fixed with more vertical
+    clearance. (3) The new `draw_mixed_compound`'s own labels needed two rounds of
+    fixing: the triangular-roof label used a fixed offset that crossed the sloped
+    roof edge for a shallow/wide roof (fixed with a proper outward-perpendicular-
+    from-the-edge offset, the same technique already used for `draw_trig_triangle`'s
+    hypotenuse label this session), and the semicircular-dome label's fixed offset
+    crossed the dome's own arc for a large-radius dome even after an initial "move
+    it lower" attempt didn't fully solve it - the robust fix was moving the label
+    entirely outside the dome, into the always-clear canvas margin above the apex,
+    rather than trying to find a horizontal offset that works for every dome size.
+    Also fixed, matching the exact overlap the user originally flagged for
+    `area_triangle`: `draw_triangle_area`'s height label used a fixed offset from
+    the dashed height line that crossed the triangle's own sloped right edge for a
+    narrow/tall triangle (computed algebraically that for a sufficiently narrow
+    triangle there is *no* position along that edge with enough horizontal
+    clearance) - fixed by moving the label entirely outside the triangle, to the
+    right of its widest point, matching the same "guaranteed clear space" principle
+    used for the dome fix.
+
+    This phase's changes also surfaced two real regressions, both found and fixed
+    via the full test suite rather than visual inspection: `bell_tasks`' own
+    "5 distinct questions across the week" test assumed prompt text alone proves two
+    questions differ, which broke once `area_rectangle`'s prompt stopped repeating
+    its numbers (two different rectangles can now share the identical prompt text,
+    distinguished only by their diagram) - fixed by teaching the test to also
+    compare each box's embedded diagram image bytes (matched to its box via
+    position, since `diagram_rect` always places a box's picture within that box's
+    own cell bounds), not just text - a fix that will keep working as more topics
+    get the same prose-stripping treatment in future phases. Separately,
+    `area_mixed_compound`'s diagram param shape change (`top_kind`/`cut_kind` now
+    required, where the old shape had neither) made the frozen Practice Test JSON's
+    saved diagrams for that topic unrenderable - fixed by regenerating all 60 papers
+    via `python -m app.practice_tests.build` (confirmed still exactly 100 marks each
+    afterward).
+
+    **Phase 4 (Angles, Pythagoras, Trigonometry)**: re-reading the plan file's Phase 4
+    section (continued in a later session) confirmed 6 of its 7 items were already
+    completed as a side effect of Phase 1's own diagram-engine work (the "find x"
+    Pythagoras convention, legs→sides rename, cuboid vertex letters, trig-triangle
+    label fix, right-angled-triangle wording removal — all done in the same pass as
+    the shared engine changes, since the files were already open). Only
+    `angles_polygon_interior_foundation` (`app/topics/angles.py`) was genuine unstarted
+    work: its `interior_sum` branch (asking for the *whole shape's* angle total) now
+    has no diagram at all - a marked angle adds nothing to a question about the sum -
+    while its `interior_angle` and `exterior_angle` branches keep a diagram, per the
+    original feedback's "sum vs one interior angle" distinction. Implementing this
+    surfaced a real pre-existing bug, not caught until this item was actually built:
+    `draw_polygon` (`app/pdf/diagrams.py`) always marked an *interior* angle with "?"
+    regardless of which angle the question asked about, so the `exterior_angle`
+    branch's diagram was silently showing the wrong angle - fixed with a new
+    `"mode": "exterior"` option that extends one polygon side past its vertex and arcs
+    the angle between that extension and the next side, mirroring
+    `draw_exterior_triangle`'s existing extend-a-side technique exactly. Both the
+    generator and its modelled-example twin were updated together;
+    `test_angles.py`'s two "every generator/modelled-example attaches a diagram" tests
+    were adjusted to allow `None` for this one topic's `interior_sum` branch, plus a
+    new dedicated test confirms all 3 measure branches get the exactly-right diagram
+    treatment across 200 trials. Rendered and visually confirmed both fixes (the
+    exterior-angle wedge is correctly marked outside the extended side; the sum
+    question has no diagram at all).
+
+    Central verification after each phase: full backend suite grew from 892 to 913
+    across the 4 phases (Phase 1 added no new tests - pure diagram/wording work, no
+    new tests needed beyond updating a couple of existing assertions in
+    `test_pythagoras.py`; Phase 2 added the new `test_rounding.py` plus a
+    rounding-variety test per touched file; Phase 3 added mixed-compound variety/
+    combination coverage; Phase 4 added 1 new test in `test_angles.py`), frontend
+    unaffected throughout (61/61 - no frontend files touched this session). No topic
+    count change (296, unchanged - this batch is entirely rendering/wording/diagram/
+    verification-precision fixes to existing topics). Every changed topic was
+    rendered and visually inspected before considering its phase done, and the
+    review PDFs (`generate_review_pdfs.py`) were regenerated and sent back to the
+    user after each phase, not just at the end.
+
+    **Phase 5 (Vectors, Congruence, Circle Theorems, Nets, Plans & Elevations,
+    Cube)**, continued in a later session: re-reading the plan file's Phase 5
+    section confirmed items 3 (`geometric_vectors` arrowheads) and 8
+    (`volume_surface_area_cube`'s `is_cube` flag) were already done in Phase 1 -
+    the remaining 6 items were built this session.
+
+    `vectors_arithmetic_foundation`/`_higher`'s `_fmt_vector` rendered a plain
+    `(x, y)` coordinate pair - real GCSE convention is a column vector, two
+    stacked numbers inside a single tall bracket. Built new
+    `app/pdf/vector_images.py` (mirrors `fraction_images.py`'s PIL/cache/tempdir
+    architecture exactly) and a new `\colvec{TOP}{BOTTOM}` mathtext marker.
+    The brackets themselves are real `"("`/`")"` glyphs from the same TrueType
+    font, scaled to a point size whose own ink height spans the two stacked
+    rows - not hand-drawn curves, since a font glyph already has the right
+    shape at any size. **A real design problem was caught via a rendered-PDF
+    spike before wiring this in anywhere** (this project's own "verify the
+    riskiest piece first" precedent): a first version drew the two rows at
+    full text size, making the whole image roughly 2 line-heights tall, which
+    visibly collided with the line below wherever it appeared inline (the
+    same class of issue as step 36's wide-fraction-image overlap finding) -
+    fixed by shrinking the rows (mirroring fraction images' own digit-shrink
+    precedent) so the total height stays close enough to one line's normal
+    leading that no paragraph-style spacing changes were needed anywhere it's
+    used. Separately, `vectors_arithmetic_higher`'s expression builder could
+    print a literal double sign, `"2a - -4b"`, whenever the second scalar was
+    itself negative - fixed with a new `_join_vector_terms` helper that
+    parenthesises it (`"2a - (-4b)"`), matching the plan's exact scope (only
+    when `op == "-"` and the second scalar is negative; the `op == "+"` case,
+    e.g. `"3a + -2b"`, was deliberately left as-is).
+
+    `circle_theorems`'s prompt-trimming item turned out narrower than
+    originally scoped once the actual diagrams were checked: none of the 6
+    shape kinds (`draw_circle_angle_centre`, `_semicircle`, `_cyclic_quad`,
+    `_two_tangents`, `_same_segment`, `_alternate_segment`) label any point at
+    all - only angle *values* are drawn - so almost every "A, B, C are points
+    on a circle where..." sentence is the *only* place a point's identity is
+    established, not redundant restating of something the diagram already
+    shows. Trimmed only the two clauses that genuinely were pure restating:
+    `_cyclic_quadrilateral`'s "(all four vertices lie on a circle)"
+    parenthetical (the diagram already visibly shows exactly that), and
+    `_alternate_segment`'s "...the tangent to the circle at P **is shown**"
+    (a clear diagram-narrating tell, tightened to "with a tangent at P").
+
+    `congruent_triangle_proof_foundation` redesigned to a shuffled lettered
+    multiple-choice prompt (`A) SSS  B) SAS  C) ASA  D) RHS`, order randomised
+    per question via a new `_shuffled_mc_options` helper reused by both the
+    generator and its modelled example), `final_answer` now e.g. `"C) ASA"` -
+    matching the practice-test mark scheme's existing `^[A-D]\)` convention
+    for a multiple-choice-style answer (a single independent B1 mark there,
+    should this topic ever be frozen into a paper).
+
+    `nets_3d_shapes`'s diagram no longer appears on the question page - all 3
+    prompt variants (`describe`/`what 2D shapes`/`how many X`) ask the student
+    to reason from the solid's name alone, per the user's literal instruction -
+    moved from `diagram` to `solution_diagram` so the net is still revealed as
+    the answer, matching this app's established blank-question/completed-
+    solution split. The modelled-example twin is unaffected (`ModelledExample`
+    has only one `diagram` field, and its page always shows the full solved
+    answer regardless).
+
+    `plans_and_elevations`: dimensions capped at 8 via a new, topic-local
+    `_PLANS_TRIANGLE_TRIPLES`/`_plans_triangular_prism_dims` - deliberately
+    NOT touching `solids_prisms.py`'s shared `_triangular_prism_values`, which
+    legitimately goes larger for its own volume/surface-area topic and must
+    stay untouched. The question page previously showed only the oblique 3D
+    sketch, with the actual plans/elevations appearing solely on the solution
+    page; added a blank squared grid for the student to sketch into, via two
+    new diagram pieces - `draw_plans_and_elevations_blank` (3 empty ruled
+    boxes, fixed equal size regardless of the real solid's proportions, so the
+    blank grid itself never leaks shape/proportion information) and
+    `draw_plans_and_elevations_question` (stacks the existing oblique solid
+    sketch above the blank grid into one composed Drawing, since a `Question`
+    only carries a single question-page diagram slot) - registered as a new
+    `"plans_and_elevations_question"` diagram kind used only for this topic's
+    question-page `diagram`; the solution page's existing `"plans_and_
+    elevations"` kind is unchanged. The composition technique itself (nesting
+    one already-built `Drawing` inside another via a translated child, `outer.
+    add(inner); inner.transform = (1, 0, 0, 1, dx, dy)`) was spiked and
+    confirmed working in total isolation before being relied on anywhere -
+    ReportLab's `Drawing` is itself a `Group` subclass, so this "just works"
+    with no special-casing needed, a genuinely new technique for this
+    codebase (no prior diagram had needed to embed one whole existing Drawing
+    inside another).
+
+    **A real, pre-existing bug was found and fixed via this session's own
+    visual verification, not by any unit test** - the same story as most
+    gotchas in this file: `draw_plans_and_elevations`'s "Front elevation"/
+    "Side elevation" captions are centred over their own box, but a small
+    solid shrinks both boxes (and the gap between them) while the caption
+    text itself stays a fixed width - for a small enough solid the two
+    captions ran together with zero gap at all ("Front elevationSide
+    elevation"), only actually noticed once a modelled-example page (which
+    renders this diagram smaller than the worksheet solution page does) was
+    rendered and read closely. This was latent since the diagram kind was
+    first built (step 31) - unrelated to this session's own 8-cap change,
+    which if anything made solids on average *larger* relative to the
+    diagram's fixed target cell size, not smaller. Fixed by measuring the two
+    captions' own text width (`stringWidth`) and widening the gap between the
+    front/side boxes whenever they would otherwise overlap - confirmed via a
+    zoomed rendered-PDF comparison before/after, plus a new direct regression
+    test in `test_diagrams.py` that reads the actual `String` elements'
+    positions out of the rendered `Drawing` and asserts the two captions'
+    real pixel extents don't overlap (not just a proxy check).
+
+    Backend suite grew from 913 to 930 tests (new `test_vector_images.py`,
+    plus extensions to `test_mathtext.py`, `test_vectors.py`,
+    `test_congruent_triangle_proof.py`, `test_solids_properties.py`,
+    `test_plans_elevations.py`, `test_diagrams.py`); frontend unaffected
+    (61/61 - no frontend files touched this session). No topic count change
+    (still 296 - this phase, like the others in this batch, is entirely
+    rendering/wording/diagram/behaviour fixes to existing topics). Every
+    changed topic was rendered and visually inspected before considering its
+    item done, and the review PDFs were regenerated (296 question pages,
+    unchanged; 303 answer pages, unchanged from step 38) and sent back to the
+    user at the end of the phase.
+
+    **Phase 6 (Transformations & Bearings)** - the final phase of this whole
+    batch, continued in a later session: item 4 (`bearings_foundation`'s
+    longer north arrow) was already done in Phase 1; the remaining 3 items
+    were built this session.
+
+    `transform_reflect_complete`/`_describe` (both Foundation-only) had their
+    mirror-line pool reweighted: vertical/horizontal (the easiest reflections)
+    dominate, `"y = x"` is occasional, and `"y = -x"` (genuinely the hardest -
+    neither coordinate keeps its sign) is excluded entirely at Foundation, via
+    a new per-tier `_MIRROR_KIND_WEIGHTS` dict threaded through
+    `_random_mirror_line`/`_random_reflect_instance`. **Threading `tier`
+    through surfaced a real, genuinely pre-existing bug, found via property-
+    based sampling (not visual inspection this time) rather than trusting the
+    reweighting alone**: every one of the 4 shared `_SHAPE_TEMPLATES` spans
+    7-9 units in the y - x direction, which made a `"y = x"` reflection
+    geometrically impossible to ever satisfy within the grid's own +/-7 fit
+    range, no matter how the shape was positioned or how the mirror line's
+    offset was chosen - confirmed via direct simulation (0 successes in
+    200,000 attempts) that this was already true in the code exactly as it
+    stood before this session, not something the reweighting introduced (only
+    `"y = -x"` had ever actually been reachable, since those templates happen
+    to be far more compact in the y + x direction). Fixed with a new small
+    compact triangle template (`_COMPACT_REFLECT_TEMPLATE`, `((0,0),(3,0),
+    (0,2))`), deliberately used ONLY by a new `_random_reflect_shape` (kept
+    separate from the shared `_random_shape` used by rotate/translate/
+    enlarge, so those three topics are completely unaffected) - confirmed via
+    the same direct-simulation approach that `"y = x"` now succeeds at a
+    realistic rate (~1.6% of draws) comfortably within the existing
+    4000-attempt reroll budget, then confirmed again via a real rendered PDF.
+
+    `transform_translate_complete`'s diagram no longer draws a direction arrow
+    for the translation vector (dropped `translation_vector`/`vector_label`
+    from both the question and solution `DiagramSpec` params) - the vector is
+    still stated in the prompt/solution text exactly as before, just not
+    visualised with an arrow. `transform_translate_describe` was reworded to
+    refer to generic "shape A"/"shape B" rather than per-vertex `ABC`/`A'B'C'`
+    names, with both diagrams now passed an all-empty label list per vertex -
+    confirmed (rather than assumed) that `draw_grid_transformation`'s existing
+    "empty label = no text drawn, dot only" behaviour renders correctly with
+    zero `diagrams.py` changes needed, exactly as a prior session's research
+    had anticipated.
+
+    Central verification: full backend suite grew from 930 to 935 tests (new
+    tests in `test_transformations.py` covering the tier-weighted mirror pool,
+    the compact-triangle fix, and the no-arrow/no-label diagram changes);
+    frontend unaffected (61/61). No topic count change (still 296). Every
+    changed topic was rendered and visually inspected, and the review PDFs
+    were regenerated (296 question pages, unchanged; 304 answer pages, up by
+    one from step 38's 303) and sent back to the user.
+
+    **This closed out the entire 6-phase Geometry review-feedback batch** -
+    every phase in the plan file is now done, committed, and pushed.
+
+40. New session, two more review-feedback batches - Probability and Statistics -
+    completing the full first-pass review cycle across all 6 curriculum sections
+    (Number: step 35; Algebra: steps 36-37; Ratio & Proportion: step 38; Geometry:
+    step 39; Probability + Statistics: this step). Both batches were scoped via
+    `AskUserQuestion` clarifying rounds up front (matching this project's established
+    pattern), then implemented directly session-long rather than via parallel
+    subagents, given how much of both batches was genuinely cross-cutting diagram-
+    engine work touching many topic files at once.
+
+    **Probability batch** (~10 named items): `draw_bag` reworked from a rounded
+    "pouch" shape to a plain rectangle, with counters interleaved round-robin across
+    colours (not grouped into blocks) and auto-sized/gridded to fill the available
+    space regardless of count - and the old "Target colour: X" caption text removed
+    entirely (used by `probability_single_event`/`_complement`/`_and_or_rule`'s OR
+    branch). `probability_combined_dice` dropped its unrelated decorative dice
+    diagram. `probability_conditional` swapped its bag diagram for a tree diagram -
+    blank (branch structure and labels only) on the question page, fully solved on
+    the solution page - reusing a genuinely overhauled `draw_tree_diagram`: much
+    larger and better-spaced (the old version's branch/probability labels collided
+    as soon as a tree had more than a couple of branches, the concrete complaint
+    that started this item), with new optional column headers and a blank-
+    probability placeholder (a short underscore instead of a fraction) for exactly
+    this "student fills it in" case. Two new diagram kinds, `draw_coin` (a circle
+    split H/T, matching how `draw_spinner` already shows every sector at once
+    rather than one outcome) and `draw_event_pair` (composes two single-object
+    diagrams side by side via the same nested-translated-Drawing technique
+    `draw_plans_and_elevations_question` established) - wired into
+    `probability_listing_outcomes`'s two previously-undiagrammed scenarios (coin+
+    die, two coins) and into `probability_and_or_rule`'s AND branch, which
+    previously only ever illustrated ONE of its two events (a `kind_a=="die" or
+    kind_b=="die": ... elif ... else: diagram=None` priority chain - the `else`
+    branch turned out to be dead code, since the two events can never both be
+    "coin" given how `_independent_event`'s `exclude_kind` works, but the AND
+    branch still only ever showed one object, never both) - now every
+    `and_or_rule` question shows both events. `draw_venn_diagram`'s A/B set-name
+    labels moved from inside the circles to just above them, still inside the
+    bounding rectangle. `set_notation`/`_foundation` gained a genuinely new
+    fillable Venn diagram (blank on the question page, all four regions filled
+    with their real elements on the solution page) - previously these two topics
+    had no diagram at all, unlike their `venn_diagrams.py` siblings. `two_way_
+    tables` now leaves its missing cells genuinely blank (not "?") and always has
+    exactly 2 of them (solved via whichever margin - row or column total - has
+    only one unknown in it, always resolvable for any 2 cells chosen from a 2x2
+    grid), with the prompt trimmed to "Find the missing values." `sample_space_
+    diagrams`' question-page grid is now blank except the given axis numbers,
+    with a genuinely new `solution_diagram` showing the completed, highlighted
+    grid - fixing a real pre-existing bug (found by an Explore agent's research
+    pass, not assumed) where the full answer was shown on the question page with
+    no solution diagram at all.
+
+    **Statistics batch** (~15 named items) - the larger of the two, requiring
+    several genuinely new shared `_draw_stats_axes` capabilities used across five
+    diagram kinds at once. A new `_cross_marker` helper (two crossing `Line`s)
+    replaces every filled-dot plotted-point marker app-wide - not just
+    Statistics's `draw_scatter_graph`/`draw_cumulative_frequency`/
+    `draw_time_series`, but also the Algebra Plotting-Graphs group's `draw_
+    function_graph`'s `table_points` and `draw_piecewise_graph` (confirmed via a
+    full-file grep this was every genuine plotted-data-point `Circle(` call in
+    `diagrams.py`, as opposed to a geometry vertex/centre dot or a decorative one,
+    which were all left alone). A new `_draw_square_grid`/`_grid_minor_step`
+    capability in `_draw_stats_axes` (`square_grid=True`) draws a light squared-
+    paper background whose square size is derived from each axis's own "nice"
+    tick step (e.g. a step of 10 gives squares worth 5, not an arbitrary always-1
+    unit) - applied to `draw_bar_chart`, `draw_box_plot` (which needed its dummy
+    `plot_h=1` replaced with the real canvas height first, since its y-axis
+    carries no numeric meaning and the grid needs a real pixel span to fill),
+    `draw_histogram`, `draw_cumulative_frequency`, and `draw_scatter_graph`.
+    `draw_cumulative_frequency`'s curve is now a real smooth curve
+    (`_smooth_curve`, a Catmull-Rom spline sampled densely into one dense
+    `PolyLine`, each segment's x/y clamped between its own two endpoints so it
+    never overshoots past a neighbouring point) instead of straight `PolyLine`
+    segments - already started at (0,0), confirmed unchanged. `draw_bar_chart`'s
+    gap math was fixed so the axis-to-first-bar gap equals the inter-bar gap
+    (previously exactly half, since the gap used to be split evenly either side
+    of a centred bar) - the gap now sits consistently before every bar instead.
+    `draw_pie_chart` dropped its per-slice `CHART_COLORS` fill and legend
+    entirely; every wedge is now unfilled and labelled with its own category name
+    and angle out of 360 directly on (or, for a narrow slice, just outside) the
+    wedge - mirroring `draw_spinner`'s existing narrow-sector label handling.
+    `draw_histogram`/`draw_cumulative_frequency` switched their x-axis from ticks
+    fixed to the class boundaries to the normal computed "nice" spacing, so a
+    histogram's bar placement isn't given away by the tick marks (cumulative
+    frequency deliberately kept boundary-aligned ticks, since its points
+    genuinely sit at those boundaries and reading them off the axis is part of
+    the point).
+
+    Topic-level: `stats_mean/_mode/_median/_range_frequency_table` and the
+    grouped-mean sibling pair all gained a real value/frequency (or class/
+    frequency) table - reusing `draw_two_way_table` directly rather than any new
+    table-drawing code, since a plain row-per-value table with one data column
+    already fits that function's existing row-label/col-label/cells contract -
+    with prompts trimmed to "Find the mean/mode/median/range number of X."
+    (previously long prose listings). `stats_reverse_mean`/`_foundation` now
+    spell out the stated count in words ("The mean of four numbers is...") via a
+    new shared `num_word()` helper in `number_format.py` (moved there from a
+    first draft in `statistics.py` once `box_plot_construct` turned out to need
+    the exact same "Here are {n} {context}" pattern) - deliberately NOT applied
+    to numbers appearing only in solution-step prose (a natural-language aside,
+    not the question text itself), matching the audit's actual scope.
+    `pie_chart_construct` gained a new `pie_chart_with_table` composed diagram
+    kind (Category/Frequency/Angle table, blank Angle column on the question page
+    via a plain `two_way_table`, stacked above the completed pie chart on the
+    solution page via the same nested-Drawing composition technique used
+    elsewhere this session) - the prompt no longer restates the survey counts in
+    prose either. `scatter_graph_construct` gained a two-row x/y data table (row
+    labels the axis names, columns numbered 1..9) replacing its own prose pair
+    listing. `scatter_graph_interpret`'s `read_value` question no longer shows
+    the line of best fit already drawn - the student draws it themselves (blank
+    scatter diagram on the question page, the line only appearing on the
+    solution page) - `correlation_type` questions were unaffected (never needed a
+    line at all). `cumulative_frequency_plot` gained a new `cumulative_frequency_
+    question` composed diagram kind (class/frequency table stacked above the
+    blank squared axes) for its question page. `box_plot_construct` dropped the
+    "the five number summary (min, Q1, median, Q3, max)" phrase from its prompt
+    (which was essentially handing over the method) in favour of "Draw a box plot
+    for this data," and `draw_box_plot` gained a `blank` param so the question
+    page can show the squared axis with no box drawn yet, matching every other
+    "construct" topic's blank/solved split. `histogram_plot` gained a
+    `histogram_question` composed diagram kind (class/frequency table above blank
+    regular-axis squared paper). `histogram_interpret`'s highest-frequency
+    question dropped its "(not frequency density)" parenthetical hint from the
+    prompt.
+
+    **One real, pre-existing bug was found and fixed via this session's own
+    visual verification, not by any unit test** - the same story as most gotchas
+    in this file: `draw_two_way_table`'s row-label column used a fixed 66-unit
+    width regardless of the actual label text, which visibly overflowed through
+    the header/first-cell border for any label longer than a couple of words
+    (first surfaced by `scatter_graph_construct`'s new "Weekly sales (£1000s)"
+    row label) - fixed by sizing the header column to the longest row label's
+    real measured width (via `stringWidth`), with the old 66 kept only as a floor
+    for short labels.
+
+    Central verification: full backend suite grew from 935 to 936 tests (one new
+    test for `probability_conditional`'s blank/solved tree split; the Statistics
+    batch's changes were covered by updating existing tests' assertions to match
+    the new diagram shapes, not by adding new test functions); frontend
+    unaffected throughout (61/61 - no frontend files were touched in either
+    batch). No topic count change (still 296 - both batches were entirely
+    rendering/wording/diagram/behaviour fixes to existing topics). Every changed
+    topic in both batches was rendered and visually inspected before being
+    considered done, and the review PDFs were regenerated and sent back to the
+    user after each batch (296 question pages throughout; answer pages went
+    304 → 305 after the Probability batch, then 305 → 307 after the Statistics
+    batch, both expected from the taller composed table+diagram pages). Both
+    batches were committed and pushed separately (two commits on
+    `aqa-spec-gap-topics`).
+
+    **This completes the first full review-feedback pass across all 6
+    sections** - Number (step 35), Algebra (steps 36-37), Ratio & Proportion
+    (step 38), Geometry (step 39), and now Probability + Statistics (this step).
+    See "Where to pick up next" above for what a future session should do with
+    that milestone.
+
+41. New session, a large review-feedback batch (~24 named items) covering the
+    first 100 pages of the `all_topics_review_*.pdf` documents - explicitly a
+    **paginated continuation** of the same review process (steps 34-40), not a
+    second full pass. Items spanned Number/Algebra topics plus several
+    "fix the underlying capability, not just this one topic" requests. Two
+    background research passes (Explore agents) plus direct file reads
+    established exact current behaviour before committing to fixes; two design
+    decisions were confirmed via `AskUserQuestion` (a new "rearranging by
+    factorising" topic is Higher-only in the existing "Changing the Subject of
+    a Formula" group; a new substitution variant is "rearrange for a different
+    subject, then substitute" rather than "substitute knowns, solve for the
+    missing one"). Phased via `EnterPlanMode` into 6 phases, worked through
+    directly (no parallel subagents this time, given how much of the batch was
+    genuinely cross-cutting engine work touching the same shared files).
+
+    **Phase 0 (engine spike, `app/pdf/fraction_images.py`)**: extended the
+    `\frac{}{}` marker's raw-PIL-text rendering (previously only special-cased
+    `iteration.py`'s literal "x_n") with three new token kinds, needed for a
+    genuine fractional-exponent superscript and a real radical bar to work
+    *inside* a fraction for the first time. **This went through three
+    genuinely wrong designs, each only caught by rendering real output, not
+    assumed correct from the code**: (1) a first attempt captured "base^exp"
+    as one token with the base limited to a single character - silently left
+    a multi-character base like "10^2" or a parenthesised base like "(-2)^2"
+    unsuperscripted, found via `substitution_rearrange_higher`'s own solution
+    steps; (2) simplifying to match mathtext.py's own "just match the bare
+    ^exp suffix, leave the base as ordinary preceding text" approach fixed
+    that, but exposed that a bare "x"/"n" preceding an exponent then needed
+    its own separate italicisation token (mathtext.py's `_VARIABLE_RE`
+    equivalent), since the base is no longer captured/re-drawn as a unit; (3)
+    the new radical token's hook+bar geometry, mirrored from
+    `radical_images.py`'s proportions, collapsed to an illegible sliver at the
+    smaller size a fraction's own digits render at - fixed with a dedicated,
+    less-shrunk `_RAD_DIGIT_SCALE` font plus absolute pixel floors on the
+    hook's tick/diag/stroke dimensions; then a **second**, more fundamental
+    radical bug surfaced after that fix (the hook's own vertical span formula
+    was missing a `pad_top + rad_h` term present in `radical_images.py`'s
+    original geometry, collapsing the hook to a tiny fraction of the digit's
+    real height) - found by rendering side-by-side against the already-correct
+    standalone `radical_images.py` output and noticing the quality gap, not by
+    assuming the mirrored formula was transcribed correctly. All three token
+    kinds (plus the pre-existing "x_n" case) now share one combined, priority-
+    ordered `_TOKEN_RE`. 8 new tests in `test_fraction_images.py`.
+
+    **Phase 1 (Number wording, `fractions.py`/`decimals.py`/
+    `order_of_operations.py`/`negative_numbers.py`)**: `fractions_simplify`
+    dropped "the fraction"; `fractions_equivalent`'s prompt always says "the
+    missing number" instead of naming numerator/denominator;
+    `fractions_equivalent_diagram`'s `fill_missing_diagram` branch lost its
+    leftover "Shape A is divided into..." context sentence, now identical to
+    `diagram_only`'s already-short prompt (the two branches were collapsed
+    into one, since they'd become behaviourally identical apart from a no-
+    longer-existing wording difference); `decimals_ordering` gained a random-
+    window constraint capping the four values' spread at 0.2; the three
+    recurring-decimal-to-fraction topics gained a 50/50 "Write X as a
+    fraction..." / "Show that X can be written as {answer}..." phrasing split
+    (new shared `_recurring_fraction_prompt` helper); `bidmas` dropped "Use
+    the correct order of operations"; `negative_ordering` switched from
+    "smallest to largest"/"largest to smallest" to the same "ascending"/
+    "descending" convention `decimals_ordering`/`fractions_ordering` already
+    use for their prompts (kept the more descriptive phrasing in the solution
+    steps).
+
+    **Phase 2 (`powers_roots.py`/`algebraic_indices.py`)**: `powers_higher`,
+    `simplifying_indices_challenging`, and `algebraic_indices_higher` were all
+    reweighted (via `rng.choices` instead of a flat `rng.choice`) toward their
+    fractional-exponent branch(es), since a genuine fractional power is each
+    topic's own distinguishing content and a flat split under-represented it -
+    verified concretely by re-running the fixed-seed-42 review script and
+    confirming each topic's single sampled question now shows a real "^(n/d)"
+    vinculum. `surds_multiply_divide`/`roots_higher`'s coefficient+radical
+    rendering ("a√b") was confirmed already correct via the top-level
+    mathtext.py regex (no code change needed there).
+    `rationalise_denominator`'s radical-inside-a-fraction rendering is fixed
+    by Phase 0's engine work alone.
+
+    **Phase 3 (5 new Algebra topics)**: `change_subject_factorise_higher`
+    (`changing_subject.py`, new topic, Higher-only) - `{letter}x + {q}x = {r}`
+    with `letter` drawn from a pool deliberately excluding "x"/"n" (pairing an
+    italicised and a plain letter in one equation would look like a rendering
+    inconsistency, same reasoning as `ratio.py`'s `_LETTER_PAIRS`), verified
+    via `sp.solve` with the letter left as a free symbol.
+    `substitution_rearrange_foundation`/`_higher` (`substitution.py`, 2 new
+    topics) - reuse the exact same formula shapes as `substitution_
+    foundation`/`_higher` (kinematics/perimeter/area/triangle-area;
+    speed-squared/kinetic-energy/acceleration) but ask the student to
+    rearrange for a *different* letter first, then substitute - each verified
+    both via `sp.solve` (symbolic rearrangement) and by substituting the
+    derived value back into the *original* equation. `expand_double_brackets_
+    no_coefficient_foundation` (`expand_factorise.py`, new topic) - the
+    existing `expand_double_brackets_foundation`'s own docstring comment
+    claimed "(x+p)(x+q), no coefficient" but its actual code drew x-
+    coefficients up to 4 (a stale comment, not a bug - left unchanged as a
+    genuine "harder Foundation" variant) - this new sibling genuinely pins
+    both coefficients to 1. `functions_inverse_evaluate` (`functions.py`, new
+    topic, Higher) - evaluates f^-1 at a numeric input, distinct from the
+    existing `functions_composite_inverse`'s symbolic-only f^-1(x)
+    derivation, reusing its `_fmt_inverse` display helper. All 5 wired into
+    `registry.py`; the 4 hardcoded `296`-topic-count assertions updated to
+    `301`. New/extended test files for all 5 (`test_changing_subject.py`,
+    `test_substitution.py` gained a parallel `REARRANGE_GENERATORS` list
+    rather than folding into the existing one, since the existing generic
+    test hardcodes each generator's expected topic_id;
+    `test_expand_factorise.py`, `test_functions.py`).
+
+    **Phase 4 (`algebraic_fractions.py`)**: `_fmt_binom`'s `(x + a)`/`(x - a)`
+    parens are redundant whenever the result is the *entire* content of a
+    `\frac{}{}` marker by itself (the vinculum bar already visually groups
+    it) - added a new bare `_fmt_binom_bare` used only at those specific call
+    sites (both topics' prompt fractions, and the correspondingly bare
+    denominators in a few solution-step lines), while every *juxtaposed*
+    usage (two factors multiplied together as one denominator/numerator, a
+    coefficient times a bracket) correctly keeps `_fmt_binom`'s parens, since
+    removing those would genuinely change the expression's meaning.
+    `algebraic_fractions_multiply_divide`'s `"(x^2 - d)"` also lost its own
+    redundant self-wrap; its "powers showing as x^2 not properly
+    superscripted" complaint is fixed by Phase 0's engine work directly. 2 new
+    regression tests confirming no lone-fraction content contains a bracket.
+
+    **Phase 5 (3 diagram fixes)**: `draw_number_line`'s boundary circle/
+    shaded-segment/arrow now draw on a `mark_y` line offset above the ticked
+    axis, rather than directly on top of it. `draw_linear_graph_pair`
+    (`simultaneous_equations.py`'s `simultaneous_graphically`) was rebuilt
+    from a schematic "not to scale" pair of lines into a genuine gridded plot
+    on `_draw_scaled_axes` (which already prefers a true square unit grid),
+    reusing the generator's own real `m1/c1/m2/c2`/`sol_x/sol_y` values
+    (newly threaded through `DiagramSpec.params`) - this diagram's label
+    placement took **four** iterations of its own, each only disproven by a
+    real render: anchoring at a line's own endpoint and growing inward was
+    safe against that line but not the *other* one (which sits close
+    alongside for much of the window when the two slopes are similar, e.g.
+    3 vs 4); a single-point pixel offset away from the other line ignored that
+    a wide text label spans a real horizontal pixel range, and on a square
+    grid a slope of 3-4 is visually very steep (pixel-slope ≈ data-slope), so
+    the other line can sweep vertically across the *entire* label width even
+    when clear at the label's centre point; clearing only the other line's
+    span across that width still let the label collide with its *own* line,
+    for the identical reason applied to the wrong line; the final version
+    computes both lines' y-range across the label's actual `stringWidth`-
+    measured footprint and places the label entirely outside the combined
+    zone, plus a small additional nudge keeping the label's x away from the
+    y-axis (where its own tick-number labels live). A background research
+    agent (`aa97049009e939784` internally, not user-facing) independently
+    confirmed and precisely diagnosed the other two named diagram bugs by
+    executing the real drawing code across hundreds of seeds and measuring
+    `stringWidth`-based bounding boxes directly, rather than guessing:
+    `draw_rectangle`'s `height_label` had zero `stringWidth` awareness at all
+    (fixed-pixel offset) and overflowed the canvas by ~2.5pt whenever a wide
+    rectangle (width scale-bound) paired with a two-digit height value -
+    fixed with a `stringWidth`-based clamp, mirroring `draw_sector`'s existing
+    pattern; `draw_angle_line`'s narrow-wedge (<20°) label, used only by
+    `forming_equations_foundation`'s `around_point` angle branch, had no
+    canvas clamp at all and could land ~20pt past the top edge when a narrow
+    wedge oriented near-vertically - fixed with the same `max(10, min(...))`/
+    `max(8, min(...))` clamp `draw_sector` already uses. 2 new regression
+    tests. Regenerating `simultaneous_graphically`'s diagram param shape
+    required rebuilding all 60 Practice Test papers (`python -m
+    app.practice_tests.build`) - the exact same "frozen JSON goes stale when
+    a diagram param shape changes" gotcha already documented for
+    `area_mixed_compound` in step 39, confirmed still exactly 100 marks per
+    paper afterward.
+
+    Central verification: full backend suite grew from 936 to 957 tests;
+    frontend unaffected (61/61 - no frontend files touched this batch). Topic
+    count grew from 296 to 301 (the only topic-count change across the whole
+    steps-34-41 review-feedback arc so far - every other review batch was
+    pure rendering/wording/diagram fixes). The review PDFs were regenerated
+    (301 question pages, up from 296; 312 answer pages, up from 307) and sent
+    back to the user. **Not yet committed/pushed as of the end of this
+    session** - unlike most prior steps in this chronology, which explicitly
+    note committing before ending.
+
+42. New session, a review-feedback batch covering pages 101-200 of the
+    `all_topics_review_*.pdf` documents (~20 named items) - another
+    paginated continuation of the same review process (steps 34-41), this
+    time spanning Algebra (kinematics, graph plotting), Ratio & Proportion,
+    and a large chunk of Geometry (area, angles, Pythagoras, trig). Researched via 3
+    parallel Explore agents plus direct code reads, downloaded and visually
+    inspected the Corbett Maths "Area of Compound Shapes" PDF the user
+    linked (used only to calibrate shape variety/structure, never to copy
+    its content), and rendered the two "no diagram!!!!" Pythagoras topics
+    directly before proposing a fix (confirmed a diagram genuinely was
+    already present and correctly drawn - the real answer, confirmed via
+    `AskUserQuestion`, was "remove it anyway", not "fix it"). 4 scope
+    questions were confirmed via `AskUserQuestion` before planning (recorded
+    in the plan file, `sparkling-swinging-lovelace.md`): `area_composite_
+    rectangles` reworked in place with several shape branches rather than
+    new topics; `best_buys`/`direct_proportion`/`inverse_proportion` keep
+    their existing content and get new `_noncalculator` siblings rather than
+    being rewritten; the ladder diagrams are removed outright; and the
+    squared-paper grid fix goes into the shared `_draw_scaled_axes` helper
+    so every caller benefits, not just the 7 named topics. Worked directly
+    through 6 phases (no parallel subagents this session, given how much of
+    the batch was genuinely cross-cutting engine work touching the same
+    shared files), verifying every change with real renders before moving on
+    - per this project's own "render and look closely" discipline, several
+    of this session's fixes only existed because a first attempt was
+    rendered and found wanting, not because the second attempt was
+    guessed correctly up front.
+
+    **Phase 0 (shared engine work)**: `_draw_scaled_axes` (`diagrams.py`)
+    reworked from "one shared px-per-RAW-UNIT scale, falling back to
+    independent rectangular scaling for lopsided ranges" to "independent
+    'nice' step per axis, one shared pixel-size-per-square" - real squared
+    exercise-book paper convention (a square can represent a different
+    number of units on each axis, e.g. 50° by 0.2, while still rendering as
+    a visual square) - fixing what turned out to be the ACTUAL root cause of
+    "very messy" graphs: the old fine-gridline loop used a hardcoded 1-raw-
+    unit step regardless of which branch fired, so even the "rectangular
+    fallback" for a wide-domain topic like `trig_graph` (360° span) or
+    `plot_cubic` (54-unit y-span) crammed hundreds of 1-unit gridlines into
+    ~170px, rendering as a dense grey smear - confirmed by rendering the
+    actual pre-fix output before assuming the fix was needed at all. Fixes
+    `trig_graph`, `plot_cubic`, `plot_reciprocal`, `plot_distance_time`,
+    `distance_time_interpret`, `velocity_time_interpret`, and (per the
+    confirmed "fix everywhere" scope) every other `_draw_scaled_axes` caller
+    - `draw_grid_transformation`, `draw_loci_construction`,
+    `draw_loci_region`, `circle_equation`, `draw_inequality_region` - all
+    re-rendered and confirmed unaffected/improved, not just the 7 named
+    topics. Also added `_swept_angle_arc` (mirroring `draw_sector`'s own
+    established direct-`ArcPath.addArc` technique) for `draw_angle_line`'s
+    "around a point" missing angle, which is routinely reflex - `_angle_arc`
+    always takes the non-reflex sweep between two ray directions, so it was
+    silently drawing the small complementary wedge on the wrong side instead
+    of the real (often reflex) missing angle, fixing `angles_around_point`/
+    `_higher`'s "still no arc on the missing angle" complaint.
+
+    **Phase 1**: `kinematics_suvat`'s SUVAT preamble box already rendered
+    correctly on both pages (no fix needed there) - only the "Find the X"
+    phrasing in the 3 shared helper functions needed the SUVAT letter
+    appended in brackets (e.g. "Find its final velocity (v)."), fixing both
+    the practice and modelled-example pages at once since both call the same
+    3 functions.
+
+    **Phase 2**: fixed `algebraic_inverse_proportion`'s unconditional
+    `f"x^{n}"` (printed the literal "x^1" when the exponent happened to be
+    1) via a new `_pow_expr` helper. Added 3 new topics -
+    `best_buys_noncalculator`, `direct_proportion_noncalculator`,
+    `inverse_proportion_noncalculator` (296→301 was step 41; this session is
+    301→304) - each using deliberately clean, mental-math-friendly numbers
+    (quantities always a multiple of 100 for best buys so the division is
+    always exact; small numbers related by a clean multiple/factor for the
+    two proportion topics) rather than just being "not guaranteed to need a
+    calculator" like their existing siblings. The 3 existing topics were
+    added to `CALCULATOR_ONLY_TOPIC_IDS` so a non-calculator Practice Test
+    paper now picks the new friendly siblings instead.
+
+    **Phase 3**: `ratio_difference`/`_higher` gained line breaks (a literal
+    `"\n"`, already converted to a real `<br/>` by `mathtext.py`) after the
+    initial ratio statement and before "Find". `draw_two_similar_rectangles`
+    reworked so the shape with the numerically larger given width is drawn
+    visibly larger and positioned first/left (parsing the leading number out
+    of the label strings, which are always real given numbers here, never
+    the unknown itself) - a real bug was caught and fixed in the first
+    version, which had the size ternary tied to the wrong variable (`a_bigger`
+    controlled which shape got large vs small instead of which POSITION
+    (left/right) got large vs small, so the numerically bigger shape was
+    rendering smaller) - caught by rendering, not by re-reading the code.
+
+    **Phase 4**: `area_triangle`/`area_parallelogram` height labels now sit
+    inside the shape when there's genuinely room (measured via `stringWidth`,
+    falling back to outside only when a narrow/tall triangle doesn't have
+    space) - the parallelogram fix in particular found the OTHER side of the
+    dashed height line has far more room by construction (0.85×base vs
+    0.15×base), a purely structural fix needing no dynamic measurement.
+    `area_composite_rectangles` (`area_perimeter.py`) reworked from one fixed
+    corner-notch L-shape into 4 branches - the existing L (now also a mirrored
+    second orientation via a new `corner` param on `draw_l_shape`), a new
+    T-shape (`draw_t_shape`, a genuinely new diagram kind - a horizontal bar
+    over a narrower stem, verified via a real bounding-box-minus-two-notches
+    independent decomposition), and a "given the total area, find x" reverse
+    branch (verified via `sp.solve`) that reuses the existing L-shape diagram
+    with zero new diagram code, just different label content. `area_subtract_
+    compound`/`_foundation` gained a genuine minimum-hole-size safety net in
+    `draw_l_shape`: `stringWidth`-measured stacked/side-by-side layout
+    checks, falling back to a single combined caption below the hole (in the
+    always-spacious shaded frame) when a hole is too small for either -
+    replacing a cramped "5 cm2 cm" collision found by rendering a small-hole
+    case directly (also tightened the generators' own minimum inner
+    dimension from 2 to 3 to reduce how often the fallback is even needed).
+    `draw_sector`'s radius label moved from near the arc's own endpoint to
+    the midpoint of the fixed top ray, verified correct across narrow/right-
+    angle/reflex sector angles.
+
+    **Phase 5**: `angles_triangle_higher`'s shared `draw_triangle_angles`
+    radius bumped 45→52 (a general "make angle diagrams bigger where there's
+    room" pass, applied opportunistically per the user's standing
+    instruction rather than as an isolated fix). `draw_parallel_lines`/
+    `draw_exterior_triangle` reworked so the drawn geometry roughly visually
+    matches the real angle value passed in (a genuine numeric `known_value`/
+    `interior1_value` now reaches the diagram, not just pre-formatted label
+    strings) - bucketed into 3 pre-verified-safe slopes/apex positions rather
+    than a continuous function, since the existing label-offset tuning was
+    calibrated against one moderate shape and an untested extreme risked a
+    new overlap; confirmed via a 3×3 grid render (3 angle buckets × 3
+    relation types) that a ~90° angle now genuinely looks like a right angle
+    for every relation type, directly fixing the user's own named example.
+    `draw_exterior_triangle`'s own rework surfaced a real, independently
+    confirmed overlap: the wide `interior2_label` (e.g. "(2x+4)°") crossed
+    its own vertex's angle arc - two fix attempts (scaling the existing
+    centroid-inset distance; switching to `anchor="start"`) were tried and
+    rendered before the real fix (a much more aggressive `stringWidth`-based
+    inset factor, keeping the default centred anchor) actually cleared it,
+    confirmed across all 3 angle buckets × 2 shape variants.
+
+    **Phase 6**: removed the diagram entirely from `pythagoras_ladder_context`/
+    `_foundation` (both the practice and modelled-example generators, both
+    tiers) per the user's explicit confirmation - text-only now. While in
+    the file, fixed a real, unrelated pre-existing bug noticed in passing:
+    the Foundation generator's `k=1..3` multiplier on the shared
+    `PRIMITIVE_TRIPLES` pool could produce a ladder over 180m (confirmed via
+    a direct render showing "122 m"/"183 m") - capped to 125m (the largest
+    cap that still keeps at least 20 distinct (triple, k) combinations
+    available, needed for this topic's own default 20-question worksheet - a
+    first, stricter cap of 80m only left 18 combinations and was caught by
+    the full suite's own dedup-variety test, not assumed sufficient).
+    Fixed the review script's doubled tier suffix ("Ladder Context
+    (Foundation) (Foundation)", for any topic whose display name already
+    ends with its own tier in parentheses) - a second bug noticed in passing
+    while verifying the ladder topics' actual review-PDF pages. Fixed a real
+    `draw_cuboid` bug affecting `pythagoras_3d`/`trig_3d`: vertex D (the one
+    hidden back-bottom-left vertex) projects visually INSIDE the front
+    face's own silhouette in oblique projection, unlike every other vertex -
+    pushing it outward from the overall centroid by the same small fixed
+    distance used for every other vertex left it overlapping the dashed
+    lines converging there; a first fix (push straight down below the front
+    face) collided with the width label instead ("D14 cm" running together),
+    confirmed only by rendering; the working fix pushes D further down,
+    clearing both. Added genuine shape variety to `draw_trig_triangle`/
+    `draw_general_triangle` (both previously 100% fixed vertex coordinates
+    every single render) via a new `_shape_variant` helper - a small index
+    derived deterministically from each diagram's own label content (an
+    explicit char-code sum, NOT Python's built-in `hash()`, which is
+    randomised per-process for strings, per this file's own documented
+    gotcha) - bucketed into 3 pre-verified-safe vertex layouts per diagram
+    kind, confirmed via a 6-image grid render that all 3 genuinely look
+    different and that the existing centroid-inset label-clearance logic
+    still works at the new range of shapes. That same verification render
+    caught a real, independently confirmed bug: `draw_trig_triangle`'s angle
+    label used a fixed 0.4 centroid-inset factor (unlike its sibling
+    `draw_general_triangle`, which already had `stringWidth`-based scaling)
+    - fine for short labels, but a wide algebraic one like "(2x+15)°"
+    visibly crossed the hypotenuse on the wider/flatter of the 3 new
+    variants; fixed by applying the same `stringWidth`-based scaling
+    `draw_general_triangle` already used, confirmed clean across all 3
+    variants afterward.
+
+    Central verification: full backend suite grew from 957 to 958 tests (one
+    new test confirming the two ladder topics have no diagram); frontend
+    unaffected (61/61 - no frontend files touched this session). Topic count
+    grew from 301 to 304 (the 3 new non-calculator siblings). All 60 Practice
+    Test papers rebuilt (`area_composite_rectangles`' diagram param shape
+    changed - the same "frozen JSON goes stale" gotcha already documented
+    for `area_mixed_compound`/`simultaneous_graphically` in steps 39/41),
+    confirmed still exactly 100 marks per paper afterward. The review PDFs
+    were regenerated (304 question pages, up from 301; 315 answer pages, up
+    from 312) and sent back to the user. Committed and pushed - see `git
+    log` for the exact commit.
 
 ## Environment gotchas (Windows, this machine specifically)
 
@@ -1912,7 +3924,15 @@ started. They were installed mid-session:
   ```powershell
   $env:Path = "C:\Users\James\AppData\Local\NodePortable\node-v22.14.0-win-x64;" + $env:Path
   ```
-- **GitHub CLI**: installed via winget, works normally (`gh auth status` to check).
+- **GitHub CLI**: installed via winget (`winget install --id GitHub.cli`), but **not
+  on PATH** in a fresh Bash/PowerShell tool session — `gh` alone gives "not
+  recognized"/"command not found" even right after a successful install, and
+  `winget list --id GitHub.cli` can even come back empty if it was reinstalled since
+  (don't take that as proof it's missing; check the real path first). Call it via its
+  full path instead: `& "C:\Program Files\GitHub CLI\gh.exe" <args>` in PowerShell, or
+  the equivalent in Bash. Auth persists across reinstalls (keyring-backed), so
+  `gh auth status` via the full path should already show logged in — no need to
+  `gh auth login` again.
 - **Console/terminal Unicode**: printing strings containing `⁻¹`, `°`, etc. straight to
   a PowerShell/cp1252 console can throw `UnicodeEncodeError` even though the *PDF*
   renders those characters fine (or, in the `⁻` case specifically, doesn't — see the
@@ -1955,6 +3975,21 @@ weighting/priority tables or `mark_scheme.py`'s marking rules) — it overwrites
 files and is fully deterministic (re-running with no code changes reproduces
 byte-identical output). Restart the backend afterward to pick up the new data (the
 loader reads the JSON files once at import time).
+
+**Regenerating the all-topics aesthetic-review PDFs** (chronology step 34): the user is
+doing a broad aesthetic-review pass across every topic, working from two generated PDFs
+(one question - and, in the answers version, its full worked solution - from every one of
+the 296 topics, one per page, headed `Section › Group › Topic Name (Tier)`). Re-run
+`backend\.venv\Scripts\python.exe -m scripts.generate_review_pdfs` (from `backend/`)
+whenever a change should be reflected in a fresh comparison copy - it overwrites
+`all_topics_review_questions.pdf`/`all_topics_review_answers.pdf` in `backend/` and is
+fully deterministic (fixed seed `42` in `scripts/generate_review_pdfs.py`, so the same
+questions reappear across reruns for a clean before/after comparison). The script reuses
+`app/pdf/renderer.py`'s own `_question_block`/`_solution_block` and `app/pdf/styles.py`'s
+`build_styles()` directly rather than reimplementing them, so it's always a true preview
+of the app's actual current styling - no separate script logic to keep in sync if
+`renderer.py`/`styles.py` change. The script itself is committed; the two generated PDFs
+are deliberately left untracked (deliverables, not source).
 
 ## Testing
 
@@ -2040,7 +4075,11 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
   exponents (including negative, e.g. `10^-3`), `^-1` for inverse-function/inverse-
   trig notation, `^(num/den)` for a fractional exponent (e.g. `x^(1/4)`, raised as
   one flat unit — see "Fractional exponents in mathtext.py" above), `num/den` for
-  standalone fractions (e.g. `3/4`). Never hand-write Unicode
+  standalone fractions (e.g. `3/4`), `x_n`/`x_(n+1)` for a real subscript (parens
+  stripped, not shown — see chronology step 37; currently only `iteration.py` uses
+  this), `\plain{X}` to opt a bare letter OUT of the default x/n italics for the rare
+  case it's a plain notational placeholder rather than a real variable (e.g.
+  `ratio_1_to_n`'s "1:n" — see chronology step 38). Never hand-write Unicode
   `²`/`⁻¹`/italics in generator code (with the sole exception of `²`, which IS safe
   as a literal — see the Gotcha above for exactly what is/isn't). `x` and `n` are
   both italicised as of chronology step 16; `a`/`b` (vectors) are NOT — see the
@@ -2110,24 +4149,56 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
   confidence in each was explicitly lower than the 11 that were built.
   (`probability_combined_dice`, also originally on this list, was confirmed
   in step 29 to already exist — not a gap, removed from this list.)
-- Stem-and-leaf diagrams, scatter graphs & correlation, and standard deviation are all
-  real GCSE Statistics content not covered by the Probability/Statistics topic list
-  the user supplied (chronology steps 17–18) — never explicitly requested, so not
-  built, but worth flagging if a future session wants to round out Statistics further.
+- Stem-and-leaf diagrams and standard deviation are real GCSE Statistics content not
+  covered by the Probability/Statistics topic list the user supplied (chronology steps
+  17–18) — never explicitly requested, so not built, but worth flagging if a future
+  session wants to round out Statistics further. (Scatter graphs & correlation, also
+  originally on this list, were built in step 31 — removed from here.)
+- Step 31's full AQA-spec gap audit reported medium- and low-confidence gaps that were
+  **not** built (only the 7 high-confidence ones were) — don't build these without
+  discussing first, since the audit's confidence in each was explicitly lower than the
+  7 that were built: box plots and IQR being Higher-only in this app despite AQA
+  listing both as Foundation "additional content" too (a tier-placement gap, same
+  pattern as the audits in steps 6/9/13/20); conditional probability specifically via
+  Venn diagrams or two-way tables (only the "pick two without replacement" tree-style
+  version exists); pictograms, vertical line charts, and frequency trees (all
+  relatively minor/basic). (Several other items originally on this list — substitution
+  into formulae, geometric/Fibonacci-type sequences, map scales/scale drawings,
+  perpendicular from/at a point, combining multiple transformations — were confirmed
+  as genuine gaps by step 32's independent OCR-spec audit and built then; removed from
+  this list.)
+- Step 32's full OCR J560-spec gap audit reported 5 medium-confidence gaps that were
+  **not** built (only the 10 high-confidence ones were, per the user's explicit choice)
+  — don't build these without discussing first: proving two triangles similar (via
+  AA/SSS/SAS criteria, distinct from `ratio_shape_similar_foundation`/`_higher`, which
+  only calculate a scale factor — a `congruent_triangle_proof.py`-style sibling would
+  be the natural pattern); reverse-direction plans and elevations (`plans_elevations.py`
+  currently only goes 3D-solid → 2D views; the spec also wants views → construct/
+  identify the solid, e.g. on isometric paper — a genuinely new diagram engine, not a
+  small extension); quadrilateral angle properties (finding angles via a kite/rhombus/
+  parallelogram's own diagonal/side properties, distinct from the existing area/
+  perimeter and symmetry topics for the same shapes); estimating the gradient of a
+  genuinely curved graph via a tangent (`velocity_time_interpret` only handles
+  straight-line segments — also flagged by the step-13/31 audits, still not built);
+  reading approximate roots of a quadratic directly off its plotted graph (`plot_
+  quadratic` only asks to build the table and plot the curve, never to read roots
+  back off it).
 - Saved worksheet history, mixed-topic revision papers, user accounts.
 - Deploying this somewhere instead of local-only dev servers.
 - Practice Tests (step 22) deliberately deferred a few things, per the user's choices
   at the time. Step 30 later resolved two of them by reading real OCR papers directly
-  (revisionmaths.com): the real 3-paper-per-sitting structure is now built (confirmed
-  this time that OCR's own structure has calculator allowed on *all three* papers, not
-  a non-calculator + 2 calculator split like AQA/Edexcel — the step-22 note above was
-  itself a guess that turned out wrong), and the mark scheme/formulae sheet are now
-  calibrated against real papers spanning June 2017-June 2024. Still genuinely not
-  built: hand-authored multi-part exam questions (with sub-parts a/b/c combining
-  several skills, the way real OCR questions are often structured) instead of frozen
-  single-skill generator output — `mark_scheme.py`'s one-M1-per-step derivation is
-  still a systematic approximation of a real per-question mark allocation, not a
-  transcription of one, since this app's questions are still single-skill by design.
+  (revisionmaths.com): the real 3-paper-per-sitting structure was built, and the mark
+  scheme/formulae sheet were calibrated against real papers spanning June 2017-June
+  2024 — though step 30's own conclusion that OCR has calculator allowed on *all
+  three* papers turned out to be wrong (right for the specific papers checked, but not
+  the actual current spec), corrected in step 32 once the real spec PDF was read
+  directly: Paper 2 (Foundation)/Paper 5 (Higher) are now genuinely non-calculator.
+  Still genuinely not built: hand-authored multi-part exam questions (with sub-parts
+  a/b/c combining several skills, the way real OCR questions are often structured)
+  instead of frozen single-skill generator output — `mark_scheme.py`'s one-M1-per-step
+  derivation is still a systematic approximation of a real per-question mark
+  allocation, not a transcription of one, since this app's questions are still
+  single-skill by design.
 
 Don't start any of these without checking with the user first — this list is just
 carried-over context, not a plan.

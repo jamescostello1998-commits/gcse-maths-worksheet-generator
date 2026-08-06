@@ -39,11 +39,12 @@ def test_two_way_tables_diagram_matches_between_question_and_solution():
             (r, c)
             for r, row in enumerate(question_cells)
             for c, val in enumerate(row)
-            if val == "?"
+            if val == ""
         ]
-        assert len(blanks) == 1
-        r, c = blanks[0]
-        assert solution_cells[r][c] == q.final_answer
+        assert len(blanks) == 2
+        for r, c in blanks:
+            assert solution_cells[r][c].isdigit()
+            assert f"= {solution_cells[r][c]}" in q.final_answer
 
 
 def test_sample_space_diagram_highlights_match_the_stated_probability():
@@ -51,8 +52,10 @@ def test_sample_space_diagram_highlights_match_the_stated_probability():
     for _ in range(TRIALS):
         q = data_handling.generate_sample_space_diagrams(Tier.FOUNDATION, rng)
         assert q.diagram is not None and q.diagram.kind == "sample_space_diagram"
-        highlight = q.diagram.params["highlight"]
-        total = len(q.diagram.params["row_values"]) * len(q.diagram.params["col_values"])
+        assert all(v == "" for row in q.diagram.params["cells"] for v in row)
+        assert q.solution_diagram is not None and q.solution_diagram.kind == "sample_space_diagram"
+        highlight = q.solution_diagram.params["highlight"]
+        total = len(q.solution_diagram.params["row_values"]) * len(q.solution_diagram.params["col_values"])
         numerator, denominator = (int(x) for x in q.final_answer.split("/"))
         assert Fraction(numerator, denominator) == Fraction(len(highlight), total)
 

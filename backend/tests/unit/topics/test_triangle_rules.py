@@ -66,6 +66,27 @@ def test_topics_have_a_modelled_example_generator_wired_up():
         assert t.generate_modelled_example is not None
 
 
+def test_decimal_topics_reach_all_three_rounding_phrasings():
+    """sine_rule/cosine_rule only reach pick_rounding via their "side" shape
+    (the "angle" shape always states 1 d.p., a genuine angle answer excluded
+    from pick_rounding by design - see rounding.py's own docstring); triangle_area
+    always reaches it. 400 trials per generator comfortably covers the ~50%
+    chance of landing on the "side" shape for sine_rule/cosine_rule."""
+    generators = [
+        triangle_rules.generate_sine_rule,
+        triangle_rules.generate_cosine_rule,
+        triangle_rules.generate_triangle_area,
+    ]
+    phrasings = {"1 decimal place", "2 decimal places", "3 significant figures"}
+    for generate in generators:
+        rng = random.Random(850)
+        seen = set()
+        for _ in range(400):
+            q = generate(Tier.HIGHER, rng)
+            seen |= {p for p in phrasings if p in q.prompt}
+        assert seen == phrasings
+
+
 def test_modelled_examples_are_valid():
     for generate, tier, topic_id in MODELLED_GENERATORS:
         rng = random.Random(200)

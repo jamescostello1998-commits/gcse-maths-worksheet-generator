@@ -4,6 +4,7 @@
   "tier": "higher",
   "sitting_id": "higher-09",
   "paper_number": 3,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "hcf_lcm_by_prime_factors",
@@ -147,7 +148,7 @@
     },
     {
       "topic_id": "surds_multiply_divide",
-      "prompt": "Simplify √6 × √15, giving your answer in the form a√b.",
+      "prompt": "Fully simplify √6 × √15, giving your answer in the form a√b.",
       "solution_steps": [
         "√6 × √15 = √(6 × 15) = √90",
         "Find the largest square factor of 90: 3^2 × 10 = 90",
@@ -223,11 +224,11 @@
     },
     {
       "topic_id": "simplifying_indices_challenging",
-      "prompt": "Simplify 25^(3/2) × 25^-3, giving your answer as a fraction where necessary.",
+      "prompt": "Fully simplify 25^(3/2) × 25^-3, giving your answer as a fraction where necessary.",
       "solution_steps": [
         "25^(1/2) is the square root of 25, which is 5, so 25^(3/2) = 5^3",
-        "25^-3 = 1/25^3 = 1/5^6",
-        "25^(3/2) × 25^-3 = 5^3 × 1/5^6 = 5^(3-6) = 5^-3",
+        "25^-3 = \\frac{1}{25³} = \\frac{1}{5⁶}",
+        "25^(3/2) × 25^-3 = 5^3 × \\frac{1}{5⁶} = 5^(3-6) = 5^-3",
         "5^-3 = 1/125"
       ],
       "final_answer": "1/125",
@@ -240,12 +241,12 @@
         },
         {
           "code": "M1",
-          "description": "25^-3 = 1/25^3 = 1/5^6",
+          "description": "25^-3 = \\frac{1}{25³} = \\frac{1}{5⁶}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "25^(3/2) × 25^-3 = 5^3 × 1/5^6 = 5^(3-6) = 5^-3",
+          "description": "25^(3/2) × 25^-3 = 5^3 × \\frac{1}{5⁶} = 5^(3-6) = 5^-3",
           "marks": 1
         },
         {
@@ -263,46 +264,137 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_proof",
-      "prompt": "Prove algebraically that the sum of four consecutive integers is always even.",
+      "topic_id": "trig_missing_side_higher",
+      "prompt": "In the triangle shown, find the length of x, correct to 2 decimal places.",
       "solution_steps": [
-        "Let four consecutive integers be n, n + 1, n + 2 and n + 3.",
-        "Write the given expression algebraically: n + (n + 1) + (n + 2) + (n + 3).",
-        "Expand and simplify: n + (n + 1) + (n + 2) + (n + 3) = 4n + 6.",
-        "Factorise/rearrange to expose the structure: 4n + 6 = 2(2n + 3).",
-        "Since 4n + 6 factorises exactly to 2(2n + 3), the sum is always 2 times a whole number, so it is always even - though because 2n + 3 is itself always odd, the sum is NOT always a multiple of 4."
+        "We know the adjacent and want the opposite, so use tan.",
+        "x = 32 × tan(68°) = 79.20 (2 d.p.)"
       ],
-      "final_answer": "Proven: the sum is 2(2n + 3), always even (but not always a multiple of 4).",
-      "marks": 5,
+      "final_answer": "79.20 cm",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let four consecutive integers be n, n + 1, n + 2 and n + 3.",
+          "description": "We know the adjacent and want the opposite, so use tan.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write the given expression algebraically: n + (n + 1) + (n + 2) + (n + 3).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Expand and simplify: n + (n + 1) + (n + 2) + (n + 3) = 4n + 6.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise/rearrange to expose the structure: 4n + 6 = 2(2n + 3). Since 4n + 6 factorises exactly to 2(2n + 3), the sum is always 2 times a whole number, so it is always even - though because 2n + 3 is itself always odd, the sum is NOT always a multiple of 4.",
+          "description": "x = 32 × tan(68°) = 79.20 (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Proven: the sum is 2(2n + 3), always even (but not always a multiple of 4). oe",
+          "description": "79.20 cm oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "trig_triangle",
+        "params": {
+          "adjacent_label": "32 cm",
+          "opposite_label": "x cm",
+          "hyp_label": null,
+          "angle_label": "68°"
+        }
+      },
       "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_reciprocal",
+      "prompt": "Complete a table of values for y = \\frac{12}{x} for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = \\frac{12}{x}:",
+        "x: -4, -3, -2, -1, 1, 2, 3, 4",
+        "y: -3, -4, -6, -12, 12, 6, 4, 3",
+        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
+      ],
+      "final_answer": "Reciprocal curve: y = \\frac{12}{x}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = \\frac{12}{x}:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: -3, -4, -6, -12, 12, 6, 4, 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Reciprocal curve: y = \\frac{12}{x} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "reciprocal",
+          "a": 12,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -14,
+          "y_max": 14,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "reciprocal",
+          "a": 12,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -14,
+          "y_max": 14,
+          "table_points": [
+            [
+              -4,
+              -3
+            ],
+            [
+              -3,
+              -4
+            ],
+            [
+              -2,
+              -6
+            ],
+            [
+              -1,
+              -12
+            ],
+            [
+              1,
+              12
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              3
+            ]
+          ]
+        }
+      }
     },
     {
       "topic_id": "perpendicular_lines_equation",
@@ -340,93 +432,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "velocity_time_interpret",
-      "prompt": "The velocity-time graph shows a car's journey. Find its deceleration during the final phase.",
+      "topic_id": "change_subject_factorise_higher",
+      "prompt": "Make x the subject of the formula wx + 8x = 58.",
       "solution_steps": [
-        "Deceleration = change in velocity ÷ time = 24 ÷ 5 = 24/5 m/s^2"
+        "wx + 8x = 58",
+        "Factorise the left-hand side: x(w + 8) = 58",
+        "Divide both sides by (w + 8): x = \\frac{58}{w + 8}"
       ],
-      "final_answer": "24/5 m/s^2",
-      "marks": 2,
+      "final_answer": "x = \\frac{58}{w + 8}",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Deceleration = change in velocity ÷ time = 24 ÷ 5 = 24/5 m/s^2",
+          "description": "wx + 8x = 58",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise the left-hand side: x(w + 8) = 58",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by (w + 8): x = \\frac{58}{w + 8}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "24/5 m/s^2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              8,
-              24
-            ],
-            [
-              33,
-              24
-            ],
-            [
-              38,
-              0
-            ]
-          ],
-          "x_max": 43,
-          "y_max": 29,
-          "x_label": "Time (s)",
-          "y_label": "Velocity (m/s)"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "forming_equations_higher",
-      "prompt": "I think of a number. I add 15 to it, then multiply the result by 9. The answer is 162. Form an equation and solve it to find the number.",
-      "solution_steps": [
-        "Let the number be x.",
-        "9(x + 15) = 162",
-        "Expand the bracket:",
-        "9x + 135 = 162",
-        "Subtract 135 from both sides:",
-        "9x = 27",
-        "Divide both sides by 9:",
-        "x = 3"
-      ],
-      "final_answer": "3",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Let the number be x.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "9(x + 15) = 162",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Expand the bracket:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "9x + 135 = 162 Subtract 135 from both sides: 9x = 27 Divide both sides by 9: x = 3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "3 oe",
+          "description": "x = \\frac{58}{w + 8} oe",
           "marks": 1
         }
       ],
@@ -439,7 +472,7 @@
       "solution_steps": [
         "Half the coefficient of x: -2 ÷ 2 = -1",
         "(x - 1)^2 = x^2 - 2x + 1",
-        "x^2 - 2x + -12 = (x - 1)^2 + (-12 - 1) = (x - 1)^2 - 13"
+        "x^2 - 2x - 12 = (x - 1)^2 + (-12 - 1) = (x - 1)^2 - 13"
       ],
       "final_answer": "(x - 1)^2 - 13",
       "marks": 4,
@@ -456,7 +489,7 @@
         },
         {
           "code": "M1",
-          "description": "x^2 - 2x + -12 = (x - 1)^2 + (-12 - 1) = (x - 1)^2 - 13",
+          "description": "x^2 - 2x - 12 = (x - 1)^2 + (-12 - 1) = (x - 1)^2 - 13",
           "marks": 1
         },
         {
@@ -472,7 +505,7 @@
       "topic_id": "turning_point_of_graph",
       "prompt": "Find the coordinates of the turning point of the curve y = x^2 - 8x - 3.",
       "solution_steps": [
-        "Complete the square: x^2 - 8x + -3 = (x - 4)^2 - 19",
+        "Complete the square: x^2 - 8x - 3 = (x - 4)^2 - 19",
         "The turning point of y = (x + p)^2 + q is (-p, q).",
         "Turning point = (4, -19)"
       ],
@@ -481,7 +514,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Complete the square: x^2 - 8x + -3 = (x - 4)^2 - 19",
+          "description": "Complete the square: x^2 - 8x - 3 = (x - 4)^2 - 19",
           "marks": 1
         },
         {
@@ -500,12 +533,7 @@
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "parabola",
-        "params": {
-          "vertex_label": "(4, -19)"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -540,55 +568,62 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "satisfying_inequalities_higher",
-      "prompt": "x satisfies both 5x + 6 ≥ -2 and 4x - 9 < -6. List the integer values of x that satisfy both.",
+      "topic_id": "inequalities_number_line_higher",
+      "prompt": "Draw the inequality/ies of -6 < x ≤ 0 on a number line.",
       "solution_steps": [
-        "Solve the first inequality:",
-        "5x + 6 ≥ -2",
-        "Subtract 6 from both sides:",
-        "5x ≥ -8",
-        "Divide both sides by 5:",
-        "x ≥ -8/5",
-        "Solve the second inequality:",
-        "4x - 9 < -6",
-        "Add 9 to both sides:",
-        "4x < 3",
-        "Divide both sides by 4:",
-        "x < 3/4",
-        "Combine both results into a single range: -8/5 ≤ x < 3/4",
-        "The integers satisfying both inequalities are: -1, 0"
+        "Draw an open circle at -6 and a filled circle at 0.",
+        "Shade the segment of the line between the two circles."
       ],
-      "final_answer": "-1, 0",
-      "marks": 5,
+      "final_answer": "-6 < x ≤ 0",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Solve the first inequality:",
+          "description": "Draw an open circle at -6 and a filled circle at 0.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x + 6 ≥ -2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 6 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "5x ≥ -8 Divide both sides by 5: x ≥ -8/5 Solve the second inequality: 4x - 9 < -6 Add 9 to both sides: 4x < 3 Divide both sides by 4: x < 3/4 Combine both results into a single range: -8/5 ≤ x < 3/4 The integers satisfying both inequalities are: -1, 0",
+          "description": "Shade the segment of the line between the two circles.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-1, 0 oe",
+          "description": "-6 < x ≤ 0 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [],
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [
+            {
+              "value": -6,
+              "closed": false
+            },
+            {
+              "value": 0,
+              "closed": true
+            }
+          ],
+          "shade": "between"
+        }
+      }
     },
     {
       "topic_id": "ratio_combine",
@@ -667,6 +702,35 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "unit_conversions_higher",
+      "prompt": "Convert 1708 mm³ to cm³.",
+      "solution_steps": [
+        "Linear conversion factor: 1 cm = 10 mm, so for volume, 1 cm³ = 10^3 = 1000 mm³",
+        "1708 mm³ = 1708 ÷ 1000 = 1.708 cm³"
+      ],
+      "final_answer": "1.708 cm³",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Linear conversion factor: 1 cm = 10 mm, so for volume, 1 cm³ = 10^3 = 1000 mm³",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "1708 mm³ = 1708 ÷ 1000 = 1.708 cm³",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1.708 cm³ oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "percentage_increase_decrease_calculator",
       "prompt": "Using a calculator, increase £282.95 by 22.5%. Give your answer to 2 decimal places.",
       "solution_steps": [
@@ -696,36 +760,49 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_pyramid",
-      "prompt": "A square-based pyramid has a base of side 9 cm and a perpendicular height of 12 cm. Find its volume.",
+      "topic_id": "frustum_volume_surface_area",
+      "prompt": "A frustum is formed from a cone with a bottom radius of 8 cm and a top radius of 6 cm, and a vertical height of 9 cm. Find its volume, correct to 1 decimal place.",
       "solution_steps": [
-        "Volume = (1/3) × base² × height = (1/3) × 9² × 12",
-        "= 324 cm³"
+        "Full cone height H = R × h ÷ (R - r) = 8 × 9 ÷ (8 - 6) = 36.00 cm (similar triangles)",
+        "Big cone volume = (1/3) × π × R² × H, small cone volume = (1/3) × π × r² × (H - h)",
+        "Frustum volume = (1/3) × π × h × (R² + Rr + r²) = (1/3) × π × 9 × (8² + 8×6 + 6²)",
+        "= 1394.9 cm³ (1 d.p.)"
       ],
-      "final_answer": "324 cm³",
-      "marks": 3,
+      "final_answer": "1394.9 cm³",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Volume = (1/3) × base² × height = (1/3) × 9² × 12",
+          "description": "Full cone height H = R × h ÷ (R - r) = 8 × 9 ÷ (8 - 6) = 36.00 cm (similar triangles)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 324 cm³",
+          "description": "Big cone volume = (1/3) × π × R² × H, small cone volume = (1/3) × π × r² × (H - h)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Frustum volume = (1/3) × π × h × (R² + Rr + r²) = (1/3) × π × 9 × (8² + 8×6 + 6²)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 1394.9 cm³ (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "324 cm³ oe",
+          "description": "1394.9 cm³ oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "pyramid",
+        "kind": "frustum",
         "params": {
-          "base_label": "9 cm",
-          "height_label": "12 cm"
+          "radius_bottom_label": "8 cm",
+          "radius_top_label": "6 cm",
+          "height_label": "9 cm"
         }
       },
       "solution_diagram": null
@@ -766,40 +843,94 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "triangle_area_sine_rule",
-      "prompt": "Triangle ABC has side a = 12 cm, side b = 11 cm, and the angle between them, angle C = 97°. Find the area of the triangle, correct to 3 significant figures.",
+      "topic_id": "congruent_triangle_proof",
+      "prompt": "Triangles ABC and ADC share side AC, with AB = AD and BC = DC. Prove that the two triangles are congruent.",
       "solution_steps": [
-        "Use Area = (1/2) × a × b × sin(C)",
-        "Area = 0.5 × 12 × 11 × sin(97°) = 65.5 cm² (3 s.f.)"
+        "AB = AD (given)",
+        "BC = DC (given)",
+        "AC is common to both triangles",
+        "By Side-Side-Side (SSS), the triangles are congruent.",
+        "Since all three corresponding sides are equal, triangles ABC and ADC are congruent."
       ],
-      "final_answer": "65.5 cm²",
-      "marks": 3,
+      "final_answer": "Triangles are congruent (SSS).",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Use Area = (1/2) × a × b × sin(C)",
+          "description": "AB = AD (given)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Area = 0.5 × 12 × 11 × sin(97°) = 65.5 cm² (3 s.f.)",
+          "description": "BC = DC (given)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "AC is common to both triangles",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "By Side-Side-Side (SSS), the triangles are congruent. Since all three corresponding sides are equal, triangles ABC and ADC are congruent.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "65.5 cm² oe",
+          "description": "Triangles are congruent (SSS). oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "general_triangle",
+        "kind": "two_triangle_congruence",
         "params": {
-          "side_a_label": "12 cm",
-          "side_b_label": "11 cm",
-          "side_c_label": null,
-          "angle_A_label": null,
-          "angle_B_label": null,
-          "angle_C_label": "97°"
+          "labels_1": [
+            "A",
+            "B",
+            "C"
+          ],
+          "labels_2": [
+            "A",
+            "D",
+            "C"
+          ],
+          "ticks_1": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              0,
+              2,
+              1
+            ]
+          ],
+          "ticks_2": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              0,
+              2,
+              1
+            ]
+          ],
+          "arcs_1": [],
+          "arcs_2": [],
+          "note": "AC is common to both triangles."
         }
       },
       "solution_diagram": null
@@ -842,68 +973,127 @@
           "length_label": "7 cm",
           "width_label": "15 cm",
           "height_label": "11 cm",
-          "diagonal_label": "θ"
+          "diagonal_label": "θ",
+          "vertex_labels": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H"
+          ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_around_point_higher",
-      "prompt": "The angles 110°, 104° and (5x + 46)° are angles around a point. Find x.",
+      "topic_id": "probability_conditional",
+      "prompt": "A bag contains 3 blue and 6 purple counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
       "solution_steps": [
-        "Angles around a point sum to 360°.",
-        "5x + 46 = 146",
-        "Subtract 46 from both sides:",
-        "5x = 100",
-        "Divide both sides by 5:",
-        "x = 20"
+        "P(both blue) = 3/9 × 2/8 = 1/12",
+        "P(both purple) = 6/9 × 5/8 = 5/12",
+        "P(both same colour) = 1/12 + 5/12 = 1/2"
       ],
-      "final_answer": "20",
-      "marks": 5,
+      "final_answer": "1/2",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles around a point sum to 360°.",
+          "description": "P(both blue) = 3/9 × 2/8 = 1/12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x + 46 = 146",
+          "description": "P(both purple) = 6/9 × 5/8 = 5/12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 46 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "5x = 100 Divide both sides by 5: x = 20",
+          "description": "P(both same colour) = 1/12 + 5/12 = 1/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "20 oe",
+          "description": "1/2 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "angle_line",
+        "kind": "tree_diagram",
         "params": {
-          "angle_values": [
-            110,
-            104,
-            146
+          "stage1": [
+            [
+              "Blue",
+              ""
+            ],
+            [
+              "Purple",
+              ""
+            ]
           ],
-          "labels": [
-            "110°",
-            "104°",
-            "(5x + 46)°"
-          ],
-          "around_point": true
+          "stage2": [
+            [
+              [
+                "Blue",
+                ""
+              ],
+              [
+                "Purple",
+                ""
+              ]
+            ],
+            [
+              [
+                "Blue",
+                ""
+              ],
+              [
+                "Purple",
+                ""
+              ]
+            ]
+          ]
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Blue",
+              "3/9"
+            ],
+            [
+              "Purple",
+              "6/9"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Blue",
+                "2/8"
+              ],
+              [
+                "Purple",
+                "6/8"
+              ]
+            ],
+            [
+              [
+                "Blue",
+                "3/8"
+              ],
+              [
+                "Purple",
+                "5/8"
+              ]
+            ]
+          ]
+        }
+      }
     },
     {
       "topic_id": "product_rule_counting",
@@ -951,49 +1141,6 @@
         {
           "code": "A1",
           "description": "1/36 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "dice",
-        "params": {
-          "values": [
-            2,
-            5
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "fractions_mixed_number_arithmetic",
-      "prompt": "Work out 5 1/2 - 3 2/7. Give your answer as a mixed number.",
-      "solution_steps": [
-        "Convert to improper fractions: 5 1/2 = 11/2, 3 2/7 = 23/7",
-        "Subtract the improper fractions: 11/2 - 23/7 = 31/14",
-        "Convert back to a mixed number: 2 3/14"
-      ],
-      "final_answer": "2 3/14",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert to improper fractions: 5 1/2 = 11/2, 3 2/7 = 23/7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract the improper fractions: 11/2 - 23/7 = 31/14",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Convert back to a mixed number: 2 3/14",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2 3/14 oe",
           "marks": 1
         }
       ],

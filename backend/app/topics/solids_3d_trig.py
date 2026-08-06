@@ -9,22 +9,11 @@ from decimal import ROUND_HALF_UP, Decimal
 
 from app.core.models import DiagramSpec, ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
+from app.topics.rounding import pick_rounding
 
 SECTION = "geometry"
 GROUP_PYTHAGORAS = "Pythagoras' Theorem"
 GROUP_TRIG = "Trigonometry"
-
-
-def _round_to_3sf(value: float) -> Decimal:
-    """Round a float to 3 significant figures, always displaying as a plain
-    fixed-point decimal string - sympy's sp.N(expr, 3) (and this app's own
-    _round_to_1sf bug, already documented/fixed in estimation.py) switches to
-    scientific notation for values >= 1000, so this app's established fixed-
-    point-only rounding pattern is reused here instead."""
-    d = Decimal(str(value))
-    exp = d.adjusted()
-    quantized = d.quantize(Decimal(1).scaleb(exp - 2), rounding=ROUND_HALF_UP)
-    return Decimal(format(quantized, "f"))
 
 
 def _round_dp(value: float, dp: int) -> Decimal:
@@ -53,19 +42,23 @@ def generate_3d_pythagoras(tier: Tier, rng: random.Random) -> Question:
     l, w, h = _cuboid_dims(rng)
     base_diag_sq = l * l + w * w
     space_diag = math.sqrt(base_diag_sq + h * h)
-    rounded = _round_to_3sf(space_diag)
 
     # Independent verification: the direct 3D coordinate distance formula -
     # a genuinely different code path than the two sequential sqrt()
-    # applications used to build the displayed steps.
+    # applications used to build the displayed steps. Compares full-precision
+    # raw values only, unrelated to which display precision is chosen below,
+    # so needs no change for the rounding rollout.
     check = math.dist((0, 0, 0), (l, w, h))
     if abs(space_diag - check) > 1e-9:
         raise ValueError("3d_pythagoras: verification failed")
 
+    rounding = pick_rounding(rng)
+    rounded = format(rounding.round_fn(space_diag), "f")
+
     steps = [
         f"First find the diagonal across the base: base diagonal² = l² + w² = {l}² + {w}² = {base_diag_sq}.",
         f"Then apply Pythagoras again using the height: AG² = base diagonal² + h² = {base_diag_sq} + {h}² = {base_diag_sq + h * h}.",
-        f"AG = √{base_diag_sq + h * h} = {rounded} cm (3 s.f.)",
+        f"AG = √{base_diag_sq + h * h} = {rounded} cm ({rounding.short})",
     ]
     return Question(
         topic_id="pythagoras_3d",
@@ -73,7 +66,7 @@ def generate_3d_pythagoras(tier: Tier, rng: random.Random) -> Question:
         prompt=(
             f"A cuboid has length {l} cm, width {w} cm and height {h} cm. Find the length of the "
             "diagonal AG that runs from one corner of the cuboid to the opposite corner, correct "
-            "to 3 significant figures."
+            f"to {rounding.phrase}."
         ),
         solution_steps=tuple(steps),
         final_answer=f"{rounded} cm",
@@ -85,6 +78,7 @@ def generate_3d_pythagoras(tier: Tier, rng: random.Random) -> Question:
                 "width_label": f"{w} cm",
                 "height_label": f"{h} cm",
                 "diagonal_label": "?",
+                "vertex_labels": ["A", "B", "C", "D", "E", "F", "G", "H"],
             },
         ),
     )
@@ -94,11 +88,13 @@ def generate_modelled_example_3d_pythagoras(tier: Tier, rng: random.Random) -> M
     l, w, h = _cuboid_dims(rng)
     base_diag_sq = l * l + w * w
     space_diag = math.sqrt(base_diag_sq + h * h)
-    rounded = _round_to_3sf(space_diag)
 
     check = math.dist((0, 0, 0), (l, w, h))
     if abs(space_diag - check) > 1e-9:
         raise ValueError("modelled example 3d_pythagoras: verification failed")
+
+    rounding = pick_rounding(rng)
+    rounded = format(rounding.round_fn(space_diag), "f")
 
     teaching_steps = [
         "A 3D diagonal like AG can't be found in one step - it needs Pythagoras applied twice, "
@@ -107,13 +103,13 @@ def generate_modelled_example_3d_pythagoras(tier: Tier, rng: random.Random) -> M
         f"This diagonal² = l² + w² = {l}² + {w}² = {base_diag_sq}.",
         f"Step 2: that base diagonal, the height ({h} cm), and AG itself form a second right-angled "
         f"triangle - so AG² = base diagonal² + h² = {base_diag_sq} + {h}² = {base_diag_sq + h * h}.",
-        f"AG = √{base_diag_sq + h * h} ≈ {rounded} cm (3 s.f.) - always take the square root right "
-        "at the end, not partway through.",
+        f"AG = √{base_diag_sq + h * h} ≈ {rounded} cm ({rounding.short}) - always take the square "
+        "root right at the end, not partway through.",
     ]
     worked_calculation = [
         f"base diagonal² = {l}² + {w}² = {base_diag_sq}",
         f"AG² = {base_diag_sq} + {h}² = {base_diag_sq + h * h}",
-        f"AG = {rounded} cm (3 s.f.)",
+        f"AG = {rounded} cm ({rounding.short})",
     ]
     return ModelledExample(
         topic_id="pythagoras_3d",
@@ -121,7 +117,7 @@ def generate_modelled_example_3d_pythagoras(tier: Tier, rng: random.Random) -> M
         prompt=(
             f"A cuboid has length {l} cm, width {w} cm and height {h} cm. Find the length of the "
             "diagonal AG that runs from one corner of the cuboid to the opposite corner, correct "
-            "to 3 significant figures."
+            f"to {rounding.phrase}."
         ),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
@@ -133,6 +129,7 @@ def generate_modelled_example_3d_pythagoras(tier: Tier, rng: random.Random) -> M
                 "width_label": f"{w} cm",
                 "height_label": f"{h} cm",
                 "diagonal_label": "?",
+                "vertex_labels": ["A", "B", "C", "D", "E", "F", "G", "H"],
             },
         ),
     )
@@ -185,6 +182,7 @@ def generate_3d_trigonometry(tier: Tier, rng: random.Random) -> Question:
                 "width_label": f"{w} cm",
                 "height_label": f"{h} cm",
                 "diagonal_label": "θ",
+                "vertex_labels": ["A", "B", "C", "D", "E", "F", "G", "H"],
             },
         ),
     )
@@ -236,6 +234,7 @@ def generate_modelled_example_3d_trigonometry(tier: Tier, rng: random.Random) ->
                 "width_label": f"{w} cm",
                 "height_label": f"{h} cm",
                 "diagonal_label": "θ",
+                "vertex_labels": ["A", "B", "C", "D", "E", "F", "G", "H"],
             },
         ),
     )

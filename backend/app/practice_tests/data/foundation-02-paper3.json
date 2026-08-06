@@ -4,10 +4,11 @@
   "tier": "foundation",
   "sitting_id": "foundation-02",
   "paper_number": 3,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "powers_foundation",
-      "prompt": "Simplify 4^8 ÷ 4^1, giving your answer as a single power of 4.",
+      "prompt": "Fully simplify 4^8 ÷ 4^1, giving your answer as a single power of 4.",
       "solution_steps": [
         "Subtract the powers: 8 - 1 = 7",
         "4^8 ÷ 4^1 = 4^7"
@@ -36,7 +37,7 @@
     },
     {
       "topic_id": "negative_ordering",
-      "prompt": "Write these numbers in order, from largest to smallest: 0, -10, 9, 1, -9, -3",
+      "prompt": "Write these numbers in descending order: 0, -10, 9, 1, -9, -3",
       "solution_steps": [
         "Place the numbers on a number line: 0, -10, 9, 1, -9, -3.",
         "Reading them in order from largest to smallest gives: 9, 1, 0, -3, -9, -10."
@@ -117,7 +118,7 @@
     },
     {
       "topic_id": "decimals_multiply",
-      "prompt": "Work out 14.6 × 19.4.",
+      "prompt": "Evaluate 14.6 × 19.4.",
       "solution_steps": [
         "Ignore the decimal points and multiply the whole numbers: 146 × 194 = 28324",
         "Count the total decimal places in the question: 1 + 1 = 2",
@@ -152,33 +153,33 @@
     },
     {
       "topic_id": "fractions_divide_foundation",
-      "prompt": "Work out 6/6 ÷ 1/6. Give your answer as a fraction in its simplest form.",
+      "prompt": "Evaluate 1/6 ÷ 5/2. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
-        "Keep-change-flip: 6/6 ÷ 1/6 = 6/6 × 6/1",
-        "Multiply: (6×6)/(6×1) = 36/6",
-        "Simplify: 6"
+        "Keep-change-flip: 1/6 ÷ 5/2 = 1/6 × 2/5",
+        "Multiply: \\frac{(1×2)}{(6×5)} = 2/30",
+        "Simplify: 1/15"
       ],
-      "final_answer": "6",
+      "final_answer": "1/15",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Keep-change-flip: 6/6 ÷ 1/6 = 6/6 × 6/1",
+          "description": "Keep-change-flip: 1/6 ÷ 5/2 = 1/6 × 2/5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: (6×6)/(6×1) = 36/6",
+          "description": "Multiply: \\frac{(1×2)}{(6×5)} = 2/30",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify: 6",
+          "description": "Simplify: 1/15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6 oe",
+          "description": "1/15 oe",
           "marks": 1
         }
       ],
@@ -306,7 +307,7 @@
     },
     {
       "topic_id": "expand_double_brackets_foundation",
-      "prompt": "Expand: (4x + 2)(x + 7)",
+      "prompt": "Expand and simplify: (4x + 2)(x + 7)",
       "solution_steps": [
         "First: 4x × 1x = 4x^2",
         "Outer: 4x × 7 = 28x",
@@ -347,40 +348,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "classify_expressions",
-      "prompt": "Is the following an expression, equation, formula, or identity?\n(x + 4)(x - 4) ≡ x^2 - 16",
+      "topic_id": "linear_one_step",
+      "prompt": "Solve: 5x = 45",
       "solution_steps": [
-        "Look at the statement: (x + 4)(x - 4) ≡ x^2 - 16.",
-        "Expand the left-hand side fully: (x + 4)(x - 4) expands to x^2 - 16.",
-        "The two sides match EXACTLY, for every possible value of x - not just one particular value.",
-        "Because both sides are always equal, whatever x is, the '≡' symbol is the correct one to use: this is an identity, not just an equation."
+        "5x = 45",
+        "Divide both sides by 5:",
+        "x = 9"
       ],
-      "final_answer": "identity",
-      "marks": 5,
+      "final_answer": "9",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Look at the statement: (x + 4)(x - 4) ≡ x^2 - 16.",
+          "description": "5x = 45",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand the left-hand side fully: (x + 4)(x - 4) expands to x^2 - 16.",
+          "description": "Divide both sides by 5:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The two sides match EXACTLY, for every possible value of x - not just one particular value.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Because both sides are always equal, whatever x is, the '≡' symbol is the correct one to use: this is an identity, not just an equation.",
+          "description": "x = 9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "identity oe",
+          "description": "9 oe",
           "marks": 1
         }
       ],
@@ -474,22 +469,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "stats_median",
-      "prompt": "Find the median of this data set: 1, 28, 6, 28, 28.",
+      "topic_id": "pressure",
+      "prompt": "A brick exerts a pressure of 20 N/cm² over a contact area of 22 cm². Find the force.",
       "solution_steps": [
-        "Sort the data: 1, 6, 28, 28, 28. The middle value is 28."
+        "force = pressure × area",
+        "force = 20 × 22 = 440 N"
       ],
-      "final_answer": "28",
-      "marks": 2,
+      "final_answer": "440 N",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Sort the data: 1, 6, 28, 28, 28. The middle value is 28.",
+          "description": "force = pressure × area",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "force = 20 × 22 = 440 N",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "28 oe",
+          "description": "440 N oe",
           "marks": 1
         }
       ],
@@ -498,7 +499,7 @@
     },
     {
       "topic_id": "sequences_nth_term",
-      "prompt": "Here are the first four terms of a sequence: 2, -3, -8, -13. Find an expression for the nth term.",
+      "prompt": "Here are the first four terms of a sequence: 2, -3, -8, -13.\nFind an expression for the nth term.",
       "solution_steps": [
         "Common difference = -5",
         "nth term = -5n + 7",
@@ -532,69 +533,65 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_difference",
-      "prompt": "Two amounts are in the ratio 9:3. The difference between them is 48. Find both amounts.",
+      "topic_id": "ratio_shape_similar_foundation",
+      "prompt": "Shape A and Shape B are similar. Find the length of side y.",
       "solution_steps": [
-        "Difference in parts = 9 - 3 = 6 parts",
-        "Value of one part = 48 ÷ 6 = 8",
-        "First amount = 9 × 8 = 72",
-        "Second amount = 3 × 8 = 24"
+        "Scale factor = 6 ÷ 9 = 2/3",
+        "Corresponding length = 9 × 2/3 = 6"
       ],
-      "final_answer": "72 : 24",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Difference in parts = 9 - 3 = 6 parts",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Value of one part = 48 ÷ 6 = 8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "First amount = 9 × 8 = 72",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Second amount = 3 × 8 = 24",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "72 : 24 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "compound_percentage_foundation",
-      "prompt": "A price of £120 increases by 20%, then increases by 50%. Find the final price.",
-      "solution_steps": [
-        "After the first change: 120 × 1.20 = 144",
-        "After the second change: 144 × 1.50 = 216"
-      ],
-      "final_answer": "£216",
+      "final_answer": "6 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first change: 120 × 1.20 = 144",
+          "description": "Scale factor = 6 ÷ 9 = 2/3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "After the second change: 144 × 1.50 = 216",
+          "description": "Corresponding length = 9 × 2/3 = 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£216 oe",
+          "description": "6 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "a_width_label": "9 cm",
+          "a_height_label": "9 cm",
+          "b_width_label": "6 cm",
+          "b_height_label": "y"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simple_interest",
+      "prompt": "£2000 is invested at a simple interest rate of 5% per year for 5 years. Find the interest earned.",
+      "solution_steps": [
+        "Simple interest formula: I = P × r × t ÷ 100",
+        "I = 2000 × 5 × 5 ÷ 100 = £500"
+      ],
+      "final_answer": "£500",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Simple interest formula: I = P × r × t ÷ 100",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "I = 2000 × 5 × 5 ÷ 100 = £500",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£500 oe",
           "marks": 1
         }
       ],
@@ -660,28 +657,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "find_percentage_change",
-      "prompt": "The price of an item changes from £220 to £187. Find the percentage decrease.",
+      "topic_id": "reverse_percentage_foundation",
+      "prompt": "After a 25% increase, an item costs £25. Find the original price.",
       "solution_steps": [
-        "Find the difference between the two values: £187 and £220 differ by £33",
-        "Divide by the ORIGINAL value and convert to a percentage: £33 ÷ £220 × 100 = 15%"
+        "Convert 25% to a multiplier: 1.25 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 25 ÷ 1.25 = 20"
       ],
-      "final_answer": "15% decrease",
+      "final_answer": "£20",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the difference between the two values: £187 and £220 differ by £33",
+          "description": "Convert 25% to a multiplier: 1.25 (original × multiplier = new value)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide by the ORIGINAL value and convert to a percentage: £33 ÷ £220 × 100 = 15%",
+          "description": "Divide the new value by the multiplier: 25 ÷ 1.25 = 20",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "15% decrease oe",
+          "description": "£20 oe",
           "marks": 1
         }
       ],
@@ -689,28 +686,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_reflect_describe",
-      "prompt": "Shape ABCD is reflected to give shape A'B'C'D', shown on the grid. Describe fully the single transformation that maps ABCD onto A'B'C'D'.",
+      "topic_id": "transform_translate_complete",
+      "prompt": "Translate shape ABCDEF by the vector (-1, -4). Draw and label the image A'B'C'D'E'F'.",
       "solution_steps": [
-        "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
-        "Comparing corresponding vertices shows the mirror line is y = -x."
+        "Translate every vertex by the vector (-1, -4): move each point 1 square left and 4 squares down.",
+        "A(-3, -3) -> A'(-4, -7), B(2, -3) -> B'(1, -7), C(2, -1) -> C'(1, -5), D(0, -1) -> D'(-1, -5), E(0, 1) -> E'(-1, -3), F(-3, 1) -> F'(-4, -3)"
       ],
-      "final_answer": "Reflection in the line y = -x",
+      "final_answer": "A'(-4, -7), B'(1, -7), C'(1, -5), D'(-1, -5), E'(-1, -3), F'(-4, -3)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
+          "description": "Translate every vertex by the vector (-1, -4): move each point 1 square left and 4 squares down.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Comparing corresponding vertices shows the mirror line is y = -x.",
+          "description": "A(-3, -3) -> A'(-4, -7), B(2, -3) -> B'(1, -7), C(2, -1) -> C'(1, -5), D(0, -1) -> D'(-1, -5), E(0, 1) -> E'(-1, -3), F(-3, 1) -> F'(-4, -3)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Reflection in the line y = -x oe",
+          "description": "A'(-4, -7), B'(1, -7), C'(1, -5), D'(-1, -5), E'(-1, -3), F'(-4, -3) oe",
           "marks": 1
         }
       ],
@@ -723,116 +720,37 @@
           "y_max": 8,
           "original_vertices": [
             [
-              3,
-              2
-            ],
-            [
-              7,
-              2
-            ],
-            [
-              6,
-              6
+              -3,
+              -3
             ],
             [
               2,
-              5
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
-          ],
-          "image_vertices": [
-            [
-              -2,
               -3
             ],
             [
-              -2,
-              -7
-            ],
-            [
-              -6,
-              -6
-            ],
-            [
-              -5,
-              -2
-            ]
-          ],
-          "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'"
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "transform_rotate_complete",
-      "prompt": "Rotate shape ABCD 90° anticlockwise about the centre (1, -3). Draw and label the image A'B'C'D'.",
-      "solution_steps": [
-        "Rotate each vertex 90° anticlockwise about the centre (1, -3): every point stays the same distance from the centre and turns through the same angle.",
-        "A(1, -3) -> A'(1, -3), B(5, -3) -> B'(1, 1), C(4, 1) -> C'(-3, 0), D(0, 0) -> D'(-2, -4)"
-      ],
-      "final_answer": "A'(1, -3), B'(1, 1), C'(-3, 0), D'(-2, -4)",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Rotate each vertex 90° anticlockwise about the centre (1, -3): every point stays the same distance from the centre and turns through the same angle.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A(1, -3) -> A'(1, -3), B(5, -3) -> B'(1, 1), C(4, 1) -> C'(-3, 0), D(0, 0) -> D'(-2, -4)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "A'(1, -3), B'(1, 1), C'(-3, 0), D'(-2, -4) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              1,
-              -3
-            ],
-            [
-              5,
-              -3
-            ],
-            [
-              4,
-              1
+              2,
+              -1
             ],
             [
               0,
-              0
+              -1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              -3,
+              1
             ]
           ],
           "original_labels": [
             "A",
             "B",
             "C",
-            "D"
-          ],
-          "centre": [
-            1,
-            -3
+            "D",
+            "E",
+            "F"
           ]
         }
       },
@@ -845,6 +763,134 @@
           "y_max": 8,
           "original_vertices": [
             [
+              -3,
+              -3
+            ],
+            [
+              2,
+              -3
+            ],
+            [
+              2,
+              -1
+            ],
+            [
+              0,
+              -1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              -3,
+              1
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "image_vertices": [
+            [
+              -4,
+              -7
+            ],
+            [
+              1,
+              -7
+            ],
+            [
+              1,
+              -5
+            ],
+            [
+              -1,
+              -5
+            ],
+            [
+              -1,
+              -3
+            ],
+            [
+              -4,
+              -3
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'",
+            "D'",
+            "E'",
+            "F'"
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "transform_translate_describe",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
+      "solution_steps": [
+        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-2, -3), with the matching vertex of shape B, (1, -3), gives the vector (3, 0).",
+        "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
+      ],
+      "final_answer": "Translation by the vector (3, 0)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-2, -3), with the matching vertex of shape B, (1, -3), gives the vector (3, 0).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Checking the other vertices confirms the same vector applies throughout, so this is a translation.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Translation by the vector (3, 0) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              -2,
+              -3
+            ],
+            [
+              2,
+              -3
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              -3,
+              0
+            ]
+          ],
+          "original_labels": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "image_vertices": [
+            [
               1,
               -3
             ],
@@ -861,152 +907,154 @@
               0
             ]
           ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
-          ],
-          "centre": [
-            1,
-            -3
-          ],
-          "image_vertices": [
-            [
-              1,
-              -3
-            ],
-            [
-              1,
-              1
-            ],
-            [
-              -3,
-              0
-            ],
-            [
-              -2,
-              -4
-            ]
-          ],
           "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'"
+            "",
+            "",
+            "",
+            ""
           ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plans_and_elevations",
+      "prompt": "The diagram shows a solid with its dimensions labelled. Draw and label the front elevation, side elevation, and plan view of the solid.",
+      "solution_steps": [
+        "The front elevation is what you see looking at the solid straight on from the front.",
+        "Front elevation: a right-angled triangle, base 6 cm and height 8 cm.",
+        "The side elevation is what you see looking at the solid straight on from the side.",
+        "Side elevation: a rectangle, 7 cm by 8 cm.",
+        "The plan view is what you see looking straight down at the solid from above.",
+        "Plan view: a rectangle, 6 cm by 7 cm."
+      ],
+      "final_answer": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm. Side elevation: a rectangle, 7 cm by 8 cm. Plan view: a rectangle, 6 cm by 7 cm.",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The front elevation is what you see looking at the solid straight on from the front.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The side elevation is what you see looking at the solid straight on from the side.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Side elevation: a rectangle, 7 cm by 8 cm. The plan view is what you see looking straight down at the solid from above. Plan view: a rectangle, 6 cm by 7 cm.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm. Side elevation: a rectangle, 7 cm by 8 cm. Plan view: a rectangle, 6 cm by 7 cm. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "plans_and_elevations_question",
+        "params": {
+          "shape": "triangular_prism",
+          "base_label": "6 cm",
+          "triangle_height_label": "8 cm",
+          "length_label": "7 cm"
+        }
+      },
+      "solution_diagram": {
+        "kind": "plans_and_elevations",
+        "params": {
+          "shape": "triangular_prism",
+          "base": 6,
+          "tri_height": 8,
+          "length": 7,
+          "base_label": "6 cm",
+          "tri_height_label": "8 cm",
+          "length_label": "7 cm"
         }
       }
     },
     {
-      "topic_id": "properties_3d_shapes",
-      "prompt": "How many vertices does a cone have?",
+      "topic_id": "trig_missing_side_foundation",
+      "prompt": "In the triangle shown, find the length of x, correct to 1 decimal place.",
       "solution_steps": [
-        "A vertex is a corner point where edges meet.",
-        "By GCSE convention, a cone has 2 faces (1 flat circular base + 1 curved surface), 1 edge (where the curved surface meets the circular base), and 1 vertex (the apex point at the top).",
-        "So a cone has 1 vertices."
+        "We know the hypotenuse and want the adjacent, so use cos.",
+        "x = 18 × cos(30°) = 15.6 (1 d.p.)"
       ],
-      "final_answer": "1",
+      "final_answer": "15.6 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "We know the hypotenuse and want the adjacent, so use cos.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 18 × cos(30°) = 15.6 (1 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "15.6 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "trig_triangle",
+        "params": {
+          "adjacent_label": "x cm",
+          "opposite_label": null,
+          "hyp_label": "18 cm",
+          "angle_label": "30°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "trig_missing_angle_foundation",
+      "prompt": "In the triangle shown, find the angle x, correct to 1 decimal place.",
+      "solution_steps": [
+        "Use tan, since we know two of the three sides.",
+        "tan(x) = 13 ÷ 18",
+        "x = tan^-1(13 ÷ 18) = 35.8° (1 d.p.)"
+      ],
+      "final_answer": "35.8°",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A vertex is a corner point where edges meet.",
+          "description": "Use tan, since we know two of the three sides.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "By GCSE convention, a cone has 2 faces (1 flat circular base + 1 curved surface), 1 edge (where the curved surface meets the circular base), and 1 vertex (the apex point at the top).",
+          "description": "tan(x) = 13 ÷ 18",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "So a cone has 1 vertices.",
+          "description": "x = tan^-1(13 ÷ 18) = 35.8° (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 oe",
+          "description": "35.8° oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cone",
+        "kind": "trig_triangle",
         "params": {
-          "radius_label": "3 cm",
-          "slant_label": "7 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "pythagoras_shorter_leg",
-      "prompt": "A right-angled triangle has hypotenuse 148 cm and one leg 48 cm. Find the length of the other leg.",
-      "solution_steps": [
-        "b² = c² - a² = 148² - 48² = 21904 - 2304 = 19600",
-        "b = √19600 = 140"
-      ],
-      "final_answer": "140 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "b² = c² - a² = 148² - 48² = 21904 - 2304 = 19600",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "b = √19600 = 140",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "140 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "right_triangle",
-        "params": {
-          "leg1_label": "48 cm",
-          "leg2_label": "?",
-          "hyp_label": "148 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "pythagoras_ladder_context_foundation",
-      "prompt": "A ladder of length 82 m leans against a vertical wall with its base 18 m from the wall. Find the height the ladder reaches up the wall.",
-      "solution_steps": [
-        "height² = ladder² - base² = 82² - 18² = 6724 - 324 = 6400",
-        "height = √6400 = 80 m"
-      ],
-      "final_answer": "80 m",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "height² = ladder² - base² = 82² - 18² = 6724 - 324 = 6400",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "height = √6400 = 80 m",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "80 m oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "right_triangle",
-        "params": {
-          "leg1_label": "18 m",
-          "leg2_label": "?",
-          "hyp_label": "82 m"
+          "adjacent_label": "18 cm",
+          "opposite_label": "13 cm",
+          "hyp_label": null,
+          "angle_label": "x°"
         }
       },
       "solution_diagram": null
@@ -1133,63 +1181,58 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "composite_bar_chart",
-      "prompt": "The composite bar chart shows the number of students split by Boys and Girls. Find the difference between Boys and Girls for Wed.",
+      "topic_id": "time_series_graph",
+      "prompt": "The time series graph shows the ice creams sold over time. What was the value at period 2?",
       "solution_steps": [
-        "Boys: 10, Girls: 11.",
-        "Difference = 1."
+        "Find period 2 on the horizontal axis.",
+        "Read the value there: 28."
       ],
-      "final_answer": "1",
+      "final_answer": "28",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Boys: 10, Girls: 11.",
+          "description": "Find period 2 on the horizontal axis.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Difference = 1.",
+          "description": "Read the value there: 28.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 oe",
+          "description": "28 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "bar_chart",
+        "kind": "time_series",
         "params": {
-          "categories": [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thu"
-          ],
-          "series": [
+          "points": [
             [
-              4,
-              13
+              1,
+              37
+            ],
+            [
+              2,
+              28
             ],
             [
               3,
-              13
+              30
             ],
             [
-              10,
-              11
+              4,
+              17
             ],
             [
-              10,
-              14
+              5,
+              5
             ]
           ],
-          "series_labels": [
-            "Boys",
-            "Girls"
-          ],
-          "y_label": "Frequency"
+          "x_label": "Month",
+          "y_label": "Ice creams sold"
         }
       },
       "solution_diagram": null

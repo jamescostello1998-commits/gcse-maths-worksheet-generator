@@ -156,6 +156,7 @@ interface RawPracticeTestSummary {
   tier: Tier
   sitting_id: string
   paper_number: number
+  calculator_allowed: boolean
   total_marks: number
   question_count: number
 }
@@ -167,6 +168,7 @@ function toPracticeTestSummary(raw: RawPracticeTestSummary): PracticeTestSummary
     tier: raw.tier,
     sittingId: raw.sitting_id,
     paperNumber: raw.paper_number,
+    calculatorAllowed: raw.calculator_allowed,
     totalMarks: raw.total_marks,
     questionCount: raw.question_count,
   }
@@ -183,4 +185,26 @@ export async function downloadPracticeTestPaper(paperId: string): Promise<Blob> 
 
 export async function downloadPracticeTestMarkScheme(paperId: string): Promise<Blob> {
   return getBlob(`/api/practice-tests/${paperId}/mark-scheme`, 'downloading practice test mark scheme')
+}
+
+export async function generateBellTasks(topicIds: string[]): Promise<Blob> {
+  let response: Response
+  try {
+    response = await fetch(`${API_BASE_URL}/api/bell-tasks`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ topic_ids: topicIds }),
+    })
+  } catch (err) {
+    console.error('Network error generating bell tasks:', err)
+    throw new NetworkError()
+  }
+
+  if (!response.ok) {
+    const detail = await parseErrorDetail(response)
+    console.error('API error generating bell tasks:', detail)
+    throw new ApiError(detail, response.status)
+  }
+
+  return response.blob()
 }

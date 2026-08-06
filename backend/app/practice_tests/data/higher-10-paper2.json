@@ -4,47 +4,98 @@
   "tier": "higher",
   "sitting_id": "higher-10",
   "paper_number": 2,
+  "calculator_allowed": false,
   "questions": [
     {
-      "topic_id": "fractions_mixed_number_arithmetic",
-      "prompt": "Work out 3 4/8 + 1 1/2. Give your answer as a mixed number.",
+      "topic_id": "histogram_plot",
+      "prompt": "The table shows the times (in minutes) taken to complete a puzzle. Complete a frequency density column and draw a histogram.",
       "solution_steps": [
-        "Convert to improper fractions: 3 4/8 = 7/2, 1 1/2 = 3/2",
-        "Add the improper fractions: 7/2 + 3/2 = 5/1",
-        "Convert back to a mixed number: 5"
+        "Frequency density = frequency ÷ class width, for each class:",
+        "10-20: 33 ÷ 10 = 3.3",
+        "20-40: 33 ÷ 20 = 1.65",
+        "40-45: 32 ÷ 5 = 6.4",
+        "45-50: 37 ÷ 5 = 7.4",
+        "Frequency densities: 3.3, 1.65, 6.4, 7.4"
       ],
-      "final_answer": "5",
-      "marks": 4,
+      "final_answer": "Frequency densities: 3.3, 1.65, 6.4, 7.4",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert to improper fractions: 3 4/8 = 7/2, 1 1/2 = 3/2",
+          "description": "Frequency density = frequency ÷ class width, for each class:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add the improper fractions: 7/2 + 3/2 = 5/1",
+          "description": "10-20: 33 ÷ 10 = 3.3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Convert back to a mixed number: 5",
+          "description": "20-40: 33 ÷ 20 = 1.65",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "40-45: 32 ÷ 5 = 6.4 45-50: 37 ÷ 5 = 7.4 Frequency densities: 3.3, 1.65, 6.4, 7.4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5 oe",
+          "description": "Frequency densities: 3.3, 1.65, 6.4, 7.4 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "histogram_question",
+        "params": {
+          "boundaries": [
+            10,
+            20,
+            40,
+            45,
+            50
+          ],
+          "frequencies": [
+            33,
+            33,
+            32,
+            37
+          ],
+          "frequency_densities": [
+            3.3,
+            1.65,
+            6.4,
+            7.4
+          ],
+          "x_label": "Time (minutes)"
+        }
+      },
+      "solution_diagram": {
+        "kind": "histogram",
+        "params": {
+          "boundaries": [
+            10,
+            20,
+            40,
+            45,
+            50
+          ],
+          "frequency_densities": [
+            3.3,
+            1.65,
+            6.4,
+            7.4
+          ],
+          "x_label": "Time (minutes)"
+        }
+      }
     },
     {
       "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal 0.(49) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Show that \\recur{0.}{49} can be written as 49/99.",
       "solution_steps": [
-        "Let x = 0.(49), so 100x = 49.4949... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Let x = \\recur{0.}{49}, so 100x = 49.4949... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 49 - 0, so 99x = 49",
         "x = 49/99 = 49/99"
       ],
@@ -53,7 +104,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(49), so 100x = 49.4949... (two digits repeat, so multiply by 100 to shift a full block)",
+          "description": "Let x = \\recur{0.}{49}, so 100x = 49.4949... (two digits repeat, so multiply by 100 to shift a full block)",
           "marks": 1
         },
         {
@@ -153,9 +204,9 @@
     },
     {
       "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal 0.9(3) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Show that \\recur{0.9}{3} can be written as 14/15.",
       "solution_steps": [
-        "Let x = 0.9(3)",
+        "Let x = \\recur{0.9}{3}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
         "This gives x = 84/90",
         "Simplify: 14/15"
@@ -165,7 +216,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.9(3)",
+          "description": "Let x = \\recur{0.9}{3}",
           "marks": 1
         },
         {
@@ -194,34 +245,34 @@
     },
     {
       "topic_id": "simplifying_indices_challenging",
-      "prompt": "Simplify (3^-2)^3 ÷ 3^-3, giving your answer as a fraction where necessary.",
+      "prompt": "Fully simplify 9^(1/2) × 9^-2, giving your answer as a fraction where necessary.",
       "solution_steps": [
-        "Multiply the powers in the bracket: -2 × 3 = -6",
-        "(3^-2)^3 = 3^-6",
-        "Subtract the powers to divide: -6 - (-3) = -3",
-        "3^-6 ÷ 3^-3 = 3^-3 = 1/27"
+        "9^(1/2) is the square root of 9, which is 3, so 9^(1/2) = 3^1",
+        "9^-2 = \\frac{1}{9²} = \\frac{1}{3⁴}",
+        "9^(1/2) × 9^-2 = 3^1 × \\frac{1}{3⁴} = 3^(1-4) = 3^-3",
+        "3^-3 = 1/27"
       ],
       "final_answer": "1/27",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply the powers in the bracket: -2 × 3 = -6",
+          "description": "9^(1/2) is the square root of 9, which is 3, so 9^(1/2) = 3^1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(3^-2)^3 = 3^-6",
+          "description": "9^-2 = \\frac{1}{9²} = \\frac{1}{3⁴}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract the powers to divide: -6 - (-3) = -3",
+          "description": "9^(1/2) × 9^-2 = 3^1 × \\frac{1}{3⁴} = 3^(1-4) = 3^-3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3^-6 ÷ 3^-3 = 3^-3 = 1/27",
+          "description": "3^-3 = 1/27",
           "marks": 1
         },
         {
@@ -265,138 +316,135 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "quadratic_formula",
-      "prompt": "Solve 3x^2 + 3x - 13 = 0 using the quadratic formula, giving your answers to 2 decimal places.",
+      "topic_id": "circle_equation",
+      "prompt": "A circle has centre (0, 0) and radius 9. Write down the equation of the circle.",
       "solution_steps": [
-        "x = (-b ± √(b^2 - 4ac)) / 2a",
-        "a = 3, b = 3, c = -13",
-        "x = (-3 ± √(3^2 - 4×3×-13)) / (2×3)",
-        "x = (-3 ± √165) / 6",
-        "x = 1.64 or x = -2.64"
+        "A circle centred at the origin with radius r has equation x^2 + y^2 = r^2.",
+        "Here r = 9, so r^2 = 81."
       ],
-      "final_answer": "x = 1.64 or x = -2.64",
-      "marks": 5,
+      "final_answer": "x^2 + y^2 = 81",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "x = (-b ± √(b^2 - 4ac)) / 2a",
+          "description": "A circle centred at the origin with radius r has equation x^2 + y^2 = r^2.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "a = 3, b = 3, c = -13",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = (-3 ± √(3^2 - 4×3×-13)) / (2×3)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = (-3 ± √165) / 6 x = 1.64 or x = -2.64",
+          "description": "Here r = 9, so r^2 = 81.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 1.64 or x = -2.64 oe",
+          "description": "x^2 + y^2 = 81 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "loci_construction",
+        "params": {
+          "x_min": -10,
+          "x_max": 10,
+          "y_min": -10,
+          "y_max": 10,
+          "points": [],
+          "given_lines": [],
+          "circle": {
+            "centre": [
+              0,
+              0
+            ],
+            "radius": 9
+          },
+          "segment": null
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_reciprocal",
-      "prompt": "Complete a table of values for y = -36/x for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
+      "topic_id": "trig_graph",
+      "prompt": "Complete a table of values for y = cos(x°) for x = 0 to 360 (in steps of 90°), then plot the graph.",
       "solution_steps": [
-        "Table of values for y = -36/x:",
-        "x: -4, -3, -2, -1, 1, 2, 3, 4",
-        "y: 9, 12, 18, 36, -36, -18, -12, -9",
-        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
+        "Table of values for y = cos(x°):",
+        "x: 0, 90, 180, 270, 360",
+        "y: 1, 0, -1, 0, 1",
+        "Plot each (x, y) point and join them with a single smooth curve - y = cos(x°) repeats the same shape every 360°, and never goes above 1 or below -1."
       ],
-      "final_answer": "Reciprocal curve: y = -36/x",
+      "final_answer": "y = cos(x°)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = -36/x:",
+          "description": "Table of values for y = cos(x°):",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
+          "description": "x: 0, 90, 180, 270, 360",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: 9, 12, 18, 36, -36, -18, -12, -9",
+          "description": "y: 1, 0, -1, 0, 1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
+          "description": "Plot each (x, y) point and join them with a single smooth curve - y = cos(x°) repeats the same shape every 360°, and never goes above 1 or below -1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Reciprocal curve: y = -36/x oe",
+          "description": "y = cos(x°) oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "reciprocal",
-          "a": -36,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -38,
-          "y_max": 38,
+          "kind": "trigonometric",
+          "fn": "cos",
+          "sign": 1,
+          "x_min": 0,
+          "x_max": 360,
+          "y_min": -1.4,
+          "y_max": 1.4,
+          "x_label": "x (degrees)",
           "blank": true
         }
       },
       "solution_diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "reciprocal",
-          "a": -36,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -38,
-          "y_max": 38,
+          "kind": "trigonometric",
+          "fn": "cos",
+          "sign": 1,
+          "x_min": 0,
+          "x_max": 360,
+          "y_min": -1.4,
+          "y_max": 1.4,
+          "x_label": "x (degrees)",
           "table_points": [
             [
-              -4,
-              9
+              0,
+              1
             ],
             [
-              -3,
-              12
+              90,
+              0
             ],
             [
-              -2,
-              18
+              180,
+              -1
             ],
             [
-              -1,
-              36
+              270,
+              0
             ],
             [
-              1,
-              -36
-            ],
-            [
-              2,
-              -18
-            ],
-            [
-              3,
-              -12
-            ],
-            [
-              4,
-              -9
+              360,
+              1
             ]
           ]
         }
@@ -479,44 +527,49 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "polygon_angles",
+        "params": {
+          "n_sides": 4,
+          "angle_labels": [
+            "37°",
+            "44°",
+            "(3x + 11)°",
+            "(x + 232)°"
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_fractions_add_subtract",
-      "prompt": "Simplify 5/(x - 8) + 1/(x - 3), giving your answer as a single fraction.",
+      "topic_id": "functions_inverse_evaluate",
+      "prompt": "f(x) = 2x - 7. Find f^-1(-10).",
       "solution_steps": [
-        "Write both fractions over the common denominator (x - 8)(x - 3):",
-        "5/(x - 8) + 1/(x - 3) = (5(x - 3) + 1(x - 8))/(x - 8)(x - 3)",
-        "Expand the numerator: 5(x - 3) + 1(x - 8) = 6x - 23",
-        "= (6x - 23)/(x - 8)(x - 3)"
+        "f^-1(x) = \\frac{x + 7}{2}",
+        "f^-1(-10) = \\frac{-10 + 7}{2}",
+        "f^-1(-10) = -3/2"
       ],
-      "final_answer": "(6x - 23)/(x - 8)(x - 3)",
-      "marks": 5,
+      "final_answer": "-3/2",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Write both fractions over the common denominator (x - 8)(x - 3):",
+          "description": "f^-1(x) = \\frac{x + 7}{2}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5/(x - 8) + 1/(x - 3) = (5(x - 3) + 1(x - 8))/(x - 8)(x - 3)",
+          "description": "f^-1(-10) = \\frac{-10 + 7}{2}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand the numerator: 5(x - 3) + 1(x - 8) = 6x - 23",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= (6x - 23)/(x - 8)(x - 3)",
+          "description": "f^-1(-10) = -3/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(6x - 23)/(x - 8)(x - 3) oe",
+          "description": "-3/2 oe",
           "marks": 1
         }
       ],
@@ -524,41 +577,48 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_proof",
-      "prompt": "Prove algebraically that 2n(n + 3) - 2n^2 is always a multiple of 6.",
+      "topic_id": "trial_and_improvement",
+      "prompt": "f(x) = x^3 - 3x - 36. Show that f(x) = 0 has a root between x = 3 and x = 4, then use trial and improvement to find this root correct to 1 decimal place.",
       "solution_steps": [
-        "Let n be any integer.",
-        "Write the given expression algebraically: 2n(n + 3) - 2n^2.",
-        "Expand and simplify: 2n(n + 3) - 2n^2 = 6n.",
-        "Factorise/rearrange to expose the structure: 6n = 6n.",
-        "6n is exactly 6 times the whole number n, so the expression is always a multiple of 6."
+        "f(x) = x^3 - 3x - 36",
+        "f(3) = -18.00 (negative)",
+        "f(4) = 16.00 (positive)",
+        "f(3.1) = -15.51 (negative)",
+        "f(3.2) = -12.83 (negative)",
+        "f(3.3) = -9.96 (negative)",
+        "f(3.4) = -6.90 (negative)",
+        "f(3.5) = -3.63 (negative)",
+        "f(3.6) = -0.14 (negative)",
+        "f(3.7) = 3.55 (positive)",
+        "The sign changes between x = 3.6 and x = 3.7, so try the midpoint x = 3.65: f(3.65) = 1.68.",
+        "f(3.65) has the same sign as f(3.7), so the root lies between 3.6 and 3.65 - to 1 decimal place, this rounds down to 3.6."
       ],
-      "final_answer": "Proven: 2n(n + 3) - 2n^2 = 6n, always a multiple of 6.",
+      "final_answer": "x = 3.6",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let n be any integer.",
+          "description": "f(x) = x^3 - 3x - 36",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write the given expression algebraically: 2n(n + 3) - 2n^2.",
+          "description": "f(3) = -18.00 (negative)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand and simplify: 2n(n + 3) - 2n^2 = 6n.",
+          "description": "f(4) = 16.00 (positive)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise/rearrange to expose the structure: 6n = 6n. 6n is exactly 6 times the whole number n, so the expression is always a multiple of 6.",
+          "description": "f(3.1) = -15.51 (negative) f(3.2) = -12.83 (negative) f(3.3) = -9.96 (negative) f(3.4) = -6.90 (negative) f(3.5) = -3.63 (negative) f(3.6) = -0.14 (negative) f(3.7) = 3.55 (positive) The sign changes between x = 3.6 and x = 3.7, so try the midpoint x = 3.65: f(3.65) = 1.68. f(3.65) has the same sign as f(3.7), so the root lies between 3.6 and 3.65 - to 1 decimal place, this rounds down to 3.6.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Proven: 2n(n + 3) - 2n^2 = 6n, always a multiple of 6. oe",
+          "description": "x = 3.6 oe",
           "marks": 1
         }
       ],
@@ -566,41 +626,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_three_part",
-      "prompt": "Share 45 in the ratio 6:6:3.",
+      "topic_id": "solve_quadratic_factorising",
+      "prompt": "Solve x^2 - 2x - 15 = 0 by factorising.",
       "solution_steps": [
-        "Total parts = 6 + 6 + 3 = 15",
-        "Value of one part = 45 ÷ 15 = 3",
-        "Share 1 = 6 × 3 = 18",
-        "Share 2 = 6 × 3 = 18",
-        "Share 3 = 3 × 3 = 9"
+        "Find two numbers that multiply to -15 and add to -2: 3 and -5",
+        "Factorise: (x + 3)(x - 5) = 0",
+        "Either x + 3 = 0 or x + -5 = 0",
+        "x = -3 or x = 5"
       ],
-      "final_answer": "18 : 18 : 9",
+      "final_answer": "x = -3 or x = 5",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 6 + 6 + 3 = 15",
+          "description": "Find two numbers that multiply to -15 and add to -2: 3 and -5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 45 ÷ 15 = 3",
+          "description": "Factorise: (x + 3)(x - 5) = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 1 = 6 × 3 = 18",
+          "description": "Either x + 3 = 0 or x + -5 = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 2 = 6 × 3 = 18 Share 3 = 3 × 3 = 9",
+          "description": "x = -3 or x = 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "18 : 18 : 9 oe",
+          "description": "x = -3 or x = 5 oe",
           "marks": 1
         }
       ],
@@ -649,28 +708,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "percentage_increase_decrease_calculator",
-      "prompt": "Using a calculator, decrease £50.95 by 3.6%. Give your answer to 2 decimal places.",
+      "topic_id": "reverse_percentage",
+      "prompt": "After a 12% decrease, an item costs £21.12. Find the original price.",
       "solution_steps": [
-        "Convert 3.6% to a multiplier: 0.964",
-        "Multiply: £50.95 × 0.964 = £49.12 (calculator, 2 d.p.)"
+        "Convert 12% to a multiplier: 0.88 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 21.12 ÷ 0.88 = 24"
       ],
-      "final_answer": "£49.12",
+      "final_answer": "£24",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 3.6% to a multiplier: 0.964",
+          "description": "Convert 12% to a multiplier: 0.88 (original × multiplier = new value)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: £50.95 × 0.964 = £49.12 (calculator, 2 d.p.)",
+          "description": "Divide the new value by the multiplier: 21.12 ÷ 0.88 = 24",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£49.12 oe",
+          "description": "£24 oe",
           "marks": 1
         }
       ],
@@ -679,7 +738,7 @@
     },
     {
       "topic_id": "ratio_shape_similar_higher",
-      "prompt": "Shape A and Shape B are similar. A length on shape A is 2 cm and the corresponding length on shape B is 6 cm. The volume of shape A is 8 cm^3. Find the volume of shape B.",
+      "prompt": "Shape A and Shape B are similar. The volume of shape A is 8 cm^3. Find the volume of shape B.",
       "solution_steps": [
         "Linear scale factor = 6 ÷ 2 = 3",
         "Volume scale factor = (3)^3 = 27",
@@ -709,32 +768,50 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "a_width_label": "2 cm",
+          "b_width_label": "6 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "exact_trig_values",
-      "prompt": "Write down the exact value of cos(0°).",
+      "topic_id": "algebraic_direct_proportion",
+      "prompt": "y is directly proportional to x^3. When x = 4, y = 640. Find the value of y when x = 2.",
       "solution_steps": [
-        "Recall the exact-value triangles: 30°-60°-90° (sides 1, √3, 2) and 45°-45°-90° (sides 1, 1, √2) - no calculator needed for these special angles.",
-        "cos(0°) = 1"
+        "y = kx^3",
+        "640 = k × 4^3 = k × 64",
+        "k = 640 ÷ 64 = 10",
+        "y = 10 × 2^3 = 10 × 8 = 80"
       ],
-      "final_answer": "1",
-      "marks": 3,
+      "final_answer": "80",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Recall the exact-value triangles: 30°-60°-90° (sides 1, √3, 2) and 45°-45°-90° (sides 1, 1, √2) - no calculator needed for these special angles.",
+          "description": "y = kx^3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "cos(0°) = 1",
+          "description": "640 = k × 4^3 = k × 64",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "k = 640 ÷ 64 = 10",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y = 10 × 2^3 = 10 × 8 = 80",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 oe",
+          "description": "80 oe",
           "marks": 1
         }
       ],
@@ -742,40 +819,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_enlarge_complete_higher",
-      "prompt": "Enlarge shape ABCD by scale factor -1, centre (1, 0). Draw and label the image A'B'C'D'.",
+      "topic_id": "transform_enlarge_describe",
+      "prompt": "Shape ABCD is enlarged to give shape A'B'C'D', shown on the grid. Describe fully the single transformation that maps ABCD onto A'B'C'D'.",
       "solution_steps": [
-        "The centre of enlargement is (1, 0) and the scale factor is -1.",
-        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (1, 3) from the centre, so A' = (1, 0) + -1 × (1, 3) = (0, -3).",
-        "Repeat for every vertex: A(2, 3) -> A'(0, -3), B(6, 3) -> B'(-4, -3), C(5, 7) -> C'(-3, -7), D(1, 6) -> D'(1, -6)",
-        "A negative scale factor puts the image on the opposite side of the centre from the original shape."
+        "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
+        "For this pair, the lines meet at (0, -1) and the ratio works out as -1."
       ],
-      "final_answer": "A'(0, -3), B'(-4, -3), C'(-3, -7), D'(1, -6)",
-      "marks": 5,
+      "final_answer": "Enlargement, scale factor -1, centre (0, -1)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The centre of enlargement is (1, 0) and the scale factor is -1.",
+          "description": "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (1, 3) from the centre, so A' = (1, 0) + -1 × (1, 3) = (0, -3).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Repeat for every vertex: A(2, 3) -> A'(0, -3), B(6, 3) -> B'(-4, -3), C(5, 7) -> C'(-3, -7), D(1, 6) -> D'(1, -6)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A negative scale factor puts the image on the opposite side of the centre from the original shape.",
+          "description": "For this pair, the lines meet at (0, -1) and the ratio works out as -1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(0, -3), B'(-4, -3), C'(-3, -7), D'(1, -6) oe",
+          "description": "Enlargement, scale factor -1, centre (0, -1) oe",
           "marks": 1
         }
       ],
@@ -788,84 +853,43 @@
           "y_max": 8,
           "original_vertices": [
             [
-              2,
-              3
-            ],
-            [
-              6,
-              3
-            ],
-            [
-              5,
-              7
+              -3,
+              1
             ],
             [
               1,
-              6
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
-          ],
-          "centre": [
-            1,
-            0
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              2,
-              3
+              1
             ],
-            [
-              6,
-              3
-            ],
-            [
-              5,
-              7
-            ],
-            [
-              1,
-              6
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
-          ],
-          "centre": [
-            1,
-            0
-          ],
-          "image_vertices": [
             [
               0,
-              -3
+              5
             ],
             [
               -4,
+              4
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "image_vertices": [
+            [
+              3,
               -3
             ],
             [
-              -3,
+              -1,
+              -3
+            ],
+            [
+              0,
               -7
             ],
             [
-              1,
+              4,
               -6
             ]
           ],
@@ -876,122 +900,129 @@
             "D'"
           ]
         }
-      }
+      },
+      "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_surd_hypotenuse",
-      "prompt": "A right-angled triangle has legs 14 cm and 9 cm. Find the exact length of the hypotenuse, giving your answer as a simplified surd.",
+      "topic_id": "angles_triangle_higher",
+      "prompt": "A triangle has angles 21°, 41°, and (5x + 28)°. Find x.",
       "solution_steps": [
-        "c² = a² + b² = 14² + 9² = 196 + 81 = 277",
-        "c = √277 = √277 cm (exact form)"
+        "Angles in a triangle sum to 180°.",
+        "5x + 28 = 118",
+        "Subtract 28 from both sides:",
+        "5x = 90",
+        "Divide both sides by 5:",
+        "x = 18"
       ],
-      "final_answer": "√277 cm",
-      "marks": 3,
+      "final_answer": "18",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "c² = a² + b² = 14² + 9² = 196 + 81 = 277",
+          "description": "Angles in a triangle sum to 180°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "c = √277 = √277 cm (exact form)",
+          "description": "5x + 28 = 118",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 28 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x = 90 Divide both sides by 5: x = 18",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "√277 cm oe",
+          "description": "18 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "right_triangle",
+        "kind": "triangle_angles",
         "params": {
-          "leg1_label": "14 cm",
-          "leg2_label": "9 cm",
-          "hyp_label": "?"
+          "angle_labels": [
+            "21°",
+            "41°",
+            "(5x + 28)°"
+          ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cone",
-      "prompt": "A cone has radius 8 cm and slant height 11 cm. Find its total surface area, correct to 3 significant figures.",
+      "topic_id": "vectors_arithmetic_higher",
+      "prompt": "\\vec{a} = \\colvec{-3}{3} and \\vec{b} = \\colvec{-4}{-5}. Find 4\\vec{a} + 5\\vec{b}.",
       "solution_steps": [
-        "Surface area = πr² + πrl = πr(r + l) = π × 8 × (8 + 11.000)",
-        "= 478 cm² (3 s.f., using a calculator value of π)"
+        "\\vec{a} = \\colvec{-3}{3}, \\vec{b} = \\colvec{-4}{-5}",
+        "4\\vec{a} = \\colvec{-12}{12} and 5\\vec{b} = \\colvec{-20}{-25}",
+        "4\\vec{a} + 5\\vec{b} = \\colvec{-32}{-13}"
       ],
-      "final_answer": "478 cm²",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Surface area = πr² + πrl = πr(r + l) = π × 8 × (8 + 11.000)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 478 cm² (3 s.f., using a calculator value of π)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "478 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "cone",
-        "params": {
-          "radius_label": "8 cm",
-          "slant_label": "11 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "geometric_vectors",
-      "prompt": "OAB is a triangle with OA = \\vec{a} and OB = \\vec{b}. Point M lies on AB such that AM:MB = 1:1. Find the vector OM in terms of \\vec{a} and \\vec{b}, giving your answer in its simplest form.",
-      "solution_steps": [
-        "AB = OB - OA = \\vec{b} - \\vec{a}",
-        "AM = (1/2)AB = (1/2)(\\vec{b} - \\vec{a})",
-        "OM = OA + AM = \\vec{a} + (1/2)(\\vec{b} - \\vec{a}) = (1/2)\\vec{a} + (1/2)\\vec{b}"
-      ],
-      "final_answer": "(1/2)\\vec{a} + (1/2)\\vec{b}",
+      "final_answer": "\\colvec{-32}{-13}",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "AB = OB - OA = \\vec{b} - \\vec{a}",
+          "description": "\\vec{a} = \\colvec{-3}{3}, \\vec{b} = \\colvec{-4}{-5}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "AM = (1/2)AB = (1/2)(\\vec{b} - \\vec{a})",
+          "description": "4\\vec{a} = \\colvec{-12}{12} and 5\\vec{b} = \\colvec{-20}{-25}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "OM = OA + AM = \\vec{a} + (1/2)(\\vec{b} - \\vec{a}) = (1/2)\\vec{a} + (1/2)\\vec{b}",
+          "description": "4\\vec{a} + 5\\vec{b} = \\colvec{-32}{-13}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(1/2)\\vec{a} + (1/2)\\vec{b} oe",
+          "description": "\\colvec{-32}{-13} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "exact_trig_values_triangles",
+      "prompt": "In the triangle shown, find the exact length of x. Give your answer in surd form where appropriate.",
+      "solution_steps": [
+        "We know the adjacent and want the hypotenuse, so use cos(45°) = √2/2 - its exact value, not a decimal approximation.",
+        "x = 9 ÷ √2/2 = 9√2 cm"
+      ],
+      "final_answer": "9√2 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "We know the adjacent and want the hypotenuse, so use cos(45°) = √2/2 - its exact value, not a decimal approximation.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 9 ÷ √2/2 = 9√2 cm",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "9√2 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "vector_triangle",
+        "kind": "trig_triangle",
         "params": {
-          "ratio": [
-            1,
-            1
-          ],
-          "point_label": "M",
-          "a_label": "\\vec{a}",
-          "b_label": "\\vec{b}",
-          "origin_label": "O"
+          "adjacent_label": "9 cm",
+          "opposite_label": null,
+          "hyp_label": "x cm",
+          "angle_label": "45°"
         }
       },
       "solution_diagram": null
@@ -1035,8 +1066,32 @@
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "ξ"
+        }
+      },
+      "solution_diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "ξ",
+          "region_text": {
+            "a_only": "6, 12",
+            "b_only": "1, 8",
+            "both": "10",
+            "neither": "2, 3, 4, 5, 7, 9, 11"
+          }
+        }
+      }
     },
     {
       "topic_id": "product_rule_counting",

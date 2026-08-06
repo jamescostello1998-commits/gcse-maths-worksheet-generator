@@ -4,6 +4,7 @@
   "tier": "higher",
   "sitting_id": "higher-06",
   "paper_number": 1,
+  "calculator_allowed": true,
   "questions": [
     {
       "topic_id": "standard_form_add_subtract",
@@ -42,7 +43,7 @@
     },
     {
       "topic_id": "roots_higher",
-      "prompt": "Simplify √75, giving your answer in the form a√b.",
+      "prompt": "Fully simplify √75, giving your answer in the form a√b.",
       "solution_steps": [
         "Find the largest square factor of 75: 5^2 × 3 = 75",
         "√75 = √(5^2 × 3) = 5√3"
@@ -106,27 +107,27 @@
     },
     {
       "topic_id": "rationalise_denominator",
-      "prompt": "Rationalise the denominator of 7/√13, giving your answer in its simplest form.",
+      "prompt": "Rationalise the denominator of \\frac{7}{√13}, giving your answer in its simplest form.",
       "solution_steps": [
-        "Multiply the top and bottom by √13: 7/√13 = 7√13/13",
-        "= 7√13/13"
+        "Multiply the top and bottom by √13: \\frac{7}{√13} = \\frac{7√13}{13}",
+        "= \\frac{7√13}{13}"
       ],
-      "final_answer": "7√13/13",
+      "final_answer": "\\frac{7√13}{13}",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply the top and bottom by √13: 7/√13 = 7√13/13",
+          "description": "Multiply the top and bottom by √13: \\frac{7}{√13} = \\frac{7√13}{13}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 7√13/13",
+          "description": "= \\frac{7√13}{13}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7√13/13 oe",
+          "description": "\\frac{7√13}{13} oe",
           "marks": 1
         }
       ],
@@ -135,18 +136,17 @@
     },
     {
       "topic_id": "powers_higher",
-      "prompt": "Work out 36^(3/2).",
+      "prompt": "Work out 36^(1/2).",
       "solution_steps": [
-        "36^(3/2) = (36^(1/2))^3",
-        "36^(1/2) = 6",
-        "6^3 = 216"
+        "36^(1/2) means the square root of 36.",
+        "36^(1/2) = 6"
       ],
-      "final_answer": "216",
-      "marks": 4,
+      "final_answer": "6",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "36^(3/2) = (36^(1/2))^3",
+          "description": "36^(1/2) means the square root of 36.",
           "marks": 1
         },
         {
@@ -155,13 +155,8 @@
           "marks": 1
         },
         {
-          "code": "M1",
-          "description": "6^3 = 216",
-          "marks": 1
-        },
-        {
           "code": "A1",
-          "description": "216 oe",
+          "description": "6 oe",
           "marks": 1
         }
       ],
@@ -170,9 +165,9 @@
     },
     {
       "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal 0.1(6) can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Write \\recur{0.1}{6} as a fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.1(6)",
+        "Let x = \\recur{0.1}{6}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
         "This gives x = 15/90",
         "Simplify: 1/6"
@@ -182,7 +177,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.1(6)",
+          "description": "Let x = \\recur{0.1}{6}",
           "marks": 1
         },
         {
@@ -211,123 +206,39 @@
     },
     {
       "topic_id": "simplifying_indices_challenging",
-      "prompt": "Simplify (4^-1 × 4^3)^3, giving your answer as a fraction where necessary.",
+      "prompt": "Fully simplify (4^-2 × 4^-1)^2, giving your answer as a fraction where necessary.",
       "solution_steps": [
-        "Add the powers inside the bracket first: -1 + 3 = 2",
-        "(4^-1 × 4^3)^3 = (4^2)^3",
-        "Multiply the powers: 2 × 3 = 6",
-        "(4^2)^3 = 4^6 = 4096"
+        "Add the powers inside the bracket first: -2 + -1 = -3",
+        "(4^-2 × 4^-1)^2 = (4^-3)^2",
+        "Multiply the powers: -3 × 2 = -6",
+        "(4^-3)^2 = 4^-6 = 1/4096"
       ],
-      "final_answer": "4096",
+      "final_answer": "1/4096",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Add the powers inside the bracket first: -1 + 3 = 2",
+          "description": "Add the powers inside the bracket first: -2 + -1 = -3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(4^-1 × 4^3)^3 = (4^2)^3",
+          "description": "(4^-2 × 4^-1)^2 = (4^-3)^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the powers: 2 × 3 = 6",
+          "description": "Multiply the powers: -3 × 2 = -6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(4^2)^3 = 4^6 = 4096",
+          "description": "(4^-3)^2 = 4^-6 = 1/4096",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4096 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "linear_brackets",
-      "prompt": "Solve: 5(6x - 2) = -130",
-      "solution_steps": [
-        "Expand the bracket: 5(6x - 2) = 30x - 10",
-        "30x - 10 = -130",
-        "Add 10 to both sides:",
-        "30x = -120",
-        "Divide both sides by 30:",
-        "x = -4"
-      ],
-      "final_answer": "-4",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Expand the bracket: 5(6x - 2) = 30x - 10",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "30x - 10 = -130",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add 10 to both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "30x = -120 Divide both sides by 30: x = -4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "algebraic_fractions_add_subtract",
-      "prompt": "Simplify 2/(x + 1) - 7/(x + 6), giving your answer as a single fraction.",
-      "solution_steps": [
-        "Write both fractions over the common denominator (x + 1)(x + 6):",
-        "2/(x + 1) - 7/(x + 6) = (2(x + 6) - 7(x + 1))/(x + 1)(x + 6)",
-        "Expand the numerator: 2(x + 6) - 7(x + 1) = -5x + 5",
-        "= (-5x + 5)/(x + 1)(x + 6)"
-      ],
-      "final_answer": "(-5x + 5)/(x + 1)(x + 6)",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Write both fractions over the common denominator (x + 1)(x + 6):",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2/(x + 1) - 7/(x + 6) = (2(x + 6) - 7(x + 1))/(x + 1)(x + 6)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Expand the numerator: 2(x + 6) - 7(x + 1) = -5x + 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= (-5x + 5)/(x + 1)(x + 6)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(-5x + 5)/(x + 1)(x + 6) oe",
+          "description": "1/4096 oe",
           "marks": 1
         }
       ],
@@ -380,6 +291,139 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "functions_inverse_evaluate",
+      "prompt": "f(x) = 6x + 6. Find f^-1(-7).",
+      "solution_steps": [
+        "f^-1(x) = \\frac{x - 6}{6}",
+        "f^-1(-7) = \\frac{-7 - 6}{6}",
+        "f^-1(-7) = -13/6"
+      ],
+      "final_answer": "-13/6",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "f^-1(x) = \\frac{x - 6}{6}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "f^-1(-7) = \\frac{-7 - 6}{6}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "f^-1(-7) = -13/6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-13/6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "velocity_time_interpret",
+      "prompt": "The velocity-time graph shows a car's journey. Find the total distance travelled.",
+      "solution_steps": [
+        "Total distance = total area under the graph (a trapezium)",
+        "Distance = ½ × (35 + 20) × 20 = 550 m"
+      ],
+      "final_answer": "550 m",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total distance = total area under the graph (a trapezium)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Distance = ½ × (35 + 20) × 20 = 550 m",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "550 m oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              20
+            ],
+            [
+              25,
+              20
+            ],
+            [
+              35,
+              0
+            ]
+          ],
+          "x_max": 40,
+          "y_max": 25,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_brackets",
+      "prompt": "Solve: 5(6x - 2) = -130",
+      "solution_steps": [
+        "Expand the bracket: 5(6x - 2) = 30x - 10",
+        "30x - 10 = -130",
+        "Add 10 to both sides:",
+        "30x = -120",
+        "Divide both sides by 30:",
+        "x = -4"
+      ],
+      "final_answer": "-4",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: 5(6x - 2) = 30x - 10",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "30x - 10 = -130",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add 10 to both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "30x = -120 Divide both sides by 30: x = -4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "linear_both_sides",
       "prompt": "Solve: 5x + 5 = x + 25",
       "solution_steps": [
@@ -424,41 +468,43 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_quadratic",
-      "prompt": "Solve the simultaneous equations: y = x^2 - 4 and y = -7x - 14",
+      "topic_id": "solving_inequalities_higher",
+      "prompt": "Solve the inequality: 2x + 6 > 7x + 7",
       "solution_steps": [
-        "Substitute y = -7x - 14 into y = x^2 - 4: -7x - 14 = x^2 - 4",
-        "Rearrange: x^2 + 7x + 10 = 0",
-        "Factorise: (x + 2)(x + 5) = 0",
-        "x = -2 or x = -5",
-        "When x = -2, y = 0. When x = -5, y = 21."
+        "2x + 6 > 7x + 7",
+        "Subtract 7x from both sides:",
+        "-5x + 6 > 7",
+        "Subtract 6 from both sides:",
+        "-5x > 1",
+        "Divide both sides by -5 (dividing by a negative number reverses the inequality sign):",
+        "x < -1/5"
       ],
-      "final_answer": "(-2, 0) and (-5, 21)",
+      "final_answer": "x < -1/5",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Substitute y = -7x - 14 into y = x^2 - 4: -7x - 14 = x^2 - 4",
+          "description": "2x + 6 > 7x + 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rearrange: x^2 + 7x + 10 = 0",
+          "description": "Subtract 7x from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: (x + 2)(x + 5) = 0",
+          "description": "-5x + 6 > 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = -2 or x = -5 When x = -2, y = 0. When x = -5, y = 21.",
+          "description": "Subtract 6 from both sides: -5x > 1 Divide both sides by -5 (dividing by a negative number reverses the inequality sign): x < -1/5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(-2, 0) and (-5, 21) oe",
+          "description": "x < -1/5 oe",
           "marks": 1
         }
       ],
@@ -466,40 +512,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "quadratic_inequalities",
-      "prompt": "Solve the inequality: -x^2 + 5x + 14 ≤ 0",
+      "topic_id": "turning_point_of_graph",
+      "prompt": "Find the coordinates of the turning point of the curve y = x^2 - 4x + 8.",
       "solution_steps": [
-        "Factorise: -x^2 + 5x + 14 = -(x + 2)(x - 7)",
-        "The critical values are x = -2 and x = 7.",
-        "The coefficient of x^2 is negative, so the graph is a upside-down U-shaped parabola, and ≤ 0 is satisfied outside the two roots.",
-        "Answer: x ≤ -2 or x ≥ 7"
+        "Complete the square: x^2 - 4x + 8 = (x - 2)^2 + 4",
+        "The turning point of y = (x + p)^2 + q is (-p, q).",
+        "Turning point = (2, 4)"
       ],
-      "final_answer": "x ≤ -2 or x ≥ 7",
-      "marks": 5,
+      "final_answer": "(2, 4)",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Factorise: -x^2 + 5x + 14 = -(x + 2)(x - 7)",
+          "description": "Complete the square: x^2 - 4x + 8 = (x - 2)^2 + 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The critical values are x = -2 and x = 7.",
+          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The coefficient of x^2 is negative, so the graph is a upside-down U-shaped parabola, and ≤ 0 is satisfied outside the two roots.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Answer: x ≤ -2 or x ≥ 7",
+          "description": "Turning point = (2, 4)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x ≤ -2 or x ≥ 7 oe",
+          "description": "(2, 4) oe",
           "marks": 1
         }
       ],
@@ -508,7 +548,7 @@
     },
     {
       "topic_id": "ratio_shape_similar_higher",
-      "prompt": "Shape A and Shape B are similar. A length on shape A is 4 cm and the corresponding length on shape B is 5 cm. The area of shape A is 112 cm². Find the area of shape B.",
+      "prompt": "Shape A and Shape B are similar. The area of shape A is 112 cm². Find the area of shape B.",
       "solution_steps": [
         "Linear scale factor = 5 ÷ 4 = 5/4",
         "Area scale factor = (5/4)^2 = 25/16",
@@ -538,7 +578,13 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "a_width_label": "4 cm",
+          "b_width_label": "5 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -572,16 +618,16 @@
     },
     {
       "topic_id": "ratio_difference_higher",
-      "prompt": "Amounts are in the ratio 1:7:5. The difference between the largest and smallest amount is 78. Find all three amounts and their total.",
+      "prompt": "p : q : r = 1 : 7 : 5.\nq - p = 78.\nFind p, q and r, and their total.",
       "solution_steps": [
         "Difference in parts = 7 - 1 = 6 parts",
         "Value of one part = 78 ÷ 6 = 13",
-        "Amount 1 = 1 × 13 = 13",
-        "Amount 2 = 7 × 13 = 91",
-        "Amount 3 = 5 × 13 = 65",
-        "Total = 13 + 91 + 65 = 169"
+        "p = 1 × 13 = 13",
+        "q = 7 × 13 = 91",
+        "r = 5 × 13 = 65",
+        "p + q + r = 13 + 91 + 65 = 169"
       ],
-      "final_answer": "13 : 91 : 65 (total 169)",
+      "final_answer": "p = 13, q = 91, r = 65 (total 169)",
       "marks": 5,
       "mark_scheme": [
         {
@@ -596,17 +642,17 @@
         },
         {
           "code": "M1",
-          "description": "Amount 1 = 1 × 13 = 13",
+          "description": "p = 1 × 13 = 13",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Amount 2 = 7 × 13 = 91 Amount 3 = 5 × 13 = 65 Total = 13 + 91 + 65 = 169",
+          "description": "q = 7 × 13 = 91 r = 5 × 13 = 65 p + q + r = 13 + 91 + 65 = 169",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "13 : 91 : 65 (total 169) oe",
+          "description": "p = 13, q = 91, r = 65 (total 169) oe",
           "marks": 1
         }
       ],
@@ -650,15 +696,15 @@
     },
     {
       "topic_id": "bearings_cosine_rule",
-      "prompt": "A ship sails from port A on a bearing of 103° for 22 km to point B. It then changes course and sails on a bearing of 318° for 9 km to point C. Find the direct distance from A to C, correct to 3 significant figures.",
+      "prompt": "A ship sails from port A on a bearing of 103° for 22 km to point B. It then changes course and sails on a bearing of 318° for 9 km to point C. Find the direct distance from A to C, correct to 2 decimal places.",
       "solution_steps": [
         "The back bearing of A from B is 103° + 180° = 283°.",
         "Angle ABC is the difference between this back bearing and the bearing of C from B: angle ABC = 35°.",
         "Use the cosine rule: AC² = AB² + BC² - 2×AB×BC×cos(ABC)",
         "AC² = 22² + 9² - 2×22×9×cos(35°) = 240.6",
-        "AC = √240.6 = 15.5 km (3 s.f.)"
+        "AC = √240.6 = 15.51 km (2 d.p.)"
       ],
-      "final_answer": "15.5 km",
+      "final_answer": "15.51 km",
       "marks": 5,
       "mark_scheme": [
         {
@@ -678,12 +724,12 @@
         },
         {
           "code": "M1",
-          "description": "AC² = 22² + 9² - 2×22×9×cos(35°) = 240.6 AC = √240.6 = 15.5 km (3 s.f.)",
+          "description": "AC² = 22² + 9² - 2×22×9×cos(35°) = 240.6 AC = √240.6 = 15.51 km (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "15.5 km oe",
+          "description": "15.51 km oe",
           "marks": 1
         }
       ],
@@ -705,75 +751,63 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cylinder",
-      "prompt": "A cylinder has radius 9 cm and height 15 cm. Find the exact volume, in terms of π.",
+      "topic_id": "special_sequences_higher",
+      "prompt": "The first 3 terms of a geometric sequence are: 5, 15, 45. Find the 5th term of the sequence.",
       "solution_steps": [
-        "Volume = π × r² × h = π × 9² × 15",
-        "= 1215π cm³"
+        "Common ratio r = 3 (divide any term by the term before it).",
+        "nth term = a × r^(n - 1) = 5 × (3)^4",
+        "Term 5 = 405"
       ],
-      "final_answer": "1215π cm³",
+      "final_answer": "405",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Common ratio r = 3 (divide any term by the term before it).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "nth term = a × r^(n - 1) = 5 × (3)^4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Term 5 = 405",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "405 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "transform_enlarge_describe",
+      "prompt": "Shape ABC is enlarged to give shape A'B'C', shown on the grid. Describe fully the single transformation that maps ABC onto A'B'C'.",
+      "solution_steps": [
+        "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
+        "For this pair, the lines meet at (2, 0) and the ratio works out as -1."
+      ],
+      "final_answer": "Enlargement, scale factor -1, centre (2, 0)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Volume = π × r² × h = π × 9² × 15",
+          "description": "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 1215π cm³",
+          "description": "For this pair, the lines meet at (2, 0) and the ratio works out as -1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1215π cm³ oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "cylinder",
-        "params": {
-          "radius_label": "9 cm",
-          "height_label": "15 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "transform_enlarge_complete_higher",
-      "prompt": "Enlarge shape ABCD by scale factor -1, centre (2, 0). Draw and label the image A'B'C'D'.",
-      "solution_steps": [
-        "The centre of enlargement is (2, 0) and the scale factor is -1.",
-        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-2, 3) from the centre, so A' = (2, 0) + -1 × (-2, 3) = (4, -3).",
-        "Repeat for every vertex: A(0, 3) -> A'(4, -3), B(4, 3) -> B'(0, -3), C(3, 7) -> C'(1, -7), D(-1, 6) -> D'(5, -6)",
-        "A negative scale factor puts the image on the opposite side of the centre from the original shape."
-      ],
-      "final_answer": "A'(4, -3), B'(0, -3), C'(1, -7), D'(5, -6)",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The centre of enlargement is (2, 0) and the scale factor is -1.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-2, 3) from the centre, so A' = (2, 0) + -1 × (-2, 3) = (4, -3).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Repeat for every vertex: A(0, 3) -> A'(4, -3), B(4, 3) -> B'(0, -3), C(3, 7) -> C'(1, -7), D(-1, 6) -> D'(5, -6)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A negative scale factor puts the image on the opposite side of the centre from the original shape.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "A'(4, -3), B'(0, -3), C'(1, -7), D'(5, -6) oe",
+          "description": "Enlargement, scale factor -1, centre (2, 0) oe",
           "marks": 1
         }
       ],
@@ -786,145 +820,97 @@
           "y_max": 8,
           "original_vertices": [
             [
-              0,
-              3
+              1,
+              2
             ],
             [
-              4,
-              3
+              6,
+              2
             ],
             [
-              3,
-              7
-            ],
-            [
-              -1,
+              2,
               6
             ]
           ],
           "original_labels": [
             "A",
             "B",
-            "C",
-            "D"
-          ],
-          "centre": [
-            2,
-            0
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              0,
-              3
-            ],
-            [
-              4,
-              3
-            ],
-            [
-              3,
-              7
-            ],
-            [
-              -1,
-              6
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
-          ],
-          "centre": [
-            2,
-            0
+            "C"
           ],
           "image_vertices": [
             [
-              4,
-              -3
+              3,
+              -2
             ],
             [
-              0,
-              -3
+              -2,
+              -2
             ],
             [
-              1,
-              -7
-            ],
-            [
-              5,
+              2,
               -6
             ]
           ],
           "image_labels": [
             "A'",
             "B'",
-            "C'",
-            "D'"
+            "C'"
           ]
         }
-      }
+      },
+      "solution_diagram": null
     },
     {
       "topic_id": "area_mixed_compound",
-      "prompt": "A shape is made from a rectangle 20 cm by 8 cm, with a triangular roof of height 4 cm on top, and a quarter-circle of radius 3 cm cut from one bottom corner. Find the total area, correct to 3 significant figures.",
+      "prompt": "Find the total area of the following compound shape, correct to 3 significant figures.",
       "solution_steps": [
-        "Rectangle area = 20 × 8 = 160 cm²",
-        "Triangle roof area = ½ × 20 × 4 = 40 cm²",
-        "Quarter-circle cut area = (π × 3²) ÷ 4 ≈ 7.07 cm²",
-        "Total area = 160 + 40 - 7.07 ≈ 193 cm²"
+        "Rectangle area = 16 × 10 = 160 cm²",
+        "Triangular top area = ½ × 16 × 5 = 40 cm²",
+        "Quarter-circle cut area = (π × 5²) ÷ 4 ≈ 19.6 cm²",
+        "Total area = 160 + 40.0 - 19.6 ≈ 180 cm² (3 s.f.)"
       ],
-      "final_answer": "193 cm²",
+      "final_answer": "180 cm²",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rectangle area = 20 × 8 = 160 cm²",
+          "description": "Rectangle area = 16 × 10 = 160 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Triangle roof area = ½ × 20 × 4 = 40 cm²",
+          "description": "Triangular top area = ½ × 16 × 5 = 40 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Quarter-circle cut area = (π × 3²) ÷ 4 ≈ 7.07 cm²",
+          "description": "Quarter-circle cut area = (π × 5²) ÷ 4 ≈ 19.6 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total area = 160 + 40 - 7.07 ≈ 193 cm²",
+          "description": "Total area = 160 + 40.0 - 19.6 ≈ 180 cm² (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "193 cm² oe",
+          "description": "180 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "mixed_compound",
         "params": {
-          "width": 20,
-          "height": 8,
-          "roof_height": 4,
-          "cut_radius": 3,
-          "width_label": "20 cm",
-          "height_label": "8 cm",
-          "roof_label": "4 cm",
-          "cut_label": "3 cm"
+          "width": 16,
+          "height": 10,
+          "top_kind": "triangle",
+          "cut_kind": "quarter_circle",
+          "width_label": "16 cm",
+          "height_label": "10 cm",
+          "roof_height": 5,
+          "top_label": "5 cm",
+          "cut_radius": 5,
+          "cut_label": "5 cm"
         }
       },
       "solution_diagram": null
@@ -986,33 +972,111 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "percentage_increase_decrease_calculator",
-      "prompt": "Using a calculator, increase £583.55 by 13.5%. Give your answer to 2 decimal places.",
+      "topic_id": "probability_conditional",
+      "prompt": "A bag contains 6 red and 6 green counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
       "solution_steps": [
-        "Convert 13.5% to a multiplier: 1.135",
-        "Multiply: £583.55 × 1.135 = £662.33 (calculator, 2 d.p.)"
+        "P(both red) = 6/12 × 5/11 = 5/22",
+        "P(both green) = 6/12 × 5/11 = 5/22",
+        "P(both same colour) = 5/22 + 5/22 = 5/11"
       ],
-      "final_answer": "£662.33",
-      "marks": 3,
+      "final_answer": "5/11",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 13.5% to a multiplier: 1.135",
+          "description": "P(both red) = 6/12 × 5/11 = 5/22",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: £583.55 × 1.135 = £662.33 (calculator, 2 d.p.)",
+          "description": "P(both green) = 6/12 × 5/11 = 5/22",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(both same colour) = 5/22 + 5/22 = 5/11",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£662.33 oe",
+          "description": "5/11 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Red",
+              ""
+            ],
+            [
+              "Green",
+              ""
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Red",
+                ""
+              ],
+              [
+                "Green",
+                ""
+              ]
+            ],
+            [
+              [
+                "Red",
+                ""
+              ],
+              [
+                "Green",
+                ""
+              ]
+            ]
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Red",
+              "6/12"
+            ],
+            [
+              "Green",
+              "6/12"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Red",
+                "5/11"
+              ],
+              [
+                "Green",
+                "6/11"
+              ]
+            ],
+            [
+              [
+                "Red",
+                "6/11"
+              ],
+              [
+                "Green",
+                "5/11"
+              ]
+            ]
+          ]
+        }
+      }
     }
   ]
 }

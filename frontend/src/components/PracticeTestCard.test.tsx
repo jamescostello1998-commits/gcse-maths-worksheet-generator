@@ -11,6 +11,7 @@ const papers: PracticeTestSummary[] = [
     tier: 'foundation',
     sittingId: 'foundation-01',
     paperNumber: 1,
+    calculatorAllowed: true,
     totalMarks: 100,
     questionCount: 27,
   },
@@ -20,6 +21,7 @@ const papers: PracticeTestSummary[] = [
     tier: 'foundation',
     sittingId: 'foundation-01',
     paperNumber: 2,
+    calculatorAllowed: false,
     totalMarks: 100,
     questionCount: 25,
   },
@@ -29,6 +31,7 @@ const papers: PracticeTestSummary[] = [
     tier: 'foundation',
     sittingId: 'foundation-01',
     paperNumber: 3,
+    calculatorAllowed: true,
     totalMarks: 100,
     questionCount: 24,
   },
@@ -49,6 +52,11 @@ describe('PracticeTestCard', () => {
     expect(screen.getByText('Paper 3')).toBeInTheDocument()
     expect(screen.getByText(/27 questions/)).toBeInTheDocument()
     expect(screen.getAllByText(/100 marks/)).toHaveLength(3)
+  })
+
+  it('shows a Non-calculator badge only for the non-calculator paper', () => {
+    render(<PracticeTestCard papers={papers} />)
+    expect(screen.getAllByText('Non-calculator')).toHaveLength(1)
   })
 
   it('downloads a specific paper on click', async () => {

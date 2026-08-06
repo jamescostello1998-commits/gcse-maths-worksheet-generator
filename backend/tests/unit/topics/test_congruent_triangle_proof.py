@@ -33,11 +33,29 @@ def test_higher_answer_names_the_criterion():
         assert any(c in q.final_answer for c in ("SSS", "SAS", "ASA", "RHS"))
 
 
-def test_foundation_answer_is_bare_criterion():
+def test_foundation_answer_is_a_lettered_multiple_choice_option():
+    import re
+
     rng = random.Random(512)
     for _ in range(TRIALS):
         q = congruent_triangle_proof.generate_congruent_triangle_proof_foundation(Tier.FOUNDATION, rng)
-        assert q.final_answer in {"SSS", "SAS", "ASA", "RHS"}
+        assert re.fullmatch(r"[A-D]\) (SSS|SAS|ASA|RHS)", q.final_answer)
+
+
+def test_foundation_prompt_lists_all_four_options_shuffled():
+    rng = random.Random(514)
+    letters_used = set()
+    for _ in range(TRIALS):
+        q = congruent_triangle_proof.generate_congruent_triangle_proof_foundation(Tier.FOUNDATION, rng)
+        for criterion in ("SSS", "SAS", "ASA", "RHS"):
+            assert criterion in q.prompt
+        answer_letter = q.final_answer[0]
+        letters_used.add(answer_letter)
+        # The answer's own criterion must appear next to its stated letter
+        # in the prompt's option list, not just anywhere in the criteria set.
+        assert f"{answer_letter}) {q.final_answer.split(') ', 1)[1]}" in q.prompt
+    # Confirms the correct answer isn't pinned to always the same letter.
+    assert letters_used == {"A", "B", "C", "D"}
 
 
 def test_dedup_keys_vary_per_generator():

@@ -9,10 +9,13 @@ GENERATORS = [
     (expand_factorise.generate_expand_single, Tier.FOUNDATION),
     (expand_factorise.generate_factorise_common, Tier.FOUNDATION),
     (expand_factorise.generate_expand_double_foundation, Tier.FOUNDATION),
+    (expand_factorise.generate_expand_double_no_coefficient_foundation, Tier.FOUNDATION),
     (expand_factorise.generate_factorise_quadratic_foundation, Tier.FOUNDATION),
     (expand_factorise.generate_expand_double, Tier.HIGHER),
     (expand_factorise.generate_expand_triple, Tier.HIGHER),
     (expand_factorise.generate_factorise_quadratic, Tier.HIGHER),
+    (expand_factorise.generate_solve_quadratic_factorising_foundation, Tier.FOUNDATION),
+    (expand_factorise.generate_solve_quadratic_factorising, Tier.HIGHER),
 ]
 
 
@@ -44,17 +47,20 @@ def test_topic_definitions_have_expected_metadata():
     topics = [
         expand_factorise.TOPIC_EXPAND_SINGLE,
         expand_factorise.TOPIC_EXPAND_DOUBLE_FOUNDATION,
+        expand_factorise.TOPIC_EXPAND_DOUBLE_NO_COEFFICIENT_FOUNDATION,
         expand_factorise.TOPIC_EXPAND_DOUBLE,
         expand_factorise.TOPIC_EXPAND_TRIPLE,
         expand_factorise.TOPIC_FACTORISE_COMMON,
         expand_factorise.TOPIC_FACTORISE_QUADRATIC_FOUNDATION,
         expand_factorise.TOPIC_FACTORISE_QUADRATIC,
+        expand_factorise.TOPIC_SOLVE_QUADRATIC_FACTORISING_FOUNDATION,
+        expand_factorise.TOPIC_SOLVE_QUADRATIC_FACTORISING,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 7
+    assert len(ids) == 10
     for t in topics:
         assert t.section == "algebra"
-        assert t.group in ("Expanding Brackets", "Factorising")
+        assert t.group in ("Expanding Brackets", "Factorising", "Solving Quadratic Equations")
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
 
 
@@ -62,11 +68,14 @@ def test_all_topics_have_modelled_example_wired():
     topics = [
         expand_factorise.TOPIC_EXPAND_SINGLE,
         expand_factorise.TOPIC_EXPAND_DOUBLE_FOUNDATION,
+        expand_factorise.TOPIC_EXPAND_DOUBLE_NO_COEFFICIENT_FOUNDATION,
         expand_factorise.TOPIC_EXPAND_DOUBLE,
         expand_factorise.TOPIC_EXPAND_TRIPLE,
         expand_factorise.TOPIC_FACTORISE_COMMON,
         expand_factorise.TOPIC_FACTORISE_QUADRATIC_FOUNDATION,
         expand_factorise.TOPIC_FACTORISE_QUADRATIC,
+        expand_factorise.TOPIC_SOLVE_QUADRATIC_FACTORISING_FOUNDATION,
+        expand_factorise.TOPIC_SOLVE_QUADRATIC_FACTORISING,
     ]
     for t in topics:
         assert t.generate_modelled_example is not None
@@ -78,6 +87,11 @@ MODELLED_EXAMPLE_GENERATORS = [
         expand_factorise.generate_modelled_example_expand_double_foundation,
         Tier.FOUNDATION,
         "expand_double_brackets_foundation",
+    ),
+    (
+        expand_factorise.generate_modelled_example_expand_double_no_coefficient_foundation,
+        Tier.FOUNDATION,
+        "expand_double_brackets_no_coefficient_foundation",
     ),
     (expand_factorise.generate_modelled_example_expand_double, Tier.HIGHER, "expand_double_brackets"),
     (expand_factorise.generate_modelled_example_expand_triple, Tier.HIGHER, "expand_triple_brackets"),
@@ -95,6 +109,16 @@ MODELLED_EXAMPLE_GENERATORS = [
         expand_factorise.generate_modelled_example_factorise_quadratic,
         Tier.HIGHER,
         "factorise_quadratics",
+    ),
+    (
+        expand_factorise.generate_modelled_example_solve_quadratic_factorising_foundation,
+        Tier.FOUNDATION,
+        "solve_quadratic_factorising_foundation",
+    ),
+    (
+        expand_factorise.generate_modelled_example_solve_quadratic_factorising,
+        Tier.HIGHER,
+        "solve_quadratic_factorising",
     ),
 ]
 

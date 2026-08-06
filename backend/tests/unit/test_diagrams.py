@@ -17,6 +17,13 @@ from app.pdf.diagrams import (
 
 SAMPLE_SPECS = [
     DiagramSpec(kind="rectangle", params={"width": 10, "height": 6, "width_label": "10 cm", "height_label": "6 cm"}),
+    DiagramSpec(
+        kind="two_similar_rectangles",
+        params={
+            "a_width_label": "6 cm", "a_height_label": "9 cm",
+            "b_width_label": "8 cm", "b_height_label": "x",
+        },
+    ),
     DiagramSpec(kind="triangle_area", params={"base": 8, "height": 5, "base_label": "8 cm", "height_label": "5 cm"}),
     DiagramSpec(
         kind="l_shape",
@@ -29,7 +36,8 @@ SAMPLE_SPECS = [
         kind="l_shape",
         params={
             "outer_w": 20, "outer_h": 15, "inner_w": 6, "inner_h": 5,
-            "notch": "center", "outer_labels": ["20 cm", "15 cm"], "inner_labels": [6, 5],
+            "notch": "center", "shade_frame": True,
+            "outer_labels": ["20 cm", "15 cm"], "inner_labels": ["6 cm", "5 cm"],
         },
     ),
     DiagramSpec(kind="circle", params={"radius": 7, "label": "7 cm"}),
@@ -238,7 +246,7 @@ SAMPLE_SPECS = [
     DiagramSpec(kind="spinner_pair", params={"sectors_a": ["1", "2", "3"], "sectors_b": ["R", "B", "G", "Y"]}),
     DiagramSpec(
         kind="bag_of_counters",
-        params={"counts": {"red": 4, "blue": 6, "green": 3}, "highlight": "blue"},
+        params={"counts": {"red": 4, "blue": 6, "green": 3}},
     ),
     DiagramSpec(
         kind="parallelogram",
@@ -253,8 +261,33 @@ SAMPLE_SPECS = [
     DiagramSpec(
         kind="mixed_compound",
         params={
-            "width": 16, "height": 10, "roof_height": 5, "cut_radius": 4,
-            "width_label": "16 cm", "height_label": "10 cm", "roof_label": "5 cm", "cut_label": "4 cm",
+            "width": 16, "height": 10, "top_kind": "triangle", "cut_kind": "quarter_circle",
+            "roof_height": 5, "cut_radius": 4,
+            "width_label": "16 cm", "height_label": "10 cm", "top_label": "5 cm", "cut_label": "4 cm",
+        },
+    ),
+    DiagramSpec(
+        kind="mixed_compound",
+        params={
+            "width": 16, "height": 10, "top_kind": "semicircle", "cut_kind": "quarter_circle",
+            "top_radius": 8, "cut_radius": 4,
+            "width_label": "16 cm", "height_label": "10 cm", "top_label": "8 cm", "cut_label": "4 cm",
+        },
+    ),
+    DiagramSpec(
+        kind="mixed_compound",
+        params={
+            "width": 16, "height": 10, "top_kind": "triangle", "cut_kind": "semicircle_notch",
+            "roof_height": 5, "notch_radius": 3,
+            "width_label": "16 cm", "height_label": "10 cm", "top_label": "5 cm", "cut_label": "3 cm",
+        },
+    ),
+    DiagramSpec(
+        kind="mixed_compound",
+        params={
+            "width": 16, "height": 10, "top_kind": "semicircle", "cut_kind": "semicircle_notch",
+            "top_radius": 8, "notch_radius": 3,
+            "width_label": "16 cm", "height_label": "10 cm", "top_label": "8 cm", "cut_label": "3 cm",
         },
     ),
     DiagramSpec(
@@ -307,6 +340,69 @@ def test_render_diagram_produces_valid_drawing(spec):
 def test_unknown_kind_raises_clearly():
     with pytest.raises(ValueError, match="Unknown diagram kind"):
         render_diagram(DiagramSpec(kind="not_a_real_kind", params={}))
+
+
+def test_two_similar_rectangles_omits_unlabelled_sides():
+    # ratio_shape_similar_higher only ever gives one length pair (the
+    # area/volume, not a second length, is what's given/asked for) - the
+    # diagram must not crash or draw a placeholder when a_height_label/
+    # b_height_label are simply absent from params.
+    spec = DiagramSpec(
+        kind="two_similar_rectangles",
+        params={"a_width_label": "6 cm", "b_width_label": "8 cm"},
+    )
+    drawing = render_diagram(spec)
+    assert isinstance(drawing, Drawing)
+    assert len(drawing.contents) > 0
+
+
+def test_rectangle_height_label_stays_within_the_canvas():
+    # A wide rectangle (width scale-bound, pushing the rectangle's own right
+    # edge close to the canvas edge) combined with a two-digit height_label
+    # previously overflowed past DIAGRAM_WIDTH by a couple of points, since
+    # draw_rectangle had no stringWidth awareness at all - found via a real
+    # rendered-PDF check, not a unit test written in advance.
+    from reportlab.pdfbase.pdfmetrics import stringWidth
+
+    from app.pdf.diagrams import DIAGRAM_WIDTH, _LABEL_FONT, _LABEL_SIZE, draw_rectangle
+
+    spec_params = {"width": 28, "height": 12, "width_label": "(x + 10) cm", "height_label": "12 cm"}
+    drawing = draw_rectangle(spec_params)
+
+    def _walk(shapes):
+        for s in shapes:
+            if hasattr(s, "text"):
+                yield s
+            elif hasattr(s, "contents"):
+                yield from _walk(s.contents)
+
+    height_label_strings = [s for s in _walk(drawing.contents) if s.text.strip() == "12 cm"]
+    assert height_label_strings
+    for s in height_label_strings:
+        w = stringWidth(s.text, _LABEL_FONT, _LABEL_SIZE)
+        x1 = s.x + w if s.textAnchor == "start" else s.x
+        assert x1 <= DIAGRAM_WIDTH
+
+
+def test_angle_line_narrow_wedge_label_stays_within_the_canvas():
+    # A narrow (<20 degree) wedge in the "around_point" layout can orient its
+    # label near-vertically with no headroom - previously pushed the label
+    # past the top edge by ~20pt, found via a real rendered-PDF check across
+    # many seeds, not assumed.
+    from app.pdf.diagrams import DIAGRAM_HEIGHT, draw_angle_line
+
+    spec_params = {"around_point": True, "angle_values": [87.5, 5, 267.5], "labels": ["87.5°", "5°", "267.5°"]}
+    drawing = draw_angle_line(spec_params)
+
+    def _walk(shapes):
+        for s in shapes:
+            if hasattr(s, "text"):
+                yield s
+            elif hasattr(s, "contents"):
+                yield from _walk(s.contents)
+
+    for s in _walk(drawing.contents):
+        assert 0 <= s.y <= DIAGRAM_HEIGHT
 
 
 def test_math_runs_italicises_x_and_n():
@@ -434,6 +530,38 @@ def test_box_plot_label_column_keeps_labels_clear_of_the_whiskers():
     assert len(label_strings) == 2
     for s in label_strings:
         assert s.x < whisker_left_edge  # labels sit strictly left of every whisker/box edge
+
+
+def test_plans_and_elevations_captions_never_overlap_for_a_small_solid():
+    # A small solid (well under the ~60pt target cell size) used to leave
+    # "Front elevation"/"Side elevation" with no gap at all between them,
+    # running together as "Front elevationSide elevation" - found via
+    # rendering an actual modelled-example page and looking closely, not by
+    # any unit test written in advance.
+    from reportlab.graphics.shapes import Group, String
+    from reportlab.pdfbase.pdfmetrics import stringWidth
+
+    from app.pdf.diagrams import draw_plans_and_elevations
+
+    def _all_strings(shape):
+        if isinstance(shape, String):
+            yield shape
+        elif isinstance(shape, Group):
+            for child in shape.contents:
+                yield from _all_strings(child)
+
+    d = draw_plans_and_elevations({
+        "shape": "triangular_prism",
+        "base": 5, "tri_height": 8, "length": 3,
+        "base_label": "5 cm", "tri_height_label": "8 cm", "length_label": "3 cm",
+    })
+    strings = list(_all_strings(d))
+    # Captions are built from single-run _label() calls (plain text, no
+    # math substitution), so each is one String with the full caption text.
+    front_label = next(s for s in strings if s.text == "Front elevation")
+    side_label = next(s for s in strings if s.text == "Side elevation")
+    front_right = front_label.x + stringWidth(front_label.text, front_label.fontName, front_label.fontSize)
+    assert front_right < side_label.x
 
 
 def test_grid_transformation_blank_omits_the_image_but_keeps_given_annotations():

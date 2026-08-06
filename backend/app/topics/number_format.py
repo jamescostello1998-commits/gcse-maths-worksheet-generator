@@ -27,3 +27,16 @@ def fmt_money(value) -> str:
     if denom == 1:
         return f"{float(r):.2f}"
     return f"{r.p}/{r.q}"
+
+
+_NUMBER_WORDS = {
+    1: "one", 2: "two", 3: "three", 4: "four", 5: "five",
+    6: "six", 7: "seven", 8: "eight", 9: "nine", 10: "ten",
+}
+
+
+def num_word(n: int) -> str:
+    """Spell out a small count in words (e.g. 4 -> "four"), matching real
+    exam phrasing ("The mean of four numbers is...") instead of a bare
+    digit - falls back to the digit itself outside this small range."""
+    return _NUMBER_WORDS.get(n, str(n))

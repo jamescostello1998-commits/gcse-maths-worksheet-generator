@@ -5,15 +5,31 @@ from fractions import Fraction
 
 import sympy as sp
 
-from app.core.models import ModelledExample, Question, Tier
+from app.core.models import DiagramSpec, ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
 
 SECTION = "ratio_proportion"
 GROUP = "Ratio"
 
+# Unknown-side letters for the similar-shapes diagram questions - varies
+# which letter labels the unknown side, rather than always "x".
+_UNKNOWN_LETTERS = ["x", "y", "z"]
+
 
 def _rand_part(rng: random.Random) -> int:
     return rng.randint(1, 9)
+
+
+# Letter pairs/triples used by the letter-based ratio-equation style (e.g.
+# "a : b = 1 : 7") shared by generate_find_share, generate_ratio_difference,
+# and generate_ratio_difference_higher - varying which pair of letters is
+# used per question, rather than always "a"/"b"/"c". Deliberately excludes
+# "x" and "n" - the only two letters mathtext.py's engine italicises by
+# default - since pairing an italic letter with a plain one (e.g. "x : y")
+# looks like an inconsistent rendering glitch even though it's correct
+# per-letter behaviour; every letter here renders identically (plain).
+_LETTER_PAIRS = [("a", "b"), ("p", "q"), ("s", "t"), ("h", "k")]
+_LETTER_TRIPLES = [("a", "b", "c"), ("p", "q", "r"), ("s", "t", "u")]
 
 
 def generate_share_two(tier: Tier, rng: random.Random) -> Question:
@@ -85,37 +101,35 @@ def generate_find_share(tier: Tier, rng: random.Random) -> Question:
         b = _rand_part(rng)
     k = rng.randint(2, 20)
     share_a, share_b = a * k, b * k
-    target = rng.choice(["other_share", "total"])
+    l1, l2 = rng.choice(_LETTER_PAIRS)
+    given_first = rng.choice([True, False])
 
     if Fraction(share_a, share_b) != Fraction(a, b):
         raise ValueError("find_share verification failed")
 
-    base_steps = [
-        f"Value of one part = {share_a} ÷ {a} = {k}",
-        f"Second amount = {b} × {k} = {share_b}",
-    ]
-    if target == "other_share":
-        prompt = (
-            f"Two amounts are in the ratio {a}:{b}. The first amount is {share_a}. "
-            "Find the second amount."
-        )
-        answer = str(share_b)
-        steps = base_steps
+    if given_first:
+        given_letter, given_parts, given_value = l1, a, share_a
+        find_letter, find_parts, find_value = l2, b, share_b
     else:
-        prompt = (
-            f"Two amounts are in the ratio {a}:{b}. The first amount is {share_a}. "
-            "Find the total of both amounts."
-        )
-        answer = str(share_a + share_b)
-        steps = base_steps + [f"Total = {share_a} + {share_b} = {share_a + share_b}"]
+        given_letter, given_parts, given_value = l2, b, share_b
+        find_letter, find_parts, find_value = l1, a, share_a
+
+    steps = [
+        f"Value of one part = {given_value} ÷ {given_parts} = {k}",
+        f"{find_letter} = {find_parts} × {k} = {find_value}",
+    ]
+    prompt = (
+        f"{l1} : {l2} = {a} : {b}. {given_letter} = {given_value}. "
+        f"What is the value of {find_letter}?"
+    )
 
     return Question(
         topic_id="ratio_find_missing_share",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
-        final_answer=answer,
-        dedup_key=f"find_share:{a}:{b}:{k}:{target}",
+        final_answer=str(find_value),
+        dedup_key=f"find_share:{a}:{b}:{k}:{l1}{l2}:{given_first}",
     )
 
 
@@ -125,54 +139,39 @@ def generate_modelled_example_find_share(tier: Tier, rng: random.Random) -> Mode
         b = _rand_part(rng)
     k = rng.randint(2, 20)
     share_a, share_b = a * k, b * k
-    target = rng.choice(["other_share", "total"])
+    l1, l2 = rng.choice(_LETTER_PAIRS)
+    given_first = rng.choice([True, False])
 
     # Independent verification via Fraction (separate path from the multiply-out above).
     if Fraction(share_a, share_b) != Fraction(a, b):
         raise ValueError("modelled example find_share verification failed")
 
-    if target == "other_share":
-        prompt = (
-            f"Two amounts are in the ratio {a}:{b}. The first amount is {share_a}. "
-            "Find the second amount."
-        )
-        answer = str(share_b)
-        teaching_steps = [
-            f"The ratio {a}:{b} tells us how the two amounts compare, but not their actual values — to "
-            f"find those, we need to know what a single 'part' of the ratio is worth.",
-            f"We're told the first amount, {share_a}, corresponds to {a} parts of the ratio. Dividing "
-            f"tells us the value of one part: {share_a} ÷ {a} = {k}.",
-            f"The second amount corresponds to {b} parts, so multiply the value of one part by {b}: "
-            f"{b} × {k} = {share_b}.",
-            f"So the second amount is {share_b}.",
-        ]
-        worked_calculation = [
-            f"Ratio {a}:{b}, first amount = {share_a}",
-            f"1 part = {share_a} ÷ {a} = {k}",
-            f"Second amount = {b} × {k} = {share_b}",
-        ]
+    if given_first:
+        given_letter, given_parts, given_value = l1, a, share_a
+        find_letter, find_parts, find_value = l2, b, share_b
     else:
-        prompt = (
-            f"Two amounts are in the ratio {a}:{b}. The first amount is {share_a}. "
-            "Find the total of both amounts."
-        )
-        answer = str(share_a + share_b)
-        teaching_steps = [
-            f"The ratio {a}:{b} tells us how the two amounts compare, but not their actual values — to "
-            "find those, we need to know what a single 'part' of the ratio is worth.",
-            f"We're told the first amount, {share_a}, corresponds to {a} parts of the ratio. Dividing "
-            f"tells us the value of one part: {share_a} ÷ {a} = {k}.",
-            f"The second amount corresponds to {b} parts, so multiply the value of one part by {b}: "
-            f"{b} × {k} = {share_b}.",
-            f"The total of both amounts is the first amount plus the second amount: "
-            f"{share_a} + {share_b} = {share_a + share_b}.",
-        ]
-        worked_calculation = [
-            f"Ratio {a}:{b}, first amount = {share_a}",
-            f"1 part = {share_a} ÷ {a} = {k}",
-            f"Second amount = {b} × {k} = {share_b}",
-            f"Total = {share_a} + {share_b} = {share_a + share_b}",
-        ]
+        given_letter, given_parts, given_value = l2, b, share_b
+        find_letter, find_parts, find_value = l1, a, share_a
+
+    prompt = (
+        f"{l1} : {l2} = {a} : {b}. {given_letter} = {given_value}. "
+        f"What is the value of {find_letter}?"
+    )
+    teaching_steps = [
+        f"The ratio {l1} : {l2} = {a} : {b} tells us how {l1} and {l2} compare, but not their actual "
+        "values - to find those, we need to know what a single 'part' of the ratio is worth.",
+        f"We're told {given_letter} = {given_value}, and {given_letter} corresponds to {given_parts} "
+        f"parts of the ratio. Dividing tells us the value of one part: "
+        f"{given_value} ÷ {given_parts} = {k}.",
+        f"{find_letter} corresponds to {find_parts} parts, so multiply the value of one part by "
+        f"{find_parts}: {find_parts} × {k} = {find_value}.",
+        f"So {find_letter} = {find_value}.",
+    ]
+    worked_calculation = [
+        f"{l1} : {l2} = {a} : {b}, {given_letter} = {given_value}",
+        f"1 part = {given_value} ÷ {given_parts} = {k}",
+        f"{find_letter} = {find_parts} × {k} = {find_value}",
+    ]
 
     return ModelledExample(
         topic_id="ratio_find_missing_share",
@@ -180,7 +179,7 @@ def generate_modelled_example_find_share(tier: Tier, rng: random.Random) -> Mode
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
-        final_answer=answer,
+        final_answer=str(find_value),
     )
 
 
@@ -495,14 +494,14 @@ def generate_ratio_1_to_n(tier: Tier, rng: random.Random) -> Question:
     suffix = " (to 2 d.p.)" if was_rounded else ""
 
     if form == "1:n":
-        prompt = f"Write the ratio {a}:{b} in the form 1:n."
+        prompt = f"Write the ratio {a}:{b} in the form 1:\\plain{{n}}."
         steps = [
             f"Divide both parts of the ratio by {a} (the first part) so the first part becomes 1.",
             f"{a} ÷ {a} = 1, {b} ÷ {a} {approx} {n_display}",
         ]
         answer = f"1 : {n_display}{suffix}"
     else:
-        prompt = f"Write the ratio {a}:{b} in the form n:1."
+        prompt = f"Write the ratio {a}:{b} in the form \\plain{{n}}:1."
         steps = [
             f"Divide both parts of the ratio by {b} (the second part) so the second part becomes 1.",
             f"{a} ÷ {b} {approx} {n_display}, {b} ÷ {b} = 1",
@@ -541,11 +540,11 @@ def generate_modelled_example_ratio_1_to_n(tier: Tier, rng: random.Random) -> Mo
     rounding_note = ", which doesn't come out exact, so we round it to 2 decimal places." if was_rounded else "."
 
     if form == "1:n":
-        prompt = f"Write the ratio {a}:{b} in the form 1:n."
+        prompt = f"Write the ratio {a}:{b} in the form 1:\\plain{{n}}."
         answer = f"1 : {n_display}{suffix}"
         teaching_steps = [
-            "Writing a ratio in the form 1:n means scaling it down so the FIRST part becomes exactly "
-            "1 - everything else has to scale by the same amount to keep the ratio equivalent.",
+            "Writing a ratio in the form 1:\\plain{n} means scaling it down so the FIRST part becomes "
+            "exactly 1 - everything else has to scale by the same amount to keep the ratio equivalent.",
             f"Since the first part is currently {a}, dividing both parts by {a} will turn it into 1. "
             f"{a} ÷ {a} = 1, so that's the left-hand side sorted.",
             f"Do the same division to the second part: {b} ÷ {a} {approx} {n_display}{rounding_note}",
@@ -553,15 +552,15 @@ def generate_modelled_example_ratio_1_to_n(tier: Tier, rng: random.Random) -> Mo
             "sizes, just scaled differently.",
         ]
         worked_calculation = [
-            f"Write {a}:{b} as 1:n",
-            f"n = {b} ÷ {a} {approx} {n_display}",
+            f"Write {a}:{b} as 1:\\plain{{n}}",
+            f"\\plain{{n}} = {b} ÷ {a} {approx} {n_display}",
         ]
     else:
-        prompt = f"Write the ratio {a}:{b} in the form n:1."
+        prompt = f"Write the ratio {a}:{b} in the form \\plain{{n}}:1."
         answer = f"{n_display} : 1{suffix}"
         teaching_steps = [
-            "Writing a ratio in the form n:1 means scaling it down so the SECOND part becomes exactly "
-            "1 - everything else has to scale by the same amount to keep the ratio equivalent.",
+            "Writing a ratio in the form \\plain{n}:1 means scaling it down so the SECOND part becomes "
+            "exactly 1 - everything else has to scale by the same amount to keep the ratio equivalent.",
             f"Since the second part is currently {b}, dividing both parts by {b} will turn it into 1. "
             f"{b} ÷ {b} = 1, so that's the right-hand side sorted.",
             f"Do the same division to the first part: {a} ÷ {b} {approx} {n_display}{rounding_note}",
@@ -569,8 +568,8 @@ def generate_modelled_example_ratio_1_to_n(tier: Tier, rng: random.Random) -> Mo
             "sizes, just scaled differently.",
         ]
         worked_calculation = [
-            f"Write {a}:{b} as n:1",
-            f"n = {a} ÷ {b} {approx} {n_display}",
+            f"Write {a}:{b} as \\plain{{n}}:1",
+            f"\\plain{{n}} = {a} ÷ {b} {approx} {n_display}",
         ]
 
     return ModelledExample(
@@ -592,6 +591,8 @@ def generate_ratio_difference(tier: Tier, rng: random.Random) -> Question:
     part_diff = abs(a - b)
     diff = part_diff * k
     ask_total = rng.choice([True, False])
+    l1, l2 = rng.choice(_LETTER_PAIRS)
+    bigger_letter, smaller_letter = (l1, l2) if a > b else (l2, l1)
 
     if Fraction(share_a, share_b) != Fraction(a, b):
         raise ValueError("ratio_difference verification failed (ratio)")
@@ -601,23 +602,18 @@ def generate_ratio_difference(tier: Tier, rng: random.Random) -> Question:
     steps = [
         f"Difference in parts = {max(a, b)} - {min(a, b)} = {part_diff} parts",
         f"Value of one part = {diff} ÷ {part_diff} = {k}",
-        f"First amount = {a} × {k} = {share_a}",
-        f"Second amount = {b} × {k} = {share_b}",
+        f"{l1} = {a} × {k} = {share_a}",
+        f"{l2} = {b} × {k} = {share_b}",
     ]
+    diff_clause = f"{bigger_letter} - {smaller_letter} = {diff}"
     if ask_total:
         total = share_a + share_b
-        steps.append(f"Total = {share_a} + {share_b} = {total}")
-        prompt = (
-            f"Two amounts are in the ratio {a}:{b}. The difference between them is {diff}. "
-            "Find both amounts and their total."
-        )
-        answer = f"{share_a} : {share_b} (total {total})"
+        steps.append(f"{l1} + {l2} = {share_a} + {share_b} = {total}")
+        prompt = f"{l1} : {l2} = {a} : {b}.\n{diff_clause}.\nFind {l1} and {l2}, and their total."
+        answer = f"{l1} = {share_a}, {l2} = {share_b} (total {total})"
     else:
-        prompt = (
-            f"Two amounts are in the ratio {a}:{b}. The difference between them is {diff}. "
-            "Find both amounts."
-        )
-        answer = f"{share_a} : {share_b}"
+        prompt = f"{l1} : {l2} = {a} : {b}.\n{diff_clause}.\nFind {l1} and {l2}."
+        answer = f"{l1} = {share_a}, {l2} = {share_b}"
 
     return Question(
         topic_id="ratio_difference",
@@ -625,7 +621,7 @@ def generate_ratio_difference(tier: Tier, rng: random.Random) -> Question:
         prompt=prompt,
         solution_steps=tuple(steps),
         final_answer=answer,
-        dedup_key=f"ratio_difference:{a}:{b}:{k}:{ask_total}",
+        dedup_key=f"ratio_difference:{a}:{b}:{k}:{ask_total}:{l1}{l2}",
     )
 
 
@@ -638,6 +634,8 @@ def generate_modelled_example_ratio_difference(tier: Tier, rng: random.Random) -
     part_diff = abs(a - b)
     diff = part_diff * k
     ask_total = rng.choice([True, False])
+    l1, l2 = rng.choice(_LETTER_PAIRS)
+    bigger_letter, smaller_letter = (l1, l2) if a > b else (l2, l1)
 
     # Independent verification via Fraction (separate path from the multiply-out above).
     if Fraction(share_a, share_b) != Fraction(a, b):
@@ -646,40 +644,35 @@ def generate_modelled_example_ratio_difference(tier: Tier, rng: random.Random) -
         raise ValueError("modelled example ratio_difference verification failed (difference)")
 
     total = share_a + share_b
+    diff_clause = f"{bigger_letter} - {smaller_letter} = {diff}"
 
     teaching_steps = [
         f"This is a ratio-sharing question with a twist: instead of being told the TOTAL, we're told "
-        f"the DIFFERENCE between the two amounts, {diff}. The method still starts the same way - work "
+        f"the DIFFERENCE between {l1} and {l2}, {diff}. The method still starts the same way - work "
         "out what one 'part' of the ratio is worth.",
-        f"In the ratio {a}:{b}, the two amounts are {max(a, b)} parts and {min(a, b)} parts, so the "
-        f"gap between them is {max(a, b)} - {min(a, b)} = {part_diff} parts - not {a} + {b} parts, "
-        "since we're subtracting, not sharing a total.",
+        f"In the ratio {l1} : {l2} = {a} : {b}, {l1} and {l2} are {max(a, b)} parts and {min(a, b)} "
+        f"parts, so the gap between them is {max(a, b)} - {min(a, b)} = {part_diff} parts - not "
+        f"{a} + {b} parts, since we're subtracting, not sharing a total.",
         f"That {part_diff}-part gap is worth {diff} in real terms, so one part is worth "
         f"{diff} ÷ {part_diff} = {k}.",
-        f"Now scale each side of the ratio by that value: {a} × {k} = {share_a} and "
-        f"{b} × {k} = {share_b}."
+        f"Now scale each side of the ratio by that value: {l1} = {a} × {k} = {share_a} and "
+        f"{l2} = {b} × {k} = {share_b}."
         + (f" Adding them gives the total: {share_a} + {share_b} = {total}." if ask_total else ""),
-        f"As a check, the difference between the two amounts should still be {diff}: "
+        f"As a check, {diff_clause} should still hold: "
         f"{max(share_a, share_b)} - {min(share_a, share_b)} = {abs(share_a - share_b)}.",
     ]
     worked_calculation = [
-        f"Ratio {a}:{b}, difference = {diff}",
+        f"{l1} : {l2} = {a} : {b}, {diff_clause}",
         f"1 part = {diff} ÷ {part_diff} = {k}",
-        f"{a} × {k} = {share_a}, {b} × {k} = {share_b}",
+        f"{l1} = {a} × {k} = {share_a}, {l2} = {b} × {k} = {share_b}",
     ]
     if ask_total:
-        worked_calculation.append(f"Total = {share_a} + {share_b} = {total}")
-        prompt = (
-            f"Two amounts are in the ratio {a}:{b}. The difference between them is {diff}. "
-            "Find both amounts and their total."
-        )
-        answer = f"{share_a} : {share_b} (total {total})"
+        worked_calculation.append(f"{l1} + {l2} = {share_a} + {share_b} = {total}")
+        prompt = f"{l1} : {l2} = {a} : {b}.\n{diff_clause}.\nFind {l1} and {l2}, and their total."
+        answer = f"{l1} = {share_a}, {l2} = {share_b} (total {total})"
     else:
-        prompt = (
-            f"Two amounts are in the ratio {a}:{b}. The difference between them is {diff}. "
-            "Find both amounts."
-        )
-        answer = f"{share_a} : {share_b}"
+        prompt = f"{l1} : {l2} = {a} : {b}.\n{diff_clause}.\nFind {l1} and {l2}."
+        answer = f"{l1} = {share_a}, {l2} = {share_b}"
 
     return ModelledExample(
         topic_id="ratio_difference",
@@ -700,6 +693,10 @@ def generate_ratio_difference_higher(tier: Tier, rng: random.Random) -> Question
     part_diff = max(a, b, c) - min(a, b, c)
     diff = part_diff * k
     ask_total = rng.choice([True, False])
+    l1, l2, l3 = rng.choice(_LETTER_TRIPLES)
+    parts_by_letter = {l1: a, l2: b, l3: c}
+    max_letter = max(parts_by_letter, key=parts_by_letter.get)
+    min_letter = min(parts_by_letter, key=parts_by_letter.get)
 
     if Fraction(share_a, share_b) != Fraction(a, b):
         raise ValueError("ratio_difference_higher verification failed (a:b)")
@@ -711,26 +708,24 @@ def generate_ratio_difference_higher(tier: Tier, rng: random.Random) -> Question
         raise ValueError("ratio_difference_higher verification failed (difference)")
 
     total = share_a + share_b + share_c
+    diff_clause = f"{max_letter} - {min_letter} = {diff}"
     steps = [
         f"Difference in parts = {max(a, b, c)} - {min(a, b, c)} = {part_diff} parts",
         f"Value of one part = {diff} ÷ {part_diff} = {k}",
-        f"Amount 1 = {a} × {k} = {share_a}",
-        f"Amount 2 = {b} × {k} = {share_b}",
-        f"Amount 3 = {c} × {k} = {share_c}",
+        f"{l1} = {a} × {k} = {share_a}",
+        f"{l2} = {b} × {k} = {share_b}",
+        f"{l3} = {c} × {k} = {share_c}",
     ]
     if ask_total:
-        steps.append(f"Total = {share_a} + {share_b} + {share_c} = {total}")
+        steps.append(f"{l1} + {l2} + {l3} = {share_a} + {share_b} + {share_c} = {total}")
         prompt = (
-            f"Amounts are in the ratio {a}:{b}:{c}. The difference between the largest and smallest "
-            f"amount is {diff}. Find all three amounts and their total."
+            f"{l1} : {l2} : {l3} = {a} : {b} : {c}.\n{diff_clause}.\n"
+            f"Find {l1}, {l2} and {l3}, and their total."
         )
-        answer = f"{share_a} : {share_b} : {share_c} (total {total})"
+        answer = f"{l1} = {share_a}, {l2} = {share_b}, {l3} = {share_c} (total {total})"
     else:
-        prompt = (
-            f"Amounts are in the ratio {a}:{b}:{c}. The difference between the largest and smallest "
-            f"amount is {diff}. Find all three amounts."
-        )
-        answer = f"{share_a} : {share_b} : {share_c}"
+        prompt = f"{l1} : {l2} : {l3} = {a} : {b} : {c}.\n{diff_clause}.\nFind {l1}, {l2} and {l3}."
+        answer = f"{l1} = {share_a}, {l2} = {share_b}, {l3} = {share_c}"
 
     return Question(
         topic_id="ratio_difference_higher",
@@ -738,7 +733,7 @@ def generate_ratio_difference_higher(tier: Tier, rng: random.Random) -> Question
         prompt=prompt,
         solution_steps=tuple(steps),
         final_answer=answer,
-        dedup_key=f"ratio_difference_higher:{a}:{b}:{c}:{k}:{ask_total}",
+        dedup_key=f"ratio_difference_higher:{a}:{b}:{c}:{k}:{ask_total}:{l1}{l2}{l3}",
     )
 
 
@@ -751,6 +746,10 @@ def generate_modelled_example_ratio_difference_higher(tier: Tier, rng: random.Ra
     part_diff = max(a, b, c) - min(a, b, c)
     diff = part_diff * k
     ask_total = rng.choice([True, False])
+    l1, l2, l3 = rng.choice(_LETTER_TRIPLES)
+    parts_by_letter = {l1: a, l2: b, l3: c}
+    max_letter = max(parts_by_letter, key=parts_by_letter.get)
+    min_letter = min(parts_by_letter, key=parts_by_letter.get)
 
     if Fraction(share_a, share_b) != Fraction(a, b):
         raise ValueError("modelled example ratio_difference_higher verification failed (a:b)")
@@ -760,45 +759,43 @@ def generate_modelled_example_ratio_difference_higher(tier: Tier, rng: random.Ra
         raise ValueError("modelled example ratio_difference_higher verification failed (difference)")
 
     total = share_a + share_b + share_c
+    diff_clause = f"{max_letter} - {min_letter} = {diff}"
 
     teaching_steps = [
         "With a three-part ratio, 'the difference' means the gap between the LARGEST share and the "
         "SMALLEST share - the middle one doesn't come into that calculation at all, though it still "
         "needs its own share worked out afterwards.",
-        f"In the ratio {a}:{b}:{c}, the largest part is {max(a, b, c)} and the smallest is "
-        f"{min(a, b, c)}, so the gap between them is {max(a, b, c)} - {min(a, b, c)} = {part_diff} "
-        "parts.",
+        f"In the ratio {l1} : {l2} : {l3} = {a} : {b} : {c}, the largest part is {max(a, b, c)} and "
+        f"the smallest is {min(a, b, c)}, so the gap between them is "
+        f"{max(a, b, c)} - {min(a, b, c)} = {part_diff} parts.",
         f"That {part_diff}-part gap is worth {diff} in real terms, so one part is worth "
         f"{diff} ÷ {part_diff} = {k}.",
         f"Now every share can be found by multiplying its number of parts by that value: "
-        f"{a} × {k} = {share_a}, {b} × {k} = {share_b}, {c} × {k} = {share_c}."
+        f"{l1} = {a} × {k} = {share_a}, {l2} = {b} × {k} = {share_b}, {l3} = {c} × {k} = {share_c}."
         + (
             f" Adding all three gives the total: {share_a} + {share_b} + {share_c} = {total}."
             if ask_total
             else ""
         ),
-        f"As a check, the largest and smallest of those three shares should still differ by {diff}: "
+        f"As a check, {diff_clause} should still hold: "
         f"{max(share_a, share_b, share_c)} - {min(share_a, share_b, share_c)} = "
         f"{max(share_a, share_b, share_c) - min(share_a, share_b, share_c)}.",
     ]
     worked_calculation = [
-        f"Ratio {a}:{b}:{c}, largest - smallest = {diff}",
+        f"{l1} : {l2} : {l3} = {a} : {b} : {c}, {diff_clause}",
         f"1 part = {diff} ÷ {part_diff} = {k}",
-        f"{a} × {k} = {share_a}, {b} × {k} = {share_b}, {c} × {k} = {share_c}",
+        f"{l1} = {a} × {k} = {share_a}, {l2} = {b} × {k} = {share_b}, {l3} = {c} × {k} = {share_c}",
     ]
     if ask_total:
-        worked_calculation.append(f"Total = {share_a} + {share_b} + {share_c} = {total}")
+        worked_calculation.append(f"{l1} + {l2} + {l3} = {share_a} + {share_b} + {share_c} = {total}")
         prompt = (
-            f"Amounts are in the ratio {a}:{b}:{c}. The difference between the largest and smallest "
-            f"amount is {diff}. Find all three amounts and their total."
+            f"{l1} : {l2} : {l3} = {a} : {b} : {c}.\n{diff_clause}.\n"
+            f"Find {l1}, {l2} and {l3}, and their total."
         )
-        answer = f"{share_a} : {share_b} : {share_c} (total {total})"
+        answer = f"{l1} = {share_a}, {l2} = {share_b}, {l3} = {share_c} (total {total})"
     else:
-        prompt = (
-            f"Amounts are in the ratio {a}:{b}:{c}. The difference between the largest and smallest "
-            f"amount is {diff}. Find all three amounts."
-        )
-        answer = f"{share_a} : {share_b} : {share_c}"
+        prompt = f"{l1} : {l2} : {l3} = {a} : {b} : {c}.\n{diff_clause}.\nFind {l1}, {l2} and {l3}."
+        answer = f"{l1} = {share_a}, {l2} = {share_b}, {l3} = {share_c}"
 
     return ModelledExample(
         topic_id="ratio_difference_higher",
@@ -963,22 +960,28 @@ def generate_ratio_shape_similar_foundation(tier: Tier, rng: random.Random) -> Q
     if Fraction(len_b, len_a) != Fraction(answer, len_a2):
         raise ValueError("ratio_shape_similar_foundation verification failed")
 
+    letter = rng.choice(_UNKNOWN_LETTERS)
     steps = [
         f"Scale factor = {len_b} ÷ {len_a} = {_fmt_frac(k)}",
         f"Corresponding length = {len_a2} × {_fmt_frac(k)} = {answer}",
     ]
-    prompt = (
-        f"Shape A and Shape B are similar. A side on shape A is {len_a} cm. The corresponding side "
-        f"on shape B is {len_b} cm. Another side on shape A is {len_a2} cm. Find the length of the "
-        "corresponding side on shape B."
-    )
+    prompt = f"Shape A and Shape B are similar. Find the length of side {letter}."
     return Question(
         topic_id="ratio_shape_similar_foundation",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
         final_answer=f"{answer} cm",
-        dedup_key=f"ratio_shape_similar_f:{len_a}:{len_a2}:{numer}:{denom}",
+        dedup_key=f"ratio_shape_similar_f:{len_a}:{len_a2}:{numer}:{denom}:{letter}",
+        diagram=DiagramSpec(
+            kind="two_similar_rectangles",
+            params={
+                "a_width_label": f"{len_a} cm",
+                "a_height_label": f"{len_a2} cm",
+                "b_width_label": f"{len_b} cm",
+                "b_height_label": letter,
+            },
+        ),
     )
 
 
@@ -1004,11 +1007,8 @@ def generate_modelled_example_ratio_shape_similar_foundation(
     if Fraction(len_b, len_a) != Fraction(answer, len_a2):
         raise ValueError("modelled example ratio_shape_similar_foundation verification failed")
 
-    prompt = (
-        f"Shape A and Shape B are similar. A side on shape A is {len_a} cm. The corresponding side "
-        f"on shape B is {len_b} cm. Another side on shape A is {len_a2} cm. Find the length of the "
-        "corresponding side on shape B."
-    )
+    letter = rng.choice(_UNKNOWN_LETTERS)
+    prompt = f"Shape A and Shape B are similar. Find the length of side {letter}."
     teaching_steps = [
         "When two shapes are similar, every length on one shape is the SAME multiple of the "
         "corresponding length on the other shape - that multiple is called the scale factor.",
@@ -1017,7 +1017,7 @@ def generate_modelled_example_ratio_shape_similar_foundation(
         f"{len_b} ÷ {len_a} = {_fmt_frac(k)}.",
         f"Because the shapes are similar, EVERY other pair of corresponding sides must use that same "
         f"scale factor - so the {len_a2} cm side on shape A becomes "
-        f"{len_a2} × {_fmt_frac(k)} = {answer} cm on shape B.",
+        f"{len_a2} × {_fmt_frac(k)} = {answer} cm on shape B, the side labelled {letter}.",
         "As a check, both pairs of corresponding sides should give the same ratio: "
         f"{len_b}:{len_a} and {answer}:{len_a2} simplify to the same fraction.",
     ]
@@ -1033,6 +1033,15 @@ def generate_modelled_example_ratio_shape_similar_foundation(
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{answer} cm",
+        diagram=DiagramSpec(
+            kind="two_similar_rectangles",
+            params={
+                "a_width_label": f"{len_a} cm",
+                "a_height_label": f"{len_a2} cm",
+                "b_width_label": f"{len_b} cm",
+                "b_height_label": letter,
+            },
+        ),
     )
 
 
@@ -1073,17 +1082,15 @@ def generate_ratio_shape_similar_higher(tier: Tier, rng: random.Random) -> Quest
 
     if direction == "a_to_b":
         prompt = (
-            f"Shape A and Shape B are similar. A length on shape A is {len_a} cm and the "
-            f"corresponding length on shape B is {len_b} cm. The {noun} of shape A is "
-            f"{measure_a} {unit_label}. Find the {noun} of shape B."
+            f"Shape A and Shape B are similar. The {noun} of shape A is {measure_a} {unit_label}. "
+            f"Find the {noun} of shape B."
         )
         answer = f"{measure_b} {unit_label}"
         last_step = f"{noun.capitalize()} of B = {measure_a} × {k_pow_str} = {measure_b} {unit_label}"
     else:
         prompt = (
-            f"Shape A and Shape B are similar. A length on shape A is {len_a} cm and the "
-            f"corresponding length on shape B is {len_b} cm. The {noun} of shape B is "
-            f"{measure_b} {unit_label}. Find the {noun} of shape A."
+            f"Shape A and Shape B are similar. The {noun} of shape B is {measure_b} {unit_label}. "
+            f"Find the {noun} of shape A."
         )
         answer = f"{measure_a} {unit_label}"
         last_step = f"{noun.capitalize()} of A = {measure_b} ÷ {k_pow_str} = {measure_a} {unit_label}"
@@ -1101,6 +1108,10 @@ def generate_ratio_shape_similar_higher(tier: Tier, rng: random.Random) -> Quest
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=f"ratio_shape_similar_h:{sub_type}:{len_a}:{len_b}:{measure_a}:{direction}",
+        diagram=DiagramSpec(
+            kind="two_similar_rectangles",
+            params={"a_width_label": f"{len_a} cm", "b_width_label": f"{len_b} cm"},
+        ),
     )
 
 
@@ -1126,9 +1137,8 @@ def generate_modelled_example_ratio_shape_similar_higher(
 
     if direction == "a_to_b":
         prompt = (
-            f"Shape A and Shape B are similar. A length on shape A is {len_a} cm and the "
-            f"corresponding length on shape B is {len_b} cm. The {noun} of shape A is "
-            f"{measure_a} {unit_label}. Find the {noun} of shape B."
+            f"Shape A and Shape B are similar. The {noun} of shape A is {measure_a} {unit_label}. "
+            f"Find the {noun} of shape B."
         )
         answer = f"{measure_b} {unit_label}"
         worked_calculation = [
@@ -1142,9 +1152,8 @@ def generate_modelled_example_ratio_shape_similar_higher(
         )
     else:
         prompt = (
-            f"Shape A and Shape B are similar. A length on shape A is {len_a} cm and the "
-            f"corresponding length on shape B is {len_b} cm. The {noun} of shape B is "
-            f"{measure_b} {unit_label}. Find the {noun} of shape A."
+            f"Shape A and Shape B are similar. The {noun} of shape B is {measure_b} {unit_label}. "
+            f"Find the {noun} of shape A."
         )
         answer = f"{measure_a} {unit_label}"
         worked_calculation = [
@@ -1176,6 +1185,10 @@ def generate_modelled_example_ratio_shape_similar_higher(
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
+        diagram=DiagramSpec(
+            kind="two_similar_rectangles",
+            params={"a_width_label": f"{len_a} cm", "b_width_label": f"{len_b} cm"},
+        ),
     )
 
 

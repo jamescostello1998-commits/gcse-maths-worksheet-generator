@@ -146,7 +146,6 @@ def test_bag_topics_always_attach_a_bag_diagram_matching_the_prompt():
     for generate, tier in [
         (probability.generate_single_event, Tier.FOUNDATION),
         (probability.generate_complement, Tier.FOUNDATION),
-        (probability.generate_conditional_without_replacement, Tier.HIGHER),
     ]:
         rng = random.Random(211)
         for _ in range(TRIALS):
@@ -157,14 +156,27 @@ def test_bag_topics_always_attach_a_bag_diagram_matching_the_prompt():
                 assert f"{count} {colour}" in q.prompt
 
 
-def test_combined_dice_always_attaches_a_two_die_diagram():
+def test_conditional_attaches_a_blank_question_and_solved_solution_tree():
+    rng = random.Random(2110)
+    for _ in range(TRIALS):
+        q = probability.generate_conditional_without_replacement(Tier.HIGHER, rng)
+        assert q.diagram is not None and q.diagram.kind == "tree_diagram"
+        assert all(prob == "" for _label, prob in q.diagram.params["stage1"])
+        assert all(
+            prob == "" for branch in q.diagram.params["stage2"] for _label, prob in branch
+        )
+        assert q.solution_diagram is not None and q.solution_diagram.kind == "tree_diagram"
+        assert all(prob != "" for _label, prob in q.solution_diagram.params["stage1"])
+        assert all(
+            prob != "" for branch in q.solution_diagram.params["stage2"] for _label, prob in branch
+        )
+
+
+def test_combined_dice_never_attaches_a_diagram():
     rng = random.Random(212)
     for _ in range(TRIALS):
         q = probability.generate_combined_dice(Tier.HIGHER, rng)
-        assert q.diagram is not None
-        assert q.diagram.kind == "dice"
-        assert len(q.diagram.params["values"]) == 2
-        assert all(1 <= v <= 6 for v in q.diagram.params["values"])
+        assert q.diagram is None
 
 
 def test_and_or_rule_always_attaches_a_diagram_of_the_right_kind():
@@ -173,9 +185,12 @@ def test_and_or_rule_always_attaches_a_diagram_of_the_right_kind():
     for _ in range(TRIALS):
         q = probability.generate_and_or_rule(Tier.FOUNDATION, rng)
         assert q.diagram is not None
-        assert q.diagram.kind in ("bag_of_counters", "dice", "spinner")
+        assert q.diagram.kind in ("bag_of_counters", "event_pair")
+        if q.diagram.kind == "event_pair":
+            for event in (q.diagram.params["event_a"], q.diagram.params["event_b"]):
+                assert event["kind"] in ("coin", "dice", "spinner")
         seen_kinds.add(q.diagram.kind)
-    assert seen_kinds == {"bag_of_counters", "dice", "spinner"}
+    assert seen_kinds == {"bag_of_counters", "event_pair"}
 
 
 def test_expectation_attaches_a_dice_diagram_only_for_the_die_context():
@@ -219,26 +234,33 @@ def test_expectation_spinner_diagram_matches_the_stated_probability():
     assert saw_no_diagram_large_denominator
 
 
-def test_listing_outcomes_attaches_a_spinner_diagram_only_for_spinner_scenarios():
+def test_listing_outcomes_attaches_a_diagram_matching_every_scenario():
     rng = random.Random(215)
     saw_spinner_diagram = False
     saw_pair_diagram = False
-    saw_no_diagram = False
+    saw_coin_die_diagram = False
+    saw_two_coins_diagram = False
     for _ in range(TRIALS):
         q = probability.generate_listing_outcomes(Tier.FOUNDATION, rng)
+        assert q.diagram is not None
         if q.dedup_key.startswith("listing:coin_spinner"):
-            assert q.diagram is not None
             assert q.diagram.kind == "spinner"
             saw_spinner_diagram = True
         elif q.dedup_key.startswith("listing:two_spinner3") or q.dedup_key.startswith("listing:spinner3_spinner4"):
-            assert q.diagram is not None
             assert q.diagram.kind == "spinner_pair"
             assert "sectors_a" in q.diagram.params
             assert "sectors_b" in q.diagram.params
             saw_pair_diagram = True
-        else:
-            assert q.diagram is None
-            saw_no_diagram = True
+        elif q.dedup_key.startswith("listing:coin_die"):
+            assert q.diagram.kind == "event_pair"
+            assert q.diagram.params["event_a"]["kind"] == "coin"
+            assert q.diagram.params["event_b"]["kind"] == "dice"
+            saw_coin_die_diagram = True
+        else:  # listing:two_coins
+            assert q.diagram.kind == "coin"
+            assert q.diagram.params["count"] == 2
+            saw_two_coins_diagram = True
     assert saw_spinner_diagram
     assert saw_pair_diagram
-    assert saw_no_diagram
+    assert saw_coin_die_diagram
+    assert saw_two_coins_diagram

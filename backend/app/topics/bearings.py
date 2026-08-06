@@ -12,6 +12,7 @@ from decimal import ROUND_HALF_UP, Decimal
 
 from app.core.models import DiagramSpec, ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
+from app.topics.rounding import pick_rounding
 
 SECTION = "geometry"
 GROUP_BEARINGS = "Bearings"
@@ -85,7 +86,8 @@ def _build_bearings_question(rng: random.Random) -> dict:
 
     _verify_bearings(A, B, C, angle_b_interior, ac, "bearings_cosine_rule")
 
-    rounded = _round_sf(ac, 3)
+    rounding = pick_rounding(rng)
+    rounded = rounding.round_fn(ac)
     back_bearing = (bearing_at_A + 180) % 360
     ac_sq_str = _fmt_dec(_round_sf(ac_sq, 4))
 
@@ -98,6 +100,8 @@ def _build_bearings_question(rng: random.Random) -> dict:
         "d2": d2,
         "ac_sq_str": ac_sq_str,
         "rounded": rounded,
+        "rounding_phrase": rounding.phrase,
+        "rounding_short": rounding.short,
     }
 
 
@@ -105,7 +109,7 @@ def _bearings_prompt(v: dict) -> str:
     return (
         f"A ship sails from port A on a bearing of {_fmt_bearing(v['bearing_at_A'])} for {v['d1']} km "
         f"to point B. It then changes course and sails on a bearing of {_fmt_bearing(v['bearing_at_B'])} "
-        f"for {v['d2']} km to point C. Find the direct distance from A to C, correct to 3 significant figures."
+        f"for {v['d2']} km to point C. Find the direct distance from A to C, correct to {v['rounding_phrase']}."
     )
 
 
@@ -119,7 +123,7 @@ def generate_bearings(tier: Tier, rng: random.Random) -> Question:
         "Use the cosine rule: AC² = AB² + BC² - 2×AB×BC×cos(ABC)",
         f"AC² = {v['d1']}² + {v['d2']}² - 2×{v['d1']}×{v['d2']}×"
         f"cos({v['angle_b_interior']}°) = {v['ac_sq_str']}",
-        f"AC = √{v['ac_sq_str']} = {_fmt_dec(v['rounded'])} km (3 s.f.)",
+        f"AC = √{v['ac_sq_str']} = {_fmt_dec(v['rounded'])} km ({v['rounding_short']})",
     ]
     diagram = DiagramSpec(
         kind="bearings",
@@ -159,7 +163,7 @@ def generate_modelled_example_bearings(tier: Tier, rng: random.Random) -> Modell
         f"AC² = AB² + BC² - 2×AB×BC×cos(ABC), giving AC² = "
         f"{v['d1']}² + {v['d2']}² - 2×{v['d1']}×{v['d2']}×cos({v['angle_b_interior']}°) "
         f"= {v['ac_sq_str']}.",
-        f"Take the square root and round to 3 significant figures: AC = √{v['ac_sq_str']} = "
+        f"Take the square root and round to {v['rounding_phrase']}: AC = √{v['ac_sq_str']} = "
         f"{_fmt_dec(v['rounded'])} km.",
     ]
     worked_calculation = [
@@ -190,6 +194,144 @@ def generate_modelled_example_bearings(tier: Tier, rng: random.Random) -> Modell
         final_answer=f"{_fmt_dec(v['rounded'])} km",
         diagram=diagram,
     )
+
+
+def _back_bearing_case(rng: random.Random) -> dict:
+    bearing_at_A = rng.randint(1, 359)
+    back_bearing = (bearing_at_A + 180) % 360
+    if bearing_at_A < 180:
+        step = f"Since {_fmt_bearing(bearing_at_A)} is less than 180°, add 180°: {bearing_at_A} + 180 = {back_bearing}"
+    else:
+        step = f"Since {_fmt_bearing(bearing_at_A)} is 180° or more, subtract 180°: {bearing_at_A} - 180 = {back_bearing}"
+    return {"bearing_at_A": bearing_at_A, "back_bearing": back_bearing, "rule_step": step}
+
+
+def generate_bearings_foundation(tier: Tier, rng: random.Random) -> Question:
+    shape = rng.choice(["back_bearing", "read_bearing"])
+
+    if shape == "back_bearing":
+        v = _back_bearing_case(rng)
+        steps = [
+            "The bearing of A from B (the 'back bearing') always differs from the bearing of B from A "
+            "by exactly 180°.",
+            v["rule_step"],
+        ]
+        diagram = DiagramSpec(
+            kind="bearings",
+            params={"labels": ("A", "B"), "bearing_at_A": v["bearing_at_A"], "leg1_label": ""},
+        )
+        solution_diagram = DiagramSpec(
+            kind="bearings",
+            params={
+                "labels": ("A", "B"), "bearing_at_A": v["bearing_at_A"], "leg1_label": "",
+                "answer_bearing_at_B": v["back_bearing"],
+            },
+        )
+        return Question(
+            topic_id="bearings_foundation",
+            tier=Tier.FOUNDATION,
+            prompt=f"The bearing of B from A is {_fmt_bearing(v['bearing_at_A'])}. Find the bearing of A from B.",
+            solution_steps=tuple(steps),
+            final_answer=_fmt_bearing(v["back_bearing"]),
+            dedup_key=f"bearings_back:{v['bearing_at_A']}",
+            diagram=diagram,
+            solution_diagram=solution_diagram,
+        )
+
+    bearing = rng.randint(1, 359)
+    steps = [
+        "A bearing is always written as three figures, measured clockwise from north.",
+        f"Reading the angle shown from north: {bearing}°, written as a three-figure bearing: "
+        f"{_fmt_bearing(bearing)}.",
+    ]
+    diagram = DiagramSpec(
+        kind="bearings",
+        params={"labels": ("A", "B"), "bearing_at_A": bearing, "leg1_label": ""},
+    )
+    return Question(
+        topic_id="bearings_foundation",
+        tier=Tier.FOUNDATION,
+        prompt="The diagram shows the bearing of B from A. Write down the bearing of B from A as a "
+        "three-figure bearing.",
+        solution_steps=tuple(steps),
+        final_answer=_fmt_bearing(bearing),
+        dedup_key=f"bearings_read:{bearing}",
+        diagram=diagram,
+    )
+
+
+def generate_modelled_example_bearings_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
+    shape = rng.choice(["back_bearing", "read_bearing"])
+
+    if shape == "back_bearing":
+        v = _back_bearing_case(rng)
+        teaching_steps = [
+            "A bearing describes a direction as an angle measured clockwise from north, always written "
+            "using three figures (e.g. 007°, not 7°).",
+            "The bearing of A from B - looking back the way you came - is always exactly 180° different "
+            "from the bearing of B from A, since north at A and north at B point the same way, but you're "
+            "now facing the opposite direction along the same line.",
+            v["rule_step"],
+            f"So the bearing of A from B is {_fmt_bearing(v['back_bearing'])}.",
+        ]
+        worked_calculation = [
+            f"Bearing of B from A = {_fmt_bearing(v['bearing_at_A'])}",
+            v["rule_step"],
+            f"Bearing of A from B = {_fmt_bearing(v['back_bearing'])}",
+        ]
+        diagram = DiagramSpec(
+            kind="bearings",
+            params={
+                "labels": ("A", "B"), "bearing_at_A": v["bearing_at_A"], "leg1_label": "",
+                "answer_bearing_at_B": v["back_bearing"],
+            },
+        )
+        return ModelledExample(
+            topic_id="bearings_foundation",
+            tier=Tier.FOUNDATION,
+            prompt=f"The bearing of B from A is {_fmt_bearing(v['bearing_at_A'])}. Find the bearing of A from B.",
+            worked_calculation=tuple(worked_calculation),
+            teaching_steps=tuple(teaching_steps),
+            final_answer=_fmt_bearing(v["back_bearing"]),
+            diagram=diagram,
+        )
+
+    bearing = rng.randint(1, 359)
+    teaching_steps = [
+        "A bearing is always measured clockwise, starting from north - never anticlockwise, and never "
+        "measured from any other direction such as south or east.",
+        "It's always written with three digits, padding with leading zeros where needed - so an angle of "
+        "7° is written as the bearing 007°, not 7°, and an angle of 63° is written as 063°.",
+        f"Here the angle measured clockwise from north is {bearing}°, so as a three-figure bearing that's "
+        f"{_fmt_bearing(bearing)}.",
+    ]
+    worked_calculation = [f"Angle from north = {bearing}°", f"Bearing = {_fmt_bearing(bearing)}"]
+    diagram = DiagramSpec(
+        kind="bearings",
+        params={"labels": ("A", "B"), "bearing_at_A": bearing, "leg1_label": ""},
+    )
+    return ModelledExample(
+        topic_id="bearings_foundation",
+        tier=Tier.FOUNDATION,
+        prompt="The diagram shows the bearing of B from A. Write down the bearing of B from A as a "
+        "three-figure bearing.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=_fmt_bearing(bearing),
+        diagram=diagram,
+    )
+
+
+TOPIC_BEARINGS_FOUNDATION = TopicDefinition(
+    id="bearings_foundation",
+    display_name="Bearings",
+    description="Find a back bearing, or read a three-figure bearing directly from a diagram.",
+    generate=generate_bearings_foundation,
+    section=SECTION,
+    group=GROUP_BEARINGS,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_bearings_foundation,
+)
 
 
 TOPIC_BEARINGS_COSINE_RULE = TopicDefinition(

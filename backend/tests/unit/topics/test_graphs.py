@@ -9,6 +9,8 @@ GENERATORS = [
     (graphs.generate_plot_straight_line, Tier.FOUNDATION),
     (graphs.generate_plot_quadratic, Tier.FOUNDATION),
     (graphs.generate_plot_cubic, Tier.HIGHER),
+    (graphs.generate_plot_exponential, Tier.HIGHER),
+    (graphs.generate_trig_graph, Tier.HIGHER),
     (graphs.generate_plot_reciprocal, Tier.HIGHER),
     (graphs.generate_plot_distance_time, Tier.FOUNDATION),
     (graphs.generate_line_equation_from_graph, Tier.FOUNDATION),
@@ -23,6 +25,8 @@ PLOTTING_GENERATORS = [
     (graphs.generate_plot_straight_line, Tier.FOUNDATION),
     (graphs.generate_plot_quadratic, Tier.FOUNDATION),
     (graphs.generate_plot_cubic, Tier.HIGHER),
+    (graphs.generate_plot_exponential, Tier.HIGHER),
+    (graphs.generate_trig_graph, Tier.HIGHER),
     (graphs.generate_plot_reciprocal, Tier.HIGHER),
     (graphs.generate_plot_distance_time, Tier.FOUNDATION),
 ]
@@ -50,13 +54,14 @@ def test_plotting_generators_provide_blank_axes_on_the_question_and_a_completed_
             assert not q.solution_diagram.params.get("blank", False)
 
 
-def test_line_equation_from_graph_diagram_shows_the_two_marked_points():
+def test_line_equation_from_graph_diagram_has_no_dots():
     rng = random.Random(232)
     for _ in range(TRIALS):
         q = graphs.generate_line_equation_from_graph(Tier.FOUNDATION, rng)
         assert q.diagram is not None
         assert q.diagram.kind == "function_graph"
-        assert len(q.diagram.params["table_points"]) == 2
+        assert q.diagram.params["kind"] == "linear"
+        assert "table_points" not in q.diagram.params
 
 
 def test_graph_transformations_diagram_matches_notation():
@@ -104,6 +109,8 @@ def test_topic_definitions_have_expected_metadata():
         graphs.TOPIC_PLOT_STRAIGHT_LINE,
         graphs.TOPIC_PLOT_QUADRATIC,
         graphs.TOPIC_PLOT_CUBIC,
+        graphs.TOPIC_PLOT_EXPONENTIAL,
+        graphs.TOPIC_TRIG_GRAPH,
         graphs.TOPIC_PLOT_RECIPROCAL,
         graphs.TOPIC_PLOT_DISTANCE_TIME,
         graphs.TOPIC_LINE_EQUATION_FROM_GRAPH,
@@ -114,7 +121,7 @@ def test_topic_definitions_have_expected_metadata():
         graphs.TOPIC_GRAPH_TRANSFORMATIONS,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 11
+    assert len(ids) == 13
     for t in topics:
         assert t.section == "algebra"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
@@ -123,6 +130,8 @@ def test_topic_definitions_have_expected_metadata():
         graphs.TOPIC_PLOT_STRAIGHT_LINE,
         graphs.TOPIC_PLOT_QUADRATIC,
         graphs.TOPIC_PLOT_CUBIC,
+        graphs.TOPIC_PLOT_EXPONENTIAL,
+        graphs.TOPIC_TRIG_GRAPH,
         graphs.TOPIC_PLOT_RECIPROCAL,
         graphs.TOPIC_PLOT_DISTANCE_TIME,
     ]
@@ -139,6 +148,8 @@ MODELLED_EXAMPLE_GENERATORS = [
     (graphs.generate_modelled_example_plot_straight_line, Tier.FOUNDATION, "plot_straight_line"),
     (graphs.generate_modelled_example_plot_quadratic, Tier.FOUNDATION, "plot_quadratic"),
     (graphs.generate_modelled_example_plot_cubic, Tier.HIGHER, "plot_cubic"),
+    (graphs.generate_modelled_example_plot_exponential, Tier.HIGHER, "plot_exponential"),
+    (graphs.generate_modelled_example_trig_graph, Tier.HIGHER, "trig_graph"),
     (graphs.generate_modelled_example_plot_reciprocal, Tier.HIGHER, "plot_reciprocal"),
     (graphs.generate_modelled_example_plot_distance_time, Tier.FOUNDATION, "plot_distance_time"),
     (graphs.generate_modelled_example_line_equation_from_graph, Tier.FOUNDATION, "line_equation_from_graph"),
@@ -155,6 +166,8 @@ def test_all_topics_have_modelled_example_wired():
         graphs.TOPIC_PLOT_STRAIGHT_LINE,
         graphs.TOPIC_PLOT_QUADRATIC,
         graphs.TOPIC_PLOT_CUBIC,
+        graphs.TOPIC_PLOT_EXPONENTIAL,
+        graphs.TOPIC_TRIG_GRAPH,
         graphs.TOPIC_PLOT_RECIPROCAL,
         graphs.TOPIC_PLOT_DISTANCE_TIME,
         graphs.TOPIC_LINE_EQUATION_FROM_GRAPH,
@@ -186,7 +199,7 @@ def test_modelled_example_generators_produce_verified_examples():
 
 
 def test_modelled_example_plotting_diagrams_are_never_blank():
-    plotting_generators = MODELLED_EXAMPLE_GENERATORS[:5]
+    plotting_generators = MODELLED_EXAMPLE_GENERATORS[: len(PLOTTING_GENERATORS)]
     for generate, tier, _ in plotting_generators:
         rng = random.Random(331)
         for _ in range(20):
