@@ -12,16 +12,18 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-Step 41 completed a large review-feedback batch covering the first 100 pages of the
-`all_topics_review_*.pdf` documents (~24 named items, all Number/Algebra topics plus
-several cross-cutting engine fixes) — **this is explicitly a paginated continuation of
-the same review process**, not a second full pass: the user is working through the
-296-topic (now 301-topic) review PDF a chunk at a time. Freshly regenerated review PDFs
-reflecting this batch were sent back. The natural next step is simply to **wait for the
-user's next chunk of feedback** (pages 101-200, etc.) rather than assuming the review is
-done — this batch's own scope confirms there's more to come, not less.
+Step 42 completed a review-feedback batch covering pages 101-200 of the
+`all_topics_review_*.pdf` documents (~20 named items spanning Algebra, Ratio &
+Proportion, and Geometry) — **this is explicitly a paginated continuation of the same
+review process** running since step 34, not a second full pass: the user is working
+through the 296-topic (now 304-topic) review PDF a chunk at a time. Freshly regenerated
+review PDFs reflecting this batch were sent back, and the batch is committed and pushed.
+The natural next step is simply to **wait for the user's next chunk of feedback** (pages
+201+, etc.) rather than assuming the review is done — this is the fourth review batch in
+a row to arrive as "the next chunk," not a sign the review is finished.
 
-See chronology step 41 below for full technical detail. In short: a Phase-0 engine spike
+See chronology step 42 (most recent) and step 41 below for full technical detail. Step
+41, in short: a Phase-0 engine spike
 extended `fraction_images.py`'s `\frac{}{}` rendering with three new token kinds (a bare
 "x"/"n" italic variable, a bare "^exp" superscript suffix, and a real hook+bar radical) -
 this went through **three genuinely wrong designs** before landing on the right one
@@ -41,11 +43,11 @@ changes" gotcha already documented for `area_mixed_compound` in step 39.
 This work is on the `aqa-spec-gap-topics` branch, part of the same open PR (`gh pr view 3`,
 or the full path `& "C:\Program Files\GitHub CLI\gh.exe" pr view 3` if `gh` isn't on PATH
 in a fresh shell — see "Environment gotchas" below). **Committed and pushed** — commit
-`d0a818e` ("Review-feedback batch: pages 1-100 of Number/Algebra review PDFs"), confirmed
-matching `origin/aqa-spec-gap-topics` exactly (only the two untracked review PDFs remain
-locally, which is correct — see "Regenerating the all-topics aesthetic-review PDFs" below
-for why they're deliberately not committed). 301 topics total (296 + 5 new from this
-step), backend suite 957/957, frontend 61/61, no known bugs.
+`ef40d69` ("Review-feedback batch: pages 101-200 of Number/Algebra/Geometry review
+PDFs"), confirmed matching `origin/aqa-spec-gap-topics` exactly (only the two untracked
+review PDFs remain locally, which is correct — see "Regenerating the all-topics
+aesthetic-review PDFs" below for why they're deliberately not committed). 304 topics
+total, backend suite 958/958, frontend 61/61, no known bugs.
 
 Once the user's next chunk of feedback (or confirmation the review is fully done)
 arrives, check "Ideas for a future session" (bottom of this file) for candidate
@@ -60,7 +62,7 @@ pending review feedback.
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**301 topics across 6 sections**, all procedurally generated with independent
+**304 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.),
@@ -3717,6 +3719,193 @@ fixes), is committed and pushed (see `git log`).
     back to the user. **Not yet committed/pushed as of the end of this
     session** - unlike most prior steps in this chronology, which explicitly
     note committing before ending.
+
+42. New session, a review-feedback batch covering pages 101-200 of the
+    `all_topics_review_*.pdf` documents (~20 named items) - another
+    paginated continuation of the same review process (steps 34-41), this
+    time spanning Algebra (kinematics, graph plotting), Ratio & Proportion,
+    and a large chunk of Geometry (area, angles, Pythagoras, trig). Researched via 3
+    parallel Explore agents plus direct code reads, downloaded and visually
+    inspected the Corbett Maths "Area of Compound Shapes" PDF the user
+    linked (used only to calibrate shape variety/structure, never to copy
+    its content), and rendered the two "no diagram!!!!" Pythagoras topics
+    directly before proposing a fix (confirmed a diagram genuinely was
+    already present and correctly drawn - the real answer, confirmed via
+    `AskUserQuestion`, was "remove it anyway", not "fix it"). 4 scope
+    questions were confirmed via `AskUserQuestion` before planning (recorded
+    in the plan file, `sparkling-swinging-lovelace.md`): `area_composite_
+    rectangles` reworked in place with several shape branches rather than
+    new topics; `best_buys`/`direct_proportion`/`inverse_proportion` keep
+    their existing content and get new `_noncalculator` siblings rather than
+    being rewritten; the ladder diagrams are removed outright; and the
+    squared-paper grid fix goes into the shared `_draw_scaled_axes` helper
+    so every caller benefits, not just the 7 named topics. Worked directly
+    through 6 phases (no parallel subagents this session, given how much of
+    the batch was genuinely cross-cutting engine work touching the same
+    shared files), verifying every change with real renders before moving on
+    - per this project's own "render and look closely" discipline, several
+    of this session's fixes only existed because a first attempt was
+    rendered and found wanting, not because the second attempt was
+    guessed correctly up front.
+
+    **Phase 0 (shared engine work)**: `_draw_scaled_axes` (`diagrams.py`)
+    reworked from "one shared px-per-RAW-UNIT scale, falling back to
+    independent rectangular scaling for lopsided ranges" to "independent
+    'nice' step per axis, one shared pixel-size-per-square" - real squared
+    exercise-book paper convention (a square can represent a different
+    number of units on each axis, e.g. 50° by 0.2, while still rendering as
+    a visual square) - fixing what turned out to be the ACTUAL root cause of
+    "very messy" graphs: the old fine-gridline loop used a hardcoded 1-raw-
+    unit step regardless of which branch fired, so even the "rectangular
+    fallback" for a wide-domain topic like `trig_graph` (360° span) or
+    `plot_cubic` (54-unit y-span) crammed hundreds of 1-unit gridlines into
+    ~170px, rendering as a dense grey smear - confirmed by rendering the
+    actual pre-fix output before assuming the fix was needed at all. Fixes
+    `trig_graph`, `plot_cubic`, `plot_reciprocal`, `plot_distance_time`,
+    `distance_time_interpret`, `velocity_time_interpret`, and (per the
+    confirmed "fix everywhere" scope) every other `_draw_scaled_axes` caller
+    - `draw_grid_transformation`, `draw_loci_construction`,
+    `draw_loci_region`, `circle_equation`, `draw_inequality_region` - all
+    re-rendered and confirmed unaffected/improved, not just the 7 named
+    topics. Also added `_swept_angle_arc` (mirroring `draw_sector`'s own
+    established direct-`ArcPath.addArc` technique) for `draw_angle_line`'s
+    "around a point" missing angle, which is routinely reflex - `_angle_arc`
+    always takes the non-reflex sweep between two ray directions, so it was
+    silently drawing the small complementary wedge on the wrong side instead
+    of the real (often reflex) missing angle, fixing `angles_around_point`/
+    `_higher`'s "still no arc on the missing angle" complaint.
+
+    **Phase 1**: `kinematics_suvat`'s SUVAT preamble box already rendered
+    correctly on both pages (no fix needed there) - only the "Find the X"
+    phrasing in the 3 shared helper functions needed the SUVAT letter
+    appended in brackets (e.g. "Find its final velocity (v)."), fixing both
+    the practice and modelled-example pages at once since both call the same
+    3 functions.
+
+    **Phase 2**: fixed `algebraic_inverse_proportion`'s unconditional
+    `f"x^{n}"` (printed the literal "x^1" when the exponent happened to be
+    1) via a new `_pow_expr` helper. Added 3 new topics -
+    `best_buys_noncalculator`, `direct_proportion_noncalculator`,
+    `inverse_proportion_noncalculator` (296→301 was step 41; this session is
+    301→304) - each using deliberately clean, mental-math-friendly numbers
+    (quantities always a multiple of 100 for best buys so the division is
+    always exact; small numbers related by a clean multiple/factor for the
+    two proportion topics) rather than just being "not guaranteed to need a
+    calculator" like their existing siblings. The 3 existing topics were
+    added to `CALCULATOR_ONLY_TOPIC_IDS` so a non-calculator Practice Test
+    paper now picks the new friendly siblings instead.
+
+    **Phase 3**: `ratio_difference`/`_higher` gained line breaks (a literal
+    `"\n"`, already converted to a real `<br/>` by `mathtext.py`) after the
+    initial ratio statement and before "Find". `draw_two_similar_rectangles`
+    reworked so the shape with the numerically larger given width is drawn
+    visibly larger and positioned first/left (parsing the leading number out
+    of the label strings, which are always real given numbers here, never
+    the unknown itself) - a real bug was caught and fixed in the first
+    version, which had the size ternary tied to the wrong variable (`a_bigger`
+    controlled which shape got large vs small instead of which POSITION
+    (left/right) got large vs small, so the numerically bigger shape was
+    rendering smaller) - caught by rendering, not by re-reading the code.
+
+    **Phase 4**: `area_triangle`/`area_parallelogram` height labels now sit
+    inside the shape when there's genuinely room (measured via `stringWidth`,
+    falling back to outside only when a narrow/tall triangle doesn't have
+    space) - the parallelogram fix in particular found the OTHER side of the
+    dashed height line has far more room by construction (0.85×base vs
+    0.15×base), a purely structural fix needing no dynamic measurement.
+    `area_composite_rectangles` (`area_perimeter.py`) reworked from one fixed
+    corner-notch L-shape into 4 branches - the existing L (now also a mirrored
+    second orientation via a new `corner` param on `draw_l_shape`), a new
+    T-shape (`draw_t_shape`, a genuinely new diagram kind - a horizontal bar
+    over a narrower stem, verified via a real bounding-box-minus-two-notches
+    independent decomposition), and a "given the total area, find x" reverse
+    branch (verified via `sp.solve`) that reuses the existing L-shape diagram
+    with zero new diagram code, just different label content. `area_subtract_
+    compound`/`_foundation` gained a genuine minimum-hole-size safety net in
+    `draw_l_shape`: `stringWidth`-measured stacked/side-by-side layout
+    checks, falling back to a single combined caption below the hole (in the
+    always-spacious shaded frame) when a hole is too small for either -
+    replacing a cramped "5 cm2 cm" collision found by rendering a small-hole
+    case directly (also tightened the generators' own minimum inner
+    dimension from 2 to 3 to reduce how often the fallback is even needed).
+    `draw_sector`'s radius label moved from near the arc's own endpoint to
+    the midpoint of the fixed top ray, verified correct across narrow/right-
+    angle/reflex sector angles.
+
+    **Phase 5**: `angles_triangle_higher`'s shared `draw_triangle_angles`
+    radius bumped 45→52 (a general "make angle diagrams bigger where there's
+    room" pass, applied opportunistically per the user's standing
+    instruction rather than as an isolated fix). `draw_parallel_lines`/
+    `draw_exterior_triangle` reworked so the drawn geometry roughly visually
+    matches the real angle value passed in (a genuine numeric `known_value`/
+    `interior1_value` now reaches the diagram, not just pre-formatted label
+    strings) - bucketed into 3 pre-verified-safe slopes/apex positions rather
+    than a continuous function, since the existing label-offset tuning was
+    calibrated against one moderate shape and an untested extreme risked a
+    new overlap; confirmed via a 3×3 grid render (3 angle buckets × 3
+    relation types) that a ~90° angle now genuinely looks like a right angle
+    for every relation type, directly fixing the user's own named example.
+    `draw_exterior_triangle`'s own rework surfaced a real, independently
+    confirmed overlap: the wide `interior2_label` (e.g. "(2x+4)°") crossed
+    its own vertex's angle arc - two fix attempts (scaling the existing
+    centroid-inset distance; switching to `anchor="start"`) were tried and
+    rendered before the real fix (a much more aggressive `stringWidth`-based
+    inset factor, keeping the default centred anchor) actually cleared it,
+    confirmed across all 3 angle buckets × 2 shape variants.
+
+    **Phase 6**: removed the diagram entirely from `pythagoras_ladder_context`/
+    `_foundation` (both the practice and modelled-example generators, both
+    tiers) per the user's explicit confirmation - text-only now. While in
+    the file, fixed a real, unrelated pre-existing bug noticed in passing:
+    the Foundation generator's `k=1..3` multiplier on the shared
+    `PRIMITIVE_TRIPLES` pool could produce a ladder over 180m (confirmed via
+    a direct render showing "122 m"/"183 m") - capped to 125m (the largest
+    cap that still keeps at least 20 distinct (triple, k) combinations
+    available, needed for this topic's own default 20-question worksheet - a
+    first, stricter cap of 80m only left 18 combinations and was caught by
+    the full suite's own dedup-variety test, not assumed sufficient).
+    Fixed the review script's doubled tier suffix ("Ladder Context
+    (Foundation) (Foundation)", for any topic whose display name already
+    ends with its own tier in parentheses) - a second bug noticed in passing
+    while verifying the ladder topics' actual review-PDF pages. Fixed a real
+    `draw_cuboid` bug affecting `pythagoras_3d`/`trig_3d`: vertex D (the one
+    hidden back-bottom-left vertex) projects visually INSIDE the front
+    face's own silhouette in oblique projection, unlike every other vertex -
+    pushing it outward from the overall centroid by the same small fixed
+    distance used for every other vertex left it overlapping the dashed
+    lines converging there; a first fix (push straight down below the front
+    face) collided with the width label instead ("D14 cm" running together),
+    confirmed only by rendering; the working fix pushes D further down,
+    clearing both. Added genuine shape variety to `draw_trig_triangle`/
+    `draw_general_triangle` (both previously 100% fixed vertex coordinates
+    every single render) via a new `_shape_variant` helper - a small index
+    derived deterministically from each diagram's own label content (an
+    explicit char-code sum, NOT Python's built-in `hash()`, which is
+    randomised per-process for strings, per this file's own documented
+    gotcha) - bucketed into 3 pre-verified-safe vertex layouts per diagram
+    kind, confirmed via a 6-image grid render that all 3 genuinely look
+    different and that the existing centroid-inset label-clearance logic
+    still works at the new range of shapes. That same verification render
+    caught a real, independently confirmed bug: `draw_trig_triangle`'s angle
+    label used a fixed 0.4 centroid-inset factor (unlike its sibling
+    `draw_general_triangle`, which already had `stringWidth`-based scaling)
+    - fine for short labels, but a wide algebraic one like "(2x+15)°"
+    visibly crossed the hypotenuse on the wider/flatter of the 3 new
+    variants; fixed by applying the same `stringWidth`-based scaling
+    `draw_general_triangle` already used, confirmed clean across all 3
+    variants afterward.
+
+    Central verification: full backend suite grew from 957 to 958 tests (one
+    new test confirming the two ladder topics have no diagram); frontend
+    unaffected (61/61 - no frontend files touched this session). Topic count
+    grew from 301 to 304 (the 3 new non-calculator siblings). All 60 Practice
+    Test papers rebuilt (`area_composite_rectangles`' diagram param shape
+    changed - the same "frozen JSON goes stale" gotcha already documented
+    for `area_mixed_compound`/`simultaneous_graphically` in steps 39/41),
+    confirmed still exactly 100 marks per paper afterward. The review PDFs
+    were regenerated (304 question pages, up from 301; 315 answer pages, up
+    from 312) and sent back to the user. Committed and pushed - see `git
+    log` for the exact commit.
 
 ## Environment gotchas (Windows, this machine specifically)
 
