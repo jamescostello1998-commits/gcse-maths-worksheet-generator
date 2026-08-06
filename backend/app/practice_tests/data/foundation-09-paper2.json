@@ -124,7 +124,7 @@
     },
     {
       "topic_id": "recurring_decimal_single_digit",
-      "prompt": "The recurring decimal \\recur{0.}{2} can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Show that \\recur{0.}{2} can be written as 2/9.",
       "solution_steps": [
         "Let x = \\recur{0.}{2}, so 10x = 2.222... (only one digit repeats, so multiply by 10 to shift it one place)",
         "Subtract: 10x - x = 2 - 0, so 9x = 2",
@@ -159,7 +159,7 @@
     },
     {
       "topic_id": "fractions_equivalent_diagram",
-      "prompt": "Shape A is divided into 4 equal parts, with 1 shaded. Shape B is divided into 8 equal parts. How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
+      "prompt": "How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
       "solution_steps": [
         "Shape A shows 1/4 shaded; Shape B has 8 equal parts.",
         "Find the scale factor between the denominators: 8 ÷ 4 = 2",
@@ -226,7 +226,7 @@
     },
     {
       "topic_id": "negative_ordering",
-      "prompt": "Write these numbers in order, from largest to smallest: 9, -9, -6, -8, 3",
+      "prompt": "Write these numbers in descending order: 9, -9, -6, -8, 3",
       "solution_steps": [
         "Place the numbers on a number line: 9, -9, -6, -8, 3.",
         "Reading them in order from largest to smallest gives: 9, 3, -6, -8, -9."
@@ -283,32 +283,74 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_next_term",
-      "prompt": "Find the next term in the sequence: 6, 9, 12, 15, ...",
+      "topic_id": "congruent_triangle_proof_foundation",
+      "prompt": "O is the centre of a circle. AB and CD are two chords of the circle, with AB = CD. Which congruence criterion proves that the two triangles are congruent? A) ASA  B) RHS  C) SAS  D) SSS",
       "solution_steps": [
-        "Add 3 each time.",
-        "Next term = 15 + 3 = 18"
+        "OA = OC (radii of the circle)",
+        "AB = CD (given, equal chords)",
+        "OB = OD (radii of the circle)",
+        "These facts match the Side-Side-Side (SSS) congruence criterion."
       ],
-      "final_answer": "18",
-      "marks": 3,
+      "final_answer": "D) SSS",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "Add 3 each time.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Next term = 15 + 3 = 18",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "18 oe",
+          "code": "B1",
+          "description": "D) SSS (selecting the correct option)",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_triangle_congruence",
+        "params": {
+          "labels_1": [
+            "O",
+            "A",
+            "B"
+          ],
+          "labels_2": [
+            "O",
+            "C",
+            "D"
+          ],
+          "ticks_1": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              2
+            ],
+            [
+              2,
+              0,
+              3
+            ]
+          ],
+          "ticks_2": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              2
+            ],
+            [
+              2,
+              0,
+              3
+            ]
+          ],
+          "arcs_1": [],
+          "arcs_2": []
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -480,40 +522,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solve_quadratic_factorising_foundation",
-      "prompt": "Solve x^2 + 9x + 8 = 0 by factorising.",
+      "topic_id": "factorise_quadratics_foundation",
+      "prompt": "Factorise: x^2 + 13x + 42",
       "solution_steps": [
-        "Find two numbers that multiply to 8 and add to 9: 8 and 1",
-        "Factorise: (x + 8)(x + 1) = 0",
-        "Either x + 8 = 0 or x + 1 = 0",
-        "x = -8 or x = -1"
+        "Find two numbers that multiply to 42 and add to 13: 7 and 6",
+        "Write as two brackets: (x + 7)(x + 6)"
       ],
-      "final_answer": "x = -8 or x = -1",
-      "marks": 5,
+      "final_answer": "(x + 7)(x + 6)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to 8 and add to 9: 8 and 1",
+          "description": "Find two numbers that multiply to 42 and add to 13: 7 and 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: (x + 8)(x + 1) = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Either x + 8 = 0 or x + 1 = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = -8 or x = -1",
+          "description": "Write as two brackets: (x + 7)(x + 6)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -8 or x = -1 oe",
+          "description": "(x + 7)(x + 6) oe",
           "marks": 1
         }
       ],
@@ -646,6 +676,155 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "inequalities_number_line_foundation",
+      "prompt": "Draw the solution set of x ≤ -4 on a number line.",
+      "solution_steps": [
+        "Draw a filled circle at -4 (the boundary value is included).",
+        "Shade the line to the left of -4, with an arrow showing it continues indefinitely."
+      ],
+      "final_answer": "x ≤ -4",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Draw a filled circle at -4 (the boundary value is included).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Shade the line to the left of -4, with an arrow showing it continues indefinitely.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x ≤ -4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -6,
+            6
+          ],
+          "boundaries": [],
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -6,
+            6
+          ],
+          "boundaries": [
+            {
+              "value": -4,
+              "closed": true
+            }
+          ],
+          "shade": "left"
+        }
+      }
+    },
+    {
+      "topic_id": "ratio_shape_similar_foundation",
+      "prompt": "Shape A and Shape B are similar. Find the length of side z.",
+      "solution_steps": [
+        "Scale factor = 5 ÷ 10 = 1/2",
+        "Corresponding length = 6 × 1/2 = 3"
+      ],
+      "final_answer": "3 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Scale factor = 5 ÷ 10 = 1/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Corresponding length = 6 × 1/2 = 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "two_similar_rectangles",
+        "params": {
+          "a_width_label": "10 cm",
+          "a_height_label": "6 cm",
+          "b_width_label": "5 cm",
+          "b_height_label": "z"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "compound_percentage_foundation",
+      "prompt": "A price of £60 increases by 25%, then decreases by 50%. Find the final price.",
+      "solution_steps": [
+        "After the first change: 60 × 1.25 = 75",
+        "After the second change: 75 × 0.50 = 37.50"
+      ],
+      "final_answer": "£37.50",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "After the first change: 60 × 1.25 = 75",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "After the second change: 75 × 0.50 = 37.50",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£37.50 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_find_missing_share",
+      "prompt": "p : q = 7 : 6. p = 49. What is the value of q?",
+      "solution_steps": [
+        "Value of one part = 49 ÷ 7 = 7",
+        "q = 6 × 7 = 42"
+      ],
+      "final_answer": "42",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Value of one part = 49 ÷ 7 = 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "q = 6 × 7 = 42",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "42 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "direct_proportion",
       "prompt": "If 4 cm on a map represents 112 km in real life, how many km does 2 cm represent?",
       "solution_steps": [
@@ -716,180 +895,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "compound_percentage_foundation",
-      "prompt": "A price of £60 increases by 25%, then decreases by 50%. Find the final price.",
-      "solution_steps": [
-        "After the first change: 60 × 1.25 = 75",
-        "After the second change: 75 × 0.50 = 37.50"
-      ],
-      "final_answer": "£37.50",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "After the first change: 60 × 1.25 = 75",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "After the second change: 75 × 0.50 = 37.50",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£37.50 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_find_missing_share",
-      "prompt": "p : q = 7 : 6. p = 49. What is the value of q?",
-      "solution_steps": [
-        "Value of one part = 49 ÷ 7 = 7",
-        "q = 6 × 7 = 42"
-      ],
-      "final_answer": "42",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Value of one part = 49 ÷ 7 = 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "q = 6 × 7 = 42",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "42 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_shape_similar_foundation",
-      "prompt": "Shape A and Shape B are similar. Find the length of side z.",
-      "solution_steps": [
-        "Scale factor = 5 ÷ 10 = 1/2",
-        "Corresponding length = 6 × 1/2 = 3"
-      ],
-      "final_answer": "3 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Scale factor = 5 ÷ 10 = 1/2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Corresponding length = 6 × 1/2 = 3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "3 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "two_similar_rectangles",
-        "params": {
-          "a_width_label": "10 cm",
-          "a_height_label": "6 cm",
-          "b_width_label": "5 cm",
-          "b_height_label": "z"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "symmetry_rotational",
-      "prompt": "The diagram shows a rectangle. State the order of rotational symmetry.",
-      "solution_steps": [
-        "Rotating the rectangle about its centre, it looks exactly the same 2 times during a full 360° turn.",
-        "So the order of rotational symmetry is 2."
-      ],
-      "final_answer": "order 2",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Rotating the rectangle about its centre, it looks exactly the same 2 times during a full 360° turn.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "So the order of rotational symmetry is 2.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "order 2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "symmetry_shape",
-        "params": {
-          "vertices": [
-            [
-              0,
-              0
-            ],
-            [
-              6,
-              0
-            ],
-            [
-              6,
-              4
-            ],
-            [
-              0,
-              4
-            ]
-          ],
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "symmetry_shape",
-        "params": {
-          "vertices": [
-            [
-              0,
-              0
-            ],
-            [
-              6,
-              0
-            ],
-            [
-              6,
-              4
-            ],
-            [
-              0,
-              4
-            ]
-          ],
-          "rotation_centre": [
-            3.0,
-            2.0
-          ],
-          "rotation_order": 2
-        }
-      }
-    },
-    {
       "topic_id": "transform_translate_complete",
       "prompt": "Translate shape ABCDEF by the vector (-5, -1). Draw and label the image A'B'C'D'E'F'.",
       "solution_steps": [
@@ -955,12 +960,7 @@
             "D",
             "E",
             "F"
-          ],
-          "translation_vector": [
-            -5,
-            -1
-          ],
-          "vector_label": "(-5, -1)"
+          ]
         }
       },
       "solution_diagram": {
@@ -1004,11 +1004,6 @@
             "E",
             "F"
           ],
-          "translation_vector": [
-            -5,
-            -1
-          ],
-          "vector_label": "(-5, -1)",
           "image_vertices": [
             [
               -5,
@@ -1111,7 +1106,8 @@
         "kind": "polygon",
         "params": {
           "n_sides": 12,
-          "marked_angle_label": "?"
+          "marked_angle_label": "?",
+          "mode": "exterior"
         }
       },
       "solution_diagram": null
@@ -1148,82 +1144,73 @@
           "marks": 1
         }
       ],
-      "diagram": {
+      "diagram": null,
+      "solution_diagram": {
         "kind": "net",
         "params": {
           "shape": "cube"
         }
-      },
-      "solution_diagram": null
+      }
     },
     {
-      "topic_id": "tree_diagram_drawing",
-      "prompt": "A bag contains 2 red and 5 blue counters. A counter is picked at random, replaced, and then a second counter is picked at random. Draw a fully-labelled tree diagram to show this information, and use it to find the probability that the first counter is red and the second counter is blue.",
+      "topic_id": "plans_and_elevations",
+      "prompt": "The diagram shows a solid with its dimensions labelled. Draw and label the front elevation, side elevation, and plan view of the solid.",
       "solution_steps": [
-        "Draw two branches from the start: P(red) = 2/7, P(blue) = 5/7.",
-        "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
-        "P(red then blue) = 2/7 × 5/7 = 10/49"
+        "The front elevation is what you see looking at the solid straight on from the front.",
+        "Front elevation: a right-angled triangle, base 3 cm and height 4 cm.",
+        "The side elevation is what you see looking at the solid straight on from the side.",
+        "Side elevation: a rectangle, 6 cm by 4 cm.",
+        "The plan view is what you see looking straight down at the solid from above.",
+        "Plan view: a rectangle, 3 cm by 6 cm."
       ],
-      "final_answer": "10/49",
-      "marks": 4,
+      "final_answer": "Front elevation: a right-angled triangle, base 3 cm and height 4 cm. Side elevation: a rectangle, 6 cm by 4 cm. Plan view: a rectangle, 3 cm by 6 cm.",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw two branches from the start: P(red) = 2/7, P(blue) = 5/7.",
+          "description": "The front elevation is what you see looking at the solid straight on from the front.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
+          "description": "Front elevation: a right-angled triangle, base 3 cm and height 4 cm.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(red then blue) = 2/7 × 5/7 = 10/49",
+          "description": "The side elevation is what you see looking at the solid straight on from the side.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Side elevation: a rectangle, 6 cm by 4 cm. The plan view is what you see looking straight down at the solid from above. Plan view: a rectangle, 3 cm by 6 cm.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10/49 oe",
+          "description": "Front elevation: a right-angled triangle, base 3 cm and height 4 cm. Side elevation: a rectangle, 6 cm by 4 cm. Plan view: a rectangle, 3 cm by 6 cm. oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": {
-        "kind": "tree_diagram",
+      "diagram": {
+        "kind": "plans_and_elevations_question",
         "params": {
-          "stage1": [
-            [
-              "Red",
-              "2/7"
-            ],
-            [
-              "Blue",
-              "5/7"
-            ]
-          ],
-          "stage2": [
-            [
-              [
-                "Red",
-                "2/7"
-              ],
-              [
-                "Blue",
-                "5/7"
-              ]
-            ],
-            [
-              [
-                "Red",
-                "2/7"
-              ],
-              [
-                "Blue",
-                "5/7"
-              ]
-            ]
-          ]
+          "shape": "triangular_prism",
+          "base_label": "3 cm",
+          "triangle_height_label": "4 cm",
+          "length_label": "6 cm"
+        }
+      },
+      "solution_diagram": {
+        "kind": "plans_and_elevations",
+        "params": {
+          "shape": "triangular_prism",
+          "base": 3,
+          "tri_height": 4,
+          "length": 6,
+          "base_label": "3 cm",
+          "tri_height_label": "4 cm",
+          "length_label": "6 cm"
         }
       }
     },
@@ -1272,6 +1259,49 @@
             "both": "6",
             "neither": "11"
           }
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_listing_outcomes",
+      "prompt": "Two 3-sided spinners are spun: one labelled 1, 2, 3 and the other labelled 1, 2, 3. List all the possible outcomes.",
+      "solution_steps": [
+        "There are 3 possible outcomes for the first event and 3 for the second, so there are 3 × 3 = 9 possible combined outcomes.",
+        "For each outcome of the first event, list every outcome of the second event: 11, 12, 13, 21, 22, 23, 31, 32, 33"
+      ],
+      "final_answer": "11, 12, 13, 21, 22, 23, 31, 32, 33",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "There are 3 possible outcomes for the first event and 3 for the second, so there are 3 × 3 = 9 possible combined outcomes.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For each outcome of the first event, list every outcome of the second event: 11, 12, 13, 21, 22, 23, 31, 32, 33",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "11, 12, 13, 21, 22, 23, 31, 32, 33 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "spinner_pair",
+        "params": {
+          "sectors_a": [
+            "1",
+            "2",
+            "3"
+          ],
+          "sectors_b": [
+            "1",
+            "2",
+            "3"
+          ]
         }
       },
       "solution_diagram": null

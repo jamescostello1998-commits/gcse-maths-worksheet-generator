@@ -25,6 +25,8 @@ W_SYM = sp.symbols("w")
 M_SYM = sp.symbols("m")
 B_SYM = sp.symbols("b")
 H_SYM = sp.symbols("h")
+P_SYM = sp.symbols("P")
+E_SYM = sp.symbols("E")
 
 
 def _fmt_frac(frac: Fraction) -> str:
@@ -661,6 +663,567 @@ def generate_modelled_example_substitution_higher(tier: Tier, rng: random.Random
     return dataclasses.replace(example, topic_id="substitution_higher", tier=Tier.HIGHER)
 
 
+# ---------------------------------------------------------------------------
+# Rearrange the formula for a DIFFERENT (non-subject) letter first, then
+# substitute given numbers to find its value - combines changing-the-subject
+# and substitution as one question, per the confirmed clarifying-question
+# design. Reuses the same already-verified formula shapes as
+# substitution_foundation/_higher above, just solving for a different letter
+# each time.
+# ---------------------------------------------------------------------------
+
+
+def _shape_kinematics_rearrange_foundation(rng: random.Random) -> Question:
+    u = rng.randint(1, 20)
+    a = rng.randint(1, 10)
+    t = rng.randint(1, 10)
+    v = u + a * t
+
+    # Independent verification: sp.solve the original equation for a (a
+    # genuinely different path than the manual (v-u)/t rearrangement used to
+    # build the displayed steps), then confirm the concrete numbers still
+    # satisfy the ORIGINAL equation with the derived a substituted back in.
+    solved = sp.solve(sp.Eq(V_SYM, U_SYM + A_SYM * T_SYM), A_SYM)
+    if not solved or solved[0].subs({V_SYM: v, U_SYM: u, T_SYM: t}) != a:
+        raise ValueError("substitution_rearrange kinematics (foundation) verification failed")
+    check = sp.Eq(V_SYM, U_SYM + A_SYM * T_SYM).subs({V_SYM: v, U_SYM: u, T_SYM: t, A_SYM: a})
+    if bool(check) is not True:
+        raise ValueError("substitution_rearrange kinematics (foundation) verification failed (substitution)")
+
+    steps = [
+        "v = u + at",
+        "Rearrange to make a the subject: a = \\frac{v - u}{t}",
+        f"Substitute v = {v}, u = {u} and t = {t}: a = \\frac{{{v} - {u}}}{{{t}}}",
+        f"a = {v - u}/{t} = {a}",
+    ]
+    return Question(
+        topic_id="substitution_rearrange_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"v = u + at. Make a the subject of the formula, then find the value of a when "
+            f"v = {v}, u = {u} and t = {t}."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=f"a = {a}",
+        dedup_key=f"subrearr_kinematics:{v}:{u}:{t}",
+    )
+
+
+def _shape_perimeter_rearrange_foundation(rng: random.Random) -> Question:
+    l = rng.randint(2, 30)
+    w = rng.randint(2, 30)
+    p = 2 * l + 2 * w
+
+    solved = sp.solve(sp.Eq(P_SYM, 2 * L_SYM + 2 * W_SYM), W_SYM)
+    if not solved or solved[0].subs({P_SYM: p, L_SYM: l}) != w:
+        raise ValueError("substitution_rearrange perimeter (foundation) verification failed")
+    check = sp.Eq(P_SYM, 2 * L_SYM + 2 * W_SYM).subs({P_SYM: p, L_SYM: l, W_SYM: w})
+    if bool(check) is not True:
+        raise ValueError("substitution_rearrange perimeter (foundation) verification failed (substitution)")
+
+    steps = [
+        "P = 2L + 2w",
+        "Rearrange to make w the subject: w = \\frac{P - 2L}{2}",
+        f"Substitute P = {p} and L = {l}: w = \\frac{{{p} - 2×{l}}}{{2}}",
+        f"w = {p - 2 * l}/2 = {w}",
+    ]
+    return Question(
+        topic_id="substitution_rearrange_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"P = 2L + 2w. Make w the subject of the formula, then find the value of w when "
+            f"P = {p} and L = {l}."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=f"w = {w}",
+        dedup_key=f"subrearr_perimeter:{p}:{l}",
+    )
+
+
+def _shape_area_rearrange_foundation(rng: random.Random) -> Question:
+    l = rng.randint(2, 20)
+    w = rng.randint(2, 20)
+    area = l * w
+
+    solved = sp.solve(sp.Eq(A_SYM, L_SYM * W_SYM), L_SYM)
+    if not solved or solved[0].subs({A_SYM: area, W_SYM: w}) != l:
+        raise ValueError("substitution_rearrange area (foundation) verification failed")
+    check = sp.Eq(A_SYM, L_SYM * W_SYM).subs({A_SYM: area, L_SYM: l, W_SYM: w})
+    if bool(check) is not True:
+        raise ValueError("substitution_rearrange area (foundation) verification failed (substitution)")
+
+    steps = [
+        "A = LW",
+        "Rearrange to make L the subject: L = \\frac{A}{w}",
+        f"Substitute A = {area} and w = {w}: L = \\frac{{{area}}}{{{w}}}",
+        f"L = {l}",
+    ]
+    return Question(
+        topic_id="substitution_rearrange_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"A = LW. Make L the subject of the formula, then find the value of L when "
+            f"A = {area} and w = {w}."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=f"L = {l}",
+        dedup_key=f"subrearr_area:{area}:{w}",
+    )
+
+
+def _shape_triangle_area_rearrange_foundation(rng: random.Random) -> Question:
+    b = rng.randint(2, 20)
+    h = rng.randint(2, 20)
+    area = Fraction(b * h, 2)
+
+    solved = sp.solve(sp.Eq(A_SYM, sp.Rational(1, 2) * B_SYM * H_SYM), H_SYM)
+    area_rat = sp.Rational(area.numerator, area.denominator)
+    if not solved or sp.simplify(solved[0].subs({A_SYM: area_rat, B_SYM: b}) - h) != 0:
+        raise ValueError("substitution_rearrange triangle area (foundation) verification failed")
+    check = sp.Eq(A_SYM, sp.Rational(1, 2) * B_SYM * H_SYM).subs({A_SYM: area_rat, B_SYM: b, H_SYM: h})
+    if bool(check) is not True:
+        raise ValueError("substitution_rearrange triangle area (foundation) verification failed (substitution)")
+
+    steps = [
+        "A = (1/2)bh",
+        "Rearrange to make h the subject: h = \\frac{2A}{b}",
+        f"Substitute A = {_fmt_frac(area)} and b = {b}: h = \\frac{{2 × {_fmt_frac(area)}}}{{{b}}}",
+        f"h = {h}",
+    ]
+    return Question(
+        topic_id="substitution_rearrange_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"A = (1/2)bh. Make h the subject of the formula, then find the value of h when "
+            f"A = {_fmt_frac(area)} and b = {b}."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=f"h = {h}",
+        dedup_key=f"subrearr_triangle_area:{area.numerator}:{area.denominator}:{b}",
+    )
+
+
+_REARRANGE_FOUNDATION_SHAPES = [
+    _shape_kinematics_rearrange_foundation,
+    _shape_perimeter_rearrange_foundation,
+    _shape_area_rearrange_foundation,
+    _shape_triangle_area_rearrange_foundation,
+]
+
+
+def generate_substitution_rearrange_foundation(tier: Tier, rng: random.Random) -> Question:
+    shape = rng.choice(_REARRANGE_FOUNDATION_SHAPES)
+    q = shape(rng)
+    return dataclasses.replace(q, topic_id="substitution_rearrange_foundation", tier=Tier.FOUNDATION)
+
+
+def _build_speed_squared_exact(rng: random.Random):
+    """Like _build_speed_squared, but rejects unless u^2 + 2as is a perfect
+    square - this rearrange-then-substitute variant states v directly as a
+    clean given number, so an irrational v (needing rounding) would make
+    "substitute v = ..." awkward to state as a clean input."""
+    for _ in range(500):
+        s = rng.randint(1, 20)
+        a = rng.choice([rng.randint(-10, -1), rng.randint(1, 10)])
+        u = rng.randint(1, 15)
+        val = u * u + 2 * a * s
+        if val > 0:
+            root = math.isqrt(val)
+            if root * root == val:
+                return u, a, s, root
+    raise ValueError("substitution_rearrange speed-squared (higher): could not construct a valid question")
+
+
+def _shape_speed_squared_rearrange_higher(rng: random.Random) -> Question:
+    u, a, s, v = _build_speed_squared_exact(rng)
+
+    solved = sp.solve(sp.Eq(V_SYM**2, U_SYM**2 + 2 * A_SYM * S_SYM), S_SYM)
+    if not solved or sp.simplify(solved[0].subs({V_SYM: v, U_SYM: u, A_SYM: a}) - s) != 0:
+        raise ValueError("substitution_rearrange speed-squared (higher) verification failed")
+    check = sp.Eq(V_SYM**2, U_SYM**2 + 2 * A_SYM * S_SYM).subs({V_SYM: v, U_SYM: u, A_SYM: a, S_SYM: s})
+    if bool(check) is not True:
+        raise ValueError("substitution_rearrange speed-squared (higher) verification failed (substitution)")
+
+    a_disp = f"({a})" if a < 0 else str(a)
+    steps = [
+        "v^2 = u^2 + 2as",
+        "Rearrange to make s the subject: s = \\frac{v^2 - u^2}{2a}",
+        f"Substitute v = {v}, u = {u} and a = {a}: s = \\frac{{{v}^2 - {u}^2}}{{2 × {a_disp}}}",
+        f"s = {v * v - u * u}/{2 * a} = {s}",
+    ]
+    return Question(
+        topic_id="substitution_rearrange_higher",
+        tier=Tier.HIGHER,
+        prompt=(
+            f"v^2 = u^2 + 2as. Make s the subject of the formula, then find the value of s when "
+            f"v = {v}, u = {u} and a = {a}."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=f"s = {s}",
+        dedup_key=f"subrearr_speed_sq:{v}:{u}:{a}",
+    )
+
+
+def _shape_kinetic_energy_rearrange_higher(rng: random.Random) -> Question:
+    v = rng.choice([rng.randint(-10, -1), rng.randint(1, 10)])
+    m = rng.randint(2, 20)
+    energy = Fraction(m * v * v, 2)
+
+    solved = sp.solve(sp.Eq(E_SYM, sp.Rational(1, 2) * M_SYM * V_SYM**2), M_SYM)
+    energy_rat = sp.Rational(energy.numerator, energy.denominator)
+    if not solved or sp.simplify(solved[0].subs({E_SYM: energy_rat, V_SYM: v}) - m) != 0:
+        raise ValueError("substitution_rearrange kinetic energy (higher) verification failed")
+    check = sp.Eq(E_SYM, sp.Rational(1, 2) * M_SYM * V_SYM**2).subs({E_SYM: energy_rat, M_SYM: m, V_SYM: v})
+    if bool(check) is not True:
+        raise ValueError("substitution_rearrange kinetic energy (higher) verification failed (substitution)")
+
+    v_sq_disp = _fmt_signed_for_square(v)
+    steps = [
+        "E = (1/2)mv^2",
+        "Rearrange to make m the subject: m = \\frac{2E}{v^2}",
+        f"Substitute E = {_fmt_frac(energy)} and v = {v}: m = \\frac{{2 × {_fmt_frac(energy)}}}{{{v_sq_disp}^2}}",
+        f"m = {m}",
+    ]
+    return Question(
+        topic_id="substitution_rearrange_higher",
+        tier=Tier.HIGHER,
+        prompt=(
+            f"E = (1/2)mv^2. Make m the subject of the formula, then find the value of m when "
+            f"E = {_fmt_frac(energy)} and v = {v}."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=f"m = {m}",
+        dedup_key=f"subrearr_kinetic:{energy.numerator}:{energy.denominator}:{v}",
+    )
+
+
+def _shape_acceleration_rearrange_higher(rng: random.Random) -> Question:
+    u, v, t, a = _build_acceleration(rng)
+
+    solved = sp.solve(sp.Eq(A_SYM, (V_SYM - U_SYM) / T_SYM), U_SYM)
+    a_rat = sp.Rational(a.numerator, a.denominator)
+    if not solved or sp.simplify(solved[0].subs({A_SYM: a_rat, V_SYM: v, T_SYM: t}) - u) != 0:
+        raise ValueError("substitution_rearrange acceleration (higher) verification failed")
+    check = sp.Eq(A_SYM, (V_SYM - U_SYM) / T_SYM).subs({A_SYM: a_rat, U_SYM: u, V_SYM: v, T_SYM: t})
+    if bool(check) is not True:
+        raise ValueError("substitution_rearrange acceleration (higher) verification failed (substitution)")
+
+    steps = [
+        "a = \\frac{v - u}{t}",
+        "Rearrange to make u the subject: u = v - at",
+        f"Substitute v = {v}, a = {_fmt_frac(a)} and t = {t}: u = {v} - {_fmt_frac(a)} × {t}",
+        f"u = {u}",
+    ]
+    return Question(
+        topic_id="substitution_rearrange_higher",
+        tier=Tier.HIGHER,
+        prompt=(
+            f"a = \\frac{{v - u}}{{t}}. Make u the subject of the formula, then find the value of u when "
+            f"v = {v}, a = {_fmt_frac(a)} and t = {t}."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=f"u = {u}",
+        dedup_key=f"subrearr_accel:{v}:{a.numerator}:{a.denominator}:{t}",
+    )
+
+
+_REARRANGE_HIGHER_SHAPES = [
+    _shape_speed_squared_rearrange_higher,
+    _shape_kinetic_energy_rearrange_higher,
+    _shape_acceleration_rearrange_higher,
+]
+
+
+def generate_substitution_rearrange_higher(tier: Tier, rng: random.Random) -> Question:
+    shape = rng.choice(_REARRANGE_HIGHER_SHAPES)
+    q = shape(rng)
+    return dataclasses.replace(q, topic_id="substitution_rearrange_higher", tier=Tier.HIGHER)
+
+
+# ---------------------------------------------------------------------------
+# Modelled examples (rearrange, foundation)
+# ---------------------------------------------------------------------------
+
+
+def _modelled_kinematics_rearrange_foundation(rng: random.Random) -> ModelledExample:
+    u = rng.randint(1, 20)
+    a = rng.randint(1, 10)
+    t = rng.randint(1, 10)
+    v = u + a * t
+
+    solved = sp.solve(sp.Eq(V_SYM, U_SYM + A_SYM * T_SYM), A_SYM)
+    if not solved or solved[0].subs({V_SYM: v, U_SYM: u, T_SYM: t}) != a:
+        raise ValueError("modelled example substitution_rearrange kinematics (foundation) verification failed")
+
+    teaching_steps = [
+        "This question has two parts: first rearrange the formula so a different letter (a) is the "
+        "subject, then substitute the given numbers into that rearranged formula - not the original.",
+        "v = u + at has a being multiplied by t, then u added on. To isolate a: subtract u from both "
+        "sides, then divide by t, giving a = \\frac{v - u}{t}.",
+        f"Now substitute v = {v}, u = {u} and t = {t} into this rearranged formula: "
+        f"a = \\frac{{{v} - {u}}}{{{t}}}.",
+        f"Work out the numerator first: {v} - {u} = {v - u}, then divide by {t}: a = {a}.",
+    ]
+    worked_calculation = [
+        "a = \\frac{v - u}{t}",
+        f"a = \\frac{{{v} - {u}}}{{{t}}}",
+        f"a = {a}",
+    ]
+    return ModelledExample(
+        topic_id="substitution_rearrange_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"v = u + at. Make a the subject of the formula, then find the value of a when "
+            f"v = {v}, u = {u} and t = {t}."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"a = {a}",
+    )
+
+
+def _modelled_perimeter_rearrange_foundation(rng: random.Random) -> ModelledExample:
+    l = rng.randint(2, 30)
+    w = rng.randint(2, 30)
+    p = 2 * l + 2 * w
+
+    solved = sp.solve(sp.Eq(P_SYM, 2 * L_SYM + 2 * W_SYM), W_SYM)
+    if not solved or solved[0].subs({P_SYM: p, L_SYM: l}) != w:
+        raise ValueError("modelled example substitution_rearrange perimeter (foundation) verification failed")
+
+    teaching_steps = [
+        "First rearrange P = 2L + 2w to make w the subject: subtract 2L from both sides, then divide "
+        "by 2, giving w = \\frac{P - 2L}{2}.",
+        f"Now substitute the given values P = {p} and L = {l} into that rearranged formula: "
+        f"w = \\frac{{{p} - 2×{l}}}{{2}}.",
+        f"Work out 2 × {l} = {2 * l} first, then {p} - {2 * l} = {p - 2 * l}, then divide by 2: w = {w}.",
+    ]
+    worked_calculation = [
+        "w = \\frac{P - 2L}{2}",
+        f"w = \\frac{{{p} - 2×{l}}}{{2}}",
+        f"w = {w}",
+    ]
+    return ModelledExample(
+        topic_id="substitution_rearrange_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"P = 2L + 2w. Make w the subject of the formula, then find the value of w when "
+            f"P = {p} and L = {l}."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"w = {w}",
+    )
+
+
+def _modelled_area_rearrange_foundation(rng: random.Random) -> ModelledExample:
+    l = rng.randint(2, 20)
+    w = rng.randint(2, 20)
+    area = l * w
+
+    solved = sp.solve(sp.Eq(A_SYM, L_SYM * W_SYM), L_SYM)
+    if not solved or solved[0].subs({A_SYM: area, W_SYM: w}) != l:
+        raise ValueError("modelled example substitution_rearrange area (foundation) verification failed")
+
+    teaching_steps = [
+        "A = LW says area equals length times width. To make L the subject, divide both sides by w, "
+        "giving L = \\frac{A}{w}.",
+        f"Substitute A = {area} and w = {w} into that rearranged formula: L = \\frac{{{area}}}{{{w}}}.",
+        f"{area} ÷ {w} = {l}.",
+    ]
+    worked_calculation = [
+        "L = \\frac{A}{w}",
+        f"L = \\frac{{{area}}}{{{w}}}",
+        f"L = {l}",
+    ]
+    return ModelledExample(
+        topic_id="substitution_rearrange_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"A = LW. Make L the subject of the formula, then find the value of L when "
+            f"A = {area} and w = {w}."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"L = {l}",
+    )
+
+
+def _modelled_triangle_area_rearrange_foundation(rng: random.Random) -> ModelledExample:
+    b = rng.randint(2, 20)
+    h = rng.randint(2, 20)
+    area = Fraction(b * h, 2)
+
+    solved = sp.solve(sp.Eq(A_SYM, sp.Rational(1, 2) * B_SYM * H_SYM), H_SYM)
+    area_rat = sp.Rational(area.numerator, area.denominator)
+    if not solved or sp.simplify(solved[0].subs({A_SYM: area_rat, B_SYM: b}) - h) != 0:
+        raise ValueError(
+            "modelled example substitution_rearrange triangle area (foundation) verification failed"
+        )
+
+    teaching_steps = [
+        "A = (1/2)bh has a fraction built into the formula. To make h the subject: multiply both "
+        "sides by 2 to clear the fraction, then divide by b, giving h = \\frac{2A}{b}.",
+        f"Substitute A = {_fmt_frac(area)} and b = {b} into that rearranged formula: "
+        f"h = \\frac{{2 × {_fmt_frac(area)}}}{{{b}}}.",
+        f"2 × {_fmt_frac(area)} = {b * h}, then divide by {b}: h = {h}.",
+    ]
+    worked_calculation = [
+        "h = \\frac{2A}{b}",
+        f"h = \\frac{{2 × {_fmt_frac(area)}}}{{{b}}}",
+        f"h = {h}",
+    ]
+    return ModelledExample(
+        topic_id="substitution_rearrange_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"A = (1/2)bh. Make h the subject of the formula, then find the value of h when "
+            f"A = {_fmt_frac(area)} and b = {b}."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"h = {h}",
+    )
+
+
+_REARRANGE_FOUNDATION_MODELLED_SHAPES = [
+    _modelled_kinematics_rearrange_foundation,
+    _modelled_perimeter_rearrange_foundation,
+    _modelled_area_rearrange_foundation,
+    _modelled_triangle_area_rearrange_foundation,
+]
+
+
+def generate_modelled_example_substitution_rearrange_foundation(
+    tier: Tier, rng: random.Random
+) -> ModelledExample:
+    shape = rng.choice(_REARRANGE_FOUNDATION_MODELLED_SHAPES)
+    example = shape(rng)
+    return dataclasses.replace(example, topic_id="substitution_rearrange_foundation", tier=Tier.FOUNDATION)
+
+
+# ---------------------------------------------------------------------------
+# Modelled examples (rearrange, higher)
+# ---------------------------------------------------------------------------
+
+
+def _modelled_speed_squared_rearrange_higher(rng: random.Random) -> ModelledExample:
+    u, a, s, v = _build_speed_squared_exact(rng)
+
+    solved = sp.solve(sp.Eq(V_SYM**2, U_SYM**2 + 2 * A_SYM * S_SYM), S_SYM)
+    if not solved or sp.simplify(solved[0].subs({V_SYM: v, U_SYM: u, A_SYM: a}) - s) != 0:
+        raise ValueError("modelled example substitution_rearrange speed-squared (higher) verification failed")
+
+    a_disp = f"({a})" if a < 0 else str(a)
+    teaching_steps = [
+        "First rearrange v^2 = u^2 + 2as to make s the subject: subtract u^2 from both sides, then "
+        "divide by 2a, giving s = \\frac{v^2 - u^2}{2a}.",
+        f"Substitute v = {v}, u = {u} and a = {a} into that rearranged formula: "
+        f"s = \\frac{{{v}^2 - {u}^2}}{{2 × {a_disp}}}.",
+        f"Work out the numerator first: {v}^2 - {u}^2 = {v * v - u * u}, then divide by "
+        f"2 × {a_disp} = {2 * a}: s = {s}.",
+    ]
+    worked_calculation = [
+        "s = \\frac{v^2 - u^2}{2a}",
+        f"s = \\frac{{{v}^2 - {u}^2}}{{2 × {a_disp}}}",
+        f"s = {s}",
+    ]
+    return ModelledExample(
+        topic_id="substitution_rearrange_higher",
+        tier=Tier.HIGHER,
+        prompt=(
+            f"v^2 = u^2 + 2as. Make s the subject of the formula, then find the value of s when "
+            f"v = {v}, u = {u} and a = {a}."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"s = {s}",
+    )
+
+
+def _modelled_kinetic_energy_rearrange_higher(rng: random.Random) -> ModelledExample:
+    v = rng.choice([rng.randint(-10, -1), rng.randint(1, 10)])
+    m = rng.randint(2, 20)
+    energy = Fraction(m * v * v, 2)
+
+    solved = sp.solve(sp.Eq(E_SYM, sp.Rational(1, 2) * M_SYM * V_SYM**2), M_SYM)
+    energy_rat = sp.Rational(energy.numerator, energy.denominator)
+    if not solved or sp.simplify(solved[0].subs({E_SYM: energy_rat, V_SYM: v}) - m) != 0:
+        raise ValueError("modelled example substitution_rearrange kinetic energy (higher) verification failed")
+
+    v_sq_disp = _fmt_signed_for_square(v)
+    teaching_steps = [
+        "First rearrange E = (1/2)mv^2 to make m the subject: multiply both sides by 2, then divide "
+        "by v^2, giving m = \\frac{2E}{v^2}.",
+        f"Substitute E = {_fmt_frac(energy)} and v = {v} into that rearranged formula: "
+        f"m = \\frac{{2 × {_fmt_frac(energy)}}}{{{v_sq_disp}^2}}.",
+        f"Square v first (a negative squares to a positive): {v_sq_disp}^2 = {v * v}, then work out "
+        f"m = {m}.",
+    ]
+    worked_calculation = [
+        "m = \\frac{2E}{v^2}",
+        f"m = \\frac{{2 × {_fmt_frac(energy)}}}{{{v_sq_disp}^2}}",
+        f"m = {m}",
+    ]
+    return ModelledExample(
+        topic_id="substitution_rearrange_higher",
+        tier=Tier.HIGHER,
+        prompt=(
+            f"E = (1/2)mv^2. Make m the subject of the formula, then find the value of m when "
+            f"E = {_fmt_frac(energy)} and v = {v}."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"m = {m}",
+    )
+
+
+def _modelled_acceleration_rearrange_higher(rng: random.Random) -> ModelledExample:
+    u, v, t, a = _build_acceleration(rng)
+
+    solved = sp.solve(sp.Eq(A_SYM, (V_SYM - U_SYM) / T_SYM), U_SYM)
+    a_rat = sp.Rational(a.numerator, a.denominator)
+    if not solved or sp.simplify(solved[0].subs({A_SYM: a_rat, V_SYM: v, T_SYM: t}) - u) != 0:
+        raise ValueError("modelled example substitution_rearrange acceleration (higher) verification failed")
+
+    teaching_steps = [
+        "First rearrange a = \\frac{v - u}{t} to make u the subject: multiply both sides by t, then "
+        "rearrange for u, giving u = v - at.",
+        f"Substitute v = {v}, a = {_fmt_frac(a)} and t = {t} into that rearranged formula: "
+        f"u = {v} - {_fmt_frac(a)} × {t}.",
+        f"Work out {_fmt_frac(a)} × {t} first, then subtract from {v}: u = {u}.",
+    ]
+    worked_calculation = [
+        "u = v - at",
+        f"u = {v} - {_fmt_frac(a)} × {t}",
+        f"u = {u}",
+    ]
+    return ModelledExample(
+        topic_id="substitution_rearrange_higher",
+        tier=Tier.HIGHER,
+        prompt=(
+            f"a = \\frac{{v - u}}{{t}}. Make u the subject of the formula, then find the value of u when "
+            f"v = {v}, a = {_fmt_frac(a)} and t = {t}."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"u = {u}",
+    )
+
+
+_REARRANGE_HIGHER_MODELLED_SHAPES = [
+    _modelled_speed_squared_rearrange_higher,
+    _modelled_kinetic_energy_rearrange_higher,
+    _modelled_acceleration_rearrange_higher,
+]
+
+
+def generate_modelled_example_substitution_rearrange_higher(tier: Tier, rng: random.Random) -> ModelledExample:
+    shape = rng.choice(_REARRANGE_HIGHER_MODELLED_SHAPES)
+    example = shape(rng)
+    return dataclasses.replace(example, topic_id="substitution_rearrange_higher", tier=Tier.HIGHER)
+
+
 TOPIC_SUBSTITUTION_FOUNDATION = TopicDefinition(
     id="substitution_foundation",
     display_name="Substituting into Formulae",
@@ -684,4 +1247,29 @@ TOPIC_SUBSTITUTION_HIGHER = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_substitution_higher,
+)
+
+TOPIC_SUBSTITUTION_REARRANGE_FOUNDATION = TopicDefinition(
+    id="substitution_rearrange_foundation",
+    display_name="Rearranging and Substituting into Formulae",
+    description="Rearrange a formula for a different letter, then substitute given values to find it.",
+    generate=generate_substitution_rearrange_foundation,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_substitution_rearrange_foundation,
+)
+
+TOPIC_SUBSTITUTION_REARRANGE_HIGHER = TopicDefinition(
+    id="substitution_rearrange_higher",
+    display_name="Rearranging and Substituting into Formulae (Higher)",
+    description=(
+        "Rearrange a formula involving a power or an algebraic fraction for a different letter, "
+        "then substitute given values to find it."
+    ),
+    generate=generate_substitution_rearrange_higher,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_substitution_rearrange_higher,
 )

@@ -72,7 +72,7 @@
     },
     {
       "topic_id": "negative_ordering",
-      "prompt": "Write these numbers in order, from smallest to largest: -6, -9, 7, 5, 2",
+      "prompt": "Write these numbers in ascending order: -6, -9, 7, 5, 2",
       "solution_steps": [
         "Place the numbers on a number line: -6, -9, 7, 5, 2.",
         "Reading them in order from smallest to largest gives: -9, -6, 2, 5, 7."
@@ -193,41 +193,22 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solving_inequalities_foundation",
-      "prompt": "Solve the inequality: 6x + 2 ≥ 7",
+      "topic_id": "negative_add_subtract",
+      "prompt": "Work out -14 + (-12).",
       "solution_steps": [
-        "6x + 2 ≥ 7",
-        "Subtract 2 from both sides:",
-        "6x ≥ 5",
-        "Divide both sides by 6:",
-        "x ≥ 5/6"
+        "-14 + (-12) = -26"
       ],
-      "final_answer": "x ≥ 5/6",
-      "marks": 5,
+      "final_answer": "-26",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "6x + 2 ≥ 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 2 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "6x ≥ 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by 6: x ≥ 5/6",
+          "description": "-14 + (-12) = -26",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x ≥ 5/6 oe",
+          "description": "-26 oe",
           "marks": 1
         }
       ],
@@ -236,17 +217,17 @@
     },
     {
       "topic_id": "fractions_equivalent_diagram",
-      "prompt": "The first shape shows 3/4 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
+      "prompt": "The first shape shows 5/6 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
       "solution_steps": [
-        "Cross-multiply 3/4 against each labelled shape: a shape shows an equivalent fraction only if 3 × (its denominator) = (its shaded count) × 4.",
-        "Only shape A) 9/12 works: 3 × 12 = 9 × 4 = 36."
+        "Cross-multiply 5/6 against each labelled shape: a shape shows an equivalent fraction only if 5 × (its denominator) = (its shaded count) × 6.",
+        "Only shape A) 10/12 works: 5 × 12 = 10 × 6 = 60."
       ],
-      "final_answer": "A) 9/12",
+      "final_answer": "A) 10/12",
       "marks": 1,
       "mark_scheme": [
         {
           "code": "B1",
-          "description": "A) 9/12 (selecting the correct option)",
+          "description": "A) 10/12 (selecting the correct option)",
           "marks": 1
         }
       ],
@@ -256,13 +237,13 @@
           "shapes": [
             {
               "kind": "bar",
-              "parts": 4,
-              "shaded": 3
+              "parts": 6,
+              "shaded": 5
             },
             {
               "kind": "bar",
               "parts": 12,
-              "shaded": 9,
+              "shaded": 10,
               "label": "A)"
             },
             {
@@ -283,28 +264,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_next_term",
-      "prompt": "Find the next term in the sequence: 9, 15, 21, 27, 33, ...",
+      "topic_id": "error_interval",
+      "prompt": "A number, x, is 8.7 rounded to 1 decimal place. Write down the error interval for x.",
       "solution_steps": [
-        "Add 6 each time.",
-        "Next term = 33 + 6 = 39"
+        "8.7 is rounded to 1 decimal place, so x can be up to half of that precision above or below 8.7.",
+        "Lower bound: 8.7 - 0.05 = 8.65",
+        "Upper bound: 8.7 + 0.05 = 8.75"
       ],
-      "final_answer": "39",
-      "marks": 3,
+      "final_answer": "8.65 ≤ x < 8.75",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Add 6 each time.",
+          "description": "8.7 is rounded to 1 decimal place, so x can be up to half of that precision above or below 8.7.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Next term = 33 + 6 = 39",
+          "description": "Lower bound: 8.7 - 0.05 = 8.65",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Upper bound: 8.7 + 0.05 = 8.75",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "39 oe",
+          "description": "8.65 ≤ x < 8.75 oe",
           "marks": 1
         }
       ],
@@ -312,42 +299,43 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_multi_step",
-      "prompt": "Solve: 4x + 14 + 4x + 3 = 81",
+      "topic_id": "linear_both_sides_foundation",
+      "prompt": "Solve: 6x + 4 = 2x + 44",
       "solution_steps": [
-        "Collect like terms: 4x + 4x = 8x, 14 + 3 = 17",
-        "8x + 17 = 81",
-        "Subtract 17 from both sides:",
-        "8x = 64",
-        "Divide both sides by 8:",
-        "x = 8"
+        "6x + 4 = 2x + 44",
+        "Subtract 2x from both sides:",
+        "4x + 4 = 44",
+        "Subtract 4 from both sides:",
+        "4x = 40",
+        "Divide both sides by 4:",
+        "x = 10"
       ],
-      "final_answer": "8",
+      "final_answer": "10",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Collect like terms: 4x + 4x = 8x, 14 + 3 = 17",
+          "description": "6x + 4 = 2x + 44",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "8x + 17 = 81",
+          "description": "Subtract 2x from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 17 from both sides:",
+          "description": "4x + 4 = 44",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "8x = 64 Divide both sides by 8: x = 8",
+          "description": "Subtract 4 from both sides: 4x = 40 Divide both sides by 4: x = 10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8 oe",
+          "description": "10 oe",
           "marks": 1
         }
       ],
@@ -355,20 +343,20 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_quadratic",
-      "prompt": "Complete a table of values for y = x^2 - x - 2 for x = -3 to 3, then plot the graph.",
+      "topic_id": "plot_straight_line",
+      "prompt": "Complete a table of values for y = 3x + 3 for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = x^2 - x - 2:",
+        "Table of values for y = 3x + 3:",
         "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: 10, 4, 0, -2, -2, 0, 4",
-        "Plot each (x, y) point and join them with a single smooth curve."
+        "y: -6, -3, 0, 3, 6, 9, 12",
+        "Plot each (x, y) point and join them with a single ruled straight line."
       ],
-      "final_answer": "Quadratic curve: y = x^2 - x - 2",
+      "final_answer": "Straight line: y = 3x + 3",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = x^2 - x - 2:",
+          "description": "Table of values for y = 3x + 3:",
           "marks": 1
         },
         {
@@ -378,53 +366,51 @@
         },
         {
           "code": "M1",
-          "description": "y: 10, 4, 0, -2, -2, 0, 4",
+          "description": "y: -6, -3, 0, 3, 6, 9, 12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Quadratic curve: y = x^2 - x - 2 oe",
+          "description": "Straight line: y = 3x + 3 oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "quadratic",
-          "a": 1,
-          "b": -1,
-          "c": -2,
+          "kind": "linear",
+          "m": 3,
+          "c": 3,
           "x_min": -4,
           "x_max": 4,
-          "y_min": -3,
-          "y_max": 11,
+          "y_min": -7,
+          "y_max": 13,
           "blank": true
         }
       },
       "solution_diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "quadratic",
-          "a": 1,
-          "b": -1,
-          "c": -2,
+          "kind": "linear",
+          "m": 3,
+          "c": 3,
           "x_min": -4,
           "x_max": 4,
-          "y_min": -3,
-          "y_max": 11,
+          "y_min": -7,
+          "y_max": 13,
           "table_points": [
             [
               -3,
-              10
+              -6
             ],
             [
               -2,
-              4
+              -3
             ],
             [
               -1,
@@ -432,19 +418,19 @@
             ],
             [
               0,
-              -2
+              3
             ],
             [
               1,
-              -2
+              6
             ],
             [
               2,
-              0
+              9
             ],
             [
               3,
-              4
+              12
             ]
           ]
         }
@@ -494,28 +480,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_term_to_term_rule",
-      "prompt": "Here are the first four terms of a sequence: 1, 3, 9, 27. Describe the term-to-term rule, and find the next term.",
+      "topic_id": "sequences_next_term",
+      "prompt": "Find the next term in the sequence: 9, 15, 21, 27, 33, ...",
       "solution_steps": [
-        "Term-to-term rule: multiply by 3",
-        "Next term = 81"
+        "Add 6 each time.",
+        "Next term = 33 + 6 = 39"
       ],
-      "final_answer": "Rule: multiply by 3. Next term = 81",
+      "final_answer": "39",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Term-to-term rule: multiply by 3",
+          "description": "Add 6 each time.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Next term = 81",
+          "description": "Next term = 33 + 6 = 39",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Rule: multiply by 3. Next term = 81 oe",
+          "description": "39 oe",
           "marks": 1
         }
       ],
@@ -567,28 +553,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "special_sequences_foundation",
-      "prompt": "The first 3 triangular numbers are: 1, 3, 6. Find the 6th term of the sequence.",
+      "topic_id": "sequences_nth_term",
+      "prompt": "Here are the first four terms of a sequence: -10, -13, -16, -19.\nFind an expression for the nth term.",
       "solution_steps": [
-        "These are the triangular numbers: the nth term is given by \\frac{n(n + 1)}{2}.",
-        "Term 6 = \\frac{6(6 + 1)}{2} = 42/2 = 21"
+        "Common difference = -3",
+        "nth term = -3n - 7",
+        "nth term = -3n - 7"
       ],
-      "final_answer": "21",
-      "marks": 3,
+      "final_answer": "-3n - 7",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "These are the triangular numbers: the nth term is given by \\frac{n(n + 1)}{2}.",
+          "description": "Common difference = -3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Term 6 = \\frac{6(6 + 1)}{2} = 42/2 = 21",
+          "description": "nth term = -3n - 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "nth term = -3n - 7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "21 oe",
+          "description": "-3n - 7 oe",
           "marks": 1
         }
       ],
@@ -816,9 +808,9 @@
     },
     {
       "topic_id": "transform_translate_describe",
-      "prompt": "Shape ABCD is translated to give shape A'B'C'D', shown on the grid. Describe fully the single transformation that maps ABCD onto A'B'C'D'.",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
       "solution_steps": [
-        "Every vertex moves by exactly the same amount: comparing A(1, 0) with A'(1, -3) gives the vector (0, -3).",
+        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (1, 0), with the matching vertex of shape B, (1, -3), gives the vector (0, -3).",
         "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
       ],
       "final_answer": "Translation by the vector (0, -3)",
@@ -826,7 +818,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Every vertex moves by exactly the same amount: comparing A(1, 0) with A'(1, -3) gives the vector (0, -3).",
+          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (1, 0), with the matching vertex of shape B, (1, -3), gives the vector (0, -3).",
           "marks": 1
         },
         {
@@ -866,10 +858,10 @@
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
+            "",
+            "",
+            "",
+            ""
           ],
           "image_vertices": [
             [
@@ -890,10 +882,10 @@
             ]
           ],
           "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'"
+            "",
+            "",
+            "",
+            ""
           ]
         }
       },
@@ -1009,39 +1001,27 @@
     },
     {
       "topic_id": "two_way_tables",
-      "prompt": "The two-way table shows the number of year 10 and year 11 who prefer cats or dogs. Copy and complete the table, and state the missing value marked '?'.",
+      "prompt": "The two-way table shows the number of year 10 and year 11 who prefer cats or dogs. Find the missing values.",
       "solution_steps": [
-        "The missing value is in the 'Year 11' row and 'Cats' column.",
-        "Using the row total: 24 - 7 = 17",
-        "Using the column total: 27 - 10 = 17",
-        "Missing value = 17"
+        "'Year 11' / 'Dogs': using the 'Dogs' column total: 24 - 17 = 7",
+        "'Year 11' / 'Cats': using the 'Cats' column total: 27 - 10 = 17"
       ],
-      "final_answer": "17",
-      "marks": 5,
+      "final_answer": "'Year 11' / 'Dogs' = 7; 'Year 11' / 'Cats' = 17",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The missing value is in the 'Year 11' row and 'Cats' column.",
+          "description": "'Year 11' / 'Dogs': using the 'Dogs' column total: 24 - 17 = 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Using the row total: 24 - 7 = 17",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Using the column total: 27 - 10 = 17",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Missing value = 17",
+          "description": "'Year 11' / 'Cats': using the 'Cats' column total: 27 - 10 = 17",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "17 oe",
+          "description": "'Year 11' / 'Dogs' = 7; 'Year 11' / 'Cats' = 17 oe",
           "marks": 1
         }
       ],
@@ -1065,8 +1045,8 @@
               "27"
             ],
             [
-              "?",
-              "7",
+              "",
+              "",
               "24"
             ],
             [
@@ -1111,45 +1091,96 @@
       }
     },
     {
-      "topic_id": "linear_two_step",
-      "prompt": "Solve: 2x + 10 = 14",
+      "topic_id": "probability_single_event",
+      "prompt": "A bag contains 3 red, 2 blue, 2 yellow counters. A counter is picked at random. Find the probability that it is yellow.",
       "solution_steps": [
-        "2x + 10 = 14",
-        "Subtract 10 from both sides:",
-        "2x = 4",
-        "Divide both sides by 2:",
-        "x = 2"
+        "Total counters = 7",
+        "Number of yellow counters = 2",
+        "P(yellow) = 2/7 = 2/7"
       ],
-      "final_answer": "2",
-      "marks": 5,
+      "final_answer": "2/7",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "2x + 10 = 14",
+          "description": "Total counters = 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 10 from both sides:",
+          "description": "Number of yellow counters = 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x = 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by 2: x = 2",
+          "description": "P(yellow) = 2/7 = 2/7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2 oe",
+          "description": "2/7 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "bag_of_counters",
+        "params": {
+          "counts": {
+            "red": 3,
+            "blue": 2,
+            "yellow": 2
+          }
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "venn_diagram_probability",
+      "prompt": "The Venn diagram shows the number of students in each region for sets A and B. Find P(B only).",
+      "solution_steps": [
+        "Total number of elements = 2 + 14 + 11 + 5 = 32",
+        "Number of outcomes in B only = 14 = 14",
+        "P(B only) = 14/32 = 7/16"
+      ],
+      "final_answer": "7/16",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total number of elements = 2 + 14 + 11 + 5 = 32",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Number of outcomes in B only = 14 = 14",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(B only) = 14/32 = 7/16",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "7/16 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "region_text": {
+            "a_only": "2",
+            "b_only": "14",
+            "both": "11",
+            "neither": "5"
+          }
+        }
+      },
       "solution_diagram": null
     }
   ]

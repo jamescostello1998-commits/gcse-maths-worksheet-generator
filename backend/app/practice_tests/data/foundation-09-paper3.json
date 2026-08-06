@@ -8,33 +8,17 @@
   "questions": [
     {
       "topic_id": "fractions_equivalent_diagram",
-      "prompt": "How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
+      "prompt": "The first shape shows 1/4 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
       "solution_steps": [
-        "Shape A shows 1/4 shaded; Shape B has 12 equal parts.",
-        "Find the scale factor between the denominators: 12 ÷ 4 = 3",
-        "Multiply the shaded count by the same scale factor: 1 × 3 = 3"
+        "Cross-multiply 1/4 against each labelled shape: a shape shows an equivalent fraction only if 1 × (its denominator) = (its shaded count) × 4.",
+        "Only shape C) 3/12 works: 1 × 12 = 3 × 4 = 12."
       ],
-      "final_answer": "3",
-      "marks": 4,
+      "final_answer": "C) 3/12",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "Shape A shows 1/4 shaded; Shape B has 12 equal parts.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Find the scale factor between the denominators: 12 ÷ 4 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the shaded count by the same scale factor: 1 × 3 = 3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "3 oe",
+          "code": "B1",
+          "description": "C) 3/12 (selecting the correct option)",
           "marks": 1
         }
       ],
@@ -43,35 +27,32 @@
         "params": {
           "shapes": [
             {
-              "kind": "circle",
+              "kind": "bar",
               "parts": 4,
               "shaded": 1
             },
             {
-              "kind": "circle",
+              "kind": "bar",
+              "parts": 6,
+              "shaded": 2,
+              "label": "A)"
+            },
+            {
+              "kind": "bar",
+              "parts": 8,
+              "shaded": 6,
+              "label": "B)"
+            },
+            {
+              "kind": "bar",
               "parts": 12,
-              "shaded": 0
+              "shaded": 3,
+              "label": "C)"
             }
           ]
         }
       },
-      "solution_diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "circle",
-              "parts": 4,
-              "shaded": 1
-            },
-            {
-              "kind": "circle",
-              "parts": 12,
-              "shaded": 3
-            }
-          ]
-        }
-      }
+      "solution_diagram": null
     },
     {
       "topic_id": "prime_numbers",
@@ -283,6 +264,29 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "factors",
+      "prompt": "Write down all the factors of 50.",
+      "solution_steps": [
+        "Check every whole number from 1 to 50 to see if it divides exactly: 1, 2, 5, 10, 25, 50"
+      ],
+      "final_answer": "1, 2, 5, 10, 25, 50",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Check every whole number from 1 to 50 to see if it divides exactly: 1, 2, 5, 10, 25, 50",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1, 2, 5, 10, 25, 50 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "special_sequences_foundation",
       "prompt": "The first 4 square numbers are: 1, 4, 9, 16. Find the 7th term of the sequence.",
       "solution_steps": [
@@ -312,134 +316,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_straight_line",
-      "prompt": "Complete a table of values for y = -x + 4 for x = -3 to 3, then plot the graph.",
+      "topic_id": "factorise_quadratics_foundation",
+      "prompt": "Factorise: x^2 + 11x + 24",
       "solution_steps": [
-        "Table of values for y = -x + 4:",
-        "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: 7, 6, 5, 4, 3, 2, 1",
-        "Plot each (x, y) point and join them with a single ruled straight line."
+        "Find two numbers that multiply to 24 and add to 11: 3 and 8",
+        "Write as two brackets: (x + 3)(x + 8)"
       ],
-      "final_answer": "Straight line: y = -x + 4",
-      "marks": 5,
+      "final_answer": "(x + 3)(x + 8)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = -x + 4:",
+          "description": "Find two numbers that multiply to 24 and add to 11: 3 and 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -3, -2, -1, 0, 1, 2, 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y: 7, 6, 5, 4, 3, 2, 1",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
+          "description": "Write as two brackets: (x + 3)(x + 8)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Straight line: y = -x + 4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "linear",
-          "m": -1,
-          "c": 4,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": 0,
-          "y_max": 8,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "linear",
-          "m": -1,
-          "c": 4,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": 0,
-          "y_max": 8,
-          "table_points": [
-            [
-              -3,
-              7
-            ],
-            [
-              -2,
-              6
-            ],
-            [
-              -1,
-              5
-            ],
-            [
-              0,
-              4
-            ],
-            [
-              1,
-              3
-            ],
-            [
-              2,
-              2
-            ],
-            [
-              3,
-              1
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "solve_quadratic_factorising_foundation",
-      "prompt": "Solve x^2 + 9x + 8 = 0 by factorising.",
-      "solution_steps": [
-        "Find two numbers that multiply to 8 and add to 9: 8 and 1",
-        "Factorise: (x + 8)(x + 1) = 0",
-        "Either x + 8 = 0 or x + 1 = 0",
-        "x = -8 or x = -1"
-      ],
-      "final_answer": "x = -8 or x = -1",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find two numbers that multiply to 8 and add to 9: 8 and 1",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise: (x + 8)(x + 1) = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Either x + 8 = 0 or x + 1 = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = -8 or x = -1",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = -8 or x = -1 oe",
+          "description": "(x + 3)(x + 8) oe",
           "marks": 1
         }
       ],
@@ -491,41 +389,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_double_brackets_foundation",
-      "prompt": "Expand and simplify: (x + 7)(4x + 1)",
+      "topic_id": "expand_double_brackets_no_coefficient_foundation",
+      "prompt": "Expand and simplify: (x + 3)(x + 2)",
       "solution_steps": [
-        "First: 1x × 4x = 4x^2",
-        "Outer: 1x × 1 = 1x",
-        "Inner: 7 × 4x = 28x",
-        "Last: 7 × 1 = 7",
-        "Combine like terms: 4x^2 + 29x + 7"
+        "First: x × x = x^2",
+        "Outer: x × 2 = 2x",
+        "Inner: 3 × x = 3x",
+        "Last: 3 × 2 = 6",
+        "Combine like terms: x^2 + 5x + 6"
       ],
-      "final_answer": "4x^2 + 29x + 7",
+      "final_answer": "x^2 + 5x + 6",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First: 1x × 4x = 4x^2",
+          "description": "First: x × x = x^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Outer: 1x × 1 = 1x",
+          "description": "Outer: x × 2 = 2x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Inner: 7 × 4x = 28x",
+          "description": "Inner: 3 × x = 3x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Last: 7 × 1 = 7 Combine like terms: 4x^2 + 29x + 7",
+          "description": "Last: 3 × 2 = 6 Combine like terms: x^2 + 5x + 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4x^2 + 29x + 7 oe",
+          "description": "x^2 + 5x + 6 oe",
           "marks": 1
         }
       ],
@@ -533,40 +431,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "substitution_foundation",
-      "prompt": "v = u + at. Find the value of v when u = 16, a = 7 and t = 8.",
+      "topic_id": "substitution_rearrange_foundation",
+      "prompt": "A = LW. Make L the subject of the formula, then find the value of L when A = 52 and w = 4.",
       "solution_steps": [
-        "v = u + at",
-        "v = 16 + 7 × 8",
-        "v = 16 + 56",
-        "v = 72"
+        "A = LW",
+        "Rearrange to make L the subject: L = \\frac{A}{w}",
+        "Substitute A = 52 and w = 4: L = \\frac{52}{4}",
+        "L = 13"
       ],
-      "final_answer": "v = 72",
+      "final_answer": "L = 13",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "v = u + at",
+          "description": "A = LW",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "v = 16 + 7 × 8",
+          "description": "Rearrange to make L the subject: L = \\frac{A}{w}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "v = 16 + 56",
+          "description": "Substitute A = 52 and w = 4: L = \\frac{52}{4}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "v = 72",
+          "description": "L = 13",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "v = 72 oe",
+          "description": "L = 13 oe",
           "marks": 1
         }
       ],
@@ -626,59 +524,76 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_shape_similar_foundation",
-      "prompt": "Shape A and Shape B are similar. Find the length of side y.",
+      "topic_id": "solving_inequalities_foundation",
+      "prompt": "Solve the inequality: 2x + 10 > 0",
       "solution_steps": [
-        "Scale factor = 5 ÷ 20 = 1/4",
-        "Corresponding length = 24 × 1/4 = 6"
+        "2x + 10 > 0",
+        "Subtract 10 from both sides:",
+        "2x > -10",
+        "Divide both sides by 2:",
+        "x > -5"
       ],
-      "final_answer": "6 cm",
-      "marks": 3,
+      "final_answer": "x > -5",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Scale factor = 5 ÷ 20 = 1/4",
+          "description": "2x + 10 > 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Corresponding length = 24 × 1/4 = 6",
+          "description": "Subtract 10 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x > -10",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 2: x > -5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6 cm oe",
+          "description": "x > -5 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "two_similar_rectangles",
-        "params": {
-          "a_width_label": "20 cm",
-          "a_height_label": "24 cm",
-          "b_width_label": "5 cm",
-          "b_height_label": "y"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "negative_multiply_divide",
-      "prompt": "Work out 4 × (-8).",
+      "topic_id": "standard_form_calculator",
+      "prompt": "Use a calculator to work out (4.6 × 10^-6) × (1.7 × 10^5). Give your answer in standard form, rounded to 3 significant figures if necessary.",
       "solution_steps": [
-        "4 × (-8) = -32"
+        "Multiply the mantissas on your calculator: 4.6 × 1.7 = 7.82",
+        "Add the powers of 10: -6 + 5 = -1",
+        "The mantissa is already exact to 3 significant figures: 7.82 × 10^-1"
       ],
-      "final_answer": "-32",
-      "marks": 2,
+      "final_answer": "7.82 × 10^-1",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "4 × (-8) = -32",
+          "description": "Multiply the mantissas on your calculator: 4.6 × 1.7 = 7.82",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add the powers of 10: -6 + 5 = -1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The mantissa is already exact to 3 significant figures: 7.82 × 10^-1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-32 oe",
+          "description": "7.82 × 10^-1 oe",
           "marks": 1
         }
       ],
@@ -785,39 +700,44 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_shorter_leg",
-      "prompt": "A right-angled triangle has hypotenuse 37 cm and one side 12 cm. Find the length of x.",
+      "topic_id": "ratio_share_two_part",
+      "prompt": "Share 170 in the ratio 1:9.",
       "solution_steps": [
-        "b² = c² - a² = 37² - 12² = 1369 - 144 = 1225",
-        "b = √1225 = 35"
+        "Total parts = 1 + 9 = 10",
+        "Value of one part = 170 ÷ 10 = 17",
+        "Share 1 = 1 × 17 = 17",
+        "Share 2 = 9 × 17 = 153"
       ],
-      "final_answer": "35 cm",
-      "marks": 3,
+      "final_answer": "17 : 153",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "b² = c² - a² = 37² - 12² = 1369 - 144 = 1225",
+          "description": "Total parts = 1 + 9 = 10",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "b = √1225 = 35",
+          "description": "Value of one part = 170 ÷ 10 = 17",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 1 = 1 × 17 = 17",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 2 = 9 × 17 = 153",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "35 cm oe",
+          "description": "17 : 153 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "right_triangle",
-        "params": {
-          "leg1_label": "12 cm",
-          "leg2_label": "x",
-          "hyp_label": "37 cm"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -888,91 +808,74 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "symmetry_rotational",
-      "prompt": "The diagram shows an irregular pentagon. State the order of rotational symmetry.",
+      "topic_id": "stats_median_frequency_table",
+      "prompt": "Find the median number of pets.",
       "solution_steps": [
-        "Rotating the irregular pentagon about its centre, it only looks the same once during a full 360° turn (back at the start).",
-        "So the order of rotational symmetry is 1."
+        "Total frequency = 5 + 2 + 5 + 7 + 7 + 5 = 31 data items.",
+        "Imagine the data written out in full, in order (each value repeated as many times as its frequency), then find the middle of that list.",
+        "Median = 5"
       ],
-      "final_answer": "order 1",
-      "marks": 3,
+      "final_answer": "5",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rotating the irregular pentagon about its centre, it only looks the same once during a full 360° turn (back at the start).",
+          "description": "Total frequency = 5 + 2 + 5 + 7 + 7 + 5 = 31 data items.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "So the order of rotational symmetry is 1.",
+          "description": "Imagine the data written out in full, in order (each value repeated as many times as its frequency), then find the middle of that list.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Median = 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "order 1 oe",
+          "description": "5 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "symmetry_shape",
+        "kind": "two_way_table",
         "params": {
-          "vertices": [
-            [
-              0,
-              0
-            ],
-            [
-              5,
-              0
-            ],
-            [
-              6,
-              3
-            ],
-            [
-              2,
-              5
-            ],
-            [
-              -2,
-              2
-            ]
+          "row_labels": [
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"
           ],
-          "blank": true
+          "col_labels": [
+            "Frequency"
+          ],
+          "cells": [
+            [
+              "5"
+            ],
+            [
+              "2"
+            ],
+            [
+              "5"
+            ],
+            [
+              "7"
+            ],
+            [
+              "7"
+            ],
+            [
+              "5"
+            ]
+          ]
         }
       },
-      "solution_diagram": {
-        "kind": "symmetry_shape",
-        "params": {
-          "vertices": [
-            [
-              0,
-              0
-            ],
-            [
-              5,
-              0
-            ],
-            [
-              6,
-              3
-            ],
-            [
-              2,
-              5
-            ],
-            [
-              -2,
-              2
-            ]
-          ],
-          "rotation_centre": [
-            2.2,
-            2.0
-          ],
-          "rotation_order": 1
-        }
-      }
+      "solution_diagram": null
     },
     {
       "topic_id": "area_composite_rectangles",
@@ -1027,6 +930,41 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "area_circle_foundation",
+      "prompt": "Find the circumference of the following circle, correct to 1 decimal place.",
+      "solution_steps": [
+        "Circumference = 2 × π × r = 2 × π × 11",
+        "= 69.1 cm (1 d.p., using a calculator value of π)"
+      ],
+      "final_answer": "69.1 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Circumference = 2 × π × r = 2 × π × 11",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 69.1 cm (1 d.p., using a calculator value of π)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "69.1 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "circle",
+        "params": {
+          "radius": 11,
+          "label": "11 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
       "topic_id": "probability_single_event",
       "prompt": "A bag contains 7 purple, 8 blue, 2 yellow counters. A counter is picked at random. Find the probability that it is purple.",
       "solution_steps": [
@@ -1065,86 +1003,34 @@
             "purple": 7,
             "blue": 8,
             "yellow": 2
-          },
-          "highlight": "purple"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "probability_listing_outcomes",
-      "prompt": "A coin is flipped and a 4-sided spinner (labelled Y, R, G, P) is spun. List all the possible outcomes.",
-      "solution_steps": [
-        "There are 2 possible outcomes for the first event and 4 for the second, so there are 2 × 4 = 8 possible combined outcomes.",
-        "For each outcome of the first event, list every outcome of the second event: HY, HR, HG, HP, TY, TR, TG, TP"
-      ],
-      "final_answer": "HY, HR, HG, HP, TY, TR, TG, TP",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "There are 2 possible outcomes for the first event and 4 for the second, so there are 2 × 4 = 8 possible combined outcomes.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For each outcome of the first event, list every outcome of the second event: HY, HR, HG, HP, TY, TR, TG, TP",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "HY, HR, HG, HP, TY, TR, TG, TP oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "spinner",
-        "params": {
-          "sectors": [
-            "Y",
-            "R",
-            "G",
-            "P"
-          ]
+          }
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "two_way_tables",
-      "prompt": "The two-way table shows the number of boys and girls who prefer cats or dogs. Copy and complete the table, and state the missing value marked '?'.",
+      "prompt": "The two-way table shows the number of boys and girls who prefer cats or dogs. Find the missing values.",
       "solution_steps": [
-        "The missing value is in the 'Girls' row and 'Dogs' column.",
-        "Using the row total: 22 - 15 = 7",
-        "Using the column total: 12 - 5 = 7",
-        "Missing value = 7"
+        "'Girls' / 'Cats': using the 'Girls' row total: 22 - 7 = 15",
+        "'Boys' / 'Dogs': using the 'Boys' row total: 21 - 16 = 5"
       ],
-      "final_answer": "7",
-      "marks": 5,
+      "final_answer": "'Girls' / 'Cats' = 15; 'Boys' / 'Dogs' = 5",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The missing value is in the 'Girls' row and 'Dogs' column.",
+          "description": "'Girls' / 'Cats': using the 'Girls' row total: 22 - 7 = 15",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Using the row total: 22 - 15 = 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Using the column total: 12 - 5 = 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Missing value = 7",
+          "description": "'Boys' / 'Dogs': using the 'Boys' row total: 21 - 16 = 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7 oe",
+          "description": "'Girls' / 'Cats' = 15; 'Boys' / 'Dogs' = 5 oe",
           "marks": 1
         }
       ],
@@ -1164,12 +1050,12 @@
           "cells": [
             [
               "16",
-              "5",
+              "",
               "21"
             ],
             [
-              "15",
-              "?",
+              "",
+              "7",
               "22"
             ],
             [
@@ -1212,6 +1098,35 @@
           ]
         }
       }
+    },
+    {
+      "topic_id": "relative_frequency",
+      "prompt": "A drawing pin is tested 50 times, and it lands point up 24 times. Use this relative frequency to estimate how many times this would happen in 250 trials.",
+      "solution_steps": [
+        "Relative frequency = frequency ÷ number of trials = 24/50 = 12/25",
+        "Estimated number of times in 250 trials = 12/25 × 250 = 120"
+      ],
+      "final_answer": "120",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Relative frequency = frequency ÷ number of trials = 24/50 = 12/25",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Estimated number of times in 250 trials = 12/25 × 250 = 120",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "120 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
     }
   ]
 }

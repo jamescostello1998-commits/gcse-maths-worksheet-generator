@@ -143,7 +143,7 @@ def generate_bidmas(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="bidmas",
         tier=Tier.FOUNDATION,
-        prompt=f"Work out {expr_str}. Use the correct order of operations.",
+        prompt=f"Work out {expr_str}.",
         solution_steps=tuple(steps),
         final_answer=fmt_num(result),
         dedup_key=dedup_key,
@@ -311,7 +311,7 @@ def generate_modelled_example_bidmas(tier: Tier, rng: random.Random) -> Modelled
     return ModelledExample(
         topic_id="bidmas",
         tier=Tier.FOUNDATION,
-        prompt=f"Work out {expr_str}. Use the correct order of operations.",
+        prompt=f"Work out {expr_str}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=fmt_num(result),

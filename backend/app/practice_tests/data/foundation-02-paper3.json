@@ -36,6 +36,35 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "negative_ordering",
+      "prompt": "Write these numbers in descending order: 0, -10, 9, 1, -9, -3",
+      "solution_steps": [
+        "Place the numbers on a number line: 0, -10, 9, 1, -9, -3.",
+        "Reading them in order from largest to smallest gives: 9, 1, 0, -3, -9, -10."
+      ],
+      "final_answer": "9, 1, 0, -3, -9, -10",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Place the numbers on a number line: 0, -10, 9, 1, -9, -3.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Reading them in order from largest to smallest gives: 9, 1, 0, -3, -9, -10.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "9, 1, 0, -3, -9, -10 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "negative_add_subtract",
       "prompt": "Work out -17 - 1.",
       "solution_steps": [
@@ -354,46 +383,75 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_multi_step",
-      "prompt": "Solve: 3x + 7 + 3x - 9 = 10",
+      "topic_id": "congruent_triangle_proof_foundation",
+      "prompt": "ABCD is a parallelogram, and AC is one of its diagonals. Which congruence criterion proves that the two triangles are congruent? A) ASA  B) SSS  C) RHS  D) SAS",
       "solution_steps": [
-        "Collect like terms: 3x + 3x = 6x, 7 - 9 = -2",
-        "6x - 2 = 10",
-        "Add 2 to both sides:",
-        "6x = 12",
-        "Divide both sides by 6:",
-        "x = 2"
+        "AB = CD (opposite sides of a parallelogram)",
+        "BC = DA (opposite sides of a parallelogram)",
+        "AC is common to both triangles",
+        "These facts match the Side-Side-Side (SSS) congruence criterion."
       ],
-      "final_answer": "2",
-      "marks": 5,
+      "final_answer": "B) SSS",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "Collect like terms: 3x + 3x = 6x, 7 - 9 = -2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "6x - 2 = 10",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add 2 to both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "6x = 12 Divide both sides by 6: x = 2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2 oe",
+          "code": "B1",
+          "description": "B) SSS (selecting the correct option)",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_triangle_congruence",
+        "params": {
+          "labels_1": [
+            "A",
+            "B",
+            "C"
+          ],
+          "labels_2": [
+            "C",
+            "D",
+            "A"
+          ],
+          "ticks_1": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              0,
+              1
+            ]
+          ],
+          "ticks_2": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              2,
+              0,
+              1
+            ]
+          ],
+          "arcs_1": [],
+          "arcs_2": [],
+          "note": "AC is common to both triangles."
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -486,22 +544,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "stats_median",
-      "prompt": "Find the median of this data set: 1, 28, 6, 28, 28.",
+      "topic_id": "sequences_nth_term",
+      "prompt": "Here are the first four terms of a sequence: 2, -3, -8, -13.\nFind an expression for the nth term.",
       "solution_steps": [
-        "Sort the data: 1, 6, 28, 28, 28. The middle value is 28."
+        "Common difference = -5",
+        "nth term = -5n + 7",
+        "nth term = -5n + 7"
       ],
-      "final_answer": "28",
-      "marks": 2,
+      "final_answer": "-5n + 7",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Sort the data: 1, 6, 28, 28, 28. The middle value is 28.",
+          "description": "Common difference = -5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "nth term = -5n + 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "nth term = -5n + 7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "28 oe",
+          "description": "-5n + 7 oe",
           "marks": 1
         }
       ],
@@ -731,12 +801,7 @@
             "D",
             "E",
             "F"
-          ],
-          "translation_vector": [
-            -1,
-            -4
-          ],
-          "vector_label": "(-1, -4)"
+          ]
         }
       },
       "solution_diagram": {
@@ -780,11 +845,6 @@
             "E",
             "F"
           ],
-          "translation_vector": [
-            -1,
-            -4
-          ],
-          "vector_label": "(-1, -4)",
           "image_vertices": [
             [
               -4,
@@ -824,9 +884,9 @@
     },
     {
       "topic_id": "transform_translate_describe",
-      "prompt": "Shape ABCD is translated to give shape A'B'C'D', shown on the grid. Describe fully the single transformation that maps ABCD onto A'B'C'D'.",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
       "solution_steps": [
-        "Every vertex moves by exactly the same amount: comparing A(-2, -3) with A'(1, -3) gives the vector (3, 0).",
+        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-2, -3), with the matching vertex of shape B, (1, -3), gives the vector (3, 0).",
         "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
       ],
       "final_answer": "Translation by the vector (3, 0)",
@@ -834,7 +894,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Every vertex moves by exactly the same amount: comparing A(-2, -3) with A'(1, -3) gives the vector (3, 0).",
+          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-2, -3), with the matching vertex of shape B, (1, -3), gives the vector (3, 0).",
           "marks": 1
         },
         {
@@ -874,10 +934,10 @@
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
+            "",
+            "",
+            "",
+            ""
           ],
           "image_vertices": [
             [
@@ -898,10 +958,10 @@
             ]
           ],
           "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'"
+            "",
+            "",
+            "",
+            ""
           ]
         }
       },
@@ -912,13 +972,13 @@
       "prompt": "The diagram shows a solid with its dimensions labelled. Draw and label the front elevation, side elevation, and plan view of the solid.",
       "solution_steps": [
         "The front elevation is what you see looking at the solid straight on from the front.",
-        "Front elevation: a right-angled triangle, base 27 cm and height 36 cm.",
+        "Front elevation: a right-angled triangle, base 6 cm and height 8 cm.",
         "The side elevation is what you see looking at the solid straight on from the side.",
-        "Side elevation: a rectangle, 5 cm by 36 cm.",
+        "Side elevation: a rectangle, 7 cm by 8 cm.",
         "The plan view is what you see looking straight down at the solid from above.",
-        "Plan view: a rectangle, 27 cm by 5 cm."
+        "Plan view: a rectangle, 6 cm by 7 cm."
       ],
-      "final_answer": "Front elevation: a right-angled triangle, base 27 cm and height 36 cm. Side elevation: a rectangle, 5 cm by 36 cm. Plan view: a rectangle, 27 cm by 5 cm.",
+      "final_answer": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm. Side elevation: a rectangle, 7 cm by 8 cm. Plan view: a rectangle, 6 cm by 7 cm.",
       "marks": 5,
       "mark_scheme": [
         {
@@ -928,7 +988,7 @@
         },
         {
           "code": "M1",
-          "description": "Front elevation: a right-angled triangle, base 27 cm and height 36 cm.",
+          "description": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm.",
           "marks": 1
         },
         {
@@ -938,33 +998,34 @@
         },
         {
           "code": "M1",
-          "description": "Side elevation: a rectangle, 5 cm by 36 cm. The plan view is what you see looking straight down at the solid from above. Plan view: a rectangle, 27 cm by 5 cm.",
+          "description": "Side elevation: a rectangle, 7 cm by 8 cm. The plan view is what you see looking straight down at the solid from above. Plan view: a rectangle, 6 cm by 7 cm.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Front elevation: a right-angled triangle, base 27 cm and height 36 cm. Side elevation: a rectangle, 5 cm by 36 cm. Plan view: a rectangle, 27 cm by 5 cm. oe",
+          "description": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm. Side elevation: a rectangle, 7 cm by 8 cm. Plan view: a rectangle, 6 cm by 7 cm. oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "triangular_prism",
+        "kind": "plans_and_elevations_question",
         "params": {
-          "base_label": "27 cm",
-          "triangle_height_label": "36 cm",
-          "length_label": "5 cm"
+          "shape": "triangular_prism",
+          "base_label": "6 cm",
+          "triangle_height_label": "8 cm",
+          "length_label": "7 cm"
         }
       },
       "solution_diagram": {
         "kind": "plans_and_elevations",
         "params": {
           "shape": "triangular_prism",
-          "base": 27,
-          "tri_height": 36,
-          "length": 5,
-          "base_label": "27 cm",
-          "tri_height_label": "36 cm",
-          "length_label": "5 cm"
+          "base": 6,
+          "tri_height": 8,
+          "length": 7,
+          "base_label": "6 cm",
+          "tri_height_label": "8 cm",
+          "length_label": "7 cm"
         }
       }
     },
@@ -1170,45 +1231,71 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "substitution_foundation",
-      "prompt": "v = u + at. Find the value of v when u = 20, a = 5 and t = 9.",
+      "topic_id": "fractions_equivalent_diagram",
+      "prompt": "How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
       "solution_steps": [
-        "v = u + at",
-        "v = 20 + 5 × 9",
-        "v = 20 + 45",
-        "v = 65"
+        "Shape A shows 1/2 shaded; Shape B has 4 equal parts.",
+        "Find the scale factor between the denominators: 4 ÷ 2 = 2",
+        "Multiply the shaded count by the same scale factor: 1 × 2 = 2"
       ],
-      "final_answer": "v = 65",
-      "marks": 5,
+      "final_answer": "2",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "v = u + at",
+          "description": "Shape A shows 1/2 shaded; Shape B has 4 equal parts.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "v = 20 + 5 × 9",
+          "description": "Find the scale factor between the denominators: 4 ÷ 2 = 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "v = 20 + 45",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "v = 65",
+          "description": "Multiply the shaded count by the same scale factor: 1 × 2 = 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "v = 65 oe",
+          "description": "2 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "fraction_shapes",
+        "params": {
+          "shapes": [
+            {
+              "kind": "bar",
+              "parts": 2,
+              "shaded": 1
+            },
+            {
+              "kind": "bar",
+              "parts": 4,
+              "shaded": 0
+            }
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "fraction_shapes",
+        "params": {
+          "shapes": [
+            {
+              "kind": "bar",
+              "parts": 2,
+              "shaded": 1
+            },
+            {
+              "kind": "bar",
+              "parts": 4,
+              "shaded": 2
+            }
+          ]
+        }
+      }
     }
   ]
 }

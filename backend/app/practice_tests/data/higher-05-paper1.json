@@ -254,78 +254,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_triple_brackets",
-      "prompt": "Expand and simplify: (4x - 3)(3x + 3)(4x + 3)",
+      "topic_id": "expand_double_brackets",
+      "prompt": "Expand and simplify: (6x + 4)(x + 5)",
       "solution_steps": [
-        "First expand two of the brackets: (4x - 3)(3x + 3) = 12x^2 + 3x - 9",
-        "Multiply the result by (4x + 3) and collect like terms",
-        "= 48x^3 + 48x^2 - 27x - 27"
+        "First: 6x × 1x = 6x^2",
+        "Outer: 6x × 5 = 30x",
+        "Inner: 4 × 1x = 4x",
+        "Last: 4 × 5 = 20",
+        "Combine like terms: 6x^2 + 34x + 20"
       ],
-      "final_answer": "48x^3 + 48x^2 - 27x - 27",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "First expand two of the brackets: (4x - 3)(3x + 3) = 12x^2 + 3x - 9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the result by (4x + 3) and collect like terms",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 48x^3 + 48x^2 - 27x - 27",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "48x^3 + 48x^2 - 27x - 27 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "trial_and_improvement",
-      "prompt": "f(x) = x^3 - 2x - 64. Show that f(x) = 0 has a root between x = 4 and x = 5, then use trial and improvement to find this root correct to 1 decimal place.",
-      "solution_steps": [
-        "f(x) = x^3 - 2x - 64",
-        "f(4) = -8.00 (negative)",
-        "f(5) = 51.00 (positive)",
-        "f(4.1) = -3.28 (negative)",
-        "f(4.2) = 1.69 (positive)",
-        "The sign changes between x = 4.1 and x = 4.2, so try the midpoint x = 4.15: f(4.15) = -0.83.",
-        "f(4.15) has the same sign as f(4.1), so the root lies between 4.15 and 4.2 - to 1 decimal place, this rounds up to 4.2."
-      ],
-      "final_answer": "x = 4.2",
+      "final_answer": "6x^2 + 34x + 20",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "f(x) = x^3 - 2x - 64",
+          "description": "First: 6x × 1x = 6x^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "f(4) = -8.00 (negative)",
+          "description": "Outer: 6x × 5 = 30x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "f(5) = 51.00 (positive)",
+          "description": "Inner: 4 × 1x = 4x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "f(4.1) = -3.28 (negative) f(4.2) = 1.69 (positive) The sign changes between x = 4.1 and x = 4.2, so try the midpoint x = 4.15: f(4.15) = -0.83. f(4.15) has the same sign as f(4.1), so the root lies between 4.15 and 4.2 - to 1 decimal place, this rounds up to 4.2.",
+          "description": "Last: 4 × 5 = 20 Combine like terms: 6x^2 + 34x + 20",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 4.2 oe",
+          "description": "6x^2 + 34x + 20 oe",
           "marks": 1
         }
       ],
@@ -333,34 +296,82 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_indices_higher",
-      "prompt": "Simplify 4x^-3 × 6x^2",
+      "topic_id": "iteration",
+      "prompt": "The iterative formula x_(n+1) = √(11 - x_n) is used with x_0 = 2. Find the values of x_1, x_2 and x_3, giving each answer to 3 decimal places.",
       "solution_steps": [
-        "Multiplying powers of the same base: add the exponents (this still works when an exponent is negative or zero), and multiply the coefficients.",
-        "4x^-3 × 6x^2 = (4×6) x^(-3+(2))",
-        "= 24x^-1"
+        "Iterative formula: x_(n+1) = √(11 - x_n)",
+        "x_0 = 2",
+        "x_1 = g(x_0) = √(11 - 2) = 3.000",
+        "x_2 = g(x_1) = √(11 - 3.000) = 2.828",
+        "x_3 = g(x_2) = √(11 - 2.828) = 2.859"
       ],
-      "final_answer": "24x^-1",
-      "marks": 4,
+      "final_answer": "x_1 = 3.000, x_2 = 2.828, x_3 = 2.859",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiplying powers of the same base: add the exponents (this still works when an exponent is negative or zero), and multiply the coefficients.",
+          "description": "Iterative formula: x_(n+1) = √(11 - x_n)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x^-3 × 6x^2 = (4×6) x^(-3+(2))",
+          "description": "x_0 = 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 24x^-1",
+          "description": "x_1 = g(x_0) = √(11 - 2) = 3.000",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x_2 = g(x_1) = √(11 - 3.000) = 2.828 x_3 = g(x_2) = √(11 - 2.828) = 2.859",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "24x^-1 oe",
+          "description": "x_1 = 3.000, x_2 = 2.828, x_3 = 2.859 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "solve_quadratic_factorising",
+      "prompt": "Solve x^2 - 5x + 6 = 0 by factorising.",
+      "solution_steps": [
+        "Find two numbers that multiply to 6 and add to -5: -2 and -3",
+        "Factorise: (x - 2)(x - 3) = 0",
+        "Either x + -2 = 0 or x + -3 = 0",
+        "x = 2 or x = 3"
+      ],
+      "final_answer": "x = 2 or x = 3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find two numbers that multiply to 6 and add to -5: -2 and -3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: (x - 2)(x - 3) = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Either x + -2 = 0 or x + -3 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 2 or x = 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 2 or x = 3 oe",
           "marks": 1
         }
       ],
@@ -409,34 +420,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_quadratic_nth_term",
-      "prompt": "Here are the first four terms of a quadratic sequence: 5, 9, 15, 23.\nFind an expression for the nth term.",
+      "topic_id": "algebraic_proof",
+      "prompt": "Prove algebraically that (n + 2)^2 - (n - 2)^2 is always a multiple of 8.",
       "solution_steps": [
-        "First differences: 4, 6, 8",
-        "Second difference is constant: 2, so the coefficient of n^2 is 2 ÷ 2 = 1",
-        "nth term = n^2 + n + 3"
+        "Let n be any integer, with n + 2 and n - 2 the integers 2 either side of it.",
+        "Write the given expression algebraically: (n + 2)^2 - (n - 2)^2.",
+        "Expand and simplify: (n + 2)^2 - (n - 2)^2 = 8n.",
+        "Factorise/rearrange to expose the structure: 8n = 8n.",
+        "8n is exactly 8 times the whole number n, so the expression is always a multiple of 8."
       ],
-      "final_answer": "n^2 + n + 3",
-      "marks": 4,
+      "final_answer": "Proven: (n + 2)^2 - (n - 2)^2 = 8n, always a multiple of 8.",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First differences: 4, 6, 8",
+          "description": "Let n be any integer, with n + 2 and n - 2 the integers 2 either side of it.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Second difference is constant: 2, so the coefficient of n^2 is 2 ÷ 2 = 1",
+          "description": "Write the given expression algebraically: (n + 2)^2 - (n - 2)^2.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = n^2 + n + 3",
+          "description": "Expand and simplify: (n + 2)^2 - (n - 2)^2 = 8n.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise/rearrange to expose the structure: 8n = 8n. 8n is exactly 8 times the whole number n, so the expression is always a multiple of 8.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "n^2 + n + 3 oe",
+          "description": "Proven: (n + 2)^2 - (n - 2)^2 = 8n, always a multiple of 8. oe",
           "marks": 1
         }
       ],
@@ -444,41 +462,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "iteration",
-      "prompt": "The iterative formula x_(n+1) = √(11 - x_n) is used with x_0 = 2. Find the values of x_1, x_2 and x_3, giving each answer to 3 decimal places.",
+      "topic_id": "special_sequences_higher",
+      "prompt": "The first 3 terms of a geometric sequence are: 5, 15/2, 45/4. Find the 4th term of the sequence.",
       "solution_steps": [
-        "Iterative formula: x_(n+1) = √(11 - x_n)",
-        "x_0 = 2",
-        "x_1 = g(x_0) = √(11 - 2) = 3.000",
-        "x_2 = g(x_1) = √(11 - 3.000) = 2.828",
-        "x_3 = g(x_2) = √(11 - 2.828) = 2.859"
+        "Common ratio r = 3/2 (divide any term by the term before it).",
+        "nth term = a × r^(n - 1) = 5 × (3/2)^3",
+        "Term 4 = 135/8"
       ],
-      "final_answer": "x_1 = 3.000, x_2 = 2.828, x_3 = 2.859",
-      "marks": 5,
+      "final_answer": "135/8",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Iterative formula: x_(n+1) = √(11 - x_n)",
+          "description": "Common ratio r = 3/2 (divide any term by the term before it).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x_0 = 2",
+          "description": "nth term = a × r^(n - 1) = 5 × (3/2)^3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x_1 = g(x_0) = √(11 - 2) = 3.000",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x_2 = g(x_1) = √(11 - 3.000) = 2.828 x_3 = g(x_2) = √(11 - 2.828) = 2.859",
+          "description": "Term 4 = 135/8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x_1 = 3.000, x_2 = 2.828, x_3 = 2.859 oe",
+          "description": "135/8 oe",
           "marks": 1
         }
       ],
@@ -775,6 +786,153 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "loci_regions",
+      "prompt": "A and B are two fixed points (shown). Shade the region containing points that are both within 3 cm of B AND closer to B than to A.",
+      "solution_steps": [
+        "The boundary for 'within 3 cm of B' is a circle, centre B, radius 3 cm - the region is inside this circle.",
+        "The boundary for 'closer to B than to A' is the perpendicular bisector of BA - the region is on the B side of it.",
+        "The required region is where these two conditions overlap."
+      ],
+      "final_answer": "The region inside the circle of radius 3 cm centred on B, and on the B side of the perpendicular bisector of BA.",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The boundary for 'within 3 cm of B' is a circle, centre B, radius 3 cm - the region is inside this circle.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The boundary for 'closer to B than to A' is the perpendicular bisector of BA - the region is on the B side of it.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The required region is where these two conditions overlap.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "The region inside the circle of radius 3 cm centred on B, and on the B side of the perpendicular bisector of BA. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "loci_region",
+        "params": {
+          "x_min": -5.0,
+          "x_max": 5.0,
+          "y_min": -2.0,
+          "y_max": 6.0,
+          "points": [
+            {
+              "xy": [
+                -4,
+                3
+              ],
+              "label": "A"
+            },
+            {
+              "xy": [
+                1,
+                2
+              ],
+              "label": "B"
+            }
+          ],
+          "boundaries": [
+            {
+              "type": "circle",
+              "centre": [
+                1,
+                2
+              ],
+              "radius": 3
+            },
+            {
+              "type": "segment",
+              "p1": [
+                0.46116135138184045,
+                12.305806756909202
+              ],
+              "p2": [
+                -3.4611613513818407,
+                -7.3058067569092024
+              ]
+            }
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "loci_region",
+        "params": {
+          "x_min": -5.0,
+          "x_max": 5.0,
+          "y_min": -2.0,
+          "y_max": 6.0,
+          "points": [
+            {
+              "xy": [
+                -4,
+                3
+              ],
+              "label": "A"
+            },
+            {
+              "xy": [
+                1,
+                2
+              ],
+              "label": "B"
+            }
+          ],
+          "boundaries": [
+            {
+              "type": "circle",
+              "centre": [
+                1,
+                2
+              ],
+              "radius": 3
+            },
+            {
+              "type": "segment",
+              "p1": [
+                0.46116135138184045,
+                12.305806756909202
+              ],
+              "p2": [
+                -3.4611613513818407,
+                -7.3058067569092024
+              ]
+            }
+          ],
+          "shade_constraints": [
+            {
+              "type": "disk",
+              "centre": [
+                1,
+                2
+              ],
+              "radius": 3,
+              "inside": true
+            },
+            {
+              "type": "half_plane",
+              "closer_to": [
+                1,
+                2
+              ],
+              "than": [
+                -4,
+                3
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
       "topic_id": "geometric_vectors",
       "prompt": "OAB is a triangle with OA = \\vec{a} and OB = \\vec{b}. Point P lies on AB such that AP:PB = 2:1. Find the vector OP in terms of \\vec{a} and \\vec{b}, giving your answer in its simplest form.",
       "solution_steps": [
@@ -911,79 +1069,22 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_combined_dice",
-      "prompt": "Two fair six-sided dice are rolled. Find the probability that at least one die shows 1.",
+      "topic_id": "product_rule_counting",
+      "prompt": "A shop sells 6 different fonts, 6 different colours and 4 different paper sizes. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
       "solution_steps": [
-        "P(neither die shows 1) = 5/6 × 5/6 = 25/36",
-        "P(at least one 1) = 1 - 25/36 = 11/36"
+        "Total combinations = 6 × 6 × 4 = 144"
       ],
-      "final_answer": "11/36",
-      "marks": 3,
+      "final_answer": "144",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "P(neither die shows 1) = 5/6 × 5/6 = 25/36",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(at least one 1) = 1 - 25/36 = 11/36",
+          "description": "Total combinations = 6 × 6 × 4 = 144",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "11/36 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "dice",
-        "params": {
-          "values": [
-            3,
-            2
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "linear_brackets",
-      "prompt": "Solve: 2(3x + 1) = 50",
-      "solution_steps": [
-        "Expand the bracket: 2(3x + 1) = 6x + 2",
-        "6x + 2 = 50",
-        "Subtract 2 from both sides:",
-        "6x = 48",
-        "Divide both sides by 6:",
-        "x = 8"
-      ],
-      "final_answer": "8",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Expand the bracket: 2(3x + 1) = 6x + 2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "6x + 2 = 50",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 2 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "6x = 48 Divide both sides by 6: x = 8",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "8 oe",
+          "description": "144 oe",
           "marks": 1
         }
       ],

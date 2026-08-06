@@ -7,43 +7,93 @@
   "calculator_allowed": false,
   "questions": [
     {
-      "topic_id": "fractions_mixed_number_arithmetic",
-      "prompt": "Evaluate 3 4/8 + 1 1/2. Give your answer as a mixed number.",
+      "topic_id": "histogram_plot",
+      "prompt": "The table shows the times (in minutes) taken to complete a puzzle. Complete a frequency density column and draw a histogram.",
       "solution_steps": [
-        "Convert to improper fractions: 3 4/8 = 7/2, 1 1/2 = 3/2",
-        "Add the improper fractions: 7/2 + 3/2 = 5/1",
-        "Convert back to a mixed number: 5"
+        "Frequency density = frequency ÷ class width, for each class:",
+        "10-20: 33 ÷ 10 = 3.3",
+        "20-40: 33 ÷ 20 = 1.65",
+        "40-45: 32 ÷ 5 = 6.4",
+        "45-50: 37 ÷ 5 = 7.4",
+        "Frequency densities: 3.3, 1.65, 6.4, 7.4"
       ],
-      "final_answer": "5",
-      "marks": 4,
+      "final_answer": "Frequency densities: 3.3, 1.65, 6.4, 7.4",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert to improper fractions: 3 4/8 = 7/2, 1 1/2 = 3/2",
+          "description": "Frequency density = frequency ÷ class width, for each class:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add the improper fractions: 7/2 + 3/2 = 5/1",
+          "description": "10-20: 33 ÷ 10 = 3.3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Convert back to a mixed number: 5",
+          "description": "20-40: 33 ÷ 20 = 1.65",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "40-45: 32 ÷ 5 = 6.4 45-50: 37 ÷ 5 = 7.4 Frequency densities: 3.3, 1.65, 6.4, 7.4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5 oe",
+          "description": "Frequency densities: 3.3, 1.65, 6.4, 7.4 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "histogram_question",
+        "params": {
+          "boundaries": [
+            10,
+            20,
+            40,
+            45,
+            50
+          ],
+          "frequencies": [
+            33,
+            33,
+            32,
+            37
+          ],
+          "frequency_densities": [
+            3.3,
+            1.65,
+            6.4,
+            7.4
+          ],
+          "x_label": "Time (minutes)"
+        }
+      },
+      "solution_diagram": {
+        "kind": "histogram",
+        "params": {
+          "boundaries": [
+            10,
+            20,
+            40,
+            45,
+            50
+          ],
+          "frequency_densities": [
+            3.3,
+            1.65,
+            6.4,
+            7.4
+          ],
+          "x_label": "Time (minutes)"
+        }
+      }
     },
     {
       "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal \\recur{0.}{49} can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Show that \\recur{0.}{49} can be written as 49/99.",
       "solution_steps": [
         "Let x = \\recur{0.}{49}, so 100x = 49.4949... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 49 - 0, so 99x = 49",
@@ -154,7 +204,7 @@
     },
     {
       "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal \\recur{0.9}{3} can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Show that \\recur{0.9}{3} can be written as 14/15.",
       "solution_steps": [
         "Let x = \\recur{0.9}{3}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
@@ -195,34 +245,34 @@
     },
     {
       "topic_id": "simplifying_indices_challenging",
-      "prompt": "Fully simplify (3^-2)^3 ÷ 3^-3, giving your answer as a fraction where necessary.",
+      "prompt": "Fully simplify 9^(1/2) × 9^-2, giving your answer as a fraction where necessary.",
       "solution_steps": [
-        "Multiply the powers in the bracket: -2 × 3 = -6",
-        "(3^-2)^3 = 3^-6",
-        "Subtract the powers to divide: -6 - (-3) = -3",
-        "3^-6 ÷ 3^-3 = 3^-3 = 1/27"
+        "9^(1/2) is the square root of 9, which is 3, so 9^(1/2) = 3^1",
+        "9^-2 = \\frac{1}{9²} = \\frac{1}{3⁴}",
+        "9^(1/2) × 9^-2 = 3^1 × \\frac{1}{3⁴} = 3^(1-4) = 3^-3",
+        "3^-3 = 1/27"
       ],
       "final_answer": "1/27",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply the powers in the bracket: -2 × 3 = -6",
+          "description": "9^(1/2) is the square root of 9, which is 3, so 9^(1/2) = 3^1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(3^-2)^3 = 3^-6",
+          "description": "9^-2 = \\frac{1}{9²} = \\frac{1}{3⁴}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract the powers to divide: -6 - (-3) = -3",
+          "description": "9^(1/2) × 9^-2 = 3^1 × \\frac{1}{3⁴} = 3^(1-4) = 3^-3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3^-6 ÷ 3^-3 = 3^-3 = 1/27",
+          "description": "3^-3 = 1/27",
           "marks": 1
         },
         {
@@ -266,38 +316,50 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "functions_composite_inverse",
-      "prompt": "f(x) = 2x + 1 and g(x) = 2x - 6. Find fg(x).",
+      "topic_id": "circle_equation",
+      "prompt": "A circle has centre (0, 0) and radius 9. Write down the equation of the circle.",
       "solution_steps": [
-        "fg(x) = f(2x - 6)",
-        "= 2(2x - 6) + 1",
-        "= 4x - 11"
+        "A circle centred at the origin with radius r has equation x^2 + y^2 = r^2.",
+        "Here r = 9, so r^2 = 81."
       ],
-      "final_answer": "4x - 11",
-      "marks": 4,
+      "final_answer": "x^2 + y^2 = 81",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "fg(x) = f(2x - 6)",
+          "description": "A circle centred at the origin with radius r has equation x^2 + y^2 = r^2.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 2(2x - 6) + 1",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 4x - 11",
+          "description": "Here r = 9, so r^2 = 81.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4x - 11 oe",
+          "description": "x^2 + y^2 = 81 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "loci_construction",
+        "params": {
+          "x_min": -10,
+          "x_max": 10,
+          "y_min": -10,
+          "y_max": 10,
+          "points": [],
+          "given_lines": [],
+          "circle": {
+            "centre": [
+              0,
+              0
+            ],
+            "radius": 9
+          },
+          "segment": null
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -389,40 +451,34 @@
       }
     },
     {
-      "topic_id": "algebraic_fractions_add_subtract",
-      "prompt": "Simplify \\frac{5}{(x - 8)} + \\frac{1}{(x - 3)}, giving your answer as a single fraction.",
+      "topic_id": "functions_composite_inverse",
+      "prompt": "f(x) = 2x + 1 and g(x) = 2x - 6. Find fg(x).",
       "solution_steps": [
-        "Write both fractions over the common denominator (x - 8)(x - 3):",
-        "\\frac{5}{(x - 8)} + \\frac{1}{(x - 3)} = \\frac{5(x - 3) + 1(x - 8)}{(x - 8)(x - 3)}",
-        "Expand the numerator: 5(x - 3) + 1(x - 8) = 6x - 23",
-        "= \\frac{6x - 23}{(x - 8)(x - 3)}"
+        "fg(x) = f(2x - 6)",
+        "= 2(2x - 6) + 1",
+        "= 4x - 11"
       ],
-      "final_answer": "\\frac{6x - 23}{(x - 8)(x - 3)}",
-      "marks": 5,
+      "final_answer": "4x - 11",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Write both fractions over the common denominator (x - 8)(x - 3):",
+          "description": "fg(x) = f(2x - 6)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "\\frac{5}{(x - 8)} + \\frac{1}{(x - 3)} = \\frac{5(x - 3) + 1(x - 8)}{(x - 8)(x - 3)}",
+          "description": "= 2(2x - 6) + 1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand the numerator: 5(x - 3) + 1(x - 8) = 6x - 23",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= \\frac{6x - 23}{(x - 8)(x - 3)}",
+          "description": "= 4x - 11",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "\\frac{6x - 23}{(x - 8)(x - 3)} oe",
+          "description": "4x - 11 oe",
           "marks": 1
         }
       ],
@@ -486,41 +542,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_fractions_multiply_divide",
-      "prompt": "Simplify \\frac{(x^2 - 4)}{(x + 5)} ÷ \\frac{(x - 2)}{(x + 5)}, giving your answer in its simplest form.",
+      "topic_id": "functions_inverse_evaluate",
+      "prompt": "f(x) = 2x - 7. Find f^-1(-10).",
       "solution_steps": [
-        "Factorise the difference of two squares: (x^2 - 4) = (x - 2)(x + 2)",
-        "Dividing by a fraction means multiplying by its reciprocal: ÷ \\frac{(x - 2)}{(x + 5)} becomes × \\frac{(x + 5)}{(x - 2)}",
-        "\\frac{(x - 2)(x + 2)}{(x + 5)} × \\frac{(x + 5)}{(x - 2)}",
-        "Cancel the common factors (x + 5) and (x - 2):",
-        "= x + 2"
+        "f^-1(x) = \\frac{x + 7}{2}",
+        "f^-1(-10) = \\frac{-10 + 7}{2}",
+        "f^-1(-10) = -3/2"
       ],
-      "final_answer": "x + 2",
-      "marks": 5,
+      "final_answer": "-3/2",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Factorise the difference of two squares: (x^2 - 4) = (x - 2)(x + 2)",
+          "description": "f^-1(x) = \\frac{x + 7}{2}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Dividing by a fraction means multiplying by its reciprocal: ÷ \\frac{(x - 2)}{(x + 5)} becomes × \\frac{(x + 5)}{(x - 2)}",
+          "description": "f^-1(-10) = \\frac{-10 + 7}{2}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "\\frac{(x - 2)(x + 2)}{(x + 5)} × \\frac{(x + 5)}{(x - 2)}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Cancel the common factors (x + 5) and (x - 2): = x + 2",
+          "description": "f^-1(-10) = -3/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x + 2 oe",
+          "description": "-3/2 oe",
           "marks": 1
         }
       ],
@@ -577,40 +626,110 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_combine",
-      "prompt": "Given that a:b = 4:6 and b:c = 7:3, find a:b:c in its simplest form.",
+      "topic_id": "solve_quadratic_factorising",
+      "prompt": "Solve x^2 - 2x - 15 = 0 by factorising.",
       "solution_steps": [
-        "Scale a:b = 4:6 by 7 so b = 42: a:b = 28:42",
-        "Scale b:c = 7:3 by 6 so b = 42: b:c = 42:18",
-        "Combine: a:b:c = 28:42:18",
-        "Simplify by dividing by 2: a:b:c = 14:21:9"
+        "Find two numbers that multiply to -15 and add to -2: 3 and -5",
+        "Factorise: (x + 3)(x - 5) = 0",
+        "Either x + 3 = 0 or x + -5 = 0",
+        "x = -3 or x = 5"
       ],
-      "final_answer": "14 : 21 : 9",
+      "final_answer": "x = -3 or x = 5",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Scale a:b = 4:6 by 7 so b = 42: a:b = 28:42",
+          "description": "Find two numbers that multiply to -15 and add to -2: 3 and -5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Scale b:c = 7:3 by 6 so b = 42: b:c = 42:18",
+          "description": "Factorise: (x + 3)(x - 5) = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Combine: a:b:c = 28:42:18",
+          "description": "Either x + 3 = 0 or x + -5 = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify by dividing by 2: a:b:c = 14:21:9",
+          "description": "x = -3 or x = 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "14 : 21 : 9 oe",
+          "description": "x = -3 or x = 5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_to_equation",
+      "prompt": "(x - 2) : (5x - 46) = 5:7. Find the value of x.",
+      "solution_steps": [
+        "Cross-multiply: 7(x - 2) = 5(5x - 46)",
+        "Expand: 7x - 14 = 25x - 230",
+        "Collect x terms: -18x = -216",
+        "x = -216 ÷ -18 = 12"
+      ],
+      "final_answer": "x = 12",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Cross-multiply: 7(x - 2) = 5(5x - 46)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand: 7x - 14 = 25x - 230",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Collect x terms: -18x = -216",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -216 ÷ -18 = 12",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 12 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "reverse_percentage",
+      "prompt": "After a 12% decrease, an item costs £21.12. Find the original price.",
+      "solution_steps": [
+        "Convert 12% to a multiplier: 0.88 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 21.12 ÷ 0.88 = 24"
+      ],
+      "final_answer": "£24",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 12% to a multiplier: 0.88 (original × multiplier = new value)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide the new value by the multiplier: 21.12 ÷ 0.88 = 24",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£24 oe",
           "marks": 1
         }
       ],
@@ -659,35 +778,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "reverse_percentage",
-      "prompt": "After a 12% decrease, an item costs £21.12. Find the original price.",
-      "solution_steps": [
-        "Convert 12% to a multiplier: 0.88 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 21.12 ÷ 0.88 = 24"
-      ],
-      "final_answer": "£24",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert 12% to a multiplier: 0.88 (original × multiplier = new value)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide the new value by the multiplier: 21.12 ÷ 0.88 = 24",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£24 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
       "topic_id": "algebraic_direct_proportion",
       "prompt": "y is directly proportional to x^3. When x = 4, y = 640. Find the value of y when x = 2.",
       "solution_steps": [
@@ -726,42 +816,6 @@
         }
       ],
       "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "pythagoras_surd_hypotenuse",
-      "prompt": "A right-angled triangle has sides 14 cm and 9 cm. Find the exact length of x, giving your answer as a simplified surd.",
-      "solution_steps": [
-        "c² = a² + b² = 14² + 9² = 196 + 81 = 277",
-        "c = √277 = √277 cm (exact form)"
-      ],
-      "final_answer": "√277 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "c² = a² + b² = 14² + 9² = 196 + 81 = 277",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "c = √277 = √277 cm (exact form)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "√277 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "right_triangle",
-        "params": {
-          "leg1_label": "14 cm",
-          "leg2_label": "9 cm",
-          "hyp_label": "x"
-        }
-      },
       "solution_diagram": null
     },
     {
@@ -850,108 +904,125 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_around_point_higher",
-      "prompt": "The angles 82°, 130°, 38° and (3x + 62)° are angles around a point. Find x.",
+      "topic_id": "angles_triangle_higher",
+      "prompt": "A triangle has angles 21°, 41°, and (5x + 28)°. Find x.",
       "solution_steps": [
-        "Angles around a point sum to 360°.",
-        "3x + 62 = 110",
-        "Subtract 62 from both sides:",
-        "3x = 48",
-        "Divide both sides by 3:",
-        "x = 16"
+        "Angles in a triangle sum to 180°.",
+        "5x + 28 = 118",
+        "Subtract 28 from both sides:",
+        "5x = 90",
+        "Divide both sides by 5:",
+        "x = 18"
       ],
-      "final_answer": "16",
+      "final_answer": "18",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles around a point sum to 360°.",
+          "description": "Angles in a triangle sum to 180°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3x + 62 = 110",
+          "description": "5x + 28 = 118",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 62 from both sides:",
+          "description": "Subtract 28 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3x = 48 Divide both sides by 3: x = 16",
+          "description": "5x = 90 Divide both sides by 5: x = 18",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "16 oe",
+          "description": "18 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "angle_line",
+        "kind": "triangle_angles",
         "params": {
-          "angle_values": [
-            82,
-            130,
-            38,
-            110
-          ],
-          "labels": [
-            "82°",
-            "130°",
-            "38°",
-            "(3x + 62)°"
-          ],
-          "around_point": true
+          "angle_labels": [
+            "21°",
+            "41°",
+            "(5x + 28)°"
+          ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "geometric_vectors",
-      "prompt": "OAB is a triangle with OA = \\vec{a} and OB = \\vec{b}. Point M lies on AB such that AM:MB = 1:1. Find the vector OM in terms of \\vec{a} and \\vec{b}, giving your answer in its simplest form.",
+      "topic_id": "vectors_arithmetic_higher",
+      "prompt": "\\vec{a} = \\colvec{-3}{3} and \\vec{b} = \\colvec{-4}{-5}. Find 4\\vec{a} + 5\\vec{b}.",
       "solution_steps": [
-        "AB = OB - OA = \\vec{b} - \\vec{a}",
-        "AM = (1/2)AB = (1/2)(\\vec{b} - \\vec{a})",
-        "OM = OA + AM = \\vec{a} + (1/2)(\\vec{b} - \\vec{a}) = (1/2)\\vec{a} + (1/2)\\vec{b}"
+        "\\vec{a} = \\colvec{-3}{3}, \\vec{b} = \\colvec{-4}{-5}",
+        "4\\vec{a} = \\colvec{-12}{12} and 5\\vec{b} = \\colvec{-20}{-25}",
+        "4\\vec{a} + 5\\vec{b} = \\colvec{-32}{-13}"
       ],
-      "final_answer": "(1/2)\\vec{a} + (1/2)\\vec{b}",
+      "final_answer": "\\colvec{-32}{-13}",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "AB = OB - OA = \\vec{b} - \\vec{a}",
+          "description": "\\vec{a} = \\colvec{-3}{3}, \\vec{b} = \\colvec{-4}{-5}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "AM = (1/2)AB = (1/2)(\\vec{b} - \\vec{a})",
+          "description": "4\\vec{a} = \\colvec{-12}{12} and 5\\vec{b} = \\colvec{-20}{-25}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "OM = OA + AM = \\vec{a} + (1/2)(\\vec{b} - \\vec{a}) = (1/2)\\vec{a} + (1/2)\\vec{b}",
+          "description": "4\\vec{a} + 5\\vec{b} = \\colvec{-32}{-13}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(1/2)\\vec{a} + (1/2)\\vec{b} oe",
+          "description": "\\colvec{-32}{-13} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "exact_trig_values_triangles",
+      "prompt": "In the triangle shown, find the exact length of x. Give your answer in surd form where appropriate.",
+      "solution_steps": [
+        "We know the adjacent and want the hypotenuse, so use cos(45°) = √2/2 - its exact value, not a decimal approximation.",
+        "x = 9 ÷ √2/2 = 9√2 cm"
+      ],
+      "final_answer": "9√2 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "We know the adjacent and want the hypotenuse, so use cos(45°) = √2/2 - its exact value, not a decimal approximation.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 9 ÷ √2/2 = 9√2 cm",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "9√2 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "vector_triangle",
+        "kind": "trig_triangle",
         "params": {
-          "ratio": [
-            1,
-            1
-          ],
-          "point_label": "M",
-          "a_label": "\\vec{a}",
-          "b_label": "\\vec{b}",
-          "origin_label": "O"
+          "adjacent_label": "9 cm",
+          "opposite_label": null,
+          "hyp_label": "x cm",
+          "angle_label": "45°"
         }
       },
       "solution_diagram": null
@@ -995,84 +1066,54 @@
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "ξ"
+        }
+      },
+      "solution_diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "ξ",
+          "region_text": {
+            "a_only": "6, 12",
+            "b_only": "1, 8",
+            "both": "10",
+            "neither": "2, 3, 4, 5, 7, 9, 11"
+          }
+        }
+      }
     },
     {
-      "topic_id": "tree_diagram_mixed",
-      "prompt": "A bag contains 6 red and 2 blue counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that both counters are the same colour.",
+      "topic_id": "product_rule_counting",
+      "prompt": "A shop sells 4 different phone cases and 6 different screen protectors. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
       "solution_steps": [
-        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(red) = 3/4, P(blue) = 1/4.",
-        "P(both red) = 3/4 × 3/4 = 9/16",
-        "P(both blue) = 1/4 × 1/4 = 1/16",
-        "P(same colour) = 9/16 + 1/16 = 5/8"
+        "Total combinations = 4 × 6 = 24"
       ],
-      "final_answer": "5/8",
-      "marks": 5,
+      "final_answer": "24",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(red) = 3/4, P(blue) = 1/4.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(both red) = 3/4 × 3/4 = 9/16",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(both blue) = 1/4 × 1/4 = 1/16",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(same colour) = 9/16 + 1/16 = 5/8",
+          "description": "Total combinations = 4 × 6 = 24",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5/8 oe",
+          "description": "24 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "tree_diagram",
-        "params": {
-          "stage1": [
-            [
-              "Red",
-              "3/4"
-            ],
-            [
-              "Blue",
-              "1/4"
-            ]
-          ],
-          "stage2": [
-            [
-              [
-                "Red",
-                "3/4"
-              ],
-              [
-                "Blue",
-                "1/4"
-              ]
-            ],
-            [
-              [
-                "Red",
-                "3/4"
-              ],
-              [
-                "Blue",
-                "1/4"
-              ]
-            ]
-          ]
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     }
   ]

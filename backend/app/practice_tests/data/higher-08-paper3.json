@@ -8,7 +8,7 @@
   "questions": [
     {
       "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal \\recur{0.}{36} can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Show that \\recur{0.}{36} can be written as 4/11.",
       "solution_steps": [
         "Let x = \\recur{0.}{36}, so 100x = 36.3636... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 36 - 0, so 99x = 36",
@@ -119,7 +119,7 @@
     },
     {
       "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal \\recur{0.8}{3} can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Show that \\recur{0.8}{3} can be written as 5/6.",
       "solution_steps": [
         "Let x = \\recur{0.8}{3}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
@@ -229,77 +229,95 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_ladder_context",
-      "prompt": "A ladder of length 12 m leans against a vertical wall with its base 7 m from the wall. Find the height the ladder reaches up the wall, giving your answer as a surd in its simplest form.",
+      "topic_id": "area_subtract_compound",
+      "prompt": "Find the shaded area.",
       "solution_steps": [
-        "height² = ladder² - base² = 12² - 7² = 144 - 49 = 95",
-        "height = √95 = √95 m (exact form)"
+        "Area of large rectangle = 12 × 18 = 216 cm²",
+        "Area of rectangular hole = 2 × 5 = 10 cm²",
+        "Shaded area = 216 - 10 = 206 cm²"
       ],
-      "final_answer": "√95 m",
-      "marks": 3,
+      "final_answer": "206 cm²",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "height² = ladder² - base² = 12² - 7² = 144 - 49 = 95",
+          "description": "Area of large rectangle = 12 × 18 = 216 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "height = √95 = √95 m (exact form)",
+          "description": "Area of rectangular hole = 2 × 5 = 10 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Shaded area = 216 - 10 = 206 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "√95 m oe",
+          "description": "206 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "right_triangle",
+        "kind": "l_shape",
         "params": {
-          "leg1_label": "7 m",
-          "leg2_label": "x",
-          "hyp_label": "12 m"
+          "outer_w": 12,
+          "outer_h": 18,
+          "inner_w": 2,
+          "inner_h": 5,
+          "notch": "center",
+          "shade_frame": true,
+          "outer_labels": [
+            "12 cm",
+            "18 cm"
+          ],
+          "inner_labels": [
+            "2 cm",
+            "5 cm"
+          ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_quadratic",
-      "prompt": "Solve the simultaneous equations: y = x^2 + 2x + 2 and y = -2x + 14",
+      "topic_id": "simultaneous_different_coefficient",
+      "prompt": "Solve the simultaneous equations: 4x + 5y = -13 and 5x + 3y = -13",
       "solution_steps": [
-        "Substitute y = -2x + 14 into y = x^2 + 2x + 2: -2x + 14 = x^2 + 2x + 2",
-        "Rearrange: x^2 + 4x - 12 = 0",
-        "Factorise: (x - 2)(x + 6) = 0",
-        "x = 2 or x = -6",
-        "When x = 2, y = 10. When x = -6, y = 26."
+        "4x + 5y = -13  (1)",
+        "5x + 3y = -13  (2)",
+        "(1) × 3: 12x + 15y = -39  (3)",
+        "(2) × 5: 25x + 15y = -65  (4)",
+        "(3) - (4): -13x = 26, so x = -2",
+        "Substitute x = -2 into (1): 5y = -5, so y = -1"
       ],
-      "final_answer": "(2, 10) and (-6, 26)",
+      "final_answer": "x = -2, y = -1",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Substitute y = -2x + 14 into y = x^2 + 2x + 2: -2x + 14 = x^2 + 2x + 2",
+          "description": "4x + 5y = -13  (1)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rearrange: x^2 + 4x - 12 = 0",
+          "description": "5x + 3y = -13  (2)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: (x - 2)(x + 6) = 0",
+          "description": "(1) × 3: 12x + 15y = -39  (3)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 2 or x = -6 When x = 2, y = 10. When x = -6, y = 26.",
+          "description": "(2) × 5: 25x + 15y = -65  (4) (3) - (4): -13x = 26, so x = -2 Substitute x = -2 into (1): 5y = -5, so y = -1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(2, 10) and (-6, 26) oe",
+          "description": "x = -2, y = -1 oe",
           "marks": 1
         }
       ],
@@ -307,68 +325,45 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inequalities_region_higher",
-      "prompt": "On the grid, shade the region that satisfies both y > \\frac{x}{2} + 2 and y ≥ x - 1.",
+      "topic_id": "quadratic_inequalities",
+      "prompt": "Solve the inequality: x^2 + 13x + 36 > 0",
       "solution_steps": [
-        "Draw the line y = \\frac{x}{2} + 2 (dashed - the line itself is not included in the region).",
-        "Draw the line y = x - 1 (solid - the line itself is included in the region).",
-        "Shade the region where both y > \\frac{x}{2} + 2 and y ≥ x - 1 are true at the same time."
+        "Factorise: x^2 + 13x + 36 = (x + 4)(x + 9)",
+        "The critical values are x = -9 and x = -4.",
+        "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and > 0 is satisfied outside the two roots.",
+        "Answer: x < -9 or x > -4"
       ],
-      "final_answer": "y > \\frac{x}{2} + 2 and y ≥ x - 1",
-      "marks": 4,
+      "final_answer": "x < -9 or x > -4",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw the line y = \\frac{x}{2} + 2 (dashed - the line itself is not included in the region).",
+          "description": "Factorise: x^2 + 13x + 36 = (x + 4)(x + 9)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Draw the line y = x - 1 (solid - the line itself is included in the region).",
+          "description": "The critical values are x = -9 and x = -4.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Shade the region where both y > \\frac{x}{2} + 2 and y ≥ x - 1 are true at the same time.",
+          "description": "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and > 0 is satisfied outside the two roots.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Answer: x < -9 or x > -4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y > \\frac{x}{2} + 2 and y ≥ x - 1 oe",
+          "description": "x < -9 or x > -4 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "inequality_region",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "inequality_region",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "lines": [
-            {
-              "m": 0.5,
-              "c": 2,
-              "op": ">"
-            },
-            {
-              "m": 1.0,
-              "c": -1,
-              "op": ">="
-            }
-          ]
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     },
     {
       "topic_id": "substitution_higher",
@@ -413,34 +408,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "special_sequences_higher",
-      "prompt": "The first 3 terms of a geometric sequence are: 6, 4, 8/3. Find the 4th term of the sequence.",
+      "topic_id": "sequences_quadratic_nth_term",
+      "prompt": "Here are the first four terms of a quadratic sequence: 10, 25, 46, 73.\nFind an expression for the nth term.",
       "solution_steps": [
-        "Common ratio r = 2/3 (divide any term by the term before it).",
-        "nth term = a × r^(n - 1) = 6 × (2/3)^3",
-        "Term 4 = 16/9"
+        "First differences: 15, 21, 27",
+        "Second difference is constant: 6, so the coefficient of n^2 is 6 ÷ 2 = 3",
+        "nth term = 3n^2 + 6n + 1"
       ],
-      "final_answer": "16/9",
+      "final_answer": "3n^2 + 6n + 1",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Common ratio r = 2/3 (divide any term by the term before it).",
+          "description": "First differences: 15, 21, 27",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = a × r^(n - 1) = 6 × (2/3)^3",
+          "description": "Second difference is constant: 6, so the coefficient of n^2 is 6 ÷ 2 = 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Term 4 = 16/9",
+          "description": "nth term = 3n^2 + 6n + 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "16/9 oe",
+          "description": "3n^2 + 6n + 1 oe",
           "marks": 1
         }
       ],
@@ -448,40 +443,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solve_quadratic_factorising",
-      "prompt": "Solve x^2 - 11x + 28 = 0 by factorising.",
+      "topic_id": "factorise_quadratics",
+      "prompt": "Factorise: x^2 + 8x - 9",
       "solution_steps": [
-        "Find two numbers that multiply to 28 and add to -11: -4 and -7",
-        "Factorise: (x - 4)(x - 7) = 0",
-        "Either x + -4 = 0 or x + -7 = 0",
-        "x = 4 or x = 7"
+        "Find two numbers that multiply to -9 and add to 8: -1 and 9",
+        "Write as two brackets: (x - 1)(x + 9)"
       ],
-      "final_answer": "x = 4 or x = 7",
-      "marks": 5,
+      "final_answer": "(x - 1)(x + 9)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to 28 and add to -11: -4 and -7",
+          "description": "Find two numbers that multiply to -9 and add to 8: -1 and 9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: (x - 4)(x - 7) = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Either x + -4 = 0 or x + -7 = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 4 or x = 7",
+          "description": "Write as two brackets: (x - 1)(x + 9)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 4 or x = 7 oe",
+          "description": "(x - 1)(x + 9) oe",
           "marks": 1
         }
       ],
@@ -489,40 +472,43 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "kinematics_suvat",
-      "prompt": "An object's velocity increases from 20 m/s to 14 m/s over 6 s at a constant acceleration. Find this acceleration.",
+      "topic_id": "trial_and_improvement",
+      "prompt": "f(x) = x^3 + 3x - 40. Show that f(x) = 0 has a root between x = 3 and x = 4, then use trial and improvement to find this root correct to 1 decimal place.",
       "solution_steps": [
-        "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
-        "v = u + at",
-        "Rearrange to make a the subject: a = \\frac{v - u}{t}",
-        "Substitute u = 20, v = 14, t = 6: a = \\frac{14 - 20}{6} = -6/6 = -1"
+        "f(x) = x^3 + 3x - 40",
+        "f(3) = -4.00 (negative)",
+        "f(4) = 36.00 (positive)",
+        "f(3.1) = -0.91 (negative)",
+        "f(3.2) = 2.37 (positive)",
+        "The sign changes between x = 3.1 and x = 3.2, so try the midpoint x = 3.15: f(3.15) = 0.71.",
+        "f(3.15) has the same sign as f(3.2), so the root lies between 3.1 and 3.15 - to 1 decimal place, this rounds down to 3.1."
       ],
-      "final_answer": "-1 m/s^2",
+      "final_answer": "x = 3.1",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
+          "description": "f(x) = x^3 + 3x - 40",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "v = u + at",
+          "description": "f(3) = -4.00 (negative)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rearrange to make a the subject: a = \\frac{v - u}{t}",
+          "description": "f(4) = 36.00 (positive)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute u = 20, v = 14, t = 6: a = \\frac{14 - 20}{6} = -6/6 = -1",
+          "description": "f(3.1) = -0.91 (negative) f(3.2) = 2.37 (positive) The sign changes between x = 3.1 and x = 3.2, so try the midpoint x = 3.15: f(3.15) = 0.71. f(3.15) has the same sign as f(3.2), so the root lies between 3.1 and 3.15 - to 1 decimal place, this rounds down to 3.1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-1 m/s^2 oe",
+          "description": "x = 3.1 oe",
           "marks": 1
         }
       ],

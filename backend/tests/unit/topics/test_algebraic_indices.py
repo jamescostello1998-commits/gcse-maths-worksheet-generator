@@ -29,6 +29,20 @@ def test_dedup_keys_vary_per_generator():
         assert len(keys) > 40
 
 
+def test_algebraic_indices_higher_shows_a_fractional_exponent_often():
+    # Reweighted towards "fractional" (40%, up from an even 25% split) since
+    # a genuine fractional exponent is this topic's own distinguishing
+    # content - over enough trials it should appear noticeably more than a
+    # quarter of the time.
+    rng = random.Random(122)
+    fractional_count = 0
+    for _ in range(200):
+        q = algebraic_indices.generate_algebraic_indices_higher(Tier.HIGHER, rng)
+        if "^(" in q.prompt:
+            fractional_count += 1
+    assert fractional_count > 200 * 0.3
+
+
 def test_topic_definitions_have_expected_metadata():
     topics = [
         algebraic_indices.TOPIC_ALGEBRAIC_INDICES_FOUNDATION,

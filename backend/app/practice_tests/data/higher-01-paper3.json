@@ -43,39 +43,39 @@
     },
     {
       "topic_id": "simplifying_indices_challenging",
-      "prompt": "Fully simplify 125^(1/3) × 125^-3, giving your answer as a fraction where necessary.",
+      "prompt": "Simplify (6^2)^3 ÷ 6^3, giving your answer as a fraction where necessary.",
       "solution_steps": [
-        "125^(1/3) is the cube root of 125, which is 5, so 125^(1/3) = 5^1",
-        "125^-3 = \\frac{1}{125³} = \\frac{1}{5⁹}",
-        "125^(1/3) × 125^-3 = 5^1 × \\frac{1}{5⁹} = 5^(1-9) = 5^-8",
-        "5^-8 = 1/390625"
+        "Multiply the powers in the bracket: 2 × 3 = 6",
+        "(6^2)^3 = 6^6",
+        "Subtract the powers to divide: 6 - (3) = 3",
+        "6^6 ÷ 6^3 = 6^3 = 216"
       ],
-      "final_answer": "1/390625",
+      "final_answer": "216",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "125^(1/3) is the cube root of 125, which is 5, so 125^(1/3) = 5^1",
+          "description": "Multiply the powers in the bracket: 2 × 3 = 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "125^-3 = \\frac{1}{125³} = \\frac{1}{5⁹}",
+          "description": "(6^2)^3 = 6^6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "125^(1/3) × 125^-3 = 5^1 × \\frac{1}{5⁹} = 5^(1-9) = 5^-8",
+          "description": "Subtract the powers to divide: 6 - (3) = 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5^-8 = 1/390625",
+          "description": "6^6 ÷ 6^3 = 6^3 = 216",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/390625 oe",
+          "description": "216 oe",
           "marks": 1
         }
       ],
@@ -177,27 +177,33 @@
     },
     {
       "topic_id": "powers_higher",
-      "prompt": "Calculate 10^0.",
+      "prompt": "Work out 64^(2/3).",
       "solution_steps": [
-        "Any nonzero number raised to the power 0 equals 1.",
-        "10^0 = 1"
+        "64^(2/3) = (64^(1/3))^2",
+        "64^(1/3) = 4",
+        "4^2 = 16"
       ],
-      "final_answer": "1",
-      "marks": 3,
+      "final_answer": "16",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Any nonzero number raised to the power 0 equals 1.",
+          "description": "64^(2/3) = (64^(1/3))^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "10^0 = 1",
+          "description": "64^(1/3) = 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4^2 = 16",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 oe",
+          "description": "16 oe",
           "marks": 1
         }
       ],
@@ -342,40 +348,34 @@
       }
     },
     {
-      "topic_id": "algebraic_fractions_multiply_divide",
-      "prompt": "Simplify \\frac{(x^2 - 81)}{(x - 2)} × \\frac{(x - 2)}{(x - 9)}, giving your answer in its simplest form.",
+      "topic_id": "functions_inverse_evaluate",
+      "prompt": "f(x) = 4x - 1. Find f^-1(10).",
       "solution_steps": [
-        "Factorise the difference of two squares: (x^2 - 81) = (x - 9)(x + 9)",
-        "\\frac{(x - 9)(x + 9)}{(x - 2)} × \\frac{(x - 2)}{(x - 9)}",
-        "Cancel the common factors (x - 2) and (x - 9):",
-        "= x + 9"
+        "f^-1(x) = \\frac{x + 1}{4}",
+        "f^-1(10) = \\frac{10 + 1}{4}",
+        "f^-1(10) = 11/4"
       ],
-      "final_answer": "x + 9",
-      "marks": 5,
+      "final_answer": "11/4",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Factorise the difference of two squares: (x^2 - 81) = (x - 9)(x + 9)",
+          "description": "f^-1(x) = \\frac{x + 1}{4}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "\\frac{(x - 9)(x + 9)}{(x - 2)} × \\frac{(x - 2)}{(x - 9)}",
+          "description": "f^-1(10) = \\frac{10 + 1}{4}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Cancel the common factors (x - 2) and (x - 9):",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= x + 9",
+          "description": "f^-1(10) = 11/4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x + 9 oe",
+          "description": "11/4 oe",
           "marks": 1
         }
       ],
@@ -383,40 +383,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_fractions_add_subtract",
-      "prompt": "Simplify \\frac{6}{(x + 1)} - \\frac{1}{(x - 7)}, giving your answer as a single fraction.",
+      "topic_id": "functions_composite_inverse",
+      "prompt": "f(x) = 3x + 3. Find f^-1(x).",
       "solution_steps": [
-        "Write both fractions over the common denominator (x + 1)(x - 7):",
-        "\\frac{6}{(x + 1)} - \\frac{1}{(x - 7)} = \\frac{6(x - 7) - 1(x + 1)}{(x + 1)(x - 7)}",
-        "Expand the numerator: 6(x - 7) - 1(x + 1) = 5x - 43",
-        "= \\frac{5x - 43}{(x + 1)(x - 7)}"
+        "y = 3x + 3",
+        "Rearrange to make x the subject: x = \\frac{y - 3}{3}",
+        "Swap x and y: f^-1(x) = \\frac{x - 3}{3}"
       ],
-      "final_answer": "\\frac{5x - 43}{(x + 1)(x - 7)}",
-      "marks": 5,
+      "final_answer": "\\frac{x - 3}{3}",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Write both fractions over the common denominator (x + 1)(x - 7):",
+          "description": "y = 3x + 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "\\frac{6}{(x + 1)} - \\frac{1}{(x - 7)} = \\frac{6(x - 7) - 1(x + 1)}{(x + 1)(x - 7)}",
+          "description": "Rearrange to make x the subject: x = \\frac{y - 3}{3}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand the numerator: 6(x - 7) - 1(x + 1) = 5x - 43",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= \\frac{5x - 43}{(x + 1)(x - 7)}",
+          "description": "Swap x and y: f^-1(x) = \\frac{x - 3}{3}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "\\frac{5x - 43}{(x + 1)(x - 7)} oe",
+          "description": "\\frac{x - 3}{3} oe",
           "marks": 1
         }
       ],
@@ -424,42 +418,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "change_subject_higher",
-      "prompt": "Make x the subject of the formula y = \\frac{x + 8}{x - 10}.",
+      "topic_id": "change_subject_factorise_higher",
+      "prompt": "Make x the subject of the formula kx + 4x = 42.",
       "solution_steps": [
-        "y = \\frac{x + 8}{x - 10}",
-        "Multiply both sides by (x - 10): y(x - 10) = x + 8",
-        "Expand the bracket: yx - 10y = x + 8",
-        "Collect the x-terms on one side: yx - x = 8 + 10y",
-        "Factorise: x(y - 1) = 8 + 10y",
-        "Divide both sides by (y - 1): x = \\frac{8 + 10y}{y - 1}"
+        "kx + 4x = 42",
+        "Factorise the left-hand side: x(k + 4) = 42",
+        "Divide both sides by (k + 4): x = \\frac{42}{k + 4}"
       ],
-      "final_answer": "x = \\frac{8 + 10y}{y - 1}",
-      "marks": 5,
+      "final_answer": "x = \\frac{42}{k + 4}",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = \\frac{x + 8}{x - 10}",
+          "description": "kx + 4x = 42",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply both sides by (x - 10): y(x - 10) = x + 8",
+          "description": "Factorise the left-hand side: x(k + 4) = 42",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand the bracket: yx - 10y = x + 8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Collect the x-terms on one side: yx - x = 8 + 10y Factorise: x(y - 1) = 8 + 10y Divide both sides by (y - 1): x = \\frac{8 + 10y}{y - 1}",
+          "description": "Divide both sides by (k + 4): x = \\frac{42}{k + 4}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = \\frac{8 + 10y}{y - 1} oe",
+          "description": "x = \\frac{42}{k + 4} oe",
           "marks": 1
         }
       ],
@@ -594,6 +580,47 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "solve_quadratic_factorising",
+      "prompt": "Solve x^2 - 6x - 7 = 0 by factorising.",
+      "solution_steps": [
+        "Find two numbers that multiply to -7 and add to -6: 1 and -7",
+        "Factorise: (x + 1)(x - 7) = 0",
+        "Either x + 1 = 0 or x + -7 = 0",
+        "x = -1 or x = 7"
+      ],
+      "final_answer": "x = -1 or x = 7",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find two numbers that multiply to -7 and add to -6: 1 and -7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: (x + 1)(x - 7) = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Either x + 1 = 0 or x + -7 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -1 or x = 7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = -1 or x = 7 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "ratio_share_three_part",
       "prompt": "Share 208 in the ratio 2:9:5.",
       "solution_steps": [
@@ -629,47 +656,6 @@
         {
           "code": "A1",
           "description": "26 : 117 : 65 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_combine",
-      "prompt": "Given that a:b = 5:7 and b:c = 3:1, find a:b:c in its simplest form.",
-      "solution_steps": [
-        "Scale a:b = 5:7 by 3 so b = 21: a:b = 15:21",
-        "Scale b:c = 3:1 by 7 so b = 21: b:c = 21:7",
-        "Combine: a:b:c = 15:21:7",
-        "Simplify by dividing by 1: a:b:c = 15:21:7"
-      ],
-      "final_answer": "15 : 21 : 7",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Scale a:b = 5:7 by 3 so b = 21: a:b = 15:21",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Scale b:c = 3:1 by 7 so b = 21: b:c = 21:7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Combine: a:b:c = 15:21:7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Simplify by dividing by 1: a:b:c = 15:21:7",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "15 : 21 : 7 oe",
           "marks": 1
         }
       ],
@@ -735,44 +721,38 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_missing_angle_higher",
-      "prompt": "In the triangle shown, find the angle x, correct to 1 decimal place.",
+      "topic_id": "exact_trig_values_triangles",
+      "prompt": "In the triangle shown, find the exact length of x. Give your answer in surd form where appropriate.",
       "solution_steps": [
-        "Use cos, since we know two of the three sides.",
-        "cos(x) = 16 ÷ 32",
-        "x = cos^-1(16 ÷ 32) = 60.0° (1 d.p.)"
+        "We know the hypotenuse and want the opposite, so use sin(60°) = √3/2 - its exact value, not a decimal approximation.",
+        "x = 7 × √3/2 = \\frac{7√3}{2} cm"
       ],
-      "final_answer": "60.0°",
-      "marks": 4,
+      "final_answer": "\\frac{7√3}{2} cm",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Use cos, since we know two of the three sides.",
+          "description": "We know the hypotenuse and want the opposite, so use sin(60°) = √3/2 - its exact value, not a decimal approximation.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "cos(x) = 16 ÷ 32",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = cos^-1(16 ÷ 32) = 60.0° (1 d.p.)",
+          "description": "x = 7 × √3/2 = \\frac{7√3}{2} cm",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "60.0° oe",
+          "description": "\\frac{7√3}{2} cm oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "trig_triangle",
         "params": {
-          "adjacent_label": "16 cm",
-          "opposite_label": null,
-          "hyp_label": "32 cm",
-          "angle_label": "x°"
+          "adjacent_label": null,
+          "opposite_label": "x cm",
+          "hyp_label": "7 cm",
+          "angle_label": "60°"
         }
       },
       "solution_diagram": null
@@ -831,70 +811,70 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "arc_length",
-      "prompt": "Find the exact arc length of the following sector, in terms of π.",
+      "topic_id": "area_sector",
+      "prompt": "Find the exact area of the following sector, in terms of π.",
       "solution_steps": [
-        "Arc length = (θ ÷ 360) × 2 × π × r = (240 ÷ 360) × 2 × π × 11",
-        "= (44/3)π cm"
+        "Area = (θ ÷ 360) × π × r² = (330 ÷ 360) × π × 8²",
+        "= (176/3)π cm²"
       ],
-      "final_answer": "(44/3)π cm",
+      "final_answer": "(176/3)π cm²",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Arc length = (θ ÷ 360) × 2 × π × r = (240 ÷ 360) × 2 × π × 11",
+          "description": "Area = (θ ÷ 360) × π × r² = (330 ÷ 360) × π × 8²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= (44/3)π cm",
+          "description": "= (176/3)π cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(44/3)π cm oe",
+          "description": "(176/3)π cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "sector",
         "params": {
-          "angle": 240,
-          "radius_label": "11 cm",
-          "angle_label": "240°"
+          "angle": 330,
+          "radius_label": "8 cm",
+          "angle_label": "330°"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "vectors_arithmetic_higher",
-      "prompt": "\\vec{a} = (8, -7) and \\vec{b} = (-1, -8). Find \\vec{a} + -2\\vec{b}.",
+      "prompt": "\\vec{a} = \\colvec{8}{-7} and \\vec{b} = \\colvec{-1}{-8}. Find \\vec{a} + -2\\vec{b}.",
       "solution_steps": [
-        "\\vec{a} = (8, -7), \\vec{b} = (-1, -8)",
-        "\\vec{a} = (8, -7) and -2\\vec{b} = (2, 16)",
-        "\\vec{a} + -2\\vec{b} = (10, 9)"
+        "\\vec{a} = \\colvec{8}{-7}, \\vec{b} = \\colvec{-1}{-8}",
+        "\\vec{a} = \\colvec{8}{-7} and -2\\vec{b} = \\colvec{2}{16}",
+        "\\vec{a} + -2\\vec{b} = \\colvec{10}{9}"
       ],
-      "final_answer": "(10, 9)",
+      "final_answer": "\\colvec{10}{9}",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "\\vec{a} = (8, -7), \\vec{b} = (-1, -8)",
+          "description": "\\vec{a} = \\colvec{8}{-7}, \\vec{b} = \\colvec{-1}{-8}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "\\vec{a} = (8, -7) and -2\\vec{b} = (2, 16)",
+          "description": "\\vec{a} = \\colvec{8}{-7} and -2\\vec{b} = \\colvec{2}{16}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "\\vec{a} + -2\\vec{b} = (10, 9)",
+          "description": "\\vec{a} + -2\\vec{b} = \\colvec{10}{9}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(10, 9) oe",
+          "description": "\\colvec{10}{9} oe",
           "marks": 1
         }
       ],
@@ -902,40 +882,201 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "venn_diagram_notation",
-      "prompt": "ξ = {1, 2, 3, 4, 5, 6}. The Venn diagram shows sets A and B. List the elements of B'.",
+      "topic_id": "velocity_time_interpret",
+      "prompt": "The velocity-time graph shows a car's journey. Find the distance travelled while the car travels at constant velocity.",
       "solution_steps": [
-        "ξ = {1, 2, 3, 4, 5, 6}",
-        "A = {2, 3, 4, 5}, B = {1, 2}",
-        "B' means the elements not in B.",
-        "B' = {3, 4, 5, 6}"
+        "Distance = area under the graph = base × height (a rectangle)",
+        "Distance = 20 × 12 = 240 m"
       ],
-      "final_answer": "{3, 4, 5, 6}",
-      "marks": 5,
+      "final_answer": "240 m",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "ξ = {1, 2, 3, 4, 5, 6}",
+          "description": "Distance = area under the graph = base × height (a rectangle)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A = {2, 3, 4, 5}, B = {1, 2}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "B' means the elements not in B.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "B' = {3, 4, 5, 6}",
+          "description": "Distance = 20 × 12 = 240 m",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "{3, 4, 5, 6} oe",
+          "description": "240 m oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              12
+            ],
+            [
+              25,
+              12
+            ],
+            [
+              33,
+              0
+            ]
+          ],
+          "x_max": 38,
+          "y_max": 17,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "transform_rotate_describe",
+      "prompt": "Shape ABCDEF is rotated to give shape A'B'C'D'E'F', shown on the grid. Describe fully the single transformation that maps ABCDEF onto A'B'C'D'E'F'.",
+      "solution_steps": [
+        "The centre of rotation is the one point that is the same distance from a vertex and its image, for every vertex - it can be found where the perpendicular bisectors of two such pairs cross.",
+        "Measuring the turn from a vertex to its image about that point gives 90° anticlockwise about (-3, 0)."
+      ],
+      "final_answer": "Rotation 90° anticlockwise about (-3, 0)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The centre of rotation is the one point that is the same distance from a vertex and its image, for every vertex - it can be found where the perpendicular bisectors of two such pairs cross.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Measuring the turn from a vertex to its image about that point gives 90° anticlockwise about (-3, 0).",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Rotation 90° anticlockwise about (-3, 0) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              -2,
+              -1
+            ],
+            [
+              2,
+              -1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              -2,
+              4
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "image_vertices": [
+            [
+              -2,
+              1
+            ],
+            [
+              -2,
+              5
+            ],
+            [
+              -4,
+              5
+            ],
+            [
+              -4,
+              3
+            ],
+            [
+              -7,
+              3
+            ],
+            [
+              -7,
+              1
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'",
+            "D'",
+            "E'",
+            "F'"
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "set_notation",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, A = {3, 9, 11}, B = {3, 4, 5, 7, 10}. List the elements of A ∪ B.",
+      "solution_steps": [
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}",
+        "A = {3, 9, 11}",
+        "B = {3, 4, 5, 7, 10}",
+        "A ∪ B means A union B (elements in A, B, or both).",
+        "A ∪ B = {3, 4, 5, 7, 9, 10, 11}"
+      ],
+      "final_answer": "{3, 4, 5, 7, 9, 10, 11}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {3, 9, 11}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B = {3, 4, 5, 7, 10}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A ∪ B means A union B (elements in A, B, or both). A ∪ B = {3, 4, 5, 7, 9, 10, 11}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "{3, 4, 5, 7, 9, 10, 11} oe",
           "marks": 1
         }
       ],
@@ -946,77 +1087,55 @@
             "A",
             "B"
           ],
-          "universal_label": "S",
-          "region_text": {
-            "a_only": "3, 4, 5",
-            "b_only": "1",
-            "both": "2",
-            "neither": "6"
-          }
+          "universal_label": "ξ"
         }
       },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "product_rule_counting",
-      "prompt": "A shop sells 5 different phone cases, 3 different screen protectors and 3 different chargers. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
-      "solution_steps": [
-        "Total combinations = 5 × 3 × 3 = 45"
-      ],
-      "final_answer": "45",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total combinations = 5 × 3 × 3 = 45",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "45 oe",
-          "marks": 1
+      "solution_diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "ξ",
+          "region_text": {
+            "a_only": "9, 11",
+            "b_only": "4, 5, 7, 10",
+            "both": "3",
+            "neither": "1, 2, 6, 8"
+          }
         }
-      ],
-      "diagram": null,
-      "solution_diagram": null
+      }
     },
     {
-      "topic_id": "tree_diagram_mixed",
-      "prompt": "A bag contains 8 red and 4 yellow counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the two counters are different colours.",
+      "topic_id": "probability_conditional",
+      "prompt": "A bag contains 4 blue and 3 red counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
       "solution_steps": [
-        "After the first counter is picked (without replacement), there are 11 counters left.",
-        "P(red then red) = 2/3 × 7/11 = 14/33",
-        "P(red then yellow) = 2/3 × 4/11 = 8/33",
-        "P(yellow then red) = 1/3 × 8/11 = 8/33",
-        "P(yellow then yellow) = 1/3 × 3/11 = 1/11",
-        "P(the two counters are different colours) = 16/33"
+        "P(both blue) = 4/7 × 3/6 = 2/7",
+        "P(both red) = 3/7 × 2/6 = 1/7",
+        "P(both same colour) = 2/7 + 1/7 = 3/7"
       ],
-      "final_answer": "16/33",
-      "marks": 5,
+      "final_answer": "3/7",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first counter is picked (without replacement), there are 11 counters left.",
+          "description": "P(both blue) = 4/7 × 3/6 = 2/7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(red then red) = 2/3 × 7/11 = 14/33",
+          "description": "P(both red) = 3/7 × 2/6 = 1/7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(red then yellow) = 2/3 × 4/11 = 8/33",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(yellow then red) = 1/3 × 8/11 = 8/33 P(yellow then yellow) = 1/3 × 3/11 = 1/11 P(the two counters are different colours) = 16/33",
+          "description": "P(both same colour) = 2/7 + 1/7 = 3/7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "16/33 oe",
+          "description": "3/7 oe",
           "marks": 1
         }
       ],
@@ -1025,49 +1144,75 @@
         "params": {
           "stage1": [
             [
-              "Red",
-              "2/3"
+              "Blue",
+              ""
             ],
             [
-              "Yellow",
-              "1/3"
+              "Red",
+              ""
             ]
           ],
           "stage2": [
             [
               [
-                "Red",
-                "7/11"
+                "Blue",
+                ""
               ],
               [
-                "Yellow",
-                "4/11"
+                "Red",
+                ""
               ]
             ],
             [
               [
-                "Red",
-                "8/11"
+                "Blue",
+                ""
               ],
               [
-                "Yellow",
-                "3/11"
+                "Red",
+                ""
               ]
-            ]
-          ],
-          "leaf_probs": [
-            [
-              "14/33",
-              "8/33"
-            ],
-            [
-              "8/33",
-              "1/11"
             ]
           ]
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Blue",
+              "4/7"
+            ],
+            [
+              "Red",
+              "3/7"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Blue",
+                "3/6"
+              ],
+              [
+                "Red",
+                "3/6"
+              ]
+            ],
+            [
+              [
+                "Blue",
+                "4/6"
+              ],
+              [
+                "Red",
+                "2/6"
+              ]
+            ]
+          ]
+        }
+      }
     }
   ]
 }

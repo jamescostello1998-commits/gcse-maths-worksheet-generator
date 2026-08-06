@@ -35,6 +35,14 @@ def test_all_generators_produce_valid_verified_questions():
             assert q.final_answer
 
 
+def test_ordering_values_have_a_maximum_range_of_0_2():
+    rng = random.Random(100)
+    for _ in range(TRIALS):
+        q = decimals.generate_ordering(Tier.FOUNDATION, rng)
+        ks = [int(x) for x in q.dedup_key.split(":")[1].strip("[]").split(", ")]
+        assert max(ks) - min(ks) <= 20
+
+
 def test_recurring_decimal_single_digit_produces_valid_verified_questions():
     rng = random.Random(100)
     for _ in range(TRIALS):
@@ -56,6 +64,28 @@ def test_recurring_decimal_single_digit_dedup_keys_cover_the_full_state_space():
     rng = random.Random(103)
     keys = {decimals.generate_recurring_decimal_single_digit(Tier.FOUNDATION, rng).dedup_key for _ in range(300)}
     assert keys == expected_keys
+
+
+def test_recurring_decimal_prompts_vary_between_write_and_show_that_phrasing():
+    for generate in (
+        decimals.generate_recurring_decimal_to_fraction,
+        decimals.generate_recurring_decimal_single_digit,
+        decimals.generate_recurring_decimal_two_digit,
+    ):
+        tier = Tier.HIGHER if generate is not decimals.generate_recurring_decimal_single_digit else Tier.FOUNDATION
+        rng = random.Random(104)
+        found_write, found_show_that = False, False
+        for _ in range(TRIALS):
+            q = generate(tier, rng)
+            if q.prompt.startswith("Write "):
+                found_write = True
+                assert "as a fraction in its simplest form" in q.prompt
+            elif q.prompt.startswith("Show that "):
+                found_show_that = True
+                assert q.prompt.endswith(f"can be written as {q.final_answer}.")
+            else:
+                raise AssertionError(f"unexpected prompt phrasing: {q.prompt!r}")
+        assert found_write and found_show_that
 
 
 def test_round_to_decimal_places_keeps_trailing_zeros():

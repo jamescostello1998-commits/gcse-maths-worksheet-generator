@@ -72,7 +72,7 @@
     },
     {
       "topic_id": "bidmas",
-      "prompt": "Work out 20 + 6 × (8 - 6)^2 ÷ 3. Use the correct order of operations.",
+      "prompt": "Work out 20 + 6 × (8 - 6)^2 ÷ 3.",
       "solution_steps": [
         "Brackets: (8 - 6) = 2",
         "Indices: 2^2 = 4",
@@ -114,27 +114,27 @@
     },
     {
       "topic_id": "decimals_ordering",
-      "prompt": "Write these values in ascending order: 11/20, 0.29, 93%, 2/5",
+      "prompt": "Write these values in ascending order: 0.61, 67%, 63/100, 70%",
       "solution_steps": [
-        "Convert each value to a decimal: 11/20 = 0.55, 0.29 = 0.29, 93% = 0.93, 2/5 = 0.40",
-        "Order in ascending order: 0.29, 2/5, 11/20, 93%"
+        "Convert each value to a decimal: 0.61 = 0.61, 67% = 0.67, 63/100 = 0.63, 70% = 0.70",
+        "Order in ascending order: 0.61, 63/100, 67%, 70%"
       ],
-      "final_answer": "0.29, 2/5, 11/20, 93%",
+      "final_answer": "0.61, 63/100, 67%, 70%",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert each value to a decimal: 11/20 = 0.55, 0.29 = 0.29, 93% = 0.93, 2/5 = 0.40",
+          "description": "Convert each value to a decimal: 0.61 = 0.61, 67% = 0.67, 63/100 = 0.63, 70% = 0.70",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Order in ascending order: 0.29, 2/5, 11/20, 93%",
+          "description": "Order in ascending order: 0.61, 63/100, 67%, 70%",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0.29, 2/5, 11/20, 93% oe",
+          "description": "0.61, 63/100, 67%, 70% oe",
           "marks": 1
         }
       ],
@@ -247,48 +247,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solving_inequalities_foundation",
-      "prompt": "Solve the inequality: \\frac{x}{2} - 3 > -9",
-      "solution_steps": [
-        "\\frac{x}{2} - 3 > -9",
-        "Add 3 to both sides:",
-        "\\frac{x}{2} > -6",
-        "Multiply both sides by 2:",
-        "x > -12"
-      ],
-      "final_answer": "x > -12",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "\\frac{x}{2} - 3 > -9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add 3 to both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "\\frac{x}{2} > -6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply both sides by 2: x > -12",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x > -12 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
       "topic_id": "simultaneous_graphically",
       "prompt": "The graphs of y = 4x - 10 and y = -3x + 4 are shown below. Use the graphs to write down the solution to the simultaneous equations.",
       "solution_steps": [
@@ -318,9 +276,56 @@
         "kind": "linear_graph_pair",
         "params": {
           "label1": "y = 4x - 10",
-          "label2": "y = -3x + 4"
+          "label2": "y = -3x + 4",
+          "m1": 4,
+          "c1": -10,
+          "m2": -3,
+          "c2": 4,
+          "sol_x": 2,
+          "sol_y": -2
         }
       },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_forming_and_solving",
+      "prompt": "2 tickets and 2 programmes cost £1.84 in total. 5 tickets and 2 programmes cost £3.19 in total. Form and solve a pair of simultaneous equations to find the cost of one ticket and one programme.",
+      "solution_steps": [
+        "Let x = cost of one ticket (pence), y = cost of one programme (pence).",
+        "2x + 2y = 184  (1)",
+        "5x + 2y = 319  (2)",
+        "Solving simultaneously: x = 45, y = 47"
+      ],
+      "final_answer": "ticket = £0.45, programme = £0.47",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let x = cost of one ticket (pence), y = cost of one programme (pence).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x + 2y = 184  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x + 2y = 319  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Solving simultaneously: x = 45, y = 47",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "ticket = £0.45, programme = £0.47 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -379,40 +384,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_forming_and_solving",
-      "prompt": "2 tickets and 2 programmes cost £1.84 in total. 5 tickets and 2 programmes cost £3.19 in total. Form and solve a pair of simultaneous equations to find the cost of one ticket and one programme.",
+      "topic_id": "solving_inequalities_foundation",
+      "prompt": "Solve the inequality: \\frac{x}{2} - 3 > -9",
       "solution_steps": [
-        "Let x = cost of one ticket (pence), y = cost of one programme (pence).",
-        "2x + 2y = 184  (1)",
-        "5x + 2y = 319  (2)",
-        "Solving simultaneously: x = 45, y = 47"
+        "\\frac{x}{2} - 3 > -9",
+        "Add 3 to both sides:",
+        "\\frac{x}{2} > -6",
+        "Multiply both sides by 2:",
+        "x > -12"
       ],
-      "final_answer": "ticket = £0.45, programme = £0.47",
+      "final_answer": "x > -12",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = cost of one ticket (pence), y = cost of one programme (pence).",
+          "description": "\\frac{x}{2} - 3 > -9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x + 2y = 184  (1)",
+          "description": "Add 3 to both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x + 2y = 319  (2)",
+          "description": "\\frac{x}{2} > -6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Solving simultaneously: x = 45, y = 47",
+          "description": "Multiply both sides by 2: x > -12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "ticket = £0.45, programme = £0.47 oe",
+          "description": "x > -12 oe",
           "marks": 1
         }
       ],
@@ -741,27 +747,27 @@
     },
     {
       "topic_id": "transform_reflect_complete",
-      "prompt": "Reflect shape ABCDEF in the line y = -x. Draw and label the image A'B'C'D'E'F'.",
+      "prompt": "Reflect shape ABC in the line y = -1. Draw and label the image A'B'C'.",
       "solution_steps": [
-        "Reflect each vertex in the line y = -x: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
-        "A(3, 2) -> A'(-2, -3), B(7, 2) -> B'(-2, -7), C(7, 4) -> C'(-4, -7), D(5, 4) -> D'(-4, -5), E(5, 7) -> E'(-7, -5), F(3, 7) -> F'(-7, -3)"
+        "Reflect each vertex in the line y = -1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+        "A(-3, 2) -> A'(-3, -4), B(0, 2) -> B'(0, -4), C(-3, 4) -> C'(-3, -6)"
       ],
-      "final_answer": "A'(-2, -3), B'(-2, -7), C'(-4, -7), D'(-4, -5), E'(-7, -5), F'(-7, -3)",
+      "final_answer": "A'(-3, -4), B'(0, -4), C'(-3, -6)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Reflect each vertex in the line y = -x: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+          "description": "Reflect each vertex in the line y = -1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A(3, 2) -> A'(-2, -3), B(7, 2) -> B'(-2, -7), C(7, 4) -> C'(-4, -7), D(5, 4) -> D'(-4, -5), E(5, 7) -> E'(-7, -5), F(3, 7) -> F'(-7, -3)",
+          "description": "A(-3, 2) -> A'(-3, -4), B(0, 2) -> B'(0, -4), C(-3, 4) -> C'(-3, -6)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(-2, -3), B'(-2, -7), C'(-4, -7), D'(-4, -5), E'(-7, -5), F'(-7, -3) oe",
+          "description": "A'(-3, -4), B'(0, -4), C'(-3, -6) oe",
           "marks": 1
         }
       ],
@@ -774,42 +780,27 @@
           "y_max": 8,
           "original_vertices": [
             [
-              3,
+              -3,
               2
             ],
             [
-              7,
+              0,
               2
             ],
             [
-              7,
+              -3,
               4
-            ],
-            [
-              5,
-              4
-            ],
-            [
-              5,
-              7
-            ],
-            [
-              3,
-              7
             ]
           ],
           "original_labels": [
             "A",
             "B",
-            "C",
-            "D",
-            "E",
-            "F"
+            "C"
           ],
           "mirror_line": {
-            "type": "diagonal",
-            "sign": -1,
-            "label": "y = -x"
+            "type": "horizontal",
+            "y": -1,
+            "label": "y = -1"
           }
         }
       },
@@ -822,76 +813,46 @@
           "y_max": 8,
           "original_vertices": [
             [
-              3,
+              -3,
               2
             ],
             [
-              7,
+              0,
               2
             ],
             [
-              7,
+              -3,
               4
-            ],
-            [
-              5,
-              4
-            ],
-            [
-              5,
-              7
-            ],
-            [
-              3,
-              7
             ]
           ],
           "original_labels": [
             "A",
             "B",
-            "C",
-            "D",
-            "E",
-            "F"
+            "C"
           ],
           "mirror_line": {
-            "type": "diagonal",
-            "sign": -1,
-            "label": "y = -x"
+            "type": "horizontal",
+            "y": -1,
+            "label": "y = -1"
           },
           "image_vertices": [
             [
-              -2,
-              -3
+              -3,
+              -4
             ],
             [
-              -2,
-              -7
+              0,
+              -4
             ],
             [
-              -4,
-              -7
-            ],
-            [
-              -4,
-              -5
-            ],
-            [
-              -7,
-              -5
-            ],
-            [
-              -7,
-              -3
+              -3,
+              -6
             ]
           ],
           "image_labels": [
             "A'",
             "B'",
-            "C'",
-            "D'",
-            "E'",
-            "F'"
+            "C'"
           ]
         }
       }
@@ -929,9 +890,9 @@
     },
     {
       "topic_id": "transform_translate_describe",
-      "prompt": "Shape ABC is translated to give shape A'B'C', shown on the grid. Describe fully the single transformation that maps ABC onto A'B'C'.",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
       "solution_steps": [
-        "Every vertex moves by exactly the same amount: comparing A(-1, 0) with A'(-4, -4) gives the vector (-3, -4).",
+        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-1, 0), with the matching vertex of shape B, (-4, -4), gives the vector (-3, -4).",
         "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
       ],
       "final_answer": "Translation by the vector (-3, -4)",
@@ -939,7 +900,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Every vertex moves by exactly the same amount: comparing A(-1, 0) with A'(-4, -4) gives the vector (-3, -4).",
+          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-1, 0), with the matching vertex of shape B, (-4, -4), gives the vector (-3, -4).",
           "marks": 1
         },
         {
@@ -975,9 +936,9 @@
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C"
+            "",
+            "",
+            ""
           ],
           "image_vertices": [
             [
@@ -994,9 +955,9 @@
             ]
           ],
           "image_labels": [
-            "A'",
-            "B'",
-            "C'"
+            "",
+            "",
+            ""
           ]
         }
       },
@@ -1184,12 +1145,12 @@
     },
     {
       "topic_id": "transform_reflect_describe",
-      "prompt": "Shape ABCDEF is reflected to give shape A'B'C'D'E'F', shown on the grid. Describe fully the single transformation that maps ABCDEF onto A'B'C'D'E'F'.",
+      "prompt": "Shape ABC is reflected to give shape A'B'C', shown on the grid. Describe fully the single transformation that maps ABC onto A'B'C'.",
       "solution_steps": [
         "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
-        "Comparing corresponding vertices shows the mirror line is y = -x."
+        "Comparing corresponding vertices shows the mirror line is x = -1."
       ],
-      "final_answer": "Reflection in the line y = -x",
+      "final_answer": "Reflection in the line x = -1",
       "marks": 3,
       "mark_scheme": [
         {
@@ -1199,12 +1160,12 @@
         },
         {
           "code": "M1",
-          "description": "Comparing corresponding vertices shows the mirror line is y = -x.",
+          "description": "Comparing corresponding vertices shows the mirror line is x = -1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Reflection in the line y = -x oe",
+          "description": "Reflection in the line x = -1 oe",
           "marks": 1
         }
       ],
@@ -1218,70 +1179,40 @@
           "original_vertices": [
             [
               2,
-              1
+              2
             ],
             [
-              6,
-              1
-            ],
-            [
-              6,
-              3
-            ],
-            [
-              4,
-              3
-            ],
-            [
-              4,
-              6
+              5,
+              2
             ],
             [
               2,
-              6
+              4
             ]
           ],
           "original_labels": [
             "A",
             "B",
-            "C",
-            "D",
-            "E",
-            "F"
+            "C"
           ],
           "image_vertices": [
             [
-              -1,
-              -2
+              -4,
+              2
             ],
             [
-              -1,
-              -6
+              -7,
+              2
             ],
             [
-              -3,
-              -6
-            ],
-            [
-              -3,
-              -4
-            ],
-            [
-              -6,
-              -4
-            ],
-            [
-              -6,
-              -2
+              -4,
+              4
             ]
           ],
           "image_labels": [
             "A'",
             "B'",
-            "C'",
-            "D'",
-            "E'",
-            "F'"
+            "C'"
           ]
         }
       },

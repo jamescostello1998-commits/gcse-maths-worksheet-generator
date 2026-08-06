@@ -7,6 +7,153 @@
   "calculator_allowed": true,
   "questions": [
     {
+      "topic_id": "fractions_mixed_number_arithmetic",
+      "prompt": "Evaluate 5 3/7 + 5 2/3. Give your answer as a mixed number.",
+      "solution_steps": [
+        "Convert to improper fractions: 5 3/7 = 38/7, 5 2/3 = 17/3",
+        "Add the improper fractions: 38/7 + 17/3 = 233/21",
+        "Convert back to a mixed number: 11 2/21"
+      ],
+      "final_answer": "11 2/21",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert to improper fractions: 5 3/7 = 38/7, 5 2/3 = 17/3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add the improper fractions: 38/7 + 17/3 = 233/21",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Convert back to a mixed number: 11 2/21",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "11 2/21 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "cumulative_frequency_plot",
+      "prompt": "The table shows the times (in minutes) taken to run a race. Draw a cumulative frequency graph to show this information.",
+      "solution_steps": [
+        "Running total of the frequencies, class by class: 20-30: 6, 30-40: 3, 40-50: 15, 50-60: 10, 60-70: 6.",
+        "Cumulative frequencies: 6, 9, 24, 34, 40",
+        "Plot each (upper class boundary, cumulative frequency) point and join with a smooth curve."
+      ],
+      "final_answer": "Cumulative frequencies: 6, 9, 24, 34, 40",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Running total of the frequencies, class by class: 20-30: 6, 30-40: 3, 40-50: 15, 50-60: 10, 60-70: 6.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Cumulative frequencies: 6, 9, 24, 34, 40",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (upper class boundary, cumulative frequency) point and join with a smooth curve.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Cumulative frequencies: 6, 9, 24, 34, 40 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "cumulative_frequency_question",
+        "params": {
+          "points": [
+            [
+              20,
+              0
+            ],
+            [
+              30,
+              6
+            ],
+            [
+              40,
+              9
+            ],
+            [
+              50,
+              24
+            ],
+            [
+              60,
+              34
+            ],
+            [
+              70,
+              40
+            ]
+          ],
+          "boundaries": [
+            20,
+            30,
+            40,
+            50,
+            60,
+            70
+          ],
+          "frequencies": [
+            6,
+            3,
+            15,
+            10,
+            6
+          ],
+          "x_label": "Time (minutes)"
+        }
+      },
+      "solution_diagram": {
+        "kind": "cumulative_frequency",
+        "params": {
+          "points": [
+            [
+              20,
+              0
+            ],
+            [
+              30,
+              6
+            ],
+            [
+              40,
+              9
+            ],
+            [
+              50,
+              24
+            ],
+            [
+              60,
+              34
+            ],
+            [
+              70,
+              40
+            ]
+          ],
+          "x_label": "Time (minutes)"
+        }
+      }
+    },
+    {
       "topic_id": "indices_common_base_equations",
       "prompt": "Solve 5^(x+2) = 625^(2x).",
       "solution_steps": [
@@ -48,42 +195,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "rationalise_denominator",
-      "prompt": "Rationalise the denominator of \\frac{11}{6 - √11}, giving your answer in its simplest form.",
+      "topic_id": "prime_factors_higher",
+      "prompt": "Write 837 as a product of its prime factors, giving your answer in index form.",
       "solution_steps": [
-        "Multiply the numerator and denominator by the conjugate of the denominator, (6 + √11):",
-        "\\frac{11}{6 - √11}",
-        "= \\frac{11(6 + √11)}{[(6 - √11)(6 + √11)]}",
-        "The denominator is a difference of two squares: 6^2 - 11 = 25",
-        "The numerator is 11(6 + √11) = 66 + 11√11",
-        "= \\frac{66 + 11√11}{25}"
+        "Divide 837 repeatedly by the smallest prime that fits: 3 × 3 × 3 × 31",
+        "Write repeated factors using index notation: 837 = 3^3 × 31"
       ],
-      "final_answer": "\\frac{66 + 11√11}{25}",
-      "marks": 5,
+      "final_answer": "3^3 × 31",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply the numerator and denominator by the conjugate of the denominator, (6 + √11):",
+          "description": "Divide 837 repeatedly by the smallest prime that fits: 3 × 3 × 3 × 31",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "\\frac{11}{6 - √11}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= \\frac{11(6 + √11)}{[(6 - √11)(6 + √11)]}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The denominator is a difference of two squares: 6^2 - 11 = 25 The numerator is 11(6 + √11) = 66 + 11√11 = \\frac{66 + 11√11}{25}",
+          "description": "Write repeated factors using index notation: 837 = 3^3 × 31",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "\\frac{66 + 11√11}{25} oe",
+          "description": "3^3 × 31 oe",
           "marks": 1
         }
       ],
@@ -92,39 +225,39 @@
     },
     {
       "topic_id": "simplifying_indices_challenging",
-      "prompt": "Fully simplify (3^-1)^2 ÷ 3^2, giving your answer as a fraction where necessary.",
+      "prompt": "Simplify 16^(3/2) × 16^-3, giving your answer as a fraction where necessary.",
       "solution_steps": [
-        "Multiply the powers in the bracket: -1 × 2 = -2",
-        "(3^-1)^2 = 3^-2",
-        "Subtract the powers to divide: -2 - (2) = -4",
-        "3^-2 ÷ 3^2 = 3^-4 = 1/81"
+        "16^(1/2) is the square root of 16, which is 4, so 16^(3/2) = 4^3",
+        "16^-3 = \\frac{1}{16³} = \\frac{1}{4⁶}",
+        "16^(3/2) × 16^-3 = 4^3 × \\frac{1}{4⁶} = 4^(3-6) = 4^-3",
+        "4^-3 = 1/64"
       ],
-      "final_answer": "1/81",
+      "final_answer": "1/64",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply the powers in the bracket: -1 × 2 = -2",
+          "description": "16^(1/2) is the square root of 16, which is 4, so 16^(3/2) = 4^3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(3^-1)^2 = 3^-2",
+          "description": "16^-3 = \\frac{1}{16³} = \\frac{1}{4⁶}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract the powers to divide: -2 - (2) = -4",
+          "description": "16^(3/2) × 16^-3 = 4^3 × \\frac{1}{4⁶} = 4^(3-6) = 4^-3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3^-2 ÷ 3^2 = 3^-4 = 1/81",
+          "description": "4^-3 = 1/64",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/81 oe",
+          "description": "1/64 oe",
           "marks": 1
         }
       ],
@@ -132,34 +265,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal \\recur{0.}{42} can be written as a fraction. Find this fraction in its simplest form.",
+      "topic_id": "bounds_calculation",
+      "prompt": "A rectangle has length 16 cm and width 20 cm, both measured to the nearest cm. Calculate the lower bound for the area of the rectangle.",
       "solution_steps": [
-        "Let x = \\recur{0.}{42}, so 100x = 42.4242... (two digits repeat, so multiply by 100 to shift a full block)",
-        "Subtract: 100x - x = 42 - 0, so 99x = 42",
-        "x = 42/99 = 14/33"
+        "Length: 16 cm (to the nearest cm) gives 15.5 ≤ length < 16.5",
+        "Width: 20 cm (to the nearest cm) gives 19.5 ≤ width < 20.5",
+        "For the lower bound of the area, use the lower bound of each measurement: 15.5 × 19.5 = 302.25 cm²"
       ],
-      "final_answer": "14/33",
+      "final_answer": "302.25 cm²",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = \\recur{0.}{42}, so 100x = 42.4242... (two digits repeat, so multiply by 100 to shift a full block)",
+          "description": "Length: 16 cm (to the nearest cm) gives 15.5 ≤ length < 16.5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract: 100x - x = 42 - 0, so 99x = 42",
+          "description": "Width: 20 cm (to the nearest cm) gives 19.5 ≤ width < 20.5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 42/99 = 14/33",
+          "description": "For the lower bound of the area, use the lower bound of each measurement: 15.5 × 19.5 = 302.25 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "14/33 oe",
+          "description": "302.25 cm² oe",
           "marks": 1
         }
       ],
@@ -167,34 +300,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "surds_multiply_divide",
-      "prompt": "Fully simplify √702 ÷ √6, giving your answer in the form a√b.",
+      "topic_id": "standard_form_add_subtract",
+      "prompt": "Work out (7 × 10^6) + (9 × 10^4). Give your answer in standard form.",
       "solution_steps": [
-        "√702 ÷ √6 = √(702/6) = √117",
-        "Find the largest square factor of 117: 3^2 × 13 = 117",
-        "√117 = √(3^2 × 13) = 3√13"
+        "Write both numbers with the same power of 10: 7×10^6 = 700×10^4, 9×10^4 = 9×10^4",
+        "Add the coefficients: 700 + 9 = 709",
+        "Write in standard form: 709 × 10^4 = 7.09 × 10^6"
       ],
-      "final_answer": "3√13",
+      "final_answer": "7.09 × 10^6",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "√702 ÷ √6 = √(702/6) = √117",
+          "description": "Write both numbers with the same power of 10: 7×10^6 = 700×10^4, 9×10^4 = 9×10^4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Find the largest square factor of 117: 3^2 × 13 = 117",
+          "description": "Add the coefficients: 700 + 9 = 709",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "√117 = √(3^2 × 13) = 3√13",
+          "description": "Write in standard form: 709 × 10^4 = 7.09 × 10^6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3√13 oe",
+          "description": "7.09 × 10^6 oe",
           "marks": 1
         }
       ],
@@ -202,34 +335,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "powers_higher",
-      "prompt": "Evaluate 216^(2/3).",
+      "topic_id": "special_sequences_higher",
+      "prompt": "The first 4 terms of a Fibonacci-type sequence are: 6, 1, 7, 8. Each term (from the 3rd onwards) is found by adding the two terms before it. Find the next term of the sequence.",
       "solution_steps": [
-        "216^(2/3) = (216^(1/3))^2",
-        "216^(1/3) = 6",
-        "6^2 = 36"
+        "Rule: each term (from the 3rd onwards) is found by adding the two terms before it.",
+        "7 + 8 = 15"
       ],
-      "final_answer": "36",
-      "marks": 4,
+      "final_answer": "15",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "216^(2/3) = (216^(1/3))^2",
+          "description": "Rule: each term (from the 3rd onwards) is found by adding the two terms before it.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "216^(1/3) = 6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "6^2 = 36",
+          "description": "7 + 8 = 15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "36 oe",
+          "description": "15 oe",
           "marks": 1
         }
       ],
@@ -237,43 +364,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_both_sides",
-      "prompt": "Solve: -3x - 11 = 5x + 69",
+      "topic_id": "iteration",
+      "prompt": "The iterative formula x_(n+1) = \\frac{7 - x_n^2}{5} is used with x_0 = 0. Find the values of x_1, x_2 and x_3, giving each answer to 3 decimal places.",
       "solution_steps": [
-        "-3x - 11 = 5x + 69",
-        "Subtract 5x from both sides:",
-        "-8x - 11 = 69",
-        "Add 11 to both sides:",
-        "-8x = 80",
-        "Divide both sides by -8:",
-        "x = -10"
+        "Iterative formula: x_(n+1) = \\frac{7 - x_n^2}{5}",
+        "x_0 = 0",
+        "x_1 = g(x_0) = \\frac{7 - 0^2}{5} = 1.400",
+        "x_2 = g(x_1) = \\frac{7 - 1.400^2}{5} = 1.008",
+        "x_3 = g(x_2) = \\frac{7 - 1.008^2}{5} = 1.197"
       ],
-      "final_answer": "-10",
+      "final_answer": "x_1 = 1.400, x_2 = 1.008, x_3 = 1.197",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "-3x - 11 = 5x + 69",
+          "description": "Iterative formula: x_(n+1) = \\frac{7 - x_n^2}{5}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 5x from both sides:",
+          "description": "x_0 = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-8x - 11 = 69",
+          "description": "x_1 = g(x_0) = \\frac{7 - 0^2}{5} = 1.400",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add 11 to both sides: -8x = 80 Divide both sides by -8: x = -10",
+          "description": "x_2 = g(x_1) = \\frac{7 - 1.400^2}{5} = 1.008 x_3 = g(x_2) = \\frac{7 - 1.008^2}{5} = 1.197",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-10 oe",
+          "description": "x_1 = 1.400, x_2 = 1.008, x_3 = 1.197 oe",
           "marks": 1
         }
       ],
@@ -281,41 +406,77 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_quadratic",
-      "prompt": "Solve the simultaneous equations: y = x^2 + x - 2 and y = 8x - 14",
+      "topic_id": "change_subject_factorise_higher",
+      "prompt": "Make x the subject of the formula kx + 6x = 23.",
       "solution_steps": [
-        "Substitute y = 8x - 14 into y = x^2 + x - 2: 8x - 14 = x^2 + x - 2",
-        "Rearrange: x^2 - 7x + 12 = 0",
-        "Factorise: (x - 3)(x - 4) = 0",
-        "x = 3 or x = 4",
-        "When x = 3, y = 10. When x = 4, y = 18."
+        "kx + 6x = 23",
+        "Factorise the left-hand side: x(k + 6) = 23",
+        "Divide both sides by (k + 6): x = \\frac{23}{k + 6}"
       ],
-      "final_answer": "(3, 10) and (4, 18)",
-      "marks": 5,
+      "final_answer": "x = \\frac{23}{k + 6}",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Substitute y = 8x - 14 into y = x^2 + x - 2: 8x - 14 = x^2 + x - 2",
+          "description": "kx + 6x = 23",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rearrange: x^2 - 7x + 12 = 0",
+          "description": "Factorise the left-hand side: x(k + 6) = 23",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: (x - 3)(x - 4) = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 3 or x = 4 When x = 3, y = 10. When x = 4, y = 18.",
+          "description": "Divide both sides by (k + 6): x = \\frac{23}{k + 6}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(3, 10) and (4, 18) oe",
+          "description": "x = \\frac{23}{k + 6} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "change_subject_higher",
+      "prompt": "Make x the subject of the formula y = \\frac{x + 2}{x - 10}.",
+      "solution_steps": [
+        "y = \\frac{x + 2}{x - 10}",
+        "Multiply both sides by (x - 10): y(x - 10) = x + 2",
+        "Expand the bracket: yx - 10y = x + 2",
+        "Collect the x-terms on one side: yx - x = 2 + 10y",
+        "Factorise: x(y - 1) = 2 + 10y",
+        "Divide both sides by (y - 1): x = \\frac{2 + 10y}{y - 1}"
+      ],
+      "final_answer": "x = \\frac{2 + 10y}{y - 1}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = \\frac{x + 2}{x - 10}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply both sides by (x - 10): y(x - 10) = x + 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand the bracket: yx - 10y = x + 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Collect the x-terms on one side: yx - x = 2 + 10y Factorise: x(y - 1) = 2 + 10y Divide both sides by (y - 1): x = \\frac{2 + 10y}{y - 1}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = \\frac{2 + 10y}{y - 1} oe",
           "marks": 1
         }
       ],
@@ -385,152 +546,195 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_triple_brackets",
-      "prompt": "Expand and simplify: (3x - 4)(4x - 1)(x + 1)",
+      "topic_id": "inequalities_region_higher",
+      "prompt": "The shaded region on the grid satisfies two inequalities. State both inequalities.",
       "solution_steps": [
-        "First expand two of the brackets: (3x - 4)(4x - 1) = 12x^2 - 19x + 4",
-        "Multiply the result by (x + 1) and collect like terms",
-        "= 12x^3 - 7x^2 - 15x + 4"
+        "The boundary line y = -x + 1 is dashed, and the shading lies on the upper side of it, giving y > -x + 1.",
+        "The boundary line y = -\\frac{x}{2} - 1 is dashed, and the shading lies on the upper side of it, giving y > -\\frac{x}{2} - 1."
       ],
-      "final_answer": "12x^3 - 7x^2 - 15x + 4",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "First expand two of the brackets: (3x - 4)(4x - 1) = 12x^2 - 19x + 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the result by (x + 1) and collect like terms",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 12x^3 - 7x^2 - 15x + 4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "12x^3 - 7x^2 - 15x + 4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "special_sequences_higher",
-      "prompt": "The first 4 terms of a Fibonacci-type sequence are: 6, 1, 7, 8. Each term (from the 3rd onwards) is found by adding the two terms before it. Find the next term of the sequence.",
-      "solution_steps": [
-        "Rule: each term (from the 3rd onwards) is found by adding the two terms before it.",
-        "7 + 8 = 15"
-      ],
-      "final_answer": "15",
+      "final_answer": "y > -x + 1 and y > -\\frac{x}{2} - 1",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rule: each term (from the 3rd onwards) is found by adding the two terms before it.",
+          "description": "The boundary line y = -x + 1 is dashed, and the shading lies on the upper side of it, giving y > -x + 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "7 + 8 = 15",
+          "description": "The boundary line y = -\\frac{x}{2} - 1 is dashed, and the shading lies on the upper side of it, giving y > -\\frac{x}{2} - 1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "15 oe",
+          "description": "y > -x + 1 and y > -\\frac{x}{2} - 1 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "inequality_region",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "lines": [
+            {
+              "m": -1.0,
+              "c": 1,
+              "op": ">"
+            },
+            {
+              "m": -0.5,
+              "c": -1,
+              "op": ">"
+            }
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_different_coefficient",
-      "prompt": "Solve the simultaneous equations: 5x + 5y = -5 and 2x + 4y = 8",
+      "topic_id": "inequalities_number_line_higher",
+      "prompt": "Write down the inequality (or pair of inequalities) shown by the number line below.",
       "solution_steps": [
-        "5x + 5y = -5  (1)",
-        "2x + 4y = 8  (2)",
-        "(1) × 4: 20x + 20y = -20  (3)",
-        "(2) × 5: 10x + 20y = 40  (4)",
-        "(3) - (4): 10x = -60, so x = -6",
-        "Substitute x = -6 into (1): 5y = 25, so y = 5"
+        "The circle at 2 is filled and the circle at 6 is open.",
+        "The shading lies between the two circles, so both bounds must hold at once: 2 ≤ x < 6."
       ],
-      "final_answer": "x = -6, y = 5",
+      "final_answer": "2 ≤ x < 6",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The circle at 2 is filled and the circle at 6 is open.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The shading lies between the two circles, so both bounds must hold at once: 2 ≤ x < 6.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2 ≤ x < 6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [
+            {
+              "value": 2,
+              "closed": true
+            },
+            {
+              "value": 6,
+              "closed": false
+            }
+          ],
+          "shade": "between"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_cubic",
+      "prompt": "Complete a table of values for y = x^3 + x for x = -3 to 3, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = x^3 + x:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: -30, -10, -2, 0, 2, 10, 30",
+        "Plot each (x, y) point and join them with a single smooth curve."
+      ],
+      "final_answer": "Cubic curve: y = x^3 + x",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5x + 5y = -5  (1)",
+          "description": "Table of values for y = x^3 + x:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x + 4y = 8  (2)",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(1) × 4: 20x + 20y = -20  (3)",
+          "description": "y: -30, -10, -2, 0, 2, 10, 30",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(2) × 5: 10x + 20y = 40  (4) (3) - (4): 10x = -60, so x = -6 Substitute x = -6 into (1): 5y = 25, so y = 5",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -6, y = 5 oe",
+          "description": "Cubic curve: y = x^3 + x oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "substitution_higher",
-      "prompt": "a = \\frac{v - u}{t}. Find the value of a when u = 28, v = 22 and t = 3.",
-      "solution_steps": [
-        "a = \\frac{v - u}{t}",
-        "a = \\frac{22 - 28}{3}",
-        "a = -6/3",
-        "a = -2"
-      ],
-      "final_answer": "a = -2",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "a = \\frac{v - u}{t}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "a = \\frac{22 - 28}{3}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "a = -6/3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "a = -2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "a = -2 oe",
-          "marks": 1
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": 1,
+          "b": 1,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -32,
+          "y_max": 32,
+          "blank": true
         }
-      ],
-      "diagram": null,
-      "solution_diagram": null
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": 1,
+          "b": 1,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -32,
+          "y_max": 32,
+          "table_points": [
+            [
+              -3,
+              -30
+            ],
+            [
+              -2,
+              -10
+            ],
+            [
+              -1,
+              -2
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              10
+            ],
+            [
+              3,
+              30
+            ]
+          ]
+        }
+      }
     },
     {
       "topic_id": "algebraic_direct_proportion",
@@ -574,415 +778,438 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_difference_higher",
-      "prompt": "s : t : u = 3 : 1 : 6. u - t = 25. Find s, t and u.",
+      "topic_id": "volume_surface_area_pyramid",
+      "prompt": "A square-based pyramid has a base of side 6 cm and a perpendicular height of 8 cm. Find its volume.",
       "solution_steps": [
-        "Difference in parts = 6 - 1 = 5 parts",
-        "Value of one part = 25 ÷ 5 = 5",
-        "s = 3 × 5 = 15",
-        "t = 1 × 5 = 5",
-        "u = 6 × 5 = 30"
+        "Volume = (1/3) × base² × height = (1/3) × 6² × 8",
+        "= 96 cm³"
       ],
-      "final_answer": "s = 15, t = 5, u = 30",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Difference in parts = 6 - 1 = 5 parts",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Value of one part = 25 ÷ 5 = 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "s = 3 × 5 = 15",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "t = 1 × 5 = 5 u = 6 × 5 = 30",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "s = 15, t = 5, u = 30 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_to_equation",
-      "prompt": "(x + 5) : (5x + 37) = 1:9. Find the value of x.",
-      "solution_steps": [
-        "Cross-multiply: 9(x + 5) = 1(5x + 37)",
-        "Expand: 9x + 45 = 5x + 37",
-        "Collect x terms: 4x = -8",
-        "x = -8 ÷ 4 = -2"
-      ],
-      "final_answer": "x = -2",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Cross-multiply: 9(x + 5) = 1(5x + 37)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Expand: 9x + 45 = 5x + 37",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Collect x terms: 4x = -8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = -8 ÷ 4 = -2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = -2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "geometric_vectors",
-      "prompt": "OAB is a triangle with OA = \\vec{a} and OB = \\vec{b}. Point P lies on AB such that AP:PB = 2:5. Find the vector OP in terms of \\vec{a} and \\vec{b}, giving your answer in its simplest form.",
-      "solution_steps": [
-        "AB = OB - OA = \\vec{b} - \\vec{a}",
-        "AP = (2/7)AB = (2/7)(\\vec{b} - \\vec{a})",
-        "OP = OA + AP = \\vec{a} + (2/7)(\\vec{b} - \\vec{a}) = (5/7)\\vec{a} + (2/7)\\vec{b}"
-      ],
-      "final_answer": "(5/7)\\vec{a} + (2/7)\\vec{b}",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "AB = OB - OA = \\vec{b} - \\vec{a}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "AP = (2/7)AB = (2/7)(\\vec{b} - \\vec{a})",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "OP = OA + AP = \\vec{a} + (2/7)(\\vec{b} - \\vec{a}) = (5/7)\\vec{a} + (2/7)\\vec{b}",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(5/7)\\vec{a} + (2/7)\\vec{b} oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "vector_triangle",
-        "params": {
-          "ratio": [
-            2,
-            5
-          ],
-          "point_label": "P",
-          "a_label": "\\vec{a}",
-          "b_label": "\\vec{b}",
-          "origin_label": "O"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "area_mixed_compound",
-      "prompt": "Find the total area of the following compound shape, correct to 3 significant figures.",
-      "solution_steps": [
-        "Rectangle area = 20 × 12 = 240 cm²",
-        "Triangular top area = ½ × 20 × 5 = 50 cm²",
-        "Quarter-circle cut area = (π × 3²) ÷ 4 ≈ 7.07 cm²",
-        "Total area = 240 + 50.0 - 7.07 ≈ 283 cm² (3 s.f.)"
-      ],
-      "final_answer": "283 cm²",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Rectangle area = 20 × 12 = 240 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Triangular top area = ½ × 20 × 5 = 50 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Quarter-circle cut area = (π × 3²) ÷ 4 ≈ 7.07 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total area = 240 + 50.0 - 7.07 ≈ 283 cm² (3 s.f.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "283 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "mixed_compound",
-        "params": {
-          "width": 20,
-          "height": 12,
-          "top_kind": "triangle",
-          "cut_kind": "quarter_circle",
-          "width_label": "20 cm",
-          "height_label": "12 cm",
-          "roof_height": 5,
-          "top_label": "5 cm",
-          "cut_radius": 3,
-          "cut_label": "3 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "volume_surface_area_cylinder",
-      "prompt": "A cylinder has radius 6 cm and height 19 cm. Find the exact total surface area, in terms of π.",
-      "solution_steps": [
-        "Surface area = 2πr(r + h) = 2 × π × 6 × (6 + 19)",
-        "= 300π cm²"
-      ],
-      "final_answer": "300π cm²",
+      "final_answer": "96 cm³",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Surface area = 2πr(r + h) = 2 × π × 6 × (6 + 19)",
+          "description": "Volume = (1/3) × base² × height = (1/3) × 6² × 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 300π cm²",
+          "description": "= 96 cm³",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "300π cm² oe",
+          "description": "96 cm³ oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cylinder",
+        "kind": "pyramid",
         "params": {
-          "radius_label": "6 cm",
-          "height_label": "19 cm"
+          "base_label": "6 cm",
+          "height_label": "8 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof",
-      "prompt": "Triangles ABC and ADC share side AC, with AB = AD and BC = DC. Prove that the two triangles are congruent.",
+      "topic_id": "ratio_combine",
+      "prompt": "Given that a:b = 9:3 and b:c = 2:3, find a:b:c in its simplest form.",
       "solution_steps": [
-        "AB = AD (given)",
-        "BC = DC (given)",
-        "AC is common to both triangles",
-        "By Side-Side-Side (SSS), the triangles are congruent.",
-        "Since all three corresponding sides are equal, triangles ABC and ADC are congruent."
+        "Scale a:b = 9:3 by 2 so b = 6: a:b = 18:6",
+        "Scale b:c = 2:3 by 3 so b = 6: b:c = 6:9",
+        "Combine: a:b:c = 18:6:9",
+        "Simplify by dividing by 3: a:b:c = 6:2:3"
       ],
-      "final_answer": "Triangles are congruent (SSS).",
+      "final_answer": "6 : 2 : 3",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "AB = AD (given)",
+          "description": "Scale a:b = 9:3 by 2 so b = 6: a:b = 18:6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "BC = DC (given)",
+          "description": "Scale b:c = 2:3 by 3 so b = 6: b:c = 6:9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "AC is common to both triangles",
+          "description": "Combine: a:b:c = 18:6:9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "By Side-Side-Side (SSS), the triangles are congruent. Since all three corresponding sides are equal, triangles ABC and ADC are congruent.",
+          "description": "Simplify by dividing by 3: a:b:c = 6:2:3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Triangles are congruent (SSS). oe",
+          "description": "6 : 2 : 3 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "two_triangle_congruence",
-        "params": {
-          "labels_1": [
-            "A",
-            "B",
-            "C"
-          ],
-          "labels_2": [
-            "A",
-            "D",
-            "C"
-          ],
-          "ticks_1": [
-            [
-              0,
-              1,
-              2
-            ],
-            [
-              1,
-              2,
-              3
-            ],
-            [
-              0,
-              2,
-              1
-            ]
-          ],
-          "ticks_2": [
-            [
-              0,
-              1,
-              2
-            ],
-            [
-              1,
-              2,
-              3
-            ],
-            [
-              0,
-              2,
-              1
-            ]
-          ],
-          "arcs_1": [],
-          "arcs_2": [],
-          "note": "AC is common to both triangles."
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "venn_diagram_notation",
-      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8}. The Venn diagram shows sets A and B. List the elements of B ∩ A'.",
+      "topic_id": "algebraic_inverse_proportion",
+      "prompt": "y is inversely proportional to x^2. When x = 5, y = 54. Find the value of y when x = 3.",
       "solution_steps": [
-        "ξ = {1, 2, 3, 4, 5, 6, 7, 8}",
-        "A = {1, 6, 7, 8}, B = {1, 3, 5, 6, 7}",
-        "B ∩ A' means the elements in B but not in A.",
-        "B ∩ A' = {3, 5}"
+        "y = k ÷ x^2",
+        "k = y × x^2 = 54 × 5^2 = 54 × 25 = 1350",
+        "y = k ÷ x^2 = 1350 ÷ 3^2 = 1350 ÷ 9 = 150"
       ],
-      "final_answer": "{3, 5}",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A = {1, 6, 7, 8}, B = {1, 3, 5, 6, 7}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "B ∩ A' means the elements in B but not in A.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "B ∩ A' = {3, 5}",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "{3, 5} oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "venn_diagram",
-        "params": {
-          "labels": [
-            "A",
-            "B"
-          ],
-          "universal_label": "S",
-          "region_text": {
-            "a_only": "8",
-            "b_only": "3, 5",
-            "both": "1, 6, 7",
-            "neither": "2, 4"
-          }
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "probability_conditional",
-      "prompt": "A bag contains 4 red and 5 purple counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour.",
-      "solution_steps": [
-        "P(both red) = 4/9 × 3/8 = 1/6",
-        "P(both purple) = 5/9 × 4/8 = 5/18",
-        "P(both same colour) = 1/6 + 5/18 = 4/9"
-      ],
-      "final_answer": "4/9",
+      "final_answer": "150",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "P(both red) = 4/9 × 3/8 = 1/6",
+          "description": "y = k ÷ x^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(both purple) = 5/9 × 4/8 = 5/18",
+          "description": "k = y × x^2 = 54 × 5^2 = 54 × 25 = 1350",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(both same colour) = 1/6 + 5/18 = 4/9",
+          "description": "y = k ÷ x^2 = 1350 ÷ 3^2 = 1350 ÷ 9 = 150",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4/9 oe",
+          "description": "150 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_parallel_lines",
+      "prompt": "A line crosses two parallel lines. The angle 69° and the angle (2x + 101)° are co-interior angles. Find x.",
+      "solution_steps": [
+        "Co-interior angles sum to 180°.",
+        "2x + 101 = 111",
+        "Subtract 101 from both sides:",
+        "2x = 10",
+        "Divide both sides by 2:",
+        "x = 5"
+      ],
+      "final_answer": "5",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Co-interior angles sum to 180°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x + 101 = 111",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 101 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x = 10 Divide both sides by 2: x = 5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "bag_of_counters",
+        "kind": "parallel_lines",
         "params": {
-          "counts": {
-            "red": 4,
-            "purple": 5
-          }
+          "known_label": "69°",
+          "unknown_label": "(2x + 101)°",
+          "relation": "co_interior"
         }
       },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "loci_regions",
+      "prompt": "A and B are two fixed points (shown). Shade the region containing points that are both within 6 cm of B AND closer to B than to A.",
+      "solution_steps": [
+        "The boundary for 'within 6 cm of B' is a circle, centre B, radius 6 cm - the region is inside this circle.",
+        "The boundary for 'closer to B than to A' is the perpendicular bisector of BA - the region is on the B side of it.",
+        "The required region is where these two conditions overlap."
+      ],
+      "final_answer": "The region inside the circle of radius 6 cm centred on B, and on the B side of the perpendicular bisector of BA.",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The boundary for 'within 6 cm of B' is a circle, centre B, radius 6 cm - the region is inside this circle.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The boundary for 'closer to B than to A' is the perpendicular bisector of BA - the region is on the B side of it.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The required region is where these two conditions overlap.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "The region inside the circle of radius 6 cm centred on B, and on the B side of the perpendicular bisector of BA. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "loci_region",
+        "params": {
+          "x_min": -11.0,
+          "x_max": 3.0,
+          "y_min": -8.0,
+          "y_max": 6.0,
+          "points": [
+            {
+              "xy": [
+                0,
+                3
+              ],
+              "label": "A"
+            },
+            {
+              "xy": [
+                -4,
+                -1
+              ],
+              "label": "B"
+            }
+          ],
+          "boundaries": [
+            {
+              "type": "circle",
+              "centre": [
+                -4,
+                -1
+              ],
+              "radius": 6
+            },
+            {
+              "type": "segment",
+              "p1": [
+                7.899494936611664,
+                -8.899494936611664
+              ],
+              "p2": [
+                -11.899494936611664,
+                10.899494936611664
+              ]
+            }
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "loci_region",
+        "params": {
+          "x_min": -11.0,
+          "x_max": 3.0,
+          "y_min": -8.0,
+          "y_max": 6.0,
+          "points": [
+            {
+              "xy": [
+                0,
+                3
+              ],
+              "label": "A"
+            },
+            {
+              "xy": [
+                -4,
+                -1
+              ],
+              "label": "B"
+            }
+          ],
+          "boundaries": [
+            {
+              "type": "circle",
+              "centre": [
+                -4,
+                -1
+              ],
+              "radius": 6
+            },
+            {
+              "type": "segment",
+              "p1": [
+                7.899494936611664,
+                -8.899494936611664
+              ],
+              "p2": [
+                -11.899494936611664,
+                10.899494936611664
+              ]
+            }
+          ],
+          "shade_constraints": [
+            {
+              "type": "disk",
+              "centre": [
+                -4,
+                -1
+              ],
+              "radius": 6,
+              "inside": true
+            },
+            {
+              "type": "half_plane",
+              "closer_to": [
+                -4,
+                -1
+              ],
+              "than": [
+                0,
+                3
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "angles_straight_line_higher",
+      "prompt": "The angles 51° and (4x + 121)° lie on a straight line. Find x.",
+      "solution_steps": [
+        "Angles on a straight line sum to 180°.",
+        "4x + 121 = 129",
+        "Subtract 121 from both sides:",
+        "4x = 8",
+        "Divide both sides by 4:",
+        "x = 2"
+      ],
+      "final_answer": "2",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles on a straight line sum to 180°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x + 121 = 129",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 121 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x = 8 Divide both sides by 4: x = 2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "angle_line",
+        "params": {
+          "angle_values": [
+            51,
+            129
+          ],
+          "labels": [
+            "51°",
+            "(4x + 121)°"
+          ],
+          "around_point": false
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "compound_3d_surface_area",
+      "prompt": "An ice-cream-shaped solid is made from a cone of radius 2 cm and height 13 cm, with a hemisphere of the same radius attached to its open end. Find the total surface area, correct to 2 decimal places.",
+      "solution_steps": [
+        "Slant height l = √(r² + h²) = √(2² + 13²) ≈ 13.15 cm",
+        "Cone curved surface = π × r × l = π × 2 × 13.15",
+        "Hemisphere curved surface = 2 × π × r² = 2 × π × 2² (the cone's base and the hemisphere's flat face are both glued together internally, so neither is exposed)",
+        "Total surface area ≈ 107.78 cm² (2 d.p.)"
+      ],
+      "final_answer": "107.78 cm²",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Slant height l = √(r² + h²) = √(2² + 13²) ≈ 13.15 cm",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Cone curved surface = π × r × l = π × 2 × 13.15",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Hemisphere curved surface = 2 × π × r² = 2 × π × 2² (the cone's base and the hemisphere's flat face are both glued together internally, so neither is exposed)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total surface area ≈ 107.78 cm² (2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "107.78 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "compound_3d",
+        "params": {
+          "variant": "cone_hemisphere",
+          "radius_label": "2 cm",
+          "cone_height_label": "13 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "product_rule_counting",
+      "prompt": "A shop sells 2 different phone cases and 6 different screen protectors. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "solution_steps": [
+        "Total combinations = 2 × 6 = 12"
+      ],
+      "final_answer": "12",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total combinations = 2 × 6 = 12",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "12 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     }
   ]

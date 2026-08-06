@@ -36,40 +36,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simplifying_indices_challenging",
-      "prompt": "Simplify 4^(3/2) × 4^-3, giving your answer as a fraction where necessary.",
+      "topic_id": "powers_higher",
+      "prompt": "Work out 2^0.",
       "solution_steps": [
-        "4^(1/2) is the square root of 4, which is 2, so 4^(3/2) = 2^3",
-        "4^-3 = \\frac{1}{4³} = \\frac{1}{2⁶}",
-        "4^(3/2) × 4^-3 = 2^3 × \\frac{1}{2⁶} = 2^(3-6) = 2^-3",
-        "2^-3 = 1/8"
+        "Any nonzero number raised to the power 0 equals 1.",
+        "2^0 = 1"
       ],
-      "final_answer": "1/8",
-      "marks": 5,
+      "final_answer": "1",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "4^(1/2) is the square root of 4, which is 2, so 4^(3/2) = 2^3",
+          "description": "Any nonzero number raised to the power 0 equals 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4^-3 = \\frac{1}{4³} = \\frac{1}{2⁶}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "4^(3/2) × 4^-3 = 2^3 × \\frac{1}{2⁶} = 2^(3-6) = 2^-3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2^-3 = 1/8",
+          "description": "2^0 = 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/8 oe",
+          "description": "1 oe",
           "marks": 1
         }
       ],
@@ -77,34 +65,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_add_subtract",
-      "prompt": "Work out (2 × 10^7) - (9 × 10^5). Give your answer in standard form.",
+      "topic_id": "decimals_recurring_to_fraction",
+      "prompt": "Show that \\recur{0.}{461538} can be written as 6/13.",
       "solution_steps": [
-        "Write both numbers with the same power of 10: 2×10^7 = 200×10^5, 9×10^5 = 9×10^5",
-        "Subtract the coefficients: 200 - 9 = 191",
-        "Write in standard form: 191 × 10^5 = 1.91 × 10^7"
+        "Let x = \\recur{0.}{461538}",
+        "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
+        "This gives x = 461538/999999",
+        "Simplify: 6/13"
       ],
-      "final_answer": "1.91 × 10^7",
-      "marks": 4,
+      "final_answer": "6/13",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Write both numbers with the same power of 10: 2×10^7 = 200×10^5, 9×10^5 = 9×10^5",
+          "description": "Let x = \\recur{0.}{461538}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract the coefficients: 200 - 9 = 191",
+          "description": "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write in standard form: 191 × 10^5 = 1.91 × 10^7",
+          "description": "This gives x = 461538/999999",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify: 6/13",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1.91 × 10^7 oe",
+          "description": "6/13 oe",
           "marks": 1
         }
       ],
@@ -155,44 +149,58 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_ladder_context",
-      "prompt": "A ladder of length 9 m leans against a vertical wall with its base 5 m from the wall. Find the height the ladder reaches up the wall, giving your answer as a surd in its simplest form.",
+      "topic_id": "angles_parallel_lines",
+      "prompt": "A line crosses two parallel lines. The angle 32° and the angle (4x - 28)° are alternate angles. Find x.",
       "solution_steps": [
-        "height² = ladder² - base² = 9² - 5² = 81 - 25 = 56",
-        "height = √56 = 2√14 m (exact form)"
+        "Alternate angles are equal.",
+        "4x - 28 = 32",
+        "Add 28 to both sides:",
+        "4x = 60",
+        "Divide both sides by 4:",
+        "x = 15"
       ],
-      "final_answer": "2√14 m",
-      "marks": 3,
+      "final_answer": "15",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "height² = ladder² - base² = 9² - 5² = 81 - 25 = 56",
+          "description": "Alternate angles are equal.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "height = √56 = 2√14 m (exact form)",
+          "description": "4x - 28 = 32",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add 28 to both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x = 60 Divide both sides by 4: x = 15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2√14 m oe",
+          "description": "15 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "right_triangle",
+        "kind": "parallel_lines",
         "params": {
-          "leg1_label": "5 m",
-          "leg2_label": "x",
-          "hyp_label": "9 m"
+          "known_label": "32°",
+          "unknown_label": "(4x - 28)°",
+          "relation": "alternate"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal \\recur{0.}{10} can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Write \\recur{0.}{10} as a fraction in its simplest form.",
       "solution_steps": [
         "Let x = \\recur{0.}{10}, so 100x = 10.1010... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 10 - 0, so 99x = 10",
@@ -226,175 +234,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "velocity_time_interpret",
-      "prompt": "The velocity-time graph shows a car's journey. Find the distance travelled while the car travels at constant velocity.",
+      "topic_id": "fractions_mixed_number_arithmetic",
+      "prompt": "Work out 3 6/8 - 3 2/4. Give your answer as a mixed number.",
       "solution_steps": [
-        "Distance = area under the graph = base × height (a rectangle)",
-        "Distance = 20 × 20 = 400 m"
+        "Convert to improper fractions: 3 6/8 = 15/4, 3 2/4 = 7/2",
+        "Subtract the improper fractions: 15/4 - 7/2 = 1/4",
+        "Convert back to a mixed number: 0 1/4"
       ],
-      "final_answer": "400 m",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Distance = area under the graph = base × height (a rectangle)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Distance = 20 × 20 = 400 m",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "400 m oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              10,
-              20
-            ],
-            [
-              30,
-              20
-            ],
-            [
-              42,
-              0
-            ]
-          ],
-          "x_max": 47,
-          "y_max": 25,
-          "x_label": "Time (s)",
-          "y_label": "Velocity (m/s)"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "plot_exponential",
-      "prompt": "Complete a table of values for y = 3^x for x = 0 to 4, then plot the graph.",
-      "solution_steps": [
-        "Table of values for y = 3^x:",
-        "x: 0, 1, 2, 3, 4",
-        "y: 1, 3, 9, 27, 81",
-        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
-      ],
-      "final_answer": "Exponential curve: y = 3^x",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Table of values for y = 3^x:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x: 0, 1, 2, 3, 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y: 1, 3, 9, 27, 81",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Exponential curve: y = 3^x oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "exponential",
-          "a": 1,
-          "base": 3,
-          "x_min": -1,
-          "x_max": 4,
-          "y_min": 0,
-          "y_max": 89.1,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "exponential",
-          "a": 1,
-          "base": 3,
-          "x_min": -1,
-          "x_max": 4,
-          "y_min": 0,
-          "y_max": 89.1,
-          "table_points": [
-            [
-              0,
-              1
-            ],
-            [
-              1,
-              3
-            ],
-            [
-              2,
-              9
-            ],
-            [
-              3,
-              27
-            ],
-            [
-              4,
-              81
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "special_sequences_higher",
-      "prompt": "The first 4 terms of a geometric sequence are: 6, 18, 54, 162. Find the 5th term of the sequence.",
-      "solution_steps": [
-        "Common ratio r = 3 (divide any term by the term before it).",
-        "nth term = a × r^(n - 1) = 6 × (3)^4",
-        "Term 5 = 486"
-      ],
-      "final_answer": "486",
+      "final_answer": "0 1/4",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Common ratio r = 3 (divide any term by the term before it).",
+          "description": "Convert to improper fractions: 3 6/8 = 15/4, 3 2/4 = 7/2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = a × r^(n - 1) = 6 × (3)^4",
+          "description": "Subtract the improper fractions: 15/4 - 7/2 = 1/4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Term 5 = 486",
+          "description": "Convert back to a mixed number: 0 1/4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "486 oe",
+          "description": "0 1/4 oe",
           "marks": 1
         }
       ],
@@ -402,42 +269,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_brackets",
-      "prompt": "Solve: 6(4x - 3) = -66",
+      "topic_id": "substitution_rearrange_higher",
+      "prompt": "a = \\frac{v - u}{t}. Make u the subject of the formula, then find the value of u when v = 52, a = 3 and t = 7.",
       "solution_steps": [
-        "Expand the bracket: 6(4x - 3) = 24x - 18",
-        "24x - 18 = -66",
-        "Add 18 to both sides:",
-        "24x = -48",
-        "Divide both sides by 24:",
-        "x = -2"
+        "a = \\frac{v - u}{t}",
+        "Rearrange to make u the subject: u = v - at",
+        "Substitute v = 52, a = 3 and t = 7: u = 52 - 3 × 7",
+        "u = 31"
       ],
-      "final_answer": "-2",
+      "final_answer": "u = 31",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expand the bracket: 6(4x - 3) = 24x - 18",
+          "description": "a = \\frac{v - u}{t}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "24x - 18 = -66",
+          "description": "Rearrange to make u the subject: u = v - at",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add 18 to both sides:",
+          "description": "Substitute v = 52, a = 3 and t = 7: u = 52 - 3 × 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "24x = -48 Divide both sides by 24: x = -2",
+          "description": "u = 31",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-2 oe",
+          "description": "u = 31 oe",
           "marks": 1
         }
       ],
@@ -445,47 +310,52 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solving_inequalities_higher",
-      "prompt": "Solve the inequality: 5x + 7 ≥ 8x - 6",
+      "topic_id": "inequalities_region_higher",
+      "prompt": "The shaded region on the grid satisfies two inequalities. State both inequalities.",
       "solution_steps": [
-        "5x + 7 ≥ 8x - 6",
-        "Subtract 8x from both sides:",
-        "-3x + 7 ≥ -6",
-        "Subtract 7 from both sides:",
-        "-3x ≥ -13",
-        "Divide both sides by -3 (dividing by a negative number reverses the inequality sign):",
-        "x ≤ 13/3"
+        "The boundary line y = -\\frac{x}{2} + 2 is dashed, and the shading lies on the upper side of it, giving y > -\\frac{x}{2} + 2.",
+        "The boundary line y = -x + 1 is dashed, and the shading lies on the lower side of it, giving y < -x + 1."
       ],
-      "final_answer": "x ≤ 13/3",
-      "marks": 5,
+      "final_answer": "y > -\\frac{x}{2} + 2 and y < -x + 1",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5x + 7 ≥ 8x - 6",
+          "description": "The boundary line y = -\\frac{x}{2} + 2 is dashed, and the shading lies on the upper side of it, giving y > -\\frac{x}{2} + 2.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 8x from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "-3x + 7 ≥ -6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 7 from both sides: -3x ≥ -13 Divide both sides by -3 (dividing by a negative number reverses the inequality sign): x ≤ 13/3",
+          "description": "The boundary line y = -x + 1 is dashed, and the shading lies on the lower side of it, giving y < -x + 1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x ≤ 13/3 oe",
+          "description": "y > -\\frac{x}{2} + 2 and y < -x + 1 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "inequality_region",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "lines": [
+            {
+              "m": -0.5,
+              "c": 2,
+              "op": ">"
+            },
+            {
+              "m": -1.0,
+              "c": 1,
+              "op": "<"
+            }
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -583,41 +453,182 @@
       }
     },
     {
-      "topic_id": "algebraic_fractions_multiply_divide",
-      "prompt": "Simplify \\frac{(x^2 - 64)}{(x + 1)} ÷ \\frac{(x - 8)}{(x + 1)}, giving your answer in its simplest form.",
+      "topic_id": "simultaneous_quadratic",
+      "prompt": "Solve the simultaneous equations: y = x^2 + x - 8 and y = x - 4",
       "solution_steps": [
-        "Factorise the difference of two squares: (x^2 - 64) = (x - 8)(x + 8)",
-        "Dividing by a fraction means multiplying by its reciprocal: ÷ \\frac{(x - 8)}{(x + 1)} becomes × \\frac{(x + 1)}{(x - 8)}",
-        "\\frac{(x - 8)(x + 8)}{(x + 1)} × \\frac{(x + 1)}{(x - 8)}",
-        "Cancel the common factors (x + 1) and (x - 8):",
-        "= x + 8"
+        "Substitute y = x - 4 into y = x^2 + x - 8: x - 4 = x^2 + x - 8",
+        "Rearrange: x^2 - 4 = 0",
+        "Factorise: (x - 2)(x + 2) = 0",
+        "x = 2 or x = -2",
+        "When x = 2, y = -2. When x = -2, y = -6."
       ],
-      "final_answer": "x + 8",
+      "final_answer": "(2, -2) and (-2, -6)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Factorise the difference of two squares: (x^2 - 64) = (x - 8)(x + 8)",
+          "description": "Substitute y = x - 4 into y = x^2 + x - 8: x - 4 = x^2 + x - 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Dividing by a fraction means multiplying by its reciprocal: ÷ \\frac{(x - 8)}{(x + 1)} becomes × \\frac{(x + 1)}{(x - 8)}",
+          "description": "Rearrange: x^2 - 4 = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "\\frac{(x - 8)(x + 8)}{(x + 1)} × \\frac{(x + 1)}{(x - 8)}",
+          "description": "Factorise: (x - 2)(x + 2) = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Cancel the common factors (x + 1) and (x - 8): = x + 8",
+          "description": "x = 2 or x = -2 When x = 2, y = -2. When x = -2, y = -6.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x + 8 oe",
+          "description": "(2, -2) and (-2, -6) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "substitution_higher",
+      "prompt": "E = (1/2)mv^2. Find the value of E when m = 19 and v = -8.",
+      "solution_steps": [
+        "E = (1/2)mv^2",
+        "E = (1/2) × 19 × (-8)^2",
+        "E = (1/2) × 19 × 64",
+        "E = 1216/2",
+        "E = 608"
+      ],
+      "final_answer": "E = 608",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "E = (1/2)mv^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "E = (1/2) × 19 × (-8)^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "E = (1/2) × 19 × 64",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "E = 1216/2 E = 608",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "E = 608 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "change_subject_higher",
+      "prompt": "Make r the subject of the formula A = 6πr^2.",
+      "solution_steps": [
+        "A = 6πr^2",
+        "Divide both sides by 6π: \\frac{A}{6π} = r^2",
+        "Take the square root of both sides: r = √(\\frac{A}{6π})"
+      ],
+      "final_answer": "r = √(\\frac{A}{6π})",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A = 6πr^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 6π: \\frac{A}{6π} = r^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Take the square root of both sides: r = √(\\frac{A}{6π})",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "r = √(\\frac{A}{6π}) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_indices_higher",
+      "prompt": "Simplify 8 ÷ 2x^-1",
+      "solution_steps": [
+        "Dividing powers of the same base: subtract the exponents (this still works when an exponent is negative or zero), and divide the coefficients.",
+        "8 ÷ 2x^-1 = (8÷2) x^(0-(-1))",
+        "= 4x"
+      ],
+      "final_answer": "4x",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Dividing powers of the same base: subtract the exponents (this still works when an exponent is negative or zero), and divide the coefficients.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "8 ÷ 2x^-1 = (8÷2) x^(0-(-1))",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 4x",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "compound_percentage",
+      "prompt": "A price of £48 decreases by 17.5%, then decreases by 30%. Find the final price.",
+      "solution_steps": [
+        "After the first change: 48 × 0.82 = 39.60",
+        "After the second change: 39.60 × 0.70 = 27.72"
+      ],
+      "final_answer": "£27.72",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "After the first change: 48 × 0.82 = 39.60",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "After the second change: 39.60 × 0.70 = 27.72",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£27.72 oe",
           "marks": 1
         }
       ],
@@ -695,274 +706,276 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "reverse_percentage",
-      "prompt": "After a 17.5% increase, an item costs £141. Find the original price.",
+      "topic_id": "ratio_shape_similar_higher",
+      "prompt": "Shape A and Shape B are similar. The area of shape B is 12 cm². Find the area of shape A.",
       "solution_steps": [
-        "Convert 17.5% to a multiplier: 1.18 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 141 ÷ 1.18 = 120"
+        "Linear scale factor = 2 ÷ 3 = 2/3",
+        "Area scale factor = (2/3)^2 = 4/9",
+        "Area of A = 12 ÷ 4/9 = 27 cm²"
       ],
-      "final_answer": "£120",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert 17.5% to a multiplier: 1.18 (original × multiplier = new value)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide the new value by the multiplier: 141 ÷ 1.18 = 120",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£120 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "unit_conversions_higher",
-      "prompt": "Convert 11.6 cm³ to mm³.",
-      "solution_steps": [
-        "Linear conversion factor: 1 cm = 10 mm, so for volume, 1 cm³ = 10^3 = 1000 mm³",
-        "11.6 cm³ = 11.6 × 1000 = 11600 mm³"
-      ],
-      "final_answer": "11600 mm³",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Linear conversion factor: 1 cm = 10 mm, so for volume, 1 cm³ = 10^3 = 1000 mm³",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "11.6 cm³ = 11.6 × 1000 = 11600 mm³",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "11600 mm³ oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "algebraic_inverse_proportion",
-      "prompt": "y is inversely proportional to x^3. When x = 3, y = 625. Find the value of y when x = 5.",
-      "solution_steps": [
-        "y = k ÷ x^3",
-        "k = y × x^3 = 625 × 3^3 = 625 × 27 = 16875",
-        "y = k ÷ x^3 = 16875 ÷ 5^3 = 16875 ÷ 125 = 135"
-      ],
-      "final_answer": "135",
+      "final_answer": "27 cm²",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = k ÷ x^3",
+          "description": "Linear scale factor = 2 ÷ 3 = 2/3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "k = y × x^3 = 625 × 3^3 = 625 × 27 = 16875",
+          "description": "Area scale factor = (2/3)^2 = 4/9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y = k ÷ x^3 = 16875 ÷ 5^3 = 16875 ÷ 125 = 135",
+          "description": "Area of A = 12 ÷ 4/9 = 27 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "135 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "transform_enlarge_describe",
-      "prompt": "Shape ABCD is enlarged to give shape A'B'C'D', shown on the grid. Describe fully the single transformation that maps ABCD onto A'B'C'D'.",
-      "solution_steps": [
-        "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
-        "For this pair, the lines meet at (0, 4) and the ratio works out as -1."
-      ],
-      "final_answer": "Enlargement, scale factor -1, centre (0, 4)",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For this pair, the lines meet at (0, 4) and the ratio works out as -1.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Enlargement, scale factor -1, centre (0, 4) oe",
+          "description": "27 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "grid_transformation",
+        "kind": "two_similar_rectangles",
         "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              3,
-              3
-            ],
-            [
-              7,
-              3
-            ],
-            [
-              6,
-              7
-            ],
-            [
-              2,
-              6
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
-          ],
-          "image_vertices": [
-            [
-              -3,
-              5
-            ],
-            [
-              -7,
-              5
-            ],
-            [
-              -6,
-              1
-            ],
-            [
-              -2,
-              2
-            ]
-          ],
-          "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'"
-          ]
+          "a_width_label": "3 cm",
+          "b_width_label": "2 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof",
-      "prompt": "M is the midpoint of AB. P is a point such that PM is perpendicular to AB. Prove that the two triangles are congruent.",
+      "topic_id": "loci_regions",
+      "prompt": "A and B are two fixed points (shown). Shade the region containing points that are both within 4 cm of B AND closer to B than to A.",
       "solution_steps": [
-        "AM = BM (M is the midpoint of AB)",
-        "angle AMP = angle BMP = 90° (PM is perpendicular to AB)",
-        "PM is common to both triangles",
-        "By Side-Angle-Side (SAS), the triangles are congruent.",
-        "Since two sides and the included angle match, triangles AMP and BMP are congruent - so PA = PB, meaning P is equidistant from A and B."
+        "The boundary for 'within 4 cm of B' is a circle, centre B, radius 4 cm - the region is inside this circle.",
+        "The boundary for 'closer to B than to A' is the perpendicular bisector of BA - the region is on the B side of it.",
+        "The required region is where these two conditions overlap."
       ],
-      "final_answer": "Triangles are congruent (SAS).",
+      "final_answer": "The region inside the circle of radius 4 cm centred on B, and on the B side of the perpendicular bisector of BA.",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The boundary for 'within 4 cm of B' is a circle, centre B, radius 4 cm - the region is inside this circle.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The boundary for 'closer to B than to A' is the perpendicular bisector of BA - the region is on the B side of it.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The required region is where these two conditions overlap.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "The region inside the circle of radius 4 cm centred on B, and on the B side of the perpendicular bisector of BA. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "loci_region",
+        "params": {
+          "x_min": -5.0,
+          "x_max": 9.0,
+          "y_min": -4.0,
+          "y_max": 6.0,
+          "points": [
+            {
+              "xy": [
+                -4,
+                1
+              ],
+              "label": "A"
+            },
+            {
+              "xy": [
+                4,
+                1
+              ],
+              "label": "B"
+            }
+          ],
+          "boundaries": [
+            {
+              "type": "circle",
+              "centre": [
+                4,
+                1
+              ],
+              "radius": 4
+            },
+            {
+              "type": "segment",
+              "p1": [
+                0.0,
+                15.0
+              ],
+              "p2": [
+                0.0,
+                -13.0
+              ]
+            }
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "loci_region",
+        "params": {
+          "x_min": -5.0,
+          "x_max": 9.0,
+          "y_min": -4.0,
+          "y_max": 6.0,
+          "points": [
+            {
+              "xy": [
+                -4,
+                1
+              ],
+              "label": "A"
+            },
+            {
+              "xy": [
+                4,
+                1
+              ],
+              "label": "B"
+            }
+          ],
+          "boundaries": [
+            {
+              "type": "circle",
+              "centre": [
+                4,
+                1
+              ],
+              "radius": 4
+            },
+            {
+              "type": "segment",
+              "p1": [
+                0.0,
+                15.0
+              ],
+              "p2": [
+                0.0,
+                -13.0
+              ]
+            }
+          ],
+          "shade_constraints": [
+            {
+              "type": "disk",
+              "centre": [
+                4,
+                1
+              ],
+              "radius": 4,
+              "inside": true
+            },
+            {
+              "type": "half_plane",
+              "closer_to": [
+                4,
+                1
+              ],
+              "than": [
+                -4,
+                1
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "angles_straight_line_higher",
+      "prompt": "The angles 148° and (4x - 20)° lie on a straight line. Find x.",
+      "solution_steps": [
+        "Angles on a straight line sum to 180°.",
+        "4x - 20 = 32",
+        "Add 20 to both sides:",
+        "4x = 52",
+        "Divide both sides by 4:",
+        "x = 13"
+      ],
+      "final_answer": "13",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "AM = BM (M is the midpoint of AB)",
+          "description": "Angles on a straight line sum to 180°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "angle AMP = angle BMP = 90° (PM is perpendicular to AB)",
+          "description": "4x - 20 = 32",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "PM is common to both triangles",
+          "description": "Add 20 to both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "By Side-Angle-Side (SAS), the triangles are congruent. Since two sides and the included angle match, triangles AMP and BMP are congruent - so PA = PB, meaning P is equidistant from A and B.",
+          "description": "4x = 52 Divide both sides by 4: x = 13",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Triangles are congruent (SAS). oe",
+          "description": "13 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "two_triangle_congruence",
+        "kind": "angle_line",
         "params": {
-          "labels_1": [
-            "A",
-            "M",
-            "P"
+          "angle_values": [
+            148,
+            32
           ],
-          "labels_2": [
-            "B",
-            "M",
-            "P"
+          "labels": [
+            "148°",
+            "(4x - 20)°"
           ],
-          "ticks_1": [
-            [
-              0,
-              1,
-              2
-            ],
-            [
-              1,
-              2,
-              1
-            ]
-          ],
-          "ticks_2": [
-            [
-              0,
-              1,
-              2
-            ],
-            [
-              1,
-              2,
-              1
-            ]
-          ],
-          "arcs_1": [
-            [
-              1,
-              1
-            ]
-          ],
-          "arcs_2": [
-            [
-              1,
-              1
-            ]
-          ],
-          "note": "MP is common to both triangles."
+          "around_point": false
         }
       },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "exact_trig_values",
+      "prompt": "Write down the exact value of tan(45°).",
+      "solution_steps": [
+        "Recall the exact-value triangles: 30°-60°-90° (sides 1, √3, 2) and 45°-45°-90° (sides 1, 1, √2) - no calculator needed for these special angles.",
+        "tan(45°) = 1"
+      ],
+      "final_answer": "1",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Recall the exact-value triangles: 30°-60°-90° (sides 1, √3, 2) and 45°-45°-90° (sides 1, 1, √2) - no calculator needed for these special angles.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "tan(45°) = 1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -1018,107 +1031,78 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_semicircle_compound_higher",
-      "prompt": "A shape is made from a rectangle 18 cm by 13 cm with a semicircle of diameter 18 cm attached to one side. Find the total area, giving your answer in terms of π.",
+      "topic_id": "tree_diagram_algebraic",
+      "prompt": "A biased spinner can only land on red or blue. The probability that it lands on red is x, and the probability that it lands on blue is 1 - x. Landing on blue is 5 times as likely as landing on red. The spinner is spun twice. Find the probability that both spins land on red.",
       "solution_steps": [
-        "Area of rectangle = 18 × 13 = 234 cm²",
-        "Radius of semicircle = 18 ÷ 2 = 9 cm",
-        "Area of semicircle = (1/2) × π × 9² = (81/2)π cm²",
-        "Total area = 234 + (81/2)π cm² (exact form)"
+        "A biased spinner can only land on red or blue. The probability that it lands on red is x, and the probability that it lands on blue is 1 - x. Landing on blue is 5 times as likely as landing on red. Since the spinner can only land on red or blue, the two probabilities must sum to 1: x + 5x = 1.",
+        "Solving this equation gives x = 1/6.",
+        "Substituting back: P(red) = 1/6, P(blue) = 5/6.",
+        "P(both spins land on red) = 1/6 × 1/6 = 1/36"
       ],
-      "final_answer": "(234 + (81/2)π) cm²",
+      "final_answer": "1/36",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area of rectangle = 18 × 13 = 234 cm²",
+          "description": "A biased spinner can only land on red or blue. The probability that it lands on red is x, and the probability that it lands on blue is 1 - x. Landing on blue is 5 times as likely as landing on red. Since the spinner can only land on red or blue, the two probabilities must sum to 1: x + 5x = 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Radius of semicircle = 18 ÷ 2 = 9 cm",
+          "description": "Solving this equation gives x = 1/6.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Area of semicircle = (1/2) × π × 9² = (81/2)π cm²",
+          "description": "Substituting back: P(red) = 1/6, P(blue) = 5/6.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total area = 234 + (81/2)π cm² (exact form)",
+          "description": "P(both spins land on red) = 1/6 × 1/6 = 1/36",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(234 + (81/2)π) cm² oe",
+          "description": "1/36 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "rectangle_semicircle",
+        "kind": "tree_diagram",
         "params": {
-          "width": 18,
-          "height": 13,
-          "radius": 9,
-          "width_label": "18 cm",
-          "height_label": "13 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "venn_diagram_notation",
-      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8}. The Venn diagram shows sets A and B. List the elements of B'.",
-      "solution_steps": [
-        "ξ = {1, 2, 3, 4, 5, 6, 7, 8}",
-        "A = {2, 3, 4, 5}, B = {1, 3, 8}",
-        "B' means the elements not in B.",
-        "B' = {2, 4, 5, 6, 7}"
-      ],
-      "final_answer": "{2, 4, 5, 6, 7}",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A = {2, 3, 4, 5}, B = {1, 3, 8}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "B' means the elements not in B.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "B' = {2, 4, 5, 6, 7}",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "{2, 4, 5, 6, 7} oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "venn_diagram",
-        "params": {
-          "labels": [
-            "A",
-            "B"
+          "stage1": [
+            [
+              "Red",
+              "x"
+            ],
+            [
+              "Blue",
+              "1-x"
+            ]
           ],
-          "universal_label": "S",
-          "region_text": {
-            "a_only": "2, 4, 5",
-            "b_only": "1, 8",
-            "both": "3",
-            "neither": "6, 7"
-          }
+          "stage2": [
+            [
+              [
+                "Red",
+                "x"
+              ],
+              [
+                "Blue",
+                "1-x"
+              ]
+            ],
+            [
+              [
+                "Red",
+                "x"
+              ],
+              [
+                "Blue",
+                "1-x"
+              ]
+            ]
+          ]
         }
       },
       "solution_diagram": null
@@ -1149,15 +1133,7 @@
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "dice",
-        "params": {
-          "values": [
-            6,
-            1
-          ]
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     }
   ]

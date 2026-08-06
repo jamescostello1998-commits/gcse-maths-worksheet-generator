@@ -36,7 +36,7 @@ def generate_simplify_fraction(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="fractions_simplify",
         tier=Tier.FOUNDATION,
-        prompt=f"{simplify_verb(rng)} the fraction {num}/{den}.",
+        prompt=f"{simplify_verb(rng)} {num}/{den}.",
         solution_steps=tuple(steps),
         final_answer=f"{p}/{q}",
         dedup_key=f"simplify:{num}:{den}",
@@ -280,7 +280,7 @@ def generate_fractions_equivalent(tier: Tier, rng: random.Random) -> Question:
         return Question(
             topic_id="fractions_equivalent",
             tier=Tier.FOUNDATION,
-            prompt=f"{a}/{b} = {other_fraction}. Find the missing {unknown}.",
+            prompt=f"{a}/{b} = {other_fraction}. Find the missing number.",
             solution_steps=tuple(steps),
             final_answer=str(answer),
             dedup_key=f"equiv_num:{a}:{b}:{d}:{unknown}",
@@ -362,15 +362,14 @@ def _proper_divisors(n: int) -> list[int]:
 
 
 def generate_fractions_equivalent_diagram(tier: Tier, rng: random.Random) -> Question:
-    # Diagram shapes never carry a numeric fraction caption (in any of the 3
+    # Diagram shapes never carry a numeric fraction caption (in any of the
     # shapes below) - the student reads the fraction from the shading itself,
-    # not from a label restating it. "diagram_only" additionally drops the
-    # prompt's own "Shape A is divided into N equal parts..." explanatory
-    # prose, since the (now caption-free) diagram already shows that visually
-    # - "fill_missing_diagram" keeps its fuller descriptive prompt.
-    shape = rng.choice(["fill_missing_diagram", "diagram_only", "identify_equivalent_diagram"])
+    # not from a label restating it. The prompt is likewise just the bare
+    # question - no "Shape A is divided into N equal parts..." context, since
+    # the (caption-free) diagrams already show that visually.
+    shape = rng.choice(["fill_missing_diagram", "identify_equivalent_diagram"])
 
-    if shape in ("fill_missing_diagram", "diagram_only"):
+    if shape == "fill_missing_diagram":
         d = rng.choice(_DIAGRAM_DENOMINATORS)
         b = rng.choice(_proper_divisors(d))
         k = d // b
@@ -399,15 +398,7 @@ def generate_fractions_equivalent_diagram(tier: Tier, rng: random.Random) -> Que
             f"Find the scale factor between the denominators: {d} ÷ {b} = {k}",
             f"Multiply the shaded count by the same scale factor: {a} × {k} = {target_shaded}",
         ]
-        prompt = (
-            (
-                f"Shape A is divided into {b} equal parts, with {a} shaded. Shape B is divided into "
-                f"{d} equal parts. How many parts of Shape B must be shaded to show a fraction "
-                "equivalent to Shape A?"
-            )
-            if shape == "fill_missing_diagram"
-            else "How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?"
-        )
+        prompt = "How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?"
         return Question(
             topic_id="fractions_equivalent_diagram",
             tier=Tier.FOUNDATION,
@@ -683,7 +674,7 @@ def generate_modelled_example_simplify_fraction(tier: Tier, rng: random.Random) 
     return ModelledExample(
         topic_id="fractions_simplify",
         tier=Tier.FOUNDATION,
-        prompt=f"{simplify_verb(rng)} the fraction {num}/{den}.",
+        prompt=f"{simplify_verb(rng)} {num}/{den}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{p}/{q}",
@@ -1004,7 +995,7 @@ def generate_modelled_example_fractions_equivalent(tier: Tier, rng: random.Rando
         return ModelledExample(
             topic_id="fractions_equivalent",
             tier=Tier.FOUNDATION,
-            prompt=f"{a}/{b} = {other_fraction}. Find the missing {unknown}.",
+            prompt=f"{a}/{b} = {other_fraction}. Find the missing number.",
             worked_calculation=tuple(worked_calculation),
             teaching_steps=tuple(teaching_steps),
             final_answer=str(answer),
@@ -1085,9 +1076,9 @@ def generate_modelled_example_fractions_equivalent(tier: Tier, rng: random.Rando
 
 
 def generate_modelled_example_fractions_equivalent_diagram(tier: Tier, rng: random.Random) -> ModelledExample:
-    shape = rng.choice(["fill_missing_diagram", "diagram_only", "identify_equivalent_diagram"])
+    shape = rng.choice(["fill_missing_diagram", "identify_equivalent_diagram"])
 
-    if shape in ("fill_missing_diagram", "diagram_only"):
+    if shape == "fill_missing_diagram":
         d = rng.choice(_DIAGRAM_DENOMINATORS)
         b = rng.choice(_proper_divisors(d))
         k = d // b
@@ -1123,15 +1114,7 @@ def generate_modelled_example_fractions_equivalent_diagram(tier: Tier, rng: rand
             f"{d} ÷ {b} = {k}",
             f"{a} × {k} = {target_shaded}",
         ]
-        prompt = (
-            (
-                f"Shape A is divided into {b} equal parts, with {a} shaded. Shape B is divided into "
-                f"{d} equal parts. How many parts of Shape B must be shaded to show a fraction "
-                "equivalent to Shape A?"
-            )
-            if shape == "fill_missing_diagram"
-            else "How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?"
-        )
+        prompt = "How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?"
         return ModelledExample(
             topic_id="fractions_equivalent_diagram",
             tier=Tier.FOUNDATION,

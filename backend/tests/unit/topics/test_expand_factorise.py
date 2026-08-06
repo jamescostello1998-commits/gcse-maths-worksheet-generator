@@ -9,6 +9,7 @@ GENERATORS = [
     (expand_factorise.generate_expand_single, Tier.FOUNDATION),
     (expand_factorise.generate_factorise_common, Tier.FOUNDATION),
     (expand_factorise.generate_expand_double_foundation, Tier.FOUNDATION),
+    (expand_factorise.generate_expand_double_no_coefficient_foundation, Tier.FOUNDATION),
     (expand_factorise.generate_factorise_quadratic_foundation, Tier.FOUNDATION),
     (expand_factorise.generate_expand_double, Tier.HIGHER),
     (expand_factorise.generate_expand_triple, Tier.HIGHER),
@@ -46,6 +47,7 @@ def test_topic_definitions_have_expected_metadata():
     topics = [
         expand_factorise.TOPIC_EXPAND_SINGLE,
         expand_factorise.TOPIC_EXPAND_DOUBLE_FOUNDATION,
+        expand_factorise.TOPIC_EXPAND_DOUBLE_NO_COEFFICIENT_FOUNDATION,
         expand_factorise.TOPIC_EXPAND_DOUBLE,
         expand_factorise.TOPIC_EXPAND_TRIPLE,
         expand_factorise.TOPIC_FACTORISE_COMMON,
@@ -55,7 +57,7 @@ def test_topic_definitions_have_expected_metadata():
         expand_factorise.TOPIC_SOLVE_QUADRATIC_FACTORISING,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 9
+    assert len(ids) == 10
     for t in topics:
         assert t.section == "algebra"
         assert t.group in ("Expanding Brackets", "Factorising", "Solving Quadratic Equations")
@@ -66,6 +68,7 @@ def test_all_topics_have_modelled_example_wired():
     topics = [
         expand_factorise.TOPIC_EXPAND_SINGLE,
         expand_factorise.TOPIC_EXPAND_DOUBLE_FOUNDATION,
+        expand_factorise.TOPIC_EXPAND_DOUBLE_NO_COEFFICIENT_FOUNDATION,
         expand_factorise.TOPIC_EXPAND_DOUBLE,
         expand_factorise.TOPIC_EXPAND_TRIPLE,
         expand_factorise.TOPIC_FACTORISE_COMMON,
@@ -84,6 +87,11 @@ MODELLED_EXAMPLE_GENERATORS = [
         expand_factorise.generate_modelled_example_expand_double_foundation,
         Tier.FOUNDATION,
         "expand_double_brackets_foundation",
+    ),
+    (
+        expand_factorise.generate_modelled_example_expand_double_no_coefficient_foundation,
+        Tier.FOUNDATION,
+        "expand_double_brackets_no_coefficient_foundation",
     ),
     (expand_factorise.generate_modelled_example_expand_double, Tier.HIGHER, "expand_double_brackets"),
     (expand_factorise.generate_modelled_example_expand_triple, Tier.HIGHER, "expand_triple_brackets"),

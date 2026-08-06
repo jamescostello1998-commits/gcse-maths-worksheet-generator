@@ -43,7 +43,7 @@
     },
     {
       "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal \\recur{0.}{27} can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Write \\recur{0.}{27} as a fraction in its simplest form.",
       "solution_steps": [
         "Let x = \\recur{0.}{27}, so 100x = 27.2727... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 27 - 0, so 99x = 27",
@@ -153,28 +153,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "reverse_percentage",
-      "prompt": "After a 42.5% increase, an item costs £364.80. Find the original price.",
+      "topic_id": "surds_multiply_divide",
+      "prompt": "Simplify √8 × √7, giving your answer in the form a√b.",
       "solution_steps": [
-        "Convert 42.5% to a multiplier: 1.43 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 364.80 ÷ 1.43 = 256"
+        "√8 × √7 = √(8 × 7) = √56",
+        "Find the largest square factor of 56: 2^2 × 14 = 56",
+        "√56 = √(2^2 × 14) = 2√14"
       ],
-      "final_answer": "£256",
-      "marks": 3,
+      "final_answer": "2√14",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 42.5% to a multiplier: 1.43 (original × multiplier = new value)",
+          "description": "√8 × √7 = √(8 × 7) = √56",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide the new value by the multiplier: 364.80 ÷ 1.43 = 256",
+          "description": "Find the largest square factor of 56: 2^2 × 14 = 56",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√56 = √(2^2 × 14) = 2√14",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£256 oe",
+          "description": "2√14 oe",
           "marks": 1
         }
       ],
@@ -183,18 +189,17 @@
     },
     {
       "topic_id": "powers_higher",
-      "prompt": "Evaluate 27^(2/3).",
+      "prompt": "Evaluate 27^(1/3).",
       "solution_steps": [
-        "27^(2/3) = (27^(1/3))^2",
-        "27^(1/3) = 3",
-        "3^2 = 9"
+        "27^(1/3) means the cube root of 27.",
+        "27^(1/3) = 3"
       ],
-      "final_answer": "9",
-      "marks": 4,
+      "final_answer": "3",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "27^(2/3) = (27^(1/3))^2",
+          "description": "27^(1/3) means the cube root of 27.",
           "marks": 1
         },
         {
@@ -203,13 +208,8 @@
           "marks": 1
         },
         {
-          "code": "M1",
-          "description": "3^2 = 9",
-          "marks": 1
-        },
-        {
           "code": "A1",
-          "description": "9 oe",
+          "description": "3 oe",
           "marks": 1
         }
       ],
@@ -252,46 +252,68 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_proof",
-      "prompt": "Prove algebraically that the sum of the squares of two consecutive integers is always odd.",
+      "topic_id": "inequalities_region_higher",
+      "prompt": "On the grid, shade the region that satisfies both y > \\frac{x}{2} - 3 and y < 2x - 4.",
       "solution_steps": [
-        "Let two consecutive integers be n and n + 1.",
-        "Write the given expression algebraically: n^2 + (n + 1)^2.",
-        "Expand and simplify: n^2 + (n + 1)^2 = 2n^2 + 2n + 1.",
-        "Factorise/rearrange to expose the structure: 2n^2 + 2n + 1 = 2(n^2 + n) + 1.",
-        "n^2 + n is always a whole number, so 2(n^2 + n) is always even - and the sum of squares is exactly 1 more than that even number, so it is always odd."
+        "Draw the line y = \\frac{x}{2} - 3 (dashed - the line itself is not included in the region).",
+        "Draw the line y = 2x - 4 (dashed - the line itself is not included in the region).",
+        "Shade the region where both y > \\frac{x}{2} - 3 and y < 2x - 4 are true at the same time."
       ],
-      "final_answer": "Proven: n^2 + (n + 1)^2 = 2(n^2 + n) + 1, always odd.",
-      "marks": 5,
+      "final_answer": "y > \\frac{x}{2} - 3 and y < 2x - 4",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let two consecutive integers be n and n + 1.",
+          "description": "Draw the line y = \\frac{x}{2} - 3 (dashed - the line itself is not included in the region).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write the given expression algebraically: n^2 + (n + 1)^2.",
+          "description": "Draw the line y = 2x - 4 (dashed - the line itself is not included in the region).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand and simplify: n^2 + (n + 1)^2 = 2n^2 + 2n + 1.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise/rearrange to expose the structure: 2n^2 + 2n + 1 = 2(n^2 + n) + 1. n^2 + n is always a whole number, so 2(n^2 + n) is always even - and the sum of squares is exactly 1 more than that even number, so it is always odd.",
+          "description": "Shade the region where both y > \\frac{x}{2} - 3 and y < 2x - 4 are true at the same time.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Proven: n^2 + (n + 1)^2 = 2(n^2 + n) + 1, always odd. oe",
+          "description": "y > \\frac{x}{2} - 3 and y < 2x - 4 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "inequality_region",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "inequality_region",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "lines": [
+            {
+              "m": 0.5,
+              "c": -3,
+              "op": ">"
+            },
+            {
+              "m": 2.0,
+              "c": -4,
+              "op": "<"
+            }
+          ]
+        }
+      }
     },
     {
       "topic_id": "forming_equations_higher",
@@ -516,133 +538,192 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_fractions_add_subtract",
-      "prompt": "Simplify \\frac{9}{(x - 2)} - \\frac{9}{(x - 8)}, giving your answer as a single fraction.",
+      "topic_id": "circle_equation",
+      "prompt": "The point (11, -60) lies on the circle x^2 + y^2 = 3721. Find the equation of the tangent to the circle at this point.",
       "solution_steps": [
-        "Write both fractions over the common denominator (x - 2)(x - 8):",
-        "\\frac{9}{(x - 2)} - \\frac{9}{(x - 8)} = \\frac{9(x - 8) - 9(x - 2)}{(x - 2)(x - 8)}",
-        "Expand the numerator: 9(x - 8) - 9(x - 2) = -54",
-        "= \\frac{-54}{(x - 2)(x - 8)}"
+        "The point (11, -60) lies on the circle x^2 + y^2 = 3721, since 11^2 + -60^2 = 3721.",
+        "The radius to (11, -60) has gradient \\frac{-60}{11}, so the tangent (perpendicular to the radius) has gradient -\\frac{11}{-60}.",
+        "The tangent line through (11, -60) with that gradient simplifies to 11x - 60y = 3721."
       ],
-      "final_answer": "\\frac{-54}{(x - 2)(x - 8)}",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Write both fractions over the common denominator (x - 2)(x - 8):",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "\\frac{9}{(x - 2)} - \\frac{9}{(x - 8)} = \\frac{9(x - 8) - 9(x - 2)}{(x - 2)(x - 8)}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Expand the numerator: 9(x - 8) - 9(x - 2) = -54",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= \\frac{-54}{(x - 2)(x - 8)}",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "\\frac{-54}{(x - 2)(x - 8)} oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "pressure_higher",
-      "prompt": "A machine foot has a rectangular base measuring 20 cm × 20 cm and exerts a pressure of 4 N/cm². Find the force it exerts.",
-      "solution_steps": [
-        "area = length × width = 20 × 20 = 400 cm²",
-        "force = pressure × area = 4 × 400 = 1600 N"
-      ],
-      "final_answer": "1600 N",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "area = length × width = 20 × 20 = 400 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "force = pressure × area = 4 × 400 = 1600 N",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1600 N oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "algebraic_inverse_proportion",
-      "prompt": "y is inversely proportional to x^3. When x = 3, y = 64. Find the value of y when x = 4.",
-      "solution_steps": [
-        "y = k ÷ x^3",
-        "k = y × x^3 = 64 × 3^3 = 64 × 27 = 1728",
-        "y = k ÷ x^3 = 1728 ÷ 4^3 = 1728 ÷ 64 = 27"
-      ],
-      "final_answer": "27",
+      "final_answer": "11x - 60y = 3721",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = k ÷ x^3",
+          "description": "The point (11, -60) lies on the circle x^2 + y^2 = 3721, since 11^2 + -60^2 = 3721.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "k = y × x^3 = 64 × 3^3 = 64 × 27 = 1728",
+          "description": "The radius to (11, -60) has gradient \\frac{-60}{11}, so the tangent (perpendicular to the radius) has gradient -\\frac{11}{-60}.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y = k ÷ x^3 = 1728 ÷ 4^3 = 1728 ÷ 64 = 27",
+          "description": "The tangent line through (11, -60) with that gradient simplifies to 11x - 60y = 3721.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "27 oe",
+          "description": "11x - 60y = 3721 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "loci_construction",
+        "params": {
+          "x_min": -62,
+          "x_max": 62,
+          "y_min": -62,
+          "y_max": 62,
+          "points": [
+            {
+              "xy": [
+                11,
+                -60
+              ],
+              "label": null
+            }
+          ],
+          "given_lines": [],
+          "circle": {
+            "centre": [
+              0,
+              0
+            ],
+            "radius": 61
+          },
+          "segment": null
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "speed_with_conversions",
-      "prompt": "A car travels 684 km in 6 hours. Find its average speed in m/s, correct to 1 decimal place.",
+      "topic_id": "velocity_time_interpret",
+      "prompt": "The velocity-time graph shows a car's journey. Find the total distance travelled.",
       "solution_steps": [
-        "speed = distance ÷ time = 684 ÷ 6 = 114 km/h",
-        "Convert to m/s: 114 ÷ 3.6 = 31.7 m/s (1 d.p.)"
+        "Total distance = total area under the graph (a trapezium)",
+        "Distance = ½ × (35 + 20) × 20 = 550 m"
       ],
-      "final_answer": "31.7 m/s",
+      "final_answer": "550 m",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "speed = distance ÷ time = 684 ÷ 6 = 114 km/h",
+          "description": "Total distance = total area under the graph (a trapezium)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Convert to m/s: 114 ÷ 3.6 = 31.7 m/s (1 d.p.)",
+          "description": "Distance = ½ × (35 + 20) × 20 = 550 m",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "31.7 m/s oe",
+          "description": "550 m oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              20
+            ],
+            [
+              25,
+              20
+            ],
+            [
+              35,
+              0
+            ]
+          ],
+          "x_max": 40,
+          "y_max": 25,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "inequalities_number_line_higher",
+      "prompt": "Write down the inequality (or pair of inequalities) shown by the number line below.",
+      "solution_steps": [
+        "The circle at -4 is filled and the circle at -1 is open.",
+        "The shading lies outside the two circles, so either bound alone is enough: x ≤ -4 or x > -1."
+      ],
+      "final_answer": "x ≤ -4 or x > -1",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The circle at -4 is filled and the circle at -1 is open.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The shading lies outside the two circles, so either bound alone is enough: x ≤ -4 or x > -1.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x ≤ -4 or x > -1 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [
+            {
+              "value": -4,
+              "closed": true
+            },
+            {
+              "value": -1,
+              "closed": false
+            }
+          ],
+          "shade": "outside"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "unit_conversions_higher",
+      "prompt": "Convert 4149 mm² to cm².",
+      "solution_steps": [
+        "Linear conversion factor: 1 cm = 10 mm, so for area, 1 cm² = 10^2 = 100 mm²",
+        "4149 mm² = 4149 ÷ 100 = 41.49 cm²"
+      ],
+      "final_answer": "41.49 cm²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Linear conversion factor: 1 cm = 10 mm, so for area, 1 cm² = 10^2 = 100 mm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4149 mm² = 4149 ÷ 100 = 41.49 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "41.49 cm² oe",
           "marks": 1
         }
       ],
@@ -692,124 +773,90 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "arc_length",
-      "prompt": "Find the exact arc length of the following sector, in terms of π.",
+      "topic_id": "mixed_percentages",
+      "prompt": "After a 42.5% increase, an item costs £461.70. Find the original price.",
       "solution_steps": [
-        "Arc length = (θ ÷ 360) × 2 × π × r = (255 ÷ 360) × 2 × π × 12",
-        "= 17π cm"
+        "Convert 42.5% to a multiplier: 1.43 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 461.70 ÷ 1.43 = 324"
       ],
-      "final_answer": "17π cm",
+      "final_answer": "£324",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Arc length = (θ ÷ 360) × 2 × π × r = (255 ÷ 360) × 2 × π × 12",
+          "description": "Convert 42.5% to a multiplier: 1.43 (original × multiplier = new value)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 17π cm",
+          "description": "Divide the new value by the multiplier: 461.70 ÷ 1.43 = 324",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "17π cm oe",
+          "description": "£324 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "sector",
-        "params": {
-          "angle": 255,
-          "radius_label": "12 cm",
-          "angle_label": "255°"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "area_semicircle_compound_higher",
-      "prompt": "A shape is made from a rectangle 6 cm by 5 cm with a semicircle of diameter 6 cm attached to one side. Find the total area, giving your answer in terms of π.",
+      "topic_id": "reverse_percentage",
+      "prompt": "After a 42.5% increase, an item costs £364.80. Find the original price.",
       "solution_steps": [
-        "Area of rectangle = 6 × 5 = 30 cm²",
-        "Radius of semicircle = 6 ÷ 2 = 3 cm",
-        "Area of semicircle = (1/2) × π × 3² = (9/2)π cm²",
-        "Total area = 30 + (9/2)π cm² (exact form)"
+        "Convert 42.5% to a multiplier: 1.43 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 364.80 ÷ 1.43 = 256"
       ],
-      "final_answer": "(30 + (9/2)π) cm²",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Area of rectangle = 6 × 5 = 30 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Radius of semicircle = 6 ÷ 2 = 3 cm",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Area of semicircle = (1/2) × π × 3² = (9/2)π cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total area = 30 + (9/2)π cm² (exact form)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(30 + (9/2)π) cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "rectangle_semicircle",
-        "params": {
-          "width": 6,
-          "height": 5,
-          "radius": 3,
-          "width_label": "6 cm",
-          "height_label": "5 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "volume_surface_area_cylinder",
-      "prompt": "A cylinder has radius 11 cm and height 19 cm. Find the exact total surface area, in terms of π.",
-      "solution_steps": [
-        "Surface area = 2πr(r + h) = 2 × π × 11 × (11 + 19)",
-        "= 660π cm²"
-      ],
-      "final_answer": "660π cm²",
+      "final_answer": "£256",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Surface area = 2πr(r + h) = 2 × π × 11 × (11 + 19)",
+          "description": "Convert 42.5% to a multiplier: 1.43 (original × multiplier = new value)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 660π cm²",
+          "description": "Divide the new value by the multiplier: 364.80 ÷ 1.43 = 256",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "660π cm² oe",
+          "description": "£256 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "cylinder",
-        "params": {
-          "radius_label": "11 cm",
-          "height_label": "19 cm"
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "speed_with_conversions",
+      "prompt": "A car travels 684 km in 6 hours. Find its average speed in m/s, correct to 1 decimal place.",
+      "solution_steps": [
+        "speed = distance ÷ time = 684 ÷ 6 = 114 km/h",
+        "Convert to m/s: 114 ÷ 3.6 = 31.7 m/s (1 d.p.)"
+      ],
+      "final_answer": "31.7 m/s",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "speed = distance ÷ time = 684 ÷ 6 = 114 km/h",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Convert to m/s: 114 ÷ 3.6 = 31.7 m/s (1 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "31.7 m/s oe",
+          "marks": 1
         }
-      },
+      ],
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -864,134 +911,204 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "tree_diagram_dependent",
-      "prompt": "A bag contains 4 red and 8 yellow counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the two counters are different colours.",
+      "topic_id": "angles_triangle_higher",
+      "prompt": "A triangle has angles 88°, 43°, and (4x - 7)°. Find x.",
       "solution_steps": [
-        "After the first counter is picked (without replacement), there are 11 counters left.",
-        "P(red then red) = 1/3 × 3/11 = 1/11",
-        "P(red then yellow) = 1/3 × 8/11 = 8/33",
-        "P(yellow then red) = 2/3 × 4/11 = 8/33",
-        "P(yellow then yellow) = 2/3 × 7/11 = 14/33",
-        "P(the two counters are different colours) = 16/33"
+        "Angles in a triangle sum to 180°.",
+        "4x - 7 = 49",
+        "Add 7 to both sides:",
+        "4x = 56",
+        "Divide both sides by 4:",
+        "x = 14"
       ],
-      "final_answer": "16/33",
+      "final_answer": "14",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first counter is picked (without replacement), there are 11 counters left.",
+          "description": "Angles in a triangle sum to 180°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(red then red) = 1/3 × 3/11 = 1/11",
+          "description": "4x - 7 = 49",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(red then yellow) = 1/3 × 8/11 = 8/33",
+          "description": "Add 7 to both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(yellow then red) = 2/3 × 4/11 = 8/33 P(yellow then yellow) = 2/3 × 7/11 = 14/33 P(the two counters are different colours) = 16/33",
+          "description": "4x = 56 Divide both sides by 4: x = 14",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "16/33 oe",
+          "description": "14 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "tree_diagram",
+        "kind": "triangle_angles",
         "params": {
-          "stage1": [
-            [
-              "Red",
-              "1/3"
-            ],
-            [
-              "Yellow",
-              "2/3"
-            ]
-          ],
-          "stage2": [
-            [
-              [
-                "Red",
-                "3/11"
-              ],
-              [
-                "Yellow",
-                "8/11"
-              ]
-            ],
-            [
-              [
-                "Red",
-                "4/11"
-              ],
-              [
-                "Yellow",
-                "7/11"
-              ]
-            ]
-          ],
-          "leaf_probs": [
-            [
-              "1/11",
-              "8/33"
-            ],
-            [
-              "8/33",
-              "14/33"
-            ]
+          "angle_labels": [
+            "88°",
+            "43°",
+            "(4x - 7)°"
           ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "set_notation",
-      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, A = {1, 5, 6}, B = {1, 2, 5, 6, 10, 11}. List the elements of A'.",
+      "topic_id": "congruent_triangle_proof",
+      "prompt": "ABCD is a square, and AC is one of its diagonals. Prove that the two triangles are congruent.",
       "solution_steps": [
-        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}",
-        "A = {1, 5, 6}",
-        "B = {1, 2, 5, 6, 10, 11}",
-        "A' means the complement of A (elements not in A).",
-        "A' = {2, 3, 4, 7, 8, 9, 10, 11}"
+        "AB = AD (sides of the square)",
+        "angle ABC = angle ADC = 90° (angles of the square)",
+        "BC = DC (sides of the square)",
+        "By Side-Angle-Side (SAS), the triangles are congruent.",
+        "Since two sides and the included angle match, triangles ABC and ADC are congruent."
       ],
-      "final_answer": "{2, 3, 4, 7, 8, 9, 10, 11}",
+      "final_answer": "Triangles are congruent (SAS).",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}",
+          "description": "AB = AD (sides of the square)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A = {1, 5, 6}",
+          "description": "angle ABC = angle ADC = 90° (angles of the square)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "B = {1, 2, 5, 6, 10, 11}",
+          "description": "BC = DC (sides of the square)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A' means the complement of A (elements not in A). A' = {2, 3, 4, 7, 8, 9, 10, 11}",
+          "description": "By Side-Angle-Side (SAS), the triangles are congruent. Since two sides and the included angle match, triangles ABC and ADC are congruent.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "{2, 3, 4, 7, 8, 9, 10, 11} oe",
+          "description": "Triangles are congruent (SAS). oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_triangle_congruence",
+        "params": {
+          "labels_1": [
+            "A",
+            "B",
+            "C"
+          ],
+          "labels_2": [
+            "A",
+            "D",
+            "C"
+          ],
+          "ticks_1": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "ticks_2": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ]
+          ],
+          "arcs_1": [
+            [
+              1,
+              1
+            ]
+          ],
+          "arcs_2": [
+            [
+              1,
+              1
+            ]
+          ],
+          "note": "AC is the shared diagonal of the square."
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "venn_diagram_notation",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7}. The Venn diagram shows sets A and B. List the elements of A ∪ B.",
+      "solution_steps": [
+        "ξ = {1, 2, 3, 4, 5, 6, 7}",
+        "A = {1, 2, 6}, B = {1, 2, 3}",
+        "A ∪ B means the elements in A, in B, or in both.",
+        "A ∪ B = {1, 2, 3, 6}"
+      ],
+      "final_answer": "{1, 2, 3, 6}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {1, 2, 6}, B = {1, 2, 3}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A ∪ B means the elements in A, in B, or in both.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A ∪ B = {1, 2, 3, 6}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "{1, 2, 3, 6} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "S",
+          "region_text": {
+            "a_only": "6",
+            "b_only": "3",
+            "both": "1, 2",
+            "neither": "4, 5, 7"
+          }
+        }
+      },
       "solution_diagram": null
     },
     {

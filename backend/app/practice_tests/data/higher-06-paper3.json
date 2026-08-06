@@ -71,67 +71,92 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_mixed_number_arithmetic",
-      "prompt": "Evaluate 5 6/7 + 1 4/8. Give your answer as a mixed number.",
+      "topic_id": "tree_diagram_mixed",
+      "prompt": "A bag contains 5 green and 7 red counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the two counters are different colours.",
       "solution_steps": [
-        "Convert to improper fractions: 5 6/7 = 41/7, 1 4/8 = 3/2",
-        "Add the improper fractions: 41/7 + 3/2 = 103/14",
-        "Convert back to a mixed number: 7 5/14"
+        "After the first counter is picked (without replacement), there are 11 counters left.",
+        "P(green then green) = 5/12 × 4/11 = 5/33",
+        "P(green then red) = 5/12 × 7/11 = 35/132",
+        "P(red then green) = 7/12 × 5/11 = 35/132",
+        "P(red then red) = 7/12 × 6/11 = 7/22",
+        "P(the two counters are different colours) = 35/66"
       ],
-      "final_answer": "7 5/14",
-      "marks": 4,
+      "final_answer": "35/66",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert to improper fractions: 5 6/7 = 41/7, 1 4/8 = 3/2",
+          "description": "After the first counter is picked (without replacement), there are 11 counters left.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add the improper fractions: 41/7 + 3/2 = 103/14",
+          "description": "P(green then green) = 5/12 × 4/11 = 5/33",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Convert back to a mixed number: 7 5/14",
+          "description": "P(green then red) = 5/12 × 7/11 = 35/132",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(red then green) = 7/12 × 5/11 = 35/132 P(red then red) = 7/12 × 6/11 = 7/22 P(the two counters are different colours) = 35/66",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7 5/14 oe",
+          "description": "35/66 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "prime_factors_higher",
-      "prompt": "Write 786 as a product of its prime factors, giving your answer in index form.",
-      "solution_steps": [
-        "Divide 786 repeatedly by the smallest prime that fits: 2 × 3 × 131",
-        "Write repeated factors using index notation: 786 = 2 × 3 × 131"
-      ],
-      "final_answer": "2 × 3 × 131",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Divide 786 repeatedly by the smallest prime that fits: 2 × 3 × 131",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Write repeated factors using index notation: 786 = 2 × 3 × 131",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2 × 3 × 131 oe",
-          "marks": 1
+      "diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Green",
+              "5/12"
+            ],
+            [
+              "Red",
+              "7/12"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Green",
+                "4/11"
+              ],
+              [
+                "Red",
+                "7/11"
+              ]
+            ],
+            [
+              [
+                "Green",
+                "5/11"
+              ],
+              [
+                "Red",
+                "6/11"
+              ]
+            ]
+          ],
+          "leaf_probs": [
+            [
+              "5/33",
+              "35/132"
+            ],
+            [
+              "35/132",
+              "7/22"
+            ]
+          ]
         }
-      ],
-      "diagram": null,
+      },
       "solution_diagram": null
     },
     {
@@ -165,7 +190,7 @@
     },
     {
       "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal \\recur{0.}{04} can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Write \\recur{0.}{04} as a fraction in its simplest form.",
       "solution_steps": [
         "Let x = \\recur{0.}{04}, so 100x = 04.0404... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 4 - 0, so 99x = 4",
@@ -200,7 +225,7 @@
     },
     {
       "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal \\recur{0.9}{3} can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Write \\recur{0.9}{3} as a fraction in its simplest form.",
       "solution_steps": [
         "Let x = \\recur{0.9}{3}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
@@ -240,41 +265,114 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_proof",
-      "prompt": "Prove algebraically that the product of two consecutive odd numbers is always odd.",
+      "topic_id": "inequalities_region_higher",
+      "prompt": "On the grid, shade the region that satisfies both y > 2x + 1 and y > -2x - 3.",
       "solution_steps": [
-        "Let two consecutive odd numbers be 2n + 1 and 2n + 3 (for integer n).",
-        "Write the given expression algebraically: (2n + 1)(2n + 3).",
-        "Expand and simplify: (2n + 1)(2n + 3) = 4n^2 + 8n + 3.",
-        "Factorise/rearrange to expose the structure: 4n^2 + 8n + 3 = 2(2n^2 + 4n + 1) + 1.",
-        "Since 4n^2 + 8n + 3 is exactly 1 more than the even number 2(2n^2 + 4n + 1), the product is always odd."
+        "Draw the line y = 2x + 1 (dashed - the line itself is not included in the region).",
+        "Draw the line y = -2x - 3 (dashed - the line itself is not included in the region).",
+        "Shade the region where both y > 2x + 1 and y > -2x - 3 are true at the same time."
       ],
-      "final_answer": "Proven: the product is 2(2n^2 + 4n + 1) + 1, always odd.",
-      "marks": 5,
+      "final_answer": "y > 2x + 1 and y > -2x - 3",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let two consecutive odd numbers be 2n + 1 and 2n + 3 (for integer n).",
+          "description": "Draw the line y = 2x + 1 (dashed - the line itself is not included in the region).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write the given expression algebraically: (2n + 1)(2n + 3).",
+          "description": "Draw the line y = -2x - 3 (dashed - the line itself is not included in the region).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand and simplify: (2n + 1)(2n + 3) = 4n^2 + 8n + 3.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise/rearrange to expose the structure: 4n^2 + 8n + 3 = 2(2n^2 + 4n + 1) + 1. Since 4n^2 + 8n + 3 is exactly 1 more than the even number 2(2n^2 + 4n + 1), the product is always odd.",
+          "description": "Shade the region where both y > 2x + 1 and y > -2x - 3 are true at the same time.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Proven: the product is 2(2n^2 + 4n + 1) + 1, always odd. oe",
+          "description": "y > 2x + 1 and y > -2x - 3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "inequality_region",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "inequality_region",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "lines": [
+            {
+              "m": 2.0,
+              "c": 1,
+              "op": ">"
+            },
+            {
+              "m": -2.0,
+              "c": -3,
+              "op": ">"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "satisfying_inequalities_higher",
+      "prompt": "x satisfies both 2x + 6 ≥ 1 and 3x - 7 < -2. List the integer values of x that satisfy both.",
+      "solution_steps": [
+        "Solve the first inequality:",
+        "2x + 6 ≥ 1",
+        "Subtract 6 from both sides:",
+        "2x ≥ -5",
+        "Divide both sides by 2:",
+        "x ≥ -5/2",
+        "Solve the second inequality:",
+        "3x - 7 < -2",
+        "Add 7 to both sides:",
+        "3x < 5",
+        "Divide both sides by 3:",
+        "x < 5/3",
+        "Combine both results into a single range: -5/2 ≤ x < 5/3",
+        "The integers satisfying both inequalities are: -2, -1, 0, 1"
+      ],
+      "final_answer": "-2, -1, 0, 1",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Solve the first inequality:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x + 6 ≥ 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 6 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x ≥ -5 Divide both sides by 2: x ≥ -5/2 Solve the second inequality: 3x - 7 < -2 Add 7 to both sides: 3x < 5 Divide both sides by 3: x < 5/3 Combine both results into a single range: -5/2 ≤ x < 5/3 The integers satisfying both inequalities are: -2, -1, 0, 1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-2, -1, 0, 1 oe",
           "marks": 1
         }
       ],
@@ -282,92 +380,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inequalities_number_line_higher",
-      "prompt": "Draw the inequality/ies of x ≤ 2 or x ≥ 6 on a number line.",
+      "topic_id": "change_subject_factorise_higher",
+      "prompt": "Make x the subject of the formula cx + 9x = 51.",
       "solution_steps": [
-        "Draw a filled circle at 2 and a filled circle at 6.",
-        "Shade to the left of 2 and to the right of 6, with arrows showing both continue indefinitely."
+        "cx + 9x = 51",
+        "Factorise the left-hand side: x(c + 9) = 51",
+        "Divide both sides by (c + 9): x = \\frac{51}{c + 9}"
       ],
-      "final_answer": "x ≤ 2 or x ≥ 6",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Draw a filled circle at 2 and a filled circle at 6.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Shade to the left of 2 and to the right of 6, with arrows showing both continue indefinitely.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x ≤ 2 or x ≥ 6 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -8,
-            8
-          ],
-          "boundaries": [],
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -8,
-            8
-          ],
-          "boundaries": [
-            {
-              "value": 2,
-              "closed": true
-            },
-            {
-              "value": 6,
-              "closed": true
-            }
-          ],
-          "shade": "outside"
-        }
-      }
-    },
-    {
-      "topic_id": "change_subject_higher",
-      "prompt": "Make r the subject of the formula A = 2πr^2.",
-      "solution_steps": [
-        "A = 2πr^2",
-        "Divide both sides by 2π: \\frac{A}{2π} = r^2",
-        "Take the square root of both sides: r = √(\\frac{A}{2π})"
-      ],
-      "final_answer": "r = √(\\frac{A}{2π})",
+      "final_answer": "x = \\frac{51}{c + 9}",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A = 2πr^2",
+          "description": "cx + 9x = 51",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 2π: \\frac{A}{2π} = r^2",
+          "description": "Factorise the left-hand side: x(c + 9) = 51",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Take the square root of both sides: r = √(\\frac{A}{2π})",
+          "description": "Divide both sides by (c + 9): x = \\frac{51}{c + 9}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "r = √(\\frac{A}{2π}) oe",
+          "description": "x = \\frac{51}{c + 9} oe",
           "marks": 1
         }
       ],
@@ -453,40 +493,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solve_quadratic_factorising",
-      "prompt": "Solve x^2 - 17x + 72 = 0 by factorising.",
+      "topic_id": "expand_triple_brackets",
+      "prompt": "Expand and simplify: (2x + 3)(3x + 4)(x + 1)",
       "solution_steps": [
-        "Find two numbers that multiply to 72 and add to -17: -8 and -9",
-        "Factorise: (x - 8)(x - 9) = 0",
-        "Either x + -8 = 0 or x + -9 = 0",
-        "x = 8 or x = 9"
+        "First expand two of the brackets: (2x + 3)(3x + 4) = 6x^2 + 17x + 12",
+        "Multiply the result by (x + 1) and collect like terms",
+        "= 6x^3 + 23x^2 + 29x + 12"
       ],
-      "final_answer": "x = 8 or x = 9",
-      "marks": 5,
+      "final_answer": "6x^3 + 23x^2 + 29x + 12",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to 72 and add to -17: -8 and -9",
+          "description": "First expand two of the brackets: (2x + 3)(3x + 4) = 6x^2 + 17x + 12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: (x - 8)(x - 9) = 0",
+          "description": "Multiply the result by (x + 1) and collect like terms",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Either x + -8 = 0 or x + -9 = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 8 or x = 9",
+          "description": "= 6x^3 + 23x^2 + 29x + 12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 8 or x = 9 oe",
+          "description": "6x^3 + 23x^2 + 29x + 12 oe",
           "marks": 1
         }
       ],
@@ -494,41 +528,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "substitution_higher",
-      "prompt": "E = (1/2)mv^2. Find the value of E when m = 9 and v = -9.",
+      "topic_id": "change_subject_higher",
+      "prompt": "Make r the subject of the formula A = 2πr^2.",
       "solution_steps": [
-        "E = (1/2)mv^2",
-        "E = (1/2) × 9 × (-9)^2",
-        "E = (1/2) × 9 × 81",
-        "E = 729/2",
-        "E = 729/2"
+        "A = 2πr^2",
+        "Divide both sides by 2π: \\frac{A}{2π} = r^2",
+        "Take the square root of both sides: r = √(\\frac{A}{2π})"
       ],
-      "final_answer": "E = 729/2",
-      "marks": 5,
+      "final_answer": "r = √(\\frac{A}{2π})",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "E = (1/2)mv^2",
+          "description": "A = 2πr^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "E = (1/2) × 9 × (-9)^2",
+          "description": "Divide both sides by 2π: \\frac{A}{2π} = r^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "E = (1/2) × 9 × 81",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "E = 729/2 E = 729/2",
+          "description": "Take the square root of both sides: r = √(\\frac{A}{2π})",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "E = 729/2 oe",
+          "description": "r = √(\\frac{A}{2π}) oe",
           "marks": 1
         }
       ],
@@ -679,33 +706,33 @@
     },
     {
       "topic_id": "vectors_arithmetic_higher",
-      "prompt": "\\vec{a} = (8, -4) and \\vec{b} = (-8, -12). Find -3\\vec{a} - -1\\vec{b}.",
+      "prompt": "\\vec{a} = \\colvec{8}{-4} and \\vec{b} = \\colvec{-8}{-12}. Find -3\\vec{a} - (-1\\vec{b}).",
       "solution_steps": [
-        "\\vec{a} = (8, -4), \\vec{b} = (-8, -12)",
-        "-3\\vec{a} = (-24, 12) and -1\\vec{b} = (8, 12)",
-        "-3\\vec{a} - -1\\vec{b} = (-32, 0)"
+        "\\vec{a} = \\colvec{8}{-4}, \\vec{b} = \\colvec{-8}{-12}",
+        "-3\\vec{a} = \\colvec{-24}{12} and -1\\vec{b} = \\colvec{8}{12}",
+        "-3\\vec{a} - (-1\\vec{b}) = \\colvec{-32}{0}"
       ],
-      "final_answer": "(-32, 0)",
+      "final_answer": "\\colvec{-32}{0}",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "\\vec{a} = (8, -4), \\vec{b} = (-8, -12)",
+          "description": "\\vec{a} = \\colvec{8}{-4}, \\vec{b} = \\colvec{-8}{-12}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-3\\vec{a} = (-24, 12) and -1\\vec{b} = (8, 12)",
+          "description": "-3\\vec{a} = \\colvec{-24}{12} and -1\\vec{b} = \\colvec{8}{12}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-3\\vec{a} - -1\\vec{b} = (-32, 0)",
+          "description": "-3\\vec{a} - (-1\\vec{b}) = \\colvec{-32}{0}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(-32, 0) oe",
+          "description": "\\colvec{-32}{0} oe",
           "marks": 1
         }
       ],
@@ -948,50 +975,67 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "geometric_vectors",
-      "prompt": "OAB is a triangle with OA = \\vec{a} and OB = \\vec{b}. Point P lies on AB such that AP:PB = 4:1. Find the vector AP in terms of \\vec{a} and \\vec{b}, giving your answer in its simplest form.",
+      "topic_id": "probability_combined_dice",
+      "prompt": "Two fair six-sided dice are rolled. Find the probability that at least one die shows 3.",
       "solution_steps": [
-        "AB = OB - OA = \\vec{b} - \\vec{a}",
-        "AP = (4/5)AB = (4/5)(\\vec{b} - \\vec{a})",
-        "AP = (4/5)(\\vec{b} - \\vec{a}) = -(4/5)\\vec{a} + (4/5)\\vec{b}"
+        "P(neither die shows 3) = 5/6 × 5/6 = 25/36",
+        "P(at least one 3) = 1 - 25/36 = 11/36"
       ],
-      "final_answer": "-(4/5)\\vec{a} + (4/5)\\vec{b}",
-      "marks": 4,
+      "final_answer": "11/36",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "AB = OB - OA = \\vec{b} - \\vec{a}",
+          "description": "P(neither die shows 3) = 5/6 × 5/6 = 25/36",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "AP = (4/5)AB = (4/5)(\\vec{b} - \\vec{a})",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "AP = (4/5)(\\vec{b} - \\vec{a}) = -(4/5)\\vec{a} + (4/5)\\vec{b}",
+          "description": "P(at least one 3) = 1 - 25/36 = 11/36",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-(4/5)\\vec{a} + (4/5)\\vec{b} oe",
+          "description": "11/36 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "vector_triangle",
-        "params": {
-          "ratio": [
-            4,
-            1
-          ],
-          "point_label": "P",
-          "a_label": "\\vec{a}",
-          "b_label": "\\vec{b}",
-          "origin_label": "O"
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "turning_point_of_graph",
+      "prompt": "Find the coordinates of the turning point of the curve y = x^2 + 10x - 6.",
+      "solution_steps": [
+        "Complete the square: x^2 + 10x - 6 = (x + 5)^2 - 31",
+        "The turning point of y = (x + p)^2 + q is (-p, q).",
+        "Turning point = (-5, -31)"
+      ],
+      "final_answer": "(-5, -31)",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Complete the square: x^2 + 10x - 6 = (x + 5)^2 - 31",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Turning point = (-5, -31)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(-5, -31) oe",
+          "marks": 1
         }
-      },
+      ],
+      "diagram": null,
       "solution_diagram": null
     }
   ]

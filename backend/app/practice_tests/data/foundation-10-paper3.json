@@ -374,58 +374,46 @@
       }
     },
     {
-      "topic_id": "inequalities_number_line_foundation",
-      "prompt": "Draw the solution set of x ≤ 3 on a number line.",
+      "topic_id": "satisfying_inequalities_foundation",
+      "prompt": "Solve the inequality -10 ≤ x + 5 < 2, then list the integer values of x that satisfy it.",
       "solution_steps": [
-        "Draw a filled circle at 3 (the boundary value is included).",
-        "Shade the line to the left of 3, with an arrow showing it continues indefinitely."
+        "-10 ≤ x + 5 < 2",
+        "Subtract 5 from all three parts:",
+        "-15 ≤ x < -3",
+        "-15 ≤ x < -3",
+        "The integers satisfying this are: -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4"
       ],
-      "final_answer": "x ≤ 3",
-      "marks": 3,
+      "final_answer": "-15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw a filled circle at 3 (the boundary value is included).",
+          "description": "-10 ≤ x + 5 < 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Shade the line to the left of 3, with an arrow showing it continues indefinitely.",
+          "description": "Subtract 5 from all three parts:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-15 ≤ x < -3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-15 ≤ x < -3 The integers satisfying this are: -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x ≤ 3 oe",
+          "description": "-15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -6,
-            6
-          ],
-          "boundaries": [],
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -6,
-            6
-          ],
-          "boundaries": [
-            {
-              "value": 3,
-              "closed": true
-            }
-          ],
-          "shade": "left"
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     },
     {
       "topic_id": "linear_one_step",
@@ -504,42 +492,43 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_multi_step",
-      "prompt": "Solve: 3x + 12 + 5x - 4 = 16",
+      "topic_id": "linear_both_sides_foundation",
+      "prompt": "Solve: 2x + 6 = 5x - 24",
       "solution_steps": [
-        "Collect like terms: 3x + 5x = 8x, 12 - 4 = 8",
-        "8x + 8 = 16",
-        "Subtract 8 from both sides:",
-        "8x = 8",
-        "Divide both sides by 8:",
-        "x = 1"
+        "2x + 6 = 5x - 24",
+        "Subtract 5x from both sides:",
+        "-3x + 6 = -24",
+        "Subtract 6 from both sides:",
+        "-3x = -30",
+        "Divide both sides by -3:",
+        "x = 10"
       ],
-      "final_answer": "1",
+      "final_answer": "10",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Collect like terms: 3x + 5x = 8x, 12 - 4 = 8",
+          "description": "2x + 6 = 5x - 24",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "8x + 8 = 16",
+          "description": "Subtract 5x from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 8 from both sides:",
+          "description": "-3x + 6 = -24",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "8x = 8 Divide both sides by 8: x = 1",
+          "description": "Subtract 6 from both sides: -3x = -30 Divide both sides by -3: x = 10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 oe",
+          "description": "10 oe",
           "marks": 1
         }
       ],
@@ -743,39 +732,19 @@
     },
     {
       "topic_id": "congruent_triangle_proof_foundation",
-      "prompt": "Triangles ABC and ADC share side AC, with AB = AD and BC = DC. State which congruence criterion (SSS, SAS, ASA or RHS) proves that the two triangles are congruent.",
+      "prompt": "Triangles ABC and ADC share side AC, with AB = AD and BC = DC. Which congruence criterion proves that the two triangles are congruent? A) RHS  B) SAS  C) ASA  D) SSS",
       "solution_steps": [
         "AB = AD (given)",
         "BC = DC (given)",
         "AC is common to both triangles",
         "These facts match the Side-Side-Side (SSS) congruence criterion."
       ],
-      "final_answer": "SSS",
-      "marks": 5,
+      "final_answer": "D) SSS",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "AB = AD (given)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "BC = DC (given)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "AC is common to both triangles",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "These facts match the Side-Side-Side (SSS) congruence criterion.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "SSS oe",
+          "code": "B1",
+          "description": "D) SSS (selecting the correct option)",
           "marks": 1
         }
       ],
@@ -901,7 +870,7 @@
     },
     {
       "topic_id": "bidmas",
-      "prompt": "Work out (1 + 4) × 4 - 9 ÷ 3. Use the correct order of operations.",
+      "prompt": "Work out (1 + 4) × 4 - 9 ÷ 3.",
       "solution_steps": [
         "Brackets: (1 + 4) = 5",
         "Multiplication: 5 × 4 = 20",
@@ -977,75 +946,39 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "tree_diagram_drawing",
-      "prompt": "A bag contains 3 red and 2 blue counters. A counter is picked at random, replaced, and then a second counter is picked at random. Draw a fully-labelled tree diagram to show this information, and use it to find the probability that the first counter is red and the second counter is blue.",
+      "topic_id": "vectors_arithmetic_foundation",
+      "prompt": "\\vec{a} = \\colvec{-1}{-2} and \\vec{b} = \\colvec{4}{-4}. Find 3\\vec{a} - 2\\vec{b}.",
       "solution_steps": [
-        "Draw two branches from the start: P(red) = 3/5, P(blue) = 2/5.",
-        "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
-        "P(red then blue) = 3/5 × 2/5 = 6/25"
+        "\\vec{a} = \\colvec{-1}{-2}, \\vec{b} = \\colvec{4}{-4}",
+        "3\\vec{a} = \\colvec{-3}{-6} and 2\\vec{b} = \\colvec{8}{-8}",
+        "3\\vec{a} - 2\\vec{b} = \\colvec{-11}{2}"
       ],
-      "final_answer": "6/25",
+      "final_answer": "\\colvec{-11}{2}",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw two branches from the start: P(red) = 3/5, P(blue) = 2/5.",
+          "description": "\\vec{a} = \\colvec{-1}{-2}, \\vec{b} = \\colvec{4}{-4}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
+          "description": "3\\vec{a} = \\colvec{-3}{-6} and 2\\vec{b} = \\colvec{8}{-8}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(red then blue) = 3/5 × 2/5 = 6/25",
+          "description": "3\\vec{a} - 2\\vec{b} = \\colvec{-11}{2}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6/25 oe",
+          "description": "\\colvec{-11}{2} oe",
           "marks": 1
         }
       ],
       "diagram": null,
-      "solution_diagram": {
-        "kind": "tree_diagram",
-        "params": {
-          "stage1": [
-            [
-              "Red",
-              "3/5"
-            ],
-            [
-              "Blue",
-              "2/5"
-            ]
-          ],
-          "stage2": [
-            [
-              [
-                "Red",
-                "3/5"
-              ],
-              [
-                "Blue",
-                "2/5"
-              ]
-            ],
-            [
-              [
-                "Red",
-                "3/5"
-              ],
-              [
-                "Blue",
-                "2/5"
-              ]
-            ]
-          ]
-        }
-      }
+      "solution_diagram": null
     },
     {
       "topic_id": "probability_single_event",
@@ -1085,67 +1018,123 @@
           "counts": {
             "purple": 4,
             "red": 5
-          },
-          "highlight": "purple"
+          }
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "composite_bar_chart",
-      "prompt": "The composite bar chart shows the number of commuters split by Bus and Car. How many car are shown for Week 3?",
+      "topic_id": "two_way_tables",
+      "prompt": "The two-way table shows the number of boys and girls who prefer cats or dogs. Find the missing values.",
       "solution_steps": [
-        "Find the Week 3 bar, then the Car segment within it.",
-        "That segment's value is 15."
+        "'Girls' / 'Cats': using the 'Girls' row total: 19 - 14 = 5",
+        "'Boys' / 'Cats': using the 'Boys' row total: 9 - 4 = 5"
       ],
-      "final_answer": "15",
+      "final_answer": "'Girls' / 'Cats' = 5; 'Boys' / 'Cats' = 5",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the Week 3 bar, then the Car segment within it.",
+          "description": "'Girls' / 'Cats': using the 'Girls' row total: 19 - 14 = 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "That segment's value is 15.",
+          "description": "'Boys' / 'Cats': using the 'Boys' row total: 9 - 4 = 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "15 oe",
+          "description": "'Girls' / 'Cats' = 5; 'Boys' / 'Cats' = 5 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "bar_chart",
+        "kind": "two_way_table",
         "params": {
-          "categories": [
-            "Week 1",
-            "Week 2",
-            "Week 3"
+          "row_labels": [
+            "Boys",
+            "Girls",
+            "Total"
           ],
-          "series": [
+          "col_labels": [
+            "Cats",
+            "Dogs",
+            "Total"
+          ],
+          "cells": [
             [
-              8,
-              13
+              "",
+              "4",
+              "9"
             ],
             [
-              2,
-              10
+              "",
+              "14",
+              "19"
             ],
             [
-              3,
-              15
+              "10",
+              "18",
+              "28"
             ]
-          ],
-          "series_labels": [
-            "Bus",
-            "Car"
-          ],
-          "y_label": "Frequency"
+          ]
         }
       },
+      "solution_diagram": {
+        "kind": "two_way_table",
+        "params": {
+          "row_labels": [
+            "Boys",
+            "Girls",
+            "Total"
+          ],
+          "col_labels": [
+            "Cats",
+            "Dogs",
+            "Total"
+          ],
+          "cells": [
+            [
+              "5",
+              "4",
+              "9"
+            ],
+            [
+              "5",
+              "14",
+              "19"
+            ],
+            [
+              "10",
+              "18",
+              "28"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "stats_median",
+      "prompt": "Find the median of this data set: 14, 13, 6, 9, 9, 29, 25.",
+      "solution_steps": [
+        "Sort the data: 6, 9, 9, 13, 14, 25, 29. The middle value is 13."
+      ],
+      "final_answer": "13",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Sort the data: 6, 9, 9, 13, 14, 25, 29. The middle value is 13.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "13 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     }
   ]

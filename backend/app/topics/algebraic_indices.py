@@ -261,7 +261,10 @@ def _frac_multiply_params(rng: random.Random) -> tuple[int, int, int, int, int]:
 
 
 def generate_algebraic_indices_higher(tier: Tier, rng: random.Random) -> Question:
-    shape = rng.choice(["multiply", "divide", "power", "fractional"])
+    # Weighted towards "fractional" - a genuine fractional exponent is this
+    # topic's own distinguishing content, so it should show up more often
+    # than an even 4-way split (25%) would give it.
+    shape = rng.choices(["multiply", "divide", "power", "fractional"], weights=[20, 20, 20, 40], k=1)[0]
 
     if shape == "multiply":
         c1, c2 = rng.randint(1, 6), rng.randint(1, 6)
@@ -402,7 +405,10 @@ def generate_algebraic_indices_higher(tier: Tier, rng: random.Random) -> Questio
 
 
 def generate_modelled_example_algebraic_indices_higher(tier: Tier, rng: random.Random) -> ModelledExample:
-    shape = rng.choice(["multiply", "divide", "power", "fractional"])
+    # Weighted towards "fractional" - a genuine fractional exponent is this
+    # topic's own distinguishing content, so it should show up more often
+    # than an even 4-way split (25%) would give it.
+    shape = rng.choices(["multiply", "divide", "power", "fractional"], weights=[20, 20, 20, 40], k=1)[0]
 
     if shape == "multiply":
         c1, c2 = rng.randint(1, 6), rng.randint(1, 6)

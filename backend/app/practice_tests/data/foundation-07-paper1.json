@@ -8,7 +8,7 @@
   "questions": [
     {
       "topic_id": "negative_ordering",
-      "prompt": "Write these numbers in order, from largest to smallest: 8, 7, 6, 4, 5",
+      "prompt": "Write these numbers in descending order: 8, 7, 6, 4, 5",
       "solution_steps": [
         "Place the numbers on a number line: 8, 7, 6, 4, 5.",
         "Reading them in order from largest to smallest gives: 8, 7, 6, 5, 4."
@@ -37,7 +37,7 @@
     },
     {
       "topic_id": "bidmas",
-      "prompt": "Work out (8 + 3) × 7 - 3 ÷ 3. Use the correct order of operations.",
+      "prompt": "Work out (8 + 3) × 7 - 3 ÷ 3.",
       "solution_steps": [
         "Brackets: (8 + 3) = 11",
         "Multiplication: 11 × 7 = 77",
@@ -183,17 +183,17 @@
     },
     {
       "topic_id": "fractions_equivalent_diagram",
-      "prompt": "The first shape shows 1/6 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
+      "prompt": "The first shape shows 1/3 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
       "solution_steps": [
-        "Cross-multiply 1/6 against each labelled shape: a shape shows an equivalent fraction only if 1 × (its denominator) = (its shaded count) × 6.",
-        "Only shape B) 2/12 works: 1 × 12 = 2 × 6 = 12."
+        "Cross-multiply 1/3 against each labelled shape: a shape shows an equivalent fraction only if 1 × (its denominator) = (its shaded count) × 3.",
+        "Only shape B) 2/6 works: 1 × 6 = 2 × 3 = 6."
       ],
-      "final_answer": "B) 2/12",
+      "final_answer": "B) 2/6",
       "marks": 1,
       "mark_scheme": [
         {
           "code": "B1",
-          "description": "B) 2/12 (selecting the correct option)",
+          "description": "B) 2/6 (selecting the correct option)",
           "marks": 1
         }
       ],
@@ -203,7 +203,7 @@
           "shapes": [
             {
               "kind": "circle",
-              "parts": 6,
+              "parts": 3,
               "shaded": 1
             },
             {
@@ -214,7 +214,7 @@
             },
             {
               "kind": "circle",
-              "parts": 12,
+              "parts": 6,
               "shaded": 2,
               "label": "B)"
             },
@@ -265,40 +265,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solve_quadratic_factorising_foundation",
-      "prompt": "Solve x^2 + 8x + 12 = 0 by factorising.",
+      "topic_id": "factorise_quadratics_foundation",
+      "prompt": "Factorise: x^2 + 14x + 45",
       "solution_steps": [
-        "Find two numbers that multiply to 12 and add to 8: 6 and 2",
-        "Factorise: (x + 6)(x + 2) = 0",
-        "Either x + 6 = 0 or x + 2 = 0",
-        "x = -6 or x = -2"
+        "Find two numbers that multiply to 45 and add to 14: 9 and 5",
+        "Write as two brackets: (x + 9)(x + 5)"
       ],
-      "final_answer": "x = -6 or x = -2",
-      "marks": 5,
+      "final_answer": "(x + 9)(x + 5)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to 12 and add to 8: 6 and 2",
+          "description": "Find two numbers that multiply to 45 and add to 14: 9 and 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: (x + 6)(x + 2) = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Either x + 6 = 0 or x + 2 = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = -6 or x = -2",
+          "description": "Write as two brackets: (x + 9)(x + 5)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -6 or x = -2 oe",
+          "description": "(x + 9)(x + 5) oe",
           "marks": 1
         }
       ],
@@ -472,28 +460,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "change_subject_foundation",
-      "prompt": "Make r the subject of the formula C = 2πr.",
+      "topic_id": "substitution_foundation",
+      "prompt": "A = LW. Find the value of A when L = 8 and w = 7.",
       "solution_steps": [
-        "C = 2πr",
-        "Divide both sides by 2π: r = \\frac{C}{2π}"
+        "A = LW",
+        "A = 8 × 7",
+        "A = 56"
       ],
-      "final_answer": "r = \\frac{C}{2π}",
-      "marks": 3,
+      "final_answer": "A = 56",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "C = 2πr",
+          "description": "A = LW",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 2π: r = \\frac{C}{2π}",
+          "description": "A = 8 × 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = 56",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "r = \\frac{C}{2π} oe",
+          "description": "A = 56 oe",
           "marks": 1
         }
       ],
@@ -501,220 +495,268 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_graphically",
-      "prompt": "The graphs of y = 4x - 2 and y = x - 2 are shown below. Use the graphs to write down the solution to the simultaneous equations.",
+      "topic_id": "simultaneous_forming_and_solving",
+      "prompt": "2 tickets and 5 programmes cost £2.63 in total. 2 tickets and 2 programmes cost £1.82 in total. Form and solve a pair of simultaneous equations to find the cost of one ticket and one programme.",
       "solution_steps": [
-        "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
-        "The lines cross at x = 0, y = -2."
+        "Let x = cost of one ticket (pence), y = cost of one programme (pence).",
+        "2x + 5y = 263  (1)",
+        "2x + 2y = 182  (2)",
+        "Solving simultaneously: x = 64, y = 27"
       ],
-      "final_answer": "x = 0, y = -2",
-      "marks": 3,
+      "final_answer": "ticket = £0.64, programme = £0.27",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
+          "description": "Let x = cost of one ticket (pence), y = cost of one programme (pence).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The lines cross at x = 0, y = -2.",
+          "description": "2x + 5y = 263  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x + 2y = 182  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Solving simultaneously: x = 64, y = 27",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 0, y = -2 oe",
+          "description": "ticket = £0.64, programme = £0.27 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "best_buys",
+      "prompt": "A shop sells breakfast cereal in different sizes: A: £11.22 for 550g; B: £5.04 for 200g. Which option is the better value for money? Show your working.",
+      "solution_steps": [
+        "Work out the price per 100g for each option:",
+        "A: £11.22 ÷ 550 × 100 = 204.00p per 100g",
+        "B: £5.04 ÷ 200 × 100 = 252.00p per 100g",
+        "The lowest price per 100g is A at 204.00p per 100g, so A is the best value."
+      ],
+      "final_answer": "A (£11.22 for 550g)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Work out the price per 100g for each option:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A: £11.22 ÷ 550 × 100 = 204.00p per 100g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B: £5.04 ÷ 200 × 100 = 252.00p per 100g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The lowest price per 100g is A at 204.00p per 100g, so A is the best value.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "A (£11.22 for 550g) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "percentage_change",
+      "prompt": "Increase 480 by 50%.",
+      "solution_steps": [
+        "Convert 50% to a multiplier: 1.50",
+        "Multiply: 480 × 1.50 = 720"
+      ],
+      "final_answer": "720",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 50% to a multiplier: 1.50",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply: 480 × 1.50 = 720",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "720 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_difference",
+      "prompt": "s : t = 8 : 2. s - t = 114. Find s and t.",
+      "solution_steps": [
+        "Difference in parts = 8 - 2 = 6 parts",
+        "Value of one part = 114 ÷ 6 = 19",
+        "s = 8 × 19 = 152",
+        "t = 2 × 19 = 38"
+      ],
+      "final_answer": "s = 152, t = 38",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Difference in parts = 8 - 2 = 6 parts",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Value of one part = 114 ÷ 6 = 19",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "s = 8 × 19 = 152",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "t = 2 × 19 = 38",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "s = 152, t = 38 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pressure",
+      "prompt": "A table leg exerts a force of 1143 N over a contact area of 66 cm². Find the pressure, correct to 2 decimal places.",
+      "solution_steps": [
+        "pressure = force ÷ area",
+        "pressure = 1143 ÷ 66 = 17.32 N/cm² (2 d.p.)"
+      ],
+      "final_answer": "17.32 N/cm²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "pressure = force ÷ area",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "pressure = 1143 ÷ 66 = 17.32 N/cm² (2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "17.32 N/cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_parallel_lines_foundation",
+      "prompt": "A line crosses two parallel lines. The angle 143° and the angle x° are alternate angles. Find x.",
+      "solution_steps": [
+        "Alternate angles are equal.",
+        "x = 143"
+      ],
+      "final_answer": "143",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Alternate angles are equal.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 143",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "143 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "linear_graph_pair",
+        "kind": "parallel_lines",
         "params": {
-          "label1": "y = 4x - 2",
-          "label2": "y = x - 2"
+          "known_label": "143°",
+          "unknown_label": "x",
+          "relation": "alternate"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_common_factor",
-      "prompt": "Factorise: 10x + 5",
+      "topic_id": "volume_surface_area_cube",
+      "prompt": "A cube has side length 19 cm. Find its surface area.",
       "solution_steps": [
-        "Find the highest common factor of 10 and 5: 5",
-        "Factorise: 5(2x + 1)"
+        "Surface area = 6 × side² = 6 × 19² = 6 × 361 = 2166 cm²"
       ],
-      "final_answer": "5(2x + 1)",
-      "marks": 3,
+      "final_answer": "2166 cm²",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the highest common factor of 10 and 5: 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise: 5(2x + 1)",
+          "description": "Surface area = 6 × side² = 6 × 19² = 6 × 361 = 2166 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5(2x + 1) oe",
+          "description": "2166 cm² oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "find_percentage_change",
-      "prompt": "The price of an item changes from £240 to £360. Find the percentage increase.",
-      "solution_steps": [
-        "Find the difference between the two values: £360 and £240 differ by £120",
-        "Divide by the ORIGINAL value and convert to a percentage: £120 ÷ £240 × 100 = 50%"
-      ],
-      "final_answer": "50% increase",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find the difference between the two values: £360 and £240 differ by £120",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide by the ORIGINAL value and convert to a percentage: £120 ÷ £240 × 100 = 50%",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "50% increase oe",
-          "marks": 1
+      "diagram": {
+        "kind": "cuboid",
+        "params": {
+          "width_label": "19 cm",
+          "height_label": "19 cm",
+          "length_label": "19 cm",
+          "is_cube": true
         }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_1_to_n",
-      "prompt": "Write the ratio 1:2 in the form 1:\\plain{n}.",
-      "solution_steps": [
-        "Divide both parts of the ratio by 1 (the first part) so the first part becomes 1.",
-        "1 ÷ 1 = 1, 2 ÷ 1 = 2"
-      ],
-      "final_answer": "1 : 2",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Divide both parts of the ratio by 1 (the first part) so the first part becomes 1.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "1 ÷ 1 = 1, 2 ÷ 1 = 2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1 : 2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "density",
-      "prompt": "A piece of wood has a mass of 1144 kg and a volume of 18 m³. Find its density, correct to 2 decimal places.",
-      "solution_steps": [
-        "density = mass ÷ volume",
-        "density = 1144 ÷ 18 = 63.56 kg/m³ (2 d.p.)"
-      ],
-      "final_answer": "63.56 kg/m³",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "density = mass ÷ volume",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "density = 1144 ÷ 18 = 63.56 kg/m³ (2 d.p.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "63.56 kg/m³ oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simple_interest",
-      "prompt": "£2200 is invested at a simple interest rate of 5% per year for 4 years. Find the interest earned.",
-      "solution_steps": [
-        "Simple interest formula: I = P × r × t ÷ 100",
-        "I = 2200 × 5 × 4 ÷ 100 = £440"
-      ],
-      "final_answer": "£440",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Simple interest formula: I = P × r × t ÷ 100",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "I = 2200 × 5 × 4 ÷ 100 = £440",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£440 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
+      },
       "solution_diagram": null
     },
     {
       "topic_id": "congruent_triangle_proof_foundation",
-      "prompt": "ABCD is a kite with AB = AD and CB = CD. AC is a diagonal of the kite. State which congruence criterion (SSS, SAS, ASA or RHS) proves that the two triangles are congruent.",
+      "prompt": "ABCD is a kite with AB = AD and CB = CD. AC is a diagonal of the kite. Which congruence criterion proves that the two triangles are congruent? A) ASA  B) SSS  C) RHS  D) SAS",
       "solution_steps": [
         "AB = AD (given, adjacent sides of the kite)",
         "CB = CD (given, adjacent sides of the kite)",
         "AC is common to both triangles",
         "These facts match the Side-Side-Side (SSS) congruence criterion."
       ],
-      "final_answer": "SSS",
-      "marks": 5,
+      "final_answer": "B) SSS",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "AB = AD (given, adjacent sides of the kite)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "CB = CD (given, adjacent sides of the kite)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "AC is common to both triangles",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "These facts match the Side-Side-Side (SSS) congruence criterion.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "SSS oe",
+          "code": "B1",
+          "description": "B) SSS (selecting the correct option)",
           "marks": 1
         }
       ],
@@ -809,41 +851,22 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solving_inequalities_foundation",
-      "prompt": "Solve the inequality: \\frac{x}{2} + 10 ≤ 9",
+      "topic_id": "angles_polygon_interior_foundation",
+      "prompt": "A polygon has 36 sides. Find the sum of its interior angles.",
       "solution_steps": [
-        "\\frac{x}{2} + 10 ≤ 9",
-        "Subtract 10 from both sides:",
-        "\\frac{x}{2} ≤ -1",
-        "Multiply both sides by 2:",
-        "x ≤ -2"
+        "Sum of interior angles = (n - 2) × 180 = (36 - 2) × 180 = 6120°"
       ],
-      "final_answer": "x ≤ -2",
-      "marks": 5,
+      "final_answer": "6120°",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "\\frac{x}{2} + 10 ≤ 9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 10 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "\\frac{x}{2} ≤ -1",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply both sides by 2: x ≤ -2",
+          "description": "Sum of interior angles = (n - 2) × 180 = (36 - 2) × 180 = 6120°",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x ≤ -2 oe",
+          "description": "6120° oe",
           "marks": 1
         }
       ],
@@ -851,37 +874,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "arc_length_foundation",
-      "prompt": "Find the arc length of the following sector, correct to 1 decimal place.",
+      "topic_id": "area_trapezium",
+      "prompt": "Find the area of the following trapezium.",
       "solution_steps": [
-        "Arc length = (θ ÷ 360) × 2 × π × r = (286 ÷ 360) × 2 × π × 7",
-        "= 34.9 cm (1 d.p., using a calculator value of π)"
+        "Area = ½ × (a + b) × height = ½ × (10 + 15) × 10 = 125 cm²"
       ],
-      "final_answer": "34.9 cm",
-      "marks": 3,
+      "final_answer": "125 cm²",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Arc length = (θ ÷ 360) × 2 × π × r = (286 ÷ 360) × 2 × π × 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 34.9 cm (1 d.p., using a calculator value of π)",
+          "description": "Area = ½ × (a + b) × height = ½ × (10 + 15) × 10 = 125 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "34.9 cm oe",
+          "description": "125 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "sector",
+        "kind": "trapezium",
         "params": {
-          "angle": 286,
-          "radius_label": "7 cm",
-          "angle_label": "286°"
+          "a": 10,
+          "b": 15,
+          "height": 10,
+          "a_label": "10 cm",
+          "b_label": "15 cm",
+          "height_label": "10 cm"
         }
       },
       "solution_diagram": null
@@ -1005,64 +1025,98 @@
             "yellow": 4,
             "red": 4,
             "purple": 4
-          },
-          "highlight": "yellow"
+          }
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "area_subtract_compound_foundation",
-      "prompt": "Find the shaded area.",
+      "topic_id": "pie_chart_construct",
+      "prompt": "A survey asked 12 people about their holiday destination. Calculate the angle for each category, and draw a pie chart.",
       "solution_steps": [
-        "Area of large rectangle = 9 × 14 = 126 cm²",
-        "Area of rectangular hole = 3 × 8 = 24 cm²",
-        "Shaded area = 126 - 24 = 102 cm²"
+        "Total = 12.",
+        "UK: 1/12 × 360° = 30°",
+        "France: 5/12 × 360° = 150°",
+        "Spain: 6/12 × 360° = 180°",
+        "UK: 30°, France: 150°, Spain: 180°"
       ],
-      "final_answer": "102 cm²",
-      "marks": 4,
+      "final_answer": "UK: 30°, France: 150°, Spain: 180°",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area of large rectangle = 9 × 14 = 126 cm²",
+          "description": "Total = 12.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Area of rectangular hole = 3 × 8 = 24 cm²",
+          "description": "UK: 1/12 × 360° = 30°",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Shaded area = 126 - 24 = 102 cm²",
+          "description": "France: 5/12 × 360° = 150°",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Spain: 6/12 × 360° = 180° UK: 30°, France: 150°, Spain: 180°",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "102 cm² oe",
+          "description": "UK: 30°, France: 150°, Spain: 180° oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "l_shape",
+        "kind": "two_way_table",
         "params": {
-          "outer_w": 9,
-          "outer_h": 14,
-          "inner_w": 3,
-          "inner_h": 8,
-          "notch": "center",
-          "shade_frame": true,
-          "outer_labels": [
-            "9 cm",
-            "14 cm"
+          "row_labels": [
+            "UK",
+            "France",
+            "Spain"
           ],
-          "inner_labels": [
-            "3 cm",
-            "8 cm"
+          "col_labels": [
+            "Frequency",
+            "Angle"
+          ],
+          "cells": [
+            [
+              "1",
+              ""
+            ],
+            [
+              "5",
+              ""
+            ],
+            [
+              "6",
+              ""
+            ]
           ]
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "pie_chart_with_table",
+        "params": {
+          "categories": [
+            "UK",
+            "France",
+            "Spain"
+          ],
+          "values": [
+            1,
+            5,
+            6
+          ],
+          "angle_degrees": [
+            30,
+            150,
+            180
+          ]
+        }
+      }
     }
   ]
 }

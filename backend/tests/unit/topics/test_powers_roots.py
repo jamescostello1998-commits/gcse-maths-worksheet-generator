@@ -163,6 +163,30 @@ def test_simplifying_indices_challenging_answer_is_int_or_valid_fraction():
             int(answer)  # must parse as a plain integer
 
 
+def test_powers_higher_shows_a_fractional_exponent_in_most_questions():
+    # Reweighted towards the two fractional-exponent shapes (fractional_root/
+    # fractional_full) since a genuine "^(num/den)" is this topic's own
+    # distinguishing content - over enough trials it should be the common
+    # case, not a rare one.
+    rng = random.Random(713)
+    fractional_count = 0
+    for _ in range(TRIALS):
+        q = powers_roots.generate_powers_higher(Tier.HIGHER, rng)
+        if "^(" in q.prompt:
+            fractional_count += 1
+    assert fractional_count > TRIALS * 0.5
+
+
+def test_simplifying_indices_challenging_shows_a_fractional_exponent_often():
+    rng = random.Random(714)
+    fractional_count = 0
+    for _ in range(TRIALS):
+        q = powers_roots.generate_simplifying_indices_challenging(Tier.HIGHER, rng)
+        if "^(" in q.prompt:
+            fractional_count += 1
+    assert fractional_count > TRIALS * 0.35
+
+
 def test_indices_common_base_equations_answer_is_int_or_valid_fraction():
     rng = random.Random(712)
     for _ in range(TRIALS):

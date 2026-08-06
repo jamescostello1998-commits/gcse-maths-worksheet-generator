@@ -356,6 +356,55 @@ def test_two_similar_rectangles_omits_unlabelled_sides():
     assert len(drawing.contents) > 0
 
 
+def test_rectangle_height_label_stays_within_the_canvas():
+    # A wide rectangle (width scale-bound, pushing the rectangle's own right
+    # edge close to the canvas edge) combined with a two-digit height_label
+    # previously overflowed past DIAGRAM_WIDTH by a couple of points, since
+    # draw_rectangle had no stringWidth awareness at all - found via a real
+    # rendered-PDF check, not a unit test written in advance.
+    from reportlab.pdfbase.pdfmetrics import stringWidth
+
+    from app.pdf.diagrams import DIAGRAM_WIDTH, _LABEL_FONT, _LABEL_SIZE, draw_rectangle
+
+    spec_params = {"width": 28, "height": 12, "width_label": "(x + 10) cm", "height_label": "12 cm"}
+    drawing = draw_rectangle(spec_params)
+
+    def _walk(shapes):
+        for s in shapes:
+            if hasattr(s, "text"):
+                yield s
+            elif hasattr(s, "contents"):
+                yield from _walk(s.contents)
+
+    height_label_strings = [s for s in _walk(drawing.contents) if s.text.strip() == "12 cm"]
+    assert height_label_strings
+    for s in height_label_strings:
+        w = stringWidth(s.text, _LABEL_FONT, _LABEL_SIZE)
+        x1 = s.x + w if s.textAnchor == "start" else s.x
+        assert x1 <= DIAGRAM_WIDTH
+
+
+def test_angle_line_narrow_wedge_label_stays_within_the_canvas():
+    # A narrow (<20 degree) wedge in the "around_point" layout can orient its
+    # label near-vertically with no headroom - previously pushed the label
+    # past the top edge by ~20pt, found via a real rendered-PDF check across
+    # many seeds, not assumed.
+    from app.pdf.diagrams import DIAGRAM_HEIGHT, draw_angle_line
+
+    spec_params = {"around_point": True, "angle_values": [87.5, 5, 267.5], "labels": ["87.5°", "5°", "267.5°"]}
+    drawing = draw_angle_line(spec_params)
+
+    def _walk(shapes):
+        for s in shapes:
+            if hasattr(s, "text"):
+                yield s
+            elif hasattr(s, "contents"):
+                yield from _walk(s.contents)
+
+    for s in _walk(drawing.contents):
+        assert 0 <= s.y <= DIAGRAM_HEIGHT
+
+
 def test_math_runs_italicises_x_and_n():
     assert _math_runs("(3x + 12)°") == [
         ("text", "(3", _LABEL_FONT), ("text", "x", _LABEL_FONT_ITALIC), ("text", " + 12)°", _LABEL_FONT),

@@ -257,20 +257,20 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_quadratic",
-      "prompt": "Complete a table of values for y = x^2 + 1 for x = -3 to 3, then plot the graph.",
+      "topic_id": "plot_straight_line",
+      "prompt": "Complete a table of values for y = 4x + 6 for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = x^2 + 1:",
+        "Table of values for y = 4x + 6:",
         "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: 10, 5, 2, 1, 2, 5, 10",
-        "Plot each (x, y) point and join them with a single smooth curve."
+        "y: -6, -2, 2, 6, 10, 14, 18",
+        "Plot each (x, y) point and join them with a single ruled straight line."
       ],
-      "final_answer": "Quadratic curve: y = x^2 + 1",
+      "final_answer": "Straight line: y = 4x + 6",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = x^2 + 1:",
+          "description": "Table of values for y = 4x + 6:",
           "marks": 1
         },
         {
@@ -280,53 +280,51 @@
         },
         {
           "code": "M1",
-          "description": "y: 10, 5, 2, 1, 2, 5, 10",
+          "description": "y: -6, -2, 2, 6, 10, 14, 18",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Quadratic curve: y = x^2 + 1 oe",
+          "description": "Straight line: y = 4x + 6 oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "quadratic",
-          "a": 1,
-          "b": 0,
-          "c": 1,
+          "kind": "linear",
+          "m": 4,
+          "c": 6,
           "x_min": -4,
           "x_max": 4,
-          "y_min": 0,
-          "y_max": 11,
+          "y_min": -7,
+          "y_max": 19,
           "blank": true
         }
       },
       "solution_diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "quadratic",
-          "a": 1,
-          "b": 0,
-          "c": 1,
+          "kind": "linear",
+          "m": 4,
+          "c": 6,
           "x_min": -4,
           "x_max": 4,
-          "y_min": 0,
-          "y_max": 11,
+          "y_min": -7,
+          "y_max": 19,
           "table_points": [
             [
               -3,
-              10
+              -6
             ],
             [
               -2,
-              5
+              -2
             ],
             [
               -1,
@@ -334,19 +332,19 @@
             ],
             [
               0,
-              1
+              6
             ],
             [
               1,
-              2
+              10
             ],
             [
               2,
-              5
+              14
             ],
             [
               3,
-              10
+              18
             ]
           ]
         }
@@ -435,122 +433,102 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solve_quadratic_factorising_foundation",
-      "prompt": "Solve x^2 + 2x + 1 = 0 by factorising.",
+      "topic_id": "factorise_common_factor",
+      "prompt": "Factorise: -4x - 14",
       "solution_steps": [
-        "Find two numbers that multiply to 1 and add to 2: 1 and 1",
-        "Factorise: (x + 1)(x + 1) = 0",
-        "Either x + 1 = 0 or x + 1 = 0",
-        "x = -1 or x = -1"
+        "Find the highest common factor of -4 and -14: 2",
+        "Factorise: 2(-2x - 7)"
       ],
-      "final_answer": "x = -1 or x = -1",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find two numbers that multiply to 1 and add to 2: 1 and 1",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise: (x + 1)(x + 1) = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Either x + 1 = 0 or x + 1 = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = -1 or x = -1",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = -1 or x = -1 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "linear_brackets_foundation",
-      "prompt": "Solve: 2(5x + 5) = 70",
-      "solution_steps": [
-        "Expand the bracket: 2(5x + 5) = 10x + 10",
-        "10x + 10 = 70",
-        "Subtract 10 from both sides:",
-        "10x = 60",
-        "Divide both sides by 10:",
-        "x = 6"
-      ],
-      "final_answer": "6",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Expand the bracket: 2(5x + 5) = 10x + 10",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "10x + 10 = 70",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 10 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "10x = 60 Divide both sides by 10: x = 6",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "6 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simultaneous_graphically",
-      "prompt": "The graphs of y = -x + 3 and y = -4x - 3 are shown below. Use the graphs to write down the solution to the simultaneous equations.",
-      "solution_steps": [
-        "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
-        "The lines cross at x = -2, y = 5."
-      ],
-      "final_answer": "x = -2, y = 5",
+      "final_answer": "2(-2x - 7)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
+          "description": "Find the highest common factor of -4 and -14: 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The lines cross at x = -2, y = 5.",
+          "description": "Factorise: 2(-2x - 7)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -2, y = 5 oe",
+          "description": "2(-2x - 7) oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "linear_graph_pair",
-        "params": {
-          "label1": "y = -x + 3",
-          "label2": "y = -4x - 3"
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_find_missing_share",
+      "prompt": "p : q = 1 : 9. q = 126. What is the value of p?",
+      "solution_steps": [
+        "Value of one part = 126 ÷ 9 = 14",
+        "p = 1 × 14 = 14"
+      ],
+      "final_answer": "14",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Value of one part = 126 ÷ 9 = 14",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "p = 1 × 14 = 14",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "14 oe",
+          "marks": 1
         }
-      },
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_forming_and_solving",
+      "prompt": "4 cups and 5 plates cost £6.05 in total. 5 cups and 4 plates cost £6.37 in total. Form and solve a pair of simultaneous equations to find the cost of one cup and one plate.",
+      "solution_steps": [
+        "Let x = cost of one cup (pence), y = cost of one plate (pence).",
+        "4x + 5y = 605  (1)",
+        "5x + 4y = 637  (2)",
+        "Solving simultaneously: x = 85, y = 53"
+      ],
+      "final_answer": "cup = £0.85, plate = £0.53",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let x = cost of one cup (pence), y = cost of one plate (pence).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x + 5y = 605  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x + 4y = 637  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Solving simultaneously: x = 85, y = 53",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "cup = £0.85, plate = £0.53 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -596,28 +574,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "density",
-      "prompt": "A sample of liquid has a mass of 271 g and a density of 10 g/cm³. Find its volume, correct to 2 decimal places.",
+      "topic_id": "parallel_lines_equation",
+      "prompt": "A line is parallel to y = -3x - 5 and passes through the point (-2, -10). Find the equation of the line.",
       "solution_steps": [
-        "volume = mass ÷ density",
-        "volume = 271 ÷ 10 = 27.1 cm³ (2 d.p.)"
+        "Parallel lines have the same gradient, so m = -3.",
+        "Substitute (-2, -10) into y = -3x + c: -10 = -3×(-2) + c, so c = -16",
+        "Equation of the line: y = -3x - 16"
       ],
-      "final_answer": "27.1 cm³",
-      "marks": 3,
+      "final_answer": "y = -3x - 16",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "volume = mass ÷ density",
+          "description": "Parallel lines have the same gradient, so m = -3.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "volume = 271 ÷ 10 = 27.1 cm³ (2 d.p.)",
+          "description": "Substitute (-2, -10) into y = -3x + c: -10 = -3×(-2) + c, so c = -16",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Equation of the line: y = -3x - 16",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "27.1 cm³ oe",
+          "description": "y = -3x - 16 oe",
           "marks": 1
         }
       ],
@@ -625,28 +609,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inverse_proportion",
-      "prompt": "It takes 4 painters 84 hours to paint a fence. Working at the same rate, how long would it take 12 painters?",
+      "topic_id": "sdt_mixed",
+      "prompt": "A car travels 95 miles in 5 hours. Find its average speed in mph.",
       "solution_steps": [
-        "Constant = 4 × 84 = 336",
-        "Time for 12 painters = 336 ÷ 12 = 28"
+        "speed = distance ÷ time",
+        "speed = 95 ÷ 5 = 19 mph"
       ],
-      "final_answer": "28 hours",
+      "final_answer": "19 mph",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Constant = 4 × 84 = 336",
+          "description": "speed = distance ÷ time",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Time for 12 painters = 336 ÷ 12 = 28",
+          "description": "speed = 95 ÷ 5 = 19 mph",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "28 hours oe",
+          "description": "19 mph oe",
           "marks": 1
         }
       ],
@@ -654,28 +638,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "reverse_percentage_foundation",
-      "prompt": "After a 10% increase, an item costs £22. Find the original price.",
+      "topic_id": "compound_percentage_foundation",
+      "prompt": "A price of £240 increases by 25%, then decreases by 50%. Find the final price.",
       "solution_steps": [
-        "Convert 10% to a multiplier: 1.10 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 22 ÷ 1.10 = 20"
+        "After the first change: 240 × 1.25 = 300",
+        "After the second change: 300 × 0.50 = 150"
       ],
-      "final_answer": "£20",
+      "final_answer": "£150",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 10% to a multiplier: 1.10 (original × multiplier = new value)",
+          "description": "After the first change: 240 × 1.25 = 300",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide the new value by the multiplier: 22 ÷ 1.10 = 20",
+          "description": "After the second change: 300 × 0.50 = 150",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£20 oe",
+          "description": "£150 oe",
           "marks": 1
         }
       ],
@@ -712,28 +696,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_find_missing_share",
-      "prompt": "p : q = 1 : 9. q = 126. What is the value of p?",
+      "topic_id": "ratio_share_three_part_foundation",
+      "prompt": "Share 95 in the ratio 6:6:7.",
       "solution_steps": [
-        "Value of one part = 126 ÷ 9 = 14",
-        "p = 1 × 14 = 14"
+        "Total parts = 6 + 6 + 7 = 19",
+        "Value of one part = 95 ÷ 19 = 5",
+        "Share 1 = 6 × 5 = 30",
+        "Share 2 = 6 × 5 = 30",
+        "Share 3 = 7 × 5 = 35"
       ],
-      "final_answer": "14",
-      "marks": 3,
+      "final_answer": "30 : 30 : 35",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Value of one part = 126 ÷ 9 = 14",
+          "description": "Total parts = 6 + 6 + 7 = 19",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "p = 1 × 14 = 14",
+          "description": "Value of one part = 95 ÷ 19 = 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 1 = 6 × 5 = 30",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 2 = 6 × 5 = 30 Share 3 = 7 × 5 = 35",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "14 oe",
+          "description": "30 : 30 : 35 oe",
           "marks": 1
         }
       ],
@@ -741,39 +738,44 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_hypotenuse_triple",
-      "prompt": "A right-angled triangle has sides 9 cm and 12 cm. Find the length of x.",
+      "topic_id": "ratio_share_two_part",
+      "prompt": "Share 80 in the ratio 2:3.",
       "solution_steps": [
-        "c² = a² + b² = 9² + 12² = 81 + 144 = 225",
-        "c = √225 = 15"
+        "Total parts = 2 + 3 = 5",
+        "Value of one part = 80 ÷ 5 = 16",
+        "Share 1 = 2 × 16 = 32",
+        "Share 2 = 3 × 16 = 48"
       ],
-      "final_answer": "15 cm",
-      "marks": 3,
+      "final_answer": "32 : 48",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "c² = a² + b² = 9² + 12² = 81 + 144 = 225",
+          "description": "Total parts = 2 + 3 = 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "c = √225 = 15",
+          "description": "Value of one part = 80 ÷ 5 = 16",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 1 = 2 × 16 = 32",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 2 = 3 × 16 = 48",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "15 cm oe",
+          "description": "32 : 48 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "right_triangle",
-        "params": {
-          "leg1_label": "9 cm",
-          "leg2_label": "12 cm",
-          "hyp_label": "x"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -1018,79 +1020,59 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "relative_frequency",
-      "prompt": "A biased dice is tested 80 times, and it shows a six 25 times. Use this relative frequency to estimate how many times this would happen in 208 trials.",
+      "topic_id": "volume_surface_area_cube",
+      "prompt": "A cube has side length 15 cm. Find its surface area.",
       "solution_steps": [
-        "Relative frequency = frequency ÷ number of trials = 25/80 = 5/16",
-        "Estimated number of times in 208 trials = 5/16 × 208 = 65"
+        "Surface area = 6 × side² = 6 × 15² = 6 × 225 = 1350 cm²"
       ],
-      "final_answer": "65",
-      "marks": 3,
+      "final_answer": "1350 cm²",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Relative frequency = frequency ÷ number of trials = 25/80 = 5/16",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Estimated number of times in 208 trials = 5/16 × 208 = 65",
+          "description": "Surface area = 6 × side² = 6 × 15² = 6 × 225 = 1350 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "65 oe",
+          "description": "1350 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "dice",
+        "kind": "cuboid",
         "params": {
-          "values": [
-            6
-          ],
-          "highlight": [
-            0
-          ]
+          "width_label": "15 cm",
+          "height_label": "15 cm",
+          "length_label": "15 cm",
+          "is_cube": true
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "two_way_tables",
-      "prompt": "The two-way table shows the number of boys and girls who prefer cats or dogs. Copy and complete the table, and state the missing value marked '?'.",
+      "prompt": "The two-way table shows the number of boys and girls who prefer cats or dogs. Find the missing values.",
       "solution_steps": [
-        "The missing value is in the 'Boys' row and 'Cats' column.",
-        "Using the row total: 31 - 13 = 18",
-        "Using the column total: 36 - 18 = 18",
-        "Missing value = 18"
+        "'Boys' / 'Dogs': using the 'Dogs' column total: 24 - 11 = 13",
+        "'Boys' / 'Cats': using the 'Cats' column total: 36 - 18 = 18"
       ],
-      "final_answer": "18",
-      "marks": 5,
+      "final_answer": "'Boys' / 'Dogs' = 13; 'Boys' / 'Cats' = 18",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The missing value is in the 'Boys' row and 'Cats' column.",
+          "description": "'Boys' / 'Dogs': using the 'Dogs' column total: 24 - 11 = 13",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Using the row total: 31 - 13 = 18",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Using the column total: 36 - 18 = 18",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Missing value = 18",
+          "description": "'Boys' / 'Cats': using the 'Cats' column total: 36 - 18 = 18",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "18 oe",
+          "description": "'Boys' / 'Dogs' = 13; 'Boys' / 'Cats' = 18 oe",
           "marks": 1
         }
       ],
@@ -1109,8 +1091,8 @@
           ],
           "cells": [
             [
-              "?",
-              "13",
+              "",
+              "",
               "31"
             ],
             [
@@ -1160,22 +1142,22 @@
       }
     },
     {
-      "topic_id": "stats_median",
-      "prompt": "Find the median of this data set: 17, 19, 24, 2, 27, 21.",
+      "topic_id": "stats_mean",
+      "prompt": "Find the mean of this data set: 26, 22, 3, 10, 18, 11, 15.",
       "solution_steps": [
-        "Sort the data: 2, 17, 19, 21, 24, 27. The middle two values are 19 and 21, so the median = (19 + 21) ÷ 2 = 20."
+        "Mean = sum ÷ count = (26 + 22 + 3 + 10 + 18 + 11 + 15) ÷ 7 = 105 ÷ 7 = 15"
       ],
-      "final_answer": "20",
+      "final_answer": "15",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Sort the data: 2, 17, 19, 21, 24, 27. The middle two values are 19 and 21, so the median = (19 + 21) ÷ 2 = 20.",
+          "description": "Mean = sum ÷ count = (26 + 22 + 3 + 10 + 18 + 11 + 15) ÷ 7 = 105 ÷ 7 = 15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "20 oe",
+          "description": "15 oe",
           "marks": 1
         }
       ],

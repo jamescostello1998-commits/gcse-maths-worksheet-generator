@@ -8,7 +8,7 @@
   "questions": [
     {
       "topic_id": "fractions_simplify",
-      "prompt": "Simplify the fraction 30/36.",
+      "prompt": "Simplify 30/36.",
       "solution_steps": [
         "Find the highest common factor of 30 and 36: 6",
         "Divide numerator and denominator by 6: \\frac{30÷6}{36÷6} = 5/6"
@@ -277,28 +277,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_quadratics_foundation",
-      "prompt": "Factorise: x^2 + 15x + 54",
+      "topic_id": "factorise_common_factor",
+      "prompt": "Factorise: 28x - 49",
       "solution_steps": [
-        "Find two numbers that multiply to 54 and add to 15: 9 and 6",
-        "Write as two brackets: (x + 9)(x + 6)"
+        "Find the highest common factor of 28 and -49: 7",
+        "Factorise: 7(4x - 7)"
       ],
-      "final_answer": "(x + 9)(x + 6)",
+      "final_answer": "7(4x - 7)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to 54 and add to 15: 9 and 6",
+          "description": "Find the highest common factor of 28 and -49: 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write as two brackets: (x + 9)(x + 6)",
+          "description": "Factorise: 7(4x - 7)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(x + 9)(x + 6) oe",
+          "description": "7(4x - 7) oe",
           "marks": 1
         }
       ],
@@ -306,15 +306,16 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "substitution_foundation",
-      "prompt": "A = LW. Find the value of A when L = 7 and w = 13.",
+      "topic_id": "substitution_rearrange_foundation",
+      "prompt": "A = LW. Make L the subject of the formula, then find the value of L when A = 49 and w = 7.",
       "solution_steps": [
         "A = LW",
-        "A = 7 × 13",
-        "A = 91"
+        "Rearrange to make L the subject: L = \\frac{A}{w}",
+        "Substitute A = 49 and w = 7: L = \\frac{49}{7}",
+        "L = 7"
       ],
-      "final_answer": "A = 91",
-      "marks": 4,
+      "final_answer": "L = 7",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
@@ -323,17 +324,22 @@
         },
         {
           "code": "M1",
-          "description": "A = 7 × 13",
+          "description": "Rearrange to make L the subject: L = \\frac{A}{w}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A = 91",
+          "description": "Substitute A = 49 and w = 7: L = \\frac{49}{7}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "L = 7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A = 91 oe",
+          "description": "L = 7 oe",
           "marks": 1
         }
       ],
@@ -341,86 +347,135 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "line_equation_from_graph",
-      "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
+      "topic_id": "plot_distance_time",
+      "prompt": "A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop 5 km away after 20 minutes. They stay at the shop until 30 minutes, then cycle straight back home at a constant speed, arriving home at 40 minutes. Draw a distance-time graph to show this journey, and find the total distance travelled.",
       "solution_steps": [
-        "Gradient = rise/run = \\frac{-21 - 11}{4 - -4} = -4",
-        "Using y = mx + c with the point (-4, 11): 11 = -4×(-4) + c, so c = -5",
-        "Equation of the line: y = -4x - 5"
+        "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 5 km after 20 minutes.",
+        "Stay at 5 km until 30 minutes.",
+        "Return at a constant speed to 0 km, arriving home at 40 minutes.",
+        "Plot these points and join each stage with a straight line segment.",
+        "Total distance travelled = 5 km out + 5 km back = 10 km"
       ],
-      "final_answer": "y = -4x - 5",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Gradient = rise/run = \\frac{-21 - 11}{4 - -4} = -4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Using y = mx + c with the point (-4, 11): 11 = -4×(-4) + c, so c = -5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Equation of the line: y = -4x - 5",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "y = -4x - 5 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "linear",
-          "m": -4,
-          "c": -5,
-          "x_min": -5,
-          "x_max": 5,
-          "y_min": -26,
-          "y_max": 16
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simultaneous_forming_and_solving",
-      "prompt": "2 pens and 1 pencil cost £1.75 in total. 3 pens and 1 pencil cost £2.38 in total. Form and solve a pair of simultaneous equations to find the cost of one pen and one pencil.",
-      "solution_steps": [
-        "Let x = cost of one pen (pence), y = cost of one pencil (pence).",
-        "2x + 1y = 175  (1)",
-        "3x + 1y = 238  (2)",
-        "Solving simultaneously: x = 63, y = 49"
-      ],
-      "final_answer": "pen = £0.63, pencil = £0.49",
+      "final_answer": "10 km",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = cost of one pen (pence), y = cost of one pencil (pence).",
+          "description": "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 5 km after 20 minutes.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x + 1y = 175  (1)",
+          "description": "Stay at 5 km until 30 minutes.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3x + 1y = 238  (2)",
+          "description": "Return at a constant speed to 0 km, arriving home at 40 minutes.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Solving simultaneously: x = 63, y = 49",
+          "description": "Plot these points and join each stage with a straight line segment. Total distance travelled = 5 km out + 5 km back = 10 km",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "pen = £0.63, pencil = £0.49 oe",
+          "description": "10 km oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              20,
+              5
+            ],
+            [
+              30,
+              5
+            ],
+            [
+              40,
+              0
+            ]
+          ],
+          "x_max": 45,
+          "y_max": 7,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)",
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              20,
+              5
+            ],
+            [
+              30,
+              5
+            ],
+            [
+              40,
+              0
+            ]
+          ],
+          "x_max": 45,
+          "y_max": 7,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)"
+        }
+      }
+    },
+    {
+      "topic_id": "simultaneous_common_coefficient",
+      "prompt": "Solve the simultaneous equations: x + 3y = 10 and 2x - 3y = -16",
+      "solution_steps": [
+        "x + 3y = 10  (1)",
+        "2x - 3y = -16  (2)",
+        "Add the equations to eliminate y: 3x = -6, so x = -2",
+        "Substitute x = -2 into (1): 3y = 12, so y = 4"
+      ],
+      "final_answer": "x = -2, y = 4",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "x + 3y = 10  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x - 3y = -16  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add the equations to eliminate y: 3x = -6, so x = -2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute x = -2 into (1): 3y = 12, so y = 4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = -2, y = 4 oe",
           "marks": 1
         }
       ],
@@ -752,9 +807,9 @@
     },
     {
       "topic_id": "transform_translate_describe",
-      "prompt": "Shape ABCDEF is translated to give shape A'B'C'D'E'F', shown on the grid. Describe fully the single transformation that maps ABCDEF onto A'B'C'D'E'F'.",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
       "solution_steps": [
-        "Every vertex moves by exactly the same amount: comparing A(2, -1) with A'(-1, -6) gives the vector (-3, -5).",
+        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (2, -1), with the matching vertex of shape B, (-1, -6), gives the vector (-3, -5).",
         "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
       ],
       "final_answer": "Translation by the vector (-3, -5)",
@@ -762,7 +817,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Every vertex moves by exactly the same amount: comparing A(2, -1) with A'(-1, -6) gives the vector (-3, -5).",
+          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (2, -1), with the matching vertex of shape B, (-1, -6), gives the vector (-3, -5).",
           "marks": 1
         },
         {
@@ -810,12 +865,12 @@
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ],
           "image_vertices": [
             [
@@ -844,12 +899,12 @@
             ]
           ],
           "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'",
-            "E'",
-            "F'"
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ]
         }
       },
@@ -926,8 +981,7 @@
           "counts": {
             "blue": 2,
             "red": 4
-          },
-          "highlight": "red"
+          }
         }
       },
       "solution_diagram": null
@@ -1002,29 +1056,6 @@
           ]
         }
       },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "stats_range",
-      "prompt": "Find the range of this data set: 15, 17, 10, 24, 6, 21, 4, 5.",
-      "solution_steps": [
-        "Range = largest - smallest = 24 - 4 = 20"
-      ],
-      "final_answer": "20",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Range = largest - smallest = 24 - 4 = 20",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "20 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
       "solution_diagram": null
     }
   ]

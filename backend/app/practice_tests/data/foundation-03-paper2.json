@@ -8,7 +8,7 @@
   "questions": [
     {
       "topic_id": "recurring_decimal_single_digit",
-      "prompt": "The recurring decimal \\recur{0.}{3} can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Write \\recur{0.}{3} as a fraction in its simplest form.",
       "solution_steps": [
         "Let x = \\recur{0.}{3}, so 10x = 3.333... (only one digit repeats, so multiply by 10 to shift it one place)",
         "Subtract: 10x - x = 3 - 0, so 9x = 3",
@@ -43,7 +43,7 @@
     },
     {
       "topic_id": "fractions_simplify",
-      "prompt": "Simplify the fraction 8/56.",
+      "prompt": "Simplify 8/56.",
       "solution_steps": [
         "Find the highest common factor of 8 and 56: 8",
         "Divide numerator and denominator by 8: \\frac{8÷8}{56÷8} = 1/7"
@@ -113,7 +113,7 @@
     },
     {
       "topic_id": "bidmas",
-      "prompt": "Work out 8^2 + 5 × 4 - 9 ÷ 3. Use the correct order of operations.",
+      "prompt": "Work out 8^2 + 5 × 4 - 9 ÷ 3.",
       "solution_steps": [
         "Indices: 8^2 = 64",
         "Multiplication: 5 × 4 = 20",
@@ -259,28 +259,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_quadratics_foundation",
-      "prompt": "Factorise: x^2 + 7x + 6",
+      "topic_id": "factorise_common_factor",
+      "prompt": "Factorise: 21x + 28",
       "solution_steps": [
-        "Find two numbers that multiply to 6 and add to 7: 6 and 1",
-        "Write as two brackets: (x + 6)(x + 1)"
+        "Find the highest common factor of 21 and 28: 7",
+        "Factorise: 7(3x + 4)"
       ],
-      "final_answer": "(x + 6)(x + 1)",
+      "final_answer": "7(3x + 4)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to 6 and add to 7: 6 and 1",
+          "description": "Find the highest common factor of 21 and 28: 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write as two brackets: (x + 6)(x + 1)",
+          "description": "Factorise: 7(3x + 4)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(x + 6)(x + 1) oe",
+          "description": "7(3x + 4) oe",
           "marks": 1
         }
       ],
@@ -288,46 +288,55 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_brackets_foundation",
-      "prompt": "Solve: 5(2x + 2) = 70",
+      "topic_id": "forming_equations_foundation",
+      "prompt": "The perimeter of the rectangle shown is 36 cm. Form an equation and solve it to find x.",
       "solution_steps": [
-        "Expand the bracket: 5(2x + 2) = 10x + 10",
-        "10x + 10 = 70",
-        "Subtract 10 from both sides:",
-        "10x = 60",
-        "Divide both sides by 10:",
-        "x = 6"
+        "Perimeter = 2 × (sum of two different side lengths).",
+        "2(x + 10) + 2(5) = 36",
+        "2x + 30 = 36",
+        "Subtract 30 from both sides:",
+        "2x = 6",
+        "Divide both sides by 2:",
+        "x = 3"
       ],
-      "final_answer": "6",
+      "final_answer": "3",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expand the bracket: 5(2x + 2) = 10x + 10",
+          "description": "Perimeter = 2 × (sum of two different side lengths).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "10x + 10 = 70",
+          "description": "2(x + 10) + 2(5) = 36",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 10 from both sides:",
+          "description": "2x + 30 = 36",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "10x = 60 Divide both sides by 10: x = 6",
+          "description": "Subtract 30 from both sides: 2x = 6 Divide both sides by 2: x = 3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6 oe",
+          "description": "3 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "rectangle",
+        "params": {
+          "width": 13,
+          "height": 5,
+          "width_label": "(x + 10) cm",
+          "height_label": "5 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -409,28 +418,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_common_factor",
-      "prompt": "Factorise: 21x + 28",
+      "topic_id": "expand_double_brackets_no_coefficient_foundation",
+      "prompt": "Expand and simplify: (x + 4)(x + 1)",
       "solution_steps": [
-        "Find the highest common factor of 21 and 28: 7",
-        "Factorise: 7(3x + 4)"
+        "First: x × x = x^2",
+        "Outer: x × 1 = 1x",
+        "Inner: 4 × x = 4x",
+        "Last: 4 × 1 = 4",
+        "Combine like terms: x^2 + 5x + 4"
       ],
-      "final_answer": "7(3x + 4)",
-      "marks": 3,
+      "final_answer": "x^2 + 5x + 4",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the highest common factor of 21 and 28: 7",
+          "description": "First: x × x = x^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: 7(3x + 4)",
+          "description": "Outer: x × 1 = 1x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Inner: 4 × x = 4x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Last: 4 × 1 = 4 Combine like terms: x^2 + 5x + 4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7(3x + 4) oe",
+          "description": "x^2 + 5x + 4 oe",
           "marks": 1
         }
       ],
@@ -473,76 +495,112 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_shorter_leg",
-      "prompt": "A right-angled triangle has hypotenuse 148 cm and one side 48 cm. Find the length of x.",
+      "topic_id": "angles_exterior_foundation",
+      "prompt": "An exterior angle of a triangle is x°. The two remote interior angles are 55° and 59°. Find x.",
       "solution_steps": [
-        "b² = c² - a² = 148² - 48² = 21904 - 2304 = 19600",
-        "b = √19600 = 140"
+        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+        "x = 55 + 59 = 114"
       ],
-      "final_answer": "140 cm",
+      "final_answer": "114",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "b² = c² - a² = 148² - 48² = 21904 - 2304 = 19600",
+          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "b = √19600 = 140",
+          "description": "x = 55 + 59 = 114",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "140 cm oe",
+          "description": "114 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "right_triangle",
+        "kind": "exterior_triangle",
         "params": {
-          "leg1_label": "48 cm",
-          "leg2_label": "x",
-          "hyp_label": "148 cm"
+          "interior1_label": "55°",
+          "interior2_label": "59°",
+          "exterior_label": "x"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "solve_quadratic_factorising_foundation",
-      "prompt": "Solve x^2 + 15x + 54 = 0 by factorising.",
+      "topic_id": "simple_interest",
+      "prompt": "£5000 is invested at a simple interest rate of 2% per year for 4 years. Find the total amount in the account after 4 years.",
       "solution_steps": [
-        "Find two numbers that multiply to 54 and add to 15: 6 and 9",
-        "Factorise: (x + 6)(x + 9) = 0",
-        "Either x + 6 = 0 or x + 9 = 0",
-        "x = -6 or x = -9"
+        "Simple interest formula: I = P × r × t ÷ 100",
+        "I = 5000 × 2 × 4 ÷ 100 = £400",
+        "Total in the account = P + I = £5000 + £400 = £5400"
       ],
-      "final_answer": "x = -6 or x = -9",
+      "final_answer": "£5400",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Simple interest formula: I = P × r × t ÷ 100",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "I = 5000 × 2 × 4 ÷ 100 = £400",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total in the account = P + I = £5000 + £400 = £5400",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£5400 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_difference",
+      "prompt": "p : q = 8 : 7. p - q = 7. Find p and q, and their total.",
+      "solution_steps": [
+        "Difference in parts = 8 - 7 = 1 parts",
+        "Value of one part = 7 ÷ 1 = 7",
+        "p = 8 × 7 = 56",
+        "q = 7 × 7 = 49",
+        "p + q = 56 + 49 = 105"
+      ],
+      "final_answer": "p = 56, q = 49 (total 105)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to 54 and add to 15: 6 and 9",
+          "description": "Difference in parts = 8 - 7 = 1 parts",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: (x + 6)(x + 9) = 0",
+          "description": "Value of one part = 7 ÷ 1 = 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Either x + 6 = 0 or x + 9 = 0",
+          "description": "p = 8 × 7 = 56",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = -6 or x = -9",
+          "description": "q = 7 × 7 = 49 p + q = 56 + 49 = 105",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -6 or x = -9 oe",
+          "description": "p = 56, q = 49 (total 105) oe",
           "marks": 1
         }
       ],
@@ -550,69 +608,32 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_1_to_n",
-      "prompt": "Write the ratio 3:7 in the form 1:\\plain{n}.",
+      "topic_id": "direct_proportion",
+      "prompt": "If 2 cm on a map represents 62 km in real life, how many km does 8 cm represent?",
       "solution_steps": [
-        "Divide both parts of the ratio by 3 (the first part) so the first part becomes 1.",
-        "3 ÷ 3 = 1, 7 ÷ 3 ≈ 2.33"
+        "Unit value = 62 km ÷ 2 = 31 km",
+        "Answer = 31 km × 8 = 248 km"
       ],
-      "final_answer": "1 : 2.33 (to 2 d.p.)",
+      "final_answer": "248 km",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide both parts of the ratio by 3 (the first part) so the first part becomes 1.",
+          "description": "Unit value = 62 km ÷ 2 = 31 km",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3 ÷ 3 = 1, 7 ÷ 3 ≈ 2.33",
+          "description": "Answer = 31 km × 8 = 248 km",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 : 2.33 (to 2 d.p.) oe",
+          "description": "248 km oe",
           "marks": 1
         }
       ],
       "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_shape_similar_foundation",
-      "prompt": "Shape A and Shape B are similar. Find the length of side z.",
-      "solution_steps": [
-        "Scale factor = 24 ÷ 6 = 4",
-        "Corresponding length = 5 × 4 = 20"
-      ],
-      "final_answer": "20 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Scale factor = 24 ÷ 6 = 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Corresponding length = 5 × 4 = 20",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "20 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "two_similar_rectangles",
-        "params": {
-          "a_width_label": "6 cm",
-          "a_height_label": "5 cm",
-          "b_width_label": "24 cm",
-          "b_height_label": "z"
-        }
-      },
       "solution_diagram": null
     },
     {
@@ -686,38 +707,39 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simple_interest",
-      "prompt": "£5000 is invested at a simple interest rate of 2% per year for 4 years. Find the total amount in the account after 4 years.",
+      "topic_id": "pythagoras_shorter_leg",
+      "prompt": "A right-angled triangle has hypotenuse 148 cm and one side 48 cm. Find the length of x.",
       "solution_steps": [
-        "Simple interest formula: I = P × r × t ÷ 100",
-        "I = 5000 × 2 × 4 ÷ 100 = £400",
-        "Total in the account = P + I = £5000 + £400 = £5400"
+        "b² = c² - a² = 148² - 48² = 21904 - 2304 = 19600",
+        "b = √19600 = 140"
       ],
-      "final_answer": "£5400",
-      "marks": 4,
+      "final_answer": "140 cm",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Simple interest formula: I = P × r × t ÷ 100",
+          "description": "b² = c² - a² = 148² - 48² = 21904 - 2304 = 19600",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "I = 5000 × 2 × 4 ÷ 100 = £400",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total in the account = P + I = £5000 + £400 = £5400",
+          "description": "b = √19600 = 140",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£5400 oe",
+          "description": "140 cm oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "right_triangle",
+        "params": {
+          "leg1_label": "48 cm",
+          "leg2_label": "x",
+          "hyp_label": "148 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -725,13 +747,13 @@
       "prompt": "The diagram shows a solid with its dimensions labelled. Draw and label the front elevation, side elevation, and plan view of the solid.",
       "solution_steps": [
         "The front elevation is what you see looking at the solid straight on from the front.",
-        "Front elevation: a right-angled triangle, base 27 cm and height 36 cm.",
+        "Front elevation: a right-angled triangle, base 6 cm and height 8 cm.",
         "The side elevation is what you see looking at the solid straight on from the side.",
-        "Side elevation: a rectangle, 19 cm by 36 cm.",
+        "Side elevation: a rectangle, 8 cm by 8 cm.",
         "The plan view is what you see looking straight down at the solid from above.",
-        "Plan view: a rectangle, 27 cm by 19 cm."
+        "Plan view: a rectangle, 6 cm by 8 cm."
       ],
-      "final_answer": "Front elevation: a right-angled triangle, base 27 cm and height 36 cm. Side elevation: a rectangle, 19 cm by 36 cm. Plan view: a rectangle, 27 cm by 19 cm.",
+      "final_answer": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm. Side elevation: a rectangle, 8 cm by 8 cm. Plan view: a rectangle, 6 cm by 8 cm.",
       "marks": 5,
       "mark_scheme": [
         {
@@ -741,7 +763,7 @@
         },
         {
           "code": "M1",
-          "description": "Front elevation: a right-angled triangle, base 27 cm and height 36 cm.",
+          "description": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm.",
           "marks": 1
         },
         {
@@ -751,33 +773,34 @@
         },
         {
           "code": "M1",
-          "description": "Side elevation: a rectangle, 19 cm by 36 cm. The plan view is what you see looking straight down at the solid from above. Plan view: a rectangle, 27 cm by 19 cm.",
+          "description": "Side elevation: a rectangle, 8 cm by 8 cm. The plan view is what you see looking straight down at the solid from above. Plan view: a rectangle, 6 cm by 8 cm.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Front elevation: a right-angled triangle, base 27 cm and height 36 cm. Side elevation: a rectangle, 19 cm by 36 cm. Plan view: a rectangle, 27 cm by 19 cm. oe",
+          "description": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm. Side elevation: a rectangle, 8 cm by 8 cm. Plan view: a rectangle, 6 cm by 8 cm. oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "triangular_prism",
+        "kind": "plans_and_elevations_question",
         "params": {
-          "base_label": "27 cm",
-          "triangle_height_label": "36 cm",
-          "length_label": "19 cm"
+          "shape": "triangular_prism",
+          "base_label": "6 cm",
+          "triangle_height_label": "8 cm",
+          "length_label": "8 cm"
         }
       },
       "solution_diagram": {
         "kind": "plans_and_elevations",
         "params": {
           "shape": "triangular_prism",
-          "base": 27,
-          "tri_height": 36,
-          "length": 19,
-          "base_label": "27 cm",
-          "tri_height_label": "36 cm",
-          "length_label": "19 cm"
+          "base": 6,
+          "tri_height": 8,
+          "length": 8,
+          "base_label": "6 cm",
+          "tri_height_label": "8 cm",
+          "length_label": "8 cm"
         }
       }
     },
@@ -812,95 +835,38 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof_foundation",
-      "prompt": "Triangles ABC and ADC share side AC, with AB = AD and BC = DC. State which congruence criterion (SSS, SAS, ASA or RHS) proves that the two triangles are congruent.",
+      "topic_id": "vectors_arithmetic_foundation",
+      "prompt": "\\vec{a} = \\colvec{-6}{-1} and \\vec{b} = \\colvec{-4}{6}. Find \\vec{a} + 2\\vec{b}.",
       "solution_steps": [
-        "AB = AD (given)",
-        "BC = DC (given)",
-        "AC is common to both triangles",
-        "These facts match the Side-Side-Side (SSS) congruence criterion."
+        "\\vec{a} = \\colvec{-6}{-1}, \\vec{b} = \\colvec{-4}{6}",
+        "\\vec{a} = \\colvec{-6}{-1} and 2\\vec{b} = \\colvec{-8}{12}",
+        "\\vec{a} + 2\\vec{b} = \\colvec{-14}{11}"
       ],
-      "final_answer": "SSS",
-      "marks": 5,
+      "final_answer": "\\colvec{-14}{11}",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "AB = AD (given)",
+          "description": "\\vec{a} = \\colvec{-6}{-1}, \\vec{b} = \\colvec{-4}{6}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "BC = DC (given)",
+          "description": "\\vec{a} = \\colvec{-6}{-1} and 2\\vec{b} = \\colvec{-8}{12}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "AC is common to both triangles",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "These facts match the Side-Side-Side (SSS) congruence criterion.",
+          "description": "\\vec{a} + 2\\vec{b} = \\colvec{-14}{11}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "SSS oe",
+          "description": "\\colvec{-14}{11} oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "two_triangle_congruence",
-        "params": {
-          "labels_1": [
-            "A",
-            "B",
-            "C"
-          ],
-          "labels_2": [
-            "A",
-            "D",
-            "C"
-          ],
-          "ticks_1": [
-            [
-              0,
-              1,
-              2
-            ],
-            [
-              1,
-              2,
-              3
-            ],
-            [
-              0,
-              2,
-              1
-            ]
-          ],
-          "ticks_2": [
-            [
-              0,
-              1,
-              2
-            ],
-            [
-              1,
-              2,
-              3
-            ],
-            [
-              0,
-              2,
-              1
-            ]
-          ],
-          "arcs_1": [],
-          "arcs_2": [],
-          "note": "AC is common to both triangles."
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -935,231 +901,59 @@
           "marks": 1
         }
       ],
-      "diagram": {
+      "diagram": null,
+      "solution_diagram": {
         "kind": "net",
         "params": {
           "shape": "pyramid"
         }
-      },
-      "solution_diagram": null
+      }
     },
     {
-      "topic_id": "sample_space_diagrams",
-      "prompt": "Two fair spinners, one numbered 1 to 6 and the other numbered 1 to 6, are spun together. Complete the sample space diagram showing the product of the two spinners, and use it to find the probability that the product is even.",
+      "topic_id": "venn_diagram_probability",
+      "prompt": "The Venn diagram shows the number of students in each region for sets A and B. Find P(A ∩ B).",
       "solution_steps": [
-        "The sample space diagram shows every possible product of the two spinners.",
-        "Number of favourable outcomes (the product is even) = 27",
-        "Total number of equally likely outcomes = 36",
-        "P(the product is even) = 3/4"
+        "Total number of elements = 15 + 15 + 7 + 9 = 46",
+        "Number of outcomes in A ∩ B = 7 = 7",
+        "P(A ∩ B) = 7/46 = 7/46"
       ],
-      "final_answer": "3/4",
-      "marks": 5,
+      "final_answer": "7/46",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The sample space diagram shows every possible product of the two spinners.",
+          "description": "Total number of elements = 15 + 15 + 7 + 9 = 46",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Number of favourable outcomes (the product is even) = 27",
+          "description": "Number of outcomes in A ∩ B = 7 = 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total number of equally likely outcomes = 36",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(the product is even) = 3/4",
+          "description": "P(A ∩ B) = 7/46 = 7/46",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3/4 oe",
+          "description": "7/46 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "sample_space_diagram",
+        "kind": "venn_diagram",
         "params": {
-          "row_values": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6
+          "labels": [
+            "A",
+            "B"
           ],
-          "col_values": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6
-          ],
-          "cells": [
-            [
-              "1",
-              "2",
-              "3",
-              "4",
-              "5",
-              "6"
-            ],
-            [
-              "2",
-              "4",
-              "6",
-              "8",
-              "10",
-              "12"
-            ],
-            [
-              "3",
-              "6",
-              "9",
-              "12",
-              "15",
-              "18"
-            ],
-            [
-              "4",
-              "8",
-              "12",
-              "16",
-              "20",
-              "24"
-            ],
-            [
-              "5",
-              "10",
-              "15",
-              "20",
-              "25",
-              "30"
-            ],
-            [
-              "6",
-              "12",
-              "18",
-              "24",
-              "30",
-              "36"
-            ]
-          ],
-          "highlight": [
-            [
-              0,
-              1
-            ],
-            [
-              0,
-              3
-            ],
-            [
-              0,
-              5
-            ],
-            [
-              1,
-              0
-            ],
-            [
-              1,
-              1
-            ],
-            [
-              1,
-              2
-            ],
-            [
-              1,
-              3
-            ],
-            [
-              1,
-              4
-            ],
-            [
-              1,
-              5
-            ],
-            [
-              2,
-              1
-            ],
-            [
-              2,
-              3
-            ],
-            [
-              2,
-              5
-            ],
-            [
-              3,
-              0
-            ],
-            [
-              3,
-              1
-            ],
-            [
-              3,
-              2
-            ],
-            [
-              3,
-              3
-            ],
-            [
-              3,
-              4
-            ],
-            [
-              3,
-              5
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              4,
-              3
-            ],
-            [
-              4,
-              5
-            ],
-            [
-              5,
-              0
-            ],
-            [
-              5,
-              1
-            ],
-            [
-              5,
-              2
-            ],
-            [
-              5,
-              3
-            ],
-            [
-              5,
-              4
-            ],
-            [
-              5,
-              5
-            ]
-          ]
+          "region_text": {
+            "a_only": "15",
+            "b_only": "15",
+            "both": "7",
+            "neither": "9"
+          }
         }
       },
       "solution_diagram": null

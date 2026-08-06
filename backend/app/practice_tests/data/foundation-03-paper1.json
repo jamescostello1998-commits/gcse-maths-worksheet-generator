@@ -72,7 +72,7 @@
     },
     {
       "topic_id": "fractions_simplify",
-      "prompt": "Fully simplify the fraction 28/63.",
+      "prompt": "Fully simplify 28/63.",
       "solution_steps": [
         "Find the highest common factor of 28 and 63: 7",
         "Divide numerator and denominator by 7: \\frac{28÷7}{63÷7} = 4/9"
@@ -100,22 +100,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "stats_mean",
-      "prompt": "Find the mean of this data set: 15, 26, 11, 11, 11, 11, 2.",
+      "topic_id": "algebraic_indices_foundation",
+      "prompt": "Simplify 5x^2 × 4x^5",
       "solution_steps": [
-        "Mean = sum ÷ count = (15 + 26 + 11 + 11 + 11 + 11 + 2) ÷ 7 = 87 ÷ 7 = 87/7"
+        "Multiplying powers of the same base: add the exponents, and multiply the coefficients.",
+        "5x^2 × 4x^5 = (5×4) x^(2+5)",
+        "= 20x^7"
       ],
-      "final_answer": "87/7",
-      "marks": 2,
+      "final_answer": "20x^7",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Mean = sum ÷ count = (15 + 26 + 11 + 11 + 11 + 11 + 2) ÷ 7 = 87 ÷ 7 = 87/7",
+          "description": "Multiplying powers of the same base: add the exponents, and multiply the coefficients.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x^2 × 4x^5 = (5×4) x^(2+5)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 20x^7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "87/7 oe",
+          "description": "20x^7 oe",
           "marks": 1
         }
       ],
@@ -197,6 +209,35 @@
         {
           "code": "A1",
           "description": "12.0 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "decimals_add_subtract",
+      "prompt": "Calculate 36.9 - 2.10.",
+      "solution_steps": [
+        "Line up the decimal points, padding with a zero so both numbers have the same number of decimal places.",
+        "36.9 - 2.10 = 34.80"
+      ],
+      "final_answer": "34.80",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Line up the decimal points, padding with a zero so both numbers have the same number of decimal places.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "36.9 - 2.10 = 34.80",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "34.80 oe",
           "marks": 1
         }
       ],
@@ -433,98 +474,33 @@
       }
     },
     {
-      "topic_id": "plot_straight_line",
-      "prompt": "Complete a table of values for y = 2x - 5 for x = -3 to 3, then plot the graph.",
+      "topic_id": "special_sequences_foundation",
+      "prompt": "The first 3 cube numbers are: 1, 8, 27. Find the 5th term of the sequence.",
       "solution_steps": [
-        "Table of values for y = 2x - 5:",
-        "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: -11, -9, -7, -5, -3, -1, 1",
-        "Plot each (x, y) point and join them with a single ruled straight line."
+        "These are the cube numbers: the nth term is given by n^3.",
+        "Term 5 = 5^3 = 125"
       ],
-      "final_answer": "Straight line: y = 2x - 5",
-      "marks": 5,
+      "final_answer": "125",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = 2x - 5:",
+          "description": "These are the cube numbers: the nth term is given by n^3.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -3, -2, -1, 0, 1, 2, 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y: -11, -9, -7, -5, -3, -1, 1",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
+          "description": "Term 5 = 5^3 = 125",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Straight line: y = 2x - 5 oe",
+          "description": "125 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "linear",
-          "m": 2,
-          "c": -5,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -12,
-          "y_max": 2,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "linear",
-          "m": 2,
-          "c": -5,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -12,
-          "y_max": 2,
-          "table_points": [
-            [
-              -3,
-              -11
-            ],
-            [
-              -2,
-              -9
-            ],
-            [
-              -1,
-              -7
-            ],
-            [
-              0,
-              -5
-            ],
-            [
-              1,
-              -3
-            ],
-            [
-              2,
-              -1
-            ],
-            [
-              3,
-              1
-            ]
-          ]
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     },
     {
       "topic_id": "linear_brackets_foundation",
@@ -1041,97 +1017,168 @@
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "ξ"
+        }
+      },
+      "solution_diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "ξ",
+          "region_text": {
+            "a_only": "6",
+            "b_only": "2, 7, 8",
+            "both": "3, 5",
+            "neither": "1, 4, 9"
+          }
+        }
+      }
     },
     {
-      "topic_id": "probability_expectation",
-      "prompt": "A spinner has P(landing on yellow) = 6/12. The spinner is spun 60 times. How many times would you expect it to land on yellow?",
+      "topic_id": "tree_diagram_independent",
+      "prompt": "A bag contains 4 green and 3 blue counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that the first counter is blue and the second counter is blue.",
       "solution_steps": [
-        "Expected number of times = probability × number of trials = 6/12 × 60",
-        "= 30"
+        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(green) = 4/7, P(blue) = 3/7.",
+        "P(blue then blue) = 3/7 × 3/7 = 9/49"
       ],
-      "final_answer": "30",
+      "final_answer": "9/49",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expected number of times = probability × number of trials = 6/12 × 60",
+          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(green) = 4/7, P(blue) = 3/7.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 30",
+          "description": "P(blue then blue) = 3/7 × 3/7 = 9/49",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "30 oe",
+          "description": "9/49 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "spinner",
+        "kind": "tree_diagram",
         "params": {
-          "sectors": [
-            "Y",
-            "Y",
-            "Y",
-            "Y",
-            "Y",
-            "Y",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
+          "stage1": [
+            [
+              "Green",
+              "4/7"
+            ],
+            [
+              "Blue",
+              "3/7"
+            ]
           ],
-          "highlight": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5
+          "stage2": [
+            [
+              [
+                "Green",
+                "4/7"
+              ],
+              [
+                "Blue",
+                "3/7"
+              ]
+            ],
+            [
+              [
+                "Green",
+                "4/7"
+              ],
+              [
+                "Blue",
+                "3/7"
+              ]
+            ]
           ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_to_small",
-      "prompt": "Write 0.00026 in standard form.",
+      "topic_id": "congruent_triangle_proof_foundation",
+      "prompt": "Triangles ABC and ABD are both right-angled (at C and at D respectively) and share hypotenuse AB, with AC = AD. Which congruence criterion proves that the two triangles are congruent? A) SAS  B) SSS  C) RHS  D) ASA",
       "solution_steps": [
-        "Move the decimal point until there is one non-zero digit before it: 2.6",
-        "Count how many places the decimal point moved: 4 (the number is less than 1, so the power is negative)",
-        "0.00026 = 2.6 × 10^-4"
+        "angle ACB = angle ADB = 90° (given)",
+        "AB is the common hypotenuse",
+        "AC = AD (given)",
+        "These facts match the Right angle-Hypotenuse-Side (RHS) congruence criterion."
       ],
-      "final_answer": "2.6 × 10^-4",
-      "marks": 4,
+      "final_answer": "C) RHS",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "Move the decimal point until there is one non-zero digit before it: 2.6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Count how many places the decimal point moved: 4 (the number is less than 1, so the power is negative)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "0.00026 = 2.6 × 10^-4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2.6 × 10^-4 oe",
+          "code": "B1",
+          "description": "C) RHS (selecting the correct option)",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_triangle_congruence",
+        "params": {
+          "labels_1": [
+            "A",
+            "C",
+            "B"
+          ],
+          "labels_2": [
+            "A",
+            "D",
+            "B"
+          ],
+          "ticks_1": [
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              0,
+              1,
+              2
+            ]
+          ],
+          "ticks_2": [
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              0,
+              1,
+              2
+            ]
+          ],
+          "arcs_1": [
+            [
+              1,
+              1
+            ]
+          ],
+          "arcs_2": [
+            [
+              1,
+              1
+            ]
+          ],
+          "note": "AB is the common hypotenuse."
+        }
+      },
       "solution_diagram": null
     }
   ]

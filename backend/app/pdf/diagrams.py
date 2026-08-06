@@ -197,7 +197,19 @@ def draw_rectangle(params: dict) -> Drawing:
 
     d.add(Rect(x0, y0, rw, rh, strokeColor=INK, fillColor=None, strokeWidth=1.2))
     d.add(_label(x0 + rw / 2, y0 - 14, params["width_label"]))
-    d.add(_label(x0 + rw + 10, y0 + rh / 2, params["height_label"], anchor="start"))
+    # The height_label sits to the right of the rectangle with no stringWidth
+    # awareness at all previously - for a wide rectangle (width scale-bound,
+    # pushing x0+rw close to the canvas's own right edge) a two-digit-or-
+    # longer height_label routinely overflowed past DIAGRAM_WIDTH (confirmed
+    # via a real rendered-PDF check across many seeds, not assumed - the
+    # overflow is small, ~2-3pt, but consistent). Clamp the anchor so the
+    # label's own rendered width always fits inside the canvas, matching the
+    # clamp pattern draw_sector already uses for its own labels.
+    height_label = params["height_label"]
+    label_x = x0 + rw + 10
+    label_w = stringWidth(height_label, _LABEL_FONT, _LABEL_SIZE)
+    label_x = min(label_x, DIAGRAM_WIDTH - 4 - label_w)
+    d.add(_label(label_x, y0 + rh / 2, height_label, anchor="start"))
     return d
 
 
@@ -568,6 +580,15 @@ def draw_angle_line(params: dict) -> Drawing:
             label_radius = arc_r + 15
         mid_rad = math.radians(running + v / 2)
         lx, ly = cx + label_radius * math.cos(mid_rad), cy + label_radius * math.sin(mid_rad)
+        # A narrow wedge's label_radius pushes well past the ray tips with no
+        # canvas clamp at all - for the "around_point" layout (rays centred
+        # at cy=DIAGRAM_HEIGHT/2, so the least headroom of any layout here) a
+        # near-vertical narrow wedge can push the label past the top edge by
+        # ~20pt (confirmed via a real rendered check across many seeds, not
+        # assumed). Clamp to the canvas, matching the same pattern
+        # draw_sector already uses for its own labels.
+        lx = max(10, min(DIAGRAM_WIDTH - 10, lx))
+        ly = max(8, min(DIAGRAM_HEIGHT - 8, ly))
         d.add(_label(lx, ly, lbl, size=9.5))
         running += v
 
@@ -1382,38 +1403,98 @@ def draw_parabola(params: dict) -> Drawing:
 
 
 def draw_linear_graph_pair(params: dict) -> Drawing:
-    """Two schematic straight lines (not to scale) crossing on the axes -
-    no point/label marks the crossing itself, since for a 'solve
+    """Two real straight lines plotted on a genuine gridded axes (square
+    unit grid whenever the range allows it, via _draw_scaled_axes) - the
+    student must read the intersection's exact coordinates off the grid, so
+    (unlike most of this file's schematic diagrams) this one is always to
+    scale. No point/label marks the crossing itself, since for a 'solve
     simultaneously' question that intersection IS the answer the student
     must find by reading the graph."""
-    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    ox, oy = 25, 20
-    axis_len_x, axis_len_y = DIAGRAM_WIDTH - 45, DIAGRAM_HEIGHT - 35
-    _draw_axes(d, ox, oy, axis_len_x, axis_len_y)
+    m1, c1 = params["m1"], params["c1"]
+    m2, c2 = params["m2"], params["c2"]
+    sol_x, sol_y = params["sol_x"], params["sol_y"]
 
-    p1_start = (ox + 5, oy + axis_len_y * 0.15)
-    p1_end = (ox + axis_len_x - 5, oy + axis_len_y * 0.75)
-    p2_start = (ox + 5, oy + axis_len_y * 0.85)
-    p2_end = (ox + axis_len_x - 15, oy + 5)
-    d.add(Line(p1_start[0], p1_start[1], p1_end[0], p1_end[1], strokeColor=INK, strokeWidth=1.2))
-    d.add(Line(p2_start[0], p2_start[1], p2_end[0], p2_end[1], strokeColor=INK, strokeWidth=1.2))
+    d = Drawing(GRAPH_WIDTH, GRAPH_HEIGHT)
 
-    def _label_along(p_from: tuple, p_to: tuple, t: float, text: str, anchor: str) -> None:
-        # Label anchored a fraction t along the line (never right at an
-        # endpoint, which sits close to a diagram corner already carrying
-        # the "x"/"y" axis-name label), raised above it. `anchor` is chosen
-        # per line so the text grows in the direction the line is moving
-        # AWAY from the label (down-slope for an ascending line read
-        # right-to-left, down-slope for a descending line read left-to-
-        # right) - so the gap to the line only widens along the text's
-        # length, never narrows back into it.
-        x = p_from[0] + (p_to[0] - p_from[0]) * t
-        y = p_from[1] + (p_to[1] - p_from[1]) * t
-        d.add(_label(x, y + 10, text, anchor=anchor, size=8))
+    half_span = 6
+    x_min, x_max = sol_x - half_span, sol_x + half_span
+    y_at_edges = [m1 * x_min + c1, m1 * x_max + c1, m2 * x_min + c2, m2 * x_max + c2]
+    y_min, y_max = min(y_at_edges), max(y_at_edges)
+    pad = max(1.0, (y_max - y_min) * 0.1)
+    y_min, y_max = y_min - pad, y_max + pad
 
-    _label_along(p1_start, p1_end, 0.85, params["label1"], anchor="end")
-    _label_along(p2_start, p2_end, 0.10, params["label2"], anchor="start")
-    _not_to_scale(d)
+    to_px = _draw_scaled_axes(d, x_min, x_max, y_min, y_max)
+
+    def _plot_line(m: float, c: float) -> tuple[tuple[float, float], tuple[float, float]]:
+        y_lo = max(min(m * x_min + c, y_max), y_min)
+        y_hi = max(min(m * x_max + c, y_max), y_min)
+        p_lo = to_px(x_min, y_lo)
+        p_hi = to_px(x_max, y_hi)
+        d.add(PolyLine([p_lo[0], p_lo[1], p_hi[0], p_hi[1]], strokeColor=INK, strokeWidth=1.3))
+        return p_lo, p_hi
+
+    pts1 = _plot_line(m1, c1)
+    pts2 = _plot_line(m2, c2)
+
+    # Three earlier attempts all failed on real rendered spikes, not assumed:
+    # (1) anchoring at a line's own endpoint and growing inward was safe
+    # against that SAME line but not the OTHER one, which can sit close
+    # alongside when the two slopes are similar (e.g. m1=3, m2=4); (2) a
+    # single-point pixel offset ignored that a wide text label spans a real
+    # horizontal pixel range, and on a square unit grid a slope of 3-4 is
+    # visually very steep (pixel-slope roughly equals data-slope on a square
+    # grid), so the OTHER line can sweep vertically across the ENTIRE label
+    # width even when comfortably clear at the label's own centre point; (3)
+    # clearing only the OTHER line's span still let the label collide with
+    # its OWN line, for the same reason - the own line's value also varies
+    # across the label's own width, not just at its centre. Fixed by
+    # computing BOTH lines' y-range across the label's actual rendered
+    # width (via stringWidth) and placing the label entirely above or below
+    # that combined danger zone, whichever side sits closer to the line
+    # being labelled.
+    px_at_xmax, _ = to_px(x_max, 0)
+    px_at_xmin, _ = to_px(x_min, 0)
+    px_per_unit_x = abs(px_at_xmax - px_at_xmin) / (x_max - x_min)
+    y_axis_px, _ = to_px(0, 0)
+
+    def _label_along(m_own: float, c_own: float, m_other: float, c_other: float, t: float, text: str) -> None:
+        x_center = x_min + (x_max - x_min) * t
+        px_center, py_own_center = to_px(x_center, m_own * x_center + c_own)
+        # The y-axis's own tick-number labels sit just left of x=0 at every
+        # tick height - if the label's own x happens to land close to the
+        # y-axis (possible whenever the solution's own x is close to one of
+        # the fixed t=0.28/0.72 fractions of the window), nudge further
+        # toward the window edge to clear them, confirmed necessary via a
+        # real rendered spike across many seeds.
+        if abs(px_center - y_axis_px) < 22:
+            t = t + 0.15 if t >= 0.5 else t - 0.15
+            x_center = x_min + (x_max - x_min) * t
+            px_center, py_own_center = to_px(x_center, m_own * x_center + c_own)
+
+        text_w = stringWidth(text, "Helvetica", 8)
+        half_w_data = (text_w / 2 + 3) / px_per_unit_x
+        x_left = max(x_center - half_w_data, x_min)
+        x_right = min(x_center + half_w_data, x_max)
+
+        def _y_range(m: float, c: float) -> tuple[float, float]:
+            _, y_l = to_px(x_left, m * x_left + c)
+            _, y_r = to_px(x_right, m * x_right + c)
+            return min(y_l, y_r), max(y_l, y_r)
+
+        own_lo, own_hi = _y_range(m_own, c_own)
+        other_lo, other_hi = _y_range(m_other, c_other)
+        zone_lo, zone_hi = min(own_lo, other_lo), max(own_hi, other_hi)
+
+        clearance = 9.0
+        if abs(py_own_center - zone_hi) <= abs(py_own_center - zone_lo):
+            py_label = zone_hi + clearance
+        else:
+            py_label = zone_lo - clearance
+        py_label = max(min(py_label, GRAPH_HEIGHT - 8), 8)
+        d.add(_label(px_center, py_label, text, anchor="middle", size=8))
+
+    _label_along(m1, c1, m2, c2, 0.72, params["label1"])
+    _label_along(m2, c2, m1, c1, 0.28, params["label2"])
     return d
 
 
@@ -2602,12 +2683,16 @@ def draw_number_line(params: dict) -> Drawing:
     shade = params.get("shade")
     blank = params.get("blank", False)
 
-    width, height = 200, 40
+    width, height = 200, 48
     margin_l, margin_r = 16, 14
     plot_w = width - margin_l - margin_r
     d = Drawing(width, height)
 
     axis_y = 22
+    # The solution mark (circle/segment/arrow) is drawn on its own line above
+    # the ticked axis, not directly on top of it - the ticks/numbers stay at
+    # axis_y, only the mark itself uses mark_y.
+    mark_y = axis_y + 10
     to_px = _draw_stats_axes(
         d, margin_l, axis_y, plot_w, 1, lo, hi, 0, 1,
         x_ticks=list(range(lo, hi + 1)), show_y_axis=False,
@@ -2623,12 +2708,12 @@ def draw_number_line(params: dict) -> Drawing:
     def _arrow(tip_x: float, direction: int) -> None:
         back_x = tip_x - direction * ARROW_LEN
         d.add(Polygon(
-            [tip_x, axis_y, back_x, axis_y + ARROW_HALF_W, back_x, axis_y - ARROW_HALF_W],
+            [tip_x, mark_y, back_x, mark_y + ARROW_HALF_W, back_x, mark_y - ARROW_HALF_W],
             fillColor=ACCENT, strokeColor=ACCENT,
         ))
 
     def _segment(xa: float, xb: float) -> None:
-        d.add(Line(xa, axis_y, xb, axis_y, strokeColor=ACCENT, strokeWidth=2.8))
+        d.add(Line(xa, mark_y, xb, mark_y, strokeColor=ACCENT, strokeWidth=2.8))
 
     if len(boundaries) == 1:
         value, closed = boundaries[0]["value"], boundaries[0]["closed"]
@@ -2639,7 +2724,7 @@ def draw_number_line(params: dict) -> Drawing:
         else:
             _segment(x0 - ARROW_LEN, px)
             _arrow(x0 - ARROW_LEN, -1)
-        d.add(Circle(px, axis_y, 3.2, fillColor=(PAPER if not closed else ACCENT), strokeColor=INK, strokeWidth=1.2))
+        d.add(Circle(px, mark_y, 3.2, fillColor=(PAPER if not closed else ACCENT), strokeColor=INK, strokeWidth=1.2))
     else:
         v1, c1 = boundaries[0]["value"], boundaries[0]["closed"]
         v2, c2 = boundaries[1]["value"], boundaries[1]["closed"]
@@ -2654,8 +2739,8 @@ def draw_number_line(params: dict) -> Drawing:
             _arrow(x1 + ARROW_LEN, 1)
         else:
             _segment(px_lo, px_hi)
-        d.add(Circle(px_lo, axis_y, 3.2, fillColor=(PAPER if not lo_closed else ACCENT), strokeColor=INK, strokeWidth=1.2))
-        d.add(Circle(px_hi, axis_y, 3.2, fillColor=(PAPER if not hi_closed else ACCENT), strokeColor=INK, strokeWidth=1.2))
+        d.add(Circle(px_lo, mark_y, 3.2, fillColor=(PAPER if not lo_closed else ACCENT), strokeColor=INK, strokeWidth=1.2))
+        d.add(Circle(px_hi, mark_y, 3.2, fillColor=(PAPER if not hi_closed else ACCENT), strokeColor=INK, strokeWidth=1.2))
 
     return d
 

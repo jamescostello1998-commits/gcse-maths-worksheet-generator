@@ -94,35 +94,71 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_rectangle",
-      "prompt": "Find the perimeter of the following rectangle.",
+      "topic_id": "fractions_equivalent_diagram",
+      "prompt": "How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
       "solution_steps": [
-        "Perimeter = 2 × (length + width) = 2 × (8 + 17) = 50 cm"
+        "Shape A shows 4/5 shaded; Shape B has 10 equal parts.",
+        "Find the scale factor between the denominators: 10 ÷ 5 = 2",
+        "Multiply the shaded count by the same scale factor: 4 × 2 = 8"
       ],
-      "final_answer": "50 cm",
-      "marks": 2,
+      "final_answer": "8",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Perimeter = 2 × (length + width) = 2 × (8 + 17) = 50 cm",
+          "description": "Shape A shows 4/5 shaded; Shape B has 10 equal parts.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Find the scale factor between the denominators: 10 ÷ 5 = 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply the shaded count by the same scale factor: 4 × 2 = 8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "50 cm oe",
+          "description": "8 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "rectangle",
+        "kind": "fraction_shapes",
         "params": {
-          "width": 8,
-          "height": 17,
-          "width_label": "8 cm",
-          "height_label": "17 cm"
+          "shapes": [
+            {
+              "kind": "bar",
+              "parts": 5,
+              "shaded": 4
+            },
+            {
+              "kind": "bar",
+              "parts": 10,
+              "shaded": 0
+            }
+          ]
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "fraction_shapes",
+        "params": {
+          "shapes": [
+            {
+              "kind": "bar",
+              "parts": 5,
+              "shaded": 4
+            },
+            {
+              "kind": "bar",
+              "parts": 10,
+              "shaded": 8
+            }
+          ]
+        }
+      }
     },
     {
       "topic_id": "hcf_by_listing",
@@ -248,27 +284,27 @@
     },
     {
       "topic_id": "decimals_ordering",
-      "prompt": "Write these values in descending order: 0.15, 3/5, 0.87, 55%",
+      "prompt": "Write these values in ascending order: 0.28, 27%, 19/100, 35%",
       "solution_steps": [
-        "Convert each value to a decimal: 0.15 = 0.15, 3/5 = 0.60, 0.87 = 0.87, 55% = 0.55",
-        "Order in descending order: 0.87, 3/5, 55%, 0.15"
+        "Convert each value to a decimal: 0.28 = 0.28, 27% = 0.27, 19/100 = 0.19, 35% = 0.35",
+        "Order in ascending order: 19/100, 27%, 0.28, 35%"
       ],
-      "final_answer": "0.87, 3/5, 55%, 0.15",
+      "final_answer": "19/100, 27%, 0.28, 35%",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert each value to a decimal: 0.15 = 0.15, 3/5 = 0.60, 0.87 = 0.87, 55% = 0.55",
+          "description": "Convert each value to a decimal: 0.28 = 0.28, 27% = 0.27, 19/100 = 0.19, 35% = 0.35",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Order in descending order: 0.87, 3/5, 55%, 0.15",
+          "description": "Order in ascending order: 19/100, 27%, 0.28, 35%",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0.87, 3/5, 55%, 0.15 oe",
+          "description": "19/100, 27%, 0.28, 35% oe",
           "marks": 1
         }
       ],
@@ -276,40 +312,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solve_quadratic_factorising_foundation",
-      "prompt": "Solve x^2 + 11x + 24 = 0 by factorising.",
+      "topic_id": "factorise_quadratics_foundation",
+      "prompt": "Factorise: x^2 + 15x + 54",
       "solution_steps": [
-        "Find two numbers that multiply to 24 and add to 11: 8 and 3",
-        "Factorise: (x + 8)(x + 3) = 0",
-        "Either x + 8 = 0 or x + 3 = 0",
-        "x = -8 or x = -3"
+        "Find two numbers that multiply to 54 and add to 15: 6 and 9",
+        "Write as two brackets: (x + 6)(x + 9)"
       ],
-      "final_answer": "x = -8 or x = -3",
-      "marks": 5,
+      "final_answer": "(x + 6)(x + 9)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to 24 and add to 11: 8 and 3",
+          "description": "Find two numbers that multiply to 54 and add to 15: 6 and 9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: (x + 8)(x + 3) = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Either x + 8 = 0 or x + 3 = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = -8 or x = -3",
+          "description": "Write as two brackets: (x + 6)(x + 9)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -8 or x = -3 oe",
+          "description": "(x + 6)(x + 9) oe",
           "marks": 1
         }
       ],
@@ -317,45 +341,75 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "functions_evaluate",
-      "prompt": "f(x) = -3x + 4. Find the value of x for which f(x) = -10.",
+      "topic_id": "congruent_triangle_proof_foundation",
+      "prompt": "Triangles ABC and ABD are both right-angled (at C and at D respectively) and share hypotenuse AB, with AC = AD. Which congruence criterion proves that the two triangles are congruent? A) SSS  B) RHS  C) ASA  D) SAS",
       "solution_steps": [
-        "-3x + 4 = -10",
-        "Subtract 4 from both sides:",
-        "-3x = -14",
-        "Divide both sides by -3:",
-        "x = 14/3"
+        "angle ACB = angle ADB = 90° (given)",
+        "AB is the common hypotenuse",
+        "AC = AD (given)",
+        "These facts match the Right angle-Hypotenuse-Side (RHS) congruence criterion."
       ],
-      "final_answer": "14/3",
-      "marks": 5,
+      "final_answer": "B) RHS",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "-3x + 4 = -10",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 4 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "-3x = -14",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by -3: x = 14/3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "14/3 oe",
+          "code": "B1",
+          "description": "B) RHS (selecting the correct option)",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_triangle_congruence",
+        "params": {
+          "labels_1": [
+            "A",
+            "C",
+            "B"
+          ],
+          "labels_2": [
+            "A",
+            "D",
+            "B"
+          ],
+          "ticks_1": [
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              0,
+              1,
+              2
+            ]
+          ],
+          "ticks_2": [
+            [
+              0,
+              2,
+              1
+            ],
+            [
+              0,
+              1,
+              2
+            ]
+          ],
+          "arcs_1": [
+            [
+              1,
+              1
+            ]
+          ],
+          "arcs_2": [
+            [
+              1,
+              1
+            ]
+          ],
+          "note": "AB is the common hypotenuse."
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -451,45 +505,44 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solving_inequalities_foundation",
-      "prompt": "Solve the inequality: 4x - 10 ≤ -2",
+      "topic_id": "simultaneous_graphically",
+      "prompt": "The graphs of y = 4x - 1 and y = -3x - 8 are shown below. Use the graphs to write down the solution to the simultaneous equations.",
       "solution_steps": [
-        "4x - 10 ≤ -2",
-        "Add 10 to both sides:",
-        "4x ≤ 8",
-        "Divide both sides by 4:",
-        "x ≤ 2"
+        "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
+        "The lines cross at x = -1, y = -5."
       ],
-      "final_answer": "x ≤ 2",
-      "marks": 5,
+      "final_answer": "x = -1, y = -5",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "4x - 10 ≤ -2",
+          "description": "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add 10 to both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "4x ≤ 8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by 4: x ≤ 2",
+          "description": "The lines cross at x = -1, y = -5.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x ≤ 2 oe",
+          "description": "x = -1, y = -5 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "linear_graph_pair",
+        "params": {
+          "label1": "y = 4x - 1",
+          "label2": "y = -3x - 8",
+          "m1": 4,
+          "c1": -1,
+          "m2": -3,
+          "c2": -8,
+          "sol_x": -1,
+          "sol_y": -5
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -635,6 +688,41 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "sequences_nth_term",
+      "prompt": "Here are the first four terms of a sequence: 20, 15, 10, 5.\nFind an expression for the nth term.",
+      "solution_steps": [
+        "Common difference = -5",
+        "nth term = -5n + 25",
+        "nth term = -5n + 25"
+      ],
+      "final_answer": "-5n + 25",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Common difference = -5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "nth term = -5n + 25",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "nth term = -5n + 25",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-5n + 25 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "sdt_mixed",
       "prompt": "A hiker travels 3934 m in 281 seconds. Find its average speed in m/s.",
       "solution_steps": [
@@ -657,35 +745,6 @@
         {
           "code": "A1",
           "description": "14 m/s oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "inverse_proportion",
-      "prompt": "It takes 5 pipes 7 hours to fill a tank. Working at the same rate, how long would it take 7 pipes?",
-      "solution_steps": [
-        "Constant = 5 × 7 = 35",
-        "Time for 7 pipes = 35 ÷ 7 = 5"
-      ],
-      "final_answer": "5 hours",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Constant = 5 × 7 = 35",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Time for 7 pipes = 35 ÷ 7 = 5",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "5 hours oe",
           "marks": 1
         }
       ],
@@ -722,40 +781,32 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_shape_similar_foundation",
-      "prompt": "Shape A and Shape B are similar. Find the length of side z.",
+      "topic_id": "direct_proportion",
+      "prompt": "If 2 exercise books cost £8.90, how much would 8 exercise books cost?",
       "solution_steps": [
-        "Scale factor = 2 ÷ 3 = 2/3",
-        "Corresponding length = 9 × 2/3 = 6"
+        "Unit value = £8.90 ÷ 2 = £4.45",
+        "Answer = £4.45 × 8 = £35.60"
       ],
-      "final_answer": "6 cm",
+      "final_answer": "£35.60",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Scale factor = 2 ÷ 3 = 2/3",
+          "description": "Unit value = £8.90 ÷ 2 = £4.45",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Corresponding length = 9 × 2/3 = 6",
+          "description": "Answer = £4.45 × 8 = £35.60",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6 cm oe",
+          "description": "£35.60 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "two_similar_rectangles",
-        "params": {
-          "a_width_label": "3 cm",
-          "a_height_label": "9 cm",
-          "b_width_label": "2 cm",
-          "b_height_label": "z"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -801,212 +852,137 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "symmetry_rotational",
-      "prompt": "The diagram shows a regular pentagon. State the order of rotational symmetry.",
+      "topic_id": "ratio_shape_similar_foundation",
+      "prompt": "Shape A and Shape B are similar. Find the length of side z.",
       "solution_steps": [
-        "Rotating the regular pentagon about its centre, it looks exactly the same 5 times during a full 360° turn.",
-        "So the order of rotational symmetry is 5."
+        "Scale factor = 2 ÷ 3 = 2/3",
+        "Corresponding length = 9 × 2/3 = 6"
       ],
-      "final_answer": "order 5",
+      "final_answer": "6 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rotating the regular pentagon about its centre, it looks exactly the same 5 times during a full 360° turn.",
+          "description": "Scale factor = 2 ÷ 3 = 2/3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "So the order of rotational symmetry is 5.",
+          "description": "Corresponding length = 9 × 2/3 = 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "order 5 oe",
+          "description": "6 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "symmetry_shape",
+        "kind": "two_similar_rectangles",
         "params": {
-          "vertices": [
-            [
-              2.4492935982947064e-16,
-              4.0
-            ],
-            [
-              -3.804226065180614,
-              1.23606797749979
-            ],
-            [
-              -2.351141009169893,
-              -3.2360679774997894
-            ],
-            [
-              2.3511410091698917,
-              -3.2360679774997902
-            ],
-            [
-              3.8042260651806146,
-              1.2360679774997887
-            ]
-          ],
-          "blank": true
+          "a_width_label": "3 cm",
+          "a_height_label": "9 cm",
+          "b_width_label": "2 cm",
+          "b_height_label": "z"
         }
       },
-      "solution_diagram": {
-        "kind": "symmetry_shape",
-        "params": {
-          "vertices": [
-            [
-              2.4492935982947064e-16,
-              4.0
-            ],
-            [
-              -3.804226065180614,
-              1.23606797749979
-            ],
-            [
-              -2.351141009169893,
-              -3.2360679774997894
-            ],
-            [
-              2.3511410091698917,
-              -3.2360679774997902
-            ],
-            [
-              3.8042260651806146,
-              1.2360679774997887
-            ]
-          ],
-          "rotation_centre": [
-            -1.2864981197413091e-16,
-            -1.7763568394002506e-16
-          ],
-          "rotation_order": 5
-        }
-      }
+      "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_hypotenuse_decimal",
-      "prompt": "A right-angled triangle has sides 7 cm and 15 cm. Find the length of x, correct to 1 decimal place.",
+      "topic_id": "pythagoras_shorter_leg",
+      "prompt": "A right-angled triangle has hypotenuse 183 cm and one side 33 cm. Find the length of x.",
       "solution_steps": [
-        "c² = a² + b² = 7² + 15² = 49 + 225 = 274",
-        "c = √274 ≈ 16.6 cm (1 d.p.)"
+        "b² = c² - a² = 183² - 33² = 33489 - 1089 = 32400",
+        "b = √32400 = 180"
       ],
-      "final_answer": "16.6 cm",
+      "final_answer": "180 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "c² = a² + b² = 7² + 15² = 49 + 225 = 274",
+          "description": "b² = c² - a² = 183² - 33² = 33489 - 1089 = 32400",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "c = √274 ≈ 16.6 cm (1 d.p.)",
+          "description": "b = √32400 = 180",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "16.6 cm oe",
+          "description": "180 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "right_triangle",
         "params": {
-          "leg1_label": "7 cm",
-          "leg2_label": "15 cm",
-          "hyp_label": "x"
+          "leg1_label": "33 cm",
+          "leg2_label": "x",
+          "hyp_label": "183 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "plans_and_elevations",
-      "prompt": "The diagram shows a solid with its dimensions labelled. Draw and label the front elevation, side elevation, and plan view of the solid.",
+      "topic_id": "volume_surface_area_cuboid",
+      "prompt": "A cuboid has length 12 cm, width 9 cm and height 14 cm. Find its surface area.",
       "solution_steps": [
-        "The front elevation is what you see looking at the solid straight on from the front.",
-        "Front elevation: a rectangle, 12 cm by 6 cm.",
-        "The side elevation is what you see looking at the solid straight on from the side.",
-        "Side elevation: a rectangle, 10 cm by 6 cm.",
-        "The plan view is what you see looking straight down at the solid from above.",
-        "Plan view: a rectangle, 12 cm by 10 cm."
+        "Surface area = 2 × (lw + lh + wh) = 2 × (12×9 + 12×14 + 9×14)",
+        "= 2 × (108 + 168 + 126) = 804 cm²"
       ],
-      "final_answer": "Front elevation: a rectangle, 12 cm by 6 cm. Side elevation: a rectangle, 10 cm by 6 cm. Plan view: a rectangle, 12 cm by 10 cm.",
-      "marks": 5,
+      "final_answer": "804 cm²",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The front elevation is what you see looking at the solid straight on from the front.",
+          "description": "Surface area = 2 × (lw + lh + wh) = 2 × (12×9 + 12×14 + 9×14)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Front elevation: a rectangle, 12 cm by 6 cm.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The side elevation is what you see looking at the solid straight on from the side.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Side elevation: a rectangle, 10 cm by 6 cm. The plan view is what you see looking straight down at the solid from above. Plan view: a rectangle, 12 cm by 10 cm.",
+          "description": "= 2 × (108 + 168 + 126) = 804 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Front elevation: a rectangle, 12 cm by 6 cm. Side elevation: a rectangle, 10 cm by 6 cm. Plan view: a rectangle, 12 cm by 10 cm. oe",
+          "description": "804 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "cuboid",
         "params": {
-          "length_label": "12 cm",
-          "width_label": "10 cm",
-          "height_label": "6 cm"
+          "width_label": "9 cm",
+          "height_label": "14 cm",
+          "length_label": "12 cm"
         }
       },
-      "solution_diagram": {
-        "kind": "plans_and_elevations",
-        "params": {
-          "shape": "cuboid",
-          "length": 12,
-          "width": 10,
-          "height": 6,
-          "length_label": "12 cm",
-          "width_label": "10 cm",
-          "height_label": "6 cm"
-        }
-      }
+      "solution_diagram": null
     },
     {
       "topic_id": "transform_reflect_complete",
-      "prompt": "Reflect shape ABCDEF in the line y = -x. Draw and label the image A'B'C'D'E'F'.",
+      "prompt": "Reflect shape ABC in the line y = 1. Draw and label the image A'B'C'.",
       "solution_steps": [
-        "Reflect each vertex in the line y = -x: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
-        "A(1, 2) -> A'(-2, -1), B(6, 2) -> B'(-2, -6), C(6, 4) -> C'(-4, -6), D(4, 4) -> D'(-4, -4), E(4, 6) -> E'(-6, -4), F(1, 6) -> F'(-6, -1)"
+        "Reflect each vertex in the line y = 1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+        "A(-3, 3) -> A'(-3, -1), B(0, 3) -> B'(0, -1), C(-3, 5) -> C'(-3, -3)"
       ],
-      "final_answer": "A'(-2, -1), B'(-2, -6), C'(-4, -6), D'(-4, -4), E'(-6, -4), F'(-6, -1)",
+      "final_answer": "A'(-3, -1), B'(0, -1), C'(-3, -3)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Reflect each vertex in the line y = -x: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+          "description": "Reflect each vertex in the line y = 1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A(1, 2) -> A'(-2, -1), B(6, 2) -> B'(-2, -6), C(6, 4) -> C'(-4, -6), D(4, 4) -> D'(-4, -4), E(4, 6) -> E'(-6, -4), F(1, 6) -> F'(-6, -1)",
+          "description": "A(-3, 3) -> A'(-3, -1), B(0, 3) -> B'(0, -1), C(-3, 5) -> C'(-3, -3)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(-2, -1), B'(-2, -6), C'(-4, -6), D'(-4, -4), E'(-6, -4), F'(-6, -1) oe",
+          "description": "A'(-3, -1), B'(0, -1), C'(-3, -3) oe",
           "marks": 1
         }
       ],
@@ -1019,42 +995,27 @@
           "y_max": 8,
           "original_vertices": [
             [
-              1,
-              2
+              -3,
+              3
             ],
             [
-              6,
-              2
+              0,
+              3
             ],
             [
-              6,
-              4
-            ],
-            [
-              4,
-              4
-            ],
-            [
-              4,
-              6
-            ],
-            [
-              1,
-              6
+              -3,
+              5
             ]
           ],
           "original_labels": [
             "A",
             "B",
-            "C",
-            "D",
-            "E",
-            "F"
+            "C"
           ],
           "mirror_line": {
-            "type": "diagonal",
-            "sign": -1,
-            "label": "y = -x"
+            "type": "horizontal",
+            "y": 1,
+            "label": "y = 1"
           }
         }
       },
@@ -1067,76 +1028,46 @@
           "y_max": 8,
           "original_vertices": [
             [
-              1,
-              2
+              -3,
+              3
             ],
             [
-              6,
-              2
+              0,
+              3
             ],
             [
-              6,
-              4
-            ],
-            [
-              4,
-              4
-            ],
-            [
-              4,
-              6
-            ],
-            [
-              1,
-              6
+              -3,
+              5
             ]
           ],
           "original_labels": [
             "A",
             "B",
-            "C",
-            "D",
-            "E",
-            "F"
+            "C"
           ],
           "mirror_line": {
-            "type": "diagonal",
-            "sign": -1,
-            "label": "y = -x"
+            "type": "horizontal",
+            "y": 1,
+            "label": "y = 1"
           },
           "image_vertices": [
             [
-              -2,
+              -3,
               -1
             ],
             [
-              -2,
-              -6
-            ],
-            [
-              -4,
-              -6
-            ],
-            [
-              -4,
-              -4
-            ],
-            [
-              -6,
-              -4
-            ],
-            [
-              -6,
+              0,
               -1
+            ],
+            [
+              -3,
+              -3
             ]
           ],
           "image_labels": [
             "A'",
             "B'",
-            "C'",
-            "D'",
-            "E'",
-            "F'"
+            "C'"
           ]
         }
       }
@@ -1176,6 +1107,181 @@
         }
       },
       "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_straight_line",
+      "prompt": "The angles 92°, 48° and x° lie on a straight line. Find x.",
+      "solution_steps": [
+        "Angles on a straight line sum to 180°.",
+        "x = 180 - (92 + 48) = 180 - 140 = 40"
+      ],
+      "final_answer": "40",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles on a straight line sum to 180°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 180 - (92 + 48) = 180 - 140 = 40",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "40 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "angle_line",
+        "params": {
+          "angle_values": [
+            92,
+            48,
+            40
+          ],
+          "labels": [
+            "92°",
+            "48°",
+            "x"
+          ],
+          "around_point": false
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "transform_enlarge_complete_foundation",
+      "prompt": "Enlarge shape ABCD by scale factor 2, centre (0, 9). Draw and label the image A'B'C'D'.",
+      "solution_steps": [
+        "The centre of enlargement is (0, 9) and the scale factor is 2.",
+        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-1, -8) from the centre, so A' = (0, 9) + 2 × (-1, -8) = (-2, -7).",
+        "Repeat for every vertex: A(-1, 1) -> A'(-2, -7), B(3, 1) -> B'(6, -7), C(2, 5) -> C'(4, 1), D(-2, 4) -> D'(-4, -1)"
+      ],
+      "final_answer": "A'(-2, -7), B'(6, -7), C'(4, 1), D'(-4, -1)",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The centre of enlargement is (0, 9) and the scale factor is 2.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-1, -8) from the centre, so A' = (0, 9) + 2 × (-1, -8) = (-2, -7).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Repeat for every vertex: A(-1, 1) -> A'(-2, -7), B(3, 1) -> B'(6, -7), C(2, 5) -> C'(4, 1), D(-2, 4) -> D'(-4, -1)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "A'(-2, -7), B'(6, -7), C'(4, 1), D'(-4, -1) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              -1,
+              1
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              -2,
+              4
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "centre": [
+            0,
+            9
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              -1,
+              1
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              -2,
+              4
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "centre": [
+            0,
+            9
+          ],
+          "image_vertices": [
+            [
+              -2,
+              -7
+            ],
+            [
+              6,
+              -7
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              -4,
+              -1
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'",
+            "D'"
+          ]
+        }
+      }
     },
     {
       "topic_id": "probability_and_or_rule",

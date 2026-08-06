@@ -392,6 +392,94 @@ def generate_modelled_example_expand_double_foundation(tier: Tier, rng: random.R
     )
 
 
+def generate_expand_double_no_coefficient_foundation(tier: Tier, rng: random.Random):
+    # A genuinely easier sibling of expand_double_brackets_foundation, which
+    # allows an x-coefficient up to 4 despite its own name/comment implying
+    # (x+p)(x+q) - this topic pins both x-coefficients to exactly 1, giving
+    # the true (x + p)(x + q) shape with no coefficient of x at all to track.
+    b = rng.randint(1, 9)
+    d = rng.randint(1, 9)
+
+    expanded = sp.expand((X + b) * (X + d))
+    poly = sp.Poly(expanded, X)
+    coeffs = poly.all_coeffs()
+    coeffs = [0] * (3 - len(coeffs)) + coeffs
+    qa, qb, qc = (int(v) for v in coeffs)
+
+    residual = sp.expand((X + b) * (X + d) - (qa * X**2 + qb * X + qc))
+    if residual != 0:
+        raise ValueError("Expansion verification failed: double bracket (no coefficient, foundation)")
+
+    prompt = f"Expand and simplify: ({fmt_linear(1, b)})({fmt_linear(1, d)})"
+    steps = [
+        "First: x × x = x^2",
+        f"Outer: x × {d} = {d}x",
+        f"Inner: {b} × x = {b}x",
+        f"Last: {b} × {d} = {b * d}",
+        f"Combine like terms: {_fmt_quadratic(qa, qb, qc)}",
+    ]
+    return Question(
+        topic_id="expand_double_brackets_no_coefficient_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=prompt,
+        solution_steps=tuple(steps),
+        final_answer=_fmt_quadratic(qa, qb, qc),
+        dedup_key=f"expand_double_nc:{b}:{d}",
+    )
+
+
+def generate_modelled_example_expand_double_no_coefficient_foundation(
+    tier: Tier, rng: random.Random
+) -> ModelledExample:
+    b = rng.randint(1, 9)
+    d = rng.randint(1, 9)
+
+    expanded = sp.expand((X + b) * (X + d))
+    poly = sp.Poly(expanded, X)
+    coeffs = poly.all_coeffs()
+    coeffs = [0] * (3 - len(coeffs)) + coeffs
+    qa, qb, qc = (int(v) for v in coeffs)
+
+    residual = sp.expand((X + b) * (X + d) - (qa * X**2 + qb * X + qc))
+    if residual != 0:
+        raise ValueError(
+            "modelled example expand_double_no_coefficient_foundation verification failed (symbolic)"
+        )
+    for test_x in (2, 5):
+        lhs = (test_x + b) * (test_x + d)
+        rhs = qa * test_x**2 + qb * test_x + qc
+        if lhs != rhs:
+            raise ValueError(
+                "modelled example expand_double_no_coefficient_foundation verification failed (numeric)"
+            )
+
+    teaching_steps = [
+        "When two brackets are multiplied together, every term in the first bracket must be multiplied "
+        "by every term in the second bracket - a common way to remember this is FOIL: First, Outer, "
+        "Inner, Last.",
+        "First: multiply the two x-terms together: x × x = x^2.",
+        f"Outer and Inner: multiply x × {d} = {d}x, and {b} × x = {b}x. Both of these are x-terms, so "
+        f"add them together: {d}x + {b}x = {b + d}x.",
+        f"Last: multiply the two constant terms: {b} × {d} = {b * d}.",
+        f"Combine all four results into one expression: {_fmt_quadratic(qa, qb, qc)}. Check by "
+        f"substituting x = 2 into both the original pair of brackets and this quadratic - both should "
+        "give the same number.",
+    ]
+    worked_calculation = [
+        f"({fmt_linear(1, b)})({fmt_linear(1, d)})",
+        f"x^2 + {d}x + {b}x + {b * d}",
+        f"{_fmt_quadratic(qa, qb, qc)}",
+    ]
+    return ModelledExample(
+        topic_id="expand_double_brackets_no_coefficient_foundation",
+        tier=Tier.FOUNDATION,
+        prompt=f"Expand and simplify: ({fmt_linear(1, b)})({fmt_linear(1, d)})",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=_fmt_quadratic(qa, qb, qc),
+    )
+
+
 def generate_expand_triple(tier: Tier, rng: random.Random):
     a, b = _rand_x_coeff(rng, 4), _rand_nonzero(rng, -4, 4)
     c, d = _rand_x_coeff(rng, 4), _rand_nonzero(rng, -4, 4)
@@ -809,6 +897,17 @@ TOPIC_EXPAND_DOUBLE_FOUNDATION = TopicDefinition(
     group=GROUP_EXPAND,
     fixed_tier=Tier.FOUNDATION,
     generate_modelled_example=generate_modelled_example_expand_double_foundation,
+)
+
+TOPIC_EXPAND_DOUBLE_NO_COEFFICIENT_FOUNDATION = TopicDefinition(
+    id="expand_double_brackets_no_coefficient_foundation",
+    display_name="Double Brackets (No Coefficient)",
+    description="Expand two brackets of the form (x + p)(x + q), with no coefficient of x at all.",
+    generate=generate_expand_double_no_coefficient_foundation,
+    section=SECTION,
+    group=GROUP_EXPAND,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_expand_double_no_coefficient_foundation,
 )
 
 TOPIC_EXPAND_DOUBLE = TopicDefinition(

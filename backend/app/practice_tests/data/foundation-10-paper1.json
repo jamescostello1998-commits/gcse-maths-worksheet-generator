@@ -188,7 +188,7 @@
     },
     {
       "topic_id": "recurring_decimal_single_digit",
-      "prompt": "The recurring decimal \\recur{0.}{3} can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Write \\recur{0.}{3} as a fraction in its simplest form.",
       "solution_steps": [
         "Let x = \\recur{0.}{3}, so 10x = 3.333... (only one digit repeats, so multiply by 10 to shift it one place)",
         "Subtract: 10x - x = 3 - 0, so 9x = 3",
@@ -251,34 +251,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_single_bracket",
-      "prompt": "Expand: -6(-8x - 3)",
+      "topic_id": "substitution_rearrange_foundation",
+      "prompt": "v = u + at. Make a the subject of the formula, then find the value of a when v = 9, u = 1 and t = 2.",
       "solution_steps": [
-        "Multiply -6 by -8x: 48x",
-        "Multiply -6 by -3: 18",
-        "Combine: 48x + 18"
+        "v = u + at",
+        "Rearrange to make a the subject: a = \\frac{v - u}{t}",
+        "Substitute v = 9, u = 1 and t = 2: a = \\frac{9 - 1}{2}",
+        "a = 8/2 = 4"
       ],
-      "final_answer": "48x + 18",
-      "marks": 4,
+      "final_answer": "a = 4",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply -6 by -8x: 48x",
+          "description": "v = u + at",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply -6 by -3: 18",
+          "description": "Rearrange to make a the subject: a = \\frac{v - u}{t}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Combine: 48x + 18",
+          "description": "Substitute v = 9, u = 1 and t = 2: a = \\frac{9 - 1}{2}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "a = 8/2 = 4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "48x + 18 oe",
+          "description": "a = 4 oe",
           "marks": 1
         }
       ],
@@ -286,28 +292,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_term_to_term_rule",
-      "prompt": "Here are the first four terms of a sequence: -3, -6, -12, -24. Describe the term-to-term rule, and find the next term.",
+      "topic_id": "sequences_next_term",
+      "prompt": "Find the next term in the sequence: 4, 5, 6, 7, ...",
       "solution_steps": [
-        "Term-to-term rule: multiply by 2",
-        "Next term = -48"
+        "Add 1 each time.",
+        "Next term = 7 + 1 = 8"
       ],
-      "final_answer": "Rule: multiply by 2. Next term = -48",
+      "final_answer": "8",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Term-to-term rule: multiply by 2",
+          "description": "Add 1 each time.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Next term = -48",
+          "description": "Next term = 7 + 1 = 8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Rule: multiply by 2. Next term = -48 oe",
+          "description": "8 oe",
           "marks": 1
         }
       ],
@@ -433,97 +439,98 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_distance_time",
-      "prompt": "A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop 10 km away after 15 minutes. They stay at the shop until 20 minutes, then cycle straight back home at a constant speed, arriving home at 50 minutes. Draw a distance-time graph to show this journey, and find the total distance travelled.",
+      "topic_id": "plot_quadratic",
+      "prompt": "Complete a table of values for y = x^2 + x - 1 for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 10 km after 15 minutes.",
-        "Stay at 10 km until 20 minutes.",
-        "Return at a constant speed to 0 km, arriving home at 50 minutes.",
-        "Plot these points and join each stage with a straight line segment.",
-        "Total distance travelled = 10 km out + 10 km back = 20 km"
+        "Table of values for y = x^2 + x - 1:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: 5, 1, -1, -1, 1, 5, 11",
+        "Plot each (x, y) point and join them with a single smooth curve."
       ],
-      "final_answer": "20 km",
+      "final_answer": "Quadratic curve: y = x^2 + x - 1",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 10 km after 15 minutes.",
+          "description": "Table of values for y = x^2 + x - 1:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Stay at 10 km until 20 minutes.",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Return at a constant speed to 0 km, arriving home at 50 minutes.",
+          "description": "y: 5, 1, -1, -1, 1, 5, 11",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot these points and join each stage with a straight line segment. Total distance travelled = 10 km out + 10 km back = 20 km",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "20 km oe",
+          "description": "Quadratic curve: y = x^2 + x - 1 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "piecewise_graph",
+        "kind": "function_graph",
         "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              15,
-              10
-            ],
-            [
-              20,
-              10
-            ],
-            [
-              50,
-              0
-            ]
-          ],
-          "x_max": 55,
+          "kind": "quadratic",
+          "a": 1,
+          "b": 1,
+          "c": -1,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -2,
           "y_max": 12,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)",
           "blank": true
         }
       },
       "solution_diagram": {
-        "kind": "piecewise_graph",
+        "kind": "function_graph",
         "params": {
-          "points": [
+          "kind": "quadratic",
+          "a": 1,
+          "b": 1,
+          "c": -1,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -2,
+          "y_max": 12,
+          "table_points": [
+            [
+              -3,
+              5
+            ],
+            [
+              -2,
+              1
+            ],
+            [
+              -1,
+              -1
+            ],
             [
               0,
-              0
+              -1
             ],
             [
-              15,
-              10
+              1,
+              1
             ],
             [
-              20,
-              10
+              2,
+              5
             ],
             [
-              50,
-              0
+              3,
+              11
             ]
-          ],
-          "x_max": 55,
-          "y_max": 12,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)"
+          ]
         }
       }
     },
@@ -626,6 +633,35 @@
           "b_height_label": "z"
         }
       },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "compound_percentage_foundation",
+      "prompt": "A price of £300 increases by 20%, then increases by 10%. Find the final price.",
+      "solution_steps": [
+        "After the first change: 300 × 1.20 = 360",
+        "After the second change: 360 × 1.10 = 396"
+      ],
+      "final_answer": "£396",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "After the first change: 300 × 1.20 = 360",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "After the second change: 360 × 1.10 = 396",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£396 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -815,112 +851,135 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_missing_angle_foundation",
-      "prompt": "In the triangle shown, find the angle x, correct to 1 decimal place.",
+      "topic_id": "volume_surface_area_cuboid",
+      "prompt": "A cuboid has length 5 cm, width 4 cm and height 13 cm. Find its volume.",
       "solution_steps": [
-        "Use tan, since we know two of the three sides.",
-        "tan(x) = 15 ÷ 10",
-        "x = tan^-1(15 ÷ 10) = 56.3° (1 d.p.)"
+        "Volume = length × width × height = 5 × 4 × 13 = 260 cm³"
       ],
-      "final_answer": "56.3°",
-      "marks": 4,
+      "final_answer": "260 cm³",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Use tan, since we know two of the three sides.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "tan(x) = 15 ÷ 10",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = tan^-1(15 ÷ 10) = 56.3° (1 d.p.)",
+          "description": "Volume = length × width × height = 5 × 4 × 13 = 260 cm³",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "56.3° oe",
+          "description": "260 cm³ oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "trig_triangle",
+        "kind": "cuboid",
         "params": {
-          "adjacent_label": "10 cm",
-          "opposite_label": "15 cm",
-          "hyp_label": null,
-          "angle_label": "x°"
+          "width_label": "4 cm",
+          "height_label": "13 cm",
+          "length_label": "5 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "inverse_proportion",
-      "prompt": "It takes 12 pipes 4 hours to fill a tank. Working at the same rate, how long would it take 2 pipes?",
+      "topic_id": "tree_diagram_independent",
+      "prompt": "A bag contains 4 green and 3 red counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that both counters are the same colour.",
       "solution_steps": [
-        "Constant = 12 × 4 = 48",
-        "Time for 2 pipes = 48 ÷ 2 = 24"
+        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(green) = 4/7, P(red) = 3/7.",
+        "P(both green) = 4/7 × 4/7 = 16/49",
+        "P(both red) = 3/7 × 3/7 = 9/49",
+        "P(same colour) = 16/49 + 9/49 = 25/49"
       ],
-      "final_answer": "24 hours",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Constant = 12 × 4 = 48",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Time for 2 pipes = 48 ÷ 2 = 24",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "24 hours oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "two_way_tables",
-      "prompt": "The two-way table shows the number of boys and girls who prefer bus or walk. Copy and complete the table, and state the missing value marked '?'.",
-      "solution_steps": [
-        "The missing value is in the 'Girls' row and 'Walk' column.",
-        "Using the row total: 29 - 19 = 10",
-        "Using the column total: 27 - 17 = 10",
-        "Missing value = 10"
-      ],
-      "final_answer": "10",
+      "final_answer": "25/49",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The missing value is in the 'Girls' row and 'Walk' column.",
+          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(green) = 4/7, P(red) = 3/7.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Using the row total: 29 - 19 = 10",
+          "description": "P(both green) = 4/7 × 4/7 = 16/49",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Using the column total: 27 - 17 = 10",
+          "description": "P(both red) = 3/7 × 3/7 = 9/49",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Missing value = 10",
+          "description": "P(same colour) = 16/49 + 9/49 = 25/49",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10 oe",
+          "description": "25/49 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Green",
+              "4/7"
+            ],
+            [
+              "Red",
+              "3/7"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Green",
+                "4/7"
+              ],
+              [
+                "Red",
+                "3/7"
+              ]
+            ],
+            [
+              [
+                "Green",
+                "4/7"
+              ],
+              [
+                "Red",
+                "3/7"
+              ]
+            ]
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "two_way_tables",
+      "prompt": "The two-way table shows the number of boys and girls who prefer bus or walk. Find the missing values.",
+      "solution_steps": [
+        "'Girls' / 'Bus': using the 'Girls' row total: 29 - 10 = 19",
+        "'Boys' / 'Walk': using the 'Boys' row total: 21 - 4 = 17"
+      ],
+      "final_answer": "'Girls' / 'Bus' = 19; 'Boys' / 'Walk' = 17",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "'Girls' / 'Bus': using the 'Girls' row total: 29 - 10 = 19",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "'Boys' / 'Walk': using the 'Boys' row total: 21 - 4 = 17",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "'Girls' / 'Bus' = 19; 'Boys' / 'Walk' = 17 oe",
           "marks": 1
         }
       ],
@@ -940,12 +999,12 @@
           "cells": [
             [
               "4",
-              "17",
+              "",
               "21"
             ],
             [
-              "19",
-              "?",
+              "",
+              "10",
               "29"
             ],
             [
@@ -1047,34 +1106,22 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "error_interval",
-      "prompt": "A number, x, is 69 rounded to the nearest whole number. Write down the error interval for x.",
+      "topic_id": "stats_mean",
+      "prompt": "Find the mean of this data set: 15, 9, 3, 16, 12, 30, 3.",
       "solution_steps": [
-        "69 is rounded to the nearest whole number, so x can be up to half of that precision above or below 69.",
-        "Lower bound: 69 - 0.5 = 68.5",
-        "Upper bound: 69 + 0.5 = 69.5"
+        "Mean = sum ÷ count = (15 + 9 + 3 + 16 + 12 + 30 + 3) ÷ 7 = 88 ÷ 7 = 88/7"
       ],
-      "final_answer": "68.5 ≤ x < 69.5",
-      "marks": 4,
+      "final_answer": "88/7",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "69 is rounded to the nearest whole number, so x can be up to half of that precision above or below 69.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Lower bound: 69 - 0.5 = 68.5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Upper bound: 69 + 0.5 = 69.5",
+          "description": "Mean = sum ÷ count = (15 + 9 + 3 + 16 + 12 + 30 + 3) ÷ 7 = 88 ÷ 7 = 88/7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "68.5 ≤ x < 69.5 oe",
+          "description": "88/7 oe",
           "marks": 1
         }
       ],

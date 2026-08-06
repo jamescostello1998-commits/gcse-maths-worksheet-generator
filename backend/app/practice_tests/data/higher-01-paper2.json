@@ -197,34 +197,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bounds_calculation",
-      "prompt": "A rectangle has length 19 cm and width 18 cm, both measured to the nearest cm. Calculate the lower bound for the area of the rectangle.",
+      "topic_id": "powers_higher",
+      "prompt": "Evaluate 216^(1/3).",
       "solution_steps": [
-        "Length: 19 cm (to the nearest cm) gives 18.5 ≤ length < 19.5",
-        "Width: 18 cm (to the nearest cm) gives 17.5 ≤ width < 18.5",
-        "For the lower bound of the area, use the lower bound of each measurement: 18.5 × 17.5 = 323.75 cm²"
+        "216^(1/3) means the cube root of 216.",
+        "216^(1/3) = 6"
       ],
-      "final_answer": "323.75 cm²",
-      "marks": 4,
+      "final_answer": "6",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Length: 19 cm (to the nearest cm) gives 18.5 ≤ length < 19.5",
+          "description": "216^(1/3) means the cube root of 216.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Width: 18 cm (to the nearest cm) gives 17.5 ≤ width < 18.5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For the lower bound of the area, use the lower bound of each measurement: 18.5 × 17.5 = 323.75 cm²",
+          "description": "216^(1/3) = 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "323.75 cm² oe",
+          "description": "6 oe",
           "marks": 1
         }
       ],
@@ -275,34 +269,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_triple_brackets",
-      "prompt": "Expand and simplify: (4x - 3)(x - 2)(3x - 3)",
+      "topic_id": "expand_double_brackets",
+      "prompt": "Expand and simplify: (4x + 1)(x + 5)",
       "solution_steps": [
-        "First expand two of the brackets: (4x - 3)(x - 2) = 4x^2 - 11x + 6",
-        "Multiply the result by (3x - 3) and collect like terms",
-        "= 12x^3 - 45x^2 + 51x - 18"
+        "First: 4x × 1x = 4x^2",
+        "Outer: 4x × 5 = 20x",
+        "Inner: 1 × 1x = 1x",
+        "Last: 1 × 5 = 5",
+        "Combine like terms: 4x^2 + 21x + 5"
       ],
-      "final_answer": "12x^3 - 45x^2 + 51x - 18",
-      "marks": 4,
+      "final_answer": "4x^2 + 21x + 5",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First expand two of the brackets: (4x - 3)(x - 2) = 4x^2 - 11x + 6",
+          "description": "First: 4x × 1x = 4x^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the result by (3x - 3) and collect like terms",
+          "description": "Outer: 4x × 5 = 20x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 12x^3 - 45x^2 + 51x - 18",
+          "description": "Inner: 1 × 1x = 1x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Last: 1 × 5 = 5 Combine like terms: 4x^2 + 21x + 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12x^3 - 45x^2 + 51x - 18 oe",
+          "description": "4x^2 + 21x + 5 oe",
           "marks": 1
         }
       ],
@@ -352,53 +353,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "circle_equation",
-      "prompt": "A circle has centre (0, 0) and radius 14. Write down the equation of the circle.",
-      "solution_steps": [
-        "A circle centred at the origin with radius r has equation x^2 + y^2 = r^2.",
-        "Here r = 14, so r^2 = 196."
-      ],
-      "final_answer": "x^2 + y^2 = 196",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "A circle centred at the origin with radius r has equation x^2 + y^2 = r^2.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Here r = 14, so r^2 = 196.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x^2 + y^2 = 196 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "loci_construction",
-        "params": {
-          "x_min": -15,
-          "x_max": 15,
-          "y_min": -15,
-          "y_max": 15,
-          "points": [],
-          "given_lines": [],
-          "circle": {
-            "centre": [
-              0,
-              0
-            ],
-            "radius": 14
-          },
-          "segment": null
-        }
-      },
-      "solution_diagram": null
-    },
-    {
       "topic_id": "turning_point_of_graph",
       "prompt": "Find the coordinates of the turning point of the curve y = x^2 - 2x - 12.",
       "solution_steps": [
@@ -427,6 +381,41 @@
         {
           "code": "A1",
           "description": "(1, -13) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "completing_the_square",
+      "prompt": "Write x^2 + 14x + 6 in the form (x + p)^2 + q.",
+      "solution_steps": [
+        "Half the coefficient of x: 14 ÷ 2 = 7",
+        "(x + 7)^2 = x^2 + 14x + 49",
+        "x^2 + 14x + 6 = (x + 7)^2 + (6 - 49) = (x + 7)^2 - 43"
+      ],
+      "final_answer": "(x + 7)^2 - 43",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Half the coefficient of x: 14 ÷ 2 = 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(x + 7)^2 = x^2 + 14x + 49",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x^2 + 14x + 6 = (x + 7)^2 + (6 - 49) = (x + 7)^2 - 43",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(x + 7)^2 - 43 oe",
           "marks": 1
         }
       ],
@@ -1080,7 +1069,7 @@
     },
     {
       "topic_id": "probability_conditional",
-      "prompt": "A bag contains 3 purple and 4 green counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour.",
+      "prompt": "A bag contains 3 purple and 4 green counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
       "solution_steps": [
         "P(both purple) = 3/7 × 2/6 = 1/7",
         "P(both green) = 4/7 × 3/6 = 2/7",
@@ -1111,72 +1100,107 @@
         }
       ],
       "diagram": {
-        "kind": "bag_of_counters",
+        "kind": "tree_diagram",
         "params": {
-          "counts": {
-            "purple": 3,
-            "green": 4
-          }
+          "stage1": [
+            [
+              "Purple",
+              ""
+            ],
+            [
+              "Green",
+              ""
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Purple",
+                ""
+              ],
+              [
+                "Green",
+                ""
+              ]
+            ],
+            [
+              [
+                "Purple",
+                ""
+              ],
+              [
+                "Green",
+                ""
+              ]
+            ]
+          ]
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Purple",
+              "3/7"
+            ],
+            [
+              "Green",
+              "4/7"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Purple",
+                "2/6"
+              ],
+              [
+                "Green",
+                "4/6"
+              ]
+            ],
+            [
+              [
+                "Purple",
+                "3/6"
+              ],
+              [
+                "Green",
+                "3/6"
+              ]
+            ]
+          ]
+        }
+      }
     },
     {
-      "topic_id": "cumulative_frequency_interpret",
-      "prompt": "The cumulative frequency graph shows the heights (in cm) of a group of plants. Use the graph to estimate the median.",
+      "topic_id": "graph_transformations",
+      "prompt": "The graph of y = f(x) undergoes a reflection in the x-axis. Write down the equation of the transformed graph in terms of f(x).",
       "solution_steps": [
-        "The median is at cumulative frequency 29.5 (out of 59 total).",
-        "Reading across from 29.5 to the curve, then down to the axis, gives ≈ 29.7."
+        "y = -f(x) corresponds to a reflection in the x-axis."
       ],
-      "final_answer": "29.7",
-      "marks": 3,
+      "final_answer": "y = -f(x)",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The median is at cumulative frequency 29.5 (out of 59 total).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Reading across from 29.5 to the curve, then down to the axis, gives ≈ 29.7.",
+          "description": "y = -f(x) corresponds to a reflection in the x-axis.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "29.7 oe",
+          "description": "y = -f(x) oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cumulative_frequency",
+        "kind": "graph_transformation",
         "params": {
-          "points": [
-            [
-              10,
-              0
-            ],
-            [
-              20,
-              15
-            ],
-            [
-              30,
-              30
-            ],
-            [
-              40,
-              45
-            ],
-            [
-              50,
-              47
-            ],
-            [
-              60,
-              59
-            ]
-          ],
-          "x_label": "Height (cm)"
+          "transform": "reflect_x",
+          "shift": 0,
+          "original_label": "y = f(x)",
+          "transformed_label": "y = -f(x)"
         }
       },
       "solution_diagram": null

@@ -30,13 +30,40 @@ def test_dedup_keys_vary_per_generator():
         assert len(keys) > 40
 
 
+REARRANGE_GENERATORS = [
+    (substitution.generate_substitution_rearrange_foundation, Tier.FOUNDATION, "substitution_rearrange_foundation"),
+    (substitution.generate_substitution_rearrange_higher, Tier.HIGHER, "substitution_rearrange_higher"),
+]
+
+
+def test_rearrange_generators_produce_valid_verified_questions():
+    for generate, tier, topic_id in REARRANGE_GENERATORS:
+        rng = random.Random(130)
+        for _ in range(TRIALS):
+            q = generate(tier, rng)
+            assert q.tier == tier
+            assert q.topic_id == topic_id
+            assert "Make " in q.prompt and "the subject" in q.prompt
+            assert q.solution_steps
+            assert q.final_answer
+
+
+def test_rearrange_dedup_keys_vary_per_generator():
+    for generate, tier, _ in REARRANGE_GENERATORS:
+        rng = random.Random(131)
+        keys = {generate(tier, rng).dedup_key for _ in range(300)}
+        assert len(keys) > 40
+
+
 def test_topic_definitions_have_expected_metadata():
     topics = [
         substitution.TOPIC_SUBSTITUTION_FOUNDATION,
         substitution.TOPIC_SUBSTITUTION_HIGHER,
+        substitution.TOPIC_SUBSTITUTION_REARRANGE_FOUNDATION,
+        substitution.TOPIC_SUBSTITUTION_REARRANGE_HIGHER,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 2
+    assert len(ids) == 4
     for t in topics:
         assert t.section == "algebra"
         assert t.group == "Substitution into Formulae"
@@ -47,6 +74,8 @@ def test_all_topics_have_modelled_example_wired():
     for t in (
         substitution.TOPIC_SUBSTITUTION_FOUNDATION,
         substitution.TOPIC_SUBSTITUTION_HIGHER,
+        substitution.TOPIC_SUBSTITUTION_REARRANGE_FOUNDATION,
+        substitution.TOPIC_SUBSTITUTION_REARRANGE_HIGHER,
     ):
         assert t.generate_modelled_example is not None
 
@@ -61,6 +90,16 @@ MODELLED_EXAMPLE_GENERATORS = [
         substitution.generate_modelled_example_substitution_higher,
         Tier.HIGHER,
         "substitution_higher",
+    ),
+    (
+        substitution.generate_modelled_example_substitution_rearrange_foundation,
+        Tier.FOUNDATION,
+        "substitution_rearrange_foundation",
+    ),
+    (
+        substitution.generate_modelled_example_substitution_rearrange_higher,
+        Tier.HIGHER,
+        "substitution_rearrange_higher",
     ),
 ]
 

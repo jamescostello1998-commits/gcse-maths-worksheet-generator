@@ -206,7 +206,7 @@
     },
     {
       "topic_id": "fractions_equivalent",
-      "prompt": "3/4 = \\frac{24}{?}. Find the missing denominator.",
+      "prompt": "3/4 = \\frac{24}{?}. Find the missing number.",
       "solution_steps": [
         "Find the scale factor between the numerators: 24 ÷ 3 = 8",
         "Multiply the denominator by the same scale factor: 4 × 8 = 32"
@@ -304,84 +304,113 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inequalities_number_line_foundation",
-      "prompt": "Write down the inequality shown by the number line below.",
+      "topic_id": "satisfying_inequalities_foundation",
+      "prompt": "Solve the inequality 0 < 3x - 4 < 21, then list the integer values of x that satisfy it.",
       "solution_steps": [
-        "The circle at -1 is filled, so -1 is included in the solution set.",
-        "The shading and arrow point to the right, so the solution is x ≥ -1."
+        "0 < 3x - 4 < 21",
+        "Add 4 to all three parts:",
+        "4 < 3x < 25",
+        "Divide all three parts by 3:",
+        "4/3 < x < 25/3",
+        "The integers satisfying this are: 2, 3, 4, 5, 6, 7, 8"
       ],
-      "final_answer": "x ≥ -1",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The circle at -1 is filled, so -1 is included in the solution set.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The shading and arrow point to the right, so the solution is x ≥ -1.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x ≥ -1 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -6,
-            6
-          ],
-          "boundaries": [
-            {
-              "value": -1,
-              "closed": true
-            }
-          ],
-          "shade": "right"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simultaneous_common_coefficient",
-      "prompt": "Solve the simultaneous equations: 4x + 5y = 22 and 6x + 5y = 18",
-      "solution_steps": [
-        "4x + 5y = 22  (1)",
-        "6x + 5y = 18  (2)",
-        "Subtract the equations to eliminate y: -2x = 4, so x = -2",
-        "Substitute x = -2 into (1): 5y = 30, so y = 6"
-      ],
-      "final_answer": "x = -2, y = 6",
+      "final_answer": "2, 3, 4, 5, 6, 7, 8",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "4x + 5y = 22  (1)",
+          "description": "0 < 3x - 4 < 21",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "6x + 5y = 18  (2)",
+          "description": "Add 4 to all three parts:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract the equations to eliminate y: -2x = 4, so x = -2",
+          "description": "4 < 3x < 25",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute x = -2 into (1): 5y = 30, so y = 6",
+          "description": "Divide all three parts by 3: 4/3 < x < 25/3 The integers satisfying this are: 2, 3, 4, 5, 6, 7, 8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -2, y = 6 oe",
+          "description": "2, 3, 4, 5, 6, 7, 8 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "functions_evaluate",
+      "prompt": "f(x) = -x + 6. Find the value of x for which f(x) = -1.",
+      "solution_steps": [
+        "-x + 6 = -1",
+        "Subtract 6 from both sides:",
+        "-x = -7",
+        "Divide both sides by -1:",
+        "x = 7"
+      ],
+      "final_answer": "7",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "-x + 6 = -1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 6 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-x = -7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by -1: x = 7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "7 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "factorise_common_factor",
+      "prompt": "Factorise: 81x + 63",
+      "solution_steps": [
+        "Find the highest common factor of 81 and 63: 9",
+        "Factorise: 9(9x + 7)"
+      ],
+      "final_answer": "9(9x + 7)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find the highest common factor of 81 and 63: 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: 9(9x + 7)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "9(9x + 7) oe",
           "marks": 1
         }
       ],
@@ -411,47 +440,6 @@
         {
           "code": "A1",
           "description": "(x + 4)(x + 1) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "solve_quadratic_factorising_foundation",
-      "prompt": "Solve x^2 + 11x + 18 = 0 by factorising.",
-      "solution_steps": [
-        "Find two numbers that multiply to 18 and add to 11: 2 and 9",
-        "Factorise: (x + 2)(x + 9) = 0",
-        "Either x + 2 = 0 or x + 9 = 0",
-        "x = -2 or x = -9"
-      ],
-      "final_answer": "x = -2 or x = -9",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find two numbers that multiply to 18 and add to 11: 2 and 9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise: (x + 2)(x + 9) = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Either x + 2 = 0 or x + 9 = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = -2 or x = -9",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = -2 or x = -9 oe",
           "marks": 1
         }
       ],
@@ -923,8 +911,7 @@
           "counts": {
             "green": 3,
             "blue": 3
-          },
-          "highlight": "blue"
+          }
         }
       },
       "solution_diagram": null
@@ -984,6 +971,49 @@
           ],
           "cells": [
             [
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              ""
+            ]
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "sample_space_diagram",
+        "params": {
+          "row_values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "col_values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "cells": [
+            [
               "1",
               "2",
               "3",
@@ -1015,8 +1045,7 @@
             ]
           ]
         }
-      },
-      "solution_diagram": null
+      }
     }
   ]
 }

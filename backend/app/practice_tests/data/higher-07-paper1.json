@@ -7,34 +7,28 @@
   "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "bounds_calculation",
-      "prompt": "A rectangle has length 34 cm and width 28 cm, both measured to the nearest cm. Calculate the lower bound for the area of the rectangle.",
+      "topic_id": "prime_factors_higher",
+      "prompt": "Write 726 as a product of its prime factors, giving your answer in index form.",
       "solution_steps": [
-        "Length: 34 cm (to the nearest cm) gives 33.5 ≤ length < 34.5",
-        "Width: 28 cm (to the nearest cm) gives 27.5 ≤ width < 28.5",
-        "For the lower bound of the area, use the lower bound of each measurement: 33.5 × 27.5 = 921.25 cm²"
+        "Divide 726 repeatedly by the smallest prime that fits: 2 × 3 × 11 × 11",
+        "Write repeated factors using index notation: 726 = 2 × 3 × 11^2"
       ],
-      "final_answer": "921.25 cm²",
-      "marks": 4,
+      "final_answer": "2 × 3 × 11^2",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Length: 34 cm (to the nearest cm) gives 33.5 ≤ length < 34.5",
+          "description": "Divide 726 repeatedly by the smallest prime that fits: 2 × 3 × 11 × 11",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Width: 28 cm (to the nearest cm) gives 27.5 ≤ width < 28.5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For the lower bound of the area, use the lower bound of each measurement: 33.5 × 27.5 = 921.25 cm²",
+          "description": "Write repeated factors using index notation: 726 = 2 × 3 × 11^2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "921.25 cm² oe",
+          "description": "2 × 3 × 11^2 oe",
           "marks": 1
         }
       ],
@@ -42,28 +36,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "roots_higher",
-      "prompt": "Simplify √117, giving your answer in the form a√b.",
+      "topic_id": "decimals_recurring_to_fraction",
+      "prompt": "Write \\recur{0.}{3} as a fraction in its simplest form.",
       "solution_steps": [
-        "Find the largest square factor of 117: 3^2 × 13 = 117",
-        "√117 = √(3^2 × 13) = 3√13"
+        "Let x = \\recur{0.}{3}",
+        "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
+        "This gives x = 3/9",
+        "Simplify: 1/3"
       ],
-      "final_answer": "3√13",
-      "marks": 3,
+      "final_answer": "1/3",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the largest square factor of 117: 3^2 × 13 = 117",
+          "description": "Let x = \\recur{0.}{3}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "√117 = √(3^2 × 13) = 3√13",
+          "description": "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "This gives x = 3/9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify: 1/3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3√13 oe",
+          "description": "1/3 oe",
           "marks": 1
         }
       ],
@@ -106,40 +112,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal \\recur{0.}{3} can be written as a fraction. Find this fraction in its simplest form.",
+      "topic_id": "roots_higher",
+      "prompt": "Simplify √117, giving your answer in the form a√b.",
       "solution_steps": [
-        "Let x = \\recur{0.}{3}",
-        "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
-        "This gives x = 3/9",
-        "Simplify: 1/3"
+        "Find the largest square factor of 117: 3^2 × 13 = 117",
+        "√117 = √(3^2 × 13) = 3√13"
       ],
-      "final_answer": "1/3",
-      "marks": 5,
+      "final_answer": "3√13",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = \\recur{0.}{3}",
+          "description": "Find the largest square factor of 117: 3^2 × 13 = 117",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "This gives x = 3/9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Simplify: 1/3",
+          "description": "√117 = √(3^2 × 13) = 3√13",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/3 oe",
+          "description": "3√13 oe",
           "marks": 1
         }
       ],
@@ -147,40 +141,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "indices_common_base_equations",
-      "prompt": "Solve 25^(x+4) = 125^(3x).",
+      "topic_id": "standard_form_multiply_divide",
+      "prompt": "Work out (8 × 10^2) ÷ (2 × 10^-2). Give your answer in standard form.",
       "solution_steps": [
-        "Write both sides as powers of 5: 25 = 5^2 and 125 = 5^3",
-        "25^(x+4) = 125^(3x) becomes 5^(2(x+4)) = 5^(3×3x), i.e. 5^(2x+8) = 5^(9x)",
-        "Since the bases match, the powers must be equal: 2x + 8 = 9x",
-        "Rearranging: -7x = -8, so x = -8/-7 = 8/7"
+        "Divide the mantissas: 8 ÷ 2 = 4",
+        "Subtract the powers of 10: 2 - -2 = 4"
       ],
-      "final_answer": "8/7",
-      "marks": 5,
+      "final_answer": "4 × 10^4",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Write both sides as powers of 5: 25 = 5^2 and 125 = 5^3",
+          "description": "Divide the mantissas: 8 ÷ 2 = 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "25^(x+4) = 125^(3x) becomes 5^(2(x+4)) = 5^(3×3x), i.e. 5^(2x+8) = 5^(9x)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Since the bases match, the powers must be equal: 2x + 8 = 9x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Rearranging: -7x = -8, so x = -8/-7 = 8/7",
+          "description": "Subtract the powers of 10: 2 - -2 = 4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8/7 oe",
+          "description": "4 × 10^4 oe",
           "marks": 1
         }
       ],
@@ -188,45 +170,218 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "quadratic_formula",
-      "prompt": "Solve 3x^2 + 12x + 7 = 0 using the quadratic formula, giving your answers to 2 decimal places.",
+      "topic_id": "hcf_lcm_by_prime_factors",
+      "prompt": "Using prime factorisation, find the HCF of 154 and 160.",
       "solution_steps": [
-        "x = (-b ± √(b^2 - 4ac)) / 2a",
-        "a = 3, b = 12, c = 7",
-        "x = \\frac{-12 ± √(12^2 - 4×3×7)}{2×3}",
-        "x = \\frac{-12 ± √60}{6}",
-        "x = -0.71 or x = -3.29"
+        "154 = 2 × 7 × 11",
+        "160 = 2^5 × 5",
+        "HCF: take the lowest power of each prime that appears in both numbers",
+        "HCF = 2"
       ],
-      "final_answer": "x = -0.71 or x = -3.29",
+      "final_answer": "2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "x = (-b ± √(b^2 - 4ac)) / 2a",
+          "description": "154 = 2 × 7 × 11",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "a = 3, b = 12, c = 7",
+          "description": "160 = 2^5 × 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = \\frac{-12 ± √(12^2 - 4×3×7)}{2×3}",
+          "description": "HCF: take the lowest power of each prime that appears in both numbers",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = \\frac{-12 ± √60}{6} x = -0.71 or x = -3.29",
+          "description": "HCF = 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -0.71 or x = -3.29 oe",
+          "description": "2 oe",
           "marks": 1
         }
       ],
       "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "powers_higher",
+      "prompt": "Evaluate 64^(2/3).",
+      "solution_steps": [
+        "64^(2/3) = (64^(1/3))^2",
+        "64^(1/3) = 4",
+        "4^2 = 16"
+      ],
+      "final_answer": "16",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "64^(2/3) = (64^(1/3))^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "64^(1/3) = 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4^2 = 16",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "16 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_quadratic",
+      "prompt": "Solve the simultaneous equations: y = x^2 + 4x - 6 and y = 9x - 12",
+      "solution_steps": [
+        "Substitute y = 9x - 12 into y = x^2 + 4x - 6: 9x - 12 = x^2 + 4x - 6",
+        "Rearrange: x^2 - 5x + 6 = 0",
+        "Factorise: (x - 3)(x - 2) = 0",
+        "x = 3 or x = 2",
+        "When x = 3, y = 15. When x = 2, y = 6."
+      ],
+      "final_answer": "(3, 15) and (2, 6)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Substitute y = 9x - 12 into y = x^2 + 4x - 6: 9x - 12 = x^2 + 4x - 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rearrange: x^2 - 5x + 6 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: (x - 3)(x - 2) = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 3 or x = 2 When x = 3, y = 15. When x = 2, y = 6.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(3, 15) and (2, 6) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_proof",
+      "prompt": "Prove algebraically that the sum of an integer and its square is always even.",
+      "solution_steps": [
+        "n + n^2 factorises as n(n + 1), the product of two consecutive integers n and n + 1.",
+        "Write the given expression algebraically: n + n^2.",
+        "Expand and simplify: n + n^2 = n(n + 1).",
+        "Factorise/rearrange to expose the structure: n(n + 1) = if n is even, n(n + 1) is even × anything = even; if n is odd, then n + 1 is even, so n(n + 1) is anything × even = even.",
+        "Either n or n + 1 must be even (they are consecutive integers), so the product always has an even factor - n + n^2 is always even."
+      ],
+      "final_answer": "Proven: n + n^2 = n(n + 1) is always even, since one of n, n + 1 is always even.",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "n + n^2 factorises as n(n + 1), the product of two consecutive integers n and n + 1.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write the given expression algebraically: n + n^2.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand and simplify: n + n^2 = n(n + 1).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise/rearrange to expose the structure: n(n + 1) = if n is even, n(n + 1) is even × anything = even; if n is odd, then n + 1 is even, so n(n + 1) is anything × even = even. Either n or n + 1 must be even (they are consecutive integers), so the product always has an even factor - n + n^2 is always even.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Proven: n + n^2 = n(n + 1) is always even, since one of n, n + 1 is always even. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "velocity_time_interpret",
+      "prompt": "The velocity-time graph shows a car's journey. Find the total distance travelled.",
+      "solution_steps": [
+        "Total distance = total area under the graph (a trapezium)",
+        "Distance = ½ × (37 + 15) × 30 = 780 m"
+      ],
+      "final_answer": "780 m",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total distance = total area under the graph (a trapezium)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Distance = ½ × (37 + 15) × 30 = 780 m",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "780 m oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              12,
+              30
+            ],
+            [
+              27,
+              30
+            ],
+            [
+              37,
+              0
+            ]
+          ],
+          "x_max": 42,
+          "y_max": 35,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -358,132 +513,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_quadratic",
-      "prompt": "Solve the simultaneous equations: y = x^2 + 4x - 6 and y = 9x - 12",
+      "topic_id": "functions_composite_inverse",
+      "prompt": "f(x) = -5x + 8 and g(x) = x + 3. Find gf(x).",
       "solution_steps": [
-        "Substitute y = 9x - 12 into y = x^2 + 4x - 6: 9x - 12 = x^2 + 4x - 6",
-        "Rearrange: x^2 - 5x + 6 = 0",
-        "Factorise: (x - 3)(x - 2) = 0",
-        "x = 3 or x = 2",
-        "When x = 3, y = 15. When x = 2, y = 6."
+        "gf(x) = g(-5x + 8)",
+        "= 1(-5x + 8) + 3",
+        "= -5x + 11"
       ],
-      "final_answer": "(3, 15) and (2, 6)",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Substitute y = 9x - 12 into y = x^2 + 4x - 6: 9x - 12 = x^2 + 4x - 6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Rearrange: x^2 - 5x + 6 = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise: (x - 3)(x - 2) = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 3 or x = 2 When x = 3, y = 15. When x = 2, y = 6.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(3, 15) and (2, 6) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "forming_equations_higher",
-      "prompt": "A quadrilateral has angles 44°, 93°, (4x - 16)°, and (4x + 151)°. Form an equation and solve it to find x.",
-      "solution_steps": [
-        "Angles in a quadrilateral sum to 360°.",
-        "44 + 93 + (4x - 16) + (4x + 151) = 360",
-        "Collect the x-terms and constants together:",
-        "8x + 135 = 223",
-        "Subtract 135 from both sides:",
-        "8x = 88",
-        "Divide both sides by 8:",
-        "x = 11"
-      ],
-      "final_answer": "11",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Angles in a quadrilateral sum to 360°.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "44 + 93 + (4x - 16) + (4x + 151) = 360",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Collect the x-terms and constants together:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "8x + 135 = 223 Subtract 135 from both sides: 8x = 88 Divide both sides by 8: x = 11",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "11 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "polygon_angles",
-        "params": {
-          "n_sides": 4,
-          "angle_labels": [
-            "44°",
-            "93°",
-            "(4x - 16)°",
-            "(4x + 151)°"
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "expand_triple_brackets",
-      "prompt": "Expand and simplify: (4x + 3)(3x + 3)(3x + 3)",
-      "solution_steps": [
-        "First expand two of the brackets: (4x + 3)(3x + 3) = 12x^2 + 21x + 9",
-        "Multiply the result by (3x + 3) and collect like terms",
-        "= 36x^3 + 99x^2 + 90x + 27"
-      ],
-      "final_answer": "36x^3 + 99x^2 + 90x + 27",
+      "final_answer": "-5x + 11",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First expand two of the brackets: (4x + 3)(3x + 3) = 12x^2 + 21x + 9",
+          "description": "gf(x) = g(-5x + 8)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the result by (3x + 3) and collect like terms",
+          "description": "= 1(-5x + 8) + 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 36x^3 + 99x^2 + 90x + 27",
+          "description": "= -5x + 11",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "36x^3 + 99x^2 + 90x + 27 oe",
+          "description": "-5x + 11 oe",
           "marks": 1
         }
       ],
@@ -491,50 +548,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "satisfying_inequalities_higher",
-      "prompt": "x satisfies both 4x + 5 ≥ -3 and 3x - 9 < -2. List the integer values of x that satisfy both.",
+      "topic_id": "solve_quadratic_completing_square",
+      "prompt": "Solve x^2 - 18x + 67 = 0 by completing the square, giving your answers in exact surd form.",
       "solution_steps": [
-        "Solve the first inequality:",
-        "4x + 5 ≥ -3",
-        "Subtract 5 from both sides:",
-        "4x ≥ -8",
-        "Divide both sides by 4:",
-        "x ≥ -2",
-        "Solve the second inequality:",
-        "3x - 9 < -2",
-        "Add 9 to both sides:",
-        "3x < 7",
-        "Divide both sides by 3:",
-        "x < 7/3",
-        "Combine both results into a single range: -2 ≤ x < 7/3",
-        "The integers satisfying both inequalities are: -2, -1, 0, 1, 2"
+        "Half the coefficient of x: -18 ÷ 2 = -9",
+        "Complete the square: x^2 - 18x + 67 = (x - 9)^2 - 14",
+        "Set (x - 9)^2 - 14 = 0, so (x - 9)^2 = 14",
+        "(x - 9) = ±√14",
+        "x = 9 + √14 or x = 9 - √14"
       ],
-      "final_answer": "-2, -1, 0, 1, 2",
+      "final_answer": "x = 9 + √14 or x = 9 - √14",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Solve the first inequality:",
+          "description": "Half the coefficient of x: -18 ÷ 2 = -9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x + 5 ≥ -3",
+          "description": "Complete the square: x^2 - 18x + 67 = (x - 9)^2 - 14",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 5 from both sides:",
+          "description": "Set (x - 9)^2 - 14 = 0, so (x - 9)^2 = 14",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x ≥ -8 Divide both sides by 4: x ≥ -2 Solve the second inequality: 3x - 9 < -2 Add 9 to both sides: 3x < 7 Divide both sides by 3: x < 7/3 Combine both results into a single range: -2 ≤ x < 7/3 The integers satisfying both inequalities are: -2, -1, 0, 1, 2",
+          "description": "(x - 9) = ±√14 x = 9 + √14 or x = 9 - √14",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-2, -1, 0, 1, 2 oe",
+          "description": "x = 9 + √14 or x = 9 - √14 oe",
           "marks": 1
         }
       ],
@@ -542,28 +590,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "unit_conversions_higher",
-      "prompt": "Convert 41.4 cm³ to mm³.",
+      "topic_id": "algebraic_direct_proportion",
+      "prompt": "y is directly proportional to x^2. When x = 5, y = 250. Find the value of y when x = 7.",
       "solution_steps": [
-        "Linear conversion factor: 1 cm = 10 mm, so for volume, 1 cm³ = 10^3 = 1000 mm³",
-        "41.4 cm³ = 41.4 × 1000 = 41400 mm³"
+        "y = kx^2",
+        "250 = k × 5^2 = k × 25",
+        "k = 250 ÷ 25 = 10",
+        "y = 10 × 7^2 = 10 × 49 = 490"
       ],
-      "final_answer": "41400 mm³",
-      "marks": 3,
+      "final_answer": "490",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Linear conversion factor: 1 cm = 10 mm, so for volume, 1 cm³ = 10^3 = 1000 mm³",
+          "description": "y = kx^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "41.4 cm³ = 41.4 × 1000 = 41400 mm³",
+          "description": "250 = k × 5^2 = k × 25",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "k = 250 ÷ 25 = 10",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y = 10 × 7^2 = 10 × 49 = 490",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "41400 mm³ oe",
+          "description": "490 oe",
           "marks": 1
         }
       ],
@@ -571,57 +631,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "percentage_increase_decrease_calculator",
-      "prompt": "Using a calculator, decrease £296.95 by 8.25%. Give your answer to 2 decimal places.",
+      "topic_id": "reverse_percentage",
+      "prompt": "After a 35% increase, an item costs £464.40. Find the original price.",
       "solution_steps": [
-        "Convert 8.25% to a multiplier: 0.9175",
-        "Multiply: £296.95 × 0.9175 = £272.45 (calculator, 2 d.p.)"
+        "Convert 35% to a multiplier: 1.35 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 464.40 ÷ 1.35 = 344"
       ],
-      "final_answer": "£272.45",
+      "final_answer": "£344",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 8.25% to a multiplier: 0.9175",
+          "description": "Convert 35% to a multiplier: 1.35 (original × multiplier = new value)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: £296.95 × 0.9175 = £272.45 (calculator, 2 d.p.)",
+          "description": "Divide the new value by the multiplier: 464.40 ÷ 1.35 = 344",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£272.45 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "density_higher",
-      "prompt": "A block of alloy in the shape of a cuboid has dimensions 8 cm × 2 cm × 9 cm and a density of 2 g/cm³. Find its mass.",
-      "solution_steps": [
-        "volume = length × width × height = 8 × 2 × 9 = 144 cm³",
-        "mass = density × volume = 2 × 144 = 288 g"
-      ],
-      "final_answer": "288 g",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "volume = length × width × height = 8 × 2 × 9 = 144 cm³",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "mass = density × volume = 2 × 144 = 288 g",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "288 g oe",
+          "description": "£344 oe",
           "marks": 1
         }
       ],
@@ -670,28 +701,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pressure_higher",
-      "prompt": "A crate has a rectangular base measuring 2 cm × 13 cm and exerts a pressure of 48 N/cm². Find the force it exerts.",
+      "topic_id": "density_higher",
+      "prompt": "A block of alloy in the shape of a cuboid has dimensions 8 cm × 2 cm × 9 cm and a density of 2 g/cm³. Find its mass.",
       "solution_steps": [
-        "area = length × width = 2 × 13 = 26 cm²",
-        "force = pressure × area = 48 × 26 = 1248 N"
+        "volume = length × width × height = 8 × 2 × 9 = 144 cm³",
+        "mass = density × volume = 2 × 144 = 288 g"
       ],
-      "final_answer": "1248 N",
+      "final_answer": "288 g",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "area = length × width = 2 × 13 = 26 cm²",
+          "description": "volume = length × width × height = 8 × 2 × 9 = 144 cm³",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "force = pressure × area = 48 × 26 = 1248 N",
+          "description": "mass = density × volume = 2 × 144 = 288 g",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1248 N oe",
+          "description": "288 g oe",
           "marks": 1
         }
       ],
@@ -699,401 +730,445 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cylinder",
-      "prompt": "A cylinder has radius 11 cm and height 8 cm. Find the exact volume, in terms of π.",
+      "topic_id": "combined_transformations",
+      "prompt": "Shape ABC is translated by the vector (0, -5) to give shape A'B'C'. Shape A'B'C' is then translated by the vector (-1, 1) to give shape A''B''C''. Describe fully the single transformation that maps ABC directly onto A''B''C''.",
       "solution_steps": [
-        "Volume = π × r² × h = π × 11² × 8",
-        "= 968π cm³"
+        "Two translations in a row combine into a single translation - just add the two vectors together.",
+        "(0, -5) + (-1, 1) = (-1, -4)."
       ],
-      "final_answer": "968π cm³",
+      "final_answer": "Translation by the vector (-1, -4)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Volume = π × r² × h = π × 11² × 8",
+          "description": "Two translations in a row combine into a single translation - just add the two vectors together.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 968π cm³",
+          "description": "(0, -5) + (-1, 1) = (-1, -4).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "968π cm³ oe",
+          "description": "Translation by the vector (-1, -4) oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cylinder",
+        "kind": "grid_transformation",
         "params": {
-          "radius_label": "11 cm",
-          "height_label": "8 cm"
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              -3,
+              -3
+            ],
+            [
+              2,
+              -3
+            ],
+            [
+              -2,
+              1
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "image_vertices": [
+            [
+              -4,
+              -7
+            ],
+            [
+              1,
+              -7
+            ],
+            [
+              -3,
+              -3
+            ]
+          ],
+          "image_labels": [
+            "A''",
+            "B''",
+            "C''"
+          ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "compound_3d_surface_area",
-      "prompt": "A capsule-shaped solid is made from a cylinder of radius 3 cm and height 12 cm, with a hemisphere of the same radius attached to one end. Find the total surface area, correct to 2 decimal places.",
+      "topic_id": "volume_surface_area_pyramid",
+      "prompt": "A square-based pyramid has a base of side 8 cm and a perpendicular height of 6 cm. Find its total surface area, correct to 3 significant figures.",
       "solution_steps": [
-        "Cylinder curved surface = 2 × π × r × h = 2 × π × 3 × 12",
-        "Cylinder base = π × r² = π × 3² (the top is covered by the hemisphere, so it's excluded)",
-        "Hemisphere curved surface = 2 × π × r² = 2 × π × 3² (its flat face is glued to the cylinder, so it's excluded too)",
-        "Total surface area ≈ 311.02 cm² (2 d.p.)"
+        "Slant height l = √(height² + (base ÷ 2)²) = √(6² + (8 ÷ 2)²) ≈ 7.21 cm",
+        "Surface area = base² + 2 × base × l = 8² + 2 × 8 × 7.21",
+        "= 179 cm² (3 s.f.)"
       ],
-      "final_answer": "311.02 cm²",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Cylinder curved surface = 2 × π × r × h = 2 × π × 3 × 12",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Cylinder base = π × r² = π × 3² (the top is covered by the hemisphere, so it's excluded)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Hemisphere curved surface = 2 × π × r² = 2 × π × 3² (its flat face is glued to the cylinder, so it's excluded too)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total surface area ≈ 311.02 cm² (2 d.p.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "311.02 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "compound_3d",
-        "params": {
-          "variant": "cylinder_hemisphere",
-          "radius_label": "3 cm",
-          "height_label": "12 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "loci_regions",
-      "prompt": "A and B are two fixed points (shown). Shade the region containing points that are both within 3 cm of A AND closer to A than to B.",
-      "solution_steps": [
-        "The boundary for 'within 3 cm of A' is a circle, centre A, radius 3 cm - the region is inside this circle.",
-        "The boundary for 'closer to A than to B' is the perpendicular bisector of AB - the region is on the A side of it.",
-        "The required region is where these two conditions overlap."
-      ],
-      "final_answer": "The region inside the circle of radius 3 cm centred on A, and on the A side of the perpendicular bisector of AB.",
+      "final_answer": "179 cm²",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The boundary for 'within 3 cm of A' is a circle, centre A, radius 3 cm - the region is inside this circle.",
+          "description": "Slant height l = √(height² + (base ÷ 2)²) = √(6² + (8 ÷ 2)²) ≈ 7.21 cm",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The boundary for 'closer to A than to B' is the perpendicular bisector of AB - the region is on the A side of it.",
+          "description": "Surface area = base² + 2 × base × l = 8² + 2 × 8 × 7.21",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The required region is where these two conditions overlap.",
+          "description": "= 179 cm² (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "The region inside the circle of radius 3 cm centred on A, and on the A side of the perpendicular bisector of AB. oe",
+          "description": "179 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "loci_region",
+        "kind": "pyramid",
         "params": {
-          "x_min": -7.0,
-          "x_max": 1.0,
-          "y_min": -3.0,
-          "y_max": 8.0,
-          "points": [
-            {
-              "xy": [
-                -3,
-                4
-              ],
-              "label": "A"
-            },
-            {
-              "xy": [
-                -3,
-                -2
-              ],
-              "label": "B"
-            }
-          ],
-          "boundaries": [
-            {
-              "type": "circle",
-              "centre": [
-                -3,
-                4
-              ],
-              "radius": 3
-            },
-            {
-              "type": "segment",
-              "p1": [
-                8.0,
-                1.0
-              ],
-              "p2": [
-                -14.0,
-                1.0
-              ]
-            }
-          ]
+          "base_label": "8 cm",
+          "height_label": "6 cm",
+          "slant_label": "7.21 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "volume_surface_area_cone",
+      "prompt": "A cone has radius 3 cm and (perpendicular) height 6 cm. Find its volume, correct to 2 decimal places.",
+      "solution_steps": [
+        "Volume = (1/3) × π × r² × h = (1/3) × π × 3² × 6.000",
+        "= 56.55 cm³ (2 d.p., using a calculator value of π)"
+      ],
+      "final_answer": "56.55 cm³",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Volume = (1/3) × π × r² × h = (1/3) × π × 3² × 6.000",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 56.55 cm³ (2 d.p., using a calculator value of π)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "56.55 cm³ oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "cone",
+        "params": {
+          "radius_label": "3 cm",
+          "height_label": "6 cm",
+          "show_height_triangle": true
         }
       },
       "solution_diagram": {
-        "kind": "loci_region",
+        "kind": "cone",
         "params": {
-          "x_min": -7.0,
-          "x_max": 1.0,
-          "y_min": -3.0,
-          "y_max": 8.0,
-          "points": [
-            {
-              "xy": [
-                -3,
-                4
-              ],
-              "label": "A"
-            },
-            {
-              "xy": [
-                -3,
-                -2
-              ],
-              "label": "B"
-            }
-          ],
-          "boundaries": [
-            {
-              "type": "circle",
-              "centre": [
-                -3,
-                4
-              ],
-              "radius": 3
-            },
-            {
-              "type": "segment",
-              "p1": [
-                8.0,
-                1.0
-              ],
-              "p2": [
-                -14.0,
-                1.0
-              ]
-            }
-          ],
-          "shade_constraints": [
-            {
-              "type": "disk",
-              "centre": [
-                -3,
-                4
-              ],
-              "radius": 3,
-              "inside": true
-            },
-            {
-              "type": "half_plane",
-              "closer_to": [
-                -3,
-                4
-              ],
-              "than": [
-                -3,
-                -2
-              ]
-            }
-          ]
+          "radius_label": "3 cm",
+          "height_label": "6 cm",
+          "show_height_triangle": true,
+          "slant_label": "6.71 cm"
         }
       }
     },
     {
-      "topic_id": "compound_3d_volume",
-      "prompt": "An ice-cream-shaped solid is made from a cone of radius 10 cm and height 19 cm, with a hemisphere of the same radius attached to its open end. Find the total volume, correct to 1 decimal place.",
+      "topic_id": "trig_3d",
+      "prompt": "A cuboid has length 11 cm, width 15 cm and height 5 cm. Find the angle between the diagonal AG (from one corner to the opposite corner) and the base of the cuboid, correct to 1 decimal place.",
       "solution_steps": [
-        "Cone volume = (1/3) × π × r² × h = (1/3) × π × 10² × 19",
-        "Hemisphere volume = (2/3) × π × r³ = (2/3) × π × 10³",
-        "Total volume = cone + hemisphere ≈ 4084.1 cm³ (1 d.p.)"
+        "First find the diagonal across the base: base diagonal = √(l² + w²) = √(11² + 15²) = 18.601 cm - this is the projection of AG onto the base.",
+        "The angle between AG and the base, height and base diagonal form a right-angled triangle: tan(angle) = height ÷ base diagonal = 5 ÷ 18.601.",
+        "angle = tan^-1(5 ÷ 18.601) = 15.0° (1 d.p.)"
       ],
-      "final_answer": "4084.1 cm³",
+      "final_answer": "15.0°",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Cone volume = (1/3) × π × r² × h = (1/3) × π × 10² × 19",
+          "description": "First find the diagonal across the base: base diagonal = √(l² + w²) = √(11² + 15²) = 18.601 cm - this is the projection of AG onto the base.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Hemisphere volume = (2/3) × π × r³ = (2/3) × π × 10³",
+          "description": "The angle between AG and the base, height and base diagonal form a right-angled triangle: tan(angle) = height ÷ base diagonal = 5 ÷ 18.601.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total volume = cone + hemisphere ≈ 4084.1 cm³ (1 d.p.)",
+          "description": "angle = tan^-1(5 ÷ 18.601) = 15.0° (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4084.1 cm³ oe",
+          "description": "15.0° oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "compound_3d",
+        "kind": "cuboid",
         "params": {
-          "variant": "cone_hemisphere",
-          "radius_label": "10 cm",
-          "cone_height_label": "19 cm"
+          "length_label": "11 cm",
+          "width_label": "15 cm",
+          "height_label": "5 cm",
+          "diagonal_label": "θ",
+          "vertex_labels": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H"
+          ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "set_notation",
-      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, A = {2, 3, 4, 8, 9, 10}, B = {3, 5, 8}. List the elements of (A ∪ B)'.",
+      "topic_id": "graph_transformations",
+      "prompt": "The graph of y = f(x) is transformed to give the graph of y = f(-x). Describe this transformation fully.",
       "solution_steps": [
-        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
-        "A = {2, 3, 4, 8, 9, 10}",
-        "B = {3, 5, 8}",
-        "(A ∪ B)' means the complement of A union B.",
-        "(A ∪ B)' = {1, 6, 7}"
+        "y = f(-x) corresponds to a reflection in the y-axis."
       ],
-      "final_answer": "{1, 6, 7}",
+      "final_answer": "Reflection in the y-axis",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = f(-x) corresponds to a reflection in the y-axis.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Reflection in the y-axis oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "graph_transformation",
+        "params": {
+          "transform": "reflect_y",
+          "shift": 0,
+          "original_label": "y = f(x)",
+          "transformed_label": "y = f(-x)"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "tree_diagram_dependent",
+      "prompt": "A bag contains 7 blue and 7 red counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the first counter is blue and the second counter is red.",
+      "solution_steps": [
+        "After the first counter is picked (without replacement), there are 13 counters left.",
+        "P(blue then blue) = 1/2 × 6/13 = 3/13",
+        "P(blue then red) = 1/2 × 7/13 = 7/26",
+        "P(red then blue) = 1/2 × 7/13 = 7/26",
+        "P(red then red) = 1/2 × 6/13 = 3/13",
+        "P(the first counter is blue and the second counter is red) = 7/26"
+      ],
+      "final_answer": "7/26",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+          "description": "After the first counter is picked (without replacement), there are 13 counters left.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A = {2, 3, 4, 8, 9, 10}",
+          "description": "P(blue then blue) = 1/2 × 6/13 = 3/13",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "B = {3, 5, 8}",
+          "description": "P(blue then red) = 1/2 × 7/13 = 7/26",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(A ∪ B)' means the complement of A union B. (A ∪ B)' = {1, 6, 7}",
+          "description": "P(red then blue) = 1/2 × 7/13 = 7/26 P(red then red) = 1/2 × 6/13 = 3/13 P(the first counter is blue and the second counter is red) = 7/26",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "{1, 6, 7} oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "inequalities_number_line_higher",
-      "prompt": "Write down the inequality (or pair of inequalities) shown by the number line below.",
-      "solution_steps": [
-        "The circle at 1 is filled and the circle at 6 is filled.",
-        "The shading lies outside the two circles, so either bound alone is enough: x ≤ 1 or x ≥ 6."
-      ],
-      "final_answer": "x ≤ 1 or x ≥ 6",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The circle at 1 is filled and the circle at 6 is filled.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The shading lies outside the two circles, so either bound alone is enough: x ≤ 1 or x ≥ 6.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x ≤ 1 or x ≥ 6 oe",
+          "description": "7/26 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "number_line",
+        "kind": "tree_diagram",
         "params": {
-          "range": [
-            -8,
-            8
+          "stage1": [
+            [
+              "Blue",
+              "1/2"
+            ],
+            [
+              "Red",
+              "1/2"
+            ]
           ],
-          "boundaries": [
-            {
-              "value": 1,
-              "closed": true
-            },
-            {
-              "value": 6,
-              "closed": true
-            }
+          "stage2": [
+            [
+              [
+                "Blue",
+                "6/13"
+              ],
+              [
+                "Red",
+                "7/13"
+              ]
+            ],
+            [
+              [
+                "Blue",
+                "7/13"
+              ],
+              [
+                "Red",
+                "6/13"
+              ]
+            ]
           ],
-          "shade": "outside"
+          "leaf_probs": [
+            [
+              "3/13",
+              "7/26"
+            ],
+            [
+              "7/26",
+              "3/13"
+            ]
+          ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "kinematics_suvat",
-      "prompt": "An object starts with a velocity of 0 m/s and has a constant acceleration of 1 m/s^2 for 9 s. Find its final velocity.",
+      "topic_id": "probability_conditional",
+      "prompt": "A bag contains 3 red and 6 purple counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
       "solution_steps": [
-        "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
-        "v = u + at",
-        "Substitute u = 0, a = 1, t = 9: v = 0 + 1 × 9 = 0 + 9 = 9"
+        "P(both red) = 3/9 × 2/8 = 1/12",
+        "P(both purple) = 6/9 × 5/8 = 5/12",
+        "P(both same colour) = 1/12 + 5/12 = 1/2"
       ],
-      "final_answer": "9 m/s",
+      "final_answer": "1/2",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
+          "description": "P(both red) = 3/9 × 2/8 = 1/12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "v = u + at",
+          "description": "P(both purple) = 6/9 × 5/8 = 5/12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute u = 0, a = 1, t = 9: v = 0 + 1 × 9 = 0 + 9 = 9",
+          "description": "P(both same colour) = 1/12 + 5/12 = 1/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9 m/s oe",
+          "description": "1/2 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Red",
+              ""
+            ],
+            [
+              "Purple",
+              ""
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Red",
+                ""
+              ],
+              [
+                "Purple",
+                ""
+              ]
+            ],
+            [
+              [
+                "Red",
+                ""
+              ],
+              [
+                "Purple",
+                ""
+              ]
+            ]
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Red",
+              "3/9"
+            ],
+            [
+              "Purple",
+              "6/9"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Red",
+                "2/8"
+              ],
+              [
+                "Purple",
+                "6/8"
+              ]
+            ],
+            [
+              [
+                "Red",
+                "3/8"
+              ],
+              [
+                "Purple",
+                "5/8"
+              ]
+            ]
+          ]
+        }
+      }
     }
   ]
 }

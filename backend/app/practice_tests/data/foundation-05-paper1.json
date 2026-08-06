@@ -418,28 +418,41 @@
       }
     },
     {
-      "topic_id": "factorise_common_factor",
-      "prompt": "Factorise: 3x + 18",
+      "topic_id": "expand_double_brackets_foundation",
+      "prompt": "Expand and simplify: (2x + 3)(2x + 7)",
       "solution_steps": [
-        "Find the highest common factor of 3 and 18: 3",
-        "Factorise: 3(x + 6)"
+        "First: 2x × 2x = 4x^2",
+        "Outer: 2x × 7 = 14x",
+        "Inner: 3 × 2x = 6x",
+        "Last: 3 × 7 = 21",
+        "Combine like terms: 4x^2 + 20x + 21"
       ],
-      "final_answer": "3(x + 6)",
-      "marks": 3,
+      "final_answer": "4x^2 + 20x + 21",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the highest common factor of 3 and 18: 3",
+          "description": "First: 2x × 2x = 4x^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: 3(x + 6)",
+          "description": "Outer: 2x × 7 = 14x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Inner: 3 × 2x = 6x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Last: 3 × 7 = 21 Combine like terms: 4x^2 + 20x + 21",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3(x + 6) oe",
+          "description": "4x^2 + 20x + 21 oe",
           "marks": 1
         }
       ],
@@ -447,40 +460,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_forming_and_solving",
-      "prompt": "4 tickets and 4 programmes cost £5.16 in total. 2 tickets and 4 programmes cost £3.50 in total. Form and solve a pair of simultaneous equations to find the cost of one ticket and one programme.",
+      "topic_id": "simultaneous_common_coefficient",
+      "prompt": "Solve the simultaneous equations: x + 3y = -1 and 6x - 3y = 57",
       "solution_steps": [
-        "Let x = cost of one ticket (pence), y = cost of one programme (pence).",
-        "4x + 4y = 516  (1)",
-        "2x + 4y = 350  (2)",
-        "Solving simultaneously: x = 83, y = 46"
+        "x + 3y = -1  (1)",
+        "6x - 3y = 57  (2)",
+        "Add the equations to eliminate y: 7x = 56, so x = 8",
+        "Substitute x = 8 into (1): 3y = -9, so y = -3"
       ],
-      "final_answer": "ticket = £0.83, programme = £0.46",
+      "final_answer": "x = 8, y = -3",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = cost of one ticket (pence), y = cost of one programme (pence).",
+          "description": "x + 3y = -1  (1)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x + 4y = 516  (1)",
+          "description": "6x - 3y = 57  (2)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x + 4y = 350  (2)",
+          "description": "Add the equations to eliminate y: 7x = 56, so x = 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Solving simultaneously: x = 83, y = 46",
+          "description": "Substitute x = 8 into (1): 3y = -9, so y = -3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "ticket = £0.83, programme = £0.46 oe",
+          "description": "x = 8, y = -3 oe",
           "marks": 1
         }
       ],
@@ -1052,32 +1065,51 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_listing_outcomes",
-      "prompt": "A coin is flipped and a die is rolled. List all the possible outcomes.",
+      "topic_id": "fractions_equivalent_diagram",
+      "prompt": "The first shape shows 3/4 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
       "solution_steps": [
-        "There are 2 possible outcomes for the first event and 6 for the second, so there are 2 × 6 = 12 possible combined outcomes.",
-        "For each outcome of the first event, list every outcome of the second event: H1, H2, H3, H4, H5, H6, T1, T2, T3, T4, T5, T6"
+        "Cross-multiply 3/4 against each labelled shape: a shape shows an equivalent fraction only if 3 × (its denominator) = (its shaded count) × 4.",
+        "Only shape A) 9/12 works: 3 × 12 = 9 × 4 = 36."
       ],
-      "final_answer": "H1, H2, H3, H4, H5, H6, T1, T2, T3, T4, T5, T6",
-      "marks": 3,
+      "final_answer": "A) 9/12",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "There are 2 possible outcomes for the first event and 6 for the second, so there are 2 × 6 = 12 possible combined outcomes.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For each outcome of the first event, list every outcome of the second event: H1, H2, H3, H4, H5, H6, T1, T2, T3, T4, T5, T6",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "H1, H2, H3, H4, H5, H6, T1, T2, T3, T4, T5, T6 oe",
+          "code": "B1",
+          "description": "A) 9/12 (selecting the correct option)",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "fraction_shapes",
+        "params": {
+          "shapes": [
+            {
+              "kind": "circle",
+              "parts": 4,
+              "shaded": 3
+            },
+            {
+              "kind": "circle",
+              "parts": 12,
+              "shaded": 9,
+              "label": "A)"
+            },
+            {
+              "kind": "circle",
+              "parts": 4,
+              "shaded": 1,
+              "label": "B)"
+            },
+            {
+              "kind": "circle",
+              "parts": 6,
+              "shaded": 1,
+              "label": "C)"
+            }
+          ]
+        }
+      },
       "solution_diagram": null
     }
   ]

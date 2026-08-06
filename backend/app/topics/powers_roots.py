@@ -97,7 +97,14 @@ def generate_powers_foundation(tier: Tier, rng: random.Random) -> Question:
 
 
 def generate_powers_higher(tier: Tier, rng: random.Random) -> Question:
-    shape = rng.choice(["negative_index", "zero_index", "fractional_root", "fractional_full"])
+    # Weighted towards the two fractional-exponent shapes - a genuine
+    # fractional power is the distinguishing content of this topic, so it
+    # should show up more often than an even 25% split would give it.
+    shape = rng.choices(
+        ["negative_index", "zero_index", "fractional_root", "fractional_full"],
+        weights=[15, 15, 35, 35],
+        k=1,
+    )[0]
 
     if shape == "negative_index":
         base = rng.randint(2, 6)
@@ -366,7 +373,14 @@ def generate_modelled_example_powers_foundation(tier: Tier, rng: random.Random) 
 
 
 def generate_modelled_example_powers_higher(tier: Tier, rng: random.Random) -> ModelledExample:
-    shape = rng.choice(["negative_index", "zero_index", "fractional_root", "fractional_full"])
+    # Weighted towards the two fractional-exponent shapes - a genuine
+    # fractional power is the distinguishing content of this topic, so it
+    # should show up more often than an even 25% split would give it.
+    shape = rng.choices(
+        ["negative_index", "zero_index", "fractional_root", "fractional_full"],
+        weights=[15, 15, 35, 35],
+        k=1,
+    )[0]
 
     if shape == "negative_index":
         base = rng.randint(2, 6)
@@ -1010,7 +1024,14 @@ def generate_modelled_example_negative_indices(tier: Tier, rng: random.Random) -
 
 
 def generate_simplifying_indices_challenging(tier: Tier, rng: random.Random) -> Question:
-    shape = rng.choice(["mult_then_power", "frac_then_neg", "power_then_divide"])
+    # Weighted towards the one shape that shows a genuine fractional exponent
+    # in the prompt (frac_then_neg) - an even 3-way split under-represents
+    # this topic's own distinguishing content.
+    shape = rng.choices(
+        ["mult_then_power", "frac_then_neg", "power_then_divide"],
+        weights=[15, 70, 15],
+        k=1,
+    )[0]
 
     if shape == "mult_then_power":
         base = rng.randint(2, 6)
@@ -1124,7 +1145,14 @@ def generate_simplifying_indices_challenging(tier: Tier, rng: random.Random) -> 
 
 
 def generate_modelled_example_simplifying_indices_challenging(tier: Tier, rng: random.Random) -> ModelledExample:
-    shape = rng.choice(["mult_then_power", "frac_then_neg", "power_then_divide"])
+    # Weighted towards the one shape that shows a genuine fractional exponent
+    # in the prompt (frac_then_neg) - an even 3-way split under-represents
+    # this topic's own distinguishing content.
+    shape = rng.choices(
+        ["mult_then_power", "frac_then_neg", "power_then_divide"],
+        weights=[15, 70, 15],
+        k=1,
+    )[0]
 
     if shape == "mult_then_power":
         base = rng.randint(2, 6)

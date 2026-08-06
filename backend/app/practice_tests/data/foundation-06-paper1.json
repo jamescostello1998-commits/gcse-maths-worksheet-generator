@@ -152,34 +152,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_one_step",
-      "prompt": "Solve: 9x = 54",
+      "topic_id": "standard_form_from_small",
+      "prompt": "Write 7.6 × 10^-5 as an ordinary number.",
       "solution_steps": [
-        "9x = 54",
-        "Divide both sides by 9:",
-        "x = 6"
+        "Multiply 7.6 by 10^-5, which means moving the decimal point 5 place(s) left.",
+        "7.6 × 10^-5 = 0.000076"
       ],
-      "final_answer": "6",
-      "marks": 4,
+      "final_answer": "0.000076",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "9x = 54",
+          "description": "Multiply 7.6 by 10^-5, which means moving the decimal point 5 place(s) left.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 9:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 6",
+          "description": "7.6 × 10^-5 = 0.000076",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6 oe",
+          "description": "0.000076 oe",
           "marks": 1
         }
       ],
@@ -263,76 +257,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_graphically",
-      "prompt": "The graphs of y = 2x + 5 and y = 4x + 13 are shown below. Use the graphs to write down the solution to the simultaneous equations.",
+      "topic_id": "simultaneous_forming_and_solving",
+      "prompt": "1 apple and 5 bananas cost £3.97 in total. 2 apples and 2 bananas cost £1.94 in total. Form and solve a pair of simultaneous equations to find the cost of one apple and one banana.",
       "solution_steps": [
-        "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
-        "The lines cross at x = -4, y = -3."
+        "Let x = cost of one apple (pence), y = cost of one banana (pence).",
+        "1x + 5y = 397  (1)",
+        "2x + 2y = 194  (2)",
+        "Solving simultaneously: x = 22, y = 75"
       ],
-      "final_answer": "x = -4, y = -3",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The lines cross at x = -4, y = -3.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = -4, y = -3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "linear_graph_pair",
-        "params": {
-          "label1": "y = 2x + 5",
-          "label2": "y = 4x + 13"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "expand_double_brackets_foundation",
-      "prompt": "Expand and simplify: (2x + 6)(4x + 9)",
-      "solution_steps": [
-        "First: 2x × 4x = 8x^2",
-        "Outer: 2x × 9 = 18x",
-        "Inner: 6 × 4x = 24x",
-        "Last: 6 × 9 = 54",
-        "Combine like terms: 8x^2 + 42x + 54"
-      ],
-      "final_answer": "8x^2 + 42x + 54",
+      "final_answer": "apple = £0.22, banana = £0.75",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First: 2x × 4x = 8x^2",
+          "description": "Let x = cost of one apple (pence), y = cost of one banana (pence).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Outer: 2x × 9 = 18x",
+          "description": "1x + 5y = 397  (1)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Inner: 6 × 4x = 24x",
+          "description": "2x + 2y = 194  (2)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Last: 6 × 9 = 54 Combine like terms: 8x^2 + 42x + 54",
+          "description": "Solving simultaneously: x = 22, y = 75",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8x^2 + 42x + 54 oe",
+          "description": "apple = £0.22, banana = £0.75 oe",
           "marks": 1
         }
       ],
@@ -340,28 +298,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_common_factor",
-      "prompt": "Factorise: 28x - 49",
+      "topic_id": "expand_single_bracket",
+      "prompt": "Expand: -8(x + 7)",
       "solution_steps": [
-        "Find the highest common factor of 28 and -49: 7",
-        "Factorise: 7(4x - 7)"
+        "Multiply -8 by x: -8x",
+        "Multiply -8 by 7: -56",
+        "Combine: -8x - 56"
       ],
-      "final_answer": "7(4x - 7)",
-      "marks": 3,
+      "final_answer": "-8x - 56",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the highest common factor of 28 and -49: 7",
+          "description": "Multiply -8 by x: -8x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: 7(4x - 7)",
+          "description": "Multiply -8 by 7: -56",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine: -8x - 56",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7(4x - 7) oe",
+          "description": "-8x - 56 oe",
           "marks": 1
         }
       ],
@@ -369,40 +333,70 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_common_coefficient",
-      "prompt": "Solve the simultaneous equations: 5x + y = -27 and 6x + y = -32",
+      "topic_id": "expand_double_brackets_no_coefficient_foundation",
+      "prompt": "Expand and simplify: (x + 1)(x + 2)",
       "solution_steps": [
-        "5x + y = -27  (1)",
-        "6x + y = -32  (2)",
-        "Subtract the equations to eliminate y: -1x = 5, so x = -5",
-        "Substitute x = -5 into (1): 1y = -2, so y = -2"
+        "First: x × x = x^2",
+        "Outer: x × 2 = 2x",
+        "Inner: 1 × x = 1x",
+        "Last: 1 × 2 = 2",
+        "Combine like terms: x^2 + 3x + 2"
       ],
-      "final_answer": "x = -5, y = -2",
+      "final_answer": "x^2 + 3x + 2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5x + y = -27  (1)",
+          "description": "First: x × x = x^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "6x + y = -32  (2)",
+          "description": "Outer: x × 2 = 2x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract the equations to eliminate y: -1x = 5, so x = -5",
+          "description": "Inner: 1 × x = 1x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute x = -5 into (1): 1y = -2, so y = -2",
+          "description": "Last: 1 × 2 = 2 Combine like terms: x^2 + 3x + 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -5, y = -2 oe",
+          "description": "x^2 + 3x + 2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "functions_evaluate",
+      "prompt": "f(x) = 5x + 6. Find f(4).",
+      "solution_steps": [
+        "f(4) = 5×(4) + 6",
+        "f(4) = 26"
+      ],
+      "final_answer": "26",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "f(4) = 5×(4) + 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "f(4) = 26",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "26 oe",
           "marks": 1
         }
       ],
@@ -710,9 +704,9 @@
     },
     {
       "topic_id": "transform_translate_describe",
-      "prompt": "Shape ABCDEF is translated to give shape A'B'C'D'E'F', shown on the grid. Describe fully the single transformation that maps ABCDEF onto A'B'C'D'E'F'.",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
       "solution_steps": [
-        "Every vertex moves by exactly the same amount: comparing A(-2, -2) with A'(-1, -5) gives the vector (1, -3).",
+        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-2, -2), with the matching vertex of shape B, (-1, -5), gives the vector (1, -3).",
         "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
       ],
       "final_answer": "Translation by the vector (1, -3)",
@@ -720,7 +714,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Every vertex moves by exactly the same amount: comparing A(-2, -2) with A'(-1, -5) gives the vector (1, -3).",
+          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-2, -2), with the matching vertex of shape B, (-1, -5), gives the vector (1, -3).",
           "marks": 1
         },
         {
@@ -768,12 +762,12 @@
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ],
           "image_vertices": [
             [
@@ -802,44 +796,61 @@
             ]
           ],
           "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'",
-            "E'",
-            "F'"
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "area_parallelogram",
-      "prompt": "Find the area of the following parallelogram.",
+      "topic_id": "volume_surface_area_triangular_prism",
+      "prompt": "A triangular prism has a right-angled triangular cross-section with sides 5 cm and 12 cm (hypotenuse 13 cm), and length 13 cm. Find its surface area.",
       "solution_steps": [
-        "Area = base × height = 10 × 14 = 140 cm²"
+        "Area of the two triangular ends = 2 × (1/2) × 5 × 12 = 60 cm²",
+        "Perimeter of the triangular cross-section = 5 + 12 + 13 = 30 cm",
+        "Area of the three rectangular faces = 30 × 13 = 390 cm²",
+        "Surface area = 60 + 390 = 450 cm²"
       ],
-      "final_answer": "140 cm²",
-      "marks": 2,
+      "final_answer": "450 cm²",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = base × height = 10 × 14 = 140 cm²",
+          "description": "Area of the two triangular ends = 2 × (1/2) × 5 × 12 = 60 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Perimeter of the triangular cross-section = 5 + 12 + 13 = 30 cm",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of the three rectangular faces = 30 × 13 = 390 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Surface area = 60 + 390 = 450 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "140 cm² oe",
+          "description": "450 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "parallelogram",
+        "kind": "triangular_prism",
         "params": {
-          "base": 10,
-          "height": 14,
-          "base_label": "10 cm",
-          "height_label": "14 cm"
+          "base_label": "5 cm",
+          "triangle_height_label": "12 cm",
+          "length_label": "13 cm"
         }
       },
       "solution_diagram": null
@@ -882,39 +893,19 @@
     },
     {
       "topic_id": "congruent_triangle_proof_foundation",
-      "prompt": "Triangles ABC and ADC share side AC, with AB = AD and BC = DC. State which congruence criterion (SSS, SAS, ASA or RHS) proves that the two triangles are congruent.",
+      "prompt": "Triangles ABC and ADC share side AC, with AB = AD and BC = DC. Which congruence criterion proves that the two triangles are congruent? A) SSS  B) RHS  C) SAS  D) ASA",
       "solution_steps": [
         "AB = AD (given)",
         "BC = DC (given)",
         "AC is common to both triangles",
         "These facts match the Side-Side-Side (SSS) congruence criterion."
       ],
-      "final_answer": "SSS",
-      "marks": 5,
+      "final_answer": "A) SSS",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "AB = AD (given)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "BC = DC (given)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "AC is common to both triangles",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "These facts match the Side-Side-Side (SSS) congruence criterion.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "SSS oe",
+          "code": "B1",
+          "description": "A) SSS (selecting the correct option)",
           "marks": 1
         }
       ],
@@ -1023,12 +1014,7 @@
             "A",
             "B",
             "C"
-          ],
-          "translation_vector": [
-            -2,
-            5
-          ],
-          "vector_label": "(-2, 5)"
+          ]
         }
       },
       "solution_diagram": {
@@ -1057,11 +1043,6 @@
             "B",
             "C"
           ],
-          "translation_vector": [
-            -2,
-            5
-          ],
-          "vector_label": "(-2, 5)",
           "image_vertices": [
             [
               -5,
@@ -1085,76 +1066,63 @@
       }
     },
     {
-      "topic_id": "venn_diagram_shading",
-      "prompt": "Shade the region that represents the elements in B but not in A.",
+      "topic_id": "construction_angle_bisector",
+      "prompt": "Angle YUL = 49°. Describe, step by step, how to construct the bisector of angle YUL using only a ruler and a pair of compasses.",
       "solution_steps": [
-        "The Venn diagram has two circles, A and B, inside a rectangle representing everything being considered.",
-        "'Shade the region that represents the elements in B but not in A.' tells you which of the four regions (in A only, in B only, in both, or in neither) needs shading.",
-        "The region inside B only (not in A)."
+        "Open the compasses to any radius and place the point on U (the vertex of the angle).",
+        "Draw an arc that crosses both arms of the angle, at a point on UY and a point on UL.",
+        "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
+        "Draw a straight line from U through the point where the two arcs intersect. This line is the bisector of angle YUL."
       ],
-      "final_answer": "The region inside B only (not in A).",
-      "marks": 4,
+      "final_answer": "The straight line from U through the intersection of the two equal-radius arcs bisects angle YUL into two equal angles.",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The Venn diagram has two circles, A and B, inside a rectangle representing everything being considered.",
+          "description": "Open the compasses to any radius and place the point on U (the vertex of the angle).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "'Shade the region that represents the elements in B but not in A.' tells you which of the four regions (in A only, in B only, in both, or in neither) needs shading.",
+          "description": "Draw an arc that crosses both arms of the angle, at a point on UY and a point on UL.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The region inside B only (not in A).",
+          "description": "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Draw a straight line from U through the point where the two arcs intersect. This line is the bisector of angle YUL.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "The region inside B only (not in A). oe",
+          "description": "The straight line from U through the intersection of the two equal-radius arcs bisects angle YUL into two equal angles. oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "venn_diagram",
-        "params": {
-          "labels": [
-            "A",
-            "B"
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "venn_diagram",
-        "params": {
-          "labels": [
-            "A",
-            "B"
-          ],
-          "shade": [
-            "b_only"
-          ]
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     },
     {
-      "topic_id": "stats_range",
-      "prompt": "Find the range of this data set: 26, 30, 19, 13, 28, 18.",
+      "topic_id": "stats_mean",
+      "prompt": "Find the mean of this data set: 10, 22, 12, 30, 28, 2.",
       "solution_steps": [
-        "Range = largest - smallest = 30 - 13 = 17"
+        "Mean = sum ÷ count = (10 + 22 + 12 + 30 + 28 + 2) ÷ 6 = 104 ÷ 6 = 52/3"
       ],
-      "final_answer": "17",
+      "final_answer": "52/3",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Range = largest - smallest = 30 - 13 = 17",
+          "description": "Mean = sum ÷ count = (10 + 22 + 12 + 30 + 28 + 2) ÷ 6 = 104 ÷ 6 = 52/3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "17 oe",
+          "description": "52/3 oe",
           "marks": 1
         }
       ],

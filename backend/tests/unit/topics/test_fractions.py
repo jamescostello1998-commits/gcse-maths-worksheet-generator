@@ -144,21 +144,12 @@ def test_equivalent_diagram_fill_missing_shape_blanks_shape_b_until_solution():
             sol_shapes = q.solution_diagram.params["shapes"]
             assert sol_shapes[1]["shaded"] == int(q.final_answer)
             assert sol_shapes[1]["parts"] == int(d)
+            # No "Shape A is divided into..." context sentence - the prompt is
+            # just the bare question, since the diagrams already show it.
+            assert q.prompt == (
+                "How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?"
+            )
     assert found_fill_missing
-
-
-def test_equivalent_diagram_only_shape_has_a_terse_prompt_with_no_explanatory_prose():
-    rng = random.Random(303)
-    found_diagram_only = False
-    for _ in range(TRIALS):
-        q = fractions.generate_fractions_equivalent_diagram(Tier.FOUNDATION, rng)
-        if q.dedup_key.startswith("diagram_fill:") and q.dedup_key.split(":")[5] == "diagram_only":
-            found_diagram_only = True
-            assert "divided into" not in q.prompt
-            assert "equal parts" not in q.prompt
-            shapes = q.diagram.params["shapes"]
-            assert shapes[0] == {"kind": shapes[0]["kind"], "parts": shapes[0]["parts"], "shaded": shapes[0]["shaded"]}
-    assert found_diagram_only
 
 
 def test_equivalent_diagram_identify_shape_shows_reference_plus_three_candidates():

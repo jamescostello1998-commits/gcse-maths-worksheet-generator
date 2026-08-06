@@ -270,6 +270,7 @@ def generate_negative_ordering(tier: Tier, rng: random.Random) -> Question:
     ordered = _verify_ordering(numbers, ascending)
 
     direction_text = "smallest to largest" if ascending else "largest to smallest"
+    direction = "ascending" if ascending else "descending"
     numbers_text = ", ".join(str(x) for x in numbers)
     ordered_text = ", ".join(str(x) for x in ordered)
 
@@ -280,7 +281,7 @@ def generate_negative_ordering(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="negative_ordering",
         tier=Tier.FOUNDATION,
-        prompt=f"Write these numbers in order, from {direction_text}: {numbers_text}",
+        prompt=f"Write these numbers in {direction} order: {numbers_text}",
         solution_steps=tuple(steps),
         final_answer=ordered_text,
         dedup_key=f"negord:{','.join(str(x) for x in numbers)}:{ascending}",
@@ -292,6 +293,7 @@ def generate_modelled_example_negative_ordering(tier: Tier, rng: random.Random) 
     ordered = _verify_ordering(numbers, ascending)
 
     direction_text = "smallest to largest" if ascending else "largest to smallest"
+    direction = "ascending" if ascending else "descending"
     numbers_text = ", ".join(str(x) for x in numbers)
     ordered_text = ", ".join(str(x) for x in ordered)
 
@@ -314,7 +316,7 @@ def generate_modelled_example_negative_ordering(tier: Tier, rng: random.Random) 
     return ModelledExample(
         topic_id="negative_ordering",
         tier=Tier.FOUNDATION,
-        prompt=f"Write these numbers in order, from {direction_text}: {numbers_text}",
+        prompt=f"Write these numbers in {direction} order: {numbers_text}",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=ordered_text,

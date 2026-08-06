@@ -224,88 +224,86 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_graph",
-      "prompt": "Complete a table of values for y = -cos(x°) for x = -180 to 180 (in steps of 90°), then plot the graph.",
+      "topic_id": "plot_exponential",
+      "prompt": "Complete a table of values for y = 5 × 2^x for x = 0 to 4, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = -cos(x°):",
-        "x: -180, -90, 0, 90, 180",
-        "y: 1, 0, -1, 0, 1",
-        "Plot each (x, y) point and join them with a single smooth curve - y = -cos(x°) repeats the same shape every 360°, and never goes above 1 or below -1."
+        "Table of values for y = 5 × 2^x:",
+        "x: 0, 1, 2, 3, 4",
+        "y: 5, 10, 20, 40, 80",
+        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
       ],
-      "final_answer": "y = -cos(x°)",
+      "final_answer": "Exponential curve: y = 5 × 2^x",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = -cos(x°):",
+          "description": "Table of values for y = 5 × 2^x:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -180, -90, 0, 90, 180",
+          "description": "x: 0, 1, 2, 3, 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: 1, 0, -1, 0, 1",
+          "description": "y: 5, 10, 20, 40, 80",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve - y = -cos(x°) repeats the same shape every 360°, and never goes above 1 or below -1.",
+          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = -cos(x°) oe",
+          "description": "Exponential curve: y = 5 × 2^x oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "trigonometric",
-          "fn": "cos",
-          "sign": -1,
-          "x_min": -180,
-          "x_max": 180,
-          "y_min": -1.4,
-          "y_max": 1.4,
-          "x_label": "x (degrees)",
+          "kind": "exponential",
+          "a": 5,
+          "base": 2,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 88.0,
           "blank": true
         }
       },
       "solution_diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "trigonometric",
-          "fn": "cos",
-          "sign": -1,
-          "x_min": -180,
-          "x_max": 180,
-          "y_min": -1.4,
-          "y_max": 1.4,
-          "x_label": "x (degrees)",
+          "kind": "exponential",
+          "a": 5,
+          "base": 2,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 88.0,
           "table_points": [
             [
-              -180,
-              1
-            ],
-            [
-              -90,
-              0
-            ],
-            [
               0,
-              -1
+              5
             ],
             [
-              90,
-              0
+              1,
+              10
             ],
             [
-              180,
-              1
+              2,
+              20
+            ],
+            [
+              3,
+              40
+            ],
+            [
+              4,
+              80
             ]
           ]
         }
@@ -355,46 +353,68 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_proof",
-      "prompt": "Prove algebraically that the product of three consecutive integers is always a multiple of 6.",
+      "topic_id": "inequalities_region_higher",
+      "prompt": "On the grid, shade the region that satisfies both y ≥ -2x + 4 and y ≤ \\frac{x}{2} + 1.",
       "solution_steps": [
-        "Let three consecutive integers be n, n + 1 and n + 2.",
-        "Write the given expression algebraically: n(n + 1)(n + 2).",
-        "Expand and simplify: n(n + 1)(n + 2) = n^3 + 3n^2 + 2n.",
-        "Factorise/rearrange to expose the structure: n^3 + 3n^2 + 2n = among any 3 consecutive integers, one is a multiple of 3, and at least one is even, so their product always carries both a factor of 3 and a factor of 2.",
-        "Since one of any three consecutive integers is always a multiple of 3, and at least one is always even, the product always has both 2 and 3 as factors - so it is always a multiple of 2 × 3 = 6."
+        "Draw the line y = -2x + 4 (solid - the line itself is included in the region).",
+        "Draw the line y = \\frac{x}{2} + 1 (solid - the line itself is included in the region).",
+        "Shade the region where both y ≥ -2x + 4 and y ≤ \\frac{x}{2} + 1 are true at the same time."
       ],
-      "final_answer": "Proven: n(n + 1)(n + 2) is always a multiple of 6.",
-      "marks": 5,
+      "final_answer": "y ≥ -2x + 4 and y ≤ \\frac{x}{2} + 1",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let three consecutive integers be n, n + 1 and n + 2.",
+          "description": "Draw the line y = -2x + 4 (solid - the line itself is included in the region).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write the given expression algebraically: n(n + 1)(n + 2).",
+          "description": "Draw the line y = \\frac{x}{2} + 1 (solid - the line itself is included in the region).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand and simplify: n(n + 1)(n + 2) = n^3 + 3n^2 + 2n.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise/rearrange to expose the structure: n^3 + 3n^2 + 2n = among any 3 consecutive integers, one is a multiple of 3, and at least one is even, so their product always carries both a factor of 3 and a factor of 2. Since one of any three consecutive integers is always a multiple of 3, and at least one is always even, the product always has both 2 and 3 as factors - so it is always a multiple of 2 × 3 = 6.",
+          "description": "Shade the region where both y ≥ -2x + 4 and y ≤ \\frac{x}{2} + 1 are true at the same time.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Proven: n(n + 1)(n + 2) is always a multiple of 6. oe",
+          "description": "y ≥ -2x + 4 and y ≤ \\frac{x}{2} + 1 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "inequality_region",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "inequality_region",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "lines": [
+            {
+              "m": -2.0,
+              "c": 4,
+              "op": ">="
+            },
+            {
+              "m": 0.5,
+              "c": 1,
+              "op": "<="
+            }
+          ]
+        }
+      }
     },
     {
       "topic_id": "velocity_time_interpret",
@@ -452,6 +472,119 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "expand_triple_brackets",
+      "prompt": "Expand and simplify: (2x - 1)(x - 4)(3x + 3)",
+      "solution_steps": [
+        "First expand two of the brackets: (2x - 1)(x - 4) = 2x^2 - 9x + 4",
+        "Multiply the result by (3x + 3) and collect like terms",
+        "= 6x^3 - 21x^2 - 15x + 12"
+      ],
+      "final_answer": "6x^3 - 21x^2 - 15x + 12",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First expand two of the brackets: (2x - 1)(x - 4) = 2x^2 - 9x + 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply the result by (3x + 3) and collect like terms",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 6x^3 - 21x^2 - 15x + 12",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6x^3 - 21x^2 - 15x + 12 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "completing_the_square",
+      "prompt": "Write x^2 + 2x - 1 in the form (x + p)^2 + q.",
+      "solution_steps": [
+        "Half the coefficient of x: 2 ÷ 2 = 1",
+        "(x + 1)^2 = x^2 + 2x + 1",
+        "x^2 + 2x - 1 = (x + 1)^2 + (-1 - 1) = (x + 1)^2 - 2"
+      ],
+      "final_answer": "(x + 1)^2 - 2",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Half the coefficient of x: 2 ÷ 2 = 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(x + 1)^2 = x^2 + 2x + 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x^2 + 2x - 1 = (x + 1)^2 + (-1 - 1) = (x + 1)^2 - 2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(x + 1)^2 - 2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_different_coefficient",
+      "prompt": "Solve the simultaneous equations: 5x + 3y = -35 and 4x + 2y = -26",
+      "solution_steps": [
+        "5x + 3y = -35  (1)",
+        "4x + 2y = -26  (2)",
+        "(1) × 2: 10x + 6y = -70  (3)",
+        "(2) × 3: 12x + 6y = -78  (4)",
+        "(3) - (4): -2x = 8, so x = -4",
+        "Substitute x = -4 into (1): 3y = -15, so y = -5"
+      ],
+      "final_answer": "x = -4, y = -5",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "5x + 3y = -35  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x + 2y = -26  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(1) × 2: 10x + 6y = -70  (3)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(2) × 3: 12x + 6y = -78  (4) (3) - (4): -2x = 8, so x = -4 Substitute x = -4 into (1): 3y = -15, so y = -5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = -4, y = -5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "factorise_quadratics",
       "prompt": "Factorise: x^2 + 5x - 24",
       "solution_steps": [
@@ -481,127 +614,32 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_quadratic",
-      "prompt": "Solve the simultaneous equations: y = x^2 - 4x - 1 and y = -8x + 11",
+      "topic_id": "unit_conversions_higher",
+      "prompt": "Convert 436 mm³ to cm³.",
       "solution_steps": [
-        "Substitute y = -8x + 11 into y = x^2 - 4x - 1: -8x + 11 = x^2 - 4x - 1",
-        "Rearrange: x^2 + 4x - 12 = 0",
-        "Factorise: (x - 2)(x + 6) = 0",
-        "x = 2 or x = -6",
-        "When x = 2, y = -5. When x = -6, y = 59."
+        "Linear conversion factor: 1 cm = 10 mm, so for volume, 1 cm³ = 10^3 = 1000 mm³",
+        "436 mm³ = 436 ÷ 1000 = 0.436 cm³"
       ],
-      "final_answer": "(2, -5) and (-6, 59)",
-      "marks": 5,
+      "final_answer": "0.436 cm³",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Substitute y = -8x + 11 into y = x^2 - 4x - 1: -8x + 11 = x^2 - 4x - 1",
+          "description": "Linear conversion factor: 1 cm = 10 mm, so for volume, 1 cm³ = 10^3 = 1000 mm³",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rearrange: x^2 + 4x - 12 = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise: (x - 2)(x + 6) = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 2 or x = -6 When x = 2, y = -5. When x = -6, y = 59.",
+          "description": "436 mm³ = 436 ÷ 1000 = 0.436 cm³",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(2, -5) and (-6, 59) oe",
+          "description": "0.436 cm³ oe",
           "marks": 1
         }
       ],
       "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "satisfying_inequalities_higher",
-      "prompt": "x satisfies both 3x + 9 ≥ -4 and 4x + 1 < -6. List the integer values of x that satisfy both.",
-      "solution_steps": [
-        "Solve the first inequality:",
-        "3x + 9 ≥ -4",
-        "Subtract 9 from both sides:",
-        "3x ≥ -13",
-        "Divide both sides by 3:",
-        "x ≥ -13/3",
-        "Solve the second inequality:",
-        "4x + 1 < -6",
-        "Subtract 1 from both sides:",
-        "4x < -7",
-        "Divide both sides by 4:",
-        "x < -7/4",
-        "Combine both results into a single range: -13/3 ≤ x < -7/4",
-        "The integers satisfying both inequalities are: -4, -3, -2"
-      ],
-      "final_answer": "-4, -3, -2",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Solve the first inequality:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "3x + 9 ≥ -4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 9 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "3x ≥ -13 Divide both sides by 3: x ≥ -13/3 Solve the second inequality: 4x + 1 < -6 Subtract 1 from both sides: 4x < -7 Divide both sides by 4: x < -7/4 Combine both results into a single range: -13/3 ≤ x < -7/4 The integers satisfying both inequalities are: -4, -3, -2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-4, -3, -2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "graph_transformations",
-      "prompt": "The graph of y = f(x) undergoes a reflection in the y-axis. Write down the equation of the transformed graph in terms of f(x).",
-      "solution_steps": [
-        "y = f(-x) corresponds to a reflection in the y-axis."
-      ],
-      "final_answer": "y = f(-x)",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "y = f(-x) corresponds to a reflection in the y-axis.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "y = f(-x) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "graph_transformation",
-        "params": {
-          "transform": "reflect_y",
-          "shift": 0,
-          "original_label": "y = f(x)",
-          "transformed_label": "y = f(-x)"
-        }
-      },
       "solution_diagram": null
     },
     {
@@ -1002,80 +1040,115 @@
           "marks": 1
         }
       ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_conditional",
+      "prompt": "A bag contains 4 red and 7 blue counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
+      "solution_steps": [
+        "P(both red) = 4/11 × 3/10 = 6/55",
+        "P(both blue) = 7/11 × 6/10 = 21/55",
+        "P(both same colour) = 6/55 + 21/55 = 27/55"
+      ],
+      "final_answer": "27/55",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "P(both red) = 4/11 × 3/10 = 6/55",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(both blue) = 7/11 × 6/10 = 21/55",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(both same colour) = 6/55 + 21/55 = 27/55",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "27/55 oe",
+          "marks": 1
+        }
+      ],
       "diagram": {
-        "kind": "dice",
+        "kind": "tree_diagram",
         "params": {
-          "values": [
-            4,
-            2
+          "stage1": [
+            [
+              "Red",
+              ""
+            ],
+            [
+              "Blue",
+              ""
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Red",
+                ""
+              ],
+              [
+                "Blue",
+                ""
+              ]
+            ],
+            [
+              [
+                "Red",
+                ""
+              ],
+              [
+                "Blue",
+                ""
+              ]
+            ]
           ]
         }
       },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "product_rule_counting",
-      "prompt": "A shop sells 5 different phone cases and 3 different screen protectors. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
-      "solution_steps": [
-        "Total combinations = 5 × 3 = 15"
-      ],
-      "final_answer": "15",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total combinations = 5 × 3 = 15",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "15 oe",
-          "marks": 1
+      "solution_diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Red",
+              "4/11"
+            ],
+            [
+              "Blue",
+              "7/11"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Red",
+                "3/10"
+              ],
+              [
+                "Blue",
+                "7/10"
+              ]
+            ],
+            [
+              [
+                "Red",
+                "4/10"
+              ],
+              [
+                "Blue",
+                "6/10"
+              ]
+            ]
+          ]
         }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "change_subject_higher",
-      "prompt": "Make x the subject of the formula y = 2x + 6x + 3.",
-      "solution_steps": [
-        "y = 2x + 6x + 3",
-        "Subtract 3 from both sides: y - 3 = 2x + 6x",
-        "Factorise the right-hand side: y - 3 = (8)x",
-        "Divide both sides by 8: x = \\frac{y - 3}{8}"
-      ],
-      "final_answer": "x = \\frac{y - 3}{8}",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "y = 2x + 6x + 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 3 from both sides: y - 3 = 2x + 6x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise the right-hand side: y - 3 = (8)x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by 8: x = \\frac{y - 3}{8}",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = \\frac{y - 3}{8} oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
+      }
     }
   ]
 }

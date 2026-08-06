@@ -8,27 +8,33 @@
   "questions": [
     {
       "topic_id": "powers_higher",
-      "prompt": "Calculate 18^0.",
+      "prompt": "Calculate 125^(2/3).",
       "solution_steps": [
-        "Any nonzero number raised to the power 0 equals 1.",
-        "18^0 = 1"
+        "125^(2/3) = (125^(1/3))^2",
+        "125^(1/3) = 5",
+        "5^2 = 25"
       ],
-      "final_answer": "1",
-      "marks": 3,
+      "final_answer": "25",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Any nonzero number raised to the power 0 equals 1.",
+          "description": "125^(2/3) = (125^(1/3))^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "18^0 = 1",
+          "description": "125^(1/3) = 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5^2 = 25",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 oe",
+          "description": "25 oe",
           "marks": 1
         }
       ],
@@ -108,7 +114,7 @@
     },
     {
       "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal \\recur{0.}{90} can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Write \\recur{0.}{90} as a fraction in its simplest form.",
       "solution_steps": [
         "Let x = \\recur{0.}{90}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
@@ -218,184 +224,171 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_graph",
-      "prompt": "Complete a table of values for y = -cos(x°) for x = 0 to 360 (in steps of 90°), then plot the graph.",
+      "topic_id": "plot_exponential",
+      "prompt": "Complete a table of values for y = 3^x for x = 0 to 4, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = -cos(x°):",
-        "x: 0, 90, 180, 270, 360",
-        "y: -1, 0, 1, 0, -1",
-        "Plot each (x, y) point and join them with a single smooth curve - y = -cos(x°) repeats the same shape every 360°, and never goes above 1 or below -1."
+        "Table of values for y = 3^x:",
+        "x: 0, 1, 2, 3, 4",
+        "y: 1, 3, 9, 27, 81",
+        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
       ],
-      "final_answer": "y = -cos(x°)",
+      "final_answer": "Exponential curve: y = 3^x",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = -cos(x°):",
+          "description": "Table of values for y = 3^x:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: 0, 90, 180, 270, 360",
+          "description": "x: 0, 1, 2, 3, 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: -1, 0, 1, 0, -1",
+          "description": "y: 1, 3, 9, 27, 81",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve - y = -cos(x°) repeats the same shape every 360°, and never goes above 1 or below -1.",
+          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = -cos(x°) oe",
+          "description": "Exponential curve: y = 3^x oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "trigonometric",
-          "fn": "cos",
-          "sign": -1,
-          "x_min": 0,
-          "x_max": 360,
-          "y_min": -1.4,
-          "y_max": 1.4,
-          "x_label": "x (degrees)",
+          "kind": "exponential",
+          "a": 1,
+          "base": 3,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 89.1,
           "blank": true
         }
       },
       "solution_diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "trigonometric",
-          "fn": "cos",
-          "sign": -1,
-          "x_min": 0,
-          "x_max": 360,
-          "y_min": -1.4,
-          "y_max": 1.4,
-          "x_label": "x (degrees)",
+          "kind": "exponential",
+          "a": 1,
+          "base": 3,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 89.1,
           "table_points": [
             [
               0,
-              -1
-            ],
-            [
-              90,
-              0
-            ],
-            [
-              180,
               1
             ],
             [
-              270,
-              0
+              1,
+              3
             ],
             [
-              360,
-              -1
+              2,
+              9
+            ],
+            [
+              3,
+              27
+            ],
+            [
+              4,
+              81
             ]
           ]
         }
       }
     },
     {
-      "topic_id": "angles_straight_line_higher",
-      "prompt": "The angles 136° and (5x + 29)° lie on a straight line. Find x.",
+      "topic_id": "completing_the_square",
+      "prompt": "Write x^2 + 16x - 11 in the form (x + p)^2 + q.",
       "solution_steps": [
-        "Angles on a straight line sum to 180°.",
-        "5x + 29 = 44",
-        "Subtract 29 from both sides:",
-        "5x = 15",
-        "Divide both sides by 5:",
-        "x = 3"
+        "Half the coefficient of x: 16 ÷ 2 = 8",
+        "(x + 8)^2 = x^2 + 16x + 64",
+        "x^2 + 16x - 11 = (x + 8)^2 + (-11 - 64) = (x + 8)^2 - 75"
       ],
-      "final_answer": "3",
-      "marks": 5,
+      "final_answer": "(x + 8)^2 - 75",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles on a straight line sum to 180°.",
+          "description": "Half the coefficient of x: 16 ÷ 2 = 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x + 29 = 44",
+          "description": "(x + 8)^2 = x^2 + 16x + 64",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 29 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "5x = 15 Divide both sides by 5: x = 3",
+          "description": "x^2 + 16x - 11 = (x + 8)^2 + (-11 - 64) = (x + 8)^2 - 75",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 oe",
+          "description": "(x + 8)^2 - 75 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "angle_line",
-        "params": {
-          "angle_values": [
-            136,
-            44
-          ],
-          "labels": [
-            "136°",
-            "(5x + 29)°"
-          ],
-          "around_point": false
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "quadratic_inequalities",
-      "prompt": "Solve the inequality: x^2 - x > 0",
+      "topic_id": "satisfying_inequalities_higher",
+      "prompt": "x satisfies both 3x + 7 ≥ -5 and 5x + 2 < 13. List the integer values of x that satisfy both.",
       "solution_steps": [
-        "Factorise: x^2 - x = (x - 1)(x)",
-        "The critical values are x = 0 and x = 1.",
-        "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and > 0 is satisfied outside the two roots.",
-        "Answer: x < 0 or x > 1"
+        "Solve the first inequality:",
+        "3x + 7 ≥ -5",
+        "Subtract 7 from both sides:",
+        "3x ≥ -12",
+        "Divide both sides by 3:",
+        "x ≥ -4",
+        "Solve the second inequality:",
+        "5x + 2 < 13",
+        "Subtract 2 from both sides:",
+        "5x < 11",
+        "Divide both sides by 5:",
+        "x < 11/5",
+        "Combine both results into a single range: -4 ≤ x < 11/5",
+        "The integers satisfying both inequalities are: -4, -3, -2, -1, 0, 1, 2"
       ],
-      "final_answer": "x < 0 or x > 1",
+      "final_answer": "-4, -3, -2, -1, 0, 1, 2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Factorise: x^2 - x = (x - 1)(x)",
+          "description": "Solve the first inequality:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The critical values are x = 0 and x = 1.",
+          "description": "3x + 7 ≥ -5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and > 0 is satisfied outside the two roots.",
+          "description": "Subtract 7 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer: x < 0 or x > 1",
+          "description": "3x ≥ -12 Divide both sides by 3: x ≥ -4 Solve the second inequality: 5x + 2 < 13 Subtract 2 from both sides: 5x < 11 Divide both sides by 5: x < 11/5 Combine both results into a single range: -4 ≤ x < 11/5 The integers satisfying both inequalities are: -4, -3, -2, -1, 0, 1, 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x < 0 or x > 1 oe",
+          "description": "-4, -3, -2, -1, 0, 1, 2 oe",
           "marks": 1
         }
       ],
@@ -499,141 +492,132 @@
       }
     },
     {
-      "topic_id": "satisfying_inequalities_higher",
-      "prompt": "x satisfies both 3x + 7 ≥ -5 and 5x + 2 < 13. List the integer values of x that satisfy both.",
+      "topic_id": "simultaneous_quadratic",
+      "prompt": "Solve the simultaneous equations: y = x^2 - 8 and y = -x - 6",
       "solution_steps": [
-        "Solve the first inequality:",
-        "3x + 7 ≥ -5",
-        "Subtract 7 from both sides:",
-        "3x ≥ -12",
-        "Divide both sides by 3:",
-        "x ≥ -4",
-        "Solve the second inequality:",
-        "5x + 2 < 13",
-        "Subtract 2 from both sides:",
-        "5x < 11",
+        "Substitute y = -x - 6 into y = x^2 - 8: -x - 6 = x^2 - 8",
+        "Rearrange: x^2 + x - 2 = 0",
+        "Factorise: (x - 1)(x + 2) = 0",
+        "x = 1 or x = -2",
+        "When x = 1, y = -7. When x = -2, y = -4."
+      ],
+      "final_answer": "(1, -7) and (-2, -4)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Substitute y = -x - 6 into y = x^2 - 8: -x - 6 = x^2 - 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rearrange: x^2 + x - 2 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: (x - 1)(x + 2) = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 1 or x = -2 When x = 1, y = -7. When x = -2, y = -4.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(1, -7) and (-2, -4) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "forming_equations_higher",
+      "prompt": "A quadrilateral has angles 47°, 84°, (2x + 10)°, and (3x + 204)°. Form an equation and solve it to find x.",
+      "solution_steps": [
+        "Angles in a quadrilateral sum to 360°.",
+        "47 + 84 + (2x + 10) + (3x + 204) = 360",
+        "Collect the x-terms and constants together:",
+        "5x + 214 = 229",
+        "Subtract 214 from both sides:",
+        "5x = 15",
         "Divide both sides by 5:",
-        "x < 11/5",
-        "Combine both results into a single range: -4 ≤ x < 11/5",
-        "The integers satisfying both inequalities are: -4, -3, -2, -1, 0, 1, 2"
+        "x = 3"
       ],
-      "final_answer": "-4, -3, -2, -1, 0, 1, 2",
+      "final_answer": "3",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Solve the first inequality:",
+          "description": "Angles in a quadrilateral sum to 360°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3x + 7 ≥ -5",
+          "description": "47 + 84 + (2x + 10) + (3x + 204) = 360",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 7 from both sides:",
+          "description": "Collect the x-terms and constants together:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3x ≥ -12 Divide both sides by 3: x ≥ -4 Solve the second inequality: 5x + 2 < 13 Subtract 2 from both sides: 5x < 11 Divide both sides by 5: x < 11/5 Combine both results into a single range: -4 ≤ x < 11/5 The integers satisfying both inequalities are: -4, -3, -2, -1, 0, 1, 2",
+          "description": "5x + 214 = 229 Subtract 214 from both sides: 5x = 15 Divide both sides by 5: x = 3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-4, -3, -2, -1, 0, 1, 2 oe",
+          "description": "3 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "linear_brackets",
-      "prompt": "Solve: 4(6x - 7) = -196",
-      "solution_steps": [
-        "Expand the bracket: 4(6x - 7) = 24x - 28",
-        "24x - 28 = -196",
-        "Add 28 to both sides:",
-        "24x = -168",
-        "Divide both sides by 24:",
-        "x = -7"
-      ],
-      "final_answer": "-7",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Expand the bracket: 4(6x - 7) = 24x - 28",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "24x - 28 = -196",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add 28 to both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "24x = -168 Divide both sides by 24: x = -7",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-7 oe",
-          "marks": 1
+      "diagram": {
+        "kind": "polygon_angles",
+        "params": {
+          "n_sides": 4,
+          "angle_labels": [
+            "47°",
+            "84°",
+            "(2x + 10)°",
+            "(3x + 204)°"
+          ]
         }
-      ],
-      "diagram": null,
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "trial_and_improvement",
-      "prompt": "f(x) = x^3 - 1x - 42. Show that f(x) = 0 has a root between x = 3 and x = 4, then use trial and improvement to find this root correct to 1 decimal place.",
+      "topic_id": "special_sequences_higher",
+      "prompt": "The first 4 terms of a geometric sequence are: 5, 15/2, 45/4, 135/8. Find the 6th term of the sequence.",
       "solution_steps": [
-        "f(x) = x^3 - 1x - 42",
-        "f(3) = -18.00 (negative)",
-        "f(4) = 18.00 (positive)",
-        "f(3.1) = -15.31 (negative)",
-        "f(3.2) = -12.43 (negative)",
-        "f(3.3) = -9.36 (negative)",
-        "f(3.4) = -6.10 (negative)",
-        "f(3.5) = -2.63 (negative)",
-        "f(3.6) = 1.06 (positive)",
-        "The sign changes between x = 3.5 and x = 3.6, so try the midpoint x = 3.55: f(3.55) = -0.81.",
-        "f(3.55) has the same sign as f(3.5), so the root lies between 3.55 and 3.6 - to 1 decimal place, this rounds up to 3.6."
+        "Common ratio r = 3/2 (divide any term by the term before it).",
+        "nth term = a × r^(n - 1) = 5 × (3/2)^5",
+        "Term 6 = 1215/32"
       ],
-      "final_answer": "x = 3.6",
-      "marks": 5,
+      "final_answer": "1215/32",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "f(x) = x^3 - 1x - 42",
+          "description": "Common ratio r = 3/2 (divide any term by the term before it).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "f(3) = -18.00 (negative)",
+          "description": "nth term = a × r^(n - 1) = 5 × (3/2)^5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "f(4) = 18.00 (positive)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "f(3.1) = -15.31 (negative) f(3.2) = -12.43 (negative) f(3.3) = -9.36 (negative) f(3.4) = -6.10 (negative) f(3.5) = -2.63 (negative) f(3.6) = 1.06 (positive) The sign changes between x = 3.5 and x = 3.6, so try the midpoint x = 3.55: f(3.55) = -0.81. f(3.55) has the same sign as f(3.5), so the root lies between 3.55 and 3.6 - to 1 decimal place, this rounds up to 3.6.",
+          "description": "Term 6 = 1215/32",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 3.6 oe",
+          "description": "1215/32 oe",
           "marks": 1
         }
       ],
@@ -832,33 +816,33 @@
     },
     {
       "topic_id": "vectors_arithmetic_higher",
-      "prompt": "\\vec{a} = (-7, -5) and \\vec{b} = (5, 12). Find -5\\vec{a} + -1\\vec{b}.",
+      "prompt": "\\vec{a} = \\colvec{-7}{-5} and \\vec{b} = \\colvec{5}{12}. Find -5\\vec{a} + -1\\vec{b}.",
       "solution_steps": [
-        "\\vec{a} = (-7, -5), \\vec{b} = (5, 12)",
-        "-5\\vec{a} = (35, 25) and -1\\vec{b} = (-5, -12)",
-        "-5\\vec{a} + -1\\vec{b} = (30, 13)"
+        "\\vec{a} = \\colvec{-7}{-5}, \\vec{b} = \\colvec{5}{12}",
+        "-5\\vec{a} = \\colvec{35}{25} and -1\\vec{b} = \\colvec{-5}{-12}",
+        "-5\\vec{a} + -1\\vec{b} = \\colvec{30}{13}"
       ],
-      "final_answer": "(30, 13)",
+      "final_answer": "\\colvec{30}{13}",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "\\vec{a} = (-7, -5), \\vec{b} = (5, 12)",
+          "description": "\\vec{a} = \\colvec{-7}{-5}, \\vec{b} = \\colvec{5}{12}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-5\\vec{a} = (35, 25) and -1\\vec{b} = (-5, -12)",
+          "description": "-5\\vec{a} = \\colvec{35}{25} and -1\\vec{b} = \\colvec{-5}{-12}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-5\\vec{a} + -1\\vec{b} = (30, 13)",
+          "description": "-5\\vec{a} + -1\\vec{b} = \\colvec{30}{13}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(30, 13) oe",
+          "description": "\\colvec{30}{13} oe",
           "marks": 1
         }
       ],
@@ -1018,7 +1002,7 @@
     },
     {
       "topic_id": "probability_conditional",
-      "prompt": "A bag contains 7 blue and 5 green counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour.",
+      "prompt": "A bag contains 7 blue and 5 green counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
       "solution_steps": [
         "P(both blue) = 7/12 × 6/11 = 7/22",
         "P(both green) = 5/12 × 4/11 = 5/33",
@@ -1049,38 +1033,137 @@
         }
       ],
       "diagram": {
-        "kind": "bag_of_counters",
+        "kind": "tree_diagram",
         "params": {
-          "counts": {
-            "blue": 7,
-            "green": 5
-          }
+          "stage1": [
+            [
+              "Blue",
+              ""
+            ],
+            [
+              "Green",
+              ""
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Blue",
+                ""
+              ],
+              [
+                "Green",
+                ""
+              ]
+            ],
+            [
+              [
+                "Blue",
+                ""
+              ],
+              [
+                "Green",
+                ""
+              ]
+            ]
+          ]
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Blue",
+              "7/12"
+            ],
+            [
+              "Green",
+              "5/12"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Blue",
+                "6/11"
+              ],
+              [
+                "Green",
+                "5/11"
+              ]
+            ],
+            [
+              [
+                "Blue",
+                "7/11"
+              ],
+              [
+                "Green",
+                "4/11"
+              ]
+            ]
+          ]
+        }
+      }
     },
     {
-      "topic_id": "product_rule_counting",
-      "prompt": "A shop sells 6 different shirts, 3 different pairs of trousers and 2 different pairs of shoes. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "topic_id": "inequalities_number_line_higher",
+      "prompt": "Draw the inequality/ies of x < 0 or x ≥ 6 on a number line.",
       "solution_steps": [
-        "Total combinations = 6 × 3 × 2 = 36"
+        "Draw an open circle at 0 and a filled circle at 6.",
+        "Shade to the left of 0 and to the right of 6, with arrows showing both continue indefinitely."
       ],
-      "final_answer": "36",
-      "marks": 2,
+      "final_answer": "x < 0 or x ≥ 6",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total combinations = 6 × 3 × 2 = 36",
+          "description": "Draw an open circle at 0 and a filled circle at 6.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Shade to the left of 0 and to the right of 6, with arrows showing both continue indefinitely.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "36 oe",
+          "description": "x < 0 or x ≥ 6 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [],
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [
+            {
+              "value": 0,
+              "closed": false
+            },
+            {
+              "value": 6,
+              "closed": true
+            }
+          ],
+          "shade": "outside"
+        }
+      }
     }
   ]
 }

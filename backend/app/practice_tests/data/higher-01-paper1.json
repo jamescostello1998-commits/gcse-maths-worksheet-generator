@@ -8,7 +8,7 @@
   "questions": [
     {
       "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal \\recur{0.}{96} can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Write \\recur{0.}{96} as a fraction in its simplest form.",
       "solution_steps": [
         "Let x = \\recur{0.}{96}, so 100x = 96.9696... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 96 - 0, so 99x = 96",
@@ -43,7 +43,7 @@
     },
     {
       "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal \\recur{0.}{7} can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Show that \\recur{0.}{7} can be written as 7/9.",
       "solution_steps": [
         "Let x = \\recur{0.}{7}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
@@ -259,41 +259,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_double_brackets",
-      "prompt": "Expand and simplify: (5x - 1)(4x - 1)",
+      "topic_id": "substitution_higher",
+      "prompt": "a = \\frac{v - u}{t}. Find the value of a when u = 7, v = 12 and t = 5.",
       "solution_steps": [
-        "First: 5x × 4x = 20x^2",
-        "Outer: 5x × -1 = -5x",
-        "Inner: -1 × 4x = -4x",
-        "Last: -1 × -1 = 1",
-        "Combine like terms: 20x^2 - 9x + 1"
+        "a = \\frac{v - u}{t}",
+        "a = \\frac{12 - 7}{5}",
+        "a = 5/5",
+        "a = 1"
       ],
-      "final_answer": "20x^2 - 9x + 1",
+      "final_answer": "a = 1",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First: 5x × 4x = 20x^2",
+          "description": "a = \\frac{v - u}{t}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Outer: 5x × -1 = -5x",
+          "description": "a = \\frac{12 - 7}{5}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Inner: -1 × 4x = -4x",
+          "description": "a = 5/5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Last: -1 × -1 = 1 Combine like terms: 20x^2 - 9x + 1",
+          "description": "a = 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "20x^2 - 9x + 1 oe",
+          "description": "a = 1 oe",
           "marks": 1
         }
       ],
@@ -301,45 +300,52 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_proof",
-      "prompt": "Prove algebraically that 2n(n + 3) - 2n^2 is always a multiple of 6.",
+      "topic_id": "inequalities_region_higher",
+      "prompt": "The shaded region on the grid satisfies two inequalities. State both inequalities.",
       "solution_steps": [
-        "Let n be any integer.",
-        "Write the given expression algebraically: 2n(n + 3) - 2n^2.",
-        "Expand and simplify: 2n(n + 3) - 2n^2 = 6n.",
-        "Factorise/rearrange to expose the structure: 6n = 6n.",
-        "6n is exactly 6 times the whole number n, so the expression is always a multiple of 6."
+        "The boundary line y = x is solid, and the shading lies on the lower side of it, giving y ≤ x.",
+        "The boundary line y = -x - 2 is solid, and the shading lies on the lower side of it, giving y ≤ -x - 2."
       ],
-      "final_answer": "Proven: 2n(n + 3) - 2n^2 = 6n, always a multiple of 6.",
-      "marks": 5,
+      "final_answer": "y ≤ x and y ≤ -x - 2",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let n be any integer.",
+          "description": "The boundary line y = x is solid, and the shading lies on the lower side of it, giving y ≤ x.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write the given expression algebraically: 2n(n + 3) - 2n^2.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Expand and simplify: 2n(n + 3) - 2n^2 = 6n.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise/rearrange to expose the structure: 6n = 6n. 6n is exactly 6 times the whole number n, so the expression is always a multiple of 6.",
+          "description": "The boundary line y = -x - 2 is solid, and the shading lies on the lower side of it, giving y ≤ -x - 2.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Proven: 2n(n + 3) - 2n^2 = 6n, always a multiple of 6. oe",
+          "description": "y ≤ x and y ≤ -x - 2 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "inequality_region",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "lines": [
+            {
+              "m": 1.0,
+              "c": 0,
+              "op": "<="
+            },
+            {
+              "m": -1.0,
+              "c": -2,
+              "op": "<="
+            }
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -475,28 +481,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_quadratics",
-      "prompt": "Factorise: x^2 - x - 12",
+      "topic_id": "expand_triple_brackets",
+      "prompt": "Expand and simplify: (2x + 3)(3x - 3)(x - 4)",
       "solution_steps": [
-        "Find two numbers that multiply to -12 and add to -1: 3 and -4",
-        "Write as two brackets: (x + 3)(x - 4)"
+        "First expand two of the brackets: (2x + 3)(3x - 3) = 6x^2 + 3x - 9",
+        "Multiply the result by (x - 4) and collect like terms",
+        "= 6x^3 - 21x^2 - 21x + 36"
       ],
-      "final_answer": "(x + 3)(x - 4)",
-      "marks": 3,
+      "final_answer": "6x^3 - 21x^2 - 21x + 36",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to -12 and add to -1: 3 and -4",
+          "description": "First expand two of the brackets: (2x + 3)(3x - 3) = 6x^2 + 3x - 9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write as two brackets: (x + 3)(x - 4)",
+          "description": "Multiply the result by (x - 4) and collect like terms",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 6x^3 - 21x^2 - 21x + 36",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(x + 3)(x - 4) oe",
+          "description": "6x^3 - 21x^2 - 21x + 36 oe",
           "marks": 1
         }
       ],
@@ -504,62 +516,54 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inequalities_number_line_higher",
-      "prompt": "Draw the inequality/ies of x < -3 or x > 0 on a number line.",
+      "topic_id": "satisfying_inequalities_higher",
+      "prompt": "x satisfies both x + 8 > -6 and 4x + 4 ≤ -5. List the integer values of x that satisfy both.",
       "solution_steps": [
-        "Draw an open circle at -3 and an open circle at 0.",
-        "Shade to the left of -3 and to the right of 0, with arrows showing both continue indefinitely."
+        "Solve the first inequality:",
+        "x + 8 > -6",
+        "Subtract 8 from both sides:",
+        "x > -14",
+        "x > -14",
+        "Solve the second inequality:",
+        "4x + 4 ≤ -5",
+        "Subtract 4 from both sides:",
+        "4x ≤ -9",
+        "Divide both sides by 4:",
+        "x ≤ -9/4",
+        "Combine both results into a single range: -14 < x ≤ -9/4",
+        "The integers satisfying both inequalities are: -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3"
       ],
-      "final_answer": "x < -3 or x > 0",
-      "marks": 3,
+      "final_answer": "-13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw an open circle at -3 and an open circle at 0.",
+          "description": "Solve the first inequality:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Shade to the left of -3 and to the right of 0, with arrows showing both continue indefinitely.",
+          "description": "x + 8 > -6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 8 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x > -14 x > -14 Solve the second inequality: 4x + 4 ≤ -5 Subtract 4 from both sides: 4x ≤ -9 Divide both sides by 4: x ≤ -9/4 Combine both results into a single range: -14 < x ≤ -9/4 The integers satisfying both inequalities are: -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x < -3 or x > 0 oe",
+          "description": "-13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -8,
-            8
-          ],
-          "boundaries": [],
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -8,
-            8
-          ],
-          "boundaries": [
-            {
-              "value": -3,
-              "closed": false
-            },
-            {
-              "value": 0,
-              "closed": false
-            }
-          ],
-          "shade": "outside"
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     },
     {
       "topic_id": "ratio_shape_similar_higher",
@@ -991,65 +995,54 @@
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "dice",
-        "params": {
-          "values": [
-            6,
-            6
-          ]
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "box_plot_interpret",
-      "prompt": "The box plots compare test scores for two classes. Which class had the smaller range?",
+      "topic_id": "velocity_time_interpret",
+      "prompt": "The velocity-time graph shows a car's journey. Find its acceleration during the first phase.",
       "solution_steps": [
-        "Class A range = 46, Class B range = 31.",
-        "Class B is smaller."
+        "Acceleration = change in velocity ÷ time = 20 ÷ 10 = 2 m/s^2"
       ],
-      "final_answer": "Class B",
-      "marks": 3,
+      "final_answer": "2 m/s^2",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Class A range = 46, Class B range = 31.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Class B is smaller.",
+          "description": "Acceleration = change in velocity ÷ time = 20 ÷ 10 = 2 m/s^2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Class B oe",
+          "description": "2 m/s^2 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "box_plot",
+        "kind": "piecewise_graph",
         "params": {
-          "box_plots": [
-            {
-              "min": 2,
-              "q1": 15.0,
-              "median": 26.0,
-              "q3": 32.0,
-              "max": 48,
-              "label": "Class A"
-            },
-            {
-              "min": 1,
-              "q1": 8.0,
-              "median": 24.0,
-              "q3": 29.5,
-              "max": 32,
-              "label": "Class B"
-            }
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              10,
+              20
+            ],
+            [
+              35,
+              20
+            ],
+            [
+              40,
+              0
+            ]
           ],
-          "x_label": "Test Scores"
+          "x_max": 45,
+          "y_max": 25,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
         }
       },
       "solution_diagram": null

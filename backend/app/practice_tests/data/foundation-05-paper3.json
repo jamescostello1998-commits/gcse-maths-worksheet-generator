@@ -136,7 +136,7 @@
     },
     {
       "topic_id": "fractions_equivalent_diagram",
-      "prompt": "Shape A is divided into 4 equal parts, with 3 shaded. Shape B is divided into 12 equal parts. How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
+      "prompt": "How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
       "solution_steps": [
         "Shape A shows 3/4 shaded; Shape B has 12 equal parts.",
         "Find the scale factor between the denominators: 12 ÷ 4 = 3",
@@ -289,40 +289,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_forming_and_solving",
-      "prompt": "4 apples and 3 bananas cost £3.30 in total. 3 apples and 3 bananas cost £3.06 in total. Form and solve a pair of simultaneous equations to find the cost of one apple and one banana.",
+      "topic_id": "standard_form_from_small",
+      "prompt": "Write 8.3 × 10^-3 as an ordinary number.",
       "solution_steps": [
-        "Let x = cost of one apple (pence), y = cost of one banana (pence).",
-        "4x + 3y = 330  (1)",
-        "3x + 3y = 306  (2)",
-        "Solving simultaneously: x = 24, y = 78"
+        "Multiply 8.3 by 10^-3, which means moving the decimal point 3 place(s) left.",
+        "8.3 × 10^-3 = 0.0083"
       ],
-      "final_answer": "apple = £0.24, banana = £0.78",
-      "marks": 5,
+      "final_answer": "0.0083",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = cost of one apple (pence), y = cost of one banana (pence).",
+          "description": "Multiply 8.3 by 10^-3, which means moving the decimal point 3 place(s) left.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x + 3y = 330  (1)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "3x + 3y = 306  (2)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Solving simultaneously: x = 24, y = 78",
+          "description": "8.3 × 10^-3 = 0.0083",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "apple = £0.24, banana = £0.78 oe",
+          "description": "0.0083 oe",
           "marks": 1
         }
       ],
@@ -330,97 +318,98 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_distance_time",
-      "prompt": "A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop 6 km away after 10 minutes. They stay at the shop until 15 minutes, then cycle straight back home at a constant speed, arriving home at 40 minutes. Draw a distance-time graph to show this journey, and find the total distance travelled.",
+      "topic_id": "plot_quadratic",
+      "prompt": "Complete a table of values for y = -x^2 + x + 4 for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 6 km after 10 minutes.",
-        "Stay at 6 km until 15 minutes.",
-        "Return at a constant speed to 0 km, arriving home at 40 minutes.",
-        "Plot these points and join each stage with a straight line segment.",
-        "Total distance travelled = 6 km out + 6 km back = 12 km"
+        "Table of values for y = -x^2 + x + 4:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: -8, -2, 2, 4, 4, 2, -2",
+        "Plot each (x, y) point and join them with a single smooth curve."
       ],
-      "final_answer": "12 km",
+      "final_answer": "Quadratic curve: y = -x^2 + x + 4",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 6 km after 10 minutes.",
+          "description": "Table of values for y = -x^2 + x + 4:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Stay at 6 km until 15 minutes.",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Return at a constant speed to 0 km, arriving home at 40 minutes.",
+          "description": "y: -8, -2, 2, 4, 4, 2, -2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot these points and join each stage with a straight line segment. Total distance travelled = 6 km out + 6 km back = 12 km",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 km oe",
+          "description": "Quadratic curve: y = -x^2 + x + 4 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "piecewise_graph",
+        "kind": "function_graph",
         "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              10,
-              6
-            ],
-            [
-              15,
-              6
-            ],
-            [
-              40,
-              0
-            ]
-          ],
-          "x_max": 45,
-          "y_max": 8,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)",
+          "kind": "quadratic",
+          "a": -1,
+          "b": 1,
+          "c": 4,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -9,
+          "y_max": 5,
           "blank": true
         }
       },
       "solution_diagram": {
-        "kind": "piecewise_graph",
+        "kind": "function_graph",
         "params": {
-          "points": [
+          "kind": "quadratic",
+          "a": -1,
+          "b": 1,
+          "c": 4,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -9,
+          "y_max": 5,
+          "table_points": [
+            [
+              -3,
+              -8
+            ],
+            [
+              -2,
+              -2
+            ],
+            [
+              -1,
+              2
+            ],
             [
               0,
-              0
+              4
             ],
             [
-              10,
-              6
+              1,
+              4
             ],
             [
-              15,
-              6
+              2,
+              2
             ],
             [
-              40,
-              0
+              3,
+              -2
             ]
-          ],
-          "x_max": 45,
-          "y_max": 8,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)"
+          ]
         }
       }
     },
@@ -495,42 +484,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "satisfying_inequalities_foundation",
-      "prompt": "Solve the inequality -6 ≤ 2x + 8 ≤ 17, then list the integer values of x that satisfy it.",
+      "topic_id": "solving_inequalities_foundation",
+      "prompt": "Solve the inequality: \\frac{x}{4} + 7 ≥ -7",
       "solution_steps": [
-        "-6 ≤ 2x + 8 ≤ 17",
-        "Subtract 8 from all three parts:",
-        "-14 ≤ 2x ≤ 9",
-        "Divide all three parts by 2:",
-        "-7 ≤ x ≤ 9/2",
-        "The integers satisfying this are: -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4"
+        "\\frac{x}{4} + 7 ≥ -7",
+        "Subtract 7 from both sides:",
+        "\\frac{x}{4} ≥ -14",
+        "Multiply both sides by 4:",
+        "x ≥ -56"
       ],
-      "final_answer": "-7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4",
+      "final_answer": "x ≥ -56",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "-6 ≤ 2x + 8 ≤ 17",
+          "description": "\\frac{x}{4} + 7 ≥ -7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 8 from all three parts:",
+          "description": "Subtract 7 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-14 ≤ 2x ≤ 9",
+          "description": "\\frac{x}{4} ≥ -14",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide all three parts by 2: -7 ≤ x ≤ 9/2 The integers satisfying this are: -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4",
+          "description": "Multiply both sides by 4: x ≥ -56",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4 oe",
+          "description": "x ≥ -56 oe",
           "marks": 1
         }
       ],
@@ -538,28 +526,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_next_term",
-      "prompt": "Find the next term in the sequence: 3, -1, -5, -9, -13, ...",
+      "topic_id": "special_sequences_foundation",
+      "prompt": "The first 5 cube numbers are: 1, 8, 27, 64, 125. Find the next term in the sequence.",
       "solution_steps": [
-        "Subtract 4 each time.",
-        "Next term = -13 - 4 = -17"
+        "These are the cube numbers: the nth term is given by n^3.",
+        "Term 6 = 6^3 = 216"
       ],
-      "final_answer": "-17",
+      "final_answer": "216",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Subtract 4 each time.",
+          "description": "These are the cube numbers: the nth term is given by n^3.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Next term = -13 - 4 = -17",
+          "description": "Term 6 = 6^3 = 216",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-17 oe",
+          "description": "216 oe",
           "marks": 1
         }
       ],
@@ -567,34 +555,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_nth_term",
-      "prompt": "Here are the first four terms of a sequence: 4, -2, -8, -14.\nFind an expression for the nth term.",
+      "topic_id": "sequences_term_to_term_rule",
+      "prompt": "Here are the first four terms of a sequence: -1, -2, -4, -8. Describe the term-to-term rule, and find the next term.",
       "solution_steps": [
-        "Common difference = -6",
-        "nth term = -6n + 10",
-        "nth term = -6n + 10"
+        "Term-to-term rule: multiply by 2",
+        "Next term = -16"
       ],
-      "final_answer": "-6n + 10",
-      "marks": 4,
+      "final_answer": "Rule: multiply by 2. Next term = -16",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Common difference = -6",
+          "description": "Term-to-term rule: multiply by 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = -6n + 10",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "nth term = -6n + 10",
+          "description": "Next term = -16",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-6n + 10 oe",
+          "description": "Rule: multiply by 2. Next term = -16 oe",
           "marks": 1
         }
       ],
@@ -602,70 +584,70 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_three_part_foundation",
-      "prompt": "Share 18 in the ratio 1:3:2.",
+      "topic_id": "factorise_common_factor",
+      "prompt": "Factorise: 45x - 81",
       "solution_steps": [
-        "Total parts = 1 + 3 + 2 = 6",
-        "Value of one part = 18 ÷ 6 = 3",
-        "Share 1 = 1 × 3 = 3",
-        "Share 2 = 3 × 3 = 9",
-        "Share 3 = 2 × 3 = 6"
+        "Find the highest common factor of 45 and -81: 9",
+        "Factorise: 9(5x - 9)"
       ],
-      "final_answer": "3 : 9 : 6",
+      "final_answer": "9(5x - 9)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find the highest common factor of 45 and -81: 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: 9(5x - 9)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "9(5x - 9) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "expand_double_brackets_no_coefficient_foundation",
+      "prompt": "Expand and simplify: (x + 6)(x + 6)",
+      "solution_steps": [
+        "First: x × x = x^2",
+        "Outer: x × 6 = 6x",
+        "Inner: 6 × x = 6x",
+        "Last: 6 × 6 = 36",
+        "Combine like terms: x^2 + 12x + 36"
+      ],
+      "final_answer": "x^2 + 12x + 36",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 1 + 3 + 2 = 6",
+          "description": "First: x × x = x^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 18 ÷ 6 = 3",
+          "description": "Outer: x × 6 = 6x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 1 = 1 × 3 = 3",
+          "description": "Inner: 6 × x = 6x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 2 = 3 × 3 = 9 Share 3 = 2 × 3 = 6",
+          "description": "Last: 6 × 6 = 36 Combine like terms: x^2 + 12x + 36",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 : 9 : 6 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_find_missing_share",
-      "prompt": "s : t = 6 : 9. s = 72. What is the value of t?",
-      "solution_steps": [
-        "Value of one part = 72 ÷ 6 = 12",
-        "t = 9 × 12 = 108"
-      ],
-      "final_answer": "108",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Value of one part = 72 ÷ 6 = 12",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "t = 9 × 12 = 108",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "108 oe",
+          "description": "x^2 + 12x + 36 oe",
           "marks": 1
         }
       ],
@@ -731,34 +713,100 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simple_interest",
-      "prompt": "£1700 is invested at a simple interest rate of 2% per year for 5 years. Find the total amount in the account after 5 years.",
+      "topic_id": "congruent_triangle_proof_foundation",
+      "prompt": "ABCD is an isosceles trapezium with AB parallel to DC and AD = BC. AC and BD are its diagonals. Which congruence criterion proves that the two triangles are congruent? A) SSS  B) RHS  C) ASA  D) SAS",
       "solution_steps": [
-        "Simple interest formula: I = P × r × t ÷ 100",
-        "I = 1700 × 2 × 5 ÷ 100 = £170",
-        "Total in the account = P + I = £1700 + £170 = £1870"
+        "AB is common to both triangles",
+        "angle DAB = angle CBA (base angles of an isosceles trapezium are equal)",
+        "AD = BC (given, the equal sides of the trapezium)",
+        "These facts match the Side-Angle-Side (SAS) congruence criterion."
       ],
-      "final_answer": "£1870",
-      "marks": 4,
+      "final_answer": "D) SAS",
+      "marks": 1,
+      "mark_scheme": [
+        {
+          "code": "B1",
+          "description": "D) SAS (selecting the correct option)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "two_triangle_congruence",
+        "params": {
+          "labels_1": [
+            "A",
+            "B",
+            "D"
+          ],
+          "labels_2": [
+            "B",
+            "A",
+            "C"
+          ],
+          "ticks_1": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              2
+            ]
+          ],
+          "ticks_2": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              2,
+              2
+            ]
+          ],
+          "arcs_1": [
+            [
+              0,
+              1
+            ]
+          ],
+          "arcs_2": [
+            [
+              0,
+              1
+            ]
+          ],
+          "note": "AB is common to both triangles."
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "percentage_of_amount",
+      "prompt": "Find 25% of 160.",
+      "solution_steps": [
+        "Convert 25% to a fraction: 25/100",
+        "Multiply: 25/100 × 160 = 40"
+      ],
+      "final_answer": "40",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Simple interest formula: I = P × r × t ÷ 100",
+          "description": "Convert 25% to a fraction: 25/100",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "I = 1700 × 2 × 5 ÷ 100 = £170",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total in the account = P + I = £1700 + £170 = £1870",
+          "description": "Multiply: 25/100 × 160 = 40",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£1870 oe",
+          "description": "40 oe",
           "marks": 1
         }
       ],
@@ -766,185 +814,131 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_rectangle",
-      "prompt": "Find the area of the following rectangle.",
+      "topic_id": "ratio_share_three_part_foundation",
+      "prompt": "Share 18 in the ratio 1:3:2.",
       "solution_steps": [
-        "Area = length × width = 5 × 4 = 20 cm²"
+        "Total parts = 1 + 3 + 2 = 6",
+        "Value of one part = 18 ÷ 6 = 3",
+        "Share 1 = 1 × 3 = 3",
+        "Share 2 = 3 × 3 = 9",
+        "Share 3 = 2 × 3 = 6"
       ],
-      "final_answer": "20 cm²",
-      "marks": 2,
+      "final_answer": "3 : 9 : 6",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = length × width = 5 × 4 = 20 cm²",
+          "description": "Total parts = 1 + 3 + 2 = 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Value of one part = 18 ÷ 6 = 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 1 = 1 × 3 = 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 2 = 3 × 3 = 9 Share 3 = 2 × 3 = 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "20 cm² oe",
+          "description": "3 : 9 : 6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "volume_surface_area_cylinder_foundation",
+      "prompt": "A cylinder has radius 9 cm and height 19 cm. Find its total surface area, correct to 3 significant figures.",
+      "solution_steps": [
+        "Surface area = 2πr² + 2πrh = (2 × π × 9²) + (2 × π × 9 × 19)",
+        "= 1580 cm² (3 s.f., using a calculator value of π)"
+      ],
+      "final_answer": "1580 cm²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Surface area = 2πr² + 2πrh = (2 × π × 9²) + (2 × π × 9 × 19)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 1580 cm² (3 s.f., using a calculator value of π)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1580 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "rectangle",
+        "kind": "cylinder",
         "params": {
-          "width": 5,
-          "height": 4,
-          "width_label": "5 cm",
-          "height_label": "4 cm"
+          "radius_label": "9 cm",
+          "height_label": "19 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_ladder_context_foundation",
-      "prompt": "A ladder of length 123 m leans against a vertical wall with its base 27 m from the wall. Find the height the ladder reaches up the wall.",
+      "topic_id": "area_subtract_compound_foundation",
+      "prompt": "Find the shaded area.",
       "solution_steps": [
-        "height² = ladder² - base² = 123² - 27² = 15129 - 729 = 14400",
-        "height = √14400 = 120 m"
+        "Area of large rectangle = 11 × 14 = 154 cm²",
+        "Area of rectangular hole = 6 × 3 = 18 cm²",
+        "Shaded area = 154 - 18 = 136 cm²"
       ],
-      "final_answer": "120 m",
-      "marks": 3,
+      "final_answer": "136 cm²",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "height² = ladder² - base² = 123² - 27² = 15129 - 729 = 14400",
+          "description": "Area of large rectangle = 11 × 14 = 154 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "height = √14400 = 120 m",
+          "description": "Area of rectangular hole = 6 × 3 = 18 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Shaded area = 154 - 18 = 136 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "120 m oe",
+          "description": "136 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "right_triangle",
+        "kind": "l_shape",
         "params": {
-          "leg1_label": "27 m",
-          "leg2_label": "x",
-          "hyp_label": "123 m"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "symmetry_lines",
-      "prompt": "The diagram shows an isosceles trapezium. How many lines of symmetry does it have?",
-      "solution_steps": [
-        "An isosceles trapezium has 1 line of symmetry.",
-        "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram."
-      ],
-      "final_answer": "1 line of symmetry",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "An isosceles trapezium has 1 line of symmetry.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1 line of symmetry oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "symmetry_shape",
-        "params": {
-          "vertices": [
-            [
-              0,
-              0
-            ],
-            [
-              6,
-              0
-            ],
-            [
-              4,
-              3
-            ],
-            [
-              2,
-              3
-            ]
+          "outer_w": 11,
+          "outer_h": 14,
+          "inner_w": 6,
+          "inner_h": 3,
+          "notch": "center",
+          "shade_frame": true,
+          "outer_labels": [
+            "11 cm",
+            "14 cm"
           ],
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "symmetry_shape",
-        "params": {
-          "vertices": [
-            [
-              0,
-              0
-            ],
-            [
-              6,
-              0
-            ],
-            [
-              4,
-              3
-            ],
-            [
-              2,
-              3
-            ]
-          ],
-          "symmetry_lines": [
-            {
-              "p1": [
-                3,
-                -1
-              ],
-              "p2": [
-                3,
-                4
-              ]
-            }
+          "inner_labels": [
+            "6 cm",
+            "3 cm"
           ]
-        }
-      }
-    },
-    {
-      "topic_id": "area_parallelogram",
-      "prompt": "Find the area of the following parallelogram.",
-      "solution_steps": [
-        "Area = base × height = 13 × 8 = 104 cm²"
-      ],
-      "final_answer": "104 cm²",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Area = base × height = 13 × 8 = 104 cm²",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "104 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "parallelogram",
-        "params": {
-          "base": 13,
-          "height": 8,
-          "base_label": "13 cm",
-          "height_label": "8 cm"
         }
       },
       "solution_diagram": null
@@ -1063,40 +1057,188 @@
       }
     },
     {
-      "topic_id": "pythagoras_hypotenuse_triple",
-      "prompt": "A right-angled triangle has sides 7 cm and 24 cm. Find the length of x.",
+      "topic_id": "angles_polygon_interior_foundation",
+      "prompt": "A polygon has 9 sides. Find the sum of its interior angles.",
       "solution_steps": [
-        "c² = a² + b² = 7² + 24² = 49 + 576 = 625",
-        "c = √625 = 25"
+        "Sum of interior angles = (n - 2) × 180 = (9 - 2) × 180 = 1260°"
       ],
-      "final_answer": "25 cm",
-      "marks": 3,
+      "final_answer": "1260°",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "c² = a² + b² = 7² + 24² = 49 + 576 = 625",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "c = √625 = 25",
+          "description": "Sum of interior angles = (n - 2) × 180 = (9 - 2) × 180 = 1260°",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "25 cm oe",
+          "description": "1260° oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "transform_enlarge_complete_foundation",
+      "prompt": "Enlarge shape ABCDEF by scale factor 2, centre (6, 2). Draw and label the image A'B'C'D'E'F'.",
+      "solution_steps": [
+        "The centre of enlargement is (6, 2) and the scale factor is 2.",
+        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-6, -4) from the centre, so A' = (6, 2) + 2 × (-6, -4) = (-6, -6).",
+        "Repeat for every vertex: A(0, -2) -> A'(-6, -6), B(4, -2) -> B'(2, -6), C(4, 0) -> C'(2, -2), D(2, 0) -> D'(-2, -2), E(2, 3) -> E'(-2, 4), F(0, 3) -> F'(-6, 4)"
+      ],
+      "final_answer": "A'(-6, -6), B'(2, -6), C'(2, -2), D'(-2, -2), E'(-2, 4), F'(-6, 4)",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The centre of enlargement is (6, 2) and the scale factor is 2.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-6, -4) from the centre, so A' = (6, 2) + 2 × (-6, -4) = (-6, -6).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Repeat for every vertex: A(0, -2) -> A'(-6, -6), B(4, -2) -> B'(2, -6), C(4, 0) -> C'(2, -2), D(2, 0) -> D'(-2, -2), E(2, 3) -> E'(-2, 4), F(0, 3) -> F'(-6, 4)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "A'(-6, -6), B'(2, -6), C'(2, -2), D'(-2, -2), E'(-2, 4), F'(-6, 4) oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "right_triangle",
+        "kind": "grid_transformation",
         "params": {
-          "leg1_label": "7 cm",
-          "leg2_label": "24 cm",
-          "hyp_label": "x"
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              0,
+              -2
+            ],
+            [
+              4,
+              -2
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "centre": [
+            6,
+            2
+          ]
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              0,
+              -2
+            ],
+            [
+              4,
+              -2
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "centre": [
+            6,
+            2
+          ],
+          "image_vertices": [
+            [
+              -6,
+              -6
+            ],
+            [
+              2,
+              -6
+            ],
+            [
+              2,
+              -2
+            ],
+            [
+              -2,
+              -2
+            ],
+            [
+              -2,
+              4
+            ],
+            [
+              -6,
+              4
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'",
+            "D'",
+            "E'",
+            "F'"
+          ]
+        }
+      }
     },
     {
       "topic_id": "sample_space_diagrams",
@@ -1137,6 +1279,77 @@
         }
       ],
       "diagram": {
+        "kind": "sample_space_diagram",
+        "params": {
+          "row_values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "col_values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "cells": [
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ]
+          ]
+        }
+      },
+      "solution_diagram": {
         "kind": "sample_space_diagram",
         "params": {
           "row_values": [
@@ -1212,63 +1425,30 @@
             ]
           ]
         }
-      },
-      "solution_diagram": null
+      }
     },
     {
-      "topic_id": "venn_diagram_shading",
-      "prompt": "Shade the region that represents the elements not in A.",
+      "topic_id": "stats_range",
+      "prompt": "Find the range of this data set: 8, 28, 1, 28, 30, 17, 5.",
       "solution_steps": [
-        "The Venn diagram has two circles, A and B, inside a rectangle representing everything being considered.",
-        "'Shade the region that represents the elements not in A.' tells you which of the four regions (in A only, in B only, in both, or in neither) needs shading.",
-        "The region outside A (everything that is not in A)."
+        "Range = largest - smallest = 30 - 1 = 29"
       ],
-      "final_answer": "The region outside A (everything that is not in A).",
-      "marks": 4,
+      "final_answer": "29",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The Venn diagram has two circles, A and B, inside a rectangle representing everything being considered.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "'Shade the region that represents the elements not in A.' tells you which of the four regions (in A only, in B only, in both, or in neither) needs shading.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The region outside A (everything that is not in A).",
+          "description": "Range = largest - smallest = 30 - 1 = 29",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "The region outside A (everything that is not in A). oe",
+          "description": "29 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "venn_diagram",
-        "params": {
-          "labels": [
-            "A",
-            "B"
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "venn_diagram",
-        "params": {
-          "labels": [
-            "A",
-            "B"
-          ],
-          "shade": [
-            "b_only",
-            "neither"
-          ]
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     }
   ]
 }

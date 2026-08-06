@@ -65,40 +65,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "classify_expressions",
-      "prompt": "Is the following an expression, equation, formula, or identity?\n8x^2 + 3x",
+      "topic_id": "linear_one_step",
+      "prompt": "Solve: 5x = 25",
       "solution_steps": [
-        "Look at the statement: 8x^2 + 3x.",
-        "There is no '=' sign and no '≡' sign anywhere in it, so it isn't claiming that two things are equal at all.",
-        "It's just a single algebraic object built from numbers and a letter using +, -, ×, ÷ and powers - it can be simplified or evaluated for a given x, but there is nothing here to 'solve' or 'prove'.",
-        "Since it makes no equality claim whatsoever, this is an expression."
+        "5x = 25",
+        "Divide both sides by 5:",
+        "x = 5"
       ],
-      "final_answer": "expression",
-      "marks": 5,
+      "final_answer": "5",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Look at the statement: 8x^2 + 3x.",
+          "description": "5x = 25",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "There is no '=' sign and no '≡' sign anywhere in it, so it isn't claiming that two things are equal at all.",
+          "description": "Divide both sides by 5:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "It's just a single algebraic object built from numbers and a letter using +, -, ×, ÷ and powers - it can be simplified or evaluated for a given x, but there is nothing here to 'solve' or 'prove'.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Since it makes no equality claim whatsoever, this is an expression.",
+          "description": "x = 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "expression oe",
+          "description": "5 oe",
           "marks": 1
         }
       ],
@@ -200,7 +194,7 @@
     },
     {
       "topic_id": "recurring_decimal_single_digit",
-      "prompt": "The recurring decimal \\recur{0.}{1} can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Write \\recur{0.}{1} as a fraction in its simplest form.",
       "solution_steps": [
         "Let x = \\recur{0.}{1}, so 10x = 1.111... (only one digit repeats, so multiply by 10 to shift it one place)",
         "Subtract: 10x - x = 1 - 0, so 9x = 1",
@@ -235,7 +229,7 @@
     },
     {
       "topic_id": "negative_ordering",
-      "prompt": "Write these numbers in order, from largest to smallest: 7, -2, 2, -1, 10",
+      "prompt": "Write these numbers in descending order: 7, -2, 2, -1, 10",
       "solution_steps": [
         "Place the numbers on a number line: 7, -2, 2, -1, 10.",
         "Reading them in order from largest to smallest gives: 10, 7, 2, -1, -2."
@@ -309,28 +303,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_common_factor",
-      "prompt": "Factorise: -56x - 49",
+      "topic_id": "expand_double_brackets_no_coefficient_foundation",
+      "prompt": "Expand and simplify: (x + 8)(x + 9)",
       "solution_steps": [
-        "Find the highest common factor of -56 and -49: 7",
-        "Factorise: 7(-8x - 7)"
+        "First: x × x = x^2",
+        "Outer: x × 9 = 9x",
+        "Inner: 8 × x = 8x",
+        "Last: 8 × 9 = 72",
+        "Combine like terms: x^2 + 17x + 72"
       ],
-      "final_answer": "7(-8x - 7)",
-      "marks": 3,
+      "final_answer": "x^2 + 17x + 72",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the highest common factor of -56 and -49: 7",
+          "description": "First: x × x = x^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: 7(-8x - 7)",
+          "description": "Outer: x × 9 = 9x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Inner: 8 × x = 8x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Last: 8 × 9 = 72 Combine like terms: x^2 + 17x + 72",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7(-8x - 7) oe",
+          "description": "x^2 + 17x + 72 oe",
           "marks": 1
         }
       ],
@@ -381,48 +388,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "functions_evaluate",
-      "prompt": "f(x) = 2x + 1. Find the value of x for which f(x) = 4.",
-      "solution_steps": [
-        "2x + 1 = 4",
-        "Subtract 1 from both sides:",
-        "2x = 3",
-        "Divide both sides by 2:",
-        "x = 3/2"
-      ],
-      "final_answer": "3/2",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "2x + 1 = 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 1 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2x = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by 2: x = 3/2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "3/2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
       "topic_id": "algebraic_indices_foundation",
       "prompt": "Simplify 2x^4 ÷ x^3",
       "solution_steps": [
@@ -451,6 +416,47 @@
         {
           "code": "A1",
           "description": "2x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "solve_quadratic_factorising_foundation",
+      "prompt": "Solve x^2 + 9x + 20 = 0 by factorising.",
+      "solution_steps": [
+        "Find two numbers that multiply to 20 and add to 9: 4 and 5",
+        "Factorise: (x + 4)(x + 5) = 0",
+        "Either x + 4 = 0 or x + 5 = 0",
+        "x = -4 or x = -5"
+      ],
+      "final_answer": "x = -4 or x = -5",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find two numbers that multiply to 20 and add to 9: 4 and 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: (x + 4)(x + 5) = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Either x + 4 = 0 or x + 5 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -4 or x = -5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = -4 or x = -5 oe",
           "marks": 1
         }
       ],
@@ -493,34 +499,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_multiply",
-      "prompt": "Work out 13.41 × 12.8.",
+      "topic_id": "special_sequences_foundation",
+      "prompt": "Here are the first 4 terms of a sequence: 12, 14, 16, 18. Find the next term.",
       "solution_steps": [
-        "Ignore the decimal points and multiply the whole numbers: 1341 × 128 = 171648",
-        "Count the total decimal places in the question: 2 + 1 = 3",
-        "Place the decimal point 3 places from the right: 171.648"
+        "This is an arithmetic sequence: it goes up (or down) by the same amount, 2, each time.",
+        "Next term = 18 + 2 = 20"
       ],
-      "final_answer": "171.648",
-      "marks": 4,
+      "final_answer": "20",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Ignore the decimal points and multiply the whole numbers: 1341 × 128 = 171648",
+          "description": "This is an arithmetic sequence: it goes up (or down) by the same amount, 2, each time.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Count the total decimal places in the question: 2 + 1 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Place the decimal point 3 places from the right: 171.648",
+          "description": "Next term = 18 + 2 = 20",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "171.648 oe",
+          "description": "20 oe",
           "marks": 1
         }
       ],
@@ -727,39 +727,46 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "roots_foundation",
-      "prompt": "Without using a calculator, show that √46 lies between two consecutive whole numbers, and state them.",
+      "topic_id": "angles_parallel_lines_foundation",
+      "prompt": "A line crosses two parallel lines. The angle 93° and the angle x° are alternate angles. Find x.",
       "solution_steps": [
-        "6^2 = 36 and 7^2 = 49",
-        "Since 36 < 46 < 49, √46 is between 6 and 7."
+        "Alternate angles are equal.",
+        "x = 93"
       ],
-      "final_answer": "between 6 and 7",
+      "final_answer": "93",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "6^2 = 36 and 7^2 = 49",
+          "description": "Alternate angles are equal.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Since 36 < 46 < 49, √46 is between 6 and 7.",
+          "description": "x = 93",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "between 6 and 7 oe",
+          "description": "93 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "parallel_lines",
+        "params": {
+          "known_label": "93°",
+          "unknown_label": "x",
+          "relation": "alternate"
+        }
+      },
       "solution_diagram": null
     },
     {
       "topic_id": "transform_translate_describe",
-      "prompt": "Shape ABCDEF is translated to give shape A'B'C'D'E'F', shown on the grid. Describe fully the single transformation that maps ABCDEF onto A'B'C'D'E'F'.",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
       "solution_steps": [
-        "Every vertex moves by exactly the same amount: comparing A(-1, -2) with A'(-5, -6) gives the vector (-4, -4).",
+        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-1, -2), with the matching vertex of shape B, (-5, -6), gives the vector (-4, -4).",
         "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
       ],
       "final_answer": "Translation by the vector (-4, -4)",
@@ -767,7 +774,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Every vertex moves by exactly the same amount: comparing A(-1, -2) with A'(-5, -6) gives the vector (-4, -4).",
+          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-1, -2), with the matching vertex of shape B, (-5, -6), gives the vector (-4, -4).",
           "marks": 1
         },
         {
@@ -815,12 +822,12 @@
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ],
           "image_vertices": [
             [
@@ -849,12 +856,12 @@
             ]
           ],
           "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'",
-            "E'",
-            "F'"
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ]
         }
       },
@@ -880,13 +887,7 @@
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "polygon",
-        "params": {
-          "n_sides": 9,
-          "marked_angle_label": "?"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -987,39 +988,27 @@
     },
     {
       "topic_id": "two_way_tables",
-      "prompt": "The two-way table shows the number of year 10 and year 11 who prefer cats or dogs. Copy and complete the table, and state the missing value marked '?'.",
+      "prompt": "The two-way table shows the number of year 10 and year 11 who prefer cats or dogs. Find the missing values.",
       "solution_steps": [
-        "The missing value is in the 'Year 11' row and 'Dogs' column.",
-        "Using the row total: 25 - 5 = 20",
-        "Using the column total: 28 - 8 = 20",
-        "Missing value = 20"
+        "'Year 11' / 'Dogs': using the 'Year 11' row total: 25 - 5 = 20",
+        "'Year 10' / 'Dogs': using the 'Year 10' row total: 14 - 6 = 8"
       ],
-      "final_answer": "20",
-      "marks": 5,
+      "final_answer": "'Year 11' / 'Dogs' = 20; 'Year 10' / 'Dogs' = 8",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The missing value is in the 'Year 11' row and 'Dogs' column.",
+          "description": "'Year 11' / 'Dogs': using the 'Year 11' row total: 25 - 5 = 20",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Using the row total: 25 - 5 = 20",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Using the column total: 28 - 8 = 20",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Missing value = 20",
+          "description": "'Year 10' / 'Dogs': using the 'Year 10' row total: 14 - 6 = 8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "20 oe",
+          "description": "'Year 11' / 'Dogs' = 20; 'Year 10' / 'Dogs' = 8 oe",
           "marks": 1
         }
       ],
@@ -1039,12 +1028,12 @@
           "cells": [
             [
               "6",
-              "8",
+              "",
               "14"
             ],
             [
               "5",
-              "?",
+              "",
               "25"
             ],
             [
@@ -1090,7 +1079,7 @@
     },
     {
       "topic_id": "scatter_graph_construct",
-      "prompt": "The table shows the midday temperature on a number of days and the number of ice creams a shop sold: (12, 43.7), (13, 55.3), (15, 45.1), (18, 55.9), (19, 66.0), (23, 74.4), (28, 90.0), (29, 88.2), (30, 95.6). Draw a scatter graph of this data, and describe the correlation.",
+      "prompt": "The table shows the midday temperature on a number of days and the number of ice creams a shop sold. Draw a scatter graph of this data, and describe the correlation.",
       "solution_steps": [
         "Plot each (Temperature (°C), Ice creams sold) pair as a single point - do not join the points up with a line or curve.",
         "As temperature (°c) increases, ice creams sold tends to increase too, so the points show positive correlation."
@@ -1114,7 +1103,50 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_way_table",
+        "params": {
+          "row_labels": [
+            "Temperature (°C)",
+            "Ice creams sold"
+          ],
+          "col_labels": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "cells": [
+            [
+              "12",
+              "13",
+              "15",
+              "18",
+              "19",
+              "23",
+              "28",
+              "29",
+              "30"
+            ],
+            [
+              "43.7",
+              "55.3",
+              "45.1",
+              "55.9",
+              "66.0",
+              "74.4",
+              "90.0",
+              "88.2",
+              "95.6"
+            ]
+          ]
+        }
+      },
       "solution_diagram": {
         "kind": "scatter_graph",
         "params": {
@@ -1160,6 +1192,29 @@
           "y_label": "Ice creams sold"
         }
       }
+    },
+    {
+      "topic_id": "stats_range",
+      "prompt": "Find the range of this data set: 4, 8, 29, 13, 20.",
+      "solution_steps": [
+        "Range = largest - smallest = 29 - 4 = 25"
+      ],
+      "final_answer": "25",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Range = largest - smallest = 29 - 4 = 25",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "25 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
     }
   ]
 }

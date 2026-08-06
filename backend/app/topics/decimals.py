@@ -88,7 +88,11 @@ def generate_round_to_significant_figures(tier: Tier, rng: random.Random) -> Que
 
 
 def generate_ordering(tier: Tier, rng: random.Random) -> Question:
-    ks = rng.sample(range(5, 96), 4)
+    # Cap the spread at 20 (i.e. 0.20 as a decimal) - a random window within
+    # the full 5-95 range - so the four values stay close enough together
+    # that ordering them is a genuine comparison, not an obvious spread.
+    window_lo = rng.randint(5, 75)
+    ks = rng.sample(range(window_lo, window_lo + 21), 4)
     formats = [rng.choice(["decimal", "fraction", "percent"]) for _ in ks]
 
     display_strs = []
@@ -132,6 +136,16 @@ def generate_ordering(tier: Tier, rng: random.Random) -> Question:
         final_answer=", ".join(ordered_display),
         dedup_key=f"ordering:{sorted(ks)}:{formats}:{direction}",
     )
+
+
+def _recurring_fraction_prompt(rng: random.Random, display_str: str, p: int, q: int) -> str:
+    """A 50/50 choice between asking the student to derive the fraction from
+    scratch, or a "show that" style prompt that states the target fraction up
+    front and asks the student to prove it - shared by all 3 recurring-
+    decimal-to-fraction topics (and their modelled-example twins)."""
+    if rng.random() < 0.5:
+        return f"Write {display_str} as a fraction in its simplest form."
+    return f"Show that {display_str} can be written as {p}/{q}."
 
 
 def _decimal_expansion(p: int, q: int, max_digits: int = 20):
@@ -183,7 +197,7 @@ def generate_recurring_decimal_to_fraction(tier: Tier, rng: random.Random) -> Qu
     return Question(
         topic_id="decimals_recurring_to_fraction",
         tier=Tier.HIGHER,
-        prompt=f"The recurring decimal {display_str} can be written as a fraction. Find this fraction in its simplest form.",
+        prompt=_recurring_fraction_prompt(rng, display_str, p, q),
         solution_steps=tuple(steps),
         final_answer=f"{p}/{q}",
         dedup_key=f"recurring:{p}:{q}",
@@ -230,7 +244,7 @@ def generate_recurring_decimal_single_digit(tier: Tier, rng: random.Random) -> Q
     return Question(
         topic_id="recurring_decimal_single_digit",
         tier=Tier.FOUNDATION,
-        prompt=f"The recurring decimal {display_str} can be written as a fraction. Find this fraction in its simplest form.",
+        prompt=_recurring_fraction_prompt(rng, display_str, p, q),
         solution_steps=tuple(steps),
         final_answer=f"{p}/{q}",
         dedup_key=f"recurring_1d:{p}:{q}",
@@ -274,7 +288,7 @@ def generate_recurring_decimal_two_digit(tier: Tier, rng: random.Random) -> Ques
     return Question(
         topic_id="recurring_decimal_two_digit",
         tier=Tier.HIGHER,
-        prompt=f"The recurring decimal {display_str} can be written as a fraction. Find this fraction in its simplest form.",
+        prompt=_recurring_fraction_prompt(rng, display_str, p, q),
         solution_steps=tuple(steps),
         final_answer=f"{p}/{q}",
         dedup_key=f"recurring_2d:{p}:{q}",
@@ -529,7 +543,11 @@ def generate_modelled_example_round_to_significant_figures(tier: Tier, rng: rand
 
 
 def generate_modelled_example_ordering(tier: Tier, rng: random.Random) -> ModelledExample:
-    ks = rng.sample(range(5, 96), 4)
+    # Cap the spread at 20 (i.e. 0.20 as a decimal) - a random window within
+    # the full 5-95 range - so the four values stay close enough together
+    # that ordering them is a genuine comparison, not an obvious spread.
+    window_lo = rng.randint(5, 75)
+    ks = rng.sample(range(window_lo, window_lo + 21), 4)
     formats = [rng.choice(["decimal", "fraction", "percent"]) for _ in ks]
 
     display_strs = []
@@ -642,7 +660,7 @@ def generate_modelled_example_recurring_decimal_to_fraction(tier: Tier, rng: ran
     return ModelledExample(
         topic_id="decimals_recurring_to_fraction",
         tier=Tier.HIGHER,
-        prompt=f"The recurring decimal {display_str} can be written as a fraction. Find this fraction in its simplest form.",
+        prompt=_recurring_fraction_prompt(rng, display_str, p, q),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{p}/{q}",
@@ -695,7 +713,7 @@ def generate_modelled_example_recurring_decimal_single_digit(tier: Tier, rng: ra
     return ModelledExample(
         topic_id="recurring_decimal_single_digit",
         tier=Tier.FOUNDATION,
-        prompt=f"The recurring decimal {display_str} can be written as a fraction. Find this fraction in its simplest form.",
+        prompt=_recurring_fraction_prompt(rng, display_str, p, q),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{p}/{q}",
@@ -749,7 +767,7 @@ def generate_modelled_example_recurring_decimal_two_digit(tier: Tier, rng: rando
     return ModelledExample(
         topic_id="recurring_decimal_two_digit",
         tier=Tier.HIGHER,
-        prompt=f"The recurring decimal {display_str} can be written as a fraction. Find this fraction in its simplest form.",
+        prompt=_recurring_fraction_prompt(rng, display_str, p, q),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{p}/{q}",

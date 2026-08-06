@@ -7,175 +7,40 @@
   "calculator_allowed": false,
   "questions": [
     {
-      "topic_id": "bounds_calculation",
-      "prompt": "A rectangle has length 26 cm and width 23 cm, both measured to the nearest cm. Calculate the lower bound for the area of the rectangle.",
+      "topic_id": "decimals_recurring_to_fraction",
+      "prompt": "Write \\recur{0.2}{6} as a fraction in its simplest form.",
       "solution_steps": [
-        "Length: 26 cm (to the nearest cm) gives 25.5 ≤ length < 26.5",
-        "Width: 23 cm (to the nearest cm) gives 22.5 ≤ width < 23.5",
-        "For the lower bound of the area, use the lower bound of each measurement: 25.5 × 22.5 = 573.75 cm²"
+        "Let x = \\recur{0.2}{6}",
+        "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
+        "This gives x = 24/90",
+        "Simplify: 4/15"
       ],
-      "final_answer": "573.75 cm²",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Length: 26 cm (to the nearest cm) gives 25.5 ≤ length < 26.5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Width: 23 cm (to the nearest cm) gives 22.5 ≤ width < 23.5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For the lower bound of the area, use the lower bound of each measurement: 25.5 × 22.5 = 573.75 cm²",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "573.75 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "indices_common_base_equations",
-      "prompt": "Solve 25^x = 625.",
-      "solution_steps": [
-        "Write both sides as powers of 5: 25 = 5^2 and 625 = 5^4",
-        "25^x = 625 becomes (5^2)^x = 5^4, i.e. 5^(2x) = 5^4",
-        "Since the bases match, the powers must be equal: 2x = 4",
-        "x = 4/2 = 2"
-      ],
-      "final_answer": "2",
+      "final_answer": "4/15",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Write both sides as powers of 5: 25 = 5^2 and 625 = 5^4",
+          "description": "Let x = \\recur{0.2}{6}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "25^x = 625 becomes (5^2)^x = 5^4, i.e. 5^(2x) = 5^4",
+          "description": "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Since the bases match, the powers must be equal: 2x = 4",
+          "description": "This gives x = 24/90",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 4/2 = 2",
+          "description": "Simplify: 4/15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "prime_factors_higher",
-      "prompt": "Write 735 as a product of its prime factors, giving your answer in index form.",
-      "solution_steps": [
-        "Divide 735 repeatedly by the smallest prime that fits: 3 × 5 × 7 × 7",
-        "Write repeated factors using index notation: 735 = 3 × 5 × 7^2"
-      ],
-      "final_answer": "3 × 5 × 7^2",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Divide 735 repeatedly by the smallest prime that fits: 3 × 5 × 7 × 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Write repeated factors using index notation: 735 = 3 × 5 × 7^2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "3 × 5 × 7^2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "standard_form_multiply_divide",
-      "prompt": "Work out (8 × 10^-1) × (1 × 10^6). Give your answer in standard form.",
-      "solution_steps": [
-        "Multiply the mantissas: 8 × 1 = 8",
-        "Add the powers of 10: -1 + 6 = 5"
-      ],
-      "final_answer": "8 × 10^5",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiply the mantissas: 8 × 1 = 8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add the powers of 10: -1 + 6 = 5",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "8 × 10^5 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "algebraic_proof",
-      "prompt": "Prove algebraically that the sum of four consecutive integers is always even.",
-      "solution_steps": [
-        "Let four consecutive integers be n, n + 1, n + 2 and n + 3.",
-        "Write the given expression algebraically: n + (n + 1) + (n + 2) + (n + 3).",
-        "Expand and simplify: n + (n + 1) + (n + 2) + (n + 3) = 4n + 6.",
-        "Factorise/rearrange to expose the structure: 4n + 6 = 2(2n + 3).",
-        "Since 4n + 6 factorises exactly to 2(2n + 3), the sum is always 2 times a whole number, so it is always even - though because 2n + 3 is itself always odd, the sum is NOT always a multiple of 4."
-      ],
-      "final_answer": "Proven: the sum is 2(2n + 3), always even (but not always a multiple of 4).",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Let four consecutive integers be n, n + 1, n + 2 and n + 3.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Write the given expression algebraically: n + (n + 1) + (n + 2) + (n + 3).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Expand and simplify: n + (n + 1) + (n + 2) + (n + 3) = 4n + 6.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise/rearrange to expose the structure: 4n + 6 = 2(2n + 3). Since 4n + 6 factorises exactly to 2(2n + 3), the sum is always 2 times a whole number, so it is always even - though because 2n + 3 is itself always odd, the sum is NOT always a multiple of 4.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Proven: the sum is 2(2n + 3), always even (but not always a multiple of 4). oe",
+          "description": "4/15 oe",
           "marks": 1
         }
       ],
@@ -218,208 +83,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_graph",
-      "prompt": "Complete a table of values for y = -cos(x°) for x = -180 to 180 (in steps of 90°), then plot the graph.",
+      "topic_id": "fractions_mixed_number_arithmetic",
+      "prompt": "Work out 5 2/5 + 4 2/3. Give your answer as a mixed number.",
       "solution_steps": [
-        "Table of values for y = -cos(x°):",
-        "x: -180, -90, 0, 90, 180",
-        "y: 1, 0, -1, 0, 1",
-        "Plot each (x, y) point and join them with a single smooth curve - y = -cos(x°) repeats the same shape every 360°, and never goes above 1 or below -1."
+        "Convert to improper fractions: 5 2/5 = 27/5, 4 2/3 = 14/3",
+        "Add the improper fractions: 27/5 + 14/3 = 151/15",
+        "Convert back to a mixed number: 10 1/15"
       ],
-      "final_answer": "y = -cos(x°)",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Table of values for y = -cos(x°):",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x: -180, -90, 0, 90, 180",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y: 1, 0, -1, 0, 1",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve - y = -cos(x°) repeats the same shape every 360°, and never goes above 1 or below -1.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "y = -cos(x°) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "trigonometric",
-          "fn": "cos",
-          "sign": -1,
-          "x_min": -180,
-          "x_max": 180,
-          "y_min": -1.4,
-          "y_max": 1.4,
-          "x_label": "x (degrees)",
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "trigonometric",
-          "fn": "cos",
-          "sign": -1,
-          "x_min": -180,
-          "x_max": 180,
-          "y_min": -1.4,
-          "y_max": 1.4,
-          "x_label": "x (degrees)",
-          "table_points": [
-            [
-              -180,
-              1
-            ],
-            [
-              -90,
-              0
-            ],
-            [
-              0,
-              -1
-            ],
-            [
-              90,
-              0
-            ],
-            [
-              180,
-              1
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "plot_exponential",
-      "prompt": "Complete a table of values for y = 4 × 3^x for x = 0 to 4, then plot the graph.",
-      "solution_steps": [
-        "Table of values for y = 4 × 3^x:",
-        "x: 0, 1, 2, 3, 4",
-        "y: 4, 12, 36, 108, 324",
-        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
-      ],
-      "final_answer": "Exponential curve: y = 4 × 3^x",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Table of values for y = 4 × 3^x:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x: 0, 1, 2, 3, 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y: 4, 12, 36, 108, 324",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Exponential curve: y = 4 × 3^x oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "exponential",
-          "a": 4,
-          "base": 3,
-          "x_min": -1,
-          "x_max": 4,
-          "y_min": 0,
-          "y_max": 356.4,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "exponential",
-          "a": 4,
-          "base": 3,
-          "x_min": -1,
-          "x_max": 4,
-          "y_min": 0,
-          "y_max": 356.4,
-          "table_points": [
-            [
-              0,
-              4
-            ],
-            [
-              1,
-              12
-            ],
-            [
-              2,
-              36
-            ],
-            [
-              3,
-              108
-            ],
-            [
-              4,
-              324
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "turning_point_of_graph",
-      "prompt": "Find the coordinates of the turning point of the curve y = x^2 + 14x + 7.",
-      "solution_steps": [
-        "Complete the square: x^2 + 14x + 7 = (x + 7)^2 - 42",
-        "The turning point of y = (x + p)^2 + q is (-p, q).",
-        "Turning point = (-7, -42)"
-      ],
-      "final_answer": "(-7, -42)",
+      "final_answer": "10 1/15",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Complete the square: x^2 + 14x + 7 = (x + 7)^2 - 42",
+          "description": "Convert to improper fractions: 5 2/5 = 27/5, 4 2/3 = 14/3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
+          "description": "Add the improper fractions: 27/5 + 14/3 = 151/15",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Turning point = (-7, -42)",
+          "description": "Convert back to a mixed number: 10 1/15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(-7, -42) oe",
+          "description": "10 1/15 oe",
           "marks": 1
         }
       ],
@@ -427,130 +118,110 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_reciprocal",
-      "prompt": "Complete a table of values for y = \\frac{12}{x} for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
+      "topic_id": "simplifying_indices_challenging",
+      "prompt": "Simplify 64^(2/3) × 64^-3, giving your answer as a fraction where necessary.",
       "solution_steps": [
-        "Table of values for y = \\frac{12}{x}:",
-        "x: -4, -3, -2, -1, 1, 2, 3, 4",
-        "y: -3, -4, -6, -12, 12, 6, 4, 3",
-        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
+        "64^(1/3) is the cube root of 64, which is 4, so 64^(2/3) = 4^2",
+        "64^-3 = \\frac{1}{64³} = \\frac{1}{4⁹}",
+        "64^(2/3) × 64^-3 = 4^2 × \\frac{1}{4⁹} = 4^(2-9) = 4^-7",
+        "4^-7 = 1/16384"
       ],
-      "final_answer": "Reciprocal curve: y = \\frac{12}{x}",
+      "final_answer": "1/16384",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = \\frac{12}{x}:",
+          "description": "64^(1/3) is the cube root of 64, which is 4, so 64^(2/3) = 4^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
+          "description": "64^-3 = \\frac{1}{64³} = \\frac{1}{4⁹}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: -3, -4, -6, -12, 12, 6, 4, 3",
+          "description": "64^(2/3) × 64^-3 = 4^2 × \\frac{1}{4⁹} = 4^(2-9) = 4^-7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
+          "description": "4^-7 = 1/16384",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Reciprocal curve: y = \\frac{12}{x} oe",
+          "description": "1/16384 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "reciprocal",
-          "a": 12,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -14,
-          "y_max": 14,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "reciprocal",
-          "a": 12,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -14,
-          "y_max": 14,
-          "table_points": [
-            [
-              -4,
-              -3
-            ],
-            [
-              -3,
-              -4
-            ],
-            [
-              -2,
-              -6
-            ],
-            [
-              -1,
-              -12
-            ],
-            [
-              1,
-              12
-            ],
-            [
-              2,
-              6
-            ],
-            [
-              3,
-              4
-            ],
-            [
-              4,
-              3
-            ]
-          ]
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     },
     {
-      "topic_id": "expand_triple_brackets",
-      "prompt": "Expand and simplify: (4x - 3)(4x + 2)(4x + 4)",
+      "topic_id": "prime_factors_higher",
+      "prompt": "Write 735 as a product of its prime factors, giving your answer in index form.",
       "solution_steps": [
-        "First expand two of the brackets: (4x - 3)(4x + 2) = 16x^2 - 4x - 6",
-        "Multiply the result by (4x + 4) and collect like terms",
-        "= 64x^3 + 48x^2 - 40x - 24"
+        "Divide 735 repeatedly by the smallest prime that fits: 3 × 5 × 7 × 7",
+        "Write repeated factors using index notation: 735 = 3 × 5 × 7^2"
       ],
-      "final_answer": "64x^3 + 48x^2 - 40x - 24",
-      "marks": 4,
+      "final_answer": "3 × 5 × 7^2",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First expand two of the brackets: (4x - 3)(4x + 2) = 16x^2 - 4x - 6",
+          "description": "Divide 735 repeatedly by the smallest prime that fits: 3 × 5 × 7 × 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the result by (4x + 4) and collect like terms",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 64x^3 + 48x^2 - 40x - 24",
+          "description": "Write repeated factors using index notation: 735 = 3 × 5 × 7^2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "64x^3 + 48x^2 - 40x - 24 oe",
+          "description": "3 × 5 × 7^2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "hcf_lcm_by_prime_factors",
+      "prompt": "Using prime factorisation, find the HCF of 133 and 35.",
+      "solution_steps": [
+        "133 = 7 × 19",
+        "35 = 5 × 7",
+        "HCF: take the lowest power of each prime that appears in both numbers",
+        "HCF = 7"
+      ],
+      "final_answer": "7",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "133 = 7 × 19",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "35 = 5 × 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "HCF: take the lowest power of each prime that appears in both numbers",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "HCF = 7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "7 oe",
           "marks": 1
         }
       ],
@@ -593,69 +264,88 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solve_quadratic_factorising",
-      "prompt": "Solve x^2 + 12x + 35 = 0 by factorising.",
+      "topic_id": "inequalities_number_line_higher",
+      "prompt": "Write down the inequality (or pair of inequalities) shown by the number line below.",
       "solution_steps": [
-        "Find two numbers that multiply to 35 and add to 12: 5 and 7",
-        "Factorise: (x + 5)(x + 7) = 0",
-        "Either x + 5 = 0 or x + 7 = 0",
-        "x = -5 or x = -7"
+        "The circle at 1 is open and the circle at 4 is filled.",
+        "The shading lies between the two circles, so both bounds must hold at once: 1 < x ≤ 4."
       ],
-      "final_answer": "x = -5 or x = -7",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find two numbers that multiply to 35 and add to 12: 5 and 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise: (x + 5)(x + 7) = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Either x + 5 = 0 or x + 7 = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = -5 or x = -7",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = -5 or x = -7 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "compound_percentage",
-      "prompt": "A price of £296 increases by 15%, then increases by 42.5%. Find the final price.",
-      "solution_steps": [
-        "After the first change: 296 × 1.15 = 340.40",
-        "After the second change: 340.40 × 1.43 = 485.07"
-      ],
-      "final_answer": "£485.07",
+      "final_answer": "1 < x ≤ 4",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first change: 296 × 1.15 = 340.40",
+          "description": "The circle at 1 is open and the circle at 4 is filled.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "After the second change: 340.40 × 1.43 = 485.07",
+          "description": "The shading lies between the two circles, so both bounds must hold at once: 1 < x ≤ 4.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£485.07 oe",
+          "description": "1 < x ≤ 4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [
+            {
+              "value": 1,
+              "closed": false
+            },
+            {
+              "value": 4,
+              "closed": true
+            }
+          ],
+          "shade": "between"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "quadratic_inequalities",
+      "prompt": "Solve the inequality: x^2 - 8x - 9 ≤ 0",
+      "solution_steps": [
+        "Factorise: x^2 - 8x - 9 = (x + 1)(x - 9)",
+        "The critical values are x = -1 and x = 9.",
+        "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and ≤ 0 is satisfied between the two roots.",
+        "Answer: -1 ≤ x ≤ 9"
+      ],
+      "final_answer": "-1 ≤ x ≤ 9",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Factorise: x^2 - 8x - 9 = (x + 1)(x - 9)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The critical values are x = -1 and x = 9.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and ≤ 0 is satisfied between the two roots.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Answer: -1 ≤ x ≤ 9",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-1 ≤ x ≤ 9 oe",
           "marks": 1
         }
       ],
@@ -663,28 +353,299 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "unit_conversions_higher",
-      "prompt": "Convert 3805 cm² to m².",
+      "topic_id": "solving_inequalities_higher",
+      "prompt": "Solve the inequality: -4(x + 1) ≥ 8",
       "solution_steps": [
-        "Linear conversion factor: 1 m = 100 cm, so for area, 1 m² = 100^2 = 10000 cm²",
-        "3805 cm² = 3805 ÷ 10000 = 0.3805 m²"
+        "Expand the bracket: -4(x + 1) ≥ 8",
+        "-4x - 4 ≥ 8",
+        "Add 4 to both sides:",
+        "-4x ≥ 12",
+        "Divide both sides by -4 (dividing by a negative number reverses the inequality sign):",
+        "x ≤ -3"
       ],
-      "final_answer": "0.3805 m²",
+      "final_answer": "x ≤ -3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: -4(x + 1) ≥ 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-4x - 4 ≥ 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add 4 to both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-4x ≥ 12 Divide both sides by -4 (dividing by a negative number reverses the inequality sign): x ≤ -3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x ≤ -3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_cubic",
+      "prompt": "Complete a table of values for y = -x^3 - 2x for x = -3 to 3, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = -x^3 - 2x:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: 33, 12, 3, 0, -3, -12, -33",
+        "Plot each (x, y) point and join them with a single smooth curve."
+      ],
+      "final_answer": "Cubic curve: y = -x^3 - 2x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = -x^3 - 2x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 33, 12, 3, 0, -3, -12, -33",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Cubic curve: y = -x^3 - 2x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": -1,
+          "b": -2,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -35,
+          "y_max": 35,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": -1,
+          "b": -2,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -35,
+          "y_max": 35,
+          "table_points": [
+            [
+              -3,
+              33
+            ],
+            [
+              -2,
+              12
+            ],
+            [
+              -1,
+              3
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              -3
+            ],
+            [
+              2,
+              -12
+            ],
+            [
+              3,
+              -33
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "simultaneous_different_coefficient",
+      "prompt": "Solve the simultaneous equations: 3x + 5y = -15 and 5x + 2y = 13",
+      "solution_steps": [
+        "3x + 5y = -15  (1)",
+        "5x + 2y = 13  (2)",
+        "(1) × 2: 6x + 10y = -30  (3)",
+        "(2) × 5: 25x + 10y = 65  (4)",
+        "(3) - (4): -19x = -95, so x = 5",
+        "Substitute x = 5 into (1): 5y = -30, so y = -6"
+      ],
+      "final_answer": "x = 5, y = -6",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "3x + 5y = -15  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x + 2y = 13  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(1) × 2: 6x + 10y = -30  (3)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(2) × 5: 25x + 10y = 65  (4) (3) - (4): -19x = -95, so x = 5 Substitute x = 5 into (1): 5y = -30, so y = -6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 5, y = -6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "satisfying_inequalities_higher",
+      "prompt": "x satisfies both 4x - 7 > 13 and x - 3 < 8. List the integer values of x that satisfy both.",
+      "solution_steps": [
+        "Solve the first inequality:",
+        "4x - 7 > 13",
+        "Add 7 to both sides:",
+        "4x > 20",
+        "Divide both sides by 4:",
+        "x > 5",
+        "Solve the second inequality:",
+        "x - 3 < 8",
+        "Add 3 to both sides:",
+        "x < 11",
+        "x < 11",
+        "Combine both results into a single range: 5 < x < 11",
+        "The integers satisfying both inequalities are: 6, 7, 8, 9, 10"
+      ],
+      "final_answer": "6, 7, 8, 9, 10",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Solve the first inequality:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x - 7 > 13",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add 7 to both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x > 20 Divide both sides by 4: x > 5 Solve the second inequality: x - 3 < 8 Add 3 to both sides: x < 11 x < 11 Combine both results into a single range: 5 < x < 11 The integers satisfying both inequalities are: 6, 7, 8, 9, 10",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6, 7, 8, 9, 10 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_direct_proportion",
+      "prompt": "y is directly proportional to x^2. When x = 5, y = 150. Find the value of y when x = 2.",
+      "solution_steps": [
+        "y = kx^2",
+        "150 = k × 5^2 = k × 25",
+        "k = 150 ÷ 25 = 6",
+        "y = 6 × 2^2 = 6 × 4 = 24"
+      ],
+      "final_answer": "24",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = kx^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "150 = k × 5^2 = k × 25",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "k = 150 ÷ 25 = 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y = 6 × 2^2 = 6 × 4 = 24",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "24 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pressure_higher",
+      "prompt": "A brick exerts a force of 4836 N over a contact area of 3526 cm². Find the pressure in N/m², correct to 2 decimal places.",
+      "solution_steps": [
+        "Convert area to m²: 3526 cm² = 3526 ÷ 10000 = 0.3526 m²",
+        "pressure = force ÷ area = 4836 ÷ 0.3526 = 13715.26 N/m² (2 d.p.)"
+      ],
+      "final_answer": "13715.26 N/m²",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Linear conversion factor: 1 m = 100 cm, so for area, 1 m² = 100^2 = 10000 cm²",
+          "description": "Convert area to m²: 3526 cm² = 3526 ÷ 10000 = 0.3526 m²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3805 cm² = 3805 ÷ 10000 = 0.3805 m²",
+          "description": "pressure = force ÷ area = 4836 ÷ 0.3526 = 13715.26 N/m² (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0.3805 m² oe",
+          "description": "13715.26 N/m² oe",
           "marks": 1
         }
       ],
@@ -692,41 +653,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_three_part",
-      "prompt": "Share 51 in the ratio 4:7:6.",
+      "topic_id": "ratio_to_equation",
+      "prompt": "(x + 5) : (5x - 3) = 2:3. Find the value of x.",
       "solution_steps": [
-        "Total parts = 4 + 7 + 6 = 17",
-        "Value of one part = 51 ÷ 17 = 3",
-        "Share 1 = 4 × 3 = 12",
-        "Share 2 = 7 × 3 = 21",
-        "Share 3 = 6 × 3 = 18"
+        "Cross-multiply: 3(x + 5) = 2(5x - 3)",
+        "Expand: 3x + 15 = 10x - 6",
+        "Collect x terms: -7x = -21",
+        "x = -21 ÷ -7 = 3"
       ],
-      "final_answer": "12 : 21 : 18",
+      "final_answer": "x = 3",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 4 + 7 + 6 = 17",
+          "description": "Cross-multiply: 3(x + 5) = 2(5x - 3)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 51 ÷ 17 = 3",
+          "description": "Expand: 3x + 15 = 10x - 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 1 = 4 × 3 = 12",
+          "description": "Collect x terms: -7x = -21",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 2 = 7 × 3 = 21 Share 3 = 6 × 3 = 18",
+          "description": "x = -21 ÷ -7 = 3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 : 21 : 18 oe",
+          "description": "x = 3 oe",
           "marks": 1
         }
       ],
@@ -734,42 +694,119 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_difference_higher",
-      "prompt": "s : t : u = 1 : 6 : 3. t - s = 55. Find s, t and u, and their total.",
+      "topic_id": "area_circle",
+      "prompt": "Find the area of the following circle, in terms of π.",
       "solution_steps": [
-        "Difference in parts = 6 - 1 = 5 parts",
-        "Value of one part = 55 ÷ 5 = 11",
-        "s = 1 × 11 = 11",
-        "t = 6 × 11 = 66",
-        "u = 3 × 11 = 33",
-        "s + t + u = 11 + 66 + 33 = 110"
+        "Area = π × r² = π × 3² = 9π cm²",
+        "≈ 28.3 cm² (3 s.f.)"
       ],
-      "final_answer": "s = 11, t = 66, u = 33 (total 110)",
-      "marks": 5,
+      "final_answer": "9π cm² (≈ 28.3 cm²)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Difference in parts = 6 - 1 = 5 parts",
+          "description": "Area = π × r² = π × 3² = 9π cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 55 ÷ 5 = 11",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "s = 1 × 11 = 11",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "t = 6 × 11 = 66 u = 3 × 11 = 33 s + t + u = 11 + 66 + 33 = 110",
+          "description": "≈ 28.3 cm² (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "s = 11, t = 66, u = 33 (total 110) oe",
+          "description": "9π cm² (≈ 28.3 cm²) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "circle",
+        "params": {
+          "radius": 3,
+          "label": "3 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_straight_line_higher",
+      "prompt": "The angles 132° and (4x + 36)° lie on a straight line. Find x.",
+      "solution_steps": [
+        "Angles on a straight line sum to 180°.",
+        "4x + 36 = 48",
+        "Subtract 36 from both sides:",
+        "4x = 12",
+        "Divide both sides by 4:",
+        "x = 3"
+      ],
+      "final_answer": "3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles on a straight line sum to 180°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x + 36 = 48",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 36 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x = 12 Divide both sides by 4: x = 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "angle_line",
+        "params": {
+          "angle_values": [
+            132,
+            48
+          ],
+          "labels": [
+            "132°",
+            "(4x + 36)°"
+          ],
+          "around_point": false
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "exact_trig_values",
+      "prompt": "Write down the exact value of cos(90°).",
+      "solution_steps": [
+        "Recall the exact-value triangles: 30°-60°-90° (sides 1, √3, 2) and 45°-45°-90° (sides 1, 1, √2) - no calculator needed for these special angles.",
+        "cos(90°) = 0"
+      ],
+      "final_answer": "0",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Recall the exact-value triangles: 30°-60°-90° (sides 1, √3, 2) and 45°-45°-90° (sides 1, 1, √2) - no calculator needed for these special angles.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "cos(90°) = 0",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "0 oe",
           "marks": 1
         }
       ],
@@ -830,138 +867,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_around_point_higher",
-      "prompt": "The angles 77°, 53°, 14° and (2x + 180)° are angles around a point. Find x.",
+      "topic_id": "transform_rotate_describe",
+      "prompt": "Shape ABCDEF is rotated to give shape A'B'C'D'E'F', shown on the grid. Describe fully the single transformation that maps ABCDEF onto A'B'C'D'E'F'.",
       "solution_steps": [
-        "Angles around a point sum to 360°.",
-        "2x + 180 = 216",
-        "Subtract 180 from both sides:",
-        "2x = 36",
-        "Divide both sides by 2:",
-        "x = 18"
+        "The centre of rotation is the one point that is the same distance from a vertex and its image, for every vertex - it can be found where the perpendicular bisectors of two such pairs cross.",
+        "Measuring the turn from a vertex to its image about that point gives 90° clockwise about (1, 2)."
       ],
-      "final_answer": "18",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Angles around a point sum to 360°.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2x + 180 = 216",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 180 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2x = 36 Divide both sides by 2: x = 18",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "18 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "angle_line",
-        "params": {
-          "angle_values": [
-            77,
-            53,
-            14,
-            216
-          ],
-          "labels": [
-            "77°",
-            "53°",
-            "14°",
-            "(2x + 180)°"
-          ],
-          "around_point": true
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "area_semicircle_compound_higher",
-      "prompt": "A shape is made from a rectangle 8 cm by 9 cm with a semicircle of diameter 8 cm attached to one side. Find the total area, giving your answer in terms of π.",
-      "solution_steps": [
-        "Area of rectangle = 8 × 9 = 72 cm²",
-        "Radius of semicircle = 8 ÷ 2 = 4 cm",
-        "Area of semicircle = (1/2) × π × 4² = 8π cm²",
-        "Total area = 72 + 8π cm² (exact form)"
-      ],
-      "final_answer": "(72 + 8π) cm²",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Area of rectangle = 8 × 9 = 72 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Radius of semicircle = 8 ÷ 2 = 4 cm",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Area of semicircle = (1/2) × π × 4² = 8π cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total area = 72 + 8π cm² (exact form)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(72 + 8π) cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "rectangle_semicircle",
-        "params": {
-          "width": 8,
-          "height": 9,
-          "radius": 4,
-          "width_label": "8 cm",
-          "height_label": "9 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "combined_transformations",
-      "prompt": "Shape ABCD is rotated 90° anticlockwise about the centre (0, 0) to give shape A'B'C'D'. Shape A'B'C'D' is then rotated 90° anticlockwise about the same centre to give shape A''B''C''D''. Describe fully the single transformation that maps ABCD directly onto A''B''C''D''.",
-      "solution_steps": [
-        "Two rotations about the same centre combine into a single rotation about that centre, by the sum of the two angles.",
-        "Measuring both turns anticlockwise: 90° + 90° = 180°, which is the same as 180°."
-      ],
-      "final_answer": "Rotation 180° about (0, 0)",
+      "final_answer": "Rotation 90° clockwise about (1, 2)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Two rotations about the same centre combine into a single rotation about that centre, by the sum of the two angles.",
+          "description": "The centre of rotation is the one point that is the same distance from a vertex and its image, for every vertex - it can be found where the perpendicular bisectors of two such pairs cross.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Measuring both turns anticlockwise: 90° + 90° = 180°, which is the same as 180°.",
+          "description": "Measuring the turn from a vertex to its image about that point gives 90° clockwise about (1, 2).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Rotation 180° about (0, 0) oe",
+          "description": "Rotation 90° clockwise about (1, 2) oe",
           "marks": 1
         }
       ],
@@ -974,16 +901,24 @@
           "y_max": 8,
           "original_vertices": [
             [
-              -1,
-              -1
+              -2,
+              -2
             ],
             [
               3,
-              -1
+              -2
             ],
             [
-              2,
-              3
+              3,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              2
             ],
             [
               -2,
@@ -994,76 +929,46 @@
             "A",
             "B",
             "C",
-            "D"
+            "D",
+            "E",
+            "F"
           ],
           "image_vertices": [
             [
-              1,
-              1
+              -3,
+              5
             ],
             [
               -3,
-              1
+              0
             ],
             [
-              -2,
-              -3
+              -1,
+              0
             ],
             [
-              2,
-              -2
+              -1,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              5
             ]
           ],
           "image_labels": [
-            "A''",
-            "B''",
-            "C''",
-            "D''"
+            "A'",
+            "B'",
+            "C'",
+            "D'",
+            "E'",
+            "F'"
           ]
         }
       },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "set_notation",
-      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, A = {1, 2, 5, 8}, B = {2, 4, 7}. List the elements of A ∪ B.",
-      "solution_steps": [
-        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
-        "A = {1, 2, 5, 8}",
-        "B = {2, 4, 7}",
-        "A ∪ B means A union B (elements in A, B, or both).",
-        "A ∪ B = {1, 2, 4, 5, 7, 8}"
-      ],
-      "final_answer": "{1, 2, 4, 5, 7, 8}",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A = {1, 2, 5, 8}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "B = {2, 4, 7}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A ∪ B means A union B (elements in A, B, or both). A ∪ B = {1, 2, 4, 5, 7, 8}",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "{1, 2, 4, 5, 7, 8} oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -1092,13 +997,61 @@
           "marks": 1
         }
       ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "venn_diagram_algebra",
+      "prompt": "The Venn diagram shows the number of elements in each region of sets A and B, given in terms of x. There are 32 elements in total. Find the value of x, and hence find the number of elements in B only.",
+      "solution_steps": [
+        "a_only + b_only + both + neither = total: (2x) + (3x) + (2x + 3) + 8 = 32",
+        "Collecting like terms: 7x + 11 = 32",
+        "x = 3",
+        "Substituting x = 3: A only = 6, B only = 9, both = 9, neither = 8",
+        "The number of elements in B only = 9"
+      ],
+      "final_answer": "9",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "a_only + b_only + both + neither = total: (2x) + (3x) + (2x + 3) + 8 = 32",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Collecting like terms: 7x + 11 = 32",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substituting x = 3: A only = 6, B only = 9, both = 9, neither = 8 The number of elements in B only = 9",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "9 oe",
+          "marks": 1
+        }
+      ],
       "diagram": {
-        "kind": "dice",
+        "kind": "venn_diagram",
         "params": {
-          "values": [
-            1,
-            1
-          ]
+          "labels": [
+            "A",
+            "B"
+          ],
+          "region_text": {
+            "a_only": "2x",
+            "b_only": "3x",
+            "both": "2x + 3",
+            "neither": "8"
+          }
         }
       },
       "solution_diagram": null

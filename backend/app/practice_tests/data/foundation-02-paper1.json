@@ -276,6 +276,47 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "substitution_foundation",
+      "prompt": "A = (1/2)bh. Find the value of A when b = 16 and h = 11.",
+      "solution_steps": [
+        "A = (1/2)bh",
+        "A = (1/2) × 16 × 11",
+        "A = 176/2",
+        "A = 88"
+      ],
+      "final_answer": "A = 88",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A = (1/2)bh",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = (1/2) × 16 × 11",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = 176/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = 88",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "A = 88 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "change_subject_foundation",
       "prompt": "Make x the subject of the formula y = 3x - 18.",
       "solution_steps": [
@@ -311,71 +352,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "forming_equations_foundation",
-      "prompt": "I think of a number, multiply it by 6 and add 17. The result is 113. Form an equation and solve it to find the number.",
+      "topic_id": "factorise_common_factor",
+      "prompt": "Factorise: 21x - 14",
       "solution_steps": [
-        "Let the number be x.",
-        "6x + 17 = 113",
-        "Subtract 17 from both sides:",
-        "6x = 96",
-        "Divide both sides by 6:",
-        "x = 16"
+        "Find the highest common factor of 21 and -14: 7",
+        "Factorise: 7(3x - 2)"
       ],
-      "final_answer": "16",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Let the number be x.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "6x + 17 = 113",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 17 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "6x = 96 Divide both sides by 6: x = 16",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "16 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "factorise_quadratics_foundation",
-      "prompt": "Factorise: x^2 + 12x + 35",
-      "solution_steps": [
-        "Find two numbers that multiply to 35 and add to 12: 5 and 7",
-        "Write as two brackets: (x + 5)(x + 7)"
-      ],
-      "final_answer": "(x + 5)(x + 7)",
+      "final_answer": "7(3x - 2)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to 35 and add to 12: 5 and 7",
+          "description": "Find the highest common factor of 21 and -14: 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write as two brackets: (x + 5)(x + 7)",
+          "description": "Factorise: 7(3x - 2)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(x + 5)(x + 7) oe",
+          "description": "7(3x - 2) oe",
           "marks": 1
         }
       ],
@@ -383,40 +381,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_forming_and_solving",
-      "prompt": "2 roses and 1 tulip cost £0.79 in total. 4 roses and 4 tulips cost £2.76 in total. Form and solve a pair of simultaneous equations to find the cost of one rose and one tulip.",
+      "topic_id": "simultaneous_common_coefficient",
+      "prompt": "Solve the simultaneous equations: 2x + 2y = 0 and 6x - 2y = 64",
       "solution_steps": [
-        "Let x = cost of one rose (pence), y = cost of one tulip (pence).",
-        "2x + 1y = 79  (1)",
-        "4x + 4y = 276  (2)",
-        "Solving simultaneously: x = 10, y = 59"
+        "2x + 2y = 0  (1)",
+        "6x - 2y = 64  (2)",
+        "Add the equations to eliminate y: 8x = 64, so x = 8",
+        "Substitute x = 8 into (1): 2y = -16, so y = -8"
       ],
-      "final_answer": "rose = £0.10, tulip = £0.59",
+      "final_answer": "x = 8, y = -8",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = cost of one rose (pence), y = cost of one tulip (pence).",
+          "description": "2x + 2y = 0  (1)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x + 1y = 79  (1)",
+          "description": "6x - 2y = 64  (2)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x + 4y = 276  (2)",
+          "description": "Add the equations to eliminate y: 8x = 64, so x = 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Solving simultaneously: x = 10, y = 59",
+          "description": "Substitute x = 8 into (1): 2y = -16, so y = -8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "rose = £0.10, tulip = £0.59 oe",
+          "description": "x = 8, y = -8 oe",
           "marks": 1
         }
       ],
@@ -459,127 +457,128 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_straight_line",
-      "prompt": "Complete a table of values for y = 3x - 1 for x = -3 to 3, then plot the graph.",
+      "topic_id": "special_sequences_foundation",
+      "prompt": "The first 4 cube numbers are: 1, 8, 27, 64. Find the 7th term of the sequence.",
       "solution_steps": [
-        "Table of values for y = 3x - 1:",
-        "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: -10, -7, -4, -1, 2, 5, 8",
-        "Plot each (x, y) point and join them with a single ruled straight line."
+        "These are the cube numbers: the nth term is given by n^3.",
+        "Term 7 = 7^3 = 343"
       ],
-      "final_answer": "Straight line: y = 3x - 1",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Table of values for y = 3x - 1:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x: -3, -2, -1, 0, 1, 2, 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y: -10, -7, -4, -1, 2, 5, 8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Straight line: y = 3x - 1 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "linear",
-          "m": 3,
-          "c": -1,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -11,
-          "y_max": 9,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "linear",
-          "m": 3,
-          "c": -1,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -11,
-          "y_max": 9,
-          "table_points": [
-            [
-              -3,
-              -10
-            ],
-            [
-              -2,
-              -7
-            ],
-            [
-              -1,
-              -4
-            ],
-            [
-              0,
-              -1
-            ],
-            [
-              1,
-              2
-            ],
-            [
-              2,
-              5
-            ],
-            [
-              3,
-              8
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "density",
-      "prompt": "A stone has a mass of 270 g and a density of 13 g/cm³. Find its volume, correct to 2 decimal places.",
-      "solution_steps": [
-        "volume = mass ÷ density",
-        "volume = 270 ÷ 13 = 20.77 cm³ (2 d.p.)"
-      ],
-      "final_answer": "20.77 cm³",
+      "final_answer": "343",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "volume = mass ÷ density",
+          "description": "These are the cube numbers: the nth term is given by n^3.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "volume = 270 ÷ 13 = 20.77 cm³ (2 d.p.)",
+          "description": "Term 7 = 7^3 = 343",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "20.77 cm³ oe",
+          "description": "343 oe",
           "marks": 1
         }
       ],
       "diagram": null,
       "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_distance_time",
+      "prompt": "A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop 5 km away after 10 minutes. They stay at the shop until 20 minutes, then cycle straight back home at a constant speed, arriving home at 30 minutes. Draw a distance-time graph to show this journey, and find the total distance travelled.",
+      "solution_steps": [
+        "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 5 km after 10 minutes.",
+        "Stay at 5 km until 20 minutes.",
+        "Return at a constant speed to 0 km, arriving home at 30 minutes.",
+        "Plot these points and join each stage with a straight line segment.",
+        "Total distance travelled = 5 km out + 5 km back = 10 km"
+      ],
+      "final_answer": "10 km",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 5 km after 10 minutes.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Stay at 5 km until 20 minutes.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Return at a constant speed to 0 km, arriving home at 30 minutes.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot these points and join each stage with a straight line segment. Total distance travelled = 5 km out + 5 km back = 10 km",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "10 km oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              10,
+              5
+            ],
+            [
+              20,
+              5
+            ],
+            [
+              30,
+              0
+            ]
+          ],
+          "x_max": 35,
+          "y_max": 7,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)",
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              10,
+              5
+            ],
+            [
+              20,
+              5
+            ],
+            [
+              30,
+              0
+            ]
+          ],
+          "x_max": 35,
+          "y_max": 7,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)"
+        }
+      }
     },
     {
       "topic_id": "pressure",
@@ -669,28 +668,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_1_to_n",
-      "prompt": "Write the ratio 8:12 in the form \\plain{n}:1.",
+      "topic_id": "ratio_difference",
+      "prompt": "a : b = 6 : 8. b - a = 38. Find a and b.",
       "solution_steps": [
-        "Divide both parts of the ratio by 12 (the second part) so the second part becomes 1.",
-        "8 ÷ 12 ≈ 0.67, 12 ÷ 12 = 1"
+        "Difference in parts = 8 - 6 = 2 parts",
+        "Value of one part = 38 ÷ 2 = 19",
+        "a = 6 × 19 = 114",
+        "b = 8 × 19 = 152"
       ],
-      "final_answer": "0.67 : 1 (to 2 d.p.)",
-      "marks": 3,
+      "final_answer": "a = 114, b = 152",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide both parts of the ratio by 12 (the second part) so the second part becomes 1.",
+          "description": "Difference in parts = 8 - 6 = 2 parts",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "8 ÷ 12 ≈ 0.67, 12 ÷ 12 = 1",
+          "description": "Value of one part = 38 ÷ 2 = 19",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "a = 6 × 19 = 114",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "b = 8 × 19 = 152",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0.67 : 1 (to 2 d.p.) oe",
+          "description": "a = 114, b = 152 oe",
           "marks": 1
         }
       ],
@@ -698,39 +709,32 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_parallel_lines_foundation",
-      "prompt": "A line crosses two parallel lines. The angle 37° and the angle x° are corresponding angles. Find x.",
+      "topic_id": "simple_interest",
+      "prompt": "£3700 is invested at a simple interest rate of 5% per year for 3 years. Find the interest earned.",
       "solution_steps": [
-        "Corresponding angles are equal.",
-        "x = 37"
+        "Simple interest formula: I = P × r × t ÷ 100",
+        "I = 3700 × 5 × 3 ÷ 100 = £555"
       ],
-      "final_answer": "37",
+      "final_answer": "£555",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Corresponding angles are equal.",
+          "description": "Simple interest formula: I = P × r × t ÷ 100",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 37",
+          "description": "I = 3700 × 5 × 3 ÷ 100 = £555",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "37 oe",
+          "description": "£555 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "parallel_lines",
-        "params": {
-          "known_label": "37°",
-          "unknown_label": "x",
-          "relation": "corresponding"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -803,38 +807,74 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "stats_mean_frequency_table",
-      "prompt": "A survey recorded the number of pets owned by each household: 0 (8 times), 1 (4 times), 2 (2 times), 3 (3 times), 4 (4 times), 5 (10 times). Find the mean number of pets.",
+      "topic_id": "congruent_triangle_proof_foundation",
+      "prompt": "O is the centre of a circle. AB and CD are two chords of the circle, with AB = CD. Which congruence criterion proves that the two triangles are congruent? A) ASA  B) SAS  C) SSS  D) RHS",
       "solution_steps": [
-        "Multiply each value by its frequency and sum: 0×8 + 1×4 + 2×2 + 3×3 + 4×4 + 5×10 = 83",
-        "Total frequency = 8 + 4 + 2 + 3 + 4 + 10 = 31",
-        "Mean = 83 ÷ 31 = 83/31"
+        "OA = OC (radii of the circle)",
+        "AB = CD (given, equal chords)",
+        "OB = OD (radii of the circle)",
+        "These facts match the Side-Side-Side (SSS) congruence criterion."
       ],
-      "final_answer": "83/31",
-      "marks": 4,
+      "final_answer": "C) SSS",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "Multiply each value by its frequency and sum: 0×8 + 1×4 + 2×2 + 3×3 + 4×4 + 5×10 = 83",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total frequency = 8 + 4 + 2 + 3 + 4 + 10 = 31",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Mean = 83 ÷ 31 = 83/31",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "83/31 oe",
+          "code": "B1",
+          "description": "C) SSS (selecting the correct option)",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_triangle_congruence",
+        "params": {
+          "labels_1": [
+            "O",
+            "A",
+            "B"
+          ],
+          "labels_2": [
+            "O",
+            "C",
+            "D"
+          ],
+          "ticks_1": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              2
+            ],
+            [
+              2,
+              0,
+              3
+            ]
+          ],
+          "ticks_2": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              2
+            ],
+            [
+              2,
+              0,
+              3
+            ]
+          ],
+          "arcs_1": [],
+          "arcs_2": []
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -890,173 +930,194 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "two_way_tables",
-      "prompt": "The two-way table shows the number of year 10 and year 11 who prefer bus or walk. Copy and complete the table, and state the missing value marked '?'.",
+      "topic_id": "transform_reflect_describe",
+      "prompt": "Shape ABC is reflected to give shape A'B'C', shown on the grid. Describe fully the single transformation that maps ABC onto A'B'C'.",
       "solution_steps": [
-        "The missing value is in the 'Year 10' row and 'Bus' column.",
-        "Using the row total: 31 - 18 = 13",
-        "Using the column total: 28 - 15 = 13",
-        "Missing value = 13"
+        "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
+        "Comparing corresponding vertices shows the mirror line is y = -1."
       ],
-      "final_answer": "13",
-      "marks": 5,
+      "final_answer": "Reflection in the line y = -1",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The missing value is in the 'Year 10' row and 'Bus' column.",
+          "description": "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Using the row total: 31 - 18 = 13",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Using the column total: 28 - 15 = 13",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Missing value = 13",
+          "description": "Comparing corresponding vertices shows the mirror line is y = -1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "13 oe",
+          "description": "Reflection in the line y = -1 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "two_way_table",
+        "kind": "grid_transformation",
         "params": {
-          "row_labels": [
-            "Year 10",
-            "Year 11",
-            "Total"
-          ],
-          "col_labels": [
-            "Bus",
-            "Walk",
-            "Total"
-          ],
-          "cells": [
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
             [
-              "?",
-              "18",
-              "31"
+              -3,
+              3
             ],
             [
-              "15",
-              "14",
-              "29"
+              0,
+              3
             ],
             [
-              "28",
-              "32",
-              "60"
+              -3,
+              5
             ]
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "two_way_table",
-        "params": {
-          "row_labels": [
-            "Year 10",
-            "Year 11",
-            "Total"
           ],
-          "col_labels": [
-            "Bus",
-            "Walk",
-            "Total"
+          "original_labels": [
+            "A",
+            "B",
+            "C"
           ],
-          "cells": [
+          "image_vertices": [
             [
-              "13",
-              "18",
-              "31"
+              -3,
+              -5
             ],
             [
-              "15",
-              "14",
-              "29"
+              0,
+              -5
             ],
             [
-              "28",
-              "32",
-              "60"
+              -3,
+              -7
             ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'"
           ]
-        }
-      }
-    },
-    {
-      "topic_id": "probability_single_event",
-      "prompt": "A bag contains 5 blue, 4 red counters. A counter is picked at random. Find the probability that it is blue.",
-      "solution_steps": [
-        "Total counters = 9",
-        "Number of blue counters = 5",
-        "P(blue) = 5/9 = 5/9"
-      ],
-      "final_answer": "5/9",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total counters = 9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Number of blue counters = 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(blue) = 5/9 = 5/9",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "5/9 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "bag_of_counters",
-        "params": {
-          "counts": {
-            "blue": 5,
-            "red": 4
-          },
-          "highlight": "blue"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "stats_range",
-      "prompt": "Find the range of this data set: 23, 16, 23, 9, 15, 15.",
+      "topic_id": "area_rectangle",
+      "prompt": "Find the area of the following rectangle.",
       "solution_steps": [
-        "Range = largest - smallest = 23 - 9 = 14"
+        "Area = length × width = 8 × 13 = 104 cm²"
       ],
-      "final_answer": "14",
+      "final_answer": "104 cm²",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Range = largest - smallest = 23 - 9 = 14",
+          "description": "Area = length × width = 8 × 13 = 104 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "14 oe",
+          "description": "104 cm² oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "rectangle",
+        "params": {
+          "width": 8,
+          "height": 13,
+          "width_label": "8 cm",
+          "height_label": "13 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_and_or_rule",
+      "prompt": "A fair die is rolled (P(rolling a 4) = 1/6) and a coin is flipped (P(heads) = 1/2). These two events are independent. Find P(rolling a 4 and heads).",
+      "solution_steps": [
+        "P(rolling a 4) = 1/6",
+        "P(heads) = 1/2",
+        "These are independent events, so P(rolling a 4 and heads) = P(rolling a 4) × P(heads) = 1/6 × 1/2 = 1/12"
+      ],
+      "final_answer": "1/12",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "P(rolling a 4) = 1/6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(heads) = 1/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "These are independent events, so P(rolling a 4 and heads) = P(rolling a 4) × P(heads) = 1/6 × 1/2 = 1/12",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/12 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "event_pair",
+        "params": {
+          "event_a": {
+            "kind": "dice",
+            "values": [
+              4
+            ],
+            "highlight": [
+              0
+            ]
+          },
+          "event_b": {
+            "kind": "coin"
+          }
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_listing_outcomes",
+      "prompt": "Two coins are flipped. List all the possible outcomes.",
+      "solution_steps": [
+        "There are 2 possible outcomes for the first event and 2 for the second, so there are 2 × 2 = 4 possible combined outcomes.",
+        "For each outcome of the first event, list every outcome of the second event: HH, HT, TH, TT"
+      ],
+      "final_answer": "HH, HT, TH, TT",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "There are 2 possible outcomes for the first event and 2 for the second, so there are 2 × 2 = 4 possible combined outcomes.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For each outcome of the first event, list every outcome of the second event: HH, HT, TH, TT",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "HH, HT, TH, TT oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "coin",
+        "params": {
+          "count": 2
+        }
+      },
       "solution_diagram": null
     },
     {

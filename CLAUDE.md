@@ -12,50 +12,53 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-Step 40 completed two review-feedback batches — Probability and Statistics — which
-finishes the **first full review-feedback pass across all 6 curriculum sections**
-(Number: step 35; Algebra: steps 36-37; Ratio & Proportion: step 38; Geometry: step 39;
-Probability + Statistics: step 40). Both batches are committed and pushed (two separate
-commits on `aqa-spec-gap-topics`). See chronology step 40 below for the full detail — in
-short: a large cross-cutting diagram-engine pass (tree diagrams overhauled to fix
-overlapping branches, a shared cross/X point-marker replacing filled dots app-wide, a
-new adaptive squared-paper grid capability in `_draw_stats_axes`, a real smooth
-cumulative-frequency curve, bar/pie chart fixes) plus per-topic prose-to-table
-conversions and wording fixes across ~25 named items total. "Verifying new topics
-visually" below is still the discipline that caught nearly every real bug in both
-batches — never the unit tests alone.
+Step 41 completed a large review-feedback batch covering the first 100 pages of the
+`all_topics_review_*.pdf` documents (~24 named items, all Number/Algebra topics plus
+several cross-cutting engine fixes) — **this is explicitly a paginated continuation of
+the same review process**, not a second full pass: the user is working through the
+296-topic (now 301-topic) review PDF a chunk at a time. Freshly regenerated review PDFs
+reflecting this batch were sent back. The natural next step is simply to **wait for the
+user's next chunk of feedback** (pages 101-200, etc.) rather than assuming the review is
+done — this batch's own scope confirms there's more to come, not less.
 
-Freshly regenerated review PDFs reflecting *both* batches
-(`backend/all_topics_review_questions.pdf` / `all_topics_review_answers.pdf` — same
-fixed-seed script, `backend/scripts/generate_review_pdfs.py`, deliberately untracked)
-were sent back after each batch. **Since every one of the 6 sections has now had at
-least one review pass, the natural next step is to ask the user directly**: do they have
-further feedback on any section (a second pass, now that they've seen the fixes), or is
-this review process considered done for now? Don't assume silence means "done" — just
-ask.
+See chronology step 41 below for full technical detail. In short: a Phase-0 engine spike
+extended `fraction_images.py`'s `\frac{}{}` rendering with three new token kinds (a bare
+"x"/"n" italic variable, a bare "^exp" superscript suffix, and a real hook+bar radical) -
+this went through **three genuinely wrong designs** before landing on the right one
+(each found via rendering real output, not assumed), documented in the module's own
+docstring/comments as a cautionary precedent for any future extension of this file. Also:
+5 new topics (`change_subject_factorise_higher`, `substitution_rearrange_foundation`/
+`_higher`, `expand_double_brackets_no_coefficient_foundation`, `functions_inverse_
+evaluate` — 296→301), a from-scratch rework of `draw_linear_graph_pair` onto a real
+square-unit grid (needed **four** iterations of its own to get label placement right —
+see step 41's own account of why each earlier attempt failed a real render), and two
+precise diagram-overflow fixes in `draw_rectangle`/`draw_angle_line` found via a
+dedicated research agent rather than guessed. All 60 Practice Test papers were
+regenerated (`python -m app.practice_tests.build`) since `simultaneous_graphically`'s
+diagram param shape changed — same "frozen JSON goes stale when a diagram param shape
+changes" gotcha already documented for `area_mixed_compound` in step 39.
 
-All of step 40's work is committed, pushed, and already part of the open PR
-(`gh pr view 3`, or the full path `& "C:\Program Files\GitHub CLI\gh.exe" pr view 3` if
-`gh` isn't on PATH in a fresh shell — see "Environment gotchas" below — pushing to this
-branch updates it automatically, no separate action needed). The PR has not been merged
-yet, so check its status before assuming `master` already has any of this. 296 topics
-total (unchanged since step 33 — steps 35-40 were entirely rendering/wording/diagram/
-behaviour fixes, no new or retired topics), backend suite 936/936, frontend 61/61, no
-known bugs.
+This work is on the `aqa-spec-gap-topics` branch, part of the same open PR (`gh pr view 3`,
+or the full path `& "C:\Program Files\GitHub CLI\gh.exe" pr view 3` if `gh` isn't on PATH
+in a fresh shell — see "Environment gotchas" below). **Not yet committed/pushed as of the
+end of this session** — check `git status` before assuming any of step 41's work is on
+the remote. 301 topics total (296 + 5 new from this step), backend suite 957/957,
+frontend 61/61, no known bugs.
 
-If the user hasn't given new review feedback and doesn't want another pass, check "Ideas
-for a future session" (bottom of this file) for candidate follow-ups (the remaining
-medium-confidence OCR-spec gaps from step 32's audit, the remaining medium/low-confidence
-AQA-spec gaps from step 31's audit, stem-and-leaf diagrams, standard deviation, a handful
-of lower-confidence curriculum-audit candidates, saved worksheet history, deployment, a
-KS3 Bell Tasks tier, the full language-variety rollout beyond the 4 files step 35 piloted
-it on, etc.), or ask directly what they'd like to work on next.
+Once the user's next chunk of feedback (or confirmation the review is fully done)
+arrives, check "Ideas for a future session" (bottom of this file) for candidate
+follow-ups (the remaining medium-confidence OCR-spec gaps from step 32's audit, the
+remaining medium/low-confidence AQA-spec gaps from step 31's audit, stem-and-leaf
+diagrams, standard deviation, a handful of lower-confidence curriculum-audit candidates,
+saved worksheet history, deployment, a KS3 Bell Tasks tier, the full language-variety
+rollout beyond the 4 files step 35 piloted it on, etc.) if there's ever a gap with no
+pending review feedback.
 
 ## Current state
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**296 topics across 6 sections**, all procedurally generated with independent
+**301 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.),
@@ -377,7 +380,7 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 | Section | Groups | Topics |
 |---|---|---|
 | Number | Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 54 |
-| Algebra | Expressions/Formulae/Equations/Identities, Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Substitution into Formulae, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Equation of a Circle, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Kinematics (SUVAT), Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 70 |
+| Algebra | Expressions/Formulae/Equations/Identities, Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Substitution into Formulae, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Equation of a Circle, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Kinematics (SUVAT), Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 75 |
 | Ratio & Proportion | Percentages, Best Buys, Ratio, Proportion, Compound Measures | 34 |
 | Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations, Bearings, Map Scales and Scale Drawings, Constructions, Loci | 87 |
 | Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams, Venn Diagrams | 22 |
@@ -3540,6 +3543,178 @@ fixes), is committed and pushed (see `git log`).
     (step 38), Geometry (step 39), and now Probability + Statistics (this step).
     See "Where to pick up next" above for what a future session should do with
     that milestone.
+
+41. New session, a large review-feedback batch (~24 named items) covering the
+    first 100 pages of the `all_topics_review_*.pdf` documents - explicitly a
+    **paginated continuation** of the same review process (steps 34-40), not a
+    second full pass. Items spanned Number/Algebra topics plus several
+    "fix the underlying capability, not just this one topic" requests. Two
+    background research passes (Explore agents) plus direct file reads
+    established exact current behaviour before committing to fixes; two design
+    decisions were confirmed via `AskUserQuestion` (a new "rearranging by
+    factorising" topic is Higher-only in the existing "Changing the Subject of
+    a Formula" group; a new substitution variant is "rearrange for a different
+    subject, then substitute" rather than "substitute knowns, solve for the
+    missing one"). Phased via `EnterPlanMode` into 6 phases, worked through
+    directly (no parallel subagents this time, given how much of the batch was
+    genuinely cross-cutting engine work touching the same shared files).
+
+    **Phase 0 (engine spike, `app/pdf/fraction_images.py`)**: extended the
+    `\frac{}{}` marker's raw-PIL-text rendering (previously only special-cased
+    `iteration.py`'s literal "x_n") with three new token kinds, needed for a
+    genuine fractional-exponent superscript and a real radical bar to work
+    *inside* a fraction for the first time. **This went through three
+    genuinely wrong designs, each only caught by rendering real output, not
+    assumed correct from the code**: (1) a first attempt captured "base^exp"
+    as one token with the base limited to a single character - silently left
+    a multi-character base like "10^2" or a parenthesised base like "(-2)^2"
+    unsuperscripted, found via `substitution_rearrange_higher`'s own solution
+    steps; (2) simplifying to match mathtext.py's own "just match the bare
+    ^exp suffix, leave the base as ordinary preceding text" approach fixed
+    that, but exposed that a bare "x"/"n" preceding an exponent then needed
+    its own separate italicisation token (mathtext.py's `_VARIABLE_RE`
+    equivalent), since the base is no longer captured/re-drawn as a unit; (3)
+    the new radical token's hook+bar geometry, mirrored from
+    `radical_images.py`'s proportions, collapsed to an illegible sliver at the
+    smaller size a fraction's own digits render at - fixed with a dedicated,
+    less-shrunk `_RAD_DIGIT_SCALE` font plus absolute pixel floors on the
+    hook's tick/diag/stroke dimensions; then a **second**, more fundamental
+    radical bug surfaced after that fix (the hook's own vertical span formula
+    was missing a `pad_top + rad_h` term present in `radical_images.py`'s
+    original geometry, collapsing the hook to a tiny fraction of the digit's
+    real height) - found by rendering side-by-side against the already-correct
+    standalone `radical_images.py` output and noticing the quality gap, not by
+    assuming the mirrored formula was transcribed correctly. All three token
+    kinds (plus the pre-existing "x_n" case) now share one combined, priority-
+    ordered `_TOKEN_RE`. 8 new tests in `test_fraction_images.py`.
+
+    **Phase 1 (Number wording, `fractions.py`/`decimals.py`/
+    `order_of_operations.py`/`negative_numbers.py`)**: `fractions_simplify`
+    dropped "the fraction"; `fractions_equivalent`'s prompt always says "the
+    missing number" instead of naming numerator/denominator;
+    `fractions_equivalent_diagram`'s `fill_missing_diagram` branch lost its
+    leftover "Shape A is divided into..." context sentence, now identical to
+    `diagram_only`'s already-short prompt (the two branches were collapsed
+    into one, since they'd become behaviourally identical apart from a no-
+    longer-existing wording difference); `decimals_ordering` gained a random-
+    window constraint capping the four values' spread at 0.2; the three
+    recurring-decimal-to-fraction topics gained a 50/50 "Write X as a
+    fraction..." / "Show that X can be written as {answer}..." phrasing split
+    (new shared `_recurring_fraction_prompt` helper); `bidmas` dropped "Use
+    the correct order of operations"; `negative_ordering` switched from
+    "smallest to largest"/"largest to smallest" to the same "ascending"/
+    "descending" convention `decimals_ordering`/`fractions_ordering` already
+    use for their prompts (kept the more descriptive phrasing in the solution
+    steps).
+
+    **Phase 2 (`powers_roots.py`/`algebraic_indices.py`)**: `powers_higher`,
+    `simplifying_indices_challenging`, and `algebraic_indices_higher` were all
+    reweighted (via `rng.choices` instead of a flat `rng.choice`) toward their
+    fractional-exponent branch(es), since a genuine fractional power is each
+    topic's own distinguishing content and a flat split under-represented it -
+    verified concretely by re-running the fixed-seed-42 review script and
+    confirming each topic's single sampled question now shows a real "^(n/d)"
+    vinculum. `surds_multiply_divide`/`roots_higher`'s coefficient+radical
+    rendering ("a√b") was confirmed already correct via the top-level
+    mathtext.py regex (no code change needed there).
+    `rationalise_denominator`'s radical-inside-a-fraction rendering is fixed
+    by Phase 0's engine work alone.
+
+    **Phase 3 (5 new Algebra topics)**: `change_subject_factorise_higher`
+    (`changing_subject.py`, new topic, Higher-only) - `{letter}x + {q}x = {r}`
+    with `letter` drawn from a pool deliberately excluding "x"/"n" (pairing an
+    italicised and a plain letter in one equation would look like a rendering
+    inconsistency, same reasoning as `ratio.py`'s `_LETTER_PAIRS`), verified
+    via `sp.solve` with the letter left as a free symbol.
+    `substitution_rearrange_foundation`/`_higher` (`substitution.py`, 2 new
+    topics) - reuse the exact same formula shapes as `substitution_
+    foundation`/`_higher` (kinematics/perimeter/area/triangle-area;
+    speed-squared/kinetic-energy/acceleration) but ask the student to
+    rearrange for a *different* letter first, then substitute - each verified
+    both via `sp.solve` (symbolic rearrangement) and by substituting the
+    derived value back into the *original* equation. `expand_double_brackets_
+    no_coefficient_foundation` (`expand_factorise.py`, new topic) - the
+    existing `expand_double_brackets_foundation`'s own docstring comment
+    claimed "(x+p)(x+q), no coefficient" but its actual code drew x-
+    coefficients up to 4 (a stale comment, not a bug - left unchanged as a
+    genuine "harder Foundation" variant) - this new sibling genuinely pins
+    both coefficients to 1. `functions_inverse_evaluate` (`functions.py`, new
+    topic, Higher) - evaluates f^-1 at a numeric input, distinct from the
+    existing `functions_composite_inverse`'s symbolic-only f^-1(x)
+    derivation, reusing its `_fmt_inverse` display helper. All 5 wired into
+    `registry.py`; the 4 hardcoded `296`-topic-count assertions updated to
+    `301`. New/extended test files for all 5 (`test_changing_subject.py`,
+    `test_substitution.py` gained a parallel `REARRANGE_GENERATORS` list
+    rather than folding into the existing one, since the existing generic
+    test hardcodes each generator's expected topic_id;
+    `test_expand_factorise.py`, `test_functions.py`).
+
+    **Phase 4 (`algebraic_fractions.py`)**: `_fmt_binom`'s `(x + a)`/`(x - a)`
+    parens are redundant whenever the result is the *entire* content of a
+    `\frac{}{}` marker by itself (the vinculum bar already visually groups
+    it) - added a new bare `_fmt_binom_bare` used only at those specific call
+    sites (both topics' prompt fractions, and the correspondingly bare
+    denominators in a few solution-step lines), while every *juxtaposed*
+    usage (two factors multiplied together as one denominator/numerator, a
+    coefficient times a bracket) correctly keeps `_fmt_binom`'s parens, since
+    removing those would genuinely change the expression's meaning.
+    `algebraic_fractions_multiply_divide`'s `"(x^2 - d)"` also lost its own
+    redundant self-wrap; its "powers showing as x^2 not properly
+    superscripted" complaint is fixed by Phase 0's engine work directly. 2 new
+    regression tests confirming no lone-fraction content contains a bracket.
+
+    **Phase 5 (3 diagram fixes)**: `draw_number_line`'s boundary circle/
+    shaded-segment/arrow now draw on a `mark_y` line offset above the ticked
+    axis, rather than directly on top of it. `draw_linear_graph_pair`
+    (`simultaneous_equations.py`'s `simultaneous_graphically`) was rebuilt
+    from a schematic "not to scale" pair of lines into a genuine gridded plot
+    on `_draw_scaled_axes` (which already prefers a true square unit grid),
+    reusing the generator's own real `m1/c1/m2/c2`/`sol_x/sol_y` values
+    (newly threaded through `DiagramSpec.params`) - this diagram's label
+    placement took **four** iterations of its own, each only disproven by a
+    real render: anchoring at a line's own endpoint and growing inward was
+    safe against that line but not the *other* one (which sits close
+    alongside for much of the window when the two slopes are similar, e.g.
+    3 vs 4); a single-point pixel offset away from the other line ignored that
+    a wide text label spans a real horizontal pixel range, and on a square
+    grid a slope of 3-4 is visually very steep (pixel-slope ≈ data-slope), so
+    the other line can sweep vertically across the *entire* label width even
+    when clear at the label's centre point; clearing only the other line's
+    span across that width still let the label collide with its *own* line,
+    for the identical reason applied to the wrong line; the final version
+    computes both lines' y-range across the label's actual `stringWidth`-
+    measured footprint and places the label entirely outside the combined
+    zone, plus a small additional nudge keeping the label's x away from the
+    y-axis (where its own tick-number labels live). A background research
+    agent (`aa97049009e939784` internally, not user-facing) independently
+    confirmed and precisely diagnosed the other two named diagram bugs by
+    executing the real drawing code across hundreds of seeds and measuring
+    `stringWidth`-based bounding boxes directly, rather than guessing:
+    `draw_rectangle`'s `height_label` had zero `stringWidth` awareness at all
+    (fixed-pixel offset) and overflowed the canvas by ~2.5pt whenever a wide
+    rectangle (width scale-bound) paired with a two-digit height value -
+    fixed with a `stringWidth`-based clamp, mirroring `draw_sector`'s existing
+    pattern; `draw_angle_line`'s narrow-wedge (<20°) label, used only by
+    `forming_equations_foundation`'s `around_point` angle branch, had no
+    canvas clamp at all and could land ~20pt past the top edge when a narrow
+    wedge oriented near-vertically - fixed with the same `max(10, min(...))`/
+    `max(8, min(...))` clamp `draw_sector` already uses. 2 new regression
+    tests. Regenerating `simultaneous_graphically`'s diagram param shape
+    required rebuilding all 60 Practice Test papers (`python -m
+    app.practice_tests.build`) - the exact same "frozen JSON goes stale when
+    a diagram param shape changes" gotcha already documented for
+    `area_mixed_compound` in step 39, confirmed still exactly 100 marks per
+    paper afterward.
+
+    Central verification: full backend suite grew from 936 to 957 tests;
+    frontend unaffected (61/61 - no frontend files touched this batch). Topic
+    count grew from 296 to 301 (the only topic-count change across the whole
+    steps-34-41 review-feedback arc so far - every other review batch was
+    pure rendering/wording/diagram fixes). The review PDFs were regenerated
+    (301 question pages, up from 296; 312 answer pages, up from 307) and sent
+    back to the user. **Not yet committed/pushed as of the end of this
+    session** - unlike most prior steps in this chronology, which explicitly
+    note committing before ending.
 
 ## Environment gotchas (Windows, this machine specifically)
 

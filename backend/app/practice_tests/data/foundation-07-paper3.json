@@ -281,43 +281,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_both_sides_foundation",
-      "prompt": "Solve: 4x + 10 = 6x + 4",
+      "topic_id": "linear_brackets_foundation",
+      "prompt": "Solve: 5(4x + 5) = 125",
       "solution_steps": [
-        "4x + 10 = 6x + 4",
-        "Subtract 6x from both sides:",
-        "-2x + 10 = 4",
-        "Subtract 10 from both sides:",
-        "-2x = -6",
-        "Divide both sides by -2:",
-        "x = 3"
+        "Expand the bracket: 5(4x + 5) = 20x + 25",
+        "20x + 25 = 125",
+        "Subtract 25 from both sides:",
+        "20x = 100",
+        "Divide both sides by 20:",
+        "x = 5"
       ],
-      "final_answer": "3",
+      "final_answer": "5",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "4x + 10 = 6x + 4",
+          "description": "Expand the bracket: 5(4x + 5) = 20x + 25",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 6x from both sides:",
+          "description": "20x + 25 = 125",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-2x + 10 = 4",
+          "description": "Subtract 25 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 10 from both sides: -2x = -6 Divide both sides by -2: x = 3",
+          "description": "20x = 100 Divide both sides by 20: x = 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 oe",
+          "description": "5 oe",
           "marks": 1
         }
       ],
@@ -582,45 +581,44 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solving_inequalities_foundation",
-      "prompt": "Solve the inequality: \\frac{x}{4} + 4 ≤ -11",
+      "topic_id": "simultaneous_graphically",
+      "prompt": "The graphs of y = 3x + 3 and y = x + 3 are shown below. Use the graphs to write down the solution to the simultaneous equations.",
       "solution_steps": [
-        "\\frac{x}{4} + 4 ≤ -11",
-        "Subtract 4 from both sides:",
-        "\\frac{x}{4} ≤ -15",
-        "Multiply both sides by 4:",
-        "x ≤ -60"
+        "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
+        "The lines cross at x = 0, y = 3."
       ],
-      "final_answer": "x ≤ -60",
-      "marks": 5,
+      "final_answer": "x = 0, y = 3",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "\\frac{x}{4} + 4 ≤ -11",
+          "description": "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 4 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "\\frac{x}{4} ≤ -15",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply both sides by 4: x ≤ -60",
+          "description": "The lines cross at x = 0, y = 3.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x ≤ -60 oe",
+          "description": "x = 0, y = 3 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "linear_graph_pair",
+        "params": {
+          "label1": "y = 3x + 3",
+          "label2": "y = x + 3",
+          "m1": 3,
+          "c1": 3,
+          "m2": 1,
+          "c2": 3,
+          "sol_x": 0,
+          "sol_y": 3
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -1061,6 +1059,29 @@
           ]
         }
       },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "stats_mean",
+      "prompt": "Find the mean of this data set: 18, 7, 8, 9, 23, 22, 1, 8.",
+      "solution_steps": [
+        "Mean = sum ÷ count = (18 + 7 + 8 + 9 + 23 + 22 + 1 + 8) ÷ 8 = 96 ÷ 8 = 12"
+      ],
+      "final_answer": "12",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Mean = sum ÷ count = (18 + 7 + 8 + 9 + 23 + 22 + 1 + 8) ÷ 8 = 96 ÷ 8 = 12",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "12 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     }
   ]

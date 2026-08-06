@@ -50,6 +50,33 @@ def test_multiply_divide_answer_is_a_simplified_linear_expression():
         assert "x" in q.final_answer
 
 
+def test_add_subtract_prompt_has_no_redundant_brackets_around_lone_denominators():
+    # Each prompt fraction's denominator is a single linear factor standing
+    # alone in its own \frac{}{} marker - the vinculum bar already groups it,
+    # so it should render bare ("x + a"), not self-wrapped ("(x + a)").
+    rng = random.Random(404)
+    for _ in range(TRIALS):
+        q = algebraic_fractions.generate_algebraic_fractions_add_subtract(Tier.HIGHER, rng)
+        # Everything up to the first "}" of the second \frac{}{}'s denominator
+        # is the prompt's own fraction content - neither of its two
+        # standalone denominators should contain a bracket.
+        prompt_fracs = q.prompt.split(", giving")[0]
+        for piece in prompt_fracs.split("\\frac{")[1:]:
+            den = piece.split("}{")[1].split("}")[0]
+            assert "(" not in den and ")" not in den
+
+
+def test_multiply_divide_prompt_has_no_redundant_brackets_around_lone_fraction_content():
+    rng = random.Random(405)
+    for _ in range(TRIALS):
+        q = algebraic_fractions.generate_algebraic_fractions_multiply_divide(Tier.HIGHER, rng)
+        prompt_fracs = q.prompt.split(", giving")[0]
+        for piece in prompt_fracs.split("\\frac{")[1:]:
+            num, den = piece.split("}{")[0], piece.split("}{")[1].split("}")[0]
+            assert "(" not in num and ")" not in num
+            assert "(" not in den and ")" not in den
+
+
 def test_topic_definitions_have_expected_metadata():
     topics = [
         algebraic_fractions.TOPIC_ALGEBRAIC_FRACTIONS_ADD_SUBTRACT,

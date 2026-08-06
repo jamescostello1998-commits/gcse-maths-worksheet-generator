@@ -1,4 +1,5 @@
 import random
+from fractions import Fraction
 
 import sympy as sp
 
@@ -126,6 +127,76 @@ def generate_functions_composite_inverse(tier: Tier, rng: random.Random) -> Ques
             final_answer=inv_str,
             dedup_key=f"func_inverse:{a}:{b}",
         )
+
+
+def generate_functions_inverse_evaluate(tier: Tier, rng: random.Random) -> Question:
+    # Distinct from functions_composite_inverse's "inverse" branch, which only
+    # derives f^-1(x) symbolically - this evaluates the inverse at a numeric
+    # input, reusing the same _fmt_inverse display helper.
+    a = rng.randint(2, 6)
+    b = rng.randint(-9, 9)
+    k = rng.randint(-10, 10)
+    inv_str = _fmt_inverse(a, b)
+
+    value = Fraction(k - b, a)
+
+    # Independent verification: substitute the claimed value back into f and
+    # confirm f(value) == k - a genuinely different check than evaluating
+    # the inverse expression directly.
+    check = a * value + b
+    if check != k:
+        raise ValueError("functions_inverse_evaluate verification failed")
+
+    value_str = str(value.numerator) if value.denominator == 1 else f"{value.numerator}/{value.denominator}"
+    steps = [
+        f"f^-1(x) = {inv_str}",
+        f"f^-1({k}) = {inv_str.replace('x', str(k))}",
+        f"f^-1({k}) = {value_str}",
+    ]
+    return Question(
+        topic_id="functions_inverse_evaluate",
+        tier=Tier.HIGHER,
+        prompt=f"f(x) = {fmt_linear(a, b)}. Find f^-1({k}).",
+        solution_steps=tuple(steps),
+        final_answer=value_str,
+        dedup_key=f"func_inv_eval:{a}:{b}:{k}",
+    )
+
+
+def generate_modelled_example_functions_inverse_evaluate(tier: Tier, rng: random.Random) -> ModelledExample:
+    a = rng.randint(2, 6)
+    b = rng.randint(-9, 9)
+    k = rng.randint(-10, 10)
+    inv_str = _fmt_inverse(a, b)
+
+    value = Fraction(k - b, a)
+    check = a * value + b
+    if check != k:
+        raise ValueError("modelled example functions_inverse_evaluate verification failed")
+
+    value_str = str(value.numerator) if value.denominator == 1 else f"{value.numerator}/{value.denominator}"
+    teaching_steps = [
+        f"f^-1(x) undoes whatever f(x) does. The standard method is to write y = f(x), rearrange to "
+        "make x the subject, then swap x and y - that gives the inverse function's own formula.",
+        f"For f(x) = {fmt_linear(a, b)}, that rearrangement gives f^-1(x) = {inv_str}.",
+        f"To find f^-1({k}), substitute x = {k} into that inverse formula, exactly like evaluating any "
+        f"other function: f^-1({k}) = {inv_str.replace('x', str(k))}.",
+        f"Working that out gives f^-1({k}) = {value_str}. A good check: substituting this value back "
+        f"into the ORIGINAL f(x) should give {k} back again.",
+    ]
+    worked_calculation = [
+        f"f^-1(x) = {inv_str}",
+        f"f^-1({k}) = {inv_str.replace('x', str(k))}",
+        f"= {value_str}",
+    ]
+    return ModelledExample(
+        topic_id="functions_inverse_evaluate",
+        tier=Tier.HIGHER,
+        prompt=f"f(x) = {fmt_linear(a, b)}. Find f^-1({k}).",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=value_str,
+    )
 
 
 def generate_modelled_example_functions_evaluate(tier: Tier, rng: random.Random) -> ModelledExample:
@@ -293,4 +364,15 @@ TOPIC_FUNCTIONS_COMPOSITE_INVERSE = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_functions_composite_inverse,
+)
+
+TOPIC_FUNCTIONS_INVERSE_EVALUATE = TopicDefinition(
+    id="functions_inverse_evaluate",
+    display_name="Evaluating Inverse Functions",
+    description="Find the inverse of a linear function and evaluate it at a given numeric input.",
+    generate=generate_functions_inverse_evaluate,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_functions_inverse_evaluate,
 )

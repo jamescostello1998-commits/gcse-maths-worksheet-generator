@@ -37,7 +37,7 @@
     },
     {
       "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal \\recur{0.}{94} can be written as a fraction. Find this fraction in its simplest form.",
+      "prompt": "Show that \\recur{0.}{94} can be written as 94/99.",
       "solution_steps": [
         "Let x = \\recur{0.}{94}, so 100x = 94.9494... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 94 - 0, so 99x = 94",
@@ -100,39 +100,32 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_ladder_context",
-      "prompt": "A ladder of length 20 m leans against a vertical wall with its base 10 m from the wall. Find the height the ladder reaches up the wall, giving your answer as a surd in its simplest form.",
+      "topic_id": "powers_higher",
+      "prompt": "Work out 27^(1/3).",
       "solution_steps": [
-        "height² = ladder² - base² = 20² - 10² = 400 - 100 = 300",
-        "height = √300 = 10√3 m (exact form)"
+        "27^(1/3) means the cube root of 27.",
+        "27^(1/3) = 3"
       ],
-      "final_answer": "10√3 m",
+      "final_answer": "3",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "height² = ladder² - base² = 20² - 10² = 400 - 100 = 300",
+          "description": "27^(1/3) means the cube root of 27.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "height = √300 = 10√3 m (exact form)",
+          "description": "27^(1/3) = 3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10√3 m oe",
+          "description": "3 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "right_triangle",
-        "params": {
-          "leg1_label": "10 m",
-          "leg2_label": "x",
-          "hyp_label": "20 m"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -235,79 +228,82 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_divide",
-      "prompt": "Work out 4/11 ÷ 9/6. Give your answer as a fraction in its simplest form.",
+      "topic_id": "inequalities_number_line_higher",
+      "prompt": "Write down the inequality (or pair of inequalities) shown by the number line below.",
       "solution_steps": [
-        "Keep-change-flip: 4/11 ÷ 9/6 = 4/11 × 6/9",
-        "Multiply: \\frac{(4×6)}{(11×9)} = 24/99",
-        "Simplify: 8/33"
+        "The circle at -1 is filled and the circle at 4 is open.",
+        "The shading lies outside the two circles, so either bound alone is enough: x ≤ -1 or x > 4."
       ],
-      "final_answer": "8/33",
+      "final_answer": "x ≤ -1 or x > 4",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The circle at -1 is filled and the circle at 4 is open.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The shading lies outside the two circles, so either bound alone is enough: x ≤ -1 or x > 4.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x ≤ -1 or x > 4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [
+            {
+              "value": -1,
+              "closed": true
+            },
+            {
+              "value": 4,
+              "closed": false
+            }
+          ],
+          "shade": "outside"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "special_sequences_higher",
+      "prompt": "The first 3 terms of a geometric sequence are: 6, 18, 54. Find the 5th term of the sequence.",
+      "solution_steps": [
+        "Common ratio r = 3 (divide any term by the term before it).",
+        "nth term = a × r^(n - 1) = 6 × (3)^4",
+        "Term 5 = 486"
+      ],
+      "final_answer": "486",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Keep-change-flip: 4/11 ÷ 9/6 = 4/11 × 6/9",
+          "description": "Common ratio r = 3 (divide any term by the term before it).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: \\frac{(4×6)}{(11×9)} = 24/99",
+          "description": "nth term = a × r^(n - 1) = 6 × (3)^4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify: 8/33",
+          "description": "Term 5 = 486",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8/33 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "trial_and_improvement",
-      "prompt": "f(x) = x^3 + 3x - 43. Show that f(x) = 0 has a root between x = 3 and x = 4, then use trial and improvement to find this root correct to 1 decimal place.",
-      "solution_steps": [
-        "f(x) = x^3 + 3x - 43",
-        "f(3) = -7.00 (negative)",
-        "f(4) = 33.00 (positive)",
-        "f(3.1) = -3.91 (negative)",
-        "f(3.2) = -0.63 (negative)",
-        "f(3.3) = 2.84 (positive)",
-        "The sign changes between x = 3.2 and x = 3.3, so try the midpoint x = 3.25: f(3.25) = 1.08.",
-        "f(3.25) has the same sign as f(3.3), so the root lies between 3.2 and 3.25 - to 1 decimal place, this rounds down to 3.2."
-      ],
-      "final_answer": "x = 3.2",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "f(x) = x^3 + 3x - 43",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "f(3) = -7.00 (negative)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "f(4) = 33.00 (positive)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "f(3.1) = -3.91 (negative) f(3.2) = -0.63 (negative) f(3.3) = 2.84 (positive) The sign changes between x = 3.2 and x = 3.3, so try the midpoint x = 3.25: f(3.25) = 1.08. f(3.25) has the same sign as f(3.3), so the root lies between 3.2 and 3.25 - to 1 decimal place, this rounds down to 3.2.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = 3.2 oe",
+          "description": "486 oe",
           "marks": 1
         }
       ],
@@ -528,46 +524,68 @@
       }
     },
     {
-      "topic_id": "algebraic_proof",
-      "prompt": "Prove algebraically that n^3 - n is always a multiple of 6.",
+      "topic_id": "inequalities_region_higher",
+      "prompt": "On the grid, shade the region that satisfies both y < -\\frac{x}{2} - 2 and y ≤ x - 4.",
       "solution_steps": [
-        "n^3 - n factorises as (n - 1)n(n + 1), the product of three consecutive integers.",
-        "Write the given expression algebraically: n^3 - n.",
-        "Expand and simplify: n^3 - n = (n - 1)n(n + 1).",
-        "Factorise/rearrange to expose the structure: (n - 1)n(n + 1) = among any 3 consecutive integers, one is a multiple of 3, and at least one is even, so their product always carries both a factor of 3 and a factor of 2.",
-        "Since (n - 1), n and (n + 1) are three consecutive integers, one of them is always a multiple of 3 and at least one is always even - so their product always has both 2 and 3 as factors, making it always a multiple of 6."
+        "Draw the line y = -\\frac{x}{2} - 2 (dashed - the line itself is not included in the region).",
+        "Draw the line y = x - 4 (solid - the line itself is included in the region).",
+        "Shade the region where both y < -\\frac{x}{2} - 2 and y ≤ x - 4 are true at the same time."
       ],
-      "final_answer": "Proven: n^3 - n = (n - 1)n(n + 1) is always a multiple of 6.",
-      "marks": 5,
+      "final_answer": "y < -\\frac{x}{2} - 2 and y ≤ x - 4",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "n^3 - n factorises as (n - 1)n(n + 1), the product of three consecutive integers.",
+          "description": "Draw the line y = -\\frac{x}{2} - 2 (dashed - the line itself is not included in the region).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write the given expression algebraically: n^3 - n.",
+          "description": "Draw the line y = x - 4 (solid - the line itself is included in the region).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand and simplify: n^3 - n = (n - 1)n(n + 1).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise/rearrange to expose the structure: (n - 1)n(n + 1) = among any 3 consecutive integers, one is a multiple of 3, and at least one is even, so their product always carries both a factor of 3 and a factor of 2. Since (n - 1), n and (n + 1) are three consecutive integers, one of them is always a multiple of 3 and at least one is always even - so their product always has both 2 and 3 as factors, making it always a multiple of 6.",
+          "description": "Shade the region where both y < -\\frac{x}{2} - 2 and y ≤ x - 4 are true at the same time.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Proven: n^3 - n = (n - 1)n(n + 1) is always a multiple of 6. oe",
+          "description": "y < -\\frac{x}{2} - 2 and y ≤ x - 4 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "inequality_region",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "inequality_region",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "lines": [
+            {
+              "m": -0.5,
+              "c": -2,
+              "op": "<"
+            },
+            {
+              "m": 1.0,
+              "c": -4,
+              "op": "<="
+            }
+          ]
+        }
+      }
     },
     {
       "topic_id": "plot_cubic",
@@ -713,41 +731,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solve_quadratic_completing_square",
-      "prompt": "Solve x^2 - 2x - 7 = 0 by completing the square, giving your answers in exact surd form.",
+      "topic_id": "turning_point_of_graph",
+      "prompt": "Find the coordinates of the turning point of the curve y = x^2 + 6x - 15.",
       "solution_steps": [
-        "Half the coefficient of x: -2 ÷ 2 = -1",
-        "Complete the square: x^2 - 2x - 7 = (x - 1)^2 - 8",
-        "Set (x - 1)^2 - 8 = 0, so (x - 1)^2 = 8",
-        "(x - 1) = ±√8 = ±2√2",
-        "x = 1 + 2√2 or x = 1 - 2√2"
+        "Complete the square: x^2 + 6x - 15 = (x + 3)^2 - 24",
+        "The turning point of y = (x + p)^2 + q is (-p, q).",
+        "Turning point = (-3, -24)"
       ],
-      "final_answer": "x = 1 + 2√2 or x = 1 - 2√2",
-      "marks": 5,
+      "final_answer": "(-3, -24)",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Half the coefficient of x: -2 ÷ 2 = -1",
+          "description": "Complete the square: x^2 + 6x - 15 = (x + 3)^2 - 24",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Complete the square: x^2 - 2x - 7 = (x - 1)^2 - 8",
+          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Set (x - 1)^2 - 8 = 0, so (x - 1)^2 = 8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(x - 1) = ±√8 = ±2√2 x = 1 + 2√2 or x = 1 - 2√2",
+          "description": "Turning point = (-3, -24)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 1 + 2√2 or x = 1 - 2√2 oe",
+          "description": "(-3, -24) oe",
           "marks": 1
         }
       ],
@@ -818,35 +829,6 @@
         {
           "code": "A1",
           "description": "2880 g oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "speed_with_conversions",
-      "prompt": "A cyclist travels 27 km in 45 minutes. Find its average speed in km/h, correct to 1 decimal place.",
-      "solution_steps": [
-        "Convert time to hours: 45 minutes = 45 ÷ 60 hours",
-        "speed = distance ÷ time = 27 ÷ (45 ÷ 60) = 36 km/h (1 d.p.)"
-      ],
-      "final_answer": "36 km/h",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert time to hours: 45 minutes = 45 ÷ 60 hours",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "speed = distance ÷ time = 27 ÷ (45 ÷ 60) = 36 km/h (1 d.p.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "36 km/h oe",
           "marks": 1
         }
       ],
@@ -1121,6 +1103,35 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "probability_combined_dice",
+      "prompt": "Two fair six-sided dice are rolled. Find the probability that both dice show 4.",
+      "solution_steps": [
+        "P(first die is 4) = 1/6, P(second die is 4) = 1/6",
+        "Independent events multiply: P(both 4) = 1/6 × 1/6 = 1/36"
+      ],
+      "final_answer": "1/36",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "P(first die is 4) = 1/6, P(second die is 4) = 1/6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Independent events multiply: P(both 4) = 1/6 × 1/6 = 1/36",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/36 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "product_rule_counting",
       "prompt": "A shop sells 5 different fonts, 4 different colours and 4 different paper sizes. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
       "solution_steps": [
@@ -1137,6 +1148,41 @@
         {
           "code": "A1",
           "description": "80 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "stats_reverse_mean",
+      "prompt": "The mean of six numbers is 13. Five of the numbers are 1, 18, 4, 17, 12. Find the missing number.",
+      "solution_steps": [
+        "Total of all 6 numbers = mean × count = 13 × 6 = 78",
+        "Sum of the known numbers = 1 + 18 + 4 + 17 + 12 = 52",
+        "Missing number = 78 - 52 = 26"
+      ],
+      "final_answer": "26",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total of all 6 numbers = mean × count = 13 × 6 = 78",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Sum of the known numbers = 1 + 18 + 4 + 17 + 12 = 52",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Missing number = 78 - 52 = 26",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "26 oe",
           "marks": 1
         }
       ],

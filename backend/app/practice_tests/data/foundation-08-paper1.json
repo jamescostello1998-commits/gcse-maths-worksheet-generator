@@ -234,42 +234,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "satisfying_inequalities_foundation",
-      "prompt": "Solve the inequality -1 ≤ 3x - 8 ≤ 21, then list the integer values of x that satisfy it.",
+      "topic_id": "solving_inequalities_foundation",
+      "prompt": "Solve the inequality: \\frac{x}{3} + 5 < 2",
       "solution_steps": [
-        "-1 ≤ 3x - 8 ≤ 21",
-        "Add 8 to all three parts:",
-        "7 ≤ 3x ≤ 29",
-        "Divide all three parts by 3:",
-        "7/3 ≤ x ≤ 29/3",
-        "The integers satisfying this are: 3, 4, 5, 6, 7, 8, 9"
+        "\\frac{x}{3} + 5 < 2",
+        "Subtract 5 from both sides:",
+        "\\frac{x}{3} < -3",
+        "Multiply both sides by 3:",
+        "x < -9"
       ],
-      "final_answer": "3, 4, 5, 6, 7, 8, 9",
+      "final_answer": "x < -9",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "-1 ≤ 3x - 8 ≤ 21",
+          "description": "\\frac{x}{3} + 5 < 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add 8 to all three parts:",
+          "description": "Subtract 5 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "7 ≤ 3x ≤ 29",
+          "description": "\\frac{x}{3} < -3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide all three parts by 3: 7/3 ≤ x ≤ 29/3 The integers satisfying this are: 3, 4, 5, 6, 7, 8, 9",
+          "description": "Multiply both sides by 3: x < -9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3, 4, 5, 6, 7, 8, 9 oe",
+          "description": "x < -9 oe",
           "marks": 1
         }
       ],
@@ -321,34 +320,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_indices_foundation",
-      "prompt": "Simplify (4x^4)^2",
+      "topic_id": "solve_quadratic_factorising_foundation",
+      "prompt": "Solve x^2 + 7x + 6 = 0 by factorising.",
       "solution_steps": [
-        "Raising a power to another power: multiply the exponents, and raise the coefficient to that power too.",
-        "(4x^4)^2 = 4^2 x^(4×2)",
-        "= 16x^8"
+        "Find two numbers that multiply to 6 and add to 7: 1 and 6",
+        "Factorise: (x + 1)(x + 6) = 0",
+        "Either x + 1 = 0 or x + 6 = 0",
+        "x = -1 or x = -6"
       ],
-      "final_answer": "16x^8",
-      "marks": 4,
+      "final_answer": "x = -1 or x = -6",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Raising a power to another power: multiply the exponents, and raise the coefficient to that power too.",
+          "description": "Find two numbers that multiply to 6 and add to 7: 1 and 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(4x^4)^2 = 4^2 x^(4×2)",
+          "description": "Factorise: (x + 1)(x + 6) = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 16x^8",
+          "description": "Either x + 1 = 0 or x + 6 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -1 or x = -6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "16x^8 oe",
+          "description": "x = -1 or x = -6 oe",
           "marks": 1
         }
       ],
@@ -812,19 +817,19 @@
           "marks": 1
         }
       ],
-      "diagram": {
+      "diagram": null,
+      "solution_diagram": {
         "kind": "net",
         "params": {
           "shape": "triangular_prism"
         }
-      },
-      "solution_diagram": null
+      }
     },
     {
       "topic_id": "transform_translate_describe",
-      "prompt": "Shape ABCDEF is translated to give shape A'B'C'D'E'F', shown on the grid. Describe fully the single transformation that maps ABCDEF onto A'B'C'D'E'F'.",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
       "solution_steps": [
-        "Every vertex moves by exactly the same amount: comparing A(0, 0) with A'(-5, 1) gives the vector (-5, 1).",
+        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (0, 0), with the matching vertex of shape B, (-5, 1), gives the vector (-5, 1).",
         "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
       ],
       "final_answer": "Translation by the vector (-5, 1)",
@@ -832,7 +837,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Every vertex moves by exactly the same amount: comparing A(0, 0) with A'(-5, 1) gives the vector (-5, 1).",
+          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (0, 0), with the matching vertex of shape B, (-5, 1), gives the vector (-5, 1).",
           "marks": 1
         },
         {
@@ -880,12 +885,12 @@
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ],
           "image_vertices": [
             [
@@ -914,12 +919,12 @@
             ]
           ],
           "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'",
-            "E'",
-            "F'"
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ]
         }
       },
@@ -968,39 +973,27 @@
     },
     {
       "topic_id": "two_way_tables",
-      "prompt": "The two-way table shows the number of boys and girls who prefer football or tennis. Copy and complete the table, and state the missing value marked '?'.",
+      "prompt": "The two-way table shows the number of boys and girls who prefer football or tennis. Find the missing values.",
       "solution_steps": [
-        "The missing value is in the 'Boys' row and 'Football' column.",
-        "Using the row total: 27 - 19 = 8",
-        "Using the column total: 27 - 19 = 8",
-        "Missing value = 8"
+        "'Boys' / 'Tennis': using the 'Tennis' column total: 39 - 20 = 19",
+        "'Boys' / 'Football': using the 'Football' column total: 27 - 19 = 8"
       ],
-      "final_answer": "8",
-      "marks": 5,
+      "final_answer": "'Boys' / 'Tennis' = 19; 'Boys' / 'Football' = 8",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The missing value is in the 'Boys' row and 'Football' column.",
+          "description": "'Boys' / 'Tennis': using the 'Tennis' column total: 39 - 20 = 19",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Using the row total: 27 - 19 = 8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Using the column total: 27 - 19 = 8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Missing value = 8",
+          "description": "'Boys' / 'Football': using the 'Football' column total: 27 - 19 = 8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8 oe",
+          "description": "'Boys' / 'Tennis' = 19; 'Boys' / 'Football' = 8 oe",
           "marks": 1
         }
       ],
@@ -1019,8 +1012,8 @@
           ],
           "cells": [
             [
-              "?",
-              "19",
+              "",
+              "",
               "27"
             ],
             [
@@ -1107,39 +1100,58 @@
           "counts": {
             "blue": 4,
             "red": 7
-          },
-          "highlight": "red"
+          }
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "sampling_methods",
-      "prompt": "A researcher wants to find out the opinions of all subscribers at a large organisation. She asks the first 47 subscribers she meets at the front gate before 7am. Explain why this sample might not be representative of all the subscribers.",
+      "topic_id": "venn_diagram_probability",
+      "prompt": "The Venn diagram shows the number of students in each region for sets A and B. Find P(A ∩ B).",
       "solution_steps": [
-        "Only subscribers who happen to be at the front gate before 7am at that particular time have any chance of being chosen - anyone who isn't there is automatically excluded.",
-        "This is a convenience sample, not a random one, so it's likely to over-represent whichever kind of person tends to be in that place at that time, and under-represent everyone else."
+        "Total number of elements = 9 + 4 + 14 + 7 = 34",
+        "Number of outcomes in A ∩ B = 14 = 14",
+        "P(A ∩ B) = 14/34 = 7/17"
       ],
-      "final_answer": "Biased - only people at that one location/time could be chosen, so the sample isn't representative.",
-      "marks": 3,
+      "final_answer": "7/17",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Only subscribers who happen to be at the front gate before 7am at that particular time have any chance of being chosen - anyone who isn't there is automatically excluded.",
+          "description": "Total number of elements = 9 + 4 + 14 + 7 = 34",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "This is a convenience sample, not a random one, so it's likely to over-represent whichever kind of person tends to be in that place at that time, and under-represent everyone else.",
+          "description": "Number of outcomes in A ∩ B = 14 = 14",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(A ∩ B) = 14/34 = 7/17",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Biased - only people at that one location/time could be chosen, so the sample isn't representative. oe",
+          "description": "7/17 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "region_text": {
+            "a_only": "9",
+            "b_only": "4",
+            "both": "14",
+            "neither": "7"
+          }
+        }
+      },
       "solution_diagram": null
     }
   ]

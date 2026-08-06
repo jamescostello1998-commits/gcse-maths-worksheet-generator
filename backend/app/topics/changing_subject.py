@@ -667,6 +667,90 @@ def generate_modelled_example_change_subject_higher(tier: Tier, rng: random.Rand
     return dataclasses.replace(example, topic_id="change_subject_higher", tier=Tier.HIGHER)
 
 
+# ---------------------------------------------------------------------------
+# Higher: rearranging by factorising - the subject (x) has two terms, one
+# with a plain numeric coefficient and one with a symbolic-parameter
+# coefficient (e.g. "px + 10x = 8"), so the answer is a genuine algebraic
+# fraction in terms of that parameter. Deliberately excludes "x"/"n" from the
+# letter pool - pairing an italicised letter with a plain one in the same
+# equation would look like a rendering inconsistency (same reasoning as
+# ratio.py's _LETTER_PAIRS).
+# ---------------------------------------------------------------------------
+
+_FACTORISE_LETTERS = ["a", "b", "c", "k", "m", "p", "q", "r", "s", "t", "w"]
+
+
+def generate_change_subject_factorise_higher(tier: Tier, rng: random.Random) -> Question:
+    letter = rng.choice(_FACTORISE_LETTERS)
+    coeff = rng.randint(2, 12)
+    total = rng.randint(2, 60)
+    letter_sym = sp.symbols(letter)
+
+    rhs = f"\\frac{{{total}}}{{{letter} + {coeff}}}"
+    claimed = sp.Rational(total) / (letter_sym + coeff)
+
+    # Independent verification: sp.solve the original equation directly, with
+    # the parameter letter left as a free symbol - a genuinely different path
+    # than the manual factorise-then-divide steps shown.
+    solved = sp.solve(sp.Eq(letter_sym * X + coeff * X, total), X)
+    if not solved or sp.simplify(solved[0] - claimed) != 0:
+        raise ValueError("change_subject_factorise_higher verification failed")
+
+    steps = [
+        f"{letter}x + {coeff}x = {total}",
+        f"Factorise the left-hand side: x({letter} + {coeff}) = {total}",
+        f"Divide both sides by ({letter} + {coeff}): x = {rhs}",
+    ]
+    return Question(
+        topic_id="change_subject_factorise_higher",
+        tier=Tier.HIGHER,
+        prompt=f"Make x the subject of the formula {letter}x + {coeff}x = {total}.",
+        solution_steps=tuple(steps),
+        final_answer=f"x = {rhs}",
+        dedup_key=f"subject_factorise:{letter}:{coeff}:{total}",
+    )
+
+
+def generate_modelled_example_change_subject_factorise_higher(tier: Tier, rng: random.Random) -> ModelledExample:
+    letter = rng.choice(_FACTORISE_LETTERS)
+    coeff = rng.randint(2, 12)
+    total = rng.randint(2, 60)
+    letter_sym = sp.symbols(letter)
+
+    rhs = f"\\frac{{{total}}}{{{letter} + {coeff}}}"
+    claimed = sp.Rational(total) / (letter_sym + coeff)
+
+    solved = sp.solve(sp.Eq(letter_sym * X + coeff * X, total), X)
+    if not solved or sp.simplify(solved[0] - claimed) != 0:
+        raise ValueError("modelled example change_subject_factorise_higher verification failed")
+
+    teaching_steps = [
+        f"x appears in two separate terms here ({letter}x and {coeff}x), each with its own "
+        "coefficient - one a letter, one a number - so you can't isolate x until those two terms "
+        "are combined into one.",
+        f"Both terms share x as a common factor, so factorise the left-hand side: "
+        f"{letter}x + {coeff}x = ({letter} + {coeff})x.",
+        f"This leaves x multiplied by the combined bracket ({letter} + {coeff}) - divide both sides "
+        f"by that bracket to finish: x = {rhs}.",
+        f"The letter {letter} is just left as a symbol in the answer, exactly like {letter} + {coeff} "
+        "was never a number we could simplify further - we treat it the same way we treat any other "
+        "unknown parameter in a formula.",
+    ]
+    worked_calculation = [
+        f"{letter}x + {coeff}x = {total}",
+        f"({letter} + {coeff})x = {total}",
+        f"x = {rhs}",
+    ]
+    return ModelledExample(
+        topic_id="change_subject_factorise_higher",
+        tier=Tier.HIGHER,
+        prompt=f"Make x the subject of the formula {letter}x + {coeff}x = {total}.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"x = {rhs}",
+    )
+
+
 TOPIC_CHANGE_SUBJECT_FOUNDATION = TopicDefinition(
     id="change_subject_foundation",
     display_name="Changing the Subject of a Formula",
@@ -690,4 +774,15 @@ TOPIC_CHANGE_SUBJECT_HIGHER = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_change_subject_higher,
+)
+
+TOPIC_CHANGE_SUBJECT_FACTORISE_HIGHER = TopicDefinition(
+    id="change_subject_factorise_higher",
+    display_name="Changing the Subject by Factorising (Higher)",
+    description="Make x the subject of a formula where x has a symbolic-parameter coefficient, requiring factorising.",
+    generate=generate_change_subject_factorise_higher,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_change_subject_factorise_higher,
 )

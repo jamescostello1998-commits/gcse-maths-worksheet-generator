@@ -103,3 +103,89 @@ def test_only_the_exact_literal_x_n_substring_is_special_cased():
     # special case and is drawn as three full-size literal glyphs "y", "_",
     # "n" - so it should measure noticeably wider.
     assert y_n.width_pt > x_n.width_pt
+
+
+# --- General "base^exp" exponent support (e.g. algebraic_fractions_multiply_
+# divide's "x^2", kinematics.py's "t^2" denominator) ------------------------
+#
+# Previously a bare "^" inside a \frac{}{} marker printed as a literal caret
+# character (this module never learned the "^" convention mathtext.py uses
+# for ordinary prose). Fixed by drawing the base at normal size followed by a
+# real raised, shrunk exponent - see the module docstring.
+
+
+def test_exponent_token_does_not_crash_and_produces_a_real_image():
+    img = get_fraction_image("x^2 - 9", "x + 3", 11.5, False, INK)
+    assert os.path.isfile(img.path)
+    assert img.width_pt > 0
+    assert img.height_pt > 0
+
+
+def test_multi_digit_numeric_base_exponent_also_renders():
+    # A regression test: the base pattern originally only captured a single
+    # character, so a multi-digit base like "10^2" (e.g. substitution_
+    # rearrange_higher's "8^2 - 10^2" numerator) silently fell through to
+    # plain literal text instead of being superscripted - found via a real
+    # rendered-PDF check, not a unit test written in advance.
+    single = get_fraction_image("8^2 - 10^2", "2 × (-2)", 11.5, False, INK)
+    literal = get_fraction_image("8^2 - 10^^2", "2 × (-2)", 11.5, False, INK)  # "^^" never a valid token
+    assert single.width_pt < literal.width_pt
+
+
+def test_numeric_base_exponent_also_renders():
+    img = get_fraction_image("1", "t^2", 11.5, False, INK)
+    assert os.path.isfile(img.path)
+    assert img.width_pt > 0
+
+
+def test_exponent_token_is_narrower_than_the_equivalent_literal_text_would_be():
+    # A raised, shrunk exponent digit should measure narrower than the same
+    # digit drawn at full size with a literal caret in front of it.
+    exp = get_fraction_image("t^2", "1", 11.5, False, INK)
+    literal = get_fraction_image("t^^2", "1", 11.5, False, INK)  # not a valid token, stays literal
+    assert exp.width_pt < literal.width_pt
+
+
+def test_exponent_and_xn_tokens_compose_without_double_matching():
+    # "x_n^2" must be claimed entirely by the xn token (with its own trailing
+    # "^digits" superscript group), never partially re-matched by the general
+    # exponent token - a regression test for the token-priority ordering.
+    img = get_fraction_image("a - x_n^2", "x_n + b", 11.5, False, INK)
+    assert os.path.isfile(img.path)
+
+
+# --- Radical "√digits" support (e.g. rationalise_denominator's "\frac{a}{√b}")
+# -----------------------------------------------------------------------------
+#
+# Previously a bare "√" inside a \frac{}{} marker rendered as a flat Arial
+# glyph with no bar - fixed by drawing a real hook + bar spanning the digits,
+# mirroring radical_images.py's geometry directly in this module's own
+# coordinate space. See the module docstring.
+
+
+def test_radical_token_does_not_crash_and_produces_a_real_image():
+    img = get_fraction_image("3", "√7", 11.5, False, INK)
+    assert os.path.isfile(img.path)
+    assert img.width_pt > 0
+    assert img.height_pt > 0
+
+
+def test_radical_with_coefficient_in_the_same_run_also_renders():
+    img = get_fraction_image("3√5", "√5", 11.5, False, INK)
+    assert os.path.isfile(img.path)
+    assert img.width_pt > 0
+
+
+def test_decimal_radicand_also_renders():
+    img = get_fraction_image("1", "√205.1", 11.5, False, INK)
+    assert os.path.isfile(img.path)
+
+
+def test_radical_token_is_taller_than_a_plain_denominator_of_the_same_digit():
+    # The hook+bar geometry adds real height above the digit - a fraction
+    # with a radical denominator should measure taller than the same digit
+    # with no radical at all (an indirect check the hook/bar is actually
+    # being drawn, not just the bare digit).
+    with_radical = get_fraction_image("3", "√7", 11.5, False, INK)
+    plain = get_fraction_image("3", "7", 11.5, False, INK)
+    assert with_radical.height_pt > plain.height_pt

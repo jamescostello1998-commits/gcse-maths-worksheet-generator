@@ -124,7 +124,7 @@
     },
     {
       "topic_id": "bidmas",
-      "prompt": "Work out 7^2 + 9 × 5 - 8 ÷ 4. Use the correct order of operations.",
+      "prompt": "Work out 7^2 + 9 × 5 - 8 ÷ 4.",
       "solution_steps": [
         "Indices: 7^2 = 49",
         "Multiplication: 9 × 5 = 45",
@@ -165,32 +165,51 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "number_powers_of_ten",
-      "prompt": "Evaluate 470 × 10.",
+      "topic_id": "fractions_equivalent_diagram",
+      "prompt": "The first shape shows 5/6 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
       "solution_steps": [
-        "Multiplying by 10 moves the decimal point 1 place to the right.",
-        "470 × 10 = 4700"
+        "Cross-multiply 5/6 against each labelled shape: a shape shows an equivalent fraction only if 5 × (its denominator) = (its shaded count) × 6.",
+        "Only shape C) 10/12 works: 5 × 12 = 10 × 6 = 60."
       ],
-      "final_answer": "4700",
-      "marks": 3,
+      "final_answer": "C) 10/12",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "Multiplying by 10 moves the decimal point 1 place to the right.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "470 × 10 = 4700",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "4700 oe",
+          "code": "B1",
+          "description": "C) 10/12 (selecting the correct option)",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "fraction_shapes",
+        "params": {
+          "shapes": [
+            {
+              "kind": "bar",
+              "parts": 6,
+              "shaded": 5
+            },
+            {
+              "kind": "bar",
+              "parts": 8,
+              "shaded": 6,
+              "label": "A)"
+            },
+            {
+              "kind": "bar",
+              "parts": 10,
+              "shaded": 6,
+              "label": "B)"
+            },
+            {
+              "kind": "bar",
+              "parts": 12,
+              "shaded": 10,
+              "label": "C)"
+            }
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -258,34 +277,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_indices_foundation",
-      "prompt": "Simplify (2x^4)^2",
+      "topic_id": "factorise_quadratics_foundation",
+      "prompt": "Factorise: x^2 + 6x + 5",
       "solution_steps": [
-        "Raising a power to another power: multiply the exponents, and raise the coefficient to that power too.",
-        "(2x^4)^2 = 2^2 x^(4×2)",
-        "= 4x^8"
+        "Find two numbers that multiply to 5 and add to 6: 1 and 5",
+        "Write as two brackets: (x + 1)(x + 5)"
       ],
-      "final_answer": "4x^8",
-      "marks": 4,
+      "final_answer": "(x + 1)(x + 5)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Raising a power to another power: multiply the exponents, and raise the coefficient to that power too.",
+          "description": "Find two numbers that multiply to 5 and add to 6: 1 and 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(2x^4)^2 = 2^2 x^(4×2)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 4x^8",
+          "description": "Write as two brackets: (x + 1)(x + 5)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4x^8 oe",
+          "description": "(x + 1)(x + 5) oe",
           "marks": 1
         }
       ],
@@ -584,28 +597,41 @@
       }
     },
     {
-      "topic_id": "simple_interest",
-      "prompt": "£4300 is invested at a simple interest rate of 3% per year for 4 years. Find the interest earned.",
+      "topic_id": "expand_double_brackets_foundation",
+      "prompt": "Expand and simplify: (2x + 9)(4x + 9)",
       "solution_steps": [
-        "Simple interest formula: I = P × r × t ÷ 100",
-        "I = 4300 × 3 × 4 ÷ 100 = £516"
+        "First: 2x × 4x = 8x^2",
+        "Outer: 2x × 9 = 18x",
+        "Inner: 9 × 4x = 36x",
+        "Last: 9 × 9 = 81",
+        "Combine like terms: 8x^2 + 54x + 81"
       ],
-      "final_answer": "£516",
-      "marks": 3,
+      "final_answer": "8x^2 + 54x + 81",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Simple interest formula: I = P × r × t ÷ 100",
+          "description": "First: 2x × 4x = 8x^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "I = 4300 × 3 × 4 ÷ 100 = £516",
+          "description": "Outer: 2x × 9 = 18x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Inner: 9 × 4x = 36x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Last: 9 × 9 = 81 Combine like terms: 8x^2 + 54x + 81",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£516 oe",
+          "description": "8x^2 + 54x + 81 oe",
           "marks": 1
         }
       ],
@@ -642,41 +668,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_three_part_foundation",
-      "prompt": "Share 72 in the ratio 2:4:6.",
+      "topic_id": "ratio_find_missing_share",
+      "prompt": "p : q = 5 : 9. p = 25. What is the value of q?",
       "solution_steps": [
-        "Total parts = 2 + 4 + 6 = 12",
-        "Value of one part = 72 ÷ 12 = 6",
-        "Share 1 = 2 × 6 = 12",
-        "Share 2 = 4 × 6 = 24",
-        "Share 3 = 6 × 6 = 36"
+        "Value of one part = 25 ÷ 5 = 5",
+        "q = 9 × 5 = 45"
       ],
-      "final_answer": "12 : 24 : 36",
-      "marks": 5,
+      "final_answer": "45",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 2 + 4 + 6 = 12",
+          "description": "Value of one part = 25 ÷ 5 = 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 72 ÷ 12 = 6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 2 × 6 = 12",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 4 × 6 = 24 Share 3 = 6 × 6 = 36",
+          "description": "q = 9 × 5 = 45",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 : 24 : 36 oe",
+          "description": "45 oe",
           "marks": 1
         }
       ],
@@ -742,40 +755,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "construction_perpendicular_bisector",
-      "prompt": "Line segment VQ has length 5 cm. Describe, step by step, how to construct the perpendicular bisector of VQ using only a ruler and a pair of compasses.",
+      "topic_id": "density",
+      "prompt": "A sculpture has a mass of 185 g and a density of 6 g/cm³. Find its volume, correct to 2 decimal places.",
       "solution_steps": [
-        "Open the compasses to a radius more than half of 5 cm (more than half the length of VQ).",
-        "With the compass point on V, draw an arc above and below the line.",
-        "Without changing the compass radius, place the point on Q and draw two more arcs, crossing the first two.",
-        "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of VQ."
+        "volume = mass ÷ density",
+        "volume = 185 ÷ 6 = 30.83 cm³ (2 d.p.)"
       ],
-      "final_answer": "A straight line through the two arc intersections, crossing VQ at its midpoint at a right angle.",
-      "marks": 5,
+      "final_answer": "30.83 cm³",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Open the compasses to a radius more than half of 5 cm (more than half the length of VQ).",
+          "description": "volume = mass ÷ density",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "With the compass point on V, draw an arc above and below the line.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Without changing the compass radius, place the point on Q and draw two more arcs, crossing the first two.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of VQ.",
+          "description": "volume = 185 ÷ 6 = 30.83 cm³ (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A straight line through the two arc intersections, crossing VQ at its midpoint at a right angle. oe",
+          "description": "30.83 cm³ oe",
           "marks": 1
         }
       ],
@@ -814,42 +815,32 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bearings_foundation",
-      "prompt": "The diagram shows the bearing of B from A. Write down the bearing of B from A as a three-figure bearing.",
+      "topic_id": "map_scale_drawings",
+      "prompt": "A map has a scale of 1 cm represents 5 km. Two towns are 35 km apart in real life. Find the distance between the towns on the map, in cm.",
       "solution_steps": [
-        "A bearing is always written as three figures, measured clockwise from north.",
-        "Reading the angle shown from north: 259°, written as a three-figure bearing: 259°."
+        "The scale means 1 cm on the map represents 5 km in real life.",
+        "Map distance = 35 ÷ 5 = 7 cm"
       ],
-      "final_answer": "259°",
+      "final_answer": "7 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A bearing is always written as three figures, measured clockwise from north.",
+          "description": "The scale means 1 cm on the map represents 5 km in real life.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Reading the angle shown from north: 259°, written as a three-figure bearing: 259°.",
+          "description": "Map distance = 35 ÷ 5 = 7 cm",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "259° oe",
+          "description": "7 cm oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "bearings",
-        "params": {
-          "labels": [
-            "A",
-            "B"
-          ],
-          "bearing_at_A": 259,
-          "leg1_label": ""
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -897,28 +888,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_translate_describe",
-      "prompt": "Shape ABC is translated to give shape A'B'C', shown on the grid. Describe fully the single transformation that maps ABC onto A'B'C'.",
+      "topic_id": "transform_enlarge_complete_foundation",
+      "prompt": "Enlarge shape ABC by scale factor 2, centre (3, -5). Draw and label the image A'B'C'.",
       "solution_steps": [
-        "Every vertex moves by exactly the same amount: comparing A(-2, 0) with A'(1, 2) gives the vector (3, 2).",
-        "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
+        "The centre of enlargement is (3, -5) and the scale factor is 2.",
+        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-5, 2) from the centre, so A' = (3, -5) + 2 × (-5, 2) = (-7, -1).",
+        "Repeat for every vertex: A(-2, -3) -> A'(-7, -1), B(3, -3) -> B'(3, -1), C(-1, 1) -> C'(-5, 7)"
       ],
-      "final_answer": "Translation by the vector (3, 2)",
-      "marks": 3,
+      "final_answer": "A'(-7, -1), B'(3, -1), C'(-5, 7)",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Every vertex moves by exactly the same amount: comparing A(-2, 0) with A'(1, 2) gives the vector (3, 2).",
+          "description": "The centre of enlargement is (3, -5) and the scale factor is 2.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Checking the other vertices confirms the same vector applies throughout, so this is a translation.",
+          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-5, 2) from the centre, so A' = (3, -5) + 2 × (-5, 2) = (-7, -1).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Repeat for every vertex: A(-2, -3) -> A'(-7, -1), B(3, -3) -> B'(3, -1), C(-1, 1) -> C'(-5, 7)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Translation by the vector (3, 2) oe",
+          "description": "A'(-7, -1), B'(3, -1), C'(-5, 7) oe",
           "marks": 1
         }
       ],
@@ -932,15 +929,15 @@
           "original_vertices": [
             [
               -2,
-              0
+              -3
             ],
             [
               3,
-              0
+              -3
             ],
             [
               -1,
-              4
+              1
             ]
           ],
           "original_labels": [
@@ -948,18 +945,54 @@
             "B",
             "C"
           ],
+          "centre": [
+            3,
+            -5
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              -2,
+              -3
+            ],
+            [
+              3,
+              -3
+            ],
+            [
+              -1,
+              1
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "centre": [
+            3,
+            -5
+          ],
           "image_vertices": [
             [
-              1,
-              2
+              -7,
+              -1
             ],
             [
-              6,
-              2
+              3,
+              -1
             ],
             [
-              2,
-              6
+              -5,
+              7
             ]
           ],
           "image_labels": [
@@ -968,70 +1001,40 @@
             "C'"
           ]
         }
-      },
-      "solution_diagram": null
+      }
     },
     {
-      "topic_id": "tree_diagram_independent",
-      "prompt": "A bag contains 5 yellow and 2 green counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that the first counter is yellow and the second counter is green.",
+      "topic_id": "pythagoras_ladder_context_foundation",
+      "prompt": "A ladder of length 82 m leans against a vertical wall with its base 18 m from the wall. Find the height the ladder reaches up the wall.",
       "solution_steps": [
-        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(yellow) = 5/7, P(green) = 2/7.",
-        "P(yellow then green) = 5/7 × 2/7 = 10/49"
+        "height² = ladder² - base² = 82² - 18² = 6724 - 324 = 6400",
+        "height = √6400 = 80 m"
       ],
-      "final_answer": "10/49",
+      "final_answer": "80 m",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(yellow) = 5/7, P(green) = 2/7.",
+          "description": "height² = ladder² - base² = 82² - 18² = 6724 - 324 = 6400",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(yellow then green) = 5/7 × 2/7 = 10/49",
+          "description": "height = √6400 = 80 m",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10/49 oe",
+          "description": "80 m oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "tree_diagram",
+        "kind": "right_triangle",
         "params": {
-          "stage1": [
-            [
-              "Yellow",
-              "5/7"
-            ],
-            [
-              "Green",
-              "2/7"
-            ]
-          ],
-          "stage2": [
-            [
-              [
-                "Yellow",
-                "5/7"
-              ],
-              [
-                "Green",
-                "2/7"
-              ]
-            ],
-            [
-              [
-                "Yellow",
-                "5/7"
-              ],
-              [
-                "Green",
-                "2/7"
-              ]
-            ]
-          ]
+          "leg1_label": "18 m",
+          "leg2_label": "x",
+          "hyp_label": "82 m"
         }
       },
       "solution_diagram": null
@@ -1062,30 +1065,91 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "coin",
+        "params": {
+          "count": 2
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "stats_median",
-      "prompt": "Find the median of this data set: 12, 26, 26, 24, 3.",
+      "topic_id": "relative_frequency",
+      "prompt": "A spinner is tested 80 times, and it lands on red 65 times. Use this relative frequency to estimate how many times this would happen in 192 trials.",
       "solution_steps": [
-        "Sort the data: 3, 12, 24, 26, 26. The middle value is 24."
+        "Relative frequency = frequency ÷ number of trials = 65/80 = 13/16",
+        "Estimated number of times in 192 trials = 13/16 × 192 = 156"
       ],
-      "final_answer": "24",
-      "marks": 2,
+      "final_answer": "156",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Sort the data: 3, 12, 24, 26, 26. The middle value is 24.",
+          "description": "Relative frequency = frequency ÷ number of trials = 65/80 = 13/16",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Estimated number of times in 192 trials = 13/16 × 192 = 156",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "24 oe",
+          "description": "156 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "spinner",
+        "params": {
+          "sectors": [
+            "",
+            "",
+            "R",
+            ""
+          ],
+          "highlight": [
+            2
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_complement",
+      "prompt": "A bag contains 5 purple, 7 red counters. A counter is picked at random. Find the probability that it is NOT purple.",
+      "solution_steps": [
+        "P(purple) = 5/12 = 5/12",
+        "P(not purple) = 1 - 5/12 = 7/12"
+      ],
+      "final_answer": "7/12",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "P(purple) = 5/12 = 5/12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(not purple) = 1 - 5/12 = 7/12",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "7/12 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "bag_of_counters",
+        "params": {
+          "counts": {
+            "purple": 5,
+            "red": 7
+          }
+        }
+      },
       "solution_diagram": null
     }
   ]
