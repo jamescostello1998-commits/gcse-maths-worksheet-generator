@@ -40,10 +40,12 @@ changes" gotcha already documented for `area_mixed_compound` in step 39.
 
 This work is on the `aqa-spec-gap-topics` branch, part of the same open PR (`gh pr view 3`,
 or the full path `& "C:\Program Files\GitHub CLI\gh.exe" pr view 3` if `gh` isn't on PATH
-in a fresh shell — see "Environment gotchas" below). **Not yet committed/pushed as of the
-end of this session** — check `git status` before assuming any of step 41's work is on
-the remote. 301 topics total (296 + 5 new from this step), backend suite 957/957,
-frontend 61/61, no known bugs.
+in a fresh shell — see "Environment gotchas" below). **Committed and pushed** — commit
+`d0a818e` ("Review-feedback batch: pages 1-100 of Number/Algebra review PDFs"), confirmed
+matching `origin/aqa-spec-gap-topics` exactly (only the two untracked review PDFs remain
+locally, which is correct — see "Regenerating the all-topics aesthetic-review PDFs" below
+for why they're deliberately not committed). 301 topics total (296 + 5 new from this
+step), backend suite 957/957, frontend 61/61, no known bugs.
 
 Once the user's next chunk of feedback (or confirmation the review is fully done)
 arrives, check "Ideas for a future session" (bottom of this file) for candidate
