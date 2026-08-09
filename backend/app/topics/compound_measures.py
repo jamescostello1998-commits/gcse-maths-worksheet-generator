@@ -119,7 +119,7 @@ def generate_sdt_mixed(tier: Tier, rng: random.Random) -> Question:
         answer = f"{time} {system['time_unit']}"
 
     return Question(
-        topic_id="sdt_mixed",
+        topic_id="sdt_mixed_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -202,7 +202,7 @@ def generate_modelled_example_sdt_mixed(tier: Tier, rng: random.Random) -> Model
         ]
 
     return ModelledExample(
-        topic_id="sdt_mixed",
+        topic_id="sdt_mixed_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -312,7 +312,7 @@ def generate_speed_with_conversions(tier: Tier, rng: random.Random) -> Question:
             dedup = f"swc:output:kmh_ms:{time_h}:{speed_kmh}"
 
     return Question(
-        topic_id="speed_with_conversions",
+        topic_id="speed_with_conversions_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -451,7 +451,7 @@ def generate_modelled_example_speed_with_conversions(tier: Tier, rng: random.Ran
             ]
 
     return ModelledExample(
-        topic_id="speed_with_conversions",
+        topic_id="speed_with_conversions_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -510,7 +510,7 @@ def generate_unit_conversions(tier: Tier, rng: random.Random) -> Question:
         answer = f"{_fmt_num(target)} {large}"
 
     return Question(
-        topic_id="unit_conversions",
+        topic_id="unit_conversions_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -575,7 +575,7 @@ def generate_modelled_example_unit_conversions(tier: Tier, rng: random.Random) -
         ]
 
     return ModelledExample(
-        topic_id="unit_conversions",
+        topic_id="unit_conversions_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -650,7 +650,7 @@ def generate_unit_conversions_higher(tier: Tier, rng: random.Random) -> Question
         answer = f"{_fmt_num(target)} {large_p}"
 
     return Question(
-        topic_id="unit_conversions_higher",
+        topic_id="unit_conversions_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -727,7 +727,7 @@ def generate_modelled_example_unit_conversions_higher(tier: Tier, rng: random.Ra
         ]
 
     return ModelledExample(
-        topic_id="unit_conversions_higher",
+        topic_id="unit_conversions_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -809,7 +809,7 @@ def generate_density(tier: Tier, rng: random.Random) -> Question:
         dedup = f"density:density:{mass}:{volume}"
 
     return Question(
-        topic_id="density",
+        topic_id="density_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -902,7 +902,7 @@ def generate_modelled_example_density(tier: Tier, rng: random.Random) -> Modelle
         ]
 
     return ModelledExample(
-        topic_id="density",
+        topic_id="density_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -986,7 +986,7 @@ def generate_density_higher(tier: Tier, rng: random.Random) -> Question:
         dedup = f"density_h:conv:{mass_kg}:{volume_cm3}"
 
     return Question(
-        topic_id="density_higher",
+        topic_id="density_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -1090,7 +1090,7 @@ def generate_modelled_example_density_higher(tier: Tier, rng: random.Random) -> 
         ]
 
     return ModelledExample(
-        topic_id="density_higher",
+        topic_id="density_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -1170,7 +1170,7 @@ def generate_pressure(tier: Tier, rng: random.Random) -> Question:
         dedup = f"pressure:pressure:{force}:{area}"
 
     return Question(
-        topic_id="pressure",
+        topic_id="pressure_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -1263,7 +1263,7 @@ def generate_modelled_example_pressure(tier: Tier, rng: random.Random) -> Modell
         ]
 
     return ModelledExample(
-        topic_id="pressure",
+        topic_id="pressure_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -1353,7 +1353,7 @@ def generate_pressure_higher(tier: Tier, rng: random.Random) -> Question:
         dedup = f"pressure_h:conv:{force}:{area_cm2}"
 
     return Question(
-        topic_id="pressure_higher",
+        topic_id="pressure_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -1459,7 +1459,7 @@ def generate_modelled_example_pressure_higher(tier: Tier, rng: random.Random) ->
         ]
 
     return ModelledExample(
-        topic_id="pressure_higher",
+        topic_id="pressure_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -1473,7 +1473,7 @@ def generate_modelled_example_pressure_higher(tier: Tier, rng: random.Random) ->
 # ===========================================================================
 
 TOPIC_SDT_MIXED = TopicDefinition(
-    id="sdt_mixed",
+    id="sdt_mixed_F",
     display_name="Speed, Distance and Time",
     description="Mixed problems using speed = distance ÷ time, with consistent units throughout.",
     generate=generate_sdt_mixed,
@@ -1484,7 +1484,7 @@ TOPIC_SDT_MIXED = TopicDefinition(
 )
 
 TOPIC_SPEED_WITH_CONVERSIONS = TopicDefinition(
-    id="speed_with_conversions",
+    id="speed_with_conversions_H",
     display_name="Speed with Unit Conversions",
     description="Speed, distance and time problems that require a unit conversion.",
     generate=generate_speed_with_conversions,
@@ -1495,7 +1495,7 @@ TOPIC_SPEED_WITH_CONVERSIONS = TopicDefinition(
 )
 
 TOPIC_UNIT_CONVERSIONS = TopicDefinition(
-    id="unit_conversions",
+    id="unit_conversions_F",
     display_name="Unit Conversions",
     description="Convert between common metric units of length, mass and capacity.",
     generate=generate_unit_conversions,
@@ -1506,7 +1506,7 @@ TOPIC_UNIT_CONVERSIONS = TopicDefinition(
 )
 
 TOPIC_UNIT_CONVERSIONS_HIGHER = TopicDefinition(
-    id="unit_conversions_higher",
+    id="unit_conversions_H",
     display_name="Area and Volume Unit Conversions",
     description="Convert between metric units of area and volume, squaring or cubing the linear factor.",
     generate=generate_unit_conversions_higher,
@@ -1517,7 +1517,7 @@ TOPIC_UNIT_CONVERSIONS_HIGHER = TopicDefinition(
 )
 
 TOPIC_DENSITY = TopicDefinition(
-    id="density",
+    id="density_F",
     display_name="Density",
     description="Use density = mass ÷ volume to find a missing mass, volume or density.",
     generate=generate_density,
@@ -1528,7 +1528,7 @@ TOPIC_DENSITY = TopicDefinition(
 )
 
 TOPIC_DENSITY_HIGHER = TopicDefinition(
-    id="density_higher",
+    id="density_H",
     display_name="Density (Multi-Step)",
     description="Density problems requiring an extra step: computing a volume from dimensions, or a unit conversion.",
     generate=generate_density_higher,
@@ -1539,7 +1539,7 @@ TOPIC_DENSITY_HIGHER = TopicDefinition(
 )
 
 TOPIC_PRESSURE = TopicDefinition(
-    id="pressure",
+    id="pressure_F",
     display_name="Pressure",
     description="Use pressure = force ÷ area to find a missing force, area or pressure.",
     generate=generate_pressure,
@@ -1550,7 +1550,7 @@ TOPIC_PRESSURE = TopicDefinition(
 )
 
 TOPIC_PRESSURE_HIGHER = TopicDefinition(
-    id="pressure_higher",
+    id="pressure_H",
     display_name="Pressure (Multi-Step)",
     description="Pressure problems requiring an extra step: computing an area from dimensions, or a unit conversion.",
     generate=generate_pressure_higher,

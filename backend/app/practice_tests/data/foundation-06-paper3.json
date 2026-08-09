@@ -4,9 +4,10 @@
   "tier": "foundation",
   "sitting_id": "foundation-06",
   "paper_number": 3,
+  "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "standard_form_to",
+      "topic_id": "standard_form_to_F",
       "prompt": "Write 7000 in standard form.",
       "solution_steps": [
         "Move the decimal point until there is one non-zero digit before it: 7",
@@ -41,7 +42,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "prime_factors_foundation",
+      "topic_id": "prime_factors_F",
       "prompt": "Write 76 as a product of its prime factors.",
       "solution_steps": [
         "Divide 76 repeatedly by the smallest prime that fits: 2 × 2 × 19",
@@ -70,33 +71,169 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "negative_multiply_divide",
-      "prompt": "Work out -11 ÷ 11.",
+      "topic_id": "sample_space_diagrams_F",
+      "prompt": "Two fair spinners, one numbered 1 to 4 and the other numbered 1 to 4, are spun together. Complete the sample space diagram showing the sum of the two spinners, and use it to find the probability that the sum is even.",
       "solution_steps": [
-        "-11 ÷ 11 = -1"
+        "The sample space diagram shows every possible sum of the two spinners.",
+        "Number of favourable outcomes (the sum is even) = 8",
+        "Total number of equally likely outcomes = 16",
+        "P(the sum is even) = 1/2"
       ],
-      "final_answer": "-1",
-      "marks": 2,
+      "final_answer": "1/2",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "-11 ÷ 11 = -1",
+          "description": "The sample space diagram shows every possible sum of the two spinners.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Number of favourable outcomes (the sum is even) = 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total number of equally likely outcomes = 16",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(the sum is even) = 1/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-1 oe",
+          "description": "1/2 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "sample_space_diagram",
+        "params": {
+          "row_values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "col_values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "cells": [
+            [
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              ""
+            ]
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "sample_space_diagram",
+        "params": {
+          "row_values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "col_values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "cells": [
+            [
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            [
+              "3",
+              "4",
+              "5",
+              "6"
+            ],
+            [
+              "4",
+              "5",
+              "6",
+              "7"
+            ],
+            [
+              "5",
+              "6",
+              "7",
+              "8"
+            ]
+          ],
+          "highlight": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        }
+      }
     },
     {
-      "topic_id": "recurring_decimal_single_digit",
-      "prompt": "The recurring decimal 0.(6) can be written as a fraction. Find this fraction in its simplest form.",
+      "topic_id": "recurring_decimal_single_digit_F",
+      "prompt": "Write \\recur{0.}{6} as a fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(6), so 10x = 6.666... (only one digit repeats, so multiply by 10 to shift it one place)",
+        "Let x = \\recur{0.}{6}, so 10x = 6.666... (only one digit repeats, so multiply by 10 to shift it one place)",
         "Subtract: 10x - x = 6 - 0, so 9x = 6",
         "x = 6/9 = 2/3"
       ],
@@ -105,7 +242,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(6), so 10x = 6.666... (only one digit repeats, so multiply by 10 to shift it one place)",
+          "description": "Let x = \\recur{0.}{6}, so 10x = 6.666... (only one digit repeats, so multiply by 10 to shift it one place)",
           "marks": 1
         },
         {
@@ -128,8 +265,8 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bidmas",
-      "prompt": "Work out 27 - 10 ÷ 5 × (4 + 9). Use the correct order of operations.",
+      "topic_id": "bidmas_F",
+      "prompt": "Work out 27 - 10 ÷ 5 × (4 + 9).",
       "solution_steps": [
         "Brackets: (4 + 9) = 13",
         "Division and multiplication have equal priority, so work left to right: 10 ÷ 5 = 2, then × 13 = 26",
@@ -163,7 +300,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_round_dp",
+      "topic_id": "decimals_round_dp_F",
       "prompt": "Round 12.305 to 1 decimal place.",
       "solution_steps": [
         "Look at the digit after the 1 decimal place we want: 0, so round down.",
@@ -192,7 +329,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_multiply_divide_foundation",
+      "topic_id": "standard_form_multiply_divide_F",
       "prompt": "Work out (8 × 10^3) ÷ (4 × 10^2). Give your answer in standard form.",
       "solution_steps": [
         "Divide the mantissas: 8 ÷ 4 = 2",
@@ -221,7 +358,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_two_step",
+      "topic_id": "linear_two_step_F",
       "prompt": "Solve: 7x + 4 = 11",
       "solution_steps": [
         "7x + 4 = 11",
@@ -263,7 +400,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_next_term",
+      "topic_id": "sequences_next_term_F",
       "prompt": "Find the next term in the sequence: 4, 0, -4, -8, ...",
       "solution_steps": [
         "Subtract 4 each time.",
@@ -292,41 +429,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "forming_equations_foundation",
-      "prompt": "A rectangle has one side of length 3 cm and the other side of length x cm. The area of the rectangle is 48 cm². Form an equation and solve it to find x.",
+      "topic_id": "change_subject_F",
+      "prompt": "Make t the subject of the formula v = u + 13t.",
       "solution_steps": [
-        "Area of a rectangle = length × width.",
-        "3x = 48",
-        "3x = 48",
-        "Divide both sides by 3:",
-        "x = 16"
+        "v = u + 13t",
+        "Subtract u from both sides: v - u = 13t",
+        "Divide both sides by 13: t = \\frac{v - u}{13}"
       ],
-      "final_answer": "16",
-      "marks": 5,
+      "final_answer": "t = \\frac{v - u}{13}",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area of a rectangle = length × width.",
+          "description": "v = u + 13t",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3x = 48",
+          "description": "Subtract u from both sides: v - u = 13t",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3x = 48",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by 3: x = 16",
+          "description": "Divide both sides by 13: t = \\frac{v - u}{13}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "16 oe",
+          "description": "t = \\frac{v - u}{13} oe",
           "marks": 1
         }
       ],
@@ -334,7 +464,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "distance_time_interpret",
+      "topic_id": "distance_time_interpret_F",
       "prompt": "The distance-time graph shows a delivery van's journey. Find the total distance travelled.",
       "solution_steps": [
         "Distance out = 6 km. Distance back = 6 km.",
@@ -389,10 +519,10 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "line_equation_from_graph",
+      "topic_id": "line_equation_from_graph_F",
       "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
       "solution_steps": [
-        "Gradient = rise/run = (-8 - 4) / (1 - -2) = -4",
+        "Gradient = rise/run = \\frac{-8 - 4}{1 - -2} = -4",
         "Using y = mx + c with the point (-2, 4): 4 = -4×(-2) + c, so c = -4",
         "Equation of the line: y = -4x - 4"
       ],
@@ -401,7 +531,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Gradient = rise/run = (-8 - 4) / (1 - -2) = -4",
+          "description": "Gradient = rise/run = \\frac{-8 - 4}{1 - -2} = -4",
           "marks": 1
         },
         {
@@ -429,56 +559,40 @@
           "x_min": -3,
           "x_max": 2,
           "y_min": -13,
-          "y_max": 9,
-          "table_points": [
-            [
-              -2,
-              4
-            ],
-            [
-              1,
-              -8
-            ]
-          ]
+          "y_max": 9
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_common_coefficient",
-      "prompt": "Solve the simultaneous equations: 5x + 5y = 5 and 4x + 5y = 2",
+      "topic_id": "algebraic_indices_F",
+      "prompt": "Simplify 20x^6 ÷ 4x^2",
       "solution_steps": [
-        "5x + 5y = 5  (1)",
-        "4x + 5y = 2  (2)",
-        "Subtract the equations to eliminate y: 1x = 3, so x = 3",
-        "Substitute x = 3 into (1): 5y = -10, so y = -2"
+        "Dividing powers of the same base: subtract the exponents, and divide the coefficients.",
+        "20x^6 ÷ 4x^2 = (20÷4) x^(6-2)",
+        "= 5x^4"
       ],
-      "final_answer": "x = 3, y = -2",
-      "marks": 5,
+      "final_answer": "5x^4",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5x + 5y = 5  (1)",
+          "description": "Dividing powers of the same base: subtract the exponents, and divide the coefficients.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x + 5y = 2  (2)",
+          "description": "20x^6 ÷ 4x^2 = (20÷4) x^(6-2)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract the equations to eliminate y: 1x = 3, so x = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute x = 3 into (1): 5y = -10, so y = -2",
+          "description": "= 5x^4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 3, y = -2 oe",
+          "description": "5x^4 oe",
           "marks": 1
         }
       ],
@@ -486,42 +600,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "satisfying_inequalities_foundation",
-      "prompt": "Solve the inequality -10 ≤ 2x - 6 ≤ 5, then list the integer values of x that satisfy it.",
+      "topic_id": "solving_inequalities_F",
+      "prompt": "Solve the inequality: 5x + 6 > 3",
       "solution_steps": [
-        "-10 ≤ 2x - 6 ≤ 5",
-        "Add 6 to all three parts:",
-        "-4 ≤ 2x ≤ 11",
-        "Divide all three parts by 2:",
-        "-2 ≤ x ≤ 11/2",
-        "The integers satisfying this are: -2, -1, 0, 1, 2, 3, 4, 5"
+        "5x + 6 > 3",
+        "Subtract 6 from both sides:",
+        "5x > -3",
+        "Divide both sides by 5:",
+        "x > -3/5"
       ],
-      "final_answer": "-2, -1, 0, 1, 2, 3, 4, 5",
+      "final_answer": "x > -3/5",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "-10 ≤ 2x - 6 ≤ 5",
+          "description": "5x + 6 > 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add 6 to all three parts:",
+          "description": "Subtract 6 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-4 ≤ 2x ≤ 11",
+          "description": "5x > -3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide all three parts by 2: -2 ≤ x ≤ 11/2 The integers satisfying this are: -2, -1, 0, 1, 2, 3, 4, 5",
+          "description": "Divide both sides by 5: x > -3/5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-2, -1, 0, 1, 2, 3, 4, 5 oe",
+          "description": "x > -3/5 oe",
           "marks": 1
         }
       ],
@@ -529,7 +642,94 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_three_part_foundation",
+      "topic_id": "functions_evaluate_F",
+      "prompt": "f(x) = 3x + 3. Find f(-1).",
+      "solution_steps": [
+        "f(-1) = 3×(-1) + 3",
+        "f(-1) = 0"
+      ],
+      "final_answer": "0",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "f(-1) = 3×(-1) + 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "f(-1) = 0",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "0 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simple_interest_F",
+      "prompt": "£3000 is invested at a simple interest rate of 6% per year for 1 years. Find the interest earned.",
+      "solution_steps": [
+        "Simple interest formula: I = P × r × t ÷ 100",
+        "I = 3000 × 6 × 1 ÷ 100 = £180"
+      ],
+      "final_answer": "£180",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Simple interest formula: I = P × r × t ÷ 100",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "I = 3000 × 6 × 1 ÷ 100 = £180",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£180 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "percentage_of_amount_F",
+      "prompt": "Find 25% of 160.",
+      "solution_steps": [
+        "Convert 25% to a fraction: 25/100",
+        "Multiply: 25/100 × 160 = 40"
+      ],
+      "final_answer": "40",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 25% to a fraction: 25/100",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply: 25/100 × 160 = 40",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "40 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_share_three_part_F",
       "prompt": "Share 162 in the ratio 7:7:4.",
       "solution_steps": [
         "Total parts = 7 + 7 + 4 = 18",
@@ -571,96 +771,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "compound_percentage_foundation",
-      "prompt": "A price of £400 decreases by 25%, then decreases by 20%. Find the final price.",
-      "solution_steps": [
-        "After the first change: 400 × 0.75 = 300",
-        "After the second change: 300 × 0.80 = 240"
-      ],
-      "final_answer": "£240",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "After the first change: 400 × 0.75 = 300",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "After the second change: 300 × 0.80 = 240",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£240 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "percentage_of_amount",
-      "prompt": "Find 25% of 160.",
-      "solution_steps": [
-        "Convert 25% to a fraction: 25/100",
-        "Multiply: 25/100 × 160 = 40"
-      ],
-      "final_answer": "40",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert 25% to a fraction: 25/100",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply: 25/100 × 160 = 40",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "40 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "area_triangle",
-      "prompt": "A triangle has base 17 cm and height 13 cm. Find its area.",
-      "solution_steps": [
-        "Area = (1/2) × base × height = (1/2) × 17 × 13 = 221/2 cm²"
-      ],
-      "final_answer": "221/2 cm²",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Area = (1/2) × base × height = (1/2) × 17 × 13 = 221/2 cm²",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "221/2 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "triangle_area",
-        "params": {
-          "base": 17,
-          "height": 13,
-          "base_label": "17 cm",
-          "height_label": "13 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "inverse_proportion",
+      "topic_id": "inverse_proportion_F",
       "prompt": "It takes 2 machines 55 hours to complete a production run. Working at the same rate, how long would it take 11 machines?",
       "solution_steps": [
         "Constant = 2 × 55 = 110",
@@ -689,51 +800,49 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_straight_line",
-      "prompt": "The angles 109°, 11° and x° lie on a straight line. Find x.",
+      "topic_id": "best_buys_F",
+      "prompt": "A shop sells breakfast cereal in different sizes: A: £13.92 for 600g; B: £18.60 for 750g; C: £8.84 for 650g. Which option is the better value for money? Show your working.",
       "solution_steps": [
-        "Angles on a straight line sum to 180°.",
-        "x = 180 - (109 + 11) = 180 - 120 = 60"
+        "Work out the price per 100g for each option:",
+        "A: £13.92 ÷ 600 × 100 = 232.00p per 100g",
+        "B: £18.60 ÷ 750 × 100 = 248.00p per 100g",
+        "C: £8.84 ÷ 650 × 100 = 136.00p per 100g",
+        "The lowest price per 100g is C at 136.00p per 100g, so C is the best value."
       ],
-      "final_answer": "60",
-      "marks": 3,
+      "final_answer": "C (£8.84 for 650g)",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles on a straight line sum to 180°.",
+          "description": "Work out the price per 100g for each option:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 180 - (109 + 11) = 180 - 120 = 60",
+          "description": "A: £13.92 ÷ 600 × 100 = 232.00p per 100g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B: £18.60 ÷ 750 × 100 = 248.00p per 100g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "C: £8.84 ÷ 650 × 100 = 136.00p per 100g The lowest price per 100g is C at 136.00p per 100g, so C is the best value.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "60 oe",
+          "description": "C (£8.84 for 650g) oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "angle_line",
-        "params": {
-          "angle_values": [
-            109,
-            11,
-            60
-          ],
-          "labels": [
-            "109°",
-            "11°",
-            "x"
-          ],
-          "around_point": false
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_exterior_foundation",
+      "topic_id": "angles_exterior_F",
       "prompt": "An exterior angle of a triangle is x°. The two remote interior angles are 46° and 32°. Find x.",
       "solution_steps": [
         "The exterior angle of a triangle equals the sum of the two remote interior angles.",
@@ -763,86 +872,149 @@
         "params": {
           "interior1_label": "46°",
           "interior2_label": "32°",
-          "exterior_label": "x"
+          "exterior_label": "x",
+          "interior1_value": 46,
+          "shape_variant": 1
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_triangle",
-      "prompt": "A triangle has angles 84°, 67°, and x°. Find x.",
+      "topic_id": "angles_parallel_lines_F",
+      "prompt": "A line crosses two parallel lines. The angle 130° and the angle x° are corresponding angles. Find x.",
       "solution_steps": [
-        "Angles in a triangle sum to 180°.",
-        "x = 180 - (84 + 67) = 180 - 151 = 29"
+        "Corresponding angles are equal.",
+        "x = 130"
       ],
-      "final_answer": "29",
+      "final_answer": "130",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles in a triangle sum to 180°.",
+          "description": "Corresponding angles are equal.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 180 - (84 + 67) = 180 - 151 = 29",
+          "description": "x = 130",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "29 oe",
+          "description": "130 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "triangle_angles",
+        "kind": "parallel_lines",
         "params": {
-          "angle_labels": [
-            "84°",
-            "67°",
-            "x"
+          "known_label": "130°",
+          "unknown_label": "x",
+          "relation": "corresponding",
+          "known_value": 130,
+          "x_frac": 0.32
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "symmetry_lines_F",
+      "prompt": "The diagram shows a rhombus. How many lines of symmetry does it have?",
+      "solution_steps": [
+        "A rhombus has 2 lines of symmetry.",
+        "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram."
+      ],
+      "final_answer": "2 lines of symmetry",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A rhombus has 2 lines of symmetry.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2 lines of symmetry oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "symmetry_shape",
+        "params": {
+          "vertices": [
+            [
+              0,
+              -3
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              -4,
+              0
+            ]
+          ],
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "symmetry_shape",
+        "params": {
+          "vertices": [
+            [
+              0,
+              -3
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              -4,
+              0
+            ]
+          ],
+          "symmetry_lines": [
+            {
+              "p1": [
+                -5,
+                0
+              ],
+              "p2": [
+                5,
+                0
+              ]
+            },
+            {
+              "p1": [
+                0,
+                -4
+              ],
+              "p2": [
+                0,
+                4
+              ]
+            }
           ]
         }
-      },
-      "solution_diagram": null
+      }
     },
     {
-      "topic_id": "volume_surface_area_cylinder_foundation",
-      "prompt": "A cylinder has radius 7 cm and height 4 cm. Find its total surface area, correct to 3 significant figures.",
-      "solution_steps": [
-        "Surface area = 2πr² + 2πrh = (2 × π × 7²) + (2 × π × 7 × 4)",
-        "= 484 cm² (3 s.f., using a calculator value of π)"
-      ],
-      "final_answer": "484 cm²",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Surface area = 2πr² + 2πrh = (2 × π × 7²) + (2 × π × 7 × 4)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 484 cm² (3 s.f., using a calculator value of π)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "484 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "cylinder",
-        "params": {
-          "radius_label": "7 cm",
-          "height_label": "4 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "construction_triangle",
+      "topic_id": "construction_triangle_F",
       "prompt": "Triangle HAV has HA = 6 cm, the angle at H equal to 42°, and the angle at A equal to 55°. Describe, step by step, how to construct triangle HAV using a ruler and a protractor.",
       "solution_steps": [
         "Draw the line segment HA = 6 cm using a ruler.",
@@ -883,144 +1055,153 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "two_way_tables",
-      "prompt": "The two-way table shows the number of year 10 and year 11 who prefer football or tennis. Copy and complete the table, and state the missing value marked '?'.",
+      "topic_id": "transform_rotate_complete_F",
+      "prompt": "Rotate shape ABCD 90° anticlockwise about the centre (3, 0). Draw and label the image A'B'C'D'.",
       "solution_steps": [
-        "The missing value is in the 'Year 11' row and 'Football' column.",
-        "Using the row total: 17 - 6 = 11",
-        "Using the column total: 19 - 8 = 11",
-        "Missing value = 11"
+        "Rotate each vertex 90° anticlockwise about the centre (3, 0): every point stays the same distance from the centre and turns through the same angle.",
+        "A(-1, -1) -> A'(4, -4), B(3, -1) -> B'(4, 0), C(2, 3) -> C'(0, -1), D(-2, 2) -> D'(1, -5)"
       ],
-      "final_answer": "11",
-      "marks": 5,
+      "final_answer": "A'(4, -4), B'(4, 0), C'(0, -1), D'(1, -5)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The missing value is in the 'Year 11' row and 'Football' column.",
+          "description": "Rotate each vertex 90° anticlockwise about the centre (3, 0): every point stays the same distance from the centre and turns through the same angle.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Using the row total: 17 - 6 = 11",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Using the column total: 19 - 8 = 11",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Missing value = 11",
+          "description": "A(-1, -1) -> A'(4, -4), B(3, -1) -> B'(4, 0), C(2, 3) -> C'(0, -1), D(-2, 2) -> D'(1, -5)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "11 oe",
+          "description": "A'(4, -4), B'(4, 0), C'(0, -1), D'(1, -5) oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "two_way_table",
+        "kind": "grid_transformation",
         "params": {
-          "row_labels": [
-            "Year 10",
-            "Year 11",
-            "Total"
-          ],
-          "col_labels": [
-            "Football",
-            "Tennis",
-            "Total"
-          ],
-          "cells": [
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
             [
-              "8",
-              "5",
-              "13"
+              -1,
+              -1
             ],
             [
-              "?",
-              "6",
-              "17"
+              3,
+              -1
             ],
             [
-              "19",
-              "11",
-              "30"
+              2,
+              3
+            ],
+            [
+              -2,
+              2
             ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "centre": [
+            3,
+            0
           ]
         }
       },
       "solution_diagram": {
-        "kind": "two_way_table",
+        "kind": "grid_transformation",
         "params": {
-          "row_labels": [
-            "Year 10",
-            "Year 11",
-            "Total"
-          ],
-          "col_labels": [
-            "Football",
-            "Tennis",
-            "Total"
-          ],
-          "cells": [
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
             [
-              "8",
-              "5",
-              "13"
+              -1,
+              -1
             ],
             [
-              "11",
-              "6",
-              "17"
+              3,
+              -1
             ],
             [
-              "19",
-              "11",
-              "30"
+              2,
+              3
+            ],
+            [
+              -2,
+              2
             ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "centre": [
+            3,
+            0
+          ],
+          "image_vertices": [
+            [
+              4,
+              -4
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              0,
+              -1
+            ],
+            [
+              1,
+              -5
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'",
+            "D'"
           ]
         }
       }
     },
     {
-      "topic_id": "set_notation_foundation",
-      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, A = {2, 4, 6, 10}, B = {2, 3, 8}. List the elements that are in A but not in B.",
+      "topic_id": "relative_frequency_F",
+      "prompt": "A drawing pin is tested 40 times, and it lands point up 33 times. Use this relative frequency to estimate how many times this would happen in 280 trials.",
       "solution_steps": [
-        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
-        "A = {2, 4, 6, 10}",
-        "B = {2, 3, 8}",
-        "Check each element of ξ in turn to see whether it are in A but not in B.",
-        "Elements that are in A but not in B: {4, 6, 10}"
+        "Relative frequency = frequency ÷ number of trials = 33/40 = 33/40",
+        "Estimated number of times in 280 trials = 33/40 × 280 = 231"
       ],
-      "final_answer": "{4, 6, 10}",
-      "marks": 5,
+      "final_answer": "231",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+          "description": "Relative frequency = frequency ÷ number of trials = 33/40 = 33/40",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A = {2, 4, 6, 10}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "B = {2, 3, 8}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Check each element of ξ in turn to see whether it are in A but not in B. Elements that are in A but not in B: {4, 6, 10}",
+          "description": "Estimated number of times in 280 trials = 33/40 × 280 = 231",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "{4, 6, 10} oe",
+          "description": "231 oe",
           "marks": 1
         }
       ],
@@ -1028,75 +1209,110 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_equivalent_diagram",
-      "prompt": "Shape A is divided into 2 equal parts, with 1 shaded. Shape B is divided into 6 equal parts. How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
+      "topic_id": "probability_complement_F",
+      "prompt": "A bag contains 4 blue, 4 yellow counters. A counter is picked at random. Find the probability that it is NOT yellow.",
       "solution_steps": [
-        "Shape A shows 1/2 shaded; Shape B has 6 equal parts.",
-        "Find the scale factor between the denominators: 6 ÷ 2 = 3",
-        "Multiply the shaded count by the same scale factor: 1 × 3 = 3"
+        "P(yellow) = 4/8 = 1/2",
+        "P(not yellow) = 1 - 1/2 = 1/2"
       ],
-      "final_answer": "3",
-      "marks": 4,
+      "final_answer": "1/2",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Shape A shows 1/2 shaded; Shape B has 6 equal parts.",
+          "description": "P(yellow) = 4/8 = 1/2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Find the scale factor between the denominators: 6 ÷ 2 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the shaded count by the same scale factor: 1 × 3 = 3",
+          "description": "P(not yellow) = 1 - 1/2 = 1/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 oe",
+          "description": "1/2 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "fraction_shapes",
+        "kind": "bag_of_counters",
         "params": {
-          "shapes": [
-            {
-              "kind": "bar",
-              "parts": 2,
-              "shaded": 1,
-              "label": "1/2"
-            },
-            {
-              "kind": "bar",
-              "parts": 6,
-              "shaded": 0,
-              "label": "?/6"
-            }
+          "counts": {
+            "blue": 4,
+            "yellow": 4
+          }
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "congruent_triangle_proof_F",
+      "prompt": "ABCD is a parallelogram with AB parallel to DC. Its diagonals AC and BD cross at O. Which congruence criterion proves that the two triangles are congruent? A) RHS  B) ASA  C) SSS  D) SAS",
+      "solution_steps": [
+        "angle OAB = angle OCD (alternate angles, AB parallel to DC)",
+        "AB = CD (opposite sides of a parallelogram)",
+        "angle OBA = angle ODC (alternate angles, AB parallel to DC)",
+        "These facts match the Angle-Side-Angle (ASA) congruence criterion."
+      ],
+      "final_answer": "B) ASA",
+      "marks": 1,
+      "mark_scheme": [
+        {
+          "code": "B1",
+          "description": "B) ASA (selecting the correct option)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "two_triangle_congruence",
+        "params": {
+          "labels_1": [
+            "A",
+            "B",
+            "O"
+          ],
+          "labels_2": [
+            "C",
+            "D",
+            "O"
+          ],
+          "ticks_1": [
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "ticks_2": [
+            [
+              0,
+              1,
+              1
+            ]
+          ],
+          "arcs_1": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "arcs_2": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ]
           ]
         }
       },
-      "solution_diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "bar",
-              "parts": 2,
-              "shaded": 1,
-              "label": "1/2"
-            },
-            {
-              "kind": "bar",
-              "parts": 6,
-              "shaded": 3,
-              "label": "3/6"
-            }
-          ]
-        }
-      }
+      "solution_diagram": null
     }
   ]
 }

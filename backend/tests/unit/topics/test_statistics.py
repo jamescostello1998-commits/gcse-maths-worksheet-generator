@@ -93,7 +93,7 @@ def test_modelled_example_mean_produces_verified_examples():
     rng = random.Random(220)
     for _ in range(TRIALS):
         example = stats_topic.generate_modelled_example_mean(Tier.FOUNDATION, rng)
-        assert example.topic_id == "stats_mean"
+        assert example.topic_id == "stats_mean_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -104,7 +104,7 @@ def test_modelled_example_mode_produces_verified_examples():
     rng = random.Random(221)
     for _ in range(TRIALS):
         example = stats_topic.generate_modelled_example_mode(Tier.FOUNDATION, rng)
-        assert example.topic_id == "stats_mode"
+        assert example.topic_id == "stats_mode_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -115,7 +115,7 @@ def test_modelled_example_median_produces_verified_examples():
     rng = random.Random(222)
     for _ in range(TRIALS):
         example = stats_topic.generate_modelled_example_median(Tier.FOUNDATION, rng)
-        assert example.topic_id == "stats_median"
+        assert example.topic_id == "stats_median_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -126,7 +126,7 @@ def test_modelled_example_range_produces_verified_examples():
     rng = random.Random(223)
     for _ in range(TRIALS):
         example = stats_topic.generate_modelled_example_range(Tier.FOUNDATION, rng)
-        assert example.topic_id == "stats_range"
+        assert example.topic_id == "stats_range_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -137,7 +137,7 @@ def test_modelled_example_averages_combined_produces_verified_examples():
     rng = random.Random(224)
     for _ in range(TRIALS):
         example = stats_topic.generate_modelled_example_averages_combined(Tier.FOUNDATION, rng)
-        assert example.topic_id == "stats_averages_combined"
+        assert example.topic_id == "stats_averages_combined_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -148,7 +148,7 @@ def test_modelled_example_interquartile_range_produces_verified_examples():
     rng = random.Random(225)
     for _ in range(TRIALS):
         example = stats_topic.generate_modelled_example_interquartile_range(Tier.HIGHER, rng)
-        assert example.topic_id == "stats_interquartile_range"
+        assert example.topic_id == "stats_interquartile_range_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -159,7 +159,7 @@ def test_modelled_example_mean_frequency_table_produces_verified_examples():
     rng = random.Random(207)
     for _ in range(TRIALS):
         example = stats_topic.generate_modelled_example_mean_frequency_table(Tier.FOUNDATION, rng)
-        assert example.topic_id == "stats_mean_frequency_table"
+        assert example.topic_id == "stats_mean_frequency_table_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -170,7 +170,7 @@ def test_modelled_example_mode_frequency_table_produces_verified_examples():
     rng = random.Random(226)
     for _ in range(TRIALS):
         example = stats_topic.generate_modelled_example_mode_frequency_table(Tier.FOUNDATION, rng)
-        assert example.topic_id == "stats_mode_frequency_table"
+        assert example.topic_id == "stats_mode_frequency_table_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -181,7 +181,7 @@ def test_modelled_example_median_frequency_table_produces_verified_examples():
     rng = random.Random(227)
     for _ in range(TRIALS):
         example = stats_topic.generate_modelled_example_median_frequency_table(Tier.FOUNDATION, rng)
-        assert example.topic_id == "stats_median_frequency_table"
+        assert example.topic_id == "stats_median_frequency_table_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -192,7 +192,7 @@ def test_modelled_example_range_frequency_table_produces_verified_examples():
     rng = random.Random(228)
     for _ in range(TRIALS):
         example = stats_topic.generate_modelled_example_range_frequency_table(Tier.FOUNDATION, rng)
-        assert example.topic_id == "stats_range_frequency_table"
+        assert example.topic_id == "stats_range_frequency_table_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -203,7 +203,7 @@ def test_modelled_example_mean_grouped_frequency_table_produces_verified_example
     rng = random.Random(208)
     for _ in range(TRIALS):
         example = stats_topic.generate_modelled_example_mean_grouped_frequency_table(Tier.HIGHER, rng)
-        assert example.topic_id == "stats_mean_grouped_frequency_table"
+        assert example.topic_id == "stats_mean_grouped_frequency_table_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -214,7 +214,7 @@ def test_modelled_example_reverse_mean_produces_verified_examples():
     rng = random.Random(209)
     for _ in range(TRIALS):
         example = stats_topic.generate_modelled_example_reverse_mean(Tier.HIGHER, rng)
-        assert example.topic_id == "stats_reverse_mean"
+        assert example.topic_id == "stats_reverse_mean_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -227,7 +227,7 @@ def test_modelled_example_mean_grouped_frequency_table_foundation_produces_verif
         example = stats_topic.generate_modelled_example_mean_grouped_frequency_table_foundation(
             Tier.FOUNDATION, rng
         )
-        assert example.topic_id == "stats_mean_grouped_frequency_table_foundation"
+        assert example.topic_id == "stats_mean_grouped_frequency_table_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -238,7 +238,7 @@ def test_modelled_example_reverse_mean_foundation_produces_verified_examples():
     rng = random.Random(211)
     for _ in range(TRIALS):
         example = stats_topic.generate_modelled_example_reverse_mean_foundation(Tier.FOUNDATION, rng)
-        assert example.topic_id == "stats_reverse_mean_foundation"
+        assert example.topic_id == "stats_reverse_mean_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3

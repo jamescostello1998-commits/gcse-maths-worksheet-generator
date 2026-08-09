@@ -54,12 +54,12 @@ MODELLED_EXAMPLE_GENERATORS = [
     (
         inl.generate_modelled_example_inequalities_number_line_foundation,
         Tier.FOUNDATION,
-        "inequalities_number_line_foundation",
+        "inequalities_number_line_F",
     ),
     (
         inl.generate_modelled_example_inequalities_number_line_higher,
         Tier.HIGHER,
-        "inequalities_number_line_higher",
+        "inequalities_number_line_H",
     ),
 ]
 

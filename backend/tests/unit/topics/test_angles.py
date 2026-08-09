@@ -52,8 +52,33 @@ def test_all_generators_attach_a_matching_diagram():
     for generate, tier in GENERATORS:
         rng = random.Random(51)
         q = generate(tier, rng)
+        if generate is angles.generate_polygon_interior_foundation and q.diagram is None:
+            # The "interior_sum" branch deliberately has no diagram - the sum
+            # is a property of the whole shape, not a single marked angle.
+            continue
         assert q.diagram is not None
         assert q.diagram.kind == EXPECTED_DIAGRAM_KINDS[generate]
+
+
+def test_polygon_interior_foundation_diagram_matches_its_measure():
+    rng = random.Random(55)
+    seen_measures = set()
+    for _ in range(TRIALS):
+        q = angles.generate_polygon_interior_foundation(Tier.FOUNDATION, rng)
+        if "sum" in q.prompt:
+            assert q.diagram is None
+            seen_measures.add("interior_sum")
+        elif "exterior" in q.prompt:
+            assert q.diagram is not None
+            assert q.diagram.kind == "polygon"
+            assert q.diagram.params["mode"] == "exterior"
+            seen_measures.add("exterior_angle")
+        else:
+            assert q.diagram is not None
+            assert q.diagram.kind == "polygon"
+            assert q.diagram.params.get("mode") != "exterior"
+            seen_measures.add("interior_angle")
+    assert seen_measures == {"interior_sum", "interior_angle", "exterior_angle"}
 
 
 def test_straight_line_and_around_point_diagram_angles_sum_correctly():
@@ -115,7 +140,7 @@ def test_modelled_example_triangle_angles_produces_verified_examples():
     rng = random.Random(203)
     for _ in range(TRIALS):
         example = angles.generate_modelled_example_triangle_angles(Tier.FOUNDATION, rng)
-        assert example.topic_id == "angles_triangle"
+        assert example.topic_id == "angles_triangle_F"
         assert example.prompt
         assert len(example.teaching_steps) >= 3
         assert example.final_answer
@@ -124,47 +149,47 @@ def test_modelled_example_triangle_angles_produces_verified_examples():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (angles.generate_modelled_example_straight_line, Tier.FOUNDATION, "angles_straight_line", "angle_line"),
+    (angles.generate_modelled_example_straight_line, Tier.FOUNDATION, "angles_straight_line_F", "angle_line"),
     (
         angles.generate_modelled_example_straight_line_higher,
         Tier.HIGHER,
-        "angles_straight_line_higher",
+        "angles_straight_line_H",
         "angle_line",
     ),
-    (angles.generate_modelled_example_around_point, Tier.FOUNDATION, "angles_around_point", "angle_line"),
+    (angles.generate_modelled_example_around_point, Tier.FOUNDATION, "angles_around_point_F", "angle_line"),
     (
         angles.generate_modelled_example_around_point_higher,
         Tier.HIGHER,
-        "angles_around_point_higher",
+        "angles_around_point_H",
         "angle_line",
     ),
     (
         angles.generate_modelled_example_triangle_angles_higher,
         Tier.HIGHER,
-        "angles_triangle_higher",
+        "angles_triangle_H",
         "triangle_angles",
     ),
     (
         angles.generate_modelled_example_parallel_lines_foundation,
         Tier.FOUNDATION,
-        "angles_parallel_lines_foundation",
+        "angles_parallel_lines_F",
         "parallel_lines",
     ),
-    (angles.generate_modelled_example_parallel_lines, Tier.HIGHER, "angles_parallel_lines", "parallel_lines"),
+    (angles.generate_modelled_example_parallel_lines, Tier.HIGHER, "angles_parallel_lines_H", "parallel_lines"),
     (
         angles.generate_modelled_example_exterior_foundation,
         Tier.FOUNDATION,
-        "angles_exterior_foundation",
+        "angles_exterior_F",
         "exterior_triangle",
     ),
-    (angles.generate_modelled_example_exterior_angle, Tier.HIGHER, "angles_exterior", "exterior_triangle"),
+    (angles.generate_modelled_example_exterior_angle, Tier.HIGHER, "angles_exterior_H", "exterior_triangle"),
     (
         angles.generate_modelled_example_polygon_interior_foundation,
         Tier.FOUNDATION,
-        "angles_polygon_interior_foundation",
+        "angles_polygon_interior_F",
         "polygon",
     ),
-    (angles.generate_modelled_example_polygon_interior, Tier.HIGHER, "angles_polygon_interior", "polygon"),
+    (angles.generate_modelled_example_polygon_interior, Tier.HIGHER, "angles_polygon_interior_H", "polygon"),
 ]
 
 
@@ -198,5 +223,12 @@ def test_modelled_examples_produce_verified_examples_with_diagrams():
             assert len(example.worked_calculation) >= 2
             assert len(example.teaching_steps) >= 3
             assert example.final_answer
+            if (
+                generate_example is angles.generate_modelled_example_polygon_interior_foundation
+                and example.diagram is None
+            ):
+                # The "interior_sum" branch deliberately has no diagram - see
+                # test_polygon_interior_foundation_diagram_matches_its_measure.
+                continue
             assert example.diagram is not None
             assert example.diagram.kind == diagram_kind

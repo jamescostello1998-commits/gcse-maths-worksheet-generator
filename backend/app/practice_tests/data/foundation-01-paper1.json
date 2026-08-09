@@ -4,10 +4,11 @@
   "tier": "foundation",
   "sitting_id": "foundation-01",
   "paper_number": 1,
+  "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "fractions_add_subtract",
-      "prompt": "Work out 1/2 - 5/11. Give your answer as a fraction in its simplest form.",
+      "topic_id": "fractions_add_subtract_F",
+      "prompt": "Calculate 1/2 - 5/11. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Find a common denominator: LCM(2, 11) = 22",
         "Convert: 1/2 = 11/22, 5/11 = 10/22",
@@ -47,7 +48,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "estimation_rounding",
+      "topic_id": "estimation_rounding_F",
       "prompt": "Work out an estimate for (34.7 × 2.0) ÷ 2.7 by rounding each number to 1 significant figure.",
       "solution_steps": [
         "Round each value to 1 significant figure: 34.7 ≈ 30, 2.0 ≈ 2, 2.7 ≈ 3",
@@ -76,7 +77,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_round_sf",
+      "topic_id": "decimals_round_sf_F",
       "prompt": "Round 226.460 to 2 significant figures.",
       "solution_steps": [
         "Identify the first 2 significant figures of 226.460.",
@@ -105,7 +106,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "negative_multiply_divide",
+      "topic_id": "negative_multiply_divide_F",
       "prompt": "Work out 32 ÷ (-4).",
       "solution_steps": [
         "32 ÷ (-4) = -8"
@@ -128,7 +129,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_round_dp",
+      "topic_id": "decimals_round_dp_F",
       "prompt": "Round 74.636 to 2 decimal places.",
       "solution_steps": [
         "Look at the digit after the 2 decimal places we want: 6, so round up.",
@@ -157,7 +158,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_from_small",
+      "topic_id": "standard_form_from_small_F",
       "prompt": "Write 3.28 × 10^-3 as an ordinary number.",
       "solution_steps": [
         "Multiply 3.28 by 10^-3, which means moving the decimal point 3 place(s) left.",
@@ -186,7 +187,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "lcm_by_listing",
+      "topic_id": "lcm_by_listing_F",
       "prompt": "Find the lowest common multiple (LCM) of 9 and 15.",
       "solution_steps": [
         "Multiples of 9: 9, 18, 27, 36, 45, ...",
@@ -221,11 +222,11 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_divide_foundation",
-      "prompt": "Work out 5/7 ÷ 1/3. Give your answer as a fraction in its simplest form.",
+      "topic_id": "fractions_divide_F",
+      "prompt": "Evaluate 5/7 ÷ 1/3. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Keep-change-flip: 5/7 ÷ 1/3 = 5/7 × 3/1",
-        "Multiply: (5×3)/(7×1) = 15/7",
+        "Multiply: \\frac{(5×3)}{(7×1)} = 15/7",
         "Simplify: 15/7"
       ],
       "final_answer": "15/7",
@@ -238,7 +239,7 @@
         },
         {
           "code": "M1",
-          "description": "Multiply: (5×3)/(7×1) = 15/7",
+          "description": "Multiply: \\frac{(5×3)}{(7×1)} = 15/7",
           "marks": 1
         },
         {
@@ -256,20 +257,20 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_quadratic",
-      "prompt": "Complete a table of values for y = x^2 + 1 for x = -3 to 3, then plot the graph.",
+      "topic_id": "plot_straight_line_F",
+      "prompt": "Complete a table of values for y = 4x + 6 for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = x^2 + 1:",
+        "Table of values for y = 4x + 6:",
         "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: 10, 5, 2, 1, 2, 5, 10",
-        "Plot each (x, y) point and join them with a single smooth curve."
+        "y: -6, -2, 2, 6, 10, 14, 18",
+        "Plot each (x, y) point and join them with a single ruled straight line."
       ],
-      "final_answer": "Quadratic curve: y = x^2 + 1",
+      "final_answer": "Straight line: y = 4x + 6",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = x^2 + 1:",
+          "description": "Table of values for y = 4x + 6:",
           "marks": 1
         },
         {
@@ -279,53 +280,51 @@
         },
         {
           "code": "M1",
-          "description": "y: 10, 5, 2, 1, 2, 5, 10",
+          "description": "y: -6, -2, 2, 6, 10, 14, 18",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Quadratic curve: y = x^2 + 1 oe",
+          "description": "Straight line: y = 4x + 6 oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "quadratic",
-          "a": 1,
-          "b": 0,
-          "c": 1,
+          "kind": "linear",
+          "m": 4,
+          "c": 6,
           "x_min": -4,
           "x_max": 4,
-          "y_min": 0,
-          "y_max": 11,
+          "y_min": -7,
+          "y_max": 19,
           "blank": true
         }
       },
       "solution_diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "quadratic",
-          "a": 1,
-          "b": 0,
-          "c": 1,
+          "kind": "linear",
+          "m": 4,
+          "c": 6,
           "x_min": -4,
           "x_max": 4,
-          "y_min": 0,
-          "y_max": 11,
+          "y_min": -7,
+          "y_max": 19,
           "table_points": [
             [
               -3,
-              10
+              -6
             ],
             [
               -2,
-              5
+              -2
             ],
             [
               -1,
@@ -333,69 +332,79 @@
             ],
             [
               0,
-              1
+              6
             ],
             [
               1,
-              2
+              10
             ],
             [
               2,
-              5
+              14
             ],
             [
               3,
-              10
+              18
             ]
           ]
         }
       }
     },
     {
-      "topic_id": "linear_brackets_foundation",
-      "prompt": "Solve: 2(5x + 5) = 70",
+      "topic_id": "forming_equations_F",
+      "prompt": "A triangle has angles 90°, 58°, and (2x + 14)°. Form an equation and solve it to find x.",
       "solution_steps": [
-        "Expand the bracket: 2(5x + 5) = 10x + 10",
-        "10x + 10 = 70",
-        "Subtract 10 from both sides:",
-        "10x = 60",
-        "Divide both sides by 10:",
-        "x = 6"
+        "Angles in a triangle sum to 180°.",
+        "90 + 58 + (2x + 14) = 180",
+        "2x + 14 = 32",
+        "Subtract 14 from both sides:",
+        "2x = 18",
+        "Divide both sides by 2:",
+        "x = 9"
       ],
-      "final_answer": "6",
+      "final_answer": "9",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expand the bracket: 2(5x + 5) = 10x + 10",
+          "description": "Angles in a triangle sum to 180°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "10x + 10 = 70",
+          "description": "90 + 58 + (2x + 14) = 180",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 10 from both sides:",
+          "description": "2x + 14 = 32",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "10x = 60 Divide both sides by 10: x = 6",
+          "description": "Subtract 14 from both sides: 2x = 18 Divide both sides by 2: x = 9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6 oe",
+          "description": "9 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "triangle_angles",
+        "params": {
+          "angle_labels": [
+            "90°",
+            "58°",
+            "(2x + 14)°"
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_term_to_term_rule",
+      "topic_id": "sequences_term_to_term_rule_F",
       "prompt": "Here are the first four terms of a sequence: -2, -4, -8, -16. Describe the term-to-term rule, and find the next term.",
       "solution_steps": [
         "Term-to-term rule: multiply by 2",
@@ -424,28 +433,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_quadratics_foundation",
-      "prompt": "Factorise: x^2 + 7x + 6",
+      "topic_id": "factorise_common_factor_F",
+      "prompt": "Factorise: -4x - 14",
       "solution_steps": [
-        "Find two numbers that multiply to 6 and add to 7: 1 and 6",
-        "Write as two brackets: (x + 1)(x + 6)"
+        "Find the highest common factor of -4 and -14: 2",
+        "Factorise: 2(-2x - 7)"
       ],
-      "final_answer": "(x + 1)(x + 6)",
+      "final_answer": "2(-2x - 7)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to 6 and add to 7: 1 and 6",
+          "description": "Find the highest common factor of -4 and -14: 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write as two brackets: (x + 1)(x + 6)",
+          "description": "Factorise: 2(-2x - 7)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(x + 1)(x + 6) oe",
+          "description": "2(-2x - 7) oe",
           "marks": 1
         }
       ],
@@ -453,34 +462,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_indices_foundation",
-      "prompt": "Simplify 2x^3 × x^2",
+      "topic_id": "ratio_find_missing_share_F",
+      "prompt": "p : q = 1 : 9. q = 126. What is the value of p?",
       "solution_steps": [
-        "Multiplying powers of the same base: add the exponents, and multiply the coefficients.",
-        "2x^3 × x^2 = (2×1) x^(3+2)",
-        "= 2x^5"
+        "Value of one part = 126 ÷ 9 = 14",
+        "p = 1 × 14 = 14"
       ],
-      "final_answer": "2x^5",
-      "marks": 4,
+      "final_answer": "14",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiplying powers of the same base: add the exponents, and multiply the coefficients.",
+          "description": "Value of one part = 126 ÷ 9 = 14",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x^3 × x^2 = (2×1) x^(3+2)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 2x^5",
+          "description": "p = 1 × 14 = 14",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2x^5 oe",
+          "description": "14 oe",
           "marks": 1
         }
       ],
@@ -488,43 +491,48 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_graphically",
-      "prompt": "The graphs of y = -x + 3 and y = -4x - 3 are shown below. Use the graphs to write down the solution to the simultaneous equations.",
+      "topic_id": "simultaneous_forming_and_solving_F",
+      "prompt": "4 cups and 5 plates cost £6.05 in total. 5 cups and 4 plates cost £6.37 in total. Form and solve a pair of simultaneous equations to find the cost of one cup and one plate.",
       "solution_steps": [
-        "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
-        "The lines cross at x = -2, y = 5."
+        "Let x = cost of one cup (pence), y = cost of one plate (pence).",
+        "4x + 5y = 605  (1)",
+        "5x + 4y = 637  (2)",
+        "Solving simultaneously: x = 85, y = 53"
       ],
-      "final_answer": "x = -2, y = 5",
-      "marks": 3,
+      "final_answer": "cup = £0.85, plate = £0.53",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
+          "description": "Let x = cost of one cup (pence), y = cost of one plate (pence).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The lines cross at x = -2, y = 5.",
+          "description": "4x + 5y = 605  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x + 4y = 637  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Solving simultaneously: x = 85, y = 53",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -2, y = 5 oe",
+          "description": "cup = £0.85, plate = £0.53 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "linear_graph_pair",
-        "params": {
-          "intersection_label": "?",
-          "label1": "y = -x + 3",
-          "label2": "y = -4x - 3"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_two_step",
+      "topic_id": "linear_two_step_F",
       "prompt": "Solve: 9x + 9 = 72",
       "solution_steps": [
         "9x + 9 = 72",
@@ -566,7 +574,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "parallel_lines_equation",
+      "topic_id": "parallel_lines_equation_F",
       "prompt": "A line is parallel to y = -3x - 5 and passes through the point (-2, -10). Find the equation of the line.",
       "solution_steps": [
         "Parallel lines have the same gradient, so m = -3.",
@@ -601,7 +609,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sdt_mixed",
+      "topic_id": "sdt_mixed_F",
       "prompt": "A car travels 95 miles in 5 hours. Find its average speed in mph.",
       "solution_steps": [
         "speed = distance ÷ time",
@@ -630,7 +638,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "compound_percentage_foundation",
+      "topic_id": "compound_percentage_F",
       "prompt": "A price of £240 increases by 25%, then decreases by 50%. Find the final price.",
       "solution_steps": [
         "After the first change: 240 × 1.25 = 300",
@@ -659,7 +667,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "percentage_change",
+      "topic_id": "percentage_change_F",
       "prompt": "Decrease 360 by 25%.",
       "solution_steps": [
         "Convert 25% to a multiplier: 0.75",
@@ -688,7 +696,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_three_part_foundation",
+      "topic_id": "ratio_share_three_part_F",
       "prompt": "Share 95 in the ratio 6:6:7.",
       "solution_steps": [
         "Total parts = 6 + 6 + 7 = 19",
@@ -730,7 +738,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_two_part",
+      "topic_id": "ratio_share_two_part_F",
       "prompt": "Share 80 in the ratio 2:3.",
       "solution_steps": [
         "Total parts = 2 + 3 = 5",
@@ -771,28 +779,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_straight_line",
-      "prompt": "The angles 99°, 69° and x° lie on a straight line. Find x.",
+      "topic_id": "angles_around_point_F",
+      "prompt": "The angles 110°, 76° and x° are angles around a point. Find x.",
       "solution_steps": [
-        "Angles on a straight line sum to 180°.",
-        "x = 180 - (99 + 69) = 180 - 168 = 12"
+        "Angles around a point sum to 360°.",
+        "x = 360 - (110 + 76) = 360 - 186 = 174"
       ],
-      "final_answer": "12",
+      "final_answer": "174",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles on a straight line sum to 180°.",
+          "description": "Angles around a point sum to 360°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 180 - (99 + 69) = 180 - 168 = 12",
+          "description": "x = 360 - (110 + 76) = 360 - 186 = 174",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 oe",
+          "description": "174 oe",
           "marks": 1
         }
       ],
@@ -800,22 +808,22 @@
         "kind": "angle_line",
         "params": {
           "angle_values": [
-            99,
-            69,
-            12
+            110,
+            76,
+            174
           ],
           "labels": [
-            "99°",
-            "69°",
+            "110°",
+            "76°",
             "x"
           ],
-          "around_point": false
+          "around_point": true
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "loci_constructions",
+      "topic_id": "loci_constructions_F",
       "prompt": "A and B are two fixed points (shown). Describe the locus of points that are equidistant from A and B (the same distance from both).",
       "solution_steps": [
         "The locus of points equidistant from two fixed points is the perpendicular bisector of the line segment joining them.",
@@ -928,70 +936,91 @@
       }
     },
     {
-      "topic_id": "area_trapezium",
-      "prompt": "A trapezium has parallel sides of length 5 cm and 20 cm, and a perpendicular height of 8 cm. Find its area.",
+      "topic_id": "arc_length_F",
+      "prompt": "Find the arc length of the following sector, correct to 3 significant figures.",
       "solution_steps": [
-        "Area = ½ × (a + b) × height = ½ × (5 + 20) × 8 = 100 cm²"
+        "Arc length = (θ ÷ 360) × 2 × π × r = (271 ÷ 360) × 2 × π × 3",
+        "= 14.2 cm (3 s.f., using a calculator value of π)"
       ],
-      "final_answer": "100 cm²",
-      "marks": 2,
+      "final_answer": "14.2 cm",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = ½ × (a + b) × height = ½ × (5 + 20) × 8 = 100 cm²",
+          "description": "Arc length = (θ ÷ 360) × 2 × π × r = (271 ÷ 360) × 2 × π × 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 14.2 cm (3 s.f., using a calculator value of π)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "100 cm² oe",
+          "description": "14.2 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "trapezium",
+        "kind": "sector",
         "params": {
-          "a": 5,
-          "b": 20,
-          "height": 8,
-          "a_label": "5 cm",
-          "b_label": "20 cm",
-          "height_label": "8 cm"
+          "angle": 271,
+          "radius_label": "3 cm",
+          "angle_label": "271°"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cuboid",
-      "prompt": "A cuboid has length 4 cm, width 15 cm and height 5 cm. Find its volume.",
+      "topic_id": "volume_surface_area_triangular_prism_F",
+      "prompt": "A triangular prism has a right-angled triangular cross-section with sides 5 cm and 12 cm (hypotenuse 13 cm), and length 14 cm. Find its surface area.",
       "solution_steps": [
-        "Volume = length × width × height = 4 × 15 × 5 = 300 cm³"
+        "Area of the two triangular ends = 2 × (1/2) × 5 × 12 = 60 cm²",
+        "Perimeter of the triangular cross-section = 5 + 12 + 13 = 30 cm",
+        "Area of the three rectangular faces = 30 × 14 = 420 cm²",
+        "Surface area = 60 + 420 = 480 cm²"
       ],
-      "final_answer": "300 cm³",
-      "marks": 2,
+      "final_answer": "480 cm²",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Volume = length × width × height = 4 × 15 × 5 = 300 cm³",
+          "description": "Area of the two triangular ends = 2 × (1/2) × 5 × 12 = 60 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Perimeter of the triangular cross-section = 5 + 12 + 13 = 30 cm",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of the three rectangular faces = 30 × 14 = 420 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Surface area = 60 + 420 = 480 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "300 cm³ oe",
+          "description": "480 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cuboid",
+        "kind": "triangular_prism",
         "params": {
-          "width_label": "15 cm",
-          "height_label": "5 cm",
-          "length_label": "4 cm"
+          "base_label": "5 cm",
+          "triangle_height_label": "12 cm",
+          "length_label": "14 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cube",
+      "topic_id": "volume_surface_area_cube_F",
       "prompt": "A cube has side length 15 cm. Find its surface area.",
       "solution_steps": [
         "Surface area = 6 × side² = 6 × 15² = 6 × 225 = 1350 cm²"
@@ -1015,181 +1044,125 @@
         "params": {
           "width_label": "15 cm",
           "height_label": "15 cm",
-          "length_label": "15 cm"
+          "length_label": "15 cm",
+          "is_cube": true
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cylinder_foundation",
-      "prompt": "A cylinder has radius 8 cm and height 4 cm. Find its total surface area, correct to 3 significant figures.",
+      "topic_id": "two_way_tables_F",
+      "prompt": "The two-way table shows the number of boys and girls who prefer cats or dogs. Find the missing values.",
       "solution_steps": [
-        "Surface area = 2πr² + 2πrh = (2 × π × 8²) + (2 × π × 8 × 4)",
-        "= 603 cm² (3 s.f., using a calculator value of π)"
+        "'Boys' / 'Dogs': using the 'Dogs' column total: 24 - 11 = 13",
+        "'Boys' / 'Cats': using the 'Cats' column total: 36 - 18 = 18"
       ],
-      "final_answer": "603 cm²",
+      "final_answer": "'Boys' / 'Dogs' = 13; 'Boys' / 'Cats' = 18",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Surface area = 2πr² + 2πrh = (2 × π × 8²) + (2 × π × 8 × 4)",
+          "description": "'Boys' / 'Dogs': using the 'Dogs' column total: 24 - 11 = 13",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 603 cm² (3 s.f., using a calculator value of π)",
+          "description": "'Boys' / 'Cats': using the 'Cats' column total: 36 - 18 = 18",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "603 cm² oe",
+          "description": "'Boys' / 'Dogs' = 13; 'Boys' / 'Cats' = 18 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cylinder",
+        "kind": "two_way_table",
         "params": {
-          "radius_label": "8 cm",
-          "height_label": "4 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "tree_diagram_independent",
-      "prompt": "A bag contains 2 yellow and 8 red counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that the first counter is red and the second counter is red.",
-      "solution_steps": [
-        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(yellow) = 1/5, P(red) = 4/5.",
-        "P(red then red) = 4/5 × 4/5 = 16/25"
-      ],
-      "final_answer": "16/25",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(yellow) = 1/5, P(red) = 4/5.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(red then red) = 4/5 × 4/5 = 16/25",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "16/25 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "tree_diagram",
-        "params": {
-          "stage1": [
-            [
-              "Yellow",
-              "1/5"
-            ],
-            [
-              "Red",
-              "4/5"
-            ]
+          "row_labels": [
+            "Boys",
+            "Girls",
+            "Total"
           ],
-          "stage2": [
+          "col_labels": [
+            "Cats",
+            "Dogs",
+            "Total"
+          ],
+          "cells": [
             [
-              [
-                "Yellow",
-                "1/5"
-              ],
-              [
-                "Red",
-                "4/5"
-              ]
+              "",
+              "",
+              "31"
             ],
             [
-              [
-                "Yellow",
-                "1/5"
-              ],
-              [
-                "Red",
-                "4/5"
-              ]
+              "18",
+              "11",
+              "29"
+            ],
+            [
+              "36",
+              "24",
+              "60"
             ]
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "fractions_equivalent_diagram",
-      "prompt": "Shape A is divided into 3 equal parts, with 2 shaded. Shape B is divided into 9 equal parts. How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
-      "solution_steps": [
-        "Shape A shows 2/3 shaded; Shape B has 9 equal parts.",
-        "Find the scale factor between the denominators: 9 ÷ 3 = 3",
-        "Multiply the shaded count by the same scale factor: 2 × 3 = 6"
-      ],
-      "final_answer": "6",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Shape A shows 2/3 shaded; Shape B has 9 equal parts.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Find the scale factor between the denominators: 9 ÷ 3 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the shaded count by the same scale factor: 2 × 3 = 6",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "6 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "circle",
-              "parts": 3,
-              "shaded": 2,
-              "label": "2/3"
-            },
-            {
-              "kind": "circle",
-              "parts": 9,
-              "shaded": 0,
-              "label": "?/9"
-            }
           ]
         }
       },
       "solution_diagram": {
-        "kind": "fraction_shapes",
+        "kind": "two_way_table",
         "params": {
-          "shapes": [
-            {
-              "kind": "circle",
-              "parts": 3,
-              "shaded": 2,
-              "label": "2/3"
-            },
-            {
-              "kind": "circle",
-              "parts": 9,
-              "shaded": 6,
-              "label": "6/9"
-            }
+          "row_labels": [
+            "Boys",
+            "Girls",
+            "Total"
+          ],
+          "col_labels": [
+            "Cats",
+            "Dogs",
+            "Total"
+          ],
+          "cells": [
+            [
+              "18",
+              "13",
+              "31"
+            ],
+            [
+              "18",
+              "11",
+              "29"
+            ],
+            [
+              "36",
+              "24",
+              "60"
+            ]
           ]
         }
       }
+    },
+    {
+      "topic_id": "stats_mean_F",
+      "prompt": "Find the mean of this data set: 26, 22, 3, 10, 18, 11, 15.",
+      "solution_steps": [
+        "Mean = sum ÷ count = (26 + 22 + 3 + 10 + 18 + 11 + 15) ÷ 7 = 105 ÷ 7 = 15"
+      ],
+      "final_answer": "15",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Mean = sum ÷ count = (26 + 22 + 3 + 10 + 18 + 11 + 15) ÷ 7 = 105 ÷ 7 = 15",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "15 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
     }
   ]
 }

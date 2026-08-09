@@ -36,6 +36,23 @@ def test_foundation_vector_arithmetic_never_uses_negative_scalars():
         assert all(not t.startswith("-") for t in terms)
 
 
+def test_higher_vector_arithmetic_never_shows_a_double_minus_sign():
+    # Higher's scalars can be negative, so "k*a - m*b" with m itself negative
+    # used to render as e.g. "2a - -4b" - must now be parenthesised instead
+    # ("2a - (-4b)"), never a literal "- -".
+    rng = random.Random(96)
+    for _ in range(TRIALS):
+        q = vectors.generate_vectors_arithmetic_higher(Tier.HIGHER, rng)
+        find_clause = q.prompt.split("Find ", 1)[1].rstrip(".")
+        assert " - -" not in find_clause
+
+
+def test_vector_answers_use_the_colvec_marker():
+    rng = random.Random(97)
+    q = vectors.generate_vectors_arithmetic_foundation(Tier.FOUNDATION, rng)
+    assert q.final_answer.startswith("\\colvec{")
+
+
 def test_geometric_vectors_has_a_diagram_and_coefficients_sum_to_one():
     import sympy as sp
 
@@ -110,8 +127,8 @@ def test_topics_have_a_modelled_example_generator_wired_up():
 
 def test_modelled_example_vectors_arithmetic_is_valid():
     generators = [
-        (vectors.generate_modelled_example_vectors_arithmetic_foundation, Tier.FOUNDATION, "vectors_arithmetic_foundation"),
-        (vectors.generate_modelled_example_vectors_arithmetic_higher, Tier.HIGHER, "vectors_arithmetic_higher"),
+        (vectors.generate_modelled_example_vectors_arithmetic_foundation, Tier.FOUNDATION, "vectors_arithmetic_F"),
+        (vectors.generate_modelled_example_vectors_arithmetic_higher, Tier.HIGHER, "vectors_arithmetic_H"),
     ]
     for generate, tier, topic_id in generators:
         rng = random.Random(201)
@@ -130,7 +147,7 @@ def test_modelled_example_geometric_vectors_is_valid():
     rng = random.Random(202)
     for _ in range(TRIALS):
         ex = vectors.generate_modelled_example_geometric_vectors(Tier.HIGHER, rng)
-        assert ex.topic_id == "geometric_vectors"
+        assert ex.topic_id == "geometric_vectors_H"
         assert ex.tier == Tier.HIGHER
         assert ex.prompt
         assert len(ex.worked_calculation) >= 2

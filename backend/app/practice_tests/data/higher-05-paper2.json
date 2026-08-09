@@ -4,12 +4,13 @@
   "tier": "higher",
   "sitting_id": "higher-05",
   "paper_number": 2,
+  "calculator_allowed": false,
   "questions": [
     {
-      "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal 0.2(6) can be written as a fraction. Find this fraction in its simplest form.",
+      "topic_id": "decimals_recurring_to_fraction_H",
+      "prompt": "Write \\recur{0.2}{6} as a fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.2(6)",
+        "Let x = \\recur{0.2}{6}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
         "This gives x = 24/90",
         "Simplify: 4/15"
@@ -19,7 +20,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.2(6)",
+          "description": "Let x = \\recur{0.2}{6}",
           "marks": 1
         },
         {
@@ -47,11 +48,11 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_divide",
+      "topic_id": "fractions_divide_H",
       "prompt": "Work out 4/2 ÷ 4/6. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Keep-change-flip: 4/2 ÷ 4/6 = 4/2 × 6/4",
-        "Multiply: (4×6)/(2×4) = 24/8",
+        "Multiply: \\frac{(4×6)}{(2×4)} = 24/8",
         "Simplify: 3"
       ],
       "final_answer": "3",
@@ -64,7 +65,7 @@
         },
         {
           "code": "M1",
-          "description": "Multiply: (4×6)/(2×4) = 24/8",
+          "description": "Multiply: \\frac{(4×6)}{(2×4)} = 24/8",
           "marks": 1
         },
         {
@@ -82,7 +83,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_mixed_number_arithmetic",
+      "topic_id": "fractions_mixed_number_arithmetic_H",
       "prompt": "Work out 5 2/5 + 4 2/3. Give your answer as a mixed number.",
       "solution_steps": [
         "Convert to improper fractions: 5 2/5 = 27/5, 4 2/3 = 14/3",
@@ -117,40 +118,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simplifying_indices_challenging",
-      "prompt": "Simplify 16^(3/2) × 16^-1, giving your answer as a fraction where necessary.",
+      "topic_id": "simplifying_indices_challenging_H",
+      "prompt": "Simplify 64^(2/3) × 64^-3, giving your answer as a fraction where necessary.",
       "solution_steps": [
-        "16^(1/2) is the square root of 16, which is 4, so 16^(3/2) = 4^3",
-        "16^-1 = 1/16^1 = 1/4^2",
-        "16^(3/2) × 16^-1 = 4^3 × 1/4^2 = 4^(3-2) = 4^1",
-        "4^1 = 4"
+        "64^(1/3) is the cube root of 64, which is 4, so 64^(2/3) = 4^2",
+        "64^-3 = \\frac{1}{64³} = \\frac{1}{4⁹}",
+        "64^(2/3) × 64^-3 = 4^2 × \\frac{1}{4⁹} = 4^(2-9) = 4^-7",
+        "4^-7 = 1/16384"
       ],
-      "final_answer": "4",
+      "final_answer": "1/16384",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "16^(1/2) is the square root of 16, which is 4, so 16^(3/2) = 4^3",
+          "description": "64^(1/3) is the cube root of 64, which is 4, so 64^(2/3) = 4^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "16^-1 = 1/16^1 = 1/4^2",
+          "description": "64^-3 = \\frac{1}{64³} = \\frac{1}{4⁹}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "16^(3/2) × 16^-1 = 4^3 × 1/4^2 = 4^(3-2) = 4^1",
+          "description": "64^(2/3) × 64^-3 = 4^2 × \\frac{1}{4⁹} = 4^(2-9) = 4^-7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4^1 = 4",
+          "description": "4^-7 = 1/16384",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4 oe",
+          "description": "1/16384 oe",
           "marks": 1
         }
       ],
@@ -158,7 +159,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "prime_factors_higher",
+      "topic_id": "prime_factors_H",
       "prompt": "Write 735 as a product of its prime factors, giving your answer in index form.",
       "solution_steps": [
         "Divide 735 repeatedly by the smallest prime that fits: 3 × 5 × 7 × 7",
@@ -187,7 +188,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "hcf_lcm_by_prime_factors",
+      "topic_id": "hcf_lcm_by_prime_factors_H",
       "prompt": "Using prime factorisation, find the HCF of 133 and 35.",
       "solution_steps": [
         "133 = 7 × 19",
@@ -228,12 +229,12 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "completing_the_square",
+      "topic_id": "completing_the_square_H",
       "prompt": "Write x^2 - 4x - 3 in the form (x + p)^2 + q.",
       "solution_steps": [
         "Half the coefficient of x: -4 ÷ 2 = -2",
         "(x - 2)^2 = x^2 - 4x + 4",
-        "x^2 - 4x + -3 = (x - 2)^2 + (-3 - 4) = (x - 2)^2 - 7"
+        "x^2 - 4x - 3 = (x - 2)^2 + (-3 - 4) = (x - 2)^2 - 7"
       ],
       "final_answer": "(x - 2)^2 - 7",
       "marks": 4,
@@ -250,7 +251,7 @@
         },
         {
           "code": "M1",
-          "description": "x^2 - 4x + -3 = (x - 2)^2 + (-3 - 4) = (x - 2)^2 - 7",
+          "description": "x^2 - 4x - 3 = (x - 2)^2 + (-3 - 4) = (x - 2)^2 - 7",
           "marks": 1
         },
         {
@@ -263,49 +264,88 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "satisfying_inequalities_higher",
-      "prompt": "x satisfies both 4x - 7 > 13 and x - 3 < 8. List the integer values of x that satisfy both.",
+      "topic_id": "inequalities_number_line_H",
+      "prompt": "Write down the inequality (or pair of inequalities) shown by the number line below.",
       "solution_steps": [
-        "Solve the first inequality:",
-        "4x - 7 > 13",
-        "Add 7 to both sides:",
-        "4x > 20",
-        "Divide both sides by 4:",
-        "x > 5",
-        "Solve the second inequality:",
-        "x - 3 < 8",
-        "Add 3 to both sides:",
-        "x < 11",
-        "x < 11",
-        "Combine both results into a single range: 5 < x < 11",
-        "The integers satisfying both inequalities are: 6, 7, 8, 9, 10"
+        "The circle at 1 is open and the circle at 4 is filled.",
+        "The shading lies between the two circles, so both bounds must hold at once: 1 < x ≤ 4."
       ],
-      "final_answer": "6, 7, 8, 9, 10",
-      "marks": 5,
+      "final_answer": "1 < x ≤ 4",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Solve the first inequality:",
+          "description": "The circle at 1 is open and the circle at 4 is filled.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x - 7 > 13",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add 7 to both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "4x > 20 Divide both sides by 4: x > 5 Solve the second inequality: x - 3 < 8 Add 3 to both sides: x < 11 x < 11 Combine both results into a single range: 5 < x < 11 The integers satisfying both inequalities are: 6, 7, 8, 9, 10",
+          "description": "The shading lies between the two circles, so both bounds must hold at once: 1 < x ≤ 4.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6, 7, 8, 9, 10 oe",
+          "description": "1 < x ≤ 4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [
+            {
+              "value": 1,
+              "closed": false
+            },
+            {
+              "value": 4,
+              "closed": true
+            }
+          ],
+          "shade": "between"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "quadratic_inequalities_H",
+      "prompt": "Solve the inequality: x^2 - 8x - 9 ≤ 0",
+      "solution_steps": [
+        "Factorise: x^2 - 8x - 9 = (x + 1)(x - 9)",
+        "The critical values are x = -1 and x = 9.",
+        "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and ≤ 0 is satisfied between the two roots.",
+        "Answer: -1 ≤ x ≤ 9"
+      ],
+      "final_answer": "-1 ≤ x ≤ 9",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Factorise: x^2 - 8x - 9 = (x + 1)(x - 9)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The critical values are x = -1 and x = 9.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and ≤ 0 is satisfied between the two roots.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Answer: -1 ≤ x ≤ 9",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-1 ≤ x ≤ 9 oe",
           "marks": 1
         }
       ],
@@ -313,7 +353,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solving_inequalities_higher",
+      "topic_id": "solving_inequalities_H",
       "prompt": "Solve the inequality: -4(x + 1) ≥ 8",
       "solution_steps": [
         "Expand the bracket: -4(x + 1) ≥ 8",
@@ -356,49 +396,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_quadratic",
-      "prompt": "Solve the simultaneous equations: y = x^2 + x + 6 and y = 3x + 14",
-      "solution_steps": [
-        "Substitute y = 3x + 14 into y = x^2 + x + 6: 3x + 14 = x^2 + x + 6",
-        "Rearrange: x^2 - 2x - 8 = 0",
-        "Factorise: (x - 4)(x + 2) = 0",
-        "x = 4 or x = -2",
-        "When x = 4, y = 26. When x = -2, y = 8."
-      ],
-      "final_answer": "(4, 26) and (-2, 8)",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Substitute y = 3x + 14 into y = x^2 + x + 6: 3x + 14 = x^2 + x + 6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Rearrange: x^2 - 2x - 8 = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise: (x - 4)(x + 2) = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 4 or x = -2 When x = 4, y = 26. When x = -2, y = 8.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(4, 26) and (-2, 8) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "plot_cubic",
+      "topic_id": "plot_cubic_H",
       "prompt": "Complete a table of values for y = -x^3 - 2x for x = -3 to 3, then plot the graph.",
       "solution_steps": [
         "Table of values for y = -x^3 - 2x:",
@@ -492,48 +490,7 @@
       }
     },
     {
-      "topic_id": "algebraic_fractions_add_subtract",
-      "prompt": "Simplify 1/(x + 1) + 4/(x - 1), giving your answer as a single fraction.",
-      "solution_steps": [
-        "Write both fractions over the common denominator (x + 1)(x - 1):",
-        "1/(x + 1) + 4/(x - 1) = (1(x - 1) + 4(x + 1))/(x + 1)(x - 1)",
-        "Expand the numerator: 1(x - 1) + 4(x + 1) = 5x + 3",
-        "= (5x + 3)/(x + 1)(x - 1)"
-      ],
-      "final_answer": "(5x + 3)/(x + 1)(x - 1)",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Write both fractions over the common denominator (x + 1)(x - 1):",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "1/(x + 1) + 4/(x - 1) = (1(x - 1) + 4(x + 1))/(x + 1)(x - 1)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Expand the numerator: 1(x - 1) + 4(x + 1) = 5x + 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= (5x + 3)/(x + 1)(x - 1)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(5x + 3)/(x + 1)(x - 1) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simultaneous_different_coefficient",
+      "topic_id": "simultaneous_different_coefficient_H",
       "prompt": "Solve the simultaneous equations: 3x + 5y = -15 and 5x + 2y = 13",
       "solution_steps": [
         "3x + 5y = -15  (1)",
@@ -576,7 +533,57 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_direct_proportion",
+      "topic_id": "satisfying_inequalities_H",
+      "prompt": "x satisfies both 4x - 7 > 13 and x - 3 < 8. List the integer values of x that satisfy both.",
+      "solution_steps": [
+        "Solve the first inequality:",
+        "4x - 7 > 13",
+        "Add 7 to both sides:",
+        "4x > 20",
+        "Divide both sides by 4:",
+        "x > 5",
+        "Solve the second inequality:",
+        "x - 3 < 8",
+        "Add 3 to both sides:",
+        "x < 11",
+        "x < 11",
+        "Combine both results into a single range: 5 < x < 11",
+        "The integers satisfying both inequalities are: 6, 7, 8, 9, 10"
+      ],
+      "final_answer": "6, 7, 8, 9, 10",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Solve the first inequality:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x - 7 > 13",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Add 7 to both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x > 20 Divide both sides by 4: x > 5 Solve the second inequality: x - 3 < 8 Add 3 to both sides: x < 11 x < 11 Combine both results into a single range: 5 < x < 11 The integers satisfying both inequalities are: 6, 7, 8, 9, 10",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6, 7, 8, 9, 10 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_direct_proportion_H",
       "prompt": "y is directly proportional to x^2. When x = 5, y = 150. Find the value of y when x = 2.",
       "solution_steps": [
         "y = kx^2",
@@ -617,7 +624,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pressure_higher",
+      "topic_id": "pressure_H",
       "prompt": "A brick exerts a force of 4836 N over a contact area of 3526 cm². Find the pressure in N/m², correct to 2 decimal places.",
       "solution_steps": [
         "Convert area to m²: 3526 cm² = 3526 ÷ 10000 = 0.3526 m²",
@@ -646,7 +653,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_to_equation",
+      "topic_id": "ratio_to_equation_H",
       "prompt": "(x + 5) : (5x - 3) = 2:3. Find the value of x.",
       "solution_steps": [
         "Cross-multiply: 3(x + 5) = 2(5x - 3)",
@@ -687,42 +694,119 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_difference_higher",
-      "prompt": "Amounts are in the ratio 1:6:3. The difference between the largest and smallest amount is 55. Find all three amounts and their total.",
+      "topic_id": "area_circle_H",
+      "prompt": "Find the area of the following circle, in terms of π.",
       "solution_steps": [
-        "Difference in parts = 6 - 1 = 5 parts",
-        "Value of one part = 55 ÷ 5 = 11",
-        "Amount 1 = 1 × 11 = 11",
-        "Amount 2 = 6 × 11 = 66",
-        "Amount 3 = 3 × 11 = 33",
-        "Total = 11 + 66 + 33 = 110"
+        "Area = π × r² = π × 3² = 9π cm²",
+        "≈ 28.3 cm² (3 s.f.)"
       ],
-      "final_answer": "11 : 66 : 33 (total 110)",
-      "marks": 5,
+      "final_answer": "9π cm² (≈ 28.3 cm²)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Difference in parts = 6 - 1 = 5 parts",
+          "description": "Area = π × r² = π × 3² = 9π cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 55 ÷ 5 = 11",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Amount 1 = 1 × 11 = 11",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Amount 2 = 6 × 11 = 66 Amount 3 = 3 × 11 = 33 Total = 11 + 66 + 33 = 110",
+          "description": "≈ 28.3 cm² (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "11 : 66 : 33 (total 110) oe",
+          "description": "9π cm² (≈ 28.3 cm²) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "circle",
+        "params": {
+          "radius": 3,
+          "label": "3 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_straight_line_H",
+      "prompt": "The angles 132° and (4x + 36)° lie on a straight line. Find x.",
+      "solution_steps": [
+        "Angles on a straight line sum to 180°.",
+        "4x + 36 = 48",
+        "Subtract 36 from both sides:",
+        "4x = 12",
+        "Divide both sides by 4:",
+        "x = 3"
+      ],
+      "final_answer": "3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles on a straight line sum to 180°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x + 36 = 48",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 36 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x = 12 Divide both sides by 4: x = 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "angle_line",
+        "params": {
+          "angle_values": [
+            132,
+            48
+          ],
+          "labels": [
+            "132°",
+            "(4x + 36)°"
+          ],
+          "around_point": false
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "exact_trig_values_H",
+      "prompt": "Write down the exact value of cos(90°).",
+      "solution_steps": [
+        "Recall the exact-value triangles: 30°-60°-90° (sides 1, √3, 2) and 45°-45°-90° (sides 1, 1, √2) - no calculator needed for these special angles.",
+        "cos(90°) = 0"
+      ],
+      "final_answer": "0",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Recall the exact-value triangles: 30°-60°-90° (sides 1, √3, 2) and 45°-45°-90° (sides 1, 1, √2) - no calculator needed for these special angles.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "cos(90°) = 0",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "0 oe",
           "marks": 1
         }
       ],
@@ -730,203 +814,165 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_parallel_lines",
-      "prompt": "A line crosses two parallel lines. The angle 90° and the angle (4x + 82)° are corresponding angles. Find x.",
+      "topic_id": "area_subtract_compound_H",
+      "prompt": "Find the shaded area.",
       "solution_steps": [
-        "Corresponding angles are equal.",
-        "4x + 82 = 90",
-        "Subtract 82 from both sides:",
-        "4x = 8",
-        "Divide both sides by 4:",
-        "x = 2"
+        "Area of large rectangle = 17 × 25 = 425 cm²",
+        "Area of rectangular hole = 8 × 20 = 160 cm²",
+        "Shaded area = 425 - 160 = 265 cm²"
       ],
-      "final_answer": "2",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Corresponding angles are equal.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "4x + 82 = 90",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 82 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "4x = 8 Divide both sides by 4: x = 2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "parallel_lines",
-        "params": {
-          "known_label": "90°",
-          "unknown_label": "(4x + 82)°",
-          "relation": "corresponding"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "cosine_rule",
-      "prompt": "In triangle ABC, side b = 9 cm, side c = 8 cm, and the angle between them, angle A = 70°. Find the length of side a, correct to 3 significant figures.",
-      "solution_steps": [
-        "Use the cosine rule: a² = b² + c² - 2bc cos(A)",
-        "a² = 9² + 8² - 2×9×8×cos(70°) = 95.75",
-        "a = √95.75 = 9.79 cm (3 s.f.)"
-      ],
-      "final_answer": "9.79 cm",
+      "final_answer": "265 cm²",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Use the cosine rule: a² = b² + c² - 2bc cos(A)",
+          "description": "Area of large rectangle = 17 × 25 = 425 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "a² = 9² + 8² - 2×9×8×cos(70°) = 95.75",
+          "description": "Area of rectangular hole = 8 × 20 = 160 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "a = √95.75 = 9.79 cm (3 s.f.)",
+          "description": "Shaded area = 425 - 160 = 265 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9.79 cm oe",
+          "description": "265 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "general_triangle",
+        "kind": "l_shape",
         "params": {
-          "side_a_label": "x cm",
-          "side_b_label": "9 cm",
-          "side_c_label": "8 cm",
-          "angle_A_label": "70°",
-          "angle_B_label": null,
-          "angle_C_label": null
+          "outer_w": 17,
+          "outer_h": 25,
+          "inner_w": 8,
+          "inner_h": 20,
+          "notch": "center",
+          "shade_frame": true,
+          "outer_labels": [
+            "17 cm",
+            "25 cm"
+          ],
+          "inner_labels": [
+            "8 cm",
+            "20 cm"
+          ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "area_mixed_compound",
-      "prompt": "A shape is made from a rectangle 17 cm by 10 cm, with a triangular roof of height 9 cm on top, and a quarter-circle of radius 4 cm cut from one bottom corner. Find the total area, correct to 3 significant figures.",
+      "topic_id": "transform_rotate_describe_H",
+      "prompt": "Shape ABCDEF is rotated to give shape A'B'C'D'E'F', shown on the grid. Describe fully the single transformation that maps ABCDEF onto A'B'C'D'E'F'.",
       "solution_steps": [
-        "Rectangle area = 17 × 10 = 170 cm²",
-        "Triangle roof area = ½ × 17 × 9 = 153/2 cm²",
-        "Quarter-circle cut area = (π × 4²) ÷ 4 ≈ 12.6 cm²",
-        "Total area = 170 + 153/2 - 12.6 ≈ 234 cm²"
+        "The centre of rotation is the one point that is the same distance from a vertex and its image, for every vertex - it can be found where the perpendicular bisectors of two such pairs cross.",
+        "Measuring the turn from a vertex to its image about that point gives 90° clockwise about (1, 2)."
       ],
-      "final_answer": "234 cm²",
-      "marks": 5,
+      "final_answer": "Rotation 90° clockwise about (1, 2)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rectangle area = 17 × 10 = 170 cm²",
+          "description": "The centre of rotation is the one point that is the same distance from a vertex and its image, for every vertex - it can be found where the perpendicular bisectors of two such pairs cross.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Triangle roof area = ½ × 17 × 9 = 153/2 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Quarter-circle cut area = (π × 4²) ÷ 4 ≈ 12.6 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total area = 170 + 153/2 - 12.6 ≈ 234 cm²",
+          "description": "Measuring the turn from a vertex to its image about that point gives 90° clockwise about (1, 2).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "234 cm² oe",
+          "description": "Rotation 90° clockwise about (1, 2) oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "mixed_compound",
+        "kind": "grid_transformation",
         "params": {
-          "width": 17,
-          "height": 10,
-          "roof_height": 9,
-          "cut_radius": 4,
-          "width_label": "17 cm",
-          "height_label": "10 cm",
-          "roof_label": "9 cm",
-          "cut_label": "4 cm"
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              -2,
+              -2
+            ],
+            [
+              3,
+              -2
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              -2,
+              2
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "image_vertices": [
+            [
+              -3,
+              5
+            ],
+            [
+              -3,
+              0
+            ],
+            [
+              -1,
+              0
+            ],
+            [
+              -1,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              5
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'",
+            "D'",
+            "E'",
+            "F'"
+          ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "frustum_volume_surface_area",
-      "prompt": "A frustum is formed from a cone with a bottom radius of 11 cm and a top radius of 6 cm, and a vertical height of 9 cm. Find its volume, correct to 3 significant figures.",
-      "solution_steps": [
-        "Full cone height H = R × h ÷ (R - r) = 11 × 9 ÷ (11 - 6) = 19.80 cm (similar triangles)",
-        "Big cone volume = (1/3) × π × R² × H, small cone volume = (1/3) × π × r² × (H - h)",
-        "Frustum volume = (1/3) × π × h × (R² + Rr + r²) = (1/3) × π × 9 × (11² + 11×6 + 6²)",
-        "= 2100 cm³ (3 s.f.)"
-      ],
-      "final_answer": "2100 cm³",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Full cone height H = R × h ÷ (R - r) = 11 × 9 ÷ (11 - 6) = 19.80 cm (similar triangles)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Big cone volume = (1/3) × π × R² × H, small cone volume = (1/3) × π × r² × (H - h)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Frustum volume = (1/3) × π × h × (R² + Rr + r²) = (1/3) × π × 9 × (11² + 11×6 + 6²)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 2100 cm³ (3 s.f.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2100 cm³ oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "frustum",
-        "params": {
-          "radius_bottom_label": "11 cm",
-          "radius_top_label": "6 cm",
-          "height_label": "9 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "probability_combined_dice",
+      "topic_id": "probability_combined_dice_H",
       "prompt": "Two fair six-sided dice are rolled. Find the probability that at least one die shows 3.",
       "solution_steps": [
         "P(neither die shows 3) = 5/6 × 5/6 = 25/36",
@@ -951,13 +997,116 @@
           "marks": 1
         }
       ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "venn_diagram_algebra_H",
+      "prompt": "The Venn diagram shows the number of elements in each region of sets A and B, given in terms of x. There are 32 elements in total. Find the value of x, and hence find the number of elements in B only.",
+      "solution_steps": [
+        "a_only + b_only + both + neither = total: (2x) + (3x) + (2x + 3) + 8 = 32",
+        "Collecting like terms: 7x + 11 = 32",
+        "x = 3",
+        "Substituting x = 3: A only = 6, B only = 9, both = 9, neither = 8",
+        "The number of elements in B only = 9"
+      ],
+      "final_answer": "9",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "a_only + b_only + both + neither = total: (2x) + (3x) + (2x + 3) + 8 = 32",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Collecting like terms: 7x + 11 = 32",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substituting x = 3: A only = 6, B only = 9, both = 9, neither = 8 The number of elements in B only = 9",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "9 oe",
+          "marks": 1
+        }
+      ],
       "diagram": {
-        "kind": "dice",
+        "kind": "venn_diagram",
         "params": {
-          "values": [
-            1,
-            1
-          ]
+          "labels": [
+            "A",
+            "B"
+          ],
+          "region_text": {
+            "a_only": "2x",
+            "b_only": "3x",
+            "both": "2x + 3",
+            "neither": "8"
+          }
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "velocity_time_interpret_H",
+      "prompt": "The velocity-time graph shows a car's journey. Find the total distance travelled.",
+      "solution_steps": [
+        "Total distance = total area under the graph (a trapezium)",
+        "Distance = ½ × (32 + 15) × 15 = 705/2 m"
+      ],
+      "final_answer": "705/2 m",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total distance = total area under the graph (a trapezium)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Distance = ½ × (32 + 15) × 15 = 705/2 m",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "705/2 m oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              15
+            ],
+            [
+              20,
+              15
+            ],
+            [
+              32,
+              0
+            ]
+          ],
+          "x_max": 37,
+          "y_max": 20,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
         }
       },
       "solution_diagram": null

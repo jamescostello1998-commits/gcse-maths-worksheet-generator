@@ -4,30 +4,37 @@
   "tier": "higher",
   "sitting_id": "higher-06",
   "paper_number": 2,
+  "calculator_allowed": false,
   "questions": [
     {
-      "topic_id": "powers_higher",
-      "prompt": "Work out 18^0.",
+      "topic_id": "powers_H",
+      "prompt": "Calculate 125^(2/3).",
       "solution_steps": [
-        "Any nonzero number raised to the power 0 equals 1.",
-        "18^0 = 1"
+        "125^(2/3) = (125^(1/3))^2",
+        "125^(1/3) = 5",
+        "5^2 = 25"
       ],
-      "final_answer": "1",
-      "marks": 3,
+      "final_answer": "25",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Any nonzero number raised to the power 0 equals 1.",
+          "description": "125^(2/3) = (125^(1/3))^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "18^0 = 1",
+          "description": "125^(1/3) = 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5^2 = 25",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 oe",
+          "description": "25 oe",
           "marks": 1
         }
       ],
@@ -35,7 +42,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_surds",
+      "topic_id": "algebraic_surds_H",
       "prompt": "Expand and simplify (3 + √5)(7 + √5), giving your answer in the form p + q√5.",
       "solution_steps": [
         "Expand the brackets (FOIL): (3 + √5)(7 + √5) = 21 +3√5 +7√5 +5",
@@ -77,7 +84,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "prime_factors_higher",
+      "topic_id": "prime_factors_H",
       "prompt": "Write 783 as a product of its prime factors, giving your answer in index form.",
       "solution_steps": [
         "Divide 783 repeatedly by the smallest prime that fits: 3 × 3 × 3 × 29",
@@ -106,10 +113,10 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal 0.(90) can be written as a fraction. Find this fraction in its simplest form.",
+      "topic_id": "decimals_recurring_to_fraction_H",
+      "prompt": "Write \\recur{0.}{90} as a fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(90)",
+        "Let x = \\recur{0.}{90}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
         "This gives x = 90/99",
         "Simplify: 10/11"
@@ -119,7 +126,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(90)",
+          "description": "Let x = \\recur{0.}{90}",
           "marks": 1
         },
         {
@@ -147,7 +154,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_multiply_divide",
+      "topic_id": "standard_form_multiply_divide_H",
       "prompt": "Work out (1 × 10^0) ÷ (1 × 10^-4). Give your answer in standard form.",
       "solution_steps": [
         "Divide the mantissas: 1 ÷ 1 = 1",
@@ -176,7 +183,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "hcf_lcm_by_prime_factors",
+      "topic_id": "hcf_lcm_by_prime_factors_H",
       "prompt": "Using prime factorisation, find the LCM of 166 and 198.",
       "solution_steps": [
         "166 = 2 × 83",
@@ -217,20 +224,192 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_reciprocal",
-      "prompt": "Complete a table of values for y = -24/x for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
+      "topic_id": "plot_exponential_H",
+      "prompt": "Complete a table of values for y = 3^x for x = 0 to 4, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = -24/x:",
-        "x: -4, -3, -2, -1, 1, 2, 3, 4",
-        "y: 6, 8, 12, 24, -24, -12, -8, -6",
-        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
+        "Table of values for y = 3^x:",
+        "x: 0, 1, 2, 3, 4",
+        "y: 1, 3, 9, 27, 81",
+        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
       ],
-      "final_answer": "Reciprocal curve: y = -24/x",
+      "final_answer": "Exponential curve: y = 3^x",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = -24/x:",
+          "description": "Table of values for y = 3^x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: 0, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 1, 3, 9, 27, 81",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Exponential curve: y = 3^x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "exponential",
+          "a": 1,
+          "base": 3,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 89.1,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "exponential",
+          "a": 1,
+          "base": 3,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 89.1,
+          "table_points": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              9
+            ],
+            [
+              3,
+              27
+            ],
+            [
+              4,
+              81
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "completing_the_square_H",
+      "prompt": "Write x^2 + 16x - 11 in the form (x + p)^2 + q.",
+      "solution_steps": [
+        "Half the coefficient of x: 16 ÷ 2 = 8",
+        "(x + 8)^2 = x^2 + 16x + 64",
+        "x^2 + 16x - 11 = (x + 8)^2 + (-11 - 64) = (x + 8)^2 - 75"
+      ],
+      "final_answer": "(x + 8)^2 - 75",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Half the coefficient of x: 16 ÷ 2 = 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(x + 8)^2 = x^2 + 16x + 64",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x^2 + 16x - 11 = (x + 8)^2 + (-11 - 64) = (x + 8)^2 - 75",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(x + 8)^2 - 75 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "satisfying_inequalities_H",
+      "prompt": "x satisfies both 3x + 7 ≥ -5 and 5x + 2 < 13. List the integer values of x that satisfy both.",
+      "solution_steps": [
+        "Solve the first inequality:",
+        "3x + 7 ≥ -5",
+        "Subtract 7 from both sides:",
+        "3x ≥ -12",
+        "Divide both sides by 3:",
+        "x ≥ -4",
+        "Solve the second inequality:",
+        "5x + 2 < 13",
+        "Subtract 2 from both sides:",
+        "5x < 11",
+        "Divide both sides by 5:",
+        "x < 11/5",
+        "Combine both results into a single range: -4 ≤ x < 11/5",
+        "The integers satisfying both inequalities are: -4, -3, -2, -1, 0, 1, 2"
+      ],
+      "final_answer": "-4, -3, -2, -1, 0, 1, 2",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Solve the first inequality:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3x + 7 ≥ -5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 7 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3x ≥ -12 Divide both sides by 3: x ≥ -4 Solve the second inequality: 5x + 2 < 13 Subtract 2 from both sides: 5x < 11 Divide both sides by 5: x < 11/5 Combine both results into a single range: -4 ≤ x < 11/5 The integers satisfying both inequalities are: -4, -3, -2, -1, 0, 1, 2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-4, -3, -2, -1, 0, 1, 2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_reciprocal_H",
+      "prompt": "Complete a table of values for y = -\\frac{24}{x} for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = -\\frac{24}{x}:",
+        "x: -4, -3, -2, -1, 1, 2, 3, 4",
+        "y: 6, 8, 12, 24, -24, -12, -8, -6",
+        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
+      ],
+      "final_answer": "Reciprocal curve: y = -\\frac{24}{x}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = -\\frac{24}{x}:",
           "marks": 1
         },
         {
@@ -250,7 +429,7 @@
         },
         {
           "code": "A1",
-          "description": "Reciprocal curve: y = -24/x oe",
+          "description": "Reciprocal curve: y = -\\frac{24}{x} oe",
           "marks": 1
         }
       ],
@@ -313,34 +492,132 @@
       }
     },
     {
-      "topic_id": "completing_the_square",
-      "prompt": "Write x^2 + 16x - 11 in the form (x + p)^2 + q.",
+      "topic_id": "simultaneous_quadratic_H",
+      "prompt": "Solve the simultaneous equations: y = x^2 - 8 and y = -x - 6",
       "solution_steps": [
-        "Half the coefficient of x: 16 ÷ 2 = 8",
-        "(x + 8)^2 = x^2 + 16x + 64",
-        "x^2 + 16x + -11 = (x + 8)^2 + (-11 - 64) = (x + 8)^2 - 75"
+        "Substitute y = -x - 6 into y = x^2 - 8: -x - 6 = x^2 - 8",
+        "Rearrange: x^2 + x - 2 = 0",
+        "Factorise: (x - 1)(x + 2) = 0",
+        "x = 1 or x = -2",
+        "When x = 1, y = -7. When x = -2, y = -4."
       ],
-      "final_answer": "(x + 8)^2 - 75",
+      "final_answer": "(1, -7) and (-2, -4)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Substitute y = -x - 6 into y = x^2 - 8: -x - 6 = x^2 - 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rearrange: x^2 + x - 2 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: (x - 1)(x + 2) = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 1 or x = -2 When x = 1, y = -7. When x = -2, y = -4.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(1, -7) and (-2, -4) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "forming_equations_H",
+      "prompt": "A quadrilateral has angles 47°, 84°, (2x + 10)°, and (3x + 204)°. Form an equation and solve it to find x.",
+      "solution_steps": [
+        "Angles in a quadrilateral sum to 360°.",
+        "47 + 84 + (2x + 10) + (3x + 204) = 360",
+        "Collect the x-terms and constants together:",
+        "5x + 214 = 229",
+        "Subtract 214 from both sides:",
+        "5x = 15",
+        "Divide both sides by 5:",
+        "x = 3"
+      ],
+      "final_answer": "3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles in a quadrilateral sum to 360°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "47 + 84 + (2x + 10) + (3x + 204) = 360",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Collect the x-terms and constants together:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x + 214 = 229 Subtract 214 from both sides: 5x = 15 Divide both sides by 5: x = 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "polygon_angles",
+        "params": {
+          "n_sides": 4,
+          "angle_labels": [
+            "47°",
+            "84°",
+            "(2x + 10)°",
+            "(3x + 204)°"
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "special_sequences_H",
+      "prompt": "The first 4 terms of a geometric sequence are: 5, 15/2, 45/4, 135/8. Find the 6th term of the sequence.",
+      "solution_steps": [
+        "Common ratio r = 3/2 (divide any term by the term before it).",
+        "nth term = a × r^(n - 1) = 5 × (3/2)^5",
+        "Term 6 = 1215/32"
+      ],
+      "final_answer": "1215/32",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Half the coefficient of x: 16 ÷ 2 = 8",
+          "description": "Common ratio r = 3/2 (divide any term by the term before it).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(x + 8)^2 = x^2 + 16x + 64",
+          "description": "nth term = a × r^(n - 1) = 5 × (3/2)^5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x^2 + 16x + -11 = (x + 8)^2 + (-11 - 64) = (x + 8)^2 - 75",
+          "description": "Term 6 = 1215/32",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(x + 8)^2 - 75 oe",
+          "description": "1215/32 oe",
           "marks": 1
         }
       ],
@@ -348,43 +625,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solving_inequalities_higher",
-      "prompt": "Solve the inequality: 5x - 7 ≥ 7x - 6",
+      "topic_id": "ratio_share_three_part_H",
+      "prompt": "Share 14 in the ratio 3:2:2.",
       "solution_steps": [
-        "5x - 7 ≥ 7x - 6",
-        "Subtract 7x from both sides:",
-        "-2x - 7 ≥ -6",
-        "Add 7 to both sides:",
-        "-2x ≥ 1",
-        "Divide both sides by -2 (dividing by a negative number reverses the inequality sign):",
-        "x ≤ -1/2"
+        "Total parts = 3 + 2 + 2 = 7",
+        "Value of one part = 14 ÷ 7 = 2",
+        "Share 1 = 3 × 2 = 6",
+        "Share 2 = 2 × 2 = 4",
+        "Share 3 = 2 × 2 = 4"
       ],
-      "final_answer": "x ≤ -1/2",
+      "final_answer": "6 : 4 : 4",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5x - 7 ≥ 7x - 6",
+          "description": "Total parts = 3 + 2 + 2 = 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 7x from both sides:",
+          "description": "Value of one part = 14 ÷ 7 = 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-2x - 7 ≥ -6",
+          "description": "Share 1 = 3 × 2 = 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add 7 to both sides: -2x ≥ 1 Divide both sides by -2 (dividing by a negative number reverses the inequality sign): x ≤ -1/2",
+          "description": "Share 2 = 2 × 2 = 4 Share 3 = 2 × 2 = 4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x ≤ -1/2 oe",
+          "description": "6 : 4 : 4 oe",
           "marks": 1
         }
       ],
@@ -392,285 +667,17 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "perpendicular_lines_equation",
-      "prompt": "A line is perpendicular to y = 3x - 6 and passes through the point (1, -4). Find the equation of the line.",
-      "solution_steps": [
-        "Perpendicular gradients multiply to give -1: m × 3 = -1, so m = -1/3",
-        "Substitute (1, -4) into y = -1/3x + c: -4 = -1/3×(1) + c, so c = -11/3",
-        "Equation of the line: y = -1/3x - 11/3"
-      ],
-      "final_answer": "y = -1/3x - 11/3",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Perpendicular gradients multiply to give -1: m × 3 = -1, so m = -1/3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute (1, -4) into y = -1/3x + c: -4 = -1/3×(1) + c, so c = -11/3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Equation of the line: y = -1/3x - 11/3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "y = -1/3x - 11/3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simultaneous_different_coefficient",
-      "prompt": "Solve the simultaneous equations: 4x + 4y = -28 and 3x + 5y = -39",
-      "solution_steps": [
-        "4x + 4y = -28  (1)",
-        "3x + 5y = -39  (2)",
-        "(1) × 5: 20x + 20y = -140  (3)",
-        "(2) × 4: 12x + 20y = -156  (4)",
-        "(3) - (4): 8x = 16, so x = 2",
-        "Substitute x = 2 into (1): 4y = -36, so y = -9"
-      ],
-      "final_answer": "x = 2, y = -9",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "4x + 4y = -28  (1)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "3x + 5y = -39  (2)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(1) × 5: 20x + 20y = -140  (3)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(2) × 4: 12x + 20y = -156  (4) (3) - (4): 8x = 16, so x = 2 Substitute x = 2 into (1): 4y = -36, so y = -9",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = 2, y = -9 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "linear_brackets",
-      "prompt": "Solve: 4(6x - 7) = -196",
-      "solution_steps": [
-        "Expand the bracket: 4(6x - 7) = 24x - 28",
-        "24x - 28 = -196",
-        "Add 28 to both sides:",
-        "24x = -168",
-        "Divide both sides by 24:",
-        "x = -7"
-      ],
-      "final_answer": "-7",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Expand the bracket: 4(6x - 7) = 24x - 28",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "24x - 28 = -196",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add 28 to both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "24x = -168 Divide both sides by 24: x = -7",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-7 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "algebraic_proof",
-      "prompt": "Prove algebraically that the sum of two consecutive odd numbers is always a multiple of 4.",
-      "solution_steps": [
-        "Let two consecutive odd numbers be 2n + 1 and 2n + 3 (for integer n).",
-        "Write the given expression algebraically: (2n + 1) + (2n + 3).",
-        "Expand and simplify: (2n + 1) + (2n + 3) = 4n + 4.",
-        "Factorise/rearrange to expose the structure: 4n + 4 = 4(n + 1).",
-        "Since 4n + 4 factorises exactly to 4(n + 1), the sum is always 4 times a whole number, so it is always a multiple of 4."
-      ],
-      "final_answer": "Proven: the sum is 4(n + 1), always a multiple of 4.",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Let two consecutive odd numbers be 2n + 1 and 2n + 3 (for integer n).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Write the given expression algebraically: (2n + 1) + (2n + 3).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Expand and simplify: (2n + 1) + (2n + 3) = 4n + 4.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise/rearrange to expose the structure: 4n + 4 = 4(n + 1). Since 4n + 4 factorises exactly to 4(n + 1), the sum is always 4 times a whole number, so it is always a multiple of 4.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Proven: the sum is 4(n + 1), always a multiple of 4. oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "mixed_percentages",
-      "prompt": "After a 35% decrease, an item costs £114.40. Find the original price.",
-      "solution_steps": [
-        "Convert 35% to a multiplier: 0.65 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 114.40 ÷ 0.65 = 176"
-      ],
-      "final_answer": "£176",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert 35% to a multiplier: 0.65 (original × multiplier = new value)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide the new value by the multiplier: 114.40 ÷ 0.65 = 176",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£176 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_combine",
-      "prompt": "Given that a:b = 1:8 and b:c = 3:3, find a:b:c in its simplest form.",
-      "solution_steps": [
-        "Scale a:b = 1:8 by 3 so b = 24: a:b = 3:24",
-        "Scale b:c = 3:3 by 8 so b = 24: b:c = 24:24",
-        "Combine: a:b:c = 3:24:24",
-        "Simplify by dividing by 3: a:b:c = 1:8:8"
-      ],
-      "final_answer": "1 : 8 : 8",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Scale a:b = 1:8 by 3 so b = 24: a:b = 3:24",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Scale b:c = 3:3 by 8 so b = 24: b:c = 24:24",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Combine: a:b:c = 3:24:24",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Simplify by dividing by 3: a:b:c = 1:8:8",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1 : 8 : 8 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "algebraic_inverse_proportion",
-      "prompt": "y is inversely proportional to x^2. When x = 5, y = 8. Find the value of y when x = 2.",
-      "solution_steps": [
-        "y = k ÷ x^2",
-        "k = y × x^2 = 8 × 5^2 = 8 × 25 = 200",
-        "y = k ÷ x^2 = 200 ÷ 2^2 = 200 ÷ 4 = 50"
-      ],
-      "final_answer": "50",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "y = k ÷ x^2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "k = y × x^2 = 8 × 5^2 = 8 × 25 = 200",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y = k ÷ x^2 = 200 ÷ 2^2 = 200 ÷ 4 = 50",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "50 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_difference_higher",
-      "prompt": "Amounts are in the ratio 6:1:9. The difference between the largest and smallest amount is 104. Find all three amounts and their total.",
+      "topic_id": "ratio_difference_H",
+      "prompt": "a : b : c = 6 : 1 : 9.\nc - b = 104.\nFind a, b and c, and their total.",
       "solution_steps": [
         "Difference in parts = 9 - 1 = 8 parts",
         "Value of one part = 104 ÷ 8 = 13",
-        "Amount 1 = 6 × 13 = 78",
-        "Amount 2 = 1 × 13 = 13",
-        "Amount 3 = 9 × 13 = 117",
-        "Total = 78 + 13 + 117 = 208"
+        "a = 6 × 13 = 78",
+        "b = 1 × 13 = 13",
+        "c = 9 × 13 = 117",
+        "a + b + c = 78 + 13 + 117 = 208"
       ],
-      "final_answer": "78 : 13 : 117 (total 208)",
+      "final_answer": "a = 78, b = 13, c = 117 (total 208)",
       "marks": 5,
       "mark_scheme": [
         {
@@ -685,17 +692,17 @@
         },
         {
           "code": "M1",
-          "description": "Amount 1 = 6 × 13 = 78",
+          "description": "a = 6 × 13 = 78",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Amount 2 = 1 × 13 = 13 Amount 3 = 9 × 13 = 117 Total = 78 + 13 + 117 = 208",
+          "description": "b = 1 × 13 = 13 c = 9 × 13 = 117 a + b + c = 78 + 13 + 117 = 208",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "78 : 13 : 117 (total 208) oe",
+          "description": "a = 78, b = 13, c = 117 (total 208) oe",
           "marks": 1
         }
       ],
@@ -703,8 +710,78 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_circle",
-      "prompt": "A circle has radius 7 cm. Find its circumference in terms of π.",
+      "topic_id": "speed_with_conversions_H",
+      "prompt": "A cyclist travels 50 km in 1 hours. Find its average speed in m/s, correct to 1 decimal place.",
+      "solution_steps": [
+        "speed = distance ÷ time = 50 ÷ 1 = 50 km/h",
+        "Convert to m/s: 50 ÷ 3.6 = 13.9 m/s (1 d.p.)"
+      ],
+      "final_answer": "13.9 m/s",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "speed = distance ÷ time = 50 ÷ 1 = 50 km/h",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Convert to m/s: 50 ÷ 3.6 = 13.9 m/s (1 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "13.9 m/s oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_to_equation_H",
+      "prompt": "(x - 2) : (x - 10) = 9:1. Find the value of x.",
+      "solution_steps": [
+        "Cross-multiply: 1(x - 2) = 9(x - 10)",
+        "Expand: x - 2 = 9x - 90",
+        "Collect x terms: -8x = -88",
+        "x = -88 ÷ -8 = 11"
+      ],
+      "final_answer": "x = 11",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Cross-multiply: 1(x - 2) = 9(x - 10)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand: x - 2 = 9x - 90",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Collect x terms: -8x = -88",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -88 ÷ -8 = 11",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 11 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_circle_H",
+      "prompt": "Find the circumference of the following circle, in terms of π.",
       "solution_steps": [
         "Circumference = 2 × π × r = 2 × π × 7 = 14π cm",
         "≈ 44.0 cm (3 s.f.)"
@@ -738,171 +815,194 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cylinder",
-      "prompt": "A cylinder has radius 4 cm and height 15 cm. Find the exact volume, in terms of π.",
+      "topic_id": "vectors_arithmetic_H",
+      "prompt": "\\vec{a} = \\colvec{-7}{-5} and \\vec{b} = \\colvec{5}{12}. Find -5\\vec{a} + -1\\vec{b}.",
       "solution_steps": [
-        "Volume = π × r² × h = π × 4² × 15",
-        "= 240π cm³"
+        "\\vec{a} = \\colvec{-7}{-5}, \\vec{b} = \\colvec{5}{12}",
+        "-5\\vec{a} = \\colvec{35}{25} and -1\\vec{b} = \\colvec{-5}{-12}",
+        "-5\\vec{a} + -1\\vec{b} = \\colvec{30}{13}"
       ],
-      "final_answer": "240π cm³",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Volume = π × r² × h = π × 4² × 15",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 240π cm³",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "240π cm³ oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "cylinder",
-        "params": {
-          "radius_label": "4 cm",
-          "height_label": "15 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "frustum_volume_surface_area",
-      "prompt": "A frustum is formed from a cone with a bottom radius of 7 cm and a top radius of 4 cm, and a vertical height of 7 cm. Find its total surface area, correct to 3 significant figures.",
-      "solution_steps": [
-        "Slant height l = √(h² + (R - r)²) = √(7² + (7 - 4)²) ≈ 7.62 cm",
-        "Curved surface area = π × (R + r) × l = π × (7 + 4) × 7.62",
-        "Total surface area = curved + both circular ends = π(R + r)l + πR² + πr²",
-        "= 467 cm² (3 s.f.)"
-      ],
-      "final_answer": "467 cm²",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Slant height l = √(h² + (R - r)²) = √(7² + (7 - 4)²) ≈ 7.62 cm",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Curved surface area = π × (R + r) × l = π × (7 + 4) × 7.62",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total surface area = curved + both circular ends = π(R + r)l + πR² + πr²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 467 cm² (3 s.f.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "467 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "frustum",
-        "params": {
-          "radius_bottom_label": "7 cm",
-          "radius_top_label": "4 cm",
-          "height_label": "7 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "volume_surface_area_sphere",
-      "prompt": "A hemisphere has radius 15 cm. Find its total surface area (including its flat circular face), correct to 3 significant figures.",
-      "solution_steps": [
-        "Total surface area = curved surface + flat circular face = 2 × π × r² + π × r² = 3 × π × r²",
-        "= 3 × π × 15²",
-        "= 2120 cm² (3 s.f.)"
-      ],
-      "final_answer": "2120 cm²",
+      "final_answer": "\\colvec{30}{13}",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total surface area = curved surface + flat circular face = 2 × π × r² + π × r² = 3 × π × r²",
+          "description": "\\vec{a} = \\colvec{-7}{-5}, \\vec{b} = \\colvec{5}{12}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 3 × π × 15²",
+          "description": "-5\\vec{a} = \\colvec{35}{25} and -1\\vec{b} = \\colvec{-5}{-12}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 2120 cm² (3 s.f.)",
+          "description": "-5\\vec{a} + -1\\vec{b} = \\colvec{30}{13}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2120 cm² oe",
+          "description": "\\colvec{30}{13} oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "sphere",
-        "params": {
-          "radius_label": "15 cm",
-          "hemisphere": true
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "sine_rule",
-      "prompt": "In triangle ABC, angle A = 70°, angle B = 49°, and side a = 16 cm. Find the length of side b, correct to 3 significant figures.",
+      "topic_id": "transform_rotate_describe_H",
+      "prompt": "Shape ABC is rotated to give shape A'B'C', shown on the grid. Describe fully the single transformation that maps ABC onto A'B'C'.",
       "solution_steps": [
-        "Use the sine rule: a / sin(A) = b / sin(B)",
-        "b = (16 × sin(49°)) ÷ sin(70°) = 12.9 cm (3 s.f.)"
+        "The centre of rotation is the one point that is the same distance from a vertex and its image, for every vertex - it can be found where the perpendicular bisectors of two such pairs cross.",
+        "Measuring the turn from a vertex to its image about that point gives 180° about (-1, -1)."
       ],
-      "final_answer": "12.9 cm",
+      "final_answer": "Rotation 180° about (-1, -1)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Use the sine rule: a / sin(A) = b / sin(B)",
+          "description": "The centre of rotation is the one point that is the same distance from a vertex and its image, for every vertex - it can be found where the perpendicular bisectors of two such pairs cross.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "b = (16 × sin(49°)) ÷ sin(70°) = 12.9 cm (3 s.f.)",
+          "description": "Measuring the turn from a vertex to its image about that point gives 180° about (-1, -1).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12.9 cm oe",
+          "description": "Rotation 180° about (-1, -1) oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "general_triangle",
+        "kind": "grid_transformation",
         "params": {
-          "side_a_label": "16 cm",
-          "side_b_label": "x cm",
-          "side_c_label": null,
-          "angle_A_label": "70°",
-          "angle_B_label": "49°",
-          "angle_C_label": null
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              -2,
+              0
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              -1,
+              4
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "image_vertices": [
+            [
+              0,
+              -2
+            ],
+            [
+              -5,
+              -2
+            ],
+            [
+              -1,
+              -6
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'"
+          ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_conditional",
-      "prompt": "A bag contains 7 blue and 5 green counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour.",
+      "topic_id": "geometric_vectors_H",
+      "prompt": "OAB is a triangle with OA = \\vec{a} and OB = \\vec{b}. Point P lies on AB such that AP:PB = 3:4. Find the vector OP in terms of \\vec{a} and \\vec{b}, giving your answer in its simplest form.",
+      "solution_steps": [
+        "AB = OB - OA = \\vec{b} - \\vec{a}",
+        "AP = (3/7)AB = (3/7)(\\vec{b} - \\vec{a})",
+        "OP = OA + AP = \\vec{a} + (3/7)(\\vec{b} - \\vec{a}) = (4/7)\\vec{a} + (3/7)\\vec{b}"
+      ],
+      "final_answer": "(4/7)\\vec{a} + (3/7)\\vec{b}",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "AB = OB - OA = \\vec{b} - \\vec{a}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "AP = (3/7)AB = (3/7)(\\vec{b} - \\vec{a})",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "OP = OA + AP = \\vec{a} + (3/7)(\\vec{b} - \\vec{a}) = (4/7)\\vec{a} + (3/7)\\vec{b}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(4/7)\\vec{a} + (3/7)\\vec{b} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "vector_triangle",
+        "params": {
+          "ratio": [
+            3,
+            4
+          ],
+          "point_label": "P",
+          "a_label": "\\vec{a}",
+          "b_label": "\\vec{b}",
+          "origin_label": "O"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "exact_trig_values_H",
+      "prompt": "Write down the exact value of tan(0°).",
+      "solution_steps": [
+        "Recall the exact-value triangles: 30°-60°-90° (sides 1, √3, 2) and 45°-45°-90° (sides 1, 1, √2) - no calculator needed for these special angles.",
+        "tan(0°) = 0"
+      ],
+      "final_answer": "0",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Recall the exact-value triangles: 30°-60°-90° (sides 1, √3, 2) and 45°-45°-90° (sides 1, 1, √2) - no calculator needed for these special angles.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "tan(0°) = 0",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "0 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_conditional_H",
+      "prompt": "A bag contains 7 blue and 5 green counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
       "solution_steps": [
         "P(both blue) = 7/12 × 6/11 = 7/22",
         "P(both green) = 5/12 × 4/11 = 5/33",
@@ -933,69 +1033,137 @@
         }
       ],
       "diagram": {
-        "kind": "bag_of_counters",
+        "kind": "tree_diagram",
         "params": {
-          "counts": {
-            "blue": 7,
-            "green": 5
-          }
+          "stage1": [
+            [
+              "Blue",
+              ""
+            ],
+            [
+              "Green",
+              ""
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Blue",
+                ""
+              ],
+              [
+                "Green",
+                ""
+              ]
+            ],
+            [
+              [
+                "Blue",
+                ""
+              ],
+              [
+                "Green",
+                ""
+              ]
+            ]
+          ]
         }
       },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "product_rule_counting",
-      "prompt": "A shop sells 6 different shirts, 3 different pairs of trousers and 2 different pairs of shoes. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
-      "solution_steps": [
-        "Total combinations = 6 × 3 × 2 = 36"
-      ],
-      "final_answer": "36",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total combinations = 6 × 3 × 2 = 36",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "36 oe",
-          "marks": 1
+      "solution_diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Blue",
+              "7/12"
+            ],
+            [
+              "Green",
+              "5/12"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Blue",
+                "6/11"
+              ],
+              [
+                "Green",
+                "5/11"
+              ]
+            ],
+            [
+              [
+                "Blue",
+                "7/11"
+              ],
+              [
+                "Green",
+                "4/11"
+              ]
+            ]
+          ]
         }
-      ],
-      "diagram": null,
-      "solution_diagram": null
+      }
     },
     {
-      "topic_id": "graph_transformations",
-      "prompt": "The graph of y = f(x) is transformed to give the graph of y = f(-x). Describe this transformation fully.",
+      "topic_id": "inequalities_number_line_H",
+      "prompt": "Draw the inequality/ies of x < 0 or x ≥ 6 on a number line.",
       "solution_steps": [
-        "y = f(-x) corresponds to a reflection in the y-axis."
+        "Draw an open circle at 0 and a filled circle at 6.",
+        "Shade to the left of 0 and to the right of 6, with arrows showing both continue indefinitely."
       ],
-      "final_answer": "Reflection in the y-axis",
-      "marks": 2,
+      "final_answer": "x < 0 or x ≥ 6",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = f(-x) corresponds to a reflection in the y-axis.",
+          "description": "Draw an open circle at 0 and a filled circle at 6.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Shade to the left of 0 and to the right of 6, with arrows showing both continue indefinitely.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Reflection in the y-axis oe",
+          "description": "x < 0 or x ≥ 6 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "graph_transformation",
+        "kind": "number_line",
         "params": {
-          "transform": "reflect_y",
-          "shift": 0,
-          "original_label": "y = f(x)",
-          "transformed_label": "y = f(-x)"
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [],
+          "blank": true
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [
+            {
+              "value": 0,
+              "closed": false
+            },
+            {
+              "value": 6,
+              "closed": true
+            }
+          ],
+          "shade": "outside"
+        }
+      }
     }
   ]
 }

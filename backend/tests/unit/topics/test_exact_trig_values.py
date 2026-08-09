@@ -11,8 +11,8 @@ GENERATORS = [
 ]
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (exact_trig_values.generate_modelled_example_exact_trig_values, Tier.HIGHER, "exact_trig_values"),
-    (exact_trig_values.generate_modelled_example_exact_trig_values_triangles, Tier.HIGHER, "exact_trig_values_triangles"),
+    (exact_trig_values.generate_modelled_example_exact_trig_values, Tier.HIGHER, "exact_trig_values_H"),
+    (exact_trig_values.generate_modelled_example_exact_trig_values_triangles, Tier.HIGHER, "exact_trig_values_triangles_H"),
 ]
 
 

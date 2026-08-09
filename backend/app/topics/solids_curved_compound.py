@@ -1,11 +1,11 @@
 import math
 import random
-from decimal import ROUND_HALF_UP, Decimal
 
 import sympy as sp
 
 from app.core.models import DiagramSpec, ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
+from app.topics.rounding import pick_rounding
 
 SECTION = "geometry"
 GROUP = "3D Shapes"
@@ -13,29 +13,6 @@ GROUP = "3D Shapes"
 # All four topics in this module are genuinely Higher-only content on the real
 # AQA/Edexcel specs (Foundation stops at prisms/cylinders), so none of them
 # get a Foundation sibling.
-
-
-def _fmt_sig3(expr) -> str:
-    """Format a sympy expression rounded to 3 significant figures as a plain
-    fixed-point decimal string. sp.N(expr, 3)'s default string form switches
-    to scientific notation (e.g. "1.41e+4") once the rounded value has more
-    integer digits than the requested precision - confirmed by rendering an
-    actual worksheet (e.g. a sphere of radius 15 cm gave a volume of
-    "1.41E+4 cm3" instead of "14100 cm3"). This bites several quantities in
-    THIS module (sphere/frustum volumes, curved compound-solid volumes) that
-    comfortably exceed 999 for the larger end of their random ranges, unlike
-    any existing area_perimeter.py topic sp.N(expr, 3) was copied from, none
-    of which get that large. Mirrors the fix already applied to
-    estimation.py's _round_to_1sf for the same underlying reason (see
-    CLAUDE.md's Decimal/scientific-notation gotcha)."""
-    value = float(sp.N(expr, 15))
-    if value == 0:
-        return "0"
-    d = Decimal(repr(value))
-    exponent = d.adjusted()
-    quant = Decimal(1).scaleb(exponent - 2)
-    rounded = d.quantize(quant, rounding=ROUND_HALF_UP)
-    return format(rounded, "f")
 
 
 def _frac_str(value) -> str:
@@ -61,6 +38,7 @@ def generate_volume_surface_area_sphere(tier: Tier, rng: random.Random) -> Quest
     else:
         raise ValueError("volume_surface_area_sphere could not draw a valid radius")
 
+    rounding = pick_rounding(rng)
     shape_word = "hemisphere" if is_hemisphere else "sphere"
 
     if is_hemisphere:
@@ -90,24 +68,24 @@ def generate_volume_surface_area_sphere(tier: Tier, rng: random.Random) -> Quest
             steps = [f"SA = 4 × π × r² = 4 × π × {radius}²"]
             unit = "cm²"
 
-    decimal_answer = sp.N(exact_expr, 3)
-    # Independent check via Python's math.pi - a different pi source/
-    # implementation than sympy's symbolic pi used above.
-    if independent <= 0 or abs(float(decimal_answer) - independent) / independent > 0.01:
+    # Independent check via Python's math.pi against sympy's own symbolic pi -
+    # compares full precision (unrounded), so the tolerance stays tight
+    # regardless of which display precision was randomly chosen.
+    if independent <= 0 or abs(float(sp.N(exact_expr, 15)) - independent) / independent > 1e-9:
         raise ValueError("volume_surface_area_sphere verification failed")
-    decimal_str = _fmt_sig3(exact_expr)
+    decimal_str = format(rounding.round_fn(independent), "f")
 
-    steps.append(f"= {decimal_str} {unit} (3 s.f.)")
+    steps.append(f"= {decimal_str} {unit} ({rounding.short})")
 
     measure_label = "volume" if measure == "volume" else "total surface area"
     flat_face_note = " (including its flat circular face)" if (is_hemisphere and measure == "surface_area") else ""
     prompt = (
         f"A {shape_word} has radius {radius} cm. Find its {measure_label}{flat_face_note}, "
-        "correct to 3 significant figures."
+        f"correct to {rounding.phrase}."
     )
 
     return Question(
-        topic_id="volume_surface_area_sphere",
+        topic_id="volume_surface_area_sphere_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -130,6 +108,7 @@ def generate_modelled_example_volume_surface_area_sphere(tier: Tier, rng: random
     else:
         raise ValueError("modelled example volume_surface_area_sphere could not draw a valid radius")
 
+    rounding = pick_rounding(rng)
     shape_word = "hemisphere" if is_hemisphere else "sphere"
 
     if is_hemisphere:
@@ -155,10 +134,9 @@ def generate_modelled_example_volume_surface_area_sphere(tier: Tier, rng: random
             formula_str = "SA = 4 × π × r²"
             unit = "cm²"
 
-    decimal_answer = sp.N(exact_expr, 3)
-    if independent <= 0 or abs(float(decimal_answer) - independent) / independent > 0.01:
+    if independent <= 0 or abs(float(sp.N(exact_expr, 15)) - independent) / independent > 1e-9:
         raise ValueError("modelled example volume_surface_area_sphere verification failed")
-    decimal_str = _fmt_sig3(exact_expr)
+    decimal_str = format(rounding.round_fn(independent), "f")
 
     if is_hemisphere and measure == "volume":
         teaching_steps = [
@@ -166,7 +144,7 @@ def generate_modelled_example_volume_surface_area_sphere(tier: Tier, rng: random
             "(4/3) × π × r³, which simplifies to (2/3) × π × r³.",
             f"Cube the radius first: {radius}³ = {radius**3}.",
             f"Multiply by (2/3) × π on a calculator: (2/3) × π × {radius**3} ≈ {float(exact_expr):.4f}...",
-            f"Rounded to 3 significant figures, the volume is {decimal_str} cm³.",
+            f"Rounded to {rounding.phrase}, the volume is {decimal_str} cm³.",
         ]
     elif is_hemisphere:
         teaching_steps = [
@@ -176,7 +154,7 @@ def generate_modelled_example_volume_surface_area_sphere(tier: Tier, rng: random
             f"The curved part is half a sphere's surface: (1/2) × 4 × π × r² = 2 × π × r², "
             f"and the flat circular face is just π × r² - together that's 3 × π × r².",
             f"Substitute the radius: 3 × π × {radius}² = 3 × π × {radius**2}.",
-            f"Evaluate on a calculator and round to 3 significant figures: {decimal_str} cm².",
+            f"Evaluate on a calculator and round to {rounding.phrase}: {decimal_str} cm².",
         ]
     elif measure == "volume":
         teaching_steps = [
@@ -184,7 +162,7 @@ def generate_modelled_example_volume_surface_area_sphere(tier: Tier, rng: random
             "the radius - note that the radius is CUBED, not squared.",
             f"Cube the radius first: {radius}³ = {radius**3}.",
             f"Multiply by (4/3) × π on a calculator: (4/3) × π × {radius**3} ≈ {float(exact_expr):.4f}...",
-            f"Rounded to 3 significant figures, the volume is {decimal_str} cm³.",
+            f"Rounded to {rounding.phrase}, the volume is {decimal_str} cm³.",
         ]
     else:
         teaching_steps = [
@@ -192,20 +170,20 @@ def generate_modelled_example_volume_surface_area_sphere(tier: Tier, rng: random
             "is the radius.",
             f"Square the radius first: {radius}² = {radius**2}.",
             f"Multiply by 4 × π on a calculator: 4 × π × {radius**2} ≈ {float(exact_expr):.4f}...",
-            f"Rounded to 3 significant figures, the surface area is {decimal_str} cm².",
+            f"Rounded to {rounding.phrase}, the surface area is {decimal_str} cm².",
         ]
 
-    worked_calculation = [formula_str, f"= {decimal_str} {unit} (3 s.f.)"]
+    worked_calculation = [formula_str, f"= {decimal_str} {unit} ({rounding.short})"]
 
     measure_label = "volume" if measure == "volume" else "total surface area"
     flat_face_note = " (including its flat circular face)" if (is_hemisphere and measure == "surface_area") else ""
     prompt = (
         f"A {shape_word} has radius {radius} cm. Find its {measure_label}{flat_face_note}, "
-        "correct to 3 significant figures."
+        f"correct to {rounding.phrase}."
     )
 
     return ModelledExample(
-        topic_id="volume_surface_area_sphere",
+        topic_id="volume_surface_area_sphere_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -232,6 +210,7 @@ def generate_volume_surface_area_pyramid(tier: Tier, rng: random.Random) -> Ques
         raise ValueError("volume_surface_area_pyramid could not draw valid dimensions")
 
     measure = rng.choice(["volume", "surface_area"])
+    rounding = pick_rounding(rng)
 
     # Slant height of a TRIANGULAR FACE (apex straight down to the midpoint of
     # a base edge) - Pythagoras on the pyramid's vertical height and half the
@@ -246,8 +225,9 @@ def generate_volume_surface_area_pyramid(tier: Tier, rng: random.Random) -> Ques
 
     # Volume doesn't involve l (no sqrt), so it's exact - give it as an exact
     # integer/fraction with no rounding. Surface area DOES involve l, which is
-    # often irrational, so that one is rounded to 3 s.f. instead. (Design
-    # choice, kept consistent throughout this generator.)
+    # often irrational, so that one is rounded to the question's own randomly
+    # chosen precision instead. (Design choice, kept consistent throughout
+    # this generator.)
     volume_exact = sp.Rational(base**2 * height, 3)
     # Independent check: a different grouping of the same formula (multiply
     # the base area by height/3 as a fraction, instead of dividing the whole
@@ -258,11 +238,12 @@ def generate_volume_surface_area_pyramid(tier: Tier, rng: random.Random) -> Ques
         raise ValueError("volume_surface_area_pyramid volume verification failed")
 
     sa_exact = base**2 + 2 * base * l_exact
-    sa_decimal = sp.N(sa_exact, 3)
     # Independent check (b): recompute total surface area via a fully
-    # separate math-library float computation against the sympy-based one.
+    # separate math-library float computation against the sympy-based one,
+    # at full precision (not pre-rounded), so the tolerance stays tight
+    # regardless of which display precision was randomly chosen.
     sa_float_independent = base**2 + 2 * base * l_float_independent
-    if abs(float(sa_decimal) - sa_float_independent) / sa_float_independent > 0.01:
+    if abs(float(sp.N(sa_exact, 15)) - sa_float_independent) / sa_float_independent > 1e-9:
         raise ValueError("volume_surface_area_pyramid surface area verification failed")
 
     if measure == "volume":
@@ -277,25 +258,27 @@ def generate_volume_surface_area_pyramid(tier: Tier, rng: random.Random) -> Ques
             f"of {height} cm. Find its volume."
         )
     else:
-        l_display = _fmt_sig3(l_exact)
-        sa_display = _fmt_sig3(sa_exact)
+        l_display = format(rounding.round_fn(l_float_independent), "f")
+        sa_display = format(rounding.round_fn(sa_float_independent), "f")
         steps = [
             f"Slant height l = √(height² + (base ÷ 2)²) = √({height}² + ({base} ÷ 2)²) ≈ {l_display} cm",
             f"Surface area = base² + 2 × base × l = {base}² + 2 × {base} × {l_display}",
-            f"= {sa_display} cm² (3 s.f.)",
+            f"= {sa_display} cm² ({rounding.short})",
         ]
         final_answer = f"{sa_display} cm²"
         prompt = (
             f"A square-based pyramid has a base of side {base} cm and a perpendicular height "
-            f"of {height} cm. Find its total surface area, correct to 3 significant figures."
+            f"of {height} cm. Find its total surface area, correct to {rounding.phrase}."
         )
 
+    # Diagram shows only the given measurements (base + perpendicular height,
+    # always integers) - the slant height is a derived, usually-irrational
+    # decimal and is deliberately NOT drawn on the figure (user review
+    # feedback: no non-.5 decimals in the shown measurements).
     diagram_params = {"base_label": f"{base} cm", "height_label": f"{height} cm"}
-    if measure == "surface_area":
-        diagram_params["slant_label"] = f"{l_float_independent:.2f} cm"
 
     return Question(
-        topic_id="volume_surface_area_pyramid",
+        topic_id="volume_surface_area_pyramid_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -315,6 +298,7 @@ def generate_modelled_example_volume_surface_area_pyramid(tier: Tier, rng: rando
         raise ValueError("modelled example volume_surface_area_pyramid could not draw valid dimensions")
 
     measure = rng.choice(["volume", "surface_area"])
+    rounding = pick_rounding(rng)
 
     l_exact = sp.sqrt(height**2 + sp.Rational(base, 2) ** 2)
     l_float_from_sympy = float(sp.N(l_exact, 10))
@@ -329,9 +313,8 @@ def generate_modelled_example_volume_surface_area_pyramid(tier: Tier, rng: rando
         raise ValueError("modelled example volume_surface_area_pyramid volume verification failed")
 
     sa_exact = base**2 + 2 * base * l_exact
-    sa_decimal = sp.N(sa_exact, 3)
     sa_float_independent = base**2 + 2 * base * l_float_independent
-    if abs(float(sa_decimal) - sa_float_independent) / sa_float_independent > 0.01:
+    if abs(float(sp.N(sa_exact, 15)) - sa_float_independent) / sa_float_independent > 1e-9:
         raise ValueError("modelled example volume_surface_area_pyramid surface area verification failed")
 
     if measure == "volume":
@@ -358,8 +341,8 @@ def generate_modelled_example_volume_surface_area_pyramid(tier: Tier, rng: rando
             f"of {height} cm. Find its volume."
         )
     else:
-        l_display = _fmt_sig3(l_exact)
-        sa_display = _fmt_sig3(sa_exact)
+        l_display = format(rounding.round_fn(l_float_independent), "f")
+        sa_display = format(rounding.round_fn(sa_float_independent), "f")
         teaching_steps = [
             "Surface area needs the slant height of each triangular face - NOT the vertical "
             "height of the pyramid itself. That slant height runs from the apex down to the "
@@ -370,26 +353,28 @@ def generate_modelled_example_volume_surface_area_pyramid(tier: Tier, rng: rando
             f"The base contributes {base}² = {base**2} cm², and the four triangular faces "
             f"together contribute 2 × base × l = 2 × {base} × {l_display}.",
             f"Add the base and the four faces together: {base**2} + 2 × {base} × {l_display} "
-            f"≈ {sa_display} cm² (3 s.f.).",
+            f"≈ {sa_display} cm² ({rounding.short}).",
         ]
         worked_calculation = [
             f"l = √({height}² + ({base}/2)²) ≈ {l_display} cm",
             "Surface area = base² + 2 × base × l",
             f"= {base}² + 2 × {base} × {l_display}",
-            f"= {sa_display} cm² (3 s.f.)",
+            f"= {sa_display} cm² ({rounding.short})",
         ]
         final_answer = f"{sa_display} cm²"
         prompt = (
             f"A square-based pyramid has a base of side {base} cm and a perpendicular height "
-            f"of {height} cm. Find its total surface area, correct to 3 significant figures."
+            f"of {height} cm. Find its total surface area, correct to {rounding.phrase}."
         )
 
+    # Diagram shows only the given measurements (base + perpendicular height,
+    # always integers) - the slant height is a derived, usually-irrational
+    # decimal and is deliberately NOT drawn on the figure (user review
+    # feedback: no non-.5 decimals in the shown measurements).
     diagram_params = {"base_label": f"{base} cm", "height_label": f"{height} cm"}
-    if measure == "surface_area":
-        diagram_params["slant_label"] = f"{l_float_independent:.2f} cm"
 
     return ModelledExample(
-        topic_id="volume_surface_area_pyramid",
+        topic_id="volume_surface_area_pyramid_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -419,6 +404,7 @@ def _frustum_values(rng: random.Random):
 def generate_frustum_volume_surface_area(tier: Tier, rng: random.Random) -> Question:
     R, r, h = _frustum_values(rng)
     measure = rng.choice(["volume", "surface_area"])
+    rounding = pick_rounding(rng)
 
     # --- Volume, verified via two genuinely different derivations ---
     # Method 1: extend the frustum to the full (imaginary) cone via similar
@@ -436,9 +422,8 @@ def generate_frustum_volume_surface_area(tier: Tier, rng: random.Random) -> Ques
         raise ValueError("frustum_volume_surface_area: the two volume derivations disagree")
 
     volume_exact = volume_method_2
-    volume_decimal = sp.N(volume_exact, 3)
     volume_float_independent = math.pi * h * (R**2 + R * r + r**2) / 3
-    if abs(float(volume_decimal) - volume_float_independent) / volume_float_independent > 0.01:
+    if abs(float(sp.N(volume_exact, 15)) - volume_float_independent) / volume_float_independent > 1e-9:
         raise ValueError("frustum_volume_surface_area volume verification failed")
 
     # --- Surface area ---
@@ -451,44 +436,43 @@ def generate_frustum_volume_surface_area(tier: Tier, rng: random.Random) -> Ques
         raise ValueError("frustum_volume_surface_area slant height verification failed")
 
     total_sa_exact = sp.pi * (R + r) * l_exact + sp.pi * R**2 + sp.pi * r**2
-    sa_decimal = sp.N(total_sa_exact, 3)
     sa_float_independent = math.pi * (R + r) * l_float_independent + math.pi * R**2 + math.pi * r**2
-    if abs(float(sa_decimal) - sa_float_independent) / sa_float_independent > 0.01:
+    if abs(float(sp.N(total_sa_exact, 15)) - sa_float_independent) / sa_float_independent > 1e-9:
         raise ValueError("frustum_volume_surface_area surface area verification failed")
 
     if measure == "volume":
-        volume_display = _fmt_sig3(volume_exact)
+        volume_display = format(rounding.round_fn(volume_float_independent), "f")
         steps = [
             f"Full cone height H = R × h ÷ (R - r) = {R} × {h} ÷ ({R} - {r}) = {sp.N(H, 4)} cm (similar triangles)",
             f"Big cone volume = (1/3) × π × R² × H, small cone volume = (1/3) × π × r² × (H - h)",
             f"Frustum volume = (1/3) × π × h × (R² + Rr + r²) = (1/3) × π × {h} × "
             f"({R}² + {R}×{r} + {r}²)",
-            f"= {volume_display} cm³ (3 s.f.)",
+            f"= {volume_display} cm³ ({rounding.short})",
         ]
         final_answer = f"{volume_display} cm³"
         prompt = (
             f"A frustum is formed from a cone with a bottom radius of {R} cm and a top radius "
-            f"of {r} cm, and a vertical height of {h} cm. Find its volume, correct to 3 "
-            "significant figures."
+            f"of {r} cm, and a vertical height of {h} cm. Find its volume, correct to "
+            f"{rounding.phrase}."
         )
     else:
-        l_display = _fmt_sig3(l_exact)
-        sa_display = _fmt_sig3(total_sa_exact)
+        l_display = format(rounding.round_fn(l_float_independent), "f")
+        sa_display = format(rounding.round_fn(sa_float_independent), "f")
         steps = [
             f"Slant height l = √(h² + (R - r)²) = √({h}² + ({R} - {r})²) ≈ {l_display} cm",
             f"Curved surface area = π × (R + r) × l = π × ({R} + {r}) × {l_display}",
             f"Total surface area = curved + both circular ends = π(R + r)l + πR² + πr²",
-            f"= {sa_display} cm² (3 s.f.)",
+            f"= {sa_display} cm² ({rounding.short})",
         ]
         final_answer = f"{sa_display} cm²"
         prompt = (
             f"A frustum is formed from a cone with a bottom radius of {R} cm and a top radius "
             f"of {r} cm, and a vertical height of {h} cm. Find its total surface area, correct "
-            "to 3 significant figures."
+            f"to {rounding.phrase}."
         )
 
     return Question(
-        topic_id="frustum_volume_surface_area",
+        topic_id="frustum_volume_surface_area_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -508,6 +492,7 @@ def generate_frustum_volume_surface_area(tier: Tier, rng: random.Random) -> Ques
 def generate_modelled_example_frustum_volume_surface_area(tier: Tier, rng: random.Random) -> ModelledExample:
     R, r, h = _frustum_values(rng)
     measure = rng.choice(["volume", "surface_area"])
+    rounding = pick_rounding(rng)
 
     H = sp.Rational(R * h, R - r)
     small_h = H - h
@@ -519,9 +504,8 @@ def generate_modelled_example_frustum_volume_surface_area(tier: Tier, rng: rando
         raise ValueError("modelled example frustum_volume_surface_area: volume derivations disagree")
 
     volume_exact = volume_method_2
-    volume_decimal = sp.N(volume_exact, 3)
     volume_float_independent = math.pi * h * (R**2 + R * r + r**2) / 3
-    if abs(float(volume_decimal) - volume_float_independent) / volume_float_independent > 0.01:
+    if abs(float(sp.N(volume_exact, 15)) - volume_float_independent) / volume_float_independent > 1e-9:
         raise ValueError("modelled example frustum_volume_surface_area volume verification failed")
 
     l_exact = sp.sqrt(h**2 + (R - r) ** 2)
@@ -531,9 +515,8 @@ def generate_modelled_example_frustum_volume_surface_area(tier: Tier, rng: rando
         raise ValueError("modelled example frustum_volume_surface_area slant height verification failed")
 
     total_sa_exact = sp.pi * (R + r) * l_exact + sp.pi * R**2 + sp.pi * r**2
-    sa_decimal = sp.N(total_sa_exact, 3)
     sa_float_independent = math.pi * (R + r) * l_float_independent + math.pi * R**2 + math.pi * r**2
-    if abs(float(sa_decimal) - sa_float_independent) / sa_float_independent > 0.01:
+    if abs(float(sp.N(total_sa_exact, 15)) - sa_float_independent) / sa_float_independent > 1e-9:
         raise ValueError("modelled example frustum_volume_surface_area surface area verification failed")
 
     similar_triangles_intro = (
@@ -547,7 +530,7 @@ def generate_modelled_example_frustum_volume_surface_area(tier: Tier, rng: rando
     )
 
     if measure == "volume":
-        volume_display = _fmt_sig3(volume_exact)
+        volume_display = format(rounding.round_fn(volume_float_independent), "f")
         teaching_steps = [
             similar_triangles_intro,
             f"Using similar triangles, the full cone's height works out as H = R × h ÷ (R - r) "
@@ -558,22 +541,22 @@ def generate_modelled_example_frustum_volume_surface_area(tier: Tier, rng: rando
             "both methods give exactly the same answer, which is a good way to check your work "
             "in an exam if you have time.",
             f"Substituting the numbers into the closed-form formula: (1/3) × π × {h} × "
-            f"({R}² + {R}×{r} + {r}²) ≈ {volume_display} cm³ (3 s.f.).",
+            f"({R}² + {R}×{r} + {r}²) ≈ {volume_display} cm³ ({rounding.short}).",
         ]
         worked_calculation = [
             f"Volume = (1/3) × π × h × (R² + Rr + r²)",
             f"= (1/3) × π × {h} × ({R}² + {R}×{r} + {r}²)",
-            f"≈ {volume_display} cm³ (3 s.f.)",
+            f"≈ {volume_display} cm³ ({rounding.short})",
         ]
         final_answer = f"{volume_display} cm³"
         prompt = (
             f"A frustum is formed from a cone with a bottom radius of {R} cm and a top radius "
-            f"of {r} cm, and a vertical height of {h} cm. Find its volume, correct to 3 "
-            "significant figures."
+            f"of {r} cm, and a vertical height of {h} cm. Find its volume, correct to "
+            f"{rounding.phrase}."
         )
     else:
-        l_display = _fmt_sig3(l_exact)
-        sa_display = _fmt_sig3(total_sa_exact)
+        l_display = format(rounding.round_fn(l_float_independent), "f")
+        sa_display = format(rounding.round_fn(sa_float_independent), "f")
         teaching_steps = [
             "A frustum's total surface area has three parts: the curved sloped surface, the "
             "large circular bottom, and the smaller circular top.",
@@ -584,23 +567,23 @@ def generate_modelled_example_frustum_volume_surface_area(tier: Tier, rng: rando
             f"The curved surface area is π × (R + r) × l = π × ({R} + {r}) × {l_display}, and "
             f"the two circular ends contribute π × R² and π × r² respectively.",
             f"Add all three parts together: π({R}+{r})({l_display}) + π×{R}² + π×{r}² ≈ "
-            f"{sa_display} cm² (3 s.f.).",
+            f"{sa_display} cm² ({rounding.short}).",
         ]
         worked_calculation = [
             f"l = √({h}² + ({R}-{r})²) ≈ {l_display} cm",
             "Total SA = π(R + r)l + πR² + πr²",
             f"= π({R}+{r})({l_display}) + π×{R}² + π×{r}²",
-            f"≈ {sa_display} cm² (3 s.f.)",
+            f"≈ {sa_display} cm² ({rounding.short})",
         ]
         final_answer = f"{sa_display} cm²"
         prompt = (
             f"A frustum is formed from a cone with a bottom radius of {R} cm and a top radius "
             f"of {r} cm, and a vertical height of {h} cm. Find its total surface area, correct "
-            "to 3 significant figures."
+            f"to {rounding.phrase}."
         )
 
     return ModelledExample(
-        topic_id="frustum_volume_surface_area",
+        topic_id="frustum_volume_surface_area_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -629,6 +612,8 @@ def generate_compound_3d_volume(tier: Tier, rng: random.Random) -> Question:
     else:
         raise ValueError("compound_3d_volume could not draw a valid variant")
 
+    rounding = pick_rounding(rng)
+
     if variant == "cylinder_hemisphere":
         radius = rng.randint(2, 10)
         cyl_height = rng.randint(3, 20)
@@ -636,24 +621,23 @@ def generate_compound_3d_volume(tier: Tier, rng: random.Random) -> Question:
         cyl_vol_exact = sp.pi * radius**2 * cyl_height
         hemi_vol_exact = sp.Rational(2, 3) * sp.pi * radius**3
         volume_exact = cyl_vol_exact + hemi_vol_exact
-        decimal_answer = sp.N(volume_exact, 3)
 
         independent_cyl = math.pi * radius**2 * cyl_height
         independent_hemi = (2 / 3) * math.pi * radius**3
         independent_total = independent_cyl + independent_hemi
-        if abs(float(decimal_answer) - independent_total) / independent_total > 0.01:
+        if abs(float(sp.N(volume_exact, 15)) - independent_total) / independent_total > 1e-9:
             raise ValueError("compound_3d_volume (cylinder_hemisphere) verification failed")
-        decimal_str = _fmt_sig3(volume_exact)
+        decimal_str = format(rounding.round_fn(independent_total), "f")
 
         steps = [
             f"Cylinder volume = π × r² × h = π × {radius}² × {cyl_height}",
             f"Hemisphere volume = (2/3) × π × r³ = (2/3) × π × {radius}³",
-            f"Total volume = cylinder + hemisphere ≈ {decimal_str} cm³ (3 s.f.)",
+            f"Total volume = cylinder + hemisphere ≈ {decimal_str} cm³ ({rounding.short})",
         ]
         prompt = (
             f"A capsule-shaped solid is made from a cylinder of radius {radius} cm and height "
             f"{cyl_height} cm, with a hemisphere of the same radius attached to one end. Find "
-            "the total volume, correct to 3 significant figures."
+            f"the total volume, correct to {rounding.phrase}."
         )
         dedup_key = f"compound3d:cyl_hemi:{radius}:{cyl_height}"
         diagram = DiagramSpec(
@@ -673,24 +657,23 @@ def generate_compound_3d_volume(tier: Tier, rng: random.Random) -> Question:
         cone_vol_exact = sp.Rational(1, 3) * sp.pi * radius**2 * cone_height
         hemi_vol_exact = sp.Rational(2, 3) * sp.pi * radius**3
         volume_exact = cone_vol_exact + hemi_vol_exact
-        decimal_answer = sp.N(volume_exact, 3)
 
         independent_cone = (1 / 3) * math.pi * radius**2 * cone_height
         independent_hemi = (2 / 3) * math.pi * radius**3
         independent_total = independent_cone + independent_hemi
-        if abs(float(decimal_answer) - independent_total) / independent_total > 0.01:
+        if abs(float(sp.N(volume_exact, 15)) - independent_total) / independent_total > 1e-9:
             raise ValueError("compound_3d_volume (cone_hemisphere) verification failed")
-        decimal_str = _fmt_sig3(volume_exact)
+        decimal_str = format(rounding.round_fn(independent_total), "f")
 
         steps = [
             f"Cone volume = (1/3) × π × r² × h = (1/3) × π × {radius}² × {cone_height}",
             f"Hemisphere volume = (2/3) × π × r³ = (2/3) × π × {radius}³",
-            f"Total volume = cone + hemisphere ≈ {decimal_str} cm³ (3 s.f.)",
+            f"Total volume = cone + hemisphere ≈ {decimal_str} cm³ ({rounding.short})",
         ]
         prompt = (
             f"An ice-cream-shaped solid is made from a cone of radius {radius} cm and height "
             f"{cone_height} cm, with a hemisphere of the same radius attached to its open end. "
-            "Find the total volume, correct to 3 significant figures."
+            f"Find the total volume, correct to {rounding.phrase}."
         )
         dedup_key = f"compound3d:cone_hemi:{radius}:{cone_height}"
         diagram = DiagramSpec(
@@ -748,7 +731,7 @@ def generate_compound_3d_volume(tier: Tier, rng: random.Random) -> Question:
         final_answer = f"{vol_str} cm³"
 
     return Question(
-        topic_id="compound_3d_volume",
+        topic_id="compound_3d_volume_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -766,6 +749,8 @@ def generate_modelled_example_compound_3d_volume(tier: Tier, rng: random.Random)
     else:
         raise ValueError("modelled example compound_3d_volume could not draw a valid variant")
 
+    rounding = pick_rounding(rng)
+
     if variant == "cylinder_hemisphere":
         radius = rng.randint(2, 10)
         cyl_height = rng.randint(3, 20)
@@ -773,16 +758,15 @@ def generate_modelled_example_compound_3d_volume(tier: Tier, rng: random.Random)
         cyl_vol_exact = sp.pi * radius**2 * cyl_height
         hemi_vol_exact = sp.Rational(2, 3) * sp.pi * radius**3
         volume_exact = cyl_vol_exact + hemi_vol_exact
-        decimal_answer = sp.N(volume_exact, 3)
 
         independent_cyl = math.pi * radius**2 * cyl_height
         independent_hemi = (2 / 3) * math.pi * radius**3
         independent_total = independent_cyl + independent_hemi
-        if abs(float(decimal_answer) - independent_total) / independent_total > 0.01:
+        if abs(float(sp.N(volume_exact, 15)) - independent_total) / independent_total > 1e-9:
             raise ValueError("modelled example compound_3d_volume (cylinder_hemisphere) verification failed")
-        decimal_str = _fmt_sig3(volume_exact)
-        cyl_vol_str = _fmt_sig3(cyl_vol_exact)
-        hemi_vol_str = _fmt_sig3(hemi_vol_exact)
+        decimal_str = format(rounding.round_fn(independent_total), "f")
+        cyl_vol_str = format(rounding.round_fn(independent_cyl), "f")
+        hemi_vol_str = format(rounding.round_fn(independent_hemi), "f")
 
         teaching_steps = [
             "A compound solid made of two joined shapes has a total volume that's simply the "
@@ -793,7 +777,7 @@ def generate_modelled_example_compound_3d_volume(tier: Tier, rng: random.Random)
             f"The hemisphere on the end has volume (2/3) × π × r³ = (2/3) × π × {radius}³ ≈ "
             f"{hemi_vol_str} cm³.",
             f"Add the two parts together: {cyl_vol_str} + {hemi_vol_str} "
-            f"≈ {decimal_str} cm³ (3 s.f.).",
+            f"≈ {decimal_str} cm³ ({rounding.short}).",
         ]
         worked_calculation = [
             f"Cylinder = π × {radius}² × {cyl_height} ≈ {cyl_vol_str} cm³",
@@ -803,7 +787,7 @@ def generate_modelled_example_compound_3d_volume(tier: Tier, rng: random.Random)
         prompt = (
             f"A capsule-shaped solid is made from a cylinder of radius {radius} cm and height "
             f"{cyl_height} cm, with a hemisphere of the same radius attached to one end. Find "
-            "the total volume, correct to 3 significant figures."
+            f"the total volume, correct to {rounding.phrase}."
         )
         final_answer = f"{decimal_str} cm³"
         diagram = DiagramSpec(
@@ -822,16 +806,15 @@ def generate_modelled_example_compound_3d_volume(tier: Tier, rng: random.Random)
         cone_vol_exact = sp.Rational(1, 3) * sp.pi * radius**2 * cone_height
         hemi_vol_exact = sp.Rational(2, 3) * sp.pi * radius**3
         volume_exact = cone_vol_exact + hemi_vol_exact
-        decimal_answer = sp.N(volume_exact, 3)
 
         independent_cone = (1 / 3) * math.pi * radius**2 * cone_height
         independent_hemi = (2 / 3) * math.pi * radius**3
         independent_total = independent_cone + independent_hemi
-        if abs(float(decimal_answer) - independent_total) / independent_total > 0.01:
+        if abs(float(sp.N(volume_exact, 15)) - independent_total) / independent_total > 1e-9:
             raise ValueError("modelled example compound_3d_volume (cone_hemisphere) verification failed")
-        decimal_str = _fmt_sig3(volume_exact)
-        cone_vol_str = _fmt_sig3(cone_vol_exact)
-        hemi_vol_str = _fmt_sig3(hemi_vol_exact)
+        decimal_str = format(rounding.round_fn(independent_total), "f")
+        cone_vol_str = format(rounding.round_fn(independent_cone), "f")
+        hemi_vol_str = format(rounding.round_fn(independent_hemi), "f")
 
         teaching_steps = [
             "This 'ice-cream' shape is a cone with a hemisphere sitting on its open end - "
@@ -841,7 +824,7 @@ def generate_modelled_example_compound_3d_volume(tier: Tier, rng: random.Random)
             f"The hemisphere's volume is (2/3) × π × r³ = (2/3) × π × {radius}³ ≈ "
             f"{hemi_vol_str} cm³.",
             f"Add the two parts: {cone_vol_str} + {hemi_vol_str} ≈ "
-            f"{decimal_str} cm³ (3 s.f.).",
+            f"{decimal_str} cm³ ({rounding.short}).",
         ]
         worked_calculation = [
             f"Cone = (1/3) × π × {radius}² × {cone_height} ≈ {cone_vol_str} cm³",
@@ -851,7 +834,7 @@ def generate_modelled_example_compound_3d_volume(tier: Tier, rng: random.Random)
         prompt = (
             f"An ice-cream-shaped solid is made from a cone of radius {radius} cm and height "
             f"{cone_height} cm, with a hemisphere of the same radius attached to its open end. "
-            "Find the total volume, correct to 3 significant figures."
+            f"Find the total volume, correct to {rounding.phrase}."
         )
         final_answer = f"{decimal_str} cm³"
         diagram = DiagramSpec(
@@ -912,7 +895,7 @@ def generate_modelled_example_compound_3d_volume(tier: Tier, rng: random.Random)
         )
 
     return ModelledExample(
-        topic_id="compound_3d_volume",
+        topic_id="compound_3d_volume_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -942,6 +925,8 @@ def generate_compound_3d_surface_area(tier: Tier, rng: random.Random) -> Questio
     else:
         raise ValueError("compound_3d_surface_area could not draw a valid variant")
 
+    rounding = pick_rounding(rng)
+
     if variant == "cylinder_hemisphere":
         radius = rng.randint(2, 10)
         cyl_height = rng.randint(3, 20)
@@ -951,12 +936,11 @@ def generate_compound_3d_surface_area(tier: Tier, rng: random.Random) -> Questio
         # top (covered by the hemisphere) or the hemisphere's flat face
         # (glued to the cylinder top) - both are internal.
         sa_exact = 2 * sp.pi * radius * cyl_height + 3 * sp.pi * radius**2
-        decimal_answer = sp.N(sa_exact, 3)
 
         independent_total = 2 * math.pi * radius * cyl_height + 3 * math.pi * radius**2
-        if abs(float(decimal_answer) - independent_total) / independent_total > 0.01:
+        if abs(float(sp.N(sa_exact, 15)) - independent_total) / independent_total > 1e-9:
             raise ValueError("compound_3d_surface_area (cylinder_hemisphere) verification failed")
-        decimal_str = _fmt_sig3(sa_exact)
+        decimal_str = format(rounding.round_fn(independent_total), "f")
 
         steps = [
             f"Cylinder curved surface = 2 × π × r × h = 2 × π × {radius} × {cyl_height}",
@@ -964,12 +948,12 @@ def generate_compound_3d_surface_area(tier: Tier, rng: random.Random) -> Questio
             "so it's excluded)",
             f"Hemisphere curved surface = 2 × π × r² = 2 × π × {radius}² (its flat face is "
             "glued to the cylinder, so it's excluded too)",
-            f"Total surface area ≈ {decimal_str} cm² (3 s.f.)",
+            f"Total surface area ≈ {decimal_str} cm² ({rounding.short})",
         ]
         prompt = (
             f"A capsule-shaped solid is made from a cylinder of radius {radius} cm and height "
             f"{cyl_height} cm, with a hemisphere of the same radius attached to one end. Find "
-            "the total surface area, correct to 3 significant figures."
+            f"the total surface area, correct to {rounding.phrase}."
         )
         dedup_key = f"compound3d_sa:cyl_hemi:{radius}:{cyl_height}"
         diagram = DiagramSpec(
@@ -999,27 +983,28 @@ def generate_compound_3d_surface_area(tier: Tier, rng: random.Random) -> Questio
         # where the hemisphere attaches), and the hemisphere's flat face is
         # glued on - both internal.
         sa_exact = sp.pi * radius * l_exact + 2 * sp.pi * radius**2
-        decimal_answer = sp.N(sa_exact, 3)
 
         # Independent check (b): recompute total surface area via a fully
-        # separate math-library float computation against the sympy-based one.
+        # separate math-library float computation against the sympy-based
+        # one, at full precision (not pre-rounded), so the tolerance stays
+        # tight regardless of which display precision was randomly chosen.
         sa_float_independent = math.pi * radius * l_float_independent + 2 * math.pi * radius**2
-        if abs(float(decimal_answer) - sa_float_independent) / sa_float_independent > 0.01:
+        if abs(float(sp.N(sa_exact, 15)) - sa_float_independent) / sa_float_independent > 1e-9:
             raise ValueError("compound_3d_surface_area (cone_hemisphere) verification failed")
-        decimal_str = _fmt_sig3(sa_exact)
-        l_display = _fmt_sig3(l_exact)
+        decimal_str = format(rounding.round_fn(sa_float_independent), "f")
+        l_display = format(rounding.round_fn(l_float_independent), "f")
 
         steps = [
             f"Slant height l = √(r² + h²) = √({radius}² + {cone_height}²) ≈ {l_display} cm",
             f"Cone curved surface = π × r × l = π × {radius} × {l_display}",
             f"Hemisphere curved surface = 2 × π × r² = 2 × π × {radius}² (the cone's base and "
             "the hemisphere's flat face are both glued together internally, so neither is exposed)",
-            f"Total surface area ≈ {decimal_str} cm² (3 s.f.)",
+            f"Total surface area ≈ {decimal_str} cm² ({rounding.short})",
         ]
         prompt = (
             f"An ice-cream-shaped solid is made from a cone of radius {radius} cm and height "
             f"{cone_height} cm, with a hemisphere of the same radius attached to its open end. "
-            "Find the total surface area, correct to 3 significant figures."
+            f"Find the total surface area, correct to {rounding.phrase}."
         )
         dedup_key = f"compound3d_sa:cone_hemi:{radius}:{cone_height}"
         diagram = DiagramSpec(
@@ -1048,13 +1033,12 @@ def generate_compound_3d_surface_area(tier: Tier, rng: random.Random) -> Questio
         # pyramid's own base - the same square, entirely internal between the
         # two solids.
         sa_exact = 4 * base * box_height + base**2 + 2 * base * slant_exact
-        decimal_answer = sp.N(sa_exact, 3)
 
         sa_float_independent = 4 * base * box_height + base**2 + 2 * base * slant_float_independent
-        if abs(float(decimal_answer) - sa_float_independent) / sa_float_independent > 0.01:
+        if abs(float(sp.N(sa_exact, 15)) - sa_float_independent) / sa_float_independent > 1e-9:
             raise ValueError("compound_3d_surface_area (cuboid_pyramid) verification failed")
-        decimal_str = _fmt_sig3(sa_exact)
-        slant_display = _fmt_sig3(slant_exact)
+        decimal_str = format(rounding.round_fn(sa_float_independent), "f")
+        slant_display = format(rounding.round_fn(slant_float_independent), "f")
 
         steps = [
             f"Slant height of a triangular face l = √(roof height² + (base ÷ 2)²) = "
@@ -1063,13 +1047,13 @@ def generate_compound_3d_surface_area(tier: Tier, rng: random.Random) -> Questio
             f"Cuboid's base = base² = {base}² (the top is covered by the pyramid, and the "
             "pyramid's own base is the same internal square, so neither is exposed)",
             f"Pyramid's 4 triangular faces = 2 × base × l = 2 × {base} × {slant_display}",
-            f"Total surface area ≈ {decimal_str} cm² (3 s.f.)",
+            f"Total surface area ≈ {decimal_str} cm² ({rounding.short})",
         ]
         prompt = (
             f"A silo-shaped solid is made from a cuboid with a square base of side {base} cm "
             f"and height {box_height} cm, with a square-based pyramid of height {roof_height} cm "
-            "on top (sharing the same square base). Find the total surface area, correct to 3 "
-            "significant figures."
+            "on top (sharing the same square base). Find the total surface area, correct to "
+            f"{rounding.phrase}."
         )
         dedup_key = f"compound3d_sa:cuboid_pyr:{base}:{box_height}:{roof_height}"
         diagram = DiagramSpec(
@@ -1083,7 +1067,7 @@ def generate_compound_3d_surface_area(tier: Tier, rng: random.Random) -> Questio
         final_answer = f"{decimal_str} cm²"
 
     return Question(
-        topic_id="compound_3d_surface_area",
+        topic_id="compound_3d_surface_area_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -1101,20 +1085,24 @@ def generate_modelled_example_compound_3d_surface_area(tier: Tier, rng: random.R
     else:
         raise ValueError("modelled example compound_3d_surface_area could not draw a valid variant")
 
+    rounding = pick_rounding(rng)
+
     if variant == "cylinder_hemisphere":
         radius = rng.randint(2, 10)
         cyl_height = rng.randint(3, 20)
 
         sa_exact = 2 * sp.pi * radius * cyl_height + 3 * sp.pi * radius**2
-        decimal_answer = sp.N(sa_exact, 3)
 
-        independent_total = 2 * math.pi * radius * cyl_height + 3 * math.pi * radius**2
-        if abs(float(decimal_answer) - independent_total) / independent_total > 0.01:
+        curved_independent = 2 * math.pi * radius * cyl_height
+        base_independent = math.pi * radius**2
+        hemi_independent = 2 * math.pi * radius**2
+        independent_total = curved_independent + base_independent + hemi_independent
+        if abs(float(sp.N(sa_exact, 15)) - independent_total) / independent_total > 1e-9:
             raise ValueError("modelled example compound_3d_surface_area (cylinder_hemisphere) verification failed")
-        decimal_str = _fmt_sig3(sa_exact)
-        curved_str = _fmt_sig3(2 * sp.pi * radius * cyl_height)
-        base_str = _fmt_sig3(sp.pi * radius**2)
-        hemi_str = _fmt_sig3(2 * sp.pi * radius**2)
+        decimal_str = format(rounding.round_fn(independent_total), "f")
+        curved_str = format(rounding.round_fn(curved_independent), "f")
+        base_str = format(rounding.round_fn(base_independent), "f")
+        hemi_str = format(rounding.round_fn(hemi_independent), "f")
 
         teaching_steps = [
             "For a compound solid's surface area, only the faces you can actually see or touch "
@@ -1127,7 +1115,7 @@ def generate_modelled_example_compound_3d_surface_area(tier: Tier, rng: random.R
             f"{radius}² ≈ {hemi_str} cm² - its flat circular face is the one glued to the "
             "cylinder's top, so it's hidden and doesn't count.",
             f"Add the three exposed pieces together: {curved_str} + {base_str} + {hemi_str} "
-            f"≈ {decimal_str} cm² (3 s.f.).",
+            f"≈ {decimal_str} cm² ({rounding.short}).",
         ]
         worked_calculation = [
             f"Cylinder curved = 2 × π × {radius} × {cyl_height} ≈ {curved_str} cm²",
@@ -1138,7 +1126,7 @@ def generate_modelled_example_compound_3d_surface_area(tier: Tier, rng: random.R
         prompt = (
             f"A capsule-shaped solid is made from a cylinder of radius {radius} cm and height "
             f"{cyl_height} cm, with a hemisphere of the same radius attached to one end. Find "
-            "the total surface area, correct to 3 significant figures."
+            f"the total surface area, correct to {rounding.phrase}."
         )
         final_answer = f"{decimal_str} cm²"
         diagram = DiagramSpec(
@@ -1163,15 +1151,16 @@ def generate_modelled_example_compound_3d_surface_area(tier: Tier, rng: random.R
             )
 
         sa_exact = sp.pi * radius * l_exact + 2 * sp.pi * radius**2
-        decimal_answer = sp.N(sa_exact, 3)
 
-        sa_float_independent = math.pi * radius * l_float_independent + 2 * math.pi * radius**2
-        if abs(float(decimal_answer) - sa_float_independent) / sa_float_independent > 0.01:
+        cone_independent = math.pi * radius * l_float_independent
+        hemi_independent = 2 * math.pi * radius**2
+        sa_float_independent = cone_independent + hemi_independent
+        if abs(float(sp.N(sa_exact, 15)) - sa_float_independent) / sa_float_independent > 1e-9:
             raise ValueError("modelled example compound_3d_surface_area (cone_hemisphere) verification failed")
-        decimal_str = _fmt_sig3(sa_exact)
-        l_display = _fmt_sig3(l_exact)
-        cone_str = _fmt_sig3(sp.pi * radius * l_exact)
-        hemi_str = _fmt_sig3(2 * sp.pi * radius**2)
+        decimal_str = format(rounding.round_fn(sa_float_independent), "f")
+        l_display = format(rounding.round_fn(l_float_independent), "f")
+        cone_str = format(rounding.round_fn(cone_independent), "f")
+        hemi_str = format(rounding.round_fn(hemi_independent), "f")
 
         teaching_steps = [
             "As with any compound solid, only the outside-facing surfaces count - wherever the "
@@ -1184,7 +1173,7 @@ def generate_modelled_example_compound_3d_surface_area(tier: Tier, rng: random.R
             "the hemisphere attaches.",
             f"The hemisphere contributes only its curved surface, 2 × π × r² = 2 × π × "
             f"{radius}² ≈ {hemi_str} cm² - its flat face is glued to the cone, so it's hidden.",
-            f"Add the two exposed pieces: {cone_str} + {hemi_str} ≈ {decimal_str} cm² (3 s.f.).",
+            f"Add the two exposed pieces: {cone_str} + {hemi_str} ≈ {decimal_str} cm² ({rounding.short}).",
         ]
         worked_calculation = [
             f"l = √({radius}² + {cone_height}²) ≈ {l_display} cm",
@@ -1195,7 +1184,7 @@ def generate_modelled_example_compound_3d_surface_area(tier: Tier, rng: random.R
         prompt = (
             f"An ice-cream-shaped solid is made from a cone of radius {radius} cm and height "
             f"{cone_height} cm, with a hemisphere of the same radius attached to its open end. "
-            "Find the total surface area, correct to 3 significant figures."
+            f"Find the total surface area, correct to {rounding.phrase}."
         )
         final_answer = f"{decimal_str} cm²"
         diagram = DiagramSpec(
@@ -1221,15 +1210,14 @@ def generate_modelled_example_compound_3d_surface_area(tier: Tier, rng: random.R
             )
 
         sa_exact = 4 * base * box_height + base**2 + 2 * base * slant_exact
-        decimal_answer = sp.N(sa_exact, 3)
 
         sa_float_independent = 4 * base * box_height + base**2 + 2 * base * slant_float_independent
-        if abs(float(decimal_answer) - sa_float_independent) / sa_float_independent > 0.01:
+        if abs(float(sp.N(sa_exact, 15)) - sa_float_independent) / sa_float_independent > 1e-9:
             raise ValueError("modelled example compound_3d_surface_area (cuboid_pyramid) verification failed")
-        decimal_str = _fmt_sig3(sa_exact)
-        slant_display = _fmt_sig3(slant_exact)
+        decimal_str = format(rounding.round_fn(sa_float_independent), "f")
+        slant_display = format(rounding.round_fn(slant_float_independent), "f")
         sides_val = 4 * base * box_height
-        pyramid_faces_str = _fmt_sig3(2 * base * slant_exact)
+        pyramid_faces_str = format(rounding.round_fn(2 * base * slant_float_independent), "f")
 
         teaching_steps = [
             "Again, only the outside-facing surfaces count - the cuboid's top and the pyramid's "
@@ -1245,7 +1233,7 @@ def generate_modelled_example_compound_3d_surface_area(tier: Tier, rng: random.R
             f"{slant_display} ≈ {pyramid_faces_str} cm² - but not its own base, since that's "
             "the same square already counted as the cuboid's bottom.",
             f"Add the exposed pieces together: {sides_val} + {base**2} + {pyramid_faces_str} "
-            f"≈ {decimal_str} cm² (3 s.f.).",
+            f"≈ {decimal_str} cm² ({rounding.short}).",
         ]
         worked_calculation = [
             f"Cuboid sides = 4 × {base} × {box_height} = {sides_val} cm²",
@@ -1257,8 +1245,8 @@ def generate_modelled_example_compound_3d_surface_area(tier: Tier, rng: random.R
         prompt = (
             f"A silo-shaped solid is made from a cuboid with a square base of side {base} cm "
             f"and height {box_height} cm, with a square-based pyramid of height {roof_height} cm "
-            "on top (sharing the same square base). Find the total surface area, correct to 3 "
-            "significant figures."
+            "on top (sharing the same square base). Find the total surface area, correct to "
+            f"{rounding.phrase}."
         )
         final_answer = f"{decimal_str} cm²"
         diagram = DiagramSpec(
@@ -1271,7 +1259,7 @@ def generate_modelled_example_compound_3d_surface_area(tier: Tier, rng: random.R
         )
 
     return ModelledExample(
-        topic_id="compound_3d_surface_area",
+        topic_id="compound_3d_surface_area_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -1286,7 +1274,7 @@ def generate_modelled_example_compound_3d_surface_area(tier: Tier, rng: random.R
 # ---------------------------------------------------------------------------
 
 TOPIC_VOLUME_SURFACE_AREA_SPHERE = TopicDefinition(
-    id="volume_surface_area_sphere",
+    id="volume_surface_area_sphere_H",
     display_name="Volume & Surface Area of a Sphere",
     description="Find the volume or total surface area of a sphere or hemisphere.",
     generate=generate_volume_surface_area_sphere,
@@ -1294,10 +1282,14 @@ TOPIC_VOLUME_SURFACE_AREA_SPHERE = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_volume_surface_area_sphere,
+    preamble_lines=(
+        "Volume of a sphere = (4/3) × π × r³",
+        "Surface area of a sphere = 4 × π × r²",
+    ),
 )
 
 TOPIC_VOLUME_SURFACE_AREA_PYRAMID = TopicDefinition(
-    id="volume_surface_area_pyramid",
+    id="volume_surface_area_pyramid_H",
     display_name="Volume & Surface Area of a Pyramid",
     description="Find the volume or total surface area of a square-based pyramid.",
     generate=generate_volume_surface_area_pyramid,
@@ -1305,10 +1297,14 @@ TOPIC_VOLUME_SURFACE_AREA_PYRAMID = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_volume_surface_area_pyramid,
+    preamble_lines=(
+        "Volume of a pyramid = (1/3) × base² × height",
+        "Surface area of a pyramid = base² + 2 × base × l, where l is the slant height of a face",
+    ),
 )
 
 TOPIC_FRUSTUM_VOLUME_SURFACE_AREA = TopicDefinition(
-    id="frustum_volume_surface_area",
+    id="frustum_volume_surface_area_H",
     display_name="Volume & Surface Area of a Frustum",
     description="Find the volume or total surface area of a cone-based frustum.",
     generate=generate_frustum_volume_surface_area,
@@ -1316,10 +1312,14 @@ TOPIC_FRUSTUM_VOLUME_SURFACE_AREA = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_frustum_volume_surface_area,
+    preamble_lines=(
+        "Volume of a frustum = (1/3) × π × h × (R² + Rr + r²), where R and r are the two radii",
+        "Surface area of a frustum = π(R + r)l + πR² + πr², where l is the slant height",
+    ),
 )
 
 TOPIC_COMPOUND_3D_VOLUME = TopicDefinition(
-    id="compound_3d_volume",
+    id="compound_3d_volume_H",
     display_name="Compound 3D Shapes (Volume)",
     description="Find the volume of a compound solid made from two joined 3D shapes.",
     generate=generate_compound_3d_volume,
@@ -1327,10 +1327,15 @@ TOPIC_COMPOUND_3D_VOLUME = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_compound_3d_volume,
+    preamble_lines=(
+        "Volume of a cone = (1/3) × π × r² × h",
+        "Volume of a sphere = (4/3) × π × r³ (a hemisphere is half this)",
+        "Volume of a pyramid = (1/3) × base² × height",
+    ),
 )
 
 TOPIC_COMPOUND_3D_SURFACE_AREA = TopicDefinition(
-    id="compound_3d_surface_area",
+    id="compound_3d_surface_area_H",
     display_name="Compound 3D Shapes (Surface Area)",
     description="Find the surface area of a compound solid made from two joined 3D shapes.",
     generate=generate_compound_3d_surface_area,
@@ -1338,4 +1343,9 @@ TOPIC_COMPOUND_3D_SURFACE_AREA = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_compound_3d_surface_area,
+    preamble_lines=(
+        "Curved surface area of a cone = πrl, where l is the slant height",
+        "Curved surface area of a sphere = 4 × π × r² (a hemisphere's curved part is half this)",
+        "Surface area of a pyramid's triangular faces = 2 × base × l, where l is a face's slant height",
+    ),
 )

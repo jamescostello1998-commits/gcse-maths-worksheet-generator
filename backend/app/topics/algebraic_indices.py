@@ -62,7 +62,7 @@ def generate_algebraic_indices_foundation(tier: Tier, rng: random.Random) -> Que
             f"= {_term(coeff, exp)}",
         ]
         return Question(
-            topic_id="algebraic_indices_foundation",
+            topic_id="algebraic_indices_F",
             tier=Tier.FOUNDATION,
             prompt=f"Simplify {_term(c1, p)} × {_term(c2, q)}",
             solution_steps=tuple(steps),
@@ -89,7 +89,7 @@ def generate_algebraic_indices_foundation(tier: Tier, rng: random.Random) -> Que
             f"= {_term(r, exp)}",
         ]
         return Question(
-            topic_id="algebraic_indices_foundation",
+            topic_id="algebraic_indices_F",
             tier=Tier.FOUNDATION,
             prompt=f"Simplify {_term(c1, p)} ÷ {_term(c2, q)}",
             solution_steps=tuple(steps),
@@ -113,7 +113,7 @@ def generate_algebraic_indices_foundation(tier: Tier, rng: random.Random) -> Que
         f"= {_term(coeff, exp)}",
     ]
     return Question(
-        topic_id="algebraic_indices_foundation",
+        topic_id="algebraic_indices_F",
         tier=Tier.FOUNDATION,
         prompt=f"Simplify ({_term(c, p)})^{q}",
         solution_steps=tuple(steps),
@@ -150,7 +150,7 @@ def generate_modelled_example_algebraic_indices_foundation(tier: Tier, rng: rand
             f"= {_term(coeff, exp)}",
         ]
         return ModelledExample(
-            topic_id="algebraic_indices_foundation",
+            topic_id="algebraic_indices_F",
             tier=Tier.FOUNDATION,
             prompt=f"Simplify {_term(c1, p)} × {_term(c2, q)}",
             worked_calculation=tuple(worked_calculation),
@@ -185,7 +185,7 @@ def generate_modelled_example_algebraic_indices_foundation(tier: Tier, rng: rand
             f"= {_term(r, exp)}",
         ]
         return ModelledExample(
-            topic_id="algebraic_indices_foundation",
+            topic_id="algebraic_indices_F",
             tier=Tier.FOUNDATION,
             prompt=f"Simplify {_term(c1, p)} ÷ {_term(c2, q)}",
             worked_calculation=tuple(worked_calculation),
@@ -215,7 +215,7 @@ def generate_modelled_example_algebraic_indices_foundation(tier: Tier, rng: rand
         f"= {_term(coeff, exp)}",
     ]
     return ModelledExample(
-        topic_id="algebraic_indices_foundation",
+        topic_id="algebraic_indices_F",
         tier=Tier.FOUNDATION,
         prompt=f"Simplify ({_term(c, p)})^{q}",
         worked_calculation=tuple(worked_calculation),
@@ -261,7 +261,10 @@ def _frac_multiply_params(rng: random.Random) -> tuple[int, int, int, int, int]:
 
 
 def generate_algebraic_indices_higher(tier: Tier, rng: random.Random) -> Question:
-    shape = rng.choice(["multiply", "divide", "power", "fractional"])
+    # Weighted towards "fractional" - a genuine fractional exponent is this
+    # topic's own distinguishing content, so it should show up more often
+    # than an even 4-way split (25%) would give it.
+    shape = rng.choices(["multiply", "divide", "power", "fractional"], weights=[20, 20, 20, 40], k=1)[0]
 
     if shape == "multiply":
         c1, c2 = rng.randint(1, 6), rng.randint(1, 6)
@@ -280,7 +283,7 @@ def generate_algebraic_indices_higher(tier: Tier, rng: random.Random) -> Questio
             f"= {_term(coeff, exp)}",
         ]
         return Question(
-            topic_id="algebraic_indices_higher",
+            topic_id="algebraic_indices_H",
             tier=Tier.HIGHER,
             prompt=f"Simplify {_term(c1, p)} × {_term(c2, q)}",
             solution_steps=tuple(steps),
@@ -307,7 +310,7 @@ def generate_algebraic_indices_higher(tier: Tier, rng: random.Random) -> Questio
             f"= {_term(r, exp)}",
         ]
         return Question(
-            topic_id="algebraic_indices_higher",
+            topic_id="algebraic_indices_H",
             tier=Tier.HIGHER,
             prompt=f"Simplify {_term(c1, p)} ÷ {_term(c2, q)}",
             solution_steps=tuple(steps),
@@ -333,7 +336,7 @@ def generate_algebraic_indices_higher(tier: Tier, rng: random.Random) -> Questio
             f"= {_term(coeff, exp)}",
         ]
         return Question(
-            topic_id="algebraic_indices_higher",
+            topic_id="algebraic_indices_H",
             tier=Tier.HIGHER,
             prompt=f"Simplify ({_term(c, p)})^{q}",
             solution_steps=tuple(steps),
@@ -359,11 +362,12 @@ def generate_algebraic_indices_higher(tier: Tier, rng: random.Random) -> Questio
 
         steps = [
             "Multiplying powers of the same base: add the exponents, even when they're fractions.",
-            f"{_term_frac(c1, m1, n)} × {_term_frac(c2, m2, n)} = ({c1}×{c2}) x^({m1}/{n}+{m2}/{n})",
+            f"{_term_frac(c1, m1, n)} × {_term_frac(c2, m2, n)} = "
+            f"({c1}×{c2}) x^(\\frac{{{m1}}}{{{n}}}+\\frac{{{m2}}}{{{n}}})",
             f"= {_term(coeff, k)}",
         ]
         return Question(
-            topic_id="algebraic_indices_higher",
+            topic_id="algebraic_indices_H",
             tier=Tier.HIGHER,
             prompt=f"Simplify {_term_frac(c1, m1, n)} × {_term_frac(c2, m2, n)}",
             solution_steps=tuple(steps),
@@ -391,7 +395,7 @@ def generate_algebraic_indices_higher(tier: Tier, rng: random.Random) -> Questio
         f"({base_coeff}x^{base_exp})^(1/2) = {_term(c, m)}",
     ]
     return Question(
-        topic_id="algebraic_indices_higher",
+        topic_id="algebraic_indices_H",
         tier=Tier.HIGHER,
         prompt=f"Simplify ({base_coeff}x^{base_exp})^(1/2), given that x > 0.",
         solution_steps=tuple(steps),
@@ -401,7 +405,10 @@ def generate_algebraic_indices_higher(tier: Tier, rng: random.Random) -> Questio
 
 
 def generate_modelled_example_algebraic_indices_higher(tier: Tier, rng: random.Random) -> ModelledExample:
-    shape = rng.choice(["multiply", "divide", "power", "fractional"])
+    # Weighted towards "fractional" - a genuine fractional exponent is this
+    # topic's own distinguishing content, so it should show up more often
+    # than an even 4-way split (25%) would give it.
+    shape = rng.choices(["multiply", "divide", "power", "fractional"], weights=[20, 20, 20, 40], k=1)[0]
 
     if shape == "multiply":
         c1, c2 = rng.randint(1, 6), rng.randint(1, 6)
@@ -432,7 +439,7 @@ def generate_modelled_example_algebraic_indices_higher(tier: Tier, rng: random.R
             f"= {_term(coeff, exp)}",
         ]
         return ModelledExample(
-            topic_id="algebraic_indices_higher",
+            topic_id="algebraic_indices_H",
             tier=Tier.HIGHER,
             prompt=f"Simplify {_term(c1, p)} × {_term(c2, q)}",
             worked_calculation=tuple(worked_calculation),
@@ -470,7 +477,7 @@ def generate_modelled_example_algebraic_indices_higher(tier: Tier, rng: random.R
             f"= {_term(r, exp)}",
         ]
         return ModelledExample(
-            topic_id="algebraic_indices_higher",
+            topic_id="algebraic_indices_H",
             tier=Tier.HIGHER,
             prompt=f"Simplify {_term(c1, p)} ÷ {_term(c2, q)}",
             worked_calculation=tuple(worked_calculation),
@@ -502,7 +509,7 @@ def generate_modelled_example_algebraic_indices_higher(tier: Tier, rng: random.R
             f"= {_term(coeff, exp)}",
         ]
         return ModelledExample(
-            topic_id="algebraic_indices_higher",
+            topic_id="algebraic_indices_H",
             tier=Tier.HIGHER,
             prompt=f"Simplify ({_term(c, p)})^{q}",
             worked_calculation=tuple(worked_calculation),
@@ -533,11 +540,11 @@ def generate_modelled_example_algebraic_indices_higher(tier: Tier, rng: random.R
         ]
         worked_calculation = [
             f"{_term_frac(c1, m1, n)} × {_term_frac(c2, m2, n)}",
-            f"= ({c1}×{c2}) x^({m1}/{n}+{m2}/{n})",
+            f"= ({c1}×{c2}) x^(\\frac{{{m1}}}{{{n}}}+\\frac{{{m2}}}{{{n}}})",
             f"= {_term(coeff, k)}",
         ]
         return ModelledExample(
-            topic_id="algebraic_indices_higher",
+            topic_id="algebraic_indices_H",
             tier=Tier.HIGHER,
             prompt=f"Simplify {_term_frac(c1, m1, n)} × {_term_frac(c2, m2, n)}",
             worked_calculation=tuple(worked_calculation),
@@ -570,7 +577,7 @@ def generate_modelled_example_algebraic_indices_higher(tier: Tier, rng: random.R
         f"= {_term(c, m)}",
     ]
     return ModelledExample(
-        topic_id="algebraic_indices_higher",
+        topic_id="algebraic_indices_H",
         tier=Tier.HIGHER,
         prompt=f"Simplify ({base_coeff}x^{base_exp})^(1/2), given that x > 0.",
         worked_calculation=tuple(worked_calculation),
@@ -580,7 +587,7 @@ def generate_modelled_example_algebraic_indices_higher(tier: Tier, rng: random.R
 
 
 TOPIC_ALGEBRAIC_INDICES_FOUNDATION = TopicDefinition(
-    id="algebraic_indices_foundation",
+    id="algebraic_indices_F",
     display_name="Laws of Indices with Algebra",
     description="Multiply, divide, and raise to a power algebraic terms with positive integer exponents.",
     generate=generate_algebraic_indices_foundation,
@@ -591,7 +598,7 @@ TOPIC_ALGEBRAIC_INDICES_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_ALGEBRAIC_INDICES_HIGHER = TopicDefinition(
-    id="algebraic_indices_higher",
+    id="algebraic_indices_H",
     display_name="Laws of Indices with Algebra (Negative and Fractional)",
     description="Apply the laws of indices to algebraic terms with negative, zero, and fractional exponents.",
     generate=generate_algebraic_indices_higher,

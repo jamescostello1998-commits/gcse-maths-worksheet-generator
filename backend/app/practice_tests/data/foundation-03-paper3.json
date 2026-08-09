@@ -4,9 +4,10 @@
   "tier": "foundation",
   "sitting_id": "foundation-03",
   "paper_number": 3,
+  "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "multiples",
+      "topic_id": "multiples_F",
       "prompt": "Is 59 a multiple of 6?",
       "solution_steps": [
         "59 ÷ 6 = 9 remainder 5",
@@ -35,7 +36,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_add_subtract",
+      "topic_id": "fractions_add_subtract_F",
       "prompt": "Work out 1/3 + 3/6. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Find a common denominator: LCM(3, 6) = 6",
@@ -76,12 +77,12 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_ordering",
-      "prompt": "Write these fractions in order, smallest to largest: 1/6, 4/5, 4/11, 4/9, 3/4",
+      "topic_id": "fractions_ordering_F",
+      "prompt": "Write these fractions in ascending order: 1/6, 4/5, 4/11, 4/9, 3/4",
       "solution_steps": [
         "Convert every fraction to the same denominator, the LCM of 6, 5, 11, 9, 4: 1980",
         "Rewrite each fraction over 1980: 1/6 = 330/1980, 4/5 = 1584/1980, 4/11 = 720/1980, 4/9 = 880/1980, 3/4 = 1485/1980",
-        "Order the numerators from smallest to largest and convert back: 1/6, 4/11, 4/9, 3/4, 4/5"
+        "Order the numerators in ascending order and convert back: 1/6, 4/11, 4/9, 3/4, 4/5"
       ],
       "final_answer": "1/6, 4/11, 4/9, 3/4, 4/5",
       "marks": 4,
@@ -98,7 +99,7 @@
         },
         {
           "code": "M1",
-          "description": "Order the numerators from smallest to largest and convert back: 1/6, 4/11, 4/9, 3/4, 4/5",
+          "description": "Order the numerators in ascending order and convert back: 1/6, 4/11, 4/9, 3/4, 4/5",
           "marks": 1
         },
         {
@@ -111,7 +112,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_to",
+      "topic_id": "standard_form_to_F",
       "prompt": "Write 3000 in standard form.",
       "solution_steps": [
         "Move the decimal point until there is one non-zero digit before it: 3",
@@ -146,7 +147,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "lcm_by_listing",
+      "topic_id": "lcm_by_listing_F",
       "prompt": "Find the lowest common multiple (LCM) of 4 and 6.",
       "solution_steps": [
         "Multiples of 4: 4, 8, 12, 16, 20, ...",
@@ -181,7 +182,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "prime_factors_foundation",
+      "topic_id": "prime_factors_F",
       "prompt": "Write 182 as a product of its prime factors.",
       "solution_steps": [
         "Divide 182 repeatedly by the smallest prime that fits: 2 × 7 × 13",
@@ -210,8 +211,8 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_of_amount",
-      "prompt": "Find 4/7 of 189.",
+      "topic_id": "fractions_of_amount_F",
+      "prompt": "Work out 4/7 of 189.",
       "solution_steps": [
         "Divide by the denominator: 189 ÷ 7 = 27",
         "Multiply by the numerator: 27 × 4 = 108"
@@ -239,28 +240,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_term_to_term_rule",
-      "prompt": "Here are the first four terms of a sequence: -1, -2, -4, -8. Describe the term-to-term rule, and find the next term.",
+      "topic_id": "sequences_next_term_F",
+      "prompt": "Find the next term in the sequence: 18, 24, 30, 36, 42, ...",
       "solution_steps": [
-        "Term-to-term rule: multiply by 2",
-        "Next term = -16"
+        "Add 6 each time.",
+        "Next term = 42 + 6 = 48"
       ],
-      "final_answer": "Rule: multiply by 2. Next term = -16",
+      "final_answer": "48",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Term-to-term rule: multiply by 2",
+          "description": "Add 6 each time.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Next term = -16",
+          "description": "Next term = 42 + 6 = 48",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Rule: multiply by 2. Next term = -16 oe",
+          "description": "48 oe",
           "marks": 1
         }
       ],
@@ -268,7 +269,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_two_step",
+      "topic_id": "linear_two_step_F",
       "prompt": "Solve: 8x + 12 = 52",
       "solution_steps": [
         "8x + 12 = 52",
@@ -310,28 +311,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_quadratics_foundation",
-      "prompt": "Factorise: x^2 + 9x + 20",
+      "topic_id": "factorise_common_factor_F",
+      "prompt": "Factorise: 9x + 21",
       "solution_steps": [
-        "Find two numbers that multiply to 20 and add to 9: 4 and 5",
-        "Write as two brackets: (x + 4)(x + 5)"
+        "Find the highest common factor of 9 and 21: 3",
+        "Factorise: 3(3x + 7)"
       ],
-      "final_answer": "(x + 4)(x + 5)",
+      "final_answer": "3(3x + 7)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to 20 and add to 9: 4 and 5",
+          "description": "Find the highest common factor of 9 and 21: 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write as two brackets: (x + 4)(x + 5)",
+          "description": "Factorise: 3(3x + 7)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(x + 4)(x + 5) oe",
+          "description": "3(3x + 7) oe",
           "marks": 1
         }
       ],
@@ -339,42 +340,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "satisfying_inequalities_foundation",
-      "prompt": "Solve the inequality 0 ≤ 3x + 4 ≤ 8, then list the integer values of x that satisfy it.",
+      "topic_id": "solving_inequalities_F",
+      "prompt": "Solve the inequality: 6x - 7 < -5",
       "solution_steps": [
-        "0 ≤ 3x + 4 ≤ 8",
-        "Subtract 4 from all three parts:",
-        "-4 ≤ 3x ≤ 4",
-        "Divide all three parts by 3:",
-        "-4/3 ≤ x ≤ 4/3",
-        "The integers satisfying this are: -1, 0, 1"
+        "6x - 7 < -5",
+        "Add 7 to both sides:",
+        "6x < 2",
+        "Divide both sides by 6:",
+        "x < 1/3"
       ],
-      "final_answer": "-1, 0, 1",
+      "final_answer": "x < 1/3",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "0 ≤ 3x + 4 ≤ 8",
+          "description": "6x - 7 < -5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 4 from all three parts:",
+          "description": "Add 7 to both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-4 ≤ 3x ≤ 4",
+          "description": "6x < 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide all three parts by 3: -4/3 ≤ x ≤ 4/3 The integers satisfying this are: -1, 0, 1",
+          "description": "Divide both sides by 6: x < 1/3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-1, 0, 1 oe",
+          "description": "x < 1/3 oe",
           "marks": 1
         }
       ],
@@ -382,8 +382,8 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_nth_term",
-      "prompt": "Here are the first four terms of a sequence: -10, -5, 0, 5. Find an expression for the nth term.",
+      "topic_id": "sequences_nth_term_F",
+      "prompt": "Here are the first four terms of a sequence: -10, -5, 0, 5.\nFind an expression for the nth term.",
       "solution_steps": [
         "Common difference = 5",
         "nth term = 5n - 15",
@@ -417,78 +417,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_indices_foundation",
-      "prompt": "Simplify (6x^2)^4",
+      "topic_id": "solve_quadratic_factorising_F",
+      "prompt": "Solve x^2 + 12x + 32 = 0 by factorising.",
       "solution_steps": [
-        "Raising a power to another power: multiply the exponents, and raise the coefficient to that power too.",
-        "(6x^2)^4 = 6^4 x^(2×4)",
-        "= 1296x^8"
+        "Find two numbers that multiply to 32 and add to 12: 8 and 4",
+        "Factorise: (x + 8)(x + 4) = 0",
+        "Either x + 8 = 0 or x + 4 = 0",
+        "x = -8 or x = -4"
       ],
-      "final_answer": "1296x^8",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Raising a power to another power: multiply the exponents, and raise the coefficient to that power too.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(6x^2)^4 = 6^4 x^(2×4)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 1296x^8",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1296x^8 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "linear_both_sides_foundation",
-      "prompt": "Solve: 2x + 2 = 5x - 28",
-      "solution_steps": [
-        "2x + 2 = 5x - 28",
-        "Subtract 5x from both sides:",
-        "-3x + 2 = -28",
-        "Subtract 2 from both sides:",
-        "-3x = -30",
-        "Divide both sides by -3:",
-        "x = 10"
-      ],
-      "final_answer": "10",
+      "final_answer": "x = -8 or x = -4",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "2x + 2 = 5x - 28",
+          "description": "Find two numbers that multiply to 32 and add to 12: 8 and 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 5x from both sides:",
+          "description": "Factorise: (x + 8)(x + 4) = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-3x + 2 = -28",
+          "description": "Either x + 8 = 0 or x + 4 = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 2 from both sides: -3x = -30 Divide both sides by -3: x = 10",
+          "description": "x = -8 or x = -4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10 oe",
+          "description": "x = -8 or x = -4 oe",
           "marks": 1
         }
       ],
@@ -496,28 +458,71 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_next_term",
-      "prompt": "Find the next term in the sequence: 18, 24, 30, 36, 42, ...",
+      "topic_id": "linear_brackets_F",
+      "prompt": "Solve: 2(5x + 3) = 56",
       "solution_steps": [
-        "Add 6 each time.",
-        "Next term = 42 + 6 = 48"
+        "Expand the bracket: 2(5x + 3) = 10x + 6",
+        "10x + 6 = 56",
+        "Subtract 6 from both sides:",
+        "10x = 50",
+        "Divide both sides by 10:",
+        "x = 5"
       ],
-      "final_answer": "48",
+      "final_answer": "5",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: 2(5x + 3) = 10x + 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "10x + 6 = 56",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 6 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "10x = 50 Divide both sides by 10: x = 5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "direct_proportion_noncalculator_F",
+      "prompt": "If 6 cm on a map represents 12 km in real life, how many km does 24 cm represent?",
+      "solution_steps": [
+        "Unit value = 12 km ÷ 6 = 2 km",
+        "Answer = 2 km × 24 = 48 km"
+      ],
+      "final_answer": "48 km",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Add 6 each time.",
+          "description": "Unit value = 12 km ÷ 6 = 2 km",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Next term = 42 + 6 = 48",
+          "description": "Answer = 2 km × 24 = 48 km",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "48 oe",
+          "description": "48 km oe",
           "marks": 1
         }
       ],
@@ -525,7 +530,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "find_percentage_change",
+      "topic_id": "find_percentage_change_F",
       "prompt": "The price of an item changes from £340 to £323. Find the percentage decrease.",
       "solution_steps": [
         "Find the difference between the two values: £323 and £340 differ by £17",
@@ -554,40 +559,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_two_part",
-      "prompt": "Share 255 in the ratio 9:6.",
+      "topic_id": "best_buys_noncalculator_F",
+      "prompt": "A shop sells orange juice in different sizes: A: £3.60 for 200ml; B: £7.70 for 700ml. Which option is the better value for money? Show your working.",
       "solution_steps": [
-        "Total parts = 9 + 6 = 15",
-        "Value of one part = 255 ÷ 15 = 17",
-        "Share 1 = 9 × 17 = 153",
-        "Share 2 = 6 × 17 = 102"
+        "Work out the price per 100ml for each option:",
+        "A: £3.60 ÷ 200 × 100 = 180p per 100ml",
+        "B: £7.70 ÷ 700 × 100 = 110p per 100ml",
+        "The lowest price per 100ml is B at 110p per 100ml, so B is the best value."
       ],
-      "final_answer": "153 : 102",
+      "final_answer": "B (£7.70 for 700ml)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 9 + 6 = 15",
+          "description": "Work out the price per 100ml for each option:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 255 ÷ 15 = 17",
+          "description": "A: £3.60 ÷ 200 × 100 = 180p per 100ml",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 1 = 9 × 17 = 153",
+          "description": "B: £7.70 ÷ 700 × 100 = 110p per 100ml",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 2 = 6 × 17 = 102",
+          "description": "The lowest price per 100ml is B at 110p per 100ml, so B is the best value.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "153 : 102 oe",
+          "description": "B (£7.70 for 700ml) oe",
           "marks": 1
         }
       ],
@@ -595,28 +600,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inverse_proportion",
-      "prompt": "It takes 12 painters 22 hours to paint a fence. Working at the same rate, how long would it take 11 painters?",
+      "topic_id": "inverse_proportion_noncalculator_F",
+      "prompt": "It takes 3 painters 20 hours to paint a fence. Working at the same rate, how long would it take 5 painters?",
       "solution_steps": [
-        "Constant = 12 × 22 = 264",
-        "Time for 11 painters = 264 ÷ 11 = 24"
+        "Constant = 3 × 20 = 60",
+        "Time for 5 painters = 60 ÷ 5 = 12"
       ],
-      "final_answer": "24 hours",
+      "final_answer": "12 hours",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Constant = 12 × 22 = 264",
+          "description": "Constant = 3 × 20 = 60",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Time for 11 painters = 264 ÷ 11 = 24",
+          "description": "Time for 5 painters = 60 ÷ 5 = 12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "24 hours oe",
+          "description": "12 hours oe",
           "marks": 1
         }
       ],
@@ -624,7 +629,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pressure",
+      "topic_id": "pressure_F",
       "prompt": "A crate exerts a pressure of 24 N/cm² over a contact area of 42 cm². Find the force.",
       "solution_steps": [
         "force = pressure × area",
@@ -653,185 +658,226 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_difference",
-      "prompt": "Two amounts are in the ratio 1:2. The difference between them is 17. Find both amounts.",
+      "topic_id": "volume_surface_area_triangular_prism_F",
+      "prompt": "A triangular prism has a right-angled triangular cross-section with sides 18 cm and 24 cm (hypotenuse 30 cm), and length 5 cm. Find its volume.",
       "solution_steps": [
-        "Difference in parts = 2 - 1 = 1 parts",
-        "Value of one part = 17 ÷ 1 = 17",
-        "First amount = 1 × 17 = 17",
-        "Second amount = 2 × 17 = 34"
+        "Cross-section area = (1/2) × 18 × 24 = 216 cm²",
+        "Volume = cross-section area × length = 216 × 5 = 1080 cm³"
       ],
-      "final_answer": "17 : 34",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Difference in parts = 2 - 1 = 1 parts",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Value of one part = 17 ÷ 1 = 17",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "First amount = 1 × 17 = 17",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Second amount = 2 × 17 = 34",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "17 : 34 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "angles_triangle",
-      "prompt": "A triangle has angles 28°, 117°, and x°. Find x.",
-      "solution_steps": [
-        "Angles in a triangle sum to 180°.",
-        "x = 180 - (28 + 117) = 180 - 145 = 35"
-      ],
-      "final_answer": "35",
+      "final_answer": "1080 cm³",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles in a triangle sum to 180°.",
+          "description": "Cross-section area = (1/2) × 18 × 24 = 216 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 180 - (28 + 117) = 180 - 145 = 35",
+          "description": "Volume = cross-section area × length = 216 × 5 = 1080 cm³",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "35 oe",
+          "description": "1080 cm³ oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "triangle_angles",
+        "kind": "triangular_prism",
         "params": {
-          "angle_labels": [
-            "28°",
-            "117°",
-            "x"
+          "base_label": "18 cm",
+          "triangle_height_label": "24 cm",
+          "length_label": "5 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_parallel_lines_F",
+      "prompt": "A line crosses two parallel lines. The angle 138° and the angle x° are co-interior angles. Find x.",
+      "solution_steps": [
+        "Co-interior angles sum to 180°.",
+        "x = 42"
+      ],
+      "final_answer": "42",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Co-interior angles sum to 180°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 42",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "42 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "parallel_lines",
+        "params": {
+          "known_label": "138°",
+          "unknown_label": "x",
+          "relation": "co_interior",
+          "known_value": 138,
+          "x_frac": 0.44
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "properties_3d_shapes_F",
+      "prompt": "How many vertices does a square-based pyramid have?",
+      "solution_steps": [
+        "A vertex is a corner point where edges meet.",
+        "A square-based pyramid has 5 faces (1 square base + 4 triangular sides), 8 edges, and 5 vertices (4 base corners + 1 apex).",
+        "So a square-based pyramid has 5 vertices."
+      ],
+      "final_answer": "5",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A vertex is a corner point where edges meet.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A square-based pyramid has 5 faces (1 square base + 4 triangular sides), 8 edges, and 5 vertices (4 base corners + 1 apex).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "So a square-based pyramid has 5 vertices.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "pyramid",
+        "params": {
+          "base_label": "5 cm",
+          "height_label": "6 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "congruent_triangle_proof_F",
+      "prompt": "Lines AC and BD cross at point O, with OA = OC and OB = OD. Which congruence criterion proves that the two triangles are congruent? A) RHS  B) SAS  C) ASA  D) SSS",
+      "solution_steps": [
+        "OA = OC (given)",
+        "angle AOB = angle COD (vertically opposite angles)",
+        "OB = OD (given)",
+        "These facts match the Side-Angle-Side (SAS) congruence criterion."
+      ],
+      "final_answer": "B) SAS",
+      "marks": 1,
+      "mark_scheme": [
+        {
+          "code": "B1",
+          "description": "B) SAS (selecting the correct option)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "two_triangle_congruence",
+        "params": {
+          "labels_1": [
+            "A",
+            "O",
+            "B"
+          ],
+          "labels_2": [
+            "C",
+            "O",
+            "D"
+          ],
+          "ticks_1": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              2
+            ]
+          ],
+          "ticks_2": [
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              1,
+              2,
+              2
+            ]
+          ],
+          "arcs_1": [
+            [
+              1,
+              1
+            ]
+          ],
+          "arcs_2": [
+            [
+              1,
+              1
+            ]
           ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "vectors_arithmetic_foundation",
-      "prompt": "\\vec{a} = (-3, -1) and \\vec{b} = (1, -7). Find 2\\vec{a} + 3\\vec{b}.",
+      "topic_id": "construction_perpendicular_bisector_F",
+      "prompt": "Line segment EQ has length 7 cm. Describe, step by step, how to construct the perpendicular bisector of EQ using only a ruler and a pair of compasses.",
       "solution_steps": [
-        "\\vec{a} = (-3, -1), \\vec{b} = (1, -7)",
-        "2\\vec{a} = (-6, -2) and 3\\vec{b} = (3, -21)",
-        "2\\vec{a} + 3\\vec{b} = (-3, -23)"
+        "Open the compasses to a radius more than half of 7 cm (more than half the length of EQ).",
+        "With the compass point on E, draw an arc above and below the line.",
+        "Without changing the compass radius, place the point on Q and draw two more arcs, crossing the first two.",
+        "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of EQ."
       ],
-      "final_answer": "(-3, -23)",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "\\vec{a} = (-3, -1), \\vec{b} = (1, -7)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2\\vec{a} = (-6, -2) and 3\\vec{b} = (3, -21)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2\\vec{a} + 3\\vec{b} = (-3, -23)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(-3, -23) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "area_rectangle",
-      "prompt": "A rectangle has length 4 cm and width 3 cm. Find its area.",
-      "solution_steps": [
-        "Area = length × width = 4 × 3 = 12 cm²"
-      ],
-      "final_answer": "12 cm²",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Area = length × width = 4 × 3 = 12 cm²",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "12 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "rectangle",
-        "params": {
-          "width": 4,
-          "height": 3,
-          "width_label": "4 cm",
-          "height_label": "3 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "construction_angle_bisector",
-      "prompt": "Angle YZK = 52°. Describe, step by step, how to construct the bisector of angle YZK using only a ruler and a pair of compasses.",
-      "solution_steps": [
-        "Open the compasses to any radius and place the point on Z (the vertex of the angle).",
-        "Draw an arc that crosses both arms of the angle, at a point on ZY and a point on ZK.",
-        "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
-        "Draw a straight line from Z through the point where the two arcs intersect. This line is the bisector of angle YZK."
-      ],
-      "final_answer": "The straight line from Z through the intersection of the two equal-radius arcs bisects angle YZK into two equal angles.",
+      "final_answer": "A straight line through the two arc intersections, crossing EQ at its midpoint at a right angle.",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Open the compasses to any radius and place the point on Z (the vertex of the angle).",
+          "description": "Open the compasses to a radius more than half of 7 cm (more than half the length of EQ).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Draw an arc that crosses both arms of the angle, at a point on ZY and a point on ZK.",
+          "description": "With the compass point on E, draw an arc above and below the line.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
+          "description": "Without changing the compass radius, place the point on Q and draw two more arcs, crossing the first two.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Draw a straight line from Z through the point where the two arcs intersect. This line is the bisector of angle YZK.",
+          "description": "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of EQ.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "The straight line from Z through the intersection of the two equal-radius arcs bisects angle YZK into two equal angles. oe",
+          "description": "A straight line through the two arc intersections, crossing EQ at its midpoint at a right angle. oe",
           "marks": 1
         }
       ],
@@ -839,43 +885,67 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_exterior_foundation",
-      "prompt": "An exterior angle of a triangle is x°. The two remote interior angles are 43° and 51°. Find x.",
+      "topic_id": "probability_and_or_rule_F",
+      "prompt": "A 4-sided spinner is spun (P(landing on 4) = 1/4) and a fair die is rolled (P(rolling a 1) = 1/6). These two events are independent. Find P(landing on 4 and rolling a 1).",
       "solution_steps": [
-        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
-        "x = 43 + 51 = 94"
+        "P(landing on 4) = 1/4",
+        "P(rolling a 1) = 1/6",
+        "These are independent events, so P(landing on 4 and rolling a 1) = P(landing on 4) × P(rolling a 1) = 1/4 × 1/6 = 1/24"
       ],
-      "final_answer": "94",
-      "marks": 3,
+      "final_answer": "1/24",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+          "description": "P(landing on 4) = 1/4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 43 + 51 = 94",
+          "description": "P(rolling a 1) = 1/6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "These are independent events, so P(landing on 4 and rolling a 1) = P(landing on 4) × P(rolling a 1) = 1/4 × 1/6 = 1/24",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "94 oe",
+          "description": "1/24 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "exterior_triangle",
+        "kind": "event_pair",
         "params": {
-          "interior1_label": "43°",
-          "interior2_label": "51°",
-          "exterior_label": "x"
+          "event_a": {
+            "kind": "spinner",
+            "sectors": [
+              "1",
+              "2",
+              "3",
+              "4"
+            ],
+            "highlight": [
+              3
+            ]
+          },
+          "event_b": {
+            "kind": "dice",
+            "values": [
+              1
+            ],
+            "highlight": [
+              0
+            ]
+          }
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_complement",
+      "topic_id": "probability_complement_F",
       "prompt": "A bag contains 3 red, 8 blue, 4 yellow counters. A counter is picked at random. Find the probability that it is NOT yellow.",
       "solution_steps": [
         "P(yellow) = 4/15 = 4/15",
@@ -907,54 +977,77 @@
             "red": 3,
             "blue": 8,
             "yellow": 4
-          },
-          "highlight": "yellow"
+          }
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_listing_outcomes",
-      "prompt": "Two 3-sided spinners are spun: one labelled 1, 2, 3 and the other labelled 1, 2, 3. List all the possible outcomes.",
+      "topic_id": "fractions_equivalent_diagram_F",
+      "prompt": "How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
       "solution_steps": [
-        "There are 3 possible outcomes for the first event and 3 for the second, so there are 3 × 3 = 9 possible combined outcomes.",
-        "For each outcome of the first event, list every outcome of the second event: 11, 12, 13, 21, 22, 23, 31, 32, 33"
+        "Shape A shows 1/2 shaded; Shape B has 8 equal parts.",
+        "Find the scale factor between the denominators: 8 ÷ 2 = 4",
+        "Multiply the shaded count by the same scale factor: 1 × 4 = 4"
       ],
-      "final_answer": "11, 12, 13, 21, 22, 23, 31, 32, 33",
-      "marks": 3,
+      "final_answer": "4",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "There are 3 possible outcomes for the first event and 3 for the second, so there are 3 × 3 = 9 possible combined outcomes.",
+          "description": "Shape A shows 1/2 shaded; Shape B has 8 equal parts.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For each outcome of the first event, list every outcome of the second event: 11, 12, 13, 21, 22, 23, 31, 32, 33",
+          "description": "Find the scale factor between the denominators: 8 ÷ 2 = 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply the shaded count by the same scale factor: 1 × 4 = 4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "11, 12, 13, 21, 22, 23, 31, 32, 33 oe",
+          "description": "4 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "spinner_pair",
+        "kind": "fraction_shapes",
         "params": {
-          "sectors_a": [
-            "1",
-            "2",
-            "3"
-          ],
-          "sectors_b": [
-            "1",
-            "2",
-            "3"
+          "shapes": [
+            {
+              "kind": "bar",
+              "parts": 2,
+              "shaded": 1
+            },
+            {
+              "kind": "bar",
+              "parts": 8,
+              "shaded": 0
+            }
           ]
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "fraction_shapes",
+        "params": {
+          "shapes": [
+            {
+              "kind": "bar",
+              "parts": 2,
+              "shaded": 1
+            },
+            {
+              "kind": "bar",
+              "parts": 8,
+              "shaded": 4
+            }
+          ]
+        }
+      }
     }
   ]
 }

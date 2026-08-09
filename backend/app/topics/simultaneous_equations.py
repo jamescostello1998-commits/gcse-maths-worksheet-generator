@@ -82,7 +82,7 @@ def generate_common_coefficient(tier: Tier, rng: random.Random) -> Question:
         f"Substitute x = {sol_x} into (1): {b}y = {e - a * sol_x}, so y = {sol_y}",
     ]
     return Question(
-        topic_id="simultaneous_common_coefficient",
+        topic_id="simultaneous_common_coefficient_F",
         tier=Tier.FOUNDATION,
         prompt=f"Solve the simultaneous equations: {eq1} and {eq2}",
         solution_steps=tuple(steps),
@@ -127,7 +127,7 @@ def generate_different_coefficient(tier: Tier, rng: random.Random) -> Question:
         f"Substitute x = {sol_x} into (1): {b}y = {e - a * sol_x}, so y = {sol_y}",
     ]
     return Question(
-        topic_id="simultaneous_different_coefficient",
+        topic_id="simultaneous_different_coefficient_H",
         tier=Tier.HIGHER,
         prompt=f"Solve the simultaneous equations: {eq1} and {eq2}",
         solution_steps=tuple(steps),
@@ -173,7 +173,7 @@ def generate_forming_and_solving(tier: Tier, rng: random.Random) -> Question:
         f"Solving simultaneously: x = {price_x}, y = {price_y}",
     ]
     return Question(
-        topic_id="simultaneous_forming_and_solving",
+        topic_id="simultaneous_forming_and_solving_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -212,7 +212,7 @@ def generate_simultaneous_quadratic(tier: Tier, rng: random.Random) -> Question:
         f"When x = {r1}, y = {y1}. When x = {r2}, y = {y2}.",
     ]
     return Question(
-        topic_id="simultaneous_quadratic",
+        topic_id="simultaneous_quadratic_H",
         tier=Tier.HIGHER,
         prompt=f"Solve the simultaneous equations: {quad_str} and {line_str}",
         solution_steps=tuple(steps),
@@ -241,7 +241,7 @@ def generate_simultaneous_graphically(tier: Tier, rng: random.Random) -> Questio
         f"The lines cross at x = {sol_x}, y = {sol_y}.",
     ]
     return Question(
-        topic_id="simultaneous_graphically",
+        topic_id="simultaneous_graphically_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"The graphs of {line1} and {line2} are shown below. "
@@ -252,7 +252,11 @@ def generate_simultaneous_graphically(tier: Tier, rng: random.Random) -> Questio
         dedup_key=f"sim_graph:{m1}:{c1}:{m2}:{c2}",
         diagram=DiagramSpec(
             kind="linear_graph_pair",
-            params={"intersection_label": "?", "label1": line1, "label2": line2},
+            params={
+                "label1": line1, "label2": line2,
+                "m1": m1, "c1": c1, "m2": m2, "c2": c2,
+                "sol_x": sol_x, "sol_y": sol_y,
+            },
         ),
     )
 
@@ -299,7 +303,7 @@ def generate_modelled_example_common_coefficient(tier: Tier, rng: random.Random)
         f"y = {sol_y}",
     ]
     return ModelledExample(
-        topic_id="simultaneous_common_coefficient",
+        topic_id="simultaneous_common_coefficient_F",
         tier=Tier.FOUNDATION,
         prompt=f"Solve the simultaneous equations: {eq1} and {eq2}",
         worked_calculation=tuple(worked_calculation),
@@ -355,7 +359,7 @@ def generate_modelled_example_different_coefficient(tier: Tier, rng: random.Rand
         f"x = {sol_x}, y = {sol_y}",
     ]
     return ModelledExample(
-        topic_id="simultaneous_different_coefficient",
+        topic_id="simultaneous_different_coefficient_H",
         tier=Tier.HIGHER,
         prompt=f"Solve the simultaneous equations: {eq1} and {eq2}",
         worked_calculation=tuple(worked_calculation),
@@ -417,7 +421,7 @@ def generate_modelled_example_forming_and_solving(tier: Tier, rng: random.Random
         f"x = {price_x}, y = {price_y}",
     ]
     return ModelledExample(
-        topic_id="simultaneous_forming_and_solving",
+        topic_id="simultaneous_forming_and_solving_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -468,7 +472,7 @@ def generate_modelled_example_simultaneous_quadratic(tier: Tier, rng: random.Ran
         f"({r1}, {y1}) and ({r2}, {y2})",
     ]
     return ModelledExample(
-        topic_id="simultaneous_quadratic",
+        topic_id="simultaneous_quadratic_H",
         tier=Tier.HIGHER,
         prompt=f"Solve the simultaneous equations: {quad_str} and {line_str}",
         worked_calculation=tuple(worked_calculation),
@@ -507,7 +511,7 @@ def generate_modelled_example_simultaneous_graphically(tier: Tier, rng: random.R
         f"Intersection: ({sol_x}, {sol_y})",
     ]
     return ModelledExample(
-        topic_id="simultaneous_graphically",
+        topic_id="simultaneous_graphically_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"The graphs of {line1} and {line2} are shown below. "
@@ -518,13 +522,17 @@ def generate_modelled_example_simultaneous_graphically(tier: Tier, rng: random.R
         final_answer=f"x = {sol_x}, y = {sol_y}",
         diagram=DiagramSpec(
             kind="linear_graph_pair",
-            params={"intersection_label": f"({sol_x}, {sol_y})", "label1": line1, "label2": line2},
+            params={
+                "label1": line1, "label2": line2,
+                "m1": m1, "c1": c1, "m2": m2, "c2": c2,
+                "sol_x": sol_x, "sol_y": sol_y,
+            },
         ),
     )
 
 
 TOPIC_COMMON_COEFFICIENT = TopicDefinition(
-    id="simultaneous_common_coefficient",
+    id="simultaneous_common_coefficient_F",
     display_name="Common Coefficient",
     description="Solve simultaneous equations where a coefficient already matches, by adding or subtracting.",
     generate=generate_common_coefficient,
@@ -535,7 +543,7 @@ TOPIC_COMMON_COEFFICIENT = TopicDefinition(
 )
 
 TOPIC_DIFFERENT_COEFFICIENT = TopicDefinition(
-    id="simultaneous_different_coefficient",
+    id="simultaneous_different_coefficient_H",
     display_name="Different Coefficients",
     description="Solve simultaneous equations by scaling one or both equations before eliminating.",
     generate=generate_different_coefficient,
@@ -546,7 +554,7 @@ TOPIC_DIFFERENT_COEFFICIENT = TopicDefinition(
 )
 
 TOPIC_FORMING_AND_SOLVING = TopicDefinition(
-    id="simultaneous_forming_and_solving",
+    id="simultaneous_forming_and_solving_F",
     display_name="Forming and Solving",
     description="Form a pair of simultaneous equations from a worded context, then solve them.",
     generate=generate_forming_and_solving,
@@ -557,7 +565,7 @@ TOPIC_FORMING_AND_SOLVING = TopicDefinition(
 )
 
 TOPIC_QUADRATIC = TopicDefinition(
-    id="simultaneous_quadratic",
+    id="simultaneous_quadratic_H",
     display_name="Quadratic Simultaneous Equations",
     description="Solve a linear equation simultaneously with a quadratic equation.",
     generate=generate_simultaneous_quadratic,
@@ -568,7 +576,7 @@ TOPIC_QUADRATIC = TopicDefinition(
 )
 
 TOPIC_GRAPHICALLY = TopicDefinition(
-    id="simultaneous_graphically",
+    id="simultaneous_graphically_F",
     display_name="Solving Graphically",
     description="Read the solution to a pair of simultaneous linear equations from their graphs.",
     generate=generate_simultaneous_graphically,

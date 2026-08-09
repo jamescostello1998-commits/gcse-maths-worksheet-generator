@@ -4,9 +4,10 @@
   "tier": "foundation",
   "sitting_id": "foundation-04",
   "paper_number": 3,
+  "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "standard_form_to",
+      "topic_id": "standard_form_to_F",
       "prompt": "Write 800 in standard form.",
       "solution_steps": [
         "Move the decimal point until there is one non-zero digit before it: 8",
@@ -41,7 +42,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_from_large",
+      "topic_id": "standard_form_from_large_F",
       "prompt": "Write 2 × 10^6 as an ordinary number.",
       "solution_steps": [
         "Multiply 2 by 10^6, which means moving the decimal point 6 place(s) right.",
@@ -70,7 +71,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_add_subtract",
+      "topic_id": "decimals_add_subtract_F",
       "prompt": "Work out 77.07 - 9.35.",
       "solution_steps": [
         "Line up the decimal points, padding with a zero so both numbers have the same number of decimal places.",
@@ -99,8 +100,8 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_multiply",
-      "prompt": "Work out 4.7 × 2.61.",
+      "topic_id": "decimals_multiply_F",
+      "prompt": "Calculate 4.7 × 2.61.",
       "solution_steps": [
         "Ignore the decimal points and multiply the whole numbers: 47 × 261 = 12267",
         "Count the total decimal places in the question: 1 + 2 = 3",
@@ -134,7 +135,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_round_dp",
+      "topic_id": "decimals_round_dp_F",
       "prompt": "Round 84.597 to 2 decimal places.",
       "solution_steps": [
         "Look at the digit after the 2 decimal places we want: 7, so round up.",
@@ -163,8 +164,8 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_add_subtract",
-      "prompt": "Work out 8/10 - 2/4. Give your answer as a fraction in its simplest form.",
+      "topic_id": "fractions_add_subtract_F",
+      "prompt": "Calculate 8/10 - 2/4. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Find a common denominator: LCM(10, 4) = 20",
         "Convert: 8/10 = 16/20, 2/4 = 10/20",
@@ -204,28 +205,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_equivalent",
-      "prompt": "5/6 = ?/48. Find the missing numerator.",
+      "topic_id": "fractions_equivalent_F",
+      "prompt": "3/4 = \\frac{24}{?}. Find the missing number.",
       "solution_steps": [
-        "Find the scale factor between the denominators: 48 ÷ 6 = 8",
-        "Multiply the numerator by the same scale factor: 5 × 8 = 40"
+        "Find the scale factor between the numerators: 24 ÷ 3 = 8",
+        "Multiply the denominator by the same scale factor: 4 × 8 = 32"
       ],
-      "final_answer": "40",
+      "final_answer": "32",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the scale factor between the denominators: 48 ÷ 6 = 8",
+          "description": "Find the scale factor between the numerators: 24 ÷ 3 = 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the numerator by the same scale factor: 5 × 8 = 40",
+          "description": "Multiply the denominator by the same scale factor: 4 × 8 = 32",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "40 oe",
+          "description": "32 oe",
           "marks": 1
         }
       ],
@@ -233,7 +234,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "parallel_lines_equation",
+      "topic_id": "parallel_lines_equation_F",
       "prompt": "A line is parallel to y = -x + 6 and passes through the point (-4, 3). Find the equation of the line.",
       "solution_steps": [
         "Parallel lines have the same gradient, so m = -1.",
@@ -268,8 +269,8 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_nth_term",
-      "prompt": "Here are the first four terms of a sequence: -1, 2, 5, 8. Find an expression for the nth term.",
+      "topic_id": "sequences_nth_term_F",
+      "prompt": "Here are the first four terms of a sequence: -1, 2, 5, 8.\nFind an expression for the nth term.",
       "solution_steps": [
         "Common difference = 3",
         "nth term = 3n - 4",
@@ -303,84 +304,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inequalities_number_line_foundation",
-      "prompt": "Write down the inequality shown by the number line below.",
+      "topic_id": "satisfying_inequalities_F",
+      "prompt": "Solve the inequality 0 < 3x - 4 < 21, then list the integer values of x that satisfy it.",
       "solution_steps": [
-        "The circle at -1 is filled, so -1 is included in the solution set.",
-        "The shading and arrow point to the right, so the solution is x ≥ -1."
+        "0 < 3x - 4 < 21",
+        "Add 4 to all three parts:",
+        "4 < 3x < 25",
+        "Divide all three parts by 3:",
+        "4/3 < x < 25/3",
+        "The integers satisfying this are: 2, 3, 4, 5, 6, 7, 8"
       ],
-      "final_answer": "x ≥ -1",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The circle at -1 is filled, so -1 is included in the solution set.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The shading and arrow point to the right, so the solution is x ≥ -1.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x ≥ -1 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -6,
-            6
-          ],
-          "boundaries": [
-            {
-              "value": -1,
-              "closed": true
-            }
-          ],
-          "shade": "right"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simultaneous_common_coefficient",
-      "prompt": "Solve the simultaneous equations: 4x + 5y = 22 and 6x + 5y = 18",
-      "solution_steps": [
-        "4x + 5y = 22  (1)",
-        "6x + 5y = 18  (2)",
-        "Subtract the equations to eliminate y: -2x = 4, so x = -2",
-        "Substitute x = -2 into (1): 5y = 30, so y = 6"
-      ],
-      "final_answer": "x = -2, y = 6",
+      "final_answer": "2, 3, 4, 5, 6, 7, 8",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "4x + 5y = 22  (1)",
+          "description": "0 < 3x - 4 < 21",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "6x + 5y = 18  (2)",
+          "description": "Add 4 to all three parts:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract the equations to eliminate y: -2x = 4, so x = -2",
+          "description": "4 < 3x < 25",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute x = -2 into (1): 5y = 30, so y = 6",
+          "description": "Divide all three parts by 3: 4/3 < x < 25/3 The integers satisfying this are: 2, 3, 4, 5, 6, 7, 8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -2, y = 6 oe",
+          "description": "2, 3, 4, 5, 6, 7, 8 oe",
           "marks": 1
         }
       ],
@@ -388,7 +347,49 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_common_factor",
+      "topic_id": "functions_evaluate_F",
+      "prompt": "f(x) = -x + 6. Find the value of x for which f(x) = -1.",
+      "solution_steps": [
+        "-x + 6 = -1",
+        "Subtract 6 from both sides:",
+        "-x = -7",
+        "Divide both sides by -1:",
+        "x = 7"
+      ],
+      "final_answer": "7",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "-x + 6 = -1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 6 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-x = -7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by -1: x = 7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "7 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "factorise_common_factor_F",
       "prompt": "Factorise: 81x + 63",
       "solution_steps": [
         "Find the highest common factor of 81 and 63: 9",
@@ -417,79 +418,90 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_quadratics_foundation",
-      "prompt": "Factorise: x^2 + 5x + 4",
+      "topic_id": "volume_surface_area_cube_F",
+      "prompt": "A cube has side length 4 cm. Find its volume.",
       "solution_steps": [
-        "Find two numbers that multiply to 4 and add to 5: 4 and 1",
-        "Write as two brackets: (x + 4)(x + 1)"
+        "Volume = side³ = 4³ = 64 cm³"
       ],
-      "final_answer": "(x + 4)(x + 1)",
-      "marks": 3,
+      "final_answer": "64 cm³",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to 4 and add to 5: 4 and 1",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Write as two brackets: (x + 4)(x + 1)",
+          "description": "Volume = side³ = 4³ = 64 cm³",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(x + 4)(x + 1) oe",
+          "description": "64 cm³ oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "cuboid",
+        "params": {
+          "width_label": "4 cm",
+          "height_label": "4 cm",
+          "length_label": "4 cm",
+          "is_cube": true
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_brackets_foundation",
-      "prompt": "Solve: 3(3x + 1) = 48",
+      "topic_id": "forming_equations_F",
+      "prompt": "The perimeter of the rectangle shown is 52 cm. Form an equation and solve it to find x.",
       "solution_steps": [
-        "Expand the bracket: 3(3x + 1) = 9x + 3",
-        "9x + 3 = 48",
-        "Subtract 3 from both sides:",
-        "9x = 45",
-        "Divide both sides by 9:",
-        "x = 5"
+        "Perimeter = 2 × (sum of two different side lengths).",
+        "2(x + 3) + 2(12) = 52",
+        "2x + 30 = 52",
+        "Subtract 30 from both sides:",
+        "2x = 22",
+        "Divide both sides by 2:",
+        "x = 11"
       ],
-      "final_answer": "5",
+      "final_answer": "11",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expand the bracket: 3(3x + 1) = 9x + 3",
+          "description": "Perimeter = 2 × (sum of two different side lengths).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "9x + 3 = 48",
+          "description": "2(x + 3) + 2(12) = 52",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 3 from both sides:",
+          "description": "2x + 30 = 52",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "9x = 45 Divide both sides by 9: x = 5",
+          "description": "Subtract 30 from both sides: 2x = 22 Divide both sides by 2: x = 11",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5 oe",
+          "description": "11 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "rectangle",
+        "params": {
+          "width": 14,
+          "height": 12,
+          "width_label": "(x + 3) cm",
+          "height_label": "12 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_single_bracket",
+      "topic_id": "expand_single_bracket_F",
       "prompt": "Expand: -8(-4x - 4)",
       "solution_steps": [
         "Multiply -8 by -4x: 32x",
@@ -524,36 +536,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_find_missing_share",
-      "prompt": "Two amounts are in the ratio 9:1. The first amount is 18. Find the second amount.",
-      "solution_steps": [
-        "Value of one part = 18 ÷ 9 = 2",
-        "Second amount = 1 × 2 = 2"
-      ],
-      "final_answer": "2",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Value of one part = 18 ÷ 9 = 2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Second amount = 1 × 2 = 2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_share_three_part_foundation",
+      "topic_id": "ratio_share_three_part_F",
       "prompt": "Share 81 in the ratio 1:1:7.",
       "solution_steps": [
         "Total parts = 1 + 1 + 7 = 9",
@@ -595,7 +578,36 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "percentage_of_amount",
+      "topic_id": "ratio_find_missing_share_F",
+      "prompt": "p : q = 9 : 1. p = 18. What is the value of q?",
+      "solution_steps": [
+        "Value of one part = 18 ÷ 9 = 2",
+        "q = 1 × 2 = 2"
+      ],
+      "final_answer": "2",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Value of one part = 18 ÷ 9 = 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "q = 1 × 2 = 2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "percentage_of_amount_F",
       "prompt": "Find 20% of 220.",
       "solution_steps": [
         "Convert 20% to a fraction: 20/100",
@@ -624,28 +636,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "compound_percentage_foundation",
-      "prompt": "A price of £320 decreases by 10%, then increases by 20%. Find the final price.",
+      "topic_id": "simple_interest_F",
+      "prompt": "£2300 is invested at a simple interest rate of 5% per year for 2 years. Find the total amount in the account after 2 years.",
       "solution_steps": [
-        "After the first change: 320 × 0.90 = 288",
-        "After the second change: 288 × 1.20 = 345.60"
+        "Simple interest formula: I = P × r × t ÷ 100",
+        "I = 2300 × 5 × 2 ÷ 100 = £230",
+        "Total in the account = P + I = £2300 + £230 = £2530"
       ],
-      "final_answer": "£345.60",
-      "marks": 3,
+      "final_answer": "£2530",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first change: 320 × 0.90 = 288",
+          "description": "Simple interest formula: I = P × r × t ÷ 100",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "After the second change: 288 × 1.20 = 345.60",
+          "description": "I = 2300 × 5 × 2 ÷ 100 = £230",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total in the account = P + I = £2300 + £230 = £2530",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£345.60 oe",
+          "description": "£2530 oe",
           "marks": 1
         }
       ],
@@ -653,28 +671,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "direct_proportion",
-      "prompt": "2 rulers cost £5.02. How much would 6 rulers cost?",
+      "topic_id": "inverse_proportion_F",
+      "prompt": "It takes 10 painters 55 hours to paint a fence. Working at the same rate, how long would it take 11 painters?",
       "solution_steps": [
-        "Unit value = £5.02 ÷ 2 = £2.51",
-        "Answer = £2.51 × 6 = £15.06"
+        "Constant = 10 × 55 = 550",
+        "Time for 11 painters = 550 ÷ 11 = 50"
       ],
-      "final_answer": "£15.06",
+      "final_answer": "50 hours",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Unit value = £5.02 ÷ 2 = £2.51",
+          "description": "Constant = 10 × 55 = 550",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer = £2.51 × 6 = £15.06",
+          "description": "Time for 11 painters = 550 ÷ 11 = 50",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£15.06 oe",
+          "description": "50 hours oe",
           "marks": 1
         }
       ],
@@ -682,37 +700,44 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_polygon_interior_foundation",
-      "prompt": "A polygon has 8 sides. Find the sum of its interior angles.",
+      "topic_id": "pythagoras_hypotenuse_triple_F",
+      "prompt": "A right-angled triangle has sides 24 cm and 70 cm. Find the length of x.",
       "solution_steps": [
-        "Sum of interior angles = (n - 2) × 180 = (8 - 2) × 180 = 1080°"
+        "c² = a² + b² = 24² + 70² = 576 + 4900 = 5476",
+        "c = √5476 = 74"
       ],
-      "final_answer": "1080°",
-      "marks": 2,
+      "final_answer": "74 cm",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Sum of interior angles = (n - 2) × 180 = (8 - 2) × 180 = 1080°",
+          "description": "c² = a² + b² = 24² + 70² = 576 + 4900 = 5476",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "c = √5476 = 74",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1080° oe",
+          "description": "74 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "polygon",
+        "kind": "right_triangle",
         "params": {
-          "n_sides": 8,
-          "marked_angle_label": "?"
+          "leg1_label": "24 cm",
+          "leg2_label": "70 cm",
+          "hyp_label": "x"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "area_rectangle",
-      "prompt": "A rectangle has length 15 cm and width 8 cm. Find its perimeter.",
+      "topic_id": "area_rectangle_F",
+      "prompt": "Find the perimeter of the following rectangle.",
       "solution_steps": [
         "Perimeter = 2 × (length + width) = 2 × (15 + 8) = 46 cm"
       ],
@@ -742,40 +767,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "construction_triangle",
-      "prompt": "Triangle FQZ has FQ = 6 cm, the angle at Q equal to 50°, and QZ = 11 cm. Describe, step by step, how to construct triangle FQZ using a ruler, a protractor, and a pair of compasses.",
+      "topic_id": "construction_perpendicular_from_point_F",
+      "prompt": "Point E is not on line segment QT (length 7 cm). Describe, step by step, how to construct the perpendicular from E to the line QT using only a ruler and a pair of compasses.",
       "solution_steps": [
-        "Draw the line segment FQ = 6 cm using a ruler.",
-        "At Q, use a protractor to draw a ray at 50° from the line QF.",
-        "Along this new ray, measure 11 cm from Q using a ruler and mark the point Z.",
-        "Draw a straight line from F to Z to complete the triangle."
+        "Open the compasses to a radius large enough to reach the line QT from E.",
+        "With the compass point on E, draw an arc that crosses QT at two points.",
+        "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs on the far side of QT from E, so that they intersect each other.",
+        "Draw a straight line from E through the point where these two arcs intersect. This line is the perpendicular from E to QT, crossing it at the foot of the perpendicular."
       ],
-      "final_answer": "Triangle FQZ, with Z marked 11 cm from Q along the 50° ray at Q.",
+      "final_answer": "The straight line from E through the intersection of the two far-side arcs is perpendicular to QT.",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw the line segment FQ = 6 cm using a ruler.",
+          "description": "Open the compasses to a radius large enough to reach the line QT from E.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "At Q, use a protractor to draw a ray at 50° from the line QF.",
+          "description": "With the compass point on E, draw an arc that crosses QT at two points.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Along this new ray, measure 11 cm from Q using a ruler and mark the point Z.",
+          "description": "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs on the far side of QT from E, so that they intersect each other.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Draw a straight line from F to Z to complete the triangle.",
+          "description": "Draw a straight line from E through the point where these two arcs intersect. This line is the perpendicular from E to QT, crossing it at the foot of the perpendicular.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Triangle FQZ, with Z marked 11 cm from Q along the 50° ray at Q. oe",
+          "description": "The straight line from E through the intersection of the two far-side arcs is perpendicular to QT. oe",
           "marks": 1
         }
       ],
@@ -783,79 +808,87 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_ladder_context_foundation",
-      "prompt": "A ladder of length 13 m leans against a vertical wall with its base 5 m from the wall. Find the height the ladder reaches up the wall.",
+      "topic_id": "trig_missing_angle_F",
+      "prompt": "In the triangle shown, find the angle x, correct to 1 decimal place.",
       "solution_steps": [
-        "height² = ladder² - base² = 13² - 5² = 169 - 25 = 144",
-        "height = √144 = 12 m"
+        "Use sin, since we know two of the three sides.",
+        "sin(x) = 18 ÷ 19",
+        "x = sin^-1(18 ÷ 19) = 71.3° (1 d.p.)"
       ],
-      "final_answer": "12 m",
-      "marks": 3,
+      "final_answer": "71.3°",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "height² = ladder² - base² = 13² - 5² = 169 - 25 = 144",
+          "description": "Use sin, since we know two of the three sides.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "height = √144 = 12 m",
+          "description": "sin(x) = 18 ÷ 19",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = sin^-1(18 ÷ 19) = 71.3° (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 m oe",
+          "description": "71.3° oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "right_triangle",
+        "kind": "trig_triangle",
         "params": {
-          "leg1_label": "5 m",
-          "leg2_label": "?",
-          "hyp_label": "13 m"
+          "adjacent_label": null,
+          "opposite_label": "18 cm",
+          "hyp_label": "19 cm",
+          "angle_label": "x°"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_shorter_leg",
-      "prompt": "A right-angled triangle has hypotenuse 100 cm and one leg 28 cm. Find the length of the other leg.",
+      "topic_id": "trig_missing_side_F",
+      "prompt": "In the triangle shown, find the length of x, correct to 1 decimal place.",
       "solution_steps": [
-        "b² = c² - a² = 100² - 28² = 10000 - 784 = 9216",
-        "b = √9216 = 96"
+        "We know the hypotenuse and want the adjacent, so use cos.",
+        "x = 17 × cos(69°) = 6.1 (1 d.p.)"
       ],
-      "final_answer": "96 cm",
+      "final_answer": "6.1 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "b² = c² - a² = 100² - 28² = 10000 - 784 = 9216",
+          "description": "We know the hypotenuse and want the adjacent, so use cos.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "b = √9216 = 96",
+          "description": "x = 17 × cos(69°) = 6.1 (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "96 cm oe",
+          "description": "6.1 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "right_triangle",
+        "kind": "trig_triangle",
         "params": {
-          "leg1_label": "28 cm",
-          "leg2_label": "?",
-          "hyp_label": "100 cm"
+          "adjacent_label": "x cm",
+          "opposite_label": null,
+          "hyp_label": "17 cm",
+          "angle_label": "69°"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_complement",
+      "topic_id": "probability_complement_F",
       "prompt": "A bag contains 3 green, 3 blue counters. A counter is picked at random. Find the probability that it is NOT blue.",
       "solution_steps": [
         "P(blue) = 3/6 = 1/2",
@@ -886,14 +919,13 @@
           "counts": {
             "green": 3,
             "blue": 3
-          },
-          "highlight": "blue"
+          }
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "sample_space_diagrams",
+      "topic_id": "sample_space_diagrams_F",
       "prompt": "Two fair spinners, one numbered 1 to 4 and the other numbered 1 to 4, are spun together. Complete the sample space diagram showing the product of the two spinners, and use it to find the probability that the product is greater than 12.",
       "solution_steps": [
         "The sample space diagram shows every possible product of the two spinners.",
@@ -947,6 +979,49 @@
           ],
           "cells": [
             [
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              ""
+            ]
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "sample_space_diagram",
+        "params": {
+          "row_values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "col_values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "cells": [
+            [
               "1",
               "2",
               "3",
@@ -978,43 +1053,7 @@
             ]
           ]
         }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "stats_mean_frequency_table",
-      "prompt": "A survey recorded the number of pets owned by each household: 0 (8 times), 1 (6 times), 2 (9 times), 3 (5 times). Find the mean number of pets.",
-      "solution_steps": [
-        "Multiply each value by its frequency and sum: 0×8 + 1×6 + 2×9 + 3×5 = 39",
-        "Total frequency = 8 + 6 + 9 + 5 = 28",
-        "Mean = 39 ÷ 28 = 39/28"
-      ],
-      "final_answer": "39/28",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiply each value by its frequency and sum: 0×8 + 1×6 + 2×9 + 3×5 = 39",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total frequency = 8 + 6 + 9 + 5 = 28",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Mean = 39 ÷ 28 = 39/28",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "39/28 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
+      }
     }
   ]
 }

@@ -17,21 +17,21 @@ GENERATORS = [
 ]
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (number_theory.generate_modelled_example_prime_numbers, Tier.FOUNDATION, "prime_numbers"),
-    (number_theory.generate_modelled_example_multiples, Tier.FOUNDATION, "multiples"),
-    (number_theory.generate_modelled_example_factors, Tier.FOUNDATION, "factors"),
+    (number_theory.generate_modelled_example_prime_numbers, Tier.FOUNDATION, "prime_numbers_F"),
+    (number_theory.generate_modelled_example_multiples, Tier.FOUNDATION, "multiples_F"),
+    (number_theory.generate_modelled_example_factors, Tier.FOUNDATION, "factors_F"),
     (
         number_theory.generate_modelled_example_prime_factors_foundation,
         Tier.FOUNDATION,
-        "prime_factors_foundation",
+        "prime_factors_F",
     ),
-    (number_theory.generate_modelled_example_prime_factors_higher, Tier.HIGHER, "prime_factors_higher"),
-    (number_theory.generate_modelled_example_lcm_by_listing, Tier.FOUNDATION, "lcm_by_listing"),
-    (number_theory.generate_modelled_example_hcf_by_listing, Tier.FOUNDATION, "hcf_by_listing"),
+    (number_theory.generate_modelled_example_prime_factors_higher, Tier.HIGHER, "prime_factors_H"),
+    (number_theory.generate_modelled_example_lcm_by_listing, Tier.FOUNDATION, "lcm_by_listing_F"),
+    (number_theory.generate_modelled_example_hcf_by_listing, Tier.FOUNDATION, "hcf_by_listing_F"),
     (
         number_theory.generate_modelled_example_hcf_lcm_by_prime_factors,
         Tier.HIGHER,
-        "hcf_lcm_by_prime_factors",
+        "hcf_lcm_by_prime_factors_H",
     ),
 ]
 

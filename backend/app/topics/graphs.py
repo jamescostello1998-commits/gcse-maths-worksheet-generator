@@ -1,3 +1,4 @@
+import math
 import random
 
 import sympy as sp
@@ -45,7 +46,7 @@ def _fmt_cubic(a: int, b: int) -> str:
 
 
 def _fmt_reciprocal(a: int) -> str:
-    return f"{a}/x" if a > 0 else f"-{abs(a)}/x"
+    return f"\\frac{{{a}}}{{x}}" if a > 0 else f"-\\frac{{{abs(a)}}}{{x}}"
 
 
 def generate_plot_straight_line(tier: Tier, rng: random.Random) -> Question:
@@ -77,7 +78,7 @@ def generate_plot_straight_line(tier: Tier, rng: random.Random) -> Question:
         "Plot each (x, y) point and join them with a single ruled straight line.",
     ]
     return Question(
-        topic_id="plot_straight_line",
+        topic_id="plot_straight_line_F",
         tier=Tier.FOUNDATION,
         prompt=f"Complete a table of values for y = {fmt_linear(m, c)} for x = -3 to 3, then plot the graph.",
         solution_steps=tuple(steps),
@@ -129,7 +130,7 @@ def generate_plot_quadratic(tier: Tier, rng: random.Random) -> Question:
         "Plot each (x, y) point and join them with a single smooth curve.",
     ]
     return Question(
-        topic_id="plot_quadratic",
+        topic_id="plot_quadratic_F",
         tier=Tier.FOUNDATION,
         prompt=f"Complete a table of values for y = {_fmt_quadratic(a, b, c)} for x = -3 to 3, then plot the graph.",
         solution_steps=tuple(steps),
@@ -179,7 +180,7 @@ def generate_plot_cubic(tier: Tier, rng: random.Random) -> Question:
         "Plot each (x, y) point and join them with a single smooth curve.",
     ]
     return Question(
-        topic_id="plot_cubic",
+        topic_id="plot_cubic_H",
         tier=Tier.HIGHER,
         prompt=f"Complete a table of values for y = {_fmt_cubic(a, b)} for x = -3 to 3, then plot the graph.",
         solution_steps=tuple(steps),
@@ -198,6 +199,188 @@ def generate_plot_cubic(tier: Tier, rng: random.Random) -> Question:
             params={
                 "kind": "cubic", "a": a, "b": b,
                 "x_min": x_min, "x_max": x_max, "y_min": y_min, "y_max": y_max,
+                "table_points": table_points,
+            },
+        ),
+    )
+
+
+def generate_plot_exponential(tier: Tier, rng: random.Random) -> Question:
+    a = rng.randint(1, 8)
+    base = rng.choice([2, 3])
+    xs = list(range(0, 5))
+    ys = [a * base**x for x in xs]
+
+    # Independent check: the ratio between consecutive y-values must be
+    # constant and equal to the base - a genuinely different computation
+    # path than the direct a * base**x exponentiation used to build the
+    # table above.
+    ratios = {ys[i + 1] / ys[i] for i in range(len(ys) - 1)}
+    if ratios != {float(base)}:
+        raise ValueError("plot_exponential verification failed: non-constant ratio")
+
+    table_points = list(zip(xs, ys))
+    # No right-hand margin (unlike the sibling plot_* topics): exponential
+    # growth accelerates so fast that even a small margin unit pushes the
+    # curve's y-value well past y_max, and draw_function_graph's clamping
+    # then visibly flattens the top of the curve instead of it continuing
+    # to rise - found by rendering an actual worksheet and looking at the
+    # curve shape, not a unit test. A left-hand margin is kept, since that
+    # side only shows the curve gently approaching (never reaching) zero.
+    x_min, x_max = xs[0] - 1, xs[-1]
+    y_min, y_max = 0, max(ys) + max(ys) * 0.1
+
+    fn_str = f"{base}^x" if a == 1 else f"{a} × {base}^x"
+    steps = [
+        f"Table of values for y = {fn_str}:",
+        "x: " + ", ".join(str(x) for x in xs),
+        "y: " + ", ".join(str(y) for y in ys),
+        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases "
+        "and approaching (but never touching) the x-axis as x decreases.",
+    ]
+    return Question(
+        topic_id="plot_exponential_H",
+        tier=Tier.HIGHER,
+        prompt=f"Complete a table of values for y = {fn_str} for x = 0 to 4, then plot the graph.",
+        solution_steps=tuple(steps),
+        final_answer=f"Exponential curve: y = {fn_str}",
+        dedup_key=f"plot_exp:{a}:{base}",
+        diagram=DiagramSpec(
+            kind="function_graph",
+            params={
+                "kind": "exponential", "a": a, "base": base,
+                "x_min": x_min, "x_max": x_max, "y_min": y_min, "y_max": y_max,
+                "blank": True,
+            },
+        ),
+        solution_diagram=DiagramSpec(
+            kind="function_graph",
+            params={
+                "kind": "exponential", "a": a, "base": base,
+                "x_min": x_min, "x_max": x_max, "y_min": y_min, "y_max": y_max,
+                "table_points": table_points,
+            },
+        ),
+    )
+
+
+_TRIG_EXACT_VALUES = {
+    "sin": {0: 0, 90: 1, 180: 0, 270: -1},
+    "cos": {0: 1, 90: 0, 180: -1, 270: 0},
+}
+_TRIG_DOMAINS = ((0, 360), (-180, 180))
+
+# tan has vertical asymptotes at 90 + 180k degrees, and draw_function_graph's
+# trigonometric kind deliberately does NOT attempt the asymptote-branch-
+# splitting draw_function_graph's reciprocal kind needs - so every tan window
+# here is hand-picked to sit strictly between two consecutive asymptotes
+# (never spanning one), unlike _TRIG_DOMAINS above (which are always a full
+# 360-degree window and always contain one). Both windows below span 160
+# degrees so a 4-step, 5-point table lands on whole-number x-values.
+_TAN_DOMAINS = ((-80, 80), (100, 260))
+
+
+def _trig_case(rng: random.Random):
+    # Genuine variety beyond just "sin or cos": reflecting in the x-axis
+    # (y = -sin(x) etc, still a distinct curve/answer) and shifting which
+    # window is shown both give real, distinct questions - needed because a
+    # modelled example always builds 5 distinct practice questions for its
+    # own topic regardless of the topic's own question_count (routes.py's
+    # PRACTICE_QUESTION_COUNT), so 2 combinations (just sin/cos) was never
+    # enough. Adding tan as a genuine third function multiplies this further.
+    fn = rng.choice(["sin", "cos", "tan"])
+    reflect = rng.choice([False, True])
+    sign = -1 if reflect else 1
+
+    if fn == "tan":
+        x_min, x_max = rng.choice(_TAN_DOMAINS)
+        step = (x_max - x_min) // 4
+        xs = [x_min + step * i for i in range(5)]
+        # Unlike sin/cos (exact 0/1/-1 lookup values), tan at these x-values
+        # is generally irrational - round to 2 d.p. for a clean table/plot.
+        ys = [round(sign * math.tan(math.radians(x)), 2) for x in xs]
+
+        # Independent verification: recompute each value via sympy's own
+        # trig evaluation (mpmath-backed under the hood) rather than
+        # python's math.tan used to build the table above - a genuinely
+        # different computation path - and confirm the displayed (rounded)
+        # value is within half a rounding unit of the true value. Safe here
+        # since these windows are constructed to always stay strictly
+        # between two consecutive asymptotes, so sp.tan(sp.rad(x)) is
+        # always defined (never blows up).
+        for x, y in zip(xs, ys):
+            exact = sign * sp.tan(sp.rad(x))
+            if abs(float(exact) - y) > 0.006:
+                raise ValueError("trig_graph verification failed: tan exact value mismatch")
+
+        # y-range must be derived from the actual sampled values (tan's
+        # steepness varies a lot depending on how close the window edges
+        # sit to an asymptote) - never a single fixed range for every case,
+        # unlike sin/cos's fixed [-1.4, 1.4]. Pad by 1 unit and round
+        # outward to the next whole number for a little visual headroom.
+        y_min = math.floor(min(ys) - 1)
+        y_max = math.ceil(max(ys) + 1)
+    else:
+        x_min, x_max = rng.choice(_TRIG_DOMAINS)
+        xs = [x_min + 90 * i for i in range(5)]
+        ys = [sign * _TRIG_EXACT_VALUES[fn][x % 360] for x in xs]
+
+        # Independent verification: each table value is checked against sympy's
+        # own exact trig evaluation of the REAL (possibly negative) angle - a
+        # genuinely different computation path than the hardcoded lookup-by-
+        # reduced-angle used to build the table above, and one that also
+        # independently confirms the %360 periodicity reduction itself.
+        for x, y in zip(xs, ys):
+            exact = sp.sin(sp.rad(x)) if fn == "sin" else sp.cos(sp.rad(x))
+            if sp.simplify(sign * exact - y) != 0:
+                raise ValueError("trig_graph verification failed: exact value mismatch")
+
+        y_min, y_max = -1.4, 1.4
+
+    fn_str = f"-{fn}(x°)" if reflect else f"{fn}(x°)"
+    return fn, reflect, x_min, x_max, xs, ys, fn_str, y_min, y_max
+
+
+def generate_trig_graph(tier: Tier, rng: random.Random) -> Question:
+    fn, reflect, x_min, x_max, xs, ys, fn_str, y_min, y_max = _trig_case(rng)
+    table_points = list(zip(xs, ys))
+    step = xs[1] - xs[0]
+    if fn == "tan":
+        shape_note = (
+            f"y = {fn_str} repeats the same shape every 180°, and rises/falls very steeply near the "
+            "edges of this window (approaching, but never reaching, a vertical asymptote just outside it)."
+        )
+    else:
+        shape_note = f"y = {fn_str} repeats the same shape every 360°, and never goes above 1 or below -1."
+    steps = [
+        f"Table of values for y = {fn_str}:",
+        "x: " + ", ".join(str(x) for x in xs),
+        "y: " + ", ".join(str(y) for y in ys),
+        f"Plot each (x, y) point and join them with a single smooth curve - {shape_note}",
+    ]
+    return Question(
+        topic_id="trig_graph_H",
+        tier=Tier.HIGHER,
+        prompt=f"Complete a table of values for y = {fn_str} for x = {x_min} to {x_max} (in steps of {step}°), "
+        "then plot the graph.",
+        solution_steps=tuple(steps),
+        final_answer=f"y = {fn_str}",
+        dedup_key=f"trig_graph:{fn}:{reflect}:{x_min}",
+        diagram=DiagramSpec(
+            kind="function_graph",
+            params={
+                "kind": "trigonometric", "fn": fn, "sign": -1 if reflect else 1,
+                "x_min": x_min, "x_max": x_max, "y_min": y_min, "y_max": y_max,
+                "x_label": "x (degrees)",
+                "blank": True,
+            },
+        ),
+        solution_diagram=DiagramSpec(
+            kind="function_graph",
+            params={
+                "kind": "trigonometric", "fn": fn, "sign": -1 if reflect else 1,
+                "x_min": x_min, "x_max": x_max, "y_min": y_min, "y_max": y_max,
+                "x_label": "x (degrees)",
                 "table_points": table_points,
             },
         ),
@@ -226,7 +409,7 @@ def generate_plot_reciprocal(tier: Tier, rng: random.Random) -> Question:
         "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
     ]
     return Question(
-        topic_id="plot_reciprocal",
+        topic_id="plot_reciprocal_H",
         tier=Tier.HIGHER,
         prompt=(
             f"Complete a table of values for y = {_fmt_reciprocal(a)} for x = -4, -3, -2, -1, 1, 2, 3, 4, "
@@ -278,7 +461,7 @@ def generate_plot_distance_time(tier: Tier, rng: random.Random) -> Question:
         f"Total distance travelled = {distance} km out + {distance} km back = {direct_total} km",
     ]
     return Question(
-        topic_id="plot_distance_time",
+        topic_id="plot_distance_time_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop {distance} km "
@@ -326,12 +509,12 @@ def generate_line_equation_from_graph(tier: Tier, rng: random.Random) -> Questio
     y_min, y_max = min(end_ys) - 1, max(end_ys) + 1
 
     steps = [
-        f"Gradient = rise/run = ({y2} - {y1}) / ({x2} - {x1}) = {m}",
+        f"Gradient = rise/run = \\frac{{{y2} - {y1}}}{{{x2} - {x1}}} = {m}",
         f"Using y = mx + c with the point ({x1}, {y1}): {y1} = {m}×({x1}) + c, so c = {c}",
         f"Equation of the line: y = {fmt_linear(m, c)}",
     ]
     return Question(
-        topic_id="line_equation_from_graph",
+        topic_id="line_equation_from_graph_F",
         tier=Tier.FOUNDATION,
         prompt="The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
         solution_steps=tuple(steps),
@@ -342,7 +525,6 @@ def generate_line_equation_from_graph(tier: Tier, rng: random.Random) -> Questio
             params={
                 "kind": "linear", "m": m, "c": c,
                 "x_min": x_min, "x_max": x_max, "y_min": y_min, "y_max": y_max,
-                "table_points": [[x1, y1], [x2, y2]],
             },
         ),
     )
@@ -370,7 +552,7 @@ def generate_parallel_lines_equation(tier: Tier, rng: random.Random) -> Question
         f"Equation of the line: y = {fmt_linear(m, c2)}",
     ]
     return Question(
-        topic_id="parallel_lines_equation",
+        topic_id="parallel_lines_equation_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A line is parallel to y = {fmt_linear(m, c1)} and passes through the point ({x0}, {y0}). "
@@ -404,7 +586,7 @@ def generate_perpendicular_lines_equation(tier: Tier, rng: random.Random) -> Que
         f"Equation of the line: y = {fmt_linear(m2, c2)}",
     ]
     return Question(
-        topic_id="perpendicular_lines_equation",
+        topic_id="perpendicular_lines_equation_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A line is perpendicular to y = {fmt_linear(m1, c1)} and passes through the point ({x0}, {y0}). "
@@ -484,7 +666,7 @@ def generate_distance_time_interpret(tier: Tier, rng: random.Random) -> Question
         final_answer = f"{fmt_num(average_speed_kmh)} km/h"
 
     return Question(
-        topic_id="distance_time_interpret",
+        topic_id="distance_time_interpret_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -563,7 +745,7 @@ def generate_velocity_time_interpret(tier: Tier, rng: random.Random) -> Question
         final_answer = f"{fmt_num(dist_total_direct)} m"
 
     return Question(
-        topic_id="velocity_time_interpret",
+        topic_id="velocity_time_interpret_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -660,7 +842,7 @@ def generate_graph_transformations(tier: Tier, rng: random.Random) -> Question:
 
     steps = [f"{notation} corresponds to a {description[0].lower()}{description[1:]}."]
     return Question(
-        topic_id="graph_transformations",
+        topic_id="graph_transformations_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -700,7 +882,7 @@ def generate_modelled_example_plot_straight_line(tier: Tier, rng: random.Random)
         "y: " + ", ".join(str(y) for y in ys),
     ]
     return ModelledExample(
-        topic_id="plot_straight_line",
+        topic_id="plot_straight_line_F",
         tier=Tier.FOUNDATION,
         prompt=f"Complete a table of values for y = {fmt_linear(m, c)} for x = -3 to 3, then plot the graph.",
         worked_calculation=tuple(worked_calculation),
@@ -749,7 +931,7 @@ def generate_modelled_example_plot_quadratic(tier: Tier, rng: random.Random) -> 
         "y: " + ", ".join(str(y) for y in ys),
     ]
     return ModelledExample(
-        topic_id="plot_quadratic",
+        topic_id="plot_quadratic_F",
         tier=Tier.FOUNDATION,
         prompt=f"Complete a table of values for y = {_fmt_quadratic(a, b, c)} for x = -3 to 3, then plot the graph.",
         worked_calculation=tuple(worked_calculation),
@@ -797,7 +979,7 @@ def generate_modelled_example_plot_cubic(tier: Tier, rng: random.Random) -> Mode
         "y: " + ", ".join(str(y) for y in ys),
     ]
     return ModelledExample(
-        topic_id="plot_cubic",
+        topic_id="plot_cubic_H",
         tier=Tier.HIGHER,
         prompt=f"Complete a table of values for y = {_fmt_cubic(a, b)} for x = -3 to 3, then plot the graph.",
         worked_calculation=tuple(worked_calculation),
@@ -808,6 +990,102 @@ def generate_modelled_example_plot_cubic(tier: Tier, rng: random.Random) -> Mode
             params={
                 "kind": "cubic", "a": a, "b": b,
                 "x_min": x_min, "x_max": x_max, "y_min": y_min, "y_max": y_max,
+                "table_points": table_points,
+            },
+        ),
+    )
+
+
+def generate_modelled_example_plot_exponential(tier: Tier, rng: random.Random) -> ModelledExample:
+    a = rng.randint(1, 8)
+    base = rng.choice([2, 3])
+    xs = list(range(0, 5))
+    ys = [a * base**x for x in xs]
+
+    ratios = {ys[i + 1] / ys[i] for i in range(len(ys) - 1)}
+    if ratios != {float(base)}:
+        raise ValueError("modelled example plot_exponential verification failed")
+
+    table_points = list(zip(xs, ys))
+    x_min, x_max = xs[0] - 1, xs[-1]
+    y_min, y_max = 0, max(ys) + max(ys) * 0.1
+    fn_str = f"{base}^x" if a == 1 else f"{a} × {base}^x"
+
+    teaching_steps = [
+        f"Build a table of values for y = {fn_str} by substituting each x from 0 to 4 - each y-value is "
+        f"{a} multiplied by {base} raised to the power x.",
+        "Working through a few: "
+        + ", ".join(f"x={x}: y={y}" for x, y in list(zip(xs, ys))[:3])
+        + f", and so on - notice each y-value is exactly {base} times the one before it.",
+        "Plot each (x, y) pair and join them with a single smooth curve. Exponential growth starts out "
+        "flat and gets dramatically steeper as x increases - the curve never actually reaches y = 0, "
+        "getting closer and closer to it as x decreases.",
+    ]
+    worked_calculation = [
+        f"y = {fn_str}",
+        "x: " + ", ".join(str(x) for x in xs),
+        "y: " + ", ".join(str(y) for y in ys),
+    ]
+    return ModelledExample(
+        topic_id="plot_exponential_H",
+        tier=Tier.HIGHER,
+        prompt=f"Complete a table of values for y = {fn_str} for x = 0 to 4, then plot the graph.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"Exponential curve: y = {fn_str}",
+        diagram=DiagramSpec(
+            kind="function_graph",
+            params={
+                "kind": "exponential", "a": a, "base": base,
+                "x_min": x_min, "x_max": x_max, "y_min": y_min, "y_max": y_max,
+                "table_points": table_points,
+            },
+        ),
+    )
+
+
+def generate_modelled_example_trig_graph(tier: Tier, rng: random.Random) -> ModelledExample:
+    fn, reflect, x_min, x_max, xs, ys, fn_str, y_min, y_max = _trig_case(rng)
+    table_points = list(zip(xs, ys))
+    step = xs[1] - xs[0]
+    if fn == "tan":
+        wave_note = (
+            f"The graph of y = {fn_str} is not a wave like sin/cos - it climbs (or falls) increasingly "
+            "steeply as x approaches an asymptote just outside this window, where the curve would "
+            "shoot off to infinity, repeating this same pattern every 180°"
+            + (" - reflected in the x-axis compared with the basic curve, since it's negative." if reflect else ".")
+        )
+    else:
+        wave_note = (
+            f"The graph of y = {fn_str} is a repeating wave shape that never goes above 1 or below -1, "
+            "and repeats itself every 360°"
+            + (" - reflected in the x-axis compared with the basic curve, since it's negative." if reflect else ".")
+        )
+    teaching_steps = [
+        f"Build a table of values for y = {fn_str} at angles {step}° apart across the given range - these "
+        f"land on the key points that show the overall shape of {fn}.",
+        "Working through them: " + ", ".join(f"x={x}: y={y}" for x, y in list(zip(xs, ys))[:3]) + ", and so on.",
+        f"Plot each (x, y) pair and join them with a single smooth curve. {wave_note}",
+    ]
+    worked_calculation = [
+        f"y = {fn_str}",
+        "x: " + ", ".join(str(x) for x in xs),
+        "y: " + ", ".join(str(y) for y in ys),
+    ]
+    return ModelledExample(
+        topic_id="trig_graph_H",
+        tier=Tier.HIGHER,
+        prompt=f"Complete a table of values for y = {fn_str} for x = {x_min} to {x_max} (in steps of {step}°), "
+        "then plot the graph.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"y = {fn_str}",
+        diagram=DiagramSpec(
+            kind="function_graph",
+            params={
+                "kind": "trigonometric", "fn": fn, "sign": -1 if reflect else 1,
+                "x_min": x_min, "x_max": x_max, "y_min": y_min, "y_max": y_max,
+                "x_label": "x (degrees)",
                 "table_points": table_points,
             },
         ),
@@ -843,7 +1121,7 @@ def generate_modelled_example_plot_reciprocal(tier: Tier, rng: random.Random) ->
         "y: " + ", ".join(str(y) for y in ys),
     ]
     return ModelledExample(
-        topic_id="plot_reciprocal",
+        topic_id="plot_reciprocal_H",
         tier=Tier.HIGHER,
         prompt=(
             f"Complete a table of values for y = {_fmt_reciprocal(a)} for x = -4, -3, -2, -1, 1, 2, 3, 4, "
@@ -892,7 +1170,7 @@ def generate_modelled_example_plot_distance_time(tier: Tier, rng: random.Random)
         f"Total distance = {distance} + {distance} = {direct_total} km",
     ]
     return ModelledExample(
-        topic_id="plot_distance_time",
+        topic_id="plot_distance_time_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop {distance} km "
@@ -934,19 +1212,19 @@ def generate_modelled_example_line_equation_from_graph(tier: Tier, rng: random.R
         f"its y-intercept c. Both can be read from any two clearly marked points on the line, here "
         f"({x1}, {y1}) and ({x2}, {y2}).",
         f"Find the gradient using rise over run between the two points: "
-        f"m = ({y2} - {y1}) / ({x2} - {x1}) = {m}.",
+        f"m = \\frac{{{y2} - {y1}}}{{{x2} - {x1}}} = {m}.",
         f"Substitute one of the points and the gradient into y = mx + c to find c: using ({x1}, {y1}), "
         f"{y1} = {m}×({x1}) + c, so c = {c}.",
         f"So the equation of the line is y = {fmt_linear(m, c)}.",
     ]
     worked_calculation = [
-        f"m = ({y2} - {y1}) / ({x2} - {x1}) = {m}",
+        f"m = \\frac{{{y2} - {y1}}}{{{x2} - {x1}}} = {m}",
         f"{y1} = {m}×({x1}) + c",
         f"c = {c}",
         f"y = {fmt_linear(m, c)}",
     ]
     return ModelledExample(
-        topic_id="line_equation_from_graph",
+        topic_id="line_equation_from_graph_F",
         tier=Tier.FOUNDATION,
         prompt="The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
         worked_calculation=tuple(worked_calculation),
@@ -957,7 +1235,6 @@ def generate_modelled_example_line_equation_from_graph(tier: Tier, rng: random.R
             params={
                 "kind": "linear", "m": m, "c": c,
                 "x_min": x_min, "x_max": x_max, "y_min": y_min, "y_max": y_max,
-                "table_points": [[x1, y1], [x2, y2]],
             },
         ),
     )
@@ -993,7 +1270,7 @@ def generate_modelled_example_parallel_lines_equation(tier: Tier, rng: random.Ra
         f"y = {fmt_linear(m, c2)}",
     ]
     return ModelledExample(
-        topic_id="parallel_lines_equation",
+        topic_id="parallel_lines_equation_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A line is parallel to y = {fmt_linear(m, c1)} and passes through the point ({x0}, {y0}). "
@@ -1034,7 +1311,7 @@ def generate_modelled_example_perpendicular_lines_equation(tier: Tier, rng: rand
         f"y = {fmt_linear(m2, c2)}",
     ]
     return ModelledExample(
-        topic_id="perpendicular_lines_equation",
+        topic_id="perpendicular_lines_equation_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A line is perpendicular to y = {fmt_linear(m1, c1)} and passes through the point ({x0}, {y0}). "
@@ -1136,7 +1413,7 @@ def generate_modelled_example_distance_time_interpret(tier: Tier, rng: random.Ra
         final_answer = f"{fmt_num(average_speed_kmh)} km/h"
 
     return ModelledExample(
-        topic_id="distance_time_interpret",
+        topic_id="distance_time_interpret_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -1232,7 +1509,7 @@ def generate_modelled_example_velocity_time_interpret(tier: Tier, rng: random.Ra
         final_answer = f"{fmt_num(dist_total_direct)} m"
 
     return ModelledExample(
-        topic_id="velocity_time_interpret",
+        topic_id="velocity_time_interpret_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -1304,7 +1581,7 @@ def generate_modelled_example_graph_transformations(tier: Tier, rng: random.Rand
         final_answer = notation
 
     return ModelledExample(
-        topic_id="graph_transformations",
+        topic_id="graph_transformations_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -1315,7 +1592,7 @@ def generate_modelled_example_graph_transformations(tier: Tier, rng: random.Rand
 
 
 TOPIC_PLOT_STRAIGHT_LINE = TopicDefinition(
-    id="plot_straight_line",
+    id="plot_straight_line_F",
     display_name="Plotting Straight Line Graphs",
     description="Complete a table of values and plot a straight line graph on the axes provided. (5 questions)",
     generate=generate_plot_straight_line,
@@ -1327,7 +1604,7 @@ TOPIC_PLOT_STRAIGHT_LINE = TopicDefinition(
 )
 
 TOPIC_PLOT_QUADRATIC = TopicDefinition(
-    id="plot_quadratic",
+    id="plot_quadratic_F",
     display_name="Plotting Quadratic Graphs",
     description="Complete a table of values and plot a quadratic graph on the axes provided. (5 questions)",
     generate=generate_plot_quadratic,
@@ -1339,7 +1616,7 @@ TOPIC_PLOT_QUADRATIC = TopicDefinition(
 )
 
 TOPIC_PLOT_CUBIC = TopicDefinition(
-    id="plot_cubic",
+    id="plot_cubic_H",
     display_name="Plotting Cubic Graphs",
     description="Complete a table of values and plot a cubic graph on the axes provided. (5 questions)",
     generate=generate_plot_cubic,
@@ -1350,8 +1627,35 @@ TOPIC_PLOT_CUBIC = TopicDefinition(
     generate_modelled_example=generate_modelled_example_plot_cubic,
 )
 
+TOPIC_PLOT_EXPONENTIAL = TopicDefinition(
+    id="plot_exponential_H",
+    display_name="Plotting Exponential Graphs",
+    description="Complete a table of values and plot an exponential graph on the axes provided. (5 questions)",
+    generate=generate_plot_exponential,
+    section=SECTION,
+    group=GROUP_PLOTTING,
+    fixed_tier=Tier.HIGHER,
+    question_count=PLOTTING_QUESTION_COUNT,
+    generate_modelled_example=generate_modelled_example_plot_exponential,
+)
+
+TOPIC_TRIG_GRAPH = TopicDefinition(
+    id="trig_graph_H",
+    display_name="Plotting Trigonometric Graphs",
+    description=(
+        "Complete a table of values and plot a sine, cosine, or tangent graph on the axes provided. "
+        "(5 questions)"
+    ),
+    generate=generate_trig_graph,
+    section=SECTION,
+    group=GROUP_PLOTTING,
+    fixed_tier=Tier.HIGHER,
+    question_count=PLOTTING_QUESTION_COUNT,
+    generate_modelled_example=generate_modelled_example_trig_graph,
+)
+
 TOPIC_PLOT_RECIPROCAL = TopicDefinition(
-    id="plot_reciprocal",
+    id="plot_reciprocal_H",
     display_name="Plotting Reciprocal Graphs",
     description="Complete a table of values and plot a reciprocal graph on the axes provided. (5 questions)",
     generate=generate_plot_reciprocal,
@@ -1363,7 +1667,7 @@ TOPIC_PLOT_RECIPROCAL = TopicDefinition(
 )
 
 TOPIC_PLOT_DISTANCE_TIME = TopicDefinition(
-    id="plot_distance_time",
+    id="plot_distance_time_F",
     display_name="Plotting Distance-Time Graphs",
     description="Draw a distance-time graph from a description of a journey, on the axes provided. (5 questions)",
     generate=generate_plot_distance_time,
@@ -1375,7 +1679,7 @@ TOPIC_PLOT_DISTANCE_TIME = TopicDefinition(
 )
 
 TOPIC_LINE_EQUATION_FROM_GRAPH = TopicDefinition(
-    id="line_equation_from_graph",
+    id="line_equation_from_graph_F",
     display_name="Equation of a Line from a Graph",
     description="Read the gradient and intercept from a graph to find the equation of a straight line.",
     generate=generate_line_equation_from_graph,
@@ -1386,7 +1690,7 @@ TOPIC_LINE_EQUATION_FROM_GRAPH = TopicDefinition(
 )
 
 TOPIC_PARALLEL_LINES_EQUATION = TopicDefinition(
-    id="parallel_lines_equation",
+    id="parallel_lines_equation_F",
     display_name="Parallel Lines",
     description="Find the equation of a line parallel to a given line through a given point.",
     generate=generate_parallel_lines_equation,
@@ -1397,7 +1701,7 @@ TOPIC_PARALLEL_LINES_EQUATION = TopicDefinition(
 )
 
 TOPIC_PERPENDICULAR_LINES_EQUATION = TopicDefinition(
-    id="perpendicular_lines_equation",
+    id="perpendicular_lines_equation_H",
     display_name="Perpendicular Lines",
     description="Find the equation of a line perpendicular to a given line through a given point.",
     generate=generate_perpendicular_lines_equation,
@@ -1408,7 +1712,7 @@ TOPIC_PERPENDICULAR_LINES_EQUATION = TopicDefinition(
 )
 
 TOPIC_DISTANCE_TIME_INTERPRET = TopicDefinition(
-    id="distance_time_interpret",
+    id="distance_time_interpret_F",
     display_name="Interpreting Distance-Time Graphs",
     description="Read speeds, rest periods, and total distance from a distance-time graph.",
     generate=generate_distance_time_interpret,
@@ -1419,7 +1723,7 @@ TOPIC_DISTANCE_TIME_INTERPRET = TopicDefinition(
 )
 
 TOPIC_VELOCITY_TIME_INTERPRET = TopicDefinition(
-    id="velocity_time_interpret",
+    id="velocity_time_interpret_H",
     display_name="Interpreting Velocity-Time Graphs",
     description="Find acceleration (gradient) and distance travelled (area) from a velocity-time graph.",
     generate=generate_velocity_time_interpret,
@@ -1430,7 +1734,7 @@ TOPIC_VELOCITY_TIME_INTERPRET = TopicDefinition(
 )
 
 TOPIC_GRAPH_TRANSFORMATIONS = TopicDefinition(
-    id="graph_transformations",
+    id="graph_transformations_H",
     display_name="Transformations of Graphs",
     description="Translate or reflect the graph of y = f(x) and describe or write the resulting equation.",
     generate=generate_graph_transformations,

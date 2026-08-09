@@ -53,7 +53,7 @@ def generate_construction_angle_bisector(tier: Tier, rng: random.Random) -> Ques
     angle_deg = rng.randint(20, 160)
     c = _angle_bisector_content(X, Y, Z, angle_deg)
     return Question(
-        topic_id="construction_angle_bisector",
+        topic_id="construction_angle_bisector_F",
         tier=Tier.FOUNDATION,
         prompt=c["prompt"],
         solution_steps=tuple(c["steps"]),
@@ -79,7 +79,7 @@ def generate_modelled_example_construction_angle_bisector(tier: Tier, rng: rando
         f"both arms of angle {X}{Y}{Z} - the bisector itself.",
     ]
     return ModelledExample(
-        topic_id="construction_angle_bisector",
+        topic_id="construction_angle_bisector_F",
         tier=Tier.FOUNDATION,
         prompt=c["prompt"],
         worked_calculation=tuple(c["steps"]),
@@ -114,7 +114,7 @@ def generate_construction_perpendicular_bisector(tier: Tier, rng: random.Random)
     length_cm = rng.randint(4, 14)
     c = _perpendicular_bisector_content(P, Q, length_cm)
     return Question(
-        topic_id="construction_perpendicular_bisector",
+        topic_id="construction_perpendicular_bisector_F",
         tier=Tier.FOUNDATION,
         prompt=c["prompt"],
         solution_steps=tuple(c["steps"]),
@@ -139,7 +139,7 @@ def generate_modelled_example_construction_perpendicular_bisector(tier: Tier, rn
         f"bisector - and it always meets {P}{Q} at a right angle, exactly at its midpoint.",
     ]
     return ModelledExample(
-        topic_id="construction_perpendicular_bisector",
+        topic_id="construction_perpendicular_bisector_F",
         tier=Tier.FOUNDATION,
         prompt=c["prompt"],
         worked_calculation=tuple(c["steps"]),
@@ -242,7 +242,7 @@ def _random_triangle_content(rng: random.Random) -> tuple:
 def generate_construction_triangle(tier: Tier, rng: random.Random) -> Question:
     content, dedup_key = _random_triangle_content(rng)
     return Question(
-        topic_id="construction_triangle",
+        topic_id="construction_triangle_F",
         tier=Tier.FOUNDATION,
         prompt=content["prompt"],
         solution_steps=tuple(content["steps"]),
@@ -267,7 +267,113 @@ def generate_modelled_example_construction_triangle(tier: Tier, rng: random.Rand
         "vertex).",
     ]
     return ModelledExample(
-        topic_id="construction_triangle",
+        topic_id="construction_triangle_F",
+        tier=Tier.FOUNDATION,
+        prompt=content["prompt"],
+        worked_calculation=tuple(content["steps"]),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=content["answer"],
+    )
+
+
+# ---------------------------------------------------------------------------
+# Perpendicular from a point to a line / at a point on a line
+# ---------------------------------------------------------------------------
+
+def _perpendicular_from_point_content(P: str, A: str, B: str, length_cm: int) -> dict:
+    prompt = (
+        f"Point {P} is not on line segment {A}{B} (length {length_cm} cm). Describe, step by step, how "
+        f"to construct the perpendicular from {P} to the line {A}{B} using only a ruler and a pair of "
+        "compasses."
+    )
+    steps = [
+        f"Open the compasses to a radius large enough to reach the line {A}{B} from {P}.",
+        f"With the compass point on {P}, draw an arc that crosses {A}{B} at two points.",
+        "Without changing the compass radius, place the point on each of these two crossing points in "
+        f"turn and draw two more arcs on the far side of {A}{B} from {P}, so that they intersect each "
+        "other.",
+        f"Draw a straight line from {P} through the point where these two arcs intersect. This line is "
+        f"the perpendicular from {P} to {A}{B}, crossing it at the foot of the perpendicular.",
+    ]
+    answer = f"The straight line from {P} through the intersection of the two far-side arcs is perpendicular to {A}{B}."
+    return {"prompt": prompt, "steps": steps, "answer": answer}
+
+
+def _perpendicular_at_point_content(P: str, A: str, B: str, length_cm: int) -> dict:
+    prompt = (
+        f"Point {P} lies on line segment {A}{B} (length {length_cm} cm). Describe, step by step, how to "
+        f"construct the perpendicular to {A}{B} at {P} using only a ruler and a pair of compasses."
+    )
+    steps = [
+        f"With the compass point on {P}, draw two arcs of equal radius along the line {A}{B}, one on "
+        f"each side of {P}, marking two new points that are the same distance from {P}.",
+        "Open the compasses to a larger radius than before.",
+        "With the point on each of the two new points in turn, draw two arcs above (or below) the line "
+        "so that they intersect each other.",
+        f"Draw a straight line from {P} through the point where these two arcs intersect. This line is "
+        f"perpendicular to {A}{B} at {P}.",
+    ]
+    answer = f"The straight line from {P} through the intersection of the two larger-radius arcs is perpendicular to {A}{B} at {P}."
+    return {"prompt": prompt, "steps": steps, "answer": answer}
+
+
+def _random_perpendicular_from_point_content(rng: random.Random) -> tuple:
+    """Returns (content dict, dedup_key, scenario). Shared by the real generator and
+    the modelled example so both stay in sync with the same two per-scenario method
+    texts."""
+    scenario = rng.choice(["from_point", "at_point"])
+    A, B, P = _labels(rng, 3)
+    length_cm = rng.randint(*_SIDE_RANGE)
+    if scenario == "from_point":
+        content = _perpendicular_from_point_content(P, A, B, length_cm)
+    else:
+        content = _perpendicular_at_point_content(P, A, B, length_cm)
+    dedup_key = f"perp_point:{scenario}:{P}{A}{B}:{length_cm}"
+    return content, dedup_key, scenario
+
+
+def generate_construction_perpendicular_from_point(tier: Tier, rng: random.Random) -> Question:
+    content, dedup_key, _ = _random_perpendicular_from_point_content(rng)
+    return Question(
+        topic_id="construction_perpendicular_from_point_F",
+        tier=Tier.FOUNDATION,
+        prompt=content["prompt"],
+        solution_steps=tuple(content["steps"]),
+        final_answer=content["answer"],
+        dedup_key=dedup_key,
+    )
+
+
+def generate_modelled_example_construction_perpendicular_from_point(tier: Tier, rng: random.Random) -> ModelledExample:
+    content, _, scenario = _random_perpendicular_from_point_content(rng)
+    if scenario == "from_point":
+        teaching_steps = [
+            "The perpendicular from a point to a line is the shortest possible path from that point to "
+            "the line, and it always meets the line at a right angle.",
+            "Since the point isn't on the line, the first arc needs a radius big enough to actually "
+            "reach across and cross the line - it crosses at two points that are both the same "
+            "distance from the point you started at.",
+            "Swinging two more equal-radius arcs from those two crossing points - on the far side of "
+            "the line from the original point - finds a new point that is, by construction, "
+            "equidistant from both of them too.",
+            "Joining the original point to that new intersection gives the perpendicular: it crosses "
+            "the line at a right angle, at what's called the foot of the perpendicular.",
+        ]
+    else:
+        teaching_steps = [
+            "This time the point already lies on the line, so the goal is different: constructing a "
+            "right angle exactly at that point, rather than dropping a line in from outside.",
+            "Marking two points an equal distance from the given point, one on each side of it along "
+            "the line, gives two points that any true perpendicular through the given point must be "
+            "equidistant from as well.",
+            "Using a bigger radius from each of those two new points in turn finds an intersection "
+            "point equidistant from both of them - which places it directly above (or below) the "
+            "midpoint between them, and that midpoint is the original point itself.",
+            "Joining the original point to that intersection gives the perpendicular to the line at "
+            "that point.",
+        ]
+    return ModelledExample(
+        topic_id="construction_perpendicular_from_point_F",
         tier=Tier.FOUNDATION,
         prompt=content["prompt"],
         worked_calculation=tuple(content["steps"]),
@@ -277,7 +383,7 @@ def generate_modelled_example_construction_triangle(tier: Tier, rng: random.Rand
 
 
 TOPIC_CONSTRUCTION_ANGLE_BISECTOR = TopicDefinition(
-    id="construction_angle_bisector",
+    id="construction_angle_bisector_F",
     display_name="Constructing an Angle Bisector",
     description="Describe how to construct the bisector of a given angle using a ruler and compasses.",
     generate=generate_construction_angle_bisector,
@@ -288,7 +394,7 @@ TOPIC_CONSTRUCTION_ANGLE_BISECTOR = TopicDefinition(
 )
 
 TOPIC_CONSTRUCTION_PERPENDICULAR_BISECTOR = TopicDefinition(
-    id="construction_perpendicular_bisector",
+    id="construction_perpendicular_bisector_F",
     display_name="Constructing a Perpendicular Bisector",
     description="Describe how to construct the perpendicular bisector of a line segment using a ruler and compasses.",
     generate=generate_construction_perpendicular_bisector,
@@ -299,7 +405,7 @@ TOPIC_CONSTRUCTION_PERPENDICULAR_BISECTOR = TopicDefinition(
 )
 
 TOPIC_CONSTRUCTION_TRIANGLE = TopicDefinition(
-    id="construction_triangle",
+    id="construction_triangle_F",
     display_name="Constructing a Triangle",
     description="Describe how to construct a triangle given SSS, SAS, or ASA information.",
     generate=generate_construction_triangle,
@@ -307,4 +413,15 @@ TOPIC_CONSTRUCTION_TRIANGLE = TopicDefinition(
     group=GROUP_CONSTRUCTIONS,
     fixed_tier=Tier.FOUNDATION,
     generate_modelled_example=generate_modelled_example_construction_triangle,
+)
+
+TOPIC_CONSTRUCTION_PERPENDICULAR_FROM_POINT = TopicDefinition(
+    id="construction_perpendicular_from_point_F",
+    display_name="Constructing a Perpendicular From/At a Point",
+    description="Describe how to construct the perpendicular from a point to a line, or at a point on a line, using a ruler and compasses.",
+    generate=generate_construction_perpendicular_from_point,
+    section=SECTION,
+    group=GROUP_CONSTRUCTIONS,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_construction_perpendicular_from_point,
 )

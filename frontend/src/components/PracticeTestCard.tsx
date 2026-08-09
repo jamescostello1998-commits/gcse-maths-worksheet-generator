@@ -18,6 +18,7 @@ function PaperRow({ paper }: { paper: PracticeTestSummary }) {
     <div className="practice-test-card__paper">
       <div className="practice-test-card__paper-info">
         <span className="practice-test-card__paper-label">Paper {paper.paperNumber}</span>
+        {!paper.calculatorAllowed && <span className="calculator-badge">Non-calculator</span>}
         <span className="topic-card__description">
           {paper.questionCount} questions • {paper.totalMarks} marks
         </span>

@@ -182,7 +182,7 @@ def generate_tree_diagram_independent(tier: Tier, rng: random.Random) -> Questio
         *steps_extra,
     ]
     return Question(
-        topic_id="tree_diagram_independent",
+        topic_id="tree_diagram_independent_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A bag contains {n1} {c1} and {n2} {c2} counters. A counter is picked at random, replaced, and "
@@ -263,7 +263,7 @@ def generate_modelled_example_tree_diagram_independent(tier: Tier, rng: random.R
     ]
 
     return ModelledExample(
-        topic_id="tree_diagram_independent",
+        topic_id="tree_diagram_independent_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A bag contains {n1} {c1} and {n2} {c2} counters. A counter is picked at random, replaced, and "
@@ -343,7 +343,7 @@ def generate_tree_diagram_dependent(tier: Tier, rng: random.Random) -> Question:
         f"P({prompt_event}) = {_frac_str(formula_prob)}",
     ]
     return Question(
-        topic_id="tree_diagram_dependent",
+        topic_id="tree_diagram_dependent_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A bag contains {n1} {c1} and {n2} {c2} counters. Two counters are picked at random, one after "
@@ -453,7 +453,7 @@ def generate_modelled_example_tree_diagram_dependent(tier: Tier, rng: random.Ran
     ]
 
     return ModelledExample(
-        topic_id="tree_diagram_dependent",
+        topic_id="tree_diagram_dependent_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A bag contains {n1} {c1} and {n2} {c2} counters. Two counters are picked at random, one after "
@@ -504,7 +504,7 @@ def generate_tree_diagram_drawing(tier: Tier, rng: random.Random) -> Question:
         f"{_frac_str(formula_prob)}",
     ]
     return Question(
-        topic_id="tree_diagram_drawing",
+        topic_id="tree_diagram_drawing_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A bag contains {n1} {c1} and {n2} {c2} counters. A counter is picked at random, replaced, and "
@@ -566,7 +566,7 @@ def generate_modelled_example_tree_diagram_drawing(tier: Tier, rng: random.Rando
     ]
 
     return ModelledExample(
-        topic_id="tree_diagram_drawing",
+        topic_id="tree_diagram_drawing_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A bag contains {n1} {c1} and {n2} {c2} counters. A counter is picked at random, replaced, and "
@@ -604,7 +604,7 @@ def generate_tree_diagram_algebraic(tier: Tier, rng: random.Random) -> Question:
         calc_line,
     ]
     return Question(
-        topic_id="tree_diagram_algebraic",
+        topic_id="tree_diagram_algebraic_H",
         tier=Tier.HIGHER,
         prompt=(
             f"{setup_text} The spinner is spun twice. Find the probability that {prompt_event}."
@@ -652,7 +652,7 @@ def generate_modelled_example_tree_diagram_algebraic(tier: Tier, rng: random.Ran
     ]
 
     return ModelledExample(
-        topic_id="tree_diagram_algebraic",
+        topic_id="tree_diagram_algebraic_H",
         tier=Tier.HIGHER,
         prompt=(
             f"{setup_text} The spinner is spun twice. Find the probability that {prompt_event}."
@@ -670,7 +670,7 @@ def generate_tree_diagram_mixed(tier: Tier, rng: random.Random) -> Question:
     else:
         q = generate_tree_diagram_dependent(Tier.HIGHER, rng)
     return dataclasses.replace(
-        q, topic_id="tree_diagram_mixed", tier=Tier.HIGHER, dedup_key=f"mixed:{q.dedup_key}"
+        q, topic_id="tree_diagram_mixed_H", tier=Tier.HIGHER, dedup_key=f"mixed:{q.dedup_key}"
     )
 
 
@@ -679,11 +679,11 @@ def generate_modelled_example_tree_diagram_mixed(tier: Tier, rng: random.Random)
         example = generate_modelled_example_tree_diagram_independent(Tier.FOUNDATION, rng)
     else:
         example = generate_modelled_example_tree_diagram_dependent(Tier.HIGHER, rng)
-    return dataclasses.replace(example, topic_id="tree_diagram_mixed", tier=Tier.HIGHER)
+    return dataclasses.replace(example, topic_id="tree_diagram_mixed_H", tier=Tier.HIGHER)
 
 
 TOPIC_TREE_INDEPENDENT = TopicDefinition(
-    id="tree_diagram_independent",
+    id="tree_diagram_independent_F",
     display_name="Interpreting Tree Diagrams (Independent Events)",
     description="Use a tree diagram to find probabilities when events are independent (with replacement).",
     generate=generate_tree_diagram_independent,
@@ -694,7 +694,7 @@ TOPIC_TREE_INDEPENDENT = TopicDefinition(
 )
 
 TOPIC_TREE_DEPENDENT = TopicDefinition(
-    id="tree_diagram_dependent",
+    id="tree_diagram_dependent_H",
     display_name="Interpreting Tree Diagrams (Dependent Events)",
     description="Use a tree diagram to find probabilities when events are dependent (without replacement).",
     generate=generate_tree_diagram_dependent,
@@ -705,7 +705,7 @@ TOPIC_TREE_DEPENDENT = TopicDefinition(
 )
 
 TOPIC_TREE_DRAWING = TopicDefinition(
-    id="tree_diagram_drawing",
+    id="tree_diagram_drawing_F",
     display_name="Drawing Tree Diagrams",
     description="Draw a fully-labelled tree diagram from a description, then use it to find a probability. (5 questions)",
     generate=generate_tree_diagram_drawing,
@@ -717,7 +717,7 @@ TOPIC_TREE_DRAWING = TopicDefinition(
 )
 
 TOPIC_TREE_ALGEBRAIC = TopicDefinition(
-    id="tree_diagram_algebraic",
+    id="tree_diagram_algebraic_H",
     display_name="Tree Diagrams with Algebraic Probabilities",
     description=(
         "Form and solve an equation for x from two algebraic branch probabilities that sum to 1, then use "
@@ -731,7 +731,7 @@ TOPIC_TREE_ALGEBRAIC = TopicDefinition(
 )
 
 TOPIC_TREE_MIXED = TopicDefinition(
-    id="tree_diagram_mixed",
+    id="tree_diagram_mixed_H",
     display_name="Mixed Tree Diagrams",
     description="A mix of independent and dependent tree diagram probability questions.",
     generate=generate_tree_diagram_mixed,

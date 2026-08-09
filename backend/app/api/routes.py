@@ -1,17 +1,22 @@
 import random
+from datetime import date
 from typing import Optional
 
 from fastapi import APIRouter, HTTPException, Response
 
 from app.api.schemas import (
+    FormatEnum,
+    GenerateBellTasksRequest,
     GenerateWorksheetRequest,
     GroupSchema,
     PracticeTestSummary,
     SectionSchema,
     TopicSummary,
 )
+from app.bell_tasks.generator import generate_bell_tasks_pptx
 from app.core.models import Tier
 from app.core.registry import get_topic, list_topics, sections_tree
+from app.docx.render import render_modelled_example_docx, render_worksheet_docx
 from app.pdf.modelled_example_renderer import render_modelled_example
 from app.pdf.practice_test_renderer import render_mark_scheme, render_practice_test_paper
 from app.pdf.renderer import render_worksheet
@@ -22,7 +27,23 @@ from app.worksheet.builder import DEFAULT_COUNT, build_worksheet
 
 PRACTICE_QUESTION_COUNT = 5
 
+_DOCX_MEDIA_TYPE = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+
 router = APIRouter()
+
+
+def _download_response(content: bytes, fmt: FormatEnum, filename_stem: str) -> Response:
+    """One Response for either format - the only per-format differences are the
+    media type and the file extension."""
+    if fmt == FormatEnum.docx:
+        media_type, ext = _DOCX_MEDIA_TYPE, "docx"
+    else:
+        media_type, ext = "application/pdf", "pdf"
+    return Response(
+        content=content,
+        media_type=media_type,
+        headers={"Content-Disposition": f'attachment; filename="{filename_stem}.{ext}"'},
+    )
 
 
 def _to_topic_summary(t: TopicDefinition) -> TopicSummary:
@@ -70,14 +91,13 @@ def create_worksheet(payload: GenerateWorksheetRequest) -> Response:
     topic = get_topic(payload.topic_id)
     count = payload.count or topic.question_count or DEFAULT_COUNT
     worksheet = build_worksheet(payload.topic_id, tier, count=count)
-    pdf_bytes = render_worksheet(worksheet, answers_only=payload.answers_only)
+    if payload.format == FormatEnum.docx:
+        content = render_worksheet_docx(worksheet, answers_only=payload.answers_only)
+    else:
+        content = render_worksheet(worksheet, answers_only=payload.answers_only)
     suffix = "-answers-only" if payload.answers_only else ""
-    filename = f"{payload.topic_id}-{tier.value}-worksheet{suffix}.pdf"
-    return Response(
-        content=pdf_bytes,
-        media_type="application/pdf",
-        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
-    )
+    filename_stem = f"{payload.topic_id}-{tier.value}-worksheet{suffix}"
+    return _download_response(content, payload.format, filename_stem)
 
 
 @router.post("/modelled-examples")
@@ -90,11 +110,25 @@ def create_modelled_example(payload: GenerateWorksheetRequest) -> Response:
     rng = random.Random()
     example = topic.generate_modelled_example(tier, rng)
     practice_worksheet = build_worksheet(payload.topic_id, tier, count=PRACTICE_QUESTION_COUNT, rng=rng)
-    pdf_bytes = render_modelled_example(topic.display_name, tier, example, practice_worksheet.questions)
-    filename = f"{payload.topic_id}-{tier.value}-modelled-example.pdf"
+    if payload.format == FormatEnum.docx:
+        content = render_modelled_example_docx(
+            topic.display_name, tier, example, practice_worksheet.questions, topic.preamble_lines or ()
+        )
+    else:
+        content = render_modelled_example(
+            topic.display_name, tier, example, practice_worksheet.questions, topic.preamble_lines or ()
+        )
+    filename_stem = f"{payload.topic_id}-{tier.value}-modelled-example"
+    return _download_response(content, payload.format, filename_stem)
+
+
+@router.post("/bell-tasks")
+def create_bell_tasks(payload: GenerateBellTasksRequest) -> Response:
+    pptx_bytes = generate_bell_tasks_pptx(payload.topic_ids)
+    filename = f"bell-tasks-{date.today().isoformat()}.pptx"
     return Response(
-        content=pdf_bytes,
-        media_type="application/pdf",
+        content=pptx_bytes,
+        media_type="application/vnd.openxmlformats-officedocument.presentationml.presentation",
         headers={"Content-Disposition": f'attachment; filename="{filename}"'},
     )
 
@@ -106,6 +140,7 @@ def _to_practice_test_summary(paper: PracticeTestPaper) -> PracticeTestSummary:
         tier=paper.tier,
         sitting_id=paper.sitting_id,
         paper_number=paper.paper_number,
+        calculator_allowed=paper.calculator_allowed,
         total_marks=paper.total_marks,
         question_count=len(paper.questions),
     )

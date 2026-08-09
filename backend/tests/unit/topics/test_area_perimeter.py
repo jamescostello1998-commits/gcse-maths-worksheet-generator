@@ -28,7 +28,10 @@ GENERATORS = [
 EXPECTED_DIAGRAM_KINDS = {
     area_perimeter.generate_rectangle: "rectangle",
     area_perimeter.generate_triangle: "triangle_area",
-    area_perimeter.generate_composite_rectangles: "l_shape",
+    # 4 distinct compound-shape branches (2 L orientations + a T-shape + a
+    # "find x" reverse branch, both L variants and the reverse branch use
+    # kind="l_shape") - either diagram kind is valid for a single draw.
+    area_perimeter.generate_composite_rectangles: {"l_shape", "t_shape"},
     area_perimeter.generate_circle_foundation: "circle",
     area_perimeter.generate_circle: "circle",
     area_perimeter.generate_semicircle_compound: "rectangle_semicircle",
@@ -61,7 +64,9 @@ def test_all_generators_attach_a_matching_diagram():
         rng = random.Random(41)
         q = generate(tier, rng)
         assert q.diagram is not None
-        assert q.diagram.kind == EXPECTED_DIAGRAM_KINDS[generate]
+        expected = EXPECTED_DIAGRAM_KINDS[generate]
+        expected_kinds = expected if isinstance(expected, (set, frozenset)) else {expected}
+        assert q.diagram.kind in expected_kinds
 
 
 def test_rectangle_diagram_params_match_generated_values():
@@ -97,12 +102,50 @@ def test_arc_length_and_area_sector_foundation_give_decimal_answers():
             assert "π" not in q.final_answer
 
 
+def test_decimal_topics_reach_all_three_rounding_phrasings():
+    generators = [
+        area_perimeter.generate_circle_foundation,
+        area_perimeter.generate_arc_length_foundation,
+        area_perimeter.generate_area_sector_foundation,
+    ]
+    phrasings = {"1 decimal place", "2 decimal places", "3 significant figures"}
+    for generate in generators:
+        rng = random.Random(48)
+        seen = set()
+        for _ in range(200):
+            q = generate(Tier.FOUNDATION, rng)
+            seen |= {p for p in phrasings if p in q.prompt}
+        assert seen == phrasings
+
+
 def test_mixed_compound_gives_a_decimal_answer():
     rng = random.Random(47)
     for _ in range(TRIALS):
         q = area_perimeter.generate_area_mixed_compound(Tier.HIGHER, rng)
         assert "π" not in q.final_answer
         assert "cm²" in q.final_answer
+
+
+def test_mixed_compound_reaches_all_three_rounding_phrasings():
+    rng = random.Random(49)
+    phrasings = {"1 decimal place", "2 decimal places", "3 significant figures"}
+    seen = set()
+    for _ in range(200):
+        q = area_perimeter.generate_area_mixed_compound(Tier.HIGHER, rng)
+        seen |= {p for p in phrasings if p in q.prompt}
+    assert seen == phrasings
+
+
+def test_mixed_compound_reaches_every_top_and_cut_kind_combination():
+    rng = random.Random(50)
+    seen = set()
+    for _ in range(200):
+        q = area_perimeter.generate_area_mixed_compound(Tier.HIGHER, rng)
+        seen.add((q.diagram.params["top_kind"], q.diagram.params["cut_kind"]))
+    assert seen == {
+        ("triangle", "quarter_circle"), ("triangle", "semicircle_notch"),
+        ("semicircle", "quarter_circle"), ("semicircle", "semicircle_notch"),
+    }
 
 
 def test_dedup_keys_vary_per_generator():
@@ -154,67 +197,67 @@ def test_topic_definitions_have_expected_metadata():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (area_perimeter.generate_modelled_example_rectangle, Tier.FOUNDATION, "area_rectangle", "rectangle"),
-    (area_perimeter.generate_modelled_example_triangle, Tier.FOUNDATION, "area_triangle", "triangle_area"),
+    (area_perimeter.generate_modelled_example_rectangle, Tier.FOUNDATION, "area_rectangle_F", "rectangle"),
+    (area_perimeter.generate_modelled_example_triangle, Tier.FOUNDATION, "area_triangle_F", "triangle_area"),
     (
         area_perimeter.generate_modelled_example_composite_rectangles,
         Tier.FOUNDATION,
-        "area_composite_rectangles",
-        "l_shape",
+        "area_composite_rectangles_F",
+        {"l_shape", "t_shape"},
     ),
     (
         area_perimeter.generate_modelled_example_circle_foundation,
         Tier.FOUNDATION,
-        "area_circle_foundation",
+        "area_circle_F",
         "circle",
     ),
-    (area_perimeter.generate_modelled_example_circle, Tier.HIGHER, "area_circle", "circle"),
+    (area_perimeter.generate_modelled_example_circle, Tier.HIGHER, "area_circle_H", "circle"),
     (
         area_perimeter.generate_modelled_example_semicircle_compound,
         Tier.FOUNDATION,
-        "area_semicircle_compound",
+        "area_semicircle_compound_F",
         "rectangle_semicircle",
     ),
     (
         area_perimeter.generate_modelled_example_semicircle_compound_higher,
         Tier.HIGHER,
-        "area_semicircle_compound_higher",
+        "area_semicircle_compound_H",
         "rectangle_semicircle",
     ),
     (
         area_perimeter.generate_modelled_example_subtract_compound,
         Tier.HIGHER,
-        "area_subtract_compound",
+        "area_subtract_compound_H",
         "l_shape",
     ),
     (
         area_perimeter.generate_modelled_example_subtract_compound_foundation,
         Tier.FOUNDATION,
-        "area_subtract_compound_foundation",
+        "area_subtract_compound_F",
         "l_shape",
     ),
-    (area_perimeter.generate_modelled_example_area_parallelogram, Tier.FOUNDATION, "area_parallelogram", "parallelogram"),
-    (area_perimeter.generate_modelled_example_area_trapezium, Tier.FOUNDATION, "area_trapezium", "trapezium"),
+    (area_perimeter.generate_modelled_example_area_parallelogram, Tier.FOUNDATION, "area_parallelogram_F", "parallelogram"),
+    (area_perimeter.generate_modelled_example_area_trapezium, Tier.FOUNDATION, "area_trapezium_F", "trapezium"),
     (
         area_perimeter.generate_modelled_example_area_mixed_compound,
         Tier.HIGHER,
-        "area_mixed_compound",
+        "area_mixed_compound_H",
         "mixed_compound",
     ),
     (
         area_perimeter.generate_modelled_example_arc_length_foundation,
         Tier.FOUNDATION,
-        "arc_length_foundation",
+        "arc_length_F",
         "sector",
     ),
-    (area_perimeter.generate_modelled_example_arc_length, Tier.HIGHER, "arc_length", "sector"),
+    (area_perimeter.generate_modelled_example_arc_length, Tier.HIGHER, "arc_length_H", "sector"),
     (
         area_perimeter.generate_modelled_example_area_sector_foundation,
         Tier.FOUNDATION,
-        "area_sector_foundation",
+        "area_sector_F",
         "sector",
     ),
-    (area_perimeter.generate_modelled_example_area_sector, Tier.HIGHER, "area_sector", "sector"),
+    (area_perimeter.generate_modelled_example_area_sector, Tier.HIGHER, "area_sector_H", "sector"),
 ]
 
 
@@ -235,4 +278,5 @@ def test_modelled_examples_produce_verified_examples_with_diagrams():
             assert len(example.teaching_steps) >= 3
             assert example.final_answer
             assert example.diagram is not None
-            assert example.diagram.kind == diagram_kind
+            expected_kinds = diagram_kind if isinstance(diagram_kind, (set, frozenset)) else {diagram_kind}
+            assert example.diagram.kind in expected_kinds

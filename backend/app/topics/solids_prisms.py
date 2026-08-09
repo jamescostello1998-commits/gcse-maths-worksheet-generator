@@ -62,7 +62,7 @@ def generate_volume_surface_area_cuboid(tier: Tier, rng: random.Random) -> Quest
         answer = f"{surface_area} cm²"
 
     return Question(
-        topic_id="volume_surface_area_cuboid",
+        topic_id="volume_surface_area_cuboid_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A cuboid has length {length} cm, width {width} cm and height {height} cm. "
@@ -143,7 +143,7 @@ def generate_modelled_example_volume_surface_area_cuboid(tier: Tier, rng: random
         answer = f"{surface_area} cm²"
 
     return ModelledExample(
-        topic_id="volume_surface_area_cuboid",
+        topic_id="volume_surface_area_cuboid_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A cuboid has length {length} cm, width {width} cm and height {height} cm. "
@@ -196,7 +196,7 @@ def generate_volume_surface_area_cube(tier: Tier, rng: random.Random) -> Questio
         answer = f"{surface_area} cm²"
 
     return Question(
-        topic_id="volume_surface_area_cube",
+        topic_id="volume_surface_area_cube_F",
         tier=Tier.FOUNDATION,
         prompt=f"A cube has side length {side} cm. Find its {_measure_label(measure)}.",
         solution_steps=tuple(steps),
@@ -208,6 +208,7 @@ def generate_volume_surface_area_cube(tier: Tier, rng: random.Random) -> Questio
                 "width_label": f"{side} cm",
                 "height_label": f"{side} cm",
                 "length_label": f"{side} cm",
+                "is_cube": True,
             },
         ),
     )
@@ -259,7 +260,7 @@ def generate_modelled_example_volume_surface_area_cube(tier: Tier, rng: random.R
         answer = f"{surface_area} cm²"
 
     return ModelledExample(
-        topic_id="volume_surface_area_cube",
+        topic_id="volume_surface_area_cube_F",
         tier=Tier.FOUNDATION,
         prompt=f"A cube has side length {side} cm. Find its {_measure_label(measure)}.",
         worked_calculation=tuple(worked_calculation),
@@ -271,6 +272,7 @@ def generate_modelled_example_volume_surface_area_cube(tier: Tier, rng: random.R
                 "width_label": f"{side} cm",
                 "height_label": f"{side} cm",
                 "length_label": f"{side} cm",
+                "is_cube": True,
             },
         ),
     )
@@ -336,10 +338,10 @@ def generate_volume_surface_area_triangular_prism(tier: Tier, rng: random.Random
         answer = f"{surface_area} cm²"
 
     return Question(
-        topic_id="volume_surface_area_triangular_prism",
+        topic_id="volume_surface_area_triangular_prism_F",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"A triangular prism has a right-angled triangular cross-section with legs {p} cm "
+            f"A triangular prism has a right-angled triangular cross-section with sides {p} cm "
             f"and {q} cm (hypotenuse {hyp} cm), and length {length} cm. Find its "
             f"{_measure_label(measure)}."
         ),
@@ -389,7 +391,7 @@ def generate_modelled_example_volume_surface_area_triangular_prism(
             "A prism's volume is always the area of its cross-section (the shape you'd see "
             "if you sliced straight through it) multiplied by its length - here the "
             "cross-section is a right-angled triangle.",
-            f"The triangle's two legs are {p} cm and {q} cm, at right angles to each other, so "
+            f"The triangle's two shorter sides are {p} cm and {q} cm, at right angles to each other, so "
             f"its area is (1/2) × {p} × {q} = {cross_section_area} cm².",
             f"The prism stretches out {length} cm long, so multiply the cross-section area by "
             f"the length: {cross_section_area} × {length} = {volume}.",
@@ -408,7 +410,7 @@ def generate_modelled_example_volume_surface_area_triangular_prism(
             "each side of the triangle.",
             f"The two triangular ends together have area 2 × (1/2) × {p} × {q} = {p * q} cm², "
             "since two identical right-angled triangles make a rectangle.",
-            f"The three sides of the triangle - the two legs and the hypotenuse - have total "
+            f"The three sides of the triangle - the two shorter sides and the hypotenuse - have total "
             f"length {p} + {q} + {hyp} = {p + q + hyp} cm; each becomes a rectangular face that "
             f"long and {length} cm wide (the prism's length), giving a combined area of "
             f"{p + q + hyp} × {length} = {(p + q + hyp) * length} cm².",
@@ -423,10 +425,10 @@ def generate_modelled_example_volume_surface_area_triangular_prism(
         answer = f"{surface_area} cm²"
 
     return ModelledExample(
-        topic_id="volume_surface_area_triangular_prism",
+        topic_id="volume_surface_area_triangular_prism_F",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"A triangular prism has a right-angled triangular cross-section with legs {p} cm "
+            f"A triangular prism has a right-angled triangular cross-section with sides {p} cm "
             f"and {q} cm (hypotenuse {hyp} cm), and length {length} cm. Find its "
             f"{_measure_label(measure)}."
         ),
@@ -449,7 +451,7 @@ def generate_modelled_example_volume_surface_area_triangular_prism(
 # ---------------------------------------------------------------------------
 
 TOPIC_CUBOID = TopicDefinition(
-    id="volume_surface_area_cuboid",
+    id="volume_surface_area_cuboid_F",
     display_name="Volume & Surface Area of a Cuboid",
     description="Find the volume or surface area of a cuboid given its length, width and height.",
     generate=generate_volume_surface_area_cuboid,
@@ -460,7 +462,7 @@ TOPIC_CUBOID = TopicDefinition(
 )
 
 TOPIC_CUBE = TopicDefinition(
-    id="volume_surface_area_cube",
+    id="volume_surface_area_cube_F",
     display_name="Volume & Surface Area of a Cube",
     description="Find the volume or surface area of a cube given its side length.",
     generate=generate_volume_surface_area_cube,
@@ -471,7 +473,7 @@ TOPIC_CUBE = TopicDefinition(
 )
 
 TOPIC_TRIANGULAR_PRISM = TopicDefinition(
-    id="volume_surface_area_triangular_prism",
+    id="volume_surface_area_triangular_prism_F",
     display_name="Volume & Surface Area of a Triangular Prism",
     description=(
         "Find the volume or surface area of a triangular prism with a right-angled "

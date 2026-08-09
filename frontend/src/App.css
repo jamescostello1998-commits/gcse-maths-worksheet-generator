@@ -292,6 +292,17 @@
   font-size: 13px;
   font-weight: 600;
   color: var(--text-heading);
+  white-space: nowrap;
+}
+
+.calculator-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+  background: var(--border);
+  color: var(--text-muted);
 }
 
 /* Per-topic generation options (question count, answers-only) */
@@ -414,4 +425,147 @@
 .topic-search-results__empty {
   color: var(--text-muted);
   font-size: 14px;
+}
+
+/* Bell Tasks topic picker */
+
+.bell-tasks-picker {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.bell-tasks-picker__box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bell-tasks-picker__box-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-heading);
+}
+
+.bell-tasks-picker__generate {
+  max-width: 260px;
+}
+
+/* Searchable topic select (used by the Bell Tasks box pickers) */
+
+.searchable-select {
+  position: relative;
+}
+
+.searchable-select__input {
+  width: 100%;
+  font-size: 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.searchable-select__input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.searchable-select__list {
+  position: absolute;
+  z-index: 10;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  max-height: 280px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.searchable-select__option {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: left;
+  gap: 2px;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 6px;
+  background: none;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.searchable-select__option:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.searchable-select__option:hover .searchable-select__option-breadcrumb {
+  color: inherit;
+  opacity: 0.85;
+}
+
+.searchable-select__option-name {
+  font-size: 14px;
+}
+
+.searchable-select__option-breadcrumb {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.searchable-select__empty {
+  padding: 10px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* Download-format toggle (home page) - PDF vs Word segmented control */
+.format-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.format-toggle__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.format-toggle__switch {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.format-toggle__option {
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.format-toggle__option:hover {
+  background: var(--border);
+}
+
+.format-toggle__option--active,
+.format-toggle__option--active:hover {
+  background: var(--accent);
+  color: var(--accent-contrast);
 }

@@ -61,15 +61,40 @@ def test_no_generator_ever_emits_scientific_notation():
     # this module (sphere/frustum volumes, curved compound-solid volumes)
     # comfortably exceed 999 for the larger end of their random ranges, so
     # this is a real risk here unlike in area_perimeter.py, which this
-    # sp.N(expr, 3) pattern was copied from. Fixed via the module's
-    # _fmt_sig3 helper; this test guards against a future edit re-introducing
-    # a bare sp.N(expr, 3) in a displayed string.
+    # sp.N(expr, 3) pattern was copied from. Fixed by routing every rounded
+    # display value through app.topics.rounding's round_fn (which formats via
+    # Decimal fixed-point, never scientific notation); this test guards
+    # against a future edit re-introducing a bare sp.N(expr, 3) in a
+    # displayed string.
     for generate, tier in GENERATORS:
         rng = random.Random(43)
         for _ in range(TRIALS):
             q = generate(tier, rng)
             text = q.prompt + q.final_answer + " ".join(q.solution_steps)
             assert "e+" not in text.lower(), (generate.__name__, text)
+
+
+def test_decimal_topics_reach_all_three_rounding_phrasings():
+    # Every topic in this module whose answer is rounded (i.e. all 5 - even
+    # the two topics with one exact/no-rounding branch, since their other
+    # branch(es) are always rounded) should reach all three GCSE-standard
+    # rounding instructions (see app.topics.rounding) given enough trials,
+    # not just the old hardcoded "3 significant figures".
+    generators = [
+        solids.generate_volume_surface_area_sphere,
+        solids.generate_volume_surface_area_pyramid,
+        solids.generate_frustum_volume_surface_area,
+        solids.generate_compound_3d_volume,
+        solids.generate_compound_3d_surface_area,
+    ]
+    phrasings = {"1 decimal place", "2 decimal places", "3 significant figures"}
+    for generate in generators:
+        rng = random.Random(700)
+        seen = set()
+        for _ in range(200):
+            q = generate(Tier.HIGHER, rng)
+            seen |= {p for p in phrasings if p in q.prompt}
+        assert seen == phrasings, (generate.__name__, seen)
 
 
 def test_no_modelled_example_ever_emits_scientific_notation():
@@ -140,11 +165,14 @@ def test_pyramid_volume_is_exact_and_surface_area_is_rounded_decimal():
         if "volume" in q.prompt and "surface area" not in q.prompt:
             saw_volume = True
             assert "cm³" in q.final_answer
-            assert "slant_label" not in q.diagram.params
         else:
             saw_surface_area = True
             assert "cm²" in q.final_answer
-            assert "slant_label" in q.diagram.params
+        # The (usually-irrational, decimal) slant height is never drawn on the
+        # diagram - only the integer base and perpendicular height are shown
+        # (user review feedback: no non-.5 decimals in shown measurements).
+        assert "slant_label" not in q.diagram.params
+        assert set(q.diagram.params) == {"base_label", "height_label"}
     assert saw_volume and saw_surface_area
 
 
@@ -320,11 +348,11 @@ ALL_TOPICS = [
 def test_topic_definitions_have_expected_metadata():
     ids = {t.id for t in ALL_TOPICS}
     assert ids == {
-        "volume_surface_area_sphere",
-        "volume_surface_area_pyramid",
-        "frustum_volume_surface_area",
-        "compound_3d_volume",
-        "compound_3d_surface_area",
+        "volume_surface_area_sphere_H",
+        "volume_surface_area_pyramid_H",
+        "frustum_volume_surface_area_H",
+        "compound_3d_volume_H",
+        "compound_3d_surface_area_H",
     }
     for t in ALL_TOPICS:
         assert t.section == "geometry"
@@ -341,31 +369,31 @@ MODELLED_EXAMPLE_GENERATORS = [
     (
         solids.generate_modelled_example_volume_surface_area_sphere,
         Tier.HIGHER,
-        "volume_surface_area_sphere",
+        "volume_surface_area_sphere_H",
         "sphere",
     ),
     (
         solids.generate_modelled_example_volume_surface_area_pyramid,
         Tier.HIGHER,
-        "volume_surface_area_pyramid",
+        "volume_surface_area_pyramid_H",
         "pyramid",
     ),
     (
         solids.generate_modelled_example_frustum_volume_surface_area,
         Tier.HIGHER,
-        "frustum_volume_surface_area",
+        "frustum_volume_surface_area_H",
         "frustum",
     ),
     (
         solids.generate_modelled_example_compound_3d_volume,
         Tier.HIGHER,
-        "compound_3d_volume",
+        "compound_3d_volume_H",
         "compound_3d",
     ),
     (
         solids.generate_modelled_example_compound_3d_surface_area,
         Tier.HIGHER,
-        "compound_3d_surface_area",
+        "compound_3d_surface_area_H",
         "compound_3d",
     ),
 ]

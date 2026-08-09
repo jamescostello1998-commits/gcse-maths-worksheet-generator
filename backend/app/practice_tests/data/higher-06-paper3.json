@@ -4,9 +4,10 @@
   "tier": "higher",
   "sitting_id": "higher-06",
   "paper_number": 3,
+  "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "standard_form_add_subtract",
+      "topic_id": "standard_form_add_subtract_H",
       "prompt": "Work out (2 × 10^3) + (8 × 10^1). Give your answer in standard form.",
       "solution_steps": [
         "Write both numbers with the same power of 10: 2×10^3 = 200×10^1, 8×10^1 = 8×10^1",
@@ -41,7 +42,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_multiply_divide",
+      "topic_id": "standard_form_multiply_divide_H",
       "prompt": "Work out (4 × 10^-4) ÷ (1 × 10^2). Give your answer in standard form.",
       "solution_steps": [
         "Divide the mantissas: 4 ÷ 1 = 4",
@@ -70,49 +71,96 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "set_notation",
-      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, A = {1, 2, 7}, B = {1, 7, 10}. List the elements of (A ∪ B)'.",
+      "topic_id": "tree_diagram_mixed_H",
+      "prompt": "A bag contains 5 green and 7 red counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the two counters are different colours.",
       "solution_steps": [
-        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
-        "A = {1, 2, 7}",
-        "B = {1, 7, 10}",
-        "(A ∪ B)' means the complement of A union B.",
-        "(A ∪ B)' = {3, 4, 5, 6, 8, 9}"
+        "After the first counter is picked (without replacement), there are 11 counters left.",
+        "P(green then green) = 5/12 × 4/11 = 5/33",
+        "P(green then red) = 5/12 × 7/11 = 35/132",
+        "P(red then green) = 7/12 × 5/11 = 35/132",
+        "P(red then red) = 7/12 × 6/11 = 7/22",
+        "P(the two counters are different colours) = 35/66"
       ],
-      "final_answer": "{3, 4, 5, 6, 8, 9}",
+      "final_answer": "35/66",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+          "description": "After the first counter is picked (without replacement), there are 11 counters left.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A = {1, 2, 7}",
+          "description": "P(green then green) = 5/12 × 4/11 = 5/33",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "B = {1, 7, 10}",
+          "description": "P(green then red) = 5/12 × 7/11 = 35/132",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(A ∪ B)' means the complement of A union B. (A ∪ B)' = {3, 4, 5, 6, 8, 9}",
+          "description": "P(red then green) = 7/12 × 5/11 = 35/132 P(red then red) = 7/12 × 6/11 = 7/22 P(the two counters are different colours) = 35/66",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "{3, 4, 5, 6, 8, 9} oe",
+          "description": "35/66 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Green",
+              "5/12"
+            ],
+            [
+              "Red",
+              "7/12"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Green",
+                "4/11"
+              ],
+              [
+                "Red",
+                "7/11"
+              ]
+            ],
+            [
+              [
+                "Green",
+                "5/11"
+              ],
+              [
+                "Red",
+                "6/11"
+              ]
+            ]
+          ],
+          "leaf_probs": [
+            [
+              "5/33",
+              "35/132"
+            ],
+            [
+              "35/132",
+              "7/22"
+            ]
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "roots_higher",
+      "topic_id": "roots_H",
       "prompt": "Simplify √176, giving your answer in the form a√b.",
       "solution_steps": [
         "Find the largest square factor of 176: 4^2 × 11 = 176",
@@ -141,10 +189,10 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "recurring_decimal_two_digit",
-      "prompt": "The recurring decimal 0.(04) can be written as a fraction. Find this fraction in its simplest form.",
+      "topic_id": "recurring_decimal_two_digit_H",
+      "prompt": "Write \\recur{0.}{04} as a fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.(04), so 100x = 04.0404... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Let x = \\recur{0.}{04}, so 100x = 04.0404... (two digits repeat, so multiply by 100 to shift a full block)",
         "Subtract: 100x - x = 4 - 0, so 99x = 4",
         "x = 4/99 = 4/99"
       ],
@@ -153,7 +201,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.(04), so 100x = 04.0404... (two digits repeat, so multiply by 100 to shift a full block)",
+          "description": "Let x = \\recur{0.}{04}, so 100x = 04.0404... (two digits repeat, so multiply by 100 to shift a full block)",
           "marks": 1
         },
         {
@@ -176,10 +224,10 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_recurring_to_fraction",
-      "prompt": "The recurring decimal 0.9(3) can be written as a fraction. Find this fraction in its simplest form.",
+      "topic_id": "decimals_recurring_to_fraction_H",
+      "prompt": "Write \\recur{0.9}{3} as a fraction in its simplest form.",
       "solution_steps": [
-        "Let x = 0.9(3)",
+        "Let x = \\recur{0.9}{3}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
         "This gives x = 84/90",
         "Simplify: 14/15"
@@ -189,7 +237,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = 0.9(3)",
+          "description": "Let x = \\recur{0.9}{3}",
           "marks": 1
         },
         {
@@ -217,40 +265,114 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "quadratic_inequalities",
-      "prompt": "Solve the inequality: -x^2 + x + 30 < 0",
+      "topic_id": "inequalities_region_H",
+      "prompt": "On the grid, shade the region that satisfies both y > 2x + 1 and y > -2x - 3.",
       "solution_steps": [
-        "Factorise: -x^2 + x + 30 = -(x + 5)(x - 6)",
-        "The critical values are x = -5 and x = 6.",
-        "The coefficient of x^2 is negative, so the graph is a upside-down U-shaped parabola, and < 0 is satisfied outside the two roots.",
-        "Answer: x < -5 or x > 6"
+        "Draw the line y = 2x + 1 (dashed - the line itself is not included in the region).",
+        "Draw the line y = -2x - 3 (dashed - the line itself is not included in the region).",
+        "Shade the region where both y > 2x + 1 and y > -2x - 3 are true at the same time."
       ],
-      "final_answer": "x < -5 or x > 6",
-      "marks": 5,
+      "final_answer": "y > 2x + 1 and y > -2x - 3",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Factorise: -x^2 + x + 30 = -(x + 5)(x - 6)",
+          "description": "Draw the line y = 2x + 1 (dashed - the line itself is not included in the region).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The critical values are x = -5 and x = 6.",
+          "description": "Draw the line y = -2x - 3 (dashed - the line itself is not included in the region).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The coefficient of x^2 is negative, so the graph is a upside-down U-shaped parabola, and < 0 is satisfied outside the two roots.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Answer: x < -5 or x > 6",
+          "description": "Shade the region where both y > 2x + 1 and y > -2x - 3 are true at the same time.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x < -5 or x > 6 oe",
+          "description": "y > 2x + 1 and y > -2x - 3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "inequality_region",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "inequality_region",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "lines": [
+            {
+              "m": 2.0,
+              "c": 1,
+              "op": ">"
+            },
+            {
+              "m": -2.0,
+              "c": -3,
+              "op": ">"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "satisfying_inequalities_H",
+      "prompt": "x satisfies both 2x + 6 ≥ 1 and 3x - 7 < -2. List the integer values of x that satisfy both.",
+      "solution_steps": [
+        "Solve the first inequality:",
+        "2x + 6 ≥ 1",
+        "Subtract 6 from both sides:",
+        "2x ≥ -5",
+        "Divide both sides by 2:",
+        "x ≥ -5/2",
+        "Solve the second inequality:",
+        "3x - 7 < -2",
+        "Add 7 to both sides:",
+        "3x < 5",
+        "Divide both sides by 3:",
+        "x < 5/3",
+        "Combine both results into a single range: -5/2 ≤ x < 5/3",
+        "The integers satisfying both inequalities are: -2, -1, 0, 1"
+      ],
+      "final_answer": "-2, -1, 0, 1",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Solve the first inequality:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x + 6 ≥ 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 6 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x ≥ -5 Divide both sides by 2: x ≥ -5/2 Solve the second inequality: 3x - 7 < -2 Add 7 to both sides: 3x < 5 Divide both sides by 3: x < 5/3 Combine both results into a single range: -5/2 ≤ x < 5/3 The integers satisfying both inequalities are: -2, -1, 0, 1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-2, -1, 0, 1 oe",
           "marks": 1
         }
       ],
@@ -258,43 +380,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solving_inequalities_higher",
-      "prompt": "Solve the inequality: 6x + 3 ≥ 8x",
+      "topic_id": "change_subject_factorise_H",
+      "prompt": "Make x the subject of the formula cx + 9x = 51.",
       "solution_steps": [
-        "6x + 3 ≥ 8x",
-        "Subtract 8x from both sides:",
-        "-2x + 3 ≥ 0",
-        "Subtract 3 from both sides:",
-        "-2x ≥ -3",
-        "Divide both sides by -2 (dividing by a negative number reverses the inequality sign):",
-        "x ≤ 3/2"
+        "cx + 9x = 51",
+        "Factorise the left-hand side: x(c + 9) = 51",
+        "Divide both sides by (c + 9): x = \\frac{51}{c + 9}"
       ],
-      "final_answer": "x ≤ 3/2",
-      "marks": 5,
+      "final_answer": "x = \\frac{51}{c + 9}",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "6x + 3 ≥ 8x",
+          "description": "cx + 9x = 51",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 8x from both sides:",
+          "description": "Factorise the left-hand side: x(c + 9) = 51",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-2x + 3 ≥ 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 3 from both sides: -2x ≥ -3 Divide both sides by -2 (dividing by a negative number reverses the inequality sign): x ≤ 3/2",
+          "description": "Divide both sides by (c + 9): x = \\frac{51}{c + 9}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x ≤ 3/2 oe",
+          "description": "x = \\frac{51}{c + 9} oe",
           "marks": 1
         }
       ],
@@ -302,52 +415,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "forming_equations_higher",
-      "prompt": "A rectangle has one side of length 7 cm and the other side of length (x + 1) cm. The area of the rectangle is 28 cm². Form an equation and solve it to find x.",
-      "solution_steps": [
-        "Area of a rectangle = length × width.",
-        "7(x + 1) = 28",
-        "Expand the bracket:",
-        "7x + 7 = 28",
-        "Subtract 7 from both sides:",
-        "7x = 21",
-        "Divide both sides by 7:",
-        "x = 3"
-      ],
-      "final_answer": "3",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Area of a rectangle = length × width.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "7(x + 1) = 28",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Expand the bracket:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "7x + 7 = 28 Subtract 7 from both sides: 7x = 21 Divide both sides by 7: x = 3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "linear_brackets",
+      "topic_id": "linear_brackets_H",
       "prompt": "Solve: 4(4x + 8) = 80",
       "solution_steps": [
         "Expand the bracket: 4(4x + 8) = 16x + 32",
@@ -390,83 +458,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "velocity_time_interpret",
-      "prompt": "The velocity-time graph shows a car's journey. Find the distance travelled while the car travels at constant velocity.",
+      "topic_id": "perpendicular_lines_equation_H",
+      "prompt": "A line is perpendicular to y = 2x - 3 and passes through the point (-1, 3). Find the equation of the line.",
       "solution_steps": [
-        "Distance = area under the graph = base × height (a rectangle)",
-        "Distance = 10 × 10 = 100 m"
+        "Perpendicular gradients multiply to give -1: m × 2 = -1, so m = -1/2",
+        "Substitute (-1, 3) into y = -1/2x + c: 3 = -1/2×(-1) + c, so c = 5/2",
+        "Equation of the line: y = -1/2x + 5/2"
       ],
-      "final_answer": "100 m",
-      "marks": 3,
+      "final_answer": "y = -1/2x + 5/2",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Distance = area under the graph = base × height (a rectangle)",
+          "description": "Perpendicular gradients multiply to give -1: m × 2 = -1, so m = -1/2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Distance = 10 × 10 = 100 m",
+          "description": "Substitute (-1, 3) into y = -1/2x + c: 3 = -1/2×(-1) + c, so c = 5/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Equation of the line: y = -1/2x + 5/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "100 m oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              12,
-              10
-            ],
-            [
-              22,
-              10
-            ],
-            [
-              32,
-              0
-            ]
-          ],
-          "x_max": 37,
-          "y_max": 15,
-          "x_label": "Time (s)",
-          "y_label": "Velocity (m/s)"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "factorise_quadratics",
-      "prompt": "Factorise: x^2 - 13x + 36",
-      "solution_steps": [
-        "Find two numbers that multiply to 36 and add to -13: -4 and -9",
-        "Write as two brackets: (x - 4)(x - 9)"
-      ],
-      "final_answer": "(x - 4)(x - 9)",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find two numbers that multiply to 36 and add to -13: -4 and -9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Write as two brackets: (x - 4)(x - 9)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(x - 4)(x - 9) oe",
+          "description": "y = -1/2x + 5/2 oe",
           "marks": 1
         }
       ],
@@ -474,14 +493,49 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "change_subject_higher",
+      "topic_id": "expand_triple_brackets_H",
+      "prompt": "Expand and simplify: (2x + 3)(3x + 4)(x + 1)",
+      "solution_steps": [
+        "First expand two of the brackets: (2x + 3)(3x + 4) = 6x^2 + 17x + 12",
+        "Multiply the result by (x + 1) and collect like terms",
+        "= 6x^3 + 23x^2 + 29x + 12"
+      ],
+      "final_answer": "6x^3 + 23x^2 + 29x + 12",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First expand two of the brackets: (2x + 3)(3x + 4) = 6x^2 + 17x + 12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply the result by (x + 1) and collect like terms",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 6x^3 + 23x^2 + 29x + 12",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6x^3 + 23x^2 + 29x + 12 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "change_subject_H",
       "prompt": "Make r the subject of the formula A = 2πr^2.",
       "solution_steps": [
         "A = 2πr^2",
-        "Divide both sides by 2π: A/(2π) = r^2",
-        "Take the square root of both sides: r = √(A/(2π))"
+        "Divide both sides by 2π: \\frac{A}{2π} = r^2",
+        "Take the square root of both sides: r = √(\\frac{A}{2π})"
       ],
-      "final_answer": "r = √(A/(2π))",
+      "final_answer": "r = √(\\frac{A}{2π})",
       "marks": 4,
       "mark_scheme": [
         {
@@ -491,17 +545,17 @@
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 2π: A/(2π) = r^2",
+          "description": "Divide both sides by 2π: \\frac{A}{2π} = r^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Take the square root of both sides: r = √(A/(2π))",
+          "description": "Take the square root of both sides: r = √(\\frac{A}{2π})",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "r = √(A/(2π)) oe",
+          "description": "r = √(\\frac{A}{2π}) oe",
           "marks": 1
         }
       ],
@@ -509,7 +563,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_combine",
+      "topic_id": "ratio_combine_H",
       "prompt": "Given that a:b = 6:5 and b:c = 8:8, find a:b:c in its simplest form.",
       "solution_steps": [
         "Scale a:b = 6:5 by 8 so b = 40: a:b = 48:40",
@@ -550,17 +604,17 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_difference_higher",
-      "prompt": "Amounts are in the ratio 5:2:1. The difference between the largest and smallest amount is 56. Find all three amounts and their total.",
+      "topic_id": "ratio_difference_H",
+      "prompt": "a : b : c = 5 : 2 : 1.\na - c = 56.\nFind a, b and c, and their total.",
       "solution_steps": [
         "Difference in parts = 5 - 1 = 4 parts",
         "Value of one part = 56 ÷ 4 = 14",
-        "Amount 1 = 5 × 14 = 70",
-        "Amount 2 = 2 × 14 = 28",
-        "Amount 3 = 1 × 14 = 14",
-        "Total = 70 + 28 + 14 = 112"
+        "a = 5 × 14 = 70",
+        "b = 2 × 14 = 28",
+        "c = 1 × 14 = 14",
+        "a + b + c = 70 + 28 + 14 = 112"
       ],
-      "final_answer": "70 : 28 : 14 (total 112)",
+      "final_answer": "a = 70, b = 28, c = 14 (total 112)",
       "marks": 5,
       "mark_scheme": [
         {
@@ -575,17 +629,17 @@
         },
         {
           "code": "M1",
-          "description": "Amount 1 = 5 × 14 = 70",
+          "description": "a = 5 × 14 = 70",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Amount 2 = 2 × 14 = 28 Amount 3 = 1 × 14 = 14 Total = 70 + 28 + 14 = 112",
+          "description": "b = 2 × 14 = 28 c = 1 × 14 = 14 a + b + c = 70 + 28 + 14 = 112",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "70 : 28 : 14 (total 112) oe",
+          "description": "a = 70, b = 28, c = 14 (total 112) oe",
           "marks": 1
         }
       ],
@@ -593,7 +647,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "density_higher",
+      "topic_id": "density_H",
       "prompt": "A stone in the shape of a cuboid has dimensions 3 cm × 4 cm × 2 cm and a density of 5 g/cm³. Find its mass.",
       "solution_steps": [
         "volume = length × width × height = 3 × 4 × 2 = 24 cm³",
@@ -622,7 +676,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "percentage_increase_decrease_calculator",
+      "topic_id": "percentage_increase_decrease_calculator_H",
       "prompt": "Using a calculator, increase £268.40 by 3.6%. Give your answer to 2 decimal places.",
       "solution_steps": [
         "Convert 3.6% to a multiplier: 1.036",
@@ -651,100 +705,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof",
-      "prompt": "Triangle ABC is isosceles with AB = AC. D is the foot of the perpendicular from A to BC. Prove that the two triangles are congruent.",
+      "topic_id": "vectors_arithmetic_H",
+      "prompt": "\\vec{a} = \\colvec{8}{-4} and \\vec{b} = \\colvec{-8}{-12}. Find -3\\vec{a} - (-1\\vec{b}).",
       "solution_steps": [
-        "angle ADB = angle ADC = 90° (AD is perpendicular to BC)",
-        "AB = AC (given, the hypotenuse of each right triangle)",
-        "AD is common to both triangles",
-        "By Right angle-Hypotenuse-Side (RHS), the triangles are congruent.",
-        "Since the hypotenuse and a common side match, with the right angle at D, triangles ABD and ACD are congruent - so BD = CD, meaning D is the midpoint of BC."
+        "\\vec{a} = \\colvec{8}{-4}, \\vec{b} = \\colvec{-8}{-12}",
+        "-3\\vec{a} = \\colvec{-24}{12} and -1\\vec{b} = \\colvec{8}{12}",
+        "-3\\vec{a} - (-1\\vec{b}) = \\colvec{-32}{0}"
       ],
-      "final_answer": "Triangles are congruent (RHS).",
-      "marks": 5,
+      "final_answer": "\\colvec{-32}{0}",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "angle ADB = angle ADC = 90° (AD is perpendicular to BC)",
+          "description": "\\vec{a} = \\colvec{8}{-4}, \\vec{b} = \\colvec{-8}{-12}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "AB = AC (given, the hypotenuse of each right triangle)",
+          "description": "-3\\vec{a} = \\colvec{-24}{12} and -1\\vec{b} = \\colvec{8}{12}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "AD is common to both triangles",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "By Right angle-Hypotenuse-Side (RHS), the triangles are congruent. Since the hypotenuse and a common side match, with the right angle at D, triangles ABD and ACD are congruent - so BD = CD, meaning D is the midpoint of BC.",
+          "description": "-3\\vec{a} - (-1\\vec{b}) = \\colvec{-32}{0}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Triangles are congruent (RHS). oe",
+          "description": "\\colvec{-32}{0} oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "two_triangle_congruence",
-        "params": {
-          "labels_1": [
-            "A",
-            "B",
-            "D"
-          ],
-          "labels_2": [
-            "A",
-            "C",
-            "D"
-          ],
-          "ticks_1": [
-            [
-              0,
-              1,
-              1
-            ],
-            [
-              0,
-              2,
-              2
-            ]
-          ],
-          "ticks_2": [
-            [
-              0,
-              1,
-              1
-            ],
-            [
-              0,
-              2,
-              2
-            ]
-          ],
-          "arcs_1": [
-            [
-              2,
-              1
-            ]
-          ],
-          "arcs_2": [
-            [
-              2,
-              1
-            ]
-          ],
-          "note": "AD is common to both triangles."
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_polygon_interior",
+      "topic_id": "angles_polygon_interior_H",
       "prompt": "A polygon has 6 sides. 5 of its interior angles are each 110°, and the remaining interior angle is (4x + 154)°. Find x.",
       "solution_steps": [
         "Sum of interior angles = (n - 2) × 180 = (6 - 2) × 180 = 720°",
@@ -795,46 +791,52 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sine_rule",
-      "prompt": "In triangle ABC, angle A = 43°, angle B = 43°, and side a = 9 cm. Find the length of side b, correct to 3 significant figures.",
+      "topic_id": "cosine_rule_H",
+      "prompt": "In triangle ABC, side b = 18 cm, side c = 16 cm, and the angle between them, angle A = 100°. Find the length of side a, correct to 2 decimal places.",
       "solution_steps": [
-        "Use the sine rule: a / sin(A) = b / sin(B)",
-        "b = (9 × sin(43°)) ÷ sin(43°) = 9.00 cm (3 s.f.)"
+        "Use the cosine rule: a² = b² + c² - 2bc cos(A)",
+        "a² = 18² + 16² - 2×18×16×cos(100°) = 680.0",
+        "a = √680.0 = 26.08 cm (2 d.p.)"
       ],
-      "final_answer": "9.00 cm",
-      "marks": 3,
+      "final_answer": "26.08 cm",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Use the sine rule: a / sin(A) = b / sin(B)",
+          "description": "Use the cosine rule: a² = b² + c² - 2bc cos(A)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "b = (9 × sin(43°)) ÷ sin(43°) = 9.00 cm (3 s.f.)",
+          "description": "a² = 18² + 16² - 2×18×16×cos(100°) = 680.0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "a = √680.0 = 26.08 cm (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9.00 cm oe",
+          "description": "26.08 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "general_triangle",
         "params": {
-          "side_a_label": "9 cm",
-          "side_b_label": "x cm",
-          "side_c_label": null,
-          "angle_A_label": "43°",
-          "angle_B_label": "43°",
+          "side_a_label": "x cm",
+          "side_b_label": "18 cm",
+          "side_c_label": "16 cm",
+          "angle_A_label": "100°",
+          "angle_B_label": null,
           "angle_C_label": null
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "area_semicircle_compound_higher",
+      "topic_id": "area_semicircle_compound_H",
       "prompt": "A shape is made from a rectangle 10 cm by 5 cm with a semicircle of diameter 10 cm attached to one side. Find the total area, giving your answer in terms of π.",
       "solution_steps": [
         "Area of rectangle = 10 × 5 = 50 cm²",
@@ -884,7 +886,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "tree_diagram_dependent",
+      "topic_id": "tree_diagram_dependent_H",
       "prompt": "A bag contains 5 red and 8 yellow counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the first counter is red and the second counter is red.",
       "solution_steps": [
         "After the first counter is picked (without replacement), there are 12 counters left.",
@@ -973,7 +975,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_combined_dice",
+      "topic_id": "probability_combined_dice_H",
       "prompt": "Two fair six-sided dice are rolled. Find the probability that at least one die shows 3.",
       "solution_steps": [
         "P(neither die shows 3) = 5/6 × 5/6 = 25/36",
@@ -998,46 +1000,38 @@
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "dice",
-        "params": {
-          "values": [
-            2,
-            4
-          ]
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "completing_the_square",
-      "prompt": "Write x^2 - 16x - 10 in the form (x + p)^2 + q.",
+      "topic_id": "turning_point_of_graph_H",
+      "prompt": "Find the coordinates of the turning point of the curve y = x^2 + 10x - 6.",
       "solution_steps": [
-        "Half the coefficient of x: -16 ÷ 2 = -8",
-        "(x - 8)^2 = x^2 - 16x + 64",
-        "x^2 - 16x + -10 = (x - 8)^2 + (-10 - 64) = (x - 8)^2 - 74"
+        "Complete the square: x^2 + 10x - 6 = (x + 5)^2 - 31",
+        "The turning point of y = (x + p)^2 + q is (-p, q).",
+        "Turning point = (-5, -31)"
       ],
-      "final_answer": "(x - 8)^2 - 74",
+      "final_answer": "(-5, -31)",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Half the coefficient of x: -16 ÷ 2 = -8",
+          "description": "Complete the square: x^2 + 10x - 6 = (x + 5)^2 - 31",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(x - 8)^2 = x^2 - 16x + 64",
+          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x^2 - 16x + -10 = (x - 8)^2 + (-10 - 64) = (x - 8)^2 - 74",
+          "description": "Turning point = (-5, -31)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(x - 8)^2 - 74 oe",
+          "description": "(-5, -31) oe",
           "marks": 1
         }
       ],

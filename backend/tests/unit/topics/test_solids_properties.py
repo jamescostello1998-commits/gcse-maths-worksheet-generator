@@ -7,6 +7,7 @@ TRIALS = 200
 
 GENERATORS = [
     (solids_properties.generate_properties_3d_shapes, Tier.FOUNDATION),
+    (solids_properties.generate_properties_3d_shapes_diagram, Tier.FOUNDATION),
     (solids_properties.generate_nets_3d_shapes, Tier.FOUNDATION),
 ]
 
@@ -68,34 +69,42 @@ def test_nets_answers_match_the_curated_bank():
             assert q.final_answer == str(template.composition[key])
 
 
-def test_properties_diagrams_match_expected_kinds_where_present():
+def test_no_diagram_version_never_shows_a_diagram():
+    # The plain topic is name-only recall - no diagram, for any shape.
+    rng = random.Random(45)
+    for _ in range(400):
+        q = solids_properties.generate_properties_3d_shapes(Tier.FOUNDATION, rng)
+        assert q.diagram is None
+
+
+def test_diagram_version_always_shows_the_expected_solid():
     expected_kinds = {
         "cube": "cuboid",
         "cuboid": "cuboid",
         "triangular_prism": "triangular_prism",
         "square_pyramid": "pyramid",
-        "tetrahedron": None,
         "cylinder": "cylinder",
         "cone": "cone",
         "sphere": "sphere",
-        "hexagonal_prism": None,
     }
     rng = random.Random(45)
     seen_ids = set()
     for _ in range(400):
-        q = solids_properties.generate_properties_3d_shapes(Tier.FOUNDATION, rng)
+        q = solids_properties.generate_properties_3d_shapes_diagram(Tier.FOUNDATION, rng)
         shape_id = q.dedup_key.split(":")[1]
         seen_ids.add(shape_id)
-        expected = expected_kinds[shape_id]
-        if expected is None:
-            assert q.diagram is None
-        else:
-            assert q.diagram is not None
-            assert q.diagram.kind == expected
+        assert q.diagram is not None
+        assert q.diagram.kind == expected_kinds[shape_id]
+    # Only the diagram-having solids appear (tetrahedron/hexagonal prism have
+    # no faithful diagram kind, so they're excluded from this version).
     assert seen_ids == set(expected_kinds)
 
 
 def test_nets_diagrams_always_present_with_expected_shape_param():
+    # No diagram on the question page - every prompt variant asks the
+    # student to reason from the solid's name alone - but the net itself is
+    # still revealed on the solution page (solution_diagram), matching this
+    # app's established blank-question/completed-solution split.
     expected_shapes = {
         "cuboid": "cuboid",
         "cube": "cube",
@@ -110,9 +119,10 @@ def test_nets_diagrams_always_present_with_expected_shape_param():
         q = solids_properties.generate_nets_3d_shapes(Tier.FOUNDATION, rng)
         shape_id = q.dedup_key.split(":")[1]
         seen_ids.add(shape_id)
-        assert q.diagram is not None
-        assert q.diagram.kind == "net"
-        assert q.diagram.params["shape"] == expected_shapes[shape_id]
+        assert q.diagram is None
+        assert q.solution_diagram is not None
+        assert q.solution_diagram.kind == "net"
+        assert q.solution_diagram.params["shape"] == expected_shapes[shape_id]
     assert seen_ids == set(expected_shapes)
 
 
@@ -124,7 +134,7 @@ ALL_TOPICS = [
 
 def test_topic_definitions_have_expected_metadata():
     ids = {t.id for t in ALL_TOPICS}
-    assert ids == {"properties_3d_shapes", "nets_3d_shapes"}
+    assert ids == {"properties_3d_shapes_F", "nets_3d_shapes_F"}
     for t in ALL_TOPICS:
         assert t.section == "geometry"
         assert t.group == "3D Shapes"
@@ -139,8 +149,8 @@ def test_topic_definitions_have_modelled_examples_wired_up():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (solids_properties.generate_modelled_example_properties_3d_shapes, "properties_3d_shapes"),
-    (solids_properties.generate_modelled_example_nets_3d_shapes, "nets_3d_shapes"),
+    (solids_properties.generate_modelled_example_properties_3d_shapes, "properties_3d_shapes_F"),
+    (solids_properties.generate_modelled_example_nets_3d_shapes, "nets_3d_shapes_F"),
 ]
 
 

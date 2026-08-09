@@ -4,24 +4,31 @@
   "tier": "foundation",
   "sitting_id": "foundation-01",
   "paper_number": 2,
+  "calculator_allowed": false,
   "questions": [
     {
-      "topic_id": "factors",
-      "prompt": "Write down all the factors of 46.",
+      "topic_id": "prime_factors_F",
+      "prompt": "Write 130 as a product of its prime factors.",
       "solution_steps": [
-        "Check every whole number from 1 to 46 to see if it divides exactly: 1, 2, 23, 46"
+        "Divide 130 repeatedly by the smallest prime that fits: 2 × 5 × 13",
+        "130 = 2 × 5 × 13"
       ],
-      "final_answer": "1, 2, 23, 46",
-      "marks": 2,
+      "final_answer": "2 × 5 × 13",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Check every whole number from 1 to 46 to see if it divides exactly: 1, 2, 23, 46",
+          "description": "Divide 130 repeatedly by the smallest prime that fits: 2 × 5 × 13",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "130 = 2 × 5 × 13",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1, 2, 23, 46 oe",
+          "description": "2 × 5 × 13 oe",
           "marks": 1
         }
       ],
@@ -29,7 +36,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "error_interval",
+      "topic_id": "error_interval_F",
       "prompt": "A number, x, is 124 rounded to the nearest whole number. Write down the error interval for x.",
       "solution_steps": [
         "124 is rounded to the nearest whole number, so x can be up to half of that precision above or below 124.",
@@ -64,7 +71,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "negative_multiply_divide",
+      "topic_id": "negative_multiply_divide_F",
       "prompt": "Work out -11 × 2.",
       "solution_steps": [
         "-11 × 2 = -22"
@@ -87,8 +94,8 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_of_amount",
-      "prompt": "Find 9/10 of 40.",
+      "topic_id": "fractions_of_amount_F",
+      "prompt": "Work out 9/10 of 40.",
       "solution_steps": [
         "Divide by the denominator: 40 ÷ 10 = 4",
         "Multiply by the numerator: 4 × 9 = 36"
@@ -116,8 +123,8 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bidmas",
-      "prompt": "Work out 7^2 + 9 × 5 - 8 ÷ 4. Use the correct order of operations.",
+      "topic_id": "bidmas_F",
+      "prompt": "Work out 7^2 + 9 × 5 - 8 ÷ 4.",
       "solution_steps": [
         "Indices: 7^2 = 49",
         "Multiplication: 9 × 5 = 45",
@@ -158,34 +165,82 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_to",
-      "prompt": "Write 4000 in standard form.",
+      "topic_id": "fractions_equivalent_diagram_F",
+      "prompt": "The first shape shows 5/6 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
       "solution_steps": [
-        "Move the decimal point until there is one non-zero digit before it: 4",
-        "Count how many places the decimal point moved: 3",
-        "4000 = 4 × 10^3"
+        "Cross-multiply 5/6 against each labelled shape: a shape shows an equivalent fraction only if 5 × (its denominator) = (its shaded count) × 6.",
+        "Only shape C) 10/12 works: 5 × 12 = 10 × 6 = 60."
       ],
-      "final_answer": "4 × 10^3",
+      "final_answer": "C) 10/12",
+      "marks": 1,
+      "mark_scheme": [
+        {
+          "code": "B1",
+          "description": "C) 10/12 (selecting the correct option)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "fraction_shapes",
+        "params": {
+          "shapes": [
+            {
+              "kind": "bar",
+              "parts": 6,
+              "shaded": 5
+            },
+            {
+              "kind": "bar",
+              "parts": 8,
+              "shaded": 6,
+              "label": "A)"
+            },
+            {
+              "kind": "bar",
+              "parts": 10,
+              "shaded": 6,
+              "label": "B)"
+            },
+            {
+              "kind": "bar",
+              "parts": 12,
+              "shaded": 10,
+              "label": "C)"
+            }
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_ordering_F",
+      "prompt": "Write these fractions in ascending order: 7/12, 5/6, 1/7, 2/3",
+      "solution_steps": [
+        "Convert every fraction to the same denominator, the LCM of 12, 6, 7, 3: 84",
+        "Rewrite each fraction over 84: 7/12 = 49/84, 5/6 = 70/84, 1/7 = 12/84, 2/3 = 56/84",
+        "Order the numerators in ascending order and convert back: 1/7, 7/12, 2/3, 5/6"
+      ],
+      "final_answer": "1/7, 7/12, 2/3, 5/6",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Move the decimal point until there is one non-zero digit before it: 4",
+          "description": "Convert every fraction to the same denominator, the LCM of 12, 6, 7, 3: 84",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Count how many places the decimal point moved: 3",
+          "description": "Rewrite each fraction over 84: 7/12 = 49/84, 5/6 = 70/84, 1/7 = 12/84, 2/3 = 56/84",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4000 = 4 × 10^3",
+          "description": "Order the numerators in ascending order and convert back: 1/7, 7/12, 2/3, 5/6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4 × 10^3 oe",
+          "description": "1/7, 7/12, 2/3, 5/6 oe",
           "marks": 1
         }
       ],
@@ -193,104 +248,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_add_subtract",
-      "prompt": "Work out 4/8 + 2/8. Give your answer as a fraction in its simplest form.",
+      "topic_id": "decimals_round_dp_F",
+      "prompt": "Round 81.329 to 2 decimal places.",
       "solution_steps": [
-        "Find a common denominator: LCM(8, 8) = 8",
-        "Convert: 4/8 = 4/8, 2/8 = 2/8",
-        "Add: 4/8 + 2/8 = 6/8",
-        "Simplify: 3/4"
+        "Look at the digit after the 2 decimal places we want: 9, so round up.",
+        "81.329 rounded to 2 decimal places = 81.33"
       ],
-      "final_answer": "3/4",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find a common denominator: LCM(8, 8) = 8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Convert: 4/8 = 4/8, 2/8 = 2/8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add: 4/8 + 2/8 = 6/8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Simplify: 3/4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "3/4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "change_subject_foundation",
-      "prompt": "Make x the subject of the formula y = 5x - 2.",
-      "solution_steps": [
-        "y = 5x - 2",
-        "Add 2 to both sides: y + 2 = 5x",
-        "Divide both sides by 5: x = (y + 2)/5"
-      ],
-      "final_answer": "x = (y + 2)/5",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "y = 5x - 2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add 2 to both sides: y + 2 = 5x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by 5: x = (y + 2)/5",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = (y + 2)/5 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "functions_evaluate",
-      "prompt": "f(x) = -5x + 3. Find f(7).",
-      "solution_steps": [
-        "f(7) = -5×(7) + 3",
-        "f(7) = -32"
-      ],
-      "final_answer": "-32",
+      "final_answer": "81.33",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "f(7) = -5×(7) + 3",
+          "description": "Look at the digit after the 2 decimal places we want: 9, so round up.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "f(7) = -32",
+          "description": "81.329 rounded to 2 decimal places = 81.33",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-32 oe",
+          "description": "81.33 oe",
           "marks": 1
         }
       ],
@@ -298,42 +277,72 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_multi_step",
-      "prompt": "Solve: 5x + 14 + 2x + 10 = 87",
+      "topic_id": "factorise_quadratics_F",
+      "prompt": "Factorise: x^2 + 6x + 5",
       "solution_steps": [
-        "Collect like terms: 5x + 2x = 7x, 14 + 10 = 24",
-        "7x + 24 = 87",
-        "Subtract 24 from both sides:",
-        "7x = 63",
-        "Divide both sides by 7:",
-        "x = 9"
+        "Find two numbers that multiply to 5 and add to 6: 1 and 5",
+        "Write as two brackets: (x + 1)(x + 5)"
       ],
-      "final_answer": "9",
+      "final_answer": "(x + 1)(x + 5)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find two numbers that multiply to 5 and add to 6: 1 and 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write as two brackets: (x + 1)(x + 5)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(x + 1)(x + 5) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_both_sides_F",
+      "prompt": "Solve: 4x + 10 = 5x + 8",
+      "solution_steps": [
+        "4x + 10 = 5x + 8",
+        "Subtract 5x from both sides:",
+        "-x + 10 = 8",
+        "Subtract 10 from both sides:",
+        "-x = -2",
+        "Divide both sides by -1:",
+        "x = 2"
+      ],
+      "final_answer": "2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Collect like terms: 5x + 2x = 7x, 14 + 10 = 24",
+          "description": "4x + 10 = 5x + 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "7x + 24 = 87",
+          "description": "Subtract 5x from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 24 from both sides:",
+          "description": "-x + 10 = 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "7x = 63 Divide both sides by 7: x = 9",
+          "description": "Subtract 10 from both sides: -x = -2 Divide both sides by -1: x = 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9 oe",
+          "description": "2 oe",
           "marks": 1
         }
       ],
@@ -341,7 +350,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "classify_expressions",
+      "topic_id": "classify_expressions_F",
       "prompt": "Is the following an expression, equation, formula, or identity?\n(x + 8)(x - 8) ≡ x^2 - 64",
       "solution_steps": [
         "Look at the statement: (x + 8)(x - 8) ≡ x^2 - 64.",
@@ -382,34 +391,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_single_bracket",
-      "prompt": "Expand: -7(-8x - 7)",
+      "topic_id": "substitution_F",
+      "prompt": "P = 2L + 2w. Find the value of P when L = 13 and w = 8.",
       "solution_steps": [
-        "Multiply -7 by -8x: 56x",
-        "Multiply -7 by -7: 49",
-        "Combine: 56x + 49"
+        "P = 2L + 2w",
+        "P = 2 × 13 + 2 × 8",
+        "P = 26 + 16",
+        "P = 42"
       ],
-      "final_answer": "56x + 49",
-      "marks": 4,
+      "final_answer": "P = 42",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply -7 by -8x: 56x",
+          "description": "P = 2L + 2w",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply -7 by -7: 49",
+          "description": "P = 2 × 13 + 2 × 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Combine: 56x + 49",
+          "description": "P = 26 + 16",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P = 42",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "56x + 49 oe",
+          "description": "P = 42 oe",
           "marks": 1
         }
       ],
@@ -417,7 +432,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_two_step",
+      "topic_id": "linear_two_step_F",
       "prompt": "Solve: 5x + 4 = 49",
       "solution_steps": [
         "5x + 4 = 49",
@@ -459,7 +474,36 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_straight_line",
+      "topic_id": "special_sequences_F",
+      "prompt": "Here are the first 5 terms of a sequence: 13, 16, 19, 22, 25. Find the next term.",
+      "solution_steps": [
+        "This is an arithmetic sequence: it goes up (or down) by the same amount, 3, each time.",
+        "Next term = 25 + 3 = 28"
+      ],
+      "final_answer": "28",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "This is an arithmetic sequence: it goes up (or down) by the same amount, 3, each time.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Next term = 25 + 3 = 28",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "28 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_straight_line_F",
       "prompt": "Complete a table of values for y = 3x + 4 for x = -3 to 3, then plot the graph.",
       "solution_steps": [
         "Table of values for y = 3x + 4:",
@@ -553,28 +597,41 @@
       }
     },
     {
-      "topic_id": "inverse_proportion",
-      "prompt": "It takes 3 pipes 24 hours to fill a tank. Working at the same rate, how long would it take 6 pipes?",
+      "topic_id": "expand_double_brackets_F",
+      "prompt": "Expand and simplify: (2x + 9)(4x + 9)",
       "solution_steps": [
-        "Constant = 3 × 24 = 72",
-        "Time for 6 pipes = 72 ÷ 6 = 12"
+        "First: 2x × 4x = 8x^2",
+        "Outer: 2x × 9 = 18x",
+        "Inner: 9 × 4x = 36x",
+        "Last: 9 × 9 = 81",
+        "Combine like terms: 8x^2 + 54x + 81"
       ],
-      "final_answer": "12 hours",
-      "marks": 3,
+      "final_answer": "8x^2 + 54x + 81",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Constant = 3 × 24 = 72",
+          "description": "First: 2x × 4x = 8x^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Time for 6 pipes = 72 ÷ 6 = 12",
+          "description": "Outer: 2x × 9 = 18x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Inner: 9 × 4x = 36x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Last: 9 × 9 = 81 Combine like terms: 8x^2 + 54x + 81",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 hours oe",
+          "description": "8x^2 + 54x + 81 oe",
           "marks": 1
         }
       ],
@@ -582,36 +639,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simple_interest",
-      "prompt": "£4300 is invested at a simple interest rate of 3% per year for 4 years. Find the interest earned.",
-      "solution_steps": [
-        "Simple interest formula: I = P × r × t ÷ 100",
-        "I = 4300 × 3 × 4 ÷ 100 = £516"
-      ],
-      "final_answer": "£516",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Simple interest formula: I = P × r × t ÷ 100",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "I = 4300 × 3 × 4 ÷ 100 = £516",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£516 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "percentage_change",
+      "topic_id": "percentage_change_F",
       "prompt": "Decrease 180 by 25%.",
       "solution_steps": [
         "Convert 25% to a multiplier: 0.75",
@@ -640,11 +668,11 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_find_missing_share",
-      "prompt": "Two amounts are in the ratio 5:9. The first amount is 25. Find the second amount.",
+      "topic_id": "ratio_find_missing_share_F",
+      "prompt": "p : q = 5 : 9. p = 25. What is the value of q?",
       "solution_steps": [
         "Value of one part = 25 ÷ 5 = 5",
-        "Second amount = 9 × 5 = 45"
+        "q = 9 × 5 = 45"
       ],
       "final_answer": "45",
       "marks": 3,
@@ -656,7 +684,7 @@
         },
         {
           "code": "M1",
-          "description": "Second amount = 9 × 5 = 45",
+          "description": "q = 9 × 5 = 45",
           "marks": 1
         },
         {
@@ -669,28 +697,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "direct_proportion",
-      "prompt": "A recipe for 2 people uses 44g of sugar. How much sugar is needed for 19 people?",
+      "topic_id": "inverse_proportion_noncalculator_F",
+      "prompt": "It takes 5 pipes 24 hours to fill a tank. Working at the same rate, how long would it take 6 pipes?",
       "solution_steps": [
-        "Unit value = 44g ÷ 2 = 22g",
-        "Answer = 22g × 19 = 418g"
+        "Constant = 5 × 24 = 120",
+        "Time for 6 pipes = 120 ÷ 6 = 20"
       ],
-      "final_answer": "418g",
+      "final_answer": "20 hours",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Unit value = 44g ÷ 2 = 22g",
+          "description": "Constant = 5 × 24 = 120",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer = 22g × 19 = 418g",
+          "description": "Time for 6 pipes = 120 ÷ 6 = 20",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "418g oe",
+          "description": "20 hours oe",
           "marks": 1
         }
       ],
@@ -698,140 +726,196 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_sector_foundation",
-      "prompt": "A sector of a circle has radius 6 cm and angle 11°. Find the area of the sector, correct to 3 significant figures.",
+      "topic_id": "compound_percentage_F",
+      "prompt": "A price of £120 increases by 50%, then increases by 25%. Find the final price.",
       "solution_steps": [
-        "Area = (θ ÷ 360) × π × r² = (11 ÷ 360) × π × 6²",
-        "= 3.46 cm² (3 s.f., using a calculator value of π)"
+        "After the first change: 120 × 1.50 = 180",
+        "After the second change: 180 × 1.25 = 225"
       ],
-      "final_answer": "3.46 cm²",
+      "final_answer": "£225",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = (θ ÷ 360) × π × r² = (11 ÷ 360) × π × 6²",
+          "description": "After the first change: 120 × 1.50 = 180",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 3.46 cm² (3 s.f., using a calculator value of π)",
+          "description": "After the second change: 180 × 1.25 = 225",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3.46 cm² oe",
+          "description": "£225 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "density_F",
+      "prompt": "A sculpture has a mass of 185 g and a density of 6 g/cm³. Find its volume, correct to 2 decimal places.",
+      "solution_steps": [
+        "volume = mass ÷ density",
+        "volume = 185 ÷ 6 = 30.83 cm³ (2 d.p.)"
+      ],
+      "final_answer": "30.83 cm³",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "volume = mass ÷ density",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "volume = 185 ÷ 6 = 30.83 cm³ (2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "30.83 cm³ oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "volume_surface_area_cube_F",
+      "prompt": "A cube has side length 11 cm. Find its surface area.",
+      "solution_steps": [
+        "Surface area = 6 × side² = 6 × 11² = 6 × 121 = 726 cm²"
+      ],
+      "final_answer": "726 cm²",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Surface area = 6 × side² = 6 × 11² = 6 × 121 = 726 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "726 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "sector",
+        "kind": "cuboid",
         "params": {
-          "angle": 11,
-          "radius_label": "6 cm",
-          "angle_label": "11°"
+          "width_label": "11 cm",
+          "height_label": "11 cm",
+          "length_label": "11 cm",
+          "is_cube": true
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "construction_angle_bisector",
-      "prompt": "Angle DSL = 145°. Describe, step by step, how to construct the bisector of angle DSL using only a ruler and a pair of compasses.",
+      "topic_id": "map_scale_drawings_F",
+      "prompt": "A map has a scale of 1 cm represents 5 km. Two towns are 35 km apart in real life. Find the distance between the towns on the map, in cm.",
       "solution_steps": [
-        "Open the compasses to any radius and place the point on S (the vertex of the angle).",
-        "Draw an arc that crosses both arms of the angle, at a point on SD and a point on SL.",
-        "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
-        "Draw a straight line from S through the point where the two arcs intersect. This line is the bisector of angle DSL."
+        "The scale means 1 cm on the map represents 5 km in real life.",
+        "Map distance = 35 ÷ 5 = 7 cm"
       ],
-      "final_answer": "The straight line from S through the intersection of the two equal-radius arcs bisects angle DSL into two equal angles.",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Open the compasses to any radius and place the point on S (the vertex of the angle).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Draw an arc that crosses both arms of the angle, at a point on SD and a point on SL.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Draw a straight line from S through the point where the two arcs intersect. This line is the bisector of angle DSL.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "The straight line from S through the intersection of the two equal-radius arcs bisects angle DSL into two equal angles. oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "vectors_arithmetic_foundation",
-      "prompt": "\\vec{a} = (2, 1) and \\vec{b} = (-8, -6). Find 4\\vec{a} - 4\\vec{b}.",
-      "solution_steps": [
-        "\\vec{a} = (2, 1), \\vec{b} = (-8, -6)",
-        "4\\vec{a} = (8, 4) and 4\\vec{b} = (-32, -24)",
-        "4\\vec{a} - 4\\vec{b} = (40, 28)"
-      ],
-      "final_answer": "(40, 28)",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "\\vec{a} = (2, 1), \\vec{b} = (-8, -6)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "4\\vec{a} = (8, 4) and 4\\vec{b} = (-32, -24)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "4\\vec{a} - 4\\vec{b} = (40, 28)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(40, 28) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "transform_translate_complete",
-      "prompt": "Translate shape ABCD by the vector (-4, 3). Draw and label the image A'B'C'D'.",
-      "solution_steps": [
-        "Translate every vertex by the vector (-4, 3): move each point 4 squares left and 3 squares up.",
-        "A(1, -3) -> A'(-3, 0), B(5, -3) -> B'(1, 0), C(4, 1) -> C'(0, 4), D(0, 0) -> D'(-4, 3)"
-      ],
-      "final_answer": "A'(-3, 0), B'(1, 0), C'(0, 4), D'(-4, 3)",
+      "final_answer": "7 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Translate every vertex by the vector (-4, 3): move each point 4 squares left and 3 squares up.",
+          "description": "The scale means 1 cm on the map represents 5 km in real life.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A(1, -3) -> A'(-3, 0), B(5, -3) -> B'(1, 0), C(4, 1) -> C'(0, 4), D(0, 0) -> D'(-4, 3)",
+          "description": "Map distance = 35 ÷ 5 = 7 cm",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(-3, 0), B'(1, 0), C'(0, 4), D'(-4, 3) oe",
+          "description": "7 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_straight_line_F",
+      "prompt": "The angles 123°, 22° and x° lie on a straight line. Find x.",
+      "solution_steps": [
+        "Angles on a straight line sum to 180°.",
+        "x = 180 - (123 + 22) = 180 - 145 = 35"
+      ],
+      "final_answer": "35",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles on a straight line sum to 180°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 180 - (123 + 22) = 180 - 145 = 35",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "35 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "angle_line",
+        "params": {
+          "angle_values": [
+            123,
+            22,
+            35
+          ],
+          "labels": [
+            "123°",
+            "22°",
+            "x"
+          ],
+          "around_point": false
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "transform_enlarge_complete_F",
+      "prompt": "Enlarge shape ABC by scale factor 2, centre (3, -5). Draw and label the image A'B'C'.",
+      "solution_steps": [
+        "The centre of enlargement is (3, -5) and the scale factor is 2.",
+        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-5, 2) from the centre, so A' = (3, -5) + 2 × (-5, 2) = (-7, -1).",
+        "Repeat for every vertex: A(-2, -3) -> A'(-7, -1), B(3, -3) -> B'(3, -1), C(-1, 1) -> C'(-5, 7)"
+      ],
+      "final_answer": "A'(-7, -1), B'(3, -1), C'(-5, 7)",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The centre of enlargement is (3, -5) and the scale factor is 2.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-5, 2) from the centre, so A' = (3, -5) + 2 × (-5, 2) = (-7, -1).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Repeat for every vertex: A(-2, -3) -> A'(-7, -1), B(3, -3) -> B'(3, -1), C(-1, 1) -> C'(-5, 7)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "A'(-7, -1), B'(3, -1), C'(-5, 7) oe",
           "marks": 1
         }
       ],
@@ -844,33 +928,27 @@
           "y_max": 8,
           "original_vertices": [
             [
-              1,
+              -2,
               -3
             ],
             [
-              5,
+              3,
               -3
             ],
             [
-              4,
+              -1,
               1
-            ],
-            [
-              0,
-              0
             ]
           ],
           "original_labels": [
             "A",
             "B",
-            "C",
-            "D"
+            "C"
           ],
-          "translation_vector": [
-            -4,
-            3
-          ],
-          "vector_label": "(-4, 3)"
+          "centre": [
+            3,
+            -5
+          ]
         }
       },
       "solution_diagram": {
@@ -882,62 +960,80 @@
           "y_max": 8,
           "original_vertices": [
             [
-              1,
+              -2,
               -3
             ],
             [
-              5,
+              3,
               -3
             ],
             [
-              4,
+              -1,
               1
-            ],
-            [
-              0,
-              0
             ]
           ],
           "original_labels": [
             "A",
             "B",
-            "C",
-            "D"
+            "C"
           ],
-          "translation_vector": [
-            -4,
-            3
+          "centre": [
+            3,
+            -5
           ],
-          "vector_label": "(-4, 3)",
           "image_vertices": [
             [
-              -3,
-              0
+              -7,
+              -1
             ],
             [
-              1,
-              0
+              3,
+              -1
             ],
             [
-              0,
-              4
-            ],
-            [
-              -4,
-              3
+              -5,
+              7
             ]
           ],
           "image_labels": [
             "A'",
             "B'",
-            "C'",
-            "D'"
+            "C'"
           ]
         }
       }
     },
     {
-      "topic_id": "probability_listing_outcomes",
+      "topic_id": "pythagoras_ladder_context_F",
+      "prompt": "A ladder of length 34 m leans against a vertical wall with its base 16 m from the wall. Find the height the ladder reaches up the wall.",
+      "solution_steps": [
+        "height² = ladder² - base² = 34² - 16² = 1156 - 256 = 900",
+        "height = √900 = 30 m"
+      ],
+      "final_answer": "30 m",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "height² = ladder² - base² = 34² - 16² = 1156 - 256 = 900",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "height = √900 = 30 m",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "30 m oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_listing_outcomes_F",
       "prompt": "Two coins are flipped. List all the possible outcomes.",
       "solution_steps": [
         "There are 2 possible outcomes for the first event and 2 for the second, so there are 2 × 2 = 4 possible combined outcomes.",
@@ -962,234 +1058,89 @@
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "coin",
+        "params": {
+          "count": 2
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "sample_space_diagrams",
-      "prompt": "Two fair spinners, one numbered 1 to 6 and the other numbered 1 to 4, are spun together. Complete the sample space diagram showing the product of the two spinners, and use it to find the probability that the product is greater than 8.",
+      "topic_id": "relative_frequency_F",
+      "prompt": "A spinner is tested 80 times, and it lands on red 65 times. Use this relative frequency to estimate how many times this would happen in 192 trials.",
       "solution_steps": [
-        "The sample space diagram shows every possible product of the two spinners.",
-        "Number of favourable outcomes (the product is greater than 8) = 10",
-        "Total number of equally likely outcomes = 24",
-        "P(the product is greater than 8) = 5/12"
+        "Relative frequency = frequency ÷ number of trials = 65/80 = 13/16",
+        "Estimated number of times in 192 trials = 13/16 × 192 = 156"
       ],
-      "final_answer": "5/12",
-      "marks": 5,
+      "final_answer": "156",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The sample space diagram shows every possible product of the two spinners.",
+          "description": "Relative frequency = frequency ÷ number of trials = 65/80 = 13/16",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Number of favourable outcomes (the product is greater than 8) = 10",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total number of equally likely outcomes = 24",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(the product is greater than 8) = 5/12",
+          "description": "Estimated number of times in 192 trials = 13/16 × 192 = 156",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5/12 oe",
+          "description": "156 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "sample_space_diagram",
+        "kind": "spinner",
         "params": {
-          "row_values": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6
-          ],
-          "col_values": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "cells": [
-            [
-              "1",
-              "2",
-              "3",
-              "4"
-            ],
-            [
-              "2",
-              "4",
-              "6",
-              "8"
-            ],
-            [
-              "3",
-              "6",
-              "9",
-              "12"
-            ],
-            [
-              "4",
-              "8",
-              "12",
-              "16"
-            ],
-            [
-              "5",
-              "10",
-              "15",
-              "20"
-            ],
-            [
-              "6",
-              "12",
-              "18",
-              "24"
-            ]
+          "sectors": [
+            "",
+            "",
+            "R",
+            ""
           ],
           "highlight": [
-            [
-              2,
-              2
-            ],
-            [
-              2,
-              3
-            ],
-            [
-              3,
-              2
-            ],
-            [
-              3,
-              3
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              4,
-              2
-            ],
-            [
-              4,
-              3
-            ],
-            [
-              5,
-              1
-            ],
-            [
-              5,
-              2
-            ],
-            [
-              5,
-              3
-            ]
+            2
           ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "stats_mean_grouped_frequency_table_foundation",
-      "prompt": "The table shows the times (in minutes) taken by a group of runners: 0-9 (5), 10-19 (4), 20-29 (6) (class: frequency). Find an estimate of the mean time.",
+      "topic_id": "probability_complement_F",
+      "prompt": "A bag contains 5 purple, 7 red counters. A counter is picked at random. Find the probability that it is NOT purple.",
       "solution_steps": [
-        "Midpoints of each class: 4.50, 14.50, 24.50",
-        "Sum of (midpoint × frequency): 4.50×5 + 14.50×4 + 24.50×6 = 227.50",
-        "Total frequency = 5 + 4 + 6 = 15",
-        "Estimated mean = 227.50 ÷ 15 = 91/6"
+        "P(purple) = 5/12 = 5/12",
+        "P(not purple) = 1 - 5/12 = 7/12"
       ],
-      "final_answer": "≈ 91/6",
-      "marks": 5,
+      "final_answer": "7/12",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Midpoints of each class: 4.50, 14.50, 24.50",
+          "description": "P(purple) = 5/12 = 5/12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Sum of (midpoint × frequency): 4.50×5 + 14.50×4 + 24.50×6 = 227.50",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total frequency = 5 + 4 + 6 = 15",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Estimated mean = 227.50 ÷ 15 = 91/6",
+          "description": "P(not purple) = 1 - 5/12 = 7/12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "≈ 91/6 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "fractions_equivalent_diagram",
-      "prompt": "The first shape shows 5/6 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
-      "solution_steps": [
-        "Cross-multiply 5/6 against each labelled shape: a shape shows an equivalent fraction only if 5 × (its denominator) = (its shaded count) × 6.",
-        "Only shape C) 10/12 works: 5 × 12 = 10 × 6 = 60."
-      ],
-      "final_answer": "C) 10/12",
-      "marks": 1,
-      "mark_scheme": [
-        {
-          "code": "B1",
-          "description": "C) 10/12 (selecting the correct option)",
+          "description": "7/12 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "fraction_shapes",
+        "kind": "bag_of_counters",
         "params": {
-          "shapes": [
-            {
-              "kind": "bar",
-              "parts": 6,
-              "shaded": 5,
-              "label": "5/6"
-            },
-            {
-              "kind": "bar",
-              "parts": 8,
-              "shaded": 6,
-              "label": "A) 6/8"
-            },
-            {
-              "kind": "bar",
-              "parts": 10,
-              "shaded": 6,
-              "label": "B) 6/10"
-            },
-            {
-              "kind": "bar",
-              "parts": 12,
-              "shaded": 10,
-              "label": "C) 10/12"
-            }
-          ]
+          "counts": {
+            "purple": 5,
+            "red": 7
+          }
         }
       },
       "solution_diagram": null

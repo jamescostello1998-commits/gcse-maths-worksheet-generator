@@ -4,13 +4,14 @@
   "tier": "foundation",
   "sitting_id": "foundation-10",
   "paper_number": 3,
+  "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "fractions_divide_foundation",
-      "prompt": "Work out 6/7 ÷ 1/3. Give your answer as a fraction in its simplest form.",
+      "topic_id": "fractions_divide_F",
+      "prompt": "Calculate 6/7 ÷ 1/3. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Keep-change-flip: 6/7 ÷ 1/3 = 6/7 × 3/1",
-        "Multiply: (6×3)/(7×1) = 18/7",
+        "Multiply: \\frac{(6×3)}{(7×1)} = 18/7",
         "Simplify: 18/7"
       ],
       "final_answer": "18/7",
@@ -23,7 +24,7 @@
         },
         {
           "code": "M1",
-          "description": "Multiply: (6×3)/(7×1) = 18/7",
+          "description": "Multiply: \\frac{(6×3)}{(7×1)} = 18/7",
           "marks": 1
         },
         {
@@ -41,8 +42,8 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_of_amount",
-      "prompt": "Find 3/5 of 100.",
+      "topic_id": "fractions_of_amount_F",
+      "prompt": "Calculate 3/5 of 100.",
       "solution_steps": [
         "Divide by the denominator: 100 ÷ 5 = 20",
         "Multiply by the numerator: 20 × 3 = 60"
@@ -70,7 +71,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "multiples",
+      "topic_id": "multiples_F",
       "prompt": "Is 23 a multiple of 3?",
       "solution_steps": [
         "23 ÷ 3 = 7 remainder 2",
@@ -99,7 +100,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "negative_multiply_divide",
+      "topic_id": "negative_multiply_divide_F",
       "prompt": "Work out -3 × (-1).",
       "solution_steps": [
         "-3 × (-1) = 3"
@@ -122,7 +123,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "negative_add_subtract",
+      "topic_id": "negative_add_subtract_F",
       "prompt": "Work out 11 - (-10).",
       "solution_steps": [
         "11 - (-10) = 21"
@@ -145,7 +146,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_from_large",
+      "topic_id": "standard_form_from_large_F",
       "prompt": "Write 2.42 × 10^4 as an ordinary number.",
       "solution_steps": [
         "Multiply 2.42 by 10^4, which means moving the decimal point 4 place(s) right.",
@@ -174,8 +175,8 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_add_subtract",
-      "prompt": "Work out 9/12 - 2/3. Give your answer as a fraction in its simplest form.",
+      "topic_id": "fractions_add_subtract_F",
+      "prompt": "Calculate 9/12 - 2/3. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Find a common denominator: LCM(12, 3) = 12",
         "Convert: 9/12 = 9/12, 2/3 = 8/12",
@@ -215,7 +216,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "prime_numbers",
+      "topic_id": "prime_numbers_F",
       "prompt": "From this list, write down all the prime numbers: 61, 60, 35, 65, 99, 59",
       "solution_steps": [
         "Check each number for factors other than 1 and itself: 61, 60, 35, 65, 99, 59",
@@ -244,7 +245,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_single_bracket",
+      "topic_id": "expand_single_bracket_F",
       "prompt": "Expand: 6(-7x + 6)",
       "solution_steps": [
         "Multiply 6 by -7x: -42x",
@@ -279,7 +280,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_straight_line",
+      "topic_id": "plot_straight_line_F",
       "prompt": "Complete a table of values for y = -2x - 4 for x = -3 to 3, then plot the graph.",
       "solution_steps": [
         "Table of values for y = -2x - 4:",
@@ -373,61 +374,49 @@
       }
     },
     {
-      "topic_id": "inequalities_number_line_foundation",
-      "prompt": "Draw the solution set of x ≤ 3 on a number line.",
+      "topic_id": "satisfying_inequalities_F",
+      "prompt": "Solve the inequality -10 ≤ x + 5 < 2, then list the integer values of x that satisfy it.",
       "solution_steps": [
-        "Draw a filled circle at 3 (the boundary value is included).",
-        "Shade the line to the left of 3, with an arrow showing it continues indefinitely."
+        "-10 ≤ x + 5 < 2",
+        "Subtract 5 from all three parts:",
+        "-15 ≤ x < -3",
+        "-15 ≤ x < -3",
+        "The integers satisfying this are: -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4"
       ],
-      "final_answer": "x ≤ 3",
-      "marks": 3,
+      "final_answer": "-15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw a filled circle at 3 (the boundary value is included).",
+          "description": "-10 ≤ x + 5 < 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Shade the line to the left of 3, with an arrow showing it continues indefinitely.",
+          "description": "Subtract 5 from all three parts:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-15 ≤ x < -3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-15 ≤ x < -3 The integers satisfying this are: -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x ≤ 3 oe",
+          "description": "-15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -6,
-            6
-          ],
-          "boundaries": [],
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -6,
-            6
-          ],
-          "boundaries": [
-            {
-              "value": 3,
-              "closed": true
-            }
-          ],
-          "shade": "left"
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     },
     {
-      "topic_id": "linear_one_step",
+      "topic_id": "linear_one_step_F",
       "prompt": "Solve: 3x = 21",
       "solution_steps": [
         "3x = 21",
@@ -462,40 +451,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_forming_and_solving",
-      "prompt": "5 roses and 5 tulips cost £5.50 in total. 1 rose and 3 tulips cost £2.80 in total. Form and solve a pair of simultaneous equations to find the cost of one rose and one tulip.",
+      "topic_id": "simultaneous_common_coefficient_F",
+      "prompt": "Solve the simultaneous equations: 5x + y = 31 and 2x + y = 13",
       "solution_steps": [
-        "Let x = cost of one rose (pence), y = cost of one tulip (pence).",
-        "5x + 5y = 550  (1)",
-        "1x + 3y = 280  (2)",
-        "Solving simultaneously: x = 25, y = 85"
+        "5x + y = 31  (1)",
+        "2x + y = 13  (2)",
+        "Subtract the equations to eliminate y: 3x = 18, so x = 6",
+        "Substitute x = 6 into (1): 1y = 1, so y = 1"
       ],
-      "final_answer": "rose = £0.25, tulip = £0.85",
+      "final_answer": "x = 6, y = 1",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = cost of one rose (pence), y = cost of one tulip (pence).",
+          "description": "5x + y = 31  (1)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x + 5y = 550  (1)",
+          "description": "2x + y = 13  (2)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "1x + 3y = 280  (2)",
+          "description": "Subtract the equations to eliminate y: 3x = 18, so x = 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Solving simultaneously: x = 25, y = 85",
+          "description": "Substitute x = 6 into (1): 1y = 1, so y = 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "rose = £0.25, tulip = £0.85 oe",
+          "description": "x = 6, y = 1 oe",
           "marks": 1
         }
       ],
@@ -503,42 +492,43 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_multi_step",
-      "prompt": "Solve: 3x + 12 + 5x - 4 = 16",
+      "topic_id": "linear_both_sides_F",
+      "prompt": "Solve: 2x + 6 = 5x - 24",
       "solution_steps": [
-        "Collect like terms: 3x + 5x = 8x, 12 - 4 = 8",
-        "8x + 8 = 16",
-        "Subtract 8 from both sides:",
-        "8x = 8",
-        "Divide both sides by 8:",
-        "x = 1"
+        "2x + 6 = 5x - 24",
+        "Subtract 5x from both sides:",
+        "-3x + 6 = -24",
+        "Subtract 6 from both sides:",
+        "-3x = -30",
+        "Divide both sides by -3:",
+        "x = 10"
       ],
-      "final_answer": "1",
+      "final_answer": "10",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Collect like terms: 3x + 5x = 8x, 12 - 4 = 8",
+          "description": "2x + 6 = 5x - 24",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "8x + 8 = 16",
+          "description": "Subtract 5x from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 8 from both sides:",
+          "description": "-3x + 6 = -24",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "8x = 8 Divide both sides by 8: x = 1",
+          "description": "Subtract 6 from both sides: -3x = -30 Divide both sides by -3: x = 10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 oe",
+          "description": "10 oe",
           "marks": 1
         }
       ],
@@ -546,10 +536,10 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "line_equation_from_graph",
+      "topic_id": "line_equation_from_graph_F",
       "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
       "solution_steps": [
-        "Gradient = rise/run = (7 - -14) / (3 - -4) = 3",
+        "Gradient = rise/run = \\frac{7 - -14}{3 - -4} = 3",
         "Using y = mx + c with the point (-4, -14): -14 = 3×(-4) + c, so c = -2",
         "Equation of the line: y = 3x - 2"
       ],
@@ -558,7 +548,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Gradient = rise/run = (7 - -14) / (3 - -4) = 3",
+          "description": "Gradient = rise/run = \\frac{7 - -14}{3 - -4} = 3",
           "marks": 1
         },
         {
@@ -586,57 +576,75 @@
           "x_min": -5,
           "x_max": 4,
           "y_min": -18,
-          "y_max": 11,
-          "table_points": [
-            [
-              -4,
-              -14
-            ],
-            [
-              3,
-              7
-            ]
-          ]
+          "y_max": 11
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_three_part_foundation",
-      "prompt": "Share 63 in the ratio 1:4:2.",
+      "topic_id": "ratio_1_to_n_F",
+      "prompt": "Write the ratio 10:6 in the form 1:\\plain{n}.",
       "solution_steps": [
-        "Total parts = 1 + 4 + 2 = 7",
-        "Value of one part = 63 ÷ 7 = 9",
-        "Share 1 = 1 × 9 = 9",
-        "Share 2 = 4 × 9 = 36",
-        "Share 3 = 2 × 9 = 18"
+        "Divide both parts of the ratio by 10 (the first part) so the first part becomes 1.",
+        "10 ÷ 10 = 1, 6 ÷ 10 ≈ 0.60"
       ],
-      "final_answer": "9 : 36 : 18",
+      "final_answer": "1 : 0.60 (to 2 d.p.)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Divide both parts of the ratio by 10 (the first part) so the first part becomes 1.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "10 ÷ 10 = 1, 6 ÷ 10 ≈ 0.60",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1 : 0.60 (to 2 d.p.) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "best_buys_noncalculator_F",
+      "prompt": "A shop sells ground coffee in different sizes: A: £15.20 for 800g; B: £2.10 for 700g. Which option is the better value for money? Show your working.",
+      "solution_steps": [
+        "Work out the price per 100g for each option:",
+        "A: £15.20 ÷ 800 × 100 = 190p per 100g",
+        "B: £2.10 ÷ 700 × 100 = 30p per 100g",
+        "The lowest price per 100g is B at 30p per 100g, so B is the best value."
+      ],
+      "final_answer": "B (£2.10 for 700g)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 1 + 4 + 2 = 7",
+          "description": "Work out the price per 100g for each option:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 63 ÷ 7 = 9",
+          "description": "A: £15.20 ÷ 800 × 100 = 190p per 100g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 1 = 1 × 9 = 9",
+          "description": "B: £2.10 ÷ 700 × 100 = 30p per 100g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 2 = 4 × 9 = 36 Share 3 = 2 × 9 = 18",
+          "description": "The lowest price per 100g is B at 30p per 100g, so B is the best value.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9 : 36 : 18 oe",
+          "description": "B (£2.10 for 700g) oe",
           "marks": 1
         }
       ],
@@ -644,28 +652,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simple_interest",
-      "prompt": "£3500 is invested at a simple interest rate of 5% per year for 5 years. Find the interest earned.",
+      "topic_id": "direct_proportion_F",
+      "prompt": "If a recipe for 9 people uses 2.529kg of sugar, how much sugar is needed for 4 people?",
       "solution_steps": [
-        "Simple interest formula: I = P × r × t ÷ 100",
-        "I = 3500 × 5 × 5 ÷ 100 = £875"
+        "2.529kg = 2529g",
+        "Unit value = 2529g ÷ 9 = 281g",
+        "Answer = 281g × 4 = 1124g",
+        "1124g = 1.124kg"
       ],
-      "final_answer": "£875",
-      "marks": 3,
+      "final_answer": "1.124kg",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Simple interest formula: I = P × r × t ÷ 100",
+          "description": "2.529kg = 2529g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "I = 3500 × 5 × 5 ÷ 100 = £875",
+          "description": "Unit value = 2529g ÷ 9 = 281g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Answer = 281g × 4 = 1124g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "1124g = 1.124kg",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£875 oe",
+          "description": "1.124kg oe",
           "marks": 1
         }
       ],
@@ -673,36 +693,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_shape_similar_foundation",
-      "prompt": "Shape A and Shape B are similar. A side on shape A is 12 cm. The corresponding side on shape B is 15 cm. Another side on shape A is 24 cm. Find the length of the corresponding side on shape B.",
-      "solution_steps": [
-        "Scale factor = 15 ÷ 12 = 5/4",
-        "Corresponding length = 24 × 5/4 = 30"
-      ],
-      "final_answer": "30 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Scale factor = 15 ÷ 12 = 5/4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Corresponding length = 24 × 5/4 = 30",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "30 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_share_two_part",
+      "topic_id": "ratio_share_two_part_F",
       "prompt": "Share 72 in the ratio 7:2.",
       "solution_steps": [
         "Total parts = 7 + 2 = 9",
@@ -743,76 +734,258 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_missing_side_foundation",
-      "prompt": "In the right-angled triangle shown, find the length of x, correct to 3 significant figures.",
+      "topic_id": "congruent_triangle_proof_F",
+      "prompt": "Triangles ABC and ADC share side AC, with AB = AD and BC = DC. Which congruence criterion proves that the two triangles are congruent? A) RHS  B) SAS  C) ASA  D) SSS",
       "solution_steps": [
-        "We know the adjacent and want the opposite, so use tan.",
-        "x = 13 × tan(38°) = 10.2 (to 3 s.f.)"
+        "AB = AD (given)",
+        "BC = DC (given)",
+        "AC is common to both triangles",
+        "These facts match the Side-Side-Side (SSS) congruence criterion."
       ],
-      "final_answer": "10.2 cm",
-      "marks": 3,
+      "final_answer": "D) SSS",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "We know the adjacent and want the opposite, so use tan.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 13 × tan(38°) = 10.2 (to 3 s.f.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "10.2 cm oe",
+          "code": "B1",
+          "description": "D) SSS (selecting the correct option)",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "trig_triangle",
+        "kind": "two_triangle_congruence",
         "params": {
-          "adjacent_label": "13 cm",
-          "opposite_label": "x cm",
-          "hyp_label": null,
-          "angle_label": "38°"
+          "labels_1": [
+            "A",
+            "B",
+            "C"
+          ],
+          "labels_2": [
+            "A",
+            "D",
+            "C"
+          ],
+          "ticks_1": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              0,
+              2,
+              1
+            ]
+          ],
+          "ticks_2": [
+            [
+              0,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              0,
+              2,
+              1
+            ]
+          ],
+          "arcs_1": [],
+          "arcs_2": [],
+          "note": "AC is common to both triangles."
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "area_rectangle",
-      "prompt": "A rectangle has length 11 cm and width 12 cm. Find its area.",
+      "topic_id": "area_triangle_F",
+      "prompt": "A triangle has base 8 cm and height 4 cm. Find its area.",
       "solution_steps": [
-        "Area = length × width = 11 × 12 = 132 cm²"
+        "Area = (1/2) × base × height = (1/2) × 8 × 4 = 16 cm²"
       ],
-      "final_answer": "132 cm²",
+      "final_answer": "16 cm²",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = length × width = 11 × 12 = 132 cm²",
+          "description": "Area = (1/2) × base × height = (1/2) × 8 × 4 = 16 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "132 cm² oe",
+          "description": "16 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "rectangle",
+        "kind": "triangle_area",
         "params": {
-          "width": 11,
-          "height": 12,
-          "width_label": "11 cm",
+          "base": 8,
+          "height": 4,
+          "base_label": "8 cm",
+          "height_label": "4 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "volume_surface_area_cylinder_F",
+      "prompt": "A cylinder has radius 10 cm and height 12 cm. Find its volume, correct to 2 decimal places.",
+      "solution_steps": [
+        "Volume = π × r² × h = π × 10² × 12",
+        "= 3769.91 cm³ (2 d.p., using a calculator value of π)"
+      ],
+      "final_answer": "3769.91 cm³",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Volume = π × r² × h = π × 10² × 12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 3769.91 cm³ (2 d.p., using a calculator value of π)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3769.91 cm³ oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "cylinder",
+        "params": {
+          "radius_label": "10 cm",
           "height_label": "12 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_triangular_prism",
-      "prompt": "A triangular prism has a right-angled triangular cross-section with legs 16 cm and 30 cm (hypotenuse 34 cm), and length 18 cm. Find its volume.",
+      "topic_id": "transform_reflect_complete_F",
+      "prompt": "Reflect shape ABC in the line x = 1. Draw and label the image A'B'C'.",
+      "solution_steps": [
+        "Reflect each vertex in the line x = 1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+        "A(3, 1) -> A'(-1, 1), B(6, 1) -> B'(-4, 1), C(3, 3) -> C'(-1, 3)"
+      ],
+      "final_answer": "A'(-1, 1), B'(-4, 1), C'(-1, 3)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Reflect each vertex in the line x = 1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A(3, 1) -> A'(-1, 1), B(6, 1) -> B'(-4, 1), C(3, 3) -> C'(-1, 3)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "A'(-1, 1), B'(-4, 1), C'(-1, 3) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              3,
+              1
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              3,
+              3
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "mirror_line": {
+            "type": "vertical",
+            "x": 1,
+            "label": "x = 1"
+          }
+        }
+      },
+      "solution_diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              3,
+              1
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              3,
+              3
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "mirror_line": {
+            "type": "vertical",
+            "x": 1,
+            "label": "x = 1"
+          },
+          "image_vertices": [
+            [
+              -1,
+              1
+            ],
+            [
+              -4,
+              1
+            ],
+            [
+              -1,
+              3
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'"
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "volume_surface_area_triangular_prism_F",
+      "prompt": "A triangular prism has a right-angled triangular cross-section with sides 16 cm and 30 cm (hypotenuse 34 cm), and length 18 cm. Find its volume.",
       "solution_steps": [
         "Cross-section area = (1/2) × 16 × 30 = 240 cm²",
         "Volume = cross-section area × length = 240 × 18 = 4320 cm³"
@@ -847,149 +1020,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bidmas",
-      "prompt": "Work out (1 + 4) × 4 - 9 ÷ 3. Use the correct order of operations.",
+      "topic_id": "vectors_arithmetic_F",
+      "prompt": "\\vec{a} = \\colvec{-1}{-2} and \\vec{b} = \\colvec{4}{-4}. Find 3\\vec{a} - 2\\vec{b}.",
       "solution_steps": [
-        "Brackets: (1 + 4) = 5",
-        "Multiplication: 5 × 4 = 20",
-        "Division: 9 ÷ 3 = 3",
-        "Subtraction: 20 - 3 = 17"
+        "\\vec{a} = \\colvec{-1}{-2}, \\vec{b} = \\colvec{4}{-4}",
+        "3\\vec{a} = \\colvec{-3}{-6} and 2\\vec{b} = \\colvec{8}{-8}",
+        "3\\vec{a} - 2\\vec{b} = \\colvec{-11}{2}"
       ],
-      "final_answer": "17",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Brackets: (1 + 4) = 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiplication: 5 × 4 = 20",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Division: 9 ÷ 3 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtraction: 20 - 3 = 17",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "17 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "volume_surface_area_cube",
-      "prompt": "A cube has side length 4 cm. Find its volume.",
-      "solution_steps": [
-        "Volume = side³ = 4³ = 64 cm³"
-      ],
-      "final_answer": "64 cm³",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Volume = side³ = 4³ = 64 cm³",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "64 cm³ oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "cuboid",
-        "params": {
-          "width_label": "4 cm",
-          "height_label": "4 cm",
-          "length_label": "4 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "tree_diagram_drawing",
-      "prompt": "A bag contains 3 red and 2 blue counters. A counter is picked at random, replaced, and then a second counter is picked at random. Draw a fully-labelled tree diagram to show this information, and use it to find the probability that the first counter is red and the second counter is blue.",
-      "solution_steps": [
-        "Draw two branches from the start: P(red) = 3/5, P(blue) = 2/5.",
-        "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
-        "P(red then blue) = 3/5 × 2/5 = 6/25"
-      ],
-      "final_answer": "6/25",
+      "final_answer": "\\colvec{-11}{2}",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw two branches from the start: P(red) = 3/5, P(blue) = 2/5.",
+          "description": "\\vec{a} = \\colvec{-1}{-2}, \\vec{b} = \\colvec{4}{-4}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
+          "description": "3\\vec{a} = \\colvec{-3}{-6} and 2\\vec{b} = \\colvec{8}{-8}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(red then blue) = 3/5 × 2/5 = 6/25",
+          "description": "3\\vec{a} - 2\\vec{b} = \\colvec{-11}{2}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6/25 oe",
+          "description": "\\colvec{-11}{2} oe",
           "marks": 1
         }
       ],
       "diagram": null,
-      "solution_diagram": {
-        "kind": "tree_diagram",
-        "params": {
-          "stage1": [
-            [
-              "Red",
-              "3/5"
-            ],
-            [
-              "Blue",
-              "2/5"
-            ]
-          ],
-          "stage2": [
-            [
-              [
-                "Red",
-                "3/5"
-              ],
-              [
-                "Blue",
-                "2/5"
-              ]
-            ],
-            [
-              [
-                "Red",
-                "3/5"
-              ],
-              [
-                "Blue",
-                "2/5"
-              ]
-            ]
-          ]
-        }
-      }
+      "solution_diagram": null
     },
     {
-      "topic_id": "probability_single_event",
+      "topic_id": "probability_single_event_F",
       "prompt": "A bag contains 4 purple, 5 red counters. A counter is picked at random. Find the probability that it is purple.",
       "solution_steps": [
         "Total counters = 9",
@@ -1026,110 +1092,123 @@
           "counts": {
             "purple": 4,
             "red": 5
-          },
-          "highlight": "purple"
+          }
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "bar_chart_interpret",
-      "prompt": "The bar chart shows the favourite colour of a group of students. How many more chose Green than Red? (Give a positive answer either way.)",
+      "topic_id": "two_way_tables_F",
+      "prompt": "The two-way table shows the number of boys and girls who prefer cats or dogs. Find the missing values.",
       "solution_steps": [
-        "Green: 4, Red: 20.",
-        "Difference = |4 - 20| = 16."
+        "'Girls' / 'Cats': using the 'Girls' row total: 19 - 14 = 5",
+        "'Boys' / 'Cats': using the 'Boys' row total: 9 - 4 = 5"
       ],
-      "final_answer": "16",
+      "final_answer": "'Girls' / 'Cats' = 5; 'Boys' / 'Cats' = 5",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Green: 4, Red: 20.",
+          "description": "'Girls' / 'Cats': using the 'Girls' row total: 19 - 14 = 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Difference = |4 - 20| = 16.",
+          "description": "'Boys' / 'Cats': using the 'Boys' row total: 9 - 4 = 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "16 oe",
+          "description": "'Girls' / 'Cats' = 5; 'Boys' / 'Cats' = 5 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "bar_chart",
+        "kind": "two_way_table",
         "params": {
-          "categories": [
-            "Yellow",
-            "Green",
-            "Red"
+          "row_labels": [
+            "Boys",
+            "Girls",
+            "Total"
           ],
-          "series": [
-            6,
-            4,
-            20
+          "col_labels": [
+            "Cats",
+            "Dogs",
+            "Total"
+          ],
+          "cells": [
+            [
+              "",
+              "4",
+              "9"
+            ],
+            [
+              "",
+              "14",
+              "19"
+            ],
+            [
+              "10",
+              "18",
+              "28"
+            ]
           ]
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "two_way_table",
+        "params": {
+          "row_labels": [
+            "Boys",
+            "Girls",
+            "Total"
+          ],
+          "col_labels": [
+            "Cats",
+            "Dogs",
+            "Total"
+          ],
+          "cells": [
+            [
+              "5",
+              "4",
+              "9"
+            ],
+            [
+              "5",
+              "14",
+              "19"
+            ],
+            [
+              "10",
+              "18",
+              "28"
+            ]
+          ]
+        }
+      }
     },
     {
-      "topic_id": "composite_bar_chart",
-      "prompt": "The composite bar chart shows the number of commuters split by Bus and Car. How many car are shown for Week 3?",
+      "topic_id": "stats_median_F",
+      "prompt": "Find the median of this data set: 14, 13, 6, 9, 9, 29, 25.",
       "solution_steps": [
-        "Find the Week 3 bar, then the Car segment within it.",
-        "That segment's value is 15."
+        "Sort the data: 6, 9, 9, 13, 14, 25, 29. The middle value is 13."
       ],
-      "final_answer": "15",
-      "marks": 3,
+      "final_answer": "13",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the Week 3 bar, then the Car segment within it.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "That segment's value is 15.",
+          "description": "Sort the data: 6, 9, 9, 13, 14, 25, 29. The middle value is 13.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "15 oe",
+          "description": "13 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "bar_chart",
-        "params": {
-          "categories": [
-            "Week 1",
-            "Week 2",
-            "Week 3"
-          ],
-          "series": [
-            [
-              8,
-              13
-            ],
-            [
-              2,
-              10
-            ],
-            [
-              3,
-              15
-            ]
-          ],
-          "series_labels": [
-            "Bus",
-            "Car"
-          ],
-          "y_label": "Frequency"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     }
   ]

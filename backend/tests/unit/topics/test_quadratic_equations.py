@@ -54,7 +54,7 @@ def test_both_shapes_are_produced():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (quadratic_equations.generate_modelled_example_quadratic_formula, Tier.HIGHER, "quadratic_formula"),
+    (quadratic_equations.generate_modelled_example_quadratic_formula, Tier.HIGHER, "quadratic_formula_H"),
 ]
 
 

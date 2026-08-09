@@ -1,5 +1,6 @@
 import {
   ApiError,
+  type DownloadFormat,
   NetworkError,
   type PracticeTestSummary,
   type Section,
@@ -112,6 +113,7 @@ export async function generateWorksheet(topicId: string, tier: Tier, options: Wo
         tier,
         ...(options.count !== undefined ? { count: options.count } : {}),
         ...(options.answersOnly ? { answers_only: true } : {}),
+        ...(options.format === 'docx' ? { format: 'docx' } : {}),
       }),
     })
   } catch (err) {
@@ -128,13 +130,17 @@ export async function generateWorksheet(topicId: string, tier: Tier, options: Wo
   return response.blob()
 }
 
-export async function generateModelledExample(topicId: string, tier: Tier): Promise<Blob> {
+export async function generateModelledExample(
+  topicId: string,
+  tier: Tier,
+  format: DownloadFormat = 'pdf',
+): Promise<Blob> {
   let response: Response
   try {
     response = await fetch(`${API_BASE_URL}/api/modelled-examples`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ topic_id: topicId, tier }),
+      body: JSON.stringify({ topic_id: topicId, tier, ...(format === 'docx' ? { format: 'docx' } : {}) }),
     })
   } catch (err) {
     console.error('Network error generating modelled example:', err)
@@ -156,6 +162,7 @@ interface RawPracticeTestSummary {
   tier: Tier
   sitting_id: string
   paper_number: number
+  calculator_allowed: boolean
   total_marks: number
   question_count: number
 }
@@ -167,6 +174,7 @@ function toPracticeTestSummary(raw: RawPracticeTestSummary): PracticeTestSummary
     tier: raw.tier,
     sittingId: raw.sitting_id,
     paperNumber: raw.paper_number,
+    calculatorAllowed: raw.calculator_allowed,
     totalMarks: raw.total_marks,
     questionCount: raw.question_count,
   }
@@ -183,4 +191,26 @@ export async function downloadPracticeTestPaper(paperId: string): Promise<Blob> 
 
 export async function downloadPracticeTestMarkScheme(paperId: string): Promise<Blob> {
   return getBlob(`/api/practice-tests/${paperId}/mark-scheme`, 'downloading practice test mark scheme')
+}
+
+export async function generateBellTasks(topicIds: string[]): Promise<Blob> {
+  let response: Response
+  try {
+    response = await fetch(`${API_BASE_URL}/api/bell-tasks`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ topic_ids: topicIds }),
+    })
+  } catch (err) {
+    console.error('Network error generating bell tasks:', err)
+    throw new NetworkError()
+  }
+
+  if (!response.ok) {
+    const detail = await parseErrorDetail(response)
+    console.error('API error generating bell tasks:', detail)
+    throw new ApiError(detail, response.status)
+  }
+
+  return response.blob()
 }

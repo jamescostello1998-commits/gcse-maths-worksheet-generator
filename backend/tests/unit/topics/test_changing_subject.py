@@ -8,6 +8,7 @@ TRIALS = 200
 GENERATORS = [
     (changing_subject.generate_change_subject_foundation, Tier.FOUNDATION),
     (changing_subject.generate_change_subject_higher, Tier.HIGHER),
+    (changing_subject.generate_change_subject_factorise_higher, Tier.HIGHER),
 ]
 
 
@@ -33,25 +34,40 @@ def test_topic_definitions_have_expected_metadata():
     topics = [
         changing_subject.TOPIC_CHANGE_SUBJECT_FOUNDATION,
         changing_subject.TOPIC_CHANGE_SUBJECT_HIGHER,
+        changing_subject.TOPIC_CHANGE_SUBJECT_FACTORISE_HIGHER,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 2
+    assert len(ids) == 3
     for t in topics:
         assert t.section == "algebra"
         assert t.group == "Changing the Subject of a Formula"
         assert t.fixed_tier in (Tier.FOUNDATION, Tier.HIGHER)
 
 
+def test_factorise_higher_answer_is_an_algebraic_fraction_in_the_chosen_letter():
+    rng = random.Random(123)
+    for _ in range(TRIALS):
+        q = changing_subject.generate_change_subject_factorise_higher(Tier.HIGHER, rng)
+        letter = q.dedup_key.split(":")[1]
+        assert letter not in ("x", "n")
+        assert letter in q.final_answer
+
+
 MODELLED_EXAMPLE_GENERATORS = [
     (
         changing_subject.generate_modelled_example_change_subject_foundation,
         Tier.FOUNDATION,
-        "change_subject_foundation",
+        "change_subject_F",
     ),
     (
         changing_subject.generate_modelled_example_change_subject_higher,
         Tier.HIGHER,
-        "change_subject_higher",
+        "change_subject_H",
+    ),
+    (
+        changing_subject.generate_modelled_example_change_subject_factorise_higher,
+        Tier.HIGHER,
+        "change_subject_factorise_H",
     ),
 ]
 
@@ -60,6 +76,7 @@ def test_all_topics_have_modelled_example_wired():
     for t in (
         changing_subject.TOPIC_CHANGE_SUBJECT_FOUNDATION,
         changing_subject.TOPIC_CHANGE_SUBJECT_HIGHER,
+        changing_subject.TOPIC_CHANGE_SUBJECT_FACTORISE_HIGHER,
     ):
         assert t.generate_modelled_example is not None
 

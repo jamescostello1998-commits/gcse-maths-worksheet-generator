@@ -1,4 +1,5 @@
 import random
+import re
 from fractions import Fraction
 
 from app.core.models import Tier
@@ -70,33 +71,40 @@ def test_topic_definitions_have_expected_metadata():
 
 
 def test_rationalise_denominator_never_leaves_a_root_on_the_bottom():
+    # A genuine fraction answer is now built via the \frac{NUM}{DEN} marker
+    # (see mathtext.py), not plain "NUM/DEN" text - extract DEN from
+    # whichever form is present.
+    frac_marker_re = re.compile(r"\\frac\{[^{}]*\}\{([^{}]*)\}")
     rng = random.Random(703)
     for _ in range(TRIALS):
         q = powers_roots.generate_rationalise_denominator(Tier.HIGHER, rng)
-        if "/" in q.final_answer:
+        m = frac_marker_re.search(q.final_answer)
+        if m is not None:
+            assert "√" not in m.group(1)
+        elif "/" in q.final_answer:
             denom = q.final_answer.split("/")[-1]
             assert "√" not in denom
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (powers_roots.generate_modelled_example_powers_foundation, Tier.FOUNDATION, "powers_foundation"),
-    (powers_roots.generate_modelled_example_powers_higher, Tier.HIGHER, "powers_higher"),
-    (powers_roots.generate_modelled_example_roots_foundation, Tier.FOUNDATION, "roots_foundation"),
-    (powers_roots.generate_modelled_example_roots_higher, Tier.HIGHER, "roots_higher"),
-    (powers_roots.generate_modelled_example_rationalise_denominator, Tier.HIGHER, "rationalise_denominator"),
-    (powers_roots.generate_modelled_example_negative_indices, Tier.FOUNDATION, "negative_indices"),
+    (powers_roots.generate_modelled_example_powers_foundation, Tier.FOUNDATION, "powers_F"),
+    (powers_roots.generate_modelled_example_powers_higher, Tier.HIGHER, "powers_H"),
+    (powers_roots.generate_modelled_example_roots_foundation, Tier.FOUNDATION, "roots_F"),
+    (powers_roots.generate_modelled_example_roots_higher, Tier.HIGHER, "roots_H"),
+    (powers_roots.generate_modelled_example_rationalise_denominator, Tier.HIGHER, "rationalise_denominator_H"),
+    (powers_roots.generate_modelled_example_negative_indices, Tier.FOUNDATION, "negative_indices_F"),
     (
         powers_roots.generate_modelled_example_simplifying_indices_challenging,
         Tier.HIGHER,
-        "simplifying_indices_challenging",
+        "simplifying_indices_challenging_H",
     ),
     (
         powers_roots.generate_modelled_example_indices_common_base_equations,
         Tier.HIGHER,
-        "indices_common_base_equations",
+        "indices_common_base_equations_H",
     ),
-    (powers_roots.generate_modelled_example_surds_multiply_divide, Tier.HIGHER, "surds_multiply_divide"),
-    (powers_roots.generate_modelled_example_algebraic_surds, Tier.HIGHER, "algebraic_surds"),
+    (powers_roots.generate_modelled_example_surds_multiply_divide, Tier.HIGHER, "surds_multiply_divide_H"),
+    (powers_roots.generate_modelled_example_algebraic_surds, Tier.HIGHER, "algebraic_surds_H"),
 ]
 
 
@@ -153,6 +161,30 @@ def test_simplifying_indices_challenging_answer_is_int_or_valid_fraction():
             assert frac.numerator == int(num) and frac.denominator == int(den)
         else:
             int(answer)  # must parse as a plain integer
+
+
+def test_powers_higher_shows_a_fractional_exponent_in_most_questions():
+    # Reweighted towards the two fractional-exponent shapes (fractional_root/
+    # fractional_full) since a genuine "^(num/den)" is this topic's own
+    # distinguishing content - over enough trials it should be the common
+    # case, not a rare one.
+    rng = random.Random(713)
+    fractional_count = 0
+    for _ in range(TRIALS):
+        q = powers_roots.generate_powers_higher(Tier.HIGHER, rng)
+        if "^(" in q.prompt:
+            fractional_count += 1
+    assert fractional_count > TRIALS * 0.5
+
+
+def test_simplifying_indices_challenging_shows_a_fractional_exponent_often():
+    rng = random.Random(714)
+    fractional_count = 0
+    for _ in range(TRIALS):
+        q = powers_roots.generate_simplifying_indices_challenging(Tier.HIGHER, rng)
+        if "^(" in q.prompt:
+            fractional_count += 1
+    assert fractional_count > TRIALS * 0.35
 
 
 def test_indices_common_base_equations_answer_is_int_or_valid_fraction():

@@ -4,10 +4,11 @@
   "tier": "higher",
   "sitting_id": "higher-05",
   "paper_number": 3,
+  "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "fractions_mixed_number_arithmetic",
-      "prompt": "Work out 5 3/7 + 5 2/3. Give your answer as a mixed number.",
+      "topic_id": "fractions_mixed_number_arithmetic_H",
+      "prompt": "Evaluate 5 3/7 + 5 2/3. Give your answer as a mixed number.",
       "solution_steps": [
         "Convert to improper fractions: 5 3/7 = 38/7, 5 2/3 = 17/3",
         "Add the improper fractions: 38/7 + 17/3 = 233/21",
@@ -41,36 +42,119 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "roots_higher",
-      "prompt": "Simplify √90, giving your answer in the form a√b.",
+      "topic_id": "cumulative_frequency_plot_H",
+      "prompt": "The table shows the times (in minutes) taken to run a race. Draw a cumulative frequency graph to show this information.",
       "solution_steps": [
-        "Find the largest square factor of 90: 3^2 × 10 = 90",
-        "√90 = √(3^2 × 10) = 3√10"
+        "Running total of the frequencies, class by class: 20-30: 6, 30-40: 3, 40-50: 15, 50-60: 10, 60-70: 6.",
+        "Cumulative frequencies: 6, 9, 24, 34, 40",
+        "Plot each (upper class boundary, cumulative frequency) point and join with a smooth curve."
       ],
-      "final_answer": "3√10",
-      "marks": 3,
+      "final_answer": "Cumulative frequencies: 6, 9, 24, 34, 40",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the largest square factor of 90: 3^2 × 10 = 90",
+          "description": "Running total of the frequencies, class by class: 20-30: 6, 30-40: 3, 40-50: 15, 50-60: 10, 60-70: 6.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "√90 = √(3^2 × 10) = 3√10",
+          "description": "Cumulative frequencies: 6, 9, 24, 34, 40",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (upper class boundary, cumulative frequency) point and join with a smooth curve.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3√10 oe",
+          "description": "Cumulative frequencies: 6, 9, 24, 34, 40 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "cumulative_frequency_question",
+        "params": {
+          "points": [
+            [
+              20,
+              0
+            ],
+            [
+              30,
+              6
+            ],
+            [
+              40,
+              9
+            ],
+            [
+              50,
+              24
+            ],
+            [
+              60,
+              34
+            ],
+            [
+              70,
+              40
+            ]
+          ],
+          "boundaries": [
+            20,
+            30,
+            40,
+            50,
+            60,
+            70
+          ],
+          "frequencies": [
+            6,
+            3,
+            15,
+            10,
+            6
+          ],
+          "x_label": "Time (minutes)"
+        }
+      },
+      "solution_diagram": {
+        "kind": "cumulative_frequency",
+        "params": {
+          "points": [
+            [
+              20,
+              0
+            ],
+            [
+              30,
+              6
+            ],
+            [
+              40,
+              9
+            ],
+            [
+              50,
+              24
+            ],
+            [
+              60,
+              34
+            ],
+            [
+              70,
+              40
+            ]
+          ],
+          "x_label": "Time (minutes)"
+        }
+      }
     },
     {
-      "topic_id": "indices_common_base_equations",
+      "topic_id": "indices_common_base_equations_H",
       "prompt": "Solve 5^(x+2) = 625^(2x).",
       "solution_steps": [
         "Write both sides as powers of 5: 5 = 5^1 and 625 = 5^4",
@@ -111,7 +195,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "prime_factors_higher",
+      "topic_id": "prime_factors_H",
       "prompt": "Write 837 as a product of its prime factors, giving your answer in index form.",
       "solution_steps": [
         "Divide 837 repeatedly by the smallest prime that fits: 3 × 3 × 3 × 31",
@@ -140,40 +224,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simplifying_indices_challenging",
-      "prompt": "Simplify (3^-1)^2 ÷ 3^2, giving your answer as a fraction where necessary.",
+      "topic_id": "simplifying_indices_challenging_H",
+      "prompt": "Simplify 16^(3/2) × 16^-3, giving your answer as a fraction where necessary.",
       "solution_steps": [
-        "Multiply the powers in the bracket: -1 × 2 = -2",
-        "(3^-1)^2 = 3^-2",
-        "Subtract the powers to divide: -2 - (2) = -4",
-        "3^-2 ÷ 3^2 = 3^-4 = 1/81"
+        "16^(1/2) is the square root of 16, which is 4, so 16^(3/2) = 4^3",
+        "16^-3 = \\frac{1}{16³} = \\frac{1}{4⁶}",
+        "16^(3/2) × 16^-3 = 4^3 × \\frac{1}{4⁶} = 4^(3-6) = 4^-3",
+        "4^-3 = 1/64"
       ],
-      "final_answer": "1/81",
+      "final_answer": "1/64",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply the powers in the bracket: -1 × 2 = -2",
+          "description": "16^(1/2) is the square root of 16, which is 4, so 16^(3/2) = 4^3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(3^-1)^2 = 3^-2",
+          "description": "16^-3 = \\frac{1}{16³} = \\frac{1}{4⁶}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract the powers to divide: -2 - (2) = -4",
+          "description": "16^(3/2) × 16^-3 = 4^3 × \\frac{1}{4⁶} = 4^(3-6) = 4^-3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3^-2 ÷ 3^2 = 3^-4 = 1/81",
+          "description": "4^-3 = 1/64",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/81 oe",
+          "description": "1/64 oe",
           "marks": 1
         }
       ],
@@ -181,7 +265,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bounds_calculation",
+      "topic_id": "bounds_calculation_H",
       "prompt": "A rectangle has length 16 cm and width 20 cm, both measured to the nearest cm. Calculate the lower bound for the area of the rectangle.",
       "solution_steps": [
         "Length: 16 cm (to the nearest cm) gives 15.5 ≤ length < 16.5",
@@ -216,7 +300,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_add_subtract",
+      "topic_id": "standard_form_add_subtract_H",
       "prompt": "Work out (7 × 10^6) + (9 × 10^4). Give your answer in standard form.",
       "solution_steps": [
         "Write both numbers with the same power of 10: 7×10^6 = 700×10^4, 9×10^4 = 9×10^4",
@@ -251,41 +335,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_proof",
-      "prompt": "Prove algebraically that the sum of three consecutive integers is always a multiple of 3.",
+      "topic_id": "special_sequences_H",
+      "prompt": "The first 4 terms of a Fibonacci-type sequence are: 6, 1, 7, 8. Each term (from the 3rd onwards) is found by adding the two terms before it. Find the next term of the sequence.",
       "solution_steps": [
-        "Let three consecutive integers be n, n + 1 and n + 2.",
-        "Write the given expression algebraically: n + (n + 1) + (n + 2).",
-        "Expand and simplify: n + (n + 1) + (n + 2) = 3n + 3.",
-        "Factorise/rearrange to expose the structure: 3n + 3 = 3(n + 1).",
-        "Since 3n + 3 factorises exactly to 3(n + 1), the sum is always 3 times a whole number, so it is always a multiple of 3."
+        "Rule: each term (from the 3rd onwards) is found by adding the two terms before it.",
+        "7 + 8 = 15"
       ],
-      "final_answer": "Proven: the sum is 3(n + 1), always a multiple of 3.",
-      "marks": 5,
+      "final_answer": "15",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let three consecutive integers be n, n + 1 and n + 2.",
+          "description": "Rule: each term (from the 3rd onwards) is found by adding the two terms before it.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write the given expression algebraically: n + (n + 1) + (n + 2).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Expand and simplify: n + (n + 1) + (n + 2) = 3n + 3.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise/rearrange to expose the structure: 3n + 3 = 3(n + 1). Since 3n + 3 factorises exactly to 3(n + 1), the sum is always 3 times a whole number, so it is always a multiple of 3.",
+          "description": "7 + 8 = 15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Proven: the sum is 3(n + 1), always a multiple of 3. oe",
+          "description": "15 oe",
           "marks": 1
         }
       ],
@@ -293,34 +364,76 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_quadratic_nth_term",
-      "prompt": "Here are the first four terms of a quadratic sequence: 0, 12, 28, 48. Find an expression for the nth term.",
+      "topic_id": "iteration_H",
+      "prompt": "The iterative formula x_(n+1) = \\frac{7 - x_n^2}{5} is used with x_0 = 0. Find the values of x_1, x_2 and x_3, giving each answer to 3 decimal places.",
       "solution_steps": [
-        "First differences: 12, 16, 20",
-        "Second difference is constant: 4, so the coefficient of n^2 is 4 ÷ 2 = 2",
-        "nth term = 2n^2 + 6n - 8"
+        "Iterative formula: x_(n+1) = \\frac{7 - x_n^2}{5}",
+        "x_0 = 0",
+        "x_1 = g(x_0) = \\frac{7 - 0^2}{5} = 1.400",
+        "x_2 = g(x_1) = \\frac{7 - 1.400^2}{5} = 1.008",
+        "x_3 = g(x_2) = \\frac{7 - 1.008^2}{5} = 1.197"
       ],
-      "final_answer": "2n^2 + 6n - 8",
+      "final_answer": "x_1 = 1.400, x_2 = 1.008, x_3 = 1.197",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Iterative formula: x_(n+1) = \\frac{7 - x_n^2}{5}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x_0 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x_1 = g(x_0) = \\frac{7 - 0^2}{5} = 1.400",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x_2 = g(x_1) = \\frac{7 - 1.400^2}{5} = 1.008 x_3 = g(x_2) = \\frac{7 - 1.008^2}{5} = 1.197",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x_1 = 1.400, x_2 = 1.008, x_3 = 1.197 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "change_subject_factorise_H",
+      "prompt": "Make x the subject of the formula kx + 6x = 23.",
+      "solution_steps": [
+        "kx + 6x = 23",
+        "Factorise the left-hand side: x(k + 6) = 23",
+        "Divide both sides by (k + 6): x = \\frac{23}{k + 6}"
+      ],
+      "final_answer": "x = \\frac{23}{k + 6}",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First differences: 12, 16, 20",
+          "description": "kx + 6x = 23",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Second difference is constant: 4, so the coefficient of n^2 is 4 ÷ 2 = 2",
+          "description": "Factorise the left-hand side: x(k + 6) = 23",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = 2n^2 + 6n - 8",
+          "description": "Divide both sides by (k + 6): x = \\frac{23}{k + 6}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2n^2 + 6n - 8 oe",
+          "description": "x = \\frac{23}{k + 6} oe",
           "marks": 1
         }
       ],
@@ -328,67 +441,22 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "forming_equations_higher",
-      "prompt": "A composite shape's perimeter is made up of two sides of length 14 cm, two sides of length 6 cm, and two sides of length (x + 4) cm. The total perimeter is 66 cm. Form an equation and solve it to find x.",
+      "topic_id": "change_subject_H",
+      "prompt": "Make x the subject of the formula y = \\frac{x + 2}{x - 10}.",
       "solution_steps": [
-        "Perimeter = sum of all side lengths.",
-        "2(14) + 2(6) + 2(x + 4) = 66",
-        "Expand the bracket and collect the constants:",
-        "2x + 48 = 66",
-        "Subtract 48 from both sides:",
-        "2x = 18",
-        "Divide both sides by 2:",
-        "x = 9"
-      ],
-      "final_answer": "9",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Perimeter = sum of all side lengths.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2(14) + 2(6) + 2(x + 4) = 66",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Expand the bracket and collect the constants:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2x + 48 = 66 Subtract 48 from both sides: 2x = 18 Divide both sides by 2: x = 9",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "9 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "change_subject_higher",
-      "prompt": "Make x the subject of the formula y = (x + 2)/(x - 10).",
-      "solution_steps": [
-        "y = (x + 2)/(x - 10)",
+        "y = \\frac{x + 2}{x - 10}",
         "Multiply both sides by (x - 10): y(x - 10) = x + 2",
         "Expand the bracket: yx - 10y = x + 2",
         "Collect the x-terms on one side: yx - x = 2 + 10y",
         "Factorise: x(y - 1) = 2 + 10y",
-        "Divide both sides by (y - 1): x = (2 + 10y)/(y - 1)"
+        "Divide both sides by (y - 1): x = \\frac{2 + 10y}{y - 1}"
       ],
-      "final_answer": "x = (2 + 10y)/(y - 1)",
+      "final_answer": "x = \\frac{2 + 10y}{y - 1}",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = (x + 2)/(x - 10)",
+          "description": "y = \\frac{x + 2}{x - 10}",
           "marks": 1
         },
         {
@@ -403,12 +471,12 @@
         },
         {
           "code": "M1",
-          "description": "Collect the x-terms on one side: yx - x = 2 + 10y Factorise: x(y - 1) = 2 + 10y Divide both sides by (y - 1): x = (2 + 10y)/(y - 1)",
+          "description": "Collect the x-terms on one side: yx - x = 2 + 10y Factorise: x(y - 1) = 2 + 10y Divide both sides by (y - 1): x = \\frac{2 + 10y}{y - 1}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = (2 + 10y)/(y - 1) oe",
+          "description": "x = \\frac{2 + 10y}{y - 1} oe",
           "marks": 1
         }
       ],
@@ -416,161 +484,260 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_brackets",
-      "prompt": "Solve: 2(4x - 3) = 58",
+      "topic_id": "forming_equations_H",
+      "prompt": "The perimeter of the L-shape shown is 66 cm. Form an equation and solve it to find x.",
       "solution_steps": [
-        "Expand the bracket: 2(4x - 3) = 8x - 6",
-        "8x - 6 = 58",
-        "Add 6 to both sides:",
-        "8x = 64",
-        "Divide both sides by 8:",
-        "x = 8"
+        "Perimeter of an L-shape = 2 × (outer width) + 2 × (outer height).",
+        "2(x + 4) + 2(14 + 6) = 66",
+        "Expand the brackets and collect the constants:",
+        "2x + 48 = 66",
+        "Subtract 48 from both sides:",
+        "2x = 18",
+        "Divide both sides by 2:",
+        "x = 9"
       ],
-      "final_answer": "8",
+      "final_answer": "9",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expand the bracket: 2(4x - 3) = 8x - 6",
+          "description": "Perimeter of an L-shape = 2 × (outer width) + 2 × (outer height).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "8x - 6 = 58",
+          "description": "2(x + 4) + 2(14 + 6) = 66",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add 6 to both sides:",
+          "description": "Expand the brackets and collect the constants:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "8x = 64 Divide both sides by 8: x = 8",
+          "description": "2x + 48 = 66 Subtract 48 from both sides: 2x = 18 Divide both sides by 2: x = 9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8 oe",
+          "description": "9 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "quadratic_inequalities",
-      "prompt": "Solve the inequality: -x^2 - x + 42 ≤ 0",
-      "solution_steps": [
-        "Factorise: -x^2 - x + 42 = -(x - 6)(x + 7)",
-        "The critical values are x = -7 and x = 6.",
-        "The coefficient of x^2 is negative, so the graph is a upside-down U-shaped parabola, and ≤ 0 is satisfied outside the two roots.",
-        "Answer: x ≤ -7 or x ≥ 6"
-      ],
-      "final_answer": "x ≤ -7 or x ≥ 6",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Factorise: -x^2 - x + 42 = -(x - 6)(x + 7)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The critical values are x = -7 and x = 6.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The coefficient of x^2 is negative, so the graph is a upside-down U-shaped parabola, and ≤ 0 is satisfied outside the two roots.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Answer: x ≤ -7 or x ≥ 6",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x ≤ -7 or x ≥ 6 oe",
-          "marks": 1
+      "diagram": {
+        "kind": "l_shape",
+        "params": {
+          "outer_w": 13,
+          "outer_h": 20,
+          "inner_w": 5,
+          "inner_h": 14,
+          "notch": "corner",
+          "outer_labels": [
+            "(x + 4) cm",
+            "(14 + 6) cm"
+          ],
+          "right_labels": [
+            "6 cm",
+            "14 cm"
+          ]
         }
-      ],
-      "diagram": null,
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "satisfying_inequalities_higher",
-      "prompt": "Solve the inequality 3 < -x ≤ 13, then list the integer values of x that satisfy it.",
+      "topic_id": "inequalities_region_H",
+      "prompt": "The shaded region on the grid satisfies two inequalities. State both inequalities.",
       "solution_steps": [
-        "3 < -x ≤ 13",
-        "Divide all three parts by -1 - since this is negative, every inequality sign reverses, and the low/high sides swap around:",
-        "-13 ≤ x < -3",
-        "The integers satisfying this are: -13, -12, -11, -10, -9, -8, -7, -6, -5, -4"
+        "The boundary line y = -x + 1 is dashed, and the shading lies on the upper side of it, giving y > -x + 1.",
+        "The boundary line y = -\\frac{x}{2} - 1 is dashed, and the shading lies on the upper side of it, giving y > -\\frac{x}{2} - 1."
       ],
-      "final_answer": "-13, -12, -11, -10, -9, -8, -7, -6, -5, -4",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "3 < -x ≤ 13",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide all three parts by -1 - since this is negative, every inequality sign reverses, and the low/high sides swap around:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "-13 ≤ x < -3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The integers satisfying this are: -13, -12, -11, -10, -9, -8, -7, -6, -5, -4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-13, -12, -11, -10, -9, -8, -7, -6, -5, -4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "unit_conversions_higher",
-      "prompt": "Convert 3726 cm² to m².",
-      "solution_steps": [
-        "Linear conversion factor: 1 m = 100 cm, so for area, 1 m² = 100^2 = 10000 cm²",
-        "3726 cm² = 3726 ÷ 10000 = 0.3726 m²"
-      ],
-      "final_answer": "0.3726 m²",
+      "final_answer": "y > -x + 1 and y > -\\frac{x}{2} - 1",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Linear conversion factor: 1 m = 100 cm, so for area, 1 m² = 100^2 = 10000 cm²",
+          "description": "The boundary line y = -x + 1 is dashed, and the shading lies on the upper side of it, giving y > -x + 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3726 cm² = 3726 ÷ 10000 = 0.3726 m²",
+          "description": "The boundary line y = -\\frac{x}{2} - 1 is dashed, and the shading lies on the upper side of it, giving y > -\\frac{x}{2} - 1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0.3726 m² oe",
+          "description": "y > -x + 1 and y > -\\frac{x}{2} - 1 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "inequality_region",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "lines": [
+            {
+              "m": -1.0,
+              "c": 1,
+              "op": ">"
+            },
+            {
+              "m": -0.5,
+              "c": -1,
+              "op": ">"
+            }
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_direct_proportion",
+      "topic_id": "inequalities_number_line_H",
+      "prompt": "Write down the inequality (or pair of inequalities) shown by the number line below.",
+      "solution_steps": [
+        "The circle at 2 is filled and the circle at 6 is open.",
+        "The shading lies between the two circles, so both bounds must hold at once: 2 ≤ x < 6."
+      ],
+      "final_answer": "2 ≤ x < 6",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The circle at 2 is filled and the circle at 6 is open.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The shading lies between the two circles, so both bounds must hold at once: 2 ≤ x < 6.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2 ≤ x < 6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [
+            {
+              "value": 2,
+              "closed": true
+            },
+            {
+              "value": 6,
+              "closed": false
+            }
+          ],
+          "shade": "between"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_cubic_H",
+      "prompt": "Complete a table of values for y = x^3 + x for x = -3 to 3, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = x^3 + x:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: -30, -10, -2, 0, 2, 10, 30",
+        "Plot each (x, y) point and join them with a single smooth curve."
+      ],
+      "final_answer": "Cubic curve: y = x^3 + x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = x^3 + x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: -30, -10, -2, 0, 2, 10, 30",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Cubic curve: y = x^3 + x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": 1,
+          "b": 1,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -32,
+          "y_max": 32,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "cubic",
+          "a": 1,
+          "b": 1,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -32,
+          "y_max": 32,
+          "table_points": [
+            [
+              -3,
+              -30
+            ],
+            [
+              -2,
+              -10
+            ],
+            [
+              -1,
+              -2
+            ],
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              10
+            ],
+            [
+              3,
+              30
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "algebraic_direct_proportion_H",
       "prompt": "y is directly proportional to x^3. When x = 7, y = 1372. Find the value of y when x = 6.",
       "solution_steps": [
         "y = kx^3",
@@ -611,171 +778,118 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "compound_percentage",
-      "prompt": "A price of £164 increases by 24%, then increases by 35%. Find the final price.",
+      "topic_id": "volume_surface_area_pyramid_H",
+      "prompt": "A square-based pyramid has a base of side 6 cm and a perpendicular height of 8 cm. Find its volume.",
       "solution_steps": [
-        "After the first change: 164 × 1.24 = 203.36",
-        "After the second change: 203.36 × 1.35 = 274.54"
+        "Volume = (1/3) × base² × height = (1/3) × 6² × 8",
+        "= 96 cm³"
       ],
-      "final_answer": "£274.54",
+      "final_answer": "96 cm³",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first change: 164 × 1.24 = 203.36",
+          "description": "Volume = (1/3) × base² × height = (1/3) × 6² × 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "After the second change: 203.36 × 1.35 = 274.54",
+          "description": "= 96 cm³",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£274.54 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_share_three_part",
-      "prompt": "Share 143 in the ratio 3:6:2.",
-      "solution_steps": [
-        "Total parts = 3 + 6 + 2 = 11",
-        "Value of one part = 143 ÷ 11 = 13",
-        "Share 1 = 3 × 13 = 39",
-        "Share 2 = 6 × 13 = 78",
-        "Share 3 = 2 × 13 = 26"
-      ],
-      "final_answer": "39 : 78 : 26",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total parts = 3 + 6 + 2 = 11",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Value of one part = 143 ÷ 11 = 13",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 3 × 13 = 39",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 6 × 13 = 78 Share 3 = 2 × 13 = 26",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "39 : 78 : 26 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "congruent_triangle_proof",
-      "prompt": "Triangles ABC and ADC share side AC, with AB = AD and BC = DC. Prove that the two triangles are congruent.",
-      "solution_steps": [
-        "AB = AD (given)",
-        "BC = DC (given)",
-        "AC is common to both triangles",
-        "By Side-Side-Side (SSS), the triangles are congruent.",
-        "Since all three corresponding sides are equal, triangles ABC and ADC are congruent."
-      ],
-      "final_answer": "Triangles are congruent (SSS).",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "AB = AD (given)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "BC = DC (given)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "AC is common to both triangles",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "By Side-Side-Side (SSS), the triangles are congruent. Since all three corresponding sides are equal, triangles ABC and ADC are congruent.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Triangles are congruent (SSS). oe",
+          "description": "96 cm³ oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "two_triangle_congruence",
+        "kind": "pyramid",
         "params": {
-          "labels_1": [
-            "A",
-            "B",
-            "C"
-          ],
-          "labels_2": [
-            "A",
-            "D",
-            "C"
-          ],
-          "ticks_1": [
-            [
-              0,
-              1,
-              2
-            ],
-            [
-              1,
-              2,
-              3
-            ],
-            [
-              0,
-              2,
-              1
-            ]
-          ],
-          "ticks_2": [
-            [
-              0,
-              1,
-              2
-            ],
-            [
-              1,
-              2,
-              3
-            ],
-            [
-              0,
-              2,
-              1
-            ]
-          ],
-          "arcs_1": [],
-          "arcs_2": [],
-          "note": "AC is common to both triangles."
+          "base_label": "6 cm",
+          "height_label": "8 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_parallel_lines",
+      "topic_id": "ratio_combine_H",
+      "prompt": "Given that a:b = 9:3 and b:c = 2:3, find a:b:c in its simplest form.",
+      "solution_steps": [
+        "Scale a:b = 9:3 by 2 so b = 6: a:b = 18:6",
+        "Scale b:c = 2:3 by 3 so b = 6: b:c = 6:9",
+        "Combine: a:b:c = 18:6:9",
+        "Simplify by dividing by 3: a:b:c = 6:2:3"
+      ],
+      "final_answer": "6 : 2 : 3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Scale a:b = 9:3 by 2 so b = 6: a:b = 18:6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Scale b:c = 2:3 by 3 so b = 6: b:c = 6:9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine: a:b:c = 18:6:9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify by dividing by 3: a:b:c = 6:2:3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6 : 2 : 3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_inverse_proportion_H",
+      "prompt": "y is inversely proportional to x^2. When x = 5, y = 54. Find the value of y when x = 3.",
+      "solution_steps": [
+        "y = k ÷ x^2",
+        "k = y × x^2 = 54 × 5^2 = 54 × 25 = 1350",
+        "y = k ÷ x^2 = 1350 ÷ 3^2 = 1350 ÷ 9 = 150"
+      ],
+      "final_answer": "150",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = k ÷ x^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "k = y × x^2 = 54 × 5^2 = 54 × 25 = 1350",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y = k ÷ x^2 = 1350 ÷ 3^2 = 1350 ÷ 9 = 150",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "150 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_parallel_lines_H",
       "prompt": "A line crosses two parallel lines. The angle 69° and the angle (2x + 101)° are co-interior angles. Find x.",
       "solution_steps": [
         "Co-interior angles sum to 180°.",
@@ -819,13 +933,15 @@
         "params": {
           "known_label": "69°",
           "unknown_label": "(2x + 101)°",
-          "relation": "co_interior"
+          "relation": "co_interior",
+          "known_value": 69,
+          "x_frac": 0.38
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "loci_regions",
+      "topic_id": "loci_regions_H",
       "prompt": "A and B are two fixed points (shown). Shade the region containing points that are both within 6 cm of B AND closer to B than to A.",
       "solution_steps": [
         "The boundary for 'within 6 cm of B' is a circle, centre B, radius 6 cm - the region is inside this circle.",
@@ -972,7 +1088,7 @@
       }
     },
     {
-      "topic_id": "angles_straight_line_higher",
+      "topic_id": "angles_straight_line_H",
       "prompt": "The angles 51° and (4x + 121)° lie on a straight line. Find x.",
       "solution_steps": [
         "Angles on a straight line sum to 180°.",
@@ -1028,40 +1144,74 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_combined_dice",
-      "prompt": "Two fair six-sided dice are rolled. Find the probability that at least one die shows 6.",
+      "topic_id": "compound_3d_surface_area_H",
+      "prompt": "An ice-cream-shaped solid is made from a cone of radius 2 cm and height 13 cm, with a hemisphere of the same radius attached to its open end. Find the total surface area, correct to 2 decimal places.",
       "solution_steps": [
-        "P(neither die shows 6) = 5/6 × 5/6 = 25/36",
-        "P(at least one 6) = 1 - 25/36 = 11/36"
+        "Slant height l = √(r² + h²) = √(2² + 13²) ≈ 13.15 cm",
+        "Cone curved surface = π × r × l = π × 2 × 13.15",
+        "Hemisphere curved surface = 2 × π × r² = 2 × π × 2² (the cone's base and the hemisphere's flat face are both glued together internally, so neither is exposed)",
+        "Total surface area ≈ 107.78 cm² (2 d.p.)"
       ],
-      "final_answer": "11/36",
-      "marks": 3,
+      "final_answer": "107.78 cm²",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "P(neither die shows 6) = 5/6 × 5/6 = 25/36",
+          "description": "Slant height l = √(r² + h²) = √(2² + 13²) ≈ 13.15 cm",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(at least one 6) = 1 - 25/36 = 11/36",
+          "description": "Cone curved surface = π × r × l = π × 2 × 13.15",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Hemisphere curved surface = 2 × π × r² = 2 × π × 2² (the cone's base and the hemisphere's flat face are both glued together internally, so neither is exposed)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total surface area ≈ 107.78 cm² (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "11/36 oe",
+          "description": "107.78 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "dice",
+        "kind": "compound_3d",
         "params": {
-          "values": [
-            6,
-            2
-          ]
+          "variant": "cone_hemisphere",
+          "radius_label": "2 cm",
+          "cone_height_label": "13 cm"
         }
       },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "product_rule_counting_H",
+      "prompt": "A shop sells 2 different phone cases and 6 different screen protectors. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "solution_steps": [
+        "Total combinations = 2 × 6 = 12"
+      ],
+      "final_answer": "12",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total combinations = 2 × 6 = 12",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "12 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     }
   ]

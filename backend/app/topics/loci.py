@@ -168,7 +168,7 @@ def generate_loci_constructions(tier: Tier, rng: random.Random) -> Question:
     c = _build_loci_construction(rng)
     diagram, solution_diagram = _loci_construction_diagrams(c)
     return Question(
-        topic_id="loci_constructions",
+        topic_id="loci_constructions_F",
         tier=Tier.FOUNDATION,
         prompt=c["prompt"],
         solution_steps=tuple(c["steps"]),
@@ -190,7 +190,7 @@ def generate_modelled_example_loci_constructions(tier: Tier, rng: random.Random)
         "locus, any point that does not is outside it - the locus is the boundary between the two.",
     ]
     return ModelledExample(
-        topic_id="loci_constructions",
+        topic_id="loci_constructions_F",
         tier=Tier.FOUNDATION,
         prompt=c["prompt"],
         worked_calculation=tuple(c["steps"]),
@@ -296,7 +296,7 @@ def generate_loci_regions(tier: Tier, rng: random.Random) -> Question:
     c = _build_loci_region(rng)
     diagram, solution_diagram = _loci_region_diagrams(c)
     return Question(
-        topic_id="loci_regions",
+        topic_id="loci_regions_H",
         tier=Tier.HIGHER,
         prompt=c["prompt"],
         solution_steps=tuple(c["steps"]),
@@ -319,7 +319,7 @@ def generate_modelled_example_loci_regions(tier: Tier, rng: random.Random) -> Mo
         "least one.",
     ]
     return ModelledExample(
-        topic_id="loci_regions",
+        topic_id="loci_regions_H",
         tier=Tier.HIGHER,
         prompt=c["prompt"],
         worked_calculation=tuple(c["steps"]),
@@ -330,7 +330,7 @@ def generate_modelled_example_loci_regions(tier: Tier, rng: random.Random) -> Mo
 
 
 TOPIC_LOCI_CONSTRUCTIONS = TopicDefinition(
-    id="loci_constructions",
+    id="loci_constructions_F",
     display_name="Loci",
     description="Describe the locus of points satisfying a given distance rule from a point, two points, or two lines.",
     generate=generate_loci_constructions,
@@ -341,7 +341,7 @@ TOPIC_LOCI_CONSTRUCTIONS = TopicDefinition(
 )
 
 TOPIC_LOCI_REGIONS = TopicDefinition(
-    id="loci_regions",
+    id="loci_regions_H",
     display_name="Loci Regions",
     description="Shade the region of points satisfying two distance rules at once.",
     generate=generate_loci_regions,

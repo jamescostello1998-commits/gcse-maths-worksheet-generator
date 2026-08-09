@@ -57,18 +57,18 @@ def test_topic_definitions_have_expected_metadata():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (standard_form.generate_modelled_example_to_standard_form, Tier.FOUNDATION, "standard_form_to"),
-    (standard_form.generate_modelled_example_to_standard_form_small, Tier.FOUNDATION, "standard_form_to_small"),
-    (standard_form.generate_modelled_example_from_standard_form_large, Tier.FOUNDATION, "standard_form_from_large"),
-    (standard_form.generate_modelled_example_from_standard_form_small, Tier.FOUNDATION, "standard_form_from_small"),
-    (standard_form.generate_modelled_example_multiply_divide_standard_form, Tier.HIGHER, "standard_form_multiply_divide"),
+    (standard_form.generate_modelled_example_to_standard_form, Tier.FOUNDATION, "standard_form_to_F"),
+    (standard_form.generate_modelled_example_to_standard_form_small, Tier.FOUNDATION, "standard_form_to_small_F"),
+    (standard_form.generate_modelled_example_from_standard_form_large, Tier.FOUNDATION, "standard_form_from_large_F"),
+    (standard_form.generate_modelled_example_from_standard_form_small, Tier.FOUNDATION, "standard_form_from_small_F"),
+    (standard_form.generate_modelled_example_multiply_divide_standard_form, Tier.HIGHER, "standard_form_multiply_divide_H"),
     (
         standard_form.generate_modelled_example_multiply_divide_standard_form_foundation,
         Tier.FOUNDATION,
-        "standard_form_multiply_divide_foundation",
+        "standard_form_multiply_divide_F",
     ),
-    (standard_form.generate_modelled_example_add_subtract_standard_form, Tier.HIGHER, "standard_form_add_subtract"),
-    (standard_form.generate_modelled_example_standard_form_calculator, Tier.FOUNDATION, "standard_form_calculator"),
+    (standard_form.generate_modelled_example_add_subtract_standard_form, Tier.HIGHER, "standard_form_add_subtract_H"),
+    (standard_form.generate_modelled_example_standard_form_calculator, Tier.FOUNDATION, "standard_form_calculator_F"),
 ]
 
 

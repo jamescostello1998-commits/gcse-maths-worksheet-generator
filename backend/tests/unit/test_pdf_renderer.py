@@ -51,7 +51,7 @@ def test_contains_worked_solutions_heading_and_all_question_numbers():
 
 def test_renders_worksheet_with_a_diagram_bearing_question():
     diagram_question = Question(
-        topic_id="area_rectangle",
+        topic_id="area_rectangle_F",
         tier=Tier.FOUNDATION,
         prompt="A rectangle has length 10 cm and width 6 cm. Find its area.",
         solution_steps=("Area = length × width = 10 × 6 = 60 cm²",),
@@ -63,7 +63,7 @@ def test_renders_worksheet_with_a_diagram_bearing_question():
         ),
     )
     worksheet = Worksheet(
-        topic_id="area_rectangle",
+        topic_id="area_rectangle_F",
         topic_name="Rectangles",
         tier=Tier.FOUNDATION,
         questions=(diagram_question,) + tuple(_make_worksheet(19).questions),

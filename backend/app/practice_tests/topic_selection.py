@@ -25,49 +25,91 @@ SECTION_TARGET_MARKS: dict[str, int] = {
 CORE_TOPIC_IDS: frozenset[str] = frozenset(
     {
         # Number
-        "fractions_add_subtract", "fractions_of_amount", "decimals_round_dp",
-        "standard_form_to", "negative_add_subtract", "bidmas",
+        "fractions_add_subtract_F", "fractions_of_amount_F", "decimals_round_dp_F",
+        "standard_form_to_F", "negative_add_subtract_F", "bidmas_F",
         # Algebra
-        "linear_two_step", "linear_multi_step", "expand_single_bracket",
-        "factorise_common_factor", "sequences_nth_term",
-        "forming_equations_foundation", "forming_equations_higher",
+        "linear_two_step_F", "linear_multi_step_F", "expand_single_bracket_F",
+        "factorise_common_factor_F", "sequences_nth_term_F",
+        "forming_equations_F", "forming_equations_H",
         # Ratio & Proportion
-        "percentage_of_amount", "percentage_change", "ratio_share_two_part",
-        "direct_proportion",
+        "percentage_of_amount_F", "percentage_change_F", "ratio_share_two_part_F",
+        "direct_proportion_F",
         # Geometry
-        "area_rectangle", "area_triangle", "angles_triangle",
-        "angles_straight_line", "pythagoras_hypotenuse_triple",
-        "trig_missing_side_foundation",
+        "area_rectangle_F", "area_triangle_F", "angles_triangle_F",
+        "angles_straight_line_F", "pythagoras_hypotenuse_triple_F",
+        "trig_missing_side_F",
         # Probability
-        "probability_single_event", "probability_and_or_rule",
-        "tree_diagram_independent", "two_way_tables",
+        "probability_single_event_F", "probability_and_or_rule_F",
+        "tree_diagram_independent_F", "two_way_tables_F",
         # Statistics
-        "stats_mean", "stats_mode", "stats_median", "stats_range",
-        "bar_chart_interpret",
+        "stats_mean_F", "stats_mode_F", "stats_median_F", "stats_range_F",
+        "bar_chart_interpret_F",
     }
 )
 
 NICHE_TOPIC_IDS: frozenset[str] = frozenset(
     {
         # Algebra
-        "iteration", "algebraic_proof", "quadratic_inequalities",
-        "functions_composite_inverse", "graph_transformations",
-        "algebraic_fractions_add_subtract", "algebraic_fractions_multiply_divide",
+        "iteration_H", "algebraic_proof_H", "quadratic_inequalities_H",
+        "functions_composite_inverse_H", "graph_transformations_H",
+        "algebraic_fractions_add_subtract_H", "algebraic_fractions_multiply_divide_H",
         # Geometry
-        "circle_theorems", "geometric_vectors", "sine_rule", "cosine_rule",
-        "triangle_area_sine_rule", "vectors_arithmetic_higher",
+        "circle_theorems_H", "geometric_vectors_H", "sine_rule_H", "cosine_rule_H",
+        "triangle_area_sine_rule_H", "vectors_arithmetic_H",
         # Number
-        "algebraic_surds", "rationalise_denominator",
-        "indices_common_base_equations", "surds_multiply_divide",
+        "algebraic_surds_H", "rationalise_denominator_H",
+        "indices_common_base_equations_H", "surds_multiply_divide_H",
         # Probability
-        "tree_diagram_algebraic", "venn_diagram_algebra", "product_rule_counting",
+        "tree_diagram_algebraic_H", "venn_diagram_algebra_H", "product_rule_counting_H",
         # Statistics
-        "histogram_interpret", "cumulative_frequency_interpret",
-        "box_plot_interpret", "stats_interquartile_range",
+        "histogram_interpret_H", "cumulative_frequency_interpret_H",
+        "box_plot_interpret_H", "stats_interquartile_range_H",
     }
 )
 
 _PRIORITY_WEIGHT = {"core": 3, "common": 2, "niche": 1}
+
+# Topics confirmed to require a calculator - a messy/irrational decimal result
+# (rounded trig ratios, sqrt-derived lengths, calculator-value-of-pi areas/
+# volumes), or explicitly labelled "(Calculator)" in their own display_name.
+# Real OCR GCSE Maths reserves Paper 2 (Foundation) / Paper 5 (Higher) - the
+# middle paper of every 3-paper sitting - as non-calculator, so build.py
+# excludes every topic in this set from that paper's eligible pool. A topic
+# whose generator randomly branches between an exact and a decimal/irrational
+# result (e.g. quadratic_formula's decimal-vs-surd branches) is included here
+# wholesale, since selection can't pick only the exact branch - conservative,
+# but this only affects 1 of every 3 papers, so the cost of erring toward
+# inclusion is low (see CLAUDE.md-style rationale in the PR that added this).
+CALCULATOR_ONLY_TOPIC_IDS: frozenset[str] = frozenset(
+    {
+        # Number
+        "standard_form_calculator_F",
+        # Ratio & Proportion - now that a genuinely non-calculator-friendly
+        # sibling exists for each of these (best_buys_noncalculator,
+        # direct_proportion_noncalculator, inverse_proportion_noncalculator),
+        # the original topics move here so a non-calculator paper picks the
+        # friendly sibling instead - their own numbers were never guaranteed
+        # to avoid a calculator (best_buys' sticker-price division especially).
+        "percentage_increase_decrease_calculator_H",
+        "best_buys_F", "direct_proportion_F", "inverse_proportion_F",
+        # Geometry - decimal/calculator-pi area & perimeter
+        "area_circle_F", "area_semicircle_compound_F",
+        "arc_length_F", "area_sector_F",
+        # Geometry - decimal/calculator-pi volume & surface area
+        "volume_surface_area_cylinder_F", "volume_surface_area_cone_H",
+        "volume_surface_area_sphere_H", "volume_surface_area_pyramid_H",
+        "frustum_volume_surface_area_H", "compound_3d_volume_H", "compound_3d_surface_area_H",
+        # Geometry - Pythagoras/trig giving a rounded decimal answer
+        "pythagoras_hypotenuse_decimal_F", "pythagoras_3d_H", "trig_3d_H",
+        "trig_missing_side_F", "trig_missing_side_H",
+        "trig_missing_angle_F", "trig_missing_angle_H", "trig_mixed_H",
+        "sine_rule_H", "cosine_rule_H", "triangle_area_sine_rule_H", "bearings_cosine_rule_H",
+        # Algebra - branches between an exact surd and a rounded decimal root
+        "quadratic_formula_H",
+        # Algebra - the process itself requires repeated calculator evaluation
+        "iteration_H",
+    }
+)
 
 
 def topic_priority(topic_id: str) -> str:
@@ -78,11 +120,18 @@ def topic_priority(topic_id: str) -> str:
     return "common"
 
 
-def eligible_topics_by_section(tier: Tier) -> dict[str, list[TopicDefinition]]:
+def eligible_topics_by_section(tier: Tier, calculator_allowed: bool = True) -> dict[str, list[TopicDefinition]]:
+    """The pool of topics available for a paper of this tier. When
+    calculator_allowed is False (the middle paper of a 3-paper sitting - real
+    OCR's non-calculator paper), every topic in CALCULATOR_ONLY_TOPIC_IDS is
+    excluded from the pool entirely."""
     by_section: dict[str, list[TopicDefinition]] = {s: [] for s in SECTION_TARGET_MARKS}
     for topic in list_topics():
-        if topic.fixed_tier == tier and topic.section in by_section:
-            by_section[topic.section].append(topic)
+        if topic.fixed_tier != tier or topic.section not in by_section:
+            continue
+        if not calculator_allowed and topic.id in CALCULATOR_ONLY_TOPIC_IDS:
+            continue
+        by_section[topic.section].append(topic)
     return by_section
 
 

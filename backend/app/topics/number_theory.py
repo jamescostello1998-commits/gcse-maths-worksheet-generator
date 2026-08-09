@@ -56,7 +56,7 @@ def generate_prime_numbers(tier: Tier, rng: random.Random) -> Question:
         f"Prime numbers: {answer}",
     ]
     return Question(
-        topic_id="prime_numbers",
+        topic_id="prime_numbers_F",
         tier=Tier.FOUNDATION,
         prompt=f"From this list, write down all the prime numbers: {', '.join(str(n) for n in numbers)}",
         solution_steps=tuple(steps),
@@ -108,7 +108,7 @@ def generate_modelled_example_prime_numbers(tier: Tier, rng: random.Random) -> M
         f"Primes: {answer}",
     ]
     return ModelledExample(
-        topic_id="prime_numbers",
+        topic_id="prime_numbers_F",
         tier=Tier.FOUNDATION,
         prompt=f"From this list, write down all the prime numbers: {', '.join(str(n) for n in numbers)}",
         worked_calculation=tuple(worked_calculation),
@@ -133,7 +133,7 @@ def generate_multiples(tier: Tier, rng: random.Random) -> Question:
         answer = ", ".join(str(m) for m in multiples_list)
         steps = [f"Multiply {n} by 1, 2, 3, 4, 5: {answer}"]
         return Question(
-            topic_id="multiples",
+            topic_id="multiples_F",
             tier=Tier.FOUNDATION,
             prompt=f"Write down the first {count} multiples of {n}.",
             solution_steps=tuple(steps),
@@ -159,7 +159,7 @@ def generate_multiples(tier: Tier, rng: random.Random) -> Question:
         f"{answer}, {candidate} {'is' if is_multiple else 'is not'} a multiple of {n}.",
     ]
     return Question(
-        topic_id="multiples",
+        topic_id="multiples_F",
         tier=Tier.FOUNDATION,
         prompt=f"Is {candidate} a multiple of {n}?",
         solution_steps=tuple(steps),
@@ -191,7 +191,7 @@ def generate_modelled_example_multiples(tier: Tier, rng: random.Random) -> Model
     ]
     worked_calculation = [f"{n} × {k} = {n * k}" for k in range(1, count + 1)]
     return ModelledExample(
-        topic_id="multiples",
+        topic_id="multiples_F",
         tier=Tier.FOUNDATION,
         prompt=f"Write down the first {count} multiples of {n}.",
         worked_calculation=tuple(worked_calculation),
@@ -201,7 +201,38 @@ def generate_modelled_example_multiples(tier: Tier, rng: random.Random) -> Model
 
 
 def generate_factors(tier: Tier, rng: random.Random) -> Question:
-    shape = rng.choice(["list_factors", "is_factor"])
+    # count_factors is deliberately low-probability - a "how many" question
+    # is a smaller variation on list_factors rather than a distinct skill.
+    shape = rng.choices(["list_factors", "is_factor", "count_factors"], weights=[45, 45, 10])[0]
+
+    if shape == "count_factors":
+        n = rng.randint(12, 100)
+        factors_brute = [i for i in range(1, n + 1) if n % i == 0]
+        factor_count = len(factors_brute)
+
+        # Independent check: derive the count from the prime factorisation's
+        # exponents (the divisor-count formula, product of (exponent + 1)) -
+        # a different method than the brute-force 1..n scan above.
+        exponents = Counter(_prime_factorise(n))
+        formula_count = 1
+        for exp in exponents.values():
+            formula_count *= exp + 1
+        if formula_count != factor_count:
+            raise ValueError("factors verification failed: factor count mismatch")
+
+        steps = [
+            f"List every factor of {n} by checking each whole number from 1 to {n}: "
+            f"{', '.join(str(f) for f in factors_brute)}.",
+            f"Count them: {factor_count} factors.",
+        ]
+        return Question(
+            topic_id="factors_F",
+            tier=Tier.FOUNDATION,
+            prompt=f"How many factors does {n} have?",
+            solution_steps=tuple(steps),
+            final_answer=str(factor_count),
+            dedup_key=f"factors_count:{n}",
+        )
 
     if shape == "list_factors":
         n = rng.randint(12, 60)
@@ -220,7 +251,7 @@ def generate_factors(tier: Tier, rng: random.Random) -> Question:
         answer = ", ".join(str(f) for f in factors_brute)
         steps = [f"Check every whole number from 1 to {n} to see if it divides exactly: {answer}"]
         return Question(
-            topic_id="factors",
+            topic_id="factors_F",
             tier=Tier.FOUNDATION,
             prompt=f"Write down all the factors of {n}.",
             solution_steps=tuple(steps),
@@ -248,7 +279,7 @@ def generate_factors(tier: Tier, rng: random.Random) -> Question:
         f"{answer}, {candidate} {'is' if is_factor else 'is not'} a factor of {n}.",
     ]
     return Question(
-        topic_id="factors",
+        topic_id="factors_F",
         tier=Tier.FOUNDATION,
         prompt=f"Is {candidate} a factor of {n}?",
         solution_steps=tuple(steps),
@@ -258,6 +289,59 @@ def generate_factors(tier: Tier, rng: random.Random) -> Question:
 
 
 def generate_modelled_example_factors(tier: Tier, rng: random.Random) -> ModelledExample:
+    shape = rng.choices(["list_factors", "count_factors"], weights=[70, 30])[0]
+
+    if shape == "count_factors":
+        # Retry until n has at least two factor pairs (i.e. isn't prime) so
+        # the worked example always has more than one line to show.
+        for _ in range(50):
+            n = rng.randint(12, 100)
+            pairs_in_order = [(i, n // i) for i in range(1, int(n**0.5) + 1) if n % i == 0]
+            if len(pairs_in_order) >= 2:
+                break
+        else:
+            raise ValueError("modelled example factors could not find a suitable number")
+
+        factors_brute = [i for i in range(1, n + 1) if n % i == 0]
+        pair_factors: set[int] = set()
+        for i, j in pairs_in_order:
+            pair_factors.add(i)
+            pair_factors.add(j)
+        if pair_factors != set(factors_brute):
+            raise ValueError("modelled example factors verification failed")
+        factor_count = len(factors_brute)
+
+        exponents = Counter(_prime_factorise(n))
+        formula_count = 1
+        for exp in exponents.values():
+            formula_count *= exp + 1
+        if formula_count != factor_count:
+            raise ValueError("modelled example factors verification failed: factor count mismatch")
+
+        pair_lines = ", ".join(f"{i} × {j} = {n}" for i, j in pairs_in_order)
+        bound = math.isqrt(n)
+        teaching_steps = [
+            "Rather than listing every factor one at a time, it's faster to work in pairs: work upwards "
+            f"from 1 and test whether each whole number divides {n} exactly. Factors always come in "
+            f"pairs - if i divides {n}, then {n} ÷ i divides {n} too, so each successful test finds two "
+            "factors at once.",
+            f"Checking: {pair_lines}.",
+            f"You only need to check up to √{n} ≈ {bound} - beyond that point every new factor would just "
+            "repeat a pair already found in reverse order.",
+            f"Collecting every distinct value found from the pairs gives the full list "
+            f"({', '.join(str(f) for f in factors_brute)}), and counting them gives the total: "
+            f"{factor_count} factors.",
+        ]
+        worked_calculation = [f"{i} × {j} = {n}" for i, j in pairs_in_order] + [f"{factor_count} factors"]
+        return ModelledExample(
+            topic_id="factors_F",
+            tier=Tier.FOUNDATION,
+            prompt=f"How many factors does {n} have?",
+            worked_calculation=tuple(worked_calculation),
+            teaching_steps=tuple(teaching_steps),
+            final_answer=str(factor_count),
+        )
+
     # Retry until n has at least two factor pairs (i.e. isn't prime) so the
     # worked example always has more than one line to show.
     for _ in range(50):
@@ -295,7 +379,7 @@ def generate_modelled_example_factors(tier: Tier, rng: random.Random) -> Modelle
     ]
     worked_calculation = [f"{i} × {j} = {n}" for i, j in pairs_in_order]
     return ModelledExample(
-        topic_id="factors",
+        topic_id="factors_F",
         tier=Tier.FOUNDATION,
         prompt=f"Write down all the factors of {n}.",
         worked_calculation=tuple(worked_calculation),
@@ -328,7 +412,7 @@ def generate_prime_factors_foundation(tier: Tier, rng: random.Random) -> Questio
         f"{n} = {product_str}",
     ]
     return Question(
-        topic_id="prime_factors_foundation",
+        topic_id="prime_factors_F",
         tier=Tier.FOUNDATION,
         prompt=f"Write {n} as a product of its prime factors.",
         solution_steps=tuple(steps),
@@ -372,7 +456,7 @@ def generate_modelled_example_prime_factors_foundation(tier: Tier, rng: random.R
     ]
     worked_calculation = chain_lines + [f"{n} = {product_str}"]
     return ModelledExample(
-        topic_id="prime_factors_foundation",
+        topic_id="prime_factors_F",
         tier=Tier.FOUNDATION,
         prompt=f"Write {n} as a product of its prime factors.",
         worked_calculation=tuple(worked_calculation),
@@ -405,7 +489,7 @@ def generate_prime_factors_higher(tier: Tier, rng: random.Random) -> Question:
         f"Write repeated factors using index notation: {n} = {index_str}",
     ]
     return Question(
-        topic_id="prime_factors_higher",
+        topic_id="prime_factors_H",
         tier=Tier.HIGHER,
         prompt=f"Write {n} as a product of its prime factors, giving your answer in index form.",
         solution_steps=tuple(steps),
@@ -459,7 +543,7 @@ def generate_modelled_example_prime_factors_higher(tier: Tier, rng: random.Rando
     ]
     worked_calculation = chain_lines + [f"{n} = {product_str}", f"= {index_str}"]
     return ModelledExample(
-        topic_id="prime_factors_higher",
+        topic_id="prime_factors_H",
         tier=Tier.HIGHER,
         prompt=f"Write {n} as a product of its prime factors, giving your answer in index form.",
         worked_calculation=tuple(worked_calculation),
@@ -489,7 +573,7 @@ def generate_lcm_by_listing(tier: Tier, rng: random.Random) -> Question:
         f"Lowest common multiple = {lcm_val}",
     ]
     return Question(
-        topic_id="lcm_by_listing",
+        topic_id="lcm_by_listing_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find the lowest common multiple (LCM) of {a} and {b}.",
         solution_steps=tuple(steps),
@@ -530,7 +614,7 @@ def generate_modelled_example_lcm_by_listing(tier: Tier, rng: random.Random) -> 
         f"LCM = {lcm_val}",
     ]
     return ModelledExample(
-        topic_id="lcm_by_listing",
+        topic_id="lcm_by_listing_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find the lowest common multiple (LCM) of {a} and {b}.",
         worked_calculation=tuple(worked_calculation),
@@ -560,7 +644,7 @@ def generate_hcf_by_listing(tier: Tier, rng: random.Random) -> Question:
         f"Highest common factor = {hcf_val}",
     ]
     return Question(
-        topic_id="hcf_by_listing",
+        topic_id="hcf_by_listing_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find the highest common factor (HCF) of {a} and {b}.",
         solution_steps=tuple(steps),
@@ -601,7 +685,7 @@ def generate_modelled_example_hcf_by_listing(tier: Tier, rng: random.Random) -> 
         f"HCF = {hcf_val}",
     ]
     return ModelledExample(
-        topic_id="hcf_by_listing",
+        topic_id="hcf_by_listing_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find the highest common factor (HCF) of {a} and {b}.",
         worked_calculation=tuple(worked_calculation),
@@ -645,7 +729,7 @@ def generate_hcf_lcm_by_prime_factors(tier: Tier, rng: random.Random) -> Questio
         f"{label} = {result}",
     ]
     return Question(
-        topic_id="hcf_lcm_by_prime_factors",
+        topic_id="hcf_lcm_by_prime_factors_H",
         tier=Tier.HIGHER,
         prompt=f"Using prime factorisation, find the {label} of {a} and {b}.",
         solution_steps=tuple(steps),
@@ -703,7 +787,7 @@ def generate_modelled_example_hcf_lcm_by_prime_factors(tier: Tier, rng: random.R
         f"{label} = {result}",
     ]
     return ModelledExample(
-        topic_id="hcf_lcm_by_prime_factors",
+        topic_id="hcf_lcm_by_prime_factors_H",
         tier=Tier.HIGHER,
         prompt=f"Using prime factorisation, find the {label} of {a} and {b}.",
         worked_calculation=tuple(worked_calculation),
@@ -713,7 +797,7 @@ def generate_modelled_example_hcf_lcm_by_prime_factors(tier: Tier, rng: random.R
 
 
 TOPIC_PRIME_NUMBERS = TopicDefinition(
-    id="prime_numbers",
+    id="prime_numbers_F",
     display_name="Prime Numbers",
     description="Identify the prime numbers in a list.",
     generate=generate_prime_numbers,
@@ -724,7 +808,7 @@ TOPIC_PRIME_NUMBERS = TopicDefinition(
 )
 
 TOPIC_MULTIPLES = TopicDefinition(
-    id="multiples",
+    id="multiples_F",
     display_name="Multiples",
     description="List the multiples of a number, or check whether one number is a multiple of another.",
     generate=generate_multiples,
@@ -735,7 +819,7 @@ TOPIC_MULTIPLES = TopicDefinition(
 )
 
 TOPIC_FACTORS = TopicDefinition(
-    id="factors",
+    id="factors_F",
     display_name="Factors",
     description="List the factors of a number, or check whether one number is a factor of another.",
     generate=generate_factors,
@@ -746,7 +830,7 @@ TOPIC_FACTORS = TopicDefinition(
 )
 
 TOPIC_PRIME_FACTORS_FOUNDATION = TopicDefinition(
-    id="prime_factors_foundation",
+    id="prime_factors_F",
     display_name="Prime Factor Decomposition",
     description="Write a number as a product of its prime factors.",
     generate=generate_prime_factors_foundation,
@@ -757,7 +841,7 @@ TOPIC_PRIME_FACTORS_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_PRIME_FACTORS_HIGHER = TopicDefinition(
-    id="prime_factors_higher",
+    id="prime_factors_H",
     display_name="Prime Factor Decomposition (Index Form)",
     description="Write a number as a product of its prime factors, using index notation.",
     generate=generate_prime_factors_higher,
@@ -768,7 +852,7 @@ TOPIC_PRIME_FACTORS_HIGHER = TopicDefinition(
 )
 
 TOPIC_LCM_BY_LISTING = TopicDefinition(
-    id="lcm_by_listing",
+    id="lcm_by_listing_F",
     display_name="LCM by Listing",
     description="Find the lowest common multiple of two numbers by listing their multiples.",
     generate=generate_lcm_by_listing,
@@ -779,7 +863,7 @@ TOPIC_LCM_BY_LISTING = TopicDefinition(
 )
 
 TOPIC_HCF_BY_LISTING = TopicDefinition(
-    id="hcf_by_listing",
+    id="hcf_by_listing_F",
     display_name="HCF by Listing",
     description="Find the highest common factor of two numbers by listing their factors.",
     generate=generate_hcf_by_listing,
@@ -790,7 +874,7 @@ TOPIC_HCF_BY_LISTING = TopicDefinition(
 )
 
 TOPIC_HCF_LCM_BY_PRIME_FACTORS = TopicDefinition(
-    id="hcf_lcm_by_prime_factors",
+    id="hcf_lcm_by_prime_factors_H",
     display_name="HCF & LCM using Prime Factors",
     description="Find the HCF or LCM of two larger numbers using their prime factorisations.",
     generate=generate_hcf_lcm_by_prime_factors,

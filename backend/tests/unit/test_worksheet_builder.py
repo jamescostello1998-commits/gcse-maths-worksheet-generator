@@ -9,10 +9,10 @@ from app.worksheet import builder
 
 
 def test_happy_path_produces_20_distinct_questions():
-    worksheet = builder.build_worksheet("linear_one_step", Tier.FOUNDATION, rng=random.Random(1))
+    worksheet = builder.build_worksheet("linear_one_step_F", Tier.FOUNDATION, rng=random.Random(1))
     assert len(worksheet.questions) == 20
     assert len({q.dedup_key for q in worksheet.questions}) == 20
-    assert worksheet.topic_id == "linear_one_step"
+    assert worksheet.topic_id == "linear_one_step_F"
     assert worksheet.tier == Tier.FOUNDATION
 
 
@@ -20,7 +20,7 @@ def test_all_topics_produce_their_full_distinct_question_count_at_their_fixed_ti
     from app.core.registry import list_topics
 
     topics = list_topics()
-    assert len(topics) == 275
+    assert len(topics) == 305
     for topic in topics:
         tier = topic.fixed_tier or Tier.FOUNDATION
         count = topic.question_count or 20

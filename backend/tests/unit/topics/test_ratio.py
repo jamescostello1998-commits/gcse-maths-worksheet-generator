@@ -1,4 +1,5 @@
 import random
+import re
 
 from app.core.models import Tier
 from app.topics import ratio
@@ -82,7 +83,7 @@ def test_modelled_example_share_two_produces_verified_examples():
     rng = random.Random(302)
     for _ in range(TRIALS):
         example = ratio.generate_modelled_example_share_two(Tier.FOUNDATION, rng)
-        assert example.topic_id == "ratio_share_two_part"
+        assert example.topic_id == "ratio_share_two_part_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -93,7 +94,7 @@ def test_modelled_example_find_share_produces_verified_examples():
     rng = random.Random(303)
     for _ in range(TRIALS):
         example = ratio.generate_modelled_example_find_share(Tier.FOUNDATION, rng)
-        assert example.topic_id == "ratio_find_missing_share"
+        assert example.topic_id == "ratio_find_missing_share_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -104,7 +105,7 @@ def test_modelled_example_share_three_produces_verified_examples():
     rng = random.Random(304)
     for _ in range(TRIALS):
         example = ratio.generate_modelled_example_share_three(Tier.HIGHER, rng)
-        assert example.topic_id == "ratio_share_three_part"
+        assert example.topic_id == "ratio_share_three_part_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -115,7 +116,7 @@ def test_modelled_example_share_three_foundation_produces_verified_examples():
     rng = random.Random(306)
     for _ in range(TRIALS):
         example = ratio.generate_modelled_example_share_three_foundation(Tier.FOUNDATION, rng)
-        assert example.topic_id == "ratio_share_three_part_foundation"
+        assert example.topic_id == "ratio_share_three_part_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -126,7 +127,7 @@ def test_modelled_example_combine_ratios_produces_verified_examples():
     rng = random.Random(305)
     for _ in range(TRIALS):
         example = ratio.generate_modelled_example_combine_ratios(Tier.HIGHER, rng)
-        assert example.topic_id == "ratio_combine"
+        assert example.topic_id == "ratio_combine_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -137,7 +138,7 @@ def test_modelled_example_ratio_1_to_n_produces_verified_examples():
     rng = random.Random(307)
     for _ in range(TRIALS):
         example = ratio.generate_modelled_example_ratio_1_to_n(Tier.FOUNDATION, rng)
-        assert example.topic_id == "ratio_1_to_n"
+        assert example.topic_id == "ratio_1_to_n_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -148,7 +149,7 @@ def test_modelled_example_ratio_difference_produces_verified_examples():
     rng = random.Random(308)
     for _ in range(TRIALS):
         example = ratio.generate_modelled_example_ratio_difference(Tier.FOUNDATION, rng)
-        assert example.topic_id == "ratio_difference"
+        assert example.topic_id == "ratio_difference_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -159,7 +160,7 @@ def test_modelled_example_ratio_difference_higher_produces_verified_examples():
     rng = random.Random(309)
     for _ in range(TRIALS):
         example = ratio.generate_modelled_example_ratio_difference_higher(Tier.HIGHER, rng)
-        assert example.topic_id == "ratio_difference_higher"
+        assert example.topic_id == "ratio_difference_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -170,7 +171,7 @@ def test_modelled_example_ratio_to_equation_produces_verified_examples():
     rng = random.Random(310)
     for _ in range(TRIALS):
         example = ratio.generate_modelled_example_ratio_to_equation(Tier.HIGHER, rng)
-        assert example.topic_id == "ratio_to_equation"
+        assert example.topic_id == "ratio_to_equation_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -181,7 +182,7 @@ def test_modelled_example_ratio_shape_similar_foundation_produces_verified_examp
     rng = random.Random(311)
     for _ in range(TRIALS):
         example = ratio.generate_modelled_example_ratio_shape_similar_foundation(Tier.FOUNDATION, rng)
-        assert example.topic_id == "ratio_shape_similar_foundation"
+        assert example.topic_id == "ratio_shape_similar_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -192,7 +193,7 @@ def test_modelled_example_ratio_shape_similar_higher_produces_verified_examples(
     rng = random.Random(312)
     for _ in range(TRIALS):
         example = ratio.generate_modelled_example_ratio_shape_similar_higher(Tier.HIGHER, rng)
-        assert example.topic_id == "ratio_shape_similar_higher"
+        assert example.topic_id == "ratio_shape_similar_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -214,6 +215,72 @@ def test_ratio_shape_similar_higher_smoke_test_no_exceptions():
     for _ in range(300):
         q = ratio.generate_ratio_shape_similar_higher(Tier.HIGHER, rng)
         assert q.final_answer
+
+
+def test_ratio_1_to_n_uses_the_plain_n_marker_not_a_literal_bare_n():
+    # "n" here is a ratio-form placeholder ("1:n"), not a real algebraic
+    # variable - it must go through the \plain{n} escape marker (see
+    # mathtext.py), never appear as a literal un-marked "n" that the
+    # engine's default italics pass would otherwise pick up.
+    rng = random.Random(320)
+    for _ in range(TRIALS):
+        q = ratio.generate_ratio_1_to_n(Tier.FOUNDATION, rng)
+        assert "\\plain{n}" in q.prompt
+        assert re.search(r"(?<![A-Za-z{])n(?![A-Za-z}])", q.prompt) is None
+
+
+def test_find_share_uses_the_letter_equation_style():
+    rng = random.Random(321)
+    seen_given_first_letter = set()
+    for _ in range(TRIALS):
+        q = ratio.generate_find_share(Tier.FOUNDATION, rng)
+        assert re.match(r"^\w+ : \w+ = \d+ : \d+\. \w+ = \d+\. What is the value of \w+\?$", q.prompt)
+        given_letter = q.prompt.split(". ")[1].split(" = ")[0]
+        seen_given_first_letter.add(given_letter == q.prompt.split(" : ")[0])
+    # Confirms the student is sometimes given the first letter's value and
+    # sometimes the second's, per the explicit request.
+    assert seen_given_first_letter == {True, False}
+
+
+def test_ratio_difference_uses_the_letter_equation_style():
+    # Each clause is on its own line (a literal "\n", rendered as a real
+    # line break by mathtext.py's to_markup) - the initial ratio statement,
+    # then the difference clause, then the "Find" instruction.
+    rng = random.Random(322)
+    for _ in range(TRIALS):
+        q = ratio.generate_ratio_difference(Tier.FOUNDATION, rng)
+        assert re.match(r"^\w+ : \w+ = \d+ : \d+\.\n\w+ - \w+ = \d+\.\nFind \w+ and \w+", q.prompt)
+
+
+def test_ratio_difference_higher_uses_the_letter_equation_style():
+    rng = random.Random(323)
+    for _ in range(TRIALS):
+        q = ratio.generate_ratio_difference_higher(Tier.HIGHER, rng)
+        assert re.match(
+            r"^\w+ : \w+ : \w+ = \d+ : \d+ : \d+\.\n\w+ - \w+ = \d+\.\nFind \w+, \w+ and \w+", q.prompt
+        )
+
+
+def test_ratio_shape_similar_foundation_has_a_diagram_and_no_bare_side_lengths_in_prompt():
+    rng = random.Random(324)
+    for _ in range(TRIALS):
+        q = ratio.generate_ratio_shape_similar_foundation(Tier.FOUNDATION, rng)
+        assert q.diagram is not None
+        assert q.diagram.kind == "two_similar_rectangles"
+        letter = q.diagram.params["b_height_label"]
+        assert letter in ("x", "y", "z")
+        assert q.prompt == f"Shape A and Shape B are similar. Find the length of side {letter}."
+
+
+def test_ratio_shape_similar_higher_has_a_diagram_and_no_bare_lengths_in_prompt():
+    rng = random.Random(325)
+    for _ in range(TRIALS):
+        q = ratio.generate_ratio_shape_similar_higher(Tier.HIGHER, rng)
+        assert "cm and" not in q.prompt  # the old "A length on shape A is X cm and..." sentence is gone
+        assert q.diagram is not None
+        assert q.diagram.kind == "two_similar_rectangles"
+        assert "a_width_label" in q.diagram.params
+        assert "b_width_label" in q.diagram.params
 
 
 def test_new_ratio_topics_dedup_key_space_is_wide_enough():

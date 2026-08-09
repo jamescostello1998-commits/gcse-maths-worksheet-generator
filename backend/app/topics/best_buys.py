@@ -4,6 +4,7 @@ from typing import NamedTuple
 
 from app.core.models import ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
+from app.topics.units import display_qty, needs_larger_unit
 
 SECTION = "ratio_proportion"
 GROUP = "Best Buys"
@@ -101,6 +102,162 @@ def generate_best_buys(tier: Tier, rng: random.Random) -> Question:
     winner = options[winner_idx]
 
     option_lines = "; ".join(
+        f"{o.label}: {_fmt_price(o.price_pence)} for {display_qty(o.qty, unit)}" for o in options
+    )
+    steps = [f"Work out the price per 100{unit} for each option:"]
+    for o in options:
+        if needs_larger_unit(o.qty, unit):
+            steps.append(f"{o.label}: {display_qty(o.qty, unit)} = {o.qty}{unit}")
+        steps.append(f"{o.label}: {_fmt_price(o.price_pence)} ÷ {o.qty} × 100 = {_fmt_unit_price(o.unit_price, unit)}")
+    steps.append(
+        f"The lowest price per 100{unit} is {winner.label} at "
+        f"{_fmt_unit_price(winner.unit_price, unit)}, so {winner.label} is the best value."
+    )
+
+    return Question(
+        topic_id="best_buys_F",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"A shop sells {noun} in different sizes: {option_lines}. "
+            "Which option is the better value for money? Show your working."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=f"{winner.label} ({_fmt_price(winner.price_pence)} for {display_qty(winner.qty, unit)})",
+        dedup_key=(
+            f"bb:{noun}:{'|'.join(f'{o.label}:{o.qty}:{o.price_pence}' for o in options)}"
+        ),
+    )
+
+
+def generate_modelled_example_best_buys(tier: Tier, rng: random.Random) -> ModelledExample:
+    noun, unit, options, winner_idx = _build_scenario(rng)
+    winner = options[winner_idx]
+
+    option_lines = "; ".join(
+        f"{o.label}: {_fmt_price(o.price_pence)} for {display_qty(o.qty, unit)}" for o in options
+    )
+    prompt = (
+        f"A shop sells {noun} in different sizes: {option_lines}. "
+        "Which option is the better value for money? Show your working."
+    )
+
+    teaching_steps = [
+        "Two options can't be compared directly just by looking at their prices, because they're "
+        "different SIZES too - a bigger pack costing more isn't automatically worse value. Instead, "
+        f"we need to work out a fair 'per-unit' price for each one, such as the price per 100{unit}.",
+    ]
+    for o in options:
+        if needs_larger_unit(o.qty, unit):
+            teaching_steps.append(
+                f"For {o.label}: {display_qty(o.qty, unit)} is {o.qty}{unit}, so divide the price by "
+                f"that, then scale up to 100{unit}: "
+                f"{_fmt_price(o.price_pence)} ÷ {o.qty} × 100 = {_fmt_unit_price(o.unit_price, unit)}."
+            )
+        else:
+            teaching_steps.append(
+                f"For {o.label}: divide the price by the quantity, then scale up to 100{unit}: "
+                f"{_fmt_price(o.price_pence)} ÷ {o.qty} × 100 = {_fmt_unit_price(o.unit_price, unit)}."
+            )
+    teaching_steps.append(
+        f"Now the options are on a level playing field - whichever has the LOWEST price per "
+        f"100{unit} is the better value. Here, {winner.label} has the lowest at "
+        f"{_fmt_unit_price(winner.unit_price, unit)}, so {winner.label} is the best value."
+    )
+    teaching_steps.append(
+        "As an independent check, comparing the options by cross-multiplying the raw price and "
+        "quantity directly (rather than trusting the rounded per-unit prices above) confirms the "
+        f"same option, {winner.label}, comes out cheapest."
+    )
+
+    worked_calculation = [f"Price per 100{unit}:"]
+    for o in options:
+        if needs_larger_unit(o.qty, unit):
+            worked_calculation.append(f"{o.label}: {display_qty(o.qty, unit)} = {o.qty}{unit}")
+        worked_calculation.append(f"{o.label}: {_fmt_price(o.price_pence)} ÷ {o.qty} × 100 = {_fmt_unit_price(o.unit_price, unit)}")
+    worked_calculation.append(f"Best value: {winner.label}")
+
+    return ModelledExample(
+        topic_id="best_buys_F",
+        tier=Tier.FOUNDATION,
+        prompt=prompt,
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"{winner.label} ({_fmt_price(winner.price_pence)} for {display_qty(winner.qty, unit)})",
+    )
+
+
+TOPIC_BEST_BUYS = TopicDefinition(
+    id="best_buys_F",
+    display_name="Best Buys",
+    description="Compare differently-sized/priced options of the same product to find the best value for money.",
+    generate=generate_best_buys,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_best_buys,
+)
+
+
+# ---------------------------------------------------------------------------
+# best_buys_noncalculator - a genuinely non-calculator-friendly sibling.
+# generate_best_buys's sticker prices are always sensible integers, but the
+# final "price ÷ qty x 100" step can still land on an ugly repeating decimal
+# for many real qty/price combinations, needing a calculator in practice.
+# Here every quantity is a multiple of 100 and every rate is a round number
+# of pence per 100 units, so price_pence = rate x qty / 100 is always an
+# EXACT whole number of pence by construction - no rounding step at all,
+# unlike the standard topic's ROUND_HALF_UP sticker-price step - and the
+# division itself is always by a small one-digit multiplier (qty / 100).
+# ---------------------------------------------------------------------------
+
+_NONCALC_PRODUCTS = [
+    ("shampoo", "ml"),
+    ("orange juice", "ml"),
+    ("washing-up liquid", "ml"),
+    ("breakfast cereal", "g"),
+    ("ground coffee", "g"),
+    ("pasta", "g"),
+    ("rice", "g"),
+]
+_NONCALC_QTY_POOL = [100, 200, 300, 400, 500, 600, 700, 800, 900]
+_NONCALC_PER_100_POOL = list(range(20, 200, 10))
+
+
+def _build_scenario_noncalc(rng: random.Random) -> tuple:
+    noun, unit = rng.choice(_NONCALC_PRODUCTS)
+    num_options = rng.choices([2, 3], weights=[70, 30])[0]
+    per_100_rates = rng.sample(_NONCALC_PER_100_POOL, num_options)
+    qtys = rng.sample(_NONCALC_QTY_POOL, num_options)
+
+    options = []
+    for label, per_100, qty in zip(_OPTION_LABELS, per_100_rates, qtys):
+        # qty is always a multiple of 100, so this division is always exact.
+        price_pence = per_100 * qty // 100
+        options.append(_Option(label, qty, price_pence, Decimal(per_100)))
+
+    winner_idx_by_unit_price = min(range(num_options), key=lambda i: options[i].unit_price)
+
+    # Independent verification: cross-multiply the raw integer price and
+    # quantity for every pair directly, exactly as generate_best_buys does.
+    def _cheaper(i: int, j: int) -> bool:
+        return options[i].price_pence * options[j].qty < options[j].price_pence * options[i].qty
+
+    winner_idx_cross_mult = 0
+    for i in range(1, num_options):
+        if _cheaper(i, winner_idx_cross_mult):
+            winner_idx_cross_mult = i
+
+    if winner_idx_cross_mult != winner_idx_by_unit_price:
+        raise ValueError("best_buys_noncalculator: unit-price and cross-multiplication methods disagree")
+
+    return noun, unit, options, winner_idx_by_unit_price
+
+
+def generate_best_buys_noncalculator(tier: Tier, rng: random.Random) -> Question:
+    noun, unit, options, winner_idx = _build_scenario_noncalc(rng)
+    winner = options[winner_idx]
+
+    option_lines = "; ".join(
         f"{o.label}: {_fmt_price(o.price_pence)} for {o.qty}{unit}" for o in options
     )
     steps = [f"Work out the price per 100{unit} for each option:"]
@@ -112,7 +269,7 @@ def generate_best_buys(tier: Tier, rng: random.Random) -> Question:
     )
 
     return Question(
-        topic_id="best_buys",
+        topic_id="best_buys_noncalculator_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A shop sells {noun} in different sizes: {option_lines}. "
@@ -121,13 +278,13 @@ def generate_best_buys(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=f"{winner.label} ({_fmt_price(winner.price_pence)} for {winner.qty}{unit})",
         dedup_key=(
-            f"bb:{noun}:{'|'.join(f'{o.label}:{o.qty}:{o.price_pence}' for o in options)}"
+            f"bbnc:{noun}:{'|'.join(f'{o.label}:{o.qty}:{o.price_pence}' for o in options)}"
         ),
     )
 
 
-def generate_modelled_example_best_buys(tier: Tier, rng: random.Random) -> ModelledExample:
-    noun, unit, options, winner_idx = _build_scenario(rng)
+def generate_modelled_example_best_buys_noncalculator(tier: Tier, rng: random.Random) -> ModelledExample:
+    noun, unit, options, winner_idx = _build_scenario_noncalc(rng)
     winner = options[winner_idx]
 
     option_lines = "; ".join(
@@ -146,7 +303,9 @@ def generate_modelled_example_best_buys(tier: Tier, rng: random.Random) -> Model
     for o in options:
         teaching_steps.append(
             f"For {o.label}: divide the price by the quantity, then scale up to 100{unit}: "
-            f"{_fmt_price(o.price_pence)} ÷ {o.qty} × 100 = {_fmt_unit_price(o.unit_price, unit)}."
+            f"{_fmt_price(o.price_pence)} ÷ {o.qty} × 100 = {_fmt_unit_price(o.unit_price, unit)}. "
+            f"Every quantity here is a multiple of 100, so this always works out to a whole number "
+            "of pence - no calculator needed."
         )
     teaching_steps.append(
         f"Now the options are on a level playing field - whichever has the LOWEST price per "
@@ -155,8 +314,7 @@ def generate_modelled_example_best_buys(tier: Tier, rng: random.Random) -> Model
     )
     teaching_steps.append(
         "As an independent check, comparing the options by cross-multiplying the raw price and "
-        "quantity directly (rather than trusting the rounded per-unit prices above) confirms the "
-        f"same option, {winner.label}, comes out cheapest."
+        f"quantity directly confirms the same option, {winner.label}, comes out cheapest."
     )
 
     worked_calculation = [f"Price per 100{unit}:"]
@@ -165,7 +323,7 @@ def generate_modelled_example_best_buys(tier: Tier, rng: random.Random) -> Model
     worked_calculation.append(f"Best value: {winner.label}")
 
     return ModelledExample(
-        topic_id="best_buys",
+        topic_id="best_buys_noncalculator_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -174,13 +332,16 @@ def generate_modelled_example_best_buys(tier: Tier, rng: random.Random) -> Model
     )
 
 
-TOPIC_BEST_BUYS = TopicDefinition(
-    id="best_buys",
-    display_name="Best Buys",
-    description="Compare differently-sized/priced options of the same product to find the best value for money.",
-    generate=generate_best_buys,
+TOPIC_BEST_BUYS_NONCALCULATOR = TopicDefinition(
+    id="best_buys_noncalculator_F",
+    display_name="Best Buys (Non-Calculator)",
+    description=(
+        "Compare differently-sized/priced options of the same product using round, "
+        "mental-maths-friendly numbers - no calculator needed."
+    ),
+    generate=generate_best_buys_noncalculator,
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.FOUNDATION,
-    generate_modelled_example=generate_modelled_example_best_buys,
+    generate_modelled_example=generate_modelled_example_best_buys_noncalculator,
 )

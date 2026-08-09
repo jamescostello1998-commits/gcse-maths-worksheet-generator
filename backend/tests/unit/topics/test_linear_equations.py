@@ -86,21 +86,21 @@ def test_all_topics_have_modelled_example_wired():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (linear_equations.generate_modelled_example_one_step, Tier.FOUNDATION, "linear_one_step"),
-    (linear_equations.generate_modelled_example_two_step, Tier.FOUNDATION, "linear_two_step"),
-    (linear_equations.generate_modelled_example_multi_step, Tier.FOUNDATION, "linear_multi_step"),
+    (linear_equations.generate_modelled_example_one_step, Tier.FOUNDATION, "linear_one_step_F"),
+    (linear_equations.generate_modelled_example_two_step, Tier.FOUNDATION, "linear_two_step_F"),
+    (linear_equations.generate_modelled_example_multi_step, Tier.FOUNDATION, "linear_multi_step_F"),
     (
         linear_equations.generate_modelled_example_both_sides_foundation,
         Tier.FOUNDATION,
-        "linear_both_sides_foundation",
+        "linear_both_sides_F",
     ),
     (
         linear_equations.generate_modelled_example_brackets_foundation,
         Tier.FOUNDATION,
-        "linear_brackets_foundation",
+        "linear_brackets_F",
     ),
-    (linear_equations.generate_modelled_example_both_sides, Tier.HIGHER, "linear_both_sides"),
-    (linear_equations.generate_modelled_example_brackets, Tier.HIGHER, "linear_brackets"),
+    (linear_equations.generate_modelled_example_both_sides, Tier.HIGHER, "linear_both_sides_H"),
+    (linear_equations.generate_modelled_example_brackets, Tier.HIGHER, "linear_brackets_H"),
 ]
 
 

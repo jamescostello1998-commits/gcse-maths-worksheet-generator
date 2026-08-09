@@ -14,11 +14,11 @@ GENERATORS = [
 ]
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (trigonometry.generate_modelled_example_missing_side_foundation, Tier.FOUNDATION, "trig_missing_side_foundation"),
-    (trigonometry.generate_modelled_example_missing_side_higher, Tier.HIGHER, "trig_missing_side_higher"),
-    (trigonometry.generate_modelled_example_missing_angle_foundation, Tier.FOUNDATION, "trig_missing_angle_foundation"),
-    (trigonometry.generate_modelled_example_missing_angle_higher, Tier.HIGHER, "trig_missing_angle_higher"),
-    (trigonometry.generate_modelled_example_mixed, Tier.HIGHER, "trig_mixed"),
+    (trigonometry.generate_modelled_example_missing_side_foundation, Tier.FOUNDATION, "trig_missing_side_F"),
+    (trigonometry.generate_modelled_example_missing_side_higher, Tier.HIGHER, "trig_missing_side_H"),
+    (trigonometry.generate_modelled_example_missing_angle_foundation, Tier.FOUNDATION, "trig_missing_angle_F"),
+    (trigonometry.generate_modelled_example_missing_angle_higher, Tier.HIGHER, "trig_missing_angle_H"),
+    (trigonometry.generate_modelled_example_mixed, Tier.HIGHER, "trig_mixed_H"),
 ]
 
 
@@ -78,6 +78,17 @@ def test_topic_definitions_have_modelled_examples_wired_up():
     ]
     for t in topics:
         assert t.generate_modelled_example is not None
+
+
+def test_missing_side_prompts_reach_all_three_rounding_phrasings():
+    rng = random.Random(74)
+    phrasings = set()
+    for _ in range(200):
+        q = trigonometry.generate_missing_side_higher(Tier.HIGHER, rng)
+        for phrase in ("1 decimal place", "2 decimal places", "3 significant figures"):
+            if phrase in q.prompt:
+                phrasings.add(phrase)
+    assert phrasings == {"1 decimal place", "2 decimal places", "3 significant figures"}
 
 
 def test_modelled_examples_produce_valid_verified_examples():

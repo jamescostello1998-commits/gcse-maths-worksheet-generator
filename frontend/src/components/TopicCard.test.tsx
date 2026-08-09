@@ -1,8 +1,14 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+import type { ReactElement } from 'react'
 import { TopicCard } from './TopicCard'
+import { FormatProvider } from '../context/FormatContext'
 import type { Topic } from '../api/types'
+
+// TopicCard's download hooks read the format context, so every render needs the
+// provider. Default is 'pdf', so request bodies stay unchanged (no format key).
+const renderCard = (ui: ReactElement) => render(<FormatProvider>{ui}</FormatProvider>)
 
 const fixedTopic: Topic = {
   id: 'linear_one_step',
@@ -39,18 +45,18 @@ describe('TopicCard', () => {
   })
 
   it('shows a fixed tier badge and no toggle when fixedTier is set', () => {
-    render(<TopicCard topic={fixedTopic} />)
+    renderCard(<TopicCard topic={fixedTopic} />)
     expect(screen.getByText('Foundation')).toBeInTheDocument()
     expect(screen.queryByRole('radiogroup')).not.toBeInTheDocument()
   })
 
   it('hides the tier badge when showTierBadge is false', () => {
-    render(<TopicCard topic={fixedTopic} showTierBadge={false} />)
+    renderCard(<TopicCard topic={fixedTopic} showTierBadge={false} />)
     expect(screen.queryByText('Foundation')).not.toBeInTheDocument()
   })
 
   it('shows a tier toggle when fixedTier is null', () => {
-    render(<TopicCard topic={flexibleTopic} />)
+    renderCard(<TopicCard topic={flexibleTopic} />)
     expect(screen.getByRole('radiogroup')).toBeInTheDocument()
   })
 
@@ -62,7 +68,7 @@ describe('TopicCard', () => {
     vi.stubGlobal('fetch', fetchMock)
 
     const user = userEvent.setup()
-    render(<TopicCard topic={fixedTopic} />)
+    renderCard(<TopicCard topic={fixedTopic} />)
     await user.click(screen.getByText('Worksheet'))
 
     expect(fetchMock).toHaveBeenCalledWith(
@@ -81,7 +87,7 @@ describe('TopicCard', () => {
     vi.stubGlobal('fetch', fetchMock)
 
     const user = userEvent.setup()
-    render(<TopicCard topic={flexibleTopic} />)
+    renderCard(<TopicCard topic={flexibleTopic} />)
     await user.click(screen.getByText('H'))
     await user.click(screen.getByText('Worksheet'))
 
@@ -95,7 +101,7 @@ describe('TopicCard', () => {
 
   it('hides the options panel until the toggle is clicked', async () => {
     const user = userEvent.setup()
-    render(<TopicCard topic={fixedTopic} />)
+    renderCard(<TopicCard topic={fixedTopic} />)
     expect(screen.queryByLabelText('Questions')).not.toBeInTheDocument()
 
     await user.click(screen.getByText('Options ▾'))
@@ -111,7 +117,7 @@ describe('TopicCard', () => {
     vi.stubGlobal('fetch', fetchMock)
 
     const user = userEvent.setup()
-    render(<TopicCard topic={fixedTopic} />)
+    renderCard(<TopicCard topic={fixedTopic} />)
     await user.click(screen.getByText('Options ▾'))
     await user.clear(screen.getByLabelText('Questions'))
     await user.type(screen.getByLabelText('Questions'), '10')
@@ -133,7 +139,7 @@ describe('TopicCard', () => {
     vi.stubGlobal('fetch', fetchMock)
 
     const user = userEvent.setup()
-    render(<TopicCard topic={fixedTopic} />)
+    renderCard(<TopicCard topic={fixedTopic} />)
     await user.click(screen.getByText('Options ▾'))
     await user.click(screen.getByText('Answers only'))
     await user.click(screen.getByText('Worksheet'))
@@ -147,7 +153,7 @@ describe('TopicCard', () => {
   })
 
   it('does not show a modelled example button when hasModelledExample is false', () => {
-    render(<TopicCard topic={fixedTopic} />)
+    renderCard(<TopicCard topic={fixedTopic} />)
     expect(screen.queryByText('Modelled Example')).not.toBeInTheDocument()
   })
 
@@ -159,7 +165,7 @@ describe('TopicCard', () => {
     vi.stubGlobal('fetch', fetchMock)
 
     const user = userEvent.setup()
-    render(<TopicCard topic={modelledTopic} />)
+    renderCard(<TopicCard topic={modelledTopic} />)
     await user.click(screen.getByText('Modelled Example'))
 
     expect(fetchMock).toHaveBeenCalledWith(

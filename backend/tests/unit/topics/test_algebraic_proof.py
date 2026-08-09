@@ -65,7 +65,7 @@ def test_topic_definitions_have_expected_metadata():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (algebraic_proof.generate_modelled_example_algebraic_proof, Tier.HIGHER, "algebraic_proof"),
+    (algebraic_proof.generate_modelled_example_algebraic_proof, Tier.HIGHER, "algebraic_proof_H"),
 ]
 
 

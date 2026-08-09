@@ -9,22 +9,11 @@ from decimal import ROUND_HALF_UP, Decimal
 
 from app.core.models import DiagramSpec, ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
+from app.topics.rounding import pick_rounding
 
 SECTION = "geometry"
 GROUP_PYTHAGORAS = "Pythagoras' Theorem"
 GROUP_TRIG = "Trigonometry"
-
-
-def _round_to_3sf(value: float) -> Decimal:
-    """Round a float to 3 significant figures, always displaying as a plain
-    fixed-point decimal string - sympy's sp.N(expr, 3) (and this app's own
-    _round_to_1sf bug, already documented/fixed in estimation.py) switches to
-    scientific notation for values >= 1000, so this app's established fixed-
-    point-only rounding pattern is reused here instead."""
-    d = Decimal(str(value))
-    exp = d.adjusted()
-    quantized = d.quantize(Decimal(1).scaleb(exp - 2), rounding=ROUND_HALF_UP)
-    return Decimal(format(quantized, "f"))
 
 
 def _round_dp(value: float, dp: int) -> Decimal:
@@ -53,27 +42,31 @@ def generate_3d_pythagoras(tier: Tier, rng: random.Random) -> Question:
     l, w, h = _cuboid_dims(rng)
     base_diag_sq = l * l + w * w
     space_diag = math.sqrt(base_diag_sq + h * h)
-    rounded = _round_to_3sf(space_diag)
 
     # Independent verification: the direct 3D coordinate distance formula -
     # a genuinely different code path than the two sequential sqrt()
-    # applications used to build the displayed steps.
+    # applications used to build the displayed steps. Compares full-precision
+    # raw values only, unrelated to which display precision is chosen below,
+    # so needs no change for the rounding rollout.
     check = math.dist((0, 0, 0), (l, w, h))
     if abs(space_diag - check) > 1e-9:
         raise ValueError("3d_pythagoras: verification failed")
 
+    rounding = pick_rounding(rng)
+    rounded = format(rounding.round_fn(space_diag), "f")
+
     steps = [
         f"First find the diagonal across the base: base diagonal² = l² + w² = {l}² + {w}² = {base_diag_sq}.",
-        f"Then apply Pythagoras again using the height: AG² = base diagonal² + h² = {base_diag_sq} + {h}² = {base_diag_sq + h * h}.",
-        f"AG = √{base_diag_sq + h * h} = {rounded} cm (3 s.f.)",
+        f"Then apply Pythagoras again using the height: ag² = base diagonal² + h² = {base_diag_sq} + {h}² = {base_diag_sq + h * h}.",
+        f"ag = √{base_diag_sq + h * h} = {rounded} cm ({rounding.short})",
     ]
     return Question(
-        topic_id="pythagoras_3d",
+        topic_id="pythagoras_3d_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A cuboid has length {l} cm, width {w} cm and height {h} cm. Find the length of the "
-            "diagonal AG that runs from one corner of the cuboid to the opposite corner, correct "
-            "to 3 significant figures."
+            "diagonal ag that runs from one corner of the cuboid to the opposite corner, correct "
+            f"to {rounding.phrase}."
         ),
         solution_steps=tuple(steps),
         final_answer=f"{rounded} cm",
@@ -84,7 +77,8 @@ def generate_3d_pythagoras(tier: Tier, rng: random.Random) -> Question:
                 "length_label": f"{l} cm",
                 "width_label": f"{w} cm",
                 "height_label": f"{h} cm",
-                "diagonal_label": "?",
+                "show_diagonal": True,
+                "vertex_labels": ["a", "b", "c", "d", "e", "f", "g", "h"],
             },
         ),
     )
@@ -94,34 +88,36 @@ def generate_modelled_example_3d_pythagoras(tier: Tier, rng: random.Random) -> M
     l, w, h = _cuboid_dims(rng)
     base_diag_sq = l * l + w * w
     space_diag = math.sqrt(base_diag_sq + h * h)
-    rounded = _round_to_3sf(space_diag)
 
     check = math.dist((0, 0, 0), (l, w, h))
     if abs(space_diag - check) > 1e-9:
         raise ValueError("modelled example 3d_pythagoras: verification failed")
 
+    rounding = pick_rounding(rng)
+    rounded = format(rounding.round_fn(space_diag), "f")
+
     teaching_steps = [
-        "A 3D diagonal like AG can't be found in one step - it needs Pythagoras applied twice, "
+        "A 3D diagonal like ag can't be found in one step - it needs Pythagoras applied twice, "
         "once across the base and once up through the cuboid's height.",
         f"Step 1: find the diagonal across the base rectangle (length {l} cm by width {w} cm). "
         f"This diagonal² = l² + w² = {l}² + {w}² = {base_diag_sq}.",
-        f"Step 2: that base diagonal, the height ({h} cm), and AG itself form a second right-angled "
-        f"triangle - so AG² = base diagonal² + h² = {base_diag_sq} + {h}² = {base_diag_sq + h * h}.",
-        f"AG = √{base_diag_sq + h * h} ≈ {rounded} cm (3 s.f.) - always take the square root right "
-        "at the end, not partway through.",
+        f"Step 2: that base diagonal, the height ({h} cm), and ag itself form a second right-angled "
+        f"triangle - so ag² = base diagonal² + h² = {base_diag_sq} + {h}² = {base_diag_sq + h * h}.",
+        f"ag = √{base_diag_sq + h * h} ≈ {rounded} cm ({rounding.short}) - always take the square "
+        "root right at the end, not partway through.",
     ]
     worked_calculation = [
         f"base diagonal² = {l}² + {w}² = {base_diag_sq}",
-        f"AG² = {base_diag_sq} + {h}² = {base_diag_sq + h * h}",
-        f"AG = {rounded} cm (3 s.f.)",
+        f"ag² = {base_diag_sq} + {h}² = {base_diag_sq + h * h}",
+        f"ag = {rounded} cm ({rounding.short})",
     ]
     return ModelledExample(
-        topic_id="pythagoras_3d",
+        topic_id="pythagoras_3d_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A cuboid has length {l} cm, width {w} cm and height {h} cm. Find the length of the "
-            "diagonal AG that runs from one corner of the cuboid to the opposite corner, correct "
-            "to 3 significant figures."
+            "diagonal ag that runs from one corner of the cuboid to the opposite corner, correct "
+            f"to {rounding.phrase}."
         ),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
@@ -132,7 +128,8 @@ def generate_modelled_example_3d_pythagoras(tier: Tier, rng: random.Random) -> M
                 "length_label": f"{l} cm",
                 "width_label": f"{w} cm",
                 "height_label": f"{h} cm",
-                "diagonal_label": "?",
+                "show_diagonal": True,
+                "vertex_labels": ["a", "b", "c", "d", "e", "f", "g", "h"],
             },
         ),
     )
@@ -162,17 +159,17 @@ def generate_3d_trigonometry(tier: Tier, rng: random.Random) -> Question:
 
     steps = [
         f"First find the diagonal across the base: base diagonal = √(l² + w²) = √({l}² + {w}²) "
-        f"= {base_diag:.3f} cm - this is the projection of AG onto the base.",
-        f"The angle between AG and the base, height and base diagonal form a right-angled "
+        f"= {base_diag:.3f} cm - this is the projection of ag onto the base.",
+        f"The angle between ag and the base, height and base diagonal form a right-angled "
         f"triangle: tan(angle) = height ÷ base diagonal = {h} ÷ {base_diag:.3f}.",
         f"angle = tan^-1({h} ÷ {base_diag:.3f}) = {rounded}° (1 d.p.)",
     ]
     return Question(
-        topic_id="trig_3d",
+        topic_id="trig_3d_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A cuboid has length {l} cm, width {w} cm and height {h} cm. Find the angle between "
-            "the diagonal AG (from one corner to the opposite corner) and the base of the cuboid, "
+            "the diagonal ag (from one corner to the opposite corner) and the base of the cuboid, "
             "correct to 1 decimal place."
         ),
         solution_steps=tuple(steps),
@@ -184,7 +181,8 @@ def generate_3d_trigonometry(tier: Tier, rng: random.Random) -> Question:
                 "length_label": f"{l} cm",
                 "width_label": f"{w} cm",
                 "height_label": f"{h} cm",
-                "diagonal_label": "θ",
+                "show_diagonal": True,
+                "vertex_labels": ["a", "b", "c", "d", "e", "f", "g", "h"],
             },
         ),
     )
@@ -205,7 +203,7 @@ def generate_modelled_example_3d_trigonometry(tier: Tier, rng: random.Random) ->
 
     teaching_steps = [
         "The angle between a 3D diagonal and the base is found by dropping a right-angled "
-        "triangle down onto the base: the diagonal AG, its 'shadow' on the base (the base "
+        "triangle down onto the base: the diagonal ag, its 'shadow' on the base (the base "
         "diagonal), and the vertical height h.",
         f"First find that base diagonal, the shadow's length: √(l² + w²) = √({l}² + {w}²) "
         f"≈ {base_diag:.3f} cm.",
@@ -219,11 +217,11 @@ def generate_modelled_example_3d_trigonometry(tier: Tier, rng: random.Random) ->
         f"angle = {rounded}° (1 d.p.)",
     ]
     return ModelledExample(
-        topic_id="trig_3d",
+        topic_id="trig_3d_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A cuboid has length {l} cm, width {w} cm and height {h} cm. Find the angle between "
-            "the diagonal AG (from one corner to the opposite corner) and the base of the cuboid, "
+            "the diagonal ag (from one corner to the opposite corner) and the base of the cuboid, "
             "correct to 1 decimal place."
         ),
         worked_calculation=tuple(worked_calculation),
@@ -235,14 +233,15 @@ def generate_modelled_example_3d_trigonometry(tier: Tier, rng: random.Random) ->
                 "length_label": f"{l} cm",
                 "width_label": f"{w} cm",
                 "height_label": f"{h} cm",
-                "diagonal_label": "θ",
+                "show_diagonal": True,
+                "vertex_labels": ["a", "b", "c", "d", "e", "f", "g", "h"],
             },
         ),
     )
 
 
 TOPIC_3D_PYTHAGORAS = TopicDefinition(
-    id="pythagoras_3d",
+    id="pythagoras_3d_H",
     display_name="3D Pythagoras",
     description="Find the length of the space diagonal of a cuboid using Pythagoras' theorem twice.",
     generate=generate_3d_pythagoras,
@@ -253,7 +252,7 @@ TOPIC_3D_PYTHAGORAS = TopicDefinition(
 )
 
 TOPIC_3D_TRIGONOMETRY = TopicDefinition(
-    id="trig_3d",
+    id="trig_3d_H",
     display_name="3D Trigonometry",
     description="Find the angle between a cuboid's space diagonal and its base.",
     generate=generate_3d_trigonometry,

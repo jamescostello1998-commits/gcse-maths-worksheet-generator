@@ -4,6 +4,7 @@ from decimal import ROUND_HALF_UP, Decimal
 
 from app.core.models import DiagramSpec, ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
+from app.topics.rounding import pick_rounding
 
 SECTION = "geometry"
 GROUP = "Trigonometry"
@@ -20,19 +21,11 @@ def _fmt_dec(d: Decimal) -> str:
     return format(d, "f")
 
 
-def _round_sf(value: float, sig_figs: int) -> Decimal:
-    d = Decimal(str(value))
-    if d == 0:
-        return d
-    exp = d.adjusted()
-    return d.quantize(Decimal(1).scaleb(exp - sig_figs + 1), rounding=ROUND_HALF_UP)
-
-
 def _round_dp(value: float, dp: int) -> Decimal:
     return Decimal(str(value)).quantize(Decimal(1).scaleb(-dp), rounding=ROUND_HALF_UP)
 
 
-def _trig_side_question(rng: random.Random, *, angle_lo, angle_hi, side_lo, side_hi, sig_figs, shapes, topic_id, tier) -> Question:
+def _trig_side_question(rng: random.Random, *, angle_lo, angle_hi, side_lo, side_hi, shapes, topic_id, tier) -> Question:
     angle_deg = rng.randint(angle_lo, angle_hi)
     rad = math.radians(angle_deg)
     known_val = rng.randint(side_lo, side_hi)
@@ -75,19 +68,20 @@ def _trig_side_question(rng: random.Random, *, angle_lo, angle_hi, side_lo, side
     if abs(check_angle - angle_deg) > 1e-6:
         raise ValueError("trig_side verification failed: angle does not invert cleanly")
 
-    rounded = _round_sf(unknown_val, sig_figs)
+    rounding = pick_rounding(rng)
+    rounded = rounding.round_fn(unknown_val)
     labels = {"adj": None, "opp": None, "hyp": None}
     labels[known_role] = f"{known_val} cm"
     labels[unknown_role] = "x cm"
 
     steps = [
         f"We know the {_ROLE_NAME[known_role]} and want the {_ROLE_NAME[unknown_role]}, so use {ratio}.",
-        f"{calc} = {_fmt_dec(rounded)} (to {sig_figs} s.f.)",
+        f"{calc} = {_fmt_dec(rounded)} ({rounding.short})",
     ]
     return Question(
         topic_id=topic_id,
         tier=tier,
-        prompt=f"In the right-angled triangle shown, find the length of x, correct to {sig_figs} significant figures.",
+        prompt=f"In the triangle shown, find the length of x, correct to {rounding.phrase}.",
         solution_steps=tuple(steps),
         final_answer=f"{_fmt_dec(rounded)} cm",
         dedup_key=f"trig_side:{shape}:{angle_deg}:{known_val}",
@@ -103,7 +97,7 @@ def _trig_side_question(rng: random.Random, *, angle_lo, angle_hi, side_lo, side
     )
 
 
-def _trig_side_modelled_example(rng: random.Random, *, angle_lo, angle_hi, side_lo, side_hi, sig_figs, shapes, topic_id, tier) -> ModelledExample:
+def _trig_side_modelled_example(rng: random.Random, *, angle_lo, angle_hi, side_lo, side_hi, shapes, topic_id, tier) -> ModelledExample:
     angle_deg = rng.randint(angle_lo, angle_hi)
     rad = math.radians(angle_deg)
     known_val = rng.randint(side_lo, side_hi)
@@ -146,7 +140,8 @@ def _trig_side_modelled_example(rng: random.Random, *, angle_lo, angle_hi, side_
     if abs(check_angle - angle_deg) > 1e-6:
         raise ValueError("modelled example trig_side verification failed: angle does not invert cleanly")
 
-    rounded = _round_sf(unknown_val, sig_figs)
+    rounding = pick_rounding(rng)
+    rounded = rounding.round_fn(unknown_val)
     labels = {"adj": None, "opp": None, "hyp": None}
     labels[known_role] = f"{known_val} cm"
     labels[unknown_role] = "x cm"
@@ -169,18 +164,18 @@ def _trig_side_modelled_example(rng: random.Random, *, angle_lo, angle_hi, side_
             f"The {_ROLE_NAME[known_role]} isn't in the position the ratio naturally gives us, "
             f"so we rearrange first, giving x = {known_val} ÷ {ratio}({angle_deg}°)."
         ),
-        f"Evaluating gives x ≈ {_fmt_dec(rounded)}, which we round to {sig_figs} significant "
-        "figures as the question asks - always check whether the question wants significant "
-        "figures or decimal places, since they aren't always the same thing.",
+        f"Evaluating gives x ≈ {_fmt_dec(rounded)}, which we round to {rounding.phrase} as the "
+        "question asks - always check exactly what precision is being asked for, since it "
+        "varies from question to question.",
     ]
     worked_calculation = [
         calc,
-        f"x = {_fmt_dec(rounded)} cm (to {sig_figs} s.f.)",
+        f"x = {_fmt_dec(rounded)} cm ({rounding.short})",
     ]
     return ModelledExample(
         topic_id=topic_id,
         tier=tier,
-        prompt=f"In the right-angled triangle shown, find the length of x, correct to {sig_figs} significant figures.",
+        prompt=f"In the triangle shown, find the length of x, correct to {rounding.phrase}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{_fmt_dec(rounded)} cm",
@@ -199,9 +194,9 @@ def _trig_side_modelled_example(rng: random.Random, *, angle_lo, angle_hi, side_
 def generate_missing_side_foundation(tier: Tier, rng: random.Random) -> Question:
     return _trig_side_question(
         rng,
-        angle_lo=20, angle_hi=70, side_lo=5, side_hi=20, sig_figs=3,
+        angle_lo=20, angle_hi=70, side_lo=5, side_hi=20,
         shapes=_SIDE_SHAPES_NO_REARRANGE,
-        topic_id="trig_missing_side_foundation",
+        topic_id="trig_missing_side_F",
         tier=Tier.FOUNDATION,
     )
 
@@ -209,9 +204,9 @@ def generate_missing_side_foundation(tier: Tier, rng: random.Random) -> Question
 def generate_missing_side_higher(tier: Tier, rng: random.Random) -> Question:
     return _trig_side_question(
         rng,
-        angle_lo=5, angle_hi=85, side_lo=4, side_hi=40, sig_figs=3,
+        angle_lo=5, angle_hi=85, side_lo=4, side_hi=40,
         shapes=_SIDE_SHAPES_ALL,
-        topic_id="trig_missing_side_higher",
+        topic_id="trig_missing_side_H",
         tier=Tier.HIGHER,
     )
 
@@ -219,9 +214,9 @@ def generate_missing_side_higher(tier: Tier, rng: random.Random) -> Question:
 def generate_modelled_example_missing_side_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
     return _trig_side_modelled_example(
         rng,
-        angle_lo=20, angle_hi=70, side_lo=5, side_hi=20, sig_figs=3,
+        angle_lo=20, angle_hi=70, side_lo=5, side_hi=20,
         shapes=_SIDE_SHAPES_NO_REARRANGE,
-        topic_id="trig_missing_side_foundation",
+        topic_id="trig_missing_side_F",
         tier=Tier.FOUNDATION,
     )
 
@@ -229,9 +224,9 @@ def generate_modelled_example_missing_side_foundation(tier: Tier, rng: random.Ra
 def generate_modelled_example_missing_side_higher(tier: Tier, rng: random.Random) -> ModelledExample:
     return _trig_side_modelled_example(
         rng,
-        angle_lo=5, angle_hi=85, side_lo=4, side_hi=40, sig_figs=3,
+        angle_lo=5, angle_hi=85, side_lo=4, side_hi=40,
         shapes=_SIDE_SHAPES_ALL,
-        topic_id="trig_missing_side_higher",
+        topic_id="trig_missing_side_H",
         tier=Tier.HIGHER,
     )
 
@@ -275,7 +270,7 @@ def _trig_angle_question(rng: random.Random, *, side_lo, side_hi, topic_id, tier
     return Question(
         topic_id=topic_id,
         tier=tier,
-        prompt="In the right-angled triangle shown, find the angle x, correct to 1 decimal place.",
+        prompt="In the triangle shown, find the angle x, correct to 1 decimal place.",
         solution_steps=tuple(steps),
         final_answer=f"{_fmt_dec(rounded)}°",
         dedup_key=f"trig_angle:{shape}:{ratio_arg}",
@@ -294,14 +289,14 @@ def _trig_angle_question(rng: random.Random, *, side_lo, side_hi, topic_id, tier
 def generate_missing_angle_foundation(tier: Tier, rng: random.Random) -> Question:
     return _trig_angle_question(
         rng, side_lo=5, side_hi=20,
-        topic_id="trig_missing_angle_foundation", tier=Tier.FOUNDATION,
+        topic_id="trig_missing_angle_F", tier=Tier.FOUNDATION,
     )
 
 
 def generate_missing_angle_higher(tier: Tier, rng: random.Random) -> Question:
     return _trig_angle_question(
         rng, side_lo=4, side_hi=40,
-        topic_id="trig_missing_angle_higher", tier=Tier.HIGHER,
+        topic_id="trig_missing_angle_H", tier=Tier.HIGHER,
     )
 
 
@@ -363,7 +358,7 @@ def _trig_angle_modelled_example(rng: random.Random, *, side_lo, side_hi, topic_
     return ModelledExample(
         topic_id=topic_id,
         tier=tier,
-        prompt="In the right-angled triangle shown, find the angle x, correct to 1 decimal place.",
+        prompt="In the triangle shown, find the angle x, correct to 1 decimal place.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{_fmt_dec(rounded)}°",
@@ -382,41 +377,41 @@ def _trig_angle_modelled_example(rng: random.Random, *, side_lo, side_hi, topic_
 def generate_modelled_example_missing_angle_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
     return _trig_angle_modelled_example(
         rng, side_lo=5, side_hi=20,
-        topic_id="trig_missing_angle_foundation", tier=Tier.FOUNDATION,
+        topic_id="trig_missing_angle_F", tier=Tier.FOUNDATION,
     )
 
 
 def generate_modelled_example_missing_angle_higher(tier: Tier, rng: random.Random) -> ModelledExample:
     return _trig_angle_modelled_example(
         rng, side_lo=4, side_hi=40,
-        topic_id="trig_missing_angle_higher", tier=Tier.HIGHER,
+        topic_id="trig_missing_angle_H", tier=Tier.HIGHER,
     )
 
 
 def generate_mixed(tier: Tier, rng: random.Random) -> Question:
     if rng.random() < 0.5:
         q = _trig_side_question(
-            rng, angle_lo=5, angle_hi=85, side_lo=4, side_hi=40, sig_figs=3,
-            shapes=_SIDE_SHAPES_ALL, topic_id="trig_mixed", tier=Tier.HIGHER,
+            rng, angle_lo=5, angle_hi=85, side_lo=4, side_hi=40,
+            shapes=_SIDE_SHAPES_ALL, topic_id="trig_mixed_H", tier=Tier.HIGHER,
         )
     else:
-        q = _trig_angle_question(rng, side_lo=4, side_hi=40, topic_id="trig_mixed", tier=Tier.HIGHER)
+        q = _trig_angle_question(rng, side_lo=4, side_hi=40, topic_id="trig_mixed_H", tier=Tier.HIGHER)
     return q
 
 
 def generate_modelled_example_mixed(tier: Tier, rng: random.Random) -> ModelledExample:
     if rng.random() < 0.5:
         example = _trig_side_modelled_example(
-            rng, angle_lo=5, angle_hi=85, side_lo=4, side_hi=40, sig_figs=3,
-            shapes=_SIDE_SHAPES_ALL, topic_id="trig_mixed", tier=Tier.HIGHER,
+            rng, angle_lo=5, angle_hi=85, side_lo=4, side_hi=40,
+            shapes=_SIDE_SHAPES_ALL, topic_id="trig_mixed_H", tier=Tier.HIGHER,
         )
     else:
-        example = _trig_angle_modelled_example(rng, side_lo=4, side_hi=40, topic_id="trig_mixed", tier=Tier.HIGHER)
+        example = _trig_angle_modelled_example(rng, side_lo=4, side_hi=40, topic_id="trig_mixed_H", tier=Tier.HIGHER)
     return example
 
 
 TOPIC_MISSING_SIDE_FOUNDATION = TopicDefinition(
-    id="trig_missing_side_foundation",
+    id="trig_missing_side_F",
     display_name="Missing Sides",
     description="Use SOH CAH TOA to find a missing side of a right-angled triangle.",
     generate=generate_missing_side_foundation,
@@ -427,7 +422,7 @@ TOPIC_MISSING_SIDE_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_MISSING_SIDE_HIGHER = TopicDefinition(
-    id="trig_missing_side_higher",
+    id="trig_missing_side_H",
     display_name="Missing Sides",
     description="Use SOH CAH TOA to find a missing side of a right-angled triangle, including rearranging.",
     generate=generate_missing_side_higher,
@@ -438,7 +433,7 @@ TOPIC_MISSING_SIDE_HIGHER = TopicDefinition(
 )
 
 TOPIC_MISSING_ANGLE_FOUNDATION = TopicDefinition(
-    id="trig_missing_angle_foundation",
+    id="trig_missing_angle_F",
     display_name="Missing Angles",
     description="Use inverse trigonometric ratios to find a missing angle of a right-angled triangle.",
     generate=generate_missing_angle_foundation,
@@ -449,7 +444,7 @@ TOPIC_MISSING_ANGLE_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_MISSING_ANGLE_HIGHER = TopicDefinition(
-    id="trig_missing_angle_higher",
+    id="trig_missing_angle_H",
     display_name="Missing Angles",
     description="Use inverse trigonometric ratios to find a missing angle of a right-angled triangle.",
     generate=generate_missing_angle_higher,
@@ -460,7 +455,7 @@ TOPIC_MISSING_ANGLE_HIGHER = TopicDefinition(
 )
 
 TOPIC_MIXED = TopicDefinition(
-    id="trig_mixed",
+    id="trig_mixed_H",
     display_name="Mixed Sides and Angles",
     description="A mix of missing-side and missing-angle right-angled triangle trigonometry questions.",
     generate=generate_mixed,

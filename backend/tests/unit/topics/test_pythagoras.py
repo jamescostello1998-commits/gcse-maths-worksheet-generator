@@ -15,15 +15,15 @@ GENERATORS = [
 ]
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (pythagoras.generate_modelled_example_hypotenuse_triple, Tier.FOUNDATION, "pythagoras_hypotenuse_triple"),
-    (pythagoras.generate_modelled_example_hypotenuse_decimal, Tier.FOUNDATION, "pythagoras_hypotenuse_decimal"),
-    (pythagoras.generate_modelled_example_shorter_leg, Tier.FOUNDATION, "pythagoras_shorter_leg"),
-    (pythagoras.generate_modelled_example_surd_hypotenuse, Tier.HIGHER, "pythagoras_surd_hypotenuse"),
-    (pythagoras.generate_modelled_example_ladder_context, Tier.HIGHER, "pythagoras_ladder_context"),
+    (pythagoras.generate_modelled_example_hypotenuse_triple, Tier.FOUNDATION, "pythagoras_hypotenuse_triple_F"),
+    (pythagoras.generate_modelled_example_hypotenuse_decimal, Tier.FOUNDATION, "pythagoras_hypotenuse_decimal_F"),
+    (pythagoras.generate_modelled_example_shorter_leg, Tier.FOUNDATION, "pythagoras_shorter_leg_F"),
+    (pythagoras.generate_modelled_example_surd_hypotenuse, Tier.HIGHER, "pythagoras_surd_hypotenuse_H"),
+    (pythagoras.generate_modelled_example_ladder_context, Tier.HIGHER, "pythagoras_ladder_context_H"),
     (
         pythagoras.generate_modelled_example_ladder_context_foundation,
         Tier.FOUNDATION,
-        "pythagoras_ladder_context_foundation",
+        "pythagoras_ladder_context_F",
     ),
 ]
 
@@ -40,13 +40,29 @@ def test_all_generators_produce_valid_questions():
 
 
 def test_all_generators_attach_a_right_triangle_diagram_with_exactly_one_unknown():
+    # The two ladder-context generators deliberately have NO diagram (text
+    # only, per direct user request) - excluded from this check.
+    ladder_generators = {pythagoras.generate_ladder_context, pythagoras.generate_ladder_context_foundation}
     for generate, tier in GENERATORS:
+        if generate in ladder_generators:
+            continue
         rng = random.Random(61)
         q = generate(tier, rng)
         assert q.diagram is not None
         assert q.diagram.kind == "right_triangle"
         labels = [q.diagram.params["leg1_label"], q.diagram.params["leg2_label"], q.diagram.params["hyp_label"]]
-        assert labels.count("?") == 1
+        assert labels.count("x") == 1
+
+
+def test_ladder_context_generators_have_no_diagram():
+    for generate, tier in [
+        (pythagoras.generate_ladder_context, Tier.HIGHER),
+        (pythagoras.generate_ladder_context_foundation, Tier.FOUNDATION),
+    ]:
+        rng = random.Random(61)
+        for _ in range(50):
+            q = generate(tier, rng)
+            assert q.diagram is None
 
 
 def test_simplify_surd():
@@ -112,6 +128,9 @@ def test_ladder_context_foundation_always_gives_a_whole_number_answer():
 
 
 def test_modelled_examples_produce_valid_verified_examples():
+    # The two ladder-context modelled examples deliberately have NO diagram
+    # (text only, per direct user request).
+    ladder_topic_ids = {"pythagoras_ladder_context_H", "pythagoras_ladder_context_F"}
     for generate, tier, topic_id in MODELLED_EXAMPLE_GENERATORS:
         rng = random.Random(63)
         for _ in range(TRIALS):
@@ -122,6 +141,9 @@ def test_modelled_examples_produce_valid_verified_examples():
             assert len(example.worked_calculation) >= 2
             assert len(example.teaching_steps) >= 3
             assert example.final_answer
+            if topic_id in ladder_topic_ids:
+                assert example.diagram is None
+                continue
             assert example.diagram is not None
             assert example.diagram.kind == "right_triangle"
             labels = [
@@ -129,4 +151,4 @@ def test_modelled_examples_produce_valid_verified_examples():
                 example.diagram.params["leg2_label"],
                 example.diagram.params["hyp_label"],
             ]
-            assert labels.count("?") == 1
+            assert labels.count("x") == 1

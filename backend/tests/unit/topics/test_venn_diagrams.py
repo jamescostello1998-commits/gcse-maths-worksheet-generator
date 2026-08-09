@@ -172,7 +172,7 @@ def test_modelled_example_venn_diagram_shading_produces_verified_examples():
     rng = random.Random(909)
     for _ in range(TRIALS):
         example = venn_diagrams.generate_modelled_example_venn_diagram_shading(Tier.FOUNDATION, rng)
-        assert example.topic_id == "venn_diagram_shading"
+        assert example.topic_id == "venn_diagram_shading_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -186,7 +186,7 @@ def test_modelled_example_venn_diagram_probability_produces_verified_examples():
     rng = random.Random(910)
     for _ in range(TRIALS):
         example = venn_diagrams.generate_modelled_example_venn_diagram_probability(Tier.FOUNDATION, rng)
-        assert example.topic_id == "venn_diagram_probability"
+        assert example.topic_id == "venn_diagram_probability_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -198,7 +198,7 @@ def test_modelled_example_venn_diagram_notation_produces_verified_examples():
     rng = random.Random(911)
     for _ in range(TRIALS):
         example = venn_diagrams.generate_modelled_example_venn_diagram_notation(Tier.HIGHER, rng)
-        assert example.topic_id == "venn_diagram_notation"
+        assert example.topic_id == "venn_diagram_notation_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -210,7 +210,7 @@ def test_modelled_example_venn_diagram_algebra_produces_verified_examples():
     rng = random.Random(912)
     for _ in range(TRIALS):
         example = venn_diagrams.generate_modelled_example_venn_diagram_algebra(Tier.HIGHER, rng)
-        assert example.topic_id == "venn_diagram_algebra"
+        assert example.topic_id == "venn_diagram_algebra_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3

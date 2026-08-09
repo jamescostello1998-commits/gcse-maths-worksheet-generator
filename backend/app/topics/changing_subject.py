@@ -30,20 +30,16 @@ R_SYM = sp.symbols("r")
 # ---------------------------------------------------------------------------
 
 
-def _fmt_over(numerator: str, denom) -> str:
-    return f"{numerator}/{denom}"
-
-
 def _shape_axb_foundation(rng: random.Random) -> Question:
     a = rng.randint(2, 9)
     b = rng.randint(-20, 20)
 
     if b > 0:
-        rhs = f"(y - {b})/{a}"
+        rhs = f"\\frac{{y - {b}}}{{{a}}}"
     elif b < 0:
-        rhs = f"(y + {-b})/{a}"
+        rhs = f"\\frac{{y + {-b}}}{{{a}}}"
     else:
-        rhs = f"y/{a}"
+        rhs = f"\\frac{{y}}{{{a}}}"
     claimed = sp.Rational(1, a) * (Y - b)
 
     # Independent verification: use sympy's own equation solver on the
@@ -61,7 +57,7 @@ def _shape_axb_foundation(rng: random.Random) -> Question:
     steps.append(f"Divide both sides by {a}: x = {rhs}")
 
     return Question(
-        topic_id="change_subject_foundation",
+        topic_id="change_subject_F",
         tier=Tier.FOUNDATION,
         prompt=f"Make x the subject of the formula y = {fmt_linear(a, b)}.",
         solution_steps=tuple(steps),
@@ -72,7 +68,7 @@ def _shape_axb_foundation(rng: random.Random) -> Question:
 
 def _shape_suvat_foundation(rng: random.Random) -> Question:
     a = rng.randint(2, 20)
-    rhs = f"(v - u)/{a}"
+    rhs = f"\\frac{{v - u}}{{{a}}}"
     claimed = sp.Rational(1, a) * (V - U)
 
     solved = sp.solve(sp.Eq(V, U + a * T), T)
@@ -85,7 +81,7 @@ def _shape_suvat_foundation(rng: random.Random) -> Question:
         f"Divide both sides by {a}: t = {rhs}",
     ]
     return Question(
-        topic_id="change_subject_foundation",
+        topic_id="change_subject_F",
         tier=Tier.FOUNDATION,
         prompt=f"Make t the subject of the formula v = u + {a}t.",
         solution_steps=tuple(steps),
@@ -98,26 +94,26 @@ def _shape_area_foundation(rng: random.Random) -> Question:
     subject = rng.choice(["l", "w"])
 
     if subject == "w":
-        rhs = "A/l"
+        rhs = "\\frac{A}{L}"
         claimed = A_SYM / L
         solved = sp.solve(sp.Eq(A_SYM, L * W), W)
         if not solved or sp.simplify(solved[0] - claimed) != 0:
             raise ValueError("change_subject area (foundation) verification failed")
-        steps = ["A = lw", "Divide both sides by l: w = A/l"]
-        prompt = "Make w the subject of the formula A = lw."
-        final_answer = "w = A/l"
+        steps = ["A = LW", "Divide both sides by L: w = \\frac{A}{L}"]
+        prompt = "Make w the subject of the formula A = LW."
+        final_answer = "w = \\frac{A}{L}"
     else:
-        rhs = "A/w"
+        rhs = "\\frac{A}{w}"
         claimed = A_SYM / W
         solved = sp.solve(sp.Eq(A_SYM, L * W), L)
         if not solved or sp.simplify(solved[0] - claimed) != 0:
             raise ValueError("change_subject area (foundation) verification failed")
-        steps = ["A = lw", "Divide both sides by w: l = A/w"]
-        prompt = "Make l the subject of the formula A = lw."
-        final_answer = "l = A/w"
+        steps = ["A = LW", "Divide both sides by w: L = \\frac{A}{w}"]
+        prompt = "Make L the subject of the formula A = LW."
+        final_answer = "L = \\frac{A}{w}"
 
     return Question(
-        topic_id="change_subject_foundation",
+        topic_id="change_subject_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -135,27 +131,27 @@ def _shape_perimeter_foundation(rng: random.Random) -> Question:
         if not solved or sp.simplify(solved[0] - claimed) != 0:
             raise ValueError("change_subject perimeter (foundation) verification failed")
         steps = [
-            "P = 2l + 2w",
-            "Subtract 2w from both sides: P - 2w = 2l",
-            "Divide both sides by 2: l = (P - 2w)/2",
+            "P = 2L + 2w",
+            "Subtract 2w from both sides: P - 2w = 2L",
+            "Divide both sides by 2: L = \\frac{P - 2w}{2}",
         ]
-        prompt = "Make l the subject of the formula P = 2l + 2w."
-        final_answer = "l = (P - 2w)/2"
+        prompt = "Make L the subject of the formula P = 2L + 2w."
+        final_answer = "L = \\frac{P - 2w}{2}"
     else:
         claimed = (P_SYM - 2 * L) / 2
         solved = sp.solve(sp.Eq(P_SYM, 2 * L + 2 * W), W)
         if not solved or sp.simplify(solved[0] - claimed) != 0:
             raise ValueError("change_subject perimeter (foundation) verification failed")
         steps = [
-            "P = 2l + 2w",
-            "Subtract 2l from both sides: P - 2l = 2w",
-            "Divide both sides by 2: w = (P - 2l)/2",
+            "P = 2L + 2w",
+            "Subtract 2L from both sides: P - 2L = 2w",
+            "Divide both sides by 2: w = \\frac{P - 2L}{2}",
         ]
-        prompt = "Make w the subject of the formula P = 2l + 2w."
-        final_answer = "w = (P - 2l)/2"
+        prompt = "Make w the subject of the formula P = 2L + 2w."
+        final_answer = "w = \\frac{P - 2L}{2}"
 
     return Question(
-        topic_id="change_subject_foundation",
+        topic_id="change_subject_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -170,13 +166,13 @@ def _shape_circumference_foundation(rng: random.Random) -> Question:
     if not solved or sp.simplify(solved[0] - claimed) != 0:
         raise ValueError("change_subject circumference (foundation) verification failed")
 
-    steps = ["C = 2πr", "Divide both sides by 2π: r = C/(2π)"]
+    steps = ["C = 2πr", "Divide both sides by 2π: r = \\frac{C}{2π}"]
     return Question(
-        topic_id="change_subject_foundation",
+        topic_id="change_subject_F",
         tier=Tier.FOUNDATION,
         prompt="Make r the subject of the formula C = 2πr.",
         solution_steps=tuple(steps),
-        final_answer="r = C/(2π)",
+        final_answer="r = \\frac{C}{2π}",
         dedup_key="subject_circ",
     )
 
@@ -199,7 +195,7 @@ _FOUNDATION_WEIGHTS = [4, 3, 1, 1, 1]
 def generate_change_subject_foundation(tier: Tier, rng: random.Random) -> Question:
     shape = rng.choices(_FOUNDATION_SHAPES, weights=_FOUNDATION_WEIGHTS, k=1)[0]
     q = shape(rng)
-    return dataclasses.replace(q, topic_id="change_subject_foundation", tier=Tier.FOUNDATION)
+    return dataclasses.replace(q, topic_id="change_subject_F", tier=Tier.FOUNDATION)
 
 
 # ---------------------------------------------------------------------------
@@ -214,7 +210,11 @@ def _shape_double_occurrence_higher(rng: random.Random) -> Question:
         b = rng.randint(2, 8)
     c = rng.randint(-20, 20)
 
-    rhs = f"(y - {c})/{a + b}" if c > 0 else (f"(y + {-c})/{a + b}" if c < 0 else f"y/{a + b}")
+    rhs = (
+        f"\\frac{{y - {c}}}{{{a + b}}}"
+        if c > 0
+        else (f"\\frac{{y + {-c}}}{{{a + b}}}" if c < 0 else f"\\frac{{y}}{{{a + b}}}")
+    )
     claimed = (Y - c) / (a + b)
 
     # Independent verification: sp.solve the original equation directly, a
@@ -232,7 +232,7 @@ def _shape_double_occurrence_higher(rng: random.Random) -> Question:
     steps.append(f"Divide both sides by {a + b}: x = {rhs}")
 
     return Question(
-        topic_id="change_subject_higher",
+        topic_id="change_subject_H",
         tier=Tier.HIGHER,
         prompt=f"Make x the subject of the formula y = {a}x + {b}x + {c}." if c != 0 else f"Make x the subject of the formula y = {a}x + {b}x.",
         solution_steps=tuple(steps),
@@ -244,7 +244,7 @@ def _shape_double_occurrence_higher(rng: random.Random) -> Question:
 def _shape_squared_higher(rng: random.Random) -> Question:
     k = rng.randint(1, 6)
     coeff_text = "" if k == 1 else str(k)
-    rhs = f"√(A/({coeff_text}π))" if k != 1 else "√(A/π)"
+    rhs = f"√(\\frac{{A}}{{{coeff_text}π}})" if k != 1 else "√(\\frac{A}{π})"
     claimed = sp.sqrt(A_SYM / (k * sp.pi))
 
     # Independent verification: use sympy's solver on the original equation
@@ -258,11 +258,15 @@ def _shape_squared_higher(rng: random.Random) -> Question:
     formula_text = f"A = {coeff_text}πr^2" if k != 1 else "A = πr^2"
     steps = [
         formula_text,
-        f"Divide both sides by {coeff_text}π: A/({coeff_text}π) = r^2" if k != 1 else "Divide both sides by π: A/π = r^2",
+        (
+            f"Divide both sides by {coeff_text}π: \\frac{{A}}{{{coeff_text}π}} = r^2"
+            if k != 1
+            else "Divide both sides by π: \\frac{A}{π} = r^2"
+        ),
         f"Take the square root of both sides: r = {rhs}",
     ]
     return Question(
-        topic_id="change_subject_higher",
+        topic_id="change_subject_H",
         tier=Tier.HIGHER,
         prompt=f"Make r the subject of the formula {formula_text}.",
         solution_steps=tuple(steps),
@@ -275,7 +279,7 @@ def _shape_fraction_higher(rng: random.Random) -> Question:
     a = rng.randint(1, 15)
     b = rng.randint(1, 15)
 
-    rhs = f"({a} + {b}y)/(y - 1)"
+    rhs = f"\\frac{{{a} + {b}y}}{{y - 1}}"
     claimed = (a + b * Y) / (Y - 1)
 
     # Independent verification: sp.solve the original fractional equation
@@ -286,7 +290,7 @@ def _shape_fraction_higher(rng: random.Random) -> Question:
         raise ValueError("change_subject fraction (higher) verification failed")
 
     steps = [
-        f"y = (x + {a})/(x - {b})",
+        f"y = \\frac{{x + {a}}}{{x - {b}}}",
         f"Multiply both sides by (x - {b}): y(x - {b}) = x + {a}",
         f"Expand the bracket: yx - {b}y = x + {a}",
         f"Collect the x-terms on one side: yx - x = {a} + {b}y",
@@ -294,9 +298,9 @@ def _shape_fraction_higher(rng: random.Random) -> Question:
         f"Divide both sides by (y - 1): x = {rhs}",
     ]
     return Question(
-        topic_id="change_subject_higher",
+        topic_id="change_subject_H",
         tier=Tier.HIGHER,
-        prompt=f"Make x the subject of the formula y = (x + {a})/(x - {b}).",
+        prompt=f"Make x the subject of the formula y = \\frac{{x + {a}}}{{x - {b}}}.",
         solution_steps=tuple(steps),
         final_answer=f"x = {rhs}",
         dedup_key=f"subject_h_fraction:{a}:{b}",
@@ -313,7 +317,7 @@ _HIGHER_SHAPES = [
 def generate_change_subject_higher(tier: Tier, rng: random.Random) -> Question:
     shape = rng.choice(_HIGHER_SHAPES)
     q = shape(rng)
-    return dataclasses.replace(q, topic_id="change_subject_higher", tier=Tier.HIGHER)
+    return dataclasses.replace(q, topic_id="change_subject_H", tier=Tier.HIGHER)
 
 
 # ---------------------------------------------------------------------------
@@ -326,11 +330,11 @@ def _modelled_axb_foundation(rng: random.Random) -> ModelledExample:
     b = rng.randint(-20, 20)
 
     if b > 0:
-        rhs = f"(y - {b})/{a}"
+        rhs = f"\\frac{{y - {b}}}{{{a}}}"
     elif b < 0:
-        rhs = f"(y + {-b})/{a}"
+        rhs = f"\\frac{{y + {-b}}}{{{a}}}"
     else:
-        rhs = f"y/{a}"
+        rhs = f"\\frac{{y}}{{{a}}}"
     claimed = sp.Rational(1, a) * (Y - b)
 
     solved = sp.solve(sp.Eq(Y, a * X + b), X)
@@ -354,7 +358,7 @@ def _modelled_axb_foundation(rng: random.Random) -> ModelledExample:
     ]
     worked_calculation = [f"y = {fmt_linear(a, b)}", f"x = {rhs}"]
     return ModelledExample(
-        topic_id="change_subject_foundation",
+        topic_id="change_subject_F",
         tier=Tier.FOUNDATION,
         prompt=f"Make x the subject of the formula y = {fmt_linear(a, b)}.",
         worked_calculation=tuple(worked_calculation),
@@ -365,7 +369,7 @@ def _modelled_axb_foundation(rng: random.Random) -> ModelledExample:
 
 def _modelled_suvat_foundation(rng: random.Random) -> ModelledExample:
     a = rng.randint(2, 20)
-    rhs = f"(v - u)/{a}"
+    rhs = f"\\frac{{v - u}}{{{a}}}"
     claimed = sp.Rational(1, a) * (V - U)
 
     solved = sp.solve(sp.Eq(V, U + a * T), T)
@@ -385,7 +389,7 @@ def _modelled_suvat_foundation(rng: random.Random) -> ModelledExample:
     ]
     worked_calculation = [f"v = u + {a}t", f"t = {rhs}"]
     return ModelledExample(
-        topic_id="change_subject_foundation",
+        topic_id="change_subject_F",
         tier=Tier.FOUNDATION,
         prompt=f"Make t the subject of the formula v = u + {a}t.",
         worked_calculation=tuple(worked_calculation),
@@ -402,36 +406,36 @@ def _modelled_area_foundation(rng: random.Random) -> ModelledExample:
         solved = sp.solve(sp.Eq(A_SYM, L * W), W)
         if not solved or sp.simplify(solved[0] - claimed) != 0:
             raise ValueError("modelled example change_subject area (foundation) verification failed")
-        prompt = "Make w the subject of the formula A = lw."
-        final_answer = "w = A/l"
+        prompt = "Make w the subject of the formula A = LW."
+        final_answer = "w = \\frac{A}{L}"
         teaching_steps = [
-            "A = lw says area equals length times width - both l and w are multiplied together "
+            "A = LW says area equals length times width - both L and w are multiplied together "
             "to give A.",
-            "To undo a multiplication, divide. Since we want w on its own, divide both sides by l "
+            "To undo a multiplication, divide. Since we want w on its own, divide both sides by L "
             "(the thing currently multiplying it).",
-            f"That leaves w = A/l, with l and A left exactly as they were - we never actually "
-            "need to know their numeric values to rearrange the formula.",
+            f"That leaves w = \\frac{{A}}{{L}}, with L and A left exactly as they were - we never "
+            "actually need to know their numeric values to rearrange the formula.",
         ]
-        worked_calculation = ["A = lw", "w = A/l"]
+        worked_calculation = ["A = LW", "w = \\frac{A}{L}"]
     else:
         claimed = A_SYM / W
         solved = sp.solve(sp.Eq(A_SYM, L * W), L)
         if not solved or sp.simplify(solved[0] - claimed) != 0:
             raise ValueError("modelled example change_subject area (foundation) verification failed")
-        prompt = "Make l the subject of the formula A = lw."
-        final_answer = "l = A/w"
+        prompt = "Make L the subject of the formula A = LW."
+        final_answer = "L = \\frac{A}{w}"
         teaching_steps = [
-            "A = lw says area equals length times width - both l and w are multiplied together "
+            "A = LW says area equals length times width - both L and w are multiplied together "
             "to give A.",
-            "To undo a multiplication, divide. Since we want l on its own, divide both sides by w "
+            "To undo a multiplication, divide. Since we want L on its own, divide both sides by w "
             "(the thing currently multiplying it).",
-            "That leaves l = A/w, with w and A left exactly as they were - we never actually "
-            "need to know their numeric values to rearrange the formula.",
+            "That leaves L = \\frac{A}{w}, with w and A left exactly as they were - we never "
+            "actually need to know their numeric values to rearrange the formula.",
         ]
-        worked_calculation = ["A = lw", "l = A/w"]
+        worked_calculation = ["A = LW", "L = \\frac{A}{w}"]
 
     return ModelledExample(
-        topic_id="change_subject_foundation",
+        topic_id="change_subject_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -448,34 +452,34 @@ def _modelled_perimeter_foundation(rng: random.Random) -> ModelledExample:
         solved = sp.solve(sp.Eq(P_SYM, 2 * L + 2 * W), L)
         if not solved or sp.simplify(solved[0] - claimed) != 0:
             raise ValueError("modelled example change_subject perimeter (foundation) verification failed")
-        prompt = "Make l the subject of the formula P = 2l + 2w."
-        final_answer = "l = (P - 2w)/2"
+        prompt = "Make L the subject of the formula P = 2L + 2w."
+        final_answer = "L = \\frac{P - 2w}{2}"
         teaching_steps = [
-            "P = 2l + 2w adds two terms together: 2l (twice the length) and 2w (twice the width).",
-            "Since we want l, first get rid of the 2w term by subtracting it from both sides: "
-            "P - 2w = 2l.",
-            "Now l is only being multiplied by 2, so divide both sides by 2 to finish: "
-            "l = (P - 2w)/2.",
+            "P = 2L + 2w adds two terms together: 2L (twice the length) and 2w (twice the width).",
+            "Since we want L, first get rid of the 2w term by subtracting it from both sides: "
+            "P - 2w = 2L.",
+            "Now L is only being multiplied by 2, so divide both sides by 2 to finish: "
+            "L = \\frac{P - 2w}{2}.",
         ]
-        worked_calculation = ["P = 2l + 2w", "P - 2w = 2l", "l = (P - 2w)/2"]
+        worked_calculation = ["P = 2L + 2w", "P - 2w = 2L", "L = \\frac{P - 2w}{2}"]
     else:
         claimed = (P_SYM - 2 * L) / 2
         solved = sp.solve(sp.Eq(P_SYM, 2 * L + 2 * W), W)
         if not solved or sp.simplify(solved[0] - claimed) != 0:
             raise ValueError("modelled example change_subject perimeter (foundation) verification failed")
-        prompt = "Make w the subject of the formula P = 2l + 2w."
-        final_answer = "w = (P - 2l)/2"
+        prompt = "Make w the subject of the formula P = 2L + 2w."
+        final_answer = "w = \\frac{P - 2L}{2}"
         teaching_steps = [
-            "P = 2l + 2w adds two terms together: 2l (twice the length) and 2w (twice the width).",
-            "Since we want w, first get rid of the 2l term by subtracting it from both sides: "
-            "P - 2l = 2w.",
+            "P = 2L + 2w adds two terms together: 2L (twice the length) and 2w (twice the width).",
+            "Since we want w, first get rid of the 2L term by subtracting it from both sides: "
+            "P - 2L = 2w.",
             "Now w is only being multiplied by 2, so divide both sides by 2 to finish: "
-            "w = (P - 2l)/2.",
+            "w = \\frac{P - 2L}{2}.",
         ]
-        worked_calculation = ["P = 2l + 2w", "P - 2l = 2w", "w = (P - 2l)/2"]
+        worked_calculation = ["P = 2L + 2w", "P - 2L = 2w", "w = \\frac{P - 2L}{2}"]
 
     return ModelledExample(
-        topic_id="change_subject_foundation",
+        topic_id="change_subject_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -495,16 +499,16 @@ def _modelled_circumference_foundation(rng: random.Random) -> ModelledExample:
         "together.",
         "Treat '2π' as a single combined multiplier (it's just a number, roughly 6.28, even "
         "though we write it symbolically). Divide both sides by 2π to undo that multiplication.",
-        "That leaves r = C/(2π) - the radius written in terms of the circumference.",
+        "That leaves r = \\frac{C}{2π} - the radius written in terms of the circumference.",
     ]
-    worked_calculation = ["C = 2πr", "r = C/(2π)"]
+    worked_calculation = ["C = 2πr", "r = \\frac{C}{2π}"]
     return ModelledExample(
-        topic_id="change_subject_foundation",
+        topic_id="change_subject_F",
         tier=Tier.FOUNDATION,
         prompt="Make r the subject of the formula C = 2πr.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
-        final_answer="r = C/(2π)",
+        final_answer="r = \\frac{C}{2π}",
     )
 
 
@@ -520,7 +524,7 @@ _FOUNDATION_MODELLED_SHAPES = [
 def generate_modelled_example_change_subject_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
     shape = rng.choices(_FOUNDATION_MODELLED_SHAPES, weights=_FOUNDATION_WEIGHTS, k=1)[0]
     example = shape(rng)
-    return dataclasses.replace(example, topic_id="change_subject_foundation", tier=Tier.FOUNDATION)
+    return dataclasses.replace(example, topic_id="change_subject_F", tier=Tier.FOUNDATION)
 
 
 # ---------------------------------------------------------------------------
@@ -535,7 +539,11 @@ def _modelled_double_occurrence_higher(rng: random.Random) -> ModelledExample:
         b = rng.randint(2, 8)
     c = rng.randint(-20, 20)
 
-    rhs = f"(y - {c})/{a + b}" if c > 0 else (f"(y + {-c})/{a + b}" if c < 0 else f"y/{a + b}")
+    rhs = (
+        f"\\frac{{y - {c}}}{{{a + b}}}"
+        if c > 0
+        else (f"\\frac{{y + {-c}}}{{{a + b}}}" if c < 0 else f"\\frac{{y}}{{{a + b}}}")
+    )
     claimed = (Y - c) / (a + b)
 
     solved = sp.solve(sp.Eq(Y, a * X + b * X + c), X)
@@ -560,7 +568,7 @@ def _modelled_double_occurrence_higher(rng: random.Random) -> ModelledExample:
     ]
     worked_calculation = [formula_text, f"{a + b}x = {'y - ' + str(c) if c > 0 else ('y + ' + str(-c) if c < 0 else 'y')}", f"x = {rhs}"]
     return ModelledExample(
-        topic_id="change_subject_higher",
+        topic_id="change_subject_H",
         tier=Tier.HIGHER,
         prompt=f"Make x the subject of the formula {formula_text}.",
         worked_calculation=tuple(worked_calculation),
@@ -572,7 +580,7 @@ def _modelled_double_occurrence_higher(rng: random.Random) -> ModelledExample:
 def _modelled_squared_higher(rng: random.Random) -> ModelledExample:
     k = rng.randint(1, 6)
     coeff_text = "" if k == 1 else str(k)
-    rhs = f"√(A/({coeff_text}π))" if k != 1 else "√(A/π)"
+    rhs = f"√(\\frac{{A}}{{{coeff_text}π}})" if k != 1 else "√(\\frac{A}{π})"
     claimed = sp.sqrt(A_SYM / (k * sp.pi))
 
     solved = sp.solve(sp.Eq(A_SYM, k * sp.pi * R_SYM**2), R_SYM)
@@ -583,16 +591,24 @@ def _modelled_squared_higher(rng: random.Random) -> ModelledExample:
     teaching_steps = [
         f"Here r is squared, not just multiplied by a number - so dividing alone won't fully "
         "isolate r, we'll need a square root at the end too.",
-        f"First undo the multiplication by dividing both sides by {coeff_text}π: "
-        f"A/({coeff_text}π) = r^2." if k != 1 else "First undo the multiplication by dividing both sides by π: A/π = r^2.",
+        (
+            f"First undo the multiplication by dividing both sides by {coeff_text}π: "
+            f"\\frac{{A}}{{{coeff_text}π}} = r^2."
+            if k != 1
+            else "First undo the multiplication by dividing both sides by π: \\frac{A}{π} = r^2."
+        ),
         f"Now undo the squaring by taking the square root of both sides: r = {rhs}. We only take "
         "the positive root, since r represents a physical radius and must be positive.",
         "A useful check: square the claimed answer back up and confirm it reproduces the "
         "original area formula exactly.",
     ]
-    worked_calculation = [formula_text, f"r^2 = A/({coeff_text}π)" if k != 1 else "r^2 = A/π", f"r = {rhs}"]
+    worked_calculation = [
+        formula_text,
+        f"r^2 = \\frac{{A}}{{{coeff_text}π}}" if k != 1 else "r^2 = \\frac{A}{π}",
+        f"r = {rhs}",
+    ]
     return ModelledExample(
-        topic_id="change_subject_higher",
+        topic_id="change_subject_H",
         tier=Tier.HIGHER,
         prompt=f"Make r the subject of the formula {formula_text}.",
         worked_calculation=tuple(worked_calculation),
@@ -605,7 +621,7 @@ def _modelled_fraction_higher(rng: random.Random) -> ModelledExample:
     a = rng.randint(1, 15)
     b = rng.randint(1, 15)
 
-    rhs = f"({a} + {b}y)/(y - 1)"
+    rhs = f"\\frac{{{a} + {b}y}}{{y - 1}}"
     claimed = (a + b * Y) / (Y - 1)
 
     solved = sp.solve(sp.Eq(Y, (X + a) / (X - b)), X)
@@ -629,9 +645,9 @@ def _modelled_fraction_higher(rng: random.Random) -> ModelledExample:
         f"x = {rhs}",
     ]
     return ModelledExample(
-        topic_id="change_subject_higher",
+        topic_id="change_subject_H",
         tier=Tier.HIGHER,
-        prompt=f"Make x the subject of the formula y = (x + {a})/(x - {b}).",
+        prompt=f"Make x the subject of the formula y = \\frac{{x + {a}}}{{x - {b}}}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"x = {rhs}",
@@ -648,11 +664,95 @@ _HIGHER_MODELLED_SHAPES = [
 def generate_modelled_example_change_subject_higher(tier: Tier, rng: random.Random) -> ModelledExample:
     shape = rng.choice(_HIGHER_MODELLED_SHAPES)
     example = shape(rng)
-    return dataclasses.replace(example, topic_id="change_subject_higher", tier=Tier.HIGHER)
+    return dataclasses.replace(example, topic_id="change_subject_H", tier=Tier.HIGHER)
+
+
+# ---------------------------------------------------------------------------
+# Higher: rearranging by factorising - the subject (x) has two terms, one
+# with a plain numeric coefficient and one with a symbolic-parameter
+# coefficient (e.g. "px + 10x = 8"), so the answer is a genuine algebraic
+# fraction in terms of that parameter. Deliberately excludes "x"/"n" from the
+# letter pool - pairing an italicised letter with a plain one in the same
+# equation would look like a rendering inconsistency (same reasoning as
+# ratio.py's _LETTER_PAIRS).
+# ---------------------------------------------------------------------------
+
+_FACTORISE_LETTERS = ["a", "b", "c", "k", "m", "p", "q", "r", "s", "t", "w"]
+
+
+def generate_change_subject_factorise_higher(tier: Tier, rng: random.Random) -> Question:
+    letter = rng.choice(_FACTORISE_LETTERS)
+    coeff = rng.randint(2, 12)
+    total = rng.randint(2, 60)
+    letter_sym = sp.symbols(letter)
+
+    rhs = f"\\frac{{{total}}}{{{letter} + {coeff}}}"
+    claimed = sp.Rational(total) / (letter_sym + coeff)
+
+    # Independent verification: sp.solve the original equation directly, with
+    # the parameter letter left as a free symbol - a genuinely different path
+    # than the manual factorise-then-divide steps shown.
+    solved = sp.solve(sp.Eq(letter_sym * X + coeff * X, total), X)
+    if not solved or sp.simplify(solved[0] - claimed) != 0:
+        raise ValueError("change_subject_factorise_higher verification failed")
+
+    steps = [
+        f"{letter}x + {coeff}x = {total}",
+        f"Factorise the left-hand side: x({letter} + {coeff}) = {total}",
+        f"Divide both sides by ({letter} + {coeff}): x = {rhs}",
+    ]
+    return Question(
+        topic_id="change_subject_factorise_H",
+        tier=Tier.HIGHER,
+        prompt=f"Make x the subject of the formula {letter}x + {coeff}x = {total}.",
+        solution_steps=tuple(steps),
+        final_answer=f"x = {rhs}",
+        dedup_key=f"subject_factorise:{letter}:{coeff}:{total}",
+    )
+
+
+def generate_modelled_example_change_subject_factorise_higher(tier: Tier, rng: random.Random) -> ModelledExample:
+    letter = rng.choice(_FACTORISE_LETTERS)
+    coeff = rng.randint(2, 12)
+    total = rng.randint(2, 60)
+    letter_sym = sp.symbols(letter)
+
+    rhs = f"\\frac{{{total}}}{{{letter} + {coeff}}}"
+    claimed = sp.Rational(total) / (letter_sym + coeff)
+
+    solved = sp.solve(sp.Eq(letter_sym * X + coeff * X, total), X)
+    if not solved or sp.simplify(solved[0] - claimed) != 0:
+        raise ValueError("modelled example change_subject_factorise_higher verification failed")
+
+    teaching_steps = [
+        f"x appears in two separate terms here ({letter}x and {coeff}x), each with its own "
+        "coefficient - one a letter, one a number - so you can't isolate x until those two terms "
+        "are combined into one.",
+        f"Both terms share x as a common factor, so factorise the left-hand side: "
+        f"{letter}x + {coeff}x = ({letter} + {coeff})x.",
+        f"This leaves x multiplied by the combined bracket ({letter} + {coeff}) - divide both sides "
+        f"by that bracket to finish: x = {rhs}.",
+        f"The letter {letter} is just left as a symbol in the answer, exactly like {letter} + {coeff} "
+        "was never a number we could simplify further - we treat it the same way we treat any other "
+        "unknown parameter in a formula.",
+    ]
+    worked_calculation = [
+        f"{letter}x + {coeff}x = {total}",
+        f"({letter} + {coeff})x = {total}",
+        f"x = {rhs}",
+    ]
+    return ModelledExample(
+        topic_id="change_subject_factorise_H",
+        tier=Tier.HIGHER,
+        prompt=f"Make x the subject of the formula {letter}x + {coeff}x = {total}.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"x = {rhs}",
+    )
 
 
 TOPIC_CHANGE_SUBJECT_FOUNDATION = TopicDefinition(
-    id="change_subject_foundation",
+    id="change_subject_F",
     display_name="Changing the Subject of a Formula",
     description="Rearrange a formula to make a different letter the subject (appears exactly once).",
     generate=generate_change_subject_foundation,
@@ -663,7 +763,7 @@ TOPIC_CHANGE_SUBJECT_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_CHANGE_SUBJECT_HIGHER = TopicDefinition(
-    id="change_subject_higher",
+    id="change_subject_H",
     display_name="Changing the Subject of a Formula (Higher)",
     description=(
         "Rearrange a formula to make a letter the subject when it appears twice, is squared or "
@@ -674,4 +774,15 @@ TOPIC_CHANGE_SUBJECT_HIGHER = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_change_subject_higher,
+)
+
+TOPIC_CHANGE_SUBJECT_FACTORISE_HIGHER = TopicDefinition(
+    id="change_subject_factorise_H",
+    display_name="Changing the Subject by Factorising (Higher)",
+    description="Make x the subject of a formula where x has a symbolic-parameter coefficient, requiring factorising.",
+    generate=generate_change_subject_factorise_higher,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_change_subject_factorise_higher,
 )

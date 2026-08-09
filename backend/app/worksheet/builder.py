@@ -47,4 +47,5 @@ def build_worksheet(
         tier=tier,
         questions=tuple(questions),
         generated_at=datetime.now(timezone.utc),
+        preamble_lines=topic.preamble_lines or (),
     )

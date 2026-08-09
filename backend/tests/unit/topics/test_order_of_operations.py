@@ -44,7 +44,7 @@ def test_all_topics_have_modelled_example_wired():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (order_of_operations.generate_modelled_example_bidmas, Tier.FOUNDATION, "bidmas"),
+    (order_of_operations.generate_modelled_example_bidmas, Tier.FOUNDATION, "bidmas_F"),
 ]
 
 

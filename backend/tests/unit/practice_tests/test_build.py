@@ -1,5 +1,6 @@
 from app.core.models import Tier
 from app.practice_tests.build import build_papers
+from app.practice_tests.topic_selection import CALCULATOR_ONLY_TOPIC_IDS
 
 
 def test_build_papers_produces_60_papers_30_per_tier_10_sittings_of_3_papers_each():
@@ -23,6 +24,30 @@ def test_build_papers_produces_60_papers_30_per_tier_10_sittings_of_3_papers_eac
             assert sum(p.marks for p in question.mark_scheme) == question.marks
         topic_ids = [q.topic_id for q in paper.questions]
         assert len(topic_ids) == len(set(topic_ids))
+        # Paper 2 of every sitting is real OCR's non-calculator paper
+        # (Foundation Paper 2 / Higher Paper 5); Papers 1 and 3 stay
+        # calculator-allowed.
+        assert paper.calculator_allowed == (paper.paper_number != 2)
+        if not paper.calculator_allowed:
+            assert not any(tid in CALCULATOR_ONLY_TOPIC_IDS for tid in topic_ids)
+
+
+def test_paper_2_never_contains_a_calculator_only_topic():
+    papers = build_papers(
+        [f"{tier}-{i:02d}-paper2" for tier in ("foundation", "higher") for i in range(1, 11)]
+    )
+    assert len(papers) == 20
+    for paper in papers:
+        assert paper.paper_number == 2
+        assert paper.calculator_allowed is False
+        topic_ids = {q.topic_id for q in paper.questions}
+        assert not (topic_ids & CALCULATOR_ONLY_TOPIC_IDS)
+
+
+def test_papers_1_and_3_are_calculator_allowed():
+    papers = build_papers(["foundation-01-paper1", "foundation-01-paper3", "higher-02-paper1"])
+    for paper in papers:
+        assert paper.calculator_allowed is True
 
 
 def test_build_papers_is_deterministic():

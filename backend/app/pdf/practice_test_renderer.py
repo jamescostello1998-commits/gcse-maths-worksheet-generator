@@ -64,6 +64,9 @@ def _extra_styles() -> dict[str, ParagraphStyle]:
         "FormulaLine": ParagraphStyle(
             "FormulaLine", fontName=FONT, fontSize=11, textColor=INK, leftIndent=6, leading=16, spaceAfter=4,
         ),
+        "AnswerLabel": ParagraphStyle(
+            "AnswerLabel", fontName=FONT_BOLD, fontSize=10.5, textColor=INK,
+        ),
     }
 
 
@@ -103,10 +106,15 @@ def _candidate_info_table(styles: dict) -> Table:
 
 
 def _instructions_box(paper: PracticeTestPaper, styles: dict) -> Table:
+    calculator_line = (
+        "You may use a calculator, geometrical instruments, and tracing paper."
+        if paper.calculator_allowed
+        else "You must NOT use a calculator for this paper - geometrical instruments and tracing paper may still be used."
+    )
     lines = [
         "Answer all questions.",
         "Write your answers clearly in the space provided.",
-        "You may use a calculator, geometrical instruments, and tracing paper.",
+        calculator_line,
         "A Formulae Sheet for this tier is included in this document.",
         "Show your working - marks may be awarded for a correct method even if your final answer is incorrect.",
         "The number of marks for each question is shown in brackets, e.g. [3].",
@@ -132,12 +140,13 @@ def _instructions_box(paper: PracticeTestPaper, styles: dict) -> Table:
 
 def _cover_page_elements(paper: PracticeTestPaper, styles: dict) -> list:
     tier_label = paper.tier.value.title()
+    calculator_note = "" if paper.calculator_allowed else " &nbsp;&#8226;&nbsp; Non-calculator"
     return [
         Paragraph("GCSE Mathematics", styles["Meta"]),
         Paragraph(_escape(paper.name), styles["Title"]),
         Paragraph(
             f"{tier_label} Tier &nbsp;&#8226;&nbsp; Time allowed: 1 hour 30 minutes "
-            f"&nbsp;&#8226;&nbsp; Total marks: {paper.total_marks}",
+            f"&nbsp;&#8226;&nbsp; Total marks: {paper.total_marks}{calculator_note}",
             styles["Meta"],
         ),
         HRFlowable(width="100%", thickness=0.75, color=RULE, spaceAfter=16),
@@ -212,6 +221,55 @@ def _formulae_sheet_elements(tier: Tier, styles: dict) -> list:
     return elements
 
 
+def _lines_for_marks(marks: int) -> int:
+    """Working-space line count, scaled to the question's mark value - a
+    real OCR paper gives roughly proportionally more ruled space for a
+    higher-mark question, matching how much working it actually expects."""
+    return max(2, marks * 2)
+
+
+def _working_lines(count: int) -> Table:
+    """`count` blank ruled lines spanning the question column, for the
+    student's working - each row is an empty cell with a bottom border only,
+    matching a real exam paper's ruled writing space."""
+    data = [[""] for _ in range(count)]
+    table = Table(data, colWidths=[_PAGE_WIDTH])
+    table.setStyle(
+        TableStyle(
+            [
+                ("LINEBELOW", (0, 0), (-1, -1), 0.5, MUTED),
+                ("TOPPADDING", (0, 0), (-1, -1), 0),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 15),
+                ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 0),
+            ]
+        )
+    )
+    return table
+
+
+def _answer_line(styles: dict) -> Table:
+    """A distinct boxed final-answer line, separate from the working space
+    above it - matches real OCR papers, which always give a dedicated ruled
+    line for the final answer rather than leaving it implicit in the
+    working."""
+    label = Paragraph("Answer", styles["AnswerLabel"])
+    table = Table([[label, ""]], colWidths=[55, _PAGE_WIDTH - 55])
+    table.setStyle(
+        TableStyle(
+            [
+                ("LINEBELOW", (1, 0), (1, 0), 0.75, INK),
+                ("VALIGN", (0, 0), (-1, -1), "BOTTOM"),
+                ("TOPPADDING", (0, 0), (-1, -1), 0),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
+                ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 0),
+            ]
+        )
+    )
+    return table
+
+
 def _question_block(number: int, question: PracticeQuestion, styles: dict) -> KeepTogether:
     prompt_para = Paragraph(f"<b>{number}.</b> {_fmt(question.prompt, styles['QuestionText'])}", styles["QuestionText"])
     marks_para = Paragraph(f"[{question.marks}]", styles["MarksLabel"])
@@ -231,7 +289,11 @@ def _question_block(number: int, question: PracticeQuestion, styles: dict) -> Ke
     if question.diagram is not None:
         elements.append(Spacer(1, 4))
         elements.append(render_diagram(question.diagram))
-    elements.append(Spacer(1, 14))
+    elements.append(Spacer(1, 10))
+    elements.append(_working_lines(_lines_for_marks(question.marks)))
+    elements.append(Spacer(1, 4))
+    elements.append(_answer_line(styles))
+    elements.append(Spacer(1, 18))
     return KeepTogether(elements)
 
 

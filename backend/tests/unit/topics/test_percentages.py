@@ -86,7 +86,7 @@ def test_modelled_example_of_amount_produces_verified_examples():
     rng = random.Random(202)
     for _ in range(TRIALS):
         example = percentages.generate_modelled_example_of_amount(Tier.FOUNDATION, rng)
-        assert example.topic_id == "percentage_of_amount"
+        assert example.topic_id == "percentage_of_amount_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -97,7 +97,7 @@ def test_modelled_example_change_produces_verified_examples():
     rng = random.Random(203)
     for _ in range(TRIALS):
         example = percentages.generate_modelled_example_change(Tier.FOUNDATION, rng)
-        assert example.topic_id == "percentage_change"
+        assert example.topic_id == "percentage_change_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -108,7 +108,7 @@ def test_modelled_example_reverse_foundation_produces_verified_examples():
     rng = random.Random(204)
     for _ in range(TRIALS):
         example = percentages.generate_modelled_example_reverse_foundation(Tier.FOUNDATION, rng)
-        assert example.topic_id == "reverse_percentage_foundation"
+        assert example.topic_id == "reverse_percentage_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -119,7 +119,7 @@ def test_modelled_example_reverse_produces_verified_examples():
     rng = random.Random(205)
     for _ in range(TRIALS):
         example = percentages.generate_modelled_example_reverse(Tier.HIGHER, rng)
-        assert example.topic_id == "reverse_percentage"
+        assert example.topic_id == "reverse_percentage_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -130,7 +130,7 @@ def test_modelled_example_compound_produces_verified_examples():
     rng = random.Random(206)
     for _ in range(TRIALS):
         example = percentages.generate_modelled_example_compound(Tier.HIGHER, rng)
-        assert example.topic_id == "compound_percentage"
+        assert example.topic_id == "compound_percentage_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -141,7 +141,7 @@ def test_modelled_example_compound_foundation_produces_verified_examples():
     rng = random.Random(207)
     for _ in range(TRIALS):
         example = percentages.generate_modelled_example_compound_foundation(Tier.FOUNDATION, rng)
-        assert example.topic_id == "compound_percentage_foundation"
+        assert example.topic_id == "compound_percentage_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -152,7 +152,7 @@ def test_modelled_example_simple_interest_produces_verified_examples():
     rng = random.Random(208)
     for _ in range(TRIALS):
         example = percentages.generate_modelled_example_simple_interest(Tier.FOUNDATION, rng)
-        assert example.topic_id == "simple_interest"
+        assert example.topic_id == "simple_interest_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -163,7 +163,7 @@ def test_modelled_example_find_percentage_change_produces_verified_examples():
     rng = random.Random(209)
     for _ in range(TRIALS):
         example = percentages.generate_modelled_example_find_percentage_change(Tier.FOUNDATION, rng)
-        assert example.topic_id == "find_percentage_change"
+        assert example.topic_id == "find_percentage_change_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -174,7 +174,7 @@ def test_modelled_example_percentage_increase_decrease_calculator_produces_verif
     rng = random.Random(210)
     for _ in range(TRIALS):
         example = percentages.generate_modelled_example_percentage_increase_decrease_calculator(Tier.HIGHER, rng)
-        assert example.topic_id == "percentage_increase_decrease_calculator"
+        assert example.topic_id == "percentage_increase_decrease_calculator_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -185,7 +185,7 @@ def test_modelled_example_mixed_percentages_produces_verified_examples():
     rng = random.Random(211)
     for _ in range(TRIALS):
         example = percentages.generate_modelled_example_mixed_percentages(Tier.HIGHER, rng)
-        assert example.topic_id == "mixed_percentages"
+        assert example.topic_id == "mixed_percentages_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -221,7 +221,7 @@ def test_mixed_percentages_dispatches_to_all_four_underlying_topics():
     seen_prefixes = set()
     for _ in range(200):
         q = percentages.generate_mixed_percentages(Tier.HIGHER, rng)
-        assert q.topic_id == "mixed_percentages"
+        assert q.topic_id == "mixed_percentages_H"
         assert q.tier == Tier.HIGHER
         seen_prefixes.add(q.dedup_key.split(":")[1])
     # underlying dedup keys are of_amount/change/reverse/compound-flavoured

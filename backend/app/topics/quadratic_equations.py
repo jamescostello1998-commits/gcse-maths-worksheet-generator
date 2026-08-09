@@ -41,7 +41,7 @@ def _fmt_surd_answer(nc: int, k: int, m: int, denom: int) -> str:
     """Render (nc + k*sqrt(m))/denom, using +/- for both roots at once."""
     surd = f"{k}√{m}" if k != 1 else f"√{m}"
     core = f"±{surd}" if nc == 0 else f"{nc} ± {surd}"
-    return core if denom == 1 else f"({core})/{denom}"
+    return core if denom == 1 else f"\\frac{{{core}}}{{{denom}}}"
 
 
 def _decimal_case(rng: random.Random):
@@ -144,12 +144,12 @@ def generate_quadratic_formula(tier: Tier, rng: random.Random) -> Question:
         steps = [
             "x = (-b ± √(b^2 - 4ac)) / 2a",
             f"a = {a}, b = {b}, c = {c}",
-            f"x = ({-b} ± √({b}^2 - 4×{a}×{c})) / (2×{a})",
-            f"x = ({-b} ± √{D}) / {2 * a}",
+            f"x = \\frac{{{-b} ± √({b}^2 - 4×{a}×{c})}}{{2×{a}}}",
+            f"x = \\frac{{{-b} ± √{D}}}{{{2 * a}}}",
             f"x = {x1} or x = {x2}",
         ]
         return Question(
-            topic_id="quadratic_formula",
+            topic_id="quadratic_formula_H",
             tier=Tier.HIGHER,
             prompt=f"Solve {_fmt_quadratic(a, b, c)} using the quadratic formula, "
             "giving your answers to 2 decimal places.",
@@ -164,16 +164,18 @@ def generate_quadratic_formula(tier: Tier, rng: random.Random) -> Question:
     steps = [
         "x = (-b ± √(b^2 - 4ac)) / 2a",
         f"a = {a}, b = {b}, c = {c}",
-        f"x = ({nc} ± √({b}^2 - 4×{a}×{c})) / {denom}",
-        f"x = ({nc} ± √{D}) / {denom}",
+        f"x = \\frac{{{nc} ± √({b}^2 - 4×{a}×{c})}}{{{denom}}}",
+        f"x = \\frac{{{nc} ± √{D}}}{{{denom}}}",
         f"√{D} = √({k}^2 × {m}) = {surd_term}",
     ]
     if g > 1:
-        steps.append(f"x = ({nc} ± {surd_term}) / {denom} = {answer} (dividing numerator and denominator by {g})")
+        steps.append(
+            f"x = \\frac{{{nc} ± {surd_term}}}{{{denom}}} = {answer} (dividing numerator and denominator by {g})"
+        )
     else:
-        steps.append(f"x = ({nc} ± {surd_term}) / {denom}")
+        steps.append(f"x = \\frac{{{nc} ± {surd_term}}}{{{denom}}}")
     return Question(
-        topic_id="quadratic_formula",
+        topic_id="quadratic_formula_H",
         tier=Tier.HIGHER,
         prompt=f"Solve {_fmt_quadratic(a, b, c)}, giving your answer in the form x = (-b ± k√m)/2a, "
         "fully simplified.",
@@ -192,19 +194,19 @@ def generate_modelled_example_quadratic_formula(tier: Tier, rng: random.Random) 
             "Not every quadratic factorises nicely, so the quadratic formula gives a method that always "
             f"works: for ax^2 + bx + c = 0, the two solutions are x = (-b ± √(b^2 - 4ac)) / 2a.",
             f"Read off the coefficients from {_fmt_quadratic(a, b, c)}: a = {a}, b = {b}, c = {c}.",
-            f"Substitute them into the formula: x = ({-b} ± √({b}^2 - 4×{a}×{c})) / (2×{a}), which works "
-            f"out to x = ({-b} ± √{D}) / {2 * a}.",
+            f"Substitute them into the formula: x = \\frac{{{-b} ± √({b}^2 - 4×{a}×{c})}}{{2×{a}}}, which "
+            f"works out to x = \\frac{{{-b} ± √{D}}}{{{2 * a}}}.",
             f"Since {D} isn't a perfect square, √{D} doesn't simplify to a whole number - a calculator is "
             "used here, and each root is rounded to 2 decimal places exactly as the question asks.",
             f"This gives the two solutions x = {x1} and x = {x2}.",
         ]
         worked_calculation = [
             f"a = {a}, b = {b}, c = {c}",
-            f"x = ({-b} ± √{D}) / {2 * a}",
+            f"x = \\frac{{{-b} ± √{D}}}{{{2 * a}}}",
             f"x = {x1} or x = {x2}",
         ]
         return ModelledExample(
-            topic_id="quadratic_formula",
+            topic_id="quadratic_formula_H",
             tier=Tier.HIGHER,
             prompt=f"Solve {_fmt_quadratic(a, b, c)} using the quadratic formula, "
             "giving your answers to 2 decimal places.",
@@ -221,26 +223,27 @@ def generate_modelled_example_quadratic_formula(tier: Tier, rng: random.Random) 
         "- and sometimes the number under the root simplifies to an exact surd instead of needing a "
         "decimal approximation.",
         f"Read off the coefficients from {_fmt_quadratic(a, b, c)}: a = {a}, b = {b}, c = {c}, then "
-        f"substitute into the formula: x = ({nc} ± √({b}^2 - 4×{a}×{c})) / {denom} = ({nc} ± √{D}) / {denom}.",
+        f"substitute into the formula: x = \\frac{{{nc} ± √({b}^2 - 4×{a}×{c})}}{{{denom}}} = "
+        f"\\frac{{{nc} ± √{D}}}{{{denom}}}.",
         f"{D} has a square number hiding inside it: {D} = {k}^2 × {m}, so the root can be pulled apart "
         f"just like simplifying any other surd: √{D} = √({k}^2 × {m}) = {surd_term}.",
         (
-            f"The fraction ({nc} ± {surd_term}) / {denom} can be simplified further, since {nc}, {k} and "
-            f"{denom} share a common factor of {g} - dividing all three by it gives the fully simplified "
-            f"answer {answer}."
+            f"The fraction \\frac{{{nc} ± {surd_term}}}{{{denom}}} can be simplified further, since {nc}, "
+            f"{k} and {denom} share a common factor of {g} - dividing all three by it gives the fully "
+            f"simplified answer {answer}."
             if g > 1
-            else f"Here {nc}, {k} and {denom} share no common factor, so ({nc} ± {surd_term}) / {denom} is "
-            "already fully simplified."
+            else f"Here {nc}, {k} and {denom} share no common factor, so \\frac{{{nc} ± {surd_term}}}"
+            f"{{{denom}}} is already fully simplified."
         ),
         f"So the exact solutions are x = {answer}.",
     ]
     worked_calculation = [
         f"a = {a}, b = {b}, c = {c}",
-        f"x = ({nc} ± √{D}) / {denom}",
+        f"x = \\frac{{{nc} ± √{D}}}{{{denom}}}",
         f"x = {answer}",
     ]
     return ModelledExample(
-        topic_id="quadratic_formula",
+        topic_id="quadratic_formula_H",
         tier=Tier.HIGHER,
         prompt=f"Solve {_fmt_quadratic(a, b, c)}, giving your answer in the form x = (-b ± k√m)/2a, "
         "fully simplified.",
@@ -251,7 +254,7 @@ def generate_modelled_example_quadratic_formula(tier: Tier, rng: random.Random) 
 
 
 TOPIC_QUADRATIC_FORMULA = TopicDefinition(
-    id="quadratic_formula",
+    id="quadratic_formula_H",
     display_name="The Quadratic Formula",
     description="Solve a quadratic equation using the quadratic formula, giving decimal or exact surd answers.",
     generate=generate_quadratic_formula,

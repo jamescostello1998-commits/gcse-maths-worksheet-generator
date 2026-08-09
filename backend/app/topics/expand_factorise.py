@@ -10,6 +10,7 @@ from app.topics.base import TopicDefinition
 SECTION = "algebra"
 GROUP_EXPAND = "Expanding Brackets"
 GROUP_FACTORISE = "Factorising"
+GROUP_SOLVE_QUADRATIC = "Solving Quadratic Equations"
 
 
 def _rand_nonzero(rng: random.Random, lo: int, hi: int) -> int:
@@ -17,6 +18,15 @@ def _rand_nonzero(rng: random.Random, lo: int, hi: int) -> int:
         v = rng.randint(lo, hi)
         if v != 0:
             return v
+
+
+def _rand_x_coeff(rng: random.Random, max_val: int) -> int:
+    """A bracket's x-coefficient - almost always positive (a bracket
+    starting with a negative x-term, e.g. "(-3x + 5)", is valid GCSE
+    content but visually unusual to lead with), made negative under 0.5%
+    of the time rather than never, per direct user request."""
+    magnitude = rng.randint(1, max_val)
+    return -magnitude if rng.random() < 0.005 else magnitude
 
 
 def _fmt_quadratic(a, b, c) -> str:
@@ -94,7 +104,7 @@ def generate_expand_single(tier: Tier, rng: random.Random):
         f"Combine: {fmt_linear(expanded_coeff, expanded_const)}",
     ]
     return Question(
-        topic_id="expand_single_bracket",
+        topic_id="expand_single_bracket_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -136,7 +146,7 @@ def generate_modelled_example_expand_single(tier: Tier, rng: random.Random) -> M
         f"{fmt_linear(expanded_coeff, expanded_const)}",
     ]
     return ModelledExample(
-        topic_id="expand_single_bracket",
+        topic_id="expand_single_bracket_F",
         tier=Tier.FOUNDATION,
         prompt=f"Expand: {a}({fmt_linear(b, c)})",
         worked_calculation=tuple(worked_calculation),
@@ -164,7 +174,7 @@ def generate_factorise_common(tier: Tier, rng: random.Random):
         f"Factorise: {k}({fmt_linear(a, b)})",
     ]
     return Question(
-        topic_id="factorise_common_factor",
+        topic_id="factorise_common_factor_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -206,7 +216,7 @@ def generate_modelled_example_factorise_common(tier: Tier, rng: random.Random) -
         f"{k}({fmt_linear(a, b)})",
     ]
     return ModelledExample(
-        topic_id="factorise_common_factor",
+        topic_id="factorise_common_factor_F",
         tier=Tier.FOUNDATION,
         prompt=f"Factorise: {fmt_linear(full_coeff, full_const)}",
         worked_calculation=tuple(worked_calculation),
@@ -216,9 +226,9 @@ def generate_modelled_example_factorise_common(tier: Tier, rng: random.Random) -
 
 
 def generate_expand_double(tier: Tier, rng: random.Random):
-    a = _rand_nonzero(rng, -6, 6)
+    a = _rand_x_coeff(rng, 6)
     b = _rand_nonzero(rng, -6, 6)
-    c = _rand_nonzero(rng, -6, 6)
+    c = _rand_x_coeff(rng, 6)
     d = _rand_nonzero(rng, -6, 6)
 
     expanded = sp.expand((a * X + b) * (c * X + d))
@@ -231,7 +241,7 @@ def generate_expand_double(tier: Tier, rng: random.Random):
     if residual != 0:
         raise ValueError("Expansion verification failed: double bracket")
 
-    prompt = f"Expand: ({fmt_linear(a, b)})({fmt_linear(c, d)})"
+    prompt = f"Expand and simplify: ({fmt_linear(a, b)})({fmt_linear(c, d)})"
     steps = [
         f"First: {a}x × {c}x = {a * c}x^2",
         f"Outer: {a}x × {d} = {a * d}x",
@@ -240,7 +250,7 @@ def generate_expand_double(tier: Tier, rng: random.Random):
         f"Combine like terms: {_fmt_quadratic(qa, qb, qc)}",
     ]
     return Question(
-        topic_id="expand_double_brackets",
+        topic_id="expand_double_brackets_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -250,9 +260,9 @@ def generate_expand_double(tier: Tier, rng: random.Random):
 
 
 def generate_modelled_example_expand_double(tier: Tier, rng: random.Random) -> ModelledExample:
-    a = _rand_nonzero(rng, -6, 6)
+    a = _rand_x_coeff(rng, 6)
     b = _rand_nonzero(rng, -6, 6)
-    c = _rand_nonzero(rng, -6, 6)
+    c = _rand_x_coeff(rng, 6)
     d = _rand_nonzero(rng, -6, 6)
 
     expanded = sp.expand((a * X + b) * (c * X + d))
@@ -288,9 +298,9 @@ def generate_modelled_example_expand_double(tier: Tier, rng: random.Random) -> M
         f"{_fmt_quadratic(qa, qb, qc)}",
     ]
     return ModelledExample(
-        topic_id="expand_double_brackets",
+        topic_id="expand_double_brackets_H",
         tier=Tier.HIGHER,
-        prompt=f"Expand: ({fmt_linear(a, b)})({fmt_linear(c, d)})",
+        prompt=f"Expand and simplify: ({fmt_linear(a, b)})({fmt_linear(c, d)})",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=_fmt_quadratic(qa, qb, qc),
@@ -316,7 +326,7 @@ def generate_expand_double_foundation(tier: Tier, rng: random.Random):
     if residual != 0:
         raise ValueError("Expansion verification failed: double bracket (foundation)")
 
-    prompt = f"Expand: ({fmt_linear(a, b)})({fmt_linear(c, d)})"
+    prompt = f"Expand and simplify: ({fmt_linear(a, b)})({fmt_linear(c, d)})"
     steps = [
         f"First: {a}x × {c}x = {a * c}x^2",
         f"Outer: {a}x × {d} = {a * d}x",
@@ -325,7 +335,7 @@ def generate_expand_double_foundation(tier: Tier, rng: random.Random):
         f"Combine like terms: {_fmt_quadratic(qa, qb, qc)}",
     ]
     return Question(
-        topic_id="expand_double_brackets_foundation",
+        topic_id="expand_double_brackets_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -373,9 +383,97 @@ def generate_modelled_example_expand_double_foundation(tier: Tier, rng: random.R
         f"{_fmt_quadratic(qa, qb, qc)}",
     ]
     return ModelledExample(
-        topic_id="expand_double_brackets_foundation",
+        topic_id="expand_double_brackets_F",
         tier=Tier.FOUNDATION,
-        prompt=f"Expand: ({fmt_linear(a, b)})({fmt_linear(c, d)})",
+        prompt=f"Expand and simplify: ({fmt_linear(a, b)})({fmt_linear(c, d)})",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=_fmt_quadratic(qa, qb, qc),
+    )
+
+
+def generate_expand_double_no_coefficient_foundation(tier: Tier, rng: random.Random):
+    # A genuinely easier sibling of expand_double_brackets_foundation, which
+    # allows an x-coefficient up to 4 despite its own name/comment implying
+    # (x+p)(x+q) - this topic pins both x-coefficients to exactly 1, giving
+    # the true (x + p)(x + q) shape with no coefficient of x at all to track.
+    b = rng.randint(1, 9)
+    d = rng.randint(1, 9)
+
+    expanded = sp.expand((X + b) * (X + d))
+    poly = sp.Poly(expanded, X)
+    coeffs = poly.all_coeffs()
+    coeffs = [0] * (3 - len(coeffs)) + coeffs
+    qa, qb, qc = (int(v) for v in coeffs)
+
+    residual = sp.expand((X + b) * (X + d) - (qa * X**2 + qb * X + qc))
+    if residual != 0:
+        raise ValueError("Expansion verification failed: double bracket (no coefficient, foundation)")
+
+    prompt = f"Expand and simplify: ({fmt_linear(1, b)})({fmt_linear(1, d)})"
+    steps = [
+        "First: x × x = x^2",
+        f"Outer: x × {d} = {d}x",
+        f"Inner: {b} × x = {b}x",
+        f"Last: {b} × {d} = {b * d}",
+        f"Combine like terms: {_fmt_quadratic(qa, qb, qc)}",
+    ]
+    return Question(
+        topic_id="expand_double_brackets_no_coefficient_F",
+        tier=Tier.FOUNDATION,
+        prompt=prompt,
+        solution_steps=tuple(steps),
+        final_answer=_fmt_quadratic(qa, qb, qc),
+        dedup_key=f"expand_double_nc:{b}:{d}",
+    )
+
+
+def generate_modelled_example_expand_double_no_coefficient_foundation(
+    tier: Tier, rng: random.Random
+) -> ModelledExample:
+    b = rng.randint(1, 9)
+    d = rng.randint(1, 9)
+
+    expanded = sp.expand((X + b) * (X + d))
+    poly = sp.Poly(expanded, X)
+    coeffs = poly.all_coeffs()
+    coeffs = [0] * (3 - len(coeffs)) + coeffs
+    qa, qb, qc = (int(v) for v in coeffs)
+
+    residual = sp.expand((X + b) * (X + d) - (qa * X**2 + qb * X + qc))
+    if residual != 0:
+        raise ValueError(
+            "modelled example expand_double_no_coefficient_foundation verification failed (symbolic)"
+        )
+    for test_x in (2, 5):
+        lhs = (test_x + b) * (test_x + d)
+        rhs = qa * test_x**2 + qb * test_x + qc
+        if lhs != rhs:
+            raise ValueError(
+                "modelled example expand_double_no_coefficient_foundation verification failed (numeric)"
+            )
+
+    teaching_steps = [
+        "When two brackets are multiplied together, every term in the first bracket must be multiplied "
+        "by every term in the second bracket - a common way to remember this is FOIL: First, Outer, "
+        "Inner, Last.",
+        "First: multiply the two x-terms together: x × x = x^2.",
+        f"Outer and Inner: multiply x × {d} = {d}x, and {b} × x = {b}x. Both of these are x-terms, so "
+        f"add them together: {d}x + {b}x = {b + d}x.",
+        f"Last: multiply the two constant terms: {b} × {d} = {b * d}.",
+        f"Combine all four results into one expression: {_fmt_quadratic(qa, qb, qc)}. Check by "
+        f"substituting x = 2 into both the original pair of brackets and this quadratic - both should "
+        "give the same number.",
+    ]
+    worked_calculation = [
+        f"({fmt_linear(1, b)})({fmt_linear(1, d)})",
+        f"x^2 + {d}x + {b}x + {b * d}",
+        f"{_fmt_quadratic(qa, qb, qc)}",
+    ]
+    return ModelledExample(
+        topic_id="expand_double_brackets_no_coefficient_F",
+        tier=Tier.FOUNDATION,
+        prompt=f"Expand and simplify: ({fmt_linear(1, b)})({fmt_linear(1, d)})",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=_fmt_quadratic(qa, qb, qc),
@@ -383,9 +481,9 @@ def generate_modelled_example_expand_double_foundation(tier: Tier, rng: random.R
 
 
 def generate_expand_triple(tier: Tier, rng: random.Random):
-    a, b = _rand_nonzero(rng, -4, 4), _rand_nonzero(rng, -4, 4)
-    c, d = _rand_nonzero(rng, -4, 4), _rand_nonzero(rng, -4, 4)
-    e, f = _rand_nonzero(rng, -4, 4), _rand_nonzero(rng, -4, 4)
+    a, b = _rand_x_coeff(rng, 4), _rand_nonzero(rng, -4, 4)
+    c, d = _rand_x_coeff(rng, 4), _rand_nonzero(rng, -4, 4)
+    e, f = _rand_x_coeff(rng, 4), _rand_nonzero(rng, -4, 4)
 
     expanded = sp.expand((a * X + b) * (c * X + d) * (e * X + f))
     poly = sp.Poly(expanded, X)
@@ -414,7 +512,7 @@ def generate_expand_triple(tier: Tier, rng: random.Random):
         f"= {_fmt_cubic(qa, qb, qc, qd)}",
     ]
     return Question(
-        topic_id="expand_triple_brackets",
+        topic_id="expand_triple_brackets_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -424,9 +522,9 @@ def generate_expand_triple(tier: Tier, rng: random.Random):
 
 
 def generate_modelled_example_expand_triple(tier: Tier, rng: random.Random) -> ModelledExample:
-    a, b = _rand_nonzero(rng, -4, 4), _rand_nonzero(rng, -4, 4)
-    c, d = _rand_nonzero(rng, -4, 4), _rand_nonzero(rng, -4, 4)
-    e, f = _rand_nonzero(rng, -4, 4), _rand_nonzero(rng, -4, 4)
+    a, b = _rand_x_coeff(rng, 4), _rand_nonzero(rng, -4, 4)
+    c, d = _rand_x_coeff(rng, 4), _rand_nonzero(rng, -4, 4)
+    e, f = _rand_x_coeff(rng, 4), _rand_nonzero(rng, -4, 4)
 
     expanded = sp.expand((a * X + b) * (c * X + d) * (e * X + f))
     poly = sp.Poly(expanded, X)
@@ -462,7 +560,7 @@ def generate_modelled_example_expand_triple(tier: Tier, rng: random.Random) -> M
         f"{_fmt_cubic(qa, qb, qc, qd)}",
     ]
     return ModelledExample(
-        topic_id="expand_triple_brackets",
+        topic_id="expand_triple_brackets_H",
         tier=Tier.HIGHER,
         prompt=f"Expand and simplify: ({fmt_linear(a, b)})({fmt_linear(c, d)})({fmt_linear(e, f)})",
         worked_calculation=tuple(worked_calculation),
@@ -504,7 +602,7 @@ def generate_factorise_quadratic(tier: Tier, rng: random.Random):
         f"Write as two brackets: ({_fmt_factor(p)})({_fmt_factor(q)})",
     ]
     return Question(
-        topic_id="factorise_quadratics",
+        topic_id="factorise_quadratics_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -548,7 +646,7 @@ def generate_modelled_example_factorise_quadratic(tier: Tier, rng: random.Random
         f"({_fmt_factor(p)})({_fmt_factor(q)})",
     ]
     return ModelledExample(
-        topic_id="factorise_quadratics",
+        topic_id="factorise_quadratics_H",
         tier=Tier.HIGHER,
         prompt=f"Factorise: {_fmt_quadratic(1, b, c)}",
         worked_calculation=tuple(worked_calculation),
@@ -576,7 +674,7 @@ def generate_factorise_quadratic_foundation(tier: Tier, rng: random.Random):
         f"Write as two brackets: ({_fmt_factor(p)})({_fmt_factor(q)})",
     ]
     return Question(
-        topic_id="factorise_quadratics_foundation",
+        topic_id="factorise_quadratics_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -619,7 +717,7 @@ def generate_modelled_example_factorise_quadratic_foundation(
         f"({_fmt_factor(p)})({_fmt_factor(q)})",
     ]
     return ModelledExample(
-        topic_id="factorise_quadratics_foundation",
+        topic_id="factorise_quadratics_F",
         tier=Tier.FOUNDATION,
         prompt=f"Factorise: {_fmt_quadratic(1, b, c)}",
         worked_calculation=tuple(worked_calculation),
@@ -628,8 +726,159 @@ def generate_modelled_example_factorise_quadratic_foundation(
     )
 
 
+def generate_solve_quadratic_factorising_foundation(tier: Tier, rng: random.Random):
+    # Same root-first construction as generate_factorise_quadratic_foundation
+    # (both roots negative, since p, q > 0 here) - solving is just the extra
+    # "hence x = -p or x = -q" step once the quadratic is factorised.
+    p = rng.randint(1, 9)
+    q = rng.randint(1, 9)
+    b = p + q
+    c = p * q
+
+    residual = sp.expand((X + p) * (X + q) - (X**2 + b * X + c))
+    if residual != 0:
+        raise ValueError("solve_quadratic_factorising_foundation verification failed")
+
+    root1, root2 = -p, -q
+    prompt = f"Solve {_fmt_quadratic(1, b, c)} = 0 by factorising."
+    steps = [
+        f"Find two numbers that multiply to {c} and add to {b}: {p} and {q}",
+        f"Factorise: ({_fmt_factor(p)})({_fmt_factor(q)}) = 0",
+        f"Either x + {p} = 0 or x + {q} = 0",
+        f"x = {root1} or x = {root2}",
+    ]
+    return Question(
+        topic_id="solve_quadratic_factorising_F",
+        tier=Tier.FOUNDATION,
+        prompt=prompt,
+        solution_steps=tuple(steps),
+        final_answer=f"x = {root1} or x = {root2}",
+        dedup_key=f"solve_factorise_f:{p}:{q}",
+    )
+
+
+def generate_modelled_example_solve_quadratic_factorising_foundation(
+    tier: Tier, rng: random.Random
+) -> ModelledExample:
+    p = rng.randint(1, 9)
+    q = rng.randint(1, 9)
+    b = p + q
+    c = p * q
+
+    residual = sp.expand((X + p) * (X + q) - (X**2 + b * X + c))
+    if residual != 0:
+        raise ValueError("modelled example solve_quadratic_factorising_foundation verification failed (symbolic)")
+    root1, root2 = -p, -q
+    for root in (root1, root2):
+        if root**2 + b * root + c != 0:
+            raise ValueError("modelled example solve_quadratic_factorising_foundation verification failed (numeric)")
+
+    teaching_steps = [
+        f"If two brackets multiply together to give 0, one of them must actually equal 0 - this is the "
+        "key idea that lets factorising solve an equation, not just simplify an expression.",
+        f"Factorise {_fmt_quadratic(1, b, c)} the usual way: find two numbers that multiply to {c} and "
+        f"add to {b}. That's {p} and {q}, giving ({_fmt_factor(p)})({_fmt_factor(q)}) = 0.",
+        f"Since the product is 0, either x + {p} = 0 or x + {q} = 0 - there's no other way to make a "
+        "product of two brackets equal zero.",
+        f"Solve each mini-equation separately: x + {p} = 0 gives x = {root1}, and x + {q} = 0 gives "
+        f"x = {root2}. Check by substituting back into the original: both make "
+        f"{_fmt_quadratic(1, b, c)} equal exactly 0.",
+    ]
+    worked_calculation = [
+        f"{_fmt_quadratic(1, b, c)} = 0",
+        f"({_fmt_factor(p)})({_fmt_factor(q)}) = 0",
+        f"x = {root1} or x = {root2}",
+    ]
+    return ModelledExample(
+        topic_id="solve_quadratic_factorising_F",
+        tier=Tier.FOUNDATION,
+        prompt=f"Solve {_fmt_quadratic(1, b, c)} = 0 by factorising.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"x = {root1} or x = {root2}",
+    )
+
+
+def generate_solve_quadratic_factorising(tier: Tier, rng: random.Random):
+    # Same root-first construction as generate_factorise_quadratic (roots can
+    # be any sign) - _find_factor_pair independently recovers the factor pair
+    # by searching divisors of c (the manual method), which is then asserted
+    # to match the roots the quadratic was actually built from.
+    r1 = _rand_nonzero(rng, -9, 9)
+    r2 = _rand_nonzero(rng, -9, 9)
+    b = -(r1 + r2)
+    c = r1 * r2
+
+    p, q = _find_factor_pair(b, c)
+    if {p, q} != {-r1, -r2}:
+        raise ValueError("solve_quadratic_factorising verification failed: factor pair mismatch")
+
+    residual = sp.expand((X + p) * (X + q) - (X**2 + b * X + c))
+    if residual != 0:
+        raise ValueError("solve_quadratic_factorising verification failed: expansion")
+
+    root1, root2 = -p, -q
+    prompt = f"Solve {_fmt_quadratic(1, b, c)} = 0 by factorising."
+    steps = [
+        f"Find two numbers that multiply to {c} and add to {b}: {p} and {q}",
+        f"Factorise: ({_fmt_factor(p)})({_fmt_factor(q)}) = 0",
+        f"Either x + {p} = 0 or x + {q} = 0",
+        f"x = {root1} or x = {root2}",
+    ]
+    return Question(
+        topic_id="solve_quadratic_factorising_H",
+        tier=Tier.HIGHER,
+        prompt=prompt,
+        solution_steps=tuple(steps),
+        final_answer=f"x = {root1} or x = {root2}",
+        dedup_key=f"solve_factorise:{r1}:{r2}",
+    )
+
+
+def generate_modelled_example_solve_quadratic_factorising(tier: Tier, rng: random.Random) -> ModelledExample:
+    r1 = _rand_nonzero(rng, -9, 9)
+    r2 = _rand_nonzero(rng, -9, 9)
+    b = -(r1 + r2)
+    c = r1 * r2
+
+    p, q = _find_factor_pair(b, c)
+    if {p, q} != {-r1, -r2}:
+        raise ValueError("modelled example solve_quadratic_factorising verification failed: factor pair mismatch")
+    residual = sp.expand((X + p) * (X + q) - (X**2 + b * X + c))
+    if residual != 0:
+        raise ValueError("modelled example solve_quadratic_factorising verification failed (symbolic)")
+    root1, root2 = -p, -q
+    for root in (root1, root2):
+        if root**2 + b * root + c != 0:
+            raise ValueError("modelled example solve_quadratic_factorising verification failed (numeric)")
+
+    teaching_steps = [
+        f"If two brackets multiply together to give 0, one of them must actually equal 0 - this is the "
+        "key idea that lets factorising solve an equation, not just simplify an expression.",
+        f"Factorise {_fmt_quadratic(1, b, c)} the usual way: find two numbers that multiply to {c} and "
+        f"add to {b}. That's {p} and {q}, giving ({_fmt_factor(p)})({_fmt_factor(q)}) = 0.",
+        f"Since the product is 0, either x + {p} = 0 or x + {q} = 0.",
+        f"Solve each mini-equation separately: x + {p} = 0 gives x = {root1}, and x + {q} = 0 gives "
+        f"x = {root2}. Check by substituting back into the original: both make "
+        f"{_fmt_quadratic(1, b, c)} equal exactly 0.",
+    ]
+    worked_calculation = [
+        f"{_fmt_quadratic(1, b, c)} = 0",
+        f"({_fmt_factor(p)})({_fmt_factor(q)}) = 0",
+        f"x = {root1} or x = {root2}",
+    ]
+    return ModelledExample(
+        topic_id="solve_quadratic_factorising_H",
+        tier=Tier.HIGHER,
+        prompt=f"Solve {_fmt_quadratic(1, b, c)} = 0 by factorising.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"x = {root1} or x = {root2}",
+    )
+
+
 TOPIC_EXPAND_SINGLE = TopicDefinition(
-    id="expand_single_bracket",
+    id="expand_single_bracket_F",
     display_name="Single Bracket",
     description="Expand a single bracket, e.g. a(bx + c).",
     generate=generate_expand_single,
@@ -640,7 +889,7 @@ TOPIC_EXPAND_SINGLE = TopicDefinition(
 )
 
 TOPIC_EXPAND_DOUBLE_FOUNDATION = TopicDefinition(
-    id="expand_double_brackets_foundation",
+    id="expand_double_brackets_F",
     display_name="Double Brackets",
     description="Expand two brackets into a quadratic expression.",
     generate=generate_expand_double_foundation,
@@ -650,8 +899,19 @@ TOPIC_EXPAND_DOUBLE_FOUNDATION = TopicDefinition(
     generate_modelled_example=generate_modelled_example_expand_double_foundation,
 )
 
+TOPIC_EXPAND_DOUBLE_NO_COEFFICIENT_FOUNDATION = TopicDefinition(
+    id="expand_double_brackets_no_coefficient_F",
+    display_name="Double Brackets (No Coefficient)",
+    description="Expand two brackets of the form (x + p)(x + q), with no coefficient of x at all.",
+    generate=generate_expand_double_no_coefficient_foundation,
+    section=SECTION,
+    group=GROUP_EXPAND,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_expand_double_no_coefficient_foundation,
+)
+
 TOPIC_EXPAND_DOUBLE = TopicDefinition(
-    id="expand_double_brackets",
+    id="expand_double_brackets_H",
     display_name="Double Brackets",
     description="Expand two brackets into a quadratic expression, including negative coefficients.",
     generate=generate_expand_double,
@@ -662,7 +922,7 @@ TOPIC_EXPAND_DOUBLE = TopicDefinition(
 )
 
 TOPIC_EXPAND_TRIPLE = TopicDefinition(
-    id="expand_triple_brackets",
+    id="expand_triple_brackets_H",
     display_name="Triple Brackets",
     description="Expand three linear brackets into a cubic expression.",
     generate=generate_expand_triple,
@@ -673,7 +933,7 @@ TOPIC_EXPAND_TRIPLE = TopicDefinition(
 )
 
 TOPIC_FACTORISE_COMMON = TopicDefinition(
-    id="factorise_common_factor",
+    id="factorise_common_factor_F",
     display_name="Common Factor",
     description="Factorise an expression by taking out the highest common factor.",
     generate=generate_factorise_common,
@@ -684,7 +944,7 @@ TOPIC_FACTORISE_COMMON = TopicDefinition(
 )
 
 TOPIC_FACTORISE_QUADRATIC_FOUNDATION = TopicDefinition(
-    id="factorise_quadratics_foundation",
+    id="factorise_quadratics_F",
     display_name="Quadratics",
     description="Factorise a quadratic expression with two positive integer roots.",
     generate=generate_factorise_quadratic_foundation,
@@ -695,7 +955,7 @@ TOPIC_FACTORISE_QUADRATIC_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_FACTORISE_QUADRATIC = TopicDefinition(
-    id="factorise_quadratics",
+    id="factorise_quadratics_H",
     display_name="Quadratics",
     description="Factorise a quadratic expression with integer roots, including negative roots.",
     generate=generate_factorise_quadratic,
@@ -703,4 +963,26 @@ TOPIC_FACTORISE_QUADRATIC = TopicDefinition(
     group=GROUP_FACTORISE,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_factorise_quadratic,
+)
+
+TOPIC_SOLVE_QUADRATIC_FACTORISING_FOUNDATION = TopicDefinition(
+    id="solve_quadratic_factorising_F",
+    display_name="Solving by Factorising",
+    description="Solve a quadratic equation with two positive integer factors by factorising.",
+    generate=generate_solve_quadratic_factorising_foundation,
+    section=SECTION,
+    group=GROUP_SOLVE_QUADRATIC,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_solve_quadratic_factorising_foundation,
+)
+
+TOPIC_SOLVE_QUADRATIC_FACTORISING = TopicDefinition(
+    id="solve_quadratic_factorising_H",
+    display_name="Solving by Factorising",
+    description="Solve a quadratic equation by factorising, including negative roots.",
+    generate=generate_solve_quadratic_factorising,
+    section=SECTION,
+    group=GROUP_SOLVE_QUADRATIC,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_solve_quadratic_factorising,
 )

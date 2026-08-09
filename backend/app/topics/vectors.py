@@ -27,7 +27,17 @@ _TARGETS = ["OP", "AP", "PB"]
 
 
 def _fmt_vector(v) -> str:
-    return f"({v[0]}, {v[1]})"
+    return f"\\colvec{{{v[0]}}}{{{v[1]}}}"
+
+
+def _join_vector_terms(k_term: str, op: str, m_term: str, m: int) -> str:
+    """Join "{k_term} {op} {m_term}" the way a real exam would print it -
+    parenthesising m_term whenever m is itself negative, so a double sign is
+    never printed bare: "4a + -3b" reads as "4a + (-3b)" and "2a - -4b" reads
+    as "2a - (-4b)" (user review feedback)."""
+    if m < 0:
+        return f"{k_term} {op} ({m_term})"
+    return f"{k_term} {op} {m_term}"
 
 
 def _nonzero_int(rng: random.Random, lo: int, hi: int) -> int:
@@ -65,7 +75,7 @@ def _vector_arithmetic(rng: random.Random, *, coord_range: int, k_range, m_range
 
     k_term = _VEC_A if k == 1 else f"{k}{_VEC_A}"
     m_term = _VEC_B if m == 1 else f"{m}{_VEC_B}"
-    expr = f"{k_term} {op} {m_term}"
+    expr = _join_vector_terms(k_term, op, m_term, m)
 
     steps = [
         f"{_VEC_A} = {_fmt_vector((ax, ay))}, {_VEC_B} = {_fmt_vector((bx, by))}",
@@ -103,7 +113,7 @@ def _modelled_vector_arithmetic(rng: random.Random, *, coord_range: int, k_range
 
     k_term = _VEC_A if k == 1 else f"{k}{_VEC_A}"
     m_term = _VEC_B if m == 1 else f"{m}{_VEC_B}"
-    expr = f"{k_term} {op} {m_term}"
+    expr = _join_vector_terms(k_term, op, m_term, m)
     verb = "adding" if op == "+" else "subtracting"
 
     teaching_steps = [
@@ -138,7 +148,7 @@ def generate_modelled_example_vectors_arithmetic_foundation(tier: Tier, rng: ran
         coord_range=8,
         k_range=lambda r: r.randint(1, 4),
         m_range=lambda r: r.randint(1, 4),
-        topic_id="vectors_arithmetic_foundation",
+        topic_id="vectors_arithmetic_F",
         tier=Tier.FOUNDATION,
     )
 
@@ -149,7 +159,7 @@ def generate_modelled_example_vectors_arithmetic_higher(tier: Tier, rng: random.
         coord_range=12,
         k_range=lambda r: _nonzero_int(r, -5, 5),
         m_range=lambda r: _nonzero_int(r, -5, 5),
-        topic_id="vectors_arithmetic_higher",
+        topic_id="vectors_arithmetic_H",
         tier=Tier.HIGHER,
     )
 
@@ -160,7 +170,7 @@ def generate_vectors_arithmetic_foundation(tier: Tier, rng: random.Random) -> Qu
         coord_range=8,
         k_range=lambda r: r.randint(1, 4),
         m_range=lambda r: r.randint(1, 4),
-        topic_id="vectors_arithmetic_foundation",
+        topic_id="vectors_arithmetic_F",
         tier=Tier.FOUNDATION,
     )
 
@@ -171,7 +181,7 @@ def generate_vectors_arithmetic_higher(tier: Tier, rng: random.Random) -> Questi
         coord_range=12,
         k_range=lambda r: _nonzero_int(r, -5, 5),
         m_range=lambda r: _nonzero_int(r, -5, 5),
-        topic_id="vectors_arithmetic_higher",
+        topic_id="vectors_arithmetic_H",
         tier=Tier.HIGHER,
     )
 
@@ -249,7 +259,7 @@ def generate_geometric_vectors(tier: Tier, rng: random.Random) -> Question:
         steps.append(f"{vec_name} = OB - O{point_label} = {answer}")
 
     return Question(
-        topic_id="geometric_vectors",
+        topic_id="geometric_vectors_H",
         tier=Tier.HIGHER,
         prompt=(
             f"OAB is a triangle with OA = {_VEC_A} and OB = {_VEC_B}. Point {point_label} lies on AB "
@@ -334,7 +344,7 @@ def generate_modelled_example_geometric_vectors(tier: Tier, rng: random.Random) 
         worked_calculation.append(f"{vec_name} = OB - O{point_label} = {answer}")
 
     return ModelledExample(
-        topic_id="geometric_vectors",
+        topic_id="geometric_vectors_H",
         tier=Tier.HIGHER,
         prompt=(
             f"OAB is a triangle with OA = {_VEC_A} and OB = {_VEC_B}. Point {point_label} lies on AB "
@@ -352,7 +362,7 @@ def generate_modelled_example_geometric_vectors(tier: Tier, rng: random.Random) 
 
 
 TOPIC_VECTORS_ARITHMETIC_FOUNDATION = TopicDefinition(
-    id="vectors_arithmetic_foundation",
+    id="vectors_arithmetic_F",
     display_name="Vector Arithmetic",
     description="Add, subtract, and scale column vectors.",
     generate=generate_vectors_arithmetic_foundation,
@@ -363,7 +373,7 @@ TOPIC_VECTORS_ARITHMETIC_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_VECTORS_ARITHMETIC_HIGHER = TopicDefinition(
-    id="vectors_arithmetic_higher",
+    id="vectors_arithmetic_H",
     display_name="Vector Arithmetic",
     description="Add, subtract, and scale column vectors, including negative scalars.",
     generate=generate_vectors_arithmetic_higher,
@@ -374,7 +384,7 @@ TOPIC_VECTORS_ARITHMETIC_HIGHER = TopicDefinition(
 )
 
 TOPIC_GEOMETRIC_VECTORS = TopicDefinition(
-    id="geometric_vectors",
+    id="geometric_vectors_H",
     display_name="Vector Geometry",
     description="Express a vector between two points on a triangle in terms of given position vectors.",
     generate=generate_geometric_vectors,

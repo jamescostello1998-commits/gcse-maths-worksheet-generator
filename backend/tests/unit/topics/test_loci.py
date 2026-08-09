@@ -73,8 +73,8 @@ def test_topic_definitions_have_expected_metadata():
 
 
 MODELLED_GENERATORS = [
-    (loci.generate_modelled_example_loci_constructions, Tier.FOUNDATION, "loci_constructions"),
-    (loci.generate_modelled_example_loci_regions, Tier.HIGHER, "loci_regions"),
+    (loci.generate_modelled_example_loci_constructions, Tier.FOUNDATION, "loci_constructions_F"),
+    (loci.generate_modelled_example_loci_regions, Tier.HIGHER, "loci_regions_H"),
 ]
 
 

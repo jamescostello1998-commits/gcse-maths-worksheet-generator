@@ -59,9 +59,9 @@ def test_topic_definitions_have_expected_metadata():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (estimation.generate_modelled_example_estimation, Tier.FOUNDATION, "estimation_rounding"),
-    (estimation.generate_modelled_example_error_interval, Tier.FOUNDATION, "error_interval"),
-    (estimation.generate_modelled_example_bounds_calculation, Tier.HIGHER, "bounds_calculation"),
+    (estimation.generate_modelled_example_estimation, Tier.FOUNDATION, "estimation_rounding_F"),
+    (estimation.generate_modelled_example_error_interval, Tier.FOUNDATION, "error_interval_F"),
+    (estimation.generate_modelled_example_bounds_calculation, Tier.HIGHER, "bounds_calculation_H"),
 ]
 
 

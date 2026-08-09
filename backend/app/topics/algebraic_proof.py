@@ -390,7 +390,7 @@ def generate_algebraic_proof(tier: Tier, rng: random.Random) -> Question:
         template.conclusion,
     ]
     return Question(
-        topic_id="algebraic_proof",
+        topic_id="algebraic_proof_H",
         tier=Tier.HIGHER,
         prompt=f"Prove algebraically that {template.claim}.",
         solution_steps=tuple(steps),
@@ -429,7 +429,7 @@ def generate_modelled_example_algebraic_proof(tier: Tier, rng: random.Random) ->
         f"= {template.factored_line}",
     ]
     return ModelledExample(
-        topic_id="algebraic_proof",
+        topic_id="algebraic_proof_H",
         tier=Tier.HIGHER,
         prompt=f"Prove algebraically that {template.claim}.",
         worked_calculation=tuple(worked_calculation),
@@ -439,7 +439,7 @@ def generate_modelled_example_algebraic_proof(tier: Tier, rng: random.Random) ->
 
 
 TOPIC_ALGEBRAIC_PROOF = TopicDefinition(
-    id="algebraic_proof",
+    id="algebraic_proof_H",
     display_name="Algebraic Proof",
     description="Prove a general algebraic claim about integers (parity, multiples, consecutive-number properties).",
     generate=generate_algebraic_proof,

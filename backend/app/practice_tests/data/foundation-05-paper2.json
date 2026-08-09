@@ -4,9 +4,10 @@
   "tier": "foundation",
   "sitting_id": "foundation-05",
   "paper_number": 2,
+  "calculator_allowed": false,
   "questions": [
     {
-      "topic_id": "decimals_round_sf",
+      "topic_id": "decimals_round_sf_F",
       "prompt": "Round 808.203 to 1 significant figure.",
       "solution_steps": [
         "Identify the first 1 significant figure of 808.203.",
@@ -35,34 +36,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_to_small",
-      "prompt": "Write 0.0000000827 in standard form.",
+      "topic_id": "standard_form_to_F",
+      "prompt": "Write 10000 in standard form.",
       "solution_steps": [
-        "Move the decimal point until there is one non-zero digit before it: 8.27",
-        "Count how many places the decimal point moved: 8 (the number is less than 1, so the power is negative)",
-        "0.0000000827 = 8.27 × 10^-8"
+        "Move the decimal point until there is one non-zero digit before it: 1",
+        "Count how many places the decimal point moved: 4",
+        "10000 = 1 × 10^4"
       ],
-      "final_answer": "8.27 × 10^-8",
+      "final_answer": "1 × 10^4",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Move the decimal point until there is one non-zero digit before it: 8.27",
+          "description": "Move the decimal point until there is one non-zero digit before it: 1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Count how many places the decimal point moved: 8 (the number is less than 1, so the power is negative)",
+          "description": "Count how many places the decimal point moved: 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "0.0000000827 = 8.27 × 10^-8",
+          "description": "10000 = 1 × 10^4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8.27 × 10^-8 oe",
+          "description": "1 × 10^4 oe",
           "marks": 1
         }
       ],
@@ -70,8 +71,8 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bidmas",
-      "prompt": "Work out 20 + 6 × (8 - 6)^2 ÷ 3. Use the correct order of operations.",
+      "topic_id": "bidmas_F",
+      "prompt": "Work out 20 + 6 × (8 - 6)^2 ÷ 3.",
       "solution_steps": [
         "Brackets: (8 - 6) = 2",
         "Indices: 2^2 = 4",
@@ -112,28 +113,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_add_subtract",
-      "prompt": "Work out 91.7 + 52.6.",
+      "topic_id": "decimals_ordering_F",
+      "prompt": "Write these values in ascending order: 0.61, 67%, 63/100, 70%",
       "solution_steps": [
-        "Line up the decimal points, padding with a zero so both numbers have the same number of decimal places.",
-        "91.7 + 52.6 = 144.3"
+        "Convert each value to a decimal: 0.61 = 0.61, 67% = 0.67, 63/100 = 0.63, 70% = 0.70",
+        "Order in ascending order: 0.61, 63/100, 67%, 70%"
       ],
-      "final_answer": "144.3",
+      "final_answer": "0.61, 63/100, 67%, 70%",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Line up the decimal points, padding with a zero so both numbers have the same number of decimal places.",
+          "description": "Convert each value to a decimal: 0.61 = 0.61, 67% = 0.67, 63/100 = 0.63, 70% = 0.70",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "91.7 + 52.6 = 144.3",
+          "description": "Order in ascending order: 0.61, 63/100, 67%, 70%",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "144.3 oe",
+          "description": "0.61, 63/100, 67%, 70% oe",
           "marks": 1
         }
       ],
@@ -141,34 +142,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_calculator",
-      "prompt": "Use a calculator to work out (6.9 × 10^3) ÷ (3.8 × 10^7). Give your answer in standard form, rounded to 3 significant figures if necessary.",
+      "topic_id": "standard_form_multiply_divide_F",
+      "prompt": "Work out (3 × 10^3) ÷ (4 × 10^5). Give your answer in standard form.",
       "solution_steps": [
-        "Divide the mantissas on your calculator: 6.9 ÷ 3.8 = 1.815789",
-        "Subtract the powers of 10: 3 - 7 = -4",
-        "Round the mantissa to 3 significant figures: 1.82 × 10^-4"
+        "Divide the mantissas: 3 ÷ 4 = 0.75",
+        "Subtract the powers of 10: 3 - 5 = -2",
+        "Renormalize so the mantissa is between 1 and 10: 7.5 × 10^-3"
       ],
-      "final_answer": "1.82 × 10^-4",
+      "final_answer": "7.5 × 10^-3",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide the mantissas on your calculator: 6.9 ÷ 3.8 = 1.815789",
+          "description": "Divide the mantissas: 3 ÷ 4 = 0.75",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract the powers of 10: 3 - 7 = -4",
+          "description": "Subtract the powers of 10: 3 - 5 = -2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Round the mantissa to 3 significant figures: 1.82 × 10^-4",
+          "description": "Renormalize so the mantissa is between 1 and 10: 7.5 × 10^-3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1.82 × 10^-4 oe",
+          "description": "7.5 × 10^-3 oe",
           "marks": 1
         }
       ],
@@ -176,8 +177,8 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_multiply",
-      "prompt": "Work out 19.0 × 17.6.",
+      "topic_id": "decimals_multiply_F",
+      "prompt": "Evaluate 19.0 × 17.6.",
       "solution_steps": [
         "Ignore the decimal points and multiply the whole numbers: 190 × 176 = 33440",
         "Count the total decimal places in the question: 1 + 1 = 2",
@@ -211,7 +212,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "lcm_by_listing",
+      "topic_id": "lcm_by_listing_F",
       "prompt": "Find the lowest common multiple (LCM) of 10 and 13.",
       "solution_steps": [
         "Multiples of 10: 10, 20, 30, 40, 50, ...",
@@ -246,49 +247,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solving_inequalities_foundation",
-      "prompt": "Solve the inequality: x/2 - 3 > -9",
-      "solution_steps": [
-        "x/2 - 3 > -9",
-        "Add 3 to both sides:",
-        "x/2 > -6",
-        "Multiply both sides by 2:",
-        "x > -12"
-      ],
-      "final_answer": "x > -12",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "x/2 - 3 > -9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add 3 to both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x/2 > -6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply both sides by 2: x > -12",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x > -12 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simultaneous_graphically",
+      "topic_id": "simultaneous_graphically_F",
       "prompt": "The graphs of y = 4x - 10 and y = -3x + 4 are shown below. Use the graphs to write down the solution to the simultaneous equations.",
       "solution_steps": [
         "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
@@ -316,15 +275,61 @@
       "diagram": {
         "kind": "linear_graph_pair",
         "params": {
-          "intersection_label": "?",
           "label1": "y = 4x - 10",
-          "label2": "y = -3x + 4"
+          "label2": "y = -3x + 4",
+          "m1": 4,
+          "c1": -10,
+          "m2": -3,
+          "c2": 4,
+          "sol_x": 2,
+          "sol_y": -2
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "distance_time_interpret",
+      "topic_id": "simultaneous_forming_and_solving_F",
+      "prompt": "2 tickets and 2 programmes cost £1.84 in total. 5 tickets and 2 programmes cost £3.19 in total. Form and solve a pair of simultaneous equations to find the cost of one ticket and one programme.",
+      "solution_steps": [
+        "Let x = cost of one ticket (pence), y = cost of one programme (pence).",
+        "2x + 2y = 184  (1)",
+        "5x + 2y = 319  (2)",
+        "Solving simultaneously: x = 45, y = 47"
+      ],
+      "final_answer": "ticket = £0.45, programme = £0.47",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let x = cost of one ticket (pence), y = cost of one programme (pence).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x + 2y = 184  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x + 2y = 319  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Solving simultaneously: x = 45, y = 47",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "ticket = £0.45, programme = £0.47 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "distance_time_interpret_F",
       "prompt": "The distance-time graph shows a delivery van's journey. Find the total distance travelled.",
       "solution_steps": [
         "Distance out = 12 km. Distance back = 12 km.",
@@ -379,152 +384,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "roots_foundation",
-      "prompt": "Work out the cube root of 1000.",
+      "topic_id": "solving_inequalities_F",
+      "prompt": "Solve the inequality: \\frac{x}{2} - 3 > -9",
       "solution_steps": [
-        "10^3 = 1000, so the cube root of 1000 = 10"
+        "\\frac{x}{2} - 3 > -9",
+        "Add 3 to both sides:",
+        "\\frac{x}{2} > -6",
+        "Multiply both sides by 2:",
+        "x > -12"
       ],
-      "final_answer": "10",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "10^3 = 1000, so the cube root of 1000 = 10",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "10 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "plot_distance_time",
-      "prompt": "A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop 8 km away after 25 minutes. They stay at the shop until 30 minutes, then cycle straight back home at a constant speed, arriving home at 45 minutes. Draw a distance-time graph to show this journey, and find the total distance travelled.",
-      "solution_steps": [
-        "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 8 km after 25 minutes.",
-        "Stay at 8 km until 30 minutes.",
-        "Return at a constant speed to 0 km, arriving home at 45 minutes.",
-        "Plot these points and join each stage with a straight line segment.",
-        "Total distance travelled = 8 km out + 8 km back = 16 km"
-      ],
-      "final_answer": "16 km",
+      "final_answer": "x > -12",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 8 km after 25 minutes.",
+          "description": "\\frac{x}{2} - 3 > -9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Stay at 8 km until 30 minutes.",
+          "description": "Add 3 to both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Return at a constant speed to 0 km, arriving home at 45 minutes.",
+          "description": "\\frac{x}{2} > -6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot these points and join each stage with a straight line segment. Total distance travelled = 8 km out + 8 km back = 16 km",
+          "description": "Multiply both sides by 2: x > -12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "16 km oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              25,
-              8
-            ],
-            [
-              30,
-              8
-            ],
-            [
-              45,
-              0
-            ]
-          ],
-          "x_max": 50,
-          "y_max": 10,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)",
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              25,
-              8
-            ],
-            [
-              30,
-              8
-            ],
-            [
-              45,
-              0
-            ]
-          ],
-          "x_max": 50,
-          "y_max": 10,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)"
-        }
-      }
-    },
-    {
-      "topic_id": "change_subject_foundation",
-      "prompt": "Make t the subject of the formula v = u + 2t.",
-      "solution_steps": [
-        "v = u + 2t",
-        "Subtract u from both sides: v - u = 2t",
-        "Divide both sides by 2: t = (v - u)/2"
-      ],
-      "final_answer": "t = (v - u)/2",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "v = u + 2t",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract u from both sides: v - u = 2t",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by 2: t = (v - u)/2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "t = (v - u)/2 oe",
+          "description": "x > -12 oe",
           "marks": 1
         }
       ],
@@ -532,7 +426,144 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_two_step",
+      "topic_id": "plot_quadratic_F",
+      "prompt": "Complete a table of values for y = x^2 - 1 for x = -3 to 3, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = x^2 - 1:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: 8, 3, 0, -1, 0, 3, 8",
+        "Plot each (x, y) point and join them with a single smooth curve."
+      ],
+      "final_answer": "Quadratic curve: y = x^2 - 1",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = x^2 - 1:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 8, 3, 0, -1, 0, 3, 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Quadratic curve: y = x^2 - 1 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "quadratic",
+          "a": 1,
+          "b": 0,
+          "c": -1,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -2,
+          "y_max": 9,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "quadratic",
+          "a": 1,
+          "b": 0,
+          "c": -1,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -2,
+          "y_max": 9,
+          "table_points": [
+            [
+              -3,
+              8
+            ],
+            [
+              -2,
+              3
+            ],
+            [
+              -1,
+              0
+            ],
+            [
+              0,
+              -1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              8
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "substitution_F",
+      "prompt": "A = (1/2)bh. Find the value of A when b = 20 and h = 8.",
+      "solution_steps": [
+        "A = (1/2)bh",
+        "A = (1/2) × 20 × 8",
+        "A = 160/2",
+        "A = 80"
+      ],
+      "final_answer": "A = 80",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A = (1/2)bh",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = (1/2) × 20 × 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = 160/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = 80",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "A = 80 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_two_step_F",
       "prompt": "Solve: 8x + 5 = 37",
       "solution_steps": [
         "8x + 5 = 37",
@@ -574,72 +605,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_both_sides_foundation",
-      "prompt": "Solve: 2x + 1 = 3x - 6",
+      "topic_id": "find_percentage_change_F",
+      "prompt": "The price of an item changes from £120 to £102. Find the percentage decrease.",
       "solution_steps": [
-        "2x + 1 = 3x - 6",
-        "Subtract 3x from both sides:",
-        "-x + 1 = -6",
-        "Subtract 1 from both sides:",
-        "-x = -7",
-        "Divide both sides by -1:",
-        "x = 7"
+        "Find the difference between the two values: £102 and £120 differ by £18",
+        "Divide by the ORIGINAL value and convert to a percentage: £18 ÷ £120 × 100 = 15%"
       ],
-      "final_answer": "7",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "2x + 1 = 3x - 6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 3x from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "-x + 1 = -6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 1 from both sides: -x = -7 Divide both sides by -1: x = 7",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "7 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simple_interest",
-      "prompt": "£2700 is invested at a simple interest rate of 3% per year for 2 years. Find the interest earned.",
-      "solution_steps": [
-        "Simple interest formula: I = P × r × t ÷ 100",
-        "I = 2700 × 3 × 2 ÷ 100 = £162"
-      ],
-      "final_answer": "£162",
+      "final_answer": "15% decrease",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Simple interest formula: I = P × r × t ÷ 100",
+          "description": "Find the difference between the two values: £102 and £120 differ by £18",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "I = 2700 × 3 × 2 ÷ 100 = £162",
+          "description": "Divide by the ORIGINAL value and convert to a percentage: £18 ÷ £120 × 100 = 15%",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£162 oe",
+          "description": "15% decrease oe",
           "marks": 1
         }
       ],
@@ -647,7 +634,49 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pressure",
+      "topic_id": "best_buys_noncalculator_F",
+      "prompt": "A shop sells breakfast cereal in different sizes: A: £9.00 for 600g; B: £3.60 for 200g; C: £1.40 for 700g. Which option is the better value for money? Show your working.",
+      "solution_steps": [
+        "Work out the price per 100g for each option:",
+        "A: £9.00 ÷ 600 × 100 = 150p per 100g",
+        "B: £3.60 ÷ 200 × 100 = 180p per 100g",
+        "C: £1.40 ÷ 700 × 100 = 20p per 100g",
+        "The lowest price per 100g is C at 20p per 100g, so C is the best value."
+      ],
+      "final_answer": "C (£1.40 for 700g)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Work out the price per 100g for each option:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A: £9.00 ÷ 600 × 100 = 150p per 100g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B: £3.60 ÷ 200 × 100 = 180p per 100g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "C: £1.40 ÷ 700 × 100 = 20p per 100g The lowest price per 100g is C at 20p per 100g, so C is the best value.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "C (£1.40 for 700g) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pressure_F",
       "prompt": "A machine foot exerts a force of 1185 N and a pressure of 113 N/m². Find the contact area, correct to 2 decimal places.",
       "solution_steps": [
         "area = force ÷ pressure",
@@ -676,7 +705,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_three_part_foundation",
+      "topic_id": "ratio_share_three_part_F",
       "prompt": "Share 16 in the ratio 4:3:1.",
       "solution_steps": [
         "Total parts = 4 + 3 + 1 = 8",
@@ -718,212 +747,258 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_shape_similar_foundation",
-      "prompt": "Shape A and Shape B are similar. A side on shape A is 8 cm. The corresponding side on shape B is 16 cm. Another side on shape A is 8 cm. Find the length of the corresponding side on shape B.",
+      "topic_id": "transform_reflect_complete_F",
+      "prompt": "Reflect shape ABC in the line y = -1. Draw and label the image A'B'C'.",
       "solution_steps": [
-        "Scale factor = 16 ÷ 8 = 2",
-        "Corresponding length = 8 × 2 = 16"
+        "Reflect each vertex in the line y = -1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+        "A(-3, 2) -> A'(-3, -4), B(0, 2) -> B'(0, -4), C(-3, 4) -> C'(-3, -6)"
       ],
-      "final_answer": "16 cm",
+      "final_answer": "A'(-3, -4), B'(0, -4), C'(-3, -6)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Scale factor = 16 ÷ 8 = 2",
+          "description": "Reflect each vertex in the line y = -1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Corresponding length = 8 × 2 = 16",
+          "description": "A(-3, 2) -> A'(-3, -4), B(0, 2) -> B'(0, -4), C(-3, 4) -> C'(-3, -6)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "16 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "percentage_of_amount",
-      "prompt": "Find 50% of 80.",
-      "solution_steps": [
-        "Convert 50% to a fraction: 50/100",
-        "Multiply: 50/100 × 80 = 40"
-      ],
-      "final_answer": "40",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert 50% to a fraction: 50/100",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply: 50/100 × 80 = 40",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "40 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "symmetry_rotational",
-      "prompt": "The diagram shows a regular hexagon. State the order of rotational symmetry.",
-      "solution_steps": [
-        "Rotating the regular hexagon about its centre, it looks exactly the same 6 times during a full 360° turn.",
-        "So the order of rotational symmetry is 6."
-      ],
-      "final_answer": "order 6",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Rotating the regular hexagon about its centre, it looks exactly the same 6 times during a full 360° turn.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "So the order of rotational symmetry is 6.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "order 6 oe",
+          "description": "A'(-3, -4), B'(0, -4), C'(-3, -6) oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "symmetry_shape",
+        "kind": "grid_transformation",
         "params": {
-          "vertices": [
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
             [
-              2.4492935982947064e-16,
-              4.0
+              -3,
+              2
             ],
             [
-              -3.464101615137755,
-              1.9999999999999998
+              0,
+              2
             ],
             [
-              -3.4641016151377544,
-              -2.0000000000000004
-            ],
-            [
-              -7.347880794884119e-16,
-              -4.0
-            ],
-            [
-              3.4641016151377535,
-              -2.0000000000000018
-            ],
-            [
-              3.4641016151377544,
-              2.0
+              -3,
+              4
             ]
           ],
-          "blank": true
+          "original_labels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "mirror_line": {
+            "type": "horizontal",
+            "y": -1,
+            "label": "y = -1"
+          }
         }
       },
       "solution_diagram": {
-        "kind": "symmetry_shape",
+        "kind": "grid_transformation",
         "params": {
-          "vertices": [
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
             [
-              2.4492935982947064e-16,
-              4.0
+              -3,
+              2
             ],
             [
-              -3.464101615137755,
-              1.9999999999999998
+              0,
+              2
             ],
             [
-              -3.4641016151377544,
-              -2.0000000000000004
-            ],
-            [
-              -7.347880794884119e-16,
-              -4.0
-            ],
-            [
-              3.4641016151377535,
-              -2.0000000000000018
-            ],
-            [
-              3.4641016151377544,
-              2.0
+              -3,
+              4
             ]
           ],
-          "rotation_centre": [
-            -3.036877248681882e-16,
-            -4.070817756958907e-16
+          "original_labels": [
+            "A",
+            "B",
+            "C"
           ],
-          "rotation_order": 6
+          "mirror_line": {
+            "type": "horizontal",
+            "y": -1,
+            "label": "y = -1"
+          },
+          "image_vertices": [
+            [
+              -3,
+              -4
+            ],
+            [
+              0,
+              -4
+            ],
+            [
+              -3,
+              -6
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'"
+          ]
         }
       }
     },
     {
-      "topic_id": "area_subtract_compound_foundation",
-      "prompt": "A rectangular sheet of card 6 cm by 8 cm has a rectangular hole 3 cm by 5 cm cut from its centre. Find the remaining area.",
+      "topic_id": "area_rectangle_F",
+      "prompt": "Find the area of the following rectangle.",
       "solution_steps": [
-        "Area of large rectangle = 6 × 8 = 48 cm²",
-        "Area of rectangular hole = 3 × 5 = 15 cm²",
-        "Remaining area = 48 - 15 = 33 cm²"
+        "Area = length × width = 18 × 20 = 360 cm²"
       ],
-      "final_answer": "33 cm²",
-      "marks": 4,
+      "final_answer": "360 cm²",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area of large rectangle = 6 × 8 = 48 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Area of rectangular hole = 3 × 5 = 15 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Remaining area = 48 - 15 = 33 cm²",
+          "description": "Area = length × width = 18 × 20 = 360 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "33 cm² oe",
+          "description": "360 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "l_shape",
+        "kind": "rectangle",
         "params": {
-          "outer_w": 6,
-          "outer_h": 8,
-          "inner_w": 3,
-          "inner_h": 5,
-          "notch": "center",
-          "outer_labels": [
-            "6 cm",
-            "8 cm"
+          "width": 18,
+          "height": 20,
+          "width_label": "18 cm",
+          "height_label": "20 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "transform_translate_describe_F",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
+      "solution_steps": [
+        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-1, 0), with the matching vertex of shape B, (-4, -4), gives the vector (-3, -4).",
+        "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
+      ],
+      "final_answer": "Translation by the vector (-3, -4)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-1, 0), with the matching vertex of shape B, (-4, -4), gives the vector (-3, -4).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Checking the other vertices confirms the same vector applies throughout, so this is a translation.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Translation by the vector (-3, -4) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              -1,
+              0
+            ],
+            [
+              4,
+              0
+            ],
+            [
+              0,
+              4
+            ]
           ],
-          "inner_labels": [
-            "3 cm",
-            "5 cm"
+          "original_labels": [
+            "",
+            "",
+            ""
+          ],
+          "image_vertices": [
+            [
+              -4,
+              -4
+            ],
+            [
+              1,
+              -4
+            ],
+            [
+              -3,
+              0
+            ]
+          ],
+          "image_labels": [
+            "",
+            "",
+            ""
           ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "loci_constructions",
+      "topic_id": "area_trapezium_F",
+      "prompt": "Find the area of the following trapezium.",
+      "solution_steps": [
+        "Area = ½ × (a + b) × height = ½ × (4 + 6) × 10 = 50 cm²"
+      ],
+      "final_answer": "50 cm²",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area = ½ × (a + b) × height = ½ × (4 + 6) × 10 = 50 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "50 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "trapezium",
+        "params": {
+          "a": 4,
+          "b": 6,
+          "height": 10,
+          "a_label": "4 cm",
+          "b_label": "6 cm",
+          "height_label": "10 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "loci_constructions_F",
       "prompt": "Two straight lines meet at Y, passing through X and Z as shown. Describe the locus of points that are equidistant from line XY and line ZY.",
       "solution_steps": [
         "The locus of points equidistant from two intersecting lines is the bisector of the angle between them.",
@@ -1070,78 +1145,105 @@
       }
     },
     {
-      "topic_id": "volume_surface_area_cylinder_foundation",
-      "prompt": "A cylinder has radius 10 cm and height 19 cm. Find its total surface area, correct to 3 significant figures.",
+      "topic_id": "transform_reflect_describe_F",
+      "prompt": "Shape ABC is reflected to give shape A'B'C', shown on the grid. Describe fully the single transformation that maps ABC onto A'B'C'.",
       "solution_steps": [
-        "Surface area = 2πr² + 2πrh = (2 × π × 10²) + (2 × π × 10 × 19)",
-        "= 1820 cm² (3 s.f., using a calculator value of π)"
+        "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
+        "Comparing corresponding vertices shows the mirror line is x = -1."
       ],
-      "final_answer": "1820 cm²",
+      "final_answer": "Reflection in the line x = -1",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Surface area = 2πr² + 2πrh = (2 × π × 10²) + (2 × π × 10 × 19)",
+          "description": "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 1820 cm² (3 s.f., using a calculator value of π)",
+          "description": "Comparing corresponding vertices shows the mirror line is x = -1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1820 cm² oe",
+          "description": "Reflection in the line x = -1 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cylinder",
+        "kind": "grid_transformation",
         "params": {
-          "radius_label": "10 cm",
-          "height_label": "19 cm"
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              2,
+              2
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "image_vertices": [
+            [
+              -4,
+              2
+            ],
+            [
+              -7,
+              2
+            ],
+            [
+              -4,
+              4
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'"
+          ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_exterior_foundation",
-      "prompt": "An exterior angle of a triangle is x°. The two remote interior angles are 46° and 58°. Find x.",
+      "topic_id": "negative_multiply_divide_F",
+      "prompt": "Work out -96 ÷ (-12).",
       "solution_steps": [
-        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
-        "x = 46 + 58 = 104"
+        "-96 ÷ (-12) = 8"
       ],
-      "final_answer": "104",
-      "marks": 3,
+      "final_answer": "8",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 46 + 58 = 104",
+          "description": "-96 ÷ (-12) = 8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "104 oe",
+          "description": "8 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "exterior_triangle",
-        "params": {
-          "interior1_label": "46°",
-          "interior2_label": "58°",
-          "exterior_label": "x"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "venn_diagram_probability",
+      "topic_id": "venn_diagram_probability_F",
       "prompt": "The Venn diagram shows the number of students in each region for sets A and B. Find P(B).",
       "solution_steps": [
         "Total number of elements = 14 + 15 + 15 + 13 = 57",
@@ -1190,72 +1292,72 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_equivalent_diagram",
-      "prompt": "Shape A is divided into 2 equal parts, with 1 shaded. Shape B is divided into 4 equal parts. How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
+      "topic_id": "tree_diagram_drawing_F",
+      "prompt": "A bag contains 3 red and 5 yellow counters. A counter is picked at random, replaced, and then a second counter is picked at random. Draw a fully-labelled tree diagram to show this information, and use it to find the probability that the first counter is red and the second counter is red.",
       "solution_steps": [
-        "Shape A shows 1/2 shaded; Shape B has 4 equal parts.",
-        "Find the scale factor between the denominators: 4 ÷ 2 = 2",
-        "Multiply the shaded count by the same scale factor: 1 × 2 = 2"
+        "Draw two branches from the start: P(red) = 3/8, P(yellow) = 5/8.",
+        "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
+        "P(red then red) = 3/8 × 3/8 = 9/64"
       ],
-      "final_answer": "2",
+      "final_answer": "9/64",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Shape A shows 1/2 shaded; Shape B has 4 equal parts.",
+          "description": "Draw two branches from the start: P(red) = 3/8, P(yellow) = 5/8.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Find the scale factor between the denominators: 4 ÷ 2 = 2",
+          "description": "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the shaded count by the same scale factor: 1 × 2 = 2",
+          "description": "P(red then red) = 3/8 × 3/8 = 9/64",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2 oe",
+          "description": "9/64 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "bar",
-              "parts": 2,
-              "shaded": 1,
-              "label": "1/2"
-            },
-            {
-              "kind": "bar",
-              "parts": 4,
-              "shaded": 0,
-              "label": "?/4"
-            }
-          ]
-        }
-      },
+      "diagram": null,
       "solution_diagram": {
-        "kind": "fraction_shapes",
+        "kind": "tree_diagram",
         "params": {
-          "shapes": [
-            {
-              "kind": "bar",
-              "parts": 2,
-              "shaded": 1,
-              "label": "1/2"
-            },
-            {
-              "kind": "bar",
-              "parts": 4,
-              "shaded": 2,
-              "label": "2/4"
-            }
+          "stage1": [
+            [
+              "Red",
+              "3/8"
+            ],
+            [
+              "Yellow",
+              "5/8"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Red",
+                "3/8"
+              ],
+              [
+                "Yellow",
+                "5/8"
+              ]
+            ],
+            [
+              [
+                "Red",
+                "3/8"
+              ],
+              [
+                "Yellow",
+                "5/8"
+              ]
+            ]
           ]
         }
       }

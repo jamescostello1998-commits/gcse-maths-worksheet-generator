@@ -152,7 +152,7 @@ def generate_venn_diagram_shading(tier: Tier, rng: random.Random) -> Question:
         f"{final_answer}",
     ]
     return Question(
-        topic_id="venn_diagram_shading",
+        topic_id="venn_diagram_shading_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -189,7 +189,7 @@ def generate_modelled_example_venn_diagram_shading(tier: Tier, rng: random.Rando
         f"Region to shade: {final_answer}",
     ]
     return ModelledExample(
-        topic_id="venn_diagram_shading",
+        topic_id="venn_diagram_shading_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -264,7 +264,7 @@ def generate_venn_diagram_probability(tier: Tier, rng: random.Random) -> Questio
         f"Find P({notation})."
     )
     return Question(
-        topic_id="venn_diagram_probability",
+        topic_id="venn_diagram_probability_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -304,7 +304,7 @@ def generate_modelled_example_venn_diagram_probability(tier: Tier, rng: random.R
         f"Find P({notation})."
     )
     return ModelledExample(
-        topic_id="venn_diagram_probability",
+        topic_id="venn_diagram_probability_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -416,7 +416,7 @@ def generate_venn_diagram_notation(tier: Tier, rng: random.Random) -> Question:
         f"List the elements of {notation}."
     )
     return Question(
-        topic_id="venn_diagram_notation",
+        topic_id="venn_diagram_notation_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -463,7 +463,7 @@ def generate_modelled_example_venn_diagram_notation(tier: Tier, rng: random.Rand
         f"List the elements of {notation}."
     )
     return ModelledExample(
-        topic_id="venn_diagram_notation",
+        topic_id="venn_diagram_notation_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -609,7 +609,7 @@ def generate_venn_diagram_algebra(tier: Tier, rng: random.Random) -> Question:
         f"of x. There are {total} elements in total. Find the value of x, and hence find {description}."
     )
     return Question(
-        topic_id="venn_diagram_algebra",
+        topic_id="venn_diagram_algebra_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -648,7 +648,7 @@ def generate_modelled_example_venn_diagram_algebra(tier: Tier, rng: random.Rando
         f"of x. There are {total} elements in total. Find the value of x, and hence find {description}."
     )
     return ModelledExample(
-        topic_id="venn_diagram_algebra",
+        topic_id="venn_diagram_algebra_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -665,7 +665,7 @@ def generate_modelled_example_venn_diagram_algebra(tier: Tier, rng: random.Rando
 # ---------------------------------------------------------------------------
 
 TOPIC_VENN_SHADING = TopicDefinition(
-    id="venn_diagram_shading",
+    id="venn_diagram_shading_F",
     display_name="Venn Diagram Shading",
     description="Shade the correct region of a two-set Venn diagram described in plain English.",
     generate=generate_venn_diagram_shading,
@@ -676,7 +676,7 @@ TOPIC_VENN_SHADING = TopicDefinition(
 )
 
 TOPIC_VENN_PROBABILITY = TopicDefinition(
-    id="venn_diagram_probability",
+    id="venn_diagram_probability_F",
     display_name="Probability from a Venn Diagram",
     description="Use the counts shown in a two-set Venn diagram to find a probability.",
     generate=generate_venn_diagram_probability,
@@ -687,7 +687,7 @@ TOPIC_VENN_PROBABILITY = TopicDefinition(
 )
 
 TOPIC_VENN_NOTATION = TopicDefinition(
-    id="venn_diagram_notation",
+    id="venn_diagram_notation_H",
     display_name="Venn Diagram Set Notation",
     description="Use formal set notation to find the elements of a set shown in a Venn diagram.",
     generate=generate_venn_diagram_notation,
@@ -698,7 +698,7 @@ TOPIC_VENN_NOTATION = TopicDefinition(
 )
 
 TOPIC_VENN_ALGEBRA = TopicDefinition(
-    id="venn_diagram_algebra",
+    id="venn_diagram_algebra_H",
     display_name="Algebraic Venn Diagrams",
     description=(
         "Form and solve an equation from algebraic region counts in a Venn diagram, then find a count "

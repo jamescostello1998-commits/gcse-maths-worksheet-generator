@@ -112,9 +112,9 @@ def test_topic_definitions_have_expected_metadata():
         assert t.section == "geometry"
         assert t.group == "3D Shapes"
         assert t.fixed_tier == Tier.FOUNDATION
-    assert solids_prisms.TOPIC_CUBOID.id == "volume_surface_area_cuboid"
-    assert solids_prisms.TOPIC_CUBE.id == "volume_surface_area_cube"
-    assert solids_prisms.TOPIC_TRIANGULAR_PRISM.id == "volume_surface_area_triangular_prism"
+    assert solids_prisms.TOPIC_CUBOID.id == "volume_surface_area_cuboid_F"
+    assert solids_prisms.TOPIC_CUBE.id == "volume_surface_area_cube_F"
+    assert solids_prisms.TOPIC_TRIANGULAR_PRISM.id == "volume_surface_area_triangular_prism_F"
 
 
 def test_topic_definitions_have_modelled_examples_wired_up():
@@ -126,19 +126,19 @@ MODELLED_EXAMPLE_GENERATORS = [
     (
         solids_prisms.generate_modelled_example_volume_surface_area_cuboid,
         Tier.FOUNDATION,
-        "volume_surface_area_cuboid",
+        "volume_surface_area_cuboid_F",
         "cuboid",
     ),
     (
         solids_prisms.generate_modelled_example_volume_surface_area_cube,
         Tier.FOUNDATION,
-        "volume_surface_area_cube",
+        "volume_surface_area_cube_F",
         "cuboid",
     ),
     (
         solids_prisms.generate_modelled_example_volume_surface_area_triangular_prism,
         Tier.FOUNDATION,
-        "volume_surface_area_triangular_prism",
+        "volume_surface_area_triangular_prism_F",
         "triangular_prism",
     ),
 ]

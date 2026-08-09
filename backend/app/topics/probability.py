@@ -36,7 +36,7 @@ def generate_single_event(tier: Tier, rng: random.Random) -> Question:
         f"P({target_colour}) = {favourable}/{total} = {formula_prob.numerator}/{formula_prob.denominator}",
     ]
     return Question(
-        topic_id="probability_single_event",
+        topic_id="probability_single_event_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A bag contains {bag_desc} counters. A counter is picked at random. "
@@ -46,7 +46,7 @@ def generate_single_event(tier: Tier, rng: random.Random) -> Question:
         final_answer=f"{formula_prob.numerator}/{formula_prob.denominator}",
         dedup_key=f"single:{colours}:{counts}:{target_colour}",
         diagram=DiagramSpec(
-            kind="bag_of_counters", params={"counts": dict(zip(colours, counts)), "highlight": target_colour}
+            kind="bag_of_counters", params={"counts": dict(zip(colours, counts))}
         ),
     )
 
@@ -89,7 +89,7 @@ def generate_modelled_example_single_event(tier: Tier, rng: random.Random) -> Mo
         worked_calculation.append(f"= {formula_prob.numerator}/{formula_prob.denominator}")
 
     return ModelledExample(
-        topic_id="probability_single_event",
+        topic_id="probability_single_event_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A bag contains {bag_desc} counters. A counter is picked at random. "
@@ -99,7 +99,7 @@ def generate_modelled_example_single_event(tier: Tier, rng: random.Random) -> Mo
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{formula_prob.numerator}/{formula_prob.denominator}",
         diagram=DiagramSpec(
-            kind="bag_of_counters", params={"counts": dict(zip(colours, counts)), "highlight": target_colour}
+            kind="bag_of_counters", params={"counts": dict(zip(colours, counts))}
         ),
     )
 
@@ -128,7 +128,7 @@ def generate_complement(tier: Tier, rng: random.Random) -> Question:
         f"{p_complement.numerator}/{p_complement.denominator}",
     ]
     return Question(
-        topic_id="probability_complement",
+        topic_id="probability_complement_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A bag contains {bag_desc} counters. A counter is picked at random. "
@@ -138,7 +138,7 @@ def generate_complement(tier: Tier, rng: random.Random) -> Question:
         final_answer=f"{p_complement.numerator}/{p_complement.denominator}",
         dedup_key=f"complement:{colours}:{counts}:{target_colour}",
         diagram=DiagramSpec(
-            kind="bag_of_counters", params={"counts": dict(zip(colours, counts)), "highlight": target_colour}
+            kind="bag_of_counters", params={"counts": dict(zip(colours, counts))}
         ),
     )
 
@@ -177,7 +177,7 @@ def generate_modelled_example_complement(tier: Tier, rng: random.Random) -> Mode
         f"= {p_complement.numerator}/{p_complement.denominator}",
     ]
     return ModelledExample(
-        topic_id="probability_complement",
+        topic_id="probability_complement_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A bag contains {bag_desc} counters. A counter is picked at random. "
@@ -187,7 +187,7 @@ def generate_modelled_example_complement(tier: Tier, rng: random.Random) -> Mode
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{p_complement.numerator}/{p_complement.denominator}",
         diagram=DiagramSpec(
-            kind="bag_of_counters", params={"counts": dict(zip(colours, counts)), "highlight": target_colour}
+            kind="bag_of_counters", params={"counts": dict(zip(colours, counts))}
         ),
     )
 
@@ -237,13 +237,12 @@ def generate_combined_dice(tier: Tier, rng: random.Random) -> Question:
         raise ValueError(f"combined_dice verification failed for event={event}")
 
     return Question(
-        topic_id="probability_combined_dice",
+        topic_id="probability_combined_dice_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
         final_answer=f"{formula_prob.numerator}/{formula_prob.denominator}",
         dedup_key=f"combined_dice:{event}:{key_param}",
-        diagram=DiagramSpec(kind="dice", params={"values": [rng.randint(1, 6), rng.randint(1, 6)]}),
     )
 
 
@@ -313,13 +312,12 @@ def generate_modelled_example_combined_dice(tier: Tier, rng: random.Random) -> M
         raise ValueError(f"modelled example combined_dice verification failed for event={event}")
 
     return ModelledExample(
-        topic_id="probability_combined_dice",
+        topic_id="probability_combined_dice_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{formula_prob.numerator}/{formula_prob.denominator}",
-        diagram=DiagramSpec(kind="dice", params={"values": [rng.randint(1, 6), rng.randint(1, 6)]}),
     )
 
 
@@ -348,17 +346,30 @@ def generate_conditional_without_replacement(tier: Tier, rng: random.Random) -> 
         f"P(both same colour) = {term1.numerator}/{term1.denominator} + {term2.numerator}/{term2.denominator} "
         f"= {formula_prob.numerator}/{formula_prob.denominator}",
     ]
+    blank_stage2 = [[(c1.title(), ""), (c2.title(), "")], [(c1.title(), ""), (c2.title(), "")]]
+    solved_stage2 = [
+        [(c1.title(), f"{n1 - 1}/{total - 1}"), (c2.title(), f"{n2}/{total - 1}")],
+        [(c1.title(), f"{n1}/{total - 1}"), (c2.title(), f"{n2 - 1}/{total - 1}")],
+    ]
     return Question(
-        topic_id="probability_conditional",
+        topic_id="probability_conditional_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A bag contains {n1} {c1} and {n2} {c2} counters. Two counters are picked at random "
-            "without replacement. Find the probability that both counters are the same colour."
+            "without replacement. Find the probability that both counters are the same colour. "
+            "Use the tree diagram to help you."
         ),
         solution_steps=tuple(steps),
         final_answer=f"{formula_prob.numerator}/{formula_prob.denominator}",
         dedup_key=f"conditional:{colours}:{counts}",
-        diagram=DiagramSpec(kind="bag_of_counters", params={"counts": {c1: n1, c2: n2}}),
+        diagram=DiagramSpec(
+            kind="tree_diagram",
+            params={"stage1": [(c1.title(), ""), (c2.title(), "")], "stage2": blank_stage2},
+        ),
+        solution_diagram=DiagramSpec(
+            kind="tree_diagram",
+            params={"stage1": [(c1.title(), f"{n1}/{total}"), (c2.title(), f"{n2}/{total}")], "stage2": solved_stage2},
+        ),
     )
 
 
@@ -401,17 +412,25 @@ def generate_modelled_example_conditional_without_replacement(tier: Tier, rng: r
         f"P(same colour) = {term1.numerator}/{term1.denominator} + {term2.numerator}/{term2.denominator}",
         f"= {formula_prob.numerator}/{formula_prob.denominator}",
     ]
+    solved_stage2 = [
+        [(c1.title(), f"{n1 - 1}/{total - 1}"), (c2.title(), f"{n2}/{total - 1}")],
+        [(c1.title(), f"{n1}/{total - 1}"), (c2.title(), f"{n2 - 1}/{total - 1}")],
+    ]
     return ModelledExample(
-        topic_id="probability_conditional",
+        topic_id="probability_conditional_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A bag contains {n1} {c1} and {n2} {c2} counters. Two counters are picked at random "
-            "without replacement. Find the probability that both counters are the same colour."
+            "without replacement. Find the probability that both counters are the same colour. "
+            "Use the tree diagram to help you."
         ),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{formula_prob.numerator}/{formula_prob.denominator}",
-        diagram=DiagramSpec(kind="bag_of_counters", params={"counts": {c1: n1, c2: n2}}),
+        diagram=DiagramSpec(
+            kind="tree_diagram",
+            params={"stage1": [(c1.title(), f"{n1}/{total}"), (c2.title(), f"{n2}/{total}")], "stage2": solved_stage2},
+        ),
     )
 
 
@@ -465,12 +484,17 @@ def _build_listing_outcomes(rng: random.Random):
     if not (4 <= total <= 12):
         raise ValueError("listing_outcomes total outcomes out of expected range")
 
-    if scenario in ("coin_spinner3", "coin_spinner4"):
+    if scenario == "coin_die":
+        diagram = DiagramSpec(
+            kind="event_pair",
+            params={"event_a": {"kind": "coin"}, "event_b": {"kind": "dice", "values": [rng.randint(1, 6)]}},
+        )
+    elif scenario == "two_coins":
+        diagram = DiagramSpec(kind="coin", params={"count": 2})
+    elif scenario in ("coin_spinner3", "coin_spinner4"):
         diagram = DiagramSpec(kind="spinner", params={"sectors": vals_b})
-    elif scenario in ("two_spinner3", "spinner3_spinner4"):
+    else:  # two_spinner3, spinner3_spinner4
         diagram = DiagramSpec(kind="spinner_pair", params={"sectors_a": vals_a, "sectors_b": vals_b})
-    else:
-        diagram = None
 
     return context, vals_a, vals_b, scenario, diagram
 
@@ -492,7 +516,7 @@ def generate_listing_outcomes(tier: Tier, rng: random.Random) -> Question:
         "For each outcome of the first event, list every outcome of the second event: " + ", ".join(listing),
     ]
     return Question(
-        topic_id="probability_listing_outcomes",
+        topic_id="probability_listing_outcomes_F",
         tier=Tier.FOUNDATION,
         prompt=f"{context} List all the possible outcomes.",
         solution_steps=tuple(steps),
@@ -530,7 +554,7 @@ def generate_modelled_example_listing_outcomes(tier: Tier, rng: random.Random) -
     ]
 
     return ModelledExample(
-        topic_id="probability_listing_outcomes",
+        topic_id="probability_listing_outcomes_F",
         tier=Tier.FOUNDATION,
         prompt=f"{context} List all the possible outcomes.",
         worked_calculation=tuple(worked_calculation),
@@ -556,6 +580,17 @@ def _independent_event(rng: random.Random, exclude_kind: Optional[str] = None):
     sides = rng.choice([3, 4, 5, 6, 8, 10])
     target = rng.randint(1, sides)
     return f"a {sides}-sided spinner is spun", f"landing on {target}", Fraction(1, sides), kind, (sides, target)
+
+
+def _event_diagram_spec(kind: str, info) -> dict:
+    """Convert an `_independent_event` result into one `event_a`/`event_b`
+    entry for the "event_pair" diagram kind."""
+    if kind == "coin":
+        return {"kind": "coin"}
+    if kind == "die":
+        return {"kind": "dice", "values": [info], "highlight": [0]}
+    sides, target = info
+    return {"kind": "spinner", "sectors": [str(i) for i in range(1, sides + 1)], "highlight": [target - 1]}
 
 
 def _build_or_rule(rng: random.Random):
@@ -619,19 +654,13 @@ def _build_and_rule(rng: random.Random):
     ]
     dedup_key = f"and:{kind_a}:{kind_b}:{name_a}:{name_b}:{p_a}:{p_b}"
 
-    # Illustrate whichever non-coin object is present (a die takes priority if
-    # both a die and a spinner appear, since a coin can only pair with at most
-    # one of them).
-    if kind_a == "die" or kind_b == "die":
-        target = info_a if kind_a == "die" else info_b
-        diagram = DiagramSpec(kind="dice", params={"values": [target], "highlight": [0]})
-    elif kind_a == "spinner" or kind_b == "spinner":
-        sides, target = info_a if kind_a == "spinner" else info_b
-        diagram = DiagramSpec(
-            kind="spinner", params={"sectors": [str(i) for i in range(1, sides + 1)], "highlight": [target - 1]}
-        )
-    else:
-        diagram = None
+    # Illustrate BOTH objects side by side (never just one), so the AND
+    # branch is never text-only and matches the OR branch's single bag
+    # diagram in always showing every event involved.
+    diagram = DiagramSpec(
+        kind="event_pair",
+        params={"event_a": _event_diagram_spec(kind_a, info_a), "event_b": _event_diagram_spec(kind_b, info_b)},
+    )
 
     return prompt, steps, formula_prob, dedup_key, name_a, name_b, p_a, p_b, diagram
 
@@ -644,7 +673,7 @@ def generate_and_or_rule(tier: Tier, rng: random.Random) -> Question:
     prompt, steps, formula_prob, dedup_key, diagram = result[0], result[1], result[2], result[3], result[-1]
 
     return Question(
-        topic_id="probability_and_or_rule",
+        topic_id="probability_and_or_rule_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -690,7 +719,7 @@ def generate_modelled_example_and_or_rule(tier: Tier, rng: random.Random) -> Mod
         ]
 
     return ModelledExample(
-        topic_id="probability_and_or_rule",
+        topic_id="probability_and_or_rule_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -790,7 +819,7 @@ def _build_expectation(rng: random.Random):
 def generate_expectation(tier: Tier, rng: random.Random) -> Question:
     prompt, steps, expected, dedup_key, *_, diagram = _build_expectation(rng)
     return Question(
-        topic_id="probability_expectation",
+        topic_id="probability_expectation_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -821,7 +850,7 @@ def generate_modelled_example_expectation(tier: Tier, rng: random.Random) -> Mod
     ]
 
     return ModelledExample(
-        topic_id="probability_expectation",
+        topic_id="probability_expectation_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -832,7 +861,7 @@ def generate_modelled_example_expectation(tier: Tier, rng: random.Random) -> Mod
 
 
 TOPIC_SINGLE_EVENT = TopicDefinition(
-    id="probability_single_event",
+    id="probability_single_event_F",
     display_name="Single Event",
     description="Find the probability of a single equally-likely outcome.",
     generate=generate_single_event,
@@ -843,7 +872,7 @@ TOPIC_SINGLE_EVENT = TopicDefinition(
 )
 
 TOPIC_COMPLEMENT = TopicDefinition(
-    id="probability_complement",
+    id="probability_complement_F",
     display_name="Complement",
     description="Use the complement rule: P(not A) = 1 - P(A).",
     generate=generate_complement,
@@ -854,7 +883,7 @@ TOPIC_COMPLEMENT = TopicDefinition(
 )
 
 TOPIC_COMBINED_DICE = TopicDefinition(
-    id="probability_combined_dice",
+    id="probability_combined_dice_H",
     display_name="Combined Dice",
     description="Find the probability of combined outcomes when rolling two dice.",
     generate=generate_combined_dice,
@@ -865,7 +894,7 @@ TOPIC_COMBINED_DICE = TopicDefinition(
 )
 
 TOPIC_CONDITIONAL = TopicDefinition(
-    id="probability_conditional",
+    id="probability_conditional_H",
     display_name="Conditional (Without Replacement)",
     description="Find the probability of picking two items of the same type without replacement.",
     generate=generate_conditional_without_replacement,
@@ -876,7 +905,7 @@ TOPIC_CONDITIONAL = TopicDefinition(
 )
 
 TOPIC_LISTING_OUTCOMES = TopicDefinition(
-    id="probability_listing_outcomes",
+    id="probability_listing_outcomes_F",
     display_name="Listing Outcomes",
     description="Systematically list all the possible outcomes of two combined events.",
     generate=generate_listing_outcomes,
@@ -887,7 +916,7 @@ TOPIC_LISTING_OUTCOMES = TopicDefinition(
 )
 
 TOPIC_AND_OR_RULE = TopicDefinition(
-    id="probability_and_or_rule",
+    id="probability_and_or_rule_F",
     display_name="AND / OR Rule",
     description="Use the OR rule for mutually exclusive events and the AND rule for independent events.",
     generate=generate_and_or_rule,
@@ -898,7 +927,7 @@ TOPIC_AND_OR_RULE = TopicDefinition(
 )
 
 TOPIC_EXPECTATION = TopicDefinition(
-    id="probability_expectation",
+    id="probability_expectation_F",
     display_name="Expected Frequency",
     description="Find the expected number of occurrences of an event given its probability and the number of trials.",
     generate=generate_expectation,

@@ -378,7 +378,7 @@ TEMPLATES: list[_CongruenceTemplate] = [
     _t(
         "isosceles_trapezium_diagonal_sas",
         "ABCD is an isosceles trapezium with AB parallel to DC and AD = BC. AC and BD are its diagonals.",
-        ("AB is common to both triangles", "angle DAB = angle CBA (base angles of an isosceles trapezium are equal)", "AD = BC (given, the equal legs of the trapezium)"),
+        ("AB is common to both triangles", "angle DAB = angle CBA (base angles of an isosceles trapezium are equal)", "AD = BC (given, the equal sides of the trapezium)"),
         "SAS",
         "Since two sides and the included angle match, triangles ABD and BAC are congruent - so AC = BD, the diagonals of an isosceles trapezium are equal.",
         {
@@ -480,6 +480,19 @@ _ids = [t.id for t in TEMPLATES]
 if len(_ids) != len(set(_ids)):
     raise ValueError("congruent_triangle_proof: duplicate template id found in TEMPLATES")
 
+_MC_CRITERIA = ["SSS", "SAS", "ASA", "RHS"]
+_MC_LETTERS = ["A", "B", "C", "D"]
+
+
+def _shuffled_mc_options(rng: random.Random, correct: str) -> tuple[str, str]:
+    """A lettered multiple-choice line ("A) SSS  B) ASA  C) SAS  D) RHS"),
+    shuffled per question, plus the matching answer string ("C) SAS")."""
+    order = _MC_CRITERIA[:]
+    rng.shuffle(order)
+    options_line = "  ".join(f"{letter}) {crit}" for letter, crit in zip(_MC_LETTERS, order))
+    answer_letter = _MC_LETTERS[order.index(correct)]
+    return options_line, f"{answer_letter}) {correct}"
+
 
 def generate_congruent_triangle_proof_higher(tier: Tier, rng: random.Random) -> Question:
     template = rng.choice(TEMPLATES)
@@ -490,7 +503,7 @@ def generate_congruent_triangle_proof_higher(tier: Tier, rng: random.Random) -> 
         template.proof_conclusion,
     ]
     return Question(
-        topic_id="congruent_triangle_proof",
+        topic_id="congruent_triangle_proof_H",
         tier=Tier.HIGHER,
         prompt=f"{template.scenario} Prove that the two triangles are congruent.",
         solution_steps=tuple(steps),
@@ -519,7 +532,7 @@ def generate_modelled_example_congruent_triangle_proof_higher(tier: Tier, rng: r
         f"{_CRITERION_FULL_NAME[template.criterion]} -> triangles congruent",
     ]
     return ModelledExample(
-        topic_id="congruent_triangle_proof",
+        topic_id="congruent_triangle_proof_H",
         tier=Tier.HIGHER,
         prompt=f"{template.scenario} Prove that the two triangles are congruent.",
         worked_calculation=tuple(worked_calculation),
@@ -529,57 +542,108 @@ def generate_modelled_example_congruent_triangle_proof_higher(tier: Tier, rng: r
     )
 
 
-def generate_congruent_triangle_proof_foundation(tier: Tier, rng: random.Random) -> Question:
-    template = rng.choice(TEMPLATES)
-    template.verify()
+# ---------------------------------------------------------------------------
+# Foundation: two congruent triangles shown with real NUMERIC measurements
+# (not equal-marks/scenario prose), student picks which criterion they reveal.
+# Vertices in draw_two_triangle_congruence are 0=bottom-left, 1=bottom-right,
+# 2=apex; sides 0-1 (bottom), 0-2 (left), 1-2 (right); angles at 0/1/2.
+# ---------------------------------------------------------------------------
 
-    steps = list(template.given_facts) + [
-        f"These facts match the {_CRITERION_FULL_NAME[template.criterion]} congruence criterion.",
+_FOUNDATION_PROMPT = "Shown below are two congruent triangles. Give a reason why they are congruent."
+
+_RHS_TRIPLES = [(3, 4, 5), (6, 8, 10), (5, 12, 13), (8, 15, 17), (9, 12, 15), (7, 24, 25)]
+
+
+def _foundation_congruence(rng: random.Random) -> tuple[str, dict, str]:
+    """Pick a criterion and build diagram params showing two identical
+    (congruent) triangles labelled with the real measurements that reveal
+    exactly that criterion. Returns (criterion, diagram_params, dedup_suffix)."""
+    criterion = rng.choice(["SSS", "SAS", "ASA", "RHS"])
+    params: dict = {}
+
+    if criterion == "SSS":
+        while True:
+            a, b, c = (rng.randint(5, 13) for _ in range(3))
+            sides_sorted = sorted((a, b, c))
+            if sides_sorted[0] + sides_sorted[1] > sides_sorted[2] + 1 and len({a, b, c}) >= 2:
+                break
+        labels = [(0, 1, f"{c} cm"), (0, 2, f"{a} cm"), (1, 2, f"{b} cm")]
+        suffix = f"{a}:{b}:{c}"
+    elif criterion == "SAS":
+        s1, s2 = rng.randint(6, 13), rng.randint(6, 13)
+        ang = rng.randint(35, 120)
+        params["side_labels_1"] = params["side_labels_2"] = [(0, 1, f"{s1} cm"), (0, 2, f"{s2} cm")]
+        params["angle_labels_1"] = params["angle_labels_2"] = [(0, f"{ang}°")]
+        return criterion, params, f"{s1}:{s2}:{ang}"
+    elif criterion == "ASA":
+        a1, a2 = rng.randint(35, 75), rng.randint(35, 75)
+        side = rng.randint(6, 13)
+        params["side_labels_1"] = params["side_labels_2"] = [(0, 1, f"{side} cm")]
+        params["angle_labels_1"] = params["angle_labels_2"] = [(0, f"{a1}°"), (1, f"{a2}°")]
+        return criterion, params, f"{a1}:{a2}:{side}"
+    else:  # RHS: right angle at 0, legs 0-1 & 0-2, hypotenuse 1-2 (a Pythagorean triple)
+        leg1, leg2, hyp = rng.choice(_RHS_TRIPLES)
+        params["right_angle_1"] = params["right_angle_2"] = 0
+        # Show the hypotenuse and ONE leg (plus the right-angle mark) - the
+        # defining RHS trio, and deliberately not the "included angle" pattern
+        # of SAS.
+        params["side_labels_1"] = params["side_labels_2"] = [(1, 2, f"{hyp} cm"), (0, 1, f"{leg1} cm")]
+        return criterion, params, f"rhs:{leg1}:{leg2}:{hyp}"
+
+    params["side_labels_1"] = params["side_labels_2"] = labels
+    return criterion, params, suffix
+
+
+def generate_congruent_triangle_proof_foundation(tier: Tier, rng: random.Random) -> Question:
+    criterion, diagram_params, suffix = _foundation_congruence(rng)
+    options_line, answer = _shuffled_mc_options(rng, criterion)
+
+    steps = [
+        f"Look at which measurements are marked equal on both triangles - here they match the "
+        f"{_CRITERION_FULL_NAME[criterion]} pattern.",
+        f"So the two triangles are congruent by {_CRITERION_FULL_NAME[criterion]}.",
     ]
     return Question(
-        topic_id="congruent_triangle_proof_foundation",
+        topic_id="congruent_triangle_proof_F",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"{template.scenario} State which congruence criterion (SSS, SAS, ASA or RHS) proves "
-            "that the two triangles are congruent."
-        ),
+        prompt=f"{_FOUNDATION_PROMPT} {options_line}",
         solution_steps=tuple(steps),
-        final_answer=template.criterion,
-        dedup_key=f"congruence_f:{template.id}",
-        diagram=DiagramSpec(kind="two_triangle_congruence", params=template.diagram_params),
+        final_answer=answer,
+        dedup_key=f"congruence_f:{criterion}:{suffix}",
+        diagram=DiagramSpec(kind="two_triangle_congruence", params=diagram_params),
     )
 
 
 def generate_modelled_example_congruent_triangle_proof_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
-    template = rng.choice(TEMPLATES)
-    template.verify()
+    criterion, diagram_params, _ = _foundation_congruence(rng)
+    options_line, answer = _shuffled_mc_options(rng, criterion)
 
     teaching_steps = [
         "There are four combinations of matching sides/angles that guarantee two triangles are "
         "congruent: SSS (all three sides), SAS (two sides and the angle between them), ASA (two "
         "angles and the side between them), and RHS (right angle, hypotenuse, one other side).",
-        f"Here, the given facts are: {'; '.join(template.given_facts)}.",
-        f"Checking which combination this matches: it's exactly {_CRITERION_FULL_NAME[template.criterion]}.",
+        "Read the measurements marked on both triangles and check which of those four patterns "
+        "they match - be careful that for SAS the equal angle must be the one BETWEEN the two "
+        "equal sides.",
+        f"Here the marked measurements match the {_CRITERION_FULL_NAME[criterion]} pattern exactly.",
     ]
-    worked_calculation = list(template.given_facts) + [
-        f"Criterion: {template.criterion}",
+    worked_calculation = [
+        f"Matching measurements shown on both triangles -> {_CRITERION_FULL_NAME[criterion]}",
+        f"Answer: {answer}",
     ]
     return ModelledExample(
-        topic_id="congruent_triangle_proof_foundation",
+        topic_id="congruent_triangle_proof_F",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"{template.scenario} State which congruence criterion (SSS, SAS, ASA or RHS) proves "
-            "that the two triangles are congruent."
-        ),
+        prompt=f"{_FOUNDATION_PROMPT} {options_line}",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
-        final_answer=template.criterion,
-        diagram=DiagramSpec(kind="two_triangle_congruence", params=template.diagram_params),
+        final_answer=answer,
+        diagram=DiagramSpec(kind="two_triangle_congruence", params=diagram_params),
     )
 
 
 TOPIC_CONGRUENT_TRIANGLE_PROOF = TopicDefinition(
-    id="congruent_triangle_proof",
+    id="congruent_triangle_proof_H",
     display_name="Congruent Triangle Proof",
     description="Prove that two triangles are congruent, citing SSS, SAS, ASA or RHS.",
     generate=generate_congruent_triangle_proof_higher,
@@ -591,13 +655,12 @@ TOPIC_CONGRUENT_TRIANGLE_PROOF = TopicDefinition(
 )
 
 TOPIC_CONGRUENT_TRIANGLE_PROOF_FOUNDATION = TopicDefinition(
-    id="congruent_triangle_proof_foundation",
+    id="congruent_triangle_proof_F",
     display_name="Congruent Triangle Proof (Foundation)",
     description="State which congruence criterion (SSS, SAS, ASA or RHS) proves two triangles are congruent.",
     generate=generate_congruent_triangle_proof_foundation,
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.FOUNDATION,
-    question_count=len(TEMPLATES),
     generate_modelled_example=generate_modelled_example_congruent_triangle_proof_foundation,
 )

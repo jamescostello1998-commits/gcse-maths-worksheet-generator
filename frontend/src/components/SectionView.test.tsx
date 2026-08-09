@@ -1,8 +1,13 @@
-import { render, screen } from '@testing-library/react'
+import { render as rtlRender, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
+import type { ReactElement } from 'react'
 import { SectionView } from './SectionView'
+import { FormatProvider } from '../context/FormatContext'
 import type { Section } from '../api/types'
+
+// SectionView renders TopicCards, whose download hooks read the format context.
+const render = (ui: ReactElement) => rtlRender(<FormatProvider>{ui}</FormatProvider>)
 
 const populatedSection: Section = {
   id: 'geometry',

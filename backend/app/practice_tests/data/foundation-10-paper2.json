@@ -4,100 +4,31 @@
   "tier": "foundation",
   "sitting_id": "foundation-10",
   "paper_number": 2,
+  "calculator_allowed": false,
   "questions": [
     {
-      "topic_id": "decimals_multiply",
-      "prompt": "Work out 12.24 × 18.6.",
+      "topic_id": "decimals_add_subtract_F",
+      "prompt": "Calculate 62.1 + 63.7.",
       "solution_steps": [
-        "Ignore the decimal points and multiply the whole numbers: 1224 × 186 = 227664",
-        "Count the total decimal places in the question: 2 + 1 = 3",
-        "Place the decimal point 3 places from the right: 227.664"
+        "Line up the decimal points, padding with a zero so both numbers have the same number of decimal places.",
+        "62.1 + 63.7 = 125.8"
       ],
-      "final_answer": "227.664",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Ignore the decimal points and multiply the whole numbers: 1224 × 186 = 227664",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Count the total decimal places in the question: 2 + 1 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Place the decimal point 3 places from the right: 227.664",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "227.664 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "standard_form_multiply_divide_foundation",
-      "prompt": "Work out (2 × 10^4) ÷ (5 × 10^3). Give your answer in standard form.",
-      "solution_steps": [
-        "Divide the mantissas: 2 ÷ 5 = 0.4",
-        "Subtract the powers of 10: 4 - 3 = 1",
-        "Renormalize so the mantissa is between 1 and 10: 4 × 10^0"
-      ],
-      "final_answer": "4 × 10^0",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Divide the mantissas: 2 ÷ 5 = 0.4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract the powers of 10: 4 - 3 = 1",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Renormalize so the mantissa is between 1 and 10: 4 × 10^0",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "4 × 10^0 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "negative_ordering",
-      "prompt": "Write these numbers in order, from largest to smallest: 10, -7, 3, -5, 7",
-      "solution_steps": [
-        "Place the numbers on a number line: 10, -7, 3, -5, 7.",
-        "Reading them in order from largest to smallest gives: 10, 7, 3, -5, -7."
-      ],
-      "final_answer": "10, 7, 3, -5, -7",
+      "final_answer": "125.8",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Place the numbers on a number line: 10, -7, 3, -5, 7.",
+          "description": "Line up the decimal points, padding with a zero so both numbers have the same number of decimal places.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Reading them in order from largest to smallest gives: 10, 7, 3, -5, -7.",
+          "description": "62.1 + 63.7 = 125.8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10, 7, 3, -5, -7 oe",
+          "description": "125.8 oe",
           "marks": 1
         }
       ],
@@ -105,22 +36,80 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "negative_add_subtract",
-      "prompt": "Work out 13 - (-1).",
+      "topic_id": "standard_form_from_small_F",
+      "prompt": "Write 8 × 10^-4 as an ordinary number.",
       "solution_steps": [
-        "13 - (-1) = 14"
+        "Multiply 8 by 10^-4, which means moving the decimal point 4 place(s) left.",
+        "8 × 10^-4 = 0.0008"
       ],
-      "final_answer": "14",
+      "final_answer": "0.0008",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply 8 by 10^-4, which means moving the decimal point 4 place(s) left.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "8 × 10^-4 = 0.0008",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "0.0008 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "number_powers_of_ten_F",
+      "prompt": "Work out 919 × 100.",
+      "solution_steps": [
+        "Multiplying by 100 moves the decimal point 2 places to the right.",
+        "919 × 100 = 91900"
+      ],
+      "final_answer": "91900",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiplying by 100 moves the decimal point 2 places to the right.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "919 × 100 = 91900",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "91900 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "negative_multiply_divide_F",
+      "prompt": "Work out 16 ÷ (-8).",
+      "solution_steps": [
+        "16 ÷ (-8) = -2"
+      ],
+      "final_answer": "-2",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "13 - (-1) = 14",
+          "description": "16 ÷ (-8) = -2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "14 oe",
+          "description": "-2 oe",
           "marks": 1
         }
       ],
@@ -128,8 +117,8 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_improper_mixed",
-      "prompt": "Write 27/4 as a mixed number.",
+      "topic_id": "fractions_improper_mixed_F",
+      "prompt": "Convert 27/4 to a mixed number.",
       "solution_steps": [
         "Divide the numerator by the denominator: 27 ÷ 4 = 6 remainder 3",
         "Write as a mixed number: 6 3/4"
@@ -157,28 +146,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_ordering",
-      "prompt": "Write these values in order, starting with the smallest: 39%, 50%, 0.44, 0.93",
+      "topic_id": "decimals_ordering_F",
+      "prompt": "Write these values in ascending order: 1/2, 0.48, 0.44, 0.46",
       "solution_steps": [
-        "Convert each value to a decimal: 39% = 0.39, 50% = 0.50, 0.44 = 0.44, 0.93 = 0.93",
-        "Order from smallest to largest: 39%, 0.44, 50%, 0.93"
+        "Convert each value to a decimal: 1/2 = 0.50, 0.48 = 0.48, 0.44 = 0.44, 0.46 = 0.46",
+        "Order in ascending order: 0.44, 0.46, 0.48, 1/2"
       ],
-      "final_answer": "39%, 0.44, 50%, 0.93",
+      "final_answer": "0.44, 0.46, 0.48, 1/2",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert each value to a decimal: 39% = 0.39, 50% = 0.50, 0.44 = 0.44, 0.93 = 0.93",
+          "description": "Convert each value to a decimal: 1/2 = 0.50, 0.48 = 0.48, 0.44 = 0.44, 0.46 = 0.46",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Order from smallest to largest: 39%, 0.44, 50%, 0.93",
+          "description": "Order in ascending order: 0.44, 0.46, 0.48, 1/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "39%, 0.44, 50%, 0.93 oe",
+          "description": "0.44, 0.46, 0.48, 1/2 oe",
           "marks": 1
         }
       ],
@@ -186,7 +175,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "hcf_by_listing",
+      "topic_id": "hcf_by_listing_F",
       "prompt": "Find the highest common factor (HCF) of 33 and 48.",
       "solution_steps": [
         "Factors of 33: 1, 3, 11, 33",
@@ -221,8 +210,8 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bidmas",
-      "prompt": "Work out 1 + 6 × (7 - 1)^2 ÷ 3. Use the correct order of operations.",
+      "topic_id": "bidmas_F",
+      "prompt": "Work out 1 + 6 × (7 - 1)^2 ÷ 3.",
       "solution_steps": [
         "Brackets: (7 - 1) = 6",
         "Indices: 6^2 = 36",
@@ -263,7 +252,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_multi_step",
+      "topic_id": "linear_multi_step_F",
       "prompt": "Solve: 3x + 4 + 3x - 1 = 63",
       "solution_steps": [
         "Collect like terms: 3x + 3x = 6x, 4 - 1 = 3",
@@ -306,7 +295,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_two_step",
+      "topic_id": "linear_two_step_F",
       "prompt": "Solve: 4x + 6 = 54",
       "solution_steps": [
         "4x + 6 = 54",
@@ -348,8 +337,8 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_double_brackets_foundation",
-      "prompt": "Expand: (4x + 5)(4x + 2)",
+      "topic_id": "expand_double_brackets_F",
+      "prompt": "Expand and simplify: (4x + 5)(4x + 2)",
       "solution_steps": [
         "First: 4x × 4x = 16x^2",
         "Outer: 4x × 2 = 8x",
@@ -390,36 +379,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_common_factor",
-      "prompt": "Factorise: 32x - 36",
-      "solution_steps": [
-        "Find the highest common factor of 32 and -36: 4",
-        "Factorise: 4(8x - 9)"
-      ],
-      "final_answer": "4(8x - 9)",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find the highest common factor of 32 and -36: 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise: 4(8x - 9)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "4(8x - 9) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "expand_single_bracket",
+      "topic_id": "expand_single_bracket_F",
       "prompt": "Expand: -5(x - 8)",
       "solution_steps": [
         "Multiply -5 by x: -5x",
@@ -454,7 +414,49 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "distance_time_interpret",
+      "topic_id": "expand_double_brackets_no_coefficient_F",
+      "prompt": "Expand and simplify: (x + 7)(x + 4)",
+      "solution_steps": [
+        "First: x × x = x^2",
+        "Outer: x × 4 = 4x",
+        "Inner: 7 × x = 7x",
+        "Last: 7 × 4 = 28",
+        "Combine like terms: x^2 + 11x + 28"
+      ],
+      "final_answer": "x^2 + 11x + 28",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First: x × x = x^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Outer: x × 4 = 4x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Inner: 7 × x = 7x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Last: 7 × 4 = 28 Combine like terms: x^2 + 11x + 28",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x^2 + 11x + 28 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "distance_time_interpret_F",
       "prompt": "The distance-time graph shows a delivery van's journey. Find its speed during the outbound leg of the journey, in km/h.",
       "solution_steps": [
         "Outbound: 10 km in 15 minutes = 10 km in 1/4 hours",
@@ -509,37 +511,48 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cube",
-      "prompt": "A cube has side length 8 cm. Find its surface area.",
+      "topic_id": "simultaneous_common_coefficient_F",
+      "prompt": "Solve the simultaneous equations: 5x + 4y = -21 and 4x + 4y = -20",
       "solution_steps": [
-        "Surface area = 6 × side² = 6 × 8² = 6 × 64 = 384 cm²"
+        "5x + 4y = -21  (1)",
+        "4x + 4y = -20  (2)",
+        "Subtract the equations to eliminate y: 1x = -1, so x = -1",
+        "Substitute x = -1 into (1): 4y = -16, so y = -4"
       ],
-      "final_answer": "384 cm²",
-      "marks": 2,
+      "final_answer": "x = -1, y = -4",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Surface area = 6 × side² = 6 × 8² = 6 × 64 = 384 cm²",
+          "description": "5x + 4y = -21  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4x + 4y = -20  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract the equations to eliminate y: 1x = -1, so x = -1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute x = -1 into (1): 4y = -16, so y = -4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "384 cm² oe",
+          "description": "x = -1, y = -4 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "cuboid",
-        "params": {
-          "width_label": "8 cm",
-          "height_label": "8 cm",
-          "length_label": "8 cm"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_two_part",
+      "topic_id": "ratio_share_two_part_F",
       "prompt": "Share 30 in the ratio 1:2.",
       "solution_steps": [
         "Total parts = 1 + 2 = 3",
@@ -580,41 +593,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_three_part_foundation",
-      "prompt": "Share 50 in the ratio 9:7:9.",
+      "topic_id": "ratio_find_missing_share_F",
+      "prompt": "p : q = 5 : 4. p = 25. What is the value of q?",
       "solution_steps": [
-        "Total parts = 9 + 7 + 9 = 25",
-        "Value of one part = 50 ÷ 25 = 2",
-        "Share 1 = 9 × 2 = 18",
-        "Share 2 = 7 × 2 = 14",
-        "Share 3 = 9 × 2 = 18"
+        "Value of one part = 25 ÷ 5 = 5",
+        "q = 4 × 5 = 20"
       ],
-      "final_answer": "18 : 14 : 18",
-      "marks": 5,
+      "final_answer": "20",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 9 + 7 + 9 = 25",
+          "description": "Value of one part = 25 ÷ 5 = 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 50 ÷ 25 = 2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 9 × 2 = 18",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 7 × 2 = 14 Share 3 = 9 × 2 = 18",
+          "description": "q = 4 × 5 = 20",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "18 : 14 : 18 oe",
+          "description": "20 oe",
           "marks": 1
         }
       ],
@@ -622,7 +622,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "find_percentage_change",
+      "topic_id": "find_percentage_change_F",
       "prompt": "The price of an item changes from £360 to £342. Find the percentage decrease.",
       "solution_steps": [
         "Find the difference between the two values: £342 and £360 differ by £18",
@@ -651,7 +651,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "percentage_change",
+      "topic_id": "percentage_change_F",
       "prompt": "Decrease 460 by 20%.",
       "solution_steps": [
         "Convert 20% to a multiplier: 0.80",
@@ -680,48 +680,159 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "nets_3d_shapes",
-      "prompt": "What 2D shapes make up the net of a cone?",
+      "topic_id": "direct_proportion_noncalculator_F",
+      "prompt": "If 4 cm on a map represents 12 km in real life, how many km does 12 cm represent?",
       "solution_steps": [
-        "Imagine unfolding a cone flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
-        "A cone's net is made up of: 1 circle and 1 sector (the curved surface unrolled flat).",
-        "So the answer is: 1 circle and 1 sector (the curved surface unrolled flat)."
+        "Unit value = 12 km ÷ 4 = 3 km",
+        "Answer = 3 km × 12 = 36 km"
       ],
-      "final_answer": "1 circle and 1 sector (the curved surface unrolled flat)",
-      "marks": 4,
+      "final_answer": "36 km",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Imagine unfolding a cone flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
+          "description": "Unit value = 12 km ÷ 4 = 3 km",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A cone's net is made up of: 1 circle and 1 sector (the curved surface unrolled flat).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "So the answer is: 1 circle and 1 sector (the curved surface unrolled flat).",
+          "description": "Answer = 3 km × 12 = 36 km",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 circle and 1 sector (the curved surface unrolled flat) oe",
+          "description": "36 km oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "properties_3d_shapes_F",
+      "prompt": "How many faces does a tetrahedron (triangular-based pyramid) have?",
+      "solution_steps": [
+        "A face is a flat or curved surface on the outside of a 3D shape.",
+        "A tetrahedron has 4 triangular faces, 6 edges, and 4 vertices (corners) - every face is a triangle, including the base.",
+        "So a tetrahedron (triangular-based pyramid) has 4 faces."
+      ],
+      "final_answer": "4",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A face is a flat or curved surface on the outside of a 3D shape.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A tetrahedron has 4 triangular faces, 6 edges, and 4 vertices (corners) - every face is a triangle, including the base.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "So a tetrahedron (triangular-based pyramid) has 4 faces.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_around_point_F",
+      "prompt": "The angles 109°, 23°, 148° and x° are angles around a point. Find x.",
+      "solution_steps": [
+        "Angles around a point sum to 360°.",
+        "x = 360 - (109 + 23 + 148) = 360 - 280 = 80"
+      ],
+      "final_answer": "80",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles around a point sum to 360°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 360 - (109 + 23 + 148) = 360 - 280 = 80",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "80 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "net",
+        "kind": "angle_line",
         "params": {
-          "shape": "cone"
+          "angle_values": [
+            109,
+            23,
+            148,
+            80
+          ],
+          "labels": [
+            "109°",
+            "23°",
+            "148°",
+            "x"
+          ],
+          "around_point": true
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_shorter_leg",
-      "prompt": "A right-angled triangle has hypotenuse 148 cm and one leg 48 cm. Find the length of the other leg.",
+      "topic_id": "construction_perpendicular_bisector_F",
+      "prompt": "Line segment JG has length 7 cm. Describe, step by step, how to construct the perpendicular bisector of JG using only a ruler and a pair of compasses.",
+      "solution_steps": [
+        "Open the compasses to a radius more than half of 7 cm (more than half the length of JG).",
+        "With the compass point on J, draw an arc above and below the line.",
+        "Without changing the compass radius, place the point on G and draw two more arcs, crossing the first two.",
+        "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of JG."
+      ],
+      "final_answer": "A straight line through the two arc intersections, crossing JG at its midpoint at a right angle.",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Open the compasses to a radius more than half of 7 cm (more than half the length of JG).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "With the compass point on J, draw an arc above and below the line.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Without changing the compass radius, place the point on G and draw two more arcs, crossing the first two.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of JG.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "A straight line through the two arc intersections, crossing JG at its midpoint at a right angle. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pythagoras_shorter_leg_F",
+      "prompt": "A right-angled triangle has hypotenuse 148 cm and one side 48 cm. Find the length of x.",
       "solution_steps": [
         "b² = c² - a² = 148² - 48² = 21904 - 2304 = 19600",
         "b = √19600 = 140"
@@ -749,135 +860,14 @@
         "kind": "right_triangle",
         "params": {
           "leg1_label": "48 cm",
-          "leg2_label": "?",
+          "leg2_label": "x",
           "hyp_label": "148 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "arc_length_foundation",
-      "prompt": "A sector of a circle has radius 15 cm and angle 121°. Find the arc length, correct to 3 significant figures.",
-      "solution_steps": [
-        "Arc length = (θ ÷ 360) × 2 × π × r = (121 ÷ 360) × 2 × π × 15",
-        "= 31.7 cm (3 s.f., using a calculator value of π)"
-      ],
-      "final_answer": "31.7 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Arc length = (θ ÷ 360) × 2 × π × r = (121 ÷ 360) × 2 × π × 15",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 31.7 cm (3 s.f., using a calculator value of π)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "31.7 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "sector",
-        "params": {
-          "angle": 121,
-          "radius_label": "15 cm",
-          "angle_label": "121°"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "construction_angle_bisector",
-      "prompt": "Angle VYP = 48°. Describe, step by step, how to construct the bisector of angle VYP using only a ruler and a pair of compasses.",
-      "solution_steps": [
-        "Open the compasses to any radius and place the point on Y (the vertex of the angle).",
-        "Draw an arc that crosses both arms of the angle, at a point on YV and a point on YP.",
-        "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
-        "Draw a straight line from Y through the point where the two arcs intersect. This line is the bisector of angle VYP."
-      ],
-      "final_answer": "The straight line from Y through the intersection of the two equal-radius arcs bisects angle VYP into two equal angles.",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Open the compasses to any radius and place the point on Y (the vertex of the angle).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Draw an arc that crosses both arms of the angle, at a point on YV and a point on YP.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Draw a straight line from Y through the point where the two arcs intersect. This line is the bisector of angle VYP.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "The straight line from Y through the intersection of the two equal-radius arcs bisects angle VYP into two equal angles. oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "probability_expectation",
-      "prompt": "A spinner has P(landing on purple) = 2/5. The spinner is spun 30 times. How many times would you expect it to land on purple?",
-      "solution_steps": [
-        "Expected number of times = probability × number of trials = 2/5 × 30",
-        "= 12"
-      ],
-      "final_answer": "12",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Expected number of times = probability × number of trials = 2/5 × 30",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 12",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "12 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "spinner",
-        "params": {
-          "sectors": [
-            "P",
-            "P",
-            "",
-            "",
-            ""
-          ],
-          "highlight": [
-            0,
-            1
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "relative_frequency",
+      "topic_id": "relative_frequency_F",
       "prompt": "A drawing pin is tested 20 times, and it lands point up 12 times. Use this relative frequency to estimate how many times this would happen in 55 trials.",
       "solution_steps": [
         "Relative frequency = frequency ÷ number of trials = 12/20 = 3/5",
@@ -906,7 +896,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "venn_diagram_probability",
+      "topic_id": "venn_diagram_probability_F",
       "prompt": "The Venn diagram shows the number of students in each region for sets A and B. Find P(A ∪ B).",
       "solution_steps": [
         "Total number of elements = 15 + 10 + 5 + 11 = 41",
@@ -955,75 +945,48 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_equivalent_diagram",
-      "prompt": "Shape A is divided into 3 equal parts, with 1 shaded. Shape B is divided into 9 equal parts. How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
+      "topic_id": "probability_expectation_F",
+      "prompt": "A spinner has P(landing on purple) = 2/5. The spinner is spun 30 times. How many times would you expect it to land on purple?",
       "solution_steps": [
-        "Shape A shows 1/3 shaded; Shape B has 9 equal parts.",
-        "Find the scale factor between the denominators: 9 ÷ 3 = 3",
-        "Multiply the shaded count by the same scale factor: 1 × 3 = 3"
+        "Expected number of times = probability × number of trials = 2/5 × 30",
+        "= 12"
       ],
-      "final_answer": "3",
-      "marks": 4,
+      "final_answer": "12",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Shape A shows 1/3 shaded; Shape B has 9 equal parts.",
+          "description": "Expected number of times = probability × number of trials = 2/5 × 30",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Find the scale factor between the denominators: 9 ÷ 3 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the shaded count by the same scale factor: 1 × 3 = 3",
+          "description": "= 12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 oe",
+          "description": "12 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "fraction_shapes",
+        "kind": "spinner",
         "params": {
-          "shapes": [
-            {
-              "kind": "bar",
-              "parts": 3,
-              "shaded": 1,
-              "label": "1/3"
-            },
-            {
-              "kind": "bar",
-              "parts": 9,
-              "shaded": 0,
-              "label": "?/9"
-            }
+          "sectors": [
+            "P",
+            "P",
+            "",
+            "",
+            ""
+          ],
+          "highlight": [
+            0,
+            1
           ]
         }
       },
-      "solution_diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "bar",
-              "parts": 3,
-              "shaded": 1,
-              "label": "1/3"
-            },
-            {
-              "kind": "bar",
-              "parts": 9,
-              "shaded": 3,
-              "label": "3/9"
-            }
-          ]
-        }
-      }
+      "solution_diagram": null
     }
   ]
 }

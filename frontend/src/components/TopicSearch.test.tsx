@@ -1,7 +1,12 @@
-import { render, screen } from '@testing-library/react'
+import { render as rtlRender, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
+import type { ReactElement } from 'react'
 import { TopicSearch } from './TopicSearch'
+import { FormatProvider } from '../context/FormatContext'
 import type { Section } from '../api/types'
+
+// TopicSearch renders TopicCards, whose download hooks read the format context.
+const render = (ui: ReactElement) => rtlRender(<FormatProvider>{ui}</FormatProvider>)
 
 const sections: Section[] = [
   {
