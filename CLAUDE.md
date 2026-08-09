@@ -12,42 +12,46 @@ solutions, searchable/browsable across 6 curriculum sections.
 
 ## Where to pick up next
 
-Step 42 completed a review-feedback batch covering pages 101-200 of the
-`all_topics_review_*.pdf` documents (~20 named items spanning Algebra, Ratio &
-Proportion, and Geometry) — **this is explicitly a paginated continuation of the same
-review process** running since step 34, not a second full pass: the user is working
-through the 296-topic (now 305-topic) review PDF a chunk at a time. Freshly regenerated
-review PDFs reflecting this batch were sent back, and the batch is committed and pushed.
-The natural next step is simply to **wait for the user's next chunk of feedback** (pages
-201+, etc.) rather than assuming the review is done — this is the fourth review batch in
-a row to arrive as "the next chunk," not a sign the review is finished.
+**⚠️ Read this first — topic ids changed in step 44.** Every topic id now ends in
+**`_F` (Foundation) or `_H` (Higher)**, e.g. `bearings_cosine_rule_H`, `linear_two_step_F`,
+`area_circle_F`. There are no bare/`_foundation`/`_higher` ids left. If you're following
+an old note that names an id without the suffix, add `_F`/`_H` (the base is otherwise
+unchanged; the old `_foundation`/`_higher` word was stripped, so e.g. old
+`bearings_foundation` is now `bearings_F`, old `angles_triangle_higher` is now
+`angles_triangle_H`). **Generator/modelled-example function names and `dedup_key`
+prefixes were deliberately NOT renamed** — only `id=`/`topic_id=` strings carry the
+scheme. The full chronology below still uses the *old* ids in its historical entries
+(steps 1-43) — that's deliberate (they were correct at the time); mentally append the
+tier suffix if you go looking for one. See step 44 for the exact rename rule and how the
+migration was done safely.
 
-See chronology step 42 (most recent) and step 41 below for full technical detail. Step
-41, in short: a Phase-0 engine spike
-extended `fraction_images.py`'s `\frac{}{}` rendering with three new token kinds (a bare
-"x"/"n" italic variable, a bare "^exp" superscript suffix, and a real hook+bar radical) -
-this went through **three genuinely wrong designs** before landing on the right one
-(each found via rendering real output, not assumed), documented in the module's own
-docstring/comments as a cautionary precedent for any future extension of this file. Also:
-5 new topics (`change_subject_factorise_higher`, `substitution_rearrange_foundation`/
-`_higher`, `expand_double_brackets_no_coefficient_foundation`, `functions_inverse_
-evaluate` — 296→301), a from-scratch rework of `draw_linear_graph_pair` onto a real
-square-unit grid (needed **four** iterations of its own to get label placement right —
-see step 41's own account of why each earlier attempt failed a real render), and two
-precise diagram-overflow fixes in `draw_rectangle`/`draw_angle_line` found via a
-dedicated research agent rather than guessed. All 60 Practice Test papers were
-regenerated (`python -m app.practice_tests.build`) since `simultaneous_graphically`'s
-diagram param shape changed — same "frozen JSON goes stale when a diagram param shape
-changes" gotcha already documented for `area_mixed_compound` in step 39.
+The two most recent pieces of work, both committed and pushed on `aqa-spec-gap-topics`
+(the same open PR — `gh pr view 3`, or `& "C:\Program Files\GitHub CLI\gh.exe" pr view 3`
+if `gh` isn't on PATH in a fresh shell, see "Environment gotchas"):
 
-This work is on the `aqa-spec-gap-topics` branch, part of the same open PR (`gh pr view 3`,
-or the full path `& "C:\Program Files\GitHub CLI\gh.exe" pr view 3` if `gh` isn't on PATH
-in a fresh shell — see "Environment gotchas" below). **Committed and pushed** — commit
-`ef40d69` ("Review-feedback batch: pages 101-200 of Number/Algebra/Geometry review
-PDFs"), confirmed matching `origin/aqa-spec-gap-topics` exactly (only the two untracked
-review PDFs remain locally, which is correct — see "Regenerating the all-topics
-aesthetic-review PDFs" below for why they're deliberately not committed). 305 topics
-total, backend suite 959/959, frontend 61/61, no known bugs.
+- **Step 44 (HEAD, commit `9833db2`)**: the id `_F`/`_H` streamlining refactor above —
+  all 305 ids renamed, the 60 frozen Practice Test papers migrated *in place* (content
+  byte-identical, only their `topic_id` fields remapped — NOT rebuilt), tests + CLAUDE.md
+  updated. Backend suite 959/959.
+- **Step 43 (commits `42ffe3d` + `3ca66af`)**: a review-feedback batch covering pages
+  201-250 of the `all_topics_review_*.pdf` documents (~14 named items, mostly Geometry:
+  3D/trig diagrams, sine/cosine fonts, congruence-proof redesign, circle-theorem
+  wording, transformations). Added one topic (`properties_3d_shapes_diagram`, 304→305).
+
+**This is still the same paginated aesthetic-review process running since step 34** — the
+user works through the (now 305-topic) review PDF a chunk at a time. Steps 35-43 have
+covered Number → Algebra → Ratio & Proportion → Geometry → Probability/Statistics
+(step 40 closed the first full pass) and then a **second pass by page range**
+(pages 1-100 = step 41, 101-200 = step 42, 201-250 = step 43). So the natural next step
+is to **wait for the user's next chunk of feedback** (pages 251+), NOT to assume the
+review is finished — this has been "the next chunk" many batches in a row.
+
+The review workflow each batch: read the named items, fix them (render real PDFs to
+verify diagram/overlap fixes — don't trust unit tests for visual issues), regenerate
+both `all_topics_review_*.pdf` via `python -m scripts.generate_review_pdfs`, send them
+back to the user, then commit+push. See "Regenerating the all-topics aesthetic-review
+PDFs" below (the two PDFs are deliberately left untracked). 305 topics total, backend
+suite 959/959, frontend 61/61, no known bugs.
 
 Once the user's next chunk of feedback (or confirmation the review is fully done)
 arrives, check "Ideas for a future session" (bottom of this file) for candidate
@@ -3906,6 +3910,125 @@ fixes), is committed and pushed (see `git log`).
     were regenerated (304 question pages, up from 301; 315 answer pages, up
     from 312) and sent back to the user. Committed and pushed - see `git
     log` for the exact commit.
+
+43. New session, a review-feedback batch covering pages 201-250 of the
+    `all_topics_review_*.pdf` documents (~14 named items, mostly Geometry) -
+    another paginated continuation of the same review process (steps 34-42).
+    Clarifying questions were asked up front only where genuinely ambiguous;
+    most items were direct fixes. A task list tracked the 14 items. Every
+    diagram fix was verified by rendering real PDFs (a reusable
+    `scratchpad/rdiag.py` harness renders any diagram kind or a topic's
+    worksheet to PNG), not by trusting unit tests - the standing discipline
+    for visual issues. Highlights:
+    - **pythagoras_3d/trig_3d** (`draw_cuboid`): vertices relabelled `a`-`h`
+      lowercase; the one hidden vertex (`d`) now sits beside its own vertex
+      with a short leader line instead of floating at the bottom; a new
+      `show_diagonal` param draws the dashed space diagonal with NO
+      `?`/`theta` label (the dash indicates it).
+    - **All trig triangles (the flagged priority)**: `draw_trig_triangle`,
+      `draw_general_triangle` and `draw_right_triangle` were rewritten around
+      new shared helpers - `_TRIG_TRIANGLE_VARIANTS`/`_GENERAL_TRIANGLE_VARIANTS`
+      (6 genuinely different orientations/sizes each, incl. mirrored and
+      apex-down), `_place_side_label` (outward-normal generic side placement),
+      `_place_angle_label` (an ANALYTIC clearance formula - distance along the
+      bisector derived from the label's own footprint and the half-angle - so
+      the angle value never overlaps the two sides, fixing the recurring
+      complaint), and `_right_angle_marker` (orientation-independent). Side and
+      angle labels now share one size (`_TRIANGLE_LABEL_SIZE = 9.5`).
+    - **circle_theorems**: diagram label fonts bumped to 10; every prompt
+      trimmed to "Find the size of angle x." (the diagram already shows the
+      values) so the student must choose the theorem.
+    - **congruent_triangle_proof_foundation** REDESIGNED (the user was
+      frustrated it hadn't been done): now two triangles with real NUMERIC
+      measurements (`_foundation_congruence` picks SSS/SAS/ASA/RHS and labels
+      the matching sides/angles), prompt "Shown below are two congruent
+      triangles. Give a reason why they are congruent." + shuffled MC. Needed
+      `draw_two_triangle_congruence` extended with numeric side/angle-label +
+      right-angle-marker support (the Higher topic keeps its tick/arc marks).
+      Now procedural (dropped `question_count=len(TEMPLATES)`).
+    - **cylinder/cone/frustum/compound-3D diagrams**: measurement overlaps
+      fixed and dashed radius lines added where missing (frustum gained a
+      dashed axis + two radius dashes; both compound round variants gained a
+      dashed radius). Cylinder prompt trimmed to "Find the {measure} of the
+      cylinder, correct to ...".
+    - **pyramid**: the derived (usually-irrational) decimal slant label was
+      removed from the diagram - only the integer base/height show now.
+    - **vectors_arithmetic_higher**: `_join_vector_terms` now parenthesises a
+      negative second term for BOTH ops, so `4a + -3b` reads `4a + (-3b)`.
+    - **transformations**: "Draw and label the image A'B'C'" removed from all
+      four "complete" prompts; all four "describe" topics reworded to
+      "...maps shape A onto shape B" with whole-shape A/B labels (new
+      `original_shape_label`/`image_shape_label` params on
+      `draw_grid_transformation`, drawn at the centroid) and NO per-vertex
+      labels. (The reflect mirror-line weighting and the translate no-arrow
+      were already done in step 39.)
+    - **bearings**: `_north_arrow` default length 20→30 (all bearings).
+    - **properties_3d_shapes** split into a no-diagram version (name-only
+      recall) plus a NEW `properties_3d_shapes_diagram` sibling (shows the
+      solid) - 304→305 topics, the only count change this step.
+    - **The review script** (`scripts/generate_review_pdfs.py`) now renders
+      each topic's `preamble_lines` formula box, since the cone/sphere/frustum/
+      pyramid formula boxes already existed in the app (step 39) but were
+      invisible in the review PDF, making the user think formulas weren't
+      given (they were).
+    Backend suite grew 958→959; frontend unaffected (61/61). Practice Tests
+    were NOT rebuilt - all the diagram changes kept backward-compatible param
+    branches, so the frozen papers still render fine (verified via the suite).
+    Committed as `42ffe3d`; a follow-up `3ca66af` fixed the topic-count
+    numbers in CLAUDE.md (304→305, and reconciled a pre-existing drift in the
+    per-section table's Ratio & Proportion count 34→37).
+
+44. Same session, a large mechanical refactor the user requested "before the
+    [next] feedback": **streamline every topic id to a `name_F`/`name_H`
+    convention.** Confirmed 3 decisions up front via `AskUserQuestion`: (a)
+    strip any existing `_foundation`/`_higher` word and append `_F`/`_H` by
+    tier (so `bearings_foundation`→`bearings_F`, `angles_triangle_higher`→
+    `angles_triangle_H`, `linear_two_step`→`linear_two_step_F`,
+    `bearings_cosine_rule`→`bearings_cosine_rule_H`); (b) migrate the 60
+    frozen Practice Test papers IN PLACE (rewrite only their `topic_id`
+    fields, keeping content byte-identical) rather than rebuild (rebuilding
+    would change every paper, since each paper's seed is derived from
+    `(paper_id, topic_id)` via SHA-256); (c) rename IDs ONLY - not the
+    generator/modelled-example function names, not `dedup_key` prefixes.
+    Machine-generated the old→new map from the registry first and confirmed
+    no collisions and no tier-word mismatches across all 305 ids.
+
+    Applied via one migration script with THREE deliberately different
+    replacement strategies, because a naive blanket replace would corrupt
+    lookalike strings: (1) `app/topics/*.py` - ANCHORED `id=`/`topic_id=`
+    replace only, so coincidental context strings are untouched (this
+    matters: `"density"`/`"pressure"` appear as `rng.choice([...])` branch
+    values in `compound_measures.py` AND are topic ids; the
+    `"plans_and_elevations"` diagram kind and `"symmetry_lines"` param key
+    also equal topic ids); (2) `topic_selection.py` (priority lists +
+    `CALCULATOR_ONLY_TOPIC_IDS`) + the `data/*.json` `topic_id` fields +
+    test files - exact-quoted-id replace; (3) JSON anchored to
+    `"topic_id": "..."` so frozen diagram `"kind"` fields were never touched.
+    `registry.py` needed NO change - it lists `TopicDefinition` constants, and
+    each id lives on its definition inside the topic file.
+
+    The full-suite run then caught the one class of thing the exact-quoted
+    TEST replace got wrong (app files were safe via the anchored approach):
+    the two ids that also serve as a diagram kind / param key -
+    `plans_and_elevations` (a `DiagramSpec` kind) and `symmetry_lines` (a
+    `draw_symmetry_shape` param key) - had their kind/param *usages* in test
+    assertions wrongly suffixed; reverted those specific 4 lines while keeping
+    the genuine `topic_id`/`.id`/GENERATORS-tuple id references suffixed
+    (collision set confirmed to be exactly those two, via
+    `topic_ids ∩ diagram_kinds` and `topic_ids ∩ param_keys`). Also updated
+    three route-test download-filename assertions (the filename is
+    `{topic_id}-{tier}-...pdf`, now correctly containing `_F`/`_H` - my
+    exact-id replace correctly hadn't touched `"reverse_percentage-higher-..."`
+    since the id was followed by `-`, not a closing quote). Frontend confirmed
+    to have no hardcoded backend ids, so it was untouched.
+
+    Verification: registry loads 305 topics all ending `_F`/`_H`; every
+    generator's produced `topic_id` matches its registered `id`; all 30
+    calculator-only ids and all 283 distinct frozen-paper `topic_id`s resolve;
+    full backend suite 959/959. 193 tracked files changed (65 topic modules,
+    ~60 test files, 60 JSON, `topic_selection.py`, `test_routes.py`,
+    CLAUDE.md's architecture guidance). Review PDFs regenerated (now showing
+    the new ids) and sent to the user. Committed and pushed as `9833db2`.
 
 ## Environment gotchas (Windows, this machine specifically)
 
