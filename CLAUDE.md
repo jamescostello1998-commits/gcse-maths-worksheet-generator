@@ -16,7 +16,7 @@ Step 42 completed a review-feedback batch covering pages 101-200 of the
 `all_topics_review_*.pdf` documents (~20 named items spanning Algebra, Ratio &
 Proportion, and Geometry) — **this is explicitly a paginated continuation of the same
 review process** running since step 34, not a second full pass: the user is working
-through the 296-topic (now 304-topic) review PDF a chunk at a time. Freshly regenerated
+through the 296-topic (now 305-topic) review PDF a chunk at a time. Freshly regenerated
 review PDFs reflecting this batch were sent back, and the batch is committed and pushed.
 The natural next step is simply to **wait for the user's next chunk of feedback** (pages
 201+, etc.) rather than assuming the review is done — this is the fourth review batch in
@@ -46,8 +46,8 @@ in a fresh shell — see "Environment gotchas" below). **Committed and pushed** 
 `ef40d69` ("Review-feedback batch: pages 101-200 of Number/Algebra/Geometry review
 PDFs"), confirmed matching `origin/aqa-spec-gap-topics` exactly (only the two untracked
 review PDFs remain locally, which is correct — see "Regenerating the all-topics
-aesthetic-review PDFs" below for why they're deliberately not committed). 304 topics
-total, backend suite 958/958, frontend 61/61, no known bugs.
+aesthetic-review PDFs" below for why they're deliberately not committed). 305 topics
+total, backend suite 959/959, frontend 61/61, no known bugs.
 
 Once the user's next chunk of feedback (or confirmation the review is fully done)
 arrives, check "Ideas for a future session" (bottom of this file) for candidate
@@ -62,7 +62,7 @@ pending review feedback.
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**304 topics across 6 sections**, all procedurally generated with independent
+**305 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.),
@@ -385,8 +385,8 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 |---|---|---|
 | Number | Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 54 |
 | Algebra | Expressions/Formulae/Equations/Identities, Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Substitution into Formulae, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Equation of a Circle, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Kinematics (SUVAT), Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 75 |
-| Ratio & Proportion | Percentages, Best Buys, Ratio, Proportion, Compound Measures | 34 |
-| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations, Bearings, Map Scales and Scale Drawings, Constructions, Loci | 87 |
+| Ratio & Proportion | Percentages, Best Buys, Ratio, Proportion, Compound Measures | 37 |
+| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations, Bearings, Map Scales and Scale Drawings, Constructions, Loci | 88 |
 | Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams, Venn Diagrams | 22 |
 | Statistics | Averages from a List, Frequency Tables, Working Backwards, Charts and Graphs, Cumulative Frequency & Box Plots, Histograms, Sampling and Populations | 29 |
 
