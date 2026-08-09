@@ -65,7 +65,7 @@ def test_modelled_example_direct_proportion_produces_verified_examples():
     rng = random.Random(402)
     for _ in range(TRIALS):
         example = proportion.generate_modelled_example_direct_proportion(Tier.FOUNDATION, rng)
-        assert example.topic_id == "direct_proportion"
+        assert example.topic_id == "direct_proportion_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -76,7 +76,7 @@ def test_modelled_example_inverse_proportion_produces_verified_examples():
     rng = random.Random(403)
     for _ in range(TRIALS):
         example = proportion.generate_modelled_example_inverse_proportion(Tier.FOUNDATION, rng)
-        assert example.topic_id == "inverse_proportion"
+        assert example.topic_id == "inverse_proportion_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -89,7 +89,7 @@ def test_modelled_example_algebraic_direct_proportion_produces_verified_examples
         example = proportion.generate_modelled_example_algebraic_direct_proportion(
             Tier.HIGHER, rng
         )
-        assert example.topic_id == "algebraic_direct_proportion"
+        assert example.topic_id == "algebraic_direct_proportion_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -102,7 +102,7 @@ def test_modelled_example_algebraic_inverse_proportion_produces_verified_example
         example = proportion.generate_modelled_example_algebraic_inverse_proportion(
             Tier.HIGHER, rng
         )
-        assert example.topic_id == "algebraic_inverse_proportion"
+        assert example.topic_id == "algebraic_inverse_proportion_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3

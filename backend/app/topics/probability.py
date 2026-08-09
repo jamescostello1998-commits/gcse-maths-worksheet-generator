@@ -36,7 +36,7 @@ def generate_single_event(tier: Tier, rng: random.Random) -> Question:
         f"P({target_colour}) = {favourable}/{total} = {formula_prob.numerator}/{formula_prob.denominator}",
     ]
     return Question(
-        topic_id="probability_single_event",
+        topic_id="probability_single_event_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A bag contains {bag_desc} counters. A counter is picked at random. "
@@ -89,7 +89,7 @@ def generate_modelled_example_single_event(tier: Tier, rng: random.Random) -> Mo
         worked_calculation.append(f"= {formula_prob.numerator}/{formula_prob.denominator}")
 
     return ModelledExample(
-        topic_id="probability_single_event",
+        topic_id="probability_single_event_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A bag contains {bag_desc} counters. A counter is picked at random. "
@@ -128,7 +128,7 @@ def generate_complement(tier: Tier, rng: random.Random) -> Question:
         f"{p_complement.numerator}/{p_complement.denominator}",
     ]
     return Question(
-        topic_id="probability_complement",
+        topic_id="probability_complement_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A bag contains {bag_desc} counters. A counter is picked at random. "
@@ -177,7 +177,7 @@ def generate_modelled_example_complement(tier: Tier, rng: random.Random) -> Mode
         f"= {p_complement.numerator}/{p_complement.denominator}",
     ]
     return ModelledExample(
-        topic_id="probability_complement",
+        topic_id="probability_complement_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A bag contains {bag_desc} counters. A counter is picked at random. "
@@ -237,7 +237,7 @@ def generate_combined_dice(tier: Tier, rng: random.Random) -> Question:
         raise ValueError(f"combined_dice verification failed for event={event}")
 
     return Question(
-        topic_id="probability_combined_dice",
+        topic_id="probability_combined_dice_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -312,7 +312,7 @@ def generate_modelled_example_combined_dice(tier: Tier, rng: random.Random) -> M
         raise ValueError(f"modelled example combined_dice verification failed for event={event}")
 
     return ModelledExample(
-        topic_id="probability_combined_dice",
+        topic_id="probability_combined_dice_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -352,7 +352,7 @@ def generate_conditional_without_replacement(tier: Tier, rng: random.Random) -> 
         [(c1.title(), f"{n1}/{total - 1}"), (c2.title(), f"{n2 - 1}/{total - 1}")],
     ]
     return Question(
-        topic_id="probability_conditional",
+        topic_id="probability_conditional_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A bag contains {n1} {c1} and {n2} {c2} counters. Two counters are picked at random "
@@ -417,7 +417,7 @@ def generate_modelled_example_conditional_without_replacement(tier: Tier, rng: r
         [(c1.title(), f"{n1}/{total - 1}"), (c2.title(), f"{n2 - 1}/{total - 1}")],
     ]
     return ModelledExample(
-        topic_id="probability_conditional",
+        topic_id="probability_conditional_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A bag contains {n1} {c1} and {n2} {c2} counters. Two counters are picked at random "
@@ -516,7 +516,7 @@ def generate_listing_outcomes(tier: Tier, rng: random.Random) -> Question:
         "For each outcome of the first event, list every outcome of the second event: " + ", ".join(listing),
     ]
     return Question(
-        topic_id="probability_listing_outcomes",
+        topic_id="probability_listing_outcomes_F",
         tier=Tier.FOUNDATION,
         prompt=f"{context} List all the possible outcomes.",
         solution_steps=tuple(steps),
@@ -554,7 +554,7 @@ def generate_modelled_example_listing_outcomes(tier: Tier, rng: random.Random) -
     ]
 
     return ModelledExample(
-        topic_id="probability_listing_outcomes",
+        topic_id="probability_listing_outcomes_F",
         tier=Tier.FOUNDATION,
         prompt=f"{context} List all the possible outcomes.",
         worked_calculation=tuple(worked_calculation),
@@ -673,7 +673,7 @@ def generate_and_or_rule(tier: Tier, rng: random.Random) -> Question:
     prompt, steps, formula_prob, dedup_key, diagram = result[0], result[1], result[2], result[3], result[-1]
 
     return Question(
-        topic_id="probability_and_or_rule",
+        topic_id="probability_and_or_rule_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -719,7 +719,7 @@ def generate_modelled_example_and_or_rule(tier: Tier, rng: random.Random) -> Mod
         ]
 
     return ModelledExample(
-        topic_id="probability_and_or_rule",
+        topic_id="probability_and_or_rule_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -819,7 +819,7 @@ def _build_expectation(rng: random.Random):
 def generate_expectation(tier: Tier, rng: random.Random) -> Question:
     prompt, steps, expected, dedup_key, *_, diagram = _build_expectation(rng)
     return Question(
-        topic_id="probability_expectation",
+        topic_id="probability_expectation_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -850,7 +850,7 @@ def generate_modelled_example_expectation(tier: Tier, rng: random.Random) -> Mod
     ]
 
     return ModelledExample(
-        topic_id="probability_expectation",
+        topic_id="probability_expectation_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -861,7 +861,7 @@ def generate_modelled_example_expectation(tier: Tier, rng: random.Random) -> Mod
 
 
 TOPIC_SINGLE_EVENT = TopicDefinition(
-    id="probability_single_event",
+    id="probability_single_event_F",
     display_name="Single Event",
     description="Find the probability of a single equally-likely outcome.",
     generate=generate_single_event,
@@ -872,7 +872,7 @@ TOPIC_SINGLE_EVENT = TopicDefinition(
 )
 
 TOPIC_COMPLEMENT = TopicDefinition(
-    id="probability_complement",
+    id="probability_complement_F",
     display_name="Complement",
     description="Use the complement rule: P(not A) = 1 - P(A).",
     generate=generate_complement,
@@ -883,7 +883,7 @@ TOPIC_COMPLEMENT = TopicDefinition(
 )
 
 TOPIC_COMBINED_DICE = TopicDefinition(
-    id="probability_combined_dice",
+    id="probability_combined_dice_H",
     display_name="Combined Dice",
     description="Find the probability of combined outcomes when rolling two dice.",
     generate=generate_combined_dice,
@@ -894,7 +894,7 @@ TOPIC_COMBINED_DICE = TopicDefinition(
 )
 
 TOPIC_CONDITIONAL = TopicDefinition(
-    id="probability_conditional",
+    id="probability_conditional_H",
     display_name="Conditional (Without Replacement)",
     description="Find the probability of picking two items of the same type without replacement.",
     generate=generate_conditional_without_replacement,
@@ -905,7 +905,7 @@ TOPIC_CONDITIONAL = TopicDefinition(
 )
 
 TOPIC_LISTING_OUTCOMES = TopicDefinition(
-    id="probability_listing_outcomes",
+    id="probability_listing_outcomes_F",
     display_name="Listing Outcomes",
     description="Systematically list all the possible outcomes of two combined events.",
     generate=generate_listing_outcomes,
@@ -916,7 +916,7 @@ TOPIC_LISTING_OUTCOMES = TopicDefinition(
 )
 
 TOPIC_AND_OR_RULE = TopicDefinition(
-    id="probability_and_or_rule",
+    id="probability_and_or_rule_F",
     display_name="AND / OR Rule",
     description="Use the OR rule for mutually exclusive events and the AND rule for independent events.",
     generate=generate_and_or_rule,
@@ -927,7 +927,7 @@ TOPIC_AND_OR_RULE = TopicDefinition(
 )
 
 TOPIC_EXPECTATION = TopicDefinition(
-    id="probability_expectation",
+    id="probability_expectation_F",
     display_name="Expected Frequency",
     description="Find the expected number of occurrences of an event given its probability and the number of trials.",
     generate=generate_expectation,

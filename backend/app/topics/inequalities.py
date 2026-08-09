@@ -245,7 +245,7 @@ def generate_solving_inequalities_foundation(tier: Tier, rng: random.Random) -> 
     prompt = f"Solve the inequality: {_fmt_ineq_lhs(lhs_coeff, lhs_const)} {SYM_DISPLAY[symbol]} {rhs_const}"
     final_answer = f"x {SYM_DISPLAY[final_symbol]} {fmt_num(bound)}"
     return Question(
-        topic_id="solving_inequalities_foundation",
+        topic_id="solving_inequalities_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -288,7 +288,7 @@ def generate_solving_inequalities_higher(tier: Tier, rng: random.Random) -> Ques
 
     final_answer = f"x {SYM_DISPLAY[final_symbol]} {fmt_num(bound)}"
     return Question(
-        topic_id="solving_inequalities_higher",
+        topic_id="solving_inequalities_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -347,7 +347,7 @@ def generate_satisfying_inequalities_foundation(tier: Tier, rng: random.Random) 
     steps.append(f"The integers satisfying this are: {candidates_str}")
 
     return Question(
-        topic_id="satisfying_inequalities_foundation",
+        topic_id="satisfying_inequalities_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -412,7 +412,7 @@ def generate_satisfying_inequalities_higher(tier: Tier, rng: random.Random) -> Q
         steps.append(f"The integers satisfying this are: {candidates_str}")
 
         return Question(
-            topic_id="satisfying_inequalities_higher",
+            topic_id="satisfying_inequalities_H",
             tier=Tier.HIGHER,
             prompt=prompt,
             solution_steps=tuple(steps),
@@ -468,7 +468,7 @@ def generate_satisfying_inequalities_higher(tier: Tier, rng: random.Random) -> Q
         steps.append(f"The integers satisfying both inequalities are: {candidates_str}")
 
         return Question(
-            topic_id="satisfying_inequalities_higher",
+            topic_id="satisfying_inequalities_H",
             tier=Tier.HIGHER,
             prompt=prompt,
             solution_steps=tuple(steps),
@@ -549,7 +549,7 @@ def generate_quadratic_inequalities(tier: Tier, rng: random.Random) -> Question:
     ]
 
     return Question(
-        topic_id="quadratic_inequalities",
+        topic_id="quadratic_inequalities_H",
         tier=Tier.HIGHER,
         prompt=f"Solve the inequality: {_fmt_quadratic(qa, qb, qc)} {SYM_DISPLAY[symbol]} 0",
         solution_steps=tuple(steps),
@@ -596,7 +596,7 @@ def generate_modelled_example_solving_inequalities_foundation(
     worked_calculation = list(steps)
 
     return ModelledExample(
-        topic_id="solving_inequalities_foundation",
+        topic_id="solving_inequalities_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -669,7 +669,7 @@ def generate_modelled_example_solving_inequalities_higher(
 
     final_answer = f"x {SYM_DISPLAY[final_symbol]} {fmt_num(bound)}"
     return ModelledExample(
-        topic_id="solving_inequalities_higher",
+        topic_id="solving_inequalities_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -737,7 +737,7 @@ def generate_modelled_example_satisfying_inequalities_foundation(
     ]
 
     return ModelledExample(
-        topic_id="satisfying_inequalities_foundation",
+        topic_id="satisfying_inequalities_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -810,7 +810,7 @@ def generate_modelled_example_satisfying_inequalities_higher(
         ]
 
         return ModelledExample(
-            topic_id="satisfying_inequalities_higher",
+            topic_id="satisfying_inequalities_H",
             tier=Tier.HIGHER,
             prompt=prompt,
             worked_calculation=tuple(worked_calculation),
@@ -873,7 +873,7 @@ def generate_modelled_example_satisfying_inequalities_higher(
         ]
 
         return ModelledExample(
-            topic_id="satisfying_inequalities_higher",
+            topic_id="satisfying_inequalities_H",
             tier=Tier.HIGHER,
             prompt=prompt,
             worked_calculation=tuple(worked_calculation),
@@ -978,7 +978,7 @@ def generate_modelled_example_quadratic_inequalities(tier: Tier, rng: random.Ran
     ]
 
     return ModelledExample(
-        topic_id="quadratic_inequalities",
+        topic_id="quadratic_inequalities_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -988,7 +988,7 @@ def generate_modelled_example_quadratic_inequalities(tier: Tier, rng: random.Ran
 
 
 TOPIC_SOLVING_INEQUALITIES_FOUNDATION = TopicDefinition(
-    id="solving_inequalities_foundation",
+    id="solving_inequalities_F",
     display_name="Solving Linear Inequalities",
     description="Solve a one- or two-step linear inequality, keeping the coefficient of x positive.",
     generate=generate_solving_inequalities_foundation,
@@ -999,7 +999,7 @@ TOPIC_SOLVING_INEQUALITIES_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_SOLVING_INEQUALITIES_HIGHER = TopicDefinition(
-    id="solving_inequalities_higher",
+    id="solving_inequalities_H",
     display_name="Solving Linear Inequalities",
     description=(
         "Solve a linear inequality that requires collecting x-terms from both sides or expanding a "
@@ -1013,7 +1013,7 @@ TOPIC_SOLVING_INEQUALITIES_HIGHER = TopicDefinition(
 )
 
 TOPIC_SATISFYING_INEQUALITIES_FOUNDATION = TopicDefinition(
-    id="satisfying_inequalities_foundation",
+    id="satisfying_inequalities_F",
     display_name="Satisfying an Inequality",
     description="Solve a compound inequality and list every integer value of x that satisfies it.",
     generate=generate_satisfying_inequalities_foundation,
@@ -1024,7 +1024,7 @@ TOPIC_SATISFYING_INEQUALITIES_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_SATISFYING_INEQUALITIES_HIGHER = TopicDefinition(
-    id="satisfying_inequalities_higher",
+    id="satisfying_inequalities_H",
     display_name="Satisfying an Inequality",
     description=(
         "Solve a compound inequality with a negative coefficient, or combine two separate inequalities "
@@ -1038,7 +1038,7 @@ TOPIC_SATISFYING_INEQUALITIES_HIGHER = TopicDefinition(
 )
 
 TOPIC_QUADRATIC_INEQUALITIES = TopicDefinition(
-    id="quadratic_inequalities",
+    id="quadratic_inequalities_H",
     display_name="Solving Quadratic Inequalities",
     description="Solve a quadratic inequality by factorising and reasoning about the shape of the parabola.",
     generate=generate_quadratic_inequalities,

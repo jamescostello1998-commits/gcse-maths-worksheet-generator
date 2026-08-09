@@ -82,43 +82,43 @@ def test_all_topics_have_modelled_example_wired():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (expand_factorise.generate_modelled_example_expand_single, Tier.FOUNDATION, "expand_single_bracket"),
+    (expand_factorise.generate_modelled_example_expand_single, Tier.FOUNDATION, "expand_single_bracket_F"),
     (
         expand_factorise.generate_modelled_example_expand_double_foundation,
         Tier.FOUNDATION,
-        "expand_double_brackets_foundation",
+        "expand_double_brackets_F",
     ),
     (
         expand_factorise.generate_modelled_example_expand_double_no_coefficient_foundation,
         Tier.FOUNDATION,
-        "expand_double_brackets_no_coefficient_foundation",
+        "expand_double_brackets_no_coefficient_F",
     ),
-    (expand_factorise.generate_modelled_example_expand_double, Tier.HIGHER, "expand_double_brackets"),
-    (expand_factorise.generate_modelled_example_expand_triple, Tier.HIGHER, "expand_triple_brackets"),
+    (expand_factorise.generate_modelled_example_expand_double, Tier.HIGHER, "expand_double_brackets_H"),
+    (expand_factorise.generate_modelled_example_expand_triple, Tier.HIGHER, "expand_triple_brackets_H"),
     (
         expand_factorise.generate_modelled_example_factorise_common,
         Tier.FOUNDATION,
-        "factorise_common_factor",
+        "factorise_common_factor_F",
     ),
     (
         expand_factorise.generate_modelled_example_factorise_quadratic_foundation,
         Tier.FOUNDATION,
-        "factorise_quadratics_foundation",
+        "factorise_quadratics_F",
     ),
     (
         expand_factorise.generate_modelled_example_factorise_quadratic,
         Tier.HIGHER,
-        "factorise_quadratics",
+        "factorise_quadratics_H",
     ),
     (
         expand_factorise.generate_modelled_example_solve_quadratic_factorising_foundation,
         Tier.FOUNDATION,
-        "solve_quadratic_factorising_foundation",
+        "solve_quadratic_factorising_F",
     ),
     (
         expand_factorise.generate_modelled_example_solve_quadratic_factorising,
         Tier.HIGHER,
-        "solve_quadratic_factorising",
+        "solve_quadratic_factorising_H",
     ),
 ]
 

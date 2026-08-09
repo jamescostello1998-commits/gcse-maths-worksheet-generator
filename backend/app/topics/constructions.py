@@ -53,7 +53,7 @@ def generate_construction_angle_bisector(tier: Tier, rng: random.Random) -> Ques
     angle_deg = rng.randint(20, 160)
     c = _angle_bisector_content(X, Y, Z, angle_deg)
     return Question(
-        topic_id="construction_angle_bisector",
+        topic_id="construction_angle_bisector_F",
         tier=Tier.FOUNDATION,
         prompt=c["prompt"],
         solution_steps=tuple(c["steps"]),
@@ -79,7 +79,7 @@ def generate_modelled_example_construction_angle_bisector(tier: Tier, rng: rando
         f"both arms of angle {X}{Y}{Z} - the bisector itself.",
     ]
     return ModelledExample(
-        topic_id="construction_angle_bisector",
+        topic_id="construction_angle_bisector_F",
         tier=Tier.FOUNDATION,
         prompt=c["prompt"],
         worked_calculation=tuple(c["steps"]),
@@ -114,7 +114,7 @@ def generate_construction_perpendicular_bisector(tier: Tier, rng: random.Random)
     length_cm = rng.randint(4, 14)
     c = _perpendicular_bisector_content(P, Q, length_cm)
     return Question(
-        topic_id="construction_perpendicular_bisector",
+        topic_id="construction_perpendicular_bisector_F",
         tier=Tier.FOUNDATION,
         prompt=c["prompt"],
         solution_steps=tuple(c["steps"]),
@@ -139,7 +139,7 @@ def generate_modelled_example_construction_perpendicular_bisector(tier: Tier, rn
         f"bisector - and it always meets {P}{Q} at a right angle, exactly at its midpoint.",
     ]
     return ModelledExample(
-        topic_id="construction_perpendicular_bisector",
+        topic_id="construction_perpendicular_bisector_F",
         tier=Tier.FOUNDATION,
         prompt=c["prompt"],
         worked_calculation=tuple(c["steps"]),
@@ -242,7 +242,7 @@ def _random_triangle_content(rng: random.Random) -> tuple:
 def generate_construction_triangle(tier: Tier, rng: random.Random) -> Question:
     content, dedup_key = _random_triangle_content(rng)
     return Question(
-        topic_id="construction_triangle",
+        topic_id="construction_triangle_F",
         tier=Tier.FOUNDATION,
         prompt=content["prompt"],
         solution_steps=tuple(content["steps"]),
@@ -267,7 +267,7 @@ def generate_modelled_example_construction_triangle(tier: Tier, rng: random.Rand
         "vertex).",
     ]
     return ModelledExample(
-        topic_id="construction_triangle",
+        topic_id="construction_triangle_F",
         tier=Tier.FOUNDATION,
         prompt=content["prompt"],
         worked_calculation=tuple(content["steps"]),
@@ -335,7 +335,7 @@ def _random_perpendicular_from_point_content(rng: random.Random) -> tuple:
 def generate_construction_perpendicular_from_point(tier: Tier, rng: random.Random) -> Question:
     content, dedup_key, _ = _random_perpendicular_from_point_content(rng)
     return Question(
-        topic_id="construction_perpendicular_from_point",
+        topic_id="construction_perpendicular_from_point_F",
         tier=Tier.FOUNDATION,
         prompt=content["prompt"],
         solution_steps=tuple(content["steps"]),
@@ -373,7 +373,7 @@ def generate_modelled_example_construction_perpendicular_from_point(tier: Tier, 
             "that point.",
         ]
     return ModelledExample(
-        topic_id="construction_perpendicular_from_point",
+        topic_id="construction_perpendicular_from_point_F",
         tier=Tier.FOUNDATION,
         prompt=content["prompt"],
         worked_calculation=tuple(content["steps"]),
@@ -383,7 +383,7 @@ def generate_modelled_example_construction_perpendicular_from_point(tier: Tier, 
 
 
 TOPIC_CONSTRUCTION_ANGLE_BISECTOR = TopicDefinition(
-    id="construction_angle_bisector",
+    id="construction_angle_bisector_F",
     display_name="Constructing an Angle Bisector",
     description="Describe how to construct the bisector of a given angle using a ruler and compasses.",
     generate=generate_construction_angle_bisector,
@@ -394,7 +394,7 @@ TOPIC_CONSTRUCTION_ANGLE_BISECTOR = TopicDefinition(
 )
 
 TOPIC_CONSTRUCTION_PERPENDICULAR_BISECTOR = TopicDefinition(
-    id="construction_perpendicular_bisector",
+    id="construction_perpendicular_bisector_F",
     display_name="Constructing a Perpendicular Bisector",
     description="Describe how to construct the perpendicular bisector of a line segment using a ruler and compasses.",
     generate=generate_construction_perpendicular_bisector,
@@ -405,7 +405,7 @@ TOPIC_CONSTRUCTION_PERPENDICULAR_BISECTOR = TopicDefinition(
 )
 
 TOPIC_CONSTRUCTION_TRIANGLE = TopicDefinition(
-    id="construction_triangle",
+    id="construction_triangle_F",
     display_name="Constructing a Triangle",
     description="Describe how to construct a triangle given SSS, SAS, or ASA information.",
     generate=generate_construction_triangle,
@@ -416,7 +416,7 @@ TOPIC_CONSTRUCTION_TRIANGLE = TopicDefinition(
 )
 
 TOPIC_CONSTRUCTION_PERPENDICULAR_FROM_POINT = TopicDefinition(
-    id="construction_perpendicular_from_point",
+    id="construction_perpendicular_from_point_F",
     display_name="Constructing a Perpendicular From/At a Point",
     description="Describe how to construct the perpendicular from a point to a line, or at a point on a line, using a ruler and compasses.",
     generate=generate_construction_perpendicular_from_point,

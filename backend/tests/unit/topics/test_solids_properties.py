@@ -134,7 +134,7 @@ ALL_TOPICS = [
 
 def test_topic_definitions_have_expected_metadata():
     ids = {t.id for t in ALL_TOPICS}
-    assert ids == {"properties_3d_shapes", "nets_3d_shapes"}
+    assert ids == {"properties_3d_shapes_F", "nets_3d_shapes_F"}
     for t in ALL_TOPICS:
         assert t.section == "geometry"
         assert t.group == "3D Shapes"
@@ -149,8 +149,8 @@ def test_topic_definitions_have_modelled_examples_wired_up():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (solids_properties.generate_modelled_example_properties_3d_shapes, "properties_3d_shapes"),
-    (solids_properties.generate_modelled_example_nets_3d_shapes, "nets_3d_shapes"),
+    (solids_properties.generate_modelled_example_properties_3d_shapes, "properties_3d_shapes_F"),
+    (solids_properties.generate_modelled_example_nets_3d_shapes, "nets_3d_shapes_F"),
 ]
 
 

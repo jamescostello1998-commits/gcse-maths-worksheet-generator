@@ -55,9 +55,9 @@ MODELLED_TOPICS = [
 ]
 
 MODELLED_GENERATORS = [
-    (triangle_rules.generate_modelled_example_sine_rule, Tier.HIGHER, "sine_rule"),
-    (triangle_rules.generate_modelled_example_cosine_rule, Tier.HIGHER, "cosine_rule"),
-    (triangle_rules.generate_modelled_example_triangle_area, Tier.HIGHER, "triangle_area_sine_rule"),
+    (triangle_rules.generate_modelled_example_sine_rule, Tier.HIGHER, "sine_rule_H"),
+    (triangle_rules.generate_modelled_example_cosine_rule, Tier.HIGHER, "cosine_rule_H"),
+    (triangle_rules.generate_modelled_example_triangle_area, Tier.HIGHER, "triangle_area_sine_rule_H"),
 ]
 
 

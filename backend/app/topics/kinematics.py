@@ -463,7 +463,7 @@ def generate_kinematics_suvat(tier: Tier, rng: random.Random) -> Question:
             dedup_key = f"eq3:s:{b['u']}:{b['v']}:{b['a']}"
 
     return Question(
-        topic_id="kinematics_suvat",
+        topic_id="kinematics_suvat_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -531,7 +531,7 @@ def _modelled_eq1(rng: random.Random) -> ModelledExample:
     )
 
     return ModelledExample(
-        topic_id="kinematics_suvat",
+        topic_id="kinematics_suvat_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -597,7 +597,7 @@ def _modelled_eq2(rng: random.Random) -> ModelledExample:
         ]
 
     return ModelledExample(
-        topic_id="kinematics_suvat",
+        topic_id="kinematics_suvat_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -674,7 +674,7 @@ def _modelled_eq3(rng: random.Random) -> ModelledExample:
         ]
 
     return ModelledExample(
-        topic_id="kinematics_suvat",
+        topic_id="kinematics_suvat_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -694,7 +694,7 @@ def generate_modelled_example_kinematics_suvat(tier: Tier, rng: random.Random) -
 
 
 TOPIC_KINEMATICS_SUVAT = TopicDefinition(
-    id="kinematics_suvat",
+    id="kinematics_suvat_H",
     display_name="Kinematics (SUVAT)",
     description=(
         "Use the constant-acceleration (SUVAT) equations v = u + at, s = ut + (1/2)at^2 "

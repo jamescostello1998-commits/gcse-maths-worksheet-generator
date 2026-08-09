@@ -136,7 +136,7 @@ def generate_map_scale_drawings(tier: Tier, rng: random.Random) -> Question:
     scale = v["scale"]
     dedup_key = f"map_scale:{scale['kind']}:{scale['text']}:{v['map_cm']}:{v['direction']}"
     return Question(
-        topic_id="map_scale_drawings",
+        topic_id="map_scale_drawings_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -174,7 +174,7 @@ def generate_modelled_example_map_scale_drawings(tier: Tier, rng: random.Random)
         ]
 
     return ModelledExample(
-        topic_id="map_scale_drawings",
+        topic_id="map_scale_drawings_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(steps),
@@ -184,7 +184,7 @@ def generate_modelled_example_map_scale_drawings(tier: Tier, rng: random.Random)
 
 
 TOPIC_MAP_SCALE_DRAWINGS = TopicDefinition(
-    id="map_scale_drawings",
+    id="map_scale_drawings_F",
     display_name="Map Scales and Scale Drawings",
     description=(
         "Convert between a distance measured on a map and the real-life distance it represents, given "

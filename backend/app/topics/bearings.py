@@ -137,7 +137,7 @@ def generate_bearings(tier: Tier, rng: random.Random) -> Question:
         },
     )
     return Question(
-        topic_id="bearings_cosine_rule",
+        topic_id="bearings_cosine_rule_H",
         tier=Tier.HIGHER,
         prompt=_bearings_prompt(v),
         solution_steps=tuple(steps),
@@ -186,7 +186,7 @@ def generate_modelled_example_bearings(tier: Tier, rng: random.Random) -> Modell
         },
     )
     return ModelledExample(
-        topic_id="bearings_cosine_rule",
+        topic_id="bearings_cosine_rule_H",
         tier=Tier.HIGHER,
         prompt=_bearings_prompt(v),
         worked_calculation=tuple(worked_calculation),
@@ -228,7 +228,7 @@ def generate_bearings_foundation(tier: Tier, rng: random.Random) -> Question:
             },
         )
         return Question(
-            topic_id="bearings_foundation",
+            topic_id="bearings_F",
             tier=Tier.FOUNDATION,
             prompt=f"The bearing of B from A is {_fmt_bearing(v['bearing_at_A'])}. Find the bearing of A from B.",
             solution_steps=tuple(steps),
@@ -249,7 +249,7 @@ def generate_bearings_foundation(tier: Tier, rng: random.Random) -> Question:
         params={"labels": ("A", "B"), "bearing_at_A": bearing, "leg1_label": ""},
     )
     return Question(
-        topic_id="bearings_foundation",
+        topic_id="bearings_F",
         tier=Tier.FOUNDATION,
         prompt="The diagram shows the bearing of B from A. Write down the bearing of B from A as a "
         "three-figure bearing.",
@@ -287,7 +287,7 @@ def generate_modelled_example_bearings_foundation(tier: Tier, rng: random.Random
             },
         )
         return ModelledExample(
-            topic_id="bearings_foundation",
+            topic_id="bearings_F",
             tier=Tier.FOUNDATION,
             prompt=f"The bearing of B from A is {_fmt_bearing(v['bearing_at_A'])}. Find the bearing of A from B.",
             worked_calculation=tuple(worked_calculation),
@@ -311,7 +311,7 @@ def generate_modelled_example_bearings_foundation(tier: Tier, rng: random.Random
         params={"labels": ("A", "B"), "bearing_at_A": bearing, "leg1_label": ""},
     )
     return ModelledExample(
-        topic_id="bearings_foundation",
+        topic_id="bearings_F",
         tier=Tier.FOUNDATION,
         prompt="The diagram shows the bearing of B from A. Write down the bearing of B from A as a "
         "three-figure bearing.",
@@ -323,7 +323,7 @@ def generate_modelled_example_bearings_foundation(tier: Tier, rng: random.Random
 
 
 TOPIC_BEARINGS_FOUNDATION = TopicDefinition(
-    id="bearings_foundation",
+    id="bearings_F",
     display_name="Bearings",
     description="Find a back bearing, or read a three-figure bearing directly from a diagram.",
     generate=generate_bearings_foundation,
@@ -335,7 +335,7 @@ TOPIC_BEARINGS_FOUNDATION = TopicDefinition(
 
 
 TOPIC_BEARINGS_COSINE_RULE = TopicDefinition(
-    id="bearings_cosine_rule",
+    id="bearings_cosine_rule_H",
     display_name="Bearings",
     description=(
         "Use the cosine rule to find the direct distance between two points, given bearings and "

@@ -27,7 +27,7 @@ def _angle_at_centre(rng: random.Random) -> Question:
         calc,
     ]
     return Question(
-        topic_id="circle_theorems",
+        topic_id="circle_theorems_H",
         tier=Tier.HIGHER,
         prompt="Find the size of angle x.",
         solution_steps=tuple(steps),
@@ -53,7 +53,7 @@ def _angle_in_semicircle(rng: random.Random) -> Question:
         f"Angles in triangle ABC sum to 180°: x = 180 - 90 - {given_angle} = {unknown_angle}",
     ]
     return Question(
-        topic_id="circle_theorems",
+        topic_id="circle_theorems_H",
         tier=Tier.HIGHER,
         prompt="Find the size of angle x.",
         solution_steps=tuple(steps),
@@ -77,7 +77,7 @@ def _cyclic_quadrilateral(rng: random.Random) -> Question:
         f"x = 180 - {given_angle} = {unknown_angle}",
     ]
     return Question(
-        topic_id="circle_theorems",
+        topic_id="circle_theorems_H",
         tier=Tier.HIGHER,
         prompt="Find the size of angle x.",
         solution_steps=tuple(steps),
@@ -105,7 +105,7 @@ def _two_tangents(rng: random.Random) -> Question:
         f"Angles in quadrilateral OATB sum to 360°: x = 360 - 90 - 90 - {given_angle} = {unknown_angle}",
     ]
     return Question(
-        topic_id="circle_theorems",
+        topic_id="circle_theorems_H",
         tier=Tier.HIGHER,
         prompt="Find the size of angle x.",
         solution_steps=tuple(steps),
@@ -136,7 +136,7 @@ def _angle_same_segment(rng: random.Random) -> Question:
         f"x = {given_angle}°",
     ]
     return Question(
-        topic_id="circle_theorems",
+        topic_id="circle_theorems_H",
         tier=Tier.HIGHER,
         prompt="Find the size of angle x.",
         solution_steps=tuple(steps),
@@ -168,7 +168,7 @@ def _alternate_segment(rng: random.Random) -> Question:
         f"x = {given_angle}°",
     ]
     return Question(
-        topic_id="circle_theorems",
+        topic_id="circle_theorems_H",
         tier=Tier.HIGHER,
         prompt="Find the size of angle x.",
         solution_steps=tuple(steps),
@@ -229,7 +229,7 @@ def _modelled_angle_at_centre(rng: random.Random) -> ModelledExample:
         ]
 
     return ModelledExample(
-        topic_id="circle_theorems",
+        topic_id="circle_theorems_H",
         tier=Tier.HIGHER,
         prompt="Find the size of angle x.",
         worked_calculation=tuple(worked_calculation),
@@ -266,7 +266,7 @@ def _modelled_angle_in_semicircle(rng: random.Random) -> ModelledExample:
         f"x = {unknown_angle}",
     ]
     return ModelledExample(
-        topic_id="circle_theorems",
+        topic_id="circle_theorems_H",
         tier=Tier.HIGHER,
         prompt="Find the size of angle x.",
         worked_calculation=tuple(worked_calculation),
@@ -298,7 +298,7 @@ def _modelled_cyclic_quadrilateral(rng: random.Random) -> ModelledExample:
         f"x = {unknown_angle}",
     ]
     return ModelledExample(
-        topic_id="circle_theorems",
+        topic_id="circle_theorems_H",
         tier=Tier.HIGHER,
         prompt="Find the size of angle x.",
         worked_calculation=tuple(worked_calculation),
@@ -336,7 +336,7 @@ def _modelled_two_tangents(rng: random.Random) -> ModelledExample:
         f"x = {unknown_angle}",
     ]
     return ModelledExample(
-        topic_id="circle_theorems",
+        topic_id="circle_theorems_H",
         tier=Tier.HIGHER,
         prompt="Find the size of angle x.",
         worked_calculation=tuple(worked_calculation),
@@ -377,7 +377,7 @@ def _modelled_angle_same_segment(rng: random.Random) -> ModelledExample:
         f"x = {given_angle}°",
     ]
     return ModelledExample(
-        topic_id="circle_theorems",
+        topic_id="circle_theorems_H",
         tier=Tier.HIGHER,
         prompt="Find the size of angle x.",
         worked_calculation=tuple(worked_calculation),
@@ -419,7 +419,7 @@ def _modelled_alternate_segment(rng: random.Random) -> ModelledExample:
         f"x = {given_angle}°",
     ]
     return ModelledExample(
-        topic_id="circle_theorems",
+        topic_id="circle_theorems_H",
         tier=Tier.HIGHER,
         prompt="Find the size of angle x.",
         worked_calculation=tuple(worked_calculation),
@@ -448,7 +448,7 @@ def generate_modelled_example_circle_theorem(tier: Tier, rng: random.Random) -> 
 
 
 TOPIC_CIRCLE_THEOREMS = TopicDefinition(
-    id="circle_theorems",
+    id="circle_theorems_H",
     display_name="Circle Theorems",
     description="Apply circle theorems (angle at centre, angle in a semicircle, cyclic quadrilaterals, tangents, angles in the same segment, alternate segment) to find a missing angle.",
     generate=generate_circle_theorem,

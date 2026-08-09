@@ -167,7 +167,7 @@ def generate_inequalities_region_higher(tier: Tier, rng: random.Random) -> Quest
             f"Shade the region where both {expr1} and {expr2} are true at the same time.",
         ]
         return Question(
-            topic_id="inequalities_region_higher",
+            topic_id="inequalities_region_H",
             tier=Tier.HIGHER,
             prompt=prompt,
             solution_steps=tuple(steps),
@@ -188,7 +188,7 @@ def generate_inequalities_region_higher(tier: Tier, rng: random.Random) -> Quest
             f"{_shading_side(line2['op'])} side of it, giving {expr2}.",
         ]
         return Question(
-            topic_id="inequalities_region_higher",
+            topic_id="inequalities_region_H",
             tier=Tier.HIGHER,
             prompt=prompt,
             solution_steps=tuple(steps),
@@ -241,7 +241,7 @@ def generate_modelled_example_inequalities_region_higher(tier: Tier, rng: random
         ]
         worked_calculation = [expr1, expr2, f"Boundaries: {boundary1} ({dashed1}), {boundary2} ({dashed2})"]
         return ModelledExample(
-            topic_id="inequalities_region_higher",
+            topic_id="inequalities_region_H",
             tier=Tier.HIGHER,
             prompt=prompt,
             worked_calculation=tuple(worked_calculation),
@@ -262,7 +262,7 @@ def generate_modelled_example_inequalities_region_higher(tier: Tier, rng: random
         ]
         worked_calculation = [f"Boundary 1: {boundary1} ({dashed1}) -> {expr1}", f"Boundary 2: {boundary2} ({dashed2}) -> {expr2}"]
         return ModelledExample(
-            topic_id="inequalities_region_higher",
+            topic_id="inequalities_region_H",
             tier=Tier.HIGHER,
             prompt=prompt,
             worked_calculation=tuple(worked_calculation),
@@ -273,7 +273,7 @@ def generate_modelled_example_inequalities_region_higher(tier: Tier, rng: random
 
 
 TOPIC_INEQUALITIES_REGION_HIGHER = TopicDefinition(
-    id="inequalities_region_higher",
+    id="inequalities_region_H",
     display_name="Shading Inequality Regions",
     description="Shade (or read off) the region on a coordinate grid that satisfies two linear inequalities at once.",
     generate=generate_inequalities_region_higher,

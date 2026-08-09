@@ -11,12 +11,12 @@ from app.core.errors import TopicNotFoundError
 
 # A deliberate mix: some diagram-bearing topics, some not.
 SIX_TOPIC_IDS = [
-    "angles_triangle",  # diagram
-    "area_rectangle",  # diagram
-    "fractions_add_subtract",  # no diagram, always produces a fraction
-    "linear_two_step",  # no diagram
-    "probability_single_event",  # diagram
-    "bar_chart_construct",  # diagram, sometimes long prompt
+    "angles_triangle_F",  # diagram
+    "area_rectangle_F",  # diagram
+    "fractions_add_subtract_F",  # no diagram, always produces a fraction
+    "linear_two_step_F",  # no diagram
+    "probability_single_event_F",  # diagram
+    "bar_chart_construct_F",  # diagram, sometimes long prompt
 ]
 
 GRID_TABLE_SHAPE_NAME = "Google Shape;146;p3"
@@ -131,7 +131,7 @@ def test_fraction_topic_produces_a_real_native_equation_object():
     data = generate_bell_tasks_pptx(SIX_TOPIC_IDS)
     prs = Presentation(io.BytesIO(data))
 
-    box_for_fractions = SIX_TOPIC_IDS.index("fractions_add_subtract") + 1
+    box_for_fractions = SIX_TOPIC_IDS.index("fractions_add_subtract_F") + 1
     row, col = BOX_TO_ROW_COL[box_for_fractions]
     found_fraction = False
     for slide in prs.slides:

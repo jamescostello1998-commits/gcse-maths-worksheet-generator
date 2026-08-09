@@ -141,7 +141,7 @@ def generate_bidmas(tier: Tier, rng: random.Random) -> Question:
         raise ValueError(f"bidmas verification failed for expression: {expr_str}")
 
     return Question(
-        topic_id="bidmas",
+        topic_id="bidmas_F",
         tier=Tier.FOUNDATION,
         prompt=f"Work out {expr_str}.",
         solution_steps=tuple(steps),
@@ -309,7 +309,7 @@ def generate_modelled_example_bidmas(tier: Tier, rng: random.Random) -> Modelled
         raise ValueError(f"modelled example bidmas verification failed for expression: {expr_str}")
 
     return ModelledExample(
-        topic_id="bidmas",
+        topic_id="bidmas_F",
         tier=Tier.FOUNDATION,
         prompt=f"Work out {expr_str}.",
         worked_calculation=tuple(worked_calculation),
@@ -319,7 +319,7 @@ def generate_modelled_example_bidmas(tier: Tier, rng: random.Random) -> Modelled
 
 
 TOPIC_BIDMAS = TopicDefinition(
-    id="bidmas",
+    id="bidmas_F",
     display_name="Order of Operations (BIDMAS)",
     description="Evaluate an expression combining brackets, indices, and the four operations using the correct order of operations.",
     generate=generate_bidmas,

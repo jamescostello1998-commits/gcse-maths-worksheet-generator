@@ -37,7 +37,7 @@ def generate_functions_evaluate(tier: Tier, rng: random.Random) -> Question:
             f"f({k}) = {value}",
         ]
         return Question(
-            topic_id="functions_evaluate",
+            topic_id="functions_evaluate_F",
             tier=Tier.FOUNDATION,
             prompt=f"f(x) = {fmt_linear(a, b)}. Find f({k}).",
             solution_steps=tuple(steps),
@@ -48,7 +48,7 @@ def generate_functions_evaluate(tier: Tier, rng: random.Random) -> Question:
         target = rng.randint(-10, 10)
         steps, solution = solve_linear_with_steps(a, b, 0, target)
         return Question(
-            topic_id="functions_evaluate",
+            topic_id="functions_evaluate_F",
             tier=Tier.FOUNDATION,
             prompt=f"f(x) = {fmt_linear(a, b)}. Find the value of x for which f(x) = {target}.",
             solution_steps=tuple(steps),
@@ -92,7 +92,7 @@ def generate_functions_composite_inverse(tier: Tier, rng: random.Random) -> Ques
             f"= {fmt_linear(new_a, new_b)}",
         ]
         return Question(
-            topic_id="functions_composite_inverse",
+            topic_id="functions_composite_inverse_H",
             tier=Tier.HIGHER,
             prompt=f"f(x) = {fmt_linear(a, b)} and g(x) = {fmt_linear(c, d)}. Find {name}(x).",
             solution_steps=tuple(steps),
@@ -120,7 +120,7 @@ def generate_functions_composite_inverse(tier: Tier, rng: random.Random) -> Ques
             f"Swap x and y: f^-1(x) = {inv_str}",
         ]
         return Question(
-            topic_id="functions_composite_inverse",
+            topic_id="functions_composite_inverse_H",
             tier=Tier.HIGHER,
             prompt=f"f(x) = {fmt_linear(a, b)}. Find f^-1(x).",
             solution_steps=tuple(steps),
@@ -154,7 +154,7 @@ def generate_functions_inverse_evaluate(tier: Tier, rng: random.Random) -> Quest
         f"f^-1({k}) = {value_str}",
     ]
     return Question(
-        topic_id="functions_inverse_evaluate",
+        topic_id="functions_inverse_evaluate_H",
         tier=Tier.HIGHER,
         prompt=f"f(x) = {fmt_linear(a, b)}. Find f^-1({k}).",
         solution_steps=tuple(steps),
@@ -190,7 +190,7 @@ def generate_modelled_example_functions_inverse_evaluate(tier: Tier, rng: random
         f"= {value_str}",
     ]
     return ModelledExample(
-        topic_id="functions_inverse_evaluate",
+        topic_id="functions_inverse_evaluate_H",
         tier=Tier.HIGHER,
         prompt=f"f(x) = {fmt_linear(a, b)}. Find f^-1({k}).",
         worked_calculation=tuple(worked_calculation),
@@ -226,7 +226,7 @@ def generate_modelled_example_functions_evaluate(tier: Tier, rng: random.Random)
             f"= {value}",
         ]
         return ModelledExample(
-            topic_id="functions_evaluate",
+            topic_id="functions_evaluate_F",
             tier=Tier.FOUNDATION,
             prompt=f"f(x) = {fmt_linear(a, b)}. Find f({k}).",
             worked_calculation=tuple(worked_calculation),
@@ -255,7 +255,7 @@ def generate_modelled_example_functions_evaluate(tier: Tier, rng: random.Random)
             f"x = {fmt_num(solution)}",
         ]
         return ModelledExample(
-            topic_id="functions_evaluate",
+            topic_id="functions_evaluate_F",
             tier=Tier.FOUNDATION,
             prompt=f"f(x) = {fmt_linear(a, b)}. Find the value of x for which f(x) = {target}.",
             worked_calculation=tuple(worked_calculation),
@@ -301,7 +301,7 @@ def generate_modelled_example_functions_composite_inverse(tier: Tier, rng: rando
             f"= {fmt_linear(new_a, new_b)}",
         ]
         return ModelledExample(
-            topic_id="functions_composite_inverse",
+            topic_id="functions_composite_inverse_H",
             tier=Tier.HIGHER,
             prompt=f"f(x) = {fmt_linear(a, b)} and g(x) = {fmt_linear(c, d)}. Find {name}(x).",
             worked_calculation=tuple(worked_calculation),
@@ -335,7 +335,7 @@ def generate_modelled_example_functions_composite_inverse(tier: Tier, rng: rando
             f"f^-1(x) = {inv_str}",
         ]
         return ModelledExample(
-            topic_id="functions_composite_inverse",
+            topic_id="functions_composite_inverse_H",
             tier=Tier.HIGHER,
             prompt=f"f(x) = {fmt_linear(a, b)}. Find f^-1(x).",
             worked_calculation=tuple(worked_calculation),
@@ -345,7 +345,7 @@ def generate_modelled_example_functions_composite_inverse(tier: Tier, rng: rando
 
 
 TOPIC_FUNCTIONS_EVALUATE = TopicDefinition(
-    id="functions_evaluate",
+    id="functions_evaluate_F",
     display_name="Function Notation",
     description="Evaluate a linear function, or solve for x given f(x).",
     generate=generate_functions_evaluate,
@@ -356,7 +356,7 @@ TOPIC_FUNCTIONS_EVALUATE = TopicDefinition(
 )
 
 TOPIC_FUNCTIONS_COMPOSITE_INVERSE = TopicDefinition(
-    id="functions_composite_inverse",
+    id="functions_composite_inverse_H",
     display_name="Composite and Inverse Functions",
     description="Find a composite function fg(x) or gf(x), or the inverse function f^-1(x).",
     generate=generate_functions_composite_inverse,
@@ -367,7 +367,7 @@ TOPIC_FUNCTIONS_COMPOSITE_INVERSE = TopicDefinition(
 )
 
 TOPIC_FUNCTIONS_INVERSE_EVALUATE = TopicDefinition(
-    id="functions_inverse_evaluate",
+    id="functions_inverse_evaluate_H",
     display_name="Evaluating Inverse Functions",
     description="Find the inverse of a linear function and evaluate it at a given numeric input.",
     generate=generate_functions_inverse_evaluate,

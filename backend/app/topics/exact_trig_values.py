@@ -90,7 +90,7 @@ def generate_exact_trig_values(tier: Tier, rng: random.Random) -> Question:
         f"{ratio}({angle}°) = {display}",
     ]
     return Question(
-        topic_id="exact_trig_values",
+        topic_id="exact_trig_values_H",
         tier=Tier.HIGHER,
         prompt=f"Write down the exact value of {ratio}({angle}°).",
         solution_steps=tuple(steps),
@@ -122,7 +122,7 @@ def generate_modelled_example_exact_trig_values(tier: Tier, rng: random.Random) 
         f"{ratio}({angle}°) = {display}",
     ]
     return ModelledExample(
-        topic_id="exact_trig_values",
+        topic_id="exact_trig_values_H",
         tier=Tier.HIGHER,
         prompt=f"Write down the exact value of {ratio}({angle}°).",
         worked_calculation=tuple(worked_calculation),
@@ -184,7 +184,7 @@ def generate_exact_trig_values_triangles(tier: Tier, rng: random.Random) -> Ques
         f"x = {given} {op} {exact_ratio_str} = {display} cm",
     ]
     return Question(
-        topic_id="exact_trig_values_triangles",
+        topic_id="exact_trig_values_triangles_H",
         tier=Tier.HIGHER,
         prompt="In the triangle shown, find the exact length of x. Give your answer in surd form where appropriate.",
         solution_steps=tuple(steps),
@@ -242,7 +242,7 @@ def generate_modelled_example_exact_trig_values_triangles(tier: Tier, rng: rando
         f"x = {display} cm",
     ]
     return ModelledExample(
-        topic_id="exact_trig_values_triangles",
+        topic_id="exact_trig_values_triangles_H",
         tier=Tier.HIGHER,
         prompt="In the triangle shown, find the exact length of x. Give your answer in surd form where appropriate.",
         worked_calculation=tuple(worked_calculation),
@@ -261,7 +261,7 @@ def generate_modelled_example_exact_trig_values_triangles(tier: Tier, rng: rando
 
 
 TOPIC_EXACT_TRIG_VALUES = TopicDefinition(
-    id="exact_trig_values",
+    id="exact_trig_values_H",
     display_name="Exact Trig Values",
     description="Recall the exact value of sin, cos or tan at 0°, 30°, 45°, 60° or 90°, without a calculator.",
     generate=generate_exact_trig_values,
@@ -273,7 +273,7 @@ TOPIC_EXACT_TRIG_VALUES = TopicDefinition(
 )
 
 TOPIC_EXACT_TRIG_VALUES_TRIANGLES = TopicDefinition(
-    id="exact_trig_values_triangles",
+    id="exact_trig_values_triangles_H",
     display_name="Exact Trig Values in Triangles",
     description="Use the exact trig values at 30°, 45° and 60° to find a missing side of a right-angled triangle in surd form.",
     generate=generate_exact_trig_values_triangles,

@@ -51,16 +51,16 @@ def test_topic_definitions_have_expected_metadata():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (sequences.generate_modelled_example_next_term, Tier.FOUNDATION, "sequences_next_term"),
-    (sequences.generate_modelled_example_term_to_term_rule, Tier.FOUNDATION, "sequences_term_to_term_rule"),
-    (sequences.generate_modelled_example_nth_term, Tier.FOUNDATION, "sequences_nth_term"),
-    (sequences.generate_modelled_example_quadratic_nth_term, Tier.HIGHER, "sequences_quadratic_nth_term"),
+    (sequences.generate_modelled_example_next_term, Tier.FOUNDATION, "sequences_next_term_F"),
+    (sequences.generate_modelled_example_term_to_term_rule, Tier.FOUNDATION, "sequences_term_to_term_rule_F"),
+    (sequences.generate_modelled_example_nth_term, Tier.FOUNDATION, "sequences_nth_term_F"),
+    (sequences.generate_modelled_example_quadratic_nth_term, Tier.HIGHER, "sequences_quadratic_nth_term_H"),
     (
         sequences.generate_modelled_example_special_sequences_foundation,
         Tier.FOUNDATION,
-        "special_sequences_foundation",
+        "special_sequences_F",
     ),
-    (sequences.generate_modelled_example_special_sequences_higher, Tier.HIGHER, "special_sequences_higher"),
+    (sequences.generate_modelled_example_special_sequences_higher, Tier.HIGHER, "special_sequences_H"),
 ]
 
 

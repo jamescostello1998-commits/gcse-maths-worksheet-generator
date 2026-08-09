@@ -155,19 +155,19 @@ MODELLED_EXAMPLE_GENERATORS = [
     (
         solids_cylinders_cones.generate_modelled_example_volume_surface_area_cylinder_foundation,
         Tier.FOUNDATION,
-        "volume_surface_area_cylinder_foundation",
+        "volume_surface_area_cylinder_F",
         "cylinder",
     ),
     (
         solids_cylinders_cones.generate_modelled_example_volume_surface_area_cylinder,
         Tier.HIGHER,
-        "volume_surface_area_cylinder",
+        "volume_surface_area_cylinder_H",
         "cylinder",
     ),
     (
         solids_cylinders_cones.generate_modelled_example_volume_surface_area_cone,
         Tier.HIGHER,
-        "volume_surface_area_cone",
+        "volume_surface_area_cone_H",
         "cone",
     ),
 ]

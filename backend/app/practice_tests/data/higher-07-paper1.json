@@ -7,7 +7,7 @@
   "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "prime_factors_higher",
+      "topic_id": "prime_factors_H",
       "prompt": "Write 726 as a product of its prime factors, giving your answer in index form.",
       "solution_steps": [
         "Divide 726 repeatedly by the smallest prime that fits: 2 × 3 × 11 × 11",
@@ -36,7 +36,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_recurring_to_fraction",
+      "topic_id": "decimals_recurring_to_fraction_H",
       "prompt": "Write \\recur{0.}{3} as a fraction in its simplest form.",
       "solution_steps": [
         "Let x = \\recur{0.}{3}",
@@ -77,7 +77,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_add_subtract",
+      "topic_id": "standard_form_add_subtract_H",
       "prompt": "Work out (2 × 10^7) + (6 × 10^6). Give your answer in standard form.",
       "solution_steps": [
         "Write both numbers with the same power of 10: 2×10^7 = 20×10^6, 6×10^6 = 6×10^6",
@@ -112,7 +112,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "roots_higher",
+      "topic_id": "roots_H",
       "prompt": "Simplify √117, giving your answer in the form a√b.",
       "solution_steps": [
         "Find the largest square factor of 117: 3^2 × 13 = 117",
@@ -141,7 +141,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_multiply_divide",
+      "topic_id": "standard_form_multiply_divide_H",
       "prompt": "Work out (8 × 10^2) ÷ (2 × 10^-2). Give your answer in standard form.",
       "solution_steps": [
         "Divide the mantissas: 8 ÷ 2 = 4",
@@ -170,7 +170,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "hcf_lcm_by_prime_factors",
+      "topic_id": "hcf_lcm_by_prime_factors_H",
       "prompt": "Using prime factorisation, find the HCF of 154 and 160.",
       "solution_steps": [
         "154 = 2 × 7 × 11",
@@ -211,7 +211,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "powers_higher",
+      "topic_id": "powers_H",
       "prompt": "Evaluate 64^(2/3).",
       "solution_steps": [
         "64^(2/3) = (64^(1/3))^2",
@@ -246,7 +246,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_quadratic",
+      "topic_id": "simultaneous_quadratic_H",
       "prompt": "Solve the simultaneous equations: y = x^2 + 4x - 6 and y = 9x - 12",
       "solution_steps": [
         "Substitute y = 9x - 12 into y = x^2 + 4x - 6: 9x - 12 = x^2 + 4x - 6",
@@ -288,7 +288,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_proof",
+      "topic_id": "algebraic_proof_H",
       "prompt": "Prove algebraically that the sum of an integer and its square is always even.",
       "solution_steps": [
         "n + n^2 factorises as n(n + 1), the product of two consecutive integers n and n + 1.",
@@ -330,7 +330,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "velocity_time_interpret",
+      "topic_id": "velocity_time_interpret_H",
       "prompt": "The velocity-time graph shows a car's journey. Find the total distance travelled.",
       "solution_steps": [
         "Total distance = total area under the graph (a trapezium)",
@@ -385,7 +385,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_exponential",
+      "topic_id": "plot_exponential_H",
       "prompt": "Complete a table of values for y = 4 × 3^x for x = 0 to 4, then plot the graph.",
       "solution_steps": [
         "Table of values for y = 4 × 3^x:",
@@ -471,7 +471,7 @@
       }
     },
     {
-      "topic_id": "expand_double_brackets",
+      "topic_id": "expand_double_brackets_H",
       "prompt": "Expand and simplify: (4x + 5)(4x - 2)",
       "solution_steps": [
         "First: 4x × 4x = 16x^2",
@@ -513,7 +513,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "functions_composite_inverse",
+      "topic_id": "functions_composite_inverse_H",
       "prompt": "f(x) = -5x + 8 and g(x) = x + 3. Find gf(x).",
       "solution_steps": [
         "gf(x) = g(-5x + 8)",
@@ -548,7 +548,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solve_quadratic_completing_square",
+      "topic_id": "solve_quadratic_completing_square_H",
       "prompt": "Solve x^2 - 18x + 67 = 0 by completing the square, giving your answers in exact surd form.",
       "solution_steps": [
         "Half the coefficient of x: -18 ÷ 2 = -9",
@@ -590,7 +590,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_direct_proportion",
+      "topic_id": "algebraic_direct_proportion_H",
       "prompt": "y is directly proportional to x^2. When x = 5, y = 250. Find the value of y when x = 7.",
       "solution_steps": [
         "y = kx^2",
@@ -631,7 +631,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "reverse_percentage",
+      "topic_id": "reverse_percentage_H",
       "prompt": "After a 35% increase, an item costs £464.40. Find the original price.",
       "solution_steps": [
         "Convert 35% to a multiplier: 1.35 (original × multiplier = new value)",
@@ -660,7 +660,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_combine",
+      "topic_id": "ratio_combine_H",
       "prompt": "Given that a:b = 9:2 and b:c = 4:3, find a:b:c in its simplest form.",
       "solution_steps": [
         "Scale a:b = 9:2 by 2 so b = 4: a:b = 18:4",
@@ -701,7 +701,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "density_higher",
+      "topic_id": "density_H",
       "prompt": "A block of alloy in the shape of a cuboid has dimensions 8 cm × 2 cm × 9 cm and a density of 2 g/cm³. Find its mass.",
       "solution_steps": [
         "volume = length × width × height = 8 × 2 × 9 = 144 cm³",
@@ -730,7 +730,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "combined_transformations",
+      "topic_id": "combined_transformations_H",
       "prompt": "Shape ABC is translated by the vector (0, -5) to give shape A'B'C'. Shape A'B'C' is then translated by the vector (-1, 1) to give shape A''B''C''. Describe fully the single transformation that maps ABC directly onto A''B''C''.",
       "solution_steps": [
         "Two translations in a row combine into a single translation - just add the two vectors together.",
@@ -805,7 +805,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_pyramid",
+      "topic_id": "volume_surface_area_pyramid_H",
       "prompt": "A square-based pyramid has a base of side 8 cm and a perpendicular height of 6 cm. Find its total surface area, correct to 3 significant figures.",
       "solution_steps": [
         "Slant height l = √(height² + (base ÷ 2)²) = √(6² + (8 ÷ 2)²) ≈ 7.21 cm",
@@ -847,7 +847,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cone",
+      "topic_id": "volume_surface_area_cone_H",
       "prompt": "A cone has radius 3 cm and (perpendicular) height 6 cm. Find its volume, correct to 2 decimal places.",
       "solution_steps": [
         "Volume = (1/3) × π × r² × h = (1/3) × π × 3² × 6.000",
@@ -891,7 +891,7 @@
       }
     },
     {
-      "topic_id": "trig_3d",
+      "topic_id": "trig_3d_H",
       "prompt": "A cuboid has length 11 cm, width 15 cm and height 5 cm. Find the angle between the diagonal AG (from one corner to the opposite corner) and the base of the cuboid, correct to 1 decimal place.",
       "solution_steps": [
         "First find the diagonal across the base: base diagonal = √(l² + w²) = √(11² + 15²) = 18.601 cm - this is the projection of AG onto the base.",
@@ -944,7 +944,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "graph_transformations",
+      "topic_id": "graph_transformations_H",
       "prompt": "The graph of y = f(x) is transformed to give the graph of y = f(-x). Describe this transformation fully.",
       "solution_steps": [
         "y = f(-x) corresponds to a reflection in the y-axis."
@@ -975,7 +975,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "tree_diagram_dependent",
+      "topic_id": "tree_diagram_dependent_H",
       "prompt": "A bag contains 7 blue and 7 red counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the first counter is blue and the second counter is red.",
       "solution_steps": [
         "After the first counter is picked (without replacement), there are 13 counters left.",
@@ -1064,7 +1064,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_conditional",
+      "topic_id": "probability_conditional_H",
       "prompt": "A bag contains 3 red and 6 purple counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
       "solution_steps": [
         "P(both red) = 3/9 × 2/8 = 1/12",

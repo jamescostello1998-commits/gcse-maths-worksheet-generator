@@ -12,8 +12,8 @@ GENERATORS = [
 ]
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (solids_3d_trig.generate_modelled_example_3d_pythagoras, Tier.HIGHER, "pythagoras_3d"),
-    (solids_3d_trig.generate_modelled_example_3d_trigonometry, Tier.HIGHER, "trig_3d"),
+    (solids_3d_trig.generate_modelled_example_3d_pythagoras, Tier.HIGHER, "pythagoras_3d_H"),
+    (solids_3d_trig.generate_modelled_example_3d_trigonometry, Tier.HIGHER, "trig_3d_H"),
 ]
 
 

@@ -85,7 +85,7 @@ def test_modelled_examples_are_valid():
     rng = random.Random(210)
     for _ in range(TRIALS):
         ex = circle_theorems.generate_modelled_example_circle_theorem(Tier.HIGHER, rng)
-        assert ex.topic_id == "circle_theorems"
+        assert ex.topic_id == "circle_theorems_H"
         assert ex.tier == Tier.HIGHER
         assert ex.prompt
         assert len(ex.worked_calculation) >= 2

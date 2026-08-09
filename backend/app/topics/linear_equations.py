@@ -28,7 +28,7 @@ def generate_one_step(tier: Tier, rng: random.Random) -> Question:
     _verify(orig_lhs, orig_rhs, solution, "one_step")
 
     return Question(
-        topic_id="linear_one_step",
+        topic_id="linear_one_step_F",
         tier=Tier.FOUNDATION,
         prompt=f"Solve: {fmt_linear(a, 0)} = {fmt_num(c)}",
         solution_steps=tuple(steps),
@@ -62,7 +62,7 @@ def generate_modelled_example_one_step(tier: Tier, rng: random.Random) -> Modell
         f"x = {sol}",
     ]
     return ModelledExample(
-        topic_id="linear_one_step",
+        topic_id="linear_one_step_F",
         tier=Tier.FOUNDATION,
         prompt=f"Solve: {fmt_linear(a, 0)} = {fmt_num(c)}",
         worked_calculation=tuple(worked_calculation),
@@ -83,7 +83,7 @@ def generate_two_step(tier: Tier, rng: random.Random) -> Question:
     _verify(orig_lhs, orig_rhs, solution, "two_step")
 
     return Question(
-        topic_id="linear_two_step",
+        topic_id="linear_two_step_F",
         tier=Tier.FOUNDATION,
         prompt=f"Solve: {fmt_linear(a, b)} = {fmt_num(c)}",
         solution_steps=tuple(steps),
@@ -118,7 +118,7 @@ def generate_modelled_example_two_step(tier: Tier, rng: random.Random) -> Modell
         f"x = {sol}",
     ]
     return ModelledExample(
-        topic_id="linear_two_step",
+        topic_id="linear_two_step_F",
         tier=Tier.FOUNDATION,
         prompt=f"Solve: {fmt_linear(a, b)} = {fmt_num(c)}",
         worked_calculation=tuple(worked_calculation),
@@ -151,7 +151,7 @@ def generate_multi_step(tier: Tier, rng: random.Random) -> Question:
 
     prompt = f"Solve: {coeff1}x + {const1} + {coeff2}x {const2_sign} {abs(const2)} = {c}"
     return Question(
-        topic_id="linear_multi_step",
+        topic_id="linear_multi_step_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -199,7 +199,7 @@ def generate_modelled_example_multi_step(tier: Tier, rng: random.Random) -> Mode
         f"x = {sol}",
     ]
     return ModelledExample(
-        topic_id="linear_multi_step",
+        topic_id="linear_multi_step_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -223,7 +223,7 @@ def generate_both_sides(tier: Tier, rng: random.Random) -> Question:
     _verify(orig_lhs, orig_rhs, solution, "both_sides")
 
     return Question(
-        topic_id="linear_both_sides",
+        topic_id="linear_both_sides_H",
         tier=Tier.HIGHER,
         prompt=f"Solve: {fmt_linear(a, b)} = {fmt_linear(c, d)}",
         solution_steps=tuple(steps),
@@ -269,7 +269,7 @@ def generate_modelled_example_both_sides(tier: Tier, rng: random.Random) -> Mode
         f"x = {sol}",
     ]
     return ModelledExample(
-        topic_id="linear_both_sides",
+        topic_id="linear_both_sides_H",
         tier=Tier.HIGHER,
         prompt=f"Solve: {fmt_linear(a, b)} = {fmt_linear(c, d)}",
         worked_calculation=tuple(worked_calculation),
@@ -297,7 +297,7 @@ def generate_both_sides_foundation(tier: Tier, rng: random.Random) -> Question:
     _verify(orig_lhs, orig_rhs, solution, "both_sides_foundation")
 
     return Question(
-        topic_id="linear_both_sides_foundation",
+        topic_id="linear_both_sides_F",
         tier=Tier.FOUNDATION,
         prompt=f"Solve: {fmt_linear(a, b)} = {fmt_linear(c, d)}",
         solution_steps=tuple(steps),
@@ -343,7 +343,7 @@ def generate_modelled_example_both_sides_foundation(tier: Tier, rng: random.Rand
         f"x = {sol}",
     ]
     return ModelledExample(
-        topic_id="linear_both_sides_foundation",
+        topic_id="linear_both_sides_F",
         tier=Tier.FOUNDATION,
         prompt=f"Solve: {fmt_linear(a, b)} = {fmt_linear(c, d)}",
         worked_calculation=tuple(worked_calculation),
@@ -367,7 +367,7 @@ def generate_brackets(tier: Tier, rng: random.Random) -> Question:
     _verify(orig_lhs, orig_rhs, solution, "brackets")
 
     return Question(
-        topic_id="linear_brackets",
+        topic_id="linear_brackets_H",
         tier=Tier.HIGHER,
         prompt=f"Solve: {a}({fmt_linear(b, c)}) = {fmt_num(d)}",
         solution_steps=tuple(steps),
@@ -408,7 +408,7 @@ def generate_modelled_example_brackets(tier: Tier, rng: random.Random) -> Modell
         f"x = {sol}",
     ]
     return ModelledExample(
-        topic_id="linear_brackets",
+        topic_id="linear_brackets_H",
         tier=Tier.HIGHER,
         prompt=f"Solve: {a}({fmt_linear(b, c)}) = {fmt_num(d)}",
         worked_calculation=tuple(worked_calculation),
@@ -435,7 +435,7 @@ def generate_brackets_foundation(tier: Tier, rng: random.Random) -> Question:
     _verify(orig_lhs, orig_rhs, solution, "brackets_foundation")
 
     return Question(
-        topic_id="linear_brackets_foundation",
+        topic_id="linear_brackets_F",
         tier=Tier.FOUNDATION,
         prompt=f"Solve: {a}({fmt_linear(b, c)}) = {fmt_num(d)}",
         solution_steps=tuple(steps),
@@ -475,7 +475,7 @@ def generate_modelled_example_brackets_foundation(tier: Tier, rng: random.Random
         f"x = {sol}",
     ]
     return ModelledExample(
-        topic_id="linear_brackets_foundation",
+        topic_id="linear_brackets_F",
         tier=Tier.FOUNDATION,
         prompt=f"Solve: {a}({fmt_linear(b, c)}) = {fmt_num(d)}",
         worked_calculation=tuple(worked_calculation),
@@ -493,7 +493,7 @@ def _verify(orig_lhs, orig_rhs, solution, shape: str) -> None:
 
 
 TOPIC_ONE_STEP = TopicDefinition(
-    id="linear_one_step",
+    id="linear_one_step_F",
     display_name="One-Step Equations",
     description="Solve simple equations of the form ax = c.",
     generate=generate_one_step,
@@ -504,7 +504,7 @@ TOPIC_ONE_STEP = TopicDefinition(
 )
 
 TOPIC_TWO_STEP = TopicDefinition(
-    id="linear_two_step",
+    id="linear_two_step_F",
     display_name="Two-Step Equations",
     description="Solve equations of the form ax + b = c.",
     generate=generate_two_step,
@@ -515,7 +515,7 @@ TOPIC_TWO_STEP = TopicDefinition(
 )
 
 TOPIC_MULTI_STEP = TopicDefinition(
-    id="linear_multi_step",
+    id="linear_multi_step_F",
     display_name="Multi-Step Equations",
     description="Collect like terms on one side before solving.",
     generate=generate_multi_step,
@@ -526,7 +526,7 @@ TOPIC_MULTI_STEP = TopicDefinition(
 )
 
 TOPIC_BOTH_SIDES_FOUNDATION = TopicDefinition(
-    id="linear_both_sides_foundation",
+    id="linear_both_sides_F",
     display_name="Unknowns on Both Sides",
     description="Solve equations with the unknown appearing on both sides.",
     generate=generate_both_sides_foundation,
@@ -537,7 +537,7 @@ TOPIC_BOTH_SIDES_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_BOTH_SIDES = TopicDefinition(
-    id="linear_both_sides",
+    id="linear_both_sides_H",
     display_name="Unknowns on Both Sides",
     description="Solve equations with the unknown appearing on both sides, including negative coefficients.",
     generate=generate_both_sides,
@@ -548,7 +548,7 @@ TOPIC_BOTH_SIDES = TopicDefinition(
 )
 
 TOPIC_BRACKETS_FOUNDATION = TopicDefinition(
-    id="linear_brackets_foundation",
+    id="linear_brackets_F",
     display_name="Equations with Brackets",
     description="Expand a bracket before solving the equation.",
     generate=generate_brackets_foundation,
@@ -559,7 +559,7 @@ TOPIC_BRACKETS_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_BRACKETS = TopicDefinition(
-    id="linear_brackets",
+    id="linear_brackets_H",
     display_name="Equations with Brackets",
     description="Expand a bracket before solving the equation, including negative terms.",
     generate=generate_brackets,

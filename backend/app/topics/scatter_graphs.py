@@ -106,7 +106,7 @@ def generate_scatter_graph_construct(tier: Tier, rng: random.Random) -> Question
         f"{c['correlation']} correlation.",
     ]
     return Question(
-        topic_id="scatter_graph_construct",
+        topic_id="scatter_graph_construct_F",
         tier=Tier.FOUNDATION,
         prompt=f"The table shows {ctx['context']}. Draw a scatter graph of this data, and "
         "describe the correlation.",
@@ -139,7 +139,7 @@ def generate_modelled_example_scatter_graph_construct(tier: Tier, rng: random.Ra
     ]
     worked_calculation = [table, f"Trend: {c['correlation']} correlation"]
     return ModelledExample(
-        topic_id="scatter_graph_construct",
+        topic_id="scatter_graph_construct_F",
         tier=Tier.FOUNDATION,
         prompt=f"The table shows {ctx['context']}. Draw a scatter graph of this data, and "
         "describe the correlation.",
@@ -179,7 +179,7 @@ def generate_scatter_graph_interpret(tier: Tier, rng: random.Random) -> Question
             f"Read across to the {ctx['y_label'].lower()} axis: approximately {query_y}.",
         ]
         return Question(
-            topic_id="scatter_graph_interpret",
+            topic_id="scatter_graph_interpret_F",
             tier=Tier.FOUNDATION,
             prompt=f"The scatter graph shows {ctx['context']}. Draw a line of best fit, and use it to "
             f"estimate {ctx['y_label'].lower()} when {ctx['x_label'].lower()} is {query_x}.",
@@ -198,7 +198,7 @@ def generate_scatter_graph_interpret(tier: Tier, rng: random.Random) -> Question
         f"This means the scatter graph shows {c['correlation']} correlation.",
     ]
     return Question(
-        topic_id="scatter_graph_interpret",
+        topic_id="scatter_graph_interpret_F",
         tier=Tier.FOUNDATION,
         prompt=f"The scatter graph shows {ctx['context']}. Describe the correlation shown.",
         solution_steps=tuple(steps),
@@ -237,7 +237,7 @@ def generate_modelled_example_scatter_graph_interpret(tier: Tier, rng: random.Ra
         f"Estimated {ctx['y_label'].lower()} ≈ {query_y}",
     ]
     return ModelledExample(
-        topic_id="scatter_graph_interpret",
+        topic_id="scatter_graph_interpret_F",
         tier=Tier.FOUNDATION,
         prompt=f"The scatter graph shows {ctx['context']}. Draw a line of best fit, and use it to "
         f"estimate {ctx['y_label'].lower()} when {ctx['x_label'].lower()} is {query_x}.",
@@ -249,7 +249,7 @@ def generate_modelled_example_scatter_graph_interpret(tier: Tier, rng: random.Ra
 
 
 TOPIC_SCATTER_GRAPH_CONSTRUCT = TopicDefinition(
-    id="scatter_graph_construct",
+    id="scatter_graph_construct_F",
     display_name="Constructing Scatter Graphs",
     description="Plot a scatter graph from a data table and describe the correlation shown.",
     generate=generate_scatter_graph_construct,
@@ -260,7 +260,7 @@ TOPIC_SCATTER_GRAPH_CONSTRUCT = TopicDefinition(
 )
 
 TOPIC_SCATTER_GRAPH_INTERPRET = TopicDefinition(
-    id="scatter_graph_interpret",
+    id="scatter_graph_interpret_F",
     display_name="Interpreting Scatter Graphs",
     description="Use a line of best fit to estimate a value, or describe the correlation shown.",
     generate=generate_scatter_graph_interpret,

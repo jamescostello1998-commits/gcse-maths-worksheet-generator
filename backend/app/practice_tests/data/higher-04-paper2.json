@@ -7,7 +7,7 @@
   "calculator_allowed": false,
   "questions": [
     {
-      "topic_id": "hcf_lcm_by_prime_factors",
+      "topic_id": "hcf_lcm_by_prime_factors_H",
       "prompt": "Using prime factorisation, find the HCF of 33 and 188.",
       "solution_steps": [
         "33 = 3 × 11",
@@ -48,7 +48,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bounds_calculation",
+      "topic_id": "bounds_calculation_H",
       "prompt": "A car travels 61 km (to the nearest km) in 11 hours (to the nearest hour). Calculate the upper bound for the average speed of the car, to 1 decimal place.",
       "solution_steps": [
         "Distance: 61 km (to the nearest km) gives 60.5 ≤ distance < 61.5",
@@ -83,7 +83,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_mixed_number_arithmetic",
+      "topic_id": "fractions_mixed_number_arithmetic_H",
       "prompt": "Calculate 4 2/4 - 4 1/6. Give your answer as a mixed number.",
       "solution_steps": [
         "Convert to improper fractions: 4 2/4 = 9/2, 4 1/6 = 25/6",
@@ -118,7 +118,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "roots_higher",
+      "topic_id": "roots_H",
       "prompt": "Fully simplify √75, giving your answer in the form a√b.",
       "solution_steps": [
         "Find the largest square factor of 75: 5^2 × 3 = 75",
@@ -147,7 +147,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_surds",
+      "topic_id": "algebraic_surds_H",
       "prompt": "Expand and simplify (7 - √3)(3 - √3), giving your answer in the form p + q√3.",
       "solution_steps": [
         "Expand the brackets (FOIL): (7 - √3)(3 - √3) = 21 -7√3 -3√3 +3",
@@ -189,7 +189,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_multiply_divide",
+      "topic_id": "standard_form_multiply_divide_H",
       "prompt": "Work out (2 × 10^6) × (9 × 10^1). Give your answer in standard form.",
       "solution_steps": [
         "Multiply the mantissas: 2 × 9 = 18",
@@ -224,7 +224,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_exponential",
+      "topic_id": "plot_exponential_H",
       "prompt": "Complete a table of values for y = 5 × 2^x for x = 0 to 4, then plot the graph.",
       "solution_steps": [
         "Table of values for y = 5 × 2^x:",
@@ -310,7 +310,7 @@
       }
     },
     {
-      "topic_id": "linear_brackets",
+      "topic_id": "linear_brackets_H",
       "prompt": "Solve: 5(4x - 1) = 95",
       "solution_steps": [
         "Expand the bracket: 5(4x - 1) = 20x - 5",
@@ -353,7 +353,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inequalities_region_higher",
+      "topic_id": "inequalities_region_H",
       "prompt": "On the grid, shade the region that satisfies both y ≥ -2x + 4 and y ≤ \\frac{x}{2} + 1.",
       "solution_steps": [
         "Draw the line y = -2x + 4 (solid - the line itself is included in the region).",
@@ -417,7 +417,7 @@
       }
     },
     {
-      "topic_id": "velocity_time_interpret",
+      "topic_id": "velocity_time_interpret_H",
       "prompt": "The velocity-time graph shows a car's journey. Find the distance travelled while the car travels at constant velocity.",
       "solution_steps": [
         "Distance = area under the graph = base × height (a rectangle)",
@@ -472,7 +472,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_triple_brackets",
+      "topic_id": "expand_triple_brackets_H",
       "prompt": "Expand and simplify: (2x - 1)(x - 4)(3x + 3)",
       "solution_steps": [
         "First expand two of the brackets: (2x - 1)(x - 4) = 2x^2 - 9x + 4",
@@ -507,7 +507,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "completing_the_square",
+      "topic_id": "completing_the_square_H",
       "prompt": "Write x^2 + 2x - 1 in the form (x + p)^2 + q.",
       "solution_steps": [
         "Half the coefficient of x: 2 ÷ 2 = 1",
@@ -542,7 +542,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_different_coefficient",
+      "topic_id": "simultaneous_different_coefficient_H",
       "prompt": "Solve the simultaneous equations: 5x + 3y = -35 and 4x + 2y = -26",
       "solution_steps": [
         "5x + 3y = -35  (1)",
@@ -585,7 +585,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_quadratics",
+      "topic_id": "factorise_quadratics_H",
       "prompt": "Factorise: x^2 + 5x - 24",
       "solution_steps": [
         "Find two numbers that multiply to -24 and add to 5: -3 and 8",
@@ -614,7 +614,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "unit_conversions_higher",
+      "topic_id": "unit_conversions_H",
       "prompt": "Convert 436 mm³ to cm³.",
       "solution_steps": [
         "Linear conversion factor: 1 cm = 10 mm, so for volume, 1 cm³ = 10^3 = 1000 mm³",
@@ -643,7 +643,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "speed_with_conversions",
+      "topic_id": "speed_with_conversions_H",
       "prompt": "A car travels 380 km in 5 hours. Find its average speed in m/s, correct to 1 decimal place.",
       "solution_steps": [
         "speed = distance ÷ time = 380 ÷ 5 = 76 km/h",
@@ -672,7 +672,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pressure_higher",
+      "topic_id": "pressure_H",
       "prompt": "A brick exerts a force of 5542 N over a contact area of 1196 cm². Find the pressure in N/m², correct to 2 decimal places.",
       "solution_steps": [
         "Convert area to m²: 1196 cm² = 1196 ÷ 10000 = 0.1196 m²",
@@ -701,7 +701,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_to_equation",
+      "topic_id": "ratio_to_equation_H",
       "prompt": "(x + 8) : (3x + 10) = 5:1. Find the value of x.",
       "solution_steps": [
         "Cross-multiply: 1(x + 8) = 5(3x + 10)",
@@ -742,7 +742,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_three_part",
+      "topic_id": "ratio_share_three_part_H",
       "prompt": "Share 70 in the ratio 2:5:7.",
       "solution_steps": [
         "Total parts = 2 + 5 + 7 = 14",
@@ -784,7 +784,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_mixed_compound",
+      "topic_id": "area_mixed_compound_H",
       "prompt": "Find the total area of the following compound shape, correct to 2 decimal places.",
       "solution_steps": [
         "Rectangle area = 11 × 8 = 88 cm²",
@@ -839,7 +839,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_circle",
+      "topic_id": "area_circle_H",
       "prompt": "Find the circumference of the following circle, in terms of π.",
       "solution_steps": [
         "Circumference = 2 × π × r = 2 × π × 5 = 10π cm",
@@ -874,7 +874,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_straight_line_higher",
+      "topic_id": "angles_straight_line_H",
       "prompt": "The angles 116° and (4x - 16)° lie on a straight line. Find x.",
       "solution_steps": [
         "Angles on a straight line sum to 180°.",
@@ -930,7 +930,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_enlarge_describe",
+      "topic_id": "transform_enlarge_describe_H",
       "prompt": "Shape ABCD is enlarged to give shape A'B'C'D', shown on the grid. Describe fully the single transformation that maps ABCD onto A'B'C'D'.",
       "solution_steps": [
         "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
@@ -1015,7 +1015,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_combined_dice",
+      "topic_id": "probability_combined_dice_H",
       "prompt": "Two fair six-sided dice are rolled. Find the probability that both dice show 6.",
       "solution_steps": [
         "P(first die is 6) = 1/6, P(second die is 6) = 1/6",
@@ -1044,7 +1044,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_conditional",
+      "topic_id": "probability_conditional_H",
       "prompt": "A bag contains 4 red and 7 blue counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
       "solution_steps": [
         "P(both red) = 4/11 × 3/10 = 6/55",

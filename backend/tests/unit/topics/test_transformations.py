@@ -275,18 +275,18 @@ def test_topics_have_a_modelled_example_generator_wired_up():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (transformations.generate_modelled_example_symmetry_lines, Tier.FOUNDATION, "symmetry_lines"),
-    (transformations.generate_modelled_example_symmetry_rotational, Tier.FOUNDATION, "symmetry_rotational"),
-    (transformations.generate_modelled_example_transform_reflect_complete, Tier.FOUNDATION, "transform_reflect_complete"),
-    (transformations.generate_modelled_example_transform_reflect_describe, Tier.FOUNDATION, "transform_reflect_describe"),
-    (transformations.generate_modelled_example_transform_rotate_complete, Tier.FOUNDATION, "transform_rotate_complete"),
-    (transformations.generate_modelled_example_transform_rotate_describe, Tier.HIGHER, "transform_rotate_describe"),
-    (transformations.generate_modelled_example_transform_translate_complete, Tier.FOUNDATION, "transform_translate_complete"),
-    (transformations.generate_modelled_example_transform_translate_describe, Tier.FOUNDATION, "transform_translate_describe"),
-    (transformations.generate_modelled_example_transform_enlarge_complete_foundation, Tier.FOUNDATION, "transform_enlarge_complete_foundation"),
-    (transformations.generate_modelled_example_transform_enlarge_complete_higher, Tier.HIGHER, "transform_enlarge_complete_higher"),
-    (transformations.generate_modelled_example_transform_enlarge_describe, Tier.HIGHER, "transform_enlarge_describe"),
-    (transformations.generate_modelled_example_combined_transformations, Tier.HIGHER, "combined_transformations"),
+    (transformations.generate_modelled_example_symmetry_lines, Tier.FOUNDATION, "symmetry_lines_F"),
+    (transformations.generate_modelled_example_symmetry_rotational, Tier.FOUNDATION, "symmetry_rotational_F"),
+    (transformations.generate_modelled_example_transform_reflect_complete, Tier.FOUNDATION, "transform_reflect_complete_F"),
+    (transformations.generate_modelled_example_transform_reflect_describe, Tier.FOUNDATION, "transform_reflect_describe_F"),
+    (transformations.generate_modelled_example_transform_rotate_complete, Tier.FOUNDATION, "transform_rotate_complete_F"),
+    (transformations.generate_modelled_example_transform_rotate_describe, Tier.HIGHER, "transform_rotate_describe_H"),
+    (transformations.generate_modelled_example_transform_translate_complete, Tier.FOUNDATION, "transform_translate_complete_F"),
+    (transformations.generate_modelled_example_transform_translate_describe, Tier.FOUNDATION, "transform_translate_describe_F"),
+    (transformations.generate_modelled_example_transform_enlarge_complete_foundation, Tier.FOUNDATION, "transform_enlarge_complete_F"),
+    (transformations.generate_modelled_example_transform_enlarge_complete_higher, Tier.HIGHER, "transform_enlarge_complete_H"),
+    (transformations.generate_modelled_example_transform_enlarge_describe, Tier.HIGHER, "transform_enlarge_describe_H"),
+    (transformations.generate_modelled_example_combined_transformations, Tier.HIGHER, "combined_transformations_H"),
 ]
 
 

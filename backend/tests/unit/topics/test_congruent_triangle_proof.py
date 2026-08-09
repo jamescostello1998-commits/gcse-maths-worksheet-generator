@@ -127,8 +127,8 @@ def test_topic_definitions_have_expected_metadata():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (congruent_triangle_proof.generate_modelled_example_congruent_triangle_proof_higher, Tier.HIGHER, "congruent_triangle_proof"),
-    (congruent_triangle_proof.generate_modelled_example_congruent_triangle_proof_foundation, Tier.FOUNDATION, "congruent_triangle_proof_foundation"),
+    (congruent_triangle_proof.generate_modelled_example_congruent_triangle_proof_higher, Tier.HIGHER, "congruent_triangle_proof_H"),
+    (congruent_triangle_proof.generate_modelled_example_congruent_triangle_proof_foundation, Tier.FOUNDATION, "congruent_triangle_proof_F"),
 ]
 
 

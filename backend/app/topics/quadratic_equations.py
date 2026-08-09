@@ -149,7 +149,7 @@ def generate_quadratic_formula(tier: Tier, rng: random.Random) -> Question:
             f"x = {x1} or x = {x2}",
         ]
         return Question(
-            topic_id="quadratic_formula",
+            topic_id="quadratic_formula_H",
             tier=Tier.HIGHER,
             prompt=f"Solve {_fmt_quadratic(a, b, c)} using the quadratic formula, "
             "giving your answers to 2 decimal places.",
@@ -175,7 +175,7 @@ def generate_quadratic_formula(tier: Tier, rng: random.Random) -> Question:
     else:
         steps.append(f"x = \\frac{{{nc} ± {surd_term}}}{{{denom}}}")
     return Question(
-        topic_id="quadratic_formula",
+        topic_id="quadratic_formula_H",
         tier=Tier.HIGHER,
         prompt=f"Solve {_fmt_quadratic(a, b, c)}, giving your answer in the form x = (-b ± k√m)/2a, "
         "fully simplified.",
@@ -206,7 +206,7 @@ def generate_modelled_example_quadratic_formula(tier: Tier, rng: random.Random) 
             f"x = {x1} or x = {x2}",
         ]
         return ModelledExample(
-            topic_id="quadratic_formula",
+            topic_id="quadratic_formula_H",
             tier=Tier.HIGHER,
             prompt=f"Solve {_fmt_quadratic(a, b, c)} using the quadratic formula, "
             "giving your answers to 2 decimal places.",
@@ -243,7 +243,7 @@ def generate_modelled_example_quadratic_formula(tier: Tier, rng: random.Random) 
         f"x = {answer}",
     ]
     return ModelledExample(
-        topic_id="quadratic_formula",
+        topic_id="quadratic_formula_H",
         tier=Tier.HIGHER,
         prompt=f"Solve {_fmt_quadratic(a, b, c)}, giving your answer in the form x = (-b ± k√m)/2a, "
         "fully simplified.",
@@ -254,7 +254,7 @@ def generate_modelled_example_quadratic_formula(tier: Tier, rng: random.Random) 
 
 
 TOPIC_QUADRATIC_FORMULA = TopicDefinition(
-    id="quadratic_formula",
+    id="quadratic_formula_H",
     display_name="The Quadratic Formula",
     description="Solve a quadratic equation using the quadratic formula, giving decimal or exact surd answers.",
     generate=generate_quadratic_formula,

@@ -46,12 +46,12 @@ MODELLED_EXAMPLE_GENERATORS = [
     (
         forming_equations.generate_modelled_example_forming_equations_foundation,
         Tier.FOUNDATION,
-        "forming_equations_foundation",
+        "forming_equations_F",
     ),
     (
         forming_equations.generate_modelled_example_forming_equations_higher,
         Tier.HIGHER,
-        "forming_equations_higher",
+        "forming_equations_H",
     ),
 ]
 

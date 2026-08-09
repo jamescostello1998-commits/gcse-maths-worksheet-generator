@@ -85,7 +85,7 @@ def generate_volume_surface_area_sphere(tier: Tier, rng: random.Random) -> Quest
     )
 
     return Question(
-        topic_id="volume_surface_area_sphere",
+        topic_id="volume_surface_area_sphere_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -183,7 +183,7 @@ def generate_modelled_example_volume_surface_area_sphere(tier: Tier, rng: random
     )
 
     return ModelledExample(
-        topic_id="volume_surface_area_sphere",
+        topic_id="volume_surface_area_sphere_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -278,7 +278,7 @@ def generate_volume_surface_area_pyramid(tier: Tier, rng: random.Random) -> Ques
     diagram_params = {"base_label": f"{base} cm", "height_label": f"{height} cm"}
 
     return Question(
-        topic_id="volume_surface_area_pyramid",
+        topic_id="volume_surface_area_pyramid_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -374,7 +374,7 @@ def generate_modelled_example_volume_surface_area_pyramid(tier: Tier, rng: rando
     diagram_params = {"base_label": f"{base} cm", "height_label": f"{height} cm"}
 
     return ModelledExample(
-        topic_id="volume_surface_area_pyramid",
+        topic_id="volume_surface_area_pyramid_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -472,7 +472,7 @@ def generate_frustum_volume_surface_area(tier: Tier, rng: random.Random) -> Ques
         )
 
     return Question(
-        topic_id="frustum_volume_surface_area",
+        topic_id="frustum_volume_surface_area_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -583,7 +583,7 @@ def generate_modelled_example_frustum_volume_surface_area(tier: Tier, rng: rando
         )
 
     return ModelledExample(
-        topic_id="frustum_volume_surface_area",
+        topic_id="frustum_volume_surface_area_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -731,7 +731,7 @@ def generate_compound_3d_volume(tier: Tier, rng: random.Random) -> Question:
         final_answer = f"{vol_str} cm³"
 
     return Question(
-        topic_id="compound_3d_volume",
+        topic_id="compound_3d_volume_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -895,7 +895,7 @@ def generate_modelled_example_compound_3d_volume(tier: Tier, rng: random.Random)
         )
 
     return ModelledExample(
-        topic_id="compound_3d_volume",
+        topic_id="compound_3d_volume_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -1067,7 +1067,7 @@ def generate_compound_3d_surface_area(tier: Tier, rng: random.Random) -> Questio
         final_answer = f"{decimal_str} cm²"
 
     return Question(
-        topic_id="compound_3d_surface_area",
+        topic_id="compound_3d_surface_area_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -1259,7 +1259,7 @@ def generate_modelled_example_compound_3d_surface_area(tier: Tier, rng: random.R
         )
 
     return ModelledExample(
-        topic_id="compound_3d_surface_area",
+        topic_id="compound_3d_surface_area_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -1274,7 +1274,7 @@ def generate_modelled_example_compound_3d_surface_area(tier: Tier, rng: random.R
 # ---------------------------------------------------------------------------
 
 TOPIC_VOLUME_SURFACE_AREA_SPHERE = TopicDefinition(
-    id="volume_surface_area_sphere",
+    id="volume_surface_area_sphere_H",
     display_name="Volume & Surface Area of a Sphere",
     description="Find the volume or total surface area of a sphere or hemisphere.",
     generate=generate_volume_surface_area_sphere,
@@ -1289,7 +1289,7 @@ TOPIC_VOLUME_SURFACE_AREA_SPHERE = TopicDefinition(
 )
 
 TOPIC_VOLUME_SURFACE_AREA_PYRAMID = TopicDefinition(
-    id="volume_surface_area_pyramid",
+    id="volume_surface_area_pyramid_H",
     display_name="Volume & Surface Area of a Pyramid",
     description="Find the volume or total surface area of a square-based pyramid.",
     generate=generate_volume_surface_area_pyramid,
@@ -1304,7 +1304,7 @@ TOPIC_VOLUME_SURFACE_AREA_PYRAMID = TopicDefinition(
 )
 
 TOPIC_FRUSTUM_VOLUME_SURFACE_AREA = TopicDefinition(
-    id="frustum_volume_surface_area",
+    id="frustum_volume_surface_area_H",
     display_name="Volume & Surface Area of a Frustum",
     description="Find the volume or total surface area of a cone-based frustum.",
     generate=generate_frustum_volume_surface_area,
@@ -1319,7 +1319,7 @@ TOPIC_FRUSTUM_VOLUME_SURFACE_AREA = TopicDefinition(
 )
 
 TOPIC_COMPOUND_3D_VOLUME = TopicDefinition(
-    id="compound_3d_volume",
+    id="compound_3d_volume_H",
     display_name="Compound 3D Shapes (Volume)",
     description="Find the volume of a compound solid made from two joined 3D shapes.",
     generate=generate_compound_3d_volume,
@@ -1335,7 +1335,7 @@ TOPIC_COMPOUND_3D_VOLUME = TopicDefinition(
 )
 
 TOPIC_COMPOUND_3D_SURFACE_AREA = TopicDefinition(
-    id="compound_3d_surface_area",
+    id="compound_3d_surface_area_H",
     display_name="Compound 3D Shapes (Surface Area)",
     description="Find the surface area of a compound solid made from two joined 3D shapes.",
     generate=generate_compound_3d_surface_area,

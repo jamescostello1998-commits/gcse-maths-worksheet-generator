@@ -196,7 +196,7 @@ def generate_properties_3d_shapes(tier: Tier, rng: random.Random) -> Question:
         f"So a {template.name} has {value} {quantity}.",
     ]
     return Question(
-        topic_id="properties_3d_shapes",
+        topic_id="properties_3d_shapes_F",
         tier=Tier.FOUNDATION,
         prompt=f"How many {quantity} does a {template.name} have?",
         solution_steps=tuple(steps),
@@ -220,7 +220,7 @@ def generate_properties_3d_shapes_diagram(tier: Tier, rng: random.Random) -> Que
         f"So a {template.name} has {value} {quantity}.",
     ]
     return Question(
-        topic_id="properties_3d_shapes_diagram",
+        topic_id="properties_3d_shapes_diagram_F",
         tier=Tier.FOUNDATION,
         prompt=f"How many {quantity} does the {template.name} shown have?",
         solution_steps=tuple(steps),
@@ -238,7 +238,7 @@ def generate_modelled_example_properties_3d_shapes_diagram(tier: Tier, rng: rand
     quantity = rng.choice(["faces", "edges", "vertices"])
     value = {"faces": template.faces, "edges": template.edges, "vertices": template.vertices}[quantity]
     return ModelledExample(
-        topic_id="properties_3d_shapes_diagram",
+        topic_id="properties_3d_shapes_diagram_F",
         tier=Tier.FOUNDATION,
         prompt=f"How many {quantity} does the {template.name} shown have?",
         worked_calculation=(
@@ -272,7 +272,7 @@ def generate_modelled_example_properties_3d_shapes(tier: Tier, rng: random.Rando
         f"= {value} {quantity}",
     ]
     return ModelledExample(
-        topic_id="properties_3d_shapes",
+        topic_id="properties_3d_shapes_F",
         tier=Tier.FOUNDATION,
         prompt=f"How many {quantity} does a {template.name} have?",
         worked_calculation=tuple(worked_calculation),
@@ -369,7 +369,7 @@ def generate_nets_3d_shapes(tier: Tier, rng: random.Random) -> Question:
         f"So the answer is: {final_answer}.",
     ]
     return Question(
-        topic_id="nets_3d_shapes",
+        topic_id="nets_3d_shapes_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -403,7 +403,7 @@ def generate_modelled_example_nets_3d_shapes(tier: Tier, rng: random.Random) -> 
         f"Answer: {final_answer}",
     ]
     return ModelledExample(
-        topic_id="nets_3d_shapes",
+        topic_id="nets_3d_shapes_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -425,7 +425,7 @@ def generate_modelled_example_nets_3d_shapes(tier: Tier, rng: random.Random) -> 
 # for this topic, matching the spirit of algebraic_proof's TEMPLATES-length
 # convention.
 TOPIC_PROPERTIES_3D_SHAPES = TopicDefinition(
-    id="properties_3d_shapes",
+    id="properties_3d_shapes_F",
     display_name="Properties of 3D Shapes",
     description="Identify the number of faces, edges, or vertices of common 3D solids.",
     generate=generate_properties_3d_shapes,
@@ -437,7 +437,7 @@ TOPIC_PROPERTIES_3D_SHAPES = TopicDefinition(
 )
 
 TOPIC_PROPERTIES_3D_SHAPES_DIAGRAM = TopicDefinition(
-    id="properties_3d_shapes_diagram",
+    id="properties_3d_shapes_diagram_F",
     display_name="Properties of 3D Shapes (with Diagram)",
     description="Count the faces, edges, or vertices of a 3D solid shown in a diagram.",
     generate=generate_properties_3d_shapes_diagram,
@@ -449,7 +449,7 @@ TOPIC_PROPERTIES_3D_SHAPES_DIAGRAM = TopicDefinition(
 )
 
 TOPIC_NETS_3D_SHAPES = TopicDefinition(
-    id="nets_3d_shapes",
+    id="nets_3d_shapes_F",
     display_name="Nets of 3D Shapes",
     description="Identify the 2D shapes that make up the net of a 3D solid.",
     generate=generate_nets_3d_shapes,

@@ -51,7 +51,7 @@ def generate_hypotenuse_triple(tier: Tier, rng: random.Random) -> Question:
         f"c = √{sum_sq} = {hyp}",
     ]
     return Question(
-        topic_id="pythagoras_hypotenuse_triple",
+        topic_id="pythagoras_hypotenuse_triple_F",
         tier=Tier.FOUNDATION,
         prompt=f"A right-angled triangle has sides {leg1} cm and {leg2} cm. Find the length of x.",
         solution_steps=tuple(steps),
@@ -93,7 +93,7 @@ def generate_modelled_example_hypotenuse_triple(tier: Tier, rng: random.Random) 
         f"c = {hyp} cm",
     ]
     return ModelledExample(
-        topic_id="pythagoras_hypotenuse_triple",
+        topic_id="pythagoras_hypotenuse_triple_F",
         tier=Tier.FOUNDATION,
         prompt=f"A right-angled triangle has sides {leg1} cm and {leg2} cm. Find the length of x.",
         worked_calculation=tuple(worked_calculation),
@@ -122,7 +122,7 @@ def generate_hypotenuse_decimal(tier: Tier, rng: random.Random) -> Question:
         f"c = √{s} ≈ {rounded} cm (1 d.p.)",
     ]
     return Question(
-        topic_id="pythagoras_hypotenuse_decimal",
+        topic_id="pythagoras_hypotenuse_decimal_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A right-angled triangle has sides {a} cm and {b} cm. Find the length of x, "
@@ -171,7 +171,7 @@ def generate_modelled_example_hypotenuse_decimal(tier: Tier, rng: random.Random)
         f"c ≈ {rounded} cm (1 d.p.)",
     ]
     return ModelledExample(
-        topic_id="pythagoras_hypotenuse_decimal",
+        topic_id="pythagoras_hypotenuse_decimal_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A right-angled triangle has sides {a} cm and {b} cm. Find the length of x, "
@@ -200,7 +200,7 @@ def generate_shorter_leg(tier: Tier, rng: random.Random) -> Question:
         f"b = √{diff} = {leg_missing}",
     ]
     return Question(
-        topic_id="pythagoras_shorter_leg",
+        topic_id="pythagoras_shorter_leg_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A right-angled triangle has hypotenuse {hyp} cm and one side {leg_known} cm. "
@@ -244,7 +244,7 @@ def generate_modelled_example_shorter_leg(tier: Tier, rng: random.Random) -> Mod
         f"b = {leg_missing} cm",
     ]
     return ModelledExample(
-        topic_id="pythagoras_shorter_leg",
+        topic_id="pythagoras_shorter_leg_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A right-angled triangle has hypotenuse {hyp} cm and one side {leg_known} cm. "
@@ -279,7 +279,7 @@ def generate_surd_hypotenuse(tier: Tier, rng: random.Random) -> Question:
         f"c = √{s} = {surd_str} cm (exact form)",
     ]
     return Question(
-        topic_id="pythagoras_surd_hypotenuse",
+        topic_id="pythagoras_surd_hypotenuse_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A right-angled triangle has sides {a} cm and {b} cm. Find the exact length of x, "
@@ -338,7 +338,7 @@ def generate_modelled_example_surd_hypotenuse(tier: Tier, rng: random.Random) ->
         f"c = {surd_str} cm",
     ]
     return ModelledExample(
-        topic_id="pythagoras_surd_hypotenuse",
+        topic_id="pythagoras_surd_hypotenuse_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A right-angled triangle has sides {a} cm and {b} cm. Find the exact length of x, "
@@ -375,7 +375,7 @@ def generate_ladder_context(tier: Tier, rng: random.Random) -> Question:
     answer_str = f"{surd_str} m"
 
     return Question(
-        topic_id="pythagoras_ladder_context",
+        topic_id="pythagoras_ladder_context_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A ladder of length {ladder} m leans against a vertical wall with its base {base} m "
@@ -421,7 +421,7 @@ def generate_modelled_example_ladder_context(tier: Tier, rng: random.Random) -> 
     answer_str = f"{surd_str} m"
 
     return ModelledExample(
-        topic_id="pythagoras_ladder_context",
+        topic_id="pythagoras_ladder_context_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A ladder of length {ladder} m leans against a vertical wall with its base {base} m "
@@ -465,7 +465,7 @@ def generate_ladder_context_foundation(tier: Tier, rng: random.Random) -> Questi
         f"height = √{diff} = {height} m",
     ]
     return Question(
-        topic_id="pythagoras_ladder_context_foundation",
+        topic_id="pythagoras_ladder_context_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A ladder of length {ladder} m leans against a vertical wall with its base {base} m "
@@ -503,7 +503,7 @@ def generate_modelled_example_ladder_context_foundation(tier: Tier, rng: random.
         f"height = {height} m",
     ]
     return ModelledExample(
-        topic_id="pythagoras_ladder_context_foundation",
+        topic_id="pythagoras_ladder_context_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A ladder of length {ladder} m leans against a vertical wall with its base {base} m "
@@ -516,7 +516,7 @@ def generate_modelled_example_ladder_context_foundation(tier: Tier, rng: random.
 
 
 TOPIC_HYPOTENUSE_TRIPLE = TopicDefinition(
-    id="pythagoras_hypotenuse_triple",
+    id="pythagoras_hypotenuse_triple_F",
     display_name="Hypotenuse (Triple)",
     description="Find the hypotenuse of a right-angled triangle, resulting in a whole number.",
     generate=generate_hypotenuse_triple,
@@ -527,7 +527,7 @@ TOPIC_HYPOTENUSE_TRIPLE = TopicDefinition(
 )
 
 TOPIC_HYPOTENUSE_DECIMAL = TopicDefinition(
-    id="pythagoras_hypotenuse_decimal",
+    id="pythagoras_hypotenuse_decimal_F",
     display_name="Hypotenuse (Decimal)",
     description="Find the hypotenuse of a right-angled triangle, rounded to 1 decimal place.",
     generate=generate_hypotenuse_decimal,
@@ -538,7 +538,7 @@ TOPIC_HYPOTENUSE_DECIMAL = TopicDefinition(
 )
 
 TOPIC_SHORTER_LEG = TopicDefinition(
-    id="pythagoras_shorter_leg",
+    id="pythagoras_shorter_leg_F",
     display_name="Shorter Side",
     description="Find a missing side given the hypotenuse and the other side.",
     generate=generate_shorter_leg,
@@ -549,7 +549,7 @@ TOPIC_SHORTER_LEG = TopicDefinition(
 )
 
 TOPIC_SURD_HYPOTENUSE = TopicDefinition(
-    id="pythagoras_surd_hypotenuse",
+    id="pythagoras_surd_hypotenuse_H",
     display_name="Exact Surd Hypotenuse",
     description="Find the hypotenuse as an exact, simplified surd.",
     generate=generate_surd_hypotenuse,
@@ -560,7 +560,7 @@ TOPIC_SURD_HYPOTENUSE = TopicDefinition(
 )
 
 TOPIC_LADDER_CONTEXT = TopicDefinition(
-    id="pythagoras_ladder_context",
+    id="pythagoras_ladder_context_H",
     display_name="Ladder Context",
     description="Apply Pythagoras' theorem to a worded ladder-against-a-wall problem, giving an exact surd answer.",
     generate=generate_ladder_context,
@@ -571,7 +571,7 @@ TOPIC_LADDER_CONTEXT = TopicDefinition(
 )
 
 TOPIC_LADDER_CONTEXT_FOUNDATION = TopicDefinition(
-    id="pythagoras_ladder_context_foundation",
+    id="pythagoras_ladder_context_F",
     display_name="Ladder Context (Foundation)",
     description="Apply Pythagoras' theorem to a worded ladder-against-a-wall problem, resulting in a whole number.",
     generate=generate_ladder_context_foundation,

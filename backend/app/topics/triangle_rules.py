@@ -116,7 +116,7 @@ def generate_sine_rule(tier: Tier, rng: random.Random) -> Question:
             )
 
         return Question(
-            topic_id="sine_rule",
+            topic_id="sine_rule_H",
             tier=Tier.HIGHER,
             prompt=prompt,
             solution_steps=tuple(steps),
@@ -229,7 +229,7 @@ def generate_modelled_example_sine_rule(tier: Tier, rng: random.Random) -> Model
             )
 
         return ModelledExample(
-            topic_id="sine_rule",
+            topic_id="sine_rule_H",
             tier=Tier.HIGHER,
             prompt=prompt,
             worked_calculation=tuple(worked_calculation),
@@ -328,7 +328,7 @@ def generate_cosine_rule(tier: Tier, rng: random.Random) -> Question:
         )
 
     return Question(
-        topic_id="cosine_rule",
+        topic_id="cosine_rule_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -444,7 +444,7 @@ def generate_modelled_example_cosine_rule(tier: Tier, rng: random.Random) -> Mod
         )
 
     return ModelledExample(
-        topic_id="cosine_rule",
+        topic_id="cosine_rule_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -475,7 +475,7 @@ def generate_triangle_area(tier: Tier, rng: random.Random) -> Question:
         f"Area = 0.5 × {a} × {b} × sin({angle_C}°) = {_fmt_dec(rounded)} cm² ({rounding.short})",
     ]
     return Question(
-        topic_id="triangle_area_sine_rule",
+        topic_id="triangle_area_sine_rule_H",
         tier=Tier.HIGHER,
         prompt=(
             f"Triangle ABC has side a = {a} cm, side b = {b} cm, and the angle between them, "
@@ -524,7 +524,7 @@ def generate_modelled_example_triangle_area(tier: Tier, rng: random.Random) -> M
         f"Area = 0.5 × {a} × {b} × sin({angle_C}°) = {_fmt_dec(rounded)} cm²",
     ]
     return ModelledExample(
-        topic_id="triangle_area_sine_rule",
+        topic_id="triangle_area_sine_rule_H",
         tier=Tier.HIGHER,
         prompt=(
             f"Triangle ABC has side a = {a} cm, side b = {b} cm, and the angle between them, "
@@ -544,7 +544,7 @@ def generate_modelled_example_triangle_area(tier: Tier, rng: random.Random) -> M
 
 
 TOPIC_SINE_RULE = TopicDefinition(
-    id="sine_rule",
+    id="sine_rule_H",
     display_name="Sine Rule",
     description="Use the sine rule to find a missing side or angle in a non-right-angled triangle.",
     generate=generate_sine_rule,
@@ -555,7 +555,7 @@ TOPIC_SINE_RULE = TopicDefinition(
 )
 
 TOPIC_COSINE_RULE = TopicDefinition(
-    id="cosine_rule",
+    id="cosine_rule_H",
     display_name="Cosine Rule",
     description="Use the cosine rule to find a missing side or angle in a non-right-angled triangle.",
     generate=generate_cosine_rule,
@@ -566,7 +566,7 @@ TOPIC_COSINE_RULE = TopicDefinition(
 )
 
 TOPIC_TRIANGLE_AREA = TopicDefinition(
-    id="triangle_area_sine_rule",
+    id="triangle_area_sine_rule_H",
     display_name="Area of a Triangle",
     description="Find the area of a triangle using Area = (1/2)ab sin(C).",
     generate=generate_triangle_area,

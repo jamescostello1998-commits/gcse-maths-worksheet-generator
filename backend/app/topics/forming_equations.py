@@ -32,7 +32,7 @@ def _words_foundation(rng: random.Random) -> Question:
 
     steps = ["Let the number be x.", f"{fmt_linear(a, b)} = {c}"] + solve_steps[1:]
     return Question(
-        topic_id="forming_equations_foundation",
+        topic_id="forming_equations_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"I think of a number, multiply it by {a} and add {b}. The result is {c}. "
@@ -113,7 +113,7 @@ def _angles_foundation(rng: random.Random) -> Question:
     equation_line = " + ".join(sum_parts) + f" = {target}"
     steps = [fact_text, equation_line] + solve_steps
     return Question(
-        topic_id="forming_equations_foundation",
+        topic_id="forming_equations_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -176,7 +176,7 @@ def _area_foundation(rng: random.Random) -> Question:
         )
 
     return Question(
-        topic_id="forming_equations_foundation",
+        topic_id="forming_equations_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -194,7 +194,7 @@ def generate_forming_equations_foundation(tier: Tier, rng: random.Random) -> Que
         q = _angles_foundation(rng)
     else:
         q = _area_foundation(rng)
-    return dataclasses.replace(q, topic_id="forming_equations_foundation", tier=Tier.FOUNDATION)
+    return dataclasses.replace(q, topic_id="forming_equations_F", tier=Tier.FOUNDATION)
 
 
 # ---------------------------------------------------------------------------
@@ -249,7 +249,7 @@ def _words_higher(rng: random.Random) -> Question:
 
     steps = ["Let the number be x.", equation_line, "Expand the bracket:"] + solve_steps
     return Question(
-        topic_id="forming_equations_higher",
+        topic_id="forming_equations_H",
         tier=Tier.HIGHER,
         prompt=(
             f"I think of a number. I {add_or_sub} to it, then multiply the result by {a}. "
@@ -309,7 +309,7 @@ def _angles_higher(rng: random.Random) -> Question:
         simplified_line,
     ] + solve_steps[1:]
     return Question(
-        topic_id="forming_equations_higher",
+        topic_id="forming_equations_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A quadrilateral has angles {known[0]}°, {known[1]}°, ({expr1})°, and ({expr2})°. "
@@ -379,7 +379,7 @@ def _area_higher(rng: random.Random) -> Question:
         )
 
     return Question(
-        topic_id="forming_equations_higher",
+        topic_id="forming_equations_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -397,7 +397,7 @@ def generate_forming_equations_higher(tier: Tier, rng: random.Random) -> Questio
         q = _angles_higher(rng)
     else:
         q = _area_higher(rng)
-    return dataclasses.replace(q, topic_id="forming_equations_higher", tier=Tier.HIGHER)
+    return dataclasses.replace(q, topic_id="forming_equations_H", tier=Tier.HIGHER)
 
 
 # ---------------------------------------------------------------------------
@@ -433,7 +433,7 @@ def _modelled_words_foundation(rng: random.Random) -> ModelledExample:
         f"x = {fmt_num(solution)}",
     ]
     return ModelledExample(
-        topic_id="forming_equations_foundation",
+        topic_id="forming_equations_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"I think of a number, multiply it by {a} and add {b}. The result is {c}. "
@@ -507,7 +507,7 @@ def _modelled_angles_foundation(rng: random.Random) -> ModelledExample:
     ]
     worked_calculation = [equation_line, f"{expr} = {target_eq}", f"x = {fmt_num(solution)}"]
     return ModelledExample(
-        topic_id="forming_equations_foundation",
+        topic_id="forming_equations_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -584,7 +584,7 @@ def _modelled_area_foundation(rng: random.Random) -> ModelledExample:
         )
 
     return ModelledExample(
-        topic_id="forming_equations_foundation",
+        topic_id="forming_equations_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -602,7 +602,7 @@ def generate_modelled_example_forming_equations_foundation(tier: Tier, rng: rand
         example = _modelled_angles_foundation(rng)
     else:
         example = _modelled_area_foundation(rng)
-    return dataclasses.replace(example, topic_id="forming_equations_foundation", tier=Tier.FOUNDATION)
+    return dataclasses.replace(example, topic_id="forming_equations_F", tier=Tier.FOUNDATION)
 
 
 # ---------------------------------------------------------------------------
@@ -641,7 +641,7 @@ def _modelled_words_higher(rng: random.Random) -> ModelledExample:
     ]
     worked_calculation = [equation_line, f"{fmt_linear(a, a * b)} = {c}", f"x = {fmt_num(solution)}"]
     return ModelledExample(
-        topic_id="forming_equations_higher",
+        topic_id="forming_equations_H",
         tier=Tier.HIGHER,
         prompt=(
             f"I think of a number. I {add_or_sub} to it, then multiply the result by {a}. "
@@ -705,7 +705,7 @@ def _modelled_angles_higher(rng: random.Random) -> ModelledExample:
     ]
     worked_calculation = [equation_line, simplified_line, f"x = {fmt_num(solution)}"]
     return ModelledExample(
-        topic_id="forming_equations_higher",
+        topic_id="forming_equations_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A quadrilateral has angles {known[0]}°, {known[1]}°, ({expr1})°, and ({expr2})°. "
@@ -789,7 +789,7 @@ def _modelled_area_higher(rng: random.Random) -> ModelledExample:
         )
 
     return ModelledExample(
-        topic_id="forming_equations_higher",
+        topic_id="forming_equations_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -807,11 +807,11 @@ def generate_modelled_example_forming_equations_higher(tier: Tier, rng: random.R
         example = _modelled_angles_higher(rng)
     else:
         example = _modelled_area_higher(rng)
-    return dataclasses.replace(example, topic_id="forming_equations_higher", tier=Tier.HIGHER)
+    return dataclasses.replace(example, topic_id="forming_equations_H", tier=Tier.HIGHER)
 
 
 TOPIC_FORMING_EQUATIONS_FOUNDATION = TopicDefinition(
-    id="forming_equations_foundation",
+    id="forming_equations_F",
     display_name="Forming and Solving Equations",
     description=(
         "Translate a word problem, angle fact, or area/perimeter fact into a linear equation "
@@ -825,7 +825,7 @@ TOPIC_FORMING_EQUATIONS_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_FORMING_EQUATIONS_HIGHER = TopicDefinition(
-    id="forming_equations_higher",
+    id="forming_equations_H",
     display_name="Forming and Solving Equations (Higher)",
     description=(
         "Translate a word problem, angle fact, or area/perimeter fact into a linear equation "

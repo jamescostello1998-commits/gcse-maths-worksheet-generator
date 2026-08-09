@@ -159,23 +159,23 @@ def test_all_decimal_topics_have_modelled_examples():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (decimals.generate_modelled_example_round_to_decimal_places, Tier.FOUNDATION, "decimals_round_dp"),
-    (decimals.generate_modelled_example_round_to_significant_figures, Tier.FOUNDATION, "decimals_round_sf"),
-    (decimals.generate_modelled_example_ordering, Tier.FOUNDATION, "decimals_ordering"),
-    (decimals.generate_modelled_example_recurring_decimal_to_fraction, Tier.HIGHER, "decimals_recurring_to_fraction"),
-    (decimals.generate_modelled_example_dividing_decimals, Tier.FOUNDATION, "decimals_divide"),
-    (decimals.generate_modelled_example_powers_of_ten, Tier.FOUNDATION, "number_powers_of_ten"),
-    (decimals.generate_modelled_example_decimals_add_subtract, Tier.FOUNDATION, "decimals_add_subtract"),
-    (decimals.generate_modelled_example_decimals_multiply, Tier.FOUNDATION, "decimals_multiply"),
+    (decimals.generate_modelled_example_round_to_decimal_places, Tier.FOUNDATION, "decimals_round_dp_F"),
+    (decimals.generate_modelled_example_round_to_significant_figures, Tier.FOUNDATION, "decimals_round_sf_F"),
+    (decimals.generate_modelled_example_ordering, Tier.FOUNDATION, "decimals_ordering_F"),
+    (decimals.generate_modelled_example_recurring_decimal_to_fraction, Tier.HIGHER, "decimals_recurring_to_fraction_H"),
+    (decimals.generate_modelled_example_dividing_decimals, Tier.FOUNDATION, "decimals_divide_F"),
+    (decimals.generate_modelled_example_powers_of_ten, Tier.FOUNDATION, "number_powers_of_ten_F"),
+    (decimals.generate_modelled_example_decimals_add_subtract, Tier.FOUNDATION, "decimals_add_subtract_F"),
+    (decimals.generate_modelled_example_decimals_multiply, Tier.FOUNDATION, "decimals_multiply_F"),
     (
         decimals.generate_modelled_example_recurring_decimal_single_digit,
         Tier.FOUNDATION,
-        "recurring_decimal_single_digit",
+        "recurring_decimal_single_digit_F",
     ),
     (
         decimals.generate_modelled_example_recurring_decimal_two_digit,
         Tier.HIGHER,
-        "recurring_decimal_two_digit",
+        "recurring_decimal_two_digit_H",
     ),
 ]
 

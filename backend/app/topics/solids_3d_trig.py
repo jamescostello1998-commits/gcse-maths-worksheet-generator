@@ -61,7 +61,7 @@ def generate_3d_pythagoras(tier: Tier, rng: random.Random) -> Question:
         f"ag = √{base_diag_sq + h * h} = {rounded} cm ({rounding.short})",
     ]
     return Question(
-        topic_id="pythagoras_3d",
+        topic_id="pythagoras_3d_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A cuboid has length {l} cm, width {w} cm and height {h} cm. Find the length of the "
@@ -112,7 +112,7 @@ def generate_modelled_example_3d_pythagoras(tier: Tier, rng: random.Random) -> M
         f"ag = {rounded} cm ({rounding.short})",
     ]
     return ModelledExample(
-        topic_id="pythagoras_3d",
+        topic_id="pythagoras_3d_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A cuboid has length {l} cm, width {w} cm and height {h} cm. Find the length of the "
@@ -165,7 +165,7 @@ def generate_3d_trigonometry(tier: Tier, rng: random.Random) -> Question:
         f"angle = tan^-1({h} ÷ {base_diag:.3f}) = {rounded}° (1 d.p.)",
     ]
     return Question(
-        topic_id="trig_3d",
+        topic_id="trig_3d_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A cuboid has length {l} cm, width {w} cm and height {h} cm. Find the angle between "
@@ -217,7 +217,7 @@ def generate_modelled_example_3d_trigonometry(tier: Tier, rng: random.Random) ->
         f"angle = {rounded}° (1 d.p.)",
     ]
     return ModelledExample(
-        topic_id="trig_3d",
+        topic_id="trig_3d_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A cuboid has length {l} cm, width {w} cm and height {h} cm. Find the angle between "
@@ -241,7 +241,7 @@ def generate_modelled_example_3d_trigonometry(tier: Tier, rng: random.Random) ->
 
 
 TOPIC_3D_PYTHAGORAS = TopicDefinition(
-    id="pythagoras_3d",
+    id="pythagoras_3d_H",
     display_name="3D Pythagoras",
     description="Find the length of the space diagonal of a cuboid using Pythagoras' theorem twice.",
     generate=generate_3d_pythagoras,
@@ -252,7 +252,7 @@ TOPIC_3D_PYTHAGORAS = TopicDefinition(
 )
 
 TOPIC_3D_TRIGONOMETRY = TopicDefinition(
-    id="trig_3d",
+    id="trig_3d_H",
     display_name="3D Trigonometry",
     description="Find the angle between a cuboid's space diagonal and its base.",
     generate=generate_3d_trigonometry,

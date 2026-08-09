@@ -7,7 +7,7 @@
   "calculator_allowed": false,
   "questions": [
     {
-      "topic_id": "histogram_plot",
+      "topic_id": "histogram_plot_H",
       "prompt": "The table shows the times (in minutes) taken to complete a puzzle. Complete a frequency density column and draw a histogram.",
       "solution_steps": [
         "Frequency density = frequency ÷ class width, for each class:",
@@ -92,7 +92,7 @@
       }
     },
     {
-      "topic_id": "recurring_decimal_two_digit",
+      "topic_id": "recurring_decimal_two_digit_H",
       "prompt": "Show that \\recur{0.}{49} can be written as 49/99.",
       "solution_steps": [
         "Let x = \\recur{0.}{49}, so 100x = 49.4949... (two digits repeat, so multiply by 100 to shift a full block)",
@@ -127,7 +127,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bounds_calculation",
+      "topic_id": "bounds_calculation_H",
       "prompt": "A car travels 204 km (to the nearest km) in 8 hours (to the nearest hour). Calculate the upper bound for the average speed of the car, to 1 decimal place.",
       "solution_steps": [
         "Distance: 204 km (to the nearest km) gives 203.5 ≤ distance < 204.5",
@@ -162,7 +162,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "hcf_lcm_by_prime_factors",
+      "topic_id": "hcf_lcm_by_prime_factors_H",
       "prompt": "Using prime factorisation, find the HCF of 69 and 158.",
       "solution_steps": [
         "69 = 3 × 23",
@@ -203,7 +203,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_recurring_to_fraction",
+      "topic_id": "decimals_recurring_to_fraction_H",
       "prompt": "Show that \\recur{0.9}{3} can be written as 14/15.",
       "solution_steps": [
         "Let x = \\recur{0.9}{3}",
@@ -244,7 +244,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simplifying_indices_challenging",
+      "topic_id": "simplifying_indices_challenging_H",
       "prompt": "Fully simplify 9^(1/2) × 9^-2, giving your answer as a fraction where necessary.",
       "solution_steps": [
         "9^(1/2) is the square root of 9, which is 3, so 9^(1/2) = 3^1",
@@ -285,7 +285,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "graph_transformations",
+      "topic_id": "graph_transformations_H",
       "prompt": "The graph of y = f(x) is transformed to give the graph of y = f(x) - 5. Describe this transformation fully.",
       "solution_steps": [
         "y = f(x) - 5 corresponds to a translation by vector (0, -5)."
@@ -316,7 +316,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "circle_equation",
+      "topic_id": "circle_equation_H",
       "prompt": "A circle has centre (0, 0) and radius 9. Write down the equation of the circle.",
       "solution_steps": [
         "A circle centred at the origin with radius r has equation x^2 + y^2 = r^2.",
@@ -363,7 +363,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_graph",
+      "topic_id": "trig_graph_H",
       "prompt": "Complete a table of values for y = cos(x°) for x = 0 to 360 (in steps of 90°), then plot the graph.",
       "solution_steps": [
         "Table of values for y = cos(x°):",
@@ -451,7 +451,7 @@
       }
     },
     {
-      "topic_id": "functions_composite_inverse",
+      "topic_id": "functions_composite_inverse_H",
       "prompt": "f(x) = 2x + 1 and g(x) = 2x - 6. Find fg(x).",
       "solution_steps": [
         "fg(x) = f(2x - 6)",
@@ -486,7 +486,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "forming_equations_higher",
+      "topic_id": "forming_equations_H",
       "prompt": "A quadrilateral has angles 37°, 44°, (3x + 11)°, and (x + 232)°. Form an equation and solve it to find x.",
       "solution_steps": [
         "Angles in a quadrilateral sum to 360°.",
@@ -542,7 +542,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "functions_inverse_evaluate",
+      "topic_id": "functions_inverse_evaluate_H",
       "prompt": "f(x) = 2x - 7. Find f^-1(-10).",
       "solution_steps": [
         "f^-1(x) = \\frac{x + 7}{2}",
@@ -577,7 +577,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trial_and_improvement",
+      "topic_id": "trial_and_improvement_H",
       "prompt": "f(x) = x^3 - 3x - 36. Show that f(x) = 0 has a root between x = 3 and x = 4, then use trial and improvement to find this root correct to 1 decimal place.",
       "solution_steps": [
         "f(x) = x^3 - 3x - 36",
@@ -626,7 +626,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solve_quadratic_factorising",
+      "topic_id": "solve_quadratic_factorising_H",
       "prompt": "Solve x^2 - 2x - 15 = 0 by factorising.",
       "solution_steps": [
         "Find two numbers that multiply to -15 and add to -2: 3 and -5",
@@ -667,7 +667,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_to_equation",
+      "topic_id": "ratio_to_equation_H",
       "prompt": "(x - 2) : (5x - 46) = 5:7. Find the value of x.",
       "solution_steps": [
         "Cross-multiply: 7(x - 2) = 5(5x - 46)",
@@ -708,7 +708,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "reverse_percentage",
+      "topic_id": "reverse_percentage_H",
       "prompt": "After a 12% decrease, an item costs £21.12. Find the original price.",
       "solution_steps": [
         "Convert 12% to a multiplier: 0.88 (original × multiplier = new value)",
@@ -737,7 +737,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_shape_similar_higher",
+      "topic_id": "ratio_shape_similar_H",
       "prompt": "Shape A and Shape B are similar. The volume of shape A is 8 cm^3. Find the volume of shape B.",
       "solution_steps": [
         "Linear scale factor = 6 ÷ 2 = 3",
@@ -778,7 +778,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_direct_proportion",
+      "topic_id": "algebraic_direct_proportion_H",
       "prompt": "y is directly proportional to x^3. When x = 4, y = 640. Find the value of y when x = 2.",
       "solution_steps": [
         "y = kx^3",
@@ -819,7 +819,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_enlarge_describe",
+      "topic_id": "transform_enlarge_describe_H",
       "prompt": "Shape ABCD is enlarged to give shape A'B'C'D', shown on the grid. Describe fully the single transformation that maps ABCD onto A'B'C'D'.",
       "solution_steps": [
         "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
@@ -904,7 +904,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_triangle_higher",
+      "topic_id": "angles_triangle_H",
       "prompt": "A triangle has angles 21°, 41°, and (5x + 28)°. Find x.",
       "solution_steps": [
         "Angles in a triangle sum to 180°.",
@@ -956,7 +956,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "vectors_arithmetic_higher",
+      "topic_id": "vectors_arithmetic_H",
       "prompt": "\\vec{a} = \\colvec{-3}{3} and \\vec{b} = \\colvec{-4}{-5}. Find 4\\vec{a} + 5\\vec{b}.",
       "solution_steps": [
         "\\vec{a} = \\colvec{-3}{3}, \\vec{b} = \\colvec{-4}{-5}",
@@ -991,7 +991,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "exact_trig_values_triangles",
+      "topic_id": "exact_trig_values_triangles_H",
       "prompt": "In the triangle shown, find the exact length of x. Give your answer in surd form where appropriate.",
       "solution_steps": [
         "We know the adjacent and want the hypotenuse, so use cos(45°) = √2/2 - its exact value, not a decimal approximation.",
@@ -1028,7 +1028,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "set_notation",
+      "topic_id": "set_notation_H",
       "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}, A = {6, 10, 12}, B = {1, 8, 10}. List the elements of (A ∪ B)'.",
       "solution_steps": [
         "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}",
@@ -1094,7 +1094,7 @@
       }
     },
     {
-      "topic_id": "product_rule_counting",
+      "topic_id": "product_rule_counting_H",
       "prompt": "A shop sells 4 different phone cases and 6 different screen protectors. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
       "solution_steps": [
         "Total combinations = 4 × 6 = 24"

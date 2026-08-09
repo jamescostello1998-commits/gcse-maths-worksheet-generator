@@ -7,7 +7,7 @@
   "calculator_allowed": false,
   "questions": [
     {
-      "topic_id": "powers_higher",
+      "topic_id": "powers_H",
       "prompt": "Calculate 125^(2/3).",
       "solution_steps": [
         "125^(2/3) = (125^(1/3))^2",
@@ -42,7 +42,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_surds",
+      "topic_id": "algebraic_surds_H",
       "prompt": "Expand and simplify (3 + √5)(7 + √5), giving your answer in the form p + q√5.",
       "solution_steps": [
         "Expand the brackets (FOIL): (3 + √5)(7 + √5) = 21 +3√5 +7√5 +5",
@@ -84,7 +84,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "prime_factors_higher",
+      "topic_id": "prime_factors_H",
       "prompt": "Write 783 as a product of its prime factors, giving your answer in index form.",
       "solution_steps": [
         "Divide 783 repeatedly by the smallest prime that fits: 3 × 3 × 3 × 29",
@@ -113,7 +113,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_recurring_to_fraction",
+      "topic_id": "decimals_recurring_to_fraction_H",
       "prompt": "Write \\recur{0.}{90} as a fraction in its simplest form.",
       "solution_steps": [
         "Let x = \\recur{0.}{90}",
@@ -154,7 +154,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_multiply_divide",
+      "topic_id": "standard_form_multiply_divide_H",
       "prompt": "Work out (1 × 10^0) ÷ (1 × 10^-4). Give your answer in standard form.",
       "solution_steps": [
         "Divide the mantissas: 1 ÷ 1 = 1",
@@ -183,7 +183,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "hcf_lcm_by_prime_factors",
+      "topic_id": "hcf_lcm_by_prime_factors_H",
       "prompt": "Using prime factorisation, find the LCM of 166 and 198.",
       "solution_steps": [
         "166 = 2 × 83",
@@ -224,7 +224,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_exponential",
+      "topic_id": "plot_exponential_H",
       "prompt": "Complete a table of values for y = 3^x for x = 0 to 4, then plot the graph.",
       "solution_steps": [
         "Table of values for y = 3^x:",
@@ -310,7 +310,7 @@
       }
     },
     {
-      "topic_id": "completing_the_square",
+      "topic_id": "completing_the_square_H",
       "prompt": "Write x^2 + 16x - 11 in the form (x + p)^2 + q.",
       "solution_steps": [
         "Half the coefficient of x: 16 ÷ 2 = 8",
@@ -345,7 +345,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "satisfying_inequalities_higher",
+      "topic_id": "satisfying_inequalities_H",
       "prompt": "x satisfies both 3x + 7 ≥ -5 and 5x + 2 < 13. List the integer values of x that satisfy both.",
       "solution_steps": [
         "Solve the first inequality:",
@@ -396,7 +396,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_reciprocal",
+      "topic_id": "plot_reciprocal_H",
       "prompt": "Complete a table of values for y = -\\frac{24}{x} for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
       "solution_steps": [
         "Table of values for y = -\\frac{24}{x}:",
@@ -492,7 +492,7 @@
       }
     },
     {
-      "topic_id": "simultaneous_quadratic",
+      "topic_id": "simultaneous_quadratic_H",
       "prompt": "Solve the simultaneous equations: y = x^2 - 8 and y = -x - 6",
       "solution_steps": [
         "Substitute y = -x - 6 into y = x^2 - 8: -x - 6 = x^2 - 8",
@@ -534,7 +534,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "forming_equations_higher",
+      "topic_id": "forming_equations_H",
       "prompt": "A quadrilateral has angles 47°, 84°, (2x + 10)°, and (3x + 204)°. Form an equation and solve it to find x.",
       "solution_steps": [
         "Angles in a quadrilateral sum to 360°.",
@@ -590,7 +590,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "special_sequences_higher",
+      "topic_id": "special_sequences_H",
       "prompt": "The first 4 terms of a geometric sequence are: 5, 15/2, 45/4, 135/8. Find the 6th term of the sequence.",
       "solution_steps": [
         "Common ratio r = 3/2 (divide any term by the term before it).",
@@ -625,7 +625,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_three_part",
+      "topic_id": "ratio_share_three_part_H",
       "prompt": "Share 14 in the ratio 3:2:2.",
       "solution_steps": [
         "Total parts = 3 + 2 + 2 = 7",
@@ -667,7 +667,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_difference_higher",
+      "topic_id": "ratio_difference_H",
       "prompt": "a : b : c = 6 : 1 : 9.\nc - b = 104.\nFind a, b and c, and their total.",
       "solution_steps": [
         "Difference in parts = 9 - 1 = 8 parts",
@@ -710,7 +710,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "speed_with_conversions",
+      "topic_id": "speed_with_conversions_H",
       "prompt": "A cyclist travels 50 km in 1 hours. Find its average speed in m/s, correct to 1 decimal place.",
       "solution_steps": [
         "speed = distance ÷ time = 50 ÷ 1 = 50 km/h",
@@ -739,7 +739,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_to_equation",
+      "topic_id": "ratio_to_equation_H",
       "prompt": "(x - 2) : (x - 10) = 9:1. Find the value of x.",
       "solution_steps": [
         "Cross-multiply: 1(x - 2) = 9(x - 10)",
@@ -780,7 +780,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_circle",
+      "topic_id": "area_circle_H",
       "prompt": "Find the circumference of the following circle, in terms of π.",
       "solution_steps": [
         "Circumference = 2 × π × r = 2 × π × 7 = 14π cm",
@@ -815,7 +815,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "vectors_arithmetic_higher",
+      "topic_id": "vectors_arithmetic_H",
       "prompt": "\\vec{a} = \\colvec{-7}{-5} and \\vec{b} = \\colvec{5}{12}. Find -5\\vec{a} + -1\\vec{b}.",
       "solution_steps": [
         "\\vec{a} = \\colvec{-7}{-5}, \\vec{b} = \\colvec{5}{12}",
@@ -850,7 +850,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_rotate_describe",
+      "topic_id": "transform_rotate_describe_H",
       "prompt": "Shape ABC is rotated to give shape A'B'C', shown on the grid. Describe fully the single transformation that maps ABC onto A'B'C'.",
       "solution_steps": [
         "The centre of rotation is the one point that is the same distance from a vertex and its image, for every vertex - it can be found where the perpendicular bisectors of two such pairs cross.",
@@ -925,7 +925,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "geometric_vectors",
+      "topic_id": "geometric_vectors_H",
       "prompt": "OAB is a triangle with OA = \\vec{a} and OB = \\vec{b}. Point P lies on AB such that AP:PB = 3:4. Find the vector OP in terms of \\vec{a} and \\vec{b}, giving your answer in its simplest form.",
       "solution_steps": [
         "AB = OB - OA = \\vec{b} - \\vec{a}",
@@ -972,7 +972,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "exact_trig_values",
+      "topic_id": "exact_trig_values_H",
       "prompt": "Write down the exact value of tan(0°).",
       "solution_steps": [
         "Recall the exact-value triangles: 30°-60°-90° (sides 1, √3, 2) and 45°-45°-90° (sides 1, 1, √2) - no calculator needed for these special angles.",
@@ -1001,7 +1001,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_conditional",
+      "topic_id": "probability_conditional_H",
       "prompt": "A bag contains 7 blue and 5 green counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
       "solution_steps": [
         "P(both blue) = 7/12 × 6/11 = 7/22",
@@ -1108,7 +1108,7 @@
       }
     },
     {
-      "topic_id": "inequalities_number_line_higher",
+      "topic_id": "inequalities_number_line_H",
       "prompt": "Draw the inequality/ies of x < 0 or x ≥ 6 on a number line.",
       "solution_steps": [
         "Draw an open circle at 0 and a filled circle at 6.",

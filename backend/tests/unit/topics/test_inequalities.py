@@ -59,27 +59,27 @@ MODELLED_EXAMPLE_GENERATORS = [
     (
         inequalities.generate_modelled_example_solving_inequalities_foundation,
         Tier.FOUNDATION,
-        "solving_inequalities_foundation",
+        "solving_inequalities_F",
     ),
     (
         inequalities.generate_modelled_example_solving_inequalities_higher,
         Tier.HIGHER,
-        "solving_inequalities_higher",
+        "solving_inequalities_H",
     ),
     (
         inequalities.generate_modelled_example_satisfying_inequalities_foundation,
         Tier.FOUNDATION,
-        "satisfying_inequalities_foundation",
+        "satisfying_inequalities_F",
     ),
     (
         inequalities.generate_modelled_example_satisfying_inequalities_higher,
         Tier.HIGHER,
-        "satisfying_inequalities_higher",
+        "satisfying_inequalities_H",
     ),
     (
         inequalities.generate_modelled_example_quadratic_inequalities,
         Tier.HIGHER,
-        "quadratic_inequalities",
+        "quadratic_inequalities_H",
     ),
 ]
 

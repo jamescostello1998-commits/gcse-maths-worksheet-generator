@@ -69,7 +69,7 @@ def test_modelled_example_single_event_produces_verified_examples():
     rng = random.Random(204)
     for _ in range(TRIALS):
         example = probability.generate_modelled_example_single_event(Tier.FOUNDATION, rng)
-        assert example.topic_id == "probability_single_event"
+        assert example.topic_id == "probability_single_event_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -80,7 +80,7 @@ def test_modelled_example_complement_produces_verified_examples():
     rng = random.Random(205)
     for _ in range(TRIALS):
         example = probability.generate_modelled_example_complement(Tier.FOUNDATION, rng)
-        assert example.topic_id == "probability_complement"
+        assert example.topic_id == "probability_complement_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -91,7 +91,7 @@ def test_modelled_example_combined_dice_produces_verified_examples():
     rng = random.Random(206)
     for _ in range(TRIALS):
         example = probability.generate_modelled_example_combined_dice(Tier.HIGHER, rng)
-        assert example.topic_id == "probability_combined_dice"
+        assert example.topic_id == "probability_combined_dice_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -102,7 +102,7 @@ def test_modelled_example_conditional_produces_verified_examples():
     rng = random.Random(207)
     for _ in range(TRIALS):
         example = probability.generate_modelled_example_conditional_without_replacement(Tier.HIGHER, rng)
-        assert example.topic_id == "probability_conditional"
+        assert example.topic_id == "probability_conditional_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -113,7 +113,7 @@ def test_modelled_example_listing_outcomes_produces_verified_examples():
     rng = random.Random(208)
     for _ in range(TRIALS):
         example = probability.generate_modelled_example_listing_outcomes(Tier.FOUNDATION, rng)
-        assert example.topic_id == "probability_listing_outcomes"
+        assert example.topic_id == "probability_listing_outcomes_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -124,7 +124,7 @@ def test_modelled_example_and_or_rule_produces_verified_examples():
     rng = random.Random(209)
     for _ in range(TRIALS):
         example = probability.generate_modelled_example_and_or_rule(Tier.FOUNDATION, rng)
-        assert example.topic_id == "probability_and_or_rule"
+        assert example.topic_id == "probability_and_or_rule_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -135,7 +135,7 @@ def test_modelled_example_expectation_produces_verified_examples():
     rng = random.Random(210)
     for _ in range(TRIALS):
         example = probability.generate_modelled_example_expectation(Tier.FOUNDATION, rng)
-        assert example.topic_id == "probability_expectation"
+        assert example.topic_id == "probability_expectation_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3

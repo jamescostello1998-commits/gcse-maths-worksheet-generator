@@ -10,10 +10,10 @@ from app.pdf.diagrams import render_diagram
 # A spread of genuinely different diagram kinds/shapes, all confirmed to exist
 # in the registry - triangle, rectangle, circle-theorem, and a stats chart.
 DIAGRAM_TOPIC_IDS = [
-    "angles_triangle",
-    "area_rectangle",
-    "circle_theorems",
-    "bar_chart_construct",
+    "angles_triangle_F",
+    "area_rectangle_F",
+    "circle_theorems_H",
+    "bar_chart_construct_F",
 ]
 
 
@@ -43,7 +43,7 @@ def test_rasterize_drawing_produces_nonblank_png():
 
 
 def test_rasterize_drawing_scales_with_dpi():
-    spec = _first_diagram_spec("angles_triangle")
+    spec = _first_diagram_spec("angles_triangle_F")
     drawing = render_diagram(spec)
 
     png_150 = rasterize_drawing(drawing, dpi=150)

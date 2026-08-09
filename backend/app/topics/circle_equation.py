@@ -66,7 +66,7 @@ def generate_circle_equation(tier: Tier, rng: random.Random) -> Question:
             f"Here r = {r}, so r^2 = {r_sq}.",
         ]
         return Question(
-            topic_id="circle_equation",
+            topic_id="circle_equation_H",
             tier=Tier.HIGHER,
             prompt=f"A circle has centre (0, 0) and radius {r}. Write down the equation of the circle.",
             solution_steps=tuple(steps),
@@ -96,7 +96,7 @@ def generate_circle_equation(tier: Tier, rng: random.Random) -> Question:
         f"The tangent line through ({a}, {b}) with that gradient simplifies to {tangent_str}.",
     ]
     return Question(
-        topic_id="circle_equation",
+        topic_id="circle_equation_H",
         tier=Tier.HIGHER,
         prompt=f"The point ({a}, {b}) lies on the circle x^2 + y^2 = {r_sq}. Find the equation of the "
         "tangent to the circle at this point.",
@@ -127,7 +127,7 @@ def generate_modelled_example_circle_equation(tier: Tier, rng: random.Random) ->
             f"x^2 + y^2 = {r_sq}",
         ]
         return ModelledExample(
-            topic_id="circle_equation",
+            topic_id="circle_equation_H",
             tier=Tier.HIGHER,
             prompt=f"A circle has centre (0, 0) and radius {r}. Write down the equation of the circle.",
             worked_calculation=tuple(worked_calculation),
@@ -157,7 +157,7 @@ def generate_modelled_example_circle_equation(tier: Tier, rng: random.Random) ->
         f"{tangent_str}",
     ]
     return ModelledExample(
-        topic_id="circle_equation",
+        topic_id="circle_equation_H",
         tier=Tier.HIGHER,
         prompt=f"The point ({a}, {b}) lies on the circle x^2 + y^2 = {r_sq}. Find the equation of the "
         "tangent to the circle at this point.",
@@ -168,7 +168,7 @@ def generate_modelled_example_circle_equation(tier: Tier, rng: random.Random) ->
 
 
 TOPIC_CIRCLE_EQUATION = TopicDefinition(
-    id="circle_equation",
+    id="circle_equation_H",
     display_name="Equation of a Circle",
     description="Write down the equation of a circle centred at the origin, or find the equation of a tangent to it.",
     generate=generate_circle_equation,

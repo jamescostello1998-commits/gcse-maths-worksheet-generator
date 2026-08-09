@@ -196,7 +196,7 @@ def generate_missing_side_foundation(tier: Tier, rng: random.Random) -> Question
         rng,
         angle_lo=20, angle_hi=70, side_lo=5, side_hi=20,
         shapes=_SIDE_SHAPES_NO_REARRANGE,
-        topic_id="trig_missing_side_foundation",
+        topic_id="trig_missing_side_F",
         tier=Tier.FOUNDATION,
     )
 
@@ -206,7 +206,7 @@ def generate_missing_side_higher(tier: Tier, rng: random.Random) -> Question:
         rng,
         angle_lo=5, angle_hi=85, side_lo=4, side_hi=40,
         shapes=_SIDE_SHAPES_ALL,
-        topic_id="trig_missing_side_higher",
+        topic_id="trig_missing_side_H",
         tier=Tier.HIGHER,
     )
 
@@ -216,7 +216,7 @@ def generate_modelled_example_missing_side_foundation(tier: Tier, rng: random.Ra
         rng,
         angle_lo=20, angle_hi=70, side_lo=5, side_hi=20,
         shapes=_SIDE_SHAPES_NO_REARRANGE,
-        topic_id="trig_missing_side_foundation",
+        topic_id="trig_missing_side_F",
         tier=Tier.FOUNDATION,
     )
 
@@ -226,7 +226,7 @@ def generate_modelled_example_missing_side_higher(tier: Tier, rng: random.Random
         rng,
         angle_lo=5, angle_hi=85, side_lo=4, side_hi=40,
         shapes=_SIDE_SHAPES_ALL,
-        topic_id="trig_missing_side_higher",
+        topic_id="trig_missing_side_H",
         tier=Tier.HIGHER,
     )
 
@@ -289,14 +289,14 @@ def _trig_angle_question(rng: random.Random, *, side_lo, side_hi, topic_id, tier
 def generate_missing_angle_foundation(tier: Tier, rng: random.Random) -> Question:
     return _trig_angle_question(
         rng, side_lo=5, side_hi=20,
-        topic_id="trig_missing_angle_foundation", tier=Tier.FOUNDATION,
+        topic_id="trig_missing_angle_F", tier=Tier.FOUNDATION,
     )
 
 
 def generate_missing_angle_higher(tier: Tier, rng: random.Random) -> Question:
     return _trig_angle_question(
         rng, side_lo=4, side_hi=40,
-        topic_id="trig_missing_angle_higher", tier=Tier.HIGHER,
+        topic_id="trig_missing_angle_H", tier=Tier.HIGHER,
     )
 
 
@@ -377,14 +377,14 @@ def _trig_angle_modelled_example(rng: random.Random, *, side_lo, side_hi, topic_
 def generate_modelled_example_missing_angle_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
     return _trig_angle_modelled_example(
         rng, side_lo=5, side_hi=20,
-        topic_id="trig_missing_angle_foundation", tier=Tier.FOUNDATION,
+        topic_id="trig_missing_angle_F", tier=Tier.FOUNDATION,
     )
 
 
 def generate_modelled_example_missing_angle_higher(tier: Tier, rng: random.Random) -> ModelledExample:
     return _trig_angle_modelled_example(
         rng, side_lo=4, side_hi=40,
-        topic_id="trig_missing_angle_higher", tier=Tier.HIGHER,
+        topic_id="trig_missing_angle_H", tier=Tier.HIGHER,
     )
 
 
@@ -392,10 +392,10 @@ def generate_mixed(tier: Tier, rng: random.Random) -> Question:
     if rng.random() < 0.5:
         q = _trig_side_question(
             rng, angle_lo=5, angle_hi=85, side_lo=4, side_hi=40,
-            shapes=_SIDE_SHAPES_ALL, topic_id="trig_mixed", tier=Tier.HIGHER,
+            shapes=_SIDE_SHAPES_ALL, topic_id="trig_mixed_H", tier=Tier.HIGHER,
         )
     else:
-        q = _trig_angle_question(rng, side_lo=4, side_hi=40, topic_id="trig_mixed", tier=Tier.HIGHER)
+        q = _trig_angle_question(rng, side_lo=4, side_hi=40, topic_id="trig_mixed_H", tier=Tier.HIGHER)
     return q
 
 
@@ -403,15 +403,15 @@ def generate_modelled_example_mixed(tier: Tier, rng: random.Random) -> ModelledE
     if rng.random() < 0.5:
         example = _trig_side_modelled_example(
             rng, angle_lo=5, angle_hi=85, side_lo=4, side_hi=40,
-            shapes=_SIDE_SHAPES_ALL, topic_id="trig_mixed", tier=Tier.HIGHER,
+            shapes=_SIDE_SHAPES_ALL, topic_id="trig_mixed_H", tier=Tier.HIGHER,
         )
     else:
-        example = _trig_angle_modelled_example(rng, side_lo=4, side_hi=40, topic_id="trig_mixed", tier=Tier.HIGHER)
+        example = _trig_angle_modelled_example(rng, side_lo=4, side_hi=40, topic_id="trig_mixed_H", tier=Tier.HIGHER)
     return example
 
 
 TOPIC_MISSING_SIDE_FOUNDATION = TopicDefinition(
-    id="trig_missing_side_foundation",
+    id="trig_missing_side_F",
     display_name="Missing Sides",
     description="Use SOH CAH TOA to find a missing side of a right-angled triangle.",
     generate=generate_missing_side_foundation,
@@ -422,7 +422,7 @@ TOPIC_MISSING_SIDE_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_MISSING_SIDE_HIGHER = TopicDefinition(
-    id="trig_missing_side_higher",
+    id="trig_missing_side_H",
     display_name="Missing Sides",
     description="Use SOH CAH TOA to find a missing side of a right-angled triangle, including rearranging.",
     generate=generate_missing_side_higher,
@@ -433,7 +433,7 @@ TOPIC_MISSING_SIDE_HIGHER = TopicDefinition(
 )
 
 TOPIC_MISSING_ANGLE_FOUNDATION = TopicDefinition(
-    id="trig_missing_angle_foundation",
+    id="trig_missing_angle_F",
     display_name="Missing Angles",
     description="Use inverse trigonometric ratios to find a missing angle of a right-angled triangle.",
     generate=generate_missing_angle_foundation,
@@ -444,7 +444,7 @@ TOPIC_MISSING_ANGLE_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_MISSING_ANGLE_HIGHER = TopicDefinition(
-    id="trig_missing_angle_higher",
+    id="trig_missing_angle_H",
     display_name="Missing Angles",
     description="Use inverse trigonometric ratios to find a missing angle of a right-angled triangle.",
     generate=generate_missing_angle_higher,
@@ -455,7 +455,7 @@ TOPIC_MISSING_ANGLE_HIGHER = TopicDefinition(
 )
 
 TOPIC_MIXED = TopicDefinition(
-    id="trig_mixed",
+    id="trig_mixed_H",
     display_name="Mixed Sides and Angles",
     description="A mix of missing-side and missing-angle right-angled triangle trigonometry questions.",
     generate=generate_mixed,

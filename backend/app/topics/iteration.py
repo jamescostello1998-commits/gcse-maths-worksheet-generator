@@ -185,7 +185,7 @@ def generate_iteration(tier: Tier, rng: random.Random) -> Question:
     final_answer = f"x_1 = {data.x_display[0]}, x_2 = {data.x_display[1]}, x_3 = {data.x_display[2]}"
 
     return Question(
-        topic_id="iteration",
+        topic_id="iteration_H",
         tier=Tier.HIGHER,
         prompt=(
             f"The iterative formula {formula} is used with x_0 = {x0_disp}. "
@@ -249,7 +249,7 @@ def generate_modelled_example_iteration(tier: Tier, rng: random.Random) -> Model
     ]
 
     return ModelledExample(
-        topic_id="iteration",
+        topic_id="iteration_H",
         tier=Tier.HIGHER,
         prompt=(
             f"The iterative formula {formula} is used with x_0 = {x0_disp}. "
@@ -262,7 +262,7 @@ def generate_modelled_example_iteration(tier: Tier, rng: random.Random) -> Model
 
 
 TOPIC_ITERATION = TopicDefinition(
-    id="iteration",
+    id="iteration_H",
     display_name="Iteration",
     description="Use a given iterative formula x_(n+1) = g(x_n) to find x_1, x_2 and x_3 to 3 decimal places.",
     generate=generate_iteration,
@@ -468,7 +468,7 @@ def generate_trial_and_improvement(tier: Tier, rng: random.Random) -> Question:
         )
 
     return Question(
-        topic_id="trial_and_improvement",
+        topic_id="trial_and_improvement_H",
         tier=Tier.HIGHER,
         prompt=(
             f"f(x) = {formula}. Show that f(x) = 0 has a root between x = {data.lo} and x = {data.lo + 1}, "
@@ -520,7 +520,7 @@ def generate_modelled_example_trial_and_improvement(tier: Tier, rng: random.Rand
     ]
 
     return ModelledExample(
-        topic_id="trial_and_improvement",
+        topic_id="trial_and_improvement_H",
         tier=Tier.HIGHER,
         prompt=(
             f"f(x) = {formula}. Show that f(x) = 0 has a root between x = {data.lo} and x = {data.lo + 1}, "
@@ -533,7 +533,7 @@ def generate_modelled_example_trial_and_improvement(tier: Tier, rng: random.Rand
 
 
 TOPIC_TRIAL_AND_IMPROVEMENT = TopicDefinition(
-    id="trial_and_improvement",
+    id="trial_and_improvement_H",
     display_name="Trial and Improvement",
     description="Use systematic trial and improvement to find a root of a cubic equation to 1 decimal place.",
     generate=generate_trial_and_improvement,

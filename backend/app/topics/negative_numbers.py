@@ -60,7 +60,7 @@ def generate_negative_add_subtract(tier: Tier, rng: random.Random) -> Question:
     b_display = f"({b})" if b < 0 else str(b)
     steps = [f"{a} {op} {b_display} = {result}"]
     return Question(
-        topic_id="negative_add_subtract",
+        topic_id="negative_add_subtract_F",
         tier=Tier.FOUNDATION,
         prompt=f"Work out {a} {op} {b_display}.",
         solution_steps=tuple(steps),
@@ -109,7 +109,7 @@ def generate_modelled_example_negative_add_subtract(tier: Tier, rng: random.Rand
 
     worked_calculation = [f"{a} {op} {b_display}", f"= {result}"]
     return ModelledExample(
-        topic_id="negative_add_subtract",
+        topic_id="negative_add_subtract_F",
         tier=Tier.FOUNDATION,
         prompt=f"Work out {a} {op} {b_display}.",
         worked_calculation=tuple(worked_calculation),
@@ -119,7 +119,7 @@ def generate_modelled_example_negative_add_subtract(tier: Tier, rng: random.Rand
 
 
 TOPIC_NEGATIVE_ADD_SUBTRACT = TopicDefinition(
-    id="negative_add_subtract",
+    id="negative_add_subtract_F",
     display_name="Adding and Subtracting Negative Numbers",
     description="Add and subtract with negative numbers.",
     generate=generate_negative_add_subtract,
@@ -162,7 +162,7 @@ def generate_negative_multiply_divide(tier: Tier, rng: random.Random) -> Questio
     b_display = f"({b})" if b < 0 else str(b)
     steps = [f"{a} {op} {b_display} = {result}"]
     return Question(
-        topic_id="negative_multiply_divide",
+        topic_id="negative_multiply_divide_F",
         tier=Tier.FOUNDATION,
         prompt=f"Work out {a} {op} {b_display}.",
         solution_steps=tuple(steps),
@@ -221,7 +221,7 @@ def generate_modelled_example_negative_multiply_divide(tier: Tier, rng: random.R
 
     worked_calculation = [f"{a} {op} {b_display}", f"= {result}"]
     return ModelledExample(
-        topic_id="negative_multiply_divide",
+        topic_id="negative_multiply_divide_F",
         tier=Tier.FOUNDATION,
         prompt=f"Work out {a} {op} {b_display}.",
         worked_calculation=tuple(worked_calculation),
@@ -231,7 +231,7 @@ def generate_modelled_example_negative_multiply_divide(tier: Tier, rng: random.R
 
 
 TOPIC_NEGATIVE_MULTIPLY_DIVIDE = TopicDefinition(
-    id="negative_multiply_divide",
+    id="negative_multiply_divide_F",
     display_name="Multiplying and Dividing Negative Numbers",
     description="Multiply and divide with negative numbers.",
     generate=generate_negative_multiply_divide,
@@ -279,7 +279,7 @@ def generate_negative_ordering(tier: Tier, rng: random.Random) -> Question:
         f"Reading them in order from {direction_text} gives: {ordered_text}.",
     ]
     return Question(
-        topic_id="negative_ordering",
+        topic_id="negative_ordering_F",
         tier=Tier.FOUNDATION,
         prompt=f"Write these numbers in {direction} order: {numbers_text}",
         solution_steps=tuple(steps),
@@ -314,7 +314,7 @@ def generate_modelled_example_negative_ordering(tier: Tier, rng: random.Random) 
 
     worked_calculation = [f"Numbers: {numbers_text}", f"Ordered ({direction_text}): {ordered_text}"]
     return ModelledExample(
-        topic_id="negative_ordering",
+        topic_id="negative_ordering_F",
         tier=Tier.FOUNDATION,
         prompt=f"Write these numbers in {direction} order: {numbers_text}",
         worked_calculation=tuple(worked_calculation),
@@ -324,7 +324,7 @@ def generate_modelled_example_negative_ordering(tier: Tier, rng: random.Random) 
 
 
 TOPIC_NEGATIVE_ORDERING = TopicDefinition(
-    id="negative_ordering",
+    id="negative_ordering_F",
     display_name="Ordering Negative Numbers",
     description="Order a mix of negative and positive numbers from smallest to largest or vice versa.",
     generate=generate_negative_ordering,

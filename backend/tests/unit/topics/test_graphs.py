@@ -145,19 +145,19 @@ def test_topic_definitions_have_expected_metadata():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (graphs.generate_modelled_example_plot_straight_line, Tier.FOUNDATION, "plot_straight_line"),
-    (graphs.generate_modelled_example_plot_quadratic, Tier.FOUNDATION, "plot_quadratic"),
-    (graphs.generate_modelled_example_plot_cubic, Tier.HIGHER, "plot_cubic"),
-    (graphs.generate_modelled_example_plot_exponential, Tier.HIGHER, "plot_exponential"),
-    (graphs.generate_modelled_example_trig_graph, Tier.HIGHER, "trig_graph"),
-    (graphs.generate_modelled_example_plot_reciprocal, Tier.HIGHER, "plot_reciprocal"),
-    (graphs.generate_modelled_example_plot_distance_time, Tier.FOUNDATION, "plot_distance_time"),
-    (graphs.generate_modelled_example_line_equation_from_graph, Tier.FOUNDATION, "line_equation_from_graph"),
-    (graphs.generate_modelled_example_parallel_lines_equation, Tier.FOUNDATION, "parallel_lines_equation"),
-    (graphs.generate_modelled_example_perpendicular_lines_equation, Tier.HIGHER, "perpendicular_lines_equation"),
-    (graphs.generate_modelled_example_distance_time_interpret, Tier.FOUNDATION, "distance_time_interpret"),
-    (graphs.generate_modelled_example_velocity_time_interpret, Tier.HIGHER, "velocity_time_interpret"),
-    (graphs.generate_modelled_example_graph_transformations, Tier.HIGHER, "graph_transformations"),
+    (graphs.generate_modelled_example_plot_straight_line, Tier.FOUNDATION, "plot_straight_line_F"),
+    (graphs.generate_modelled_example_plot_quadratic, Tier.FOUNDATION, "plot_quadratic_F"),
+    (graphs.generate_modelled_example_plot_cubic, Tier.HIGHER, "plot_cubic_H"),
+    (graphs.generate_modelled_example_plot_exponential, Tier.HIGHER, "plot_exponential_H"),
+    (graphs.generate_modelled_example_trig_graph, Tier.HIGHER, "trig_graph_H"),
+    (graphs.generate_modelled_example_plot_reciprocal, Tier.HIGHER, "plot_reciprocal_H"),
+    (graphs.generate_modelled_example_plot_distance_time, Tier.FOUNDATION, "plot_distance_time_F"),
+    (graphs.generate_modelled_example_line_equation_from_graph, Tier.FOUNDATION, "line_equation_from_graph_F"),
+    (graphs.generate_modelled_example_parallel_lines_equation, Tier.FOUNDATION, "parallel_lines_equation_F"),
+    (graphs.generate_modelled_example_perpendicular_lines_equation, Tier.HIGHER, "perpendicular_lines_equation_H"),
+    (graphs.generate_modelled_example_distance_time_interpret, Tier.FOUNDATION, "distance_time_interpret_F"),
+    (graphs.generate_modelled_example_velocity_time_interpret, Tier.HIGHER, "velocity_time_interpret_H"),
+    (graphs.generate_modelled_example_graph_transformations, Tier.HIGHER, "graph_transformations_H"),
 ]
 
 
@@ -181,7 +181,7 @@ def test_all_topics_have_modelled_example_wired():
         assert t.generate_modelled_example is not None
 
 
-_NO_DIAGRAM_TOPIC_IDS = {"parallel_lines_equation", "perpendicular_lines_equation"}
+_NO_DIAGRAM_TOPIC_IDS = {"parallel_lines_equation_F", "perpendicular_lines_equation_H"}
 
 
 def test_modelled_example_generators_produce_verified_examples():

@@ -58,9 +58,9 @@ def test_inverse_evaluate_answer_satisfies_the_original_function():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (functions.generate_modelled_example_functions_evaluate, Tier.FOUNDATION, "functions_evaluate"),
-    (functions.generate_modelled_example_functions_composite_inverse, Tier.HIGHER, "functions_composite_inverse"),
-    (functions.generate_modelled_example_functions_inverse_evaluate, Tier.HIGHER, "functions_inverse_evaluate"),
+    (functions.generate_modelled_example_functions_evaluate, Tier.FOUNDATION, "functions_evaluate_F"),
+    (functions.generate_modelled_example_functions_composite_inverse, Tier.HIGHER, "functions_composite_inverse_H"),
+    (functions.generate_modelled_example_functions_inverse_evaluate, Tier.HIGHER, "functions_inverse_evaluate_H"),
 ]
 
 

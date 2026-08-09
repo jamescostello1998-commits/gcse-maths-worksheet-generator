@@ -17,7 +17,7 @@ def test_all_generators_produce_valid_verified_questions():
         for _ in range(TRIALS):
             q = generate(tier, rng)
             assert q.tier == tier
-            assert q.topic_id == ("substitution_foundation" if tier == Tier.FOUNDATION else "substitution_higher")
+            assert q.topic_id == ("substitution_F" if tier == Tier.FOUNDATION else "substitution_H")
             assert q.prompt
             assert q.solution_steps
             assert q.final_answer
@@ -31,8 +31,8 @@ def test_dedup_keys_vary_per_generator():
 
 
 REARRANGE_GENERATORS = [
-    (substitution.generate_substitution_rearrange_foundation, Tier.FOUNDATION, "substitution_rearrange_foundation"),
-    (substitution.generate_substitution_rearrange_higher, Tier.HIGHER, "substitution_rearrange_higher"),
+    (substitution.generate_substitution_rearrange_foundation, Tier.FOUNDATION, "substitution_rearrange_F"),
+    (substitution.generate_substitution_rearrange_higher, Tier.HIGHER, "substitution_rearrange_H"),
 ]
 
 
@@ -84,22 +84,22 @@ MODELLED_EXAMPLE_GENERATORS = [
     (
         substitution.generate_modelled_example_substitution_foundation,
         Tier.FOUNDATION,
-        "substitution_foundation",
+        "substitution_F",
     ),
     (
         substitution.generate_modelled_example_substitution_higher,
         Tier.HIGHER,
-        "substitution_higher",
+        "substitution_H",
     ),
     (
         substitution.generate_modelled_example_substitution_rearrange_foundation,
         Tier.FOUNDATION,
-        "substitution_rearrange_foundation",
+        "substitution_rearrange_F",
     ),
     (
         substitution.generate_modelled_example_substitution_rearrange_higher,
         Tier.HIGHER,
-        "substitution_rearrange_higher",
+        "substitution_rearrange_H",
     ),
 ]
 

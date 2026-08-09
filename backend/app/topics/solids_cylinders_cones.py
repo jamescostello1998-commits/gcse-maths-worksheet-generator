@@ -62,7 +62,7 @@ def generate_volume_surface_area_cylinder_foundation(tier: Tier, rng: random.Ran
         raise ValueError("volume_surface_area_cylinder_foundation verification failed")
 
     return Question(
-        topic_id="volume_surface_area_cylinder_foundation",
+        topic_id="volume_surface_area_cylinder_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"Find the {_MEASURE_LABEL[measure]} of the cylinder, correct to "
@@ -129,7 +129,7 @@ def generate_modelled_example_volume_surface_area_cylinder_foundation(
         raise ValueError("modelled example volume_surface_area_cylinder_foundation verification failed")
 
     return ModelledExample(
-        topic_id="volume_surface_area_cylinder_foundation",
+        topic_id="volume_surface_area_cylinder_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"Find the {_MEASURE_LABEL[measure]} of the cylinder, correct to "
@@ -189,7 +189,7 @@ def generate_volume_surface_area_cylinder(tier: Tier, rng: random.Random) -> Que
         ]
 
     return Question(
-        topic_id="volume_surface_area_cylinder",
+        topic_id="volume_surface_area_cylinder_H",
         tier=Tier.HIGHER,
         prompt=(
             f"Find the exact {_MEASURE_LABEL[measure]} of the cylinder, in terms of π."
@@ -255,7 +255,7 @@ def generate_modelled_example_volume_surface_area_cylinder(tier: Tier, rng: rand
         ]
 
     return ModelledExample(
-        topic_id="volume_surface_area_cylinder",
+        topic_id="volume_surface_area_cylinder_H",
         tier=Tier.HIGHER,
         prompt=(
             f"Find the exact {_MEASURE_LABEL[measure]} of the cylinder, in terms of π."
@@ -361,7 +361,7 @@ def generate_volume_surface_area_cone(tier: Tier, rng: random.Random) -> Questio
 
     dedup_value = slant if branch == "slant_given" else height
     return Question(
-        topic_id="volume_surface_area_cone",
+        topic_id="volume_surface_area_cone_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A cone has {given_desc}. Find its {_MEASURE_LABEL[measure]}, correct to "
@@ -474,7 +474,7 @@ def generate_modelled_example_volume_surface_area_cone(tier: Tier, rng: random.R
         answer = f"{decimal_answer} cm²"
 
     return ModelledExample(
-        topic_id="volume_surface_area_cone",
+        topic_id="volume_surface_area_cone_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A cone has {given_desc}. Find its {_MEASURE_LABEL[measure]}, correct to "
@@ -488,7 +488,7 @@ def generate_modelled_example_volume_surface_area_cone(tier: Tier, rng: random.R
 
 
 TOPIC_VOLUME_SURFACE_AREA_CYLINDER_FOUNDATION = TopicDefinition(
-    id="volume_surface_area_cylinder_foundation",
+    id="volume_surface_area_cylinder_F",
     display_name="Volume & Surface Area of a Cylinder (Calculator)",
     description="Find the volume or total surface area of a cylinder, giving a decimal answer.",
     generate=generate_volume_surface_area_cylinder_foundation,
@@ -499,7 +499,7 @@ TOPIC_VOLUME_SURFACE_AREA_CYLINDER_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_VOLUME_SURFACE_AREA_CYLINDER = TopicDefinition(
-    id="volume_surface_area_cylinder",
+    id="volume_surface_area_cylinder_H",
     display_name="Volume & Surface Area of a Cylinder",
     description="Find the exact volume or total surface area of a cylinder, in terms of π.",
     generate=generate_volume_surface_area_cylinder,
@@ -510,7 +510,7 @@ TOPIC_VOLUME_SURFACE_AREA_CYLINDER = TopicDefinition(
 )
 
 TOPIC_VOLUME_SURFACE_AREA_CONE = TopicDefinition(
-    id="volume_surface_area_cone",
+    id="volume_surface_area_cone_H",
     display_name="Volume & Surface Area of a Cone",
     description=(
         "Find the volume or total surface area of a cone, given either the slant height or "

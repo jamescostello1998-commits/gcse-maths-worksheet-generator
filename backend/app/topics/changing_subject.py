@@ -57,7 +57,7 @@ def _shape_axb_foundation(rng: random.Random) -> Question:
     steps.append(f"Divide both sides by {a}: x = {rhs}")
 
     return Question(
-        topic_id="change_subject_foundation",
+        topic_id="change_subject_F",
         tier=Tier.FOUNDATION,
         prompt=f"Make x the subject of the formula y = {fmt_linear(a, b)}.",
         solution_steps=tuple(steps),
@@ -81,7 +81,7 @@ def _shape_suvat_foundation(rng: random.Random) -> Question:
         f"Divide both sides by {a}: t = {rhs}",
     ]
     return Question(
-        topic_id="change_subject_foundation",
+        topic_id="change_subject_F",
         tier=Tier.FOUNDATION,
         prompt=f"Make t the subject of the formula v = u + {a}t.",
         solution_steps=tuple(steps),
@@ -113,7 +113,7 @@ def _shape_area_foundation(rng: random.Random) -> Question:
         final_answer = "L = \\frac{A}{w}"
 
     return Question(
-        topic_id="change_subject_foundation",
+        topic_id="change_subject_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -151,7 +151,7 @@ def _shape_perimeter_foundation(rng: random.Random) -> Question:
         final_answer = "w = \\frac{P - 2L}{2}"
 
     return Question(
-        topic_id="change_subject_foundation",
+        topic_id="change_subject_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -168,7 +168,7 @@ def _shape_circumference_foundation(rng: random.Random) -> Question:
 
     steps = ["C = 2πr", "Divide both sides by 2π: r = \\frac{C}{2π}"]
     return Question(
-        topic_id="change_subject_foundation",
+        topic_id="change_subject_F",
         tier=Tier.FOUNDATION,
         prompt="Make r the subject of the formula C = 2πr.",
         solution_steps=tuple(steps),
@@ -195,7 +195,7 @@ _FOUNDATION_WEIGHTS = [4, 3, 1, 1, 1]
 def generate_change_subject_foundation(tier: Tier, rng: random.Random) -> Question:
     shape = rng.choices(_FOUNDATION_SHAPES, weights=_FOUNDATION_WEIGHTS, k=1)[0]
     q = shape(rng)
-    return dataclasses.replace(q, topic_id="change_subject_foundation", tier=Tier.FOUNDATION)
+    return dataclasses.replace(q, topic_id="change_subject_F", tier=Tier.FOUNDATION)
 
 
 # ---------------------------------------------------------------------------
@@ -232,7 +232,7 @@ def _shape_double_occurrence_higher(rng: random.Random) -> Question:
     steps.append(f"Divide both sides by {a + b}: x = {rhs}")
 
     return Question(
-        topic_id="change_subject_higher",
+        topic_id="change_subject_H",
         tier=Tier.HIGHER,
         prompt=f"Make x the subject of the formula y = {a}x + {b}x + {c}." if c != 0 else f"Make x the subject of the formula y = {a}x + {b}x.",
         solution_steps=tuple(steps),
@@ -266,7 +266,7 @@ def _shape_squared_higher(rng: random.Random) -> Question:
         f"Take the square root of both sides: r = {rhs}",
     ]
     return Question(
-        topic_id="change_subject_higher",
+        topic_id="change_subject_H",
         tier=Tier.HIGHER,
         prompt=f"Make r the subject of the formula {formula_text}.",
         solution_steps=tuple(steps),
@@ -298,7 +298,7 @@ def _shape_fraction_higher(rng: random.Random) -> Question:
         f"Divide both sides by (y - 1): x = {rhs}",
     ]
     return Question(
-        topic_id="change_subject_higher",
+        topic_id="change_subject_H",
         tier=Tier.HIGHER,
         prompt=f"Make x the subject of the formula y = \\frac{{x + {a}}}{{x - {b}}}.",
         solution_steps=tuple(steps),
@@ -317,7 +317,7 @@ _HIGHER_SHAPES = [
 def generate_change_subject_higher(tier: Tier, rng: random.Random) -> Question:
     shape = rng.choice(_HIGHER_SHAPES)
     q = shape(rng)
-    return dataclasses.replace(q, topic_id="change_subject_higher", tier=Tier.HIGHER)
+    return dataclasses.replace(q, topic_id="change_subject_H", tier=Tier.HIGHER)
 
 
 # ---------------------------------------------------------------------------
@@ -358,7 +358,7 @@ def _modelled_axb_foundation(rng: random.Random) -> ModelledExample:
     ]
     worked_calculation = [f"y = {fmt_linear(a, b)}", f"x = {rhs}"]
     return ModelledExample(
-        topic_id="change_subject_foundation",
+        topic_id="change_subject_F",
         tier=Tier.FOUNDATION,
         prompt=f"Make x the subject of the formula y = {fmt_linear(a, b)}.",
         worked_calculation=tuple(worked_calculation),
@@ -389,7 +389,7 @@ def _modelled_suvat_foundation(rng: random.Random) -> ModelledExample:
     ]
     worked_calculation = [f"v = u + {a}t", f"t = {rhs}"]
     return ModelledExample(
-        topic_id="change_subject_foundation",
+        topic_id="change_subject_F",
         tier=Tier.FOUNDATION,
         prompt=f"Make t the subject of the formula v = u + {a}t.",
         worked_calculation=tuple(worked_calculation),
@@ -435,7 +435,7 @@ def _modelled_area_foundation(rng: random.Random) -> ModelledExample:
         worked_calculation = ["A = LW", "L = \\frac{A}{w}"]
 
     return ModelledExample(
-        topic_id="change_subject_foundation",
+        topic_id="change_subject_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -479,7 +479,7 @@ def _modelled_perimeter_foundation(rng: random.Random) -> ModelledExample:
         worked_calculation = ["P = 2L + 2w", "P - 2L = 2w", "w = \\frac{P - 2L}{2}"]
 
     return ModelledExample(
-        topic_id="change_subject_foundation",
+        topic_id="change_subject_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -503,7 +503,7 @@ def _modelled_circumference_foundation(rng: random.Random) -> ModelledExample:
     ]
     worked_calculation = ["C = 2πr", "r = \\frac{C}{2π}"]
     return ModelledExample(
-        topic_id="change_subject_foundation",
+        topic_id="change_subject_F",
         tier=Tier.FOUNDATION,
         prompt="Make r the subject of the formula C = 2πr.",
         worked_calculation=tuple(worked_calculation),
@@ -524,7 +524,7 @@ _FOUNDATION_MODELLED_SHAPES = [
 def generate_modelled_example_change_subject_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
     shape = rng.choices(_FOUNDATION_MODELLED_SHAPES, weights=_FOUNDATION_WEIGHTS, k=1)[0]
     example = shape(rng)
-    return dataclasses.replace(example, topic_id="change_subject_foundation", tier=Tier.FOUNDATION)
+    return dataclasses.replace(example, topic_id="change_subject_F", tier=Tier.FOUNDATION)
 
 
 # ---------------------------------------------------------------------------
@@ -568,7 +568,7 @@ def _modelled_double_occurrence_higher(rng: random.Random) -> ModelledExample:
     ]
     worked_calculation = [formula_text, f"{a + b}x = {'y - ' + str(c) if c > 0 else ('y + ' + str(-c) if c < 0 else 'y')}", f"x = {rhs}"]
     return ModelledExample(
-        topic_id="change_subject_higher",
+        topic_id="change_subject_H",
         tier=Tier.HIGHER,
         prompt=f"Make x the subject of the formula {formula_text}.",
         worked_calculation=tuple(worked_calculation),
@@ -608,7 +608,7 @@ def _modelled_squared_higher(rng: random.Random) -> ModelledExample:
         f"r = {rhs}",
     ]
     return ModelledExample(
-        topic_id="change_subject_higher",
+        topic_id="change_subject_H",
         tier=Tier.HIGHER,
         prompt=f"Make r the subject of the formula {formula_text}.",
         worked_calculation=tuple(worked_calculation),
@@ -645,7 +645,7 @@ def _modelled_fraction_higher(rng: random.Random) -> ModelledExample:
         f"x = {rhs}",
     ]
     return ModelledExample(
-        topic_id="change_subject_higher",
+        topic_id="change_subject_H",
         tier=Tier.HIGHER,
         prompt=f"Make x the subject of the formula y = \\frac{{x + {a}}}{{x - {b}}}.",
         worked_calculation=tuple(worked_calculation),
@@ -664,7 +664,7 @@ _HIGHER_MODELLED_SHAPES = [
 def generate_modelled_example_change_subject_higher(tier: Tier, rng: random.Random) -> ModelledExample:
     shape = rng.choice(_HIGHER_MODELLED_SHAPES)
     example = shape(rng)
-    return dataclasses.replace(example, topic_id="change_subject_higher", tier=Tier.HIGHER)
+    return dataclasses.replace(example, topic_id="change_subject_H", tier=Tier.HIGHER)
 
 
 # ---------------------------------------------------------------------------
@@ -702,7 +702,7 @@ def generate_change_subject_factorise_higher(tier: Tier, rng: random.Random) -> 
         f"Divide both sides by ({letter} + {coeff}): x = {rhs}",
     ]
     return Question(
-        topic_id="change_subject_factorise_higher",
+        topic_id="change_subject_factorise_H",
         tier=Tier.HIGHER,
         prompt=f"Make x the subject of the formula {letter}x + {coeff}x = {total}.",
         solution_steps=tuple(steps),
@@ -742,7 +742,7 @@ def generate_modelled_example_change_subject_factorise_higher(tier: Tier, rng: r
         f"x = {rhs}",
     ]
     return ModelledExample(
-        topic_id="change_subject_factorise_higher",
+        topic_id="change_subject_factorise_H",
         tier=Tier.HIGHER,
         prompt=f"Make x the subject of the formula {letter}x + {coeff}x = {total}.",
         worked_calculation=tuple(worked_calculation),
@@ -752,7 +752,7 @@ def generate_modelled_example_change_subject_factorise_higher(tier: Tier, rng: r
 
 
 TOPIC_CHANGE_SUBJECT_FOUNDATION = TopicDefinition(
-    id="change_subject_foundation",
+    id="change_subject_F",
     display_name="Changing the Subject of a Formula",
     description="Rearrange a formula to make a different letter the subject (appears exactly once).",
     generate=generate_change_subject_foundation,
@@ -763,7 +763,7 @@ TOPIC_CHANGE_SUBJECT_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_CHANGE_SUBJECT_HIGHER = TopicDefinition(
-    id="change_subject_higher",
+    id="change_subject_H",
     display_name="Changing the Subject of a Formula (Higher)",
     description=(
         "Rearrange a formula to make a letter the subject when it appears twice, is squared or "
@@ -777,7 +777,7 @@ TOPIC_CHANGE_SUBJECT_HIGHER = TopicDefinition(
 )
 
 TOPIC_CHANGE_SUBJECT_FACTORISE_HIGHER = TopicDefinition(
-    id="change_subject_factorise_higher",
+    id="change_subject_factorise_H",
     display_name="Changing the Subject by Factorising (Higher)",
     description="Make x the subject of a formula where x has a symbolic-parameter coefficient, requiring factorising.",
     generate=generate_change_subject_factorise_higher,

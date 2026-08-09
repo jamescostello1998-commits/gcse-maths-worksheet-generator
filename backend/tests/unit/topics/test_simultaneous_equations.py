@@ -62,11 +62,11 @@ def test_topic_definitions_have_expected_metadata():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (simultaneous_equations.generate_modelled_example_common_coefficient, Tier.FOUNDATION, "simultaneous_common_coefficient"),
-    (simultaneous_equations.generate_modelled_example_different_coefficient, Tier.HIGHER, "simultaneous_different_coefficient"),
-    (simultaneous_equations.generate_modelled_example_forming_and_solving, Tier.FOUNDATION, "simultaneous_forming_and_solving"),
-    (simultaneous_equations.generate_modelled_example_simultaneous_quadratic, Tier.HIGHER, "simultaneous_quadratic"),
-    (simultaneous_equations.generate_modelled_example_simultaneous_graphically, Tier.FOUNDATION, "simultaneous_graphically"),
+    (simultaneous_equations.generate_modelled_example_common_coefficient, Tier.FOUNDATION, "simultaneous_common_coefficient_F"),
+    (simultaneous_equations.generate_modelled_example_different_coefficient, Tier.HIGHER, "simultaneous_different_coefficient_H"),
+    (simultaneous_equations.generate_modelled_example_forming_and_solving, Tier.FOUNDATION, "simultaneous_forming_and_solving_F"),
+    (simultaneous_equations.generate_modelled_example_simultaneous_quadratic, Tier.HIGHER, "simultaneous_quadratic_H"),
+    (simultaneous_equations.generate_modelled_example_simultaneous_graphically, Tier.FOUNDATION, "simultaneous_graphically_F"),
 ]
 
 

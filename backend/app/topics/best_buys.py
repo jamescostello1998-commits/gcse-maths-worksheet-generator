@@ -115,7 +115,7 @@ def generate_best_buys(tier: Tier, rng: random.Random) -> Question:
     )
 
     return Question(
-        topic_id="best_buys",
+        topic_id="best_buys_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A shop sells {noun} in different sizes: {option_lines}. "
@@ -177,7 +177,7 @@ def generate_modelled_example_best_buys(tier: Tier, rng: random.Random) -> Model
     worked_calculation.append(f"Best value: {winner.label}")
 
     return ModelledExample(
-        topic_id="best_buys",
+        topic_id="best_buys_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -187,7 +187,7 @@ def generate_modelled_example_best_buys(tier: Tier, rng: random.Random) -> Model
 
 
 TOPIC_BEST_BUYS = TopicDefinition(
-    id="best_buys",
+    id="best_buys_F",
     display_name="Best Buys",
     description="Compare differently-sized/priced options of the same product to find the best value for money.",
     generate=generate_best_buys,
@@ -269,7 +269,7 @@ def generate_best_buys_noncalculator(tier: Tier, rng: random.Random) -> Question
     )
 
     return Question(
-        topic_id="best_buys_noncalculator",
+        topic_id="best_buys_noncalculator_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A shop sells {noun} in different sizes: {option_lines}. "
@@ -323,7 +323,7 @@ def generate_modelled_example_best_buys_noncalculator(tier: Tier, rng: random.Ra
     worked_calculation.append(f"Best value: {winner.label}")
 
     return ModelledExample(
-        topic_id="best_buys_noncalculator",
+        topic_id="best_buys_noncalculator_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -333,7 +333,7 @@ def generate_modelled_example_best_buys_noncalculator(tier: Tier, rng: random.Ra
 
 
 TOPIC_BEST_BUYS_NONCALCULATOR = TopicDefinition(
-    id="best_buys_noncalculator",
+    id="best_buys_noncalculator_F",
     display_name="Best Buys (Non-Calculator)",
     description=(
         "Compare differently-sized/priced options of the same product using round, "

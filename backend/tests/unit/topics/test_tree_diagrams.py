@@ -73,7 +73,7 @@ def test_mixed_generator_exercises_both_branches():
     dependent_like = 0
     for _ in range(TRIALS):
         q = tree_diagrams.generate_tree_diagram_mixed(Tier.HIGHER, rng)
-        assert q.topic_id == "tree_diagram_mixed"
+        assert q.topic_id == "tree_diagram_mixed_H"
         assert q.tier == Tier.HIGHER
         assert q.diagram is not None and q.diagram.kind == "tree_diagram"
         if "leaf_probs" in q.diagram.params:
@@ -120,7 +120,7 @@ def test_modelled_example_tree_diagram_independent_produces_verified_examples():
     rng = random.Random(340)
     for _ in range(TRIALS):
         example = tree_diagrams.generate_modelled_example_tree_diagram_independent(Tier.FOUNDATION, rng)
-        assert example.topic_id == "tree_diagram_independent"
+        assert example.topic_id == "tree_diagram_independent_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -132,7 +132,7 @@ def test_modelled_example_tree_diagram_dependent_produces_verified_examples():
     rng = random.Random(341)
     for _ in range(TRIALS):
         example = tree_diagrams.generate_modelled_example_tree_diagram_dependent(Tier.HIGHER, rng)
-        assert example.topic_id == "tree_diagram_dependent"
+        assert example.topic_id == "tree_diagram_dependent_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -145,7 +145,7 @@ def test_modelled_example_tree_diagram_drawing_produces_verified_examples():
     rng = random.Random(342)
     for _ in range(TRIALS):
         example = tree_diagrams.generate_modelled_example_tree_diagram_drawing(Tier.FOUNDATION, rng)
-        assert example.topic_id == "tree_diagram_drawing"
+        assert example.topic_id == "tree_diagram_drawing_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -157,7 +157,7 @@ def test_modelled_example_tree_diagram_algebraic_produces_verified_examples():
     rng = random.Random(343)
     for _ in range(TRIALS):
         example = tree_diagrams.generate_modelled_example_tree_diagram_algebraic(Tier.HIGHER, rng)
-        assert example.topic_id == "tree_diagram_algebraic"
+        assert example.topic_id == "tree_diagram_algebraic_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -170,7 +170,7 @@ def test_modelled_example_tree_diagram_mixed_produces_verified_examples():
     rng = random.Random(344)
     for _ in range(TRIALS):
         example = tree_diagrams.generate_modelled_example_tree_diagram_mixed(Tier.HIGHER, rng)
-        assert example.topic_id == "tree_diagram_mixed"
+        assert example.topic_id == "tree_diagram_mixed_H"
         assert example.tier == Tier.HIGHER
         assert example.prompt
         assert len(example.worked_calculation) >= 2

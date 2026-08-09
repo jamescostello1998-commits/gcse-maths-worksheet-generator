@@ -48,17 +48,17 @@ def test_sections_returns_six_sections_in_declared_order():
 
 def test_valid_worksheet_request_returns_pdf():
     response = client.post(
-        "/api/worksheets", json={"topic_id": "reverse_percentage", "tier": "higher"}
+        "/api/worksheets", json={"topic_id": "reverse_percentage_H", "tier": "higher"}
     )
     assert response.status_code == 200
     assert response.headers["content-type"] == "application/pdf"
     assert response.content.startswith(b"%PDF-")
-    assert "reverse_percentage-higher-worksheet.pdf" in response.headers["content-disposition"]
+    assert "reverse_percentage_H-higher-worksheet.pdf" in response.headers["content-disposition"]
 
 
 def test_worksheet_request_respects_per_topic_question_count():
     response = client.post(
-        "/api/worksheets", json={"topic_id": "plot_straight_line", "tier": "foundation"}
+        "/api/worksheets", json={"topic_id": "plot_straight_line_F", "tier": "foundation"}
     )
     assert response.status_code == 200
     assert response.content.startswith(b"%PDF-")
@@ -67,7 +67,7 @@ def test_worksheet_request_respects_per_topic_question_count():
 def test_worksheet_request_honours_explicit_question_count():
     response = client.post(
         "/api/worksheets",
-        json={"topic_id": "reverse_percentage", "tier": "higher", "count": 10},
+        json={"topic_id": "reverse_percentage_H", "tier": "higher", "count": 10},
     )
     assert response.status_code == 200
     reader = PdfReader(io.BytesIO(response.content))
@@ -79,10 +79,10 @@ def test_worksheet_request_honours_explicit_question_count():
 
 def test_worksheet_request_count_out_of_range_returns_422():
     too_few = client.post(
-        "/api/worksheets", json={"topic_id": "reverse_percentage", "tier": "higher", "count": 0}
+        "/api/worksheets", json={"topic_id": "reverse_percentage_H", "tier": "higher", "count": 0}
     )
     too_many = client.post(
-        "/api/worksheets", json={"topic_id": "reverse_percentage", "tier": "higher", "count": 41}
+        "/api/worksheets", json={"topic_id": "reverse_percentage_H", "tier": "higher", "count": 41}
     )
     assert too_few.status_code == 422
     assert too_many.status_code == 422
@@ -91,10 +91,10 @@ def test_worksheet_request_count_out_of_range_returns_422():
 def test_worksheet_request_answers_only_returns_compact_answer_key():
     response = client.post(
         "/api/worksheets",
-        json={"topic_id": "reverse_percentage", "tier": "higher", "answers_only": True},
+        json={"topic_id": "reverse_percentage_H", "tier": "higher", "answers_only": True},
     )
     assert response.status_code == 200
-    assert "reverse_percentage-higher-worksheet-answers-only.pdf" in response.headers["content-disposition"]
+    assert "reverse_percentage_H-higher-worksheet-answers-only.pdf" in response.headers["content-disposition"]
     reader = PdfReader(io.BytesIO(response.content))
     full_text = "\n".join(page.extract_text() for page in reader.pages)
     assert "Answers" in full_text
@@ -104,9 +104,9 @@ def test_worksheet_request_answers_only_returns_compact_answer_key():
 def test_topics_expose_default_question_count():
     response = client.get("/api/topics")
     data = response.json()
-    plot = next(t for t in data if t["id"] == "plot_straight_line")
+    plot = next(t for t in data if t["id"] == "plot_straight_line_F")
     assert plot["default_question_count"] == 5
-    reverse_pct = next(t for t in data if t["id"] == "reverse_percentage")
+    reverse_pct = next(t for t in data if t["id"] == "reverse_percentage_H")
     assert reverse_pct["default_question_count"] == 20
 
 
@@ -120,19 +120,19 @@ def test_invalid_topic_returns_404():
 
 def test_invalid_tier_returns_422():
     response = client.post(
-        "/api/worksheets", json={"topic_id": "reverse_percentage", "tier": "expert"}
+        "/api/worksheets", json={"topic_id": "reverse_percentage_H", "tier": "expert"}
     )
     assert response.status_code == 422
 
 
 def test_modelled_example_request_returns_pdf_for_pilot_topic():
     response = client.post(
-        "/api/modelled-examples", json={"topic_id": "linear_two_step", "tier": "foundation"}
+        "/api/modelled-examples", json={"topic_id": "linear_two_step_F", "tier": "foundation"}
     )
     assert response.status_code == 200
     assert response.headers["content-type"] == "application/pdf"
     assert response.content.startswith(b"%PDF-")
-    assert "linear_two_step-foundation-modelled-example.pdf" in response.headers["content-disposition"]
+    assert "linear_two_step_F-foundation-modelled-example.pdf" in response.headers["content-disposition"]
 
 
 def test_modelled_example_request_returns_404_for_topic_without_one(monkeypatch):
@@ -141,12 +141,12 @@ def test_modelled_example_request_returns_404_for_topic_without_one(monkeypatch)
     import app.api.routes as routes_module
     from app.core.registry import get_topic
 
-    real_topic = get_topic("linear_one_step")
+    real_topic = get_topic("linear_one_step_F")
     topic_without_example = real_topic._replace(generate_modelled_example=None)
     monkeypatch.setattr(routes_module, "get_topic", lambda topic_id: topic_without_example)
 
     response = client.post(
-        "/api/modelled-examples", json={"topic_id": "linear_one_step", "tier": "foundation"}
+        "/api/modelled-examples", json={"topic_id": "linear_one_step_F", "tier": "foundation"}
     )
     assert response.status_code == 404
     assert "detail" in response.json()
@@ -164,12 +164,12 @@ def test_worksheet_generation_error_returns_500(monkeypatch):
     from app.core.errors import WorksheetGenerationError
 
     def broken(*args, **kwargs):
-        raise WorksheetGenerationError("reverse_percentage", "higher", attempts=400, produced=5)
+        raise WorksheetGenerationError("reverse_percentage_H", "higher", attempts=400, produced=5)
 
     monkeypatch.setattr(routes_module, "build_worksheet", broken)
 
     response = client.post(
-        "/api/worksheets", json={"topic_id": "reverse_percentage", "tier": "higher"}
+        "/api/worksheets", json={"topic_id": "reverse_percentage_H", "tier": "higher"}
     )
     assert response.status_code == 500
     body = response.json()
@@ -223,12 +223,12 @@ def test_unknown_practice_test_returns_404():
 
 
 BELL_TASKS_TOPIC_IDS = [
-    "angles_triangle",
-    "area_rectangle",
-    "fractions_add_subtract",
-    "linear_two_step",
-    "probability_single_event",
-    "bar_chart_construct",
+    "angles_triangle_F",
+    "area_rectangle_F",
+    "fractions_add_subtract_F",
+    "linear_two_step_F",
+    "probability_single_event_F",
+    "bar_chart_construct_F",
 ]
 
 
@@ -245,7 +245,7 @@ def test_bell_tasks_valid_request_returns_pptx():
 
 def test_bell_tasks_wrong_topic_count_returns_422():
     too_few = client.post("/api/bell-tasks", json={"topic_ids": BELL_TASKS_TOPIC_IDS[:5]})
-    too_many = client.post("/api/bell-tasks", json={"topic_ids": BELL_TASKS_TOPIC_IDS + ["fractions_simplify"]})
+    too_many = client.post("/api/bell-tasks", json={"topic_ids": BELL_TASKS_TOPIC_IDS + ["fractions_simplify_F"]})
     assert too_few.status_code == 422
     assert too_many.status_code == 422
 

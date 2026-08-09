@@ -7,7 +7,7 @@
   "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "recurring_decimal_two_digit",
+      "topic_id": "recurring_decimal_two_digit_H",
       "prompt": "Show that \\recur{0.}{60} can be written as 20/33.",
       "solution_steps": [
         "Let x = \\recur{0.}{60}, so 100x = 60.6060... (two digits repeat, so multiply by 100 to shift a full block)",
@@ -42,7 +42,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "surds_multiply_divide",
+      "topic_id": "surds_multiply_divide_H",
       "prompt": "Simplify √1344 ÷ √6, giving your answer in the form a√b.",
       "solution_steps": [
         "√1344 ÷ √6 = √(1344/6) = √224",
@@ -77,7 +77,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "hcf_lcm_by_prime_factors",
+      "topic_id": "hcf_lcm_by_prime_factors_H",
       "prompt": "Using prime factorisation, find the LCM of 56 and 30.",
       "solution_steps": [
         "56 = 2^3 × 7",
@@ -118,7 +118,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_mixed_number_arithmetic",
+      "topic_id": "fractions_mixed_number_arithmetic_H",
       "prompt": "Calculate 5 1/4 - 2 4/8. Give your answer as a mixed number.",
       "solution_steps": [
         "Convert to improper fractions: 5 1/4 = 21/4, 2 4/8 = 5/2",
@@ -153,7 +153,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "powers_higher",
+      "topic_id": "powers_H",
       "prompt": "Evaluate 125^(1/3).",
       "solution_steps": [
         "125^(1/3) means the cube root of 125.",
@@ -182,7 +182,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bounds_calculation",
+      "topic_id": "bounds_calculation_H",
       "prompt": "A rectangle has length 18 cm and width 23 cm, both measured to the nearest cm. Calculate the upper bound for the area of the rectangle.",
       "solution_steps": [
         "Length: 18 cm (to the nearest cm) gives 17.5 ≤ length < 18.5",
@@ -217,7 +217,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "roots_higher",
+      "topic_id": "roots_H",
       "prompt": "Simplify √12, giving your answer in the form a√b.",
       "solution_steps": [
         "Find the largest square factor of 12: 2^2 × 3 = 12",
@@ -246,7 +246,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "functions_inverse_evaluate",
+      "topic_id": "functions_inverse_evaluate_H",
       "prompt": "f(x) = 5x + 9. Find f^-1(-8).",
       "solution_steps": [
         "f^-1(x) = \\frac{x - 9}{5}",
@@ -281,7 +281,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_brackets",
+      "topic_id": "linear_brackets_H",
       "prompt": "Solve: 3(6x + 3) = 117",
       "solution_steps": [
         "Expand the bracket: 3(6x + 3) = 18x + 9",
@@ -324,7 +324,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_different_coefficient",
+      "topic_id": "simultaneous_different_coefficient_H",
       "prompt": "Solve the simultaneous equations: 3x + 4y = -27 and 4x + 3y = -29",
       "solution_steps": [
         "3x + 4y = -27  (1)",
@@ -367,7 +367,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "change_subject_higher",
+      "topic_id": "change_subject_H",
       "prompt": "Make r the subject of the formula A = 5πr^2.",
       "solution_steps": [
         "A = 5πr^2",
@@ -402,7 +402,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solving_inequalities_higher",
+      "topic_id": "solving_inequalities_H",
       "prompt": "Solve the inequality: 5x + 8 > 10x - 3",
       "solution_steps": [
         "5x + 8 > 10x - 3",
@@ -446,7 +446,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_double_brackets",
+      "topic_id": "expand_double_brackets_H",
       "prompt": "Expand and simplify: (4x + 2)(3x + 3)",
       "solution_steps": [
         "First: 4x × 3x = 12x^2",
@@ -488,7 +488,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_both_sides",
+      "topic_id": "linear_both_sides_H",
       "prompt": "Solve: -x - 6 = x - 20",
       "solution_steps": [
         "-x - 6 = x - 20",
@@ -532,7 +532,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_inverse_proportion",
+      "topic_id": "algebraic_inverse_proportion_H",
       "prompt": "y is inversely proportional to x^3. When x = 6, y = 8. Find the value of y when x = 2.",
       "solution_steps": [
         "y = k ÷ x^3",
@@ -567,7 +567,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_shape_similar_higher",
+      "topic_id": "ratio_shape_similar_H",
       "prompt": "Shape A and Shape B are similar. The area of shape B is 25 cm². Find the area of shape A.",
       "solution_steps": [
         "Linear scale factor = 5 ÷ 4 = 5/4",
@@ -608,7 +608,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "density_higher",
+      "topic_id": "density_H",
       "prompt": "A stone in the shape of a cuboid has dimensions 2 cm × 5 cm × 6 cm and a density of 12 g/cm³. Find its mass.",
       "solution_steps": [
         "volume = length × width × height = 2 × 5 × 6 = 60 cm³",
@@ -637,7 +637,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "mixed_percentages",
+      "topic_id": "mixed_percentages_H",
       "prompt": "Find 50% of 180.",
       "solution_steps": [
         "Convert 50% to a fraction: 50/100",
@@ -666,7 +666,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_to_equation",
+      "topic_id": "ratio_to_equation_H",
       "prompt": "(x - 3) : (2x - 4) = 3:8. Find the value of x.",
       "solution_steps": [
         "Cross-multiply: 8(x - 3) = 3(2x - 4)",
@@ -707,7 +707,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "cosine_rule",
+      "topic_id": "cosine_rule_H",
       "prompt": "In triangle ABC, side b = 13 cm, side c = 19 cm, and the angle between them, angle A = 61°. Find the length of side a, correct to 1 decimal place.",
       "solution_steps": [
         "Use the cosine rule: a² = b² + c² - 2bc cos(A)",
@@ -752,7 +752,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cone",
+      "topic_id": "volume_surface_area_cone_H",
       "prompt": "A cone has radius 6 cm and slant height 17 cm. Find its volume, correct to 1 decimal place.",
       "solution_steps": [
         "Volume = (1/3) × π × r² × h = (1/3) × π × 6² × 15.906",
@@ -787,7 +787,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_exterior",
+      "topic_id": "angles_exterior_H",
       "prompt": "An exterior angle of a triangle is 60°. The two remote interior angles are 44° and (2x - 10)°. Find x.",
       "solution_steps": [
         "The exterior angle of a triangle equals the sum of the two remote interior angles.",
@@ -839,7 +839,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "loci_regions",
+      "topic_id": "loci_regions_H",
       "prompt": "A and B are two fixed points (shown). Shade the region containing points that are both within 5 cm of A AND closer to A than to B.",
       "solution_steps": [
         "The boundary for 'within 5 cm of A' is a circle, centre A, radius 5 cm - the region is inside this circle.",
@@ -986,7 +986,7 @@
       }
     },
     {
-      "topic_id": "tree_diagram_dependent",
+      "topic_id": "tree_diagram_dependent_H",
       "prompt": "A bag contains 4 green and 4 blue counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the two counters are different colours.",
       "solution_steps": [
         "After the first counter is picked (without replacement), there are 7 counters left.",

@@ -60,8 +60,8 @@ def test_select_paper_topics_never_picks_a_calculator_only_topic_from_a_filtered
 
 
 def test_topic_priority_defaults_to_common():
-    assert topic_priority("fractions_add_subtract") == "core"
-    assert topic_priority("circle_theorems") == "niche"
+    assert topic_priority("fractions_add_subtract_F") == "core"
+    assert topic_priority("circle_theorems_H") == "niche"
     assert topic_priority("some_topic_never_tagged") == "common"
 
 

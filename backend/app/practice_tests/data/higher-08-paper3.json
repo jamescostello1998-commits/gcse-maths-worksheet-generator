@@ -7,7 +7,7 @@
   "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "recurring_decimal_two_digit",
+      "topic_id": "recurring_decimal_two_digit_H",
       "prompt": "Show that \\recur{0.}{36} can be written as 4/11.",
       "solution_steps": [
         "Let x = \\recur{0.}{36}, so 100x = 36.3636... (two digits repeat, so multiply by 100 to shift a full block)",
@@ -42,7 +42,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simplifying_indices_challenging",
+      "topic_id": "simplifying_indices_challenging_H",
       "prompt": "Fully simplify 25^(3/2) × 25^-2, giving your answer as a fraction where necessary.",
       "solution_steps": [
         "25^(1/2) is the square root of 25, which is 5, so 25^(3/2) = 5^3",
@@ -83,7 +83,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bounds_calculation",
+      "topic_id": "bounds_calculation_H",
       "prompt": "A rectangle has length 26 cm and width 7 cm, both measured to the nearest cm. Calculate the lower bound for the area of the rectangle.",
       "solution_steps": [
         "Length: 26 cm (to the nearest cm) gives 25.5 ≤ length < 26.5",
@@ -118,7 +118,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_recurring_to_fraction",
+      "topic_id": "decimals_recurring_to_fraction_H",
       "prompt": "Show that \\recur{0.8}{3} can be written as 5/6.",
       "solution_steps": [
         "Let x = \\recur{0.8}{3}",
@@ -159,7 +159,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "hcf_lcm_by_prime_factors",
+      "topic_id": "hcf_lcm_by_prime_factors_H",
       "prompt": "Using prime factorisation, find the LCM of 192 and 52.",
       "solution_steps": [
         "192 = 2^6 × 3",
@@ -200,7 +200,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "prime_factors_higher",
+      "topic_id": "prime_factors_H",
       "prompt": "Write 268 as a product of its prime factors, giving your answer in index form.",
       "solution_steps": [
         "Divide 268 repeatedly by the smallest prime that fits: 2 × 2 × 67",
@@ -229,7 +229,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_subtract_compound",
+      "topic_id": "area_subtract_compound_H",
       "prompt": "Find the shaded area.",
       "solution_steps": [
         "Area of large rectangle = 12 × 18 = 216 cm²",
@@ -282,7 +282,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_different_coefficient",
+      "topic_id": "simultaneous_different_coefficient_H",
       "prompt": "Solve the simultaneous equations: 4x + 5y = -13 and 5x + 3y = -13",
       "solution_steps": [
         "4x + 5y = -13  (1)",
@@ -325,7 +325,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "quadratic_inequalities",
+      "topic_id": "quadratic_inequalities_H",
       "prompt": "Solve the inequality: x^2 + 13x + 36 > 0",
       "solution_steps": [
         "Factorise: x^2 + 13x + 36 = (x + 4)(x + 9)",
@@ -366,7 +366,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "substitution_higher",
+      "topic_id": "substitution_H",
       "prompt": "E = (1/2)mv^2. Find the value of E when m = 5 and v = -13.",
       "solution_steps": [
         "E = (1/2)mv^2",
@@ -408,7 +408,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_quadratic_nth_term",
+      "topic_id": "sequences_quadratic_nth_term_H",
       "prompt": "Here are the first four terms of a quadratic sequence: 10, 25, 46, 73.\nFind an expression for the nth term.",
       "solution_steps": [
         "First differences: 15, 21, 27",
@@ -443,7 +443,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_quadratics",
+      "topic_id": "factorise_quadratics_H",
       "prompt": "Factorise: x^2 + 8x - 9",
       "solution_steps": [
         "Find two numbers that multiply to -9 and add to 8: -1 and 9",
@@ -472,7 +472,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trial_and_improvement",
+      "topic_id": "trial_and_improvement_H",
       "prompt": "f(x) = x^3 + 3x - 40. Show that f(x) = 0 has a root between x = 3 and x = 4, then use trial and improvement to find this root correct to 1 decimal place.",
       "solution_steps": [
         "f(x) = x^3 + 3x - 40",
@@ -516,7 +516,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_inverse_proportion",
+      "topic_id": "algebraic_inverse_proportion_H",
       "prompt": "y is inversely proportional to x^3. When x = 3, y = 750. Find the value of y when x = 5.",
       "solution_steps": [
         "y = k ÷ x^3",
@@ -551,7 +551,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "speed_with_conversions",
+      "topic_id": "speed_with_conversions_H",
       "prompt": "A train travels 295 km in 5 hours. Find its average speed in m/s, correct to 1 decimal place.",
       "solution_steps": [
         "speed = distance ÷ time = 295 ÷ 5 = 59 km/h",
@@ -580,7 +580,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "unit_conversions_higher",
+      "topic_id": "unit_conversions_H",
       "prompt": "Convert 2937 mm³ to cm³.",
       "solution_steps": [
         "Linear conversion factor: 1 cm = 10 mm, so for volume, 1 cm³ = 10^3 = 1000 mm³",
@@ -609,7 +609,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_direct_proportion",
+      "topic_id": "algebraic_direct_proportion_H",
       "prompt": "y is directly proportional to x^2. When x = 9, y = 567. Find the value of y when x = 3.",
       "solution_steps": [
         "y = kx^2",
@@ -650,7 +650,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_mixed",
+      "topic_id": "trig_mixed_H",
       "prompt": "In the triangle shown, find the angle x, correct to 1 decimal place.",
       "solution_steps": [
         "Use sin, since we know two of the three sides.",
@@ -693,7 +693,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "cosine_rule",
+      "topic_id": "cosine_rule_H",
       "prompt": "In triangle ABC, side b = 5 cm, side c = 8 cm, and the angle between them, angle A = 120°. Find the length of side a, correct to 1 decimal place.",
       "solution_steps": [
         "Use the cosine rule: a² = b² + c² - 2bc cos(A)",
@@ -738,7 +738,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_parallel_lines",
+      "topic_id": "angles_parallel_lines_H",
       "prompt": "A line crosses two parallel lines. The angle 50° and the angle (3x - 7)° are alternate angles. Find x.",
       "solution_steps": [
         "Alternate angles are equal.",
@@ -790,7 +790,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_rotate_describe",
+      "topic_id": "transform_rotate_describe_H",
       "prompt": "Shape ABCDEF is rotated to give shape A'B'C'D'E'F', shown on the grid. Describe fully the single transformation that maps ABCDEF onto A'B'C'D'E'F'.",
       "solution_steps": [
         "The centre of rotation is the one point that is the same distance from a vertex and its image, for every vertex - it can be found where the perpendicular bisectors of two such pairs cross.",
@@ -895,7 +895,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "tree_diagram_mixed",
+      "topic_id": "tree_diagram_mixed_H",
       "prompt": "A bag contains 5 green and 8 red counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the first counter is red and the second counter is red.",
       "solution_steps": [
         "After the first counter is picked (without replacement), there are 12 counters left.",
@@ -984,7 +984,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "tree_diagram_dependent",
+      "topic_id": "tree_diagram_dependent_H",
       "prompt": "A bag contains 3 green and 5 yellow counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that both counters are the same colour.",
       "solution_steps": [
         "After the first counter is picked (without replacement), there are 7 counters left.",
@@ -1073,7 +1073,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "product_rule_counting",
+      "topic_id": "product_rule_counting_H",
       "prompt": "A shop sells 4 different shirts and 2 different pairs of trousers. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
       "solution_steps": [
         "Total combinations = 4 × 2 = 8"

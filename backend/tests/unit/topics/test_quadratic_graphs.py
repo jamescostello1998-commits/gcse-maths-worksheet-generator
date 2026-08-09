@@ -54,12 +54,12 @@ def test_topic_definitions_have_expected_metadata():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (quadratic_graphs.generate_modelled_example_completing_the_square, Tier.HIGHER, "completing_the_square"),
-    (quadratic_graphs.generate_modelled_example_turning_point, Tier.HIGHER, "turning_point_of_graph"),
+    (quadratic_graphs.generate_modelled_example_completing_the_square, Tier.HIGHER, "completing_the_square_H"),
+    (quadratic_graphs.generate_modelled_example_turning_point, Tier.HIGHER, "turning_point_of_graph_H"),
     (
         quadratic_graphs.generate_modelled_example_solve_quadratic_completing_square,
         Tier.HIGHER,
-        "solve_quadratic_completing_square",
+        "solve_quadratic_completing_square_H",
     ),
 ]
 

@@ -41,7 +41,7 @@ def generate_bar_chart_construct(tier: Tier, rng: random.Random) -> Question:
         final_answer,
     ]
     return Question(
-        topic_id="bar_chart_construct",
+        topic_id="bar_chart_construct_F",
         tier=Tier.FOUNDATION,
         prompt=f"The table shows the {context} of a group of students: {table_desc}. Draw a bar chart to show this information.",
         solution_steps=tuple(steps),
@@ -75,7 +75,7 @@ def generate_modelled_example_bar_chart_construct(tier: Tier, rng: random.Random
     ]
     worked_calculation = [f"{c}: height {v}" for c, v in zip(categories, values)]
     return ModelledExample(
-        topic_id="bar_chart_construct",
+        topic_id="bar_chart_construct_F",
         tier=Tier.FOUNDATION,
         prompt=f"The table shows the {context} of a group of students: {table_desc}. Draw a bar chart to show this information.",
         worked_calculation=tuple(worked_calculation),
@@ -141,7 +141,7 @@ def generate_bar_chart_interpret(tier: Tier, rng: random.Random) -> Question:
     table_desc = ", ".join(f"{c}: {v}" for c, v in zip(categories, values))
 
     return Question(
-        topic_id="bar_chart_interpret",
+        topic_id="bar_chart_interpret_F",
         tier=Tier.FOUNDATION,
         prompt=f"The bar chart shows the {context} of a group of students. {prompt_tail}",
         solution_steps=tuple(steps),
@@ -162,7 +162,7 @@ def generate_modelled_example_bar_chart_interpret(tier: Tier, rng: random.Random
         "Read the heights carefully against the frequency axis before doing any arithmetic with them.",
     ] + [f"{s}" for s in steps]
     return ModelledExample(
-        topic_id="bar_chart_interpret",
+        topic_id="bar_chart_interpret_F",
         tier=Tier.FOUNDATION,
         prompt=f"The bar chart shows the {context} of a group of students. {prompt_tail}",
         worked_calculation=tuple(steps),
@@ -238,7 +238,7 @@ def generate_composite_bar_chart(tier: Tier, rng: random.Random) -> Question:
     prompt_tail, steps, answer = _composite_body(segs, categories, series, kind, rng)
 
     return Question(
-        topic_id="composite_bar_chart",
+        topic_id="composite_bar_chart_F",
         tier=Tier.FOUNDATION,
         prompt=f"The composite bar chart shows the number of {label} split by {' and '.join(segs)}. {prompt_tail}",
         solution_steps=tuple(steps),
@@ -263,7 +263,7 @@ def generate_modelled_example_composite_bar_chart(tier: Tier, rng: random.Random
         "before combining any values.",
     ] + list(steps)
     return ModelledExample(
-        topic_id="composite_bar_chart",
+        topic_id="composite_bar_chart_F",
         tier=Tier.FOUNDATION,
         prompt=f"The composite bar chart shows the number of {label} split by {' and '.join(segs)}. {prompt_tail}",
         worked_calculation=tuple(steps),
@@ -323,7 +323,7 @@ def generate_pie_chart_construct(tier: Tier, rng: random.Random) -> Question:
         f"{c}: {v}/{total} × 360° = {a}°" for c, v, a in zip(categories, values, angle_degrees)
     ] + [final_answer]
     return Question(
-        topic_id="pie_chart_construct",
+        topic_id="pie_chart_construct_F",
         tier=Tier.FOUNDATION,
         prompt=f"A survey asked {total} people about their {context}. Calculate the angle for each category, and draw a pie chart.",
         solution_steps=tuple(steps),
@@ -362,7 +362,7 @@ def generate_modelled_example_pie_chart_construct(tier: Tier, rng: random.Random
     ]
     worked_calculation = [f"{c}: {v}/{total} × 360° = {a}°" for c, v, a in zip(categories, values, angle_degrees)]
     return ModelledExample(
-        topic_id="pie_chart_construct",
+        topic_id="pie_chart_construct_F",
         tier=Tier.FOUNDATION,
         prompt=f"A survey asked {total} people about their {context}. Calculate the angle for each category, and draw a pie chart.",
         worked_calculation=tuple(worked_calculation),
@@ -421,7 +421,7 @@ def generate_pie_chart_interpret(tier: Tier, rng: random.Random) -> Question:
     prompt_tail, steps, answer = _pie_interpret_body(categories, values, total, kind, rng)
 
     return Question(
-        topic_id="pie_chart_interpret",
+        topic_id="pie_chart_interpret_F",
         tier=Tier.FOUNDATION,
         prompt=f"The pie chart shows the {context} of {total} people. {prompt_tail}",
         solution_steps=tuple(steps),
@@ -441,7 +441,7 @@ def generate_modelled_example_pie_chart_interpret(tier: Tier, rng: random.Random
         "about using those counts, not re-measuring angles.",
     ] + list(steps)
     return ModelledExample(
-        topic_id="pie_chart_interpret",
+        topic_id="pie_chart_interpret_F",
         tier=Tier.FOUNDATION,
         prompt=f"The pie chart shows the {context} of {total} people. {prompt_tail}",
         worked_calculation=tuple(steps),
@@ -517,7 +517,7 @@ def generate_time_series_graph(tier: Tier, rng: random.Random) -> Question:
     prompt_tail, steps, answer = _time_series_body(points, kind, rng)
 
     return Question(
-        topic_id="time_series_graph",
+        topic_id="time_series_graph_F",
         tier=Tier.FOUNDATION,
         prompt=f"The time series graph shows the {label} over time. {prompt_tail}",
         solution_steps=tuple(steps),
@@ -538,7 +538,7 @@ def generate_modelled_example_time_series_graph(tier: Tier, rng: random.Random) 
         "Trace along the line to the period you need, then read straight across to the value axis.",
     ] + list(steps)
     return ModelledExample(
-        topic_id="time_series_graph",
+        topic_id="time_series_graph_F",
         tier=Tier.FOUNDATION,
         prompt=f"The time series graph shows the {label} over time. {prompt_tail}",
         worked_calculation=tuple(steps),
@@ -549,7 +549,7 @@ def generate_modelled_example_time_series_graph(tier: Tier, rng: random.Random) 
 
 
 TOPIC_BAR_CONSTRUCT = TopicDefinition(
-    id="bar_chart_construct",
+    id="bar_chart_construct_F",
     display_name="Constructing Bar Charts",
     description="Draw a bar chart from a frequency table.",
     generate=generate_bar_chart_construct,
@@ -560,7 +560,7 @@ TOPIC_BAR_CONSTRUCT = TopicDefinition(
 )
 
 TOPIC_BAR_INTERPRET = TopicDefinition(
-    id="bar_chart_interpret",
+    id="bar_chart_interpret_F",
     display_name="Interpreting Bar Charts",
     description="Read and compare values from a bar chart.",
     generate=generate_bar_chart_interpret,
@@ -571,7 +571,7 @@ TOPIC_BAR_INTERPRET = TopicDefinition(
 )
 
 TOPIC_COMPOSITE_BAR = TopicDefinition(
-    id="composite_bar_chart",
+    id="composite_bar_chart_F",
     display_name="Composite Bar Charts",
     description="Read and compare values from a stacked (composite) bar chart.",
     generate=generate_composite_bar_chart,
@@ -582,7 +582,7 @@ TOPIC_COMPOSITE_BAR = TopicDefinition(
 )
 
 TOPIC_PIE_CONSTRUCT = TopicDefinition(
-    id="pie_chart_construct",
+    id="pie_chart_construct_F",
     display_name="Constructing Pie Charts",
     description="Calculate angles and draw a pie chart from a frequency table.",
     generate=generate_pie_chart_construct,
@@ -593,7 +593,7 @@ TOPIC_PIE_CONSTRUCT = TopicDefinition(
 )
 
 TOPIC_PIE_INTERPRET = TopicDefinition(
-    id="pie_chart_interpret",
+    id="pie_chart_interpret_F",
     display_name="Interpreting Pie Charts",
     description="Use a pie chart's values to find percentages, fractions, and differences.",
     generate=generate_pie_chart_interpret,
@@ -604,7 +604,7 @@ TOPIC_PIE_INTERPRET = TopicDefinition(
 )
 
 TOPIC_TIME_SERIES = TopicDefinition(
-    id="time_series_graph",
+    id="time_series_graph_F",
     display_name="Time Series Graphs",
     description="Read values, changes, and trends from a time series graph.",
     generate=generate_time_series_graph,

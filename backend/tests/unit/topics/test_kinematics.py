@@ -39,7 +39,7 @@ def test_topic_definitions_have_expected_metadata():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (kinematics.generate_modelled_example_kinematics_suvat, Tier.HIGHER, "kinematics_suvat"),
+    (kinematics.generate_modelled_example_kinematics_suvat, Tier.HIGHER, "kinematics_suvat_H"),
 ]
 
 

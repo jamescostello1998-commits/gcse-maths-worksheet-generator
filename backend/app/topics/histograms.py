@@ -60,7 +60,7 @@ def generate_histogram_plot(tier: Tier, rng: random.Random) -> Question:
     ] + [final_answer]
 
     return Question(
-        topic_id="histogram_plot",
+        topic_id="histogram_plot_H",
         tier=Tier.HIGHER,
         prompt=f"The table shows {context}. Complete a frequency density column and draw a histogram.",
         solution_steps=tuple(steps),
@@ -91,7 +91,7 @@ def generate_modelled_example_histogram_plot(tier: Tier, rng: random.Random) -> 
         "wider classes end up with shorter bars for the same frequency.",
     ]
     return ModelledExample(
-        topic_id="histogram_plot",
+        topic_id="histogram_plot_H",
         tier=Tier.HIGHER,
         prompt=q.prompt,
         worked_calculation=tuple(q.solution_steps),
@@ -148,7 +148,7 @@ def generate_histogram_interpret(tier: Tier, rng: random.Random) -> Question:
         ]
 
     return Question(
-        topic_id="histogram_interpret",
+        topic_id="histogram_interpret_H",
         tier=Tier.HIGHER,
         prompt=f"The histogram shows {context}. {prompt}",
         solution_steps=tuple(steps),
@@ -170,7 +170,7 @@ def generate_modelled_example_histogram_interpret(tier: Tier, rng: random.Random
         "items - always convert to frequency before comparing classes directly.",
     ] + list(q.solution_steps)
     return ModelledExample(
-        topic_id="histogram_interpret",
+        topic_id="histogram_interpret_H",
         tier=Tier.HIGHER,
         prompt=q.prompt,
         worked_calculation=tuple(q.solution_steps),
@@ -181,7 +181,7 @@ def generate_modelled_example_histogram_interpret(tier: Tier, rng: random.Random
 
 
 TOPIC_HISTOGRAM_PLOT = TopicDefinition(
-    id="histogram_plot",
+    id="histogram_plot_H",
     display_name="Plotting Histograms",
     description="Compute frequency density and draw a histogram with unequal class widths.",
     generate=generate_histogram_plot,
@@ -192,7 +192,7 @@ TOPIC_HISTOGRAM_PLOT = TopicDefinition(
 )
 
 TOPIC_HISTOGRAM_INTERPRET = TopicDefinition(
-    id="histogram_interpret",
+    id="histogram_interpret_H",
     display_name="Interpreting Histograms",
     description="Use frequency density and class width to estimate frequencies from a histogram.",
     generate=generate_histogram_interpret,

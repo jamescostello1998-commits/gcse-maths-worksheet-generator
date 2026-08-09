@@ -60,7 +60,7 @@ def test_both_scale_kinds_and_both_directions_appear():
 
 def test_topic_definition_metadata():
     t = map_scales.TOPIC_MAP_SCALE_DRAWINGS
-    assert t.id == "map_scale_drawings"
+    assert t.id == "map_scale_drawings_F"
     assert t.section == "geometry"
     assert t.group == "Map Scales and Scale Drawings"
     assert t.fixed_tier == Tier.FOUNDATION
@@ -71,7 +71,7 @@ def test_modelled_examples_are_valid():
     rng = random.Random(904)
     for _ in range(TRIALS):
         ex = map_scales.generate_modelled_example_map_scale_drawings(Tier.FOUNDATION, rng)
-        assert ex.topic_id == "map_scale_drawings"
+        assert ex.topic_id == "map_scale_drawings_F"
         assert ex.tier == Tier.FOUNDATION
         assert ex.prompt
         assert len(ex.worked_calculation) >= 2

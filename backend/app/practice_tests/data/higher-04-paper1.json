@@ -7,7 +7,7 @@
   "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "fractions_divide",
+      "topic_id": "fractions_divide_H",
       "prompt": "Work out 7/2 ÷ 1/3. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Keep-change-flip: 7/2 ÷ 1/3 = 7/2 × 3/1",
@@ -42,7 +42,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "hcf_lcm_by_prime_factors",
+      "topic_id": "hcf_lcm_by_prime_factors_H",
       "prompt": "Using prime factorisation, find the LCM of 26 and 138.",
       "solution_steps": [
         "26 = 2 × 13",
@@ -83,7 +83,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bounds_calculation",
+      "topic_id": "bounds_calculation_H",
       "prompt": "A car travels 252 km (to the nearest km) in 6 hours (to the nearest hour). Calculate the lower bound for the average speed of the car, to 1 decimal place.",
       "solution_steps": [
         "Distance: 252 km (to the nearest km) gives 251.5 ≤ distance < 252.5",
@@ -118,7 +118,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "recurring_decimal_two_digit",
+      "topic_id": "recurring_decimal_two_digit_H",
       "prompt": "Write \\recur{0.}{42} as a fraction in its simplest form.",
       "solution_steps": [
         "Let x = \\recur{0.}{42}, so 100x = 42.4242... (two digits repeat, so multiply by 100 to shift a full block)",
@@ -153,7 +153,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_mixed_number_arithmetic",
+      "topic_id": "fractions_mixed_number_arithmetic_H",
       "prompt": "Calculate 4 3/5 - 3 2/8. Give your answer as a mixed number.",
       "solution_steps": [
         "Convert to improper fractions: 4 3/5 = 23/5, 3 2/8 = 13/4",
@@ -188,7 +188,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "prime_factors_higher",
+      "topic_id": "prime_factors_H",
       "prompt": "Write 468 as a product of its prime factors, giving your answer in index form.",
       "solution_steps": [
         "Divide 468 repeatedly by the smallest prime that fits: 2 × 2 × 3 × 3 × 13",
@@ -217,7 +217,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_surds",
+      "topic_id": "algebraic_surds_H",
       "prompt": "Expand and simplify (9 + √15)(4 - √15), giving your answer in the form p + q√15.",
       "solution_steps": [
         "Expand the brackets (FOIL): (9 + √15)(4 - √15) = 36 -9√15 +4√15 -15",
@@ -259,7 +259,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "kinematics_suvat",
+      "topic_id": "kinematics_suvat_H",
       "prompt": "An object starts with a velocity of 4 m/s and has a constant acceleration of 4 m/s^2 over a displacement of 121 m. Find its final velocity (v). Give your answer correct to 1 decimal place.",
       "solution_steps": [
         "This question gives three of v, u, a and s and asks for the fourth, so use v^2 = u^2 + 2as, the equation linking exactly those four (note: no t appears here).",
@@ -300,7 +300,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solve_quadratic_completing_square",
+      "topic_id": "solve_quadratic_completing_square_H",
       "prompt": "Solve x^2 - 14x - 77 = 0 by completing the square, giving your answers in exact surd form.",
       "solution_steps": [
         "Half the coefficient of x: -14 ÷ 2 = -7",
@@ -342,7 +342,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "completing_the_square",
+      "topic_id": "completing_the_square_H",
       "prompt": "Write x^2 - 14x + 4 in the form (x + p)^2 + q.",
       "solution_steps": [
         "Half the coefficient of x: -14 ÷ 2 = -7",
@@ -377,7 +377,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solve_quadratic_factorising",
+      "topic_id": "solve_quadratic_factorising_H",
       "prompt": "Solve x^2 + 13x + 36 = 0 by factorising.",
       "solution_steps": [
         "Find two numbers that multiply to 36 and add to 13: 4 and 9",
@@ -418,7 +418,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "change_subject_higher",
+      "topic_id": "change_subject_H",
       "prompt": "Make r the subject of the formula A = πr^2.",
       "solution_steps": [
         "A = πr^2",
@@ -453,7 +453,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "quadratic_inequalities",
+      "topic_id": "quadratic_inequalities_H",
       "prompt": "Solve the inequality: x^2 - 14x + 48 > 0",
       "solution_steps": [
         "Factorise: x^2 - 14x + 48 = (x - 6)(x - 8)",
@@ -494,7 +494,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "perpendicular_lines_equation",
+      "topic_id": "perpendicular_lines_equation_H",
       "prompt": "A line is perpendicular to y = -5x - 7 and passes through the point (4, 7). Find the equation of the line.",
       "solution_steps": [
         "Perpendicular gradients multiply to give -1: m × -5 = -1, so m = 1/5",
@@ -529,7 +529,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_difference_higher",
+      "topic_id": "ratio_difference_H",
       "prompt": "a : b : c = 7 : 9 : 1.\nb - c = 120.\nFind a, b and c.",
       "solution_steps": [
         "Difference in parts = 9 - 1 = 8 parts",
@@ -571,7 +571,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "speed_with_conversions",
+      "topic_id": "speed_with_conversions_H",
       "prompt": "A cyclist travels 184 m in 46 seconds. Find its average speed in km/h, correct to 1 decimal place.",
       "solution_steps": [
         "speed = distance ÷ time = 184 ÷ 46 = 4 m/s",
@@ -600,7 +600,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pressure_higher",
+      "topic_id": "pressure_H",
       "prompt": "A concrete block has a rectangular base measuring 14 cm × 2 cm and exerts a pressure of 39 N/cm². Find the force it exerts.",
       "solution_steps": [
         "area = length × width = 14 × 2 = 28 cm²",
@@ -629,7 +629,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "mixed_percentages",
+      "topic_id": "mixed_percentages_H",
       "prompt": "Decrease 80 by 50%.",
       "solution_steps": [
         "Convert 50% to a multiplier: 0.50",
@@ -658,7 +658,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "percentage_increase_decrease_calculator",
+      "topic_id": "percentage_increase_decrease_calculator_H",
       "prompt": "Using a calculator, increase £560.80 by 9.75%. Give your answer to 2 decimal places.",
       "solution_steps": [
         "Convert 9.75% to a multiplier: 1.0975",
@@ -687,7 +687,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "circle_theorems",
+      "topic_id": "circle_theorems_H",
       "prompt": "PQ is a chord of a circle, with a tangent at P. R is a point on the circle in the alternate segment. Find the angle between the tangent and the chord PQ, x.",
       "solution_steps": [
         "The alternate segment theorem: the angle between a tangent and a chord equals the angle subtended by that chord in the alternate segment.",
@@ -722,7 +722,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_parallel_lines",
+      "topic_id": "angles_parallel_lines_H",
       "prompt": "A line crosses two parallel lines. The angle 140° and the angle (3x - 17)° are co-interior angles. Find x.",
       "solution_steps": [
         "Co-interior angles sum to 180°.",
@@ -774,7 +774,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_enlarge_complete_higher",
+      "topic_id": "transform_enlarge_complete_H",
       "prompt": "Enlarge shape ABCDEF by scale factor -1, centre (2, -1). Draw and label the image A'B'C'D'E'F'.",
       "solution_steps": [
         "The centre of enlargement is (2, -1) and the scale factor is -1.",
@@ -941,7 +941,7 @@
       }
     },
     {
-      "topic_id": "bearings_cosine_rule",
+      "topic_id": "bearings_cosine_rule_H",
       "prompt": "A ship sails from port A on a bearing of 307° for 14 km to point B. It then changes course and sails on a bearing of 209° for 24 km to point C. Find the direct distance from A to C, correct to 1 decimal place.",
       "solution_steps": [
         "The back bearing of A from B is 307° + 180° = 127°.",
@@ -997,7 +997,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_conditional",
+      "topic_id": "probability_conditional_H",
       "prompt": "A bag contains 4 purple and 5 blue counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
       "solution_steps": [
         "P(both purple) = 4/9 × 3/8 = 1/6",

@@ -71,7 +71,7 @@ def _shape_kinematics_foundation(rng: random.Random) -> Question:
         f"v = {v}",
     ]
     return Question(
-        topic_id="substitution_foundation",
+        topic_id="substitution_F",
         tier=Tier.FOUNDATION,
         prompt=f"v = u + at. Find the value of v when u = {u}, a = {a} and t = {t}.",
         solution_steps=tuple(steps),
@@ -96,7 +96,7 @@ def _shape_perimeter_foundation(rng: random.Random) -> Question:
         f"P = {p}",
     ]
     return Question(
-        topic_id="substitution_foundation",
+        topic_id="substitution_F",
         tier=Tier.FOUNDATION,
         prompt=f"P = 2L + 2w. Find the value of P when L = {l} and w = {w}.",
         solution_steps=tuple(steps),
@@ -120,7 +120,7 @@ def _shape_area_foundation(rng: random.Random) -> Question:
         f"A = {area}",
     ]
     return Question(
-        topic_id="substitution_foundation",
+        topic_id="substitution_F",
         tier=Tier.FOUNDATION,
         prompt=f"A = LW. Find the value of A when L = {l} and w = {w}.",
         solution_steps=tuple(steps),
@@ -148,7 +148,7 @@ def _shape_triangle_area_foundation(rng: random.Random) -> Question:
         f"A = {_fmt_frac(area)}",
     ]
     return Question(
-        topic_id="substitution_foundation",
+        topic_id="substitution_F",
         tier=Tier.FOUNDATION,
         prompt=f"A = (1/2)bh. Find the value of A when b = {b} and h = {h}.",
         solution_steps=tuple(steps),
@@ -168,7 +168,7 @@ _FOUNDATION_SHAPES = [
 def generate_substitution_foundation(tier: Tier, rng: random.Random) -> Question:
     shape = rng.choice(_FOUNDATION_SHAPES)
     q = shape(rng)
-    return dataclasses.replace(q, topic_id="substitution_foundation", tier=Tier.FOUNDATION)
+    return dataclasses.replace(q, topic_id="substitution_F", tier=Tier.FOUNDATION)
 
 
 # ---------------------------------------------------------------------------
@@ -231,7 +231,7 @@ def _shape_speed_squared_higher(rng: random.Random) -> Question:
         "Take the positive square root only, since v represents a speed and must be positive.",
     ]
     return Question(
-        topic_id="substitution_higher",
+        topic_id="substitution_H",
         tier=Tier.HIGHER,
         prompt=(
             f"v^2 = u^2 + 2as. Find the value of v when u = {u}, a = {a} and s = {s}. "
@@ -268,7 +268,7 @@ def _shape_kinetic_energy_higher(rng: random.Random) -> Question:
         f"E = {_fmt_frac(energy)}",
     ]
     return Question(
-        topic_id="substitution_higher",
+        topic_id="substitution_H",
         tier=Tier.HIGHER,
         prompt=f"E = (1/2)mv^2. Find the value of E when m = {m} and v = {v}.",
         solution_steps=tuple(steps),
@@ -317,7 +317,7 @@ def _shape_acceleration_higher(rng: random.Random) -> Question:
         f"a = {_fmt_frac(a)}",
     ]
     return Question(
-        topic_id="substitution_higher",
+        topic_id="substitution_H",
         tier=Tier.HIGHER,
         prompt=f"a = \\frac{{v - u}}{{t}}. Find the value of a when u = {u}, v = {v} and t = {t}.",
         solution_steps=tuple(steps),
@@ -336,7 +336,7 @@ _HIGHER_SHAPES = [
 def generate_substitution_higher(tier: Tier, rng: random.Random) -> Question:
     shape = rng.choice(_HIGHER_SHAPES)
     q = shape(rng)
-    return dataclasses.replace(q, topic_id="substitution_higher", tier=Tier.HIGHER)
+    return dataclasses.replace(q, topic_id="substitution_H", tier=Tier.HIGHER)
 
 
 # ---------------------------------------------------------------------------
@@ -372,7 +372,7 @@ def _modelled_kinematics_foundation(rng: random.Random) -> ModelledExample:
         f"v = {v}",
     ]
     return ModelledExample(
-        topic_id="substitution_foundation",
+        topic_id="substitution_F",
         tier=Tier.FOUNDATION,
         prompt=f"v = u + at. Find the value of v when u = {u}, a = {a} and t = {t}.",
         worked_calculation=tuple(worked_calculation),
@@ -403,7 +403,7 @@ def _modelled_perimeter_foundation(rng: random.Random) -> ModelledExample:
         f"P = {p}",
     ]
     return ModelledExample(
-        topic_id="substitution_foundation",
+        topic_id="substitution_F",
         tier=Tier.FOUNDATION,
         prompt=f"P = 2L + 2w. Find the value of P when L = {l} and w = {w}.",
         worked_calculation=tuple(worked_calculation),
@@ -433,7 +433,7 @@ def _modelled_area_foundation(rng: random.Random) -> ModelledExample:
         f"A = {area}",
     ]
     return ModelledExample(
-        topic_id="substitution_foundation",
+        topic_id="substitution_F",
         tier=Tier.FOUNDATION,
         prompt=f"A = LW. Find the value of A when L = {l} and w = {w}.",
         worked_calculation=tuple(worked_calculation),
@@ -472,7 +472,7 @@ def _modelled_triangle_area_foundation(rng: random.Random) -> ModelledExample:
         f"A = {_fmt_frac(area)}",
     ]
     return ModelledExample(
-        topic_id="substitution_foundation",
+        topic_id="substitution_F",
         tier=Tier.FOUNDATION,
         prompt=f"A = (1/2)bh. Find the value of A when b = {b} and h = {h}.",
         worked_calculation=tuple(worked_calculation),
@@ -492,7 +492,7 @@ _FOUNDATION_MODELLED_SHAPES = [
 def generate_modelled_example_substitution_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
     shape = rng.choice(_FOUNDATION_MODELLED_SHAPES)
     example = shape(rng)
-    return dataclasses.replace(example, topic_id="substitution_foundation", tier=Tier.FOUNDATION)
+    return dataclasses.replace(example, topic_id="substitution_F", tier=Tier.FOUNDATION)
 
 
 # ---------------------------------------------------------------------------
@@ -564,7 +564,7 @@ def _modelled_speed_squared_higher(rng: random.Random) -> ModelledExample:
         final_line,
     ]
     return ModelledExample(
-        topic_id="substitution_higher",
+        topic_id="substitution_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -603,7 +603,7 @@ def _modelled_kinetic_energy_higher(rng: random.Random) -> ModelledExample:
         f"E = {_fmt_frac(energy)}",
     ]
     return ModelledExample(
-        topic_id="substitution_higher",
+        topic_id="substitution_H",
         tier=Tier.HIGHER,
         prompt=f"E = (1/2)mv^2. Find the value of E when m = {m} and v = {v}.",
         worked_calculation=tuple(worked_calculation),
@@ -641,7 +641,7 @@ def _modelled_acceleration_higher(rng: random.Random) -> ModelledExample:
         f"a = {_fmt_frac(a)}",
     ]
     return ModelledExample(
-        topic_id="substitution_higher",
+        topic_id="substitution_H",
         tier=Tier.HIGHER,
         prompt=f"a = \\frac{{v - u}}{{t}}. Find the value of a when u = {u}, v = {v} and t = {t}.",
         worked_calculation=tuple(worked_calculation),
@@ -660,7 +660,7 @@ _HIGHER_MODELLED_SHAPES = [
 def generate_modelled_example_substitution_higher(tier: Tier, rng: random.Random) -> ModelledExample:
     shape = rng.choice(_HIGHER_MODELLED_SHAPES)
     example = shape(rng)
-    return dataclasses.replace(example, topic_id="substitution_higher", tier=Tier.HIGHER)
+    return dataclasses.replace(example, topic_id="substitution_H", tier=Tier.HIGHER)
 
 
 # ---------------------------------------------------------------------------
@@ -697,7 +697,7 @@ def _shape_kinematics_rearrange_foundation(rng: random.Random) -> Question:
         f"a = {v - u}/{t} = {a}",
     ]
     return Question(
-        topic_id="substitution_rearrange_foundation",
+        topic_id="substitution_rearrange_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"v = u + at. Make a the subject of the formula, then find the value of a when "
@@ -728,7 +728,7 @@ def _shape_perimeter_rearrange_foundation(rng: random.Random) -> Question:
         f"w = {p - 2 * l}/2 = {w}",
     ]
     return Question(
-        topic_id="substitution_rearrange_foundation",
+        topic_id="substitution_rearrange_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"P = 2L + 2w. Make w the subject of the formula, then find the value of w when "
@@ -759,7 +759,7 @@ def _shape_area_rearrange_foundation(rng: random.Random) -> Question:
         f"L = {l}",
     ]
     return Question(
-        topic_id="substitution_rearrange_foundation",
+        topic_id="substitution_rearrange_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A = LW. Make L the subject of the formula, then find the value of L when "
@@ -791,7 +791,7 @@ def _shape_triangle_area_rearrange_foundation(rng: random.Random) -> Question:
         f"h = {h}",
     ]
     return Question(
-        topic_id="substitution_rearrange_foundation",
+        topic_id="substitution_rearrange_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A = (1/2)bh. Make h the subject of the formula, then find the value of h when "
@@ -814,7 +814,7 @@ _REARRANGE_FOUNDATION_SHAPES = [
 def generate_substitution_rearrange_foundation(tier: Tier, rng: random.Random) -> Question:
     shape = rng.choice(_REARRANGE_FOUNDATION_SHAPES)
     q = shape(rng)
-    return dataclasses.replace(q, topic_id="substitution_rearrange_foundation", tier=Tier.FOUNDATION)
+    return dataclasses.replace(q, topic_id="substitution_rearrange_F", tier=Tier.FOUNDATION)
 
 
 def _build_speed_squared_exact(rng: random.Random):
@@ -852,7 +852,7 @@ def _shape_speed_squared_rearrange_higher(rng: random.Random) -> Question:
         f"s = {v * v - u * u}/{2 * a} = {s}",
     ]
     return Question(
-        topic_id="substitution_rearrange_higher",
+        topic_id="substitution_rearrange_H",
         tier=Tier.HIGHER,
         prompt=(
             f"v^2 = u^2 + 2as. Make s the subject of the formula, then find the value of s when "
@@ -885,7 +885,7 @@ def _shape_kinetic_energy_rearrange_higher(rng: random.Random) -> Question:
         f"m = {m}",
     ]
     return Question(
-        topic_id="substitution_rearrange_higher",
+        topic_id="substitution_rearrange_H",
         tier=Tier.HIGHER,
         prompt=(
             f"E = (1/2)mv^2. Make m the subject of the formula, then find the value of m when "
@@ -915,7 +915,7 @@ def _shape_acceleration_rearrange_higher(rng: random.Random) -> Question:
         f"u = {u}",
     ]
     return Question(
-        topic_id="substitution_rearrange_higher",
+        topic_id="substitution_rearrange_H",
         tier=Tier.HIGHER,
         prompt=(
             f"a = \\frac{{v - u}}{{t}}. Make u the subject of the formula, then find the value of u when "
@@ -937,7 +937,7 @@ _REARRANGE_HIGHER_SHAPES = [
 def generate_substitution_rearrange_higher(tier: Tier, rng: random.Random) -> Question:
     shape = rng.choice(_REARRANGE_HIGHER_SHAPES)
     q = shape(rng)
-    return dataclasses.replace(q, topic_id="substitution_rearrange_higher", tier=Tier.HIGHER)
+    return dataclasses.replace(q, topic_id="substitution_rearrange_H", tier=Tier.HIGHER)
 
 
 # ---------------------------------------------------------------------------
@@ -970,7 +970,7 @@ def _modelled_kinematics_rearrange_foundation(rng: random.Random) -> ModelledExa
         f"a = {a}",
     ]
     return ModelledExample(
-        topic_id="substitution_rearrange_foundation",
+        topic_id="substitution_rearrange_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"v = u + at. Make a the subject of the formula, then find the value of a when "
@@ -1004,7 +1004,7 @@ def _modelled_perimeter_rearrange_foundation(rng: random.Random) -> ModelledExam
         f"w = {w}",
     ]
     return ModelledExample(
-        topic_id="substitution_rearrange_foundation",
+        topic_id="substitution_rearrange_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"P = 2L + 2w. Make w the subject of the formula, then find the value of w when "
@@ -1037,7 +1037,7 @@ def _modelled_area_rearrange_foundation(rng: random.Random) -> ModelledExample:
         f"L = {l}",
     ]
     return ModelledExample(
-        topic_id="substitution_rearrange_foundation",
+        topic_id="substitution_rearrange_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A = LW. Make L the subject of the formula, then find the value of L when "
@@ -1074,7 +1074,7 @@ def _modelled_triangle_area_rearrange_foundation(rng: random.Random) -> Modelled
         f"h = {h}",
     ]
     return ModelledExample(
-        topic_id="substitution_rearrange_foundation",
+        topic_id="substitution_rearrange_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A = (1/2)bh. Make h the subject of the formula, then find the value of h when "
@@ -1099,7 +1099,7 @@ def generate_modelled_example_substitution_rearrange_foundation(
 ) -> ModelledExample:
     shape = rng.choice(_REARRANGE_FOUNDATION_MODELLED_SHAPES)
     example = shape(rng)
-    return dataclasses.replace(example, topic_id="substitution_rearrange_foundation", tier=Tier.FOUNDATION)
+    return dataclasses.replace(example, topic_id="substitution_rearrange_F", tier=Tier.FOUNDATION)
 
 
 # ---------------------------------------------------------------------------
@@ -1129,7 +1129,7 @@ def _modelled_speed_squared_rearrange_higher(rng: random.Random) -> ModelledExam
         f"s = {s}",
     ]
     return ModelledExample(
-        topic_id="substitution_rearrange_higher",
+        topic_id="substitution_rearrange_H",
         tier=Tier.HIGHER,
         prompt=(
             f"v^2 = u^2 + 2as. Make s the subject of the formula, then find the value of s when "
@@ -1166,7 +1166,7 @@ def _modelled_kinetic_energy_rearrange_higher(rng: random.Random) -> ModelledExa
         f"m = {m}",
     ]
     return ModelledExample(
-        topic_id="substitution_rearrange_higher",
+        topic_id="substitution_rearrange_H",
         tier=Tier.HIGHER,
         prompt=(
             f"E = (1/2)mv^2. Make m the subject of the formula, then find the value of m when "
@@ -1199,7 +1199,7 @@ def _modelled_acceleration_rearrange_higher(rng: random.Random) -> ModelledExamp
         f"u = {u}",
     ]
     return ModelledExample(
-        topic_id="substitution_rearrange_higher",
+        topic_id="substitution_rearrange_H",
         tier=Tier.HIGHER,
         prompt=(
             f"a = \\frac{{v - u}}{{t}}. Make u the subject of the formula, then find the value of u when "
@@ -1221,11 +1221,11 @@ _REARRANGE_HIGHER_MODELLED_SHAPES = [
 def generate_modelled_example_substitution_rearrange_higher(tier: Tier, rng: random.Random) -> ModelledExample:
     shape = rng.choice(_REARRANGE_HIGHER_MODELLED_SHAPES)
     example = shape(rng)
-    return dataclasses.replace(example, topic_id="substitution_rearrange_higher", tier=Tier.HIGHER)
+    return dataclasses.replace(example, topic_id="substitution_rearrange_H", tier=Tier.HIGHER)
 
 
 TOPIC_SUBSTITUTION_FOUNDATION = TopicDefinition(
-    id="substitution_foundation",
+    id="substitution_F",
     display_name="Substituting into Formulae",
     description="Substitute positive values into a simple formula to find the value of its subject.",
     generate=generate_substitution_foundation,
@@ -1236,7 +1236,7 @@ TOPIC_SUBSTITUTION_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_SUBSTITUTION_HIGHER = TopicDefinition(
-    id="substitution_higher",
+    id="substitution_H",
     display_name="Substituting into Formulae (Higher)",
     description=(
         "Substitute positive or negative values into a formula involving a power, a root, or an "
@@ -1250,7 +1250,7 @@ TOPIC_SUBSTITUTION_HIGHER = TopicDefinition(
 )
 
 TOPIC_SUBSTITUTION_REARRANGE_FOUNDATION = TopicDefinition(
-    id="substitution_rearrange_foundation",
+    id="substitution_rearrange_F",
     display_name="Rearranging and Substituting into Formulae",
     description="Rearrange a formula for a different letter, then substitute given values to find it.",
     generate=generate_substitution_rearrange_foundation,
@@ -1261,7 +1261,7 @@ TOPIC_SUBSTITUTION_REARRANGE_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_SUBSTITUTION_REARRANGE_HIGHER = TopicDefinition(
-    id="substitution_rearrange_higher",
+    id="substitution_rearrange_H",
     display_name="Rearranging and Substituting into Formulae (Higher)",
     description=(
         "Rearrange a formula involving a power or an algebraic fraction for a different letter, "

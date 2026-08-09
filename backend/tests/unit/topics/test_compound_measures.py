@@ -80,7 +80,7 @@ def test_modelled_example_sdt_mixed_produces_verified_examples():
     rng = random.Random(401)
     for _ in range(TRIALS):
         example = compound_measures.generate_modelled_example_sdt_mixed(Tier.FOUNDATION, rng)
-        assert example.topic_id == "sdt_mixed"
+        assert example.topic_id == "sdt_mixed_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -91,7 +91,7 @@ def test_modelled_example_speed_with_conversions_produces_verified_examples():
     rng = random.Random(402)
     for _ in range(TRIALS):
         example = compound_measures.generate_modelled_example_speed_with_conversions(Tier.HIGHER, rng)
-        assert example.topic_id == "speed_with_conversions"
+        assert example.topic_id == "speed_with_conversions_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -102,7 +102,7 @@ def test_modelled_example_unit_conversions_produces_verified_examples():
     rng = random.Random(403)
     for _ in range(TRIALS):
         example = compound_measures.generate_modelled_example_unit_conversions(Tier.FOUNDATION, rng)
-        assert example.topic_id == "unit_conversions"
+        assert example.topic_id == "unit_conversions_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -113,7 +113,7 @@ def test_modelled_example_unit_conversions_higher_produces_verified_examples():
     rng = random.Random(404)
     for _ in range(TRIALS):
         example = compound_measures.generate_modelled_example_unit_conversions_higher(Tier.HIGHER, rng)
-        assert example.topic_id == "unit_conversions_higher"
+        assert example.topic_id == "unit_conversions_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -124,7 +124,7 @@ def test_modelled_example_density_produces_verified_examples():
     rng = random.Random(405)
     for _ in range(TRIALS):
         example = compound_measures.generate_modelled_example_density(Tier.FOUNDATION, rng)
-        assert example.topic_id == "density"
+        assert example.topic_id == "density_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -135,7 +135,7 @@ def test_modelled_example_density_higher_produces_verified_examples():
     rng = random.Random(406)
     for _ in range(TRIALS):
         example = compound_measures.generate_modelled_example_density_higher(Tier.HIGHER, rng)
-        assert example.topic_id == "density_higher"
+        assert example.topic_id == "density_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -146,7 +146,7 @@ def test_modelled_example_pressure_produces_verified_examples():
     rng = random.Random(407)
     for _ in range(TRIALS):
         example = compound_measures.generate_modelled_example_pressure(Tier.FOUNDATION, rng)
-        assert example.topic_id == "pressure"
+        assert example.topic_id == "pressure_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -157,7 +157,7 @@ def test_modelled_example_pressure_higher_produces_verified_examples():
     rng = random.Random(408)
     for _ in range(TRIALS):
         example = compound_measures.generate_modelled_example_pressure_higher(Tier.HIGHER, rng)
-        assert example.topic_id == "pressure_higher"
+        assert example.topic_id == "pressure_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3

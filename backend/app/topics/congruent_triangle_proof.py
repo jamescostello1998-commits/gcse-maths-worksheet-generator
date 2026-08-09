@@ -503,7 +503,7 @@ def generate_congruent_triangle_proof_higher(tier: Tier, rng: random.Random) -> 
         template.proof_conclusion,
     ]
     return Question(
-        topic_id="congruent_triangle_proof",
+        topic_id="congruent_triangle_proof_H",
         tier=Tier.HIGHER,
         prompt=f"{template.scenario} Prove that the two triangles are congruent.",
         solution_steps=tuple(steps),
@@ -532,7 +532,7 @@ def generate_modelled_example_congruent_triangle_proof_higher(tier: Tier, rng: r
         f"{_CRITERION_FULL_NAME[template.criterion]} -> triangles congruent",
     ]
     return ModelledExample(
-        topic_id="congruent_triangle_proof",
+        topic_id="congruent_triangle_proof_H",
         tier=Tier.HIGHER,
         prompt=f"{template.scenario} Prove that the two triangles are congruent.",
         worked_calculation=tuple(worked_calculation),
@@ -604,7 +604,7 @@ def generate_congruent_triangle_proof_foundation(tier: Tier, rng: random.Random)
         f"So the two triangles are congruent by {_CRITERION_FULL_NAME[criterion]}.",
     ]
     return Question(
-        topic_id="congruent_triangle_proof_foundation",
+        topic_id="congruent_triangle_proof_F",
         tier=Tier.FOUNDATION,
         prompt=f"{_FOUNDATION_PROMPT} {options_line}",
         solution_steps=tuple(steps),
@@ -632,7 +632,7 @@ def generate_modelled_example_congruent_triangle_proof_foundation(tier: Tier, rn
         f"Answer: {answer}",
     ]
     return ModelledExample(
-        topic_id="congruent_triangle_proof_foundation",
+        topic_id="congruent_triangle_proof_F",
         tier=Tier.FOUNDATION,
         prompt=f"{_FOUNDATION_PROMPT} {options_line}",
         worked_calculation=tuple(worked_calculation),
@@ -643,7 +643,7 @@ def generate_modelled_example_congruent_triangle_proof_foundation(tier: Tier, rn
 
 
 TOPIC_CONGRUENT_TRIANGLE_PROOF = TopicDefinition(
-    id="congruent_triangle_proof",
+    id="congruent_triangle_proof_H",
     display_name="Congruent Triangle Proof",
     description="Prove that two triangles are congruent, citing SSS, SAS, ASA or RHS.",
     generate=generate_congruent_triangle_proof_higher,
@@ -655,7 +655,7 @@ TOPIC_CONGRUENT_TRIANGLE_PROOF = TopicDefinition(
 )
 
 TOPIC_CONGRUENT_TRIANGLE_PROOF_FOUNDATION = TopicDefinition(
-    id="congruent_triangle_proof_foundation",
+    id="congruent_triangle_proof_F",
     display_name="Congruent Triangle Proof (Foundation)",
     description="State which congruence criterion (SSS, SAS, ASA or RHS) proves two triangles are congruent.",
     generate=generate_congruent_triangle_proof_foundation,

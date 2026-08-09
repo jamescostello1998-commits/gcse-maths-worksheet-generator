@@ -40,7 +40,7 @@ def test_dedup_keys_vary_widely():
 
 def test_topic_definitions_have_expected_metadata():
     t = bearings.TOPIC_BEARINGS_COSINE_RULE
-    assert t.id == "bearings_cosine_rule"
+    assert t.id == "bearings_cosine_rule_H"
     assert t.section == "geometry"
     assert t.group == "Bearings"
     assert t.fixed_tier == Tier.HIGHER
@@ -51,7 +51,7 @@ def test_modelled_examples_are_valid():
     rng = random.Random(703)
     for _ in range(TRIALS):
         ex = bearings.generate_modelled_example_bearings(Tier.HIGHER, rng)
-        assert ex.topic_id == "bearings_cosine_rule"
+        assert ex.topic_id == "bearings_cosine_rule_H"
         assert ex.tier == Tier.HIGHER
         assert ex.prompt
         assert len(ex.worked_calculation) >= 2
@@ -105,7 +105,7 @@ def test_bearings_foundation_dedup_keys_vary_widely():
 
 def test_bearings_foundation_topic_definition_metadata():
     t = bearings.TOPIC_BEARINGS_FOUNDATION
-    assert t.id == "bearings_foundation"
+    assert t.id == "bearings_F"
     assert t.section == "geometry"
     assert t.group == "Bearings"
     assert t.fixed_tier == Tier.FOUNDATION
@@ -128,7 +128,7 @@ def test_bearings_foundation_modelled_examples_are_valid():
     rng = random.Random(714)
     for _ in range(TRIALS):
         ex = bearings.generate_modelled_example_bearings_foundation(Tier.FOUNDATION, rng)
-        assert ex.topic_id == "bearings_foundation"
+        assert ex.topic_id == "bearings_F"
         assert ex.tier == Tier.FOUNDATION
         assert ex.prompt
         assert len(ex.worked_calculation) >= 2

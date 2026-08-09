@@ -127,8 +127,8 @@ def test_topics_have_a_modelled_example_generator_wired_up():
 
 def test_modelled_example_vectors_arithmetic_is_valid():
     generators = [
-        (vectors.generate_modelled_example_vectors_arithmetic_foundation, Tier.FOUNDATION, "vectors_arithmetic_foundation"),
-        (vectors.generate_modelled_example_vectors_arithmetic_higher, Tier.HIGHER, "vectors_arithmetic_higher"),
+        (vectors.generate_modelled_example_vectors_arithmetic_foundation, Tier.FOUNDATION, "vectors_arithmetic_F"),
+        (vectors.generate_modelled_example_vectors_arithmetic_higher, Tier.HIGHER, "vectors_arithmetic_H"),
     ]
     for generate, tier, topic_id in generators:
         rng = random.Random(201)
@@ -147,7 +147,7 @@ def test_modelled_example_geometric_vectors_is_valid():
     rng = random.Random(202)
     for _ in range(TRIALS):
         ex = vectors.generate_modelled_example_geometric_vectors(Tier.HIGHER, rng)
-        assert ex.topic_id == "geometric_vectors"
+        assert ex.topic_id == "geometric_vectors_H"
         assert ex.tier == Tier.HIGHER
         assert ex.prompt
         assert len(ex.worked_calculation) >= 2

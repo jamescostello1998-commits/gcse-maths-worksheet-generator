@@ -72,7 +72,7 @@ def generate_estimation(tier: Tier, rng: random.Random) -> Question:
         f"({rounded_a} × {rounded_b}) ÷ {rounded_c} = {answer}",
     ]
     return Question(
-        topic_id="estimation_rounding",
+        topic_id="estimation_rounding_F",
         tier=Tier.FOUNDATION,
         prompt=f"Work out an estimate for ({a} × {b}) ÷ {c} by rounding each number to 1 significant figure.",
         solution_steps=tuple(steps),
@@ -117,7 +117,7 @@ def generate_error_interval(tier: Tier, rng: random.Random) -> Question:
     ]
     answer = f"{lower_str} ≤ x < {upper_str}"
     return Question(
-        topic_id="error_interval",
+        topic_id="error_interval_F",
         tier=Tier.FOUNDATION,
         prompt=f"A number, x, is {v_str} rounded to {label}. Write down the error interval for x.",
         solution_steps=tuple(steps),
@@ -202,7 +202,7 @@ def generate_bounds_calculation(tier: Tier, rng: random.Random) -> Question:
         dedup_key = f"bounds_speed:{bound_type}:{distance}:{time}"
 
     return Question(
-        topic_id="bounds_calculation",
+        topic_id="bounds_calculation_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -248,7 +248,7 @@ def generate_modelled_example_estimation(tier: Tier, rng: random.Random) -> Mode
         f"= {answer}",
     ]
     return ModelledExample(
-        topic_id="estimation_rounding",
+        topic_id="estimation_rounding_F",
         tier=Tier.FOUNDATION,
         prompt=f"Work out an estimate for ({a} × {b}) ÷ {c} by rounding each number to 1 significant figure.",
         worked_calculation=tuple(worked_calculation),
@@ -296,7 +296,7 @@ def generate_modelled_example_error_interval(tier: Tier, rng: random.Random) -> 
     ]
     answer = f"{lower_str} ≤ x < {upper_str}"
     return ModelledExample(
-        topic_id="error_interval",
+        topic_id="error_interval_F",
         tier=Tier.FOUNDATION,
         prompt=f"A number, x, is {v_str} rounded to {label}. Write down the error interval for x.",
         worked_calculation=tuple(worked_calculation),
@@ -403,7 +403,7 @@ def generate_modelled_example_bounds_calculation(tier: Tier, rng: random.Random)
         )
 
     return ModelledExample(
-        topic_id="bounds_calculation",
+        topic_id="bounds_calculation_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -413,7 +413,7 @@ def generate_modelled_example_bounds_calculation(tier: Tier, rng: random.Random)
 
 
 TOPIC_ESTIMATION = TopicDefinition(
-    id="estimation_rounding",
+    id="estimation_rounding_F",
     display_name="Estimating Calculations",
     description="Estimate the value of a calculation by rounding each number to 1 significant figure.",
     generate=generate_estimation,
@@ -424,7 +424,7 @@ TOPIC_ESTIMATION = TopicDefinition(
 )
 
 TOPIC_ERROR_INTERVAL = TopicDefinition(
-    id="error_interval",
+    id="error_interval_F",
     display_name="Error Intervals",
     description="Write the error interval for a value given to a stated degree of accuracy.",
     generate=generate_error_interval,
@@ -435,7 +435,7 @@ TOPIC_ERROR_INTERVAL = TopicDefinition(
 )
 
 TOPIC_BOUNDS = TopicDefinition(
-    id="bounds_calculation",
+    id="bounds_calculation_H",
     display_name="Bounds of Calculations",
     description="Find the upper or lower bound of a quantity calculated from rounded measurements.",
     generate=generate_bounds_calculation,

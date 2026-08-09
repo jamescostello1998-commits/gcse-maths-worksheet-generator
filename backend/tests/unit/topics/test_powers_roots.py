@@ -87,24 +87,24 @@ def test_rationalise_denominator_never_leaves_a_root_on_the_bottom():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (powers_roots.generate_modelled_example_powers_foundation, Tier.FOUNDATION, "powers_foundation"),
-    (powers_roots.generate_modelled_example_powers_higher, Tier.HIGHER, "powers_higher"),
-    (powers_roots.generate_modelled_example_roots_foundation, Tier.FOUNDATION, "roots_foundation"),
-    (powers_roots.generate_modelled_example_roots_higher, Tier.HIGHER, "roots_higher"),
-    (powers_roots.generate_modelled_example_rationalise_denominator, Tier.HIGHER, "rationalise_denominator"),
-    (powers_roots.generate_modelled_example_negative_indices, Tier.FOUNDATION, "negative_indices"),
+    (powers_roots.generate_modelled_example_powers_foundation, Tier.FOUNDATION, "powers_F"),
+    (powers_roots.generate_modelled_example_powers_higher, Tier.HIGHER, "powers_H"),
+    (powers_roots.generate_modelled_example_roots_foundation, Tier.FOUNDATION, "roots_F"),
+    (powers_roots.generate_modelled_example_roots_higher, Tier.HIGHER, "roots_H"),
+    (powers_roots.generate_modelled_example_rationalise_denominator, Tier.HIGHER, "rationalise_denominator_H"),
+    (powers_roots.generate_modelled_example_negative_indices, Tier.FOUNDATION, "negative_indices_F"),
     (
         powers_roots.generate_modelled_example_simplifying_indices_challenging,
         Tier.HIGHER,
-        "simplifying_indices_challenging",
+        "simplifying_indices_challenging_H",
     ),
     (
         powers_roots.generate_modelled_example_indices_common_base_equations,
         Tier.HIGHER,
-        "indices_common_base_equations",
+        "indices_common_base_equations_H",
     ),
-    (powers_roots.generate_modelled_example_surds_multiply_divide, Tier.HIGHER, "surds_multiply_divide"),
-    (powers_roots.generate_modelled_example_algebraic_surds, Tier.HIGHER, "algebraic_surds"),
+    (powers_roots.generate_modelled_example_surds_multiply_divide, Tier.HIGHER, "surds_multiply_divide_H"),
+    (powers_roots.generate_modelled_example_algebraic_surds, Tier.HIGHER, "algebraic_surds_H"),
 ]
 
 

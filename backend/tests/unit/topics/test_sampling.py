@@ -42,7 +42,7 @@ def test_dedup_keys_vary_widely():
 
 def test_topic_definition_metadata():
     t = sampling.TOPIC_SAMPLING_METHODS
-    assert t.id == "sampling_methods"
+    assert t.id == "sampling_methods_F"
     assert t.section == "statistics"
     assert t.group == "Sampling and Populations"
     assert t.fixed_tier == Tier.FOUNDATION
@@ -53,7 +53,7 @@ def test_modelled_examples_are_valid():
     rng = random.Random(803)
     for _ in range(TRIALS):
         ex = sampling.generate_modelled_example_sampling_methods(Tier.FOUNDATION, rng)
-        assert ex.topic_id == "sampling_methods"
+        assert ex.topic_id == "sampling_methods_F"
         assert ex.tier == Tier.FOUNDATION
         assert ex.prompt
         assert len(ex.worked_calculation) >= 2

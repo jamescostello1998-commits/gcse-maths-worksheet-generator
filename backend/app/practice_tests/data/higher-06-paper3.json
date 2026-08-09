@@ -7,7 +7,7 @@
   "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "standard_form_add_subtract",
+      "topic_id": "standard_form_add_subtract_H",
       "prompt": "Work out (2 × 10^3) + (8 × 10^1). Give your answer in standard form.",
       "solution_steps": [
         "Write both numbers with the same power of 10: 2×10^3 = 200×10^1, 8×10^1 = 8×10^1",
@@ -42,7 +42,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_multiply_divide",
+      "topic_id": "standard_form_multiply_divide_H",
       "prompt": "Work out (4 × 10^-4) ÷ (1 × 10^2). Give your answer in standard form.",
       "solution_steps": [
         "Divide the mantissas: 4 ÷ 1 = 4",
@@ -71,7 +71,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "tree_diagram_mixed",
+      "topic_id": "tree_diagram_mixed_H",
       "prompt": "A bag contains 5 green and 7 red counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the two counters are different colours.",
       "solution_steps": [
         "After the first counter is picked (without replacement), there are 11 counters left.",
@@ -160,7 +160,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "roots_higher",
+      "topic_id": "roots_H",
       "prompt": "Simplify √176, giving your answer in the form a√b.",
       "solution_steps": [
         "Find the largest square factor of 176: 4^2 × 11 = 176",
@@ -189,7 +189,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "recurring_decimal_two_digit",
+      "topic_id": "recurring_decimal_two_digit_H",
       "prompt": "Write \\recur{0.}{04} as a fraction in its simplest form.",
       "solution_steps": [
         "Let x = \\recur{0.}{04}, so 100x = 04.0404... (two digits repeat, so multiply by 100 to shift a full block)",
@@ -224,7 +224,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_recurring_to_fraction",
+      "topic_id": "decimals_recurring_to_fraction_H",
       "prompt": "Write \\recur{0.9}{3} as a fraction in its simplest form.",
       "solution_steps": [
         "Let x = \\recur{0.9}{3}",
@@ -265,7 +265,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inequalities_region_higher",
+      "topic_id": "inequalities_region_H",
       "prompt": "On the grid, shade the region that satisfies both y > 2x + 1 and y > -2x - 3.",
       "solution_steps": [
         "Draw the line y = 2x + 1 (dashed - the line itself is not included in the region).",
@@ -329,7 +329,7 @@
       }
     },
     {
-      "topic_id": "satisfying_inequalities_higher",
+      "topic_id": "satisfying_inequalities_H",
       "prompt": "x satisfies both 2x + 6 ≥ 1 and 3x - 7 < -2. List the integer values of x that satisfy both.",
       "solution_steps": [
         "Solve the first inequality:",
@@ -380,7 +380,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "change_subject_factorise_higher",
+      "topic_id": "change_subject_factorise_H",
       "prompt": "Make x the subject of the formula cx + 9x = 51.",
       "solution_steps": [
         "cx + 9x = 51",
@@ -415,7 +415,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_brackets",
+      "topic_id": "linear_brackets_H",
       "prompt": "Solve: 4(4x + 8) = 80",
       "solution_steps": [
         "Expand the bracket: 4(4x + 8) = 16x + 32",
@@ -458,7 +458,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "perpendicular_lines_equation",
+      "topic_id": "perpendicular_lines_equation_H",
       "prompt": "A line is perpendicular to y = 2x - 3 and passes through the point (-1, 3). Find the equation of the line.",
       "solution_steps": [
         "Perpendicular gradients multiply to give -1: m × 2 = -1, so m = -1/2",
@@ -493,7 +493,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_triple_brackets",
+      "topic_id": "expand_triple_brackets_H",
       "prompt": "Expand and simplify: (2x + 3)(3x + 4)(x + 1)",
       "solution_steps": [
         "First expand two of the brackets: (2x + 3)(3x + 4) = 6x^2 + 17x + 12",
@@ -528,7 +528,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "change_subject_higher",
+      "topic_id": "change_subject_H",
       "prompt": "Make r the subject of the formula A = 2πr^2.",
       "solution_steps": [
         "A = 2πr^2",
@@ -563,7 +563,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_combine",
+      "topic_id": "ratio_combine_H",
       "prompt": "Given that a:b = 6:5 and b:c = 8:8, find a:b:c in its simplest form.",
       "solution_steps": [
         "Scale a:b = 6:5 by 8 so b = 40: a:b = 48:40",
@@ -604,7 +604,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_difference_higher",
+      "topic_id": "ratio_difference_H",
       "prompt": "a : b : c = 5 : 2 : 1.\na - c = 56.\nFind a, b and c, and their total.",
       "solution_steps": [
         "Difference in parts = 5 - 1 = 4 parts",
@@ -647,7 +647,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "density_higher",
+      "topic_id": "density_H",
       "prompt": "A stone in the shape of a cuboid has dimensions 3 cm × 4 cm × 2 cm and a density of 5 g/cm³. Find its mass.",
       "solution_steps": [
         "volume = length × width × height = 3 × 4 × 2 = 24 cm³",
@@ -676,7 +676,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "percentage_increase_decrease_calculator",
+      "topic_id": "percentage_increase_decrease_calculator_H",
       "prompt": "Using a calculator, increase £268.40 by 3.6%. Give your answer to 2 decimal places.",
       "solution_steps": [
         "Convert 3.6% to a multiplier: 1.036",
@@ -705,7 +705,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "vectors_arithmetic_higher",
+      "topic_id": "vectors_arithmetic_H",
       "prompt": "\\vec{a} = \\colvec{8}{-4} and \\vec{b} = \\colvec{-8}{-12}. Find -3\\vec{a} - (-1\\vec{b}).",
       "solution_steps": [
         "\\vec{a} = \\colvec{8}{-4}, \\vec{b} = \\colvec{-8}{-12}",
@@ -740,7 +740,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_polygon_interior",
+      "topic_id": "angles_polygon_interior_H",
       "prompt": "A polygon has 6 sides. 5 of its interior angles are each 110°, and the remaining interior angle is (4x + 154)°. Find x.",
       "solution_steps": [
         "Sum of interior angles = (n - 2) × 180 = (6 - 2) × 180 = 720°",
@@ -791,7 +791,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "cosine_rule",
+      "topic_id": "cosine_rule_H",
       "prompt": "In triangle ABC, side b = 18 cm, side c = 16 cm, and the angle between them, angle A = 100°. Find the length of side a, correct to 2 decimal places.",
       "solution_steps": [
         "Use the cosine rule: a² = b² + c² - 2bc cos(A)",
@@ -836,7 +836,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_semicircle_compound_higher",
+      "topic_id": "area_semicircle_compound_H",
       "prompt": "A shape is made from a rectangle 10 cm by 5 cm with a semicircle of diameter 10 cm attached to one side. Find the total area, giving your answer in terms of π.",
       "solution_steps": [
         "Area of rectangle = 10 × 5 = 50 cm²",
@@ -886,7 +886,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "tree_diagram_dependent",
+      "topic_id": "tree_diagram_dependent_H",
       "prompt": "A bag contains 5 red and 8 yellow counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the first counter is red and the second counter is red.",
       "solution_steps": [
         "After the first counter is picked (without replacement), there are 12 counters left.",
@@ -975,7 +975,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_combined_dice",
+      "topic_id": "probability_combined_dice_H",
       "prompt": "Two fair six-sided dice are rolled. Find the probability that at least one die shows 3.",
       "solution_steps": [
         "P(neither die shows 3) = 5/6 × 5/6 = 25/36",
@@ -1004,7 +1004,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "turning_point_of_graph",
+      "topic_id": "turning_point_of_graph_H",
       "prompt": "Find the coordinates of the turning point of the curve y = x^2 + 10x - 6.",
       "solution_steps": [
         "Complete the square: x^2 + 10x - 6 = (x + 5)^2 - 31",

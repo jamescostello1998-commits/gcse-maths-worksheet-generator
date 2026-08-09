@@ -85,7 +85,7 @@ def generate_set_notation(tier: Tier, rng: random.Random) -> Question:
         f"{notation} = {answer}",
     ]
     return Question(
-        topic_id="set_notation",
+        topic_id="set_notation_H",
         tier=Tier.HIGHER,
         prompt=(
             f"ξ = {{{', '.join(str(x) for x in universal)}}}, A = {{{', '.join(str(x) for x in sorted(a_set))}}}, "
@@ -173,7 +173,7 @@ def generate_modelled_example_set_notation(tier: Tier, rng: random.Random) -> Mo
     ]
 
     return ModelledExample(
-        topic_id="set_notation",
+        topic_id="set_notation_H",
         tier=Tier.HIGHER,
         prompt=(
             f"ξ = {{{', '.join(str(x) for x in universal)}}}, A = {{{', '.join(str(x) for x in sorted(a_set))}}}, "
@@ -240,7 +240,7 @@ def generate_set_notation_foundation(tier: Tier, rng: random.Random) -> Question
         f"Elements that {question_text}: {answer}",
     ]
     return Question(
-        topic_id="set_notation_foundation",
+        topic_id="set_notation_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"ξ = {{{', '.join(str(x) for x in universal)}}}, A = {{{', '.join(str(x) for x in sorted(a_set))}}}, "
@@ -317,7 +317,7 @@ def generate_modelled_example_set_notation_foundation(tier: Tier, rng: random.Ra
         f"Elements that {question_text}: {answer}",
     ]
     return ModelledExample(
-        topic_id="set_notation_foundation",
+        topic_id="set_notation_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"ξ = {{{', '.join(str(x) for x in universal)}}}, A = {{{', '.join(str(x) for x in sorted(a_set))}}}, "
@@ -367,7 +367,7 @@ def generate_product_rule_counting(tier: Tier, rng: random.Random) -> Question:
     )
     steps = ["Total combinations = " + " × ".join(str(count) for count in counts) + f" = {formula_total}"]
     return Question(
-        topic_id="product_rule_counting",
+        topic_id="product_rule_counting_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -414,7 +414,7 @@ def generate_modelled_example_product_rule_counting(tier: Tier, rng: random.Rand
     ]
 
     return ModelledExample(
-        topic_id="product_rule_counting",
+        topic_id="product_rule_counting_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -466,7 +466,7 @@ def generate_relative_frequency(tier: Tier, rng: random.Random) -> Question:
         f"× {future_trials} = {expected}",
     ]
     return Question(
-        topic_id="relative_frequency",
+        topic_id="relative_frequency_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A {item} is tested {trials} times, and it {event} {frequency} times. Use this relative frequency "
@@ -511,7 +511,7 @@ def generate_modelled_example_relative_frequency(tier: Tier, rng: random.Random)
     ]
 
     return ModelledExample(
-        topic_id="relative_frequency",
+        topic_id="relative_frequency_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A {item} is tested {trials} times, and it {event} {frequency} times. Use this relative "
@@ -589,7 +589,7 @@ def generate_two_way_tables(tier: Tier, rng: random.Random) -> Question:
     table_col_labels = [col_labels[0], col_labels[1], "Total"]
 
     return Question(
-        topic_id="two_way_tables",
+        topic_id="two_way_tables_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"The two-way table shows the number of {row_labels[0].lower()} and {row_labels[1].lower()} who "
@@ -673,7 +673,7 @@ def generate_modelled_example_two_way_tables(tier: Tier, rng: random.Random) -> 
     final_answer = "; ".join(f"'{row_labels[r]}' / '{col_labels[cidx]}' = {grid[r][cidx]}" for r, cidx in blanks)
 
     return ModelledExample(
-        topic_id="two_way_tables",
+        topic_id="two_way_tables_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"The two-way table shows the number of {row_labels[0].lower()} and {row_labels[1].lower()} who "
@@ -742,7 +742,7 @@ def generate_sample_space_diagrams(tier: Tier, rng: random.Random) -> Question:
         f"P({event_desc}) = {formula_prob.numerator}/{formula_prob.denominator}",
     ]
     return Question(
-        topic_id="sample_space_diagrams",
+        topic_id="sample_space_diagrams_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"Two fair spinners, one numbered 1 to {faces1} and the other numbered 1 to {faces2}, are spun "
@@ -833,7 +833,7 @@ def generate_modelled_example_sample_space_diagrams(tier: Tier, rng: random.Rand
     ]
 
     return ModelledExample(
-        topic_id="sample_space_diagrams",
+        topic_id="sample_space_diagrams_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"Two fair spinners, one numbered 1 to {faces1} and the other numbered 1 to {faces2}, are spun "
@@ -855,7 +855,7 @@ def generate_modelled_example_sample_space_diagrams(tier: Tier, rng: random.Rand
 
 
 TOPIC_SET_NOTATION = TopicDefinition(
-    id="set_notation",
+    id="set_notation_H",
     display_name="Set Notation",
     description="Use set notation (union, intersection, complement) to list elements of a set.",
     generate=generate_set_notation,
@@ -866,7 +866,7 @@ TOPIC_SET_NOTATION = TopicDefinition(
 )
 
 TOPIC_SET_NOTATION_FOUNDATION = TopicDefinition(
-    id="set_notation_foundation",
+    id="set_notation_F",
     display_name="Sets (Foundation)",
     description="List the elements of a set described in plain English, using a Venn-diagram style rule.",
     generate=generate_set_notation_foundation,
@@ -877,7 +877,7 @@ TOPIC_SET_NOTATION_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_PRODUCT_RULE_COUNTING = TopicDefinition(
-    id="product_rule_counting",
+    id="product_rule_counting_H",
     display_name="Product Rule for Counting",
     description="Use the product rule for counting to find the number of possible combinations.",
     generate=generate_product_rule_counting,
@@ -888,7 +888,7 @@ TOPIC_PRODUCT_RULE_COUNTING = TopicDefinition(
 )
 
 TOPIC_RELATIVE_FREQUENCY = TopicDefinition(
-    id="relative_frequency",
+    id="relative_frequency_F",
     display_name="Relative Frequency",
     description="Use relative frequency from a set of trials to estimate the probability of an event.",
     generate=generate_relative_frequency,
@@ -899,7 +899,7 @@ TOPIC_RELATIVE_FREQUENCY = TopicDefinition(
 )
 
 TOPIC_TWO_WAY_TABLES = TopicDefinition(
-    id="two_way_tables",
+    id="two_way_tables_F",
     display_name="Two-Way Tables",
     description="Interpret and complete a two-way table using row and column totals.",
     generate=generate_two_way_tables,
@@ -910,7 +910,7 @@ TOPIC_TWO_WAY_TABLES = TopicDefinition(
 )
 
 TOPIC_SAMPLE_SPACE_DIAGRAMS = TopicDefinition(
-    id="sample_space_diagrams",
+    id="sample_space_diagrams_F",
     display_name="Sample Space Diagrams",
     description="Use a sample space diagram to find the probability of a combined event.",
     generate=generate_sample_space_diagrams,

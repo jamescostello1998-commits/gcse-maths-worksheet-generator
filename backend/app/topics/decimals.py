@@ -45,7 +45,7 @@ def generate_round_to_decimal_places(tier: Tier, rng: random.Random) -> Question
         f"{value} rounded to {round_to} decimal place{plural} = {_fmt_decimal_fixed(correct)}",
     ]
     return Question(
-        topic_id="decimals_round_dp",
+        topic_id="decimals_round_dp_F",
         tier=Tier.FOUNDATION,
         prompt=f"Round {value} to {round_to} decimal place{plural}.",
         solution_steps=tuple(steps),
@@ -78,7 +78,7 @@ def generate_round_to_significant_figures(tier: Tier, rng: random.Random) -> Que
         f"{value} rounded to {sig_figs} significant figure{plural} = {_fmt_decimal_fixed(rounded)}",
     ]
     return Question(
-        topic_id="decimals_round_sf",
+        topic_id="decimals_round_sf_F",
         tier=Tier.FOUNDATION,
         prompt=f"Round {value} to {sig_figs} significant figure{plural}.",
         solution_steps=tuple(steps),
@@ -129,7 +129,7 @@ def generate_ordering(tier: Tier, rng: random.Random) -> Question:
         f"Order in {order_phrase}: {', '.join(ordered_display)}",
     ]
     return Question(
-        topic_id="decimals_ordering",
+        topic_id="decimals_ordering_F",
         tier=Tier.FOUNDATION,
         prompt=f"Write these values in {order_phrase}: {', '.join(display_strs)}",
         solution_steps=tuple(steps),
@@ -195,7 +195,7 @@ def generate_recurring_decimal_to_fraction(tier: Tier, rng: random.Random) -> Qu
         f"Simplify: {p}/{q}",
     ]
     return Question(
-        topic_id="decimals_recurring_to_fraction",
+        topic_id="decimals_recurring_to_fraction_H",
         tier=Tier.HIGHER,
         prompt=_recurring_fraction_prompt(rng, display_str, p, q),
         solution_steps=tuple(steps),
@@ -242,7 +242,7 @@ def generate_recurring_decimal_single_digit(tier: Tier, rng: random.Random) -> Q
         f"x = {digit}/9 = {p}/{q}",
     ]
     return Question(
-        topic_id="recurring_decimal_single_digit",
+        topic_id="recurring_decimal_single_digit_F",
         tier=Tier.FOUNDATION,
         prompt=_recurring_fraction_prompt(rng, display_str, p, q),
         solution_steps=tuple(steps),
@@ -286,7 +286,7 @@ def generate_recurring_decimal_two_digit(tier: Tier, rng: random.Random) -> Ques
         f"x = {block_value}/99 = {p}/{q}",
     ]
     return Question(
-        topic_id="recurring_decimal_two_digit",
+        topic_id="recurring_decimal_two_digit_H",
         tier=Tier.HIGHER,
         prompt=_recurring_fraction_prompt(rng, display_str, p, q),
         solution_steps=tuple(steps),
@@ -324,7 +324,7 @@ def generate_decimals_add_subtract(tier: Tier, rng: random.Random) -> Question:
         f"{v1} {op} {v2} = {result}",
     ]
     return Question(
-        topic_id="decimals_add_subtract",
+        topic_id="decimals_add_subtract_F",
         tier=Tier.FOUNDATION,
         prompt=f"{evaluate_verb(rng)} {v1} {op} {v2}.",
         solution_steps=tuple(steps),
@@ -358,7 +358,7 @@ def generate_decimals_multiply(tier: Tier, rng: random.Random) -> Question:
         f"Place the decimal point {total_dp} place{'s' if total_dp != 1 else ''} from the right: {result}",
     ]
     return Question(
-        topic_id="decimals_multiply",
+        topic_id="decimals_multiply_F",
         tier=Tier.FOUNDATION,
         prompt=f"{evaluate_verb(rng)} {v1} × {v2}.",
         solution_steps=tuple(steps),
@@ -404,7 +404,7 @@ def generate_dividing_decimals(tier: Tier, rng: random.Random) -> Question:
         dedup_key = f"div_dec:{dividend}:{divisor}"
 
     return Question(
-        topic_id="decimals_divide",
+        topic_id="decimals_divide_F",
         tier=Tier.FOUNDATION,
         prompt=f"{evaluate_verb(rng)} {dividend} ÷ {divisor}.",
         solution_steps=tuple(steps),
@@ -441,7 +441,7 @@ def generate_powers_of_ten(tier: Tier, rng: random.Random) -> Question:
         f"{_fmt_decimal_fixed(value)} {sign} {power} = {_fmt_decimal_fixed(result)}",
     ]
     return Question(
-        topic_id="number_powers_of_ten",
+        topic_id="number_powers_of_ten_F",
         tier=Tier.FOUNDATION,
         prompt=f"{evaluate_verb(rng)} {_fmt_decimal_fixed(value)} {sign} {power}.",
         solution_steps=tuple(steps),
@@ -486,7 +486,7 @@ def generate_modelled_example_round_to_decimal_places(tier: Tier, rng: random.Ra
         f"= {_fmt_decimal_fixed(correct)}",
     ]
     return ModelledExample(
-        topic_id="decimals_round_dp",
+        topic_id="decimals_round_dp_F",
         tier=Tier.FOUNDATION,
         prompt=f"Round {value} to {round_to} decimal place{plural}.",
         worked_calculation=tuple(worked_calculation),
@@ -533,7 +533,7 @@ def generate_modelled_example_round_to_significant_figures(tier: Tier, rng: rand
         f"= {_fmt_decimal_fixed(rounded)}",
     ]
     return ModelledExample(
-        topic_id="decimals_round_sf",
+        topic_id="decimals_round_sf_F",
         tier=Tier.FOUNDATION,
         prompt=f"Round {value} to {sig_figs} significant figure{plural}.",
         worked_calculation=tuple(worked_calculation),
@@ -598,7 +598,7 @@ def generate_modelled_example_ordering(tier: Tier, rng: random.Random) -> Modell
         f"{order_phrase}: {', '.join(ordered_display)}",
     ]
     return ModelledExample(
-        topic_id="decimals_ordering",
+        topic_id="decimals_ordering_F",
         tier=Tier.FOUNDATION,
         prompt=f"Write these values in {order_phrase}: {', '.join(display_strs)}",
         worked_calculation=tuple(worked_calculation),
@@ -658,7 +658,7 @@ def generate_modelled_example_recurring_decimal_to_fraction(tier: Tier, rng: ran
         f"= {p}/{q}",
     ]
     return ModelledExample(
-        topic_id="decimals_recurring_to_fraction",
+        topic_id="decimals_recurring_to_fraction_H",
         tier=Tier.HIGHER,
         prompt=_recurring_fraction_prompt(rng, display_str, p, q),
         worked_calculation=tuple(worked_calculation),
@@ -711,7 +711,7 @@ def generate_modelled_example_recurring_decimal_single_digit(tier: Tier, rng: ra
         worked_calculation.append(f"= {p}/{q}")
 
     return ModelledExample(
-        topic_id="recurring_decimal_single_digit",
+        topic_id="recurring_decimal_single_digit_F",
         tier=Tier.FOUNDATION,
         prompt=_recurring_fraction_prompt(rng, display_str, p, q),
         worked_calculation=tuple(worked_calculation),
@@ -765,7 +765,7 @@ def generate_modelled_example_recurring_decimal_two_digit(tier: Tier, rng: rando
         worked_calculation.append(f"= {p}/{q}")
 
     return ModelledExample(
-        topic_id="recurring_decimal_two_digit",
+        topic_id="recurring_decimal_two_digit_H",
         tier=Tier.HIGHER,
         prompt=_recurring_fraction_prompt(rng, display_str, p, q),
         worked_calculation=tuple(worked_calculation),
@@ -806,7 +806,7 @@ def generate_modelled_example_decimals_add_subtract(tier: Tier, rng: random.Rand
         f"= {result}",
     ]
     return ModelledExample(
-        topic_id="decimals_add_subtract",
+        topic_id="decimals_add_subtract_F",
         tier=Tier.FOUNDATION,
         prompt=f"{evaluate_verb(rng)} {v1} {op} {v2}.",
         worked_calculation=tuple(worked_calculation),
@@ -851,7 +851,7 @@ def generate_modelled_example_decimals_multiply(tier: Tier, rng: random.Random) 
         f"= {result}",
     ]
     return ModelledExample(
-        topic_id="decimals_multiply",
+        topic_id="decimals_multiply_F",
         tier=Tier.FOUNDATION,
         prompt=f"{evaluate_verb(rng)} {v1} × {v2}.",
         worked_calculation=tuple(worked_calculation),
@@ -922,7 +922,7 @@ def generate_modelled_example_dividing_decimals(tier: Tier, rng: random.Random) 
         final_answer = str(quotient)
 
     return ModelledExample(
-        topic_id="decimals_divide",
+        topic_id="decimals_divide_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -969,7 +969,7 @@ def generate_modelled_example_powers_of_ten(tier: Tier, rng: random.Random) -> M
         f"= {_fmt_decimal_fixed(result)}",
     ]
     return ModelledExample(
-        topic_id="number_powers_of_ten",
+        topic_id="number_powers_of_ten_F",
         tier=Tier.FOUNDATION,
         prompt=f"{evaluate_verb(rng)} {_fmt_decimal_fixed(value)} {sign} {power}.",
         worked_calculation=tuple(worked_calculation),
@@ -979,7 +979,7 @@ def generate_modelled_example_powers_of_ten(tier: Tier, rng: random.Random) -> M
 
 
 TOPIC_ROUND_DP = TopicDefinition(
-    id="decimals_round_dp",
+    id="decimals_round_dp_F",
     display_name="Rounding to Decimal Places",
     description="Round a number to a given number of decimal places.",
     generate=generate_round_to_decimal_places,
@@ -990,7 +990,7 @@ TOPIC_ROUND_DP = TopicDefinition(
 )
 
 TOPIC_ROUND_SF = TopicDefinition(
-    id="decimals_round_sf",
+    id="decimals_round_sf_F",
     display_name="Rounding to Significant Figures",
     description="Round a number to a given number of significant figures.",
     generate=generate_round_to_significant_figures,
@@ -1001,7 +1001,7 @@ TOPIC_ROUND_SF = TopicDefinition(
 )
 
 TOPIC_ORDERING = TopicDefinition(
-    id="decimals_ordering",
+    id="decimals_ordering_F",
     display_name="Ordering Decimals, Fractions & Percentages",
     description="Order a mixed list of decimals, fractions, and percentages.",
     generate=generate_ordering,
@@ -1012,7 +1012,7 @@ TOPIC_ORDERING = TopicDefinition(
 )
 
 TOPIC_RECURRING_TO_FRACTION = TopicDefinition(
-    id="decimals_recurring_to_fraction",
+    id="decimals_recurring_to_fraction_H",
     display_name="Recurring Decimals to Fractions",
     description="Convert a recurring decimal to a fraction in its simplest form.",
     generate=generate_recurring_decimal_to_fraction,
@@ -1023,7 +1023,7 @@ TOPIC_RECURRING_TO_FRACTION = TopicDefinition(
 )
 
 TOPIC_DIVIDE = TopicDefinition(
-    id="decimals_divide",
+    id="decimals_divide_F",
     display_name="Dividing Decimals",
     description="Divide a decimal by a whole number, or by another decimal.",
     generate=generate_dividing_decimals,
@@ -1034,7 +1034,7 @@ TOPIC_DIVIDE = TopicDefinition(
 )
 
 TOPIC_POWERS_OF_TEN = TopicDefinition(
-    id="number_powers_of_ten",
+    id="number_powers_of_ten_F",
     display_name="Multiplying & Dividing by Powers of 10",
     description="Multiply or divide a number by 10, 100, or 1000.",
     generate=generate_powers_of_ten,
@@ -1045,7 +1045,7 @@ TOPIC_POWERS_OF_TEN = TopicDefinition(
 )
 
 TOPIC_ADD_SUBTRACT = TopicDefinition(
-    id="decimals_add_subtract",
+    id="decimals_add_subtract_F",
     display_name="Adding and Subtracting Decimals",
     description="Add or subtract two decimals with a mixed number of decimal places.",
     generate=generate_decimals_add_subtract,
@@ -1056,7 +1056,7 @@ TOPIC_ADD_SUBTRACT = TopicDefinition(
 )
 
 TOPIC_MULTIPLY = TopicDefinition(
-    id="decimals_multiply",
+    id="decimals_multiply_F",
     display_name="Multiplying Decimals",
     description="Multiply two decimals together.",
     generate=generate_decimals_multiply,
@@ -1072,7 +1072,7 @@ TOPIC_MULTIPLY = TopicDefinition(
 # usual 20-question default, matching the precedent set by the Plotting Graphs topics
 # (see CLAUDE.md's "Watch the dedup-key state space" note).
 TOPIC_RECURRING_SINGLE_DIGIT = TopicDefinition(
-    id="recurring_decimal_single_digit",
+    id="recurring_decimal_single_digit_F",
     display_name="Recurring Decimals to Fractions (One Digit)",
     description="Convert a purely recurring decimal with a single repeating digit to a fraction.",
     generate=generate_recurring_decimal_single_digit,
@@ -1084,7 +1084,7 @@ TOPIC_RECURRING_SINGLE_DIGIT = TopicDefinition(
 )
 
 TOPIC_RECURRING_TWO_DIGIT = TopicDefinition(
-    id="recurring_decimal_two_digit",
+    id="recurring_decimal_two_digit_H",
     display_name="Recurring Decimals to Fractions (Two Digits)",
     description="Convert a purely recurring decimal with a two-digit repeating block to a fraction.",
     generate=generate_recurring_decimal_two_digit,

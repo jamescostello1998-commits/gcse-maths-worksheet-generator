@@ -78,7 +78,7 @@ def generate_algebraic_fractions_add_subtract(tier: Tier, rng: random.Random) ->
         f"= {answer}",
     ]
     return Question(
-        topic_id="algebraic_fractions_add_subtract",
+        topic_id="algebraic_fractions_add_subtract_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -130,7 +130,7 @@ def generate_algebraic_fractions_multiply_divide(tier: Tier, rng: random.Random)
     steps.append(f"= {answer}")
 
     return Question(
-        topic_id="algebraic_fractions_multiply_divide",
+        topic_id="algebraic_fractions_multiply_divide_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -185,7 +185,7 @@ def generate_modelled_example_algebraic_fractions_add_subtract(tier: Tier, rng: 
         f"= {answer}",
     ]
     return ModelledExample(
-        topic_id="algebraic_fractions_add_subtract",
+        topic_id="algebraic_fractions_add_subtract_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -250,7 +250,7 @@ def generate_modelled_example_algebraic_fractions_multiply_divide(tier: Tier, rn
         f"= {answer}",
     ]
     return ModelledExample(
-        topic_id="algebraic_fractions_multiply_divide",
+        topic_id="algebraic_fractions_multiply_divide_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -260,7 +260,7 @@ def generate_modelled_example_algebraic_fractions_multiply_divide(tier: Tier, rn
 
 
 TOPIC_ALGEBRAIC_FRACTIONS_ADD_SUBTRACT = TopicDefinition(
-    id="algebraic_fractions_add_subtract",
+    id="algebraic_fractions_add_subtract_H",
     display_name="Adding and Subtracting Algebraic Fractions",
     description="Combine two algebraic fractions with linear denominators into a single simplified fraction.",
     generate=generate_algebraic_fractions_add_subtract,
@@ -271,7 +271,7 @@ TOPIC_ALGEBRAIC_FRACTIONS_ADD_SUBTRACT = TopicDefinition(
 )
 
 TOPIC_ALGEBRAIC_FRACTIONS_MULTIPLY_DIVIDE = TopicDefinition(
-    id="algebraic_fractions_multiply_divide",
+    id="algebraic_fractions_multiply_divide_H",
     display_name="Multiplying and Dividing Algebraic Fractions",
     description="Multiply or divide algebraic fractions, factorising and cancelling common factors.",
     generate=generate_algebraic_fractions_multiply_divide,

@@ -78,7 +78,7 @@ def generate_plot_straight_line(tier: Tier, rng: random.Random) -> Question:
         "Plot each (x, y) point and join them with a single ruled straight line.",
     ]
     return Question(
-        topic_id="plot_straight_line",
+        topic_id="plot_straight_line_F",
         tier=Tier.FOUNDATION,
         prompt=f"Complete a table of values for y = {fmt_linear(m, c)} for x = -3 to 3, then plot the graph.",
         solution_steps=tuple(steps),
@@ -130,7 +130,7 @@ def generate_plot_quadratic(tier: Tier, rng: random.Random) -> Question:
         "Plot each (x, y) point and join them with a single smooth curve.",
     ]
     return Question(
-        topic_id="plot_quadratic",
+        topic_id="plot_quadratic_F",
         tier=Tier.FOUNDATION,
         prompt=f"Complete a table of values for y = {_fmt_quadratic(a, b, c)} for x = -3 to 3, then plot the graph.",
         solution_steps=tuple(steps),
@@ -180,7 +180,7 @@ def generate_plot_cubic(tier: Tier, rng: random.Random) -> Question:
         "Plot each (x, y) point and join them with a single smooth curve.",
     ]
     return Question(
-        topic_id="plot_cubic",
+        topic_id="plot_cubic_H",
         tier=Tier.HIGHER,
         prompt=f"Complete a table of values for y = {_fmt_cubic(a, b)} for x = -3 to 3, then plot the graph.",
         solution_steps=tuple(steps),
@@ -239,7 +239,7 @@ def generate_plot_exponential(tier: Tier, rng: random.Random) -> Question:
         "and approaching (but never touching) the x-axis as x decreases.",
     ]
     return Question(
-        topic_id="plot_exponential",
+        topic_id="plot_exponential_H",
         tier=Tier.HIGHER,
         prompt=f"Complete a table of values for y = {fn_str} for x = 0 to 4, then plot the graph.",
         solution_steps=tuple(steps),
@@ -359,7 +359,7 @@ def generate_trig_graph(tier: Tier, rng: random.Random) -> Question:
         f"Plot each (x, y) point and join them with a single smooth curve - {shape_note}",
     ]
     return Question(
-        topic_id="trig_graph",
+        topic_id="trig_graph_H",
         tier=Tier.HIGHER,
         prompt=f"Complete a table of values for y = {fn_str} for x = {x_min} to {x_max} (in steps of {step}°), "
         "then plot the graph.",
@@ -409,7 +409,7 @@ def generate_plot_reciprocal(tier: Tier, rng: random.Random) -> Question:
         "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
     ]
     return Question(
-        topic_id="plot_reciprocal",
+        topic_id="plot_reciprocal_H",
         tier=Tier.HIGHER,
         prompt=(
             f"Complete a table of values for y = {_fmt_reciprocal(a)} for x = -4, -3, -2, -1, 1, 2, 3, 4, "
@@ -461,7 +461,7 @@ def generate_plot_distance_time(tier: Tier, rng: random.Random) -> Question:
         f"Total distance travelled = {distance} km out + {distance} km back = {direct_total} km",
     ]
     return Question(
-        topic_id="plot_distance_time",
+        topic_id="plot_distance_time_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop {distance} km "
@@ -514,7 +514,7 @@ def generate_line_equation_from_graph(tier: Tier, rng: random.Random) -> Questio
         f"Equation of the line: y = {fmt_linear(m, c)}",
     ]
     return Question(
-        topic_id="line_equation_from_graph",
+        topic_id="line_equation_from_graph_F",
         tier=Tier.FOUNDATION,
         prompt="The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
         solution_steps=tuple(steps),
@@ -552,7 +552,7 @@ def generate_parallel_lines_equation(tier: Tier, rng: random.Random) -> Question
         f"Equation of the line: y = {fmt_linear(m, c2)}",
     ]
     return Question(
-        topic_id="parallel_lines_equation",
+        topic_id="parallel_lines_equation_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A line is parallel to y = {fmt_linear(m, c1)} and passes through the point ({x0}, {y0}). "
@@ -586,7 +586,7 @@ def generate_perpendicular_lines_equation(tier: Tier, rng: random.Random) -> Que
         f"Equation of the line: y = {fmt_linear(m2, c2)}",
     ]
     return Question(
-        topic_id="perpendicular_lines_equation",
+        topic_id="perpendicular_lines_equation_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A line is perpendicular to y = {fmt_linear(m1, c1)} and passes through the point ({x0}, {y0}). "
@@ -666,7 +666,7 @@ def generate_distance_time_interpret(tier: Tier, rng: random.Random) -> Question
         final_answer = f"{fmt_num(average_speed_kmh)} km/h"
 
     return Question(
-        topic_id="distance_time_interpret",
+        topic_id="distance_time_interpret_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -745,7 +745,7 @@ def generate_velocity_time_interpret(tier: Tier, rng: random.Random) -> Question
         final_answer = f"{fmt_num(dist_total_direct)} m"
 
     return Question(
-        topic_id="velocity_time_interpret",
+        topic_id="velocity_time_interpret_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -842,7 +842,7 @@ def generate_graph_transformations(tier: Tier, rng: random.Random) -> Question:
 
     steps = [f"{notation} corresponds to a {description[0].lower()}{description[1:]}."]
     return Question(
-        topic_id="graph_transformations",
+        topic_id="graph_transformations_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -882,7 +882,7 @@ def generate_modelled_example_plot_straight_line(tier: Tier, rng: random.Random)
         "y: " + ", ".join(str(y) for y in ys),
     ]
     return ModelledExample(
-        topic_id="plot_straight_line",
+        topic_id="plot_straight_line_F",
         tier=Tier.FOUNDATION,
         prompt=f"Complete a table of values for y = {fmt_linear(m, c)} for x = -3 to 3, then plot the graph.",
         worked_calculation=tuple(worked_calculation),
@@ -931,7 +931,7 @@ def generate_modelled_example_plot_quadratic(tier: Tier, rng: random.Random) -> 
         "y: " + ", ".join(str(y) for y in ys),
     ]
     return ModelledExample(
-        topic_id="plot_quadratic",
+        topic_id="plot_quadratic_F",
         tier=Tier.FOUNDATION,
         prompt=f"Complete a table of values for y = {_fmt_quadratic(a, b, c)} for x = -3 to 3, then plot the graph.",
         worked_calculation=tuple(worked_calculation),
@@ -979,7 +979,7 @@ def generate_modelled_example_plot_cubic(tier: Tier, rng: random.Random) -> Mode
         "y: " + ", ".join(str(y) for y in ys),
     ]
     return ModelledExample(
-        topic_id="plot_cubic",
+        topic_id="plot_cubic_H",
         tier=Tier.HIGHER,
         prompt=f"Complete a table of values for y = {_fmt_cubic(a, b)} for x = -3 to 3, then plot the graph.",
         worked_calculation=tuple(worked_calculation),
@@ -1027,7 +1027,7 @@ def generate_modelled_example_plot_exponential(tier: Tier, rng: random.Random) -
         "y: " + ", ".join(str(y) for y in ys),
     ]
     return ModelledExample(
-        topic_id="plot_exponential",
+        topic_id="plot_exponential_H",
         tier=Tier.HIGHER,
         prompt=f"Complete a table of values for y = {fn_str} for x = 0 to 4, then plot the graph.",
         worked_calculation=tuple(worked_calculation),
@@ -1073,7 +1073,7 @@ def generate_modelled_example_trig_graph(tier: Tier, rng: random.Random) -> Mode
         "y: " + ", ".join(str(y) for y in ys),
     ]
     return ModelledExample(
-        topic_id="trig_graph",
+        topic_id="trig_graph_H",
         tier=Tier.HIGHER,
         prompt=f"Complete a table of values for y = {fn_str} for x = {x_min} to {x_max} (in steps of {step}°), "
         "then plot the graph.",
@@ -1121,7 +1121,7 @@ def generate_modelled_example_plot_reciprocal(tier: Tier, rng: random.Random) ->
         "y: " + ", ".join(str(y) for y in ys),
     ]
     return ModelledExample(
-        topic_id="plot_reciprocal",
+        topic_id="plot_reciprocal_H",
         tier=Tier.HIGHER,
         prompt=(
             f"Complete a table of values for y = {_fmt_reciprocal(a)} for x = -4, -3, -2, -1, 1, 2, 3, 4, "
@@ -1170,7 +1170,7 @@ def generate_modelled_example_plot_distance_time(tier: Tier, rng: random.Random)
         f"Total distance = {distance} + {distance} = {direct_total} km",
     ]
     return ModelledExample(
-        topic_id="plot_distance_time",
+        topic_id="plot_distance_time_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop {distance} km "
@@ -1224,7 +1224,7 @@ def generate_modelled_example_line_equation_from_graph(tier: Tier, rng: random.R
         f"y = {fmt_linear(m, c)}",
     ]
     return ModelledExample(
-        topic_id="line_equation_from_graph",
+        topic_id="line_equation_from_graph_F",
         tier=Tier.FOUNDATION,
         prompt="The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
         worked_calculation=tuple(worked_calculation),
@@ -1270,7 +1270,7 @@ def generate_modelled_example_parallel_lines_equation(tier: Tier, rng: random.Ra
         f"y = {fmt_linear(m, c2)}",
     ]
     return ModelledExample(
-        topic_id="parallel_lines_equation",
+        topic_id="parallel_lines_equation_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A line is parallel to y = {fmt_linear(m, c1)} and passes through the point ({x0}, {y0}). "
@@ -1311,7 +1311,7 @@ def generate_modelled_example_perpendicular_lines_equation(tier: Tier, rng: rand
         f"y = {fmt_linear(m2, c2)}",
     ]
     return ModelledExample(
-        topic_id="perpendicular_lines_equation",
+        topic_id="perpendicular_lines_equation_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A line is perpendicular to y = {fmt_linear(m1, c1)} and passes through the point ({x0}, {y0}). "
@@ -1413,7 +1413,7 @@ def generate_modelled_example_distance_time_interpret(tier: Tier, rng: random.Ra
         final_answer = f"{fmt_num(average_speed_kmh)} km/h"
 
     return ModelledExample(
-        topic_id="distance_time_interpret",
+        topic_id="distance_time_interpret_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -1509,7 +1509,7 @@ def generate_modelled_example_velocity_time_interpret(tier: Tier, rng: random.Ra
         final_answer = f"{fmt_num(dist_total_direct)} m"
 
     return ModelledExample(
-        topic_id="velocity_time_interpret",
+        topic_id="velocity_time_interpret_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -1581,7 +1581,7 @@ def generate_modelled_example_graph_transformations(tier: Tier, rng: random.Rand
         final_answer = notation
 
     return ModelledExample(
-        topic_id="graph_transformations",
+        topic_id="graph_transformations_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -1592,7 +1592,7 @@ def generate_modelled_example_graph_transformations(tier: Tier, rng: random.Rand
 
 
 TOPIC_PLOT_STRAIGHT_LINE = TopicDefinition(
-    id="plot_straight_line",
+    id="plot_straight_line_F",
     display_name="Plotting Straight Line Graphs",
     description="Complete a table of values and plot a straight line graph on the axes provided. (5 questions)",
     generate=generate_plot_straight_line,
@@ -1604,7 +1604,7 @@ TOPIC_PLOT_STRAIGHT_LINE = TopicDefinition(
 )
 
 TOPIC_PLOT_QUADRATIC = TopicDefinition(
-    id="plot_quadratic",
+    id="plot_quadratic_F",
     display_name="Plotting Quadratic Graphs",
     description="Complete a table of values and plot a quadratic graph on the axes provided. (5 questions)",
     generate=generate_plot_quadratic,
@@ -1616,7 +1616,7 @@ TOPIC_PLOT_QUADRATIC = TopicDefinition(
 )
 
 TOPIC_PLOT_CUBIC = TopicDefinition(
-    id="plot_cubic",
+    id="plot_cubic_H",
     display_name="Plotting Cubic Graphs",
     description="Complete a table of values and plot a cubic graph on the axes provided. (5 questions)",
     generate=generate_plot_cubic,
@@ -1628,7 +1628,7 @@ TOPIC_PLOT_CUBIC = TopicDefinition(
 )
 
 TOPIC_PLOT_EXPONENTIAL = TopicDefinition(
-    id="plot_exponential",
+    id="plot_exponential_H",
     display_name="Plotting Exponential Graphs",
     description="Complete a table of values and plot an exponential graph on the axes provided. (5 questions)",
     generate=generate_plot_exponential,
@@ -1640,7 +1640,7 @@ TOPIC_PLOT_EXPONENTIAL = TopicDefinition(
 )
 
 TOPIC_TRIG_GRAPH = TopicDefinition(
-    id="trig_graph",
+    id="trig_graph_H",
     display_name="Plotting Trigonometric Graphs",
     description=(
         "Complete a table of values and plot a sine, cosine, or tangent graph on the axes provided. "
@@ -1655,7 +1655,7 @@ TOPIC_TRIG_GRAPH = TopicDefinition(
 )
 
 TOPIC_PLOT_RECIPROCAL = TopicDefinition(
-    id="plot_reciprocal",
+    id="plot_reciprocal_H",
     display_name="Plotting Reciprocal Graphs",
     description="Complete a table of values and plot a reciprocal graph on the axes provided. (5 questions)",
     generate=generate_plot_reciprocal,
@@ -1667,7 +1667,7 @@ TOPIC_PLOT_RECIPROCAL = TopicDefinition(
 )
 
 TOPIC_PLOT_DISTANCE_TIME = TopicDefinition(
-    id="plot_distance_time",
+    id="plot_distance_time_F",
     display_name="Plotting Distance-Time Graphs",
     description="Draw a distance-time graph from a description of a journey, on the axes provided. (5 questions)",
     generate=generate_plot_distance_time,
@@ -1679,7 +1679,7 @@ TOPIC_PLOT_DISTANCE_TIME = TopicDefinition(
 )
 
 TOPIC_LINE_EQUATION_FROM_GRAPH = TopicDefinition(
-    id="line_equation_from_graph",
+    id="line_equation_from_graph_F",
     display_name="Equation of a Line from a Graph",
     description="Read the gradient and intercept from a graph to find the equation of a straight line.",
     generate=generate_line_equation_from_graph,
@@ -1690,7 +1690,7 @@ TOPIC_LINE_EQUATION_FROM_GRAPH = TopicDefinition(
 )
 
 TOPIC_PARALLEL_LINES_EQUATION = TopicDefinition(
-    id="parallel_lines_equation",
+    id="parallel_lines_equation_F",
     display_name="Parallel Lines",
     description="Find the equation of a line parallel to a given line through a given point.",
     generate=generate_parallel_lines_equation,
@@ -1701,7 +1701,7 @@ TOPIC_PARALLEL_LINES_EQUATION = TopicDefinition(
 )
 
 TOPIC_PERPENDICULAR_LINES_EQUATION = TopicDefinition(
-    id="perpendicular_lines_equation",
+    id="perpendicular_lines_equation_H",
     display_name="Perpendicular Lines",
     description="Find the equation of a line perpendicular to a given line through a given point.",
     generate=generate_perpendicular_lines_equation,
@@ -1712,7 +1712,7 @@ TOPIC_PERPENDICULAR_LINES_EQUATION = TopicDefinition(
 )
 
 TOPIC_DISTANCE_TIME_INTERPRET = TopicDefinition(
-    id="distance_time_interpret",
+    id="distance_time_interpret_F",
     display_name="Interpreting Distance-Time Graphs",
     description="Read speeds, rest periods, and total distance from a distance-time graph.",
     generate=generate_distance_time_interpret,
@@ -1723,7 +1723,7 @@ TOPIC_DISTANCE_TIME_INTERPRET = TopicDefinition(
 )
 
 TOPIC_VELOCITY_TIME_INTERPRET = TopicDefinition(
-    id="velocity_time_interpret",
+    id="velocity_time_interpret_H",
     display_name="Interpreting Velocity-Time Graphs",
     description="Find acceleration (gradient) and distance travelled (area) from a velocity-time graph.",
     generate=generate_velocity_time_interpret,
@@ -1734,7 +1734,7 @@ TOPIC_VELOCITY_TIME_INTERPRET = TopicDefinition(
 )
 
 TOPIC_GRAPH_TRANSFORMATIONS = TopicDefinition(
-    id="graph_transformations",
+    id="graph_transformations_H",
     display_name="Transformations of Graphs",
     description="Translate or reflect the graph of y = f(x) and describe or write the resulting equation.",
     generate=generate_graph_transformations,

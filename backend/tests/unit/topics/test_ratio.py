@@ -83,7 +83,7 @@ def test_modelled_example_share_two_produces_verified_examples():
     rng = random.Random(302)
     for _ in range(TRIALS):
         example = ratio.generate_modelled_example_share_two(Tier.FOUNDATION, rng)
-        assert example.topic_id == "ratio_share_two_part"
+        assert example.topic_id == "ratio_share_two_part_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -94,7 +94,7 @@ def test_modelled_example_find_share_produces_verified_examples():
     rng = random.Random(303)
     for _ in range(TRIALS):
         example = ratio.generate_modelled_example_find_share(Tier.FOUNDATION, rng)
-        assert example.topic_id == "ratio_find_missing_share"
+        assert example.topic_id == "ratio_find_missing_share_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -105,7 +105,7 @@ def test_modelled_example_share_three_produces_verified_examples():
     rng = random.Random(304)
     for _ in range(TRIALS):
         example = ratio.generate_modelled_example_share_three(Tier.HIGHER, rng)
-        assert example.topic_id == "ratio_share_three_part"
+        assert example.topic_id == "ratio_share_three_part_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -116,7 +116,7 @@ def test_modelled_example_share_three_foundation_produces_verified_examples():
     rng = random.Random(306)
     for _ in range(TRIALS):
         example = ratio.generate_modelled_example_share_three_foundation(Tier.FOUNDATION, rng)
-        assert example.topic_id == "ratio_share_three_part_foundation"
+        assert example.topic_id == "ratio_share_three_part_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -127,7 +127,7 @@ def test_modelled_example_combine_ratios_produces_verified_examples():
     rng = random.Random(305)
     for _ in range(TRIALS):
         example = ratio.generate_modelled_example_combine_ratios(Tier.HIGHER, rng)
-        assert example.topic_id == "ratio_combine"
+        assert example.topic_id == "ratio_combine_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -138,7 +138,7 @@ def test_modelled_example_ratio_1_to_n_produces_verified_examples():
     rng = random.Random(307)
     for _ in range(TRIALS):
         example = ratio.generate_modelled_example_ratio_1_to_n(Tier.FOUNDATION, rng)
-        assert example.topic_id == "ratio_1_to_n"
+        assert example.topic_id == "ratio_1_to_n_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -149,7 +149,7 @@ def test_modelled_example_ratio_difference_produces_verified_examples():
     rng = random.Random(308)
     for _ in range(TRIALS):
         example = ratio.generate_modelled_example_ratio_difference(Tier.FOUNDATION, rng)
-        assert example.topic_id == "ratio_difference"
+        assert example.topic_id == "ratio_difference_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -160,7 +160,7 @@ def test_modelled_example_ratio_difference_higher_produces_verified_examples():
     rng = random.Random(309)
     for _ in range(TRIALS):
         example = ratio.generate_modelled_example_ratio_difference_higher(Tier.HIGHER, rng)
-        assert example.topic_id == "ratio_difference_higher"
+        assert example.topic_id == "ratio_difference_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -171,7 +171,7 @@ def test_modelled_example_ratio_to_equation_produces_verified_examples():
     rng = random.Random(310)
     for _ in range(TRIALS):
         example = ratio.generate_modelled_example_ratio_to_equation(Tier.HIGHER, rng)
-        assert example.topic_id == "ratio_to_equation"
+        assert example.topic_id == "ratio_to_equation_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -182,7 +182,7 @@ def test_modelled_example_ratio_shape_similar_foundation_produces_verified_examp
     rng = random.Random(311)
     for _ in range(TRIALS):
         example = ratio.generate_modelled_example_ratio_shape_similar_foundation(Tier.FOUNDATION, rng)
-        assert example.topic_id == "ratio_shape_similar_foundation"
+        assert example.topic_id == "ratio_shape_similar_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -193,7 +193,7 @@ def test_modelled_example_ratio_shape_similar_higher_produces_verified_examples(
     rng = random.Random(312)
     for _ in range(TRIALS):
         example = ratio.generate_modelled_example_ratio_shape_similar_higher(Tier.HIGHER, rng)
-        assert example.topic_id == "ratio_shape_similar_higher"
+        assert example.topic_id == "ratio_shape_similar_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3

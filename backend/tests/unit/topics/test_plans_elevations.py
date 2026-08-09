@@ -92,7 +92,7 @@ def test_all_dimensions_are_capped_at_eight():
 
 def test_topic_definition_metadata():
     t = plans_elevations.TOPIC_PLANS_AND_ELEVATIONS
-    assert t.id == "plans_and_elevations"
+    assert t.id == "plans_and_elevations_F"
     assert t.section == "geometry"
     assert t.group == "3D Shapes"
     assert t.fixed_tier == Tier.FOUNDATION
@@ -103,7 +103,7 @@ def test_modelled_examples_are_valid():
     rng = random.Random(1105)
     for _ in range(TRIALS):
         ex = plans_elevations.generate_modelled_example_plans_and_elevations(Tier.FOUNDATION, rng)
-        assert ex.topic_id == "plans_and_elevations"
+        assert ex.topic_id == "plans_and_elevations_F"
         assert ex.tier == Tier.FOUNDATION
         assert ex.prompt
         assert len(ex.worked_calculation) >= 2

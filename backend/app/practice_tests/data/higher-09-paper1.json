@@ -7,7 +7,7 @@
   "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "simplifying_indices_challenging",
+      "topic_id": "simplifying_indices_challenging_H",
       "prompt": "Simplify 4^(1/2) × 4^-2, giving your answer as a fraction where necessary.",
       "solution_steps": [
         "4^(1/2) is the square root of 4, which is 2, so 4^(1/2) = 2^1",
@@ -48,7 +48,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "rationalise_denominator",
+      "topic_id": "rationalise_denominator_H",
       "prompt": "Rationalise the denominator of \\frac{8}{√6}, giving your answer in its simplest form.",
       "solution_steps": [
         "Multiply the top and bottom by √6: \\frac{8}{√6} = \\frac{8√6}{6}",
@@ -77,7 +77,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_mixed_number_arithmetic",
+      "topic_id": "fractions_mixed_number_arithmetic_H",
       "prompt": "Work out 5 2/3 - 4 1/3. Give your answer as a mixed number.",
       "solution_steps": [
         "Convert to improper fractions: 5 2/3 = 17/3, 4 1/3 = 13/3",
@@ -112,7 +112,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "indices_common_base_equations",
+      "topic_id": "indices_common_base_equations_H",
       "prompt": "Solve 3^(3x) = 1/27.",
       "solution_steps": [
         "Write the right-hand side as a power of 3: \\frac{1}{3³} = 3^-3",
@@ -153,7 +153,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_multiply_divide",
+      "topic_id": "standard_form_multiply_divide_H",
       "prompt": "Work out (7 × 10^5) × (3 × 10^-3). Give your answer in standard form.",
       "solution_steps": [
         "Multiply the mantissas: 7 × 3 = 21",
@@ -188,7 +188,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bounds_calculation",
+      "topic_id": "bounds_calculation_H",
       "prompt": "A rectangle has length 20 cm and width 10 cm, both measured to the nearest cm. Calculate the upper bound for the area of the rectangle.",
       "solution_steps": [
         "Length: 20 cm (to the nearest cm) gives 19.5 ≤ length < 20.5",
@@ -223,7 +223,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_proof",
+      "topic_id": "algebraic_proof_H",
       "prompt": "Prove algebraically that n^2 - n is always even.",
       "solution_steps": [
         "n^2 - n factorises as n(n - 1), the product of two consecutive integers n - 1 and n.",
@@ -265,7 +265,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_graph",
+      "topic_id": "trig_graph_H",
       "prompt": "Complete a table of values for y = -cos(x°) for x = -180 to 180 (in steps of 90°), then plot the graph.",
       "solution_steps": [
         "Table of values for y = -cos(x°):",
@@ -353,7 +353,7 @@
       }
     },
     {
-      "topic_id": "satisfying_inequalities_higher",
+      "topic_id": "satisfying_inequalities_H",
       "prompt": "Solve the inequality -1 < -2x + 5 ≤ 7, then list the integer values of x that satisfy it.",
       "solution_steps": [
         "-1 < -2x + 5 ≤ 7",
@@ -396,7 +396,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "special_sequences_higher",
+      "topic_id": "special_sequences_H",
       "prompt": "The first 4 terms of a geometric sequence are: 6, 18, 54, 162. Find the 5th term of the sequence.",
       "solution_steps": [
         "Common ratio r = 3 (divide any term by the term before it).",
@@ -431,7 +431,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_quadratic_nth_term",
+      "topic_id": "sequences_quadratic_nth_term_H",
       "prompt": "Here are the first four terms of a quadratic sequence: 7, 15, 29, 49.\nFind an expression for the nth term.",
       "solution_steps": [
         "First differences: 8, 14, 20",
@@ -466,7 +466,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_fractions_multiply_divide",
+      "topic_id": "algebraic_fractions_multiply_divide_H",
       "prompt": "Simplify \\frac{x^2 - 64}{x - 4} ÷ \\frac{x - 8}{x - 4}, giving your answer in its simplest form.",
       "solution_steps": [
         "Factorise the difference of two squares: x^2 - 64 = (x - 8)(x + 8)",
@@ -508,7 +508,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "venn_diagram_algebra",
+      "topic_id": "venn_diagram_algebra_H",
       "prompt": "The Venn diagram shows the number of elements in each region of sets A and B, given in terms of x. There are 62 elements in total. Find the value of x, and hence find the number of elements in A.",
       "solution_steps": [
         "a_only + b_only + both + neither = total: (2x) + (3x) + (x + 2) + 18 = 62",
@@ -564,7 +564,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "unit_conversions_higher",
+      "topic_id": "unit_conversions_H",
       "prompt": "Convert 2523 mm³ to cm³.",
       "solution_steps": [
         "Linear conversion factor: 1 cm = 10 mm, so for volume, 1 cm³ = 10^3 = 1000 mm³",
@@ -593,7 +593,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_shape_similar_higher",
+      "topic_id": "ratio_shape_similar_H",
       "prompt": "Shape A and Shape B are similar. The volume of shape B is 27 cm^3. Find the volume of shape A.",
       "solution_steps": [
         "Linear scale factor = 6 ÷ 2 = 3",
@@ -634,7 +634,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_combine",
+      "topic_id": "ratio_combine_H",
       "prompt": "Given that a:b = 4:7 and b:c = 7:7, find a:b:c in its simplest form.",
       "solution_steps": [
         "Scale a:b = 4:7 by 1 so b = 7: a:b = 4:7",
@@ -675,7 +675,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pressure_higher",
+      "topic_id": "pressure_H",
       "prompt": "A concrete block has a rectangular base measuring 26 cm × 22 cm and exerts a force of 4425 N. Find the pressure it exerts, correct to 2 decimal places.",
       "solution_steps": [
         "area = length × width = 26 × 22 = 572 cm²",
@@ -704,7 +704,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_straight_line_higher",
+      "topic_id": "angles_straight_line_H",
       "prompt": "The angles 133° and (2x + 43)° lie on a straight line. Find x.",
       "solution_steps": [
         "Angles on a straight line sum to 180°.",
@@ -760,7 +760,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_subtract_compound",
+      "topic_id": "area_subtract_compound_H",
       "prompt": "Find the shaded area.",
       "solution_steps": [
         "Area of large rectangle = 19 × 20 = 380 cm²",
@@ -813,7 +813,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_triangle_higher",
+      "topic_id": "angles_triangle_H",
       "prompt": "A triangle has angles 35°, 22°, and (4x + 43)°. Find x.",
       "solution_steps": [
         "Angles in a triangle sum to 180°.",
@@ -865,7 +865,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "geometric_vectors",
+      "topic_id": "geometric_vectors_H",
       "prompt": "OAB is a triangle with OA = \\vec{a} and OB = \\vec{b}. Point P lies on AB such that AP:PB = 5:2. Find the vector AP in terms of \\vec{a} and \\vec{b}, giving your answer in its simplest form.",
       "solution_steps": [
         "AB = OB - OA = \\vec{b} - \\vec{a}",
@@ -912,7 +912,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "venn_diagram_notation",
+      "topic_id": "venn_diagram_notation_H",
       "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9}. The Venn diagram shows sets A and B. List the elements of B.",
       "solution_steps": [
         "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9}",
@@ -968,7 +968,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_conditional",
+      "topic_id": "probability_conditional_H",
       "prompt": "A bag contains 3 green and 7 purple counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
       "solution_steps": [
         "P(both green) = 3/10 × 2/9 = 1/15",

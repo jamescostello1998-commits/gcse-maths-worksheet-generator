@@ -49,7 +49,7 @@ def generate_powers_foundation(tier: Tier, rng: random.Random) -> Question:
 
         steps = [f"{base}^{exponent} = " + " × ".join([str(base)] * exponent) + f" = {result}"]
         return Question(
-            topic_id="powers_foundation",
+            topic_id="powers_F",
             tier=Tier.FOUNDATION,
             prompt=f"{evaluate_verb(rng)} {base}^{exponent}.",
             solution_steps=tuple(steps),
@@ -87,7 +87,7 @@ def generate_powers_foundation(tier: Tier, rng: random.Random) -> Question:
         dedup_key = f"pow_pow:{base}:{m}:{n}"
 
     return Question(
-        topic_id="powers_foundation",
+        topic_id="powers_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -119,7 +119,7 @@ def generate_powers_higher(tier: Tier, rng: random.Random) -> Question:
 
         steps = [f"{base}^-{exponent} = \\frac{{1}}{{{base}{_superscript(exponent)}}} = 1/{base**exponent}"]
         return Question(
-            topic_id="powers_higher",
+            topic_id="powers_H",
             tier=Tier.HIGHER,
             prompt=f"{evaluate_verb(rng)} {base}^-{exponent}. Give your answer as a fraction.",
             solution_steps=tuple(steps),
@@ -131,7 +131,7 @@ def generate_powers_higher(tier: Tier, rng: random.Random) -> Question:
         base = rng.randint(2, 20)
         steps = ["Any nonzero number raised to the power 0 equals 1.", f"{base}^0 = 1"]
         return Question(
-            topic_id="powers_higher",
+            topic_id="powers_H",
             tier=Tier.HIGHER,
             prompt=f"{evaluate_verb(rng)} {base}^0.",
             solution_steps=tuple(steps),
@@ -152,7 +152,7 @@ def generate_powers_higher(tier: Tier, rng: random.Random) -> Question:
         root_word = "square" if n == 2 else "cube"
         steps = [f"{a}^(1/{n}) means the {root_word} root of {a}.", f"{a}^(1/{n}) = {root_val}"]
         return Question(
-            topic_id="powers_higher",
+            topic_id="powers_H",
             tier=Tier.HIGHER,
             prompt=f"{evaluate_verb(rng)} {a}^(1/{n}).",
             solution_steps=tuple(steps),
@@ -171,7 +171,7 @@ def generate_powers_higher(tier: Tier, rng: random.Random) -> Question:
         f"{root_val}^{m} = {result}",
     ]
     return Question(
-        topic_id="powers_higher",
+        topic_id="powers_H",
         tier=Tier.HIGHER,
         prompt=f"{evaluate_verb(rng)} {a}^({m}/{n}).",
         solution_steps=tuple(steps),
@@ -193,7 +193,7 @@ def generate_roots_foundation(tier: Tier, rng: random.Random) -> Question:
             raise ValueError("roots_foundation verification failed")
         steps = [f"{root_val}^2 = {n}, so √{n} = {root_val}"]
         return Question(
-            topic_id="roots_foundation",
+            topic_id="roots_F",
             tier=Tier.FOUNDATION,
             prompt=f"{evaluate_verb(rng)} √{n}.",
             solution_steps=tuple(steps),
@@ -211,7 +211,7 @@ def generate_roots_foundation(tier: Tier, rng: random.Random) -> Question:
             raise ValueError("roots_foundation verification failed")
         steps = [f"{root_val}^3 = {n}, so the cube root of {n} = {root_val}"]
         return Question(
-            topic_id="roots_foundation",
+            topic_id="roots_F",
             tier=Tier.FOUNDATION,
             prompt=f"{evaluate_verb(rng)} the cube root of {n}.",
             solution_steps=tuple(steps),
@@ -233,7 +233,7 @@ def generate_roots_foundation(tier: Tier, rng: random.Random) -> Question:
         f"Since {lo**2} < {n} < {hi**2}, √{n} is between {lo} and {hi}.",
     ]
     return Question(
-        topic_id="roots_foundation",
+        topic_id="roots_F",
         tier=Tier.FOUNDATION,
         prompt=f"Without using a calculator, show that √{n} lies between two consecutive whole numbers, and state them.",
         solution_steps=tuple(steps),
@@ -266,7 +266,7 @@ def generate_roots_higher(tier: Tier, rng: random.Random) -> Question:
         f"√{n} = √({k}^2 × {m}) = {k}√{m}",
     ]
     return Question(
-        topic_id="roots_higher",
+        topic_id="roots_H",
         tier=Tier.HIGHER,
         prompt=f"{simplify_verb(rng)} √{n}, giving your answer in the form a√b.",
         solution_steps=tuple(steps),
@@ -301,7 +301,7 @@ def generate_modelled_example_powers_foundation(tier: Tier, rng: random.Random) 
         ]
         worked_calculation = [f"{base}^{exponent}", f"= {repeated}", f"= {result}"]
         return ModelledExample(
-            topic_id="powers_foundation",
+            topic_id="powers_F",
             tier=Tier.FOUNDATION,
             prompt=f"{evaluate_verb(rng)} {base}^{exponent}.",
             worked_calculation=tuple(worked_calculation),
@@ -363,7 +363,7 @@ def generate_modelled_example_powers_foundation(tier: Tier, rng: random.Random) 
         answer = f"{base}^{result_exp}"
 
     return ModelledExample(
-        topic_id="powers_foundation",
+        topic_id="powers_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -402,7 +402,7 @@ def generate_modelled_example_powers_higher(tier: Tier, rng: random.Random) -> M
         ]
         worked_calculation = [f"{base}^-{exponent}", f"= \\frac{{1}}{{{base}{_superscript(exponent)}}}", f"= 1/{base**exponent}"]
         return ModelledExample(
-            topic_id="powers_higher",
+            topic_id="powers_H",
             tier=Tier.HIGHER,
             prompt=f"{evaluate_verb(rng)} {base}^-{exponent}. Give your answer as a fraction.",
             worked_calculation=tuple(worked_calculation),
@@ -423,7 +423,7 @@ def generate_modelled_example_powers_higher(tier: Tier, rng: random.Random) -> M
         ]
         worked_calculation = [f"{base}^0", "= 1"]
         return ModelledExample(
-            topic_id="powers_higher",
+            topic_id="powers_H",
             tier=Tier.HIGHER,
             prompt=f"{evaluate_verb(rng)} {base}^0.",
             worked_calculation=tuple(worked_calculation),
@@ -449,7 +449,7 @@ def generate_modelled_example_powers_higher(tier: Tier, rng: random.Random) -> M
         ]
         worked_calculation = [f"{a}^(1/{n})", f"= {root_word} root of {a}", f"= {root_val}"]
         return ModelledExample(
-            topic_id="powers_higher",
+            topic_id="powers_H",
             tier=Tier.HIGHER,
             prompt=f"{evaluate_verb(rng)} {a}^(1/{n}).",
             worked_calculation=tuple(worked_calculation),
@@ -479,7 +479,7 @@ def generate_modelled_example_powers_higher(tier: Tier, rng: random.Random) -> M
         f"= {result}",
     ]
     return ModelledExample(
-        topic_id="powers_higher",
+        topic_id="powers_H",
         tier=Tier.HIGHER,
         prompt=f"{evaluate_verb(rng)} {a}^({m}/{n}).",
         worked_calculation=tuple(worked_calculation),
@@ -507,7 +507,7 @@ def generate_modelled_example_roots_foundation(tier: Tier, rng: random.Random) -
         ]
         worked_calculation = [f"√{n}", f"{root_val}^2 = {n}", f"√{n} = {root_val}"]
         return ModelledExample(
-            topic_id="roots_foundation",
+            topic_id="roots_F",
             tier=Tier.FOUNDATION,
             prompt=f"{evaluate_verb(rng)} √{n}.",
             worked_calculation=tuple(worked_calculation),
@@ -531,7 +531,7 @@ def generate_modelled_example_roots_foundation(tier: Tier, rng: random.Random) -
         ]
         worked_calculation = [f"cube root of {n}", f"{root_val}^3 = {n}", f"cube root of {n} = {root_val}"]
         return ModelledExample(
-            topic_id="roots_foundation",
+            topic_id="roots_F",
             tier=Tier.FOUNDATION,
             prompt=f"{evaluate_verb(rng)} the cube root of {n}.",
             worked_calculation=tuple(worked_calculation),
@@ -560,7 +560,7 @@ def generate_modelled_example_roots_foundation(tier: Tier, rng: random.Random) -
         f"{lo} < √{n} < {hi}",
     ]
     return ModelledExample(
-        topic_id="roots_foundation",
+        topic_id="roots_F",
         tier=Tier.FOUNDATION,
         prompt=f"Without using a calculator, show that √{n} lies between two consecutive whole numbers, and state them.",
         worked_calculation=tuple(worked_calculation),
@@ -600,7 +600,7 @@ def generate_modelled_example_roots_higher(tier: Tier, rng: random.Random) -> Mo
         f"= {k}√{m}",
     ]
     return ModelledExample(
-        topic_id="roots_higher",
+        topic_id="roots_H",
         tier=Tier.HIGHER,
         prompt=f"{simplify_verb(rng)} √{n}, giving your answer in the form a√b.",
         worked_calculation=tuple(worked_calculation),
@@ -647,7 +647,7 @@ def _build_rationalise_simple(rng: random.Random) -> Question:
         steps.append(f"= {answer}")
 
     return Question(
-        topic_id="rationalise_denominator",
+        topic_id="rationalise_denominator_H",
         tier=Tier.HIGHER,
         prompt=f"Rationalise the denominator of \\frac{{{a}}}{{√{b}}}, giving your answer in its simplest form.",
         solution_steps=tuple(steps),
@@ -709,7 +709,7 @@ def _build_rationalise_conjugate(rng: random.Random) -> Question:
         steps.append(f"= {answer}")
 
     return Question(
-        topic_id="rationalise_denominator",
+        topic_id="rationalise_denominator_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -766,7 +766,7 @@ def generate_modelled_example_rationalise_denominator(tier: Tier, rng: random.Ra
             f"= {answer}",
         ]
         return ModelledExample(
-            topic_id="rationalise_denominator",
+            topic_id="rationalise_denominator_H",
             tier=Tier.HIGHER,
             prompt=f"Rationalise the denominator of \\frac{{{a}}}{{√{b}}}, giving your answer in its simplest form.",
             worked_calculation=tuple(worked_calculation),
@@ -826,7 +826,7 @@ def generate_modelled_example_rationalise_denominator(tier: Tier, rng: random.Ra
         f"= {answer}",
     ]
     return ModelledExample(
-        topic_id="rationalise_denominator",
+        topic_id="rationalise_denominator_H",
         tier=Tier.HIGHER,
         prompt=f"Rationalise the denominator of \\frac{{{a}}}{{{denom_str}}}, giving your answer in its simplest form.",
         worked_calculation=tuple(worked_calculation),
@@ -877,7 +877,7 @@ def generate_negative_indices(tier: Tier, rng: random.Random) -> Question:
             f"{base}^-{n} = 1/{result}",
         ]
         return Question(
-            topic_id="negative_indices",
+            topic_id="negative_indices_F",
             tier=Tier.FOUNDATION,
             prompt=f"{evaluate_verb(rng)} {base}^-{n}. Give your answer as a fraction.",
             solution_steps=tuple(steps),
@@ -931,7 +931,7 @@ def generate_negative_indices(tier: Tier, rng: random.Random) -> Question:
         dedup_key = f"negidx_div:{base}:{m}:{n}"
 
     return Question(
-        topic_id="negative_indices",
+        topic_id="negative_indices_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -963,7 +963,7 @@ def generate_modelled_example_negative_indices(tier: Tier, rng: random.Random) -
         ]
         worked_calculation = [f"{base}^-{n}", f"= \\frac{{1}}{{{base}{_superscript(n)}}}", f"= 1/{result}"]
         return ModelledExample(
-            topic_id="negative_indices",
+            topic_id="negative_indices_F",
             tier=Tier.FOUNDATION,
             prompt=f"{evaluate_verb(rng)} {base}^-{n}. Give your answer as a fraction.",
             worked_calculation=tuple(worked_calculation),
@@ -1014,7 +1014,7 @@ def generate_modelled_example_negative_indices(tier: Tier, rng: random.Random) -
         answer = f"{base}^{result_exp}"
 
     return ModelledExample(
-        topic_id="negative_indices",
+        topic_id="negative_indices_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -1062,7 +1062,7 @@ def generate_simplifying_indices_challenging(tier: Tier, rng: random.Random) -> 
             f"({base}^{m + n})^{p} = {base}^{combined} = {answer}",
         ]
         return Question(
-            topic_id="simplifying_indices_challenging",
+            topic_id="simplifying_indices_challenging_H",
             tier=Tier.HIGHER,
             prompt=prompt,
             solution_steps=tuple(steps),
@@ -1099,7 +1099,7 @@ def generate_simplifying_indices_challenging(tier: Tier, rng: random.Random) -> 
             f"{r}^{combined} = {answer}",
         ]
         return Question(
-            topic_id="simplifying_indices_challenging",
+            topic_id="simplifying_indices_challenging_H",
             tier=Tier.HIGHER,
             prompt=prompt,
             solution_steps=tuple(steps),
@@ -1135,7 +1135,7 @@ def generate_simplifying_indices_challenging(tier: Tier, rng: random.Random) -> 
         f"{base}^{m * n} ÷ {base}^{p} = {base}^{combined} = {answer}",
     ]
     return Question(
-        topic_id="simplifying_indices_challenging",
+        topic_id="simplifying_indices_challenging_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -1190,7 +1190,7 @@ def generate_modelled_example_simplifying_indices_challenging(tier: Tier, rng: r
             f"= {answer}",
         ]
         return ModelledExample(
-            topic_id="simplifying_indices_challenging",
+            topic_id="simplifying_indices_challenging_H",
             tier=Tier.HIGHER,
             prompt=f"{simplify_verb(rng)} ({base}^{m} × {base}^{n})^{p}, giving your answer as a fraction where necessary.",
             worked_calculation=tuple(worked_calculation),
@@ -1232,7 +1232,7 @@ def generate_modelled_example_simplifying_indices_challenging(tier: Tier, rng: r
             f"= {answer}",
         ]
         return ModelledExample(
-            topic_id="simplifying_indices_challenging",
+            topic_id="simplifying_indices_challenging_H",
             tier=Tier.HIGHER,
             prompt=f"{simplify_verb(rng)} {base}^({a}/{b}) × {base}^-{c}, giving your answer as a fraction where necessary.",
             worked_calculation=tuple(worked_calculation),
@@ -1273,7 +1273,7 @@ def generate_modelled_example_simplifying_indices_challenging(tier: Tier, rng: r
         f"= {answer}",
     ]
     return ModelledExample(
-        topic_id="simplifying_indices_challenging",
+        topic_id="simplifying_indices_challenging_H",
         tier=Tier.HIGHER,
         prompt=f"{simplify_verb(rng)} ({base}^{m})^{n} ÷ {base}^{p}, giving your answer as a fraction where necessary.",
         worked_calculation=tuple(worked_calculation),
@@ -1324,7 +1324,7 @@ def generate_indices_common_base_equations(tier: Tier, rng: random.Random) -> Qu
             _show_solved_x(j, i, x),
         ]
         return Question(
-            topic_id="indices_common_base_equations",
+            topic_id="indices_common_base_equations_H",
             tier=Tier.HIGHER,
             prompt=f"Solve {a}^x = {b_val}.",
             solution_steps=tuple(steps),
@@ -1371,7 +1371,7 @@ def generate_indices_common_base_equations(tier: Tier, rng: random.Random) -> Qu
             f"Rearranging: {denom}x = -{i1 * m}, so {_show_solved_x(-i1 * m, denom, x)}",
         ]
         return Question(
-            topic_id="indices_common_base_equations",
+            topic_id="indices_common_base_equations_H",
             tier=Tier.HIGHER,
             prompt=f"Solve {a}^(x+{m}) = {c}^({rhs_coeff}).",
             solution_steps=tuple(steps),
@@ -1402,7 +1402,7 @@ def generate_indices_common_base_equations(tier: Tier, rng: random.Random) -> Qu
         _show_solved_x(-k, c, x),
     ]
     return Question(
-        topic_id="indices_common_base_equations",
+        topic_id="indices_common_base_equations_H",
         tier=Tier.HIGHER,
         prompt=f"Solve {p}^{exp_str} = 1/{p**k}.",
         solution_steps=tuple(steps),
@@ -1444,7 +1444,7 @@ def generate_modelled_example_indices_common_base_equations(tier: Tier, rng: ran
             f"x = {answer}",
         ]
         return ModelledExample(
-            topic_id="indices_common_base_equations",
+            topic_id="indices_common_base_equations_H",
             tier=Tier.HIGHER,
             prompt=f"Solve {a}^x = {b_val}.",
             worked_calculation=tuple(worked_calculation),
@@ -1494,7 +1494,7 @@ def generate_modelled_example_indices_common_base_equations(tier: Tier, rng: ran
             f"x = {answer}",
         ]
         return ModelledExample(
-            topic_id="indices_common_base_equations",
+            topic_id="indices_common_base_equations_H",
             tier=Tier.HIGHER,
             prompt=f"Solve {a}^(x+{m}) = {c}^({rhs_coeff}).",
             worked_calculation=tuple(worked_calculation),
@@ -1530,7 +1530,7 @@ def generate_modelled_example_indices_common_base_equations(tier: Tier, rng: ran
         f"x = {answer}",
     ]
     return ModelledExample(
-        topic_id="indices_common_base_equations",
+        topic_id="indices_common_base_equations_H",
         tier=Tier.HIGHER,
         prompt=f"Solve {p}^{exp_str} = 1/{p**k}.",
         worked_calculation=tuple(worked_calculation),
@@ -1560,7 +1560,7 @@ def generate_surds_multiply_divide(tier: Tier, rng: random.Random) -> Question:
             f"√{a * b} = {result}",
         ]
         return Question(
-            topic_id="surds_multiply_divide",
+            topic_id="surds_multiply_divide_H",
             tier=Tier.HIGHER,
             prompt=f"{evaluate_verb(rng)} √{a} × √{b}, giving your answer as an integer.",
             solution_steps=tuple(steps),
@@ -1598,7 +1598,7 @@ def generate_surds_multiply_divide(tier: Tier, rng: random.Random) -> Question:
             f"√{n} = √({k}^2 × {m}) = {k}√{m}",
         ]
         return Question(
-            topic_id="surds_multiply_divide",
+            topic_id="surds_multiply_divide_H",
             tier=Tier.HIGHER,
             prompt=f"{simplify_verb(rng)} √{a} × √{b}, giving your answer in the form a√b.",
             solution_steps=tuple(steps),
@@ -1622,7 +1622,7 @@ def generate_surds_multiply_divide(tier: Tier, rng: random.Random) -> Question:
             f"√{a // b} = {result}",
         ]
         return Question(
-            topic_id="surds_multiply_divide",
+            topic_id="surds_multiply_divide_H",
             tier=Tier.HIGHER,
             prompt=f"{evaluate_verb(rng)} √{a} ÷ √{b}, giving your answer as an integer.",
             solution_steps=tuple(steps),
@@ -1655,7 +1655,7 @@ def generate_surds_multiply_divide(tier: Tier, rng: random.Random) -> Question:
         f"√{quotient} = √({k}^2 × {m}) = {k}√{m}",
     ]
     return Question(
-        topic_id="surds_multiply_divide",
+        topic_id="surds_multiply_divide_H",
         tier=Tier.HIGHER,
         prompt=f"{simplify_verb(rng)} √{a} ÷ √{b}, giving your answer in the form a√b.",
         solution_steps=tuple(steps),
@@ -1687,7 +1687,7 @@ def generate_modelled_example_surds_multiply_divide(tier: Tier, rng: random.Rand
         ]
         worked_calculation = [f"√{a} × √{b}", f"= √{a * b}", f"= {result}"]
         return ModelledExample(
-            topic_id="surds_multiply_divide",
+            topic_id="surds_multiply_divide_H",
             tier=Tier.HIGHER,
             prompt=f"{evaluate_verb(rng)} √{a} × √{b}, giving your answer as an integer.",
             worked_calculation=tuple(worked_calculation),
@@ -1726,7 +1726,7 @@ def generate_modelled_example_surds_multiply_divide(tier: Tier, rng: random.Rand
         ]
         worked_calculation = [f"√{a} × √{b}", f"= √{n}", f"= √({k}^2 × {m})", f"= {k}√{m}"]
         return ModelledExample(
-            topic_id="surds_multiply_divide",
+            topic_id="surds_multiply_divide_H",
             tier=Tier.HIGHER,
             prompt=f"{simplify_verb(rng)} √{a} × √{b}, giving your answer in the form a√b.",
             worked_calculation=tuple(worked_calculation),
@@ -1754,7 +1754,7 @@ def generate_modelled_example_surds_multiply_divide(tier: Tier, rng: random.Rand
         ]
         worked_calculation = [f"√{a} ÷ √{b}", f"= √{a // b}", f"= {result}"]
         return ModelledExample(
-            topic_id="surds_multiply_divide",
+            topic_id="surds_multiply_divide_H",
             tier=Tier.HIGHER,
             prompt=f"{evaluate_verb(rng)} √{a} ÷ √{b}, giving your answer as an integer.",
             worked_calculation=tuple(worked_calculation),
@@ -1788,7 +1788,7 @@ def generate_modelled_example_surds_multiply_divide(tier: Tier, rng: random.Rand
     ]
     worked_calculation = [f"√{a} ÷ √{b}", f"= √{quotient}", f"= √({k}^2 × {m})", f"= {k}√{m}"]
     return ModelledExample(
-        topic_id="surds_multiply_divide",
+        topic_id="surds_multiply_divide_H",
         tier=Tier.HIGHER,
         prompt=f"{simplify_verb(rng)} √{a} ÷ √{b}, giving your answer in the form a√b.",
         worked_calculation=tuple(worked_calculation),
@@ -1839,7 +1839,7 @@ def generate_algebraic_surds(tier: Tier, rng: random.Random) -> Question:
             f"({bracket1})({bracket2}) = {answer}",
         ]
         return Question(
-            topic_id="algebraic_surds",
+            topic_id="algebraic_surds_H",
             tier=Tier.HIGHER,
             prompt=f"Expand and simplify ({bracket1})({bracket2}), giving your answer in the form p + q√{c}.",
             solution_steps=tuple(steps),
@@ -1873,7 +1873,7 @@ def generate_algebraic_surds(tier: Tier, rng: random.Random) -> Question:
         f"({bracket_str})^2 = {answer}",
     ]
     return Question(
-        topic_id="algebraic_surds",
+        topic_id="algebraic_surds_H",
         tier=Tier.HIGHER,
         prompt=f"Expand and simplify ({bracket_str})^2, giving your answer in the form p + q√{c}.",
         solution_steps=tuple(steps),
@@ -1927,7 +1927,7 @@ def generate_modelled_example_algebraic_surds(tier: Tier, rng: random.Random) ->
             f"= {answer}",
         ]
         return ModelledExample(
-            topic_id="algebraic_surds",
+            topic_id="algebraic_surds_H",
             tier=Tier.HIGHER,
             prompt=f"Expand and simplify ({bracket1})({bracket2}), giving your answer in the form p + q√{c}.",
             worked_calculation=tuple(worked_calculation),
@@ -1967,7 +1967,7 @@ def generate_modelled_example_algebraic_surds(tier: Tier, rng: random.Random) ->
         f"= {answer}",
     ]
     return ModelledExample(
-        topic_id="algebraic_surds",
+        topic_id="algebraic_surds_H",
         tier=Tier.HIGHER,
         prompt=f"Expand and simplify ({bracket_str})^2, giving your answer in the form p + q√{c}.",
         worked_calculation=tuple(worked_calculation),
@@ -1977,7 +1977,7 @@ def generate_modelled_example_algebraic_surds(tier: Tier, rng: random.Random) ->
 
 
 TOPIC_POWERS_FOUNDATION = TopicDefinition(
-    id="powers_foundation",
+    id="powers_F",
     display_name="Powers & Indices",
     description="Evaluate powers and use the laws of indices with positive integer powers.",
     generate=generate_powers_foundation,
@@ -1988,7 +1988,7 @@ TOPIC_POWERS_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_POWERS_HIGHER = TopicDefinition(
-    id="powers_higher",
+    id="powers_H",
     display_name="Negative & Fractional Indices",
     description="Evaluate powers with negative, zero, and fractional indices.",
     generate=generate_powers_higher,
@@ -1999,7 +1999,7 @@ TOPIC_POWERS_HIGHER = TopicDefinition(
 )
 
 TOPIC_ROOTS_FOUNDATION = TopicDefinition(
-    id="roots_foundation",
+    id="roots_F",
     display_name="Square & Cube Roots",
     description="Evaluate square and cube roots of perfect squares and cubes, and estimate roots.",
     generate=generate_roots_foundation,
@@ -2010,7 +2010,7 @@ TOPIC_ROOTS_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_ROOTS_HIGHER = TopicDefinition(
-    id="roots_higher",
+    id="roots_H",
     display_name="Simplifying Surds",
     description="Simplify a square root into the form a√b.",
     generate=generate_roots_higher,
@@ -2021,7 +2021,7 @@ TOPIC_ROOTS_HIGHER = TopicDefinition(
 )
 
 TOPIC_RATIONALISE_DENOMINATOR = TopicDefinition(
-    id="rationalise_denominator",
+    id="rationalise_denominator_H",
     display_name="Rationalising the Denominator",
     description="Rationalise a denominator containing a surd, including conjugate denominators.",
     generate=generate_rationalise_denominator,
@@ -2032,7 +2032,7 @@ TOPIC_RATIONALISE_DENOMINATOR = TopicDefinition(
 )
 
 TOPIC_NEGATIVE_INDICES = TopicDefinition(
-    id="negative_indices",
+    id="negative_indices_F",
     display_name="Negative Indices",
     description="Evaluate and simplify negative integer indices of a numeric base.",
     generate=generate_negative_indices,
@@ -2043,7 +2043,7 @@ TOPIC_NEGATIVE_INDICES = TopicDefinition(
 )
 
 TOPIC_SIMPLIFYING_INDICES_CHALLENGING = TopicDefinition(
-    id="simplifying_indices_challenging",
+    id="simplifying_indices_challenging_H",
     display_name="Simplifying Indices (Challenging)",
     description="Combine two or more index laws in a single numeric simplification.",
     generate=generate_simplifying_indices_challenging,
@@ -2054,7 +2054,7 @@ TOPIC_SIMPLIFYING_INDICES_CHALLENGING = TopicDefinition(
 )
 
 TOPIC_INDICES_COMMON_BASE_EQUATIONS = TopicDefinition(
-    id="indices_common_base_equations",
+    id="indices_common_base_equations_H",
     display_name="Solving Index Equations",
     description="Solve equations by rewriting both sides with a common base.",
     generate=generate_indices_common_base_equations,
@@ -2065,7 +2065,7 @@ TOPIC_INDICES_COMMON_BASE_EQUATIONS = TopicDefinition(
 )
 
 TOPIC_SURDS_MULTIPLY_DIVIDE = TopicDefinition(
-    id="surds_multiply_divide",
+    id="surds_multiply_divide_H",
     display_name="Multiplying and Dividing Surds",
     description="Multiply or divide two surds, simplifying the result.",
     generate=generate_surds_multiply_divide,
@@ -2076,7 +2076,7 @@ TOPIC_SURDS_MULTIPLY_DIVIDE = TopicDefinition(
 )
 
 TOPIC_ALGEBRAIC_SURDS = TopicDefinition(
-    id="algebraic_surds",
+    id="algebraic_surds_H",
     display_name="Surds in Algebraic Expressions",
     description="Expand and simplify bracket expressions involving surds into the form p + q√r.",
     generate=generate_algebraic_surds,

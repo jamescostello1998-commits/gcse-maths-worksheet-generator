@@ -34,7 +34,7 @@ def generate_simplify_fraction(tier: Tier, rng: random.Random) -> Question:
         f"Divide numerator and denominator by {hcf}: \\frac{{{num}÷{hcf}}}{{{den}÷{hcf}}} = {p}/{q}",
     ]
     return Question(
-        topic_id="fractions_simplify",
+        topic_id="fractions_simplify_F",
         tier=Tier.FOUNDATION,
         prompt=f"{simplify_verb(rng)} {num}/{den}.",
         solution_steps=tuple(steps),
@@ -74,7 +74,7 @@ def generate_add_subtract_fractions(tier: Tier, rng: random.Random) -> Question:
         f"Simplify: {_fmt_fraction(result)}",
     ]
     return Question(
-        topic_id="fractions_add_subtract",
+        topic_id="fractions_add_subtract_F",
         tier=Tier.FOUNDATION,
         prompt=f"{evaluate_verb(rng)} {a}/{b} {op} {c}/{d}. Give your answer as a fraction in its simplest form.",
         solution_steps=tuple(steps),
@@ -102,7 +102,7 @@ def generate_multiply_fractions(tier: Tier, rng: random.Random) -> Question:
         f"Simplify {a * c}/{b * d} = {_fmt_fraction(result)}",
     ]
     return Question(
-        topic_id="fractions_multiply",
+        topic_id="fractions_multiply_F",
         tier=Tier.FOUNDATION,
         prompt=f"{evaluate_verb(rng)} {a}/{b} × {c}/{d}. Give your answer as a fraction in its simplest form.",
         solution_steps=tuple(steps),
@@ -130,7 +130,7 @@ def generate_divide_fractions(tier: Tier, rng: random.Random) -> Question:
         f"Simplify: {_fmt_fraction(result)}",
     ]
     return Question(
-        topic_id="fractions_divide",
+        topic_id="fractions_divide_H",
         tier=Tier.HIGHER,
         prompt=f"{evaluate_verb(rng)} {a}/{b} ÷ {c}/{d}. Give your answer as a fraction in its simplest form.",
         solution_steps=tuple(steps),
@@ -158,7 +158,7 @@ def generate_divide_fractions_foundation(tier: Tier, rng: random.Random) -> Ques
         f"Simplify: {_fmt_fraction(result)}",
     ]
     return Question(
-        topic_id="fractions_divide_foundation",
+        topic_id="fractions_divide_F",
         tier=Tier.FOUNDATION,
         prompt=f"{evaluate_verb(rng)} {a}/{b} ÷ {c}/{d}. Give your answer as a fraction in its simplest form.",
         solution_steps=tuple(steps),
@@ -205,7 +205,7 @@ def generate_mixed_number_arithmetic(tier: Tier, rng: random.Random) -> Question
         f"Convert back to a mixed number: {mixed_str}",
     ]
     return Question(
-        topic_id="fractions_mixed_number_arithmetic",
+        topic_id="fractions_mixed_number_arithmetic_H",
         tier=Tier.HIGHER,
         prompt=(
             f"{evaluate_verb(rng)} {whole1} {num1}/{den1} {op} {whole2} {num2}/{den2}. "
@@ -235,7 +235,7 @@ def generate_fraction_of_amount(tier: Tier, rng: random.Random) -> Question:
         f"Multiply by the numerator: {unit} × {a} = {result}",
     ]
     return Question(
-        topic_id="fractions_of_amount",
+        topic_id="fractions_of_amount_F",
         tier=Tier.FOUNDATION,
         prompt=f"{amount_verb(rng)} {a}/{b} of {amount}.",
         solution_steps=tuple(steps),
@@ -278,7 +278,7 @@ def generate_fractions_equivalent(tier: Tier, rng: random.Random) -> Question:
             ]
 
         return Question(
-            topic_id="fractions_equivalent",
+            topic_id="fractions_equivalent_F",
             tier=Tier.FOUNDATION,
             prompt=f"{a}/{b} = {other_fraction}. Find the missing number.",
             solution_steps=tuple(steps),
@@ -345,7 +345,7 @@ def generate_fractions_equivalent(tier: Tier, rng: random.Random) -> Question:
         f"{a} × {correct_den} = {correct_num} × {b} = {a * correct_den}.",
     ]
     return Question(
-        topic_id="fractions_equivalent",
+        topic_id="fractions_equivalent_F",
         tier=Tier.FOUNDATION,
         prompt=f"Which of the following fractions is equivalent to {a}/{b}? {options_str}",
         solution_steps=tuple(steps),
@@ -400,7 +400,7 @@ def generate_fractions_equivalent_diagram(tier: Tier, rng: random.Random) -> Que
         ]
         prompt = "How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?"
         return Question(
-            topic_id="fractions_equivalent_diagram",
+            topic_id="fractions_equivalent_diagram_F",
             tier=Tier.FOUNDATION,
             prompt=prompt,
             solution_steps=tuple(steps),
@@ -463,7 +463,7 @@ def generate_fractions_equivalent_diagram(tier: Tier, rng: random.Random) -> Que
         f"{a} × {correct_den} = {correct_num} × {b} = {a * correct_den}.",
     ]
     return Question(
-        topic_id="fractions_equivalent_diagram",
+        topic_id="fractions_equivalent_diagram_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"The first shape shows {a}/{b} shaded. Which of the labelled shapes A, B, C shows an "
@@ -524,7 +524,7 @@ def generate_fractions_ordering(tier: Tier, rng: random.Random) -> Question:
         f"Order the numerators in {order_phrase} and convert back: {', '.join(ordered_strs)}",
     ]
     return Question(
-        topic_id="fractions_ordering",
+        topic_id="fractions_ordering_F",
         tier=Tier.FOUNDATION,
         prompt=f"Write these fractions in {order_phrase}: {', '.join(display_strs)}",
         solution_steps=tuple(steps),
@@ -556,7 +556,7 @@ def generate_fractions_improper_mixed(tier: Tier, rng: random.Random) -> Questio
         ]
         verb, prep = convert_phrasing(rng)
         return Question(
-            topic_id="fractions_improper_mixed",
+            topic_id="fractions_improper_mixed_F",
             tier=Tier.FOUNDATION,
             prompt=f"{verb} {improper_num}/{den} {prep} a mixed number.",
             solution_steps=tuple(steps),
@@ -571,7 +571,7 @@ def generate_fractions_improper_mixed(tier: Tier, rng: random.Random) -> Questio
         ]
         verb, prep = convert_phrasing(rng)
         return Question(
-            topic_id="fractions_improper_mixed",
+            topic_id="fractions_improper_mixed_F",
             tier=Tier.FOUNDATION,
             prompt=f"{verb} {whole} {num}/{den} {prep} an improper fraction.",
             solution_steps=tuple(steps),
@@ -631,7 +631,7 @@ def generate_modelled_example_add_subtract(tier: Tier, rng: random.Random) -> Mo
         worked_calculation.append(f"= {_fmt_fraction(result)}")
 
     return ModelledExample(
-        topic_id="fractions_add_subtract",
+        topic_id="fractions_add_subtract_F",
         tier=Tier.FOUNDATION,
         prompt=f"{evaluate_verb(rng)} {a}/{b} {op} {c}/{d}. Give your answer as a fraction in its simplest form.",
         worked_calculation=tuple(worked_calculation),
@@ -672,7 +672,7 @@ def generate_modelled_example_simplify_fraction(tier: Tier, rng: random.Random) 
         f"= {p}/{q}",
     ]
     return ModelledExample(
-        topic_id="fractions_simplify",
+        topic_id="fractions_simplify_F",
         tier=Tier.FOUNDATION,
         prompt=f"{simplify_verb(rng)} {num}/{den}.",
         worked_calculation=tuple(worked_calculation),
@@ -721,7 +721,7 @@ def generate_modelled_example_multiply_fractions(tier: Tier, rng: random.Random)
         worked_calculation.append(f"= {_fmt_fraction(result)}")
 
     return ModelledExample(
-        topic_id="fractions_multiply",
+        topic_id="fractions_multiply_F",
         tier=Tier.FOUNDATION,
         prompt=f"{evaluate_verb(rng)} {a}/{b} × {c}/{d}. Give your answer as a fraction in its simplest form.",
         worked_calculation=tuple(worked_calculation),
@@ -771,7 +771,7 @@ def generate_modelled_example_divide_fractions(tier: Tier, rng: random.Random) -
         worked_calculation.append(f"= {_fmt_fraction(result)}")
 
     return ModelledExample(
-        topic_id="fractions_divide",
+        topic_id="fractions_divide_H",
         tier=Tier.HIGHER,
         prompt=f"{evaluate_verb(rng)} {a}/{b} ÷ {c}/{d}. Give your answer as a fraction in its simplest form.",
         worked_calculation=tuple(worked_calculation),
@@ -821,7 +821,7 @@ def generate_modelled_example_divide_fractions_foundation(tier: Tier, rng: rando
         worked_calculation.append(f"= {_fmt_fraction(result)}")
 
     return ModelledExample(
-        topic_id="fractions_divide_foundation",
+        topic_id="fractions_divide_F",
         tier=Tier.FOUNDATION,
         prompt=f"{evaluate_verb(rng)} {a}/{b} ÷ {c}/{d}. Give your answer as a fraction in its simplest form.",
         worked_calculation=tuple(worked_calculation),
@@ -887,7 +887,7 @@ def generate_modelled_example_mixed_number_arithmetic(tier: Tier, rng: random.Ra
         f"= {mixed_str}",
     ]
     return ModelledExample(
-        topic_id="fractions_mixed_number_arithmetic",
+        topic_id="fractions_mixed_number_arithmetic_H",
         tier=Tier.HIGHER,
         prompt=(
             f"{evaluate_verb(rng)} {whole1} {num1}/{den1} {op} {whole2} {num2}/{den2}. "
@@ -928,7 +928,7 @@ def generate_modelled_example_fraction_of_amount(tier: Tier, rng: random.Random)
         f"= {result}",
     ]
     return ModelledExample(
-        topic_id="fractions_of_amount",
+        topic_id="fractions_of_amount_F",
         tier=Tier.FOUNDATION,
         prompt=f"{amount_verb(rng)} {a}/{b} of {amount}.",
         worked_calculation=tuple(worked_calculation),
@@ -993,7 +993,7 @@ def generate_modelled_example_fractions_equivalent(tier: Tier, rng: random.Rando
             ]
 
         return ModelledExample(
-            topic_id="fractions_equivalent",
+            topic_id="fractions_equivalent_F",
             tier=Tier.FOUNDATION,
             prompt=f"{a}/{b} = {other_fraction}. Find the missing number.",
             worked_calculation=tuple(worked_calculation),
@@ -1066,7 +1066,7 @@ def generate_modelled_example_fractions_equivalent(tier: Tier, rng: random.Rando
         f"{correct_num} × {b} = {correct_num * b}  (match)",
     ]
     return ModelledExample(
-        topic_id="fractions_equivalent",
+        topic_id="fractions_equivalent_F",
         tier=Tier.FOUNDATION,
         prompt=f"Which of the following fractions is equivalent to {a}/{b}? {options_str}",
         worked_calculation=tuple(worked_calculation),
@@ -1116,7 +1116,7 @@ def generate_modelled_example_fractions_equivalent_diagram(tier: Tier, rng: rand
         ]
         prompt = "How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?"
         return ModelledExample(
-            topic_id="fractions_equivalent_diagram",
+            topic_id="fractions_equivalent_diagram_F",
             tier=Tier.FOUNDATION,
             prompt=prompt,
             worked_calculation=tuple(worked_calculation),
@@ -1184,7 +1184,7 @@ def generate_modelled_example_fractions_equivalent_diagram(tier: Tier, rng: rand
         f"{correct_num} × {b} = {correct_num * b}  (match)",
     ]
     return ModelledExample(
-        topic_id="fractions_equivalent_diagram",
+        topic_id="fractions_equivalent_diagram_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"The first shape shows {a}/{b} shaded. Which of the labelled shapes A, B, C shows an "
@@ -1254,7 +1254,7 @@ def generate_modelled_example_fractions_ordering(tier: Tier, rng: random.Random)
         f"{order_phrase}: {', '.join(ordered_strs)}",
     ]
     return ModelledExample(
-        topic_id="fractions_ordering",
+        topic_id="fractions_ordering_F",
         tier=Tier.FOUNDATION,
         prompt=f"Write these fractions in {order_phrase}: {', '.join(display_strs)}",
         worked_calculation=tuple(worked_calculation),
@@ -1296,7 +1296,7 @@ def generate_modelled_example_fractions_improper_mixed(tier: Tier, rng: random.R
         ]
         verb, prep = convert_phrasing(rng)
         return ModelledExample(
-            topic_id="fractions_improper_mixed",
+            topic_id="fractions_improper_mixed_F",
             tier=Tier.FOUNDATION,
             prompt=f"{verb} {improper_num}/{den} {prep} a mixed number.",
             worked_calculation=tuple(worked_calculation),
@@ -1321,7 +1321,7 @@ def generate_modelled_example_fractions_improper_mixed(tier: Tier, rng: random.R
         ]
         verb, prep = convert_phrasing(rng)
         return ModelledExample(
-            topic_id="fractions_improper_mixed",
+            topic_id="fractions_improper_mixed_F",
             tier=Tier.FOUNDATION,
             prompt=f"{verb} {whole} {num}/{den} {prep} an improper fraction.",
             worked_calculation=tuple(worked_calculation),
@@ -1331,7 +1331,7 @@ def generate_modelled_example_fractions_improper_mixed(tier: Tier, rng: random.R
 
 
 TOPIC_SIMPLIFY = TopicDefinition(
-    id="fractions_simplify",
+    id="fractions_simplify_F",
     display_name="Simplifying Fractions",
     description="Reduce a fraction to its simplest form.",
     generate=generate_simplify_fraction,
@@ -1342,7 +1342,7 @@ TOPIC_SIMPLIFY = TopicDefinition(
 )
 
 TOPIC_ADD_SUBTRACT = TopicDefinition(
-    id="fractions_add_subtract",
+    id="fractions_add_subtract_F",
     display_name="Adding & Subtracting Fractions",
     description="Add or subtract fractions with different denominators.",
     generate=generate_add_subtract_fractions,
@@ -1353,7 +1353,7 @@ TOPIC_ADD_SUBTRACT = TopicDefinition(
 )
 
 TOPIC_MULTIPLY = TopicDefinition(
-    id="fractions_multiply",
+    id="fractions_multiply_F",
     display_name="Multiplying Fractions",
     description="Multiply two fractions and simplify the result.",
     generate=generate_multiply_fractions,
@@ -1364,7 +1364,7 @@ TOPIC_MULTIPLY = TopicDefinition(
 )
 
 TOPIC_DIVIDE = TopicDefinition(
-    id="fractions_divide",
+    id="fractions_divide_H",
     display_name="Dividing Fractions",
     description="Divide two fractions using keep-change-flip.",
     generate=generate_divide_fractions,
@@ -1375,7 +1375,7 @@ TOPIC_DIVIDE = TopicDefinition(
 )
 
 TOPIC_DIVIDE_FOUNDATION = TopicDefinition(
-    id="fractions_divide_foundation",
+    id="fractions_divide_F",
     display_name="Dividing Fractions (Foundation)",
     description="Divide two fractions using keep-change-flip.",
     generate=generate_divide_fractions_foundation,
@@ -1386,7 +1386,7 @@ TOPIC_DIVIDE_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_MIXED_NUMBER_ARITHMETIC = TopicDefinition(
-    id="fractions_mixed_number_arithmetic",
+    id="fractions_mixed_number_arithmetic_H",
     display_name="Mixed Number Arithmetic",
     description="Add or subtract mixed numbers with different denominators.",
     generate=generate_mixed_number_arithmetic,
@@ -1397,7 +1397,7 @@ TOPIC_MIXED_NUMBER_ARITHMETIC = TopicDefinition(
 )
 
 TOPIC_OF_AMOUNT = TopicDefinition(
-    id="fractions_of_amount",
+    id="fractions_of_amount_F",
     display_name="Fractions of an Amount",
     description="Find a fraction of a given amount.",
     generate=generate_fraction_of_amount,
@@ -1408,7 +1408,7 @@ TOPIC_OF_AMOUNT = TopicDefinition(
 )
 
 TOPIC_EQUIVALENT = TopicDefinition(
-    id="fractions_equivalent",
+    id="fractions_equivalent_F",
     display_name="Equivalent Fractions",
     description="Find a missing numerator, or identify which fraction is equivalent to a given one.",
     generate=generate_fractions_equivalent,
@@ -1419,7 +1419,7 @@ TOPIC_EQUIVALENT = TopicDefinition(
 )
 
 TOPIC_EQUIVALENT_DIAGRAM = TopicDefinition(
-    id="fractions_equivalent_diagram",
+    id="fractions_equivalent_diagram_F",
     display_name="Equivalent Fractions (Diagrams)",
     description="Use shaded bar/circle diagrams to find or identify equivalent fractions.",
     generate=generate_fractions_equivalent_diagram,
@@ -1430,7 +1430,7 @@ TOPIC_EQUIVALENT_DIAGRAM = TopicDefinition(
 )
 
 TOPIC_ORDERING = TopicDefinition(
-    id="fractions_ordering",
+    id="fractions_ordering_F",
     display_name="Ordering Fractions",
     description="Order a list of fractions with different denominators.",
     generate=generate_fractions_ordering,
@@ -1441,7 +1441,7 @@ TOPIC_ORDERING = TopicDefinition(
 )
 
 TOPIC_IMPROPER_MIXED = TopicDefinition(
-    id="fractions_improper_mixed",
+    id="fractions_improper_mixed_F",
     display_name="Improper Fractions and Mixed Numbers",
     description="Convert between improper fractions and mixed numbers.",
     generate=generate_fractions_improper_mixed,

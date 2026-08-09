@@ -115,7 +115,7 @@ def test_modelled_example_set_notation_produces_verified_examples():
     rng = random.Random(440)
     for _ in range(TRIALS):
         example = data_handling.generate_modelled_example_set_notation(Tier.HIGHER, rng)
-        assert example.topic_id == "set_notation"
+        assert example.topic_id == "set_notation_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -126,7 +126,7 @@ def test_modelled_example_set_notation_foundation_produces_verified_examples():
     rng = random.Random(445)
     for _ in range(TRIALS):
         example = data_handling.generate_modelled_example_set_notation_foundation(Tier.FOUNDATION, rng)
-        assert example.topic_id == "set_notation_foundation"
+        assert example.topic_id == "set_notation_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -139,7 +139,7 @@ def test_modelled_example_product_rule_counting_produces_verified_examples():
     rng = random.Random(441)
     for _ in range(TRIALS):
         example = data_handling.generate_modelled_example_product_rule_counting(Tier.HIGHER, rng)
-        assert example.topic_id == "product_rule_counting"
+        assert example.topic_id == "product_rule_counting_H"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -150,7 +150,7 @@ def test_modelled_example_relative_frequency_produces_verified_examples():
     rng = random.Random(442)
     for _ in range(TRIALS):
         example = data_handling.generate_modelled_example_relative_frequency(Tier.FOUNDATION, rng)
-        assert example.topic_id == "relative_frequency"
+        assert example.topic_id == "relative_frequency_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -191,7 +191,7 @@ def test_modelled_example_two_way_tables_produces_verified_examples():
     rng = random.Random(443)
     for _ in range(TRIALS):
         example = data_handling.generate_modelled_example_two_way_tables(Tier.FOUNDATION, rng)
-        assert example.topic_id == "two_way_tables"
+        assert example.topic_id == "two_way_tables_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
@@ -203,7 +203,7 @@ def test_modelled_example_sample_space_diagrams_produces_verified_examples():
     rng = random.Random(444)
     for _ in range(TRIALS):
         example = data_handling.generate_modelled_example_sample_space_diagrams(Tier.FOUNDATION, rng)
-        assert example.topic_id == "sample_space_diagrams"
+        assert example.topic_id == "sample_space_diagrams_F"
         assert example.prompt
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3

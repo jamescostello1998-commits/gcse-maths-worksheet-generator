@@ -348,11 +348,11 @@ ALL_TOPICS = [
 def test_topic_definitions_have_expected_metadata():
     ids = {t.id for t in ALL_TOPICS}
     assert ids == {
-        "volume_surface_area_sphere",
-        "volume_surface_area_pyramid",
-        "frustum_volume_surface_area",
-        "compound_3d_volume",
-        "compound_3d_surface_area",
+        "volume_surface_area_sphere_H",
+        "volume_surface_area_pyramid_H",
+        "frustum_volume_surface_area_H",
+        "compound_3d_volume_H",
+        "compound_3d_surface_area_H",
     }
     for t in ALL_TOPICS:
         assert t.section == "geometry"
@@ -369,31 +369,31 @@ MODELLED_EXAMPLE_GENERATORS = [
     (
         solids.generate_modelled_example_volume_surface_area_sphere,
         Tier.HIGHER,
-        "volume_surface_area_sphere",
+        "volume_surface_area_sphere_H",
         "sphere",
     ),
     (
         solids.generate_modelled_example_volume_surface_area_pyramid,
         Tier.HIGHER,
-        "volume_surface_area_pyramid",
+        "volume_surface_area_pyramid_H",
         "pyramid",
     ),
     (
         solids.generate_modelled_example_frustum_volume_surface_area,
         Tier.HIGHER,
-        "frustum_volume_surface_area",
+        "frustum_volume_surface_area_H",
         "frustum",
     ),
     (
         solids.generate_modelled_example_compound_3d_volume,
         Tier.HIGHER,
-        "compound_3d_volume",
+        "compound_3d_volume_H",
         "compound_3d",
     ),
     (
         solids.generate_modelled_example_compound_3d_surface_area,
         Tier.HIGHER,
-        "compound_3d_surface_area",
+        "compound_3d_surface_area_H",
         "compound_3d",
     ),
 ]

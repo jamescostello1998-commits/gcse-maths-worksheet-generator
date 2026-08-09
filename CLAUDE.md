@@ -4033,10 +4033,17 @@ exponents, inverse notation, or a new diagram kind. Clean up scratch files after
   not alphabetical). Each topic is tier-exclusive (`fixed_tier=Tier.FOUNDATION` or
   `.HIGHER`) — see `TopicDefinition.fixed_tier` in `app/topics/base.py` for the
   (currently unused) `None` = "supports both tiers via a toggle" escape hatch.
+- **Every topic id ends in `_F` (Foundation) or `_H` (Higher)** — a streamlining
+  done to all 305 ids (see chronology step 43): the id is `<base>_F`/`<base>_H`,
+  matching `fixed_tier`, e.g. `bearings_cosine_rule_H`, `linear_two_step_F`. New
+  topics MUST follow this. The suffix is the id's ONLY tier marker — don't also put
+  `_foundation`/`_higher` in the base. NB the generator/modelled-example *function*
+  names were deliberately NOT renamed (still `generate_bearings_cosine_rule`, etc.),
+  and `dedup_key` prefixes keep their own short mnemonics — only `id=`/`topic_id=`
+  strings carry the `_F`/`_H` scheme.
 - **Foundation/Higher overlap content gets two separate topic IDs**, not one
-  parameterised topic — e.g. `linear_both_sides_foundation` (id) alongside
-  `linear_both_sides`, `trig_missing_side_foundation` alongside
-  `trig_missing_side_higher`. The Foundation sibling is typically a positive-
+  parameterised topic — e.g. `linear_both_sides_F` alongside `linear_both_sides_H`,
+  `trig_missing_side_F` alongside `trig_missing_side_H`. The Foundation sibling is typically a positive-
   coefficients-only / no-rearranging-required variant of the same generator logic
   (mirrors the existing `pythagoras.py` triple-vs-surd pattern). When adding a new
   topic, check whether it's genuinely Foundation+Higher overlap content on the real

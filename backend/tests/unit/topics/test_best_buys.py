@@ -41,7 +41,7 @@ def test_topic_definitions_have_expected_metadata():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (best_buys.generate_modelled_example_best_buys, Tier.FOUNDATION, "best_buys"),
+    (best_buys.generate_modelled_example_best_buys, Tier.FOUNDATION, "best_buys_F"),
 ]
 
 

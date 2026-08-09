@@ -58,11 +58,11 @@ def test_sqrt_shape_uses_the_real_radical_symbol_not_the_word_sqrt():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (iteration.generate_modelled_example_iteration, Tier.HIGHER, "iteration"),
+    (iteration.generate_modelled_example_iteration, Tier.HIGHER, "iteration_H"),
     (
         iteration.generate_modelled_example_trial_and_improvement,
         Tier.HIGHER,
-        "trial_and_improvement",
+        "trial_and_improvement_H",
     ),
 ]
 

@@ -78,7 +78,7 @@ def test_dedup_keys_vary_widely():
 
 def test_topic_definition_metadata():
     t = inequalities_region.TOPIC_INEQUALITIES_REGION_HIGHER
-    assert t.id == "inequalities_region_higher"
+    assert t.id == "inequalities_region_H"
     assert t.section == "algebra"
     assert t.group == "Inequalities"
     assert t.fixed_tier == Tier.HIGHER
@@ -89,7 +89,7 @@ def test_modelled_examples_are_valid():
     rng = random.Random(1005)
     for _ in range(TRIALS):
         ex = inequalities_region.generate_modelled_example_inequalities_region_higher(Tier.HIGHER, rng)
-        assert ex.topic_id == "inequalities_region_higher"
+        assert ex.topic_id == "inequalities_region_H"
         assert ex.tier == Tier.HIGHER
         assert ex.prompt
         assert len(ex.worked_calculation) >= 2

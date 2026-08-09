@@ -265,7 +265,7 @@ def generate_sampling_methods(tier: Tier, rng: random.Random) -> Question:
         prompt, steps, answer, dedup_key = _scenario_question(rng)
 
     return Question(
-        topic_id="sampling_methods",
+        topic_id="sampling_methods_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=steps,
@@ -299,7 +299,7 @@ def generate_modelled_example_sampling_methods(tier: Tier, rng: random.Random) -
         worked_calculation = list(steps)
 
     return ModelledExample(
-        topic_id="sampling_methods",
+        topic_id="sampling_methods_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -309,7 +309,7 @@ def generate_modelled_example_sampling_methods(tier: Tier, rng: random.Random) -
 
 
 TOPIC_SAMPLING_METHODS = TopicDefinition(
-    id="sampling_methods",
+    id="sampling_methods_F",
     display_name="Sampling and Populations",
     description="Identify sources of sampling bias, choose a suitable sampling method, or calculate a stratified sample size.",
     generate=generate_sampling_methods,

@@ -54,7 +54,7 @@ def generate_cumulative_frequency_plot(tier: Tier, rng: random.Random) -> Questi
         "Plot each (upper class boundary, cumulative frequency) point and join with a smooth curve.",
     ]
     return Question(
-        topic_id="cumulative_frequency_plot",
+        topic_id="cumulative_frequency_plot_H",
         tier=Tier.HIGHER,
         prompt=f"The table shows {context}. Draw a cumulative frequency graph to show this information.",
         solution_steps=tuple(steps),
@@ -93,7 +93,7 @@ def generate_modelled_example_cumulative_frequency_plot(tier: Tier, rng: random.
     ]
     worked_calculation = [f"Up to {boundaries[i+1]}: {cf}" for i, cf in enumerate(manual_cumulative)]
     return ModelledExample(
-        topic_id="cumulative_frequency_plot",
+        topic_id="cumulative_frequency_plot_H",
         tier=Tier.HIGHER,
         prompt=f"The table shows {context}. Draw a cumulative frequency graph to show this information.",
         worked_calculation=tuple(worked_calculation),
@@ -163,7 +163,7 @@ def generate_cumulative_frequency_interpret(tier: Tier, rng: random.Random) -> Q
             f"IQR = {float(q3):.1f} - {float(q1):.1f} = {answer}.",
         ]
         return Question(
-            topic_id="cumulative_frequency_interpret",
+            topic_id="cumulative_frequency_interpret_H",
             tier=Tier.HIGHER,
             prompt=f"The cumulative frequency graph shows {context}. {prompt}",
             solution_steps=tuple(steps),
@@ -187,7 +187,7 @@ def generate_cumulative_frequency_interpret(tier: Tier, rng: random.Random) -> Q
         if str(check) != answer:
             raise ValueError("cumulative_frequency_interpret verification failed (threshold)")
         return Question(
-            topic_id="cumulative_frequency_interpret",
+            topic_id="cumulative_frequency_interpret_H",
             tier=Tier.HIGHER,
             prompt=f"The cumulative frequency graph shows {context}. {prompt}",
             solution_steps=tuple(steps),
@@ -207,7 +207,7 @@ def generate_cumulative_frequency_interpret(tier: Tier, rng: random.Random) -> Q
         f"Reading across from {float(target):.1f} to the curve, then down to the axis, gives ≈ {answer}.",
     ]
     return Question(
-        topic_id="cumulative_frequency_interpret",
+        topic_id="cumulative_frequency_interpret_H",
         tier=Tier.HIGHER,
         prompt=f"The cumulative frequency graph shows {context}. {prompt}",
         solution_steps=tuple(steps),
@@ -226,7 +226,7 @@ def generate_modelled_example_cumulative_frequency_interpret(tier: Tier, rng: ra
         "across to the curve, then straight down to the horizontal axis to read the estimate.",
     ] + list(q.solution_steps)
     return ModelledExample(
-        topic_id="cumulative_frequency_interpret",
+        topic_id="cumulative_frequency_interpret_H",
         tier=Tier.HIGHER,
         prompt=q.prompt,
         worked_calculation=tuple(q.solution_steps),
@@ -277,7 +277,7 @@ def generate_box_plot_construct(tier: Tier, rng: random.Random) -> Question:
     ]
     box_plots = [{"min": data[0], "q1": float(q1), "median": float(median), "q3": float(q3), "max": data[-1]}]
     return Question(
-        topic_id="box_plot_construct",
+        topic_id="box_plot_construct_H",
         tier=Tier.HIGHER,
         prompt=f"Here are {_num_word(n)} {context}: {data}. Draw a box plot for this data.",
         solution_steps=tuple(steps),
@@ -303,7 +303,7 @@ def generate_modelled_example_box_plot_construct(tier: Tier, rng: random.Random)
         "minimum and maximum values.",
     ]
     return ModelledExample(
-        topic_id="box_plot_construct",
+        topic_id="box_plot_construct_H",
         tier=Tier.HIGHER,
         prompt=q.prompt,
         worked_calculation=tuple(q.solution_steps),
@@ -351,7 +351,7 @@ def generate_box_plot_interpret(tier: Tier, rng: random.Random) -> Question:
         if not check:
             raise ValueError("box_plot_interpret verification failed")
         return Question(
-            topic_id="box_plot_interpret",
+            topic_id="box_plot_interpret_H",
             tier=Tier.HIGHER,
             prompt=f"The box plot shows {context}. {prompt}",
             solution_steps=tuple(steps),
@@ -386,7 +386,7 @@ def generate_box_plot_interpret(tier: Tier, rng: random.Random) -> Question:
     if not check:
         raise ValueError("box_plot_interpret verification failed (compare)")
     return Question(
-        topic_id="box_plot_interpret",
+        topic_id="box_plot_interpret_H",
         tier=Tier.HIGHER,
         prompt=f"The box plots compare {context} for two classes. {prompt}",
         solution_steps=tuple(steps),
@@ -414,7 +414,7 @@ def generate_modelled_example_box_plot_interpret(tier: Tier, rng: random.Random)
         "before deciding which is bigger or more consistent.",
     ] + list(q.solution_steps)
     return ModelledExample(
-        topic_id="box_plot_interpret",
+        topic_id="box_plot_interpret_H",
         tier=Tier.HIGHER,
         prompt=q.prompt,
         worked_calculation=tuple(q.solution_steps),
@@ -425,7 +425,7 @@ def generate_modelled_example_box_plot_interpret(tier: Tier, rng: random.Random)
 
 
 TOPIC_CUMULATIVE_FREQUENCY_PLOT = TopicDefinition(
-    id="cumulative_frequency_plot",
+    id="cumulative_frequency_plot_H",
     display_name="Plotting Cumulative Frequency Graphs",
     description="Build a cumulative frequency table and draw the graph.",
     generate=generate_cumulative_frequency_plot,
@@ -436,7 +436,7 @@ TOPIC_CUMULATIVE_FREQUENCY_PLOT = TopicDefinition(
 )
 
 TOPIC_CUMULATIVE_FREQUENCY_INTERPRET = TopicDefinition(
-    id="cumulative_frequency_interpret",
+    id="cumulative_frequency_interpret_H",
     display_name="Interpreting Cumulative Frequency Graphs",
     description="Estimate the median, quartiles, and IQR from a cumulative frequency graph.",
     generate=generate_cumulative_frequency_interpret,
@@ -447,7 +447,7 @@ TOPIC_CUMULATIVE_FREQUENCY_INTERPRET = TopicDefinition(
 )
 
 TOPIC_BOX_PLOT_CONSTRUCT = TopicDefinition(
-    id="box_plot_construct",
+    id="box_plot_construct_H",
     display_name="Constructing Box Plots",
     description="Find the five-number summary from raw data and draw a box plot.",
     generate=generate_box_plot_construct,
@@ -458,7 +458,7 @@ TOPIC_BOX_PLOT_CONSTRUCT = TopicDefinition(
 )
 
 TOPIC_BOX_PLOT_INTERPRET = TopicDefinition(
-    id="box_plot_interpret",
+    id="box_plot_interpret_H",
     display_name="Interpreting Box Plots",
     description="Read and compare medians, ranges, and interquartile ranges from box plots.",
     generate=generate_box_plot_interpret,

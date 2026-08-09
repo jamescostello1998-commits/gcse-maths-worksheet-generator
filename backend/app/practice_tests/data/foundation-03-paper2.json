@@ -7,7 +7,7 @@
   "calculator_allowed": false,
   "questions": [
     {
-      "topic_id": "recurring_decimal_single_digit",
+      "topic_id": "recurring_decimal_single_digit_F",
       "prompt": "Write \\recur{0.}{3} as a fraction in its simplest form.",
       "solution_steps": [
         "Let x = \\recur{0.}{3}, so 10x = 3.333... (only one digit repeats, so multiply by 10 to shift it one place)",
@@ -42,7 +42,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_simplify",
+      "topic_id": "fractions_simplify_F",
       "prompt": "Simplify 8/56.",
       "solution_steps": [
         "Find the highest common factor of 8 and 56: 8",
@@ -71,7 +71,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_add_subtract",
+      "topic_id": "fractions_add_subtract_F",
       "prompt": "Evaluate 4/5 - 4/9. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Find a common denominator: LCM(5, 9) = 45",
@@ -112,7 +112,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bidmas",
+      "topic_id": "bidmas_F",
       "prompt": "Work out 8^2 + 5 × 4 - 9 ÷ 3.",
       "solution_steps": [
         "Indices: 8^2 = 64",
@@ -154,7 +154,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "negative_indices",
+      "topic_id": "negative_indices_F",
       "prompt": "Evaluate 3^-2. Give your answer as a fraction.",
       "solution_steps": [
         "A negative index means take the reciprocal: 3^-2 = \\frac{1}{3²}",
@@ -189,7 +189,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_divide_foundation",
+      "topic_id": "fractions_divide_F",
       "prompt": "Work out 4/3 ÷ 6/7. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Keep-change-flip: 4/3 ÷ 6/7 = 4/3 × 7/6",
@@ -224,7 +224,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_ordering",
+      "topic_id": "fractions_ordering_F",
       "prompt": "Write these fractions in ascending order: 1/10, 2/9, 6/7, 1/2, 2/3",
       "solution_steps": [
         "Convert every fraction to the same denominator, the LCM of 10, 9, 7, 2, 3: 630",
@@ -259,7 +259,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "factorise_common_factor",
+      "topic_id": "factorise_common_factor_F",
       "prompt": "Factorise: 21x + 28",
       "solution_steps": [
         "Find the highest common factor of 21 and 28: 7",
@@ -288,7 +288,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "forming_equations_foundation",
+      "topic_id": "forming_equations_F",
       "prompt": "The perimeter of the rectangle shown is 36 cm. Form an equation and solve it to find x.",
       "solution_steps": [
         "Perimeter = 2 × (sum of two different side lengths).",
@@ -340,7 +340,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_indices_foundation",
+      "topic_id": "algebraic_indices_F",
       "prompt": "Simplify 12x^6 ÷ 4x^2",
       "solution_steps": [
         "Dividing powers of the same base: subtract the exponents, and divide the coefficients.",
@@ -375,7 +375,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_multi_step",
+      "topic_id": "linear_multi_step_F",
       "prompt": "Solve: 5x + 12 + 6x + 4 = 49",
       "solution_steps": [
         "Collect like terms: 5x + 6x = 11x, 12 + 4 = 16",
@@ -418,7 +418,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_double_brackets_no_coefficient_foundation",
+      "topic_id": "expand_double_brackets_no_coefficient_F",
       "prompt": "Expand and simplify: (x + 4)(x + 1)",
       "solution_steps": [
         "First: x × x = x^2",
@@ -460,7 +460,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_single_bracket",
+      "topic_id": "expand_single_bracket_F",
       "prompt": "Expand: 8(-x + 9)",
       "solution_steps": [
         "Multiply 8 by -x: -8x",
@@ -495,7 +495,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_exterior_foundation",
+      "topic_id": "angles_exterior_F",
       "prompt": "An exterior angle of a triangle is x°. The two remote interior angles are 55° and 59°. Find x.",
       "solution_steps": [
         "The exterior angle of a triangle equals the sum of the two remote interior angles.",
@@ -533,7 +533,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simple_interest",
+      "topic_id": "simple_interest_F",
       "prompt": "£5000 is invested at a simple interest rate of 2% per year for 4 years. Find the total amount in the account after 4 years.",
       "solution_steps": [
         "Simple interest formula: I = P × r × t ÷ 100",
@@ -568,7 +568,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_difference",
+      "topic_id": "ratio_difference_F",
       "prompt": "p : q = 8 : 7.\np - q = 7.\nFind p and q, and their total.",
       "solution_steps": [
         "Difference in parts = 8 - 7 = 1 parts",
@@ -610,7 +610,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_shape_similar_foundation",
+      "topic_id": "ratio_shape_similar_F",
       "prompt": "Shape A and Shape B are similar. Find the length of side z.",
       "solution_steps": [
         "Scale factor = 24 ÷ 6 = 4",
@@ -647,7 +647,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_find_missing_share",
+      "topic_id": "ratio_find_missing_share_F",
       "prompt": "s : t = 7 : 9. s = 140. What is the value of t?",
       "solution_steps": [
         "Value of one part = 140 ÷ 7 = 20",
@@ -676,7 +676,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_two_part",
+      "topic_id": "ratio_share_two_part_F",
       "prompt": "Share 128 in the ratio 8:8.",
       "solution_steps": [
         "Total parts = 8 + 8 = 16",
@@ -717,7 +717,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_shorter_leg",
+      "topic_id": "pythagoras_shorter_leg_F",
       "prompt": "A right-angled triangle has hypotenuse 148 cm and one side 48 cm. Find the length of x.",
       "solution_steps": [
         "b² = c² - a² = 148² - 48² = 21904 - 2304 = 19600",
@@ -753,7 +753,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plans_and_elevations",
+      "topic_id": "plans_and_elevations_F",
       "prompt": "The diagram shows a solid with its dimensions labelled. Draw and label the front elevation, side elevation, and plan view of the solid.",
       "solution_steps": [
         "The front elevation is what you see looking at the solid straight on from the front.",
@@ -815,7 +815,7 @@
       }
     },
     {
-      "topic_id": "volume_surface_area_cuboid",
+      "topic_id": "volume_surface_area_cuboid_F",
       "prompt": "A cuboid has length 10 cm, width 4 cm and height 10 cm. Find its volume.",
       "solution_steps": [
         "Volume = length × width × height = 10 × 4 × 10 = 400 cm³"
@@ -845,7 +845,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "vectors_arithmetic_foundation",
+      "topic_id": "vectors_arithmetic_F",
       "prompt": "\\vec{a} = \\colvec{-6}{-1} and \\vec{b} = \\colvec{-4}{6}. Find \\vec{a} + 2\\vec{b}.",
       "solution_steps": [
         "\\vec{a} = \\colvec{-6}{-1}, \\vec{b} = \\colvec{-4}{6}",
@@ -880,7 +880,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "nets_3d_shapes",
+      "topic_id": "nets_3d_shapes_F",
       "prompt": "How many squares does the net of a square-based pyramid contain?",
       "solution_steps": [
         "Imagine unfolding a square-based pyramid flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
@@ -920,7 +920,7 @@
       }
     },
     {
-      "topic_id": "venn_diagram_probability",
+      "topic_id": "venn_diagram_probability_F",
       "prompt": "The Venn diagram shows the number of students in each region for sets A and B. Find P(A ∩ B).",
       "solution_steps": [
         "Total number of elements = 15 + 15 + 7 + 9 = 46",

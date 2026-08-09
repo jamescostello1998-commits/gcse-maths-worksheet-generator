@@ -87,8 +87,8 @@ def test_topic_definitions_have_expected_metadata():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (scatter_graphs.generate_modelled_example_scatter_graph_construct, Tier.FOUNDATION, "scatter_graph_construct"),
-    (scatter_graphs.generate_modelled_example_scatter_graph_interpret, Tier.FOUNDATION, "scatter_graph_interpret"),
+    (scatter_graphs.generate_modelled_example_scatter_graph_construct, Tier.FOUNDATION, "scatter_graph_construct_F"),
+    (scatter_graphs.generate_modelled_example_scatter_graph_interpret, Tier.FOUNDATION, "scatter_graph_interpret_F"),
 ]
 
 

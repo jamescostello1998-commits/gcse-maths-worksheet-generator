@@ -116,7 +116,7 @@ def generate_inequalities_number_line_foundation(tier: Tier, rng: random.Random)
             f"Shade the line to the {direction} of {k}, with an arrow showing it continues indefinitely.",
         ]
         return Question(
-            topic_id="inequalities_number_line_foundation",
+            topic_id="inequalities_number_line_F",
             tier=Tier.FOUNDATION,
             prompt=prompt,
             solution_steps=tuple(steps),
@@ -132,7 +132,7 @@ def generate_inequalities_number_line_foundation(tier: Tier, rng: random.Random)
             f"The shading and arrow point to the {direction}, so the solution is {inequality_str}.",
         ]
         return Question(
-            topic_id="inequalities_number_line_foundation",
+            topic_id="inequalities_number_line_F",
             tier=Tier.FOUNDATION,
             prompt=prompt,
             solution_steps=tuple(steps),
@@ -193,7 +193,7 @@ def generate_inequalities_number_line_higher(tier: Tier, rng: random.Random) -> 
                 f"Shade to the left of {lo_val} and to the right of {hi_val}, with arrows showing both continue indefinitely.",
             ]
         return Question(
-            topic_id="inequalities_number_line_higher",
+            topic_id="inequalities_number_line_H",
             tier=Tier.HIGHER,
             prompt=prompt,
             solution_steps=tuple(steps),
@@ -214,7 +214,7 @@ def generate_inequalities_number_line_higher(tier: Tier, rng: random.Random) -> 
             ),
         ]
         return Question(
-            topic_id="inequalities_number_line_higher",
+            topic_id="inequalities_number_line_H",
             tier=Tier.HIGHER,
             prompt=prompt,
             solution_steps=tuple(steps),
@@ -256,7 +256,7 @@ def generate_modelled_example_inequalities_number_line_foundation(tier: Tier, rn
         f"{inequality_str}",
     ]
     return ModelledExample(
-        topic_id="inequalities_number_line_foundation",
+        topic_id="inequalities_number_line_F",
         tier=Tier.FOUNDATION,
         prompt="Write down the inequality shown by the number line below.",
         worked_calculation=tuple(worked_calculation),
@@ -327,7 +327,7 @@ def generate_modelled_example_inequalities_number_line_higher(tier: Tier, rng: r
         f"{inequality_str}",
     ]
     return ModelledExample(
-        topic_id="inequalities_number_line_higher",
+        topic_id="inequalities_number_line_H",
         tier=Tier.HIGHER,
         prompt="Write down the inequality (or pair of inequalities) shown by the number line below.",
         worked_calculation=tuple(worked_calculation),
@@ -338,7 +338,7 @@ def generate_modelled_example_inequalities_number_line_higher(tier: Tier, rng: r
 
 
 TOPIC_INEQUALITIES_NUMBER_LINE_FOUNDATION = TopicDefinition(
-    id="inequalities_number_line_foundation",
+    id="inequalities_number_line_F",
     display_name="Inequalities on a Number Line",
     description="Draw the solution set of a simple inequality on a number line, or read one off a diagram.",
     generate=generate_inequalities_number_line_foundation,
@@ -349,7 +349,7 @@ TOPIC_INEQUALITIES_NUMBER_LINE_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_INEQUALITIES_NUMBER_LINE_HIGHER = TopicDefinition(
-    id="inequalities_number_line_higher",
+    id="inequalities_number_line_H",
     display_name="Compound Inequalities on a Number Line",
     description="Draw or read a compound (double, or 'either/or') inequality shown on a number line.",
     generate=generate_inequalities_number_line_higher,

@@ -89,7 +89,7 @@ def test_topic_definitions_have_expected_metadata():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (classify_expressions.generate_modelled_example_classify_expressions, Tier.FOUNDATION, "classify_expressions"),
+    (classify_expressions.generate_modelled_example_classify_expressions, Tier.FOUNDATION, "classify_expressions_F"),
 ]
 
 

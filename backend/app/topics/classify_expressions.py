@@ -201,7 +201,7 @@ def generate_classify_expressions(tier: Tier, rng: random.Random) -> Question:
         statement, shape, extra = _build_expression(rng)
         steps = _expression_steps(statement)
         return Question(
-            topic_id="classify_expressions",
+            topic_id="classify_expressions_F",
             tier=Tier.FOUNDATION,
             prompt=f"Is the following an expression, equation, formula, or identity?\n{statement}",
             solution_steps=tuple(steps),
@@ -213,7 +213,7 @@ def generate_classify_expressions(tier: Tier, rng: random.Random) -> Question:
         statement, a, b, c, solution = _build_equation(rng)
         steps = _equation_steps(statement, solution)
         return Question(
-            topic_id="classify_expressions",
+            topic_id="classify_expressions_F",
             tier=Tier.FOUNDATION,
             prompt=f"Is the following an expression, equation, formula, or identity?\n{statement}",
             solution_steps=tuple(steps),
@@ -226,7 +226,7 @@ def generate_classify_expressions(tier: Tier, rng: random.Random) -> Question:
         formula_str, description = _FORMULAE[idx]
         steps = _formula_steps(formula_str, description)
         return Question(
-            topic_id="classify_expressions",
+            topic_id="classify_expressions_F",
             tier=Tier.FOUNDATION,
             prompt=f"Is the following an expression, equation, formula, or identity?\n{formula_str}",
             solution_steps=tuple(steps),
@@ -239,7 +239,7 @@ def generate_classify_expressions(tier: Tier, rng: random.Random) -> Question:
     lhs_str, rhs_str = [s.strip() for s in statement.split("≡")]
     steps = _identity_steps(statement, lhs_str, rhs_str)
     return Question(
-        topic_id="classify_expressions",
+        topic_id="classify_expressions_F",
         tier=Tier.FOUNDATION,
         prompt=f"Is the following an expression, equation, formula, or identity?\n{statement}",
         solution_steps=tuple(steps),
@@ -265,7 +265,7 @@ def generate_modelled_example_classify_expressions(tier: Tier, rng: random.Rando
         ]
         worked_calculation = [statement, "No '=' or '≡' present", "Category: expression"]
         return ModelledExample(
-            topic_id="classify_expressions",
+            topic_id="classify_expressions_F",
             tier=Tier.FOUNDATION,
             prompt=f"Is the following an expression, equation, formula, or identity?\n{statement}",
             worked_calculation=tuple(worked_calculation),
@@ -290,7 +290,7 @@ def generate_modelled_example_classify_expressions(tier: Tier, rng: random.Rando
         ]
         worked_calculation = [statement, f"Solve: x = {sol_str}", "Category: equation"]
         return ModelledExample(
-            topic_id="classify_expressions",
+            topic_id="classify_expressions_F",
             tier=Tier.FOUNDATION,
             prompt=f"Is the following an expression, equation, formula, or identity?\n{statement}",
             worked_calculation=tuple(worked_calculation),
@@ -316,7 +316,7 @@ def generate_modelled_example_classify_expressions(tier: Tier, rng: random.Rando
         ]
         worked_calculation = [formula_str, "Links distinct named quantities", "Category: formula"]
         return ModelledExample(
-            topic_id="classify_expressions",
+            topic_id="classify_expressions_F",
             tier=Tier.FOUNDATION,
             prompt=f"Is the following an expression, equation, formula, or identity?\n{formula_str}",
             worked_calculation=tuple(worked_calculation),
@@ -341,7 +341,7 @@ def generate_modelled_example_classify_expressions(tier: Tier, rng: random.Rando
     ]
     worked_calculation = [statement, f"Expand LHS: {rhs_str}", "Matches RHS for all x - identity"]
     return ModelledExample(
-        topic_id="classify_expressions",
+        topic_id="classify_expressions_F",
         tier=Tier.FOUNDATION,
         prompt=f"Is the following an expression, equation, formula, or identity?\n{statement}",
         worked_calculation=tuple(worked_calculation),
@@ -351,7 +351,7 @@ def generate_modelled_example_classify_expressions(tier: Tier, rng: random.Rando
 
 
 TOPIC_CLASSIFY_EXPRESSIONS = TopicDefinition(
-    id="classify_expressions",
+    id="classify_expressions_F",
     display_name="Expressions, Formulae, Equations and Identities",
     description="Classify an algebraic statement as an expression, equation, formula, or identity.",
     generate=generate_classify_expressions,

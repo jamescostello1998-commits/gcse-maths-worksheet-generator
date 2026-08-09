@@ -48,7 +48,7 @@ def generate_to_standard_form(tier: Tier, rng: random.Random) -> Question:
         f"{_fmt_decimal_fixed(ordinary)} = {_fmt_decimal_fixed(a)} × 10^{n}",
     ]
     return Question(
-        topic_id="standard_form_to",
+        topic_id="standard_form_to_F",
         tier=Tier.FOUNDATION,
         prompt=f"Write {_fmt_decimal_fixed(ordinary)} in standard form.",
         solution_steps=tuple(steps),
@@ -72,7 +72,7 @@ def generate_to_standard_form_small(tier: Tier, rng: random.Random) -> Question:
         f"{_fmt_decimal_fixed(ordinary)} = {_fmt_decimal_fixed(a)} × 10^{exponent}",
     ]
     return Question(
-        topic_id="standard_form_to_small",
+        topic_id="standard_form_to_small_F",
         tier=Tier.FOUNDATION,
         prompt=f"Write {_fmt_decimal_fixed(ordinary)} in standard form.",
         solution_steps=tuple(steps),
@@ -94,7 +94,7 @@ def generate_from_standard_form_large(tier: Tier, rng: random.Random) -> Questio
         f"{_fmt_decimal_fixed(a)} × 10^{n} = {_fmt_decimal_fixed(ordinary)}",
     ]
     return Question(
-        topic_id="standard_form_from_large",
+        topic_id="standard_form_from_large_F",
         tier=Tier.FOUNDATION,
         prompt=f"Write {_fmt_decimal_fixed(a)} × 10^{n} as an ordinary number.",
         solution_steps=tuple(steps),
@@ -116,7 +116,7 @@ def generate_from_standard_form_small(tier: Tier, rng: random.Random) -> Questio
         f"{_fmt_decimal_fixed(a)} × 10^{n} = {_fmt_decimal_fixed(ordinary)}",
     ]
     return Question(
-        topic_id="standard_form_from_small",
+        topic_id="standard_form_from_small_F",
         tier=Tier.FOUNDATION,
         prompt=f"Write {_fmt_decimal_fixed(a)} × 10^{n} as an ordinary number.",
         solution_steps=tuple(steps),
@@ -169,7 +169,7 @@ def generate_multiply_divide_standard_form(tier: Tier, rng: random.Random) -> Qu
         )
     final_answer = f"{_fmt_decimal_fixed(_fraction_to_decimal(norm_mantissa))} × 10^{norm_exp}"
     return Question(
-        topic_id="standard_form_multiply_divide",
+        topic_id="standard_form_multiply_divide_H",
         tier=Tier.HIGHER,
         prompt=f"Work out ({a1} × 10^{n1}) {symbol} ({a2} × 10^{n2}). Give your answer in standard form.",
         solution_steps=tuple(steps),
@@ -222,7 +222,7 @@ def generate_multiply_divide_standard_form_foundation(tier: Tier, rng: random.Ra
         )
     final_answer = f"{_fmt_decimal_fixed(_fraction_to_decimal(norm_mantissa))} × 10^{norm_exp}"
     return Question(
-        topic_id="standard_form_multiply_divide_foundation",
+        topic_id="standard_form_multiply_divide_F",
         tier=Tier.FOUNDATION,
         prompt=f"Work out ({a1} × 10^{n1}) {symbol} ({a2} × 10^{n2}). Give your answer in standard form.",
         solution_steps=tuple(steps),
@@ -263,7 +263,7 @@ def generate_add_subtract_standard_form(tier: Tier, rng: random.Random) -> Quest
         f"Write in standard form: {combined_coeff} × 10^{n2} = {mantissa_str} × 10^{exp}",
     ]
     return Question(
-        topic_id="standard_form_add_subtract",
+        topic_id="standard_form_add_subtract_H",
         tier=Tier.HIGHER,
         prompt=f"Work out ({a1} × 10^{n1}) {op} ({a2} × 10^{n2}). Give your answer in standard form.",
         solution_steps=tuple(steps),
@@ -342,7 +342,7 @@ def generate_standard_form_calculator(tier: Tier, rng: random.Random) -> Questio
 
     final_answer = f"{rounded_mantissa} × 10^{norm_exp}"
     return Question(
-        topic_id="standard_form_calculator",
+        topic_id="standard_form_calculator_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"Use a calculator to work out ({_fmt_decimal_fixed(a1)} × 10^{n1}) {symbol} "
@@ -379,7 +379,7 @@ def generate_modelled_example_to_standard_form(tier: Tier, rng: random.Random) -
         f"= {_fmt_decimal_fixed(a)} × 10^{n}",
     ]
     return ModelledExample(
-        topic_id="standard_form_to",
+        topic_id="standard_form_to_F",
         tier=Tier.FOUNDATION,
         prompt=f"Write {_fmt_decimal_fixed(ordinary)} in standard form.",
         worked_calculation=tuple(worked_calculation),
@@ -414,7 +414,7 @@ def generate_modelled_example_to_standard_form_small(tier: Tier, rng: random.Ran
         f"= {_fmt_decimal_fixed(a)} × 10^{exponent}",
     ]
     return ModelledExample(
-        topic_id="standard_form_to_small",
+        topic_id="standard_form_to_small_F",
         tier=Tier.FOUNDATION,
         prompt=f"Write {_fmt_decimal_fixed(ordinary)} in standard form.",
         worked_calculation=tuple(worked_calculation),
@@ -444,7 +444,7 @@ def generate_modelled_example_from_standard_form_large(tier: Tier, rng: random.R
         f"= {_fmt_decimal_fixed(ordinary)}",
     ]
     return ModelledExample(
-        topic_id="standard_form_from_large",
+        topic_id="standard_form_from_large_F",
         tier=Tier.FOUNDATION,
         prompt=f"Write {_fmt_decimal_fixed(a)} × 10^{n} as an ordinary number.",
         worked_calculation=tuple(worked_calculation),
@@ -475,7 +475,7 @@ def generate_modelled_example_from_standard_form_small(tier: Tier, rng: random.R
         f"= {_fmt_decimal_fixed(ordinary)}",
     ]
     return ModelledExample(
-        topic_id="standard_form_from_small",
+        topic_id="standard_form_from_small_F",
         tier=Tier.FOUNDATION,
         prompt=f"Write {_fmt_decimal_fixed(a)} × 10^{n} as an ordinary number.",
         worked_calculation=tuple(worked_calculation),
@@ -551,7 +551,7 @@ def generate_modelled_example_multiply_divide_standard_form(tier: Tier, rng: ran
         worked_calculation.append(f"= {norm_mantissa_str} × 10^{norm_exp}")
 
     return ModelledExample(
-        topic_id="standard_form_multiply_divide",
+        topic_id="standard_form_multiply_divide_H",
         tier=Tier.HIGHER,
         prompt=f"Work out ({a1} × 10^{n1}) {symbol} ({a2} × 10^{n2}). Give your answer in standard form.",
         worked_calculation=tuple(worked_calculation),
@@ -629,7 +629,7 @@ def generate_modelled_example_multiply_divide_standard_form_foundation(
         worked_calculation.append(f"= {norm_mantissa_str} × 10^{norm_exp}")
 
     return ModelledExample(
-        topic_id="standard_form_multiply_divide_foundation",
+        topic_id="standard_form_multiply_divide_F",
         tier=Tier.FOUNDATION,
         prompt=f"Work out ({a1} × 10^{n1}) {symbol} ({a2} × 10^{n2}). Give your answer in standard form.",
         worked_calculation=tuple(worked_calculation),
@@ -683,7 +683,7 @@ def generate_modelled_example_add_subtract_standard_form(tier: Tier, rng: random
         f"= {mantissa_str} × 10^{exp}",
     ]
     return ModelledExample(
-        topic_id="standard_form_add_subtract",
+        topic_id="standard_form_add_subtract_H",
         tier=Tier.HIGHER,
         prompt=f"Work out ({a1} × 10^{n1}) {op} ({a2} × 10^{n2}). Give your answer in standard form.",
         worked_calculation=tuple(worked_calculation),
@@ -773,7 +773,7 @@ def generate_modelled_example_standard_form_calculator(tier: Tier, rng: random.R
     worked_calculation.append(f"= {rounded_mantissa} × 10^{norm_exp} (3 s.f.)")
 
     return ModelledExample(
-        topic_id="standard_form_calculator",
+        topic_id="standard_form_calculator_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"Use a calculator to work out ({_fmt_decimal_fixed(a1)} × 10^{n1}) {symbol} "
@@ -787,7 +787,7 @@ def generate_modelled_example_standard_form_calculator(tier: Tier, rng: random.R
 
 
 TOPIC_TO_STANDARD_FORM = TopicDefinition(
-    id="standard_form_to",
+    id="standard_form_to_F",
     display_name="Converting to Standard Form",
     description="Write an ordinary number in standard form.",
     generate=generate_to_standard_form,
@@ -798,7 +798,7 @@ TOPIC_TO_STANDARD_FORM = TopicDefinition(
 )
 
 TOPIC_TO_STANDARD_FORM_SMALL = TopicDefinition(
-    id="standard_form_to_small",
+    id="standard_form_to_small_F",
     display_name="Converting Small Numbers to Standard Form",
     description="Write an ordinary number less than 1 in standard form.",
     generate=generate_to_standard_form_small,
@@ -809,7 +809,7 @@ TOPIC_TO_STANDARD_FORM_SMALL = TopicDefinition(
 )
 
 TOPIC_FROM_STANDARD_FORM_LARGE = TopicDefinition(
-    id="standard_form_from_large",
+    id="standard_form_from_large_F",
     display_name="Converting from Standard Form (Large Numbers)",
     description="Write a large number given in standard form as an ordinary number.",
     generate=generate_from_standard_form_large,
@@ -820,7 +820,7 @@ TOPIC_FROM_STANDARD_FORM_LARGE = TopicDefinition(
 )
 
 TOPIC_FROM_STANDARD_FORM_SMALL = TopicDefinition(
-    id="standard_form_from_small",
+    id="standard_form_from_small_F",
     display_name="Converting from Standard Form (Small Numbers)",
     description="Write a small number given in standard form as an ordinary number.",
     generate=generate_from_standard_form_small,
@@ -831,7 +831,7 @@ TOPIC_FROM_STANDARD_FORM_SMALL = TopicDefinition(
 )
 
 TOPIC_CALCULATOR = TopicDefinition(
-    id="standard_form_calculator",
+    id="standard_form_calculator_F",
     display_name="Standard Form with a Calculator",
     description="Multiply or divide numbers in standard form using a calculator, rounding to 3 significant figures.",
     generate=generate_standard_form_calculator,
@@ -842,7 +842,7 @@ TOPIC_CALCULATOR = TopicDefinition(
 )
 
 TOPIC_MULTIPLY_DIVIDE = TopicDefinition(
-    id="standard_form_multiply_divide",
+    id="standard_form_multiply_divide_H",
     display_name="Multiplying & Dividing in Standard Form",
     description="Multiply or divide two numbers given in standard form.",
     generate=generate_multiply_divide_standard_form,
@@ -853,7 +853,7 @@ TOPIC_MULTIPLY_DIVIDE = TopicDefinition(
 )
 
 TOPIC_MULTIPLY_DIVIDE_FOUNDATION = TopicDefinition(
-    id="standard_form_multiply_divide_foundation",
+    id="standard_form_multiply_divide_F",
     display_name="Multiplying & Dividing in Standard Form (Foundation)",
     description="Multiply or divide two numbers given in standard form.",
     generate=generate_multiply_divide_standard_form_foundation,
@@ -864,7 +864,7 @@ TOPIC_MULTIPLY_DIVIDE_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_ADD_SUBTRACT = TopicDefinition(
-    id="standard_form_add_subtract",
+    id="standard_form_add_subtract_H",
     display_name="Adding & Subtracting in Standard Form",
     description="Add or subtract two numbers given in standard form.",
     generate=generate_add_subtract_standard_form,

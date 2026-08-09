@@ -113,7 +113,7 @@ def generate_plans_and_elevations(tier: Tier, rng: random.Random) -> Question:
     ]
     answer = f"Front elevation: {c['front']}. Side elevation: {c['side']}. Plan view: {c['plan']}."
     return Question(
-        topic_id="plans_and_elevations",
+        topic_id="plans_and_elevations_F",
         tier=Tier.FOUNDATION,
         prompt="The diagram shows a solid with its dimensions labelled. Draw and label the front "
         "elevation, side elevation, and plan view of the solid.",
@@ -145,7 +145,7 @@ def generate_modelled_example_plans_and_elevations(tier: Tier, rng: random.Rando
     ]
     answer = f"Front elevation: {c['front']}. Side elevation: {c['side']}. Plan view: {c['plan']}."
     return ModelledExample(
-        topic_id="plans_and_elevations",
+        topic_id="plans_and_elevations_F",
         tier=Tier.FOUNDATION,
         prompt="The diagram shows a solid with its dimensions labelled. Draw and label the front "
         "elevation, side elevation, and plan view of the solid.",
@@ -157,7 +157,7 @@ def generate_modelled_example_plans_and_elevations(tier: Tier, rng: random.Rando
 
 
 TOPIC_PLANS_AND_ELEVATIONS = TopicDefinition(
-    id="plans_and_elevations",
+    id="plans_and_elevations_F",
     display_name="Plans and Elevations",
     description="Draw the front elevation, side elevation, and plan view of a cuboid or triangular prism.",
     generate=generate_plans_and_elevations,

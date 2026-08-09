@@ -63,7 +63,7 @@ def generate_next_term(tier: Tier, rng: random.Random) -> Question:
         f"Next term = {terms[-1]} {'+' if d > 0 else '-'} {abs(d)} = {next_term}",
     ]
     return Question(
-        topic_id="sequences_next_term",
+        topic_id="sequences_next_term_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find the next term in the sequence: {', '.join(map(str, terms))}, ...",
         solution_steps=tuple(steps),
@@ -95,7 +95,7 @@ def generate_term_to_term_rule(tier: Tier, rng: random.Random) -> Question:
 
     steps = [f"Term-to-term rule: {rule}", f"Next term = {next_term}"]
     return Question(
-        topic_id="sequences_term_to_term_rule",
+        topic_id="sequences_term_to_term_rule_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"Here are the first four terms of a sequence: {', '.join(map(str, terms))}. "
@@ -124,7 +124,7 @@ def generate_nth_term(tier: Tier, rng: random.Random) -> Question:
         f"nth term = {formula}",
     ]
     return Question(
-        topic_id="sequences_nth_term",
+        topic_id="sequences_nth_term_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"Here are the first four terms of a sequence: {', '.join(map(str, terms))}.\n"
@@ -169,7 +169,7 @@ def generate_quadratic_nth_term(tier: Tier, rng: random.Random) -> Question:
         f"nth term = {formula}",
     ]
     return Question(
-        topic_id="sequences_quadratic_nth_term",
+        topic_id="sequences_quadratic_nth_term_H",
         tier=Tier.HIGHER,
         prompt=(
             f"Here are the first four terms of a quadratic sequence: {', '.join(map(str, terms))}.\n"
@@ -353,7 +353,7 @@ def generate_special_sequences_foundation(tier: Tier, rng: random.Random) -> Que
         dedup_key = f"seq_special_found:{kind}:{num_shown}:{offset}"
 
     return Question(
-        topic_id="special_sequences_foundation",
+        topic_id="special_sequences_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -431,7 +431,7 @@ def generate_special_sequences_higher(tier: Tier, rng: random.Random) -> Questio
         dedup_key = f"seq_special_high:geometric:{a}:{r.numerator}:{r.denominator}:{num_shown}:{offset}"
 
     return Question(
-        topic_id="special_sequences_higher",
+        topic_id="special_sequences_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -468,7 +468,7 @@ def generate_modelled_example_next_term(tier: Tier, rng: random.Random) -> Model
         f"Next term = {terms[-1]} {'+' if d > 0 else '-'} {abs(d)} = {next_term}",
     ]
     return ModelledExample(
-        topic_id="sequences_next_term",
+        topic_id="sequences_next_term_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find the next term in the sequence: {', '.join(map(str, terms))}, ...",
         worked_calculation=tuple(worked_calculation),
@@ -523,7 +523,7 @@ def generate_modelled_example_term_to_term_rule(tier: Tier, rng: random.Random) 
         f"Next term = {next_term}",
     ]
     return ModelledExample(
-        topic_id="sequences_term_to_term_rule",
+        topic_id="sequences_term_to_term_rule_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"Here are the first four terms of a sequence: {', '.join(map(str, terms))}. "
@@ -564,7 +564,7 @@ def generate_modelled_example_nth_term(tier: Tier, rng: random.Random) -> Modell
         f"nth term = {formula}",
     ]
     return ModelledExample(
-        topic_id="sequences_nth_term",
+        topic_id="sequences_nth_term_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"Here are the first four terms of a sequence: {', '.join(map(str, terms))}.\n"
@@ -618,7 +618,7 @@ def generate_modelled_example_quadratic_nth_term(tier: Tier, rng: random.Random)
         f"nth term = {formula}",
     ]
     return ModelledExample(
-        topic_id="sequences_quadratic_nth_term",
+        topic_id="sequences_quadratic_nth_term_H",
         tier=Tier.HIGHER,
         prompt=(
             f"Here are the first four terms of a quadratic sequence: {', '.join(map(str, terms))}.\n"
@@ -704,7 +704,7 @@ def generate_modelled_example_special_sequences_foundation(tier: Tier, rng: rand
         answer = str(target_term)
 
     return ModelledExample(
-        topic_id="special_sequences_foundation",
+        topic_id="special_sequences_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -796,7 +796,7 @@ def generate_modelled_example_special_sequences_higher(tier: Tier, rng: random.R
         answer = _fmt_fraction(target_direct)
 
     return ModelledExample(
-        topic_id="special_sequences_higher",
+        topic_id="special_sequences_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -806,7 +806,7 @@ def generate_modelled_example_special_sequences_higher(tier: Tier, rng: random.R
 
 
 TOPIC_NEXT_TERM = TopicDefinition(
-    id="sequences_next_term",
+    id="sequences_next_term_F",
     display_name="Next Term",
     description="Find the next term in an arithmetic sequence.",
     generate=generate_next_term,
@@ -817,7 +817,7 @@ TOPIC_NEXT_TERM = TopicDefinition(
 )
 
 TOPIC_TERM_TO_TERM_RULE = TopicDefinition(
-    id="sequences_term_to_term_rule",
+    id="sequences_term_to_term_rule_F",
     display_name="Term-to-Term Rule",
     description="Describe the term-to-term rule of a sequence and find the next term.",
     generate=generate_term_to_term_rule,
@@ -828,7 +828,7 @@ TOPIC_TERM_TO_TERM_RULE = TopicDefinition(
 )
 
 TOPIC_NTH_TERM = TopicDefinition(
-    id="sequences_nth_term",
+    id="sequences_nth_term_F",
     display_name="nth Term of a Linear Sequence",
     description="Find an expression for the nth term of an arithmetic sequence.",
     generate=generate_nth_term,
@@ -839,7 +839,7 @@ TOPIC_NTH_TERM = TopicDefinition(
 )
 
 TOPIC_QUADRATIC_NTH_TERM = TopicDefinition(
-    id="sequences_quadratic_nth_term",
+    id="sequences_quadratic_nth_term_H",
     display_name="nth Term of a Quadratic Sequence",
     description="Find an expression for the nth term of a quadratic sequence.",
     generate=generate_quadratic_nth_term,
@@ -850,7 +850,7 @@ TOPIC_QUADRATIC_NTH_TERM = TopicDefinition(
 )
 
 TOPIC_SPECIAL_SEQUENCES_FOUNDATION = TopicDefinition(
-    id="special_sequences_foundation",
+    id="special_sequences_F",
     display_name="Special Sequences",
     description="Recognise triangular, square, cube and arithmetic sequences and find further terms.",
     generate=generate_special_sequences_foundation,
@@ -861,7 +861,7 @@ TOPIC_SPECIAL_SEQUENCES_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_SPECIAL_SEQUENCES_HIGHER = TopicDefinition(
-    id="special_sequences_higher",
+    id="special_sequences_H",
     display_name="Fibonacci-Type and Geometric Sequences",
     description=(
         "Find terms of a Fibonacci-type sequence, or of a geometric sequence with a rational common ratio."

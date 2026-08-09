@@ -148,7 +148,7 @@ def generate_modelled_example_vectors_arithmetic_foundation(tier: Tier, rng: ran
         coord_range=8,
         k_range=lambda r: r.randint(1, 4),
         m_range=lambda r: r.randint(1, 4),
-        topic_id="vectors_arithmetic_foundation",
+        topic_id="vectors_arithmetic_F",
         tier=Tier.FOUNDATION,
     )
 
@@ -159,7 +159,7 @@ def generate_modelled_example_vectors_arithmetic_higher(tier: Tier, rng: random.
         coord_range=12,
         k_range=lambda r: _nonzero_int(r, -5, 5),
         m_range=lambda r: _nonzero_int(r, -5, 5),
-        topic_id="vectors_arithmetic_higher",
+        topic_id="vectors_arithmetic_H",
         tier=Tier.HIGHER,
     )
 
@@ -170,7 +170,7 @@ def generate_vectors_arithmetic_foundation(tier: Tier, rng: random.Random) -> Qu
         coord_range=8,
         k_range=lambda r: r.randint(1, 4),
         m_range=lambda r: r.randint(1, 4),
-        topic_id="vectors_arithmetic_foundation",
+        topic_id="vectors_arithmetic_F",
         tier=Tier.FOUNDATION,
     )
 
@@ -181,7 +181,7 @@ def generate_vectors_arithmetic_higher(tier: Tier, rng: random.Random) -> Questi
         coord_range=12,
         k_range=lambda r: _nonzero_int(r, -5, 5),
         m_range=lambda r: _nonzero_int(r, -5, 5),
-        topic_id="vectors_arithmetic_higher",
+        topic_id="vectors_arithmetic_H",
         tier=Tier.HIGHER,
     )
 
@@ -259,7 +259,7 @@ def generate_geometric_vectors(tier: Tier, rng: random.Random) -> Question:
         steps.append(f"{vec_name} = OB - O{point_label} = {answer}")
 
     return Question(
-        topic_id="geometric_vectors",
+        topic_id="geometric_vectors_H",
         tier=Tier.HIGHER,
         prompt=(
             f"OAB is a triangle with OA = {_VEC_A} and OB = {_VEC_B}. Point {point_label} lies on AB "
@@ -344,7 +344,7 @@ def generate_modelled_example_geometric_vectors(tier: Tier, rng: random.Random) 
         worked_calculation.append(f"{vec_name} = OB - O{point_label} = {answer}")
 
     return ModelledExample(
-        topic_id="geometric_vectors",
+        topic_id="geometric_vectors_H",
         tier=Tier.HIGHER,
         prompt=(
             f"OAB is a triangle with OA = {_VEC_A} and OB = {_VEC_B}. Point {point_label} lies on AB "
@@ -362,7 +362,7 @@ def generate_modelled_example_geometric_vectors(tier: Tier, rng: random.Random) 
 
 
 TOPIC_VECTORS_ARITHMETIC_FOUNDATION = TopicDefinition(
-    id="vectors_arithmetic_foundation",
+    id="vectors_arithmetic_F",
     display_name="Vector Arithmetic",
     description="Add, subtract, and scale column vectors.",
     generate=generate_vectors_arithmetic_foundation,
@@ -373,7 +373,7 @@ TOPIC_VECTORS_ARITHMETIC_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_VECTORS_ARITHMETIC_HIGHER = TopicDefinition(
-    id="vectors_arithmetic_higher",
+    id="vectors_arithmetic_H",
     display_name="Vector Arithmetic",
     description="Add, subtract, and scale column vectors, including negative scalars.",
     generate=generate_vectors_arithmetic_higher,
@@ -384,7 +384,7 @@ TOPIC_VECTORS_ARITHMETIC_HIGHER = TopicDefinition(
 )
 
 TOPIC_GEOMETRIC_VECTORS = TopicDefinition(
-    id="geometric_vectors",
+    id="geometric_vectors_H",
     display_name="Vector Geometry",
     description="Express a vector between two points on a triangle in terms of given position vectors.",
     generate=generate_geometric_vectors,

@@ -39,7 +39,7 @@ def generate_rectangle(tier: Tier, rng: random.Random) -> Question:
         answer = f"{perimeter} cm"
 
     return Question(
-        topic_id="area_rectangle",
+        topic_id="area_rectangle_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find the {measure} of the following rectangle.",
         solution_steps=tuple(steps),
@@ -105,7 +105,7 @@ def generate_modelled_example_rectangle(tier: Tier, rng: random.Random) -> Model
         ]
 
     return ModelledExample(
-        topic_id="area_rectangle",
+        topic_id="area_rectangle_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find the {measure} of the following rectangle.",
         worked_calculation=tuple(worked_calculation),
@@ -132,7 +132,7 @@ def generate_triangle(tier: Tier, rng: random.Random) -> Question:
         f"Area = (1/2) × base × height = (1/2) × {base} × {height} = {area_str} cm²",
     ]
     return Question(
-        topic_id="area_triangle",
+        topic_id="area_triangle_F",
         tier=Tier.FOUNDATION,
         prompt=f"A triangle has base {base} cm and height {height} cm. Find its area.",
         solution_steps=tuple(steps),
@@ -172,7 +172,7 @@ def generate_modelled_example_triangle(tier: Tier, rng: random.Random) -> Modell
         f"= {area_str} cm²",
     ]
     return ModelledExample(
-        topic_id="area_triangle",
+        topic_id="area_triangle_F",
         tier=Tier.FOUNDATION,
         prompt=f"A triangle has base {base} cm and height {height} cm. Find its area.",
         worked_calculation=tuple(worked_calculation),
@@ -358,7 +358,7 @@ def generate_composite_rectangles(tier: Tier, rng: random.Random) -> Question:
 
     final_answer = f"{b['total_area']} cm²" if b["branch"] != "find_x" else f"x = {b['outer_w']} cm"
     return Question(
-        topic_id="area_composite_rectangles",
+        topic_id="area_composite_rectangles_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -434,7 +434,7 @@ def generate_modelled_example_composite_rectangles(tier: Tier, rng: random.Rando
         final_answer = f"x = {b['outer_w']} cm"
 
     return ModelledExample(
-        topic_id="area_composite_rectangles",
+        topic_id="area_composite_rectangles_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -466,7 +466,7 @@ def generate_circle(tier: Tier, rng: random.Random) -> Question:
         answer = f"{_fmt_pi_term(coeff)} cm (≈ {sp.N(exact_expr, 3)} cm)"
 
     return Question(
-        topic_id="area_circle",
+        topic_id="area_circle_H",
         tier=Tier.HIGHER,
         prompt=f"Find the {measure} of the following circle, in terms of π.",
         solution_steps=tuple(steps),
@@ -525,7 +525,7 @@ def generate_modelled_example_circle(tier: Tier, rng: random.Random) -> Modelled
         ]
 
     return ModelledExample(
-        topic_id="area_circle",
+        topic_id="area_circle_H",
         tier=Tier.HIGHER,
         prompt=f"Find the {measure} of the following circle, in terms of π.",
         worked_calculation=tuple(worked_calculation),
@@ -567,7 +567,7 @@ def generate_circle_foundation(tier: Tier, rng: random.Random) -> Question:
 
     unit = "cm²" if measure == "area" else "cm"
     return Question(
-        topic_id="area_circle_foundation",
+        topic_id="area_circle_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find the {measure} of the following circle, correct to {rounding.phrase}.",
         solution_steps=tuple(steps),
@@ -625,7 +625,7 @@ def generate_modelled_example_circle_foundation(tier: Tier, rng: random.Random) 
 
     unit = "cm²" if measure == "area" else "cm"
     return ModelledExample(
-        topic_id="area_circle_foundation",
+        topic_id="area_circle_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find the {measure} of the following circle, correct to {rounding.phrase}.",
         worked_calculation=tuple(worked_calculation),
@@ -655,7 +655,7 @@ def generate_semicircle_compound(tier: Tier, rng: random.Random) -> Question:
         f"Total area = {rect_area} + {_fmt_pi_term(semicircle_coeff)} ≈ {approx_total} cm² (3 s.f.)",
     ]
     return Question(
-        topic_id="area_semicircle_compound",
+        topic_id="area_semicircle_compound_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A shape is made from a rectangle {width} cm by {height} cm with a semicircle "
@@ -713,7 +713,7 @@ def generate_modelled_example_semicircle_compound(tier: Tier, rng: random.Random
         f"Total = {rect_area} + {_fmt_pi_term(semicircle_coeff)} ≈ {approx_total} cm²",
     ]
     return ModelledExample(
-        topic_id="area_semicircle_compound",
+        topic_id="area_semicircle_compound_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A shape is made from a rectangle {width} cm by {height} cm with a semicircle "
@@ -757,7 +757,7 @@ def generate_semicircle_compound_higher(tier: Tier, rng: random.Random) -> Quest
         f"Total area = {rect_area} + {pi_term} cm² (exact form)",
     ]
     return Question(
-        topic_id="area_semicircle_compound_higher",
+        topic_id="area_semicircle_compound_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A shape is made from a rectangle {width} cm by {height} cm with a semicircle "
@@ -813,7 +813,7 @@ def generate_modelled_example_semicircle_compound_higher(tier: Tier, rng: random
         f"Total = {rect_area} + {pi_term} cm² (exact form)",
     ]
     return ModelledExample(
-        topic_id="area_semicircle_compound_higher",
+        topic_id="area_semicircle_compound_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A shape is made from a rectangle {width} cm by {height} cm with a semicircle "
@@ -854,7 +854,7 @@ def generate_subtract_compound(tier: Tier, rng: random.Random) -> Question:
         f"Shaded area = {outer_area} - {inner_area} = {total_area} cm²",
     ]
     return Question(
-        topic_id="area_subtract_compound",
+        topic_id="area_subtract_compound_H",
         tier=Tier.HIGHER,
         prompt="Find the shaded area.",
         solution_steps=tuple(steps),
@@ -914,7 +914,7 @@ def generate_modelled_example_subtract_compound(tier: Tier, rng: random.Random) 
         f"Shaded area = {outer_area} - {inner_area} = {total_area} cm²",
     ]
     return ModelledExample(
-        topic_id="area_subtract_compound",
+        topic_id="area_subtract_compound_H",
         tier=Tier.HIGHER,
         prompt="Find the shaded area.",
         worked_calculation=tuple(worked_calculation),
@@ -954,7 +954,7 @@ def generate_subtract_compound_foundation(tier: Tier, rng: random.Random) -> Que
         f"Shaded area = {outer_area} - {inner_area} = {total_area} cm²",
     ]
     return Question(
-        topic_id="area_subtract_compound_foundation",
+        topic_id="area_subtract_compound_F",
         tier=Tier.FOUNDATION,
         prompt="Find the shaded area.",
         solution_steps=tuple(steps),
@@ -1014,7 +1014,7 @@ def generate_modelled_example_subtract_compound_foundation(tier: Tier, rng: rand
         f"Shaded area = {outer_area} - {inner_area} = {total_area} cm²",
     ]
     return ModelledExample(
-        topic_id="area_subtract_compound_foundation",
+        topic_id="area_subtract_compound_F",
         tier=Tier.FOUNDATION,
         prompt="Find the shaded area.",
         worked_calculation=tuple(worked_calculation),
@@ -1058,7 +1058,7 @@ def generate_area_parallelogram(tier: Tier, rng: random.Random) -> Question:
 
     steps = [f"Area = base × height = {base} × {height} = {area} cm²"]
     return Question(
-        topic_id="area_parallelogram",
+        topic_id="area_parallelogram_F",
         tier=Tier.FOUNDATION,
         prompt="Find the area of the following parallelogram.",
         solution_steps=tuple(steps),
@@ -1090,7 +1090,7 @@ def generate_modelled_example_area_parallelogram(tier: Tier, rng: random.Random)
     ]
     worked_calculation = [f"Area = {base} × {height}", f"= {area} cm²"]
     return ModelledExample(
-        topic_id="area_parallelogram",
+        topic_id="area_parallelogram_F",
         tier=Tier.FOUNDATION,
         prompt="Find the area of the following parallelogram.",
         worked_calculation=tuple(worked_calculation),
@@ -1117,7 +1117,7 @@ def generate_area_trapezium(tier: Tier, rng: random.Random) -> Question:
 
     steps = [f"Area = ½ × (a + b) × height = ½ × ({a} + {b}) × {height} = {area} cm²"]
     return Question(
-        topic_id="area_trapezium",
+        topic_id="area_trapezium_F",
         tier=Tier.FOUNDATION,
         prompt="Find the area of the following trapezium.",
         solution_steps=tuple(steps),
@@ -1152,7 +1152,7 @@ def generate_modelled_example_area_trapezium(tier: Tier, rng: random.Random) -> 
     ]
     worked_calculation = [f"Area = ½ × ({a} + {b}) × {height}", f"= {area} cm²"]
     return ModelledExample(
-        topic_id="area_trapezium",
+        topic_id="area_trapezium_F",
         tier=Tier.FOUNDATION,
         prompt="Find the area of the following trapezium.",
         worked_calculation=tuple(worked_calculation),
@@ -1298,7 +1298,7 @@ def generate_area_mixed_compound(tier: Tier, rng: random.Random) -> Question:
         f"≈ {decimal_answer} cm² ({rounding.short})",
     ]
     return Question(
-        topic_id="area_mixed_compound",
+        topic_id="area_mixed_compound_H",
         tier=Tier.HIGHER,
         prompt=f"Find the total area of the following compound shape, correct to {rounding.phrase}.",
         solution_steps=tuple(steps),
@@ -1341,7 +1341,7 @@ def generate_modelled_example_area_mixed_compound(tier: Tier, rng: random.Random
         f"≈ {decimal_answer} cm² ({rounding.short})",
     ]
     return ModelledExample(
-        topic_id="area_mixed_compound",
+        topic_id="area_mixed_compound_H",
         tier=Tier.HIGHER,
         prompt=f"Find the total area of the following compound shape, correct to {rounding.phrase}.",
         worked_calculation=tuple(worked_calculation),
@@ -1379,7 +1379,7 @@ def generate_arc_length_foundation(tier: Tier, rng: random.Random) -> Question:
         f"= {decimal_answer} cm ({rounding.short}, using a calculator value of π)",
     ]
     return Question(
-        topic_id="arc_length_foundation",
+        topic_id="arc_length_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find the arc length of the following sector, correct to {rounding.phrase}.",
         solution_steps=tuple(steps),
@@ -1409,7 +1409,7 @@ def generate_modelled_example_arc_length_foundation(tier: Tier, rng: random.Rand
     ]
     worked_calculation = [f"({angle} ÷ 360) × 2 × π × {radius}", f"≈ {decimal_answer} cm"]
     return ModelledExample(
-        topic_id="arc_length_foundation",
+        topic_id="arc_length_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find the arc length of the following sector, correct to {rounding.phrase}.",
         worked_calculation=tuple(worked_calculation),
@@ -1437,7 +1437,7 @@ def generate_arc_length(tier: Tier, rng: random.Random) -> Question:
         f"= {answer}",
     ]
     return Question(
-        topic_id="arc_length",
+        topic_id="arc_length_H",
         tier=Tier.HIGHER,
         prompt="Find the exact arc length of the following sector, in terms of π.",
         solution_steps=tuple(steps),
@@ -1469,7 +1469,7 @@ def generate_modelled_example_arc_length(tier: Tier, rng: random.Random) -> Mode
     ]
     worked_calculation = [f"({angle}/360) × 2 × π × {radius}", f"= {answer}"]
     return ModelledExample(
-        topic_id="arc_length",
+        topic_id="arc_length_H",
         tier=Tier.HIGHER,
         prompt="Find the exact arc length of the following sector, in terms of π.",
         worked_calculation=tuple(worked_calculation),
@@ -1501,7 +1501,7 @@ def generate_area_sector_foundation(tier: Tier, rng: random.Random) -> Question:
         f"= {decimal_answer} cm² ({rounding.short}, using a calculator value of π)",
     ]
     return Question(
-        topic_id="area_sector_foundation",
+        topic_id="area_sector_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find the area of the following sector, correct to {rounding.phrase}.",
         solution_steps=tuple(steps),
@@ -1531,7 +1531,7 @@ def generate_modelled_example_area_sector_foundation(tier: Tier, rng: random.Ran
     ]
     worked_calculation = [f"({angle} ÷ 360) × π × {radius}²", f"≈ {decimal_answer} cm²"]
     return ModelledExample(
-        topic_id="area_sector_foundation",
+        topic_id="area_sector_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find the area of the following sector, correct to {rounding.phrase}.",
         worked_calculation=tuple(worked_calculation),
@@ -1559,7 +1559,7 @@ def generate_area_sector(tier: Tier, rng: random.Random) -> Question:
         f"= {answer}",
     ]
     return Question(
-        topic_id="area_sector",
+        topic_id="area_sector_H",
         tier=Tier.HIGHER,
         prompt="Find the exact area of the following sector, in terms of π.",
         solution_steps=tuple(steps),
@@ -1591,7 +1591,7 @@ def generate_modelled_example_area_sector(tier: Tier, rng: random.Random) -> Mod
     ]
     worked_calculation = [f"({angle}/360) × π × {radius}²", f"= {answer}"]
     return ModelledExample(
-        topic_id="area_sector",
+        topic_id="area_sector_H",
         tier=Tier.HIGHER,
         prompt="Find the exact area of the following sector, in terms of π.",
         worked_calculation=tuple(worked_calculation),
@@ -1602,7 +1602,7 @@ def generate_modelled_example_area_sector(tier: Tier, rng: random.Random) -> Mod
 
 
 TOPIC_RECTANGLE = TopicDefinition(
-    id="area_rectangle",
+    id="area_rectangle_F",
     display_name="Rectangles",
     description="Find the area or perimeter of a rectangle.",
     generate=generate_rectangle,
@@ -1613,7 +1613,7 @@ TOPIC_RECTANGLE = TopicDefinition(
 )
 
 TOPIC_TRIANGLE = TopicDefinition(
-    id="area_triangle",
+    id="area_triangle_F",
     display_name="Triangles",
     description="Find the area of a triangle given its base and height.",
     generate=generate_triangle,
@@ -1624,7 +1624,7 @@ TOPIC_TRIANGLE = TopicDefinition(
 )
 
 TOPIC_COMPOSITE_RECTANGLES = TopicDefinition(
-    id="area_composite_rectangles",
+    id="area_composite_rectangles_F",
     display_name="Composite Rectangles",
     description="Find the area of an L-shape made from two rectangles.",
     generate=generate_composite_rectangles,
@@ -1635,7 +1635,7 @@ TOPIC_COMPOSITE_RECTANGLES = TopicDefinition(
 )
 
 TOPIC_CIRCLE = TopicDefinition(
-    id="area_circle",
+    id="area_circle_H",
     display_name="Circles",
     description="Find the area or circumference of a circle in terms of π.",
     generate=generate_circle,
@@ -1646,7 +1646,7 @@ TOPIC_CIRCLE = TopicDefinition(
 )
 
 TOPIC_CIRCLE_FOUNDATION = TopicDefinition(
-    id="area_circle_foundation",
+    id="area_circle_F",
     display_name="Circles (Calculator)",
     description="Find the area or circumference of a circle, giving a decimal answer.",
     generate=generate_circle_foundation,
@@ -1657,7 +1657,7 @@ TOPIC_CIRCLE_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_SEMICIRCLE_COMPOUND = TopicDefinition(
-    id="area_semicircle_compound",
+    id="area_semicircle_compound_F",
     display_name="Semicircle Compound Shapes (Calculator)",
     description="Find the area of a rectangle with a semicircle attached, giving a decimal answer.",
     generate=generate_semicircle_compound,
@@ -1668,7 +1668,7 @@ TOPIC_SEMICIRCLE_COMPOUND = TopicDefinition(
 )
 
 TOPIC_SEMICIRCLE_COMPOUND_HIGHER = TopicDefinition(
-    id="area_semicircle_compound_higher",
+    id="area_semicircle_compound_H",
     display_name="Semicircle Compound Shapes",
     description="Find the area of a rectangle with a semicircle attached, in terms of π.",
     generate=generate_semicircle_compound_higher,
@@ -1679,7 +1679,7 @@ TOPIC_SEMICIRCLE_COMPOUND_HIGHER = TopicDefinition(
 )
 
 TOPIC_SUBTRACT_COMPOUND = TopicDefinition(
-    id="area_subtract_compound",
+    id="area_subtract_compound_H",
     display_name="Subtractive Compound Shapes",
     description="Find the remaining area after a rectangular hole is cut from a larger rectangle.",
     generate=generate_subtract_compound,
@@ -1690,7 +1690,7 @@ TOPIC_SUBTRACT_COMPOUND = TopicDefinition(
 )
 
 TOPIC_SUBTRACT_COMPOUND_FOUNDATION = TopicDefinition(
-    id="area_subtract_compound_foundation",
+    id="area_subtract_compound_F",
     display_name="Subtractive Compound Shapes (Foundation)",
     description="Find the remaining area after a rectangular hole is cut from a larger rectangle.",
     generate=generate_subtract_compound_foundation,
@@ -1701,7 +1701,7 @@ TOPIC_SUBTRACT_COMPOUND_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_PARALLELOGRAM = TopicDefinition(
-    id="area_parallelogram",
+    id="area_parallelogram_F",
     display_name="Parallelograms",
     description="Find the area of a parallelogram given its base and perpendicular height.",
     generate=generate_area_parallelogram,
@@ -1712,7 +1712,7 @@ TOPIC_PARALLELOGRAM = TopicDefinition(
 )
 
 TOPIC_TRAPEZIUM = TopicDefinition(
-    id="area_trapezium",
+    id="area_trapezium_F",
     display_name="Trapeziums",
     description="Find the area of a trapezium given its parallel sides and perpendicular height.",
     generate=generate_area_trapezium,
@@ -1723,7 +1723,7 @@ TOPIC_TRAPEZIUM = TopicDefinition(
 )
 
 TOPIC_MIXED_COMPOUND = TopicDefinition(
-    id="area_mixed_compound",
+    id="area_mixed_compound_H",
     display_name="Mixed Compound Shapes",
     description="Find the area of a shape combining a rectangle, a triangle, and a quarter-circle cut.",
     generate=generate_area_mixed_compound,
@@ -1734,7 +1734,7 @@ TOPIC_MIXED_COMPOUND = TopicDefinition(
 )
 
 TOPIC_ARC_LENGTH_FOUNDATION = TopicDefinition(
-    id="arc_length_foundation",
+    id="arc_length_F",
     display_name="Arc Length (Calculator)",
     description="Find the length of an arc of a circle, giving a decimal answer.",
     generate=generate_arc_length_foundation,
@@ -1745,7 +1745,7 @@ TOPIC_ARC_LENGTH_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_ARC_LENGTH = TopicDefinition(
-    id="arc_length",
+    id="arc_length_H",
     display_name="Arc Length",
     description="Find the exact length of an arc of a circle, in terms of π.",
     generate=generate_arc_length,
@@ -1756,7 +1756,7 @@ TOPIC_ARC_LENGTH = TopicDefinition(
 )
 
 TOPIC_AREA_SECTOR_FOUNDATION = TopicDefinition(
-    id="area_sector_foundation",
+    id="area_sector_F",
     display_name="Area of a Sector (Calculator)",
     description="Find the area of a sector of a circle, giving a decimal answer.",
     generate=generate_area_sector_foundation,
@@ -1767,7 +1767,7 @@ TOPIC_AREA_SECTOR_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_AREA_SECTOR = TopicDefinition(
-    id="area_sector",
+    id="area_sector_H",
     display_name="Area of a Sector",
     description="Find the exact area of a sector of a circle, in terms of π.",
     generate=generate_area_sector,

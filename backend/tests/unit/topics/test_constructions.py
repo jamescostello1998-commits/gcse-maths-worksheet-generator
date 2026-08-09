@@ -85,10 +85,10 @@ def test_topic_definitions_have_expected_metadata():
 
 
 MODELLED_GENERATORS = [
-    (constructions.generate_modelled_example_construction_angle_bisector, "construction_angle_bisector"),
-    (constructions.generate_modelled_example_construction_perpendicular_bisector, "construction_perpendicular_bisector"),
-    (constructions.generate_modelled_example_construction_triangle, "construction_triangle"),
-    (constructions.generate_modelled_example_construction_perpendicular_from_point, "construction_perpendicular_from_point"),
+    (constructions.generate_modelled_example_construction_angle_bisector, "construction_angle_bisector_F"),
+    (constructions.generate_modelled_example_construction_perpendicular_bisector, "construction_perpendicular_bisector_F"),
+    (constructions.generate_modelled_example_construction_triangle, "construction_triangle_F"),
+    (constructions.generate_modelled_example_construction_perpendicular_from_point, "construction_perpendicular_from_point_F"),
 ]
 
 

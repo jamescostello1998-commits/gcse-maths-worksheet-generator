@@ -29,7 +29,7 @@ def generate_straight_line(tier: Tier, rng: random.Random) -> Question:
         f"x = 180 - ({' + '.join(str(a) for a in given)}) = 180 - {sum(given)} = {missing}",
     ]
     return Question(
-        topic_id="angles_straight_line",
+        topic_id="angles_straight_line_F",
         tier=Tier.FOUNDATION,
         prompt=f"The angles {given_str} and x° lie on a straight line. Find x.",
         solution_steps=tuple(steps),
@@ -77,7 +77,7 @@ def generate_modelled_example_straight_line(tier: Tier, rng: random.Random) -> M
         f"x = 180 - {sum(given)} = {missing}",
     ]
     return ModelledExample(
-        topic_id="angles_straight_line",
+        topic_id="angles_straight_line_F",
         tier=Tier.FOUNDATION,
         prompt=f"The angles {given_str} and x° lie on a straight line. Find x.",
         worked_calculation=tuple(worked_calculation),
@@ -108,7 +108,7 @@ def generate_straight_line_higher(tier: Tier, rng: random.Random) -> Question:
 
     steps = ["Angles on a straight line sum to 180°."] + solve_steps
     return Question(
-        topic_id="angles_straight_line_higher",
+        topic_id="angles_straight_line_H",
         tier=Tier.HIGHER,
         prompt=f"The angles {known}° and ({fmt_linear(coeff, const)})° lie on a straight line. Find x.",
         solution_steps=tuple(steps),
@@ -154,7 +154,7 @@ def generate_modelled_example_straight_line_higher(tier: Tier, rng: random.Rando
         f"x = {solution}",
     ]
     return ModelledExample(
-        topic_id="angles_straight_line_higher",
+        topic_id="angles_straight_line_H",
         tier=Tier.HIGHER,
         prompt=f"The angles {known}° and ({fmt_linear(coeff, const)})° lie on a straight line. Find x.",
         worked_calculation=tuple(worked_calculation),
@@ -190,7 +190,7 @@ def generate_around_point(tier: Tier, rng: random.Random) -> Question:
         f"x = 360 - ({' + '.join(str(a) for a in given)}) = 360 - {sum(given)} = {missing}",
     ]
     return Question(
-        topic_id="angles_around_point",
+        topic_id="angles_around_point_F",
         tier=Tier.FOUNDATION,
         prompt=f"The angles {given_str} and x° are angles around a point. Find x.",
         solution_steps=tuple(steps),
@@ -237,7 +237,7 @@ def generate_modelled_example_around_point(tier: Tier, rng: random.Random) -> Mo
         f"x = 360 - {sum(given)} = {missing}",
     ]
     return ModelledExample(
-        topic_id="angles_around_point",
+        topic_id="angles_around_point_F",
         tier=Tier.FOUNDATION,
         prompt=f"The angles {given_str} and x° are angles around a point. Find x.",
         worked_calculation=tuple(worked_calculation),
@@ -279,7 +279,7 @@ def generate_around_point_higher(tier: Tier, rng: random.Random) -> Question:
     given_str = ", ".join(f"{a}°" for a in given)
     steps = ["Angles around a point sum to 360°."] + solve_steps
     return Question(
-        topic_id="angles_around_point_higher",
+        topic_id="angles_around_point_H",
         tier=Tier.HIGHER,
         prompt=(
             f"The angles {given_str} and ({fmt_linear(coeff, const)})° are angles around a "
@@ -337,7 +337,7 @@ def generate_modelled_example_around_point_higher(tier: Tier, rng: random.Random
         f"x = {solution}",
     ]
     return ModelledExample(
-        topic_id="angles_around_point_higher",
+        topic_id="angles_around_point_H",
         tier=Tier.HIGHER,
         prompt=(
             f"The angles {given_str} and ({fmt_linear(coeff, const)})° are angles around a "
@@ -369,7 +369,7 @@ def generate_triangle_angles(tier: Tier, rng: random.Random) -> Question:
         f"x = 180 - ({a} + {b}) = 180 - {a + b} = {missing}",
     ]
     return Question(
-        topic_id="angles_triangle",
+        topic_id="angles_triangle_F",
         tier=Tier.FOUNDATION,
         prompt=f"A triangle has angles {a}°, {b}°, and x°. Find x.",
         solution_steps=tuple(steps),
@@ -403,7 +403,7 @@ def generate_modelled_example_triangle_angles(tier: Tier, rng: random.Random) ->
         f"x = {missing}",
     ]
     return ModelledExample(
-        topic_id="angles_triangle",
+        topic_id="angles_triangle_F",
         tier=Tier.FOUNDATION,
         prompt=f"A triangle has angles {a}°, {b}°, and x°. Find x.",
         worked_calculation=tuple(worked_calculation),
@@ -431,7 +431,7 @@ def generate_triangle_angles_higher(tier: Tier, rng: random.Random) -> Question:
 
     steps = ["Angles in a triangle sum to 180°."] + solve_steps
     return Question(
-        topic_id="angles_triangle_higher",
+        topic_id="angles_triangle_H",
         tier=Tier.HIGHER,
         prompt=f"A triangle has angles {a}°, {b}°, and ({fmt_linear(coeff, const)})°. Find x.",
         solution_steps=tuple(steps),
@@ -474,7 +474,7 @@ def generate_modelled_example_triangle_angles_higher(tier: Tier, rng: random.Ran
         f"x = {solution}",
     ]
     return ModelledExample(
-        topic_id="angles_triangle_higher",
+        topic_id="angles_triangle_H",
         tier=Tier.HIGHER,
         prompt=f"A triangle has angles {a}°, {b}°, and ({fmt_linear(coeff, const)})°. Find x.",
         worked_calculation=tuple(worked_calculation),
@@ -517,7 +517,7 @@ def generate_parallel_lines(tier: Tier, rng: random.Random) -> Question:
     )
     steps = [fact_text] + solve_steps
     return Question(
-        topic_id="angles_parallel_lines",
+        topic_id="angles_parallel_lines_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -582,7 +582,7 @@ def generate_modelled_example_parallel_lines(tier: Tier, rng: random.Random) -> 
         f"({fmt_linear(coeff, const)})° {relation}. Find x."
     )
     return ModelledExample(
-        topic_id="angles_parallel_lines",
+        topic_id="angles_parallel_lines_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -624,7 +624,7 @@ def generate_exterior_angle(tier: Tier, rng: random.Random) -> Question:
         "The exterior angle of a triangle equals the sum of the two remote interior angles.",
     ] + solve_steps
     return Question(
-        topic_id="angles_exterior",
+        topic_id="angles_exterior_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -680,7 +680,7 @@ def generate_modelled_example_exterior_angle(tier: Tier, rng: random.Random) -> 
         f"{known_interior}° and ({fmt_linear(coeff, const)})°. Find x."
     )
     return ModelledExample(
-        topic_id="angles_exterior",
+        topic_id="angles_exterior_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -722,7 +722,7 @@ def generate_parallel_lines_foundation(tier: Tier, rng: random.Random) -> Questi
 
     steps = [fact_text, f"x = {target}"]
     return Question(
-        topic_id="angles_parallel_lines_foundation",
+        topic_id="angles_parallel_lines_F",
         tier=Tier.FOUNDATION,
         prompt=f"A line crosses two parallel lines. The angle {known}° and the angle x° {relation}. Find x.",
         solution_steps=tuple(steps),
@@ -778,7 +778,7 @@ def generate_modelled_example_parallel_lines_foundation(tier: Tier, rng: random.
         final_step,
     ]
     return ModelledExample(
-        topic_id="angles_parallel_lines_foundation",
+        topic_id="angles_parallel_lines_F",
         tier=Tier.FOUNDATION,
         prompt=f"A line crosses two parallel lines. The angle {known}° and the angle x° {relation}. Find x.",
         worked_calculation=tuple(worked_calculation),
@@ -815,7 +815,7 @@ def generate_exterior_foundation(tier: Tier, rng: random.Random) -> Question:
         f"x = {a} + {b} = {exterior}",
     ]
     return Question(
-        topic_id="angles_exterior_foundation",
+        topic_id="angles_exterior_F",
         tier=Tier.FOUNDATION,
         prompt=f"An exterior angle of a triangle is x°. The two remote interior angles are {a}° and {b}°. Find x.",
         solution_steps=tuple(steps),
@@ -863,7 +863,7 @@ def generate_modelled_example_exterior_foundation(tier: Tier, rng: random.Random
         f"x = {exterior}",
     ]
     return ModelledExample(
-        topic_id="angles_exterior_foundation",
+        topic_id="angles_exterior_F",
         tier=Tier.FOUNDATION,
         prompt=f"An exterior angle of a triangle is x°. The two remote interior angles are {a}° and {b}°. Find x.",
         worked_calculation=tuple(worked_calculation),
@@ -919,7 +919,7 @@ def generate_polygon_interior_foundation(tier: Tier, rng: random.Random) -> Ques
         )
 
     return Question(
-        topic_id="angles_polygon_interior_foundation",
+        topic_id="angles_polygon_interior_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -1001,7 +1001,7 @@ def generate_modelled_example_polygon_interior_foundation(tier: Tier, rng: rando
         )
 
     return ModelledExample(
-        topic_id="angles_polygon_interior_foundation",
+        topic_id="angles_polygon_interior_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -1042,7 +1042,7 @@ def generate_polygon_interior(tier: Tier, rng: random.Random) -> Question:
         f"Remaining angle = {total} - {remaining_total} = {algebraic_value}°",
     ] + solve_steps
     return Question(
-        topic_id="angles_polygon_interior",
+        topic_id="angles_polygon_interior_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -1095,7 +1095,7 @@ def generate_modelled_example_polygon_interior(tier: Tier, rng: random.Random) -
         f"and the remaining interior angle is ({fmt_linear(coeff, const)})°. Find x."
     )
     return ModelledExample(
-        topic_id="angles_polygon_interior",
+        topic_id="angles_polygon_interior_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -1109,7 +1109,7 @@ def generate_modelled_example_polygon_interior(tier: Tier, rng: random.Random) -
 
 
 TOPIC_STRAIGHT_LINE = TopicDefinition(
-    id="angles_straight_line",
+    id="angles_straight_line_F",
     display_name="On a Straight Line",
     description="Find a missing angle on a straight line (angles sum to 180°).",
     generate=generate_straight_line,
@@ -1120,7 +1120,7 @@ TOPIC_STRAIGHT_LINE = TopicDefinition(
 )
 
 TOPIC_STRAIGHT_LINE_HIGHER = TopicDefinition(
-    id="angles_straight_line_higher",
+    id="angles_straight_line_H",
     display_name="On a Straight Line (Algebraic)",
     description="Form and solve a linear equation from angles on a straight line.",
     generate=generate_straight_line_higher,
@@ -1131,7 +1131,7 @@ TOPIC_STRAIGHT_LINE_HIGHER = TopicDefinition(
 )
 
 TOPIC_AROUND_POINT = TopicDefinition(
-    id="angles_around_point",
+    id="angles_around_point_F",
     display_name="Around a Point",
     description="Find a missing angle around a point (angles sum to 360°).",
     generate=generate_around_point,
@@ -1142,7 +1142,7 @@ TOPIC_AROUND_POINT = TopicDefinition(
 )
 
 TOPIC_AROUND_POINT_HIGHER = TopicDefinition(
-    id="angles_around_point_higher",
+    id="angles_around_point_H",
     display_name="Around a Point (Algebraic)",
     description="Form and solve a linear equation from angles around a point.",
     generate=generate_around_point_higher,
@@ -1153,7 +1153,7 @@ TOPIC_AROUND_POINT_HIGHER = TopicDefinition(
 )
 
 TOPIC_TRIANGLE = TopicDefinition(
-    id="angles_triangle",
+    id="angles_triangle_F",
     display_name="In a Triangle",
     description="Find a missing angle in a triangle (angles sum to 180°).",
     generate=generate_triangle_angles,
@@ -1164,7 +1164,7 @@ TOPIC_TRIANGLE = TopicDefinition(
 )
 
 TOPIC_TRIANGLE_HIGHER = TopicDefinition(
-    id="angles_triangle_higher",
+    id="angles_triangle_H",
     display_name="In a Triangle (Algebraic)",
     description="Form and solve a linear equation from the angles in a triangle.",
     generate=generate_triangle_angles_higher,
@@ -1175,7 +1175,7 @@ TOPIC_TRIANGLE_HIGHER = TopicDefinition(
 )
 
 TOPIC_PARALLEL_LINES_FOUNDATION = TopicDefinition(
-    id="angles_parallel_lines_foundation",
+    id="angles_parallel_lines_F",
     display_name="Parallel Lines (Foundation)",
     description="Use corresponding, alternate, and co-interior angle facts to find a missing angle directly.",
     generate=generate_parallel_lines_foundation,
@@ -1186,7 +1186,7 @@ TOPIC_PARALLEL_LINES_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_PARALLEL_LINES = TopicDefinition(
-    id="angles_parallel_lines",
+    id="angles_parallel_lines_H",
     display_name="Parallel Lines",
     description="Use corresponding, alternate, and co-interior angle facts to solve for x.",
     generate=generate_parallel_lines,
@@ -1197,7 +1197,7 @@ TOPIC_PARALLEL_LINES = TopicDefinition(
 )
 
 TOPIC_EXTERIOR_FOUNDATION = TopicDefinition(
-    id="angles_exterior_foundation",
+    id="angles_exterior_F",
     display_name="Exterior Angle (Foundation)",
     description="Use the exterior angle theorem to find a missing angle directly.",
     generate=generate_exterior_foundation,
@@ -1208,7 +1208,7 @@ TOPIC_EXTERIOR_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_EXTERIOR = TopicDefinition(
-    id="angles_exterior",
+    id="angles_exterior_H",
     display_name="Exterior Angle",
     description="Use the exterior angle theorem to solve for x.",
     generate=generate_exterior_angle,
@@ -1219,7 +1219,7 @@ TOPIC_EXTERIOR = TopicDefinition(
 )
 
 TOPIC_POLYGON_INTERIOR_FOUNDATION = TopicDefinition(
-    id="angles_polygon_interior_foundation",
+    id="angles_polygon_interior_F",
     display_name="Polygon Angles (Foundation)",
     description="Find the sum of interior angles, one interior angle, or one exterior angle of a regular polygon.",
     generate=generate_polygon_interior_foundation,
@@ -1230,7 +1230,7 @@ TOPIC_POLYGON_INTERIOR_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_POLYGON_INTERIOR = TopicDefinition(
-    id="angles_polygon_interior",
+    id="angles_polygon_interior_H",
     display_name="Polygon Interior Angles",
     description="Use the polygon interior angle sum formula to solve for x.",
     generate=generate_polygon_interior,

@@ -77,7 +77,7 @@ def generate_mean(tier: Tier, rng: random.Random) -> Question:
         f"Mean = sum ÷ count = ({' + '.join(str(v) for v in data)}) ÷ {n} = {total} ÷ {n} = {fmt_money(mean)}",
     ]
     return Question(
-        topic_id="stats_mean",
+        topic_id="stats_mean_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find the mean of this data set: {data_str}.",
         solution_steps=tuple(steps),
@@ -107,7 +107,7 @@ def generate_modelled_example_mean(tier: Tier, rng: random.Random) -> ModelledEx
         f"= {total} ÷ {n} = {fmt_money(mean)}",
     ]
     return ModelledExample(
-        topic_id="stats_mean",
+        topic_id="stats_mean_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find the mean of this data set: {data_str}.",
         worked_calculation=tuple(worked_calculation),
@@ -129,7 +129,7 @@ def generate_mode(tier: Tier, rng: random.Random) -> Question:
         f"Mode = the most frequent value = {mode_value}",
     ]
     return Question(
-        topic_id="stats_mode",
+        topic_id="stats_mode_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find the mode of this data set: {data_str}.",
         solution_steps=tuple(steps),
@@ -157,7 +157,7 @@ def generate_modelled_example_mode(tier: Tier, rng: random.Random) -> ModelledEx
         f"Mode = {mode_value}",
     ]
     return ModelledExample(
-        topic_id="stats_mode",
+        topic_id="stats_mode_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find the mode of this data set: {data_str}.",
         worked_calculation=tuple(worked_calculation),
@@ -191,7 +191,7 @@ def generate_median(tier: Tier, rng: random.Random) -> Question:
         )
     steps = [median_step]
     return Question(
-        topic_id="stats_median",
+        topic_id="stats_median_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find the median of this data set: {data_str}.",
         solution_steps=tuple(steps),
@@ -243,7 +243,7 @@ def generate_modelled_example_median(tier: Tier, rng: random.Random) -> Modelled
         median_calc,
     ]
     return ModelledExample(
-        topic_id="stats_median",
+        topic_id="stats_median_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find the median of this data set: {data_str}.",
         worked_calculation=tuple(worked_calculation),
@@ -268,7 +268,7 @@ def generate_range(tier: Tier, rng: random.Random) -> Question:
         f"Range = largest - smallest = {max(data)} - {min(data)} = {data_range}",
     ]
     return Question(
-        topic_id="stats_range",
+        topic_id="stats_range_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find the range of this data set: {data_str}.",
         solution_steps=tuple(steps),
@@ -298,7 +298,7 @@ def generate_modelled_example_range(tier: Tier, rng: random.Random) -> ModelledE
         f"Range = {max(data)} - {min(data)} = {data_range}",
     ]
     return ModelledExample(
-        topic_id="stats_range",
+        topic_id="stats_range_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find the range of this data set: {data_str}.",
         worked_calculation=tuple(worked_calculation),
@@ -346,7 +346,7 @@ def generate_averages_combined(tier: Tier, rng: random.Random) -> Question:
         f"(d) Range = {max(data)} - {min(data)} = {data_range}",
     ]
     return Question(
-        topic_id="stats_averages_combined",
+        topic_id="stats_averages_combined_F",
         tier=Tier.FOUNDATION,
         prompt=(
             "For this data set, find (a) the mean (b) the mode (c) the median (d) the range: "
@@ -408,7 +408,7 @@ def generate_modelled_example_averages_combined(tier: Tier, rng: random.Random) 
         f"Range = {max(data)} - {min(data)} = {data_range}",
     ]
     return ModelledExample(
-        topic_id="stats_averages_combined",
+        topic_id="stats_averages_combined_F",
         tier=Tier.FOUNDATION,
         prompt=(
             "For this data set, find (a) the mean (b) the mode (c) the median (d) the range: "
@@ -463,7 +463,7 @@ def generate_interquartile_range(tier: Tier, rng: random.Random) -> Question:
         f"Interquartile range = Q3 - Q1 = {fmt_money(q3)} - {fmt_money(q1)} = {fmt_money(iqr)}",
     ]
     return Question(
-        topic_id="stats_interquartile_range",
+        topic_id="stats_interquartile_range_H",
         tier=Tier.HIGHER,
         prompt=f"Find the interquartile range (IQR) of this data set: {data_str}.",
         solution_steps=tuple(steps),
@@ -521,7 +521,7 @@ def generate_modelled_example_interquartile_range(tier: Tier, rng: random.Random
         f"IQR = {fmt_money(q3)} - {fmt_money(q1)} = {fmt_money(iqr)}",
     ]
     return ModelledExample(
-        topic_id="stats_interquartile_range",
+        topic_id="stats_interquartile_range_H",
         tier=Tier.HIGHER,
         prompt=f"Find the interquartile range (IQR) of this data set: {data_str}.",
         worked_calculation=tuple(worked_calculation),
@@ -550,7 +550,7 @@ def generate_mean_frequency_table(tier: Tier, rng: random.Random) -> Question:
         f"Mean = {weighted_sum} ÷ {total_freq} = {fmt_money(mean)}",
     ]
     return Question(
-        topic_id="stats_mean_frequency_table",
+        topic_id="stats_mean_frequency_table_F",
         tier=Tier.FOUNDATION,
         prompt="Find the mean number of pets.",
         solution_steps=tuple(steps),
@@ -593,7 +593,7 @@ def generate_modelled_example_mean_frequency_table(tier: Tier, rng: random.Rando
         f"Mean = {weighted_sum} ÷ {total_freq} = {fmt_money(mean)}",
     ]
     return ModelledExample(
-        topic_id="stats_mean_frequency_table",
+        topic_id="stats_mean_frequency_table_F",
         tier=Tier.FOUNDATION,
         prompt="Find the mean number of pets.",
         worked_calculation=tuple(worked_calculation),
@@ -630,7 +630,7 @@ def generate_mean_grouped_frequency_table(tier: Tier, rng: random.Random) -> Que
         f"Estimated mean = {fmt_money(weighted_sum)} ÷ {total_freq} = {fmt_money(mean)}",
     ]
     return Question(
-        topic_id="stats_mean_grouped_frequency_table",
+        topic_id="stats_mean_grouped_frequency_table_H",
         tier=Tier.HIGHER,
         prompt="The table shows the times (in minutes) taken by a group of runners. Find an estimate of the mean time.",
         solution_steps=tuple(steps),
@@ -680,7 +680,7 @@ def generate_modelled_example_mean_grouped_frequency_table(tier: Tier, rng: rand
         f"Estimated mean = {fmt_money(weighted_sum)} ÷ {total_freq} = {fmt_money(mean)}",
     ]
     return ModelledExample(
-        topic_id="stats_mean_grouped_frequency_table",
+        topic_id="stats_mean_grouped_frequency_table_H",
         tier=Tier.HIGHER,
         prompt="The table shows the times (in minutes) taken by a group of runners. Find an estimate of the mean time.",
         worked_calculation=tuple(worked_calculation),
@@ -715,7 +715,7 @@ def generate_mean_grouped_frequency_table_foundation(tier: Tier, rng: random.Ran
         f"Estimated mean = {fmt_money(weighted_sum)} ÷ {total_freq} = {fmt_money(mean)}",
     ]
     return Question(
-        topic_id="stats_mean_grouped_frequency_table_foundation",
+        topic_id="stats_mean_grouped_frequency_table_F",
         tier=Tier.FOUNDATION,
         prompt="The table shows the times (in minutes) taken by a group of runners. Find an estimate of the mean time.",
         solution_steps=tuple(steps),
@@ -767,7 +767,7 @@ def generate_modelled_example_mean_grouped_frequency_table_foundation(
         f"Estimated mean = {fmt_money(weighted_sum)} ÷ {total_freq} = {fmt_money(mean)}",
     ]
     return ModelledExample(
-        topic_id="stats_mean_grouped_frequency_table_foundation",
+        topic_id="stats_mean_grouped_frequency_table_F",
         tier=Tier.FOUNDATION,
         prompt="The table shows the times (in minutes) taken by a group of runners. Find an estimate of the mean time.",
         worked_calculation=tuple(worked_calculation),
@@ -811,7 +811,7 @@ def generate_mode_frequency_table(tier: Tier, rng: random.Random) -> Question:
         f"Mode = {modal_value}",
     ]
     return Question(
-        topic_id="stats_mode_frequency_table",
+        topic_id="stats_mode_frequency_table_F",
         tier=Tier.FOUNDATION,
         prompt="Find the modal number of pets.",
         solution_steps=tuple(steps),
@@ -850,7 +850,7 @@ def generate_modelled_example_mode_frequency_table(tier: Tier, rng: random.Rando
         f"Mode = {modal_value}",
     ]
     return ModelledExample(
-        topic_id="stats_mode_frequency_table",
+        topic_id="stats_mode_frequency_table_F",
         tier=Tier.FOUNDATION,
         prompt="Find the modal number of pets.",
         worked_calculation=tuple(worked_calculation),
@@ -881,7 +881,7 @@ def generate_median_frequency_table(tier: Tier, rng: random.Random) -> Question:
         f"Median = {fmt_money(median)}",
     ]
     return Question(
-        topic_id="stats_median_frequency_table",
+        topic_id="stats_median_frequency_table_F",
         tier=Tier.FOUNDATION,
         prompt="Find the median number of pets.",
         solution_steps=tuple(steps),
@@ -919,7 +919,7 @@ def generate_modelled_example_median_frequency_table(tier: Tier, rng: random.Ran
         f"Median = {fmt_money(median)}",
     ]
     return ModelledExample(
-        topic_id="stats_median_frequency_table",
+        topic_id="stats_median_frequency_table_F",
         tier=Tier.FOUNDATION,
         prompt="Find the median number of pets.",
         worked_calculation=tuple(worked_calculation),
@@ -947,7 +947,7 @@ def generate_range_frequency_table(tier: Tier, rng: random.Random) -> Question:
         f"Range = largest - smallest = {values[-1]} - {values[0]} = {data_range}",
     ]
     return Question(
-        topic_id="stats_range_frequency_table",
+        topic_id="stats_range_frequency_table_F",
         tier=Tier.FOUNDATION,
         prompt="Find the range of the number of pets.",
         solution_steps=tuple(steps),
@@ -980,7 +980,7 @@ def generate_modelled_example_range_frequency_table(tier: Tier, rng: random.Rand
         f"Range = {values[-1]} - {values[0]} = {data_range}",
     ]
     return ModelledExample(
-        topic_id="stats_range_frequency_table",
+        topic_id="stats_range_frequency_table_F",
         tier=Tier.FOUNDATION,
         prompt="Find the range of the number of pets.",
         worked_calculation=tuple(worked_calculation),
@@ -1016,7 +1016,7 @@ def generate_reverse_mean(tier: Tier, rng: random.Random) -> Question:
         f"Missing number = {total_required} - {sum(known)} = {missing}",
     ]
     return Question(
-        topic_id="stats_reverse_mean",
+        topic_id="stats_reverse_mean_H",
         tier=Tier.HIGHER,
         prompt=(
             f"The mean of {_num_word(n)} numbers is {mean_value}. "
@@ -1063,7 +1063,7 @@ def generate_modelled_example_reverse_mean(tier: Tier, rng: random.Random) -> Mo
         f"Missing number = {total_required} - {sum(known)} = {missing}",
     ]
     return ModelledExample(
-        topic_id="stats_reverse_mean",
+        topic_id="stats_reverse_mean_H",
         tier=Tier.HIGHER,
         prompt=(
             f"The mean of {_num_word(n)} numbers is {mean_value}. "
@@ -1100,7 +1100,7 @@ def generate_reverse_mean_foundation(tier: Tier, rng: random.Random) -> Question
         f"Missing number = {total_required} - {sum(known)} = {missing}",
     ]
     return Question(
-        topic_id="stats_reverse_mean_foundation",
+        topic_id="stats_reverse_mean_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"The mean of {_num_word(n)} numbers is {mean_value}. "
@@ -1146,7 +1146,7 @@ def generate_modelled_example_reverse_mean_foundation(tier: Tier, rng: random.Ra
         f"Missing number = {total_required} - {sum(known)} = {missing}",
     ]
     return ModelledExample(
-        topic_id="stats_reverse_mean_foundation",
+        topic_id="stats_reverse_mean_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"The mean of {_num_word(n)} numbers is {mean_value}. "
@@ -1159,7 +1159,7 @@ def generate_modelled_example_reverse_mean_foundation(tier: Tier, rng: random.Ra
 
 
 TOPIC_MEAN = TopicDefinition(
-    id="stats_mean",
+    id="stats_mean_F",
     display_name="Mean",
     description="Find the mean of a list of numbers.",
     generate=generate_mean,
@@ -1170,7 +1170,7 @@ TOPIC_MEAN = TopicDefinition(
 )
 
 TOPIC_MODE = TopicDefinition(
-    id="stats_mode",
+    id="stats_mode_F",
     display_name="Mode",
     description="Find the mode of a list of numbers.",
     generate=generate_mode,
@@ -1181,7 +1181,7 @@ TOPIC_MODE = TopicDefinition(
 )
 
 TOPIC_MEDIAN = TopicDefinition(
-    id="stats_median",
+    id="stats_median_F",
     display_name="Median",
     description="Find the median of a list of numbers.",
     generate=generate_median,
@@ -1192,7 +1192,7 @@ TOPIC_MEDIAN = TopicDefinition(
 )
 
 TOPIC_RANGE = TopicDefinition(
-    id="stats_range",
+    id="stats_range_F",
     display_name="Range",
     description="Find the range of a list of numbers.",
     generate=generate_range,
@@ -1203,7 +1203,7 @@ TOPIC_RANGE = TopicDefinition(
 )
 
 TOPIC_AVERAGES_COMBINED = TopicDefinition(
-    id="stats_averages_combined",
+    id="stats_averages_combined_F",
     display_name="Mean, Mode, Median & Range",
     description="Find the mean, mode, median and range of the same list of numbers.",
     generate=generate_averages_combined,
@@ -1214,7 +1214,7 @@ TOPIC_AVERAGES_COMBINED = TopicDefinition(
 )
 
 TOPIC_INTERQUARTILE_RANGE = TopicDefinition(
-    id="stats_interquartile_range",
+    id="stats_interquartile_range_H",
     display_name="Interquartile Range",
     description="Find the interquartile range (IQR) of a small raw data set.",
     generate=generate_interquartile_range,
@@ -1225,7 +1225,7 @@ TOPIC_INTERQUARTILE_RANGE = TopicDefinition(
 )
 
 TOPIC_MEAN_FREQUENCY_TABLE = TopicDefinition(
-    id="stats_mean_frequency_table",
+    id="stats_mean_frequency_table_F",
     display_name="Mean from a Frequency Table",
     description="Find the mean of discrete data presented in a frequency table.",
     generate=generate_mean_frequency_table,
@@ -1236,7 +1236,7 @@ TOPIC_MEAN_FREQUENCY_TABLE = TopicDefinition(
 )
 
 TOPIC_MEAN_GROUPED_FREQUENCY_TABLE = TopicDefinition(
-    id="stats_mean_grouped_frequency_table",
+    id="stats_mean_grouped_frequency_table_H",
     display_name="Mean from a Grouped Frequency Table",
     description="Estimate the mean of grouped/continuous data using class midpoints.",
     generate=generate_mean_grouped_frequency_table,
@@ -1247,7 +1247,7 @@ TOPIC_MEAN_GROUPED_FREQUENCY_TABLE = TopicDefinition(
 )
 
 TOPIC_MEAN_GROUPED_FREQUENCY_TABLE_FOUNDATION = TopicDefinition(
-    id="stats_mean_grouped_frequency_table_foundation",
+    id="stats_mean_grouped_frequency_table_F",
     display_name="Mean from a Grouped Frequency Table (Foundation)",
     description="Estimate the mean of grouped/continuous data using class midpoints.",
     generate=generate_mean_grouped_frequency_table_foundation,
@@ -1258,7 +1258,7 @@ TOPIC_MEAN_GROUPED_FREQUENCY_TABLE_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_MODE_FREQUENCY_TABLE = TopicDefinition(
-    id="stats_mode_frequency_table",
+    id="stats_mode_frequency_table_F",
     display_name="Mode from a Frequency Table",
     description="Find the modal value of discrete data presented in a frequency table.",
     generate=generate_mode_frequency_table,
@@ -1269,7 +1269,7 @@ TOPIC_MODE_FREQUENCY_TABLE = TopicDefinition(
 )
 
 TOPIC_MEDIAN_FREQUENCY_TABLE = TopicDefinition(
-    id="stats_median_frequency_table",
+    id="stats_median_frequency_table_F",
     display_name="Median from a Frequency Table",
     description="Find the median of discrete data presented in a frequency table.",
     generate=generate_median_frequency_table,
@@ -1280,7 +1280,7 @@ TOPIC_MEDIAN_FREQUENCY_TABLE = TopicDefinition(
 )
 
 TOPIC_RANGE_FREQUENCY_TABLE = TopicDefinition(
-    id="stats_range_frequency_table",
+    id="stats_range_frequency_table_F",
     display_name="Range from a Frequency Table",
     description="Find the range of discrete data presented in a frequency table.",
     generate=generate_range_frequency_table,
@@ -1291,7 +1291,7 @@ TOPIC_RANGE_FREQUENCY_TABLE = TopicDefinition(
 )
 
 TOPIC_REVERSE_MEAN = TopicDefinition(
-    id="stats_reverse_mean",
+    id="stats_reverse_mean_H",
     display_name="Reverse Mean",
     description="Find a missing value given the mean of a set of numbers.",
     generate=generate_reverse_mean,
@@ -1302,7 +1302,7 @@ TOPIC_REVERSE_MEAN = TopicDefinition(
 )
 
 TOPIC_REVERSE_MEAN_FOUNDATION = TopicDefinition(
-    id="stats_reverse_mean_foundation",
+    id="stats_reverse_mean_F",
     display_name="Reverse Mean (Foundation)",
     description="Find a missing value given the mean of a set of numbers.",
     generate=generate_reverse_mean_foundation,

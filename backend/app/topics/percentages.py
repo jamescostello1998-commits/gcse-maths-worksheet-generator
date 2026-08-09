@@ -38,7 +38,7 @@ def generate_of_amount(tier: Tier, rng: random.Random) -> Question:
         f"Multiply: {percent}/100 × {amount} = {fmt_money(value)}",
     ]
     return Question(
-        topic_id="percentage_of_amount",
+        topic_id="percentage_of_amount_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find {percent}% of {amount}.",
         solution_steps=tuple(steps),
@@ -72,7 +72,7 @@ def generate_modelled_example_of_amount(tier: Tier, rng: random.Random) -> Model
         f"= {fmt_money(value)}",
     ]
     return ModelledExample(
-        topic_id="percentage_of_amount",
+        topic_id="percentage_of_amount_F",
         tier=Tier.FOUNDATION,
         prompt=f"Find {percent}% of {amount}.",
         worked_calculation=tuple(worked_calculation),
@@ -94,7 +94,7 @@ def generate_change(tier: Tier, rng: random.Random) -> Question:
         f"Multiply: {amount} × {fmt_money(multiplier)} = {fmt_money(result)}",
     ]
     return Question(
-        topic_id="percentage_change",
+        topic_id="percentage_change_F",
         tier=Tier.FOUNDATION,
         prompt=f"{verb} {amount} by {percent}%.",
         solution_steps=tuple(steps),
@@ -138,7 +138,7 @@ def generate_modelled_example_change(tier: Tier, rng: random.Random) -> Modelled
         f"= {fmt_money(result)}",
     ]
     return ModelledExample(
-        topic_id="percentage_change",
+        topic_id="percentage_change_F",
         tier=Tier.FOUNDATION,
         prompt=f"{verb} {amount} by {percent}%.",
         worked_calculation=tuple(worked_calculation),
@@ -169,7 +169,7 @@ def generate_reverse(tier: Tier, rng: random.Random) -> Question:
         f"Divide the new value by the multiplier: {fmt_money(result)} ÷ {fmt_money(multiplier)} = {fmt_money(original)}",
     ]
     return Question(
-        topic_id="reverse_percentage",
+        topic_id="reverse_percentage_H",
         tier=Tier.HIGHER,
         prompt=f"After a {percent_str}% {verb}, an item costs £{fmt_money(result)}. Find the original price.",
         solution_steps=tuple(steps),
@@ -213,7 +213,7 @@ def generate_modelled_example_reverse(tier: Tier, rng: random.Random) -> Modelle
         f"= £{fmt_money(original)}",
     ]
     return ModelledExample(
-        topic_id="reverse_percentage",
+        topic_id="reverse_percentage_H",
         tier=Tier.HIGHER,
         prompt=(
             f"After a {percent_str}% {verb}, an item costs £{fmt_money(result)}. Find the original price."
@@ -242,7 +242,7 @@ def generate_reverse_foundation(tier: Tier, rng: random.Random) -> Question:
         f"Divide the new value by the multiplier: {fmt_money(result)} ÷ {fmt_money(multiplier)} = {fmt_money(original)}",
     ]
     return Question(
-        topic_id="reverse_percentage_foundation",
+        topic_id="reverse_percentage_F",
         tier=Tier.FOUNDATION,
         prompt=f"After a {percent}% {verb}, an item costs £{fmt_money(result)}. Find the original price.",
         solution_steps=tuple(steps),
@@ -285,7 +285,7 @@ def generate_modelled_example_reverse_foundation(tier: Tier, rng: random.Random)
         f"= £{fmt_money(original)}",
     ]
     return ModelledExample(
-        topic_id="reverse_percentage_foundation",
+        topic_id="reverse_percentage_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"After a {percent}% {verb}, an item costs £{fmt_money(result)}. Find the original price."
@@ -322,7 +322,7 @@ def generate_compound(tier: Tier, rng: random.Random) -> Question:
         f"After the second change: {fmt_money(intermediate)} × {fmt_money(mult2)} = {fmt_money(final)}",
     ]
     return Question(
-        topic_id="compound_percentage",
+        topic_id="compound_percentage_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A price of £{original} {verb1} by {percent1_str}%, then {verb2} by {percent2_str}%. "
@@ -373,7 +373,7 @@ def generate_modelled_example_compound(tier: Tier, rng: random.Random) -> Modell
         f"= £{fmt_money(final)}",
     ]
     return ModelledExample(
-        topic_id="compound_percentage",
+        topic_id="compound_percentage_H",
         tier=Tier.HIGHER,
         prompt=(
             f"A price of £{original} {verb1} by {percent1_str}%, then {verb2} by {percent2_str}%. "
@@ -407,7 +407,7 @@ def generate_compound_foundation(tier: Tier, rng: random.Random) -> Question:
         f"After the second change: {fmt_money(intermediate)} × {fmt_money(mult2)} = {fmt_money(final)}",
     ]
     return Question(
-        topic_id="compound_percentage_foundation",
+        topic_id="compound_percentage_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A price of £{original} {verb1} by {percent1}%, then {verb2} by {percent2}%. "
@@ -456,7 +456,7 @@ def generate_modelled_example_compound_foundation(tier: Tier, rng: random.Random
         f"= £{fmt_money(final)}",
     ]
     return ModelledExample(
-        topic_id="compound_percentage_foundation",
+        topic_id="compound_percentage_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"A price of £{original} {verb1} by {percent1}%, then {verb2} by {percent2}%. "
@@ -469,7 +469,7 @@ def generate_modelled_example_compound_foundation(tier: Tier, rng: random.Random
 
 
 TOPIC_OF_AMOUNT = TopicDefinition(
-    id="percentage_of_amount",
+    id="percentage_of_amount_F",
     display_name="Percentage of an Amount",
     description="Find a percentage of a given amount.",
     generate=generate_of_amount,
@@ -480,7 +480,7 @@ TOPIC_OF_AMOUNT = TopicDefinition(
 )
 
 TOPIC_CHANGE = TopicDefinition(
-    id="percentage_change",
+    id="percentage_change_F",
     display_name="Percentage Change",
     description="Increase or decrease an amount by a percentage.",
     generate=generate_change,
@@ -491,7 +491,7 @@ TOPIC_CHANGE = TopicDefinition(
 )
 
 TOPIC_REVERSE = TopicDefinition(
-    id="reverse_percentage",
+    id="reverse_percentage_H",
     display_name="Reverse Percentage",
     description="Find the original amount given a value after a percentage change.",
     generate=generate_reverse,
@@ -502,7 +502,7 @@ TOPIC_REVERSE = TopicDefinition(
 )
 
 TOPIC_REVERSE_FOUNDATION = TopicDefinition(
-    id="reverse_percentage_foundation",
+    id="reverse_percentage_F",
     display_name="Reverse Percentage (Foundation)",
     description="Find the original amount given a value after a simple percentage change.",
     generate=generate_reverse_foundation,
@@ -513,7 +513,7 @@ TOPIC_REVERSE_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_COMPOUND = TopicDefinition(
-    id="compound_percentage",
+    id="compound_percentage_H",
     display_name="Compound Percentage Change",
     description="Apply two successive percentage changes to an amount.",
     generate=generate_compound,
@@ -524,7 +524,7 @@ TOPIC_COMPOUND = TopicDefinition(
 )
 
 TOPIC_COMPOUND_FOUNDATION = TopicDefinition(
-    id="compound_percentage_foundation",
+    id="compound_percentage_F",
     display_name="Compound Percentage Change (Foundation)",
     description="Apply two successive percentage changes to an amount.",
     generate=generate_compound_foundation,
@@ -573,7 +573,7 @@ def generate_simple_interest(tier: Tier, rng: random.Random) -> Question:
         question_line = "Find the interest earned."
 
     return Question(
-        topic_id="simple_interest",
+        topic_id="simple_interest_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"£{principal} is invested at a simple interest rate of {rate}% per year for "
@@ -635,7 +635,7 @@ def generate_modelled_example_simple_interest(tier: Tier, rng: random.Random) ->
         worked_calculation.append(f"Total = £{principal} + £{fmt_money(interest)} = £{fmt_money(total_amount)}")
 
     return ModelledExample(
-        topic_id="simple_interest",
+        topic_id="simple_interest_F",
         tier=Tier.FOUNDATION,
         prompt=(
             f"£{principal} is invested at a simple interest rate of {rate}% per year for "
@@ -681,7 +681,7 @@ def generate_find_percentage_change(tier: Tier, rng: random.Random) -> Question:
         f"× 100 = {fmt_money(computed_percent)}%",
     ]
     return Question(
-        topic_id="find_percentage_change",
+        topic_id="find_percentage_change_F",
         tier=Tier.FOUNDATION,
         prompt=f"The price of an item changes from £{original} to £{fmt_money(new_value)}. Find the percentage {verb}.",
         solution_steps=tuple(steps),
@@ -727,7 +727,7 @@ def generate_modelled_example_find_percentage_change(tier: Tier, rng: random.Ran
     ]
 
     return ModelledExample(
-        topic_id="find_percentage_change",
+        topic_id="find_percentage_change_F",
         tier=Tier.FOUNDATION,
         prompt=f"The price of an item changes from £{original} to £{fmt_money(new_value)}. Find the percentage {verb}.",
         worked_calculation=tuple(worked_calculation),
@@ -784,7 +784,7 @@ def generate_percentage_increase_decrease_calculator(tier: Tier, rng: random.Ran
         f"Multiply: £{amount_str} × {multiplier_dec} = £{rounded_primary} (calculator, 2 d.p.)",
     ]
     return Question(
-        topic_id="percentage_increase_decrease_calculator",
+        topic_id="percentage_increase_decrease_calculator_H",
         tier=Tier.HIGHER,
         prompt=(
             f"Using a calculator, {verb.lower()} £{amount_str} by {percent_str}%. "
@@ -852,7 +852,7 @@ def generate_modelled_example_percentage_increase_decrease_calculator(
     ]
 
     return ModelledExample(
-        topic_id="percentage_increase_decrease_calculator",
+        topic_id="percentage_increase_decrease_calculator_H",
         tier=Tier.HIGHER,
         prompt=(
             f"Using a calculator, {verb.lower()} £{amount_str} by {percent_str}%. "
@@ -887,18 +887,18 @@ def generate_mixed_percentages(tier: Tier, rng: random.Random) -> Question:
     generate, gen_tier = rng.choice(_MIXED_PERCENTAGE_GENERATORS)
     q = generate(gen_tier, rng)
     return dataclasses.replace(
-        q, topic_id="mixed_percentages", tier=Tier.HIGHER, dedup_key=f"mixed_pct:{q.dedup_key}"
+        q, topic_id="mixed_percentages_H", tier=Tier.HIGHER, dedup_key=f"mixed_pct:{q.dedup_key}"
     )
 
 
 def generate_modelled_example_mixed_percentages(tier: Tier, rng: random.Random) -> ModelledExample:
     generate, gen_tier = rng.choice(_MIXED_PERCENTAGE_MODELLED_GENERATORS)
     example = generate(gen_tier, rng)
-    return dataclasses.replace(example, topic_id="mixed_percentages", tier=Tier.HIGHER)
+    return dataclasses.replace(example, topic_id="mixed_percentages_H", tier=Tier.HIGHER)
 
 
 TOPIC_SIMPLE_INTEREST = TopicDefinition(
-    id="simple_interest",
+    id="simple_interest_F",
     display_name="Simple Interest",
     description="Calculate simple interest earned on a principal over several years, or the total amount.",
     generate=generate_simple_interest,
@@ -909,7 +909,7 @@ TOPIC_SIMPLE_INTEREST = TopicDefinition(
 )
 
 TOPIC_FIND_PERCENTAGE_CHANGE = TopicDefinition(
-    id="find_percentage_change",
+    id="find_percentage_change_F",
     display_name="Finding a Percentage Change",
     description="Find the percentage increase or decrease between an original and a new value.",
     generate=generate_find_percentage_change,
@@ -920,7 +920,7 @@ TOPIC_FIND_PERCENTAGE_CHANGE = TopicDefinition(
 )
 
 TOPIC_PERCENTAGE_INCREASE_DECREASE_CALCULATOR = TopicDefinition(
-    id="percentage_increase_decrease_calculator",
+    id="percentage_increase_decrease_calculator_H",
     display_name="Percentage Increase/Decrease (Calculator)",
     description="Increase or decrease a money amount by a messier percentage using a calculator.",
     generate=generate_percentage_increase_decrease_calculator,
@@ -931,7 +931,7 @@ TOPIC_PERCENTAGE_INCREASE_DECREASE_CALCULATOR = TopicDefinition(
 )
 
 TOPIC_MIXED_PERCENTAGES = TopicDefinition(
-    id="mixed_percentages",
+    id="mixed_percentages_H",
     display_name="Mixed Percentages Practice",
     description="A mix of percentage-of-an-amount, percentage change, reverse percentage, and compound percentage questions.",
     generate=generate_mixed_percentages,

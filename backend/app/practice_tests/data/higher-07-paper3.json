@@ -7,7 +7,7 @@
   "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "fractions_divide",
+      "topic_id": "fractions_divide_H",
       "prompt": "Evaluate 7/12 ÷ 1/9. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
         "Keep-change-flip: 7/12 ÷ 1/9 = 7/12 × 9/1",
@@ -42,7 +42,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "recurring_decimal_two_digit",
+      "topic_id": "recurring_decimal_two_digit_H",
       "prompt": "Show that \\recur{0.}{96} can be written as 32/33.",
       "solution_steps": [
         "Let x = \\recur{0.}{96}, so 100x = 96.9696... (two digits repeat, so multiply by 100 to shift a full block)",
@@ -77,7 +77,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_add_subtract",
+      "topic_id": "standard_form_add_subtract_H",
       "prompt": "Work out (7 × 10^4) - (7 × 10^3). Give your answer in standard form.",
       "solution_steps": [
         "Write both numbers with the same power of 10: 7×10^4 = 70×10^3, 7×10^3 = 7×10^3",
@@ -112,7 +112,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "hcf_lcm_by_prime_factors",
+      "topic_id": "hcf_lcm_by_prime_factors_H",
       "prompt": "Using prime factorisation, find the HCF of 65 and 66.",
       "solution_steps": [
         "65 = 5 × 13",
@@ -153,7 +153,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_mixed_number_arithmetic",
+      "topic_id": "fractions_mixed_number_arithmetic_H",
       "prompt": "Evaluate 2 2/8 - 2 1/7. Give your answer as a mixed number.",
       "solution_steps": [
         "Convert to improper fractions: 2 2/8 = 9/4, 2 1/7 = 15/7",
@@ -188,7 +188,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bounds_calculation",
+      "topic_id": "bounds_calculation_H",
       "prompt": "A car travels 76 km (to the nearest km) in 9 hours (to the nearest hour). Calculate the upper bound for the average speed of the car, to 1 decimal place.",
       "solution_steps": [
         "Distance: 76 km (to the nearest km) gives 75.5 ≤ distance < 76.5",
@@ -223,7 +223,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_quadratic",
+      "topic_id": "simultaneous_quadratic_H",
       "prompt": "Solve the simultaneous equations: y = x^2 + x - 8 and y = 8x - 20",
       "solution_steps": [
         "Substitute y = 8x - 20 into y = x^2 + x - 8: 8x - 20 = x^2 + x - 8",
@@ -265,7 +265,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_exponential",
+      "topic_id": "plot_exponential_H",
       "prompt": "Complete a table of values for y = 7 × 2^x for x = 0 to 4, then plot the graph.",
       "solution_steps": [
         "Table of values for y = 7 × 2^x:",
@@ -351,7 +351,7 @@
       }
     },
     {
-      "topic_id": "algebraic_indices_higher",
+      "topic_id": "algebraic_indices_H",
       "prompt": "Simplify 3x^(1/2) × 3x^(5/2)",
       "solution_steps": [
         "Multiplying powers of the same base: add the exponents, even when they're fractions.",
@@ -386,7 +386,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_brackets",
+      "topic_id": "linear_brackets_H",
       "prompt": "Solve: 2(5x + 1) = 42",
       "solution_steps": [
         "Expand the bracket: 2(5x + 1) = 10x + 2",
@@ -429,7 +429,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "completing_the_square",
+      "topic_id": "completing_the_square_H",
       "prompt": "Write x^2 + 10x - 7 in the form (x + p)^2 + q.",
       "solution_steps": [
         "Half the coefficient of x: 10 ÷ 2 = 5",
@@ -464,7 +464,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "forming_equations_higher",
+      "topic_id": "forming_equations_H",
       "prompt": "The area of the rectangle shown is 187 cm². Form an equation and solve it to find x.",
       "solution_steps": [
         "Area of a rectangle = length × width.",
@@ -517,7 +517,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "functions_inverse_evaluate",
+      "topic_id": "functions_inverse_evaluate_H",
       "prompt": "f(x) = 2x + 9. Find f^-1(3).",
       "solution_steps": [
         "f^-1(x) = \\frac{x - 9}{2}",
@@ -552,7 +552,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pressure_higher",
+      "topic_id": "pressure_H",
       "prompt": "A storage container exerts a force of 1550 N over a contact area of 214 cm². Find the pressure in N/m², correct to 2 decimal places.",
       "solution_steps": [
         "Convert area to m²: 214 cm² = 214 ÷ 10000 = 0.0214 m²",
@@ -581,7 +581,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_three_part",
+      "topic_id": "ratio_share_three_part_H",
       "prompt": "Share 108 in the ratio 8:4:6.",
       "solution_steps": [
         "Total parts = 8 + 4 + 6 = 18",
@@ -623,7 +623,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "compound_percentage",
+      "topic_id": "compound_percentage_H",
       "prompt": "A price of £252 decreases by 30%, then decreases by 60%. Find the final price.",
       "solution_steps": [
         "After the first change: 252 × 0.70 = 176.40",
@@ -652,7 +652,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_shape_similar_higher",
+      "topic_id": "ratio_shape_similar_H",
       "prompt": "Shape A and Shape B are similar. The area of shape B is 9 cm². Find the area of shape A.",
       "solution_steps": [
         "Linear scale factor = 3 ÷ 2 = 3/2",
@@ -693,7 +693,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_missing_side_higher",
+      "topic_id": "trig_missing_side_H",
       "prompt": "In the triangle shown, find the length of x, correct to 1 decimal place.",
       "solution_steps": [
         "We know the adjacent and want the opposite, so use tan.",
@@ -730,7 +730,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "compound_3d_surface_area",
+      "topic_id": "compound_3d_surface_area_H",
       "prompt": "An ice-cream-shaped solid is made from a cone of radius 8 cm and height 6 cm, with a hemisphere of the same radius attached to its open end. Find the total surface area, correct to 3 significant figures.",
       "solution_steps": [
         "Slant height l = √(r² + h²) = √(8² + 6²) ≈ 10.0 cm",
@@ -778,7 +778,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cone",
+      "topic_id": "volume_surface_area_cone_H",
       "prompt": "A cone has radius 2 cm and (perpendicular) height 14 cm. Find its total surface area, correct to 1 decimal place.",
       "solution_steps": [
         "Surface area = πr² + πrl = πr(r + l) = π × 2 × (2 + 14.142)",
@@ -822,7 +822,7 @@
       }
     },
     {
-      "topic_id": "compound_3d_volume",
+      "topic_id": "compound_3d_volume_H",
       "prompt": "A capsule-shaped solid is made from a cylinder of radius 8 cm and height 9 cm, with a hemisphere of the same radius attached to one end. Find the total volume, correct to 1 decimal place.",
       "solution_steps": [
         "Cylinder volume = π × r² × h = π × 8² × 9",
@@ -864,7 +864,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "venn_diagram_notation",
+      "topic_id": "venn_diagram_notation_H",
       "prompt": "ξ = {1, 2, 3, 4, 5, 6}. The Venn diagram shows sets A and B. List the elements of B ∩ A'.",
       "solution_steps": [
         "ξ = {1, 2, 3, 4, 5, 6}",
@@ -920,7 +920,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "tree_diagram_mixed",
+      "topic_id": "tree_diagram_mixed_H",
       "prompt": "A bag contains 4 blue and 6 green counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that the first counter is blue and the second counter is green.",
       "solution_steps": [
         "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(blue) = 2/5, P(green) = 3/5.",
@@ -985,7 +985,7 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_straight_line_higher",
+      "topic_id": "angles_straight_line_H",
       "prompt": "The angles 23° and (4x + 89)° lie on a straight line. Find x.",
       "solution_steps": [
         "Angles on a straight line sum to 180°.",

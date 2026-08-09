@@ -137,7 +137,7 @@ def generate_direct_proportion(tier: Tier, rng: random.Random) -> Question:
         steps.append(f"{format_amount(y2)} = {narrate_amount(y2)}")
 
     return Question(
-        topic_id="direct_proportion",
+        topic_id="direct_proportion_F",
         tier=Tier.FOUNDATION,
         prompt=ctx["prompt"],
         solution_steps=tuple(steps),
@@ -186,7 +186,7 @@ def generate_modelled_example_direct_proportion(tier: Tier, rng: random.Random) 
         worked_calculation.append(f"{format_amount(y2)} = {narrate_amount(y2)}")
 
     return ModelledExample(
-        topic_id="direct_proportion",
+        topic_id="direct_proportion_F",
         tier=Tier.FOUNDATION,
         prompt=ctx["prompt"],
         worked_calculation=tuple(worked_calculation),
@@ -286,7 +286,7 @@ def generate_direct_proportion_noncalculator(tier: Tier, rng: random.Random) -> 
         f"Answer = {format_amount(unit_value)} × {x2} = {format_amount(y2)}",
     ]
     return Question(
-        topic_id="direct_proportion_noncalculator",
+        topic_id="direct_proportion_noncalculator_F",
         tier=Tier.FOUNDATION,
         prompt=ctx["prompt"],
         solution_steps=tuple(steps),
@@ -322,7 +322,7 @@ def generate_modelled_example_direct_proportion_noncalculator(
         f"{format_amount(unit_value)} × {x2} = {format_amount(y2)}",
     ]
     return ModelledExample(
-        topic_id="direct_proportion_noncalculator",
+        topic_id="direct_proportion_noncalculator_F",
         tier=Tier.FOUNDATION,
         prompt=ctx["prompt"],
         worked_calculation=tuple(worked_calculation),
@@ -384,7 +384,7 @@ def generate_inverse_proportion(tier: Tier, rng: random.Random) -> Question:
         f"Time for {x2} {ctx['noun_plural']} = {k} ÷ {x2} = {y2}",
     ]
     return Question(
-        topic_id="inverse_proportion",
+        topic_id="inverse_proportion_F",
         tier=Tier.FOUNDATION,
         prompt=ctx["prompt"],
         solution_steps=tuple(steps),
@@ -418,7 +418,7 @@ def generate_modelled_example_inverse_proportion(tier: Tier, rng: random.Random)
         f"{k} ÷ {x2} = {y2}",
     ]
     return ModelledExample(
-        topic_id="inverse_proportion",
+        topic_id="inverse_proportion_F",
         tier=Tier.FOUNDATION,
         prompt=ctx["prompt"],
         worked_calculation=tuple(worked_calculation),
@@ -469,7 +469,7 @@ def generate_inverse_proportion_noncalculator(tier: Tier, rng: random.Random) ->
         f"Time for {x2} {ctx['noun_plural']} = {k} ÷ {x2} = {y2}",
     ]
     return Question(
-        topic_id="inverse_proportion_noncalculator",
+        topic_id="inverse_proportion_noncalculator_F",
         tier=Tier.FOUNDATION,
         prompt=ctx["prompt"],
         solution_steps=tuple(steps),
@@ -504,7 +504,7 @@ def generate_modelled_example_inverse_proportion_noncalculator(
         f"{k} ÷ {x2} = {y2}",
     ]
     return ModelledExample(
-        topic_id="inverse_proportion_noncalculator",
+        topic_id="inverse_proportion_noncalculator_F",
         tier=Tier.FOUNDATION,
         prompt=ctx["prompt"],
         worked_calculation=tuple(worked_calculation),
@@ -550,7 +550,7 @@ def generate_algebraic_direct_proportion(tier: Tier, rng: random.Random) -> Ques
         f"y = {k} × {x2}^{n} = {k} × {x2 ** n} = {y2}",
     ]
     return Question(
-        topic_id="algebraic_direct_proportion",
+        topic_id="algebraic_direct_proportion_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -590,7 +590,7 @@ def generate_modelled_example_algebraic_direct_proportion(
         f"y = {k} × {x2}^{n} = {y2}",
     ]
     return ModelledExample(
-        topic_id="algebraic_direct_proportion",
+        topic_id="algebraic_direct_proportion_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -645,7 +645,7 @@ def generate_algebraic_inverse_proportion(tier: Tier, rng: random.Random) -> Que
         f"y = k ÷ {x_n} = {k} ÷ {x2_n} = {k} ÷ {x2 ** n} = {y2}",
     ]
     return Question(
-        topic_id="algebraic_inverse_proportion",
+        topic_id="algebraic_inverse_proportion_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -686,7 +686,7 @@ def generate_modelled_example_algebraic_inverse_proportion(
         f"y = {k} ÷ {x2_n} = {y2}",
     ]
     return ModelledExample(
-        topic_id="algebraic_inverse_proportion",
+        topic_id="algebraic_inverse_proportion_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -696,7 +696,7 @@ def generate_modelled_example_algebraic_inverse_proportion(
 
 
 TOPIC_DIRECT_PROPORTION = TopicDefinition(
-    id="direct_proportion",
+    id="direct_proportion_F",
     display_name="Direct Proportion",
     description="Use the unitary method to scale a directly proportional quantity up or down.",
     generate=generate_direct_proportion,
@@ -707,7 +707,7 @@ TOPIC_DIRECT_PROPORTION = TopicDefinition(
 )
 
 TOPIC_INVERSE_PROPORTION = TopicDefinition(
-    id="inverse_proportion",
+    id="inverse_proportion_F",
     display_name="Inverse Proportion",
     description="Use the constant-product property to solve an inverse proportion word problem.",
     generate=generate_inverse_proportion,
@@ -718,7 +718,7 @@ TOPIC_INVERSE_PROPORTION = TopicDefinition(
 )
 
 TOPIC_DIRECT_PROPORTION_NONCALCULATOR = TopicDefinition(
-    id="direct_proportion_noncalculator",
+    id="direct_proportion_noncalculator_F",
     display_name="Direct Proportion (Non-Calculator)",
     description=(
         "Use the unitary method to scale a directly proportional quantity, using small "
@@ -732,7 +732,7 @@ TOPIC_DIRECT_PROPORTION_NONCALCULATOR = TopicDefinition(
 )
 
 TOPIC_INVERSE_PROPORTION_NONCALCULATOR = TopicDefinition(
-    id="inverse_proportion_noncalculator",
+    id="inverse_proportion_noncalculator_F",
     display_name="Inverse Proportion (Non-Calculator)",
     description=(
         "Use the constant-product property to solve an inverse proportion word problem, "
@@ -746,7 +746,7 @@ TOPIC_INVERSE_PROPORTION_NONCALCULATOR = TopicDefinition(
 )
 
 TOPIC_ALGEBRAIC_DIRECT_PROPORTION = TopicDefinition(
-    id="algebraic_direct_proportion",
+    id="algebraic_direct_proportion_H",
     display_name="Direct Proportion with Powers",
     description=(
         "Find the constant of proportionality when y is directly proportional to a power of x."
@@ -759,7 +759,7 @@ TOPIC_ALGEBRAIC_DIRECT_PROPORTION = TopicDefinition(
 )
 
 TOPIC_ALGEBRAIC_INVERSE_PROPORTION = TopicDefinition(
-    id="algebraic_inverse_proportion",
+    id="algebraic_inverse_proportion_H",
     display_name="Inverse Proportion with Powers",
     description=(
         "Find the constant of proportionality when y is inversely proportional to a power of x."

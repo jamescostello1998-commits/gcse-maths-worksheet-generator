@@ -94,12 +94,12 @@ MODELLED_EXAMPLE_GENERATORS = [
     (
         algebraic_fractions.generate_modelled_example_algebraic_fractions_add_subtract,
         Tier.HIGHER,
-        "algebraic_fractions_add_subtract",
+        "algebraic_fractions_add_subtract_H",
     ),
     (
         algebraic_fractions.generate_modelled_example_algebraic_fractions_multiply_divide,
         Tier.HIGHER,
-        "algebraic_fractions_multiply_divide",
+        "algebraic_fractions_multiply_divide_H",
     ),
 ]
 

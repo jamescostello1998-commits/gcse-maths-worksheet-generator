@@ -726,7 +726,7 @@ def generate_symmetry_lines(tier: Tier, rng: random.Random) -> Question:
             "no mirror line maps it back onto itself."
         ]
     return Question(
-        topic_id="symmetry_lines",
+        topic_id="symmetry_lines_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -758,7 +758,7 @@ def generate_modelled_example_symmetry_lines(tier: Tier, rng: random.Random) -> 
     if n:
         teaching_steps.append("Each valid fold line is shown dashed on the diagram.")
     return ModelledExample(
-        topic_id="symmetry_lines",
+        topic_id="symmetry_lines_F",
         tier=Tier.FOUNDATION,
         prompt=f"The diagram shows {_article(shape.name)} {shape.name}. How many lines of symmetry does it have?",
         worked_calculation=(f"{shape.name} -> {n} {word} of symmetry", "checked against every possible fold line"),
@@ -791,7 +791,7 @@ def generate_symmetry_rotational(tier: Tier, rng: random.Random) -> Question:
             "So the order of rotational symmetry is 1.",
         ]
     return Question(
-        topic_id="symmetry_rotational",
+        topic_id="symmetry_rotational_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -817,7 +817,7 @@ def generate_modelled_example_symmetry_rotational(tier: Tier, rng: random.Random
         f"time{'s' if order != 1 else ''}.",
     ]
     return ModelledExample(
-        topic_id="symmetry_rotational",
+        topic_id="symmetry_rotational_F",
         tier=Tier.FOUNDATION,
         prompt=f"The diagram shows {_article(shape.name)} {shape.name}. State the order of rotational symmetry.",
         worked_calculation=(f"{shape.name} -> order {order}", "checked by rotating through the full 360° turn"),
@@ -848,7 +848,7 @@ def generate_transform_reflect_complete(tier: Tier, rng: random.Random) -> Quest
         _vertex_mapping_text(labels, shape, image_labels, image),
     ]
     return Question(
-        topic_id="transform_reflect_complete",
+        topic_id="transform_reflect_complete_F",
         tier=Tier.FOUNDATION,
         prompt=f"Reflect shape {name} in the line {mirror['label']}.",
         solution_steps=tuple(steps),
@@ -888,7 +888,7 @@ def generate_modelled_example_transform_reflect_complete(tier: Tier, rng: random
         "the same number of squares again on the other side.",
     ]
     return ModelledExample(
-        topic_id="transform_reflect_complete",
+        topic_id="transform_reflect_complete_F",
         tier=Tier.FOUNDATION,
         prompt=f"Reflect shape {name} in the line {mirror['label']}.",
         worked_calculation=(
@@ -922,7 +922,7 @@ def generate_transform_reflect_describe(tier: Tier, rng: random.Random) -> Quest
         f"Comparing corresponding vertices shows the mirror line is {mirror['label']}.",
     ]
     return Question(
-        topic_id="transform_reflect_describe",
+        topic_id="transform_reflect_describe_F",
         tier=Tier.FOUNDATION,
         prompt="Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
         solution_steps=tuple(steps),
@@ -955,7 +955,7 @@ def generate_modelled_example_transform_reflect_describe(tier: Tier, rng: random
         f"Checking every other vertex pair the same way confirms the mirror line is {mirror['label']}.",
     ]
     return ModelledExample(
-        topic_id="transform_reflect_describe",
+        topic_id="transform_reflect_describe_F",
         tier=Tier.FOUNDATION,
         prompt="Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
         worked_calculation=(
@@ -994,7 +994,7 @@ def generate_transform_rotate_complete(tier: Tier, rng: random.Random) -> Questi
         _vertex_mapping_text(labels, shape, image_labels, image),
     ]
     return Question(
-        topic_id="transform_rotate_complete",
+        topic_id="transform_rotate_complete_F",
         tier=Tier.FOUNDATION,
         prompt=f"Rotate shape {name} {wording} about the centre {_fmt_point(centre)}.",
         solution_steps=tuple(steps),
@@ -1034,7 +1034,7 @@ def generate_modelled_example_transform_rotate_complete(tier: Tier, rng: random.
         "Work through the vertices one at a time, using the centre as the pivot.",
     ]
     return ModelledExample(
-        topic_id="transform_rotate_complete",
+        topic_id="transform_rotate_complete_F",
         tier=Tier.FOUNDATION,
         prompt=f"Rotate shape {name} {wording} about the centre {_fmt_point(centre)}.",
         worked_calculation=(
@@ -1069,7 +1069,7 @@ def generate_transform_rotate_describe(tier: Tier, rng: random.Random) -> Questi
         f"Measuring the turn from a vertex to its image about that point gives {wording} about {_fmt_point(centre)}.",
     ]
     return Question(
-        topic_id="transform_rotate_describe",
+        topic_id="transform_rotate_describe_H",
         tier=Tier.HIGHER,
         prompt="Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
         solution_steps=tuple(steps),
@@ -1104,7 +1104,7 @@ def generate_modelled_example_transform_rotate_describe(tier: Tier, rng: random.
         f"Finally check the angle by measuring the turn from a vertex to its image about that centre: {wording}.",
     ]
     return ModelledExample(
-        topic_id="transform_rotate_describe",
+        topic_id="transform_rotate_describe_H",
         tier=Tier.HIGHER,
         prompt="Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
         worked_calculation=(
@@ -1144,7 +1144,7 @@ def generate_transform_translate_complete(tier: Tier, rng: random.Random) -> Que
         _vertex_mapping_text(labels, shape, image_labels, image),
     ]
     return Question(
-        topic_id="transform_translate_complete",
+        topic_id="transform_translate_complete_F",
         tier=Tier.FOUNDATION,
         prompt=f"Translate shape {name} by the vector {_fmt_vector(vector)}.",
         solution_steps=tuple(steps),
@@ -1186,7 +1186,7 @@ def generate_modelled_example_transform_translate_complete(tier: Tier, rng: rand
         "Apply the same move to every vertex in turn, keeping the shape's size and orientation unchanged.",
     ]
     return ModelledExample(
-        topic_id="transform_translate_complete",
+        topic_id="transform_translate_complete_F",
         tier=Tier.FOUNDATION,
         prompt=f"Translate shape {name} by the vector {_fmt_vector(vector)}.",
         worked_calculation=(
@@ -1221,7 +1221,7 @@ def generate_transform_translate_describe(tier: Tier, rng: random.Random) -> Que
         "Checking the other vertices confirms the same vector applies throughout, so this is a translation.",
     ]
     return Question(
-        topic_id="transform_translate_describe",
+        topic_id="transform_translate_describe_F",
         tier=Tier.FOUNDATION,
         prompt="Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
         solution_steps=tuple(steps),
@@ -1252,7 +1252,7 @@ def generate_modelled_example_transform_translate_describe(tier: Tier, rng: rand
         "happens to move that one point the same way.",
     ]
     return ModelledExample(
-        topic_id="transform_translate_describe",
+        topic_id="transform_translate_describe_F",
         tier=Tier.FOUNDATION,
         prompt="Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
         worked_calculation=(
@@ -1298,7 +1298,7 @@ def generate_transform_enlarge_complete_foundation(tier: Tier, rng: random.Rando
     name, image_name = _shape_name(labels), _shape_name(image_labels)
 
     return Question(
-        topic_id="transform_enlarge_complete_foundation",
+        topic_id="transform_enlarge_complete_F",
         tier=Tier.FOUNDATION,
         prompt=f"Enlarge shape {name} by scale factor {_fmt_scale_factor(k)}, centre {_fmt_point(centre)}.",
         solution_steps=tuple(_enlarge_steps(labels, shape, centre, k, image_labels, image)),
@@ -1339,7 +1339,7 @@ def generate_modelled_example_transform_enlarge_complete_foundation(tier: Tier, 
         "same factor.",
     ]
     return ModelledExample(
-        topic_id="transform_enlarge_complete_foundation",
+        topic_id="transform_enlarge_complete_F",
         tier=Tier.FOUNDATION,
         prompt=f"Enlarge shape {name} by scale factor {_fmt_scale_factor(k)}, centre {_fmt_point(centre)}.",
         worked_calculation=(
@@ -1377,7 +1377,7 @@ def generate_transform_enlarge_complete_higher(tier: Tier, rng: random.Random) -
             "original, but on the same side of the centre."
         )
     return Question(
-        topic_id="transform_enlarge_complete_higher",
+        topic_id="transform_enlarge_complete_H",
         tier=Tier.HIGHER,
         prompt=f"Enlarge shape {name} by scale factor {_fmt_scale_factor(k)}, centre {_fmt_point(centre)}.",
         solution_steps=tuple(steps),
@@ -1425,7 +1425,7 @@ def generate_modelled_example_transform_enlarge_complete_higher(tier: Tier, rng:
         "Work through the vertices one at a time, keeping careful track of direction (sign) as well as size.",
     ]
     return ModelledExample(
-        topic_id="transform_enlarge_complete_higher",
+        topic_id="transform_enlarge_complete_H",
         tier=Tier.HIGHER,
         prompt=f"Enlarge shape {name} by scale factor {_fmt_scale_factor(k)}, centre {_fmt_point(centre)}.",
         worked_calculation=(
@@ -1461,7 +1461,7 @@ def generate_transform_enlarge_describe(tier: Tier, rng: random.Random) -> Quest
         f"{_fmt_scale_factor(k)}.",
     ]
     return Question(
-        topic_id="transform_enlarge_describe",
+        topic_id="transform_enlarge_describe_H",
         tier=Tier.HIGHER,
         prompt="Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
         solution_steps=tuple(steps),
@@ -1499,7 +1499,7 @@ def generate_modelled_example_transform_enlarge_describe(tier: Tier, rng: random
         f"({image_offset0[0]}, {image_offset0[1]}) from it - a scale factor of {_fmt_scale_factor(k)}.",
     ]
     return ModelledExample(
-        topic_id="transform_enlarge_describe",
+        topic_id="transform_enlarge_describe_H",
         tier=Tier.HIGHER,
         prompt="Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
         worked_calculation=(
@@ -1525,7 +1525,7 @@ def generate_modelled_example_transform_enlarge_describe(tier: Tier, rng: random
 
 
 TOPIC_SYMMETRY_LINES = TopicDefinition(
-    id="symmetry_lines",
+    id="symmetry_lines_F",
     display_name="Line Symmetry",
     description="State the number of lines of symmetry of a shape.",
     generate=generate_symmetry_lines,
@@ -1537,7 +1537,7 @@ TOPIC_SYMMETRY_LINES = TopicDefinition(
 )
 
 TOPIC_SYMMETRY_ROTATIONAL = TopicDefinition(
-    id="symmetry_rotational",
+    id="symmetry_rotational_F",
     display_name="Rotational Symmetry",
     description="State the order of rotational symmetry of a shape.",
     generate=generate_symmetry_rotational,
@@ -1549,7 +1549,7 @@ TOPIC_SYMMETRY_ROTATIONAL = TopicDefinition(
 )
 
 TOPIC_TRANSFORM_REFLECT_COMPLETE = TopicDefinition(
-    id="transform_reflect_complete",
+    id="transform_reflect_complete_F",
     display_name="Reflection",
     description="Reflect a shape in a given line on a coordinate grid.",
     generate=generate_transform_reflect_complete,
@@ -1560,7 +1560,7 @@ TOPIC_TRANSFORM_REFLECT_COMPLETE = TopicDefinition(
 )
 
 TOPIC_TRANSFORM_REFLECT_DESCRIBE = TopicDefinition(
-    id="transform_reflect_describe",
+    id="transform_reflect_describe_F",
     display_name="Describe a Reflection",
     description="Describe fully the reflection that maps one shape onto another.",
     generate=generate_transform_reflect_describe,
@@ -1571,7 +1571,7 @@ TOPIC_TRANSFORM_REFLECT_DESCRIBE = TopicDefinition(
 )
 
 TOPIC_TRANSFORM_ROTATE_COMPLETE = TopicDefinition(
-    id="transform_rotate_complete",
+    id="transform_rotate_complete_F",
     display_name="Rotation",
     description="Rotate a shape about a given centre on a coordinate grid.",
     generate=generate_transform_rotate_complete,
@@ -1582,7 +1582,7 @@ TOPIC_TRANSFORM_ROTATE_COMPLETE = TopicDefinition(
 )
 
 TOPIC_TRANSFORM_ROTATE_DESCRIBE = TopicDefinition(
-    id="transform_rotate_describe",
+    id="transform_rotate_describe_H",
     display_name="Describe a Rotation",
     description="Describe fully the rotation that maps one shape onto another, including finding the centre.",
     generate=generate_transform_rotate_describe,
@@ -1593,7 +1593,7 @@ TOPIC_TRANSFORM_ROTATE_DESCRIBE = TopicDefinition(
 )
 
 TOPIC_TRANSFORM_TRANSLATE_COMPLETE = TopicDefinition(
-    id="transform_translate_complete",
+    id="transform_translate_complete_F",
     display_name="Translation",
     description="Translate a shape by a given vector on a coordinate grid.",
     generate=generate_transform_translate_complete,
@@ -1604,7 +1604,7 @@ TOPIC_TRANSFORM_TRANSLATE_COMPLETE = TopicDefinition(
 )
 
 TOPIC_TRANSFORM_TRANSLATE_DESCRIBE = TopicDefinition(
-    id="transform_translate_describe",
+    id="transform_translate_describe_F",
     display_name="Describe a Translation",
     description="Describe fully the translation that maps one shape onto another.",
     generate=generate_transform_translate_describe,
@@ -1615,7 +1615,7 @@ TOPIC_TRANSFORM_TRANSLATE_DESCRIBE = TopicDefinition(
 )
 
 TOPIC_TRANSFORM_ENLARGE_COMPLETE_FOUNDATION = TopicDefinition(
-    id="transform_enlarge_complete_foundation",
+    id="transform_enlarge_complete_F",
     display_name="Enlargement",
     description="Enlarge a shape by a positive integer scale factor from a given centre.",
     generate=generate_transform_enlarge_complete_foundation,
@@ -1626,7 +1626,7 @@ TOPIC_TRANSFORM_ENLARGE_COMPLETE_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_TRANSFORM_ENLARGE_COMPLETE_HIGHER = TopicDefinition(
-    id="transform_enlarge_complete_higher",
+    id="transform_enlarge_complete_H",
     display_name="Enlargement",
     description="Enlarge a shape by a negative or fractional scale factor from a given centre.",
     generate=generate_transform_enlarge_complete_higher,
@@ -1637,7 +1637,7 @@ TOPIC_TRANSFORM_ENLARGE_COMPLETE_HIGHER = TopicDefinition(
 )
 
 TOPIC_TRANSFORM_ENLARGE_DESCRIBE = TopicDefinition(
-    id="transform_enlarge_describe",
+    id="transform_enlarge_describe_H",
     display_name="Describe an Enlargement",
     description="Describe fully the enlargement that maps one shape onto another, including finding the centre.",
     generate=generate_transform_enlarge_describe,
@@ -1911,7 +1911,7 @@ def generate_combined_transformations(tier: Tier, rng: random.Random) -> Questio
         f"Describe fully the single transformation that maps {name} directly onto {image_name}."
     )
     return Question(
-        topic_id="combined_transformations",
+        topic_id="combined_transformations_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=instance.reasoning_steps,
@@ -1950,7 +1950,7 @@ def generate_modelled_example_combined_transformations(tier: Tier, rng: random.R
         f"So the single transformation that maps {name} directly onto {image_name} is: {instance.final_answer}.",
     ]
     return ModelledExample(
-        topic_id="combined_transformations",
+        topic_id="combined_transformations_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=(
@@ -1971,7 +1971,7 @@ def generate_modelled_example_combined_transformations(tier: Tier, rng: random.R
 
 
 TOPIC_COMBINED_TRANSFORMATIONS = TopicDefinition(
-    id="combined_transformations",
+    id="combined_transformations_H",
     display_name="Combined Transformations",
     description="Describe the single transformation equivalent to two transformations applied in sequence.",
     generate=generate_combined_transformations,

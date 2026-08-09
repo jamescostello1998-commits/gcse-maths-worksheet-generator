@@ -57,17 +57,17 @@ MODELLED_EXAMPLE_GENERATORS = [
     (
         changing_subject.generate_modelled_example_change_subject_foundation,
         Tier.FOUNDATION,
-        "change_subject_foundation",
+        "change_subject_F",
     ),
     (
         changing_subject.generate_modelled_example_change_subject_higher,
         Tier.HIGHER,
-        "change_subject_higher",
+        "change_subject_H",
     ),
     (
         changing_subject.generate_modelled_example_change_subject_factorise_higher,
         Tier.HIGHER,
-        "change_subject_factorise_higher",
+        "change_subject_factorise_H",
     ),
 ]
 

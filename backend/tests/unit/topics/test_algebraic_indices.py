@@ -60,12 +60,12 @@ MODELLED_EXAMPLE_GENERATORS = [
     (
         algebraic_indices.generate_modelled_example_algebraic_indices_foundation,
         Tier.FOUNDATION,
-        "algebraic_indices_foundation",
+        "algebraic_indices_F",
     ),
     (
         algebraic_indices.generate_modelled_example_algebraic_indices_higher,
         Tier.HIGHER,
-        "algebraic_indices_higher",
+        "algebraic_indices_H",
     ),
 ]
 

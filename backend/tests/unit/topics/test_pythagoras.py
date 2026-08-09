@@ -15,15 +15,15 @@ GENERATORS = [
 ]
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (pythagoras.generate_modelled_example_hypotenuse_triple, Tier.FOUNDATION, "pythagoras_hypotenuse_triple"),
-    (pythagoras.generate_modelled_example_hypotenuse_decimal, Tier.FOUNDATION, "pythagoras_hypotenuse_decimal"),
-    (pythagoras.generate_modelled_example_shorter_leg, Tier.FOUNDATION, "pythagoras_shorter_leg"),
-    (pythagoras.generate_modelled_example_surd_hypotenuse, Tier.HIGHER, "pythagoras_surd_hypotenuse"),
-    (pythagoras.generate_modelled_example_ladder_context, Tier.HIGHER, "pythagoras_ladder_context"),
+    (pythagoras.generate_modelled_example_hypotenuse_triple, Tier.FOUNDATION, "pythagoras_hypotenuse_triple_F"),
+    (pythagoras.generate_modelled_example_hypotenuse_decimal, Tier.FOUNDATION, "pythagoras_hypotenuse_decimal_F"),
+    (pythagoras.generate_modelled_example_shorter_leg, Tier.FOUNDATION, "pythagoras_shorter_leg_F"),
+    (pythagoras.generate_modelled_example_surd_hypotenuse, Tier.HIGHER, "pythagoras_surd_hypotenuse_H"),
+    (pythagoras.generate_modelled_example_ladder_context, Tier.HIGHER, "pythagoras_ladder_context_H"),
     (
         pythagoras.generate_modelled_example_ladder_context_foundation,
         Tier.FOUNDATION,
-        "pythagoras_ladder_context_foundation",
+        "pythagoras_ladder_context_F",
     ),
 ]
 
@@ -130,7 +130,7 @@ def test_ladder_context_foundation_always_gives_a_whole_number_answer():
 def test_modelled_examples_produce_valid_verified_examples():
     # The two ladder-context modelled examples deliberately have NO diagram
     # (text only, per direct user request).
-    ladder_topic_ids = {"pythagoras_ladder_context", "pythagoras_ladder_context_foundation"}
+    ladder_topic_ids = {"pythagoras_ladder_context_H", "pythagoras_ladder_context_F"}
     for generate, tier, topic_id in MODELLED_EXAMPLE_GENERATORS:
         rng = random.Random(63)
         for _ in range(TRIALS):

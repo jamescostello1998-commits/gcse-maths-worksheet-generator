@@ -48,7 +48,7 @@ def generate_share_two(tier: Tier, rng: random.Random) -> Question:
         f"Share 2 = {b} × {k} = {share_b}",
     ]
     return Question(
-        topic_id="ratio_share_two_part",
+        topic_id="ratio_share_two_part_F",
         tier=Tier.FOUNDATION,
         prompt=f"Share {total} in the ratio {a}:{b}.",
         solution_steps=tuple(steps),
@@ -86,7 +86,7 @@ def generate_modelled_example_share_two(tier: Tier, rng: random.Random) -> Model
         f"{a} × {k} = {share_a}, {b} × {k} = {share_b}",
     ]
     return ModelledExample(
-        topic_id="ratio_share_two_part",
+        topic_id="ratio_share_two_part_F",
         tier=Tier.FOUNDATION,
         prompt=f"Share {total} in the ratio {a}:{b}.",
         worked_calculation=tuple(worked_calculation),
@@ -124,7 +124,7 @@ def generate_find_share(tier: Tier, rng: random.Random) -> Question:
     )
 
     return Question(
-        topic_id="ratio_find_missing_share",
+        topic_id="ratio_find_missing_share_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -174,7 +174,7 @@ def generate_modelled_example_find_share(tier: Tier, rng: random.Random) -> Mode
     ]
 
     return ModelledExample(
-        topic_id="ratio_find_missing_share",
+        topic_id="ratio_find_missing_share_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -200,7 +200,7 @@ def generate_share_three(tier: Tier, rng: random.Random) -> Question:
         f"Share 3 = {c} × {k} = {share_c}",
     ]
     return Question(
-        topic_id="ratio_share_three_part",
+        topic_id="ratio_share_three_part_H",
         tier=Tier.HIGHER,
         prompt=f"Share {total} in the ratio {a}:{b}:{c}.",
         solution_steps=tuple(steps),
@@ -239,7 +239,7 @@ def generate_modelled_example_share_three(tier: Tier, rng: random.Random) -> Mod
         f"{a} × {k} = {share_a}, {b} × {k} = {share_b}, {c} × {k} = {share_c}",
     ]
     return ModelledExample(
-        topic_id="ratio_share_three_part",
+        topic_id="ratio_share_three_part_H",
         tier=Tier.HIGHER,
         prompt=f"Share {total} in the ratio {a}:{b}:{c}.",
         worked_calculation=tuple(worked_calculation),
@@ -265,7 +265,7 @@ def generate_share_three_foundation(tier: Tier, rng: random.Random) -> Question:
         f"Share 3 = {c} × {k} = {share_c}",
     ]
     return Question(
-        topic_id="ratio_share_three_part_foundation",
+        topic_id="ratio_share_three_part_F",
         tier=Tier.FOUNDATION,
         prompt=f"Share {total} in the ratio {a}:{b}:{c}.",
         solution_steps=tuple(steps),
@@ -304,7 +304,7 @@ def generate_modelled_example_share_three_foundation(tier: Tier, rng: random.Ran
         f"{a} × {k} = {share_a}, {b} × {k} = {share_b}, {c} × {k} = {share_c}",
     ]
     return ModelledExample(
-        topic_id="ratio_share_three_part_foundation",
+        topic_id="ratio_share_three_part_F",
         tier=Tier.FOUNDATION,
         prompt=f"Share {total} in the ratio {a}:{b}:{c}.",
         worked_calculation=tuple(worked_calculation),
@@ -337,7 +337,7 @@ def generate_combine_ratios(tier: Tier, rng: random.Random) -> Question:
         f"Simplify by dividing by {g}: a:b:c = {sa}:{sb}:{sc}",
     ]
     return Question(
-        topic_id="ratio_combine",
+        topic_id="ratio_combine_H",
         tier=Tier.HIGHER,
         prompt=f"Given that a:b = {p}:{q} and b:c = {r}:{s}, find a:b:c in its simplest form.",
         solution_steps=tuple(steps),
@@ -393,7 +393,7 @@ def generate_modelled_example_combine_ratios(tier: Tier, rng: random.Random) -> 
         worked_calculation.append(f"= {sa}:{sb}:{sc}")
 
     return ModelledExample(
-        topic_id="ratio_combine",
+        topic_id="ratio_combine_H",
         tier=Tier.HIGHER,
         prompt=f"Given that a:b = {p}:{q} and b:c = {r}:{s}, find a:b:c in its simplest form.",
         worked_calculation=tuple(worked_calculation),
@@ -403,7 +403,7 @@ def generate_modelled_example_combine_ratios(tier: Tier, rng: random.Random) -> 
 
 
 TOPIC_SHARE_TWO = TopicDefinition(
-    id="ratio_share_two_part",
+    id="ratio_share_two_part_F",
     display_name="Share a Two-Part Ratio",
     description="Share an amount between two parties in a given ratio.",
     generate=generate_share_two,
@@ -414,7 +414,7 @@ TOPIC_SHARE_TWO = TopicDefinition(
 )
 
 TOPIC_FIND_SHARE = TopicDefinition(
-    id="ratio_find_missing_share",
+    id="ratio_find_missing_share_F",
     display_name="Find a Missing Share",
     description="Given one share and the ratio, find the other share or the total.",
     generate=generate_find_share,
@@ -425,7 +425,7 @@ TOPIC_FIND_SHARE = TopicDefinition(
 )
 
 TOPIC_SHARE_THREE = TopicDefinition(
-    id="ratio_share_three_part",
+    id="ratio_share_three_part_H",
     display_name="Share a Three-Part Ratio",
     description="Share an amount between three parties in a given ratio.",
     generate=generate_share_three,
@@ -436,7 +436,7 @@ TOPIC_SHARE_THREE = TopicDefinition(
 )
 
 TOPIC_SHARE_THREE_FOUNDATION = TopicDefinition(
-    id="ratio_share_three_part_foundation",
+    id="ratio_share_three_part_F",
     display_name="Share a Three-Part Ratio (Foundation)",
     description="Share an amount between three parties in a given ratio.",
     generate=generate_share_three_foundation,
@@ -447,7 +447,7 @@ TOPIC_SHARE_THREE_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_COMBINE = TopicDefinition(
-    id="ratio_combine",
+    id="ratio_combine_H",
     display_name="Combine Ratios",
     description="Combine two linked ratios (a:b and b:c) into a single a:b:c ratio.",
     generate=generate_combine_ratios,
@@ -509,7 +509,7 @@ def generate_ratio_1_to_n(tier: Tier, rng: random.Random) -> Question:
         answer = f"{n_display} : 1{suffix}"
 
     return Question(
-        topic_id="ratio_1_to_n",
+        topic_id="ratio_1_to_n_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -573,7 +573,7 @@ def generate_modelled_example_ratio_1_to_n(tier: Tier, rng: random.Random) -> Mo
         ]
 
     return ModelledExample(
-        topic_id="ratio_1_to_n",
+        topic_id="ratio_1_to_n_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -616,7 +616,7 @@ def generate_ratio_difference(tier: Tier, rng: random.Random) -> Question:
         answer = f"{l1} = {share_a}, {l2} = {share_b}"
 
     return Question(
-        topic_id="ratio_difference",
+        topic_id="ratio_difference_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -675,7 +675,7 @@ def generate_modelled_example_ratio_difference(tier: Tier, rng: random.Random) -
         answer = f"{l1} = {share_a}, {l2} = {share_b}"
 
     return ModelledExample(
-        topic_id="ratio_difference",
+        topic_id="ratio_difference_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -728,7 +728,7 @@ def generate_ratio_difference_higher(tier: Tier, rng: random.Random) -> Question
         answer = f"{l1} = {share_a}, {l2} = {share_b}, {l3} = {share_c}"
 
     return Question(
-        topic_id="ratio_difference_higher",
+        topic_id="ratio_difference_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -798,7 +798,7 @@ def generate_modelled_example_ratio_difference_higher(tier: Tier, rng: random.Ra
         answer = f"{l1} = {share_a}, {l2} = {share_b}, {l3} = {share_c}"
 
     return ModelledExample(
-        topic_id="ratio_difference_higher",
+        topic_id="ratio_difference_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -882,7 +882,7 @@ def generate_ratio_to_equation(tier: Tier, rng: random.Random) -> Question:
     ]
 
     return Question(
-        topic_id="ratio_to_equation",
+        topic_id="ratio_to_equation_H",
         tier=Tier.HIGHER,
         prompt=f"({left_expr}) : ({right_expr}) = {m}:{n}. Find the value of x.",
         solution_steps=tuple(steps),
@@ -931,7 +931,7 @@ def generate_modelled_example_ratio_to_equation(tier: Tier, rng: random.Random) 
     ]
 
     return ModelledExample(
-        topic_id="ratio_to_equation",
+        topic_id="ratio_to_equation_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -967,7 +967,7 @@ def generate_ratio_shape_similar_foundation(tier: Tier, rng: random.Random) -> Q
     ]
     prompt = f"Shape A and Shape B are similar. Find the length of side {letter}."
     return Question(
-        topic_id="ratio_shape_similar_foundation",
+        topic_id="ratio_shape_similar_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -1027,7 +1027,7 @@ def generate_modelled_example_ratio_shape_similar_foundation(
     ]
 
     return ModelledExample(
-        topic_id="ratio_shape_similar_foundation",
+        topic_id="ratio_shape_similar_F",
         tier=Tier.FOUNDATION,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -1102,7 +1102,7 @@ def generate_ratio_shape_similar_higher(tier: Tier, rng: random.Random) -> Quest
     ]
 
     return Question(
-        topic_id="ratio_shape_similar_higher",
+        topic_id="ratio_shape_similar_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -1179,7 +1179,7 @@ def generate_modelled_example_ratio_shape_similar_higher(
     ]
 
     return ModelledExample(
-        topic_id="ratio_shape_similar_higher",
+        topic_id="ratio_shape_similar_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=tuple(worked_calculation),
@@ -1193,7 +1193,7 @@ def generate_modelled_example_ratio_shape_similar_higher(
 
 
 TOPIC_RATIO_1_TO_N = TopicDefinition(
-    id="ratio_1_to_n",
+    id="ratio_1_to_n_F",
     display_name="Ratio in the Form 1:n",
     description="Write a ratio in the form 1:n or n:1.",
     generate=generate_ratio_1_to_n,
@@ -1204,7 +1204,7 @@ TOPIC_RATIO_1_TO_N = TopicDefinition(
 )
 
 TOPIC_RATIO_DIFFERENCE = TopicDefinition(
-    id="ratio_difference",
+    id="ratio_difference_F",
     display_name="Ratio Given the Difference",
     description="Given the difference between two shares and their ratio, find both amounts.",
     generate=generate_ratio_difference,
@@ -1215,7 +1215,7 @@ TOPIC_RATIO_DIFFERENCE = TopicDefinition(
 )
 
 TOPIC_RATIO_DIFFERENCE_HIGHER = TopicDefinition(
-    id="ratio_difference_higher",
+    id="ratio_difference_H",
     display_name="Ratio Given the Difference (Three Parts)",
     description=(
         "Given the difference between the largest and smallest share of a three-part ratio, "
@@ -1229,7 +1229,7 @@ TOPIC_RATIO_DIFFERENCE_HIGHER = TopicDefinition(
 )
 
 TOPIC_RATIO_TO_EQUATION = TopicDefinition(
-    id="ratio_to_equation",
+    id="ratio_to_equation_H",
     display_name="Ratio Problems with Algebra",
     description="Solve an algebraic ratio equation of the form (x + p) : (qx + r) = m:n.",
     generate=generate_ratio_to_equation,
@@ -1240,7 +1240,7 @@ TOPIC_RATIO_TO_EQUATION = TopicDefinition(
 )
 
 TOPIC_RATIO_SHAPE_SIMILAR_FOUNDATION = TopicDefinition(
-    id="ratio_shape_similar_foundation",
+    id="ratio_shape_similar_F",
     display_name="Similar Shapes: Lengths",
     description="Use the scale factor between similar shapes to find a missing length.",
     generate=generate_ratio_shape_similar_foundation,
@@ -1251,7 +1251,7 @@ TOPIC_RATIO_SHAPE_SIMILAR_FOUNDATION = TopicDefinition(
 )
 
 TOPIC_RATIO_SHAPE_SIMILAR_HIGHER = TopicDefinition(
-    id="ratio_shape_similar_higher",
+    id="ratio_shape_similar_H",
     display_name="Similar Shapes: Area and Volume",
     description=(
         "Use the area or volume scale factor (k^2 or k^3) between similar shapes to find a "

@@ -197,67 +197,67 @@ def test_topic_definitions_have_expected_metadata():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (area_perimeter.generate_modelled_example_rectangle, Tier.FOUNDATION, "area_rectangle", "rectangle"),
-    (area_perimeter.generate_modelled_example_triangle, Tier.FOUNDATION, "area_triangle", "triangle_area"),
+    (area_perimeter.generate_modelled_example_rectangle, Tier.FOUNDATION, "area_rectangle_F", "rectangle"),
+    (area_perimeter.generate_modelled_example_triangle, Tier.FOUNDATION, "area_triangle_F", "triangle_area"),
     (
         area_perimeter.generate_modelled_example_composite_rectangles,
         Tier.FOUNDATION,
-        "area_composite_rectangles",
+        "area_composite_rectangles_F",
         {"l_shape", "t_shape"},
     ),
     (
         area_perimeter.generate_modelled_example_circle_foundation,
         Tier.FOUNDATION,
-        "area_circle_foundation",
+        "area_circle_F",
         "circle",
     ),
-    (area_perimeter.generate_modelled_example_circle, Tier.HIGHER, "area_circle", "circle"),
+    (area_perimeter.generate_modelled_example_circle, Tier.HIGHER, "area_circle_H", "circle"),
     (
         area_perimeter.generate_modelled_example_semicircle_compound,
         Tier.FOUNDATION,
-        "area_semicircle_compound",
+        "area_semicircle_compound_F",
         "rectangle_semicircle",
     ),
     (
         area_perimeter.generate_modelled_example_semicircle_compound_higher,
         Tier.HIGHER,
-        "area_semicircle_compound_higher",
+        "area_semicircle_compound_H",
         "rectangle_semicircle",
     ),
     (
         area_perimeter.generate_modelled_example_subtract_compound,
         Tier.HIGHER,
-        "area_subtract_compound",
+        "area_subtract_compound_H",
         "l_shape",
     ),
     (
         area_perimeter.generate_modelled_example_subtract_compound_foundation,
         Tier.FOUNDATION,
-        "area_subtract_compound_foundation",
+        "area_subtract_compound_F",
         "l_shape",
     ),
-    (area_perimeter.generate_modelled_example_area_parallelogram, Tier.FOUNDATION, "area_parallelogram", "parallelogram"),
-    (area_perimeter.generate_modelled_example_area_trapezium, Tier.FOUNDATION, "area_trapezium", "trapezium"),
+    (area_perimeter.generate_modelled_example_area_parallelogram, Tier.FOUNDATION, "area_parallelogram_F", "parallelogram"),
+    (area_perimeter.generate_modelled_example_area_trapezium, Tier.FOUNDATION, "area_trapezium_F", "trapezium"),
     (
         area_perimeter.generate_modelled_example_area_mixed_compound,
         Tier.HIGHER,
-        "area_mixed_compound",
+        "area_mixed_compound_H",
         "mixed_compound",
     ),
     (
         area_perimeter.generate_modelled_example_arc_length_foundation,
         Tier.FOUNDATION,
-        "arc_length_foundation",
+        "arc_length_F",
         "sector",
     ),
-    (area_perimeter.generate_modelled_example_arc_length, Tier.HIGHER, "arc_length", "sector"),
+    (area_perimeter.generate_modelled_example_arc_length, Tier.HIGHER, "arc_length_H", "sector"),
     (
         area_perimeter.generate_modelled_example_area_sector_foundation,
         Tier.FOUNDATION,
-        "area_sector_foundation",
+        "area_sector_F",
         "sector",
     ),
-    (area_perimeter.generate_modelled_example_area_sector, Tier.HIGHER, "area_sector", "sector"),
+    (area_perimeter.generate_modelled_example_area_sector, Tier.HIGHER, "area_sector_H", "sector"),
 ]
 
 

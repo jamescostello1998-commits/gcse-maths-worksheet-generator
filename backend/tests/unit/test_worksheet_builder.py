@@ -9,10 +9,10 @@ from app.worksheet import builder
 
 
 def test_happy_path_produces_20_distinct_questions():
-    worksheet = builder.build_worksheet("linear_one_step", Tier.FOUNDATION, rng=random.Random(1))
+    worksheet = builder.build_worksheet("linear_one_step_F", Tier.FOUNDATION, rng=random.Random(1))
     assert len(worksheet.questions) == 20
     assert len({q.dedup_key for q in worksheet.questions}) == 20
-    assert worksheet.topic_id == "linear_one_step"
+    assert worksheet.topic_id == "linear_one_step_F"
     assert worksheet.tier == Tier.FOUNDATION
 
 

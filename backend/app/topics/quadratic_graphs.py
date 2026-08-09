@@ -62,7 +62,7 @@ def generate_completing_the_square(tier: Tier, rng: random.Random) -> Question:
         f"{_fmt_quadratic(b, c)} = {_fmt_square_term(p)}^2 + ({c} - {p * p}) = {answer}",
     ]
     return Question(
-        topic_id="completing_the_square",
+        topic_id="completing_the_square_H",
         tier=Tier.HIGHER,
         prompt=f"Write {_fmt_quadratic(b, c)} in the form (x + p)^2 + q.",
         solution_steps=tuple(steps),
@@ -99,7 +99,7 @@ def generate_turning_point(tier: Tier, rng: random.Random) -> Question:
         f"Turning point = {answer}",
     ]
     return Question(
-        topic_id="turning_point_of_graph",
+        topic_id="turning_point_of_graph_H",
         tier=Tier.HIGHER,
         prompt=f"Find the coordinates of the turning point of the curve y = {_fmt_quadratic(b, c)}.",
         solution_steps=tuple(steps),
@@ -137,7 +137,7 @@ def generate_modelled_example_completing_the_square(tier: Tier, rng: random.Rand
         f"= {answer}",
     ]
     return ModelledExample(
-        topic_id="completing_the_square",
+        topic_id="completing_the_square_H",
         tier=Tier.HIGHER,
         prompt=f"Write {_fmt_quadratic(b, c)} in the form (x + p)^2 + q.",
         worked_calculation=tuple(worked_calculation),
@@ -178,7 +178,7 @@ def generate_modelled_example_turning_point(tier: Tier, rng: random.Random) -> M
         f"Turning point = (-p, q) = {answer}",
     ]
     return ModelledExample(
-        topic_id="turning_point_of_graph",
+        topic_id="turning_point_of_graph_H",
         tier=Tier.HIGHER,
         prompt=f"Find the coordinates of the turning point of the curve y = {_fmt_quadratic(b, c)}.",
         worked_calculation=tuple(worked_calculation),
@@ -243,7 +243,7 @@ def generate_solve_quadratic_completing_square(tier: Tier, rng: random.Random) -
         f"x = {root_plus} or x = {root_minus}",
     ]
     return Question(
-        topic_id="solve_quadratic_completing_square",
+        topic_id="solve_quadratic_completing_square_H",
         tier=Tier.HIGHER,
         prompt=f"Solve {_fmt_quadratic(b, c)} = 0 by completing the square, "
         "giving your answers in exact surd form.",
@@ -291,7 +291,7 @@ def generate_modelled_example_solve_quadratic_completing_square(
         f"x = {root_plus} or x = {root_minus}",
     ]
     return ModelledExample(
-        topic_id="solve_quadratic_completing_square",
+        topic_id="solve_quadratic_completing_square_H",
         tier=Tier.HIGHER,
         prompt=f"Solve {_fmt_quadratic(b, c)} = 0 by completing the square, "
         "giving your answers in exact surd form.",
@@ -302,7 +302,7 @@ def generate_modelled_example_solve_quadratic_completing_square(
 
 
 TOPIC_COMPLETING_THE_SQUARE = TopicDefinition(
-    id="completing_the_square",
+    id="completing_the_square_H",
     display_name="Completing the Square",
     description="Write a quadratic expression in completed-square form (x + p)^2 + q.",
     generate=generate_completing_the_square,
@@ -313,7 +313,7 @@ TOPIC_COMPLETING_THE_SQUARE = TopicDefinition(
 )
 
 TOPIC_TURNING_POINT = TopicDefinition(
-    id="turning_point_of_graph",
+    id="turning_point_of_graph_H",
     display_name="Turning Point of a Graph",
     description="Use completing the square to find the turning point of a quadratic graph.",
     generate=generate_turning_point,
@@ -324,7 +324,7 @@ TOPIC_TURNING_POINT = TopicDefinition(
 )
 
 TOPIC_SOLVE_QUADRATIC_COMPLETING_SQUARE = TopicDefinition(
-    id="solve_quadratic_completing_square",
+    id="solve_quadratic_completing_square_H",
     display_name="Solving by Completing the Square",
     description="Solve a quadratic equation by completing the square, giving exact surd answers.",
     generate=generate_solve_quadratic_completing_square,

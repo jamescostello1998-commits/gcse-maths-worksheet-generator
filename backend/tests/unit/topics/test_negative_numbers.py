@@ -88,13 +88,13 @@ def test_topic_definitions_have_expected_metadata():
 
 
 MODELLED_EXAMPLE_GENERATORS = [
-    (negative_numbers.generate_modelled_example_negative_add_subtract, Tier.FOUNDATION, "negative_add_subtract"),
+    (negative_numbers.generate_modelled_example_negative_add_subtract, Tier.FOUNDATION, "negative_add_subtract_F"),
     (
         negative_numbers.generate_modelled_example_negative_multiply_divide,
         Tier.FOUNDATION,
-        "negative_multiply_divide",
+        "negative_multiply_divide_F",
     ),
-    (negative_numbers.generate_modelled_example_negative_ordering, Tier.FOUNDATION, "negative_ordering"),
+    (negative_numbers.generate_modelled_example_negative_ordering, Tier.FOUNDATION, "negative_ordering_F"),
 ]
 
 

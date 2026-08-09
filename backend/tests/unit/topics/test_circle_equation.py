@@ -64,7 +64,7 @@ def test_dedup_keys_vary_widely():
 
 def test_topic_definition_metadata():
     t = circle_equation.TOPIC_CIRCLE_EQUATION
-    assert t.id == "circle_equation"
+    assert t.id == "circle_equation_H"
     assert t.section == "algebra"
     assert t.group == "Equation of a Circle"
     assert t.fixed_tier == Tier.HIGHER
@@ -75,7 +75,7 @@ def test_modelled_examples_are_valid():
     rng = random.Random(903)
     for _ in range(TRIALS):
         ex = circle_equation.generate_modelled_example_circle_equation(Tier.HIGHER, rng)
-        assert ex.topic_id == "circle_equation"
+        assert ex.topic_id == "circle_equation_H"
         assert ex.tier == Tier.HIGHER
         assert ex.prompt
         assert len(ex.worked_calculation) >= 2
