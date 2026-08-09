@@ -25,33 +25,44 @@ scheme. The full chronology below still uses the *old* ids in its historical ent
 tier suffix if you go looking for one. See step 44 for the exact rename rule and how the
 migration was done safely.
 
-The two most recent pieces of work, both committed and pushed on `aqa-spec-gap-topics`
+The most recent pieces of work, all committed and pushed on `aqa-spec-gap-topics`
 (the same open PR — `gh pr view 3`, or `& "C:\Program Files\GitHub CLI\gh.exe" pr view 3`
 if `gh` isn't on PATH in a fresh shell, see "Environment gotchas"):
 
-- **Step 44 (HEAD, commit `9833db2`)**: the id `_F`/`_H` streamlining refactor above —
+- **Step 46 (HEAD)**: a new **PDF / Word download-format toggle** — a home-page slider
+  (PDF | Word) that makes every topic's Worksheet *and* Modelled Example downloadable as
+  a real `.docx`, with full layout parity to the PDF and Bell-Tasks-style typography
+  (Calibri prose, Cambria Math + native Word equations, incl. native column vectors).
+  New `backend/app/docx/` package, new `python-docx` dependency, `format` field on the
+  worksheet/modelled-example routes, and a global `FormatContext` on the frontend.
+  Backend 970 (+11 docx tests), frontend 65 (+4). See chronology step 46.
+- **Step 45**: fixed **fractional powers not rendering as raised powers** in the PDF
+  (`x^(1/2)` sat low next to the base like a coefficient) — one-line `mathtext.py` fix
+  (`valign="super"` on the fraction image instead of a `<super>` wrapper). See step 45.
+- **Step 44 (commit `9833db2`)**: the id `_F`/`_H` streamlining refactor above —
   all 305 ids renamed, the 60 frozen Practice Test papers migrated *in place* (content
   byte-identical, only their `topic_id` fields remapped — NOT rebuilt), tests + CLAUDE.md
-  updated. Backend suite 959/959.
+  updated.
 - **Step 43 (commits `42ffe3d` + `3ca66af`)**: a review-feedback batch covering pages
   201-250 of the `all_topics_review_*.pdf` documents (~14 named items, mostly Geometry:
   3D/trig diagrams, sine/cosine fonts, congruence-proof redesign, circle-theorem
   wording, transformations). Added one topic (`properties_3d_shapes_diagram`, 304→305).
 
-**This is still the same paginated aesthetic-review process running since step 34** — the
-user works through the (now 305-topic) review PDF a chunk at a time. Steps 35-43 have
-covered Number → Algebra → Ratio & Proportion → Geometry → Probability/Statistics
+**Steps 34-43 were a paginated aesthetic-review process** — the user works through the
+(now 305-topic) review PDF a chunk at a time. Steps 35-43 covered
+Number → Algebra → Ratio & Proportion → Geometry → Probability/Statistics
 (step 40 closed the first full pass) and then a **second pass by page range**
-(pages 1-100 = step 41, 101-200 = step 42, 201-250 = step 43). So the natural next step
-is to **wait for the user's next chunk of feedback** (pages 251+), NOT to assume the
-review is finished — this has been "the next chunk" many batches in a row.
+(pages 1-100 = step 41, 101-200 = step 42, 201-250 = step 43). Steps 45-46 were separate
+one-off requests, not review chunks. The review is **not confirmed finished** (pages 251+
+never arrived) — so if the user returns to it, the natural next step is the next chunk of
+feedback; but they may equally have new one-off features in mind (as steps 45-46 were).
 
 The review workflow each batch: read the named items, fix them (render real PDFs to
 verify diagram/overlap fixes — don't trust unit tests for visual issues), regenerate
 both `all_topics_review_*.pdf` via `python -m scripts.generate_review_pdfs`, send them
 back to the user, then commit+push. See "Regenerating the all-topics aesthetic-review
 PDFs" below (the two PDFs are deliberately left untracked). 305 topics total, backend
-suite 959/959, frontend 61/61, no known bugs.
+suite 970/970, frontend 65/65, no known bugs.
 
 Once the user's next chunk of feedback (or confirmation the review is fully done)
 arrives, check "Ideas for a future session" (bottom of this file) for candidate
@@ -4029,6 +4040,96 @@ fixes), is committed and pushed (see `git log`).
     ~60 test files, 60 JSON, `topic_selection.py`, `test_routes.py`,
     CLAUDE.md's architecture guidance). Review PDFs regenerated (now showing
     the new ids) and sent to the user. Committed and pushed as `9833db2`.
+
+45. New session, a single focused user request (with a reference image): make
+    **fractional powers render as raised powers** in the PDF. A fractional
+    exponent like `x^(1/2)` was being drawn as a small vinculum fraction sitting
+    LOW next to the base — reading like a coefficient/subscript rather than a
+    power — while integer powers (`x^5`) correctly floated up. Root cause, found
+    by rendering an actual `algebraic_indices_H` worksheet and looking closely
+    (not by any test — the test asserted the old markup): `mathtext.py`'s
+    fractional-exponent branch wrapped the fraction image in `<super>…</super>`
+    with the image's own `valign="bottom"`, but a `<super>` wrapper only shifts
+    *text* runs — an `<img>` with `valign="bottom"` stays pinned to the baseline
+    regardless, so the fraction never actually rose. Fixed with a one-line change
+    in `_replace_math`: drop the `<super>` wrapper and set `valign="super"` on the
+    image itself, which lifts it into the same raised zone as an integer
+    superscript and self-scales with font size (verified via a rendered-PDF spike
+    comparing it against `x^5`/`(..)^2` at both 11pt prose and the 9pt practice-
+    test mark-scheme size). Updated the one `test_mathtext.py` test that asserted
+    the old `<super>`-wrapper structure; the compound `x^(¼+¾)` case (fractions
+    inside `<super>` via `\frac` markers) was unaffected. No topic/count change;
+    regenerated + sent both review PDFs. Backend suite 935→935 (one test updated,
+    none added), frontend unaffected.
+
+46. Same session, a large new feature: a **home-page PDF / Word download-format
+    toggle** that makes every topic's Worksheet *and* Modelled Example
+    downloadable as a real Word `.docx`, not just a PDF. Scoped up front via
+    `AskUserQuestion` (Worksheet + Modelled Example only — Practice Tests stay
+    PDF-only, Bell Tasks unchanged; **maths matches Bell Tasks exactly** — native
+    equations for fractions/powers, plain Cambria Math text for rarer constructs;
+    **full layout parity** with the PDF; Bell Tasks *font scheme* but the
+    worksheet's own size hierarchy/colours, not Bell Tasks' 18pt purple), then
+    planned in plan mode.
+
+    Built a new `backend/app/docx/` package (added `python-docx==1.2.0`, absent
+    before): `docx_omml.py` builds real native Word equations (fractions,
+    superscripts, fractional-power superscripts, and — after a follow-up user
+    request — native stacked **column vectors** via an `<m:d>` delimiter around an
+    `<m:m>` matrix) as raw WordprocessingML `<m:oMath>` via lxml — the Word
+    sibling of the existing PowerPoint `app/bell_tasks/omml.py`, but simpler
+    (Word takes a bare `<m:oMath>` directly in a `<w:p>`, no `mc:AlternateContent`
+    wrapper, no `endParaRPr` ordering trap). `render.py` provides
+    `render_worksheet_docx` / `render_modelled_example_docx` mirroring the two PDF
+    renderers element-for-element (title/meta/rule, numbered questions, embedded
+    diagrams, Worked Solutions / answers-only, the modelled-example worked-example
+    box + backward-fading practice page), reusing the pure `math_tokenizer.tokenize`
+    and `diagram_raster.rasterize_drawing` from `bell_tasks/` and `render_diagram`
+    from `pdf/diagrams.py` unchanged. The `format` field was added to
+    `GenerateWorksheetRequest` (default `pdf`, so existing bodies are unchanged)
+    and both routes branch on it.
+
+    **Risk-first spikes, opened in real Microsoft Word via COM automation** (the
+    same QA path Bell Tasks used for PowerPoint, since LibreOffice isn't installed
+    here) before wiring anything: (1) a minimal fraction/superscript/fractional-
+    exponent doc confirmed the bare-`<m:oMath>` mechanism and that font/size/colour
+    on a `<w:rPr>` inside each math run genuinely take effect; (2) an **empty-base
+    `<m:sSup>`** renders cleanly (no placeholder box) — which is what lets a
+    bracketed/unattached power like `(25x^4)^(1/2)` or `(x^-2)^4` raise as a native
+    superscript instead of printing a literal `^` caret. This last point is the one
+    place the docx deliberately goes *beyond* Bell-Tasks-exact: Bell Tasks (which
+    only renders prompts, rarely with bracketed powers) leaves those as literal
+    carets, but on an index-laws worksheet — which renders steps too — that looked
+    clearly worse than the PDF and against the step-45 "powers look like powers"
+    intent, so `render._emit_segment` routes every exponent form through a native
+    superscript (empty base when unattached). Genuinely compound nested-paren
+    exponents in steps (`x^(6-(-4))`) stay literal, matching both the scope and the
+    PDF's own behaviour there. The `\frac{}{}` and `\colvec{}{}` markers (which the
+    tokenizer can't see, and which fill solution steps/answers) are handled in
+    `_emit_segment` before tokenizing; `\recur`/`\plain`/surds/`x_n` fall back to
+    plain Cambria Math text per the chosen scope.
+
+    Frontend: a global `FormatContext` (`context/FormatContext.tsx`,
+    localStorage-persisted) + `useFormat`, a `DownloadFormatToggle` segmented
+    control rendered on the home page, and `format` threaded through
+    `api/types.ts`/`client.ts` and both download hooks (choosing the `.docx`/`.pdf`
+    filename extension). The choice is global so it applies from HomeScreen,
+    SectionView and TopicSearch, not just where the control is shown. Existing
+    component/hook tests that render `TopicCard` (whose hooks now read the context)
+    were wrapped in `FormatProvider`.
+
+    Verified end-to-end: full backend suite 959→970 (new `test_docx_render.py` —
+    structural assertions incl. real `<m:oMath>`/`<m:f>`/`<m:sSup>`/`<m:d>` elements,
+    embedded diagram images, answers-only, and the docx route media-type/filename +
+    default-still-PDF); frontend 61→65 (new `DownloadFormatToggle.test.tsx`); real
+    `.docx` files for a fractions topic, `algebraic_indices_H` (native fractional
+    powers), a diagram topic, a modelled example, and `vectors_arithmetic_H` (native
+    column vectors) all opened in real Word and eyeballed; and a live browser
+    click-through (toggle → Word, download returns 200 with the `wordprocessingml`
+    content-type and `PK` docx magic bytes, no console errors). Known accepted scope
+    limitation: vector letters `a`/`b` in prompts render Cambria Math but not bold
+    (the PDF bolds them) — part of the Bell-Tasks-exact trade-off, not the "full
+    native maths" option the user declined.
 
 ## Environment gotchas (Windows, this machine specifically)
 

@@ -12,6 +12,11 @@ class TierEnum(str, Enum):
     higher = "higher"
 
 
+class FormatEnum(str, Enum):
+    pdf = "pdf"
+    docx = "docx"
+
+
 class TopicSummary(BaseModel):
     id: str
     name: str
@@ -37,6 +42,8 @@ class GenerateWorksheetRequest(BaseModel):
     tier: TierEnum
     count: Optional[int] = Field(default=None, ge=MIN_COUNT, le=MAX_COUNT)
     answers_only: bool = False
+    # Default "pdf" so existing request bodies (which omit it) are unchanged.
+    format: FormatEnum = FormatEnum.pdf
 
 
 class GenerateBellTasksRequest(BaseModel):

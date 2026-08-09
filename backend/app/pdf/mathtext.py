@@ -67,11 +67,15 @@ applied to diagram labels, which draws directly as vector shapes instead
 (diagrams don't have Paragraph markup's inline-image constraint).
 
 **A fractional exponent (e.g. "x^(1/4)") is now ALSO a true raised vinculum**
-- `get_fraction_image` at a reduced font size, placed inside `<super>` -
-reversing an earlier deliberate decision (kept flat raised text, judged "not
-worth the complexity") once a spike confirmed the nested image rises and
-aligns correctly, including at the smallest font size fractions appear
-anywhere in the app (the practice-test mark scheme's 9pt table). A generic
+- `get_fraction_image` at a reduced font size, raised to real exponent height
+via `valign="super"` ON THE IMAGE ITSELF (not a `<super>...</super>` wrapper
+around a baseline-aligned image, which does NOT lift the image - the wrapper
+only shifts text runs while the image's own valign pins it to the baseline,
+leaving the fraction sitting low next to the base like a coefficient rather
+than floating like a power). `valign="super"` puts the fraction into the same
+raised zone as an integer superscript and self-scales with font size (no
+manual rise math), confirmed via a rendered-PDF spike comparing it against
+`x^5`/`(..)^2` at both 11pt prose and 9pt mark-scheme sizes. A generic
 *compound* exponent (e.g. "9^(x+2)", "5^(3x)" - anything in parens after `^`
 that ISN'T a plain numeric fraction) is instead wrapped as flat
 `<super>(...)</super>` - its contents (already italicised by the earlier
@@ -343,7 +347,19 @@ def _reinsert_markers(text: str, placeholders: list[str]) -> str:
 def _replace_math(m: re.Match, font_size: float, color: Color, bold: bool) -> str:
     if m.group("epnum") is not None:
         img = get_fraction_image(m.group("epnum"), m.group("epden"), font_size * _SUP_FRACTION_SCALE, bold, color)
-        return f'<super><img src="{img.path}" width="{img.width_pt:.2f}" height="{img.height_pt:.2f}" valign="bottom"/></super>'
+        # valign="super" (NOT a <super> wrapper with a baseline-aligned image)
+        # is what actually raises the fraction to true exponent height so it
+        # reads as a power, like an integer superscript, rather than sitting
+        # low next to the base looking like a coefficient/subscript. A
+        # <super>...</super> wrapper around an <img valign="bottom"/> does NOT
+        # lift the image - the wrapper only shifts text runs, and the image's
+        # own valign pins it to the baseline regardless - so the fraction sat
+        # at baseline height (the bug the reference image flagged). Confirmed
+        # via a rendered-PDF spike (this case side by side with x^5 / (..)^2 at
+        # both 11pt prose and 9pt mark-scheme sizes) that valign="super"
+        # aligns the fraction into the same raised zone as an integer power and
+        # self-scales with font size, needing no manual rise math.
+        return f'<img src="{img.path}" width="{img.width_pt:.2f}" height="{img.height_pt:.2f}" valign="super"/>'
     if m.group("cexp") is not None:
         return f"<super>({m.group('cexp')})</super>"
     if m.group("exp") is not None:

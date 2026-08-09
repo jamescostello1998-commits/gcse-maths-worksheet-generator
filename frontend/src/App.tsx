@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { BellTasksView } from './components/BellTasksView'
+import { DownloadFormatToggle } from './components/DownloadFormatToggle'
 import { ErrorBanner } from './components/ErrorBanner'
 import { HomeScreen } from './components/HomeScreen'
 import { PracticeTestsView } from './components/PracticeTestsView'
@@ -50,6 +51,7 @@ function App() {
         <SectionView section={selectedSection} onBack={() => setSelectedSectionId(null)} />
       ) : (
         <>
+          <DownloadFormatToggle />
           <HomeScreen sections={sections} onSelectSection={setSelectedSectionId} />
           <section className="practice-tests-section">
             <h2 className="practice-tests-section__heading">Practice Tests</h2>

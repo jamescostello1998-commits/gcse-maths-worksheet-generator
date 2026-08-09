@@ -34,17 +34,18 @@ def test_exponents_become_superscript():
 
 
 def test_fractional_exponent_is_raised_as_a_true_vinculum_in_superscript():
-    # Reverses the earlier flat-text decision once a spike confirmed a
-    # reduced-size fraction image rises/aligns correctly inside <super>,
-    # including at the smallest font size fractions appear anywhere in the
-    # app - see the module docstring.
+    # A fractional power is a reduced-size fraction image raised to true
+    # exponent height via valign="super" ON THE IMAGE - NOT a <super> wrapper
+    # around a baseline-aligned image, which left the fraction sitting low
+    # next to the base looking like a coefficient rather than a power (the
+    # bug the reference image flagged) - see the module docstring.
     markup = _markup("x^(1/4)")
-    m = re.search(r"^" + re.escape(_italic("x")) + r"<super>(<img[^>]+>)</super>$", markup)
+    m = re.search(
+        r'^' + re.escape(_italic("x")) + r'<img src="([^"]+)"[^>]*valign="super"/>$',
+        markup,
+    )
     assert m is not None, markup
-    img_tag = m.group(1)
-    img_m = _IMG_RE.match(img_tag)
-    assert img_m is not None
-    assert os.path.isfile(img_m.group(1))
+    assert os.path.isfile(m.group(1))
 
 
 def test_compound_exponent_is_raised_as_flat_text():

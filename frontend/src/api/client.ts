@@ -1,5 +1,6 @@
 import {
   ApiError,
+  type DownloadFormat,
   NetworkError,
   type PracticeTestSummary,
   type Section,
@@ -112,6 +113,7 @@ export async function generateWorksheet(topicId: string, tier: Tier, options: Wo
         tier,
         ...(options.count !== undefined ? { count: options.count } : {}),
         ...(options.answersOnly ? { answers_only: true } : {}),
+        ...(options.format === 'docx' ? { format: 'docx' } : {}),
       }),
     })
   } catch (err) {
@@ -128,13 +130,17 @@ export async function generateWorksheet(topicId: string, tier: Tier, options: Wo
   return response.blob()
 }
 
-export async function generateModelledExample(topicId: string, tier: Tier): Promise<Blob> {
+export async function generateModelledExample(
+  topicId: string,
+  tier: Tier,
+  format: DownloadFormat = 'pdf',
+): Promise<Blob> {
   let response: Response
   try {
     response = await fetch(`${API_BASE_URL}/api/modelled-examples`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ topic_id: topicId, tier }),
+      body: JSON.stringify({ topic_id: topicId, tier, ...(format === 'docx' ? { format: 'docx' } : {}) }),
     })
   } catch (err) {
     console.error('Network error generating modelled example:', err)

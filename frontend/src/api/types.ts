@@ -1,5 +1,7 @@
 export type Tier = 'foundation' | 'higher'
 
+export type DownloadFormat = 'pdf' | 'docx'
+
 export interface Topic {
   id: string
   name: string
@@ -12,6 +14,7 @@ export interface Topic {
 export interface WorksheetOptions {
   count?: number
   answersOnly?: boolean
+  format?: DownloadFormat
 }
 
 export interface Group {

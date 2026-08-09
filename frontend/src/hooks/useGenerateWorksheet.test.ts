@@ -1,6 +1,11 @@
 import { act, renderHook } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { createElement, type ReactNode } from 'react'
 import { useGenerateWorksheet } from './useGenerateWorksheet'
+import { FormatProvider } from '../context/FormatContext'
+
+// The hook reads the format context, so renderHook needs the provider.
+const wrapper = ({ children }: { children: ReactNode }) => createElement(FormatProvider, null, children)
 
 describe('useGenerateWorksheet', () => {
   beforeEach(() => {
@@ -19,7 +24,7 @@ describe('useGenerateWorksheet', () => {
       }),
     )
 
-    const { result } = renderHook(() => useGenerateWorksheet())
+    const { result } = renderHook(() => useGenerateWorksheet(), { wrapper })
     await act(async () => {
       await result.current.generate('percentages', 'higher')
     })
@@ -38,7 +43,7 @@ describe('useGenerateWorksheet', () => {
       }),
     )
 
-    const { result } = renderHook(() => useGenerateWorksheet())
+    const { result } = renderHook(() => useGenerateWorksheet(), { wrapper })
     await act(async () => {
       await result.current.generate('bad_topic', 'foundation')
     })
@@ -49,7 +54,7 @@ describe('useGenerateWorksheet', () => {
   it('surfaces a network error', async () => {
     vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new Error('down')))
 
-    const { result } = renderHook(() => useGenerateWorksheet())
+    const { result } = renderHook(() => useGenerateWorksheet(), { wrapper })
     await act(async () => {
       await result.current.generate('percentages', 'higher')
     })
