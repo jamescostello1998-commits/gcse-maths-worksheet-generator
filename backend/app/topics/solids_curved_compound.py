@@ -271,9 +271,11 @@ def generate_volume_surface_area_pyramid(tier: Tier, rng: random.Random) -> Ques
             f"of {height} cm. Find its total surface area, correct to {rounding.phrase}."
         )
 
+    # Diagram shows only the given measurements (base + perpendicular height,
+    # always integers) - the slant height is a derived, usually-irrational
+    # decimal and is deliberately NOT drawn on the figure (user review
+    # feedback: no non-.5 decimals in the shown measurements).
     diagram_params = {"base_label": f"{base} cm", "height_label": f"{height} cm"}
-    if measure == "surface_area":
-        diagram_params["slant_label"] = f"{l_float_independent:.2f} cm"
 
     return Question(
         topic_id="volume_surface_area_pyramid",
@@ -365,9 +367,11 @@ def generate_modelled_example_volume_surface_area_pyramid(tier: Tier, rng: rando
             f"of {height} cm. Find its total surface area, correct to {rounding.phrase}."
         )
 
+    # Diagram shows only the given measurements (base + perpendicular height,
+    # always integers) - the slant height is a derived, usually-irrational
+    # decimal and is deliberately NOT drawn on the figure (user review
+    # feedback: no non-.5 decimals in the shown measurements).
     diagram_params = {"base_label": f"{base} cm", "height_label": f"{height} cm"}
-    if measure == "surface_area":
-        diagram_params["slant_label"] = f"{l_float_independent:.2f} cm"
 
     return ModelledExample(
         topic_id="volume_surface_area_pyramid",

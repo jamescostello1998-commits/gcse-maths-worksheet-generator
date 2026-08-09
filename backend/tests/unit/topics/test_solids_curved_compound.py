@@ -165,11 +165,14 @@ def test_pyramid_volume_is_exact_and_surface_area_is_rounded_decimal():
         if "volume" in q.prompt and "surface area" not in q.prompt:
             saw_volume = True
             assert "cm³" in q.final_answer
-            assert "slant_label" not in q.diagram.params
         else:
             saw_surface_area = True
             assert "cm²" in q.final_answer
-            assert "slant_label" in q.diagram.params
+        # The (usually-irrational, decimal) slant height is never drawn on the
+        # diagram - only the integer base and perpendicular height are shown
+        # (user review feedback: no non-.5 decimals in shown measurements).
+        assert "slant_label" not in q.diagram.params
+        assert set(q.diagram.params) == {"base_label", "height_label"}
     assert saw_volume and saw_surface_area
 
 

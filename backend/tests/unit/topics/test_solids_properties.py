@@ -7,6 +7,7 @@ TRIALS = 200
 
 GENERATORS = [
     (solids_properties.generate_properties_3d_shapes, Tier.FOUNDATION),
+    (solids_properties.generate_properties_3d_shapes_diagram, Tier.FOUNDATION),
     (solids_properties.generate_nets_3d_shapes, Tier.FOUNDATION),
 ]
 
@@ -68,30 +69,34 @@ def test_nets_answers_match_the_curated_bank():
             assert q.final_answer == str(template.composition[key])
 
 
-def test_properties_diagrams_match_expected_kinds_where_present():
+def test_no_diagram_version_never_shows_a_diagram():
+    # The plain topic is name-only recall - no diagram, for any shape.
+    rng = random.Random(45)
+    for _ in range(400):
+        q = solids_properties.generate_properties_3d_shapes(Tier.FOUNDATION, rng)
+        assert q.diagram is None
+
+
+def test_diagram_version_always_shows_the_expected_solid():
     expected_kinds = {
         "cube": "cuboid",
         "cuboid": "cuboid",
         "triangular_prism": "triangular_prism",
         "square_pyramid": "pyramid",
-        "tetrahedron": None,
         "cylinder": "cylinder",
         "cone": "cone",
         "sphere": "sphere",
-        "hexagonal_prism": None,
     }
     rng = random.Random(45)
     seen_ids = set()
     for _ in range(400):
-        q = solids_properties.generate_properties_3d_shapes(Tier.FOUNDATION, rng)
+        q = solids_properties.generate_properties_3d_shapes_diagram(Tier.FOUNDATION, rng)
         shape_id = q.dedup_key.split(":")[1]
         seen_ids.add(shape_id)
-        expected = expected_kinds[shape_id]
-        if expected is None:
-            assert q.diagram is None
-        else:
-            assert q.diagram is not None
-            assert q.diagram.kind == expected
+        assert q.diagram is not None
+        assert q.diagram.kind == expected_kinds[shape_id]
+    # Only the diagram-having solids appear (tetrahedron/hexagonal prism have
+    # no faithful diagram kind, so they're excluded from this version).
     assert seen_ids == set(expected_kinds)
 
 

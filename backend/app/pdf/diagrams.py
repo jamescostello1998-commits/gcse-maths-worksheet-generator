@@ -1012,15 +1012,20 @@ def draw_symmetry_shape(params: dict) -> Drawing:
 
 
 def draw_right_triangle(params: dict) -> Drawing:
+    """Right-angled triangle (Pythagoras): right angle at A, legs A-B (leg1)
+    and A-C (leg2), hypotenuse B-C. Orientation and size vary per question
+    (shares _TRIG_TRIANGLE_VARIANTS) so it doesn't render an identical shape
+    every time, and labels are placed generically so they stay clear of the
+    edges in any orientation."""
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    A, B, C = (40, 25), (165, 25), (40, 105)
+    A, B, C = _TRIG_TRIANGLE_VARIANTS[_shape_variant(params, len(_TRIG_TRIANGLE_VARIANTS))]
     d.add(Polygon([A[0], A[1], B[0], B[1], C[0], C[1]], strokeColor=INK, fillColor=None, strokeWidth=1.2))
 
-    s = 8
-    d.add(Rect(A[0], A[1], s, s, strokeColor=INK, fillColor=None, strokeWidth=1))
-    d.add(_label((A[0] + B[0]) / 2, A[1] - 14, params["leg1_label"]))
-    d.add(_label(A[0] - 10, (A[1] + C[1]) / 2, params["leg2_label"], anchor="end"))
-    d.add(_label((B[0] + C[0]) / 2 + 12, (B[1] + C[1]) / 2 + 6, params["hyp_label"], anchor="start"))
+    d.add(_right_angle_marker(A, B, C, s=9))
+    size = _TRIANGLE_LABEL_SIZE
+    _place_side_label(d, A, B, C, params["leg1_label"], size)
+    _place_side_label(d, A, C, B, params["leg2_label"], size)
+    _place_side_label(d, B, C, A, params["hyp_label"], size)
     return d
 
 
@@ -1047,116 +1052,159 @@ def _shape_variant(params: dict, n: int) -> int:
     return sum(ord(c) for c in seed_str) % n
 
 
-# 3 pre-verified-safe (A, B, C) vertex layouts for draw_trig_triangle - right
-# angle always at A, varying how far B/C reach so triangles genuinely look
-# different across questions instead of an identical fixed shape every time.
+def _right_angle_marker(vertex: tuple, p1: tuple, p2: tuple, s: float = 9) -> PolyLine:
+    """The small square 'right-angle' marker in the corner at `vertex`,
+    between the two edges vertex->p1 and vertex->p2, drawn generically from
+    the two edge directions (works for any orientation, not just axis-aligned
+    legs)."""
+    def unit(p):
+        dx, dy = p[0] - vertex[0], p[1] - vertex[1]
+        length = math.hypot(dx, dy) or 1.0
+        return (dx / length, dy / length)
+
+    u1, u2 = unit(p1), unit(p2)
+    c1 = (vertex[0] + u1[0] * s, vertex[1] + u1[1] * s)
+    c2 = (vertex[0] + u2[0] * s, vertex[1] + u2[1] * s)
+    corner = (vertex[0] + (u1[0] + u2[0]) * s, vertex[1] + (u1[1] + u2[1]) * s)
+    return PolyLine([c1[0], c1[1], corner[0], corner[1], c2[0], c2[1]], strokeColor=INK, strokeWidth=1)
+
+
+def _place_side_label(d: Drawing, P: tuple, Q: tuple, R: tuple, label, size: float, offset: float = 12) -> None:
+    """Place a side label at the midpoint of edge P-Q, pushed outward along
+    the edge's normal *away* from the opposite vertex R (so it never sits on
+    top of the triangle's interior), with the text anchor chosen so a wide
+    label grows away from the shape rather than back across the edge."""
+    mx, my = (P[0] + Q[0]) / 2, (P[1] + Q[1]) / 2
+    ex, ey = Q[0] - P[0], Q[1] - P[1]
+    el = math.hypot(ex, ey) or 1.0
+    nx, ny = -ey / el, ex / el
+    # Flip the normal if it points toward R (the interior) rather than away.
+    if (mx + nx - R[0]) ** 2 + (my + ny - R[1]) ** 2 < (mx - nx - R[0]) ** 2 + (my - ny - R[1]) ** 2:
+        nx, ny = -nx, -ny
+    lx, ly = mx + nx * offset, my + ny * offset
+    if nx > 0.4:
+        anchor = "start"
+    elif nx < -0.4:
+        anchor = "end"
+    else:
+        anchor = "middle"
+    d.add(_label(lx, ly - size * 0.34, label, size=size, anchor=anchor))
+
+
+def _place_angle_label(
+    d: Drawing, vertex: tuple, other1: tuple, other2: tuple, label, size: float, arc_radius: float = 10, gap: float = 2.5
+) -> None:
+    """Draw the angle arc at `vertex` and place `label` along the interior
+    bisector, positioned analytically so a label of this size clears BOTH
+    edges of the angle - the distance from the vertex is derived from the
+    label's own footprint and the (half-)angle, so a narrow wedge pushes the
+    label further out automatically (fixing the recurring 'the angle overlaps
+    the side' review complaint) while a wide-open angle keeps the number close
+    to its arc. See the derivation in the comments below."""
+    d.add(_vertex_angle_arc(vertex, other1, other2, radius=arc_radius))
+    a1 = math.atan2(other1[1] - vertex[1], other1[0] - vertex[0])
+    a2 = math.atan2(other2[1] - vertex[1], other2[0] - vertex[0])
+    u1 = (math.cos(a1), math.sin(a1))
+    u2 = (math.cos(a2), math.sin(a2))
+    bx, by = u1[0] + u2[0], u1[1] + u2[1]
+    bnorm = math.hypot(bx, by)
+    if bnorm < 1e-6:  # ~straight angle - use a perpendicular to one ray
+        bx, by, bnorm = -u1[1], u1[0], 1.0
+    bx, by = bx / bnorm, by / bnorm
+    full = abs((a2 - a1 + math.pi) % (2 * math.pi) - math.pi)
+    half = max(full / 2, 0.28)  # clamp so a very acute wedge doesn't push the label off-canvas
+    # The label is horizontal text of width w, height ~size. Resolve its
+    # half-extents along the bisector and perpendicular to it, then require the
+    # label's nearest corner to sit at least `gap` clear of each edge: the
+    # nearest edge is at angle `half` to the bisector, so the constraint
+    # (dist - along_half)*sin(half) - perp_half*cos(half) >= gap gives dist.
+    w = stringWidth(str(label), _LABEL_FONT, size)
+    along_half = 0.5 * w * abs(bx) + 0.5 * size * abs(by)
+    perp_half = 0.5 * w * abs(by) + 0.5 * size * abs(bx)
+    dist = max(
+        arc_radius + gap + along_half,
+        along_half + (gap + perp_half * math.cos(half)) / math.sin(half),
+    )
+    cx, cy = vertex[0] + bx * dist, vertex[1] + by * dist
+    d.add(_label(cx, cy - size * 0.34, label, size=size, anchor="middle"))
+
+
+# (A, B, C) layouts for draw_trig_triangle - A is always the right-angle
+# vertex and B the marked-angle vertex (so adjacent = A-B, opposite = A-C,
+# hyp = B-C regardless of orientation), but the right angle now appears in
+# different corners and at different sizes/aspect ratios so the triangle
+# genuinely looks different across a worksheet's questions rather than the
+# same fixed shape every time (user review feedback). Each keeps the two legs
+# perpendicular so the right-angle marker is truthful.
 _TRIG_TRIANGLE_VARIANTS = [
-    ((40, 25), (165, 25), (40, 105)),
-    ((40, 25), (140, 25), (40, 115)),
-    ((40, 25), (172, 25), (40, 85)),
+    ((42, 32), (160, 32), (42, 100)),    # right angle bottom-left, wide
+    ((48, 30), (128, 30), (48, 112)),    # right angle bottom-left, tall
+    ((160, 32), (42, 32), (160, 100)),   # right angle bottom-right (mirror), wide
+    ((150, 30), (66, 30), (150, 112)),   # right angle bottom-right, tall
+    ((48, 104), (48, 36), (162, 104)),   # right angle top-left, marked angle at top
+    ((158, 104), (158, 36), (46, 104)),  # right angle top-right, marked angle at top
 ]
+
+_TRIANGLE_LABEL_SIZE = 9.5
 
 
 def draw_trig_triangle(params: dict) -> Drawing:
-    """Right triangle for SOH CAH TOA questions: right angle at A (bottom-left),
-    marked angle at B (bottom-right). Opposite/adjacent are relative to that angle."""
+    """Right triangle for SOH CAH TOA questions: right angle at A, marked angle
+    at B. Opposite/adjacent are relative to that angle. Orientation and size
+    vary per question (see _TRIG_TRIANGLE_VARIANTS)."""
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     A, B, C = _TRIG_TRIANGLE_VARIANTS[_shape_variant(params, len(_TRIG_TRIANGLE_VARIANTS))]
     d.add(Polygon([A[0], A[1], B[0], B[1], C[0], C[1]], strokeColor=INK, fillColor=None, strokeWidth=1.2))
 
-    s = 8
-    d.add(Rect(A[0], A[1], s, s, strokeColor=INK, fillColor=None, strokeWidth=1))
+    d.add(_right_angle_marker(A, B, C, s=9))
+    size = _TRIANGLE_LABEL_SIZE
     if params.get("adjacent_label"):
-        d.add(_label((A[0] + B[0]) / 2, A[1] - 14, params["adjacent_label"]))
+        _place_side_label(d, A, B, C, params["adjacent_label"], size)
     if params.get("opposite_label"):
-        d.add(_label(A[0] - 10, (A[1] + C[1]) / 2, params["opposite_label"], anchor="end"))
+        _place_side_label(d, A, C, B, params["opposite_label"], size)
     if params.get("hyp_label"):
-        # Push the label outward from the hypotenuse's midpoint, away from
-        # the third vertex A (i.e. away from the triangle's interior) rather
-        # than always growing rightward from a fixed offset - a wide
-        # hypotenuse label previously swung back toward B's own corner,
-        # where the angle label also sits.
-        mid_x, mid_y = (B[0] + C[0]) / 2, (B[1] + C[1]) / 2
-        ox, oy = mid_x - A[0], mid_y - A[1]
-        norm = math.hypot(ox, oy) or 1.0
-        ox, oy = ox / norm, oy / norm
-        lx, ly = mid_x + ox * 12, mid_y + oy * 12
-        d.add(_label(lx, ly, params["hyp_label"], anchor="start" if ox >= 0 else "end"))
-    d.add(_vertex_angle_arc(B, A, C, radius=9))
-    # Push the angle label from B toward the triangle's centroid rather than
-    # a fixed (dx, dy) offset - a fixed offset doesn't track the wedge's own
-    # bisector direction, so for some adjacent/opposite ratios it swung
-    # close enough to the hypotenuse (B-C) to visibly overlap it. The
-    # direction to the centroid always sits inside the wedge at B, matching
-    # the same fix already used by draw_general_triangle's angle labels. A
-    # fixed 0.4 factor still wasn't enough clearance for a wide algebraic
-    # label (e.g. "(2x+15)°") on the flatter/wider triangle variant, whose
-    # hypotenuse sits closer to B - the same stringWidth-based scaling
-    # draw_general_triangle already uses fixes it here too (found by
-    # rendering across this diagram's own new shape variants, not assumed).
-    centroid = ((A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3)
-    angle_label = params["angle_label"]
-    angle_width = stringWidth(str(angle_label), _LABEL_FONT, 10)
-    factor = min(0.75, 0.4 + angle_width / 220)
-    bx, by = B[0] + (centroid[0] - B[0]) * factor, B[1] + (centroid[1] - B[1]) * factor
-    d.add(_label(bx, by, angle_label, size=10))
+        _place_side_label(d, B, C, A, params["hyp_label"], size)
+    _place_angle_label(d, B, A, C, params["angle_label"], size=size, arc_radius=11)
     return d
 
 
-# 3 pre-verified-safe apex positions for draw_general_triangle - base A/B
-# fixed, apex C varies, so this diagram's genuinely wide blast radius (sine
-# rule, cosine rule, triangle area, exact trig values, the Formulae Sheet)
-# doesn't render an identical fixed triangle every time.
-_GENERAL_TRIANGLE_APEX_VARIANTS = [(95, 108), (72, 112), (122, 100)]
+# (A, B, C) layouts for draw_general_triangle. This diagram has a genuinely
+# wide blast radius (sine rule, cosine rule, triangle area, exact trig values,
+# the Formulae Sheet), so real orientation/size variety (apex up, apex down,
+# skewed base) matters more here than anywhere - was previously a fixed base
+# with just 3 apex nudges.
+_GENERAL_TRIANGLE_VARIANTS = [
+    ((30, 28), (172, 28), (96, 110)),    # broad, apex up-centre
+    ((30, 30), (168, 30), (66, 112)),    # apex up-left
+    ((32, 30), (170, 30), (140, 104)),   # apex up-right
+    ((34, 40), (172, 26), (74, 112)),    # skewed base, apex up-left
+    ((30, 104), (172, 104), (104, 26)),  # apex down (points down)
+    ((36, 100), (176, 112), (86, 28)),   # apex down, skewed
+]
 
 
 def draw_general_triangle(params: dict) -> Drawing:
     """Scalene triangle (not to scale) for sine rule / cosine rule / area
     questions, with any combination of the three sides and three angles
-    labelled by the caller."""
+    labelled by the caller. Side and angle labels use the SAME font size (user
+    review feedback), and angle values sit just outside their own arc."""
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    A, B = (30, 28), (172, 28)
-    C = _GENERAL_TRIANGLE_APEX_VARIANTS[_shape_variant(params, len(_GENERAL_TRIANGLE_APEX_VARIANTS))]
+    A, B, C = _GENERAL_TRIANGLE_VARIANTS[_shape_variant(params, len(_GENERAL_TRIANGLE_VARIANTS))]
     d.add(Polygon([A[0], A[1], B[0], B[1], C[0], C[1]], strokeColor=INK, fillColor=None, strokeWidth=1.2))
 
-    def midpoint(p, q):
-        return ((p[0] + q[0]) / 2, (p[1] + q[1]) / 2)
-
-    mid_bc, mid_ac, mid_ab = midpoint(B, C), midpoint(A, C), midpoint(A, B)
+    size = _TRIANGLE_LABEL_SIZE
     if params.get("side_a_label"):
-        d.add(_label(mid_bc[0] + 14, mid_bc[1] + 2, params["side_a_label"], anchor="start", size=8))
+        _place_side_label(d, B, C, A, params["side_a_label"], size)
     if params.get("side_b_label"):
-        d.add(_label(mid_ac[0] - 12, mid_ac[1] + 2, params["side_b_label"], anchor="end", size=8))
+        _place_side_label(d, A, C, B, params["side_b_label"], size)
     if params.get("side_c_label"):
-        # Kept closer to the base than the original -12 offset - with only
-        # 28 units of canvas below the base (A/B sit at y=28, canvas bottom
-        # at y=0) a -12 offset left just 6 units of clearance above the
-        # "Diagram NOT accurately drawn" caption at y=10, which visibly
-        # overlapped it once a real caller labelled all three sides at once
-        # (found by rendering the formulae-sheet triangle, not a unit test).
-        d.add(_label(mid_ab[0], mid_ab[1] - 8, params["side_c_label"], size=8))
-
-    centroid = ((A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3)
-
-    def inset(v, factor):
-        return (v[0] + (centroid[0] - v[0]) * factor, v[1] + (centroid[1] - v[1]) * factor)
+        _place_side_label(d, A, B, C, params["side_c_label"], size)
 
     for vertex, other1, other2, key in (
         (A, B, C, "angle_A_label"), (B, A, C, "angle_B_label"), (C, A, B, "angle_C_label"),
     ):
         if params.get(key):
-            d.add(_vertex_angle_arc(vertex, other1, other2, radius=8))
-            # Scale the inward pull by the label's own text width (same fix
-            # already used by draw_triangle_angles/draw_polygon_angles) - a
-            # fixed 0.55 factor only worked while every angle label was
-            # short; a wide one (e.g. from sine/cosine rule with an
-            # algebraic or decimal value) needs more clearance from the two
-            # sloped edges either side of the vertex.
-            lbl = params[key]
-            width = stringWidth(str(lbl), _LABEL_FONT, 10)
-            factor = min(0.75, 0.45 + width / 220)
-            px, py = inset(vertex, factor)
-            d.add(_label(px, py, lbl, size=10))
+            _place_angle_label(d, vertex, other1, other2, params[key], size=size, arc_radius=11)
 
     _not_to_scale(d)
     return d
@@ -1177,7 +1225,7 @@ def _bearing_arc(cx: float, cy: float, bearing_deg: float, radius: float = 11, c
     return arc
 
 
-def _north_arrow(x: float, y: float, length: float = 20, color=INK) -> Group:
+def _north_arrow(x: float, y: float, length: float = 30, color=INK) -> Group:
     """A short vertical line with an arrowhead pointing to true north (up the
     page) plus an 'N' label - the standard bearings-diagram convention for
     marking the reference direction at a point."""
@@ -1436,6 +1484,25 @@ def draw_two_triangle_congruence(params: dict) -> Drawing:
             for n in range(count):
                 d.add(_vertex_angle_arc(tri[vertex_idx], others[0], others[1], radius=9 + n * 4))
 
+    # Numeric side/angle labels (used by the Foundation congruence topic, which
+    # shows real measurements rather than equal-marks). side_labels_*: list of
+    # (i, j, text) labelling the side between local points i and j; angle_labels_*:
+    # list of (vertex_index, text) with an arc + value; right_angle_*: a vertex
+    # index to mark with a right-angle square.
+    for tri, key in ((T1, "right_angle_1"), (T2, "right_angle_2")):
+        v = params.get(key)
+        if v is not None:
+            others = [tri[k] for k in range(3) if k != v]
+            d.add(_right_angle_marker(tri[v], others[0], others[1], s=7))
+    for tri, key in ((T1, "side_labels_1"), (T2, "side_labels_2")):
+        for i, j, text in params.get(key, []):
+            k = next(idx for idx in range(3) if idx not in (i, j))
+            _place_side_label(d, tri[i], tri[j], tri[k], text, 7.5, offset=10)
+    for tri, key in ((T1, "angle_labels_1"), (T2, "angle_labels_2")):
+        for v, text in params.get(key, []):
+            others = [tri[k] for k in range(3) if k != v]
+            _place_angle_label(d, tri[v], others[0], others[1], text, size=7.5, arc_radius=9)
+
     if params.get("note"):
         d.add(_label(DIAGRAM_WIDTH / 2, 8, params["note"], size=7, color=MUTED))
     else:
@@ -1491,8 +1558,8 @@ def draw_circle_angle_centre(params: dict) -> Drawing:
     d.add(Circle(cx, cy, 1.5, strokeColor=INK, fillColor=INK))
     d.add(_vertex_angle_arc((cx, cy), A, B, radius=14))
     d.add(_vertex_angle_arc(C, A, B, radius=10))
-    d.add(_label(cx, cy - 16, params["centre_label"], size=8))
-    d.add(_label(C[0], C[1] - 16, params["circumference_label"], size=8))
+    d.add(_label(cx, cy - 16, params["centre_label"], size=10))
+    d.add(_label(C[0], C[1] - 16, params["circumference_label"], size=10))
     _not_to_scale(d)
     return d
 
@@ -1509,9 +1576,9 @@ def draw_circle_semicircle(params: dict) -> Drawing:
     d.add(_vertex_angle_arc(C, A, B, radius=10))
     d.add(_vertex_angle_arc(A, B, C, radius=11))
     d.add(_vertex_angle_arc(B, A, C, radius=11))
-    d.add(_label(C[0], C[1] + 10, params["apex_label"], size=8))
-    d.add(_label(A[0] + 4, A[1] + 8, params["angle_a_label"], size=7, anchor="start"))
-    d.add(_label(B[0] - 4, B[1] + 8, params["angle_b_label"], size=7, anchor="end"))
+    d.add(_label(C[0], C[1] + 10, params["apex_label"], size=10))
+    d.add(_label(A[0] + 4, A[1] + 8, params["angle_a_label"], size=10, anchor="start"))
+    d.add(_label(B[0] - 4, B[1] + 8, params["angle_b_label"], size=10, anchor="end"))
     _not_to_scale(d)
     return d
 
@@ -1526,8 +1593,8 @@ def draw_circle_cyclic_quad(params: dict) -> Drawing:
         d.add(Line(p[0], p[1], q[0], q[1], strokeColor=INK, strokeWidth=1))
     d.add(_vertex_angle_arc(A, Dp, B, radius=10))
     d.add(_vertex_angle_arc(C, B, Dp, radius=10))
-    d.add(_label(A[0] - 8, A[1] + 4, params["angle_A_label"], size=7, anchor="end"))
-    d.add(_label(C[0] + 8, C[1] - 6, params["angle_C_label"], size=7, anchor="start"))
+    d.add(_label(A[0] - 8, A[1] + 4, params["angle_A_label"], size=10, anchor="end"))
+    d.add(_label(C[0] + 8, C[1] - 6, params["angle_C_label"], size=10, anchor="start"))
     _not_to_scale(d)
     return d
 
@@ -1550,8 +1617,8 @@ def draw_circle_two_tangents(params: dict) -> Drawing:
     d.add(Line(T[0], T[1], B[0], B[1], strokeColor=INK, strokeWidth=1.2))
     d.add(_vertex_angle_arc(T, A, B, radius=14))
     d.add(_vertex_angle_arc((cx, cy), A, B, radius=14))
-    d.add(_label(T[0], T[1] + 12, params["external_label"], size=8))
-    d.add(_label(cx, cy - 14, params["centre_label"], size=8))
+    d.add(_label(T[0], T[1] + 12, params["external_label"], size=10))
+    d.add(_label(cx, cy - 14, params["centre_label"], size=10))
     _not_to_scale(d)
     return d
 
@@ -1568,8 +1635,8 @@ def draw_circle_same_segment(params: dict) -> Drawing:
         d.add(Line(P[0], P[1], B[0], B[1], strokeColor=INK, strokeWidth=1))
     d.add(_vertex_angle_arc(C, A, B, radius=10))
     d.add(_vertex_angle_arc(Dp, A, B, radius=10))
-    d.add(_label(C[0], C[1] + 10, params["angle_c_label"], size=7))
-    d.add(_label(Dp[0], Dp[1] + 10, params["angle_d_label"], size=7))
+    d.add(_label(C[0], C[1] + 10, params["angle_c_label"], size=10))
+    d.add(_label(Dp[0], Dp[1] + 10, params["angle_d_label"], size=10))
     _not_to_scale(d)
     return d
 
@@ -1589,8 +1656,8 @@ def draw_circle_alternate_segment(params: dict) -> Drawing:
     d.add(Line(R[0], R[1], P[0], P[1], strokeColor=INK, strokeWidth=1))
     d.add(_vertex_angle_arc(P, tangent_left, Q, radius=14))
     d.add(_vertex_angle_arc(R, Q, P, radius=10))
-    d.add(_label(P[0] - 14, P[1] - 12, params["tangent_angle_label"], size=7, anchor="end"))
-    d.add(_label(R[0], R[1] - 12, params["segment_angle_label"], size=7))
+    d.add(_label(P[0] - 14, P[1] - 12, params["tangent_angle_label"], size=10, anchor="end"))
+    d.add(_label(R[0], R[1] - 12, params["segment_angle_label"], size=10))
     _not_to_scale(d)
     return d
 
@@ -1982,7 +2049,7 @@ def draw_grid_transformation(params: dict) -> Drawing:
     y_min, y_max = params["y_min"], params["y_max"]
     to_px = _draw_scaled_axes(d, x_min, x_max, y_min, y_max)
 
-    def draw_shape(vertices, labels, color) -> None:
+    def draw_shape(vertices, labels, color, shape_label=None) -> None:
         px_vertices = [to_px(x, y) for x, y in vertices]
         pts = [coord for vertex in px_vertices for coord in vertex]
         d.add(Polygon(pts, strokeColor=color, fillColor=None, strokeWidth=1.3))
@@ -1993,6 +2060,11 @@ def draw_grid_transformation(params: dict) -> Drawing:
             dx, dy = px - cx, py - cy
             dist = math.hypot(dx, dy) or 1.0
             d.add(_label(px + dx / dist * 9, py + dy / dist * 9, label, color=color, size=7.5))
+        # A whole-shape label (e.g. "A"/"B") for "describe the transformation"
+        # questions, where the shapes are referred to as wholes, not per-vertex.
+        # Placed at the centroid, in the shape's own colour.
+        if shape_label:
+            d.add(_label(cx, cy - 3.5, shape_label, color=color, size=11))
 
     mirror = params.get("mirror_line")
     if mirror:
@@ -2040,9 +2112,9 @@ def draw_grid_transformation(params: dict) -> Drawing:
         if params.get("vector_label"):
             d.add(_label((ax + bx) / 2 + 8, (ay + by) / 2, params["vector_label"], anchor="start", color=ACCENT, size=7.5))
 
-    draw_shape(params["original_vertices"], params["original_labels"], INK)
+    draw_shape(params["original_vertices"], params["original_labels"], INK, params.get("original_shape_label"))
     if params.get("image_vertices"):
-        draw_shape(params["image_vertices"], params["image_labels"], ACCENT)
+        draw_shape(params["image_vertices"], params["image_labels"], ACCENT, params.get("image_shape_label"))
 
     return d
 
@@ -3493,12 +3565,13 @@ def draw_cuboid(params: dict) -> Drawing:
     d.add(_label(x0 + fw / 2, y0 - 14, params["width_label"]))
     d.add(_label(x0 - 10, y0 + fh / 2, params["height_label"], anchor="end"))
     d.add(_label((FBR[0] + BBR[0]) / 2 + 6, (FBR[1] + BBR[1]) / 2 - 4, params["length_label"], anchor="start", size=8))
-    if params.get("diagonal_label"):
+    # The space diagonal (FBL<->BTR) is drawn dashed whenever either a label
+    # is wanted OR show_diagonal is set - the latter lets a caller (e.g.
+    # pythagoras_3d/trig_3d) show the diagonal with no "?"/"theta" text on it,
+    # since the dashed line alone already indicates it (user review feedback).
+    if params.get("diagonal_label") or params.get("show_diagonal"):
         d.add(Line(*FBL, *BTR, strokeColor=INK, strokeWidth=0.9, strokeDashArray=[3, 2]))
-        # Placed 60% of the way along the diagonal (toward G/BTR) rather than
-        # at the exact midpoint - the midpoint sits right in the cluster of
-        # hidden dashed edges near the back-bottom-left vertex (D), which
-        # collided with D's own vertex label once vertex_labels was added.
+    if params.get("diagonal_label"):
         mx = FBL[0] + (BTR[0] - FBL[0]) * 0.6
         my = FBL[1] + (BTR[1] - FBL[1]) * 0.6
         d.add(_label(mx + 6, my + 4, params["diagonal_label"], anchor="start", size=8))
@@ -3508,32 +3581,31 @@ def draw_cuboid(params: dict) -> Drawing:
         # Standard ABCD/EFGH cuboid-vertex naming: base face A-B-C-D going
         # front-left, front-right, back-right, back-left; top face E-F-G-H
         # directly above. This makes AG (FBL<->BTR) the true space diagonal
-        # already drawn above when diagonal_label is set.
+        # already drawn above when diagonal_label/show_diagonal is set.
         points_order = [FBL, FBR, BBR, BBL, FTL, FTR, BTR, BTL]
         cx_all = sum(p[0] for p in points_order) / len(points_order)
         cy_all = sum(p[1] for p in points_order) / len(points_order)
         for pt, lbl in zip(points_order, vertex_labels):
             if pt == BBL:
                 # D (the one hidden vertex) projects visually INSIDE the
-                # front face's own silhouette in oblique projection, unlike
-                # every other vertex, which sits on the outer boundary of
-                # the drawn shape - pushing it outward from the overall
-                # centroid by the same small fixed distance used for every
-                # other vertex left it still inside the front face's
-                # rectangle, overlapping the dashed lines converging there
-                # (found by rendering, not assumed). The one direction genuinely
-                # clear of D's own three dashed edges (down-left to FBL,
-                # right to BBR, up to BTL) is straight down, below the
-                # front face's own bottom edge - far enough below (not just
-                # past y0) to clear the width_label's own row too, which a
-                # first attempt collided with (found by rendering, not
-                # assumed - "D14 cm" running together).
-                lx, ly = BBL[0], y0 - 26
+                # figure, where its three dashed edges (down-left to A,
+                # right to C, up to H) converge - there's no clear adjacent
+                # gap to push a label into, and the old fix (dropping it far
+                # below the whole shape) left the label disconnected from its
+                # vertex, reading as if it belonged to the bottom edge (user
+                # review feedback: "labels aren't even close to correct").
+                # Instead label it just to the LEFT of the vertex - the one
+                # direction genuinely clear of all three dashed edges - with a
+                # short thin leader line back to the vertex so the
+                # correspondence is unambiguous.
+                lx, ly = BBL[0] - 15, BBL[1] + 5
+                d.add(Line(lx + 4, ly - 1, BBL[0] - 1, BBL[1], strokeColor=MUTED, strokeWidth=0.5))
+                d.add(_label(lx, ly, lbl, size=7.5, anchor="end"))
             else:
                 dx_l, dy_l = pt[0] - cx_all, pt[1] - cy_all
                 dist = math.hypot(dx_l, dy_l) or 1.0
                 lx, ly = pt[0] + dx_l / dist * 13, pt[1] + dy_l / dist * 13
-            d.add(_label(lx, ly, lbl, size=7.5))
+                d.add(_label(lx, ly, lbl, size=7.5))
 
     _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
     return d
@@ -3737,8 +3809,12 @@ def draw_cylinder(params: dict) -> Drawing:
     cx, top_y, bottom_y, rx, ry = 100, 108, 32, 40, 13
     for shape in _cylinder_edges(cx, top_y, bottom_y, rx, ry):
         d.add(shape)
-    d.add(Line(cx, top_y, cx + rx, top_y, strokeColor=INK, strokeWidth=0.9))
-    d.add(_label(cx + rx / 2, top_y + 8, params["radius_label"], size=8))
+    # Dashed radius across the top face, labelled just BELOW the line inside
+    # the open top (the old placement, above the line, sat right on the
+    # ellipse's back curve - user review feedback: measurement overlap).
+    d.add(Line(cx, top_y, cx + rx, top_y, strokeColor=INK, strokeWidth=0.8, strokeDashArray=[3, 2]))
+    d.add(Circle(cx, top_y, 1.4, strokeColor=INK, fillColor=INK))
+    d.add(_label(cx + rx / 2, top_y - 8, params["radius_label"], size=8))
     d.add(_label(cx + rx + 10, (top_y + bottom_y) / 2, params["height_label"], anchor="start"))
     _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
     return d
@@ -3754,14 +3830,21 @@ def draw_cone(params: dict) -> Drawing:
     d.add(Ellipse(cx, base_y, rx, ry, strokeColor=INK, fillColor=None, strokeWidth=1.2))
     d.add(Line(cx - rx, base_y, cx, apex_y, strokeColor=INK, strokeWidth=1.2))
     d.add(Line(cx + rx, base_y, cx, apex_y, strokeColor=INK, strokeWidth=1.2))
+    # Dashed radius from the base centre to the rim (always shown so the
+    # radius is unambiguous), plus the height dash when the question needs
+    # the Pythagoras helper triangle.
+    d.add(Line(cx, base_y, cx + rx, base_y, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
+    d.add(Circle(cx, base_y, 1.4, strokeColor=INK, fillColor=INK))
     if params.get("show_height_triangle"):
         d.add(Line(cx, apex_y, cx, base_y, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
-        d.add(Line(cx, base_y, cx + rx, base_y, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
         d.add(_label(cx + 6, (apex_y + base_y) / 2, params["height_label"], anchor="start", size=8))
     if params.get("slant_label"):
         slant_x, slant_y = cx + rx * 0.62, apex_y + (base_y - apex_y) * 0.62
         d.add(_label(slant_x + 6, slant_y, params["slant_label"], anchor="start", size=8))
-    d.add(_label(cx - rx / 2, base_y - 10, params["radius_label"], size=8))
+    # Radius label sits below the base ellipse, under the dashed radius, clear
+    # of the ellipse's front curve (the old left-side placement sat on the
+    # curve - user review feedback: measurement overlap).
+    d.add(_label(cx + rx / 2, base_y - ry - 9, params["radius_label"], size=8))
     _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
     return d
 
@@ -3836,8 +3919,18 @@ def draw_frustum(params: dict) -> Drawing:
     d.add(Line(cx - R, bottom_y, cx - r_top, top_y, strokeColor=INK, strokeWidth=1.2))
     d.add(Line(cx + R, bottom_y, cx + r_top, top_y, strokeColor=INK, strokeWidth=1.2))
 
-    d.add(_label(cx - R / 2, bottom_y - 10, params["radius_bottom_label"], size=8))
-    d.add(_label(cx + r_top / 2, top_y + 8, params["radius_top_label"], size=8))
+    # Dashed central axis + dashed radii to each rim (user review feedback:
+    # "radius dash needs to exist"). Radius labels sit clear of the ellipse
+    # curves - the bottom one below the base, the top one above the top face -
+    # instead of on top of the curves as before.
+    d.add(Line(cx, bottom_y, cx, top_y, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
+    d.add(Line(cx, bottom_y, cx + R, bottom_y, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
+    d.add(Line(cx, top_y, cx + r_top, top_y, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
+    d.add(Circle(cx, bottom_y, 1.4, strokeColor=INK, fillColor=INK))
+    d.add(Circle(cx, top_y, 1.4, strokeColor=INK, fillColor=INK))
+
+    d.add(_label(cx + R / 2, bottom_y - r_ry - 8, params["radius_bottom_label"], size=8))
+    d.add(_label(cx + r_top / 2, top_y + r_top_ry + 5, params["radius_top_label"], size=8))
     d.add(_label(cx + R + 6, (bottom_y + top_y) / 2, params["height_label"], anchor="start"))
     _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
     return d
@@ -3945,8 +4038,9 @@ def draw_compound_3d(params: dict) -> Drawing:
         arc = ArcPath(strokeColor=INK, fillColor=None, strokeWidth=1.2)
         arc.addArc(cx, mid_y, rx, 0, 180, moveTo=True)
         d.add(arc)
-        d.add(Line(cx, mid_y, cx + rx, mid_y, strokeColor=INK, strokeWidth=0.9))
-        d.add(_label(cx + rx / 2, mid_y + 16, params["radius_label"], size=8))
+        d.add(Line(cx, mid_y, cx + rx, mid_y, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
+        d.add(Circle(cx, mid_y, 1.4, strokeColor=INK, fillColor=INK))
+        d.add(_label(cx + rx / 2, mid_y + 15, params["radius_label"], size=8))
         d.add(_label(cx + rx + 10, (bottom_y + mid_y) / 2, params["height_label"], anchor="start"))
 
     elif variant == "cone_hemisphere":
@@ -3957,8 +4051,13 @@ def draw_compound_3d(params: dict) -> Drawing:
         arc = ArcPath(strokeColor=INK, fillColor=None, strokeWidth=1.2)
         arc.addArc(cx, base_y, rx, 180, 360, moveTo=True)
         d.add(arc)
-        d.add(_label(cx - rx / 2, base_y + 14, params["radius_label"], size=8))
-        d.add(_label(cx + rx / 2 + 8, (apex_y + base_y) / 2, params["cone_height_label"], anchor="start", size=8))
+        # Dashed radius across the join (user review: "radius dash needs to
+        # exist"), labelled just past its right-hand end so it clears the
+        # join ellipse and the cone's slant edges.
+        d.add(Line(cx, base_y, cx + rx, base_y, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
+        d.add(Circle(cx, base_y, 1.4, strokeColor=INK, fillColor=INK))
+        d.add(_label(cx + rx + 6, base_y - 3, params["radius_label"], anchor="start", size=8))
+        d.add(_label(cx - rx / 2 - 6, (apex_y + base_y) / 2, params["cone_height_label"], anchor="end", size=8))
 
     elif variant == "cuboid_pyramid":
         x0, y0, fw, fh = 55, 30, 80, 40

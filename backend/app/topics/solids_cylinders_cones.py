@@ -65,8 +65,8 @@ def generate_volume_surface_area_cylinder_foundation(tier: Tier, rng: random.Ran
         topic_id="volume_surface_area_cylinder_foundation",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"A cylinder has radius {radius} cm and height {height} cm. Find its "
-            f"{_MEASURE_LABEL[measure]}, correct to {rounding.phrase}."
+            f"Find the {_MEASURE_LABEL[measure]} of the cylinder, correct to "
+            f"{rounding.phrase}."
         ),
         solution_steps=tuple(steps),
         final_answer=f"{decimal_answer} {unit}",
@@ -132,8 +132,8 @@ def generate_modelled_example_volume_surface_area_cylinder_foundation(
         topic_id="volume_surface_area_cylinder_foundation",
         tier=Tier.FOUNDATION,
         prompt=(
-            f"A cylinder has radius {radius} cm and height {height} cm. Find its "
-            f"{_MEASURE_LABEL[measure]}, correct to {rounding.phrase}."
+            f"Find the {_MEASURE_LABEL[measure]} of the cylinder, correct to "
+            f"{rounding.phrase}."
         ),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
@@ -192,8 +192,7 @@ def generate_volume_surface_area_cylinder(tier: Tier, rng: random.Random) -> Que
         topic_id="volume_surface_area_cylinder",
         tier=Tier.HIGHER,
         prompt=(
-            f"A cylinder has radius {radius} cm and height {height} cm. Find the exact "
-            f"{_MEASURE_LABEL[measure]}, in terms of π."
+            f"Find the exact {_MEASURE_LABEL[measure]} of the cylinder, in terms of π."
         ),
         solution_steps=tuple(steps),
         final_answer=answer,
@@ -259,8 +258,7 @@ def generate_modelled_example_volume_surface_area_cylinder(tier: Tier, rng: rand
         topic_id="volume_surface_area_cylinder",
         tier=Tier.HIGHER,
         prompt=(
-            f"A cylinder has radius {radius} cm and height {height} cm. Find the exact "
-            f"{_MEASURE_LABEL[measure]}, in terms of π."
+            f"Find the exact {_MEASURE_LABEL[measure]} of the cylinder, in terms of π."
         ),
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),

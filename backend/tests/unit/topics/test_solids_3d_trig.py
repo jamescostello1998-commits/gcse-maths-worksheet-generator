@@ -28,7 +28,10 @@ def test_all_generators_produce_valid_verified_questions():
             assert q.final_answer
             assert q.diagram is not None
             assert q.diagram.kind == "cuboid"
-            assert "diagonal_label" in q.diagram.params
+            # The space diagonal is shown as a dashed line with no "?"/"theta"
+            # label (the dash indicates it); vertices are labelled a-h.
+            assert q.diagram.params.get("show_diagonal") is True
+            assert q.diagram.params["vertex_labels"] == ["a", "b", "c", "d", "e", "f", "g", "h"]
 
 
 def test_3d_pythagoras_answer_format():

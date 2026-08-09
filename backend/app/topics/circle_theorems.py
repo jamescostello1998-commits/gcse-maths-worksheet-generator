@@ -29,7 +29,7 @@ def _angle_at_centre(rng: random.Random) -> Question:
     return Question(
         topic_id="circle_theorems",
         tier=Tier.HIGHER,
-        prompt=f"A and B are points on a circle with centre O, and C is a point on the major arc. Find {ask}.",
+        prompt="Find the size of angle x.",
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=f"circ_centre:{circ_angle}:{centre_label}",
@@ -55,10 +55,7 @@ def _angle_in_semicircle(rng: random.Random) -> Question:
     return Question(
         topic_id="circle_theorems",
         tier=Tier.HIGHER,
-        prompt=(
-            "A, B, and C are points on a circle, where AB is a diameter. "
-            f"Angle BAC = {given_angle}°. Find angle ABC, x."
-        ),
+        prompt="Find the size of angle x.",
         solution_steps=tuple(steps),
         final_answer=f"{unknown_angle}°",
         dedup_key=f"circ_semi:{given_angle}",
@@ -82,7 +79,7 @@ def _cyclic_quadrilateral(rng: random.Random) -> Question:
     return Question(
         topic_id="circle_theorems",
         tier=Tier.HIGHER,
-        prompt=f"ABCD is a cyclic quadrilateral. Angle A = {given_angle}°. Find angle C, x, the angle opposite A.",
+        prompt="Find the size of angle x.",
         solution_steps=tuple(steps),
         final_answer=f"{unknown_angle}°",
         dedup_key=f"circ_cyclic:{given_angle}",
@@ -110,10 +107,7 @@ def _two_tangents(rng: random.Random) -> Question:
     return Question(
         topic_id="circle_theorems",
         tier=Tier.HIGHER,
-        prompt=(
-            "TA and TB are tangents to a circle with centre O, touching it at A and B. "
-            f"Angle ATB = {given_angle}°. Find angle AOB, x."
-        ),
+        prompt="Find the size of angle x.",
         solution_steps=tuple(steps),
         final_answer=f"{unknown_angle}°",
         dedup_key=f"circ_tangents:{given_angle}",
@@ -144,10 +138,7 @@ def _angle_same_segment(rng: random.Random) -> Question:
     return Question(
         topic_id="circle_theorems",
         tier=Tier.HIGHER,
-        prompt=(
-            "A, B, C, and D are points on a circle, where C and D are on the same arc, both subtending "
-            f"the chord AB. Find {ask}."
-        ),
+        prompt="Find the size of angle x.",
         solution_steps=tuple(steps),
         final_answer=f"{unknown_angle}°",
         dedup_key=f"circ_same_seg:{given_angle}:{c_label}",
@@ -179,10 +170,7 @@ def _alternate_segment(rng: random.Random) -> Question:
     return Question(
         topic_id="circle_theorems",
         tier=Tier.HIGHER,
-        prompt=(
-            "PQ is a chord of a circle, with a tangent at P. R is a point on "
-            f"the circle in the alternate segment. Find {ask}."
-        ),
+        prompt="Find the size of angle x.",
         solution_steps=tuple(steps),
         final_answer=f"{unknown_angle}°",
         dedup_key=f"circ_alt_seg:{given_angle}:{tangent_label}",
@@ -243,7 +231,7 @@ def _modelled_angle_at_centre(rng: random.Random) -> ModelledExample:
     return ModelledExample(
         topic_id="circle_theorems",
         tier=Tier.HIGHER,
-        prompt=f"A and B are points on a circle with centre O, and C is a point on the major arc. Find {ask}.",
+        prompt="Find the size of angle x.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
@@ -280,10 +268,7 @@ def _modelled_angle_in_semicircle(rng: random.Random) -> ModelledExample:
     return ModelledExample(
         topic_id="circle_theorems",
         tier=Tier.HIGHER,
-        prompt=(
-            "A, B, and C are points on a circle, where AB is a diameter. "
-            f"Angle BAC = {given_angle}°. Find angle ABC, x."
-        ),
+        prompt="Find the size of angle x.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{unknown_angle}°",
@@ -315,7 +300,7 @@ def _modelled_cyclic_quadrilateral(rng: random.Random) -> ModelledExample:
     return ModelledExample(
         topic_id="circle_theorems",
         tier=Tier.HIGHER,
-        prompt=f"ABCD is a cyclic quadrilateral. Angle A = {given_angle}°. Find angle C, x, the angle opposite A.",
+        prompt="Find the size of angle x.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{unknown_angle}°",
@@ -353,10 +338,7 @@ def _modelled_two_tangents(rng: random.Random) -> ModelledExample:
     return ModelledExample(
         topic_id="circle_theorems",
         tier=Tier.HIGHER,
-        prompt=(
-            "TA and TB are tangents to a circle with centre O, touching it at A and B. "
-            f"Angle ATB = {given_angle}°. Find angle AOB, x."
-        ),
+        prompt="Find the size of angle x.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{unknown_angle}°",
@@ -397,10 +379,7 @@ def _modelled_angle_same_segment(rng: random.Random) -> ModelledExample:
     return ModelledExample(
         topic_id="circle_theorems",
         tier=Tier.HIGHER,
-        prompt=(
-            "A, B, C, and D are points on a circle, where C and D are on the same arc, both subtending "
-            f"the chord AB. Find {ask}."
-        ),
+        prompt="Find the size of angle x.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{unknown_angle}°",
@@ -442,10 +421,7 @@ def _modelled_alternate_segment(rng: random.Random) -> ModelledExample:
     return ModelledExample(
         topic_id="circle_theorems",
         tier=Tier.HIGHER,
-        prompt=(
-            "PQ is a chord of a circle, with a tangent at P. R is a point on "
-            f"the circle in the alternate segment. Find {ask}."
-        ),
+        prompt="Find the size of angle x.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{unknown_angle}°",

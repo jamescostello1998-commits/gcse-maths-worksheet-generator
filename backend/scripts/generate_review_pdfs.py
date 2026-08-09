@@ -23,7 +23,7 @@ from reportlab.platypus import HRFlowable, PageBreak, Paragraph, SimpleDocTempla
 
 from app.core.registry import sections_tree
 from app.core.models import Tier
-from app.pdf.renderer import _question_block, _solution_block
+from app.pdf.renderer import _preamble_box, _question_block, _solution_block
 from app.pdf.styles import MARGIN, RULE, build_styles
 from app.worksheet.builder import build_worksheet
 
@@ -81,6 +81,13 @@ def _build_doc(*, include_solutions: bool) -> bytes:
 
                 worksheet = build_worksheet(topic.id, topic.fixed_tier, count=1, rng=rng)
                 question = worksheet.questions[0]
+                # Show the topic's formula preamble box (if any) exactly as a
+                # real worksheet does - otherwise a topic whose formulas are
+                # only given up front (cone/sphere/frustum/pyramid/etc.) looks
+                # in the review PDF as if no formula is provided at all.
+                if worksheet.preamble_lines:
+                    story.append(_preamble_box(worksheet.preamble_lines, styles))
+                    story.append(Spacer(1, 10))
                 story.append(_question_block(1, question, styles))
                 if include_solutions:
                     story.append(Spacer(1, 12))

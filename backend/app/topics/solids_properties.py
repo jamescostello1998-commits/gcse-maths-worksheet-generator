@@ -178,7 +178,14 @@ _QUANTITY_DEFINITIONS = {
 }
 
 
+# Templates that have a real diagram (excludes tetrahedron / hexagonal prism,
+# which have no faithful diagram kind) - used by the "with diagram" sibling.
+_DIAGRAM_TEMPLATES = [t for t in TEMPLATES if t.diagram is not None]
+
+
 def generate_properties_3d_shapes(tier: Tier, rng: random.Random) -> Question:
+    """No-diagram version: the student recalls the counts from the solid's name
+    alone. (A sibling topic, properties_3d_shapes_diagram, shows the solid.)"""
     template = rng.choice(TEMPLATES)
     quantity = rng.choice(["faces", "edges", "vertices"])
     value = {"faces": template.faces, "edges": template.edges, "vertices": template.vertices}[quantity]
@@ -195,6 +202,51 @@ def generate_properties_3d_shapes(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=str(value),
         dedup_key=f"properties3d:{template.id}:{quantity}",
+        diagram=None,
+    )
+
+
+def generate_properties_3d_shapes_diagram(tier: Tier, rng: random.Random) -> Question:
+    """With-diagram version: the solid is shown, and the student counts its
+    faces/edges/vertices from the picture (restricted to solids with a
+    faithful diagram)."""
+    template = rng.choice(_DIAGRAM_TEMPLATES)
+    quantity = rng.choice(["faces", "edges", "vertices"])
+    value = {"faces": template.faces, "edges": template.edges, "vertices": template.vertices}[quantity]
+
+    steps = [
+        _QUANTITY_DEFINITIONS[quantity],
+        template.note,
+        f"So a {template.name} has {value} {quantity}.",
+    ]
+    return Question(
+        topic_id="properties_3d_shapes_diagram",
+        tier=Tier.FOUNDATION,
+        prompt=f"How many {quantity} does the {template.name} shown have?",
+        solution_steps=tuple(steps),
+        final_answer=str(value),
+        dedup_key=f"properties3d_diag:{template.id}:{quantity}",
+        diagram=template.diagram,
+    )
+
+
+def generate_modelled_example_properties_3d_shapes_diagram(tier: Tier, rng: random.Random) -> ModelledExample:
+    ex = generate_modelled_example_properties_3d_shapes(tier, rng)
+    # Reuse the same teaching content, but shown with a diagram and under the
+    # diagram topic's id (pick from the diagram-having templates only).
+    template = rng.choice(_DIAGRAM_TEMPLATES)
+    quantity = rng.choice(["faces", "edges", "vertices"])
+    value = {"faces": template.faces, "edges": template.edges, "vertices": template.vertices}[quantity]
+    return ModelledExample(
+        topic_id="properties_3d_shapes_diagram",
+        tier=Tier.FOUNDATION,
+        prompt=f"How many {quantity} does the {template.name} shown have?",
+        worked_calculation=(
+            f"{template.name.capitalize()}: {template.breakdown[quantity]}",
+            f"= {value} {quantity}",
+        ),
+        teaching_steps=ex.teaching_steps,
+        final_answer=str(value),
         diagram=template.diagram,
     )
 
@@ -226,7 +278,7 @@ def generate_modelled_example_properties_3d_shapes(tier: Tier, rng: random.Rando
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=str(value),
-        diagram=template.diagram,
+        diagram=None,
     )
 
 
@@ -382,6 +434,18 @@ TOPIC_PROPERTIES_3D_SHAPES = TopicDefinition(
     fixed_tier=Tier.FOUNDATION,
     question_count=len(TEMPLATES),
     generate_modelled_example=generate_modelled_example_properties_3d_shapes,
+)
+
+TOPIC_PROPERTIES_3D_SHAPES_DIAGRAM = TopicDefinition(
+    id="properties_3d_shapes_diagram",
+    display_name="Properties of 3D Shapes (with Diagram)",
+    description="Count the faces, edges, or vertices of a 3D solid shown in a diagram.",
+    generate=generate_properties_3d_shapes_diagram,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    question_count=len(_DIAGRAM_TEMPLATES),
+    generate_modelled_example=generate_modelled_example_properties_3d_shapes_diagram,
 )
 
 TOPIC_NETS_3D_SHAPES = TopicDefinition(

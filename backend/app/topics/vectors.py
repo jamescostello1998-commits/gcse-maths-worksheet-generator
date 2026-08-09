@@ -32,10 +32,11 @@ def _fmt_vector(v) -> str:
 
 def _join_vector_terms(k_term: str, op: str, m_term: str, m: int) -> str:
     """Join "{k_term} {op} {m_term}" the way a real exam would print it -
-    parenthesising m_term when op == "-" and m is itself negative, so e.g.
-    "2a - -4b" (unclear double sign) reads as "2a - (-4b)" instead."""
-    if op == "-" and m < 0:
-        return f"{k_term} - ({m_term})"
+    parenthesising m_term whenever m is itself negative, so a double sign is
+    never printed bare: "4a + -3b" reads as "4a + (-3b)" and "2a - -4b" reads
+    as "2a - (-4b)" (user review feedback)."""
+    if m < 0:
+        return f"{k_term} {op} ({m_term})"
     return f"{k_term} {op} {m_term}"
 
 

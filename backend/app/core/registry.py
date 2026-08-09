@@ -302,6 +302,7 @@ _TOPIC_LIST: list[TopicDefinition] = [
     vectors.TOPIC_GEOMETRIC_VECTORS,
     circle_theorems.TOPIC_CIRCLE_THEOREMS,
     solids_properties.TOPIC_PROPERTIES_3D_SHAPES,
+    solids_properties.TOPIC_PROPERTIES_3D_SHAPES_DIAGRAM,
     solids_properties.TOPIC_NETS_3D_SHAPES,
     plans_elevations.TOPIC_PLANS_AND_ELEVATIONS,
     solids_prisms.TOPIC_CUBOID,
