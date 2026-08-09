@@ -27,6 +27,7 @@ _FRAC_POWER_TOPIC = "algebraic_indices_H"
 _FRACTION_TOPIC = "fractions_add_subtract_F"
 _DIAGRAM_TOPIC = "area_triangle_F"
 _VECTOR_TOPIC = "vectors_arithmetic_H"
+_GEOMETRIC_VECTOR_TOPIC = "geometric_vectors_H"
 
 
 def _worksheet_doc(topic_id: str, *, count: int = 6, answers_only: bool = False) -> Document:
@@ -92,6 +93,19 @@ def test_vector_topic_produces_native_column_vector_equations():
     # A native column vector is an <m:d> delimiter around an <m:m> matrix.
     assert "}d>" in xml or ":d>" in xml
     assert "}m>" in xml or ":m>" in xml
+
+
+def test_vector_letters_render_bold():
+    # \vec{a}/\vec{b} must be bold (matching the PDF's <b> treatment), while
+    # ordinary prose "a" (e.g. "is a triangle") stays non-bold.
+    doc = _worksheet_doc(_GEOMETRIC_VECTOR_TOPIC)
+    bold_vector_runs = [
+        run
+        for para in doc.paragraphs
+        for run in para.runs
+        if run.text in {"a", "b"} and run.bold and run.font.name == "Cambria Math"
+    ]
+    assert bold_vector_runs, "expected at least one bold Cambria Math vector letter"
 
 
 def test_modelled_example_docx_structure():

@@ -32,10 +32,11 @@ if `gh` isn't on PATH in a fresh shell, see "Environment gotchas"):
 - **Step 46 (HEAD)**: a new **PDF / Word download-format toggle** — a home-page slider
   (PDF | Word) that makes every topic's Worksheet *and* Modelled Example downloadable as
   a real `.docx`, with full layout parity to the PDF and Bell-Tasks-style typography
-  (Calibri prose, Cambria Math + native Word equations, incl. native column vectors).
-  New `backend/app/docx/` package, new `python-docx` dependency, `format` field on the
-  worksheet/modelled-example routes, and a global `FormatContext` on the frontend.
-  Backend 970 (+11 docx tests), frontend 65 (+4). See chronology step 46.
+  (Calibri prose, Cambria Math + native Word equations, incl. native column vectors and
+  bold `\vec{a}`/`\vec{b}` vector letters). New `backend/app/docx/` package, new
+  `python-docx` dependency, `format` field on the worksheet/modelled-example routes, and a
+  global `FormatContext` on the frontend. Backend 971 (+12 docx tests), frontend 65 (+4).
+  See chronology step 46.
 - **Step 45**: fixed **fractional powers not rendering as raised powers** in the PDF
   (`x^(1/2)` sat low next to the base like a coefficient) — one-line `mathtext.py` fix
   (`valign="super"` on the fraction image instead of a `<super>` wrapper). See step 45.
@@ -62,7 +63,7 @@ verify diagram/overlap fixes — don't trust unit tests for visual issues), rege
 both `all_topics_review_*.pdf` via `python -m scripts.generate_review_pdfs`, send them
 back to the user, then commit+push. See "Regenerating the all-topics aesthetic-review
 PDFs" below (the two PDFs are deliberately left untracked). 305 topics total, backend
-suite 970/970, frontend 65/65, no known bugs.
+suite 971/971, frontend 65/65, no known bugs.
 
 Once the user's next chunk of feedback (or confirmation the review is fully done)
 arrives, check "Ideas for a future session" (bottom of this file) for candidate
@@ -4118,18 +4119,25 @@ fixes), is committed and pushed (see `git log`).
     component/hook tests that render `TopicCard` (whose hooks now read the context)
     were wrapped in `FormatProvider`.
 
-    Verified end-to-end: full backend suite 959→970 (new `test_docx_render.py` —
+    Verified end-to-end: full backend suite 959→971 (new `test_docx_render.py` —
     structural assertions incl. real `<m:oMath>`/`<m:f>`/`<m:sSup>`/`<m:d>` elements,
-    embedded diagram images, answers-only, and the docx route media-type/filename +
-    default-still-PDF); frontend 61→65 (new `DownloadFormatToggle.test.tsx`); real
-    `.docx` files for a fractions topic, `algebraic_indices_H` (native fractional
-    powers), a diagram topic, a modelled example, and `vectors_arithmetic_H` (native
-    column vectors) all opened in real Word and eyeballed; and a live browser
+    embedded diagram images, answers-only, the docx route media-type/filename +
+    default-still-PDF, and bold vector letters); frontend 61→65 (new
+    `DownloadFormatToggle.test.tsx`); real `.docx` files for a fractions topic,
+    `algebraic_indices_H` (native fractional powers), a diagram topic, a modelled
+    example, `vectors_arithmetic_H` (native column vectors), and `geometric_vectors_H`
+    (bold vector letters) all opened in real Word and eyeballed; and a live browser
     click-through (toggle → Word, download returns 200 with the `wordprocessingml`
-    content-type and `PK` docx magic bytes, no console errors). Known accepted scope
-    limitation: vector letters `a`/`b` in prompts render Cambria Math but not bold
-    (the PDF bolds them) — part of the Bell-Tasks-exact trade-off, not the "full
-    native maths" option the user declined.
+    content-type and `PK` docx magic bytes, no console errors).
+
+    Follow-up requests in the same session (all folded into this step): the native
+    stacked column vector (`\colvec{}{}` → an `<m:d>` delimiter around a two-row
+    `<m:m>` matrix, replacing an earlier plain-text `(a, b)` fallback), and **bold
+    `\vec{a}`/`\vec{b}` vector letters** (handled in `_emit_segment` before the
+    tokenizer, matching the PDF's own `<b>` treatment — the tokenizer would otherwise
+    flatten them to plain Cambria Math). These closed the two Bell-Tasks-exact
+    shortcuts the first pass had left; nothing docx-related is now knowingly below PDF
+    parity.
 
 ## Environment gotchas (Windows, this machine specifically)
 

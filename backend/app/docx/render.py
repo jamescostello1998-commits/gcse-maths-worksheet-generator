@@ -14,10 +14,11 @@ uniform 18pt purple).
 Maths handling largely matches Bell Tasks (the user's choice): fractions
 ("num/den" and the "\\frac{}{}" marker), powers ("x^2", "^(1/2)", and even
 bracketed/unattached ones like "(25x^4)^(1/2)") and column vectors
-("\\colvec{}{}") become real native equations; the remaining rarer constructs
-the tokenizer/omml don't cover (surds "√n", recurring-decimal dots
-"\\recur{}{}", "x_n" subscripts, "\\plain{}") render as plain Cambria Math /
-Calibri text. The "\\frac{}{}" and "\\colvec{}{}" markers (heavily used in
+("\\colvec{}{}") become real native equations; vector letters ("\\vec{a}"/
+"\\vec{b}") render as bold Cambria Math (matching the PDF's own <b> treatment);
+the remaining rarer constructs the tokenizer/omml don't cover (surds "√n",
+recurring-decimal dots "\\recur{}{}", "x_n" subscripts, "\\plain{}") render as
+plain Cambria Math / Calibri text. The "\\frac{}{}" and "\\colvec{}{}" markers (heavily used in
 solution steps/answers) can't be seen by the tokenizer, so they're handled
 here before tokenizing since their content can be algebraic.
 """
@@ -85,6 +86,7 @@ _SEG_RE = re.compile(
     r"|\\recur\{(?P<mprefix>[^{}]*)\}\{(?P<mblock>[^{}]*)\}"
     r"|\\plain\{(?P<mplain>[^{}]*)\}"
     r"|\\colvec\{(?P<mvectop>[^{}]*)\}\{(?P<mvecbot>[^{}]*)\}"
+    r"|\\vec\{(?P<vec>[ab])\}"
     r"|(?P<feb>" + _BASE + r")\^\((?P<fen>-?\d+)/(?P<fed>-?\d+)\)"
     r"|\^\((?P<ufn>-?\d+)/(?P<ufd>-?\d+)\)"
     r"|(?P<eb>" + _BASE + r")\^(?P<eexp>-?\d+)"
@@ -139,6 +141,11 @@ def _emit_segment(paragraph, seg: str, size_pt: float, color: RGBColor, color_he
         elif m.group("mvectop") is not None:
             # Column vector - a real native stacked "(top / bottom)" equation.
             docx_omml.add_column_vector(paragraph, m.group("mvectop"), m.group("mvecbot"), size_pt, color_hex)
+        elif m.group("vec") is not None:
+            # Vector letter (\vec{a}/\vec{b}) - always bold, matching real exam
+            # convention and the PDF's own <b> treatment (handled here, not left
+            # to the tokenizer, which would flatten it to plain Cambria Math).
+            _add_text_run(paragraph, m.group("vec"), FONT_MATH, size_pt, color, bold=True)
         elif m.group("feb") is not None:
             docx_omml.add_fractional_exponent(paragraph, m.group("feb"), m.group("fen"), m.group("fed"), size_pt, color_hex)
         elif m.group("ufn") is not None:
