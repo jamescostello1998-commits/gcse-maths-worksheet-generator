@@ -760,13 +760,13 @@ def draw_sector(params: dict) -> Drawing:
     # exam diagrams' convention of writing a narrow angle's value beside the
     # sharp point rather than cramming it inside the sliver.
     if angle < 40:
-        label_r = 20
+        label_r = 22
         label_angle = mid + math.pi
-        label_size = 8 if angle < 22 else 9
+        label_size = _LABEL_SIZE
     else:
-        label_r = arc_r + 15
+        label_r = arc_r + 16
         label_angle = mid
-        label_size = 10
+        label_size = _LABEL_SIZE
     lx = cx + label_r * math.cos(label_angle)
     ly = cy + label_r * math.sin(label_angle)
     lx = max(10, min(DIAGRAM_WIDTH - 10, lx))
@@ -1754,117 +1754,104 @@ def _circle_point(cx: float, cy: float, r: float, deg: float) -> tuple[float, fl
 
 def draw_circle_angle_centre(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    cx, cy, r = 100, 74, 42
+    cx, cy, r = DIAGRAM_WIDTH / 2, DIAGRAM_HEIGHT / 2, 62
     d.add(Circle(cx, cy, r, strokeColor=INK, fillColor=None, strokeWidth=1.2))
     A, B, C = _circle_point(cx, cy, r, 200), _circle_point(cx, cy, r, 340), _circle_point(cx, cy, r, 90)
     d.add(Line(cx, cy, A[0], A[1], strokeColor=INK, strokeWidth=1))
     d.add(Line(cx, cy, B[0], B[1], strokeColor=INK, strokeWidth=1))
     d.add(Line(C[0], C[1], A[0], A[1], strokeColor=INK, strokeWidth=1))
     d.add(Line(C[0], C[1], B[0], B[1], strokeColor=INK, strokeWidth=1))
-    d.add(Circle(cx, cy, 1.5, strokeColor=INK, fillColor=INK))
-    d.add(_vertex_angle_arc((cx, cy), A, B, radius=14))
-    d.add(_vertex_angle_arc(C, A, B, radius=10))
-    d.add(_label(cx, cy - 16, params["centre_label"], size=10))
-    d.add(_label(C[0], C[1] - 16, params["circumference_label"], size=10))
-    _not_to_scale(d)
+    d.add(Circle(cx, cy, 1.8, strokeColor=INK, fillColor=INK))
+    _place_angle_label(d, (cx, cy), A, B, params["centre_label"], size=_LABEL_SIZE, arc_radius=16)
+    _place_angle_label(d, C, A, B, params["circumference_label"], size=_LABEL_SIZE, arc_radius=12)
     return d
 
 
 def draw_circle_semicircle(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    cx, cy, r = 100, 76, 42
+    cx, cy, r = DIAGRAM_WIDTH / 2, DIAGRAM_HEIGHT / 2, 62
     d.add(Circle(cx, cy, r, strokeColor=INK, fillColor=None, strokeWidth=1.2))
     A, B = (cx - r, cy), (cx + r, cy)
-    C = _circle_point(cx, cy, r, 125)
+    # Apex nearer the top-centre (was 125deg, which sat close to vertex A and
+    # crammed A's base-angle label up against the apex's 90deg label).
+    C = _circle_point(cx, cy, r, 112)
     d.add(Line(A[0], A[1], B[0], B[1], strokeColor=INK, strokeWidth=1.2))
     d.add(Line(A[0], A[1], C[0], C[1], strokeColor=INK, strokeWidth=1))
     d.add(Line(B[0], B[1], C[0], C[1], strokeColor=INK, strokeWidth=1))
-    d.add(_vertex_angle_arc(C, A, B, radius=10))
-    d.add(_vertex_angle_arc(A, B, C, radius=11))
-    d.add(_vertex_angle_arc(B, A, C, radius=11))
-    d.add(_label(C[0], C[1] + 10, params["apex_label"], size=10))
-    d.add(_label(A[0] + 4, A[1] + 8, params["angle_a_label"], size=10, anchor="start"))
-    d.add(_label(B[0] - 4, B[1] + 8, params["angle_b_label"], size=10, anchor="end"))
-    _not_to_scale(d)
+    _place_angle_label(d, C, A, B, params["apex_label"], size=_LABEL_SIZE, arc_radius=12)
+    _place_angle_label(d, A, B, C, params["angle_a_label"], size=_LABEL_SIZE, arc_radius=12)
+    _place_angle_label(d, B, A, C, params["angle_b_label"], size=_LABEL_SIZE, arc_radius=12)
     return d
 
 
 def draw_circle_cyclic_quad(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    cx, cy, r = 100, 70, 42
+    cx, cy, r = DIAGRAM_WIDTH / 2, DIAGRAM_HEIGHT / 2, 62
     d.add(Circle(cx, cy, r, strokeColor=INK, fillColor=None, strokeWidth=1.2))
     A, B = _circle_point(cx, cy, r, 150), _circle_point(cx, cy, r, 60)
     C, Dp = _circle_point(cx, cy, r, -40), _circle_point(cx, cy, r, 220)
     for p, q in ((A, B), (B, C), (C, Dp), (Dp, A)):
         d.add(Line(p[0], p[1], q[0], q[1], strokeColor=INK, strokeWidth=1))
-    d.add(_vertex_angle_arc(A, Dp, B, radius=10))
-    d.add(_vertex_angle_arc(C, B, Dp, radius=10))
-    d.add(_label(A[0] - 8, A[1] + 4, params["angle_A_label"], size=10, anchor="end"))
-    d.add(_label(C[0] + 8, C[1] - 6, params["angle_C_label"], size=10, anchor="start"))
-    _not_to_scale(d)
+    _place_angle_label(d, A, Dp, B, params["angle_A_label"], size=_LABEL_SIZE, arc_radius=12)
+    _place_angle_label(d, C, B, Dp, params["angle_C_label"], size=_LABEL_SIZE, arc_radius=12)
     return d
 
 
 def draw_circle_two_tangents(params: dict) -> Drawing:
     # Taller than the usual DIAGRAM_HEIGHT: the external point T sits well
-    # above the circle (cy + r + 38 = 132), and its label further still - on
-    # the standard 130-tall canvas this silently overflowed the Drawing's own
-    # bounds, bleeding the label up into the prompt text above it (ReportLab
-    # doesn't clip a Drawing's overflowing content) - found via rendering an
-    # actual worksheet and looking closely, not a unit test.
-    d = Drawing(DIAGRAM_WIDTH, 160)
-    cx, cy, r = 100, 60, 34
+    # above the circle, so the canvas is grown to fit it (ReportLab doesn't
+    # clip a Drawing's overflowing content, so an undersized canvas would
+    # bleed the top of the figure into the prompt text above it). Both angle
+    # labels now sit INSIDE their wedges (via _place_angle_label), so no label
+    # is drawn above T - the extra height is only for the point T itself.
+    d = Drawing(DIAGRAM_WIDTH, 200)
+    cx, cy, r = DIAGRAM_WIDTH / 2, 80, 52
     d.add(Circle(cx, cy, r, strokeColor=INK, fillColor=None, strokeWidth=1.2))
     A, B = _circle_point(cx, cy, r, 145), _circle_point(cx, cy, r, 35)
-    T = (cx, cy + r + 38)
+    T = (cx, cy + r + 48)
     d.add(Line(cx, cy, A[0], A[1], strokeColor=INK, strokeWidth=1))
     d.add(Line(cx, cy, B[0], B[1], strokeColor=INK, strokeWidth=1))
     d.add(Line(T[0], T[1], A[0], A[1], strokeColor=INK, strokeWidth=1.2))
     d.add(Line(T[0], T[1], B[0], B[1], strokeColor=INK, strokeWidth=1.2))
-    d.add(_vertex_angle_arc(T, A, B, radius=14))
-    d.add(_vertex_angle_arc((cx, cy), A, B, radius=14))
-    d.add(_label(T[0], T[1] + 12, params["external_label"], size=10))
-    d.add(_label(cx, cy - 14, params["centre_label"], size=10))
-    _not_to_scale(d)
+    d.add(Circle(cx, cy, 1.8, strokeColor=INK, fillColor=INK))
+    _place_angle_label(d, T, A, B, params["external_label"], size=_LABEL_SIZE, arc_radius=16)
+    _place_angle_label(d, (cx, cy), A, B, params["centre_label"], size=_LABEL_SIZE, arc_radius=16)
     return d
 
 
 def draw_circle_same_segment(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    cx, cy, r = 100, 74, 42
+    cx, cy, r = DIAGRAM_WIDTH / 2, DIAGRAM_HEIGHT / 2, 62
     d.add(Circle(cx, cy, r, strokeColor=INK, fillColor=None, strokeWidth=1.2))
-    A, B = _circle_point(cx, cy, r, 200), _circle_point(cx, cy, r, 340)
-    C, Dp = _circle_point(cx, cy, r, 70), _circle_point(cx, cy, r, 110)
+    A, B = _circle_point(cx, cy, r, 205), _circle_point(cx, cy, r, 335)
+    C, Dp = _circle_point(cx, cy, r, 65), _circle_point(cx, cy, r, 115)
     d.add(Line(A[0], A[1], B[0], B[1], strokeColor=INK, strokeWidth=0.8))
     for P in (C, Dp):
         d.add(Line(P[0], P[1], A[0], A[1], strokeColor=INK, strokeWidth=1))
         d.add(Line(P[0], P[1], B[0], B[1], strokeColor=INK, strokeWidth=1))
-    d.add(_vertex_angle_arc(C, A, B, radius=10))
-    d.add(_vertex_angle_arc(Dp, A, B, radius=10))
-    d.add(_label(C[0], C[1] + 10, params["angle_c_label"], size=10))
-    d.add(_label(Dp[0], Dp[1] + 10, params["angle_d_label"], size=10))
-    _not_to_scale(d)
+    _place_angle_label(d, C, A, B, params["angle_c_label"], size=_LABEL_SIZE, arc_radius=12)
+    _place_angle_label(d, Dp, A, B, params["angle_d_label"], size=_LABEL_SIZE, arc_radius=12)
     return d
 
 
 def draw_circle_alternate_segment(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    cx, cy, r = 100, 76, 40
+    cx, cy, r = DIAGRAM_WIDTH / 2, DIAGRAM_HEIGHT / 2 + 4, 60
     d.add(Circle(cx, cy, r, strokeColor=INK, fillColor=None, strokeWidth=1.2))
     P = _circle_point(cx, cy, r, 270)
-    Q = _circle_point(cx, cy, r, 190)
-    R = _circle_point(cx, cy, r, 30)
-    tangent_left = (P[0] - 46, P[1])
-    tangent_right = (P[0] + 46, P[1])
+    # Q well up the left side (was 190deg, nearly level with P): a steeper
+    # chord PQ makes the tangent-chord angle's bisector steeper too, so its
+    # label sits clearly above the tangent line rather than crossing it.
+    Q = _circle_point(cx, cy, r, 163)
+    R = _circle_point(cx, cy, r, 32)
+    tangent_left = (P[0] - 66, P[1])
+    tangent_right = (P[0] + 66, P[1])
     d.add(Line(tangent_left[0], tangent_left[1], tangent_right[0], tangent_right[1], strokeColor=INK, strokeWidth=1.2))
     d.add(Line(P[0], P[1], Q[0], Q[1], strokeColor=INK, strokeWidth=1))
     d.add(Line(Q[0], Q[1], R[0], R[1], strokeColor=INK, strokeWidth=1))
     d.add(Line(R[0], R[1], P[0], P[1], strokeColor=INK, strokeWidth=1))
-    d.add(_vertex_angle_arc(P, tangent_left, Q, radius=14))
-    d.add(_vertex_angle_arc(R, Q, P, radius=10))
-    d.add(_label(P[0] - 14, P[1] - 12, params["tangent_angle_label"], size=10, anchor="end"))
-    d.add(_label(R[0], R[1] - 12, params["segment_angle_label"], size=10))
-    _not_to_scale(d)
+    _place_angle_label(d, P, tangent_left, Q, params["tangent_angle_label"], size=_LABEL_SIZE, arc_radius=13)
+    _place_angle_label(d, R, Q, P, params["segment_angle_label"], size=_LABEL_SIZE, arc_radius=12)
     return d
 
 
