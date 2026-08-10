@@ -25,9 +25,25 @@ scheme. The full chronology below still uses the *old* ids in its historical ent
 tier suffix if you go looking for one. See step 44 for the exact rename rule and how the
 migration was done safely.
 
-The most recent pieces of work, all committed and pushed on `aqa-spec-gap-topics`
-(the same open PR — `gh pr view 3`, or `& "C:\Program Files\GitHub CLI\gh.exe" pr view 3`
-if `gh` isn't on PATH in a fresh shell, see "Environment gotchas"):
+**⚠️ IN PROGRESS — resume this first (a large diagram overhaul, half-done).** A multi-phase
+rework of **every shape/angle & 3D-solid diagram** (`backend/app/pdf/diagrams.py` only) so
+they're **bigger, use one uniform 11pt label size, and are drawn roughly to scale with each
+measurement clearly tied to its own side/angle** — the user's 3 asks (see chronology step 47).
+**Phases 0-3 are done, Phases 4-6 remain.** The work is committed on branch
+**`diagram-scale-overhaul`** (WIP, not merged; `master` = merge commit `2587551`), full backend
+suite **971/971** after each phase. The authoritative resume guide with the exact per-phase
+state, remaining functions, reusable helpers, and trade-offs is the **plan file**
+`C:\Users\James\.claude\plans\zesty-yawning-blum.md` (read its "STATUS (resume here)" section
+first). Next up: **Phase 4 — circles & sectors** (`circle`, `sector`, the six `circle_*`
+theorem diagrams), then Phase 5 bearings, then Phase 6 3D solids. Per-phase rhythm: rewrite →
+render every affected topic across seeds to a contact sheet (the `/tmp/phase*.py` pattern) →
+fix overlaps → run tests → regenerate + send both `all_topics_review_*.pdf` → checkpoint with
+the user. Out-of-scope kinds (graphs/charts/number-line/Venn/tree/loci/probability
+illustrations) are deliberately untouched. Keep diagram **param schemas unchanged** so the 60
+frozen Practice Test papers still render (no rebuild needed).
+
+The most recent *committed-to-master* pieces of work (PR #3 was merged into `master` as
+`2587551`; the `aqa-spec-gap-topics` branch was deleted):
 
 - **Step 46 (HEAD)**: a new **PDF / Word download-format toggle** — a home-page slider
   (PDF | Word) that makes every topic's Worksheet *and* Modelled Example downloadable as
@@ -4138,6 +4154,50 @@ fixes), is committed and pushed (see `git log`).
     flatten them to plain Cambria Math). These closed the two Bell-Tasks-exact
     shortcuts the first pass had left; nothing docx-related is now knowingly below PDF
     parity.
+
+47. New session (IN PROGRESS — Phases 0-3 of 6 done, committed WIP on branch
+    `diagram-scale-overhaul`, NOT merged). A large user-requested overhaul of **every
+    shape/angle & 3D-solid diagram** in `backend/app/pdf/diagrams.py`, driven by three
+    asks: (1) diagrams big enough that each measurement is clearly associated with its
+    own side/angle (first flagged example: `forming_equations_H` Q2's crammed
+    quadrilateral, but "one of many"); (2) all diagram text one uniform size (~11pt);
+    (3) shapes/angles drawn roughly to scale ("doesn't have to be exact; if every shape
+    looks different, that's fine"). Scope confirmed via `AskUserQuestion`: 2D shapes &
+    angles AND 3D solids (graphs/charts/number-lines/Venn/trees/loci/probability
+    illustrations OUT); proportional where a value is given, plausible where it's the
+    unknown being solved for; ~11pt everywhere; longer PDFs accepted. Planned in plan
+    mode (`C:\Users\James\.claude\plans\zesty-yawning-blum.md` — its "STATUS (resume
+    here)" section is the authoritative continue-guide) and phased 0-6, each phase
+    verified by rendering every affected topic to a contact sheet (not unit tests — the
+    project's standing "render and look closely" discipline) and sending regenerated
+    `all_topics_review_*.pdf` as a checkpoint.
+
+    Done so far: **Phase 0** (engine — canvas 200x130→290x190, `_LABEL_SIZE` 9→11 uniform
+    with `_TRIANGLE_LABEL_SIZE` aliased, asymmetric fit margins `_MARGIN_X`/`_MARGIN_Y`,
+    and shared helpers `_dimension_value`/`_plausible_length`/`_plausible_angle`/
+    `_scale_to_fit`/`_fit_triangle`/`_orient`/`_legible_angles`/`_construct_triangle`);
+    **Phase 1** (rectilinear — uniform text + asymmetric margins, which fixed a real
+    outside-left height-label clipping bug that had rendered a trapezium's "10 cm" as
+    "0 cm" on the wider canvas); **Phase 2** (triangles — right/trig triangles built to
+    TRUE scale from real legs/marked-angle, general_triangle & triangle_angles built to
+    true shape via `_construct_triangle` AAS/SAS/SSS so an obtuse angle is drawn obtuse,
+    everything else scaled-to-fill + uniform); **Phase 3** (angles & polygons — the
+    flagged `forming_equations_H` Q2 diamond fixed: `polygon_angles` now an irregular
+    convex quad on a taller 250-tall canvas with one label per vertex, `triangle_angles`
+    to true legibility-compressed angles on a 230-tall canvas, angle_line/parallel_lines/
+    polygon/symmetry_shape bigger + uniform). Full backend suite **971/971** after each
+    phase; frontend untouched; no topic-count change; diagram param schemas deliberately
+    unchanged so the 60 frozen Practice Test papers still render with no rebuild.
+
+    Remaining: **Phase 4** circles & sectors (`circle`, `sector`, six `circle_*` theorem
+    diagrams — inherently schematic, so target plausible + clear + bigger + uniform, not
+    true scale); **Phase 5** bearings (`draw_bearings` — draw true bearings to scale);
+    **Phase 6** 3D solids (cuboid/prism/cylinder/cone/sphere/pyramid/frustum/net/
+    compound_3d/plans_and_elevations — proportional edges where numeric, uniform text,
+    clear labels; bump `SOLID_WIDTH/HEIGHT`/`NET_*` and unify the many per-function
+    hardcoded label sizes). One accepted trade-off already made: very acute/obtuse
+    triangle angles are compressed toward 60 for *drawing* legibility (`_legible_angles`)
+    so three vertex labels don't collide — the labels still show the true values.
 
 ## Environment gotchas (Windows, this machine specifically)
 

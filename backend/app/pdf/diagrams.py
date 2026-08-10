@@ -19,10 +19,25 @@ from app.core.models import DiagramSpec
 from app.pdf.mathtext import _VAR_FONT_ITALIC
 from app.pdf.styles import ACCENT, CHART_COLORS, GRID, HIGHLIGHT, INK, MUTED, PAPER
 
-DIAGRAM_WIDTH = 200
-DIAGRAM_HEIGHT = 130
+DIAGRAM_WIDTH = 290
+DIAGRAM_HEIGHT = 190
 
-_LABEL_SIZE = 9
+# Asymmetric fit margins for shape diagrams: more room on the left/right than
+# top/bottom, so an outside-the-shape side label (a height label anchored to
+# the left of the shape, etc.) has space to sit fully on-canvas at the uniform
+# 11pt size rather than clipping off the edge now that shapes fill a wider
+# canvas. Used by the rectilinear/2D fit functions in place of a single margin.
+_MARGIN_X = 46
+_MARGIN_Y = 28
+
+# One uniform label size for every in-scope shape/angle & 3D-solid diagram
+# (side lengths, angle values, vertex letters, captions) - replaces the old
+# mix of 9/9.5/10/7.5pt. Bumped to 11 alongside the larger canvases so
+# measurements read clearly and sit unambiguously next to their own side/angle.
+# NB: the out-of-scope graph/chart/number-line/Venn/tree/probability-
+# illustration functions pass their own explicit sizes and are intentionally
+# left untouched.
+_LABEL_SIZE = 11
 _LABEL_FONT = "Helvetica"
 # Same registered curved-italic TTF used by app/pdf/mathtext.py's prose text
 # (imported directly so both call sites always agree, and so the font is
@@ -206,13 +221,12 @@ def _sector_arc_for_label(
 def draw_rectangle(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     w_val, h_val = params["width"], params["height"]
-    margin = 32
-    scale = min((DIAGRAM_WIDTH - 2 * margin) / w_val, (DIAGRAM_HEIGHT - 2 * margin) / h_val)
+    scale = min((DIAGRAM_WIDTH - 2 * _MARGIN_X) / w_val, (DIAGRAM_HEIGHT - 2 * _MARGIN_Y) / h_val)
     rw, rh = w_val * scale, h_val * scale
     x0, y0 = (DIAGRAM_WIDTH - rw) / 2, (DIAGRAM_HEIGHT - rh) / 2
 
     d.add(Rect(x0, y0, rw, rh, strokeColor=INK, fillColor=None, strokeWidth=1.2))
-    d.add(_label(x0 + rw / 2, y0 - 14, params["width_label"]))
+    d.add(_label(x0 + rw / 2, y0 - 16, params["width_label"]))
     # The height_label sits to the right of the rectangle with no stringWidth
     # awareness at all previously - for a wide rectangle (width scale-bound,
     # pushing x0+rw close to the canvas's own right edge) a two-digit-or-
@@ -237,6 +251,152 @@ def _parse_leading_number(label: str) -> float:
     rectangles)."""
     m = re.match(r"[-+]?[\d.]+", label.strip())
     return float(m.group()) if m else 0.0
+
+
+def _dimension_value(label, fallback: float, *, known: list[float] | None = None) -> float:
+    """The drawing length to use for a side whose label may be an algebraic
+    unknown ("(x + 9) cm", "x") rather than a given number.
+
+    Returns the label's real leading number when it has one; otherwise a
+    *plausible* non-degenerate length (see `_plausible_length`) so the shape
+    isn't drawn degenerate or misleadingly regular - matching the agreed
+    "proportional where the value is known, plausible where it's the unknown
+    being solved for" rule (the true value can't be drawn without the answer).
+    `label` may be a str label or already a number."""
+    if isinstance(label, (int, float)):
+        return float(label)
+    val = _parse_leading_number(str(label))
+    return val if val > 0 else _plausible_length(known or [], fallback=fallback)
+
+
+def _plausible_length(known: list[float], *, fallback: float = 10.0) -> float:
+    """A sensible non-degenerate length for an unknown side: comparable to the
+    known sides of the same shape (so the shape looks natural and every side is
+    clearly distinguishable), or `fallback` when nothing else is known.
+    Deliberately not equal to any known value, so an unknown side doesn't look
+    identical to a given one."""
+    usable = [v for v in known if v > 0]
+    if not usable:
+        return fallback
+    avg = sum(usable) / len(usable)
+    return avg * 1.15
+
+
+def _plausible_angle(known: list[float], *, fallback: float = 70.0, total: float | None = None) -> float:
+    """A sensible non-degenerate angle (degrees) for an unknown angle in a
+    diagram. If the remaining angles must sum to `total` (e.g. 180 for a
+    triangle, 360 for a quadrilateral), share what's left over the unknowns;
+    otherwise fall back to a plausible mid-range angle. Clamped to a drawable
+    20-160 deg so no wedge is degenerate."""
+    if total is not None:
+        remaining = total - sum(v for v in known if v > 0)
+        if remaining > 0:
+            fallback = remaining
+    return max(20.0, min(160.0, fallback))
+
+
+def _scale_to_fit(
+    points: list[tuple[float, float]], width: float, height: float, margin: float
+) -> tuple[list[tuple[float, float]], float]:
+    """Uniformly scale+translate real-unit coordinates so their bounding box
+    fills a `width`x`height` canvas leaving `margin` on every side, preserving
+    aspect ratio (so a shape drawn from real dimensions keeps its true
+    proportions). Returns the transformed points and the scale factor used."""
+    xs = [p[0] for p in points]
+    ys = [p[1] for p in points]
+    span_x = max(xs) - min(xs) or 1.0
+    span_y = max(ys) - min(ys) or 1.0
+    scale = min((width - 2 * margin) / span_x, (height - 2 * margin) / span_y)
+    sw, sh = span_x * scale, span_y * scale
+    ox = (width - sw) / 2 - min(xs) * scale
+    oy = (height - sh) / 2 - min(ys) * scale
+    return [(x * scale + ox, y * scale + oy) for x, y in points], scale
+
+
+def _fit_triangle(A: tuple, B: tuple, C: tuple, margin: float = 48) -> tuple:
+    """Scale a triangle's three vertices (given in the legacy ~200x130 layout
+    space of the variant tables) up to fill the current canvas, preserving its
+    shape. `margin` leaves room for the side/angle labels drawn just outside the
+    edges. Returns the three transformed vertices."""
+    pts, _ = _scale_to_fit([A, B, C], DIAGRAM_WIDTH, DIAGRAM_HEIGHT, margin)
+    return pts[0], pts[1], pts[2]
+
+
+def _construct_triangle(a: float, b: float, c: float, Ad: float, Bd: float, Cd: float):
+    """Build a triangle's three vertices (A, B, C) to its true shape from
+    whatever is given: side lengths a/b/c (opposite A/B/C; 0 if unknown) and
+    angles Ad/Bd/Cd in degrees (0 if unknown). Handles the cases the general-
+    triangle topics actually produce - two angles (AAS, sine rule), two sides +
+    the included angle (SAS, cosine rule / triangle area), and three sides
+    (SSS, cosine rule) - so e.g. a 110 deg angle is drawn obtuse. Returns
+    (A, B, C) vertices, or None if there isn't enough to pin the shape."""
+    angs = [Ad or 0.0, Bd or 0.0, Cd or 0.0]
+    if sum(1 for x in angs if x > 0) == 2:
+        angs[angs.index(0.0)] = 180.0 - sum(x for x in angs if x > 0)
+    Ad, Bd, Cd = angs
+    a, b, c = a or 0.0, b or 0.0, c or 0.0
+
+    # All three angles known -> AAA: sides proportional to sin(opposite angle).
+    if Ad > 0 and Bd > 0 and Cd > 0:
+        if min(Ad, Bd, Cd) <= 0 or max(Ad, Bd, Cd) >= 180:
+            return None
+        a = math.sin(math.radians(Ad))
+        b = math.sin(math.radians(Bd))
+        c = math.sin(math.radians(Cd))
+
+    # SSS (given, or derived from AAA): place B=(0,0), C=(a,0), solve for A.
+    if a > 0 and b > 0 and c > 0:
+        x = (c * c - b * b + a * a) / (2 * a)
+        y2 = c * c - x * x
+        if y2 <= 0:
+            return None
+        return (x, math.sqrt(y2)), (0.0, 0.0), (a, 0.0)
+
+    # SAS - two sides and the included angle: place the angle's vertex at the
+    # origin, one side along the x-axis, the other at the true angle.
+    if Ad > 0 and b > 0 and c > 0:  # angle A between AC=b and AB=c
+        return (0.0, 0.0), (c, 0.0), (b * math.cos(math.radians(Ad)), b * math.sin(math.radians(Ad)))
+    if Bd > 0 and a > 0 and c > 0:  # angle B between BA=c and BC=a
+        return (c, 0.0), (0.0, 0.0), (a * math.cos(math.radians(Bd)), a * math.sin(math.radians(Bd)))
+    if Cd > 0 and a > 0 and b > 0:  # angle C between CA=b and CB=a
+        return (b, 0.0), (a * math.cos(math.radians(Cd)), a * math.sin(math.radians(Cd))), (0.0, 0.0)
+    return None
+
+
+def _legible_angles(angs: list[float], lo: float = 40.0, hi: float = 112.0) -> list[float]:
+    """Compress a set of triangle angles toward 60 deg by a single factor (so
+    they still sum to 180 and keep their order) just enough that the smallest
+    is >= `lo` and the largest <= `hi`. Keeps a very acute/obtuse triangle
+    legible - its three vertex labels don't collide in a near-degenerate sliver
+    - while still showing which angle is bigger/smaller. The angle *labels* show
+    the true values; only the drawn shape is moderated (per 'doesn't have to be
+    exact')."""
+    dev = [a - 60 for a in angs]
+    factor = 1.0
+    mn, mx = min(angs), max(angs)
+    if mn < lo and mn < 60:
+        factor = min(factor, (60 - lo) / (60 - mn))
+    if mx > hi and mx > 60:
+        factor = min(factor, (hi - 60) / (mx - 60))
+    return [60 + d * factor for d in dev]
+
+
+def _orient(points: list[tuple], variant: int) -> list[tuple]:
+    """Rotate a set of points about their centroid by 0/90/180/270 deg and
+    optionally mirror, chosen deterministically by `variant` (0-7) - gives a
+    to-scale shape genuine orientation variety across a worksheet's questions
+    without changing its proportions."""
+    ang = math.radians((variant % 4) * 90)
+    mirror = variant >= 4
+    cx = sum(p[0] for p in points) / len(points)
+    cy = sum(p[1] for p in points) / len(points)
+    out = []
+    for x, y in points:
+        dx, dy = x - cx, y - cy
+        if mirror:
+            dx = -dx
+        out.append((dx * math.cos(ang) - dy * math.sin(ang) + cx, dx * math.sin(ang) + dy * math.cos(ang) + cy))
+    return out
 
 
 def draw_two_similar_rectangles(params: dict) -> Drawing:
@@ -269,11 +429,11 @@ def draw_two_similar_rectangles(params: dict) -> Drawing:
     # "left" always means "the bigger shape" (by design - see docstring), so
     # left_w/right_w are fixed regardless of which of A/B ends up there;
     # only the ax0/bx0 assignment below depends on a_bigger.
-    left_w, left_h = 64, 56
-    right_w, right_h = 42, 36
-    gap = 34
+    left_w, left_h = 94, 82
+    right_w, right_h = 62, 54
+    gap = 48
     x0 = (DIAGRAM_WIDTH - (left_w + gap + right_w)) / 2
-    base_y = 26
+    base_y = 46
 
     if a_bigger:
         ax0, ay0, aw, ah = x0, base_y, left_w, left_h
@@ -285,8 +445,8 @@ def draw_two_similar_rectangles(params: dict) -> Drawing:
     d.add(Rect(ax0, ay0, aw, ah, strokeColor=INK, fillColor=None, strokeWidth=1.2))
     d.add(Rect(bx0, by0, bw, bh, strokeColor=INK, fillColor=None, strokeWidth=1.2))
 
-    d.add(_label(ax0 + aw / 2, ay0 + ah + 8, "Shape A", size=8, color=MUTED))
-    d.add(_label(bx0 + bw / 2, by0 + bh + 8, "Shape B", size=8, color=MUTED))
+    d.add(_label(ax0 + aw / 2, ay0 + ah + 10, "Shape A", color=MUTED))
+    d.add(_label(bx0 + bw / 2, by0 + bh + 10, "Shape B", color=MUTED))
 
     if params.get("a_width_label"):
         d.add(_label(ax0 + aw / 2, ay0 - 14, params["a_width_label"]))
@@ -317,8 +477,7 @@ def draw_two_similar_rectangles(params: dict) -> Drawing:
 def draw_triangle_area(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     base_val, height_val = params["base"], params["height"]
-    margin = 26
-    scale = min((DIAGRAM_WIDTH - 2 * margin) / base_val, (DIAGRAM_HEIGHT - 2 * margin) / height_val)
+    scale = min((DIAGRAM_WIDTH - 2 * _MARGIN_X) / base_val, (DIAGRAM_HEIGHT - 2 * _MARGIN_Y) / height_val)
     bw, bh = base_val * scale, height_val * scale
     x0, y0 = (DIAGRAM_WIDTH - bw) / 2, (DIAGRAM_HEIGHT - bh) / 2 - 5
     apex_x = x0 + bw * 0.35
@@ -348,8 +507,7 @@ def draw_l_shape(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     ow, oh = params["outer_w"], params["outer_h"]
     iw, ih = params["inner_w"], params["inner_h"]
-    margin = 28
-    scale = min((DIAGRAM_WIDTH - 2 * margin) / ow, (DIAGRAM_HEIGHT - 2 * margin) / oh)
+    scale = min((DIAGRAM_WIDTH - 2 * _MARGIN_X) / ow, (DIAGRAM_HEIGHT - 2 * _MARGIN_Y) / oh)
     ow_s, oh_s, iw_s, ih_s = ow * scale, oh * scale, iw * scale, ih * scale
     x0, y0 = (DIAGRAM_WIDTH - ow_s) / 2, (DIAGRAM_HEIGHT - oh_s) / 2
 
@@ -400,8 +558,8 @@ def draw_l_shape(params: dict) -> Drawing:
         # "outer height" label, so students see two real side lengths
         # rather than unevaluated arithmetic like "(12 + 12) cm".
         upper_label, lower_label = params["right_labels"]
-        d.add(_label(x0 + ow_s + 8, y0 + (oh_s - ih_s) / 2, upper_label, anchor="start", size=7.5))
-        d.add(_label(x0 + ow_s - iw_s + 8, y0 + oh_s - ih_s / 2, lower_label, anchor="start", size=7.5))
+        d.add(_label(x0 + ow_s + 8, y0 + (oh_s - ih_s) / 2, upper_label, anchor="start"))
+        d.add(_label(x0 + ow_s - iw_s + 8, y0 + oh_s - ih_s / 2, lower_label, anchor="start"))
     elif params.get("notch") == "corner" and corner == "top_left":
         # The top-left cut leaves the RIGHT edge as the shape's one full,
         # uncut side (the mirror image of the top-right case, whose full
@@ -423,22 +581,24 @@ def draw_l_shape(params: dict) -> Drawing:
         # always has plenty of room.
         cx, cy = ix0 + iw_s / 2, iy0 + ih_s / 2
         w_label, h_label = params["inner_labels"]
-        label_size = 7.5 if min(iw_s, ih_s) >= 24 else 6.5
-        w_width = stringWidth(str(w_label), _LABEL_FONT, label_size)
-        h_width = stringWidth(str(h_label), _LABEL_FONT, label_size)
-        side_by_side_fits = iw_s >= w_width + h_width + 6
-        stacked_fits = ih_s >= 26 and iw_s >= max(w_width, h_width) + 4
+        w_width = stringWidth(str(w_label), _LABEL_FONT, _LABEL_SIZE)
+        h_width = stringWidth(str(h_label), _LABEL_FONT, _LABEL_SIZE)
+        side_by_side_fits = iw_s >= w_width + h_width + 8
+        stacked_fits = ih_s >= 34 and iw_s >= max(w_width, h_width) + 6
         if stacked_fits:
-            d.add(_label(cx, cy + 6, w_label, size=label_size))
-            d.add(_label(cx, cy - 10, h_label, size=label_size))
+            d.add(_label(cx, cy + 7, w_label))
+            d.add(_label(cx, cy - 13, h_label))
         elif side_by_side_fits:
-            d.add(_label(cx - iw_s * 0.22, cy, w_label, size=label_size))
-            d.add(_label(cx + iw_s * 0.22, cy, h_label, size=label_size))
+            d.add(_label(cx - iw_s * 0.24, cy - 4, w_label))
+            d.add(_label(cx + iw_s * 0.24, cy - 4, h_label))
         else:
-            d.add(_label(cx, iy0 - 10, f"{w_label} × {h_label}", size=7.5))
+            # Neither layout fits inside a small hole even at uniform size -
+            # a single combined caption below the hole (in the spacious shaded
+            # frame) stays legible.
+            d.add(_label(cx, iy0 - 14, f"{w_label} × {h_label}"))
     elif params.get("inner_labels"):
         inner_text = f"{params['inner_labels'][0]} × {params['inner_labels'][1]}"
-        d.add(_label(x0 + ow_s / 2, y0 + oh_s + 12, inner_text, color=MUTED, size=8))
+        d.add(_label(x0 + ow_s / 2, y0 + oh_s + 14, inner_text, color=MUTED))
     return d
 
 
@@ -454,8 +614,7 @@ def draw_t_shape(params: dict) -> Drawing:
     top_w, top_h = params["top_w"], params["top_h"]
     stem_w, stem_h = params["stem_w"], params["stem_h"]
     total_h = top_h + stem_h
-    margin = 28
-    scale = min((DIAGRAM_WIDTH - 2 * margin) / top_w, (DIAGRAM_HEIGHT - 2 * margin) / total_h)
+    scale = min((DIAGRAM_WIDTH - 2 * _MARGIN_X) / top_w, (DIAGRAM_HEIGHT - 2 * _MARGIN_Y) / total_h)
     tw_s, th_s, sw_s, sh_s = top_w * scale, top_h * scale, stem_w * scale, stem_h * scale
     x0, y0 = (DIAGRAM_WIDTH - tw_s) / 2, (DIAGRAM_HEIGHT - (th_s + sh_s)) / 2
     stem_x0 = x0 + (tw_s - sw_s) / 2
@@ -497,8 +656,7 @@ def draw_rectangle_semicircle(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     w_val, h_val, r_val = params["width"], params["height"], params["radius"]
     total_h_val = h_val + r_val
-    margin = 28
-    scale = min((DIAGRAM_WIDTH - 2 * margin) / w_val, (DIAGRAM_HEIGHT - 2 * margin) / total_h_val)
+    scale = min((DIAGRAM_WIDTH - 2 * _MARGIN_X) / w_val, (DIAGRAM_HEIGHT - 2 * _MARGIN_Y) / total_h_val)
     rw, rh, rr = w_val * scale, h_val * scale, r_val * scale
     x0, y0 = (DIAGRAM_WIDTH - rw) / 2, (DIAGRAM_HEIGHT - (rh + rr)) / 2
 
@@ -512,11 +670,10 @@ def draw_rectangle_semicircle(params: dict) -> Drawing:
 def draw_parallelogram(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     base_val, height_val = params["base"], params["height"]
-    margin = 26
     slant_frac = 0.3
     scale = min(
-        (DIAGRAM_WIDTH - 2 * margin) / (base_val * (1 + slant_frac)),
-        (DIAGRAM_HEIGHT - 2 * margin) / height_val,
+        (DIAGRAM_WIDTH - 2 * _MARGIN_X) / (base_val * (1 + slant_frac)),
+        (DIAGRAM_HEIGHT - 2 * _MARGIN_Y) / height_val,
     )
     bw, bh = base_val * scale, height_val * scale
     slant = bw * slant_frac
@@ -541,8 +698,7 @@ def draw_parallelogram(params: dict) -> Drawing:
 def draw_trapezium(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     a_val, b_val, height_val = params["a"], params["b"], params["height"]
-    margin = 32
-    scale = min((DIAGRAM_WIDTH - 2 * margin) / max(a_val, b_val), (DIAGRAM_HEIGHT - 2 * margin) / height_val)
+    scale = min((DIAGRAM_WIDTH - 2 * _MARGIN_X) / max(a_val, b_val), (DIAGRAM_HEIGHT - 2 * _MARGIN_Y) / height_val)
     aw, bw, bh = a_val * scale, b_val * scale, height_val * scale
     x0, y0 = (DIAGRAM_WIDTH - bw) / 2, (DIAGRAM_HEIGHT - bh) / 2
     top_x0 = x0 + (bw - aw) / 2
@@ -632,8 +788,7 @@ def draw_mixed_compound(params: dict) -> Drawing:
     top_extent_val = params["roof_height"] if top_kind == "triangle" else params["top_radius"]
 
     total_h_val = h_val + top_extent_val
-    margin = 28
-    scale = min((DIAGRAM_WIDTH - 2 * margin) / w_val, (DIAGRAM_HEIGHT - 2 * margin) / total_h_val)
+    scale = min((DIAGRAM_WIDTH - 2 * _MARGIN_X) / w_val, (DIAGRAM_HEIGHT - 2 * _MARGIN_Y) / total_h_val)
     rw, rh, top_extent = w_val * scale, h_val * scale, top_extent_val * scale
     x0, y0 = (DIAGRAM_WIDTH - rw) / 2, (DIAGRAM_HEIGHT - (rh + top_extent)) / 2
     apex_x = x0 + rw / 2
@@ -664,7 +819,7 @@ def draw_mixed_compound(params: dict) -> Drawing:
         # (and depends on the dome's radius), so no single fixed side offset
         # reliably avoided the curve for every radius (found via rendering
         # several sizes, not assumed up front).
-        d.add(_label(apex_x, y0 + rh + top_extent + 8, params["top_label"], size=8))
+        d.add(_label(apex_x, y0 + rh + top_extent + 10, params["top_label"]))
 
     if cut_kind == "quarter_circle":
         # Erase that corner's pie slice in the page background colour, then
@@ -674,14 +829,14 @@ def draw_mixed_compound(params: dict) -> Drawing:
         cut_r = params["cut_radius"] * scale
         d.add(Wedge(x0, y0, cut_r, 0, 90, fillColor=PAPER, strokeColor=None))
         d.add(Wedge(x0, y0, cut_r, 0, 90, fillColor=None, strokeColor=INK, strokeWidth=1.2))
-        d.add(_label(x0 - 4, y0 - 2, params["cut_label"], size=7, color=MUTED, anchor="end"))
+        d.add(_label(x0 - 6, y0 - 2, params["cut_label"], color=MUTED, anchor="end"))
     else:
         # A semicircular bite taken out of the middle of the bottom edge,
         # same fill-then-erase-then-stroke-arc trick as the corner cut.
         notch_r = params["notch_radius"] * scale
         d.add(Wedge(apex_x, y0, notch_r, 0, 180, fillColor=PAPER, strokeColor=None))
         d.add(Wedge(apex_x, y0, notch_r, 0, 180, fillColor=None, strokeColor=INK, strokeWidth=1.2))
-        d.add(_label(apex_x + notch_r + 6, y0 + 4, params["cut_label"], size=7, color=MUTED, anchor="start"))
+        d.add(_label(apex_x + notch_r + 8, y0 + 4, params["cut_label"], color=MUTED, anchor="start"))
 
     d.add(_label(x0 + rw / 2, y0 - 14, params["width_label"]))
     d.add(_label(x0 - 10, y0 + rh / 2, params["height_label"], anchor="end"))
@@ -691,9 +846,9 @@ def draw_mixed_compound(params: dict) -> Drawing:
 def draw_angle_line(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     around_point = params["around_point"]
-    cx, cy = DIAGRAM_WIDTH / 2, DIAGRAM_HEIGHT / 2 - (0 if around_point else 10)
-    radius = 65
-    arc_r = 15
+    cx, cy = DIAGRAM_WIDTH / 2, DIAGRAM_HEIGHT / 2 - (0 if around_point else 12)
+    radius = 95
+    arc_r = 20
     angle_values = params["angle_values"]
     labels = params["labels"]
 
@@ -714,14 +869,13 @@ def draw_angle_line(params: dict) -> Drawing:
             # Narrow wedges: the arc itself has little room, so place the
             # label just beyond the ray tips entirely rather than cramming
             # it into the wedge.
-            label_radius = radius + 13
+            label_radius = radius + 16
         elif v < 35:
-            label_radius = arc_r + 20
+            label_radius = arc_r + 26
         else:
             # Sit close to the arc rather than most of the way out to the
-            # ray tips - a fixed radius*0.78 (~51 units, vs. this arc's own
-            # 15) read as "far higher than the angle it's labelling".
-            label_radius = arc_r + 15
+            # ray tips.
+            label_radius = arc_r + 20
         mid_rad = math.radians(running + v / 2)
         lx, ly = cx + label_radius * math.cos(mid_rad), cy + label_radius * math.sin(mid_rad)
         # A narrow wedge's label_radius pushes well past the ray tips with no
@@ -731,69 +885,82 @@ def draw_angle_line(params: dict) -> Drawing:
         # ~20pt (confirmed via a real rendered check across many seeds, not
         # assumed). Clamp to the canvas, matching the same pattern
         # draw_sector already uses for its own labels.
-        lx = max(10, min(DIAGRAM_WIDTH - 10, lx))
-        ly = max(8, min(DIAGRAM_HEIGHT - 8, ly))
-        d.add(_label(lx, ly, lbl, size=9.5))
+        lx = max(12, min(DIAGRAM_WIDTH - 12, lx))
+        ly = max(10, min(DIAGRAM_HEIGHT - 10, ly))
+        d.add(_label(lx, ly, lbl))
         running += v
 
-    d.add(Circle(cx, cy, 2, strokeColor=INK, fillColor=INK))
+    d.add(Circle(cx, cy, 2.4, strokeColor=INK, fillColor=INK))
     return d
 
 
 def draw_triangle_angles(params: dict) -> Drawing:
-    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    cx, cy = DIAGRAM_WIDTH / 2, DIAGRAM_HEIGHT / 2 - 5
-    r = 52
-    vertices = []
-    for ang in (90, 210, 330):
-        rad = math.radians(ang)
-        vertices.append((cx + r * math.cos(rad), cy + r * math.sin(rad)))
+    # A taller canvas so a tall/narrow triangle still gets enough width for its
+    # three vertex angle labels not to collide.
+    canvas_h = 230
+    d = Drawing(DIAGRAM_WIDTH, canvas_h)
+    labels = params["angle_labels"]
+    angs = [_parse_leading_number(str(lbl)) for lbl in labels]
+    # Fill the unknown angle (if exactly one) so the shape reflects all three,
+    # then draw a legible (compressed-toward-60) version so an acute/obtuse
+    # triangle stays readable rather than a label-cramming sliver.
+    if sum(1 for x in angs if x > 0) == 2:
+        angs[angs.index(0.0)] = 180.0 - sum(x for x in angs if x > 0)
+    if all(x > 0 for x in angs) and abs(sum(angs) - 180) < 1.0:
+        drawn = _legible_angles(angs)
+        tri = _construct_triangle(0, 0, 0, drawn[0], drawn[1], drawn[2])
+    else:
+        tri = None
+    base = list(tri) if tri is not None else [(0.0, 0.0), (1.0, 0.0), (0.32, 0.78)]
+    vertices = _scale_to_fit(_orient(base, _shape_variant(params, 6)), DIAGRAM_WIDTH, canvas_h, 48)[0]
 
-    pts = [coord for vertex in vertices for coord in vertex]
-    d.add(Polygon(pts, strokeColor=INK, fillColor=None, strokeWidth=1.2))
-
+    d.add(Polygon([c for v in vertices for c in v], strokeColor=INK, fillColor=None, strokeWidth=1.2))
     n = len(vertices)
-    for i, (vertex, lbl) in enumerate(zip(vertices, params["angle_labels"])):
+    for i, (vertex, lbl) in enumerate(zip(vertices, labels)):
         other1, other2 = vertices[(i - 1) % n], vertices[(i + 1) % n]
-        d.add(_vertex_angle_arc(vertex, other1, other2, radius=9))
-        vx, vy = vertex
-        # Pull wide algebraic labels (e.g. "(2x + 98)°") further in toward the
-        # centroid than short ones like "31°" or "x", so they have more clearance
-        # from the two sloped edges either side of the vertex - a fixed 0.58 inset
-        # only worked while every label was short enough to fit near the vertex.
-        width = stringWidth(str(lbl), _LABEL_FONT, 9.5)
-        inset = min(0.8, 0.5 + width / 220)
-        lx, ly = vx + (cx - vx) * inset, vy + (cy - vy) * inset
-        d.add(_label(lx, ly, lbl, size=9.5))
+        _place_angle_label(d, vertex, other1, other2, lbl, size=_LABEL_SIZE, arc_radius=11)
     return d
 
 
+_QUAD_SHAPES = [
+    [(0.06, 0.58), (0.50, 0.96), (0.96, 0.46), (0.42, 0.05)],
+    [(0.05, 0.48), (0.42, 0.95), (0.95, 0.64), (0.60, 0.06)],
+    [(0.10, 0.42), (0.38, 0.93), (0.92, 0.56), (0.54, 0.08)],
+]
+
+
 def draw_polygon_angles(params: dict) -> Drawing:
-    """A schematic n-sided polygon with every interior angle labelled - a
-    generalisation of draw_triangle_angles to params['n_sides'] vertices
-    (e.g. 4 for a quadrilateral), reusing the same vertex-arc + centroid-
-    inset label placement so wide algebraic labels get the same
-    collision-safe treatment triangles already have."""
-    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    cx, cy = DIAGRAM_WIDTH / 2, DIAGRAM_HEIGHT / 2 - 5
+    """An n-sided polygon with every interior angle labelled at its own vertex.
+    A quadrilateral's exact shape isn't fixed by its angles alone, so it's drawn
+    as a genuine irregular convex quad (NOT a symmetric diamond) - varied per
+    question - with each angle label placed cleanly at its own vertex (via
+    _place_angle_label, the same analytic per-vertex placement the triangles
+    use), rather than all four crammed toward the centre."""
+    # A taller canvas than the default: a quadrilateral needs four interior
+    # angle labels placed at their own vertices, which converge (and collide)
+    # near the centre on the standard short canvas - the extra height lets the
+    # shape be large enough that each label sits clearly by its vertex.
+    canvas_h = 250
+    d = Drawing(DIAGRAM_WIDTH, canvas_h)
     n = params["n_sides"]
-    r = 45
-    vertices = []
-    for i in range(n):
-        rad = math.radians(90 + i * 360 / n)
-        vertices.append((cx + r * math.cos(rad), cy + r * math.sin(rad)))
+    labels = params["angle_labels"]
+    variant = _shape_variant(params, 3)
+    if n == 4:
+        base = _QUAD_SHAPES[variant]
+    else:
+        # A gently irregular convex polygon (perturbed regular) for other n.
+        base = []
+        for i in range(n):
+            ang = math.radians(90 + i * 360 / n)
+            rr = 1.0 + 0.1 * math.cos(2 * i + variant)
+            base.append((rr * math.cos(ang), rr * math.sin(ang)))
 
-    pts = [coord for vertex in vertices for coord in vertex]
-    d.add(Polygon(pts, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    vertices = _scale_to_fit(base, DIAGRAM_WIDTH, canvas_h, 44)[0]
+    d.add(Polygon([c for v in vertices for c in v], strokeColor=INK, fillColor=None, strokeWidth=1.2))
 
-    for i, (vertex, lbl) in enumerate(zip(vertices, params["angle_labels"])):
+    for i, (vertex, lbl) in enumerate(zip(vertices, labels)):
         other1, other2 = vertices[(i - 1) % n], vertices[(i + 1) % n]
-        d.add(_vertex_angle_arc(vertex, other1, other2, radius=9))
-        vx, vy = vertex
-        width = stringWidth(str(lbl), _LABEL_FONT, 9.5)
-        inset = min(0.8, 0.5 + width / 220)
-        lx, ly = vx + (cx - vx) * inset, vy + (cy - vy) * inset
-        d.add(_label(lx, ly, lbl, size=9.5))
+        _place_angle_label(d, vertex, other1, other2, lbl, size=_LABEL_SIZE, arc_radius=11)
     return d
 
 
@@ -865,8 +1032,8 @@ def draw_parallel_lines(params: dict) -> Drawing:
     # while every label was as short as "x".
     known_anchor = "start" if kx >= 0 else "end"
     unknown_anchor = "start" if ux2 >= 0 else "end"
-    d.add(_label(ix_top + kx, y_top + ky, params["known_label"], anchor=known_anchor, size=10))
-    d.add(_label(ix_bottom + ux2, y_bottom + uy2, params["unknown_label"], anchor=unknown_anchor, size=10))
+    d.add(_label(ix_top + kx, y_top + ky, params["known_label"], anchor=known_anchor))
+    d.add(_label(ix_bottom + ux2, y_bottom + uy2, params["unknown_label"], anchor=unknown_anchor))
     return d
 
 
@@ -888,11 +1055,12 @@ def draw_exterior_triangle(params: dict) -> Drawing:
     else:
         apex_choices = [(100, 95), (108, 102)]
     C = apex_choices[variant % len(apex_choices)]
+    ext_old = (B[0] + (B[0] - A[0]) * 0.4, B[1] + (B[1] - A[1]) * 0.4)
+    # Scale the whole figure (triangle + the extended base ray) up to fill the
+    # canvas, preserving shape.
+    (A, B, C, ext_point), _ = _scale_to_fit([A, B, C, ext_old], DIAGRAM_WIDTH, DIAGRAM_HEIGHT, 44)
+    ext_x, ext_y = ext_point
     d.add(Polygon([A[0], A[1], B[0], B[1], C[0], C[1]], strokeColor=INK, fillColor=None, strokeWidth=1.2))
-
-    ext_x = B[0] + (B[0] - A[0]) * 0.4
-    ext_y = B[1] + (B[1] - A[1]) * 0.4
-    ext_point = (ext_x, ext_y)
     d.add(Line(B[0], B[1], ext_x, ext_y, strokeColor=INK, strokeWidth=1.2))
 
     d.add(_vertex_angle_arc(A, B, C, radius=9))
@@ -911,15 +1079,15 @@ def draw_exterior_triangle(params: dict) -> Drawing:
         # the inset point itself was still too close to the vertex, so the
         # text immediately ran into the sloped edge on its way out. The fix
         # is a genuinely bigger inset distance, not a different anchor.
-        width = stringWidth(str(label), _LABEL_FONT, 10)
+        width = stringWidth(str(label), _LABEL_FONT, _LABEL_SIZE)
         factor = min(0.85, 0.25 + width / 100)
         return (vertex[0] + (centroid[0] - vertex[0]) * factor, vertex[1] + (centroid[1] - vertex[1]) * factor)
 
     ax, ay = _inset(A, params["interior1_label"])
     bx, by = _inset(B, params["interior2_label"])
-    d.add(_label(ax, ay, params["interior1_label"], size=10))
-    d.add(_label(bx, by, params["interior2_label"], size=10))
-    d.add(_label(B[0] + 20, B[1] + 10, params["exterior_label"], anchor="start", size=10))
+    d.add(_label(ax, ay, params["interior1_label"]))
+    d.add(_label(bx, by, params["interior2_label"]))
+    d.add(_label(B[0] + 22, B[1] + 10, params["exterior_label"], anchor="start"))
     return d
 
 
@@ -927,7 +1095,7 @@ def draw_polygon(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     n = params["n_sides"]
     cx, cy = DIAGRAM_WIDTH / 2, DIAGRAM_HEIGHT / 2
-    r = 45
+    r = 70
     vertices = []
     for i in range(n):
         rad = math.radians(90 + i * 360 / n)
@@ -946,14 +1114,14 @@ def draw_polygon(params: dict) -> Drawing:
         ext_y = v0[1] + (v0[1] - prev_v[1]) * 0.5
         ext_point = (ext_x, ext_y)
         d.add(Line(v0[0], v0[1], ext_x, ext_y, strokeColor=INK, strokeWidth=1.2))
-        d.add(_vertex_angle_arc(v0, ext_point, v1, radius=10))
-        lx, ly = ext_x + (v1[0] - v0[0]) * 0.18, ext_y + (v1[1] - v0[1]) * 0.18
-        d.add(_label(lx, ly, params["marked_angle_label"], size=9.5))
+        d.add(_vertex_angle_arc(v0, ext_point, v1, radius=12))
+        lx, ly = ext_x + (v1[0] - v0[0]) * 0.20, ext_y + (v1[1] - v0[1]) * 0.20
+        d.add(_label(lx, ly, params["marked_angle_label"]))
     else:
-        d.add(_vertex_angle_arc(vertices[0], vertices[-1], vertices[1], radius=8))
+        d.add(_vertex_angle_arc(vertices[0], vertices[-1], vertices[1], radius=10))
         vx, vy = vertices[0]
-        lx, ly = vx + (cx - vx) * 0.45, vy + (cy - vy) * 0.45
-        d.add(_label(lx, ly, params["marked_angle_label"], size=9.5))
+        lx, ly = vx + (cx - vx) * 0.42, vy + (cy - vy) * 0.42
+        d.add(_label(lx, ly, params["marked_angle_label"]))
     return d
 
 
@@ -1006,7 +1174,7 @@ def draw_symmetry_shape(params: dict) -> Drawing:
             cxp, cyp = fit(centre)
             d.add(_rotation_indicator(cxp, cyp))
             if params.get("rotation_order"):
-                d.add(_label(cxp, cyp - 26, f"order {params['rotation_order']}", color=ACCENT, size=7.5))
+                d.add(_label(cxp, cyp - 28, f"order {params['rotation_order']}", color=ACCENT))
 
     return d
 
@@ -1018,10 +1186,20 @@ def draw_right_triangle(params: dict) -> Drawing:
     every time, and labels are placed generically so they stay clear of the
     edges in any orientation."""
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    A, B, C = _TRIG_TRIANGLE_VARIANTS[_shape_variant(params, len(_TRIG_TRIANGLE_VARIANTS))]
+    # Draw the two legs to their true relative lengths (right angle at A, leg1
+    # = A-B, leg2 = A-C), so a flat 48:14 triangle looks flat and a near-square
+    # one looks square - proportional where the legs are given, plausible where
+    # a leg is the unknown. Orientation varies per question (_orient) so it
+    # isn't the same picture every time.
+    v1 = _parse_leading_number(str(params["leg1_label"]))
+    v2 = _parse_leading_number(str(params["leg2_label"]))
+    leg1 = v1 if v1 > 0 else _plausible_length([v2], fallback=8)
+    leg2 = v2 if v2 > 0 else _plausible_length([v1], fallback=8)
+    base = _orient([(0, 0), (leg1, 0), (0, leg2)], _shape_variant(params, 8))
+    A, B, C = _fit_triangle(*base)
     d.add(Polygon([A[0], A[1], B[0], B[1], C[0], C[1]], strokeColor=INK, fillColor=None, strokeWidth=1.2))
 
-    d.add(_right_angle_marker(A, B, C, s=9))
+    d.add(_right_angle_marker(A, B, C, s=11))
     size = _TRIANGLE_LABEL_SIZE
     _place_side_label(d, A, B, C, params["leg1_label"], size)
     _place_side_label(d, A, C, B, params["leg2_label"], size)
@@ -1145,7 +1323,9 @@ _TRIG_TRIANGLE_VARIANTS = [
     ((158, 104), (158, 36), (46, 104)),  # right angle top-right, marked angle at top
 ]
 
-_TRIANGLE_LABEL_SIZE = 9.5
+# Kept as a named constant for the triangle functions, but now identical to the
+# one uniform label size (see _LABEL_SIZE) so all diagram text matches.
+_TRIANGLE_LABEL_SIZE = _LABEL_SIZE
 
 
 def draw_trig_triangle(params: dict) -> Drawing:
@@ -1153,10 +1333,19 @@ def draw_trig_triangle(params: dict) -> Drawing:
     at B. Opposite/adjacent are relative to that angle. Orientation and size
     vary per question (see _TRIG_TRIANGLE_VARIANTS)."""
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    A, B, C = _TRIG_TRIANGLE_VARIANTS[_shape_variant(params, len(_TRIG_TRIANGLE_VARIANTS))]
+    # Draw the triangle to the true marked angle at B (right angle at A,
+    # adjacent = A-B, opposite = A-C), so e.g. a 35 deg angle looks like 35 deg
+    # rather than a fixed generic shape. Orientation varies per question.
+    theta = _parse_leading_number(str(params.get("angle_label", "")))
+    if not 8 <= theta <= 82:
+        theta = 40.0  # plausible drawing angle when the marked angle is the unknown
+    adj = 100.0
+    opp = adj * math.tan(math.radians(theta))
+    base = _orient([(0, 0), (adj, 0), (0, opp)], _shape_variant(params, 8))
+    A, B, C = _fit_triangle(*base)
     d.add(Polygon([A[0], A[1], B[0], B[1], C[0], C[1]], strokeColor=INK, fillColor=None, strokeWidth=1.2))
 
-    d.add(_right_angle_marker(A, B, C, s=9))
+    d.add(_right_angle_marker(A, B, C, s=11))
     size = _TRIANGLE_LABEL_SIZE
     if params.get("adjacent_label"):
         _place_side_label(d, A, B, C, params["adjacent_label"], size)
@@ -1189,7 +1378,21 @@ def draw_general_triangle(params: dict) -> Drawing:
     labelled by the caller. Side and angle labels use the SAME font size (user
     review feedback), and angle values sit just outside their own arc."""
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    A, B, C = _GENERAL_TRIANGLE_VARIANTS[_shape_variant(params, len(_GENERAL_TRIANGLE_VARIANTS))]
+    # Construct the triangle to its true shape from the given sides/angles where
+    # possible (so a labelled 110 deg angle is drawn obtuse); fall back to a
+    # varied plausible scalene shape when the givens don't pin it down.
+    constructed = _construct_triangle(
+        _parse_leading_number(str(params.get("side_a_label", ""))),
+        _parse_leading_number(str(params.get("side_b_label", ""))),
+        _parse_leading_number(str(params.get("side_c_label", ""))),
+        _parse_leading_number(str(params.get("angle_A_label", ""))),
+        _parse_leading_number(str(params.get("angle_B_label", ""))),
+        _parse_leading_number(str(params.get("angle_C_label", ""))),
+    )
+    if constructed is not None:
+        A, B, C = _fit_triangle(*_orient(list(constructed), _shape_variant(params, 8)))
+    else:
+        A, B, C = _fit_triangle(*_GENERAL_TRIANGLE_VARIANTS[_shape_variant(params, len(_GENERAL_TRIANGLE_VARIANTS))])
     d.add(Polygon([A[0], A[1], B[0], B[1], C[0], C[1]], strokeColor=INK, fillColor=None, strokeWidth=1.2))
 
     size = _TRIANGLE_LABEL_SIZE
@@ -1460,6 +1663,9 @@ def draw_two_triangle_congruence(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     T1 = [(12, 34), (82, 34), (47, 102)]
     T2 = [(118, 34), (188, 34), (153, 102)]
+    # Scale both triangles (as one figure) up to fill the wider canvas.
+    scaled, _ = _scale_to_fit(T1 + T2, DIAGRAM_WIDTH, DIAGRAM_HEIGHT, 38)
+    T1, T2 = scaled[:3], scaled[3:]
 
     for tri in (T1, T2):
         d.add(Polygon([coord for pt in tri for coord in pt], strokeColor=INK, fillColor=None, strokeWidth=1.2))
@@ -1469,9 +1675,9 @@ def draw_two_triangle_congruence(params: dict) -> Drawing:
             continue
         for idx, (pt, label) in enumerate(zip(tri, labels)):
             x, y = pt
-            y_off = -13 if idx < 2 else 10
+            y_off = -15 if idx < 2 else 12
             anchor = "end" if idx == 0 else ("start" if idx == 1 else "middle")
-            d.add(_label(x, y + y_off, label, anchor=anchor, size=8))
+            d.add(_label(x, y + y_off, label, anchor=anchor))
 
     for tri, ticks_key in ((T1, "ticks_1"), (T2, "ticks_2")):
         for i, j, count in params.get(ticks_key, []):
@@ -1493,18 +1699,18 @@ def draw_two_triangle_congruence(params: dict) -> Drawing:
         v = params.get(key)
         if v is not None:
             others = [tri[k] for k in range(3) if k != v]
-            d.add(_right_angle_marker(tri[v], others[0], others[1], s=7))
+            d.add(_right_angle_marker(tri[v], others[0], others[1], s=10))
     for tri, key in ((T1, "side_labels_1"), (T2, "side_labels_2")):
         for i, j, text in params.get(key, []):
             k = next(idx for idx in range(3) if idx not in (i, j))
-            _place_side_label(d, tri[i], tri[j], tri[k], text, 7.5, offset=10)
+            _place_side_label(d, tri[i], tri[j], tri[k], text, _LABEL_SIZE, offset=11)
     for tri, key in ((T1, "angle_labels_1"), (T2, "angle_labels_2")):
         for v, text in params.get(key, []):
             others = [tri[k] for k in range(3) if k != v]
-            _place_angle_label(d, tri[v], others[0], others[1], text, size=7.5, arc_radius=9)
+            _place_angle_label(d, tri[v], others[0], others[1], text, size=_LABEL_SIZE, arc_radius=11)
 
     if params.get("note"):
-        d.add(_label(DIAGRAM_WIDTH / 2, 8, params["note"], size=7, color=MUTED))
+        d.add(_label(DIAGRAM_WIDTH / 2, 10, params["note"], color=MUTED))
     else:
         _not_to_scale(d)
     return d
@@ -1514,7 +1720,7 @@ def draw_vector_triangle(params: dict) -> Drawing:
     """Triangle OAB with position vectors a = OA, b = OB, and a point P on AB
     at a given ratio AP:PB, for geometric-vector questions."""
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
-    O, A, B = (30, 25), (65, 108), (175, 25)
+    (O, A, B), _ = _scale_to_fit([(30, 25), (65, 108), (175, 25)], DIAGRAM_WIDTH, DIAGRAM_HEIGHT, 46)
     d.add(Line(O[0], O[1], A[0], A[1], strokeColor=INK, strokeWidth=1.2))
     d.add(Line(O[0], O[1], B[0], B[1], strokeColor=INK, strokeWidth=1.2))
     d.add(Line(A[0], A[1], B[0], B[1], strokeColor=INK, strokeWidth=1.2))
@@ -1532,12 +1738,12 @@ def draw_vector_triangle(params: dict) -> Drawing:
     m, n = params["ratio"]
     t = m / (m + n)
     P = (A[0] + (B[0] - A[0]) * t, A[1] + (B[1] - A[1]) * t)
-    d.add(Circle(P[0], P[1], 1.8, strokeColor=INK, fillColor=INK))
-    d.add(_label(P[0], P[1] + 8, params["point_label"], size=8))
+    d.add(Circle(P[0], P[1], 2.2, strokeColor=INK, fillColor=INK))
+    d.add(_label(P[0], P[1] + 9, params["point_label"]))
 
-    d.add(_label((O[0] + A[0]) / 2 - 10, (O[1] + A[1]) / 2, params["a_label"], anchor="end", size=9))
-    d.add(_label((O[0] + B[0]) / 2, O[1] - 14, params["b_label"], size=9))
-    d.add(_label(O[0] - 8, O[1] - 10, params["origin_label"], size=8, anchor="end"))
+    d.add(_label((O[0] + A[0]) / 2 - 11, (O[1] + A[1]) / 2, params["a_label"], anchor="end"))
+    d.add(_label((O[0] + B[0]) / 2, O[1] - 16, params["b_label"]))
+    d.add(_label(O[0] - 9, O[1] - 11, params["origin_label"], anchor="end"))
     return d
 
 
