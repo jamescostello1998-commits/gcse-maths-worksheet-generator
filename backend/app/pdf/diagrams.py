@@ -3771,21 +3771,44 @@ def draw_bag(params: dict) -> Drawing:
     return d
 
 
-SOLID_WIDTH = 200
-SOLID_HEIGHT = 150
+SOLID_WIDTH = 290
+SOLID_HEIGHT = 210
 
 # Fixed oblique "depth" offset applied to a straight-edged solid's front-face
-# coordinates to get its back-face coordinates - gives every 3D sketch below a
-# consistent look. These are schematic ("Diagram NOT accurately drawn")
-# sketches at fixed on-canvas proportions, like draw_general_triangle/
-# draw_right_triangle above, not scaled to the question's real numbers -
-# a scale-accurate oblique projection isn't how real exam papers draw these
-# either.
-_SOLID_DX, _SOLID_DY = 26, 16
+# coordinates to get its back-face coordinates - still used by draw_compound_3d
+# (whose two-part shapes keep fixed proportions). The standalone single-solid
+# functions below now scale their own edges proportionally to the question's
+# real numbers (so a tall/thin cylinder looks tall/thin, a flat/wide cuboid
+# looks flat/wide - "roughly to scale, every shape looks different"), computing
+# their own depth offset from the parsed length rather than this fixed one.
+_SOLID_DX, _SOLID_DY = 30, 19
+# Unit direction of the oblique depth axis (same slope as _SOLID_DX/_SOLID_DY),
+# for the proportional solids that scale the depth magnitude themselves.
+_DEPTH_LEN = math.hypot(_SOLID_DX, _SOLID_DY)
+_DEPTH_UX, _DEPTH_UY = _SOLID_DX / _DEPTH_LEN, _SOLID_DY / _DEPTH_LEN
 
 
 def _offset(pt: tuple[float, float], dx: float = _SOLID_DX, dy: float = _SOLID_DY) -> tuple[float, float]:
     return (pt[0] + dx, pt[1] + dy)
+
+
+def _solid_dims_scale(values: list[float], target: float, floor: float, cap: float) -> float:
+    """A single pixels-per-unit scale for a 3D solid, mapping its largest real
+    dimension to `target` px. Each caller multiplies its own real dims by this
+    (then clamps the *result* to [floor, cap]) so the on-screen edges stay
+    proportional to the real numbers where they reasonably can - giving each
+    question a genuinely different-looking solid - while a floor keeps a very
+    small dimension visible and a cap keeps a very large one on-canvas. A
+    dimension read as 0 (a bare algebraic unknown, not a given number) is
+    ignored, falling back to a sensible default so the shape is never
+    degenerate."""
+    real = [v for v in values if v > 0]
+    biggest = max(real) if real else 1.0
+    return target / biggest
+
+
+def _clamp(v: float, lo: float, hi: float) -> float:
+    return max(lo, min(hi, v))
 
 
 def draw_cuboid(params: dict) -> Drawing:
@@ -3797,12 +3820,27 @@ def draw_cuboid(params: dict) -> Drawing:
     the same fixed 80x60 rectangle regardless of input) so it actually reads
     as a cube on screen, not a generic cuboid."""
     d = Drawing(SOLID_WIDTH, SOLID_HEIGHT)
+    # Draw the cuboid roughly to scale: front-face width/height and the oblique
+    # depth are each proportional to the real width/height/length, so a flat
+    # wide box looks flat and wide and a tall box looks tall (was always a fixed
+    # 80x60 front face regardless of input). Numbers come from the labels
+    # (e.g. "8 cm" -> 8); a bare unknown falls back to a sensible default.
+    w = _parse_leading_number(params["width_label"]) or 8.0
+    h = _parse_leading_number(params["height_label"]) or 6.0
+    length = _parse_leading_number(params["length_label"]) or 7.0
     if params.get("is_cube"):
-        x0, y0, fw, fh = 60, 24, 66, 66
-    else:
-        x0, y0, fw, fh = 55, 30, 80, 60
+        w = h = length = w or 6.0
+    avail_w, avail_h = SOLID_WIDTH - 2 * 46, SOLID_HEIGHT - 2 * 34
+    # Fit the whole oblique bounding box (front face plus the depth offset) into
+    # the available area at one shared scale, keeping every edge proportional.
+    scale = min(avail_w / (w + length * _DEPTH_UX), avail_h / (h + length * _DEPTH_UY))
+    fw, fh = _clamp(w * scale, 24, avail_w), _clamp(h * scale, 22, avail_h)
+    depth = _clamp(length * scale, 20, 90)
+    ddx, ddy = depth * _DEPTH_UX, depth * _DEPTH_UY
+    x0 = 46 + (avail_w - (fw + ddx)) / 2
+    y0 = 34 + (avail_h - (fh + ddy)) / 2
     FBL, FBR, FTR, FTL = (x0, y0), (x0 + fw, y0), (x0 + fw, y0 + fh), (x0, y0 + fh)
-    BBL, BBR, BTR, BTL = _offset(FBL), _offset(FBR), _offset(FTR), _offset(FTL)
+    BBL, BBR, BTR, BTL = _offset(FBL, ddx, ddy), _offset(FBR, ddx, ddy), _offset(FTR, ddx, ddy), _offset(FTL, ddx, ddy)
 
     d.add(Rect(x0, y0, fw, fh, strokeColor=INK, fillColor=None, strokeWidth=1.2))
     d.add(Polygon([*FTL, *FTR, *BTR, *BTL], strokeColor=INK, fillColor=None, strokeWidth=1.1))
@@ -3813,7 +3851,18 @@ def draw_cuboid(params: dict) -> Drawing:
 
     d.add(_label(x0 + fw / 2, y0 - 14, params["width_label"]))
     d.add(_label(x0 - 10, y0 + fh / 2, params["height_label"], anchor="end"))
-    d.add(_label((FBR[0] + BBR[0]) / 2 + 6, (FBR[1] + BBR[1]) / 2 - 4, params["length_label"], anchor="start", size=8))
+    # Length label along the bottom depth edge. When the vertices are lettered
+    # (pythagoras_3d/trig_3d) a short depth otherwise crams this label on top of
+    # the back-bottom-right vertex's own "c" label - so drop it centred just
+    # BELOW the depth-edge midpoint (clear of both the "b" and "c" corner
+    # labels); the plain (unlettered) cuboids keep the alongside-the-edge
+    # placement that reads well there.
+    lmx = (FBR[0] + BBR[0]) / 2
+    lmy = (FBR[1] + BBR[1]) / 2
+    if params.get("vertex_labels"):
+        d.add(_label(lmx, lmy - 13, params["length_label"]))
+    else:
+        d.add(_label(lmx + 6, lmy - 6, params["length_label"], anchor="start"))
     # The space diagonal (FBL<->BTR) is drawn dashed whenever either a label
     # is wanted OR show_diagonal is set - the latter lets a caller (e.g.
     # pythagoras_3d/trig_3d) show the diagonal with no "?"/"theta" text on it,
@@ -3823,7 +3872,7 @@ def draw_cuboid(params: dict) -> Drawing:
     if params.get("diagonal_label"):
         mx = FBL[0] + (BTR[0] - FBL[0]) * 0.6
         my = FBL[1] + (BTR[1] - FBL[1]) * 0.6
-        d.add(_label(mx + 6, my + 4, params["diagonal_label"], anchor="start", size=8))
+        d.add(_label(mx + 6, my + 4, params["diagonal_label"], anchor="start"))
 
     vertex_labels = params.get("vertex_labels")
     if vertex_labels:
@@ -3847,14 +3896,14 @@ def draw_cuboid(params: dict) -> Drawing:
                 # direction genuinely clear of all three dashed edges - with a
                 # short thin leader line back to the vertex so the
                 # correspondence is unambiguous.
-                lx, ly = BBL[0] - 15, BBL[1] + 5
-                d.add(Line(lx + 4, ly - 1, BBL[0] - 1, BBL[1], strokeColor=MUTED, strokeWidth=0.5))
-                d.add(_label(lx, ly, lbl, size=7.5, anchor="end"))
+                lx, ly = BBL[0] - 16, BBL[1] + 5
+                d.add(Line(lx + 5, ly - 1, BBL[0] - 1, BBL[1], strokeColor=MUTED, strokeWidth=0.5))
+                d.add(_label(lx, ly, lbl, anchor="end"))
             else:
                 dx_l, dy_l = pt[0] - cx_all, pt[1] - cy_all
                 dist = math.hypot(dx_l, dy_l) or 1.0
-                lx, ly = pt[0] + dx_l / dist * 13, pt[1] + dy_l / dist * 13
-                d.add(_label(lx, ly, lbl, size=7.5))
+                lx, ly = pt[0] + dx_l / dist * 15, pt[1] + dy_l / dist * 15
+                d.add(_label(lx, ly, lbl))
 
     _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
     return d
@@ -3865,8 +3914,20 @@ def draw_triangular_prism(params: dict) -> Drawing:
     Every edge is visible/solid except the far back-bottom edge of the
     hidden underside face, which is dashed."""
     d = Drawing(SOLID_WIDTH, SOLID_HEIGHT)
-    A, B, C = (55, 30), (135, 30), (55, 90)  # right angle at A
-    A2, B2, C2 = _offset(A), _offset(B), _offset(C)
+    # Proportional cross-section + depth (was a fixed 80x60 triangle regardless
+    # of input), scaled from the real base/height/length in the labels.
+    base = _parse_leading_number(params["base_label"]) or 8.0
+    th = _parse_leading_number(params["triangle_height_label"]) or 6.0
+    length = _parse_leading_number(params["length_label"]) or 7.0
+    avail_w, avail_h = SOLID_WIDTH - 2 * 46, SOLID_HEIGHT - 2 * 34
+    scale = min(avail_w / (base + length * _DEPTH_UX), avail_h / (th + length * _DEPTH_UY))
+    bw, hh = _clamp(base * scale, 26, avail_w), _clamp(th * scale, 24, avail_h)
+    depth = _clamp(length * scale, 20, 90)
+    ddx, ddy = depth * _DEPTH_UX, depth * _DEPTH_UY
+    x0 = 46 + (avail_w - (bw + ddx)) / 2
+    y0 = 34 + (avail_h - (hh + ddy)) / 2
+    A, B, C = (x0, y0), (x0 + bw, y0), (x0, y0 + hh)  # right angle at A
+    A2, B2, C2 = _offset(A, ddx, ddy), _offset(B, ddx, ddy), _offset(C, ddx, ddy)
 
     d.add(Polygon([*A, *B, *C], strokeColor=INK, fillColor=None, strokeWidth=1.2))
     d.add(Line(*A, *A2, strokeColor=INK, strokeWidth=1.1))
@@ -3876,11 +3937,11 @@ def draw_triangular_prism(params: dict) -> Drawing:
     d.add(Line(*C2, *A2, strokeColor=INK, strokeWidth=1.1))
     d.add(Line(*A2, *B2, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
 
-    s = 7
+    s = 8
     d.add(Rect(A[0], A[1], s, s, strokeColor=INK, fillColor=None, strokeWidth=1))
     d.add(_label((A[0] + B[0]) / 2, A[1] - 14, params["base_label"]))
     d.add(_label(A[0] - 10, (A[1] + C[1]) / 2, params["triangle_height_label"], anchor="end"))
-    d.add(_label((B[0] + B2[0]) / 2 + 6, (B[1] + B2[1]) / 2 - 4, params["length_label"], anchor="start", size=8))
+    d.add(_label((B[0] + B2[0]) / 2 + 6, (B[1] + B2[1]) / 2 - 4, params["length_label"], anchor="start"))
     _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
     return d
 
@@ -3915,7 +3976,7 @@ def draw_plans_and_elevations(params: dict) -> Drawing:
     else:
         raise ValueError(f"unknown plans/elevations shape: {shape!r}")
 
-    cell = 60
+    cell = 74
     scale = cell / max(dim_x, dim_y, dim_z)
     sx, sy, sz = dim_x * scale, dim_y * scale, dim_z * scale
 
@@ -3926,21 +3987,25 @@ def draw_plans_and_elevations(params: dict) -> Drawing:
     # closely (not a unit test): a small solid's captions ran together with
     # no gap at all ("Front elevationSide elevation"). Widen the gap
     # whenever the two captions' own widths would otherwise overlap.
-    front_caption_w = stringWidth("Front elevation", "Helvetica", 7.5)
-    side_caption_w = stringWidth("Side elevation", "Helvetica", 7.5)
+    # Horizontal gap between the front and side views must clear the two 11pt
+    # captions; the vertical gap between the front and plan views stays small
+    # (a big vertical gap needlessly inflates the whole diagram's height).
+    front_caption_w = stringWidth("Front elevation", _LABEL_FONT, _LABEL_SIZE)
+    side_caption_w = stringWidth("Side elevation", _LABEL_FONT, _LABEL_SIZE)
     min_gap = front_caption_w / 2 + side_caption_w / 2 + 6 - sx / 2 - sz / 2
-    gap = max(16, min_gap)
-    margin_l, margin_bottom = 50, 26
+    h_gap = max(18, min_gap)
+    v_gap = 18
+    margin_l, margin_bottom = 54, 30
     fx0 = margin_l
-    fy0 = margin_bottom + sz + gap
+    fy0 = margin_bottom + sz + v_gap
 
-    d_width = fx0 + sx + gap + sz + 20
-    d_height = fy0 + sy + 22
+    d_width = fx0 + sx + h_gap + sz + 24
+    d_height = fy0 + sy + 26
     d = Drawing(d_width, d_height)
 
-    d.add(_label(fx0 + sx / 2, fy0 + sy + 14, "Front elevation", size=7.5))
-    d.add(_label(fx0 + sx + gap + sz / 2, fy0 + sy + 14, "Side elevation", size=7.5))
-    d.add(_label(fx0 + sx / 2, margin_bottom - 12, "Plan view", size=7.5))
+    d.add(_label(fx0 + sx / 2, fy0 + sy + 15, "Front elevation"))
+    d.add(_label(fx0 + sx + h_gap + sz / 2, fy0 + sy + 15, "Side elevation"))
+    d.add(_label(fx0 + sx / 2, margin_bottom - 14, "Plan view"))
 
     if front_kind == "rect":
         d.add(Rect(fx0, fy0, sx, sy, strokeColor=INK, fillColor=None, strokeWidth=1.2))
@@ -3949,16 +4014,16 @@ def draw_plans_and_elevations(params: dict) -> Drawing:
             [fx0, fy0, fx0 + sx, fy0, fx0, fy0 + sy],
             strokeColor=INK, fillColor=None, strokeWidth=1.2,
         ))
-        s = 7
+        s = 8
         d.add(Rect(fx0, fy0, s, s, strokeColor=INK, fillColor=None, strokeWidth=1))
 
     d.add(Rect(fx0, margin_bottom, sx, sz, strokeColor=INK, fillColor=None, strokeWidth=1.2))
-    d.add(Rect(fx0 + sx + gap, fy0, sz, sy, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+    d.add(Rect(fx0 + sx + h_gap, fy0, sz, sy, strokeColor=INK, fillColor=None, strokeWidth=1.2))
 
-    d.add(_label(fx0 + sx / 2, fy0 - 10, x_label, size=8))
-    d.add(_label(fx0 - 8, fy0 + sy / 2, y_label, anchor="end", size=8))
-    d.add(_label(fx0 + sx + gap + sz / 2, fy0 - 10, z_label, size=8))
-    d.add(_label(fx0 - 8, margin_bottom + sz / 2, z_label, anchor="end", size=8))
+    d.add(_label(fx0 + sx / 2, fy0 - 12, x_label))
+    d.add(_label(fx0 - 9, fy0 + sy / 2, y_label, anchor="end"))
+    d.add(_label(fx0 + sx + h_gap + sz / 2, fy0 - 12, z_label))
+    d.add(_label(fx0 - 9, margin_bottom + sz / 2, z_label, anchor="end"))
 
     return d
 
@@ -3970,20 +4035,23 @@ def draw_plans_and_elevations_blank(params: dict) -> Drawing:
     boxes, NOT scaled to the solid's real proportions (unlike the answer
     version) - the blank grid must never hint at the solid's actual shape or
     dimensions before the student has worked it out."""
-    box = 60
+    box = 74
     grid_step = 12
-    gap = 16
-    margin_l, margin_bottom = 50, 26
+    # Horizontal gap clears the two side-by-side 11pt captions; vertical gap
+    # (front->plan) stays small so the whole grid isn't needlessly tall.
+    h_gap = 46
+    v_gap = 16
+    margin_l, margin_bottom = 54, 30
     fx0 = margin_l
-    fy0 = margin_bottom + box + gap
+    fy0 = margin_bottom + box + v_gap
 
-    d_width = fx0 + box + gap + box + 20
-    d_height = fy0 + box + 22
+    d_width = fx0 + box + h_gap + box + 24
+    d_height = fy0 + box + 26
     d = Drawing(d_width, d_height)
 
-    d.add(_label(fx0 + box / 2, fy0 + box + 14, "Front elevation", size=7.5))
-    d.add(_label(fx0 + box + gap + box / 2, fy0 + box + 14, "Side elevation", size=7.5))
-    d.add(_label(fx0 + box / 2, margin_bottom - 12, "Plan view", size=7.5))
+    d.add(_label(fx0 + box / 2, fy0 + box + 15, "Front elevation"))
+    d.add(_label(fx0 + box + h_gap + box / 2, fy0 + box + 15, "Side elevation"))
+    d.add(_label(fx0 + box / 2, margin_bottom - 14, "Plan view"))
 
     def squared_box(x0: float, y0: float) -> None:
         n = round(box / grid_step)
@@ -3994,7 +4062,7 @@ def draw_plans_and_elevations_blank(params: dict) -> Drawing:
 
     squared_box(fx0, fy0)
     squared_box(fx0, margin_bottom)
-    squared_box(fx0 + box + gap, fy0)
+    squared_box(fx0 + box + h_gap, fy0)
 
     return d
 
@@ -4055,7 +4123,19 @@ def draw_cylinder(params: dict) -> Drawing:
     lower-risk simplification vs. straight-edged solids' dashed hidden
     edges) plus two vertical tangent side lines."""
     d = Drawing(SOLID_WIDTH, SOLID_HEIGHT)
-    cx, top_y, bottom_y, rx, ry = 100, 108, 32, 40, 13
+    # Proportional radius + height (was a fixed 40-wide, 76-tall cylinder every
+    # time), scaled from the real values in the labels so a tall thin cylinder
+    # looks tall and thin.
+    r = _parse_leading_number(params["radius_label"]) or 5.0
+    height = _parse_leading_number(params["height_label"]) or 12.0
+    avail_w, avail_h = SOLID_WIDTH - 2 * 54, SOLID_HEIGHT - 2 * 26
+    scale = min(avail_w / (2 * r), avail_h / (height + 0.66 * r))
+    rx = _clamp(r * scale, 24, avail_w / 2)
+    ry = rx * 0.32
+    body_h = _clamp(height * scale, 34, avail_h - 2 * ry)
+    cx = SOLID_WIDTH / 2
+    bottom_y = (SOLID_HEIGHT - (body_h + 2 * ry)) / 2 + ry
+    top_y = bottom_y + body_h
     for shape in _cylinder_edges(cx, top_y, bottom_y, rx, ry):
         d.add(shape)
     # Dashed radius across the top face, labelled just BELOW the line inside
@@ -4063,7 +4143,7 @@ def draw_cylinder(params: dict) -> Drawing:
     # ellipse's back curve - user review feedback: measurement overlap).
     d.add(Line(cx, top_y, cx + rx, top_y, strokeColor=INK, strokeWidth=0.8, strokeDashArray=[3, 2]))
     d.add(Circle(cx, top_y, 1.4, strokeColor=INK, fillColor=INK))
-    d.add(_label(cx + rx / 2, top_y - 8, params["radius_label"], size=8))
+    d.add(_label(cx + rx / 2, top_y - 9, params["radius_label"]))
     d.add(_label(cx + rx + 10, (top_y + bottom_y) / 2, params["height_label"], anchor="start"))
     _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
     return d
@@ -4075,7 +4155,18 @@ def draw_cone(params: dict) -> Drawing:
     dashed horizontal radius are added (the right-angled Pythagoras helper
     triangle used when a question requires deriving the slant height)."""
     d = Drawing(SOLID_WIDTH, SOLID_HEIGHT)
-    cx, apex_y, base_y, rx, ry = 100, 122, 32, 42, 13
+    # Proportional radius + height (height from the label when the question
+    # gives one, otherwise a plausible default so the sketch isn't degenerate).
+    r = _parse_leading_number(params["radius_label"]) or 5.0
+    height = _parse_leading_number(params.get("height_label", "")) or (2.0 * r)
+    avail_w, avail_h = SOLID_WIDTH - 2 * 46, SOLID_HEIGHT - 2 * 26
+    scale = min(avail_w / (2 * r), avail_h / (height + 0.33 * r))
+    rx = _clamp(r * scale, 24, avail_w / 2)
+    ry = rx * 0.31
+    body_h = _clamp(height * scale, 46, avail_h - ry)
+    cx = SOLID_WIDTH / 2
+    base_y = (SOLID_HEIGHT - (body_h + ry)) / 2 + ry
+    apex_y = base_y + body_h
     d.add(Ellipse(cx, base_y, rx, ry, strokeColor=INK, fillColor=None, strokeWidth=1.2))
     d.add(Line(cx - rx, base_y, cx, apex_y, strokeColor=INK, strokeWidth=1.2))
     d.add(Line(cx + rx, base_y, cx, apex_y, strokeColor=INK, strokeWidth=1.2))
@@ -4086,14 +4177,14 @@ def draw_cone(params: dict) -> Drawing:
     d.add(Circle(cx, base_y, 1.4, strokeColor=INK, fillColor=INK))
     if params.get("show_height_triangle"):
         d.add(Line(cx, apex_y, cx, base_y, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
-        d.add(_label(cx + 6, (apex_y + base_y) / 2, params["height_label"], anchor="start", size=8))
+        d.add(_label(cx + 6, (apex_y + base_y) / 2, params["height_label"], anchor="start"))
     if params.get("slant_label"):
-        slant_x, slant_y = cx + rx * 0.62, apex_y + (base_y - apex_y) * 0.62
-        d.add(_label(slant_x + 6, slant_y, params["slant_label"], anchor="start", size=8))
+        slant_x, slant_y = cx + rx * 0.55, apex_y + (base_y - apex_y) * 0.55
+        d.add(_label(slant_x + 8, slant_y, params["slant_label"], anchor="start"))
     # Radius label sits below the base ellipse, under the dashed radius, clear
     # of the ellipse's front curve (the old left-side placement sat on the
     # curve - user review feedback: measurement overlap).
-    d.add(_label(cx + rx / 2, base_y - ry - 9, params["radius_label"], size=8))
+    d.add(_label(cx + rx / 2, base_y - ry - 11, params["radius_label"]))
     _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
     return d
 
@@ -4103,20 +4194,26 @@ def draw_sphere(params: dict) -> Drawing:
     cue), or - when params['hemisphere'] is set - a dome: a flat base
     ellipse with a semicircular arc rising from its tangent points."""
     d = Drawing(SOLID_WIDTH, SOLID_HEIGHT)
-    cx, cy, r = 100, 78, 46
+    # Radius proportional to the real value (a bigger sphere looks bigger),
+    # clamped so it stays visible and on-canvas.
+    r_real = _parse_leading_number(params["radius_label"]) or 6.0
+    cx, cy = SOLID_WIDTH / 2, SOLID_HEIGHT / 2
+    # Linear map (not r*const) so ordinary GCSE radii (~3-25) give visibly
+    # different sizes rather than all bottoming out on the floor.
+    r = _clamp(28 + r_real * 2.7, 36, 96)
     if params.get("hemisphere"):
-        base_y = cy - r * 0.15
+        base_y = cy - r * 0.32
         d.add(Ellipse(cx, base_y, r, r * 0.3, strokeColor=INK, fillColor=None, strokeWidth=1.2))
         arc = ArcPath(strokeColor=INK, fillColor=None, strokeWidth=1.2)
         arc.addArc(cx, base_y, r, 0, 180, moveTo=True)
         d.add(arc)
         d.add(Line(cx, base_y, cx + r, base_y, strokeColor=INK, strokeWidth=0.9))
-        d.add(_label(cx + r / 2, base_y + 16, params["radius_label"], size=8))
+        d.add(_label(cx + r / 2, base_y + 16, params["radius_label"]))
     else:
         d.add(Circle(cx, cy, r, strokeColor=INK, fillColor=None, strokeWidth=1.2))
         d.add(Ellipse(cx, cy, r, r * 0.3, strokeColor=INK, fillColor=None, strokeWidth=0.9))
         d.add(Line(cx, cy, cx + r, cy, strokeColor=INK, strokeWidth=0.9))
-        d.add(_label(cx + r / 2, cy + 16, params["radius_label"], size=8))
+        d.add(_label(cx + r / 2, cy + 16, params["radius_label"]))
     _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
     return d
 
@@ -4127,9 +4224,26 @@ def draw_pyramid(params: dict) -> Drawing:
     base edges further from the viewer (the diamond's back edges) are
     dashed; the two nearer edges and all four apex edges are solid."""
     d = Drawing(SOLID_WIDTH, SOLID_HEIGHT)
-    cx, base_y = 100, 40
-    N, E, S, W = (cx, base_y + 22), (cx + 55, base_y), (cx, base_y - 22), (cx - 55, base_y)
-    apex = (cx, base_y + 85)
+    # Proportional base width + apex height (height from the label when given,
+    # else a plausible default), so a squat wide pyramid and a tall thin one
+    # look different (was always the same fixed diamond + 85px apex).
+    base = _parse_leading_number(params["base_label"]) or 8.0
+    height = _parse_leading_number(params.get("height_label", "")) or (1.3 * base)
+    avail_w, avail_h = SOLID_WIDTH - 2 * 48, SOLID_HEIGHT - 2 * 26
+    scale = min(avail_w / (2 * base), avail_h / (0.42 * base + height))
+    hw = _clamp(base * scale, 34, avail_w / 2)
+    dep = hw * 0.42
+    # Floor the apex height so it always rises clearly above the base diamond's
+    # back vertex (which sits dep above centre) - otherwise a squat pyramid
+    # (wide base, short height) draws its apex merged into the base back edge
+    # and reads as broken. Tall pyramids are unaffected (their scaled height
+    # already exceeds this floor).
+    apex_h = _clamp(height * scale, dep + 40, avail_h - dep)
+    cx = SOLID_WIDTH / 2
+    y_bot = (SOLID_HEIGHT - (dep + apex_h)) / 2
+    base_y = y_bot + dep
+    N, E, S, W = (cx, base_y + dep), (cx + hw, base_y), (cx, base_y - dep), (cx - hw, base_y)
+    apex = (cx, base_y + apex_h)
 
     d.add(Line(*S, *E, strokeColor=INK, strokeWidth=1.2))
     d.add(Line(*S, *W, strokeColor=INK, strokeWidth=1.2))
@@ -4141,17 +4255,17 @@ def draw_pyramid(params: dict) -> Drawing:
     d.add(Line(*apex, *W, strokeColor=INK, strokeWidth=1.1))
     d.add(Line(cx, base_y, *apex, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
 
-    d.add(_label((S[0] + E[0]) / 2 + 8, (S[1] + E[1]) / 2 - 2, params["base_label"], anchor="start", size=8))
+    d.add(_label((S[0] + E[0]) / 2 + 8, (S[1] + E[1]) / 2 - 2, params["base_label"], anchor="start"))
     # Placed just above N (the diamond's back vertex) so the label clears
     # both the dashed N-E back base edge below it and the converging slant
     # edge to its right - a label at the true midpoint crosses one or the
     # other (found via high-DPI visual inspection).
     height_label_y = base_y + (apex[1] - base_y) * 0.28
-    d.add(_label(cx + 6, height_label_y, params["height_label"], anchor="start", size=8))
+    d.add(_label(cx + 6, height_label_y, params["height_label"], anchor="start"))
     if params.get("slant_label"):
         slant_x = apex[0] + (E[0] - apex[0]) * 0.65
         slant_y = apex[1] + (E[1] - apex[1]) * 0.65
-        d.add(_label(slant_x + 6, slant_y, params["slant_label"], anchor="start", size=8))
+        d.add(_label(slant_x + 6, slant_y, params["slant_label"], anchor="start"))
     _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
     return d
 
@@ -4160,8 +4274,20 @@ def draw_frustum(params: dict) -> Drawing:
     """A cone frustum: like draw_cone but with a smaller top ellipse instead
     of an apex point, connected by two slant tangent lines."""
     d = Drawing(SOLID_WIDTH, SOLID_HEIGHT)
-    cx, bottom_y, top_y = 100, 32, 100
-    R, r_ry, r_top, r_top_ry = 46, 14, 24, 8
+    # Proportional bottom/top radii + height from the labels (was fixed 46/24
+    # radii, 68 tall), so the taper and proportions match the real numbers.
+    R_real = _parse_leading_number(params["radius_bottom_label"]) or 10.0
+    r_top_real = _parse_leading_number(params["radius_top_label"]) or 5.0
+    height = _parse_leading_number(params["height_label"]) or 12.0
+    avail_w, avail_h = SOLID_WIDTH - 2 * 48, SOLID_HEIGHT - 2 * 26
+    scale = min(avail_w / (2 * R_real), avail_h / (height + 0.3 * R_real + 0.3 * r_top_real))
+    cx = SOLID_WIDTH / 2
+    R = _clamp(R_real * scale, 30, avail_w / 2)
+    r_top = _clamp(r_top_real * scale, 14, R - 8)
+    r_ry, r_top_ry = R * 0.3, r_top * 0.32
+    body_h = _clamp(height * scale, 44, avail_h - r_ry - r_top_ry)
+    bottom_y = (SOLID_HEIGHT - (body_h + r_ry + r_top_ry)) / 2 + r_ry
+    top_y = bottom_y + body_h
 
     d.add(Ellipse(cx, bottom_y, R, r_ry, strokeColor=INK, fillColor=None, strokeWidth=1.2))
     d.add(Ellipse(cx, top_y, r_top, r_top_ry, strokeColor=INK, fillColor=None, strokeWidth=1.2))
@@ -4178,17 +4304,17 @@ def draw_frustum(params: dict) -> Drawing:
     d.add(Circle(cx, bottom_y, 1.4, strokeColor=INK, fillColor=INK))
     d.add(Circle(cx, top_y, 1.4, strokeColor=INK, fillColor=INK))
 
-    d.add(_label(cx + R / 2, bottom_y - r_ry - 8, params["radius_bottom_label"], size=8))
-    d.add(_label(cx + r_top / 2, top_y + r_top_ry + 5, params["radius_top_label"], size=8))
+    d.add(_label(cx + R / 2, bottom_y - r_ry - 11, params["radius_bottom_label"]))
+    d.add(_label(cx + r_top / 2, top_y + r_top_ry + 6, params["radius_top_label"]))
     d.add(_label(cx + R + 6, (bottom_y + top_y) / 2, params["height_label"], anchor="start"))
     _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
     return d
 
 
-NET_WIDTH = 220
-NET_HEIGHT = 170
+NET_WIDTH = 300
+NET_HEIGHT = 230
 
-_NET_CELL = 30  # uniform face-cell size for the net layouts below - purely
+_NET_CELL = 42  # uniform face-cell size for the net layouts below - purely
 # topological (correct face count/arrangement), not scaled to real question
 # values, since a "which net folds into this solid" / "how many rectangles"
 # question only depends on the layout, not exact proportions.
@@ -4197,7 +4323,8 @@ _NET_CELL = 30  # uniform face-cell size for the net layouts below - purely
 def _draw_net_cuboid(params: dict) -> Drawing:
     d = Drawing(NET_WIDTH, NET_HEIGHT)
     c = _NET_CELL
-    x0, y0 = 20, 70
+    x0 = (NET_WIDTH - 4 * c) / 2
+    y0 = (NET_HEIGHT - 3 * c) / 2 + c
     for i in range(4):
         d.add(Rect(x0 + i * c, y0, c, c, strokeColor=INK, fillColor=None, strokeWidth=1))
     d.add(Rect(x0, y0 + c, c, c, strokeColor=INK, fillColor=None, strokeWidth=1))
@@ -4207,9 +4334,10 @@ def _draw_net_cuboid(params: dict) -> Drawing:
 
 def _draw_net_cylinder(params: dict) -> Drawing:
     d = Drawing(NET_WIDTH, NET_HEIGHT)
-    rw, rh = 90, 40
-    x0, y0 = (NET_WIDTH - rw) / 2, (NET_HEIGHT - rh) / 2
-    r = 16
+    rw, rh = 130, 56
+    r = 22
+    x0 = (NET_WIDTH - rw) / 2
+    y0 = (NET_HEIGHT - (rh + 2 * r)) / 2 + r
     d.add(Rect(x0, y0, rw, rh, strokeColor=INK, fillColor=None, strokeWidth=1.1))
     d.add(Circle(x0 + rw / 2, y0 + rh + r, r, strokeColor=INK, fillColor=None, strokeWidth=1))
     d.add(Circle(x0 + rw / 2, y0 - r, r, strokeColor=INK, fillColor=None, strokeWidth=1))
@@ -4218,9 +4346,10 @@ def _draw_net_cylinder(params: dict) -> Drawing:
 
 def _draw_net_cone(params: dict) -> Drawing:
     d = Drawing(NET_WIDTH, NET_HEIGHT)
-    cx, cy, r = 70, 85, 30
+    cy = NET_HEIGHT / 2
+    cx, r = 92, 42
     d.add(Circle(cx, cy, r, strokeColor=INK, fillColor=None, strokeWidth=1.1))
-    sector_cx, sector_r = 158, 60
+    sector_cx, sector_r = 214, 82
     d.add(Wedge(sector_cx, cy, sector_r, -125, 125, strokeColor=INK, fillColor=None, strokeWidth=1.1))
     return d
 
@@ -4228,21 +4357,24 @@ def _draw_net_cone(params: dict) -> Drawing:
 def _draw_net_triangular_prism(params: dict) -> Drawing:
     d = Drawing(NET_WIDTH, NET_HEIGHT)
     c = _NET_CELL
-    x0, y0 = 20, 70
+    tri_h = 30
+    x0 = (NET_WIDTH - 3 * c) / 2
+    y0 = (NET_HEIGHT - (c + 14 + 2 * tri_h)) / 2 + tri_h
     for i in range(3):
-        d.add(Rect(x0 + i * c, y0, c, c + 10, strokeColor=INK, fillColor=None, strokeWidth=1))
-    tri_top = y0 + c + 10
-    d.add(Polygon([x0, tri_top, x0 + c, tri_top, x0 + c / 2, tri_top + 22], strokeColor=INK, fillColor=None, strokeWidth=1))
-    d.add(Polygon([x0, y0, x0 + c, y0, x0 + c / 2, y0 - 22], strokeColor=INK, fillColor=None, strokeWidth=1))
+        d.add(Rect(x0 + i * c, y0, c, c + 14, strokeColor=INK, fillColor=None, strokeWidth=1))
+    tri_top = y0 + c + 14
+    d.add(Polygon([x0, tri_top, x0 + c, tri_top, x0 + c / 2, tri_top + tri_h], strokeColor=INK, fillColor=None, strokeWidth=1))
+    d.add(Polygon([x0, y0, x0 + c, y0, x0 + c / 2, y0 - tri_h], strokeColor=INK, fillColor=None, strokeWidth=1))
     return d
 
 
 def _draw_net_pyramid(params: dict) -> Drawing:
     d = Drawing(NET_WIDTH, NET_HEIGHT)
-    c = _NET_CELL * 1.4
-    x0, y0 = (NET_WIDTH - c) / 2, (NET_HEIGHT - c) / 2
-    d.add(Rect(x0, y0, c, c, strokeColor=INK, fillColor=None, strokeWidth=1.1))
+    c = _NET_CELL * 1.5
     tri_h = c * 0.6
+    x0 = (NET_WIDTH - c) / 2
+    y0 = (NET_HEIGHT - c) / 2
+    d.add(Rect(x0, y0, c, c, strokeColor=INK, fillColor=None, strokeWidth=1.1))
     d.add(Polygon([x0, y0 + c, x0 + c, y0 + c, x0 + c / 2, y0 + c + tri_h], strokeColor=INK, fillColor=None, strokeWidth=1))
     d.add(Polygon([x0, y0, x0 + c, y0, x0 + c / 2, y0 - tri_h], strokeColor=INK, fillColor=None, strokeWidth=1))
     d.add(Polygon([x0, y0, x0, y0 + c, x0 - tri_h, y0 + c / 2], strokeColor=INK, fillColor=None, strokeWidth=1))
@@ -4281,7 +4413,7 @@ def draw_compound_3d(params: dict) -> Drawing:
     variant = params["variant"]
 
     if variant == "cylinder_hemisphere":
-        cx, bottom_y, mid_y, rx, ry = 100, 25, 85, 38, 12
+        cx, bottom_y, mid_y, rx, ry = SOLID_WIDTH / 2, 40, 140, 44, 14
         for shape in _cylinder_edges(cx, mid_y, bottom_y, rx, ry):
             d.add(shape)
         arc = ArcPath(strokeColor=INK, fillColor=None, strokeWidth=1.2)
@@ -4289,11 +4421,11 @@ def draw_compound_3d(params: dict) -> Drawing:
         d.add(arc)
         d.add(Line(cx, mid_y, cx + rx, mid_y, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
         d.add(Circle(cx, mid_y, 1.4, strokeColor=INK, fillColor=INK))
-        d.add(_label(cx + rx / 2, mid_y + 15, params["radius_label"], size=8))
+        d.add(_label(cx + rx / 2, mid_y + 16, params["radius_label"]))
         d.add(_label(cx + rx + 10, (bottom_y + mid_y) / 2, params["height_label"], anchor="start"))
 
     elif variant == "cone_hemisphere":
-        cx, apex_y, base_y, rx, ry = 100, 100, 55, 38, 12
+        cx, apex_y, base_y, rx, ry = SOLID_WIDTH / 2, 172, 82, 44, 14
         d.add(Ellipse(cx, base_y, rx, ry, strokeColor=INK, fillColor=None, strokeWidth=1.2))
         d.add(Line(cx - rx, base_y, cx, apex_y, strokeColor=INK, strokeWidth=1.2))
         d.add(Line(cx + rx, base_y, cx, apex_y, strokeColor=INK, strokeWidth=1.2))
@@ -4305,11 +4437,13 @@ def draw_compound_3d(params: dict) -> Drawing:
         # join ellipse and the cone's slant edges.
         d.add(Line(cx, base_y, cx + rx, base_y, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
         d.add(Circle(cx, base_y, 1.4, strokeColor=INK, fillColor=INK))
-        d.add(_label(cx + rx + 6, base_y - 3, params["radius_label"], anchor="start", size=8))
-        d.add(_label(cx - rx / 2 - 6, (apex_y + base_y) / 2, params["cone_height_label"], anchor="end", size=8))
+        d.add(_label(cx + rx + 6, base_y - 3, params["radius_label"], anchor="start"))
+        d.add(_label(cx - rx / 2 - 6, (apex_y + base_y) / 2, params["cone_height_label"], anchor="end"))
 
     elif variant == "cuboid_pyramid":
-        x0, y0, fw, fh = 55, 30, 80, 40
+        fw, fh = 96, 52
+        x0 = (SOLID_WIDTH - fw - _SOLID_DX) / 2
+        y0 = 44
         FBL, FBR, FTR, FTL = (x0, y0), (x0 + fw, y0), (x0 + fw, y0 + fh), (x0, y0 + fh)
         BBL, BBR, BTR, BTL = _offset(FBL), _offset(FBR), _offset(FTR), _offset(FTL)
         d.add(Rect(x0, y0, fw, fh, strokeColor=INK, fillColor=None, strokeWidth=1.2))
@@ -4318,13 +4452,13 @@ def draw_compound_3d(params: dict) -> Drawing:
         d.add(Line(*FBL, *BBL, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
         d.add(Line(*BBL, *BBR, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
         d.add(Line(*BBL, *BTL, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
-        roof_apex = ((FTL[0] + BTR[0]) / 2, FTL[1] + 34)
+        roof_apex = ((FTL[0] + BTR[0]) / 2, FTL[1] + 44)
         for corner in (FTL, FTR, BTR, BTL):
             d.add(Line(*corner, *roof_apex, strokeColor=INK, strokeWidth=1.1))
         roof_base_centre = (roof_apex[0], (FTL[1] + BTR[1]) / 2)
         d.add(Line(*roof_base_centre, *roof_apex, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[3, 2]))
         d.add(_label(x0 + fw / 2, y0 - 14, params["base_label"]))
-        d.add(_label(roof_apex[0] + 6, (roof_base_centre[1] + roof_apex[1]) / 2, params["roof_height_label"], anchor="start", size=8))
+        d.add(_label(roof_apex[0] + 6, (roof_base_centre[1] + roof_apex[1]) / 2, params["roof_height_label"], anchor="start"))
 
     else:
         raise ValueError(f"unknown compound_3d variant: {variant!r}")

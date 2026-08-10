@@ -25,26 +25,27 @@ scheme. The full chronology below still uses the *old* ids in its historical ent
 tier suffix if you go looking for one. See step 44 for the exact rename rule and how the
 migration was done safely.
 
-**⚠️ IN PROGRESS — resume this first (a large diagram overhaul, half-done).** A multi-phase
-rework of **every shape/angle & 3D-solid diagram** (`backend/app/pdf/diagrams.py` only) so
-they're **bigger, use one uniform 11pt label size, and are drawn roughly to scale with each
-measurement clearly tied to its own side/angle** — the user's 3 asks (see chronology step 47).
-**Phases 0-5 are done, only Phase 6 remains.** The work is committed on branch
-**`diagram-scale-overhaul`** (WIP, not merged; `master` = merge commit `2587551`), full backend
-suite **971/971** after each phase. The authoritative resume guide with the exact per-phase
-state, remaining functions, reusable helpers, and trade-offs is the **plan file**
-`C:\Users\James\.claude\plans\zesty-yawning-blum.md` (read its "STATUS (resume here)" section
-first). Next up: **Phase 6 — 3D solids** (cuboid, prism, cylinder, cone, sphere, pyramid,
-frustum, net, compound_3d, plans_and_elevations — proportional edges where numeric, uniform
-11pt, clear labels; bump `SOLID_WIDTH/HEIGHT`/`NET_*` and unify per-function label sizes).
-(Phase 4 — circles & sectors — done via `_place_angle_label`; Phase 5 — bearings — done:
-legs now drawn to true relative length parsed from the km labels, uniform 11pt, and a new
-`_nudge_from_arrows` keeps labels clear of the north-arrow "N".) Per-phase rhythm: rewrite →
-render every affected topic across seeds to a contact sheet (the `/tmp/phase*.py` pattern) →
-fix overlaps → run tests → regenerate + send both `all_topics_review_*.pdf` → checkpoint with
-the user. Out-of-scope kinds (graphs/charts/number-line/Venn/tree/loci/probability
-illustrations) are deliberately untouched. Keep diagram **param schemas unchanged** so the 60
-frozen Practice Test papers still render (no rebuild needed).
+**⚠️ COMPLETE but NOT MERGED — decide whether to merge `diagram-scale-overhaul` first.** A
+multi-phase rework of **every shape/angle & 3D-solid diagram** (`backend/app/pdf/diagrams.py`
+only) so they're **bigger, use one uniform 11pt label size, and are drawn roughly to scale
+with each measurement clearly tied to its own side/angle** — the user's 3 asks (see chronology
+step 47). **ALL 6 phases (0-6) are now done.** The work is committed on branch
+**`diagram-scale-overhaul`** (WIP, **not merged**; `master` = merge commit `2587551`), full
+backend suite **971/971** after each phase; frontend untouched; no topic-count change; diagram
+**param schemas unchanged**, so the 60 frozen Practice Test papers still render (no rebuild).
+The authoritative per-phase record (helpers, trade-offs, per-solid scaling approach) is the
+**plan file** `C:\Users\James\.claude\plans\zesty-yawning-blum.md` (its "STATUS" section).
+Phase summary: **P0** engine (canvas 290x190, `_LABEL_SIZE=11`, shared fit/scale helpers);
+**P1** rectilinear; **P2** triangles (true-scale/`_construct_triangle`); **P3** angles &
+polygons (fixed the flagged `forming_equations_H` quad); **P4** circles & sectors (angle
+values via the collision-safe `_place_angle_label`); **P5** bearings (legs drawn to true
+relative length parsed from the km labels; `_nudge_from_arrows` clears the north-arrow "N");
+**P6** 3D solids (`SOLID_WIDTH/HEIGHT` 290x210, `NET` 300x230; cuboid/prism/cylinder/cone/
+sphere/pyramid/frustum/compound scale edges proportionally to dims parsed from their labels,
+so every solid looks different; uniform 11pt). **Next step: check with the user, then merge
+`diagram-scale-overhaul` into `master`** (open a PR or fast-forward) — nothing in the overhaul
+is left to build. Out-of-scope kinds (graphs/charts/number-line/Venn/tree/loci/probability
+illustrations) were deliberately untouched.
 
 The most recent *committed-to-master* pieces of work (PR #3 was merged into `master` as
 `2587551`; the `aqa-spec-gap-topics` branch was deleted):
