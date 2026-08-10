@@ -29,15 +29,17 @@ migration was done safely.
 rework of **every shape/angle & 3D-solid diagram** (`backend/app/pdf/diagrams.py` only) so
 they're **bigger, use one uniform 11pt label size, and are drawn roughly to scale with each
 measurement clearly tied to its own side/angle** — the user's 3 asks (see chronology step 47).
-**Phases 0-4 are done, Phases 5-6 remain.** The work is committed on branch
+**Phases 0-5 are done, only Phase 6 remains.** The work is committed on branch
 **`diagram-scale-overhaul`** (WIP, not merged; `master` = merge commit `2587551`), full backend
 suite **971/971** after each phase. The authoritative resume guide with the exact per-phase
 state, remaining functions, reusable helpers, and trade-offs is the **plan file**
 `C:\Users\James\.claude\plans\zesty-yawning-blum.md` (read its "STATUS (resume here)" section
-first). Next up: **Phase 5 — bearings** (`draw_bearings`, drawn true-to-scale), then Phase 6
-3D solids. (Phase 4 — circles & sectors — is done: `draw_sector` label sizes unified to 11pt,
-and all six `circle_*` theorem diagrams recentred/enlarged on the full canvas with every
-angle value placed via the collision-safe `_place_angle_label`.) Per-phase rhythm: rewrite →
+first). Next up: **Phase 6 — 3D solids** (cuboid, prism, cylinder, cone, sphere, pyramid,
+frustum, net, compound_3d, plans_and_elevations — proportional edges where numeric, uniform
+11pt, clear labels; bump `SOLID_WIDTH/HEIGHT`/`NET_*` and unify per-function label sizes).
+(Phase 4 — circles & sectors — done via `_place_angle_label`; Phase 5 — bearings — done:
+legs now drawn to true relative length parsed from the km labels, uniform 11pt, and a new
+`_nudge_from_arrows` keeps labels clear of the north-arrow "N".) Per-phase rhythm: rewrite →
 render every affected topic across seeds to a contact sheet (the `/tmp/phase*.py` pattern) →
 fix overlaps → run tests → regenerate + send both `all_topics_review_*.pdf` → checkpoint with
 the user. Out-of-scope kinds (graphs/charts/number-line/Venn/tree/loci/probability

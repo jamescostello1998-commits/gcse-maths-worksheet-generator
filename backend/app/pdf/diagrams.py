@@ -1436,8 +1436,39 @@ def _north_arrow(x: float, y: float, length: float = 30, color=INK) -> Group:
     tip = (x, y + length)
     group.add(Line(x, y, tip[0], tip[1], strokeColor=color, strokeWidth=0.8))
     group.add(_arrowhead(tip, (0.0, 1.0), color=color, length=5, half_width=2.3))
-    group.add(_label(x, tip[1] + 3, "N", color=color, size=7))
+    group.add(_label(x, tip[1] + 3, "N", color=color, size=_LABEL_SIZE))
     return group
+
+
+def _nudge_from_arrows(
+    lx: float, ly: float, anchor: str, text, size: float,
+    arrows: list[tuple], arrow_len: float, gap: float = 3.0,
+) -> tuple:
+    """Shift a bearings label horizontally clear of any north arrow it would
+    otherwise overlap. Each north arrow (plus its 'N' label) occupies a narrow
+    vertical strip rising from its vertex; a leg/unknown/vertex label placed in
+    that strip (a near-vertical leg's midpoint label, an unknown label pushed
+    straight up, etc.) collides with the 'N'. This resolves the overlap by
+    sliding the label sideways away from the offending vertex - the strip is
+    only ~12px wide so the shift is small - matching this file's other
+    render-then-fix label-clearance helpers."""
+    w = stringWidth(str(text), _LABEL_FONT, size)
+    if anchor == "end":
+        x0, x1 = lx - w, lx
+    elif anchor == "start":
+        x0, x1 = lx, lx + w
+    else:
+        x0, x1 = lx - w / 2, lx + w / 2
+    y0, y1 = ly - 2, ly + size
+    for ax, ay in arrows:
+        bx0, bx1 = ax - 6, ax + 6
+        by0, by1 = ay, ay + arrow_len + size + 5
+        if x1 > bx0 and x0 < bx1 and y1 > by0 and y0 < by1:
+            shift = (bx1 - x0 + gap) if (x0 + x1) / 2 >= ax else -(x1 - bx0 + gap)
+            lx += shift
+            x0 += shift
+            x1 += shift
+    return lx, ly
 
 
 def _draw_bearings_single_leg(params: dict) -> Drawing:
@@ -1465,7 +1496,7 @@ def _draw_bearings_single_leg(params: dict) -> Drawing:
 
     xs, ys = (A[0], B[0]), (A[1], B[1])
     x_span, y_span = (max(xs) - min(xs)) or 1.0, (max(ys) - min(ys)) or 1.0
-    margin_side, margin_top, margin_bottom = 40, 38, 34
+    margin_side, margin_top, margin_bottom = 44, 46, 34
     scale = min(
         (DIAGRAM_WIDTH - 2 * margin_side) / x_span,
         (DIAGRAM_HEIGHT - margin_top - margin_bottom) / y_span,
@@ -1480,12 +1511,20 @@ def _draw_bearings_single_leg(params: dict) -> Drawing:
 
     d.add(Line(pA[0], pA[1], pB[0], pB[1], strokeColor=INK, strokeWidth=1.2))
 
+    # A always has a north arrow; B only on the solution page (a derived
+    # bearing). Feed the arrow bases to the nudger so no label sits on an "N".
+    arrow_len = 30
+    arrows = [(pA[0], pA[1])]
+    if answer_bearing_at_B is not None:
+        arrows.append((pB[0], pB[1]))
+
     mx, my = (pA[0] + pB[0]) / 2, (pA[1] + pB[1]) / 2
     vx, vy = pB[0] - pA[0], pB[1] - pA[1]
     length = math.hypot(vx, vy) or 1.0
     perp = (-vy / length, vx / length)
     anchor = "start" if perp[0] >= 0 else "end"
-    d.add(_label(mx + perp[0] * 14, my + perp[1] * 14, params["leg1_label"], anchor=anchor, size=8))
+    lx, ly = _nudge_from_arrows(mx + perp[0] * 16, my + perp[1] * 16, anchor, params["leg1_label"], _LABEL_SIZE, arrows, arrow_len)
+    d.add(_label(lx, ly, params["leg1_label"], anchor=anchor))
 
     for p, label in ((pA, label_A), (pB, label_B)):
         d.add(Circle(p[0], p[1], 1.8, strokeColor=INK, fillColor=INK))
@@ -1498,15 +1537,15 @@ def _draw_bearings_single_leg(params: dict) -> Drawing:
             ux, uy = (1.0 if ux >= 0 else -1.0), 0.2
             norm = math.hypot(ux, uy)
             ux, uy = ux / norm, uy / norm
-        d.add(_label(p[0] + ux * 14, p[1] + uy * 14, label, size=8))
+        lx, ly = _nudge_from_arrows(p[0] + ux * 16, p[1] + uy * 16, "middle", label, _LABEL_SIZE, arrows, arrow_len)
+        d.add(_label(lx, ly, label))
 
-    d.add(_north_arrow(pA[0], pA[1]))
-    d.add(_bearing_arc(pA[0], pA[1], bearing_at_A))
+    d.add(_north_arrow(pA[0], pA[1], length=arrow_len))
+    d.add(_bearing_arc(pA[0], pA[1], bearing_at_A, radius=13))
     if answer_bearing_at_B is not None:
-        d.add(_north_arrow(pB[0], pB[1]))
-        d.add(_bearing_arc(pB[0], pB[1], answer_bearing_at_B, color=ACCENT))
+        d.add(_north_arrow(pB[0], pB[1], length=arrow_len))
+        d.add(_bearing_arc(pB[0], pB[1], answer_bearing_at_B, color=ACCENT, radius=13))
 
-    _not_to_scale(d)
     return d
 
 
@@ -1536,10 +1575,22 @@ def draw_bearings(params: dict) -> Drawing:
         rad = math.radians(bearing_deg)
         return (math.sin(rad), math.cos(rad))
 
+    # Draw the two legs to their true relative lengths (a 5 km leg and a 30 km
+    # leg should look different), not both unit length as before. The real
+    # distances aren't in the params, but the leg labels already carry them
+    # ("5 km", "30 km"), so parse them out - this reproduces exactly the
+    # verified coordinate triangle bearings.py builds (see _bearings_triangle
+    # there), so the drawing is genuinely to scale in both direction (the
+    # bearings) and length. Falls back to unit length for a label with no
+    # leading number (never happens for the two-leg case, but keeps the shape
+    # non-degenerate if it ever did).
+    d1 = _parse_leading_number(params["leg1_label"]) or 1.0
+    d2 = _parse_leading_number(params["leg2_label"]) or 1.0
     A = (0.0, 0.0)
-    B = unit_vector(bearing_at_A)
-    dx, dy = unit_vector(bearing_at_B)
-    C = (B[0] + dx, B[1] + dy)
+    ux, uy = unit_vector(bearing_at_A)
+    B = (A[0] + d1 * ux, A[1] + d1 * uy)
+    vx, vy = unit_vector(bearing_at_B)
+    C = (B[0] + d2 * vx, B[1] + d2 * vy)
 
     xs, ys = (A[0], B[0], C[0]), (A[1], B[1], C[1])
     x_span, y_span = (max(xs) - min(xs)) or 1.0, (max(ys) - min(ys)) or 1.0
@@ -1547,12 +1598,9 @@ def draw_bearings(params: dict) -> Drawing:
     # of A/B/C that turns out to be) for that point's north arrow + arc + "N"
     # label, which extend further up the page than any other diagram element;
     # extra headroom below the bottommost point too, so an outward-pushed
-    # vertex/side label there still clears the "Diagram NOT accurately
-    # drawn" caption along the bottom edge - both found via this diagram
-    # kind's visual spike (a vertex/side label pushed straight down from a
-    # point sitting right at the un-padded margin landed on top of the
-    # caption text).
-    margin_side, margin_top, margin_bottom = 30, 38, 34
+    # vertex/side label there still clears the bottom edge. Widened alongside
+    # the uniform 11pt labels so the bigger text still sits fully on-canvas.
+    margin_side, margin_top, margin_bottom = 34, 46, 34
     scale = min(
         (DIAGRAM_WIDTH - 2 * margin_side) / x_span,
         (DIAGRAM_HEIGHT - margin_top - margin_bottom) / y_span,
@@ -1589,12 +1637,21 @@ def draw_bearings(params: dict) -> Drawing:
     d.add(Line(pB[0], pB[1], pC[0], pC[1], strokeColor=INK, strokeWidth=1.2))
     d.add(Line(pA[0], pA[1], pC[0], pC[1], strokeColor=MUTED, strokeWidth=1.0, strokeDashArray=[3, 2]))
 
-    lx, ly, anchor = outward(pA, pB, 16)
-    d.add(_label(lx, ly, params["leg1_label"], anchor=anchor, size=8))
-    lx, ly, anchor = outward(pB, pC, 16)
-    d.add(_label(lx, ly, params["leg2_label"], anchor=anchor, size=8))
-    lx, ly, anchor = outward(pA, pC, 16)
-    d.add(_label(lx, ly, params["unknown_label"], anchor=anchor, color=ACCENT, size=8))
+    # North arrows rise from A and B only (C has no arrow); pass their bases to
+    # the nudger so no side/vertex label ends up on top of an "N".
+    arrow_len = 30
+    arrows = [(pA[0], pA[1]), (pB[0], pB[1])]
+
+    def place(lx, ly, anchor, text, **kw):
+        lx, ly = _nudge_from_arrows(lx, ly, anchor, text, _LABEL_SIZE, arrows, arrow_len)
+        d.add(_label(lx, ly, text, anchor=anchor, **kw))
+
+    lx, ly, anchor = outward(pA, pB, 18)
+    place(lx, ly, anchor, params["leg1_label"])
+    lx, ly, anchor = outward(pB, pC, 18)
+    place(lx, ly, anchor, params["leg2_label"])
+    lx, ly, anchor = outward(pA, pC, 18)
+    place(lx, ly, anchor, params["unknown_label"], color=ACCENT)
 
     def vertex_label_pos(p: tuple, has_arrow: bool) -> tuple:
         vx, vy = p[0] - centroid[0], p[1] - centroid[1]
@@ -1609,20 +1666,19 @@ def draw_bearings(params: dict) -> Drawing:
             ux, uy = (1.0 if ux >= 0 else -1.0), 0.2
             norm = math.hypot(ux, uy)
             ux, uy = ux / norm, uy / norm
-        offset = 15 if has_arrow else 12
+        offset = 18 if has_arrow else 14
         return (p[0] + ux * offset, p[1] + uy * offset)
 
     for p, label, has_arrow in ((pA, label_A, True), (pB, label_B, True), (pC, label_C, False)):
         d.add(Circle(p[0], p[1], 1.8, strokeColor=INK, fillColor=INK))
         lx, ly = vertex_label_pos(p, has_arrow)
-        d.add(_label(lx, ly, label, size=8))
+        place(lx, ly, "middle", label)
 
-    d.add(_north_arrow(pA[0], pA[1]))
-    d.add(_bearing_arc(pA[0], pA[1], bearing_at_A))
-    d.add(_north_arrow(pB[0], pB[1]))
-    d.add(_bearing_arc(pB[0], pB[1], bearing_at_B))
+    d.add(_north_arrow(pA[0], pA[1], length=arrow_len))
+    d.add(_bearing_arc(pA[0], pA[1], bearing_at_A, radius=13))
+    d.add(_north_arrow(pB[0], pB[1], length=arrow_len))
+    d.add(_bearing_arc(pB[0], pB[1], bearing_at_B, radius=13))
 
-    _not_to_scale(d)
     return d
 
 
