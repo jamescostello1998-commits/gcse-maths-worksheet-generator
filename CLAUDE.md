@@ -25,47 +25,43 @@ scheme. The full chronology below still uses the *old* ids in its historical ent
 tier suffix if you go looking for one. See step 44 for the exact rename rule and how the
 migration was done safely.
 
-**✅ DONE (step 48) — review-feedback batch, review PDF pages 1–200 (7 items).** All applied,
-full backend suite **981/981**, topic count **312 → 313** (one new topic). The item-by-item
-plan is `C:\Users\James\.claude\plans\review-batch-pages-1-200.md` (historical now). The 7
-items: split `expand_triple_brackets_H` into with-coefficient (guarantees ≥1 coeff>1) + new
-`expand_triple_brackets_no_coefficient_H` (all `(x±k)`); SUVAT letter after every quantity in
-`kinematics_suvat_H` prompts (givens too, not just the "Find …"); label every integer on
-small-range gridded graph axes (numbered ticks now follow the gridline step in
-`_draw_scaled_axes`); `plot_reciprocal_H` prompt "for x = -4 to 4" (+ solution note that x=0 is
-undefined); `draw_graph_transformation` sizes its window to both curves so neither clips, and
-its base curve is now asymmetric (`0.5x^2+0.6x-1.5`) so reflect-in-y shows two distinct curves;
-best_buys no-dominance reroll (an option can't be both cheapest AND biggest); ratio all parts
-distinct (`_rand_distinct_parts`). See chronology step 48 for full detail.
+**CURRENT STATE (HEAD `b29dc71`, all committed & pushed):** **314 topics**, backend suite
+**981/981**, frontend **65/65**, all 60 Practice Test papers exactly 100 marks. Working tree is
+clean apart from the two deliberately-untracked `backend/all_topics_review_*.pdf` (now
+`.gitignore`d — see step 49). No known bugs.
 
-**✅ DONE (step 49) — `area_composite_rectangles_F` reworked to Corbett-style edge labelling**
-(the shape's own boundary edges labelled directly, some omitted so the student deduces missing
-lengths; L/T/find-x branches), plus sibling compound-topic label fixes and a full Practice-Test
-rebuild (still 313 topics, all papers 100 marks). See chronology step 49.
+**What the last stretch of sessions did (ongoing aesthetic-review process — the user works
+through the review PDFs and sends feedback in chunks; steps 34-53).** The most recent chunks:
+- **Step 48** — review-PDF pages 1–200 batch (7 items): split `expand_triple_brackets_H` +
+  new `expand_triple_brackets_no_coefficient_H`; SUVAT letters on every quantity in
+  `kinematics_suvat_H`; label every integer on small-range gridded graph axes; `plot_reciprocal_H`
+  "for x = -4 to 4"; `graph_transformations` window fits both curves + asymmetric base curve;
+  best_buys no-dominance; ratio all parts distinct. (312→313 topics.)
+- **Step 49** — `area_composite_rectangles_F` reworked to Corbett-style boundary-edge labelling
+  (some sides omitted for the student to deduce), + sibling compound-topic label fixes.
+- **Step 50** — `ratio_shape_similar_F`/`_H`: letter A/B inside each shape; varied shape kinds
+  (rectangle / right-triangle in 4 orientations / parallelogram); shapes further apart.
+- **Steps 51-52** — `density_H` / `pressure_H`: when the volume/area must be worked out, show a
+  labelled solid/base-shape diagram (cube/cuboid/prism; rectangle/square/right-triangle) and
+  stop restating the dimensions in prose.
+- **Step 53** — whole **Transformations** group: no vertex dots/labels (shapes labelled A/B
+  inside); "describe" diagrams draw both shapes black; rotate/enlarge "complete" drop the centre
+  dot; translations render as column vectors; new `transform_enlarge_describe_F` (313→314);
+  `combined_transformations_H` redesigned to "apply 2-3 transformations and draw the final image".
 
-**✅ DONE (step 50) — `ratio_shape_similar_F`/`_H` diagram rework**: letter A/B drawn INSIDE
-each shape; multiple shape kinds (rectangle / right-triangle in 4 orientations / parallelogram)
-for variety; Foundation shapes drawn further apart with the unknown label close to its shape.
-Still 313 topics, suite 983, all practice papers 100 marks. See chronology step 50.
+See chronology steps 48-53 for the full technical detail on each.
 
-**✅ DONE (step 51) — `density_H`**: the "work out the volume yourself" variant now shows a
-cube / cuboid / triangular-prism diagram with the dimensions on it, and the prompt no longer
-restates them ("The block below has a mass of 2175 g. Find its density…"). Still 313 topics,
-all papers 100 marks. See chronology step 51.
-
-**✅ DONE (step 52) — `pressure_H`**: the same treatment as density_H — the "work out the
-contact area" variant now shows a rectangle / square / right-triangle base with dimensions on
-it, and the prompt reads "The {obj} below exerts a force/pressure of … on its base. Find …".
-Still 313 topics, all papers 100 marks. See chronology step 52.
-
-**✅ DONE (step 53) — whole Transformations group reworked**: no vertex dots/labels (shapes
-labelled A/B inside), "describe" diagrams both-black, "complete" diagrams drop the centre dot,
-translation vectors render as column vectors, new `transform_enlarge_describe_F` (313→314), and
-`combined_transformations_H` redesigned to "apply 2-3 transformations yourself and draw the
-final image". Suite 981, all papers 100 marks. See chronology step 53.
-
-**Next natural step:** the next chunk of review feedback (pages 201+), if the user resumes the
-review.
+**Next natural step (if the user returns to the review):** the next chunk of review feedback
+(the review is NOT confirmed finished — pages 201+ never arrived, and steps 49-53 were one-off
+per-topic requests the user sent directly rather than page ranges, so expect either). The review
+workflow each batch: read the named items → fix them (render REAL PDFs to verify diagram/overlap
+fixes; don't trust unit tests for visual issues) → if a topic count changed, bump the four
+`== N` assertions (`test_routes.py` ×2, `test_modelled_example_renderer.py`,
+`test_worksheet_builder.py`) and the per-section table below → if any diagram param SCHEMA
+changed, rebuild the 60 Practice Test papers (`python -m app.practice_tests.build`, from
+`backend/`) and confirm all 100 marks → full `pytest` → regenerate + send both
+`all_topics_review_*.pdf` (`python -m scripts.generate_review_pdfs`) → commit+push. If there's
+ever a gap with no pending review feedback, see "Ideas for a future session" (bottom of file).
 
 *(The diagram-scale-overhaul, chronology step 47, is long since MERGED into `master` — commits
 `153131d`..`c200eb4`, then the pages-1–200 batch `25be496`. Ignore any "not merged"/branch
