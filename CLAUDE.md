@@ -26,9 +26,7 @@ tier suffix if you go looking for one. See step 44 for the exact rename rule and
 migration was done safely.
 
 **CURRENT STATE:** **320 topics**, backend suite **1000/1000**, frontend **65/65**, all 60
-Practice Test papers exactly 100 marks. Steps 54-56 are committed & pushed (commit `c6cce8f`,
-CLAUDE.md handoff `b4658b0`). **Step 57 (a review batch of 3 fixes: plans/elevations grids,
-the cube diagram, and standardising every volume/surface-area prompt) is NOT yet committed.**
+Practice Test papers exactly 100 marks. Steps 54-57 are all committed & pushed (steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`).
 Practice Tests were deliberately NOT rebuilt in any of these steps (no existing diagram param
 SCHEMA changed - only optional new params, label positions, and prompt text, all backward-
 compatible). No known bugs.
@@ -4545,8 +4543,8 @@ fixes), is committed and pushed (see `git log`).
       pyramid, and frustum. The two `compound_3d_*` topics were left as-is (a compound of two
       solids has no single shape name, so "Here is a X" doesn't fit).
     Practice Tests NOT rebuilt (no diagram param SCHEMA changed - `hyp_label`/`is_cube` are
-    optional params, the rest are prompt-text/label changes; frozen papers still render). **Not
-    yet committed.**
+    optional params, the rest are prompt-text/label changes; frozen papers still render). Committed
+    in 9ba81d8.
 
 ## Environment gotchas (Windows, this machine specifically)
 
