@@ -150,6 +150,223 @@ def generate_bidmas(tier: Tier, rng: random.Random) -> Question:
     )
 
 
+# --- Simpler 2-or-3-operation shapes (the "BIDMAS (2 or 3 operations)" topic) -
+# The shapes above (generate_bidmas) all combine 4-5 operations; these use only
+# two or three, as a gentler introduction to the order of operations. Every
+# division is set up to land on a whole number and every subtraction to stay
+# non-negative, matching how real Foundation worksheets phrase these.
+
+
+def _simple_mul_add(rng: random.Random):
+    """a + b × c  (2 operations)."""
+    a, b, c = rng.randint(1, 20), rng.randint(2, 9), rng.randint(2, 9)
+    mul = b * c
+    result = a + mul
+    expr = f"{a} + {b} × {c}"
+    steps = [f"Multiplication: {b} × {c} = {mul}", f"Addition: {a} + {mul} = {result}"]
+    return expr, steps, sp.Integer(result), f"bidmas_s:muladd:{a}:{b}:{c}"
+
+
+def _simple_mul_sub(rng: random.Random):
+    """a × b - c  (2 operations)."""
+    a, b = rng.randint(2, 9), rng.randint(2, 9)
+    mul = a * b
+    c = rng.randint(1, mul)
+    result = mul - c
+    expr = f"{a} × {b} - {c}"
+    steps = [f"Multiplication: {a} × {b} = {mul}", f"Subtraction: {mul} - {c} = {result}"]
+    return expr, steps, sp.Integer(result), f"bidmas_s:mulsub:{a}:{b}:{c}"
+
+
+def _simple_div_add(rng: random.Random):
+    """a + b ÷ c  (2 operations), b a multiple of c."""
+    a, c = rng.randint(1, 20), rng.randint(2, 9)
+    b = c * rng.randint(2, 6)
+    div = b // c
+    result = a + div
+    expr = f"{a} + {b} ÷ {c}"
+    steps = [f"Division: {b} ÷ {c} = {div}", f"Addition: {a} + {div} = {result}"]
+    return expr, steps, sp.Integer(result), f"bidmas_s:divadd:{a}:{b}:{c}"
+
+
+def _simple_index_add(rng: random.Random):
+    """a^2 + b  (2 operations)."""
+    a, b = rng.randint(2, 9), rng.randint(1, 20)
+    sq = a * a
+    result = sq + b
+    expr = f"{a}^2 + {b}"
+    steps = [f"Indices: {a}^2 = {sq}", f"Addition: {sq} + {b} = {result}"]
+    return expr, steps, sp.Integer(result), f"bidmas_s:idxadd:{a}:{b}"
+
+
+def _simple_bracket_mul(rng: random.Random):
+    """(a + b) × c  (2 operations)."""
+    a, b, c = rng.randint(1, 9), rng.randint(1, 9), rng.randint(2, 9)
+    br = a + b
+    result = br * c
+    expr = f"({a} + {b}) × {c}"
+    steps = [f"Brackets: ({a} + {b}) = {br}", f"Multiplication: {br} × {c} = {result}"]
+    return expr, steps, sp.Integer(result), f"bidmas_s:brmul:{a}:{b}:{c}"
+
+
+def _simple_mul_add_sub(rng: random.Random):
+    """a + b × c - d  (3 operations)."""
+    a, b, c = rng.randint(1, 15), rng.randint(2, 9), rng.randint(2, 9)
+    mul = b * c
+    d = rng.randint(1, a + mul)
+    result = a + mul - d
+    expr = f"{a} + {b} × {c} - {d}"
+    steps = [
+        f"Multiplication: {b} × {c} = {mul}",
+        f"Addition and subtraction, left to right: {a} + {mul} = {a + mul}, then - {d} = {result}",
+    ]
+    return expr, steps, sp.Integer(result), f"bidmas_s:muladdsub:{a}:{b}:{c}:{d}"
+
+
+def _simple_index_mul_add(rng: random.Random):
+    """a^2 + b × c  (3 operations)."""
+    a, b, c = rng.randint(2, 7), rng.randint(2, 9), rng.randint(2, 9)
+    sq = a * a
+    mul = b * c
+    result = sq + mul
+    expr = f"{a}^2 + {b} × {c}"
+    steps = [
+        f"Indices: {a}^2 = {sq}",
+        f"Multiplication: {b} × {c} = {mul}",
+        f"Addition: {sq} + {mul} = {result}",
+    ]
+    return expr, steps, sp.Integer(result), f"bidmas_s:idxmuladd:{a}:{b}:{c}"
+
+
+def _simple_bracket_mul_sub(rng: random.Random):
+    """(a + b) × c - d  (3 operations)."""
+    a, b, c = rng.randint(1, 9), rng.randint(1, 9), rng.randint(2, 9)
+    br = a + b
+    mul = br * c
+    d = rng.randint(1, mul)
+    result = mul - d
+    expr = f"({a} + {b}) × {c} - {d}"
+    steps = [
+        f"Brackets: ({a} + {b}) = {br}",
+        f"Multiplication: {br} × {c} = {mul}",
+        f"Subtraction: {mul} - {d} = {result}",
+    ]
+    return expr, steps, sp.Integer(result), f"bidmas_s:brmulsub:{a}:{b}:{c}:{d}"
+
+
+def _simple_bracket_sub_mul_add(rng: random.Random):
+    """a + b × (c - d)  (3 operations)."""
+    a, b, c = rng.randint(1, 20), rng.randint(2, 9), rng.randint(2, 9)
+    d = rng.randint(1, c - 1)
+    br = c - d
+    mul = b * br
+    result = a + mul
+    expr = f"{a} + {b} × ({c} - {d})"
+    steps = [
+        f"Brackets: ({c} - {d}) = {br}",
+        f"Multiplication: {b} × {br} = {mul}",
+        f"Addition: {a} + {mul} = {result}",
+    ]
+    return expr, steps, sp.Integer(result), f"bidmas_s:brsubmuladd:{a}:{b}:{c}:{d}"
+
+
+_SIMPLE_SHAPE_BUILDERS = [
+    _simple_mul_add, _simple_mul_sub, _simple_div_add, _simple_index_add, _simple_bracket_mul,
+    _simple_mul_add_sub, _simple_index_mul_add, _simple_bracket_mul_sub, _simple_bracket_sub_mul_add,
+]
+
+
+def generate_bidmas_simple(tier: Tier, rng: random.Random) -> Question:
+    builder = rng.choice(_SIMPLE_SHAPE_BUILDERS)
+    expr_str, steps, result, dedup_key = builder(rng)
+
+    # Independent verification via sympy's own parser/precedence, as generate_bidmas does.
+    sympy_val = sp.sympify(_to_sympy_str(expr_str))
+    if sp.simplify(sympy_val - result) != 0:
+        raise ValueError(f"bidmas_simple verification failed for expression: {expr_str}")
+
+    return Question(
+        topic_id="bidmas_two_three_F",
+        tier=Tier.FOUNDATION,
+        prompt=f"Work out {expr_str}.",
+        solution_steps=tuple(steps),
+        final_answer=fmt_num(result),
+        dedup_key=dedup_key,
+    )
+
+
+def _simple_teach_mul_add(rng: random.Random):
+    a, b, c = rng.randint(1, 20), rng.randint(2, 9), rng.randint(2, 9)
+    mul = b * c
+    result = a + mul
+    expr = f"{a} + {b} × {c}"
+    teaching = [
+        "BIDMAS gives the order to work through an expression: Brackets, Indices, Division and "
+        "Multiplication (left to right), then Addition and Subtraction (left to right).",
+        f"In {expr} there are no brackets or indices, so the multiplication is done before the addition.",
+        f"Multiplication first: {b} × {c} = {mul}.",
+        f"Then the addition: {a} + {mul} = {result}.",
+    ]
+    worked = [expr, f"= {a} + {mul}", f"= {result}"]
+    return expr, teaching, worked, sp.Integer(result)
+
+
+def _simple_teach_bracket_mul_sub(rng: random.Random):
+    a, b, c = rng.randint(1, 9), rng.randint(1, 9), rng.randint(2, 9)
+    br = a + b
+    mul = br * c
+    d = rng.randint(1, mul)
+    result = mul - d
+    expr = f"({a} + {b}) × {c} - {d}"
+    teaching = [
+        "BIDMAS gives the order to work through an expression: Brackets, Indices, Division and "
+        "Multiplication (left to right), then Addition and Subtraction (left to right).",
+        f"Do the brackets first: ({a} + {b}) = {br}.",
+        f"Then the multiplication: {br} × {c} = {mul}.",
+        f"Finally the subtraction: {mul} - {d} = {result}.",
+    ]
+    worked = [expr, f"= {mul} - {d}", f"= {result}"]
+    return expr, teaching, worked, sp.Integer(result)
+
+
+def _simple_teach_index_mul_add(rng: random.Random):
+    a, b, c = rng.randint(2, 7), rng.randint(2, 9), rng.randint(2, 9)
+    sq = a * a
+    mul = b * c
+    result = sq + mul
+    expr = f"{a}^2 + {b} × {c}"
+    teaching = [
+        "BIDMAS gives the order to work through an expression: Brackets, Indices, Division and "
+        "Multiplication (left to right), then Addition and Subtraction (left to right).",
+        f"There are no brackets, so start with the index: {a}^2 = {sq}.",
+        f"Then the multiplication: {b} × {c} = {mul}.",
+        f"Finally the addition: {sq} + {mul} = {result}.",
+    ]
+    worked = [expr, f"= {sq} + {mul}", f"= {result}"]
+    return expr, teaching, worked, sp.Integer(result)
+
+
+_SIMPLE_TEACHING_BUILDERS = [_simple_teach_mul_add, _simple_teach_bracket_mul_sub, _simple_teach_index_mul_add]
+
+
+def generate_modelled_example_bidmas_simple(tier: Tier, rng: random.Random) -> ModelledExample:
+    builder = rng.choice(_SIMPLE_TEACHING_BUILDERS)
+    expr_str, teaching_steps, worked_calculation, result = builder(rng)
+
+    sympy_val = sp.sympify(_to_sympy_str(expr_str))
+    if sp.simplify(sympy_val - result) != 0:
+        raise ValueError(f"modelled example bidmas_simple verification failed for expression: {expr_str}")
+
+    return ModelledExample(
+        topic_id="bidmas_two_three_F",
+        tier=Tier.FOUNDATION,
+        prompt=f"Work out {expr_str}.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=fmt_num(result),
+    )
+
+
 def _build_teaching_shape_a(rng: random.Random):
     a = rng.randint(1, 20)
     c = rng.randint(2, 9)
@@ -318,10 +535,22 @@ def generate_modelled_example_bidmas(tier: Tier, rng: random.Random) -> Modelled
     )
 
 
+TOPIC_BIDMAS_SIMPLE = TopicDefinition(
+    id="bidmas_two_three_F",
+    display_name="BIDMAS (2 or 3 operations)",
+    description="Evaluate an expression using two or three operations in the correct order (BIDMAS).",
+    generate=generate_bidmas_simple,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_bidmas_simple,
+)
+
+
 TOPIC_BIDMAS = TopicDefinition(
     id="bidmas_F",
-    display_name="Order of Operations (BIDMAS)",
-    description="Evaluate an expression combining brackets, indices, and the four operations using the correct order of operations.",
+    display_name="BIDMAS (4+ operations)",
+    description="Evaluate an expression combining brackets, indices, and the four operations (four or more operations) using the correct order of operations.",
     generate=generate_bidmas,
     section=SECTION,
     group=GROUP,

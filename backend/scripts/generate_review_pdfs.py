@@ -23,7 +23,7 @@ from reportlab.platypus import HRFlowable, PageBreak, Paragraph, SimpleDocTempla
 
 from app.core.registry import sections_tree
 from app.core.models import Tier
-from app.pdf.renderer import _preamble_box, _question_block, _solution_block
+from app.pdf.renderer import _instruction_line, _preamble_box, _question_block, _solution_block
 from app.pdf.styles import MARGIN, RULE, build_styles
 from app.worksheet.builder import build_worksheet
 
@@ -88,10 +88,14 @@ def _build_doc(*, include_solutions: bool) -> bytes:
                 if worksheet.preamble_lines:
                     story.append(_preamble_box(worksheet.preamble_lines, styles))
                     story.append(Spacer(1, 10))
-                story.append(_question_block(1, question, styles))
+                hoist = worksheet.shared_instruction is not None
+                if hoist:
+                    story.append(_instruction_line(worksheet.shared_instruction, styles))
+                    story.append(Spacer(1, 8))
+                story.append(_question_block(1, question, styles, hoist=hoist))
                 if include_solutions:
                     story.append(Spacer(1, 12))
-                    story.append(_solution_block(1, question, styles))
+                    story.append(_solution_block(1, question, styles, hoist=hoist))
 
     doc.build(story)
     return buffer.getvalue()

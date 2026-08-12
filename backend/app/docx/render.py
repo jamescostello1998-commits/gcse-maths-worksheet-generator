@@ -284,18 +284,29 @@ def _new_document() -> Document:
 # ---------------------------------------------------------------------------
 
 
-def _question_block(doc, number: int, question: Question) -> None:
+def _instruction_paragraph(doc, text: str) -> None:
+    """The hoisted shared instruction, shown once at the top of a page."""
+    p = doc.add_paragraph()
+    p.paragraph_format.space_after = Pt(10)
+    _add_runs(p, text, size_pt=11.5, color=INK, bold=True)
+
+
+def _question_block(doc, number: int, question: Question, *, hoist: bool = False) -> None:
+    body = question.item_text if (hoist and question.item_text) else question.prompt
     p = doc.add_paragraph()
     _add_text_run(p, f"Q{number}. ", FONT_WORDS, 11.5, INK, True)
-    _add_runs(p, question.prompt, size_pt=11.5, color=INK, bold=False)
+    _add_runs(p, body, size_pt=11.5, color=INK, bold=False)
     p.paragraph_format.space_after = Pt(10)
     if question.diagram is not None:
         _add_diagram(doc, question.diagram)
 
 
-def _solution_block(doc, number: int, question: Question) -> None:
+def _solution_block(doc, number: int, question: Question, *, hoist: bool = False) -> None:
     h = doc.add_paragraph()
     _add_text_run(h, f"Q{number}", FONT_WORDS, 11.5, ACCENT, True)
+    if hoist and question.item_text:
+        _add_text_run(h, ". ", FONT_WORDS, 11.5, ACCENT, True)
+        _add_runs(h, question.item_text, size_pt=11.5, color=ACCENT, bold=True)
     h.paragraph_format.space_before = Pt(8)
     h.paragraph_format.space_after = Pt(4)
     for step in question.solution_steps:
@@ -312,10 +323,13 @@ def _solution_block(doc, number: int, question: Question) -> None:
     _add_runs(a, question.final_answer, size_pt=10.5, color=INK, bold=True)
 
 
-def _answer_row(doc, number: int, question: Question) -> None:
+def _answer_row(doc, number: int, question: Question, *, hoist: bool = False) -> None:
     p = doc.add_paragraph()
     p.paragraph_format.space_after = Pt(6)
     _add_text_run(p, f"Q{number}. ", FONT_WORDS, 10.5, INK, True)
+    if hoist and question.item_text:
+        _add_runs(p, question.item_text, size_pt=10.5, color=INK, bold=False)
+        _add_text_run(p, " — ", FONT_WORDS, 10.5, INK, False)
     _add_runs(p, question.final_answer, size_pt=10.5, color=INK, bold=False)
 
 
@@ -339,18 +353,26 @@ def _render_worksheet(worksheet: Worksheet, answers_only: bool) -> bytes:
         _boxed_box(doc, "Formulae", worksheet.preamble_lines, 12.5)
         doc.add_paragraph()
 
+    hoist = worksheet.shared_instruction is not None
+    if hoist:
+        _instruction_paragraph(doc, worksheet.shared_instruction)
+
     for i, question in enumerate(worksheet.questions, start=1):
-        _question_block(doc, i, question)
+        _question_block(doc, i, question, hoist=hoist)
 
     doc.add_page_break()
     if answers_only:
         _section_heading(doc, "Answers")
+        if hoist:
+            _instruction_paragraph(doc, worksheet.shared_instruction)
         for i, question in enumerate(worksheet.questions, start=1):
-            _answer_row(doc, i, question)
+            _answer_row(doc, i, question, hoist=hoist)
     else:
         _section_heading(doc, "Worked Solutions")
+        if hoist:
+            _instruction_paragraph(doc, worksheet.shared_instruction)
         for i, question in enumerate(worksheet.questions, start=1):
-            _solution_block(doc, i, question)
+            _solution_block(doc, i, question, hoist=hoist)
 
     buffer = io.BytesIO()
     doc.save(buffer)

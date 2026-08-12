@@ -93,7 +93,11 @@ def generate_ordering(tier: Tier, rng: random.Random) -> Question:
     # that ordering them is a genuine comparison, not an obvious spread.
     window_lo = rng.randint(5, 75)
     ks = rng.sample(range(window_lo, window_lo + 21), 4)
-    formats = [rng.choice(["decimal", "fraction", "percent"]) for _ in ks]
+    # Guarantee at least one fraction, one decimal and one percentage in every
+    # question (the 4th value takes a random format), then shuffle so the
+    # guaranteed three aren't always in the same positions.
+    formats = ["decimal", "fraction", "percent", rng.choice(["decimal", "fraction", "percent"])]
+    rng.shuffle(formats)
 
     display_strs = []
     for k, fmt in zip(ks, formats):
@@ -548,7 +552,11 @@ def generate_modelled_example_ordering(tier: Tier, rng: random.Random) -> Modell
     # that ordering them is a genuine comparison, not an obvious spread.
     window_lo = rng.randint(5, 75)
     ks = rng.sample(range(window_lo, window_lo + 21), 4)
-    formats = [rng.choice(["decimal", "fraction", "percent"]) for _ in ks]
+    # Guarantee at least one fraction, one decimal and one percentage in every
+    # question (the 4th value takes a random format), then shuffle so the
+    # guaranteed three aren't always in the same positions.
+    formats = ["decimal", "fraction", "percent", rng.choice(["decimal", "fraction", "percent"])]
+    rng.shuffle(formats)
 
     display_strs = []
     for k, fmt in zip(ks, formats):

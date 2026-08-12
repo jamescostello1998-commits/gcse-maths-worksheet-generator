@@ -238,14 +238,15 @@ def test_radical_is_rendered_as_an_inline_image():
 
 
 def test_radical_within_a_sentence():
-    # Only the genuine bare-digit radicand ("72") is matched - the literal
-    # "a√b" phrasing (an instructional placeholder, not a real radical) has
-    # no digits after its "√" and correctly stays plain text.
+    # Both a bare-digit radicand ("72") AND a single-letter radicand ("√b" in
+    # the "form a√b" phrasing) get a full radical image, so the bar spans the
+    # letter b too (user review feedback - the bar must go the whole way across
+    # the b, not leave it as a bare glyph).
     markup = _markup("Simplify √72, giving your answer in the form a√b.")
     matches = list(_IMG_RE.finditer(markup))
-    assert len(matches) == 1
+    assert len(matches) == 2
     assert markup == (
-        f"Simplify {matches[0].group(0)}, giving your answer in the form a√b."
+        f"Simplify {matches[0].group(0)}, giving your answer in the form a{matches[1].group(0)}."
     )
 
 

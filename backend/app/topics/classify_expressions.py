@@ -19,6 +19,15 @@ GROUP = "Expressions, Formulae, Equations & Identities"
 
 CATEGORIES = ("expression", "equation", "formula", "identity")
 
+# Every question in this topic asks the same thing, so on a single-topic
+# worksheet the instruction is hoisted to the top of the page (once) and each
+# question shows just its bare statement. That hoisting is driven centrally by
+# app/worksheet/builder.py's HOISTED_INSTRUCTIONS table (this exact string is
+# listed there); the full `prompt` below is kept for contexts that never hoist
+# (a Practice Test's mixed paper, and this topic's own modelled-example page,
+# which stays self-contained).
+_CLASSIFY_INSTRUCTION = "Is the following an expression, equation, formula, or identity?"
+
 # Well-known formulae relating two or more different letters/quantities.
 # Correct by construction - no per-instance verification needed.
 _FORMULAE = [
@@ -203,7 +212,7 @@ def generate_classify_expressions(tier: Tier, rng: random.Random) -> Question:
         return Question(
             topic_id="classify_expressions_F",
             tier=Tier.FOUNDATION,
-            prompt=f"Is the following an expression, equation, formula, or identity?\n{statement}",
+            prompt=f"{_CLASSIFY_INSTRUCTION}\n{statement}",
             solution_steps=tuple(steps),
             final_answer="expression",
             dedup_key=f"classify:expression:{shape}:{extra}",
@@ -215,7 +224,7 @@ def generate_classify_expressions(tier: Tier, rng: random.Random) -> Question:
         return Question(
             topic_id="classify_expressions_F",
             tier=Tier.FOUNDATION,
-            prompt=f"Is the following an expression, equation, formula, or identity?\n{statement}",
+            prompt=f"{_CLASSIFY_INSTRUCTION}\n{statement}",
             solution_steps=tuple(steps),
             final_answer="equation",
             dedup_key=f"classify:equation:{a}:{b}:{c}",
@@ -228,7 +237,7 @@ def generate_classify_expressions(tier: Tier, rng: random.Random) -> Question:
         return Question(
             topic_id="classify_expressions_F",
             tier=Tier.FOUNDATION,
-            prompt=f"Is the following an expression, equation, formula, or identity?\n{formula_str}",
+            prompt=f"{_CLASSIFY_INSTRUCTION}\n{formula_str}",
             solution_steps=tuple(steps),
             final_answer="formula",
             dedup_key=f"classify:formula:{idx}",
@@ -241,7 +250,7 @@ def generate_classify_expressions(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="classify_expressions_F",
         tier=Tier.FOUNDATION,
-        prompt=f"Is the following an expression, equation, formula, or identity?\n{statement}",
+        prompt=f"{_CLASSIFY_INSTRUCTION}\n{statement}",
         solution_steps=tuple(steps),
         final_answer="identity",
         dedup_key=f"classify:identity:{ident_shape}:{a}:{b}",

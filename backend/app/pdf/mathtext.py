@@ -259,13 +259,15 @@ _SUP_FRACTION_SCALE = 0.75
 # exactly once: (1) a fractional exponent "^(num/den)" -> vinculum-in-super,
 # (2) a generic compound exponent "^(...)" -> flat raised text, (3) a plain
 # integer exponent "^n", (4) a bare single-variable exponent "^x"/"^n",
-# (5) a full-length radical "√n", (6) a standalone "num/den" fraction.
+# (5) a full-length radical "√n" (a bare-digit/decimal radicand, or a single
+# letter such as "√b" in "the form a√b" - so the bar spans the letter too),
+# (6) a standalone "num/den" fraction.
 _MATH_RE = re.compile(
     r"\^\((?P<epnum>-?\d+)/(?P<epden>-?\d+)\)"
     r"|\^\((?P<cexp>[^()]*)\)"
     r"|\^(?P<exp>-?\d+)"
     r"|\^(?P<vexp>[xn])(?![A-Za-z])"
-    r"|√(?P<radn>\d+(?:\.\d+)?)(?!/\d)"
+    r"|√(?P<radn>\d+(?:\.\d+)?|[a-z](?![a-z]))(?!/\d)"
     r"|(?<!√)(?P<fsign>-?)(?P<fnum>\d+)/(?P<fden>\d+)"
 )
 # Matches a lone x or n not glued to another letter (so "box" or "and" are

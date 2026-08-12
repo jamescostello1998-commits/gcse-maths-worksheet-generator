@@ -201,12 +201,12 @@ def generate_modelled_example_multiples(tier: Tier, rng: random.Random) -> Model
 
 
 def generate_factors(tier: Tier, rng: random.Random) -> Question:
-    # count_factors is deliberately low-probability - a "how many" question
-    # is a smaller variation on list_factors rather than a distinct skill.
-    shape = rng.choices(["list_factors", "is_factor", "count_factors"], weights=[45, 45, 10])[0]
+    # Three equally-likely styles (user spec): "is x a factor of y", "write
+    # down all the factors of x", and "how many factors does x have".
+    shape = rng.choice(["list_factors", "is_factor", "count_factors"])
 
     if shape == "count_factors":
-        n = rng.randint(12, 100)
+        n = rng.randint(8, 100)
         factors_brute = [i for i in range(1, n + 1) if n % i == 0]
         factor_count = len(factors_brute)
 
@@ -235,7 +235,7 @@ def generate_factors(tier: Tier, rng: random.Random) -> Question:
         )
 
     if shape == "list_factors":
-        n = rng.randint(12, 60)
+        n = rng.randint(8, 100)
         factors_brute = [i for i in range(1, n + 1) if n % i == 0]
 
         # Independent check: collect factors via (i, n // i) pairs up to sqrt(n)
@@ -259,14 +259,20 @@ def generate_factors(tier: Tier, rng: random.Random) -> Question:
             dedup_key=f"factors_list:{n}",
         )
 
-    n = rng.randint(12, 100)
-    factors_of_n = [i for i in range(1, n + 1) if n % i == 0]
+    # "Is x a factor of y": x from 2 to 14, y from 20 to 199 (so y is always
+    # larger than x, avoiding trivial cases), with a roughly even Yes/No split
+    # (a purely random y would make the answer "No" the large majority of the
+    # time for these small x).
+    candidate = rng.randint(2, 14)
     is_factor_case = rng.choice([True, False])
     if is_factor_case:
-        candidate = rng.choice(factors_of_n)
+        k_lo = max(2, -(-20 // candidate))  # ceil(20 / candidate), at least 2 so y > candidate
+        k_hi = 199 // candidate
+        n = candidate * rng.randint(k_lo, k_hi)
     else:
-        non_factors = [i for i in range(2, n) if n % i != 0]
-        candidate = rng.choice(non_factors)
+        n = rng.randint(20, 199)
+        while n % candidate == 0:
+            n = rng.randint(20, 199)
 
     quotient, remainder = divmod(n, candidate)
     is_factor = remainder == 0
@@ -289,13 +295,46 @@ def generate_factors(tier: Tier, rng: random.Random) -> Question:
 
 
 def generate_modelled_example_factors(tier: Tier, rng: random.Random) -> ModelledExample:
-    shape = rng.choices(["list_factors", "count_factors"], weights=[70, 30])[0]
+    shape = rng.choice(["list_factors", "is_factor", "count_factors"])
+
+    if shape == "is_factor":
+        candidate = rng.randint(2, 14)
+        if rng.choice([True, False]):
+            k_lo = max(2, -(-20 // candidate))
+            n = candidate * rng.randint(k_lo, 199 // candidate)
+        else:
+            n = rng.randint(20, 199)
+            while n % candidate == 0:
+                n = rng.randint(20, 199)
+        quotient, remainder = divmod(n, candidate)
+        is_factor = remainder == 0
+        answer = "Yes" if is_factor else "No"
+        teaching_steps = [
+            f"A whole number is a factor of {n} if it divides into {n} exactly, leaving no remainder.",
+            f"So divide {n} by {candidate} and look at the remainder: {n} ÷ {candidate} = {quotient} "
+            f"remainder {remainder}.",
+            (
+                f"The remainder is 0, so {candidate} divides {n} exactly - {candidate} IS a factor of {n}."
+                if is_factor
+                else f"The remainder is {remainder}, which is not 0, so {candidate} does not divide {n} "
+                f"exactly - {candidate} is NOT a factor of {n}."
+            ),
+        ]
+        worked_calculation = [f"{n} ÷ {candidate} = {quotient} remainder {remainder}", answer]
+        return ModelledExample(
+            topic_id="factors_F",
+            tier=Tier.FOUNDATION,
+            prompt=f"Is {candidate} a factor of {n}?",
+            worked_calculation=tuple(worked_calculation),
+            teaching_steps=tuple(teaching_steps),
+            final_answer=answer,
+        )
 
     if shape == "count_factors":
         # Retry until n has at least two factor pairs (i.e. isn't prime) so
         # the worked example always has more than one line to show.
         for _ in range(50):
-            n = rng.randint(12, 100)
+            n = rng.randint(8, 100)
             pairs_in_order = [(i, n // i) for i in range(1, int(n**0.5) + 1) if n % i == 0]
             if len(pairs_in_order) >= 2:
                 break
@@ -345,7 +384,7 @@ def generate_modelled_example_factors(tier: Tier, rng: random.Random) -> Modelle
     # Retry until n has at least two factor pairs (i.e. isn't prime) so the
     # worked example always has more than one line to show.
     for _ in range(50):
-        n = rng.randint(12, 60)
+        n = rng.randint(8, 100)
         pairs_in_order = [(i, n // i) for i in range(1, int(n**0.5) + 1) if n % i == 0]
         if len(pairs_in_order) >= 2:
             break

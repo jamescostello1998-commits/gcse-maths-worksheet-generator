@@ -8,6 +8,7 @@ TRIALS = 200
 GENERATORS = [
     (estimation.generate_estimation, Tier.FOUNDATION),
     (estimation.generate_error_interval, Tier.FOUNDATION),
+    (estimation.generate_error_interval_sf, Tier.HIGHER),
     (estimation.generate_bounds_calculation, Tier.HIGHER),
 ]
 
@@ -48,10 +49,11 @@ def test_topic_definitions_have_expected_metadata():
     topics = [
         estimation.TOPIC_ESTIMATION,
         estimation.TOPIC_ERROR_INTERVAL,
+        estimation.TOPIC_ERROR_INTERVAL_SF,
         estimation.TOPIC_BOUNDS,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 3
+    assert len(ids) == 4
     for t in topics:
         assert t.section == "number"
         assert t.group == "Estimation & Bounds"
@@ -61,6 +63,7 @@ def test_topic_definitions_have_expected_metadata():
 MODELLED_EXAMPLE_GENERATORS = [
     (estimation.generate_modelled_example_estimation, Tier.FOUNDATION, "estimation_rounding_F"),
     (estimation.generate_modelled_example_error_interval, Tier.FOUNDATION, "error_interval_F"),
+    (estimation.generate_modelled_example_error_interval_sf, Tier.HIGHER, "error_interval_H"),
     (estimation.generate_modelled_example_bounds_calculation, Tier.HIGHER, "bounds_calculation_H"),
 ]
 
@@ -69,6 +72,7 @@ def test_topic_definitions_have_modelled_example_generator():
     topics = [
         estimation.TOPIC_ESTIMATION,
         estimation.TOPIC_ERROR_INTERVAL,
+        estimation.TOPIC_ERROR_INTERVAL_SF,
         estimation.TOPIC_BOUNDS,
     ]
     for t in topics:

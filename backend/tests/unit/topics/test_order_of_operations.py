@@ -7,6 +7,7 @@ TRIALS = 200
 
 GENERATORS = [
     (order_of_operations.generate_bidmas, Tier.FOUNDATION),
+    (order_of_operations.generate_bidmas_simple, Tier.FOUNDATION),
 ]
 
 
@@ -29,9 +30,9 @@ def test_dedup_keys_vary_per_generator():
 
 
 def test_topic_definitions_have_expected_metadata():
-    topics = [order_of_operations.TOPIC_BIDMAS]
+    topics = [order_of_operations.TOPIC_BIDMAS, order_of_operations.TOPIC_BIDMAS_SIMPLE]
     ids = {t.id for t in topics}
-    assert len(ids) == 1
+    assert len(ids) == 2
     for t in topics:
         assert t.section == "number"
         assert t.group == "Order of Operations (BIDMAS)"
@@ -39,12 +40,13 @@ def test_topic_definitions_have_expected_metadata():
 
 
 def test_all_topics_have_modelled_example_wired():
-    for t in (order_of_operations.TOPIC_BIDMAS,):
+    for t in (order_of_operations.TOPIC_BIDMAS, order_of_operations.TOPIC_BIDMAS_SIMPLE):
         assert t.generate_modelled_example is not None
 
 
 MODELLED_EXAMPLE_GENERATORS = [
     (order_of_operations.generate_modelled_example_bidmas, Tier.FOUNDATION, "bidmas_F"),
+    (order_of_operations.generate_modelled_example_bidmas_simple, Tier.FOUNDATION, "bidmas_two_three_F"),
 ]
 
 

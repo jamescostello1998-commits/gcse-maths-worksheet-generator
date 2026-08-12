@@ -95,13 +95,13 @@ _SCALE = 4
 # same scale diagrams.py's own vinculum helper (_draw_fraction) uses.
 _DIGIT_SCALE = 0.72
 
-# A radical's own radicand is drawn less shrunk than plain fraction digits -
-# radical_images.py's hook/bar geometry (mirrored here) needs real pixels to
-# work with to stay a legible, smooth checkmark shape; at the full _DIGIT_SCALE
-# reduction the hook degenerates into an illegible jagged scrawl (confirmed
-# via a real rendered-PDF spike). A visibly-slightly-larger radicand than its
-# surrounding fraction digits is the accepted trade-off.
-_RAD_DIGIT_SCALE = 0.9
+# A radical's radicand inside a fraction is drawn at the SAME size as the
+# surrounding fraction digits - the earlier, slightly-larger 0.9 scale (kept
+# so the hook stayed legible) made a fraction like 20/√14 read oddly, with the
+# radicand visibly bigger than the "20" above it (user review feedback). The
+# hook now stays legible at this smaller size via the absolute pixel floors in
+# _rad_geometry (_RAD_MIN_TICK_W etc.), not via a larger radicand.
+_RAD_DIGIT_SCALE = _DIGIT_SCALE
 
 # Four token kinds, tried in this order within one combined alternation so
 # each span is consumed exactly once (a later alternative never re-scans a

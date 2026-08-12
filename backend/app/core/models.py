@@ -29,6 +29,16 @@ class Question:
     dedup_key: str
     diagram: Optional[DiagramSpec] = None
     solution_diagram: Optional[DiagramSpec] = None
+    # For topics where every question repeats the same instruction (e.g. "Is
+    # the following an expression, equation, formula, or identity?"), a
+    # generator sets `shared_instruction` (the common stem) and `item_text`
+    # (just this question's bare item). `prompt` stays the full self-contained
+    # form for contexts that never hoist (Practice Tests' mixed papers, the
+    # modelled-example page). A single-topic worksheet then shows the
+    # instruction once at the top and just `item_text` per question - see
+    # app/worksheet/builder.py and app/pdf/renderer.py.
+    shared_instruction: Optional[str] = None
+    item_text: Optional[str] = None
 
 
 @dataclass(frozen=True)
@@ -58,3 +68,8 @@ class Worksheet:
     questions: tuple[Question, ...]
     generated_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
     preamble_lines: tuple[str, ...] = ()
+    # Set by the builder when every question shares the same non-empty
+    # `shared_instruction` (and carries an `item_text`): the renderers then
+    # show this once at the top of the page and render just each question's
+    # bare `item_text`, instead of repeating the instruction on every line.
+    shared_instruction: Optional[str] = None

@@ -55,8 +55,15 @@ def _preamble_box(lines: tuple[str, ...], styles: dict) -> Table:
     return box
 
 
-def _question_block(number: int, question: Question, styles: dict) -> KeepTogether:
-    elements = [Paragraph(f"<b>Q{number}.</b> {_fmt(question.prompt, styles['QuestionText'])}", styles["QuestionText"])]
+def _instruction_line(text: str, styles: dict) -> Paragraph:
+    """The hoisted shared instruction, shown once at the top of a page for a
+    topic whose every question repeats the same stem."""
+    return Paragraph(f"<b>{_fmt(text, styles['QuestionText'])}</b>", styles["QuestionText"])
+
+
+def _question_block(number: int, question: Question, styles: dict, *, hoist: bool = False) -> KeepTogether:
+    body = question.item_text if (hoist and question.item_text) else question.prompt
+    elements = [Paragraph(f"<b>Q{number}.</b> {_fmt(body, styles['QuestionText'])}", styles["QuestionText"])]
     if question.diagram is not None:
         elements.append(Spacer(1, 4))
         elements.append(render_diagram(question.diagram))
@@ -64,8 +71,14 @@ def _question_block(number: int, question: Question, styles: dict) -> KeepTogeth
     return KeepTogether(elements)
 
 
-def _solution_block(number: int, question: Question, styles: dict) -> KeepTogether:
-    elements = [Paragraph(f"Q{number}", styles["SolutionHeading"])]
+def _solution_block(number: int, question: Question, styles: dict, *, hoist: bool = False) -> KeepTogether:
+    # When hoisting, show the bare item next to the Q-number so each solution
+    # is still identifiable without repeating the full instruction.
+    if hoist and question.item_text:
+        heading = f"Q{number}. {_fmt(question.item_text, styles['SolutionHeading'])}"
+    else:
+        heading = f"Q{number}"
+    elements = [Paragraph(heading, styles["SolutionHeading"])]
     for step in question.solution_steps:
         elements.append(Paragraph(_fmt(step, styles["SolutionStep"]), styles["SolutionStep"]))
     if question.solution_diagram is not None:
@@ -76,8 +89,12 @@ def _solution_block(number: int, question: Question, styles: dict) -> KeepTogeth
     return KeepTogether(elements)
 
 
-def _answer_row(number: int, question: Question, styles: dict) -> Paragraph:
-    return Paragraph(f"<b>Q{number}.</b> {_fmt(question.final_answer, styles['AnswerRow'])}", styles["AnswerRow"])
+def _answer_row(number: int, question: Question, styles: dict, *, hoist: bool = False) -> Paragraph:
+    if hoist and question.item_text:
+        body = f"{_fmt(question.item_text, styles['AnswerRow'])} &#8212; {_fmt(question.final_answer, styles['AnswerRow'])}"
+    else:
+        body = _fmt(question.final_answer, styles["AnswerRow"])
+    return Paragraph(f"<b>Q{number}.</b> {body}", styles["AnswerRow"])
 
 
 def render_worksheet(worksheet: Worksheet, answers_only: bool = False) -> bytes:
@@ -114,20 +131,31 @@ def _render(worksheet: Worksheet, answers_only: bool = False) -> bytes:
         story.append(_preamble_box(worksheet.preamble_lines, styles))
         story.append(Spacer(1, 12))
 
+    hoist = worksheet.shared_instruction is not None
+    if hoist:
+        story.append(_instruction_line(worksheet.shared_instruction, styles))
+        story.append(Spacer(1, 10))
+
     for i, question in enumerate(worksheet.questions, start=1):
-        story.append(_question_block(i, question, styles))
+        story.append(_question_block(i, question, styles, hoist=hoist))
 
     story.append(PageBreak())
     if answers_only:
         story.append(Paragraph("Answers", styles["SectionHeading"]))
         story.append(HRFlowable(width="100%", thickness=0.75, color=RULE, spaceAfter=16))
+        if hoist:
+            story.append(_instruction_line(worksheet.shared_instruction, styles))
+            story.append(Spacer(1, 10))
         for i, question in enumerate(worksheet.questions, start=1):
-            story.append(_answer_row(i, question, styles))
+            story.append(_answer_row(i, question, styles, hoist=hoist))
     else:
         story.append(Paragraph("Worked Solutions", styles["SectionHeading"]))
         story.append(HRFlowable(width="100%", thickness=0.75, color=RULE, spaceAfter=16))
+        if hoist:
+            story.append(_instruction_line(worksheet.shared_instruction, styles))
+            story.append(Spacer(1, 10))
         for i, question in enumerate(worksheet.questions, start=1):
-            story.append(_solution_block(i, question, styles))
+            story.append(_solution_block(i, question, styles, hoist=hoist))
 
     doc.build(story)
     return buffer.getvalue()

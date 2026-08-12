@@ -82,22 +82,37 @@ def generate_estimation(tier: Tier, rng: random.Random) -> Question:
 
 
 _PRECISIONS: list[tuple[str, Fraction]] = [
-    ("the nearest whole number", Fraction(1)),
+    ("the nearest 1000", Fraction(1000)),
+    ("the nearest 100", Fraction(100)),
     ("the nearest 10", Fraction(10)),
+    ("the nearest whole number", Fraction(1)),
     ("1 decimal place", Fraction(1, 10)),
+    ("2 decimal places", Fraction(1, 100)),
 ]
+
+
+def _error_interval_value(precision: Fraction, rng: random.Random) -> Fraction:
+    """A rounded value V sitting exactly on the given precision grid (so the
+    error interval is a clean +/- half-precision band). For a decimal-place
+    precision the final decimal digit is kept non-zero, so e.g. a "2 decimal
+    places" value really shows two decimals rather than displaying as a round
+    number."""
+    if precision >= 10:
+        step = int(precision)
+        return Fraction(rng.randint(2, 40) * step)
+    if precision == Fraction(1):
+        return Fraction(rng.randint(20, 200))
+    denom = precision.denominator  # 10 (1 d.p.) or 100 (2 d.p.)
+    while True:
+        n = rng.randint(denom * 2, denom * 20)
+        if n % 10 != 0:
+            return Fraction(n, denom)
 
 
 def generate_error_interval(tier: Tier, rng: random.Random) -> Question:
     label, precision = rng.choice(_PRECISIONS)
     half = precision / 2
-
-    if precision == Fraction(1):
-        v = Fraction(rng.randint(20, 200))
-    elif precision == Fraction(10):
-        v = Fraction(rng.randint(2, 40) * 10)
-    else:
-        v = Fraction(rng.randint(20, 200), 10)
+    v = _error_interval_value(precision, rng)
 
     lower, upper = v - half, v + half
 
@@ -123,6 +138,97 @@ def generate_error_interval(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=f"error_interval:{label}:{v_str}",
+    )
+
+
+def _sf_label(sf: int) -> str:
+    return f"{sf} significant figure{'s' if sf != 1 else ''}"
+
+
+def _error_interval_sf(rng: random.Random) -> tuple[int, Fraction, Fraction]:
+    """Build a value V with exactly `sf` significant figures (its last
+    significant digit kept non-zero so the count is unambiguous), together
+    with the place value of that last significant figure - which is the
+    rounding precision, so the error interval is +/- half of it. Returns
+    (sf, v, precision)."""
+    sf = rng.choice([1, 2, 3])
+    digits = [rng.randint(1, 9)]  # leading digit is always significant
+    digits += [rng.randint(0, 9) for _ in range(max(0, sf - 2))]
+    if sf >= 2:
+        digits.append(rng.randint(1, 9))  # last significant digit non-zero
+    m = int("".join(str(d) for d in digits))  # an sf-digit integer
+    exp = rng.randint(-2, 3)  # place value of the last significant figure = 10^exp
+    precision = Fraction(10) ** exp
+    return sf, m * precision, precision
+
+
+def generate_error_interval_sf(tier: Tier, rng: random.Random) -> Question:
+    sf, v, precision = _error_interval_sf(rng)
+    half = precision / 2
+    lower, upper = v - half, v + half
+
+    if lower + upper != 2 * v:
+        raise ValueError("error_interval_sf verification failed: not symmetric about v")
+    if upper - lower != precision:
+        raise ValueError("error_interval_sf verification failed: wrong interval width")
+
+    label = _sf_label(sf)
+    v_str, lower_str, upper_str, prec_str = _fmt_frac(v), _fmt_frac(lower), _fmt_frac(upper), _fmt_frac(precision)
+    steps = [
+        f"The last significant figure of {v_str} has a place value of {prec_str}, so x can be up to half "
+        f"of that above or below {v_str}.",
+        f"Lower bound: {v_str} - {_fmt_frac(half)} = {lower_str}",
+        f"Upper bound: {v_str} + {_fmt_frac(half)} = {upper_str}",
+    ]
+    answer = f"{lower_str} ≤ x < {upper_str}"
+    return Question(
+        topic_id="error_interval_H",
+        tier=Tier.HIGHER,
+        prompt=f"A number, x, is {v_str} rounded to {label}. Write down the error interval for x.",
+        solution_steps=tuple(steps),
+        final_answer=answer,
+        dedup_key=f"error_interval_sf:{label}:{v_str}",
+    )
+
+
+def generate_modelled_example_error_interval_sf(tier: Tier, rng: random.Random) -> ModelledExample:
+    sf, v, precision = _error_interval_sf(rng)
+    half = precision / 2
+    lower, upper = v - half, v + half
+
+    if lower + upper != 2 * v:
+        raise ValueError("modelled example error_interval_sf verification failed: not symmetric about v")
+    if upper - lower != precision:
+        raise ValueError("modelled example error_interval_sf verification failed: wrong interval width")
+
+    label = _sf_label(sf)
+    v_str, half_str, lower_str, upper_str = _fmt_frac(v), _fmt_frac(half), _fmt_frac(lower), _fmt_frac(upper)
+    prec_str = _fmt_frac(precision)
+    teaching_steps = [
+        f"When a number is rounded to a number of significant figures, the size of the error interval "
+        f"depends on the place value of the LAST significant figure - not on the number of decimal places.",
+        f"In {v_str} rounded to {label}, the last significant figure sits in the {prec_str} place, so the "
+        f"rounding precision is {prec_str}. The true value can be at most half of this - {half_str} - away "
+        f"from {v_str} in either direction.",
+        f"Subtracting gives the lower bound: {v_str} - {half_str} = {lower_str}. This value IS included, "
+        f"because it rounds back up to {v_str}.",
+        f"Adding gives the upper bound: {v_str} + {half_str} = {upper_str}. This value is NOT included - "
+        "it's the exact point that would round up to the next value - so the upper bound is strict.",
+    ]
+    worked_calculation = [
+        f"x rounds to {v_str} ({label})",
+        f"place value of last significant figure = {prec_str}",
+        f"lower: {v_str} - {half_str} = {lower_str}",
+        f"upper: {v_str} + {half_str} = {upper_str}",
+    ]
+    answer = f"{lower_str} ≤ x < {upper_str}"
+    return ModelledExample(
+        topic_id="error_interval_H",
+        tier=Tier.HIGHER,
+        prompt=f"A number, x, is {v_str} rounded to {label}. Write down the error interval for x.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=answer,
     )
 
 
@@ -260,13 +366,7 @@ def generate_modelled_example_estimation(tier: Tier, rng: random.Random) -> Mode
 def generate_modelled_example_error_interval(tier: Tier, rng: random.Random) -> ModelledExample:
     label, precision = rng.choice(_PRECISIONS)
     half = precision / 2
-
-    if precision == Fraction(1):
-        v = Fraction(rng.randint(20, 200))
-    elif precision == Fraction(10):
-        v = Fraction(rng.randint(2, 40) * 10)
-    else:
-        v = Fraction(rng.randint(20, 200), 10)
+    v = _error_interval_value(precision, rng)
 
     lower, upper = v - half, v + half
 
@@ -426,12 +526,23 @@ TOPIC_ESTIMATION = TopicDefinition(
 TOPIC_ERROR_INTERVAL = TopicDefinition(
     id="error_interval_F",
     display_name="Error Intervals",
-    description="Write the error interval for a value given to a stated degree of accuracy.",
+    description="Write the error interval for a value rounded to a power of ten or a number of decimal places.",
     generate=generate_error_interval,
     section=SECTION,
     group=GROUP,
     fixed_tier=Tier.FOUNDATION,
     generate_modelled_example=generate_modelled_example_error_interval,
+)
+
+TOPIC_ERROR_INTERVAL_SF = TopicDefinition(
+    id="error_interval_H",
+    display_name="Error Intervals (significant figures)",
+    description="Write the error interval for a value rounded to 1, 2 or 3 significant figures.",
+    generate=generate_error_interval_sf,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_error_interval_sf,
 )
 
 TOPIC_BOUNDS = TopicDefinition(

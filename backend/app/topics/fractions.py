@@ -85,10 +85,10 @@ def generate_add_subtract_fractions(tier: Tier, rng: random.Random) -> Question:
 
 def generate_multiply_fractions(tier: Tier, rng: random.Random) -> Question:
     a, b = rng.randint(1, 9), rng.randint(2, 12)
-    while a == b:  # avoid a numerator/denominator pair that would display as a disguised integer, e.g. "5/5"
+    while a % b == 0:  # operand must not equal a whole number, e.g. "5/5" = 1 or "8/2" = 4
         a = rng.randint(1, 9)
     c, d = rng.randint(1, 9), rng.randint(2, 12)
-    while c == d:
+    while c % d == 0:  # operand must not equal a whole number (see above)
         c = rng.randint(1, 9)
     result = Fraction(a, b) * Fraction(c, d)
 
@@ -113,10 +113,10 @@ def generate_multiply_fractions(tier: Tier, rng: random.Random) -> Question:
 
 def generate_divide_fractions(tier: Tier, rng: random.Random) -> Question:
     a, b = rng.randint(1, 9), rng.randint(2, 12)
-    while a == b:  # avoid a numerator/denominator pair that would display as a disguised integer, e.g. "5/5"
+    while a % b == 0:  # operand must not equal a whole number, e.g. "5/5" = 1 or "8/2" = 4
         a = rng.randint(1, 9)
     c, d = rng.randint(1, 9), rng.randint(2, 12)
-    while c == d:
+    while c % d == 0:  # operand must not equal a whole number (see above)
         c = rng.randint(1, 9)
     result = Fraction(a, b) / Fraction(c, d)
 
@@ -141,10 +141,10 @@ def generate_divide_fractions(tier: Tier, rng: random.Random) -> Question:
 
 def generate_divide_fractions_foundation(tier: Tier, rng: random.Random) -> Question:
     a, b = rng.randint(1, 6), rng.randint(2, 8)
-    while a == b:  # avoid a numerator/denominator pair that would display as a disguised integer, e.g. "5/5"
+    while a % b == 0:  # operand must not equal a whole number, e.g. "5/5" = 1 or "8/2" = 4
         a = rng.randint(1, 6)
     c, d = rng.randint(1, 6), rng.randint(2, 8)
-    while c == d:
+    while c % d == 0:  # operand must not equal a whole number (see above)
         c = rng.randint(1, 6)
     result = Fraction(a, b) / Fraction(c, d)
 
@@ -316,7 +316,9 @@ def generate_fractions_equivalent(tier: Tier, rng: random.Random) -> Question:
                 continue
             cand = (a * k2, b * k3)
         num, den = cand
-        if num <= 0 or den <= 1 or cand == correct or cand in distractors:
+        # Reject a distractor that equals a whole number (e.g. "2/2" = 1) - a
+        # shown fraction in the question must never be integer-valued.
+        if num <= 0 or den <= 1 or num % den == 0 or cand == correct or cand in distractors:
             continue
         if a * den == num * b:
             continue  # accidentally equivalent - reject and try again
@@ -683,10 +685,10 @@ def generate_modelled_example_simplify_fraction(tier: Tier, rng: random.Random) 
 
 def generate_modelled_example_multiply_fractions(tier: Tier, rng: random.Random) -> ModelledExample:
     a, b = rng.randint(1, 9), rng.randint(2, 12)
-    while a == b:  # avoid a numerator/denominator pair that would display as a disguised integer, e.g. "5/5"
+    while a % b == 0:  # operand must not equal a whole number, e.g. "5/5" = 1 or "8/2" = 4
         a = rng.randint(1, 9)
     c, d = rng.randint(1, 9), rng.randint(2, 12)
-    while c == d:
+    while c % d == 0:  # operand must not equal a whole number (see above)
         c = rng.randint(1, 9)
     result = Fraction(a, b) * Fraction(c, d)
 
@@ -732,10 +734,10 @@ def generate_modelled_example_multiply_fractions(tier: Tier, rng: random.Random)
 
 def generate_modelled_example_divide_fractions(tier: Tier, rng: random.Random) -> ModelledExample:
     a, b = rng.randint(1, 9), rng.randint(2, 12)
-    while a == b:  # avoid a numerator/denominator pair that would display as a disguised integer, e.g. "5/5"
+    while a % b == 0:  # operand must not equal a whole number, e.g. "5/5" = 1 or "8/2" = 4
         a = rng.randint(1, 9)
     c, d = rng.randint(1, 9), rng.randint(2, 12)
-    while c == d:
+    while c % d == 0:  # operand must not equal a whole number (see above)
         c = rng.randint(1, 9)
     result = Fraction(a, b) / Fraction(c, d)
 
@@ -782,10 +784,10 @@ def generate_modelled_example_divide_fractions(tier: Tier, rng: random.Random) -
 
 def generate_modelled_example_divide_fractions_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
     a, b = rng.randint(1, 6), rng.randint(2, 8)
-    while a == b:  # avoid a numerator/denominator pair that would display as a disguised integer, e.g. "5/5"
+    while a % b == 0:  # operand must not equal a whole number, e.g. "5/5" = 1 or "8/2" = 4
         a = rng.randint(1, 6)
     c, d = rng.randint(1, 6), rng.randint(2, 8)
-    while c == d:
+    while c % d == 0:  # operand must not equal a whole number (see above)
         c = rng.randint(1, 6)
     result = Fraction(a, b) / Fraction(c, d)
 
@@ -1028,7 +1030,9 @@ def generate_modelled_example_fractions_equivalent(tier: Tier, rng: random.Rando
                 continue
             cand = (a * k2, b * k3)
         num, den = cand
-        if num <= 0 or den <= 1 or cand == correct or cand in distractors:
+        # Reject a distractor that equals a whole number (e.g. "2/2" = 1) - a
+        # shown fraction in the question must never be integer-valued.
+        if num <= 0 or den <= 1 or num % den == 0 or cand == correct or cand in distractors:
             continue
         if a * den == num * b:
             continue
