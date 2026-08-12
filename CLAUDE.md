@@ -48,6 +48,11 @@ each shape; multiple shape kinds (rectangle / right-triangle in 4 orientations /
 for variety; Foundation shapes drawn further apart with the unknown label close to its shape.
 Still 313 topics, suite 983, all practice papers 100 marks. See chronology step 50.
 
+**✅ DONE (step 51) — `density_H`**: the "work out the volume yourself" variant now shows a
+cube / cuboid / triangular-prism diagram with the dimensions on it, and the prompt no longer
+restates them ("The block below has a mass of 2175 g. Find its density…"). Still 313 topics,
+suite 984, all papers 100 marks. See chronology step 51.
+
 **Next natural step:** the next chunk of review feedback (pages 201+), if the user resumes the
 review.
 
@@ -4340,6 +4345,25 @@ fixes), is committed and pushed (see `git log`).
     generator. No topic-count change (313). Rebuilt all 60 Practice Test papers (diagram param
     schema changed) — all 100 marks. Backend suite 982 → 983 (+1: similar-shapes diagrams vary
     shape_kind). Review PDFs regenerated (313/323) and sent. Committed and pushed.
+
+51. Same review thread, feedback on `density_H`: when the student has to work out the volume
+    themselves (the `from_dimensions` flavour), show a DIAGRAM of the solid and stop restating
+    the dimensions in prose — e.g. "A block of alloy in the shape of a cuboid has dimensions
+    6 cm × 2 cm × 4 cm and a mass of 2175 g. Find its density…" should read "The block of alloy
+    below has a mass of 2175 g. Find its density, correct to 2 decimal places." Reworked
+    `generate_density_higher`'s `from_dimensions` branch (+ modelled twin, `compound_measures.py`):
+    new `_density_dimension_shape(rng)` picks a **cube / cuboid / triangular prism**, returns the
+    volume + the volume-working step + a `DiagramSpec` (reusing `draw_cuboid` with `is_cube` for
+    the cube, `draw_triangular_prism` for the prism — dimensions live on the diagram), with an
+    independent repeated-addition volume cross-check kept. The prompt now says "The {obj} below
+    has a mass/density of … Find its …" with the dimensions only on the shape. Solid-only context
+    list (`_DENSITY_SOLID_CONTEXTS` — a "sample of liquid" has no shape to draw). The
+    `unit_conversion` flavour is unchanged and stays diagram-less. `pressure_H` has the exact same
+    `from_dimensions`/`unit_conversion` structure but the user only flagged density, so it was
+    left as-is. No topic-count change (313). Rebuilt all 60 Practice Test papers (density_H can
+    now carry a diagram) — all 100 marks. Backend suite 983 → 984 (+1: density_H dimensions
+    questions carry a shape diagram, three kinds, no prose dimensions). Review PDFs regenerated
+    (313/323) and sent. Committed and pushed.
 
 ## Environment gotchas (Windows, this machine specifically)
 

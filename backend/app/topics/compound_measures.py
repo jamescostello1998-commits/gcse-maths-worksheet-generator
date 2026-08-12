@@ -2,7 +2,7 @@ import random
 from decimal import ROUND_HALF_UP, Decimal
 from fractions import Fraction
 
-from app.core.models import ModelledExample, Question, Tier
+from app.core.models import DiagramSpec, ModelledExample, Question, Tier
 from app.topics.base import TopicDefinition
 
 SECTION = "ratio_proportion"
@@ -916,19 +916,78 @@ def generate_modelled_example_density(tier: Tier, rng: random.Random) -> Modelle
 # ===========================================================================
 
 
+# Solid contexts only, for the "work out the volume from a shape" variant
+# (a "sample of liquid" has no cuboid/prism shape to draw).
+_DENSITY_SOLID_CONTEXTS = ["metal block", "piece of wood", "stone", "block of alloy"]
+
+
+def _density_dimension_shape(rng: random.Random) -> tuple:
+    """Pick a solid (cube / cuboid / triangular prism), returning
+    (shape, volume, volume_calc_step, volume_teaching_sentence, DiagramSpec).
+    The dimensions live on the diagram, so the prompt need not restate them;
+    the worked steps still show how the volume is found from them."""
+    shape = rng.choice(["cuboid", "cube", "triangular_prism"])
+    if shape == "cube":
+        s = rng.randint(2, 8)
+        volume = s ** 3
+        # Independent volume check via repeated addition rather than `**`.
+        if _mul_via_repeated_addition(_mul_via_repeated_addition(s, s), s) != volume:
+            raise ValueError("density dimension-shape verification failed (cube)")
+        vol_calc = f"volume = side³ = {s} × {s} × {s} = {volume} cm³"
+        vol_teach = f"For a cube, volume = side × side × side = {s} × {s} × {s} = {volume} cm³."
+        diagram = DiagramSpec(kind="cuboid", params={
+            "is_cube": True,
+            "width_label": f"{s} cm", "height_label": f"{s} cm", "length_label": f"{s} cm",
+        })
+    elif shape == "triangular_prism":
+        while True:
+            base, tri_h = rng.randint(3, 10), rng.randint(2, 8)
+            if (base * tri_h) % 2 == 0:
+                break
+        length = rng.randint(3, 12)
+        tri_area = base * tri_h // 2
+        volume = tri_area * length
+        # Independent check: the full base*height*length box (via repeated
+        # addition) must be exactly twice the prism's volume.
+        if _mul_via_repeated_addition(_mul_via_repeated_addition(base, tri_h), length) != 2 * volume:
+            raise ValueError("density dimension-shape verification failed (prism)")
+        vol_calc = (
+            f"volume = ½ × base × height × length = ½ × {base} × {tri_h} × {length} = {volume} cm³"
+        )
+        vol_teach = (
+            f"For a triangular prism, volume = area of the triangular cross-section × length. "
+            f"The triangle's area is ½ × base × height = ½ × {base} × {tri_h} = {tri_area} cm², so "
+            f"volume = {tri_area} × {length} = {volume} cm³."
+        )
+        diagram = DiagramSpec(kind="triangular_prism", params={
+            "base_label": f"{base} cm", "triangle_height_label": f"{tri_h} cm",
+            "length_label": f"{length} cm",
+        })
+    else:  # cuboid
+        length, width, height = rng.randint(2, 10), rng.randint(2, 10), rng.randint(2, 10)
+        volume = length * width * height
+        # Independent volume check via repeated addition rather than `*`.
+        if _mul_via_repeated_addition(_mul_via_repeated_addition(length, width), height) != volume:
+            raise ValueError("density dimension-shape verification failed (cuboid)")
+        vol_calc = f"volume = length × width × height = {length} × {width} × {height} = {volume} cm³"
+        vol_teach = (
+            f"For a cuboid, volume = length × width × height = {length} × {width} × {height} = "
+            f"{volume} cm³."
+        )
+        diagram = DiagramSpec(kind="cuboid", params={
+            "width_label": f"{length} cm", "height_label": f"{height} cm", "length_label": f"{width} cm",
+        })
+    return shape, volume, vol_calc, vol_teach, diagram
+
+
 def generate_density_higher(tier: Tier, rng: random.Random) -> Question:
     obj = rng.choice(_DENSITY_CONTEXTS)
     flavour = rng.choice(["from_dimensions", "unit_conversion"])
+    diagram = None
 
     if flavour == "from_dimensions":
-        length, width, height = rng.randint(2, 10), rng.randint(2, 10), rng.randint(2, 10)
-        volume = length * width * height
-        # Independent verification of the volume via repeated addition
-        # instead of `*`.
-        area = _mul_via_repeated_addition(length, width)
-        volume_check = _mul_via_repeated_addition(area, height)
-        if volume_check != volume:
-            raise ValueError("density_higher verification failed (volume from dimensions)")
+        obj = rng.choice(_DENSITY_SOLID_CONTEXTS)
+        shape, volume, vol_calc, _vol_teach, diagram = _density_dimension_shape(rng)
 
         unknown = rng.choice(["mass", "density"])
         if unknown == "mass":
@@ -936,12 +995,9 @@ def generate_density_higher(tier: Tier, rng: random.Random) -> Question:
             mass = density * volume
             if Fraction(mass, volume) != Fraction(density):
                 raise ValueError("density_higher verification failed (mass)")
-            prompt = (
-                f"A {obj} in the shape of a cuboid has dimensions {length} cm × {width} cm × "
-                f"{height} cm and a density of {density} g/cm³. Find its mass."
-            )
+            prompt = f"The {obj} below has a density of {density} g/cm³. Find its mass."
             steps = [
-                f"volume = length × width × height = {length} × {width} × {height} = {volume} cm³",
+                vol_calc,
                 f"mass = density × volume = {density} × {volume} = {mass} g",
             ]
             answer = f"{mass} g"
@@ -952,15 +1008,14 @@ def generate_density_higher(tier: Tier, rng: random.Random) -> Question:
             if check_dec != density_dec:
                 raise ValueError("density_higher verification failed (density)")
             prompt = (
-                f"A {obj} in the shape of a cuboid has dimensions {length} cm × {width} cm × "
-                f"{height} cm and a mass of {mass} g. Find its density, correct to 2 decimal places."
+                f"The {obj} below has a mass of {mass} g. Find its density, correct to 2 decimal places."
             )
             steps = [
-                f"volume = length × width × height = {length} × {width} × {height} = {volume} cm³",
+                vol_calc,
                 f"density = mass ÷ volume = {mass} ÷ {volume} = {_fmt_num(density_dec)} g/cm³ (2 d.p.)",
             ]
             answer = f"{_fmt_num(density_dec)} g/cm³"
-        dedup = f"density_h:dims:{unknown}:{length}:{width}:{height}:{density if unknown == 'mass' else mass}"
+        dedup = f"density_h:dims:{shape}:{unknown}:{volume}:{density if unknown == 'mass' else mass}"
     else:  # unit_conversion
         mass_kg = rng.randint(1, 20)
         volume_cm3 = rng.randint(50, 2000)
@@ -992,20 +1047,18 @@ def generate_density_higher(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=dedup,
+        diagram=diagram,
     )
 
 
 def generate_modelled_example_density_higher(tier: Tier, rng: random.Random) -> ModelledExample:
     obj = rng.choice(_DENSITY_CONTEXTS)
     flavour = rng.choice(["from_dimensions", "unit_conversion"])
+    diagram = None
 
     if flavour == "from_dimensions":
-        length, width, height = rng.randint(2, 10), rng.randint(2, 10), rng.randint(2, 10)
-        volume = length * width * height
-        area = _mul_via_repeated_addition(length, width)
-        volume_check = _mul_via_repeated_addition(area, height)
-        if volume_check != volume:
-            raise ValueError("modelled example density_higher verification failed (volume)")
+        obj = rng.choice(_DENSITY_SOLID_CONTEXTS)
+        shape, volume, vol_calc, vol_teach, diagram = _density_dimension_shape(rng)
 
         unknown = rng.choice(["mass", "density"])
         if unknown == "mass":
@@ -1013,23 +1066,19 @@ def generate_modelled_example_density_higher(tier: Tier, rng: random.Random) -> 
             mass = density * volume
             if Fraction(mass, volume) != Fraction(density):
                 raise ValueError("modelled example density_higher verification failed (mass)")
-            prompt = (
-                f"A {obj} in the shape of a cuboid has dimensions {length} cm × {width} cm × "
-                f"{height} cm and a density of {density} g/cm³. Find its mass."
-            )
+            prompt = f"The {obj} below has a density of {density} g/cm³. Find its mass."
             answer = f"{mass} g"
             teaching_steps = [
                 "Unlike a straightforward density question, here the volume isn't given "
-                "directly - it has to be worked out first from the shape's dimensions.",
-                f"For a cuboid, volume = length × width × height = {length} × {width} × "
-                f"{height} = {volume} cm³.",
+                "directly - it has to be worked out first from the shape shown.",
+                vol_teach,
                 f"Now the question is just like a normal density question: mass = density × "
                 f"volume = {density} × {volume} = {mass} g.",
                 f"As a check, dividing that mass back by the volume returns the original "
                 f"density: {mass} ÷ {volume} = {density}, which matches.",
             ]
             worked_calculation = [
-                f"volume = {length} × {width} × {height} = {volume} cm³",
+                vol_calc,
                 f"mass = {density} × {volume} = {mass} g",
             ]
         else:  # density
@@ -1039,22 +1088,20 @@ def generate_modelled_example_density_higher(tier: Tier, rng: random.Random) -> 
             if check_dec != density_dec:
                 raise ValueError("modelled example density_higher verification failed (density)")
             prompt = (
-                f"A {obj} in the shape of a cuboid has dimensions {length} cm × {width} cm × "
-                f"{height} cm and a mass of {mass} g. Find its density, correct to 2 decimal places."
+                f"The {obj} below has a mass of {mass} g. Find its density, correct to 2 decimal places."
             )
             answer = f"{_fmt_num(density_dec)} g/cm³"
             teaching_steps = [
                 "The extra step here is finding the volume before we can even use the "
-                "density formula, since only the cuboid's dimensions are given.",
-                f"Volume = length × width × height = {length} × {width} × {height} = {volume} cm³.",
+                "density formula, since only the shape is given, not the volume directly.",
+                vol_teach,
                 f"Now apply density = mass ÷ volume = {mass} ÷ {volume} ≈ "
                 f"{_fmt_num(density_dec)} g/cm³, rounded to 2 decimal places.",
-                "As a check, the volume was verified using repeated addition instead of "
-                "multiplication, and the final division was redone as an exact fraction "
-                "before rounding - both agree with the answer above.",
+                "As a check, the final division was redone as an exact fraction before "
+                "rounding, and it agrees with the answer above.",
             ]
             worked_calculation = [
-                f"volume = {length} × {width} × {height} = {volume} cm³",
+                vol_calc,
                 f"density = {mass} ÷ {volume} = {_fmt_num(density_dec)} g/cm³ (2 d.p.)",
             ]
         dedup_answer = density if unknown == "mass" else mass
@@ -1096,6 +1143,7 @@ def generate_modelled_example_density_higher(tier: Tier, rng: random.Random) -> 
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
+        diagram=diagram,
     )
 
 

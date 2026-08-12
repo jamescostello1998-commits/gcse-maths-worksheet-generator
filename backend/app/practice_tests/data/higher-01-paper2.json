@@ -570,31 +570,38 @@
     },
     {
       "topic_id": "density_H",
-      "prompt": "A stone in the shape of a cuboid has dimensions 7 cm × 3 cm × 6 cm and a mass of 2116 g. Find its density, correct to 2 decimal places.",
+      "prompt": "The stone below has a density of 6 g/cm³. Find its mass.",
       "solution_steps": [
-        "volume = length × width × height = 7 × 3 × 6 = 126 cm³",
-        "density = mass ÷ volume = 2116 ÷ 126 = 16.79 g/cm³ (2 d.p.)"
+        "volume = length × width × height = 6 × 6 × 10 = 360 cm³",
+        "mass = density × volume = 6 × 360 = 2160 g"
       ],
-      "final_answer": "16.79 g/cm³",
+      "final_answer": "2160 g",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "volume = length × width × height = 7 × 3 × 6 = 126 cm³",
+          "description": "volume = length × width × height = 6 × 6 × 10 = 360 cm³",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "density = mass ÷ volume = 2116 ÷ 126 = 16.79 g/cm³ (2 d.p.)",
+          "description": "mass = density × volume = 6 × 360 = 2160 g",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "16.79 g/cm³ oe",
+          "description": "2160 g oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "cuboid",
+        "params": {
+          "width_label": "6 cm",
+          "height_label": "10 cm",
+          "length_label": "6 cm"
+        }
+      },
       "solution_diagram": null
     },
     {

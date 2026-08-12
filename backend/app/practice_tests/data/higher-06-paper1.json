@@ -595,31 +595,38 @@
     },
     {
       "topic_id": "density_H",
-      "prompt": "A sample of liquid in the shape of a cuboid has dimensions 3 cm × 3 cm × 5 cm and a mass of 2813 g. Find its density, correct to 2 decimal places.",
+      "prompt": "The metal block below has a density of 5 g/cm³. Find its mass.",
       "solution_steps": [
-        "volume = length × width × height = 3 × 3 × 5 = 45 cm³",
-        "density = mass ÷ volume = 2813 ÷ 45 = 62.51 g/cm³ (2 d.p.)"
+        "volume = length × width × height = 5 × 6 × 7 = 210 cm³",
+        "mass = density × volume = 5 × 210 = 1050 g"
       ],
-      "final_answer": "62.51 g/cm³",
+      "final_answer": "1050 g",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "volume = length × width × height = 3 × 3 × 5 = 45 cm³",
+          "description": "volume = length × width × height = 5 × 6 × 7 = 210 cm³",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "density = mass ÷ volume = 2813 ÷ 45 = 62.51 g/cm³ (2 d.p.)",
+          "description": "mass = density × volume = 5 × 210 = 1050 g",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "62.51 g/cm³ oe",
+          "description": "1050 g oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "cuboid",
+        "params": {
+          "width_label": "5 cm",
+          "height_label": "7 cm",
+          "length_label": "6 cm"
+        }
+      },
       "solution_diagram": null
     },
     {

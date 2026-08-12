@@ -625,31 +625,38 @@
     },
     {
       "topic_id": "density_H",
-      "prompt": "A sample of liquid in the shape of a cuboid has dimensions 10 cm × 3 cm × 3 cm and a density of 15 g/cm³. Find its mass.",
+      "prompt": "The metal block below has a mass of 1371 g. Find its density, correct to 2 decimal places.",
       "solution_steps": [
-        "volume = length × width × height = 10 × 3 × 3 = 90 cm³",
-        "mass = density × volume = 15 × 90 = 1350 g"
+        "volume = ½ × base × height × length = ½ × 4 × 8 × 4 = 64 cm³",
+        "density = mass ÷ volume = 1371 ÷ 64 = 21.42 g/cm³ (2 d.p.)"
       ],
-      "final_answer": "1350 g",
+      "final_answer": "21.42 g/cm³",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "volume = length × width × height = 10 × 3 × 3 = 90 cm³",
+          "description": "volume = ½ × base × height × length = ½ × 4 × 8 × 4 = 64 cm³",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "mass = density × volume = 15 × 90 = 1350 g",
+          "description": "density = mass ÷ volume = 1371 ÷ 64 = 21.42 g/cm³ (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1350 g oe",
+          "description": "21.42 g/cm³ oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "triangular_prism",
+        "params": {
+          "base_label": "4 cm",
+          "triangle_height_label": "8 cm",
+          "length_label": "4 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
