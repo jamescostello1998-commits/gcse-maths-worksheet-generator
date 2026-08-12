@@ -26,10 +26,10 @@ tier suffix if you go looking for one. See step 44 for the exact rename rule and
 migration was done safely.
 
 **CURRENT STATE:** **320 topics**, backend suite **1000/1000**, frontend **65/65**, all 60
-Practice Test papers exactly 100 marks. **Steps 54-56 are NOT yet committed** — step 54 (6 new
-topics from a maths4everyone.com coverage audit), step 55 (a review-feedback batch of 5
-diagram/wording fixes), step 56 (a review batch of 4 fixes on the 3D + triangle-rule diagrams);
-everything up to HEAD `99eeac3` is committed & pushed. Practice Tests were deliberately NOT
+Practice Test papers exactly 100 marks. Everything is committed & pushed (HEAD `c6cce8f`) —
+step 54 (6 new topics from a maths4everyone.com coverage audit), step 55 (a review-feedback
+batch of 5 diagram/wording fixes), and step 56 (a review batch of 4 fixes on the 3D +
+triangle-rule diagrams) all landed in commit `c6cce8f`. Practice Tests were deliberately NOT
 rebuilt in any of these steps (no existing diagram param SCHEMA changed - only optional new
 params, label positions, and prompt text, all backward-compatible). No known bugs.
 
@@ -4465,7 +4465,7 @@ fixes), is committed and pushed (see `git log`).
     additions to `test_powers_roots.py`/`test_data_handling.py`. Backend suite 981 → **1000**;
     frontend unaffected (65/65 - new groups render generically). Practice Tests NOT rebuilt (no
     existing diagram schema changed). Review PDFs NOT regenerated (this wasn't a review batch).
-    **Not yet committed** as of writing - commit/push when ready.
+    Committed in c6cce8f.
 
 55. Same session, a review-feedback batch of 5 diagram/wording items (all fixed by rendering
     real PDFs and iterating, per the standing "render and look closely" discipline - no new
@@ -4497,7 +4497,7 @@ fixes), is committed and pushed (see `git log`).
       `draw_triangle_angles`/`draw_polygon_angles`; and reduced `draw_exterior_triangle`'s `_inset`
       factor cap (0.85 → 0.55) so the interior algebraic label sits by its vertex, not the centroid.
     Practice Tests NOT rebuilt (no diagram param SCHEMA changed - only label positions/prompt
-    text, both backward-compatible; frozen papers still render). **Not yet committed.**
+    text, both backward-compatible; frozen papers still render). Committed in c6cce8f.
 
 56. Same session, a review-feedback batch of 4 items on the 3D and triangle-rule diagrams (all
     verified by rendering real PDFs; no new tests, backend stays 1000/1000):
@@ -4524,7 +4524,7 @@ fixes), is committed and pushed (see `git log`).
       smallest angle is < 28 deg (new `_triangle_min_angle` helper) - the true angle value still
       shows in its label. (This also benefits any sine/cosine case with a very acute angle.)
     Practice Tests NOT rebuilt (only optional new params + label/prompt changes, all backward-
-    compatible - frozen papers still render). **Not yet committed.**
+    compatible - frozen papers still render). Committed in c6cce8f.
 
 ## Environment gotchas (Windows, this machine specifically)
 
