@@ -480,11 +480,10 @@ def generate_modelled_example_expand_double_no_coefficient_foundation(
     )
 
 
-def generate_expand_triple(tier: Tier, rng: random.Random):
-    a, b = _rand_x_coeff(rng, 4), _rand_nonzero(rng, -4, 4)
-    c, d = _rand_x_coeff(rng, 4), _rand_nonzero(rng, -4, 4)
-    e, f = _rand_x_coeff(rng, 4), _rand_nonzero(rng, -4, 4)
-
+def _expand_triple_cubic(a, b, c, d, e, f, context: str):
+    """Expand three linear brackets and return the cubic's (qa, qb, qc, qd),
+    with both verifications (symbolic residual + numeric cross-check at two x
+    values) applied. Shared by both triple-bracket topics."""
     expanded = sp.expand((a * X + b) * (c * X + d) * (e * X + f))
     poly = sp.Poly(expanded, X)
     coeffs = poly.all_coeffs()
@@ -493,7 +492,7 @@ def generate_expand_triple(tier: Tier, rng: random.Random):
 
     residual = sp.expand((a * X + b) * (c * X + d) * (e * X + f) - (qa * X**3 + qb * X**2 + qc * X + qd))
     if residual != 0:
-        raise ValueError("Expansion verification failed: triple bracket")
+        raise ValueError(f"Expansion verification failed: {context} (symbolic)")
 
     # Independent verification: evaluate both the original product and the claimed
     # cubic at a couple of concrete x values and check they agree numerically - a
@@ -502,8 +501,12 @@ def generate_expand_triple(tier: Tier, rng: random.Random):
         lhs = (a * test_x + b) * (c * test_x + d) * (e * test_x + f)
         rhs = qa * test_x**3 + qb * test_x**2 + qc * test_x + qd
         if lhs != rhs:
-            raise ValueError("Expansion verification failed: triple bracket numeric cross-check")
+            raise ValueError(f"Expansion verification failed: {context} (numeric cross-check)")
+    return qa, qb, qc, qd
 
+
+def _build_expand_triple_question(a, b, c, d, e, f, topic_id: str) -> Question:
+    qa, qb, qc, qd = _expand_triple_cubic(a, b, c, d, e, f, topic_id)
     mid_a, mid_b, mid_c = a * c, a * d + b * c, b * d
     prompt = f"Expand and simplify: ({fmt_linear(a, b)})({fmt_linear(c, d)})({fmt_linear(e, f)})"
     steps = [
@@ -512,7 +515,7 @@ def generate_expand_triple(tier: Tier, rng: random.Random):
         f"= {_fmt_cubic(qa, qb, qc, qd)}",
     ]
     return Question(
-        topic_id="expand_triple_brackets_H",
+        topic_id=topic_id,
         tier=Tier.HIGHER,
         prompt=prompt,
         solution_steps=tuple(steps),
@@ -521,26 +524,8 @@ def generate_expand_triple(tier: Tier, rng: random.Random):
     )
 
 
-def generate_modelled_example_expand_triple(tier: Tier, rng: random.Random) -> ModelledExample:
-    a, b = _rand_x_coeff(rng, 4), _rand_nonzero(rng, -4, 4)
-    c, d = _rand_x_coeff(rng, 4), _rand_nonzero(rng, -4, 4)
-    e, f = _rand_x_coeff(rng, 4), _rand_nonzero(rng, -4, 4)
-
-    expanded = sp.expand((a * X + b) * (c * X + d) * (e * X + f))
-    poly = sp.Poly(expanded, X)
-    coeffs = poly.all_coeffs()
-    coeffs = [0] * (4 - len(coeffs)) + coeffs
-    qa, qb, qc, qd = (int(v) for v in coeffs)
-
-    residual = sp.expand((a * X + b) * (c * X + d) * (e * X + f) - (qa * X**3 + qb * X**2 + qc * X + qd))
-    if residual != 0:
-        raise ValueError("modelled example expand_triple verification failed (symbolic)")
-    for test_x in (2, -3):
-        lhs = (a * test_x + b) * (c * test_x + d) * (e * test_x + f)
-        rhs = qa * test_x**3 + qb * test_x**2 + qc * test_x + qd
-        if lhs != rhs:
-            raise ValueError("modelled example expand_triple verification failed (numeric)")
-
+def _build_expand_triple_modelled(a, b, c, d, e, f, topic_id: str) -> ModelledExample:
+    qa, qb, qc, qd = _expand_triple_cubic(a, b, c, d, e, f, f"modelled example {topic_id}")
     mid_a, mid_b, mid_c = a * c, a * d + b * c, b * d
     teaching_steps = [
         "With three brackets multiplied together, it's too easy to make a mistake trying to do it all "
@@ -560,13 +545,51 @@ def generate_modelled_example_expand_triple(tier: Tier, rng: random.Random) -> M
         f"{_fmt_cubic(qa, qb, qc, qd)}",
     ]
     return ModelledExample(
-        topic_id="expand_triple_brackets_H",
+        topic_id=topic_id,
         tier=Tier.HIGHER,
         prompt=f"Expand and simplify: ({fmt_linear(a, b)})({fmt_linear(c, d)})({fmt_linear(e, f)})",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=_fmt_cubic(qa, qb, qc, qd),
     )
+
+
+def _triple_coeffs_with_coefficient(rng: random.Random) -> tuple[int, int, int, int, int, int]:
+    """Pick coefficients for the with-coefficient triple, guaranteeing at least
+    one x-coefficient (a, c, e) has magnitude > 1 so it genuinely differs from
+    the all-(x±k) no-coefficient variant."""
+    while True:
+        a, c, e = (_rand_x_coeff(rng, 4) for _ in range(3))
+        if any(abs(v) > 1 for v in (a, c, e)):
+            break
+    b, d, f = (_rand_nonzero(rng, -4, 4) for _ in range(3))
+    return a, b, c, d, e, f
+
+
+def _triple_coeffs_no_coefficient(rng: random.Random) -> tuple[int, int, int, int, int, int]:
+    """Pick coefficients for the no-coefficient triple: every bracket is (x ± k)."""
+    b, d, f = (_rand_nonzero(rng, -4, 4) for _ in range(3))
+    return 1, b, 1, d, 1, f
+
+
+def generate_expand_triple(tier: Tier, rng: random.Random):
+    a, b, c, d, e, f = _triple_coeffs_with_coefficient(rng)
+    return _build_expand_triple_question(a, b, c, d, e, f, "expand_triple_brackets_H")
+
+
+def generate_modelled_example_expand_triple(tier: Tier, rng: random.Random) -> ModelledExample:
+    a, b, c, d, e, f = _triple_coeffs_with_coefficient(rng)
+    return _build_expand_triple_modelled(a, b, c, d, e, f, "expand_triple_brackets_H")
+
+
+def generate_expand_triple_no_coefficient(tier: Tier, rng: random.Random):
+    a, b, c, d, e, f = _triple_coeffs_no_coefficient(rng)
+    return _build_expand_triple_question(a, b, c, d, e, f, "expand_triple_brackets_no_coefficient_H")
+
+
+def generate_modelled_example_expand_triple_no_coefficient(tier: Tier, rng: random.Random) -> ModelledExample:
+    a, b, c, d, e, f = _triple_coeffs_no_coefficient(rng)
+    return _build_expand_triple_modelled(a, b, c, d, e, f, "expand_triple_brackets_no_coefficient_H")
 
 
 def _find_factor_pair(b: int, c: int) -> tuple[int, int]:
@@ -930,6 +953,17 @@ TOPIC_EXPAND_TRIPLE = TopicDefinition(
     group=GROUP_EXPAND,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_expand_triple,
+)
+
+TOPIC_EXPAND_TRIPLE_NO_COEFFICIENT = TopicDefinition(
+    id="expand_triple_brackets_no_coefficient_H",
+    display_name="Triple Brackets (no coefficient)",
+    description="Expand three linear brackets of the form (x ± a)(x ± b)(x ± c) into a cubic expression.",
+    generate=generate_expand_triple_no_coefficient,
+    section=SECTION,
+    group=GROUP_EXPAND,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_expand_triple_no_coefficient,
 )
 
 TOPIC_FACTORISE_COMMON = TopicDefinition(

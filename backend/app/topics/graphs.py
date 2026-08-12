@@ -406,13 +406,14 @@ def generate_plot_reciprocal(tier: Tier, rng: random.Random) -> Question:
         f"Table of values for y = {_fmt_reciprocal(a)}:",
         "x: " + ", ".join(str(x) for x in xs),
         "y: " + ", ".join(str(y) for y in ys),
+        "There is no value at x = 0: dividing by 0 is undefined, so leave that column out of the table.",
         "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
     ]
     return Question(
         topic_id="plot_reciprocal_H",
         tier=Tier.HIGHER,
         prompt=(
-            f"Complete a table of values for y = {_fmt_reciprocal(a)} for x = -4, -3, -2, -1, 1, 2, 3, 4, "
+            f"Complete a table of values for y = {_fmt_reciprocal(a)} for x = -4 to 4, "
             "then plot the graph."
         ),
         solution_steps=tuple(steps),
@@ -1124,7 +1125,7 @@ def generate_modelled_example_plot_reciprocal(tier: Tier, rng: random.Random) ->
         topic_id="plot_reciprocal_H",
         tier=Tier.HIGHER,
         prompt=(
-            f"Complete a table of values for y = {_fmt_reciprocal(a)} for x = -4, -3, -2, -1, 1, 2, 3, 4, "
+            f"Complete a table of values for y = {_fmt_reciprocal(a)} for x = -4 to 4, "
             "then plot the graph."
         ),
         worked_calculation=tuple(worked_calculation),

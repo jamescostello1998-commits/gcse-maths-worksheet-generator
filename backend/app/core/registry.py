@@ -165,6 +165,7 @@ _TOPIC_LIST: list[TopicDefinition] = [
     expand_factorise.TOPIC_EXPAND_DOUBLE_NO_COEFFICIENT_FOUNDATION,
     expand_factorise.TOPIC_EXPAND_DOUBLE,
     expand_factorise.TOPIC_EXPAND_TRIPLE,
+    expand_factorise.TOPIC_EXPAND_TRIPLE_NO_COEFFICIENT,
     expand_factorise.TOPIC_FACTORISE_COMMON,
     expand_factorise.TOPIC_FACTORISE_QUADRATIC_FOUNDATION,
     expand_factorise.TOPIC_FACTORISE_QUADRATIC,

@@ -37,33 +37,53 @@ class _Option(NamedTuple):
     unit_price: Decimal  # pence per 100 units, rounded to 2 d.p. - for display only
 
 
+def _has_dominant_option(options: list) -> bool:
+    """True if one option is BOTH the lowest total price AND the largest
+    quantity - i.e. it is unambiguously the best value without computing any
+    unit prices at all (cheapest AND biggest). Such a scenario makes the
+    answer obvious by inspection, so it is rerolled - the point of the topic
+    is to force a genuine unit-price comparison.
+    """
+    min_price = min(o.price_pence for o in options)
+    max_qty = max(o.qty for o in options)
+    return any(o.price_pence == min_price and o.qty == max_qty for o in options)
+
+
 def _build_scenario(rng: random.Random) -> tuple:
     """Pick a product and a set of 2-3 differently-sized/priced options for it.
 
     Returns (noun, unit, options, winner_idx). The `unit_price` field on each
     option is a ROUNDED display value (what a student would actually compute
     and write down); the winner is determined and independently verified
-    using the raw, un-rounded integers below - see generate_best_buys.
+    using the raw, un-rounded integers below - see generate_best_buys. The
+    scenario is resampled until no single option dominates (see
+    _has_dominant_option), so the answer never falls out by inspection.
     """
-    noun, unit, qty_lo, qty_hi, qty_step = rng.choice(_PRODUCTS)
-    num_options = rng.choices([2, 3], weights=[70, 30])[0]
-    per_100_rates = rng.sample(_PER_100_POOL, num_options)
+    for _ in range(200):
+        noun, unit, qty_lo, qty_hi, qty_step = rng.choice(_PRODUCTS)
+        num_options = rng.choices([2, 3], weights=[70, 30])[0]
+        per_100_rates = rng.sample(_PER_100_POOL, num_options)
 
-    # Sample distinct quantities without replacement so a "different sizes"
-    # scenario never degenerates into two options of the identical size.
-    qty_choices = list(range(qty_lo, qty_hi + 1, qty_step))
-    qtys = rng.sample(qty_choices, num_options)
+        # Sample distinct quantities without replacement so a "different sizes"
+        # scenario never degenerates into two options of the identical size.
+        qty_choices = list(range(qty_lo, qty_hi + 1, qty_step))
+        qtys = rng.sample(qty_choices, num_options)
 
-    options = []
-    for label, per_100, qty in zip(_OPTION_LABELS, per_100_rates, qtys):
-        # Realistic sticker prices are always a whole number of pence, so the
-        # "ideal" rate-based price is rounded to the nearest penny.
-        exact_pence = Decimal(per_100) * Decimal(qty) / Decimal(100)
-        price_pence = int(exact_pence.quantize(Decimal(1), rounding=ROUND_HALF_UP))
-        unit_price = (Decimal(price_pence) * 100 / Decimal(qty)).quantize(
-            Decimal("0.01"), rounding=ROUND_HALF_UP
-        )
-        options.append(_Option(label, qty, price_pence, unit_price))
+        options = []
+        for label, per_100, qty in zip(_OPTION_LABELS, per_100_rates, qtys):
+            # Realistic sticker prices are always a whole number of pence, so the
+            # "ideal" rate-based price is rounded to the nearest penny.
+            exact_pence = Decimal(per_100) * Decimal(qty) / Decimal(100)
+            price_pence = int(exact_pence.quantize(Decimal(1), rounding=ROUND_HALF_UP))
+            unit_price = (Decimal(price_pence) * 100 / Decimal(qty)).quantize(
+                Decimal("0.01"), rounding=ROUND_HALF_UP
+            )
+            options.append(_Option(label, qty, price_pence, unit_price))
+
+        if not _has_dominant_option(options):
+            break
+    else:
+        raise ValueError("best_buys: could not build a non-dominant scenario")
 
     # Determine the best value via the ROUNDED per-unit prices - this is the
     # method a student actually uses (compute a unit price for each option,
@@ -224,16 +244,24 @@ _NONCALC_PER_100_POOL = list(range(20, 200, 10))
 
 
 def _build_scenario_noncalc(rng: random.Random) -> tuple:
-    noun, unit = rng.choice(_NONCALC_PRODUCTS)
-    num_options = rng.choices([2, 3], weights=[70, 30])[0]
-    per_100_rates = rng.sample(_NONCALC_PER_100_POOL, num_options)
-    qtys = rng.sample(_NONCALC_QTY_POOL, num_options)
+    for _ in range(200):
+        noun, unit = rng.choice(_NONCALC_PRODUCTS)
+        num_options = rng.choices([2, 3], weights=[70, 30])[0]
+        per_100_rates = rng.sample(_NONCALC_PER_100_POOL, num_options)
+        qtys = rng.sample(_NONCALC_QTY_POOL, num_options)
 
-    options = []
-    for label, per_100, qty in zip(_OPTION_LABELS, per_100_rates, qtys):
-        # qty is always a multiple of 100, so this division is always exact.
-        price_pence = per_100 * qty // 100
-        options.append(_Option(label, qty, price_pence, Decimal(per_100)))
+        options = []
+        for label, per_100, qty in zip(_OPTION_LABELS, per_100_rates, qtys):
+            # qty is always a multiple of 100, so this division is always exact.
+            price_pence = per_100 * qty // 100
+            options.append(_Option(label, qty, price_pence, Decimal(per_100)))
+
+        # Reroll any scenario where one option is both cheapest and biggest -
+        # the answer would be obvious without computing unit prices.
+        if not _has_dominant_option(options):
+            break
+    else:
+        raise ValueError("best_buys_noncalculator: could not build a non-dominant scenario")
 
     winner_idx_by_unit_price = min(range(num_options), key=lambda i: options[i].unit_price)
 

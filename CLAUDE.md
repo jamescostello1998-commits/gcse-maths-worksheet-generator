@@ -25,27 +25,23 @@ scheme. The full chronology below still uses the *old* ids in its historical ent
 tier suffix if you go looking for one. See step 44 for the exact rename rule and how the
 migration was done safely.
 
-**⚠️ COMPLETE but NOT MERGED — decide whether to merge `diagram-scale-overhaul` first.** A
-multi-phase rework of **every shape/angle & 3D-solid diagram** (`backend/app/pdf/diagrams.py`
-only) so they're **bigger, use one uniform 11pt label size, and are drawn roughly to scale
-with each measurement clearly tied to its own side/angle** — the user's 3 asks (see chronology
-step 47). **ALL 6 phases (0-6) are now done.** The work is committed on branch
-**`diagram-scale-overhaul`** (WIP, **not merged**; `master` = merge commit `2587551`), full
-backend suite **971/971** after each phase; frontend untouched; no topic-count change; diagram
-**param schemas unchanged**, so the 60 frozen Practice Test papers still render (no rebuild).
-The authoritative per-phase record (helpers, trade-offs, per-solid scaling approach) is the
-**plan file** `C:\Users\James\.claude\plans\zesty-yawning-blum.md` (its "STATUS" section).
-Phase summary: **P0** engine (canvas 290x190, `_LABEL_SIZE=11`, shared fit/scale helpers);
-**P1** rectilinear; **P2** triangles (true-scale/`_construct_triangle`); **P3** angles &
-polygons (fixed the flagged `forming_equations_H` quad); **P4** circles & sectors (angle
-values via the collision-safe `_place_angle_label`); **P5** bearings (legs drawn to true
-relative length parsed from the km labels; `_nudge_from_arrows` clears the north-arrow "N");
-**P6** 3D solids (`SOLID_WIDTH/HEIGHT` 290x210, `NET` 300x230; cuboid/prism/cylinder/cone/
-sphere/pyramid/frustum/compound scale edges proportionally to dims parsed from their labels,
-so every solid looks different; uniform 11pt). **Next step: check with the user, then merge
-`diagram-scale-overhaul` into `master`** (open a PR or fast-forward) — nothing in the overhaul
-is left to build. Out-of-scope kinds (graphs/charts/number-line/Venn/tree/loci/probability
-illustrations) were deliberately untouched.
+**✅ DONE (step 48) — review-feedback batch, review PDF pages 1–200 (7 items).** All applied,
+full backend suite **981/981**, topic count **312 → 313** (one new topic). The item-by-item
+plan is `C:\Users\James\.claude\plans\review-batch-pages-1-200.md` (historical now). The 7
+items: split `expand_triple_brackets_H` into with-coefficient (guarantees ≥1 coeff>1) + new
+`expand_triple_brackets_no_coefficient_H` (all `(x±k)`); SUVAT letter after every quantity in
+`kinematics_suvat_H` prompts (givens too, not just the "Find …"); label every integer on
+small-range gridded graph axes (numbered ticks now follow the gridline step in
+`_draw_scaled_axes`); `plot_reciprocal_H` prompt "for x = -4 to 4" (+ solution note that x=0 is
+undefined); `draw_graph_transformation` sizes its window to both curves so neither clips, and
+its base curve is now asymmetric (`0.5x^2+0.6x-1.5`) so reflect-in-y shows two distinct curves;
+best_buys no-dominance reroll (an option can't be both cheapest AND biggest); ratio all parts
+distinct (`_rand_distinct_parts`). See chronology step 48 for full detail. **Next natural step:
+the next chunk of review feedback (pages 201+), if the user resumes the review.**
+
+*(The diagram-scale-overhaul, chronology step 47, is long since MERGED into `master` — commits
+`153131d`..`c200eb4`, then the pages-1–200 batch `25be496`. Ignore any "not merged"/branch
+wording below; it's historical.)*
 
 The most recent *committed-to-master* pieces of work (PR #3 was merged into `master` as
 `2587551`; the `aqa-spec-gap-topics` branch was deleted):
@@ -99,7 +95,7 @@ pending review feedback.
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**312 topics across 6 sections**, all procedurally generated with independent
+**313 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.),
@@ -421,7 +417,7 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 | Section | Groups | Topics |
 |---|---|---|
 | Number | Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 56 |
-| Algebra | Expressions/Formulae/Equations/Identities, Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Substitution into Formulae, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Equation of a Circle, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Kinematics (SUVAT), Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 80 |
+| Algebra | Expressions/Formulae/Equations/Identities, Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Substitution into Formulae, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Equation of a Circle, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Kinematics (SUVAT), Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 81 |
 | Ratio & Proportion | Percentages, Best Buys, Ratio, Proportion, Compound Measures | 37 |
 | Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations, Bearings, Map Scales and Scale Drawings, Constructions, Loci | 88 |
 | Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams, Venn Diagrams | 22 |
@@ -4203,6 +4199,73 @@ fixes), is committed and pushed (see `git log`).
     hardcoded label sizes). One accepted trade-off already made: very acute/obtuse
     triangle angles are compressed toward 60 for *drawing* legibility (`_legible_angles`)
     so three vertex labels don't collide — the labels still show the true values.
+
+48. New session, a review-feedback batch covering pages 1–200 of the
+    `all_topics_review_*.pdf` documents (7 named items) — a paginated continuation of the
+    same review process (steps 34-43), the first such chunk after the step-47 diagram
+    overhaul was merged. Two design decisions were locked with the user before this
+    session (recorded in the plan file
+    `C:\Users\James\.claude\plans\review-batch-pages-1-200.md`): ratio parts all distinct,
+    and best-buys with no dominating option. Worked directly through the 7 items (no
+    parallel subagents), verifying every visual change by rendering real PDFs, per this
+    project's standing "render and look closely" discipline.
+
+    1. **Triple brackets split** (`expand_factorise.py`): refactored
+       `generate_expand_triple`/its modelled twin into shared helpers
+       (`_expand_triple_cubic` doing both verifications, `_build_expand_triple_question`/
+       `_build_expand_triple_modelled`). The existing `expand_triple_brackets_H` now
+       guarantees ≥1 x-coefficient with magnitude >1 (`_triple_coeffs_with_coefficient`
+       rerolls until so), and a NEW `expand_triple_brackets_no_coefficient_H` (all `(x±k)`
+       brackets, `_triple_coeffs_no_coefficient`) was added — Higher, "Expanding Brackets"
+       group, own modelled example + `TopicDefinition`, registered, added to
+       `HOISTED_INSTRUCTIONS`. 312 → 313 topics; the four hardcoded `312` count assertions
+       bumped to `313`; Algebra table 80 → 81. This is the only topic-count change this batch.
+    2. **`kinematics_suvat_H` quantity letters** (`kinematics.py`): the SUVAT letter now
+       follows EVERY quantity in the question prompt, not just the "Find …" phrase step 42
+       already did — e.g. "initial velocity (u) of 5 m/s", "acceleration (a)",
+       "a time (t) of 3 s", "displacement (s)", "final velocity (v)". Edited all prompt
+       strings across `_prompt_and_steps_eq1/2/3` (question prompts only; steps unchanged).
+    3. **Label every integer on small-range graph axes** (`diagrams.py`
+       `_draw_scaled_axes`): the numbered ticks previously recomputed `_nice_tick_step`
+       independently, so a square-unit graph with gridlines every 1 unit but a y-span >10
+       (e.g. `plot_straight_line_F` y = -3x+4) numbered only every 2nd line. Changed the
+       numbered-tick loops to follow the actual `grid_step_x`/`grid_step_y` — so whenever
+       gridlines are at every integer, every integer is labelled (real squared-paper
+       convention). Zero effect on wide/lopsided graphs (their rectangular fallback already
+       sets grid_step = `_nice_tick_step`). Fixes `plot_straight_line_F`, `plot_quadratic_F`,
+       `line_equation_from_graph_F`; confirmed `plot_cubic_H`/`trig_graph_H` unchanged.
+    4. **`plot_reciprocal_H` domain wording** (`graphs.py`): prompt (and its modelled twin)
+       now say "for x = -4 to 4" instead of listing the non-zero x values; the numeric table
+       still uses only the 8 non-zero x (division by zero), with an added solution step that
+       x = 0 is undefined and left out — "for the student to discover", per the user.
+    5. **`graph_transformations_H` both curves visible** (`diagrams.py`
+       `draw_graph_transformation`): the fixed x[-6,6]/y[-6,8] window clipped a curve flat
+       whenever a translation of up to 8 pushed it off-screen. Now the window is computed
+       from the actual extent of BOTH curves (+1.5-unit margin) so neither clips — this
+       diagram is schematic, so exact scale doesn't matter. Also made the generic base curve
+       asymmetric (`_transform_base_fn` = `0.5x^2 + 0.6x - 1.5`, was the symmetric
+       `0.5x^2 - 1.5`) so `reflect_y` (y = f(-x)) produces a visibly DIFFERENT curve rather
+       than one that lands exactly on top of the dashed original and hides it — a genuine
+       "can't see both curves" case the fixed-window fix alone wouldn't have addressed.
+    6. **best_buys no-dominance** (`best_buys.py`): new `_has_dominant_option` (an option
+       that is BOTH the lowest total price AND the largest quantity — obviously best without
+       computing unit prices); both `_build_scenario` (calculator) and `_build_scenario_noncalc`
+       now reroll (bounded 200-attempt loop) until no option dominates, forcing a genuine
+       unit-price comparison. Existing unit-price + cross-multiplication verification kept.
+    7. **ratio all parts distinct** (`ratio.py`): new `_rand_distinct_parts(rng, n)` (via
+       `rng.sample(range(1,10), n)`) applied to `generate_share_two`/`_share_three`/
+       `_share_three_foundation`/`_combine_ratios` and their modelled twins (each of a
+       combined-ratio's two pairs made distinct). `find_share`, `ratio_difference`,
+       `ratio_difference_higher` already rerolled to distinct; `ratio_1_to_n` (n≠1) and
+       `ratio_to_equation` (m≠n) were already safe — confirmed by a 1500-trial-per-generator
+       scan finding zero equal-part ratios.
+
+    No frontend changes. Practice Tests were NOT rebuilt — the changed generators keep
+    backward-compatible output shapes and the frozen JSON is static (the determinism test
+    compares build-vs-build, not against committed files), so the 60 papers still render.
+    Backend suite grew 971 → 981 (new triple-bracket generator/modelled/topic tests; the
+    other items were covered by existing tests). Review PDFs regenerated (313 question pages,
+    up from 312; 323 answer pages) and sent to the user. Committed and pushed.
 
 ## Environment gotchas (Windows, this machine specifically)
 

@@ -134,8 +134,9 @@ def _prompt_and_steps_eq1(b: dict) -> tuple[str, list[str], str]:
 
     if unknown == "v":
         prompt = (
-            f"An object starts with a velocity of {u} m/s and has a constant acceleration "
-            f"of {a} m/s^2 for {t} s. Find its final velocity (v).{_rounding_clause(rounded)}"
+            f"An object starts with an initial velocity (u) of {u} m/s and has a constant "
+            f"acceleration (a) of {a} m/s^2 for a time (t) of {t} s. Find its final velocity "
+            f"(v).{_rounding_clause(rounded)}"
         )
         steps = [
             reason,
@@ -146,8 +147,9 @@ def _prompt_and_steps_eq1(b: dict) -> tuple[str, list[str], str]:
         final_answer = f"{display} m/s"
     elif unknown == "u":
         prompt = (
-            f"An object has a final velocity of {v} m/s after a constant acceleration of "
-            f"{a} m/s^2 for {t} s. Find its initial velocity (u).{_rounding_clause(rounded)}"
+            f"An object has a final velocity (v) of {v} m/s after a constant acceleration (a) "
+            f"of {a} m/s^2 for a time (t) of {t} s. Find its initial velocity "
+            f"(u).{_rounding_clause(rounded)}"
         )
         steps = [
             reason,
@@ -159,8 +161,8 @@ def _prompt_and_steps_eq1(b: dict) -> tuple[str, list[str], str]:
         final_answer = f"{display} m/s"
     elif unknown == "a":
         prompt = (
-            f"An object's velocity increases from {u} m/s to {v} m/s over {t} s at a "
-            f"constant acceleration. Find this acceleration (a).{_rounding_clause(rounded)}"
+            f"An object's velocity increases from {u} m/s (u) to {v} m/s (v) over a time (t) "
+            f"of {t} s at a constant acceleration. Find this acceleration (a).{_rounding_clause(rounded)}"
         )
         steps = [
             reason,
@@ -172,8 +174,8 @@ def _prompt_and_steps_eq1(b: dict) -> tuple[str, list[str], str]:
         final_answer = f"{display} m/s^2"
     else:  # unknown == "t"
         prompt = (
-            f"An object's velocity increases from {u} m/s to {v} m/s at a constant "
-            f"acceleration of {a} m/s^2. Find how long this takes (t).{_rounding_clause(rounded)}"
+            f"An object's velocity increases from {u} m/s (u) to {v} m/s (v) at a constant "
+            f"acceleration (a) of {a} m/s^2. Find how long this takes (t).{_rounding_clause(rounded)}"
         )
         steps = [
             reason,
@@ -244,8 +246,9 @@ def _prompt_and_steps_eq2(b: dict) -> tuple[str, list[str], str]:
 
     if unknown == "s":
         prompt = (
-            f"An object starts with a velocity of {u} m/s and has a constant acceleration "
-            f"of {a} m/s^2 for {t} s. Find the total displacement (s).{_rounding_clause(rounded)}"
+            f"An object starts with an initial velocity (u) of {u} m/s and has a constant "
+            f"acceleration (a) of {a} m/s^2 for a time (t) of {t} s. Find the total "
+            f"displacement (s).{_rounding_clause(rounded)}"
         )
         steps = [
             reason,
@@ -256,9 +259,9 @@ def _prompt_and_steps_eq2(b: dict) -> tuple[str, list[str], str]:
         final_answer = f"{display} m"
     elif unknown == "u":
         prompt = (
-            f"An object has a constant acceleration of {a} m/s^2 for {t} s, and travels a "
-            f"displacement of {s_display} m in that time. Find its initial velocity (u)."
-            f"{_rounding_clause(rounded)}"
+            f"An object has a constant acceleration (a) of {a} m/s^2 for a time (t) of {t} s, "
+            f"and travels a displacement (s) of {s_display} m in that time. Find its initial "
+            f"velocity (u).{_rounding_clause(rounded)}"
         )
         steps = [
             reason,
@@ -270,8 +273,9 @@ def _prompt_and_steps_eq2(b: dict) -> tuple[str, list[str], str]:
         final_answer = f"{display} m/s"
     else:  # unknown == "a"
         prompt = (
-            f"An object starts with a velocity of {u} m/s and travels a displacement of "
-            f"{s_display} m in {t} s. Find its acceleration (a).{_rounding_clause(rounded)}"
+            f"An object starts with an initial velocity (u) of {u} m/s and travels a "
+            f"displacement (s) of {s_display} m in a time (t) of {t} s. Find its acceleration "
+            f"(a).{_rounding_clause(rounded)}"
         )
         steps = [
             reason,
@@ -375,9 +379,9 @@ def _prompt_and_steps_eq3(b: dict) -> tuple[str, list[str], str]:
     if unknown == "v":
         u, a, s, v_sq = b["u"], b["a"], b["s"], b["v_sq"]
         prompt = (
-            f"An object starts with a velocity of {u} m/s and has a constant acceleration "
-            f"of {a} m/s^2 over a displacement of {s} m. Find its final velocity (v)."
-            f"{_rounding_clause(rounded)}"
+            f"An object starts with an initial velocity (u) of {u} m/s and has a constant "
+            f"acceleration (a) of {a} m/s^2 over a displacement (s) of {s} m. Find its final "
+            f"velocity (v).{_rounding_clause(rounded)}"
         )
         steps = [
             reason,
@@ -391,8 +395,8 @@ def _prompt_and_steps_eq3(b: dict) -> tuple[str, list[str], str]:
     elif unknown == "u":
         v, a, s, u_sq = b["v"], b["a"], b["s"], b["u_sq"]
         prompt = (
-            f"An object has a final velocity of {v} m/s after a constant acceleration of "
-            f"{a} m/s^2 over a displacement of {s} m. Find its initial velocity (u)."
+            f"An object has a final velocity (v) of {v} m/s after a constant acceleration (a) "
+            f"of {a} m/s^2 over a displacement (s) of {s} m. Find its initial velocity (u)."
             f"{_rounding_clause(rounded)}"
         )
         steps = [
@@ -408,8 +412,8 @@ def _prompt_and_steps_eq3(b: dict) -> tuple[str, list[str], str]:
     elif unknown == "a":
         u, v, s = b["u"], b["v"], b["s"]
         prompt = (
-            f"An object's velocity changes from {u} m/s to {v} m/s over a displacement of "
-            f"{s} m at a constant acceleration. Find this acceleration (a)."
+            f"An object's velocity changes from {u} m/s (u) to {v} m/s (v) over a displacement "
+            f"(s) of {s} m at a constant acceleration. Find this acceleration (a)."
             f"{_rounding_clause(rounded)}"
         )
         steps = [
@@ -423,8 +427,8 @@ def _prompt_and_steps_eq3(b: dict) -> tuple[str, list[str], str]:
     else:  # unknown == "s"
         u, v, a = b["u"], b["v"], b["a"]
         prompt = (
-            f"An object's velocity changes from {u} m/s to {v} m/s at a constant "
-            f"acceleration of {a} m/s^2. Find the displacement (s).{_rounding_clause(rounded)}"
+            f"An object's velocity changes from {u} m/s (u) to {v} m/s (v) at a constant "
+            f"acceleration (a) of {a} m/s^2. Find the displacement (s).{_rounding_clause(rounded)}"
         )
         steps = [
             reason,

@@ -31,6 +31,7 @@ HOISTED_INSTRUCTIONS: dict[str, str] = {
     "expand_double_brackets_no_coefficient_F": "Expand and simplify:",
     "expand_double_brackets_H": "Expand and simplify:",
     "expand_triple_brackets_H": "Expand and simplify:",
+    "expand_triple_brackets_no_coefficient_H": "Expand and simplify:",
     "change_subject_factorise_H": "Make x the subject of the formula",
     "simultaneous_common_coefficient_F": "Solve the simultaneous equations:",
     "simultaneous_different_coefficient_H": "Solve the simultaneous equations:",

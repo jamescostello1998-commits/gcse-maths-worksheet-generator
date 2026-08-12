@@ -20,6 +20,13 @@ def _rand_part(rng: random.Random) -> int:
     return rng.randint(1, 9)
 
 
+def _rand_distinct_parts(rng: random.Random, n: int) -> tuple[int, ...]:
+    """n distinct ratio parts drawn from 1..9, so a ratio never has two equal
+    parts (e.g. 4:4, or 2:5:2). Equal parts read oddly and, for a two-part
+    ratio, are degenerate (4:4 is just 1:1)."""
+    return tuple(rng.sample(range(1, 10), n))
+
+
 # Letter pairs/triples used by the letter-based ratio-equation style (e.g.
 # "a : b = 1 : 7") shared by generate_find_share, generate_ratio_difference,
 # and generate_ratio_difference_higher - varying which pair of letters is
@@ -33,7 +40,7 @@ _LETTER_TRIPLES = [("a", "b", "c"), ("p", "q", "r"), ("s", "t", "u")]
 
 
 def generate_share_two(tier: Tier, rng: random.Random) -> Question:
-    a, b = _rand_part(rng), _rand_part(rng)
+    a, b = _rand_distinct_parts(rng, 2)
     k = rng.randint(2, 20)
     total = k * (a + b)
     share_a, share_b = a * k, b * k
@@ -58,7 +65,7 @@ def generate_share_two(tier: Tier, rng: random.Random) -> Question:
 
 
 def generate_modelled_example_share_two(tier: Tier, rng: random.Random) -> ModelledExample:
-    a, b = _rand_part(rng), _rand_part(rng)
+    a, b = _rand_distinct_parts(rng, 2)
     k = rng.randint(2, 20)
     total = k * (a + b)
     share_a, share_b = a * k, b * k
@@ -184,7 +191,7 @@ def generate_modelled_example_find_share(tier: Tier, rng: random.Random) -> Mode
 
 
 def generate_share_three(tier: Tier, rng: random.Random) -> Question:
-    a, b, c = _rand_part(rng), _rand_part(rng), _rand_part(rng)
+    a, b, c = _rand_distinct_parts(rng, 3)
     k = rng.randint(2, 15)
     total = k * (a + b + c)
     share_a, share_b, share_c = a * k, b * k, c * k
@@ -210,7 +217,7 @@ def generate_share_three(tier: Tier, rng: random.Random) -> Question:
 
 
 def generate_modelled_example_share_three(tier: Tier, rng: random.Random) -> ModelledExample:
-    a, b, c = _rand_part(rng), _rand_part(rng), _rand_part(rng)
+    a, b, c = _rand_distinct_parts(rng, 3)
     k = rng.randint(2, 15)
     total = k * (a + b + c)
     share_a, share_b, share_c = a * k, b * k, c * k
@@ -249,7 +256,7 @@ def generate_modelled_example_share_three(tier: Tier, rng: random.Random) -> Mod
 
 
 def generate_share_three_foundation(tier: Tier, rng: random.Random) -> Question:
-    a, b, c = _rand_part(rng), _rand_part(rng), _rand_part(rng)
+    a, b, c = _rand_distinct_parts(rng, 3)
     k = rng.randint(2, 10)
     total = k * (a + b + c)
     share_a, share_b, share_c = a * k, b * k, c * k
@@ -275,7 +282,7 @@ def generate_share_three_foundation(tier: Tier, rng: random.Random) -> Question:
 
 
 def generate_modelled_example_share_three_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
-    a, b, c = _rand_part(rng), _rand_part(rng), _rand_part(rng)
+    a, b, c = _rand_distinct_parts(rng, 3)
     k = rng.randint(2, 10)
     total = k * (a + b + c)
     share_a, share_b, share_c = a * k, b * k, c * k
@@ -314,8 +321,8 @@ def generate_modelled_example_share_three_foundation(tier: Tier, rng: random.Ran
 
 
 def generate_combine_ratios(tier: Tier, rng: random.Random) -> Question:
-    p, q = _rand_part(rng), _rand_part(rng)
-    r, s = _rand_part(rng), _rand_part(rng)
+    p, q = _rand_distinct_parts(rng, 2)
+    r, s = _rand_distinct_parts(rng, 2)
 
     lcm_val = q * r // math.gcd(q, r)
     scale1 = lcm_val // q
@@ -347,8 +354,8 @@ def generate_combine_ratios(tier: Tier, rng: random.Random) -> Question:
 
 
 def generate_modelled_example_combine_ratios(tier: Tier, rng: random.Random) -> ModelledExample:
-    p, q = _rand_part(rng), _rand_part(rng)
-    r, s = _rand_part(rng), _rand_part(rng)
+    p, q = _rand_distinct_parts(rng, 2)
+    r, s = _rand_distinct_parts(rng, 2)
 
     lcm_val = q * r // math.gcd(q, r)
     scale1 = lcm_val // q

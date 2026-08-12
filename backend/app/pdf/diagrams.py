@@ -2159,21 +2159,26 @@ def _draw_scaled_axes(
     _, by1 = to_px(axis_x0, y_max)
     d.add(Line(bx0, by0, bx0, by1, strokeColor=INK, strokeWidth=1.1))
 
-    # Numbered ticks, spaced out to avoid clutter on wide ranges.
-    x_step = _nice_tick_step(x_min, x_max)
-    xt = math.ceil(x_min / x_step) * x_step
+    # Numbered ticks follow the gridline spacing so that whenever gridlines
+    # are drawn at every integer (the square-unit branch always uses a
+    # grid_step of 1), every integer is labelled too - a real GCSE squared-
+    # paper convention (user review feedback: on the small-range plotting/
+    # reading topics, e.g. x = -4..4, every integer axis value should carry a
+    # number, not every other one). On a lopsided/wide graph the rectangular
+    # fallback already sets grid_step to a "nice" >1 value, so this doesn't
+    # over-crowd those.
+    xt = math.ceil(x_min / grid_step_x) * grid_step_x
     while xt <= x_max + 1e-9:
         if abs(xt) > 1e-9:
             px, py = to_px(xt, axis_y0)
             d.add(_label(px, py - 9, str(int(xt)), size=6.5))
-        xt += x_step
-    y_step = _nice_tick_step(y_min, y_max)
-    yt = math.ceil(y_min / y_step) * y_step
+        xt += grid_step_x
+    yt = math.ceil(y_min / grid_step_y) * grid_step_y
     while yt <= y_max + 1e-9:
         if abs(yt) > 1e-9:
             px, py = to_px(axis_x0, yt)
             d.add(_label(px - 6, py - 2, str(int(yt)), anchor="end", size=6.5))
-        yt += y_step
+        yt += grid_step_y
 
     d.add(_label(ax1 + 4, ay0 - 2, x_axis_label, anchor="start", size=8))
     d.add(_label(bx0 - 4, by1 + 6, y_axis_label, anchor="end", size=8))
@@ -2595,10 +2600,13 @@ def draw_inequality_region(params: dict) -> Drawing:
 
 
 def _transform_base_fn(x: float) -> float:
-    # A smooth symmetric bowl-shaped curve (exactly y = 0.5x^2 - 1.5) used
-    # as the generic "y = f(x)" schematic - sampled densely below rather
-    # than drawn as a coarse hand-picked-point polyline.
-    return 0.5 * x**2 - 1.5
+    # A smooth bowl-shaped curve (y = 0.5x^2 + 0.6x - 1.5) used as the generic
+    # "y = f(x)" schematic - sampled densely below rather than drawn as a
+    # coarse hand-picked-point polyline. Deliberately asymmetric about the
+    # y-axis (the +0.6x term shifts the vertex off-centre) so a reflection in
+    # the y-axis, y = f(-x), produces a visibly DIFFERENT curve rather than
+    # one that lands exactly on top of the original and hides it.
+    return 0.5 * x**2 + 0.6 * x - 1.5
 
 
 def _apply_transform(kind: str, shift: float, pt: tuple[float, float]) -> tuple[float, float]:
@@ -2620,34 +2628,37 @@ def _apply_transform(kind: str, shift: float, pt: tuple[float, float]) -> tuple[
 
 def draw_graph_transformation(params: dict) -> Drawing:
     """A schematic (not to scale) generic curve y = f(x), dashed, alongside
-    its transformed image, solid, on the same axes."""
+    its transformed image, solid, on the same axes. The axis window is sized
+    to the actual extent of BOTH curves (plus a margin) so a large translation
+    never pushes either curve off-screen where it would clip flat against the
+    window edge."""
     d = Drawing(GRAPH_WIDTH, GRAPH_HEIGHT)
-    x_min, x_max, y_min, y_max = -6, 6, -6, 8
-    to_px = _draw_scaled_axes(d, x_min, x_max, y_min, y_max)
-
-    def clamp(pt: tuple[float, float]) -> tuple[float, float]:
-        x, y = pt
-        return (max(min(x, x_max), x_min), max(min(y, y_max), y_min))
 
     n = 40
     base_pts = [(-3 + 6 * i / n, _transform_base_fn(-3 + 6 * i / n)) for i in range(n + 1)]
+    trans_pts_xy = [_apply_transform(params["transform"], params.get("shift", 0), pt) for pt in base_pts]
+
+    all_x = [x for x, _ in base_pts] + [x for x, _ in trans_pts_xy]
+    all_y = [y for _, y in base_pts] + [y for _, y in trans_pts_xy]
+    margin = 1.5
+    x_min, x_max = math.floor(min(all_x) - margin), math.ceil(max(all_x) + margin)
+    y_min, y_max = math.floor(min(all_y) - margin), math.ceil(max(all_y) + margin)
+    to_px = _draw_scaled_axes(d, x_min, x_max, y_min, y_max)
 
     orig_pts: list[float] = []
     for pt in base_pts:
-        px, py = to_px(*clamp(pt))
+        px, py = to_px(*pt)
         orig_pts.extend([px, py])
     d.add(PolyLine(orig_pts, strokeColor=MUTED, strokeWidth=1.1, strokeDashArray=[3, 2]))
 
     trans_pts: list[float] = []
-    for pt in base_pts:
-        tpt = _apply_transform(params["transform"], params.get("shift", 0), pt)
-        px, py = to_px(*clamp(tpt))
+    for tpt in trans_pts_xy:
+        px, py = to_px(*tpt)
         trans_pts.extend([px, py])
     d.add(PolyLine(trans_pts, strokeColor=INK, strokeWidth=1.3))
 
     d.add(_label(8, GRAPH_HEIGHT - 10, params.get("original_label", "y = f(x)"), anchor="start", color=MUTED, size=7))
     d.add(_label(8, GRAPH_HEIGHT - 20, params.get("transformed_label", ""), anchor="start", color=INK, size=7))
-    _not_to_scale(d, x=GRAPH_WIDTH / 2, y=6)
     return d
 
 
