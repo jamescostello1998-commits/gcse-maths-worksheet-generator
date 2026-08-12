@@ -217,6 +217,25 @@ def test_ratio_shape_similar_higher_smoke_test_no_exceptions():
         assert q.final_answer
 
 
+def test_ratio_shape_similar_diagrams_vary_shape_kind():
+    # The similar-shapes diagrams should show a variety of shape kinds
+    # (rectangle / right_triangle / parallelogram) with an orientation, not
+    # always two rectangles.
+    for generate, tier in (
+        (ratio.generate_ratio_shape_similar_foundation, Tier.FOUNDATION),
+        (ratio.generate_ratio_shape_similar_higher, Tier.HIGHER),
+    ):
+        rng = random.Random(77)
+        kinds = set()
+        for _ in range(500):
+            q = generate(tier, rng)
+            params = q.diagram.params
+            assert params["shape_kind"] in {"rectangle", "right_triangle", "parallelogram"}
+            assert "orientation" in params
+            kinds.add(params["shape_kind"])
+        assert kinds == {"rectangle", "right_triangle", "parallelogram"}
+
+
 def test_ratio_1_to_n_uses_the_plain_n_marker_not_a_literal_bare_n():
     # "n" here is a ratio-form placeholder ("1:n"), not a real algebraic
     # variable - it must go through the \plain{n} escape marker (see

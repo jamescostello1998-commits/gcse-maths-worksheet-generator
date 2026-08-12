@@ -41,7 +41,12 @@ distinct (`_rand_distinct_parts`). See chronology step 48 for full detail.
 **✅ DONE (step 49) — `area_composite_rectangles_F` reworked to Corbett-style edge labelling**
 (the shape's own boundary edges labelled directly, some omitted so the student deduces missing
 lengths; L/T/find-x branches), plus sibling compound-topic label fixes and a full Practice-Test
-rebuild (still 313 topics, 981/981, all papers 100 marks). See chronology step 49.
+rebuild (still 313 topics, all papers 100 marks). See chronology step 49.
+
+**✅ DONE (step 50) — `ratio_shape_similar_F`/`_H` diagram rework**: letter A/B drawn INSIDE
+each shape; multiple shape kinds (rectangle / right-triangle in 4 orientations / parallelogram)
+for variety; Foundation shapes drawn further apart with the unknown label close to its shape.
+Still 313 topics, suite 983, all practice papers 100 marks. See chronology step 50.
 
 **Next natural step:** the next chunk of review feedback (pages 201+), if the user resumes the
 review.
@@ -4313,7 +4318,28 @@ fixes), is committed and pushed (see `git log`).
     diagram param schema changed; also picks up topic #313 from step 48 in the selection pool) —
     all exactly 100 marks, non-calculator constraint intact. Backend suite 981/981 (+1 test:
     composite diagrams use edge_labels, find-x carries "x"). Review PDFs regenerated (313/323,
-    unchanged counts) and sent. Committed and pushed.
+    unchanged counts) and sent. Committed and pushed. (The chronology line above says
+    "981/981" for step 49; the composite-edge-labels test added there actually made it 982.)
+
+50. Same review thread, feedback on `ratio_shape_similar_F`/`_H`: put the letter "A"/"B"
+    INSIDE each shape (not "Shape A" outside); use multiple shape types in different
+    orientations (was always two same-orientation rectangles, per step 38); and for the
+    Foundation topic, draw the two shapes further apart with the unknown label closer to its
+    shape. Reworked `draw_two_similar_rectangles` (`diagrams.py`, kept the registry kind name
+    for frozen-paper compat) into a general two-similar-shapes renderer: a new
+    `_similar_shape_geometry(kind, orient, ...)` returns the polygon + the two corresponding
+    edges to label for `rectangle` / `right_triangle` (4 right-angle-corner orientations) /
+    `parallelogram` (2 leans); both shapes in a question share one kind+orientation (so
+    corresponding sides stay identifiable), bigger drawn left, each labelled with a bold letter
+    inside (via the shape centroid) and its edge labels placed by the existing
+    `_place_edge_label` helper (which sits them close to their own edge). Gap widened 48→74 so
+    the height/unknown labels sit close to their shape without reaching the other one. New
+    `_pick_similar_shape(rng)` in `ratio.py` chooses kind+orientation; wired into all four
+    generators (F/H × practice/modelled), added to `shape_kind`/`orientation` diagram params
+    and the dedup keys. All three shape kinds appear; ~1600-1800 distinct dedup keys per
+    generator. No topic-count change (313). Rebuilt all 60 Practice Test papers (diagram param
+    schema changed) — all 100 marks. Backend suite 982 → 983 (+1: similar-shapes diagrams vary
+    shape_kind). Review PDFs regenerated (313/323) and sent. Committed and pushed.
 
 ## Environment gotchas (Windows, this machine specifically)
 

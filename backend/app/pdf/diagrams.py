@@ -420,76 +420,86 @@ def _orient(points: list[tuple], variant: int) -> list[tuple]:
     return out
 
 
-def draw_two_similar_rectangles(params: dict) -> Drawing:
-    """Two separate rectangles - "Shape A" and "Shape B" - side by side, for
-    a similar-shapes ratio question where the student must identify
-    corresponding sides themselves (same orientation, so width<->width and
-    height<->height, but the two rectangles are NOT drawn in their true
-    relative proportions - one side is often the unknown the student must
-    find, and drawing it at its real scaled size would let a careful
-    ruler-measurement leak the answer - see `_not_to_scale`). The shape
-    with the numerically larger given width IS drawn moderately larger
-    (though never to true scale) and placed first/left, so it's visually
-    obvious which side a given measurement belongs to - whichever of Shape
-    A/Shape B that turns out to be, per the real generated values.
+def _similar_shape_geometry(kind: str, orient: str, x0: float, y0: float, w: float, h: float):
+    """Return (polygon_points, base_edge, side_edge, (cx, cy)) for one similar
+    shape drawn inside the box (x0, y0, w, h). base_edge/side_edge are the two
+    corresponding edges the question labels (each a (p1, p2) pair)."""
+    if kind == "right_triangle":
+        if orient == "bl":  # right angle bottom-left
+            A, B, C = (x0, y0), (x0 + w, y0), (x0, y0 + h)
+            pts, base, side = [A, B, C], (A, B), (A, C)
+        elif orient == "br":  # right angle bottom-right
+            A, B, C = (x0, y0), (x0 + w, y0), (x0 + w, y0 + h)
+            pts, base, side = [A, B, C], (A, B), (B, C)
+        elif orient == "tl":  # right angle top-left
+            A, B, C = (x0, y0 + h), (x0 + w, y0 + h), (x0, y0)
+            pts, base, side = [A, B, C], (A, B), (A, C)
+        else:  # tr - right angle top-right
+            A, B, C = (x0, y0 + h), (x0 + w, y0 + h), (x0 + w, y0)
+            pts, base, side = [A, B, C], (A, B), (B, C)
+    elif kind == "parallelogram":
+        s = w * 0.28
+        bw = w - s
+        if orient == "left":  # top edge shifted left
+            P = [(x0 + s, y0), (x0 + s + bw, y0), (x0 + bw, y0 + h), (x0, y0 + h)]
+        else:  # right - top edge shifted right
+            P = [(x0, y0), (x0 + bw, y0), (x0 + bw + s, y0 + h), (x0 + s, y0 + h)]
+        pts, base, side = P, (P[0], P[1]), (P[1], P[2])
+    else:  # rectangle
+        P = [(x0, y0), (x0 + w, y0), (x0 + w, y0 + h), (x0, y0 + h)]
+        pts, base, side = P, (P[0], P[1]), (P[1], P[2])
+    cx = sum(p[0] for p in pts) / len(pts)
+    cy = sum(p[1] for p in pts) / len(pts)
+    return pts, base, side, (cx, cy)
 
-    params: a_width_label/a_height_label (Shape A's two side labels), b_width_label/
-    b_height_label (Shape B's two corresponding side labels - one is the known
-    scale-factor partner, the other may be the unknown, e.g. "x"). Any of the
-    four is optional (omit a key entirely to leave that side unlabelled) -
-    the area/volume version of this question only ever states ONE
-    corresponding length pair (the area/volume itself, not a second length,
-    is what's given/asked for), so only one width/height pair is passed.
-    The width labels are always real given numbers (never the unknown
-    itself), so they're always safe to compare numerically."""
+
+def draw_two_similar_rectangles(params: dict) -> Drawing:
+    """Two separate similar shapes - "A" and "B" - side by side, for a
+    similar-shapes ratio question where the student must identify corresponding
+    sides themselves. The shape kind (rectangle / right_triangle /
+    parallelogram) and orientation are chosen by the generator, so a worksheet
+    shows genuine variety rather than always two identical rectangles. Both
+    shapes share the same kind and orientation (so corresponding sides stay
+    identifiable), but are NOT drawn in their true relative proportions - one
+    side is often the unknown, and drawing it to real scale would let a ruler
+    leak the answer. The shape with the numerically larger given width is drawn
+    moderately larger and placed left. Each shape is labelled with a bold
+    letter (A/B) inside it, not a caption outside.
+
+    params: shape_kind, orientation; a_width_label/a_height_label (A's two
+    labelled corresponding edges), b_width_label/b_height_label (B's). Any label
+    is optional (the area/volume Higher version passes only the width pair)."""
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    kind = params.get("shape_kind", "rectangle")
+    orient = params.get("orientation", "br")
     a_bigger = _parse_leading_number(params.get("a_width_label", "0")) >= _parse_leading_number(
         params.get("b_width_label", "0")
     )
 
-    # "left" always means "the bigger shape" (by design - see docstring), so
-    # left_w/right_w are fixed regardless of which of A/B ends up there;
-    # only the ax0/bx0 assignment below depends on a_bigger.
-    left_w, left_h = 94, 82
-    right_w, right_h = 62, 54
-    gap = 48
+    left_w, left_h = 92, 78
+    right_w, right_h = 60, 50
+    gap = 74  # wide, so height/unknown labels can sit close to their own shape
     x0 = (DIAGRAM_WIDTH - (left_w + gap + right_w)) / 2
-    base_y = 46
+    base_y = 50
 
     if a_bigger:
-        ax0, ay0, aw, ah = x0, base_y, left_w, left_h
-        bx0, by0, bw, bh = x0 + left_w + gap, base_y, right_w, right_h
+        ax0, aw, ah = x0, left_w, left_h
+        bx0, bw, bh = x0 + left_w + gap, right_w, right_h
     else:
-        bx0, by0, bw, bh = x0, base_y, left_w, left_h
-        ax0, ay0, aw, ah = x0 + left_w + gap, base_y, right_w, right_h
+        bx0, bw, bh = x0, left_w, left_h
+        ax0, aw, ah = x0 + left_w + gap, right_w, right_h
 
-    d.add(Rect(ax0, ay0, aw, ah, strokeColor=INK, fillColor=None, strokeWidth=1.2))
-    d.add(Rect(bx0, by0, bw, bh, strokeColor=INK, fillColor=None, strokeWidth=1.2))
-
-    d.add(_label(ax0 + aw / 2, ay0 + ah + 10, "Shape A", color=MUTED))
-    d.add(_label(bx0 + bw / 2, by0 + bh + 10, "Shape B", color=MUTED))
-
-    if params.get("a_width_label"):
-        d.add(_label(ax0 + aw / 2, ay0 - 14, params["a_width_label"]))
-    if params.get("b_width_label"):
-        d.add(_label(bx0 + bw / 2, by0 - 14, params["b_width_label"]))
-    # A height label on the LEFT-positioned shape sits in the gap toward the
-    # other shape - centre it there so it can never collide with the other
-    # box regardless of which of A/B ends up left this time (a fixed small
-    # offset from the box edge, tried first, could still reach into the
-    # gap's far side for a wide label like "20 cm"). The RIGHT-positioned
-    # shape's height label has open canvas space to its own right instead,
-    # so it keeps the simple fixed-offset placement.
-    if params.get("a_height_label"):
-        if a_bigger:
-            d.add(_label(ax0 + aw + gap / 2, ay0 + ah / 2, params["a_height_label"], anchor="middle"))
-        else:
-            d.add(_label(ax0 + aw + 8, ay0 + ah / 2, params["a_height_label"], anchor="start"))
-    if params.get("b_height_label"):
-        if a_bigger:
-            d.add(_label(bx0 + bw + 8, by0 + bh / 2, params["b_height_label"], anchor="start"))
-        else:
-            d.add(_label(bx0 + bw + gap / 2, by0 + bh / 2, params["b_height_label"], anchor="middle"))
+    for x0s, w, h, letter, base_label, side_label in (
+        (ax0, aw, ah, "A", params.get("a_width_label"), params.get("a_height_label")),
+        (bx0, bw, bh, "B", params.get("b_width_label"), params.get("b_height_label")),
+    ):
+        pts, base, side, (cx, cy) = _similar_shape_geometry(kind, orient, x0s, base_y, w, h)
+        d.add(Polygon([c for p in pts for c in p], strokeColor=INK, fillColor=None, strokeWidth=1.2))
+        d.add(_label(cx, cy - 4, letter, size=13))
+        if base_label:
+            _place_edge_label(d, base[0], base[1], cx, cy, str(base_label))
+        if side_label:
+            _place_edge_label(d, side[0], side[1], cx, cy, str(side_label))
 
     _not_to_scale(d)
     return d

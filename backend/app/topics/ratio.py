@@ -16,6 +16,20 @@ GROUP = "Ratio"
 _UNKNOWN_LETTERS = ["x", "y", "z"]
 
 
+def _pick_similar_shape(rng: random.Random) -> tuple[str, str]:
+    """Pick a shape kind + orientation for a similar-shapes diagram, so a
+    worksheet shows a variety of shapes (rectangles, right-angled triangles in
+    several orientations, parallelograms) rather than always two rectangles."""
+    kind = rng.choice(["rectangle", "right_triangle", "parallelogram"])
+    if kind == "right_triangle":
+        orient = rng.choice(["bl", "br", "tl", "tr"])
+    elif kind == "parallelogram":
+        orient = rng.choice(["left", "right"])
+    else:
+        orient = "br"
+    return kind, orient
+
+
 def _rand_part(rng: random.Random) -> int:
     return rng.randint(1, 9)
 
@@ -968,6 +982,7 @@ def generate_ratio_shape_similar_foundation(tier: Tier, rng: random.Random) -> Q
         raise ValueError("ratio_shape_similar_foundation verification failed")
 
     letter = rng.choice(_UNKNOWN_LETTERS)
+    shape_kind, orientation = _pick_similar_shape(rng)
     steps = [
         f"Scale factor = {len_b} ÷ {len_a} = {_fmt_frac(k)}",
         f"Corresponding length = {len_a2} × {_fmt_frac(k)} = {answer}",
@@ -979,10 +994,12 @@ def generate_ratio_shape_similar_foundation(tier: Tier, rng: random.Random) -> Q
         prompt=prompt,
         solution_steps=tuple(steps),
         final_answer=f"{answer} cm",
-        dedup_key=f"ratio_shape_similar_f:{len_a}:{len_a2}:{numer}:{denom}:{letter}",
+        dedup_key=f"ratio_shape_similar_f:{len_a}:{len_a2}:{numer}:{denom}:{letter}:{shape_kind}:{orientation}",
         diagram=DiagramSpec(
             kind="two_similar_rectangles",
             params={
+                "shape_kind": shape_kind,
+                "orientation": orientation,
                 "a_width_label": f"{len_a} cm",
                 "a_height_label": f"{len_a2} cm",
                 "b_width_label": f"{len_b} cm",
@@ -1015,6 +1032,7 @@ def generate_modelled_example_ratio_shape_similar_foundation(
         raise ValueError("modelled example ratio_shape_similar_foundation verification failed")
 
     letter = rng.choice(_UNKNOWN_LETTERS)
+    shape_kind, orientation = _pick_similar_shape(rng)
     prompt = f"Shape A and Shape B are similar. Find the length of side {letter}."
     teaching_steps = [
         "When two shapes are similar, every length on one shape is the SAME multiple of the "
@@ -1043,6 +1061,8 @@ def generate_modelled_example_ratio_shape_similar_foundation(
         diagram=DiagramSpec(
             kind="two_similar_rectangles",
             params={
+                "shape_kind": shape_kind,
+                "orientation": orientation,
                 "a_width_label": f"{len_a} cm",
                 "a_height_label": f"{len_a2} cm",
                 "b_width_label": f"{len_b} cm",
@@ -1072,6 +1092,7 @@ def _build_similar_shape_higher(rng: random.Random):
 
 def generate_ratio_shape_similar_higher(tier: Tier, rng: random.Random) -> Question:
     sub_type, exponent, len_a, len_b, k, measure_a, measure_b, direction = _build_similar_shape_higher(rng)
+    shape_kind, orientation = _pick_similar_shape(rng)
     unit_label = "cm²" if sub_type == "area" else "cm^3"
     noun = sub_type
 
@@ -1114,10 +1135,15 @@ def generate_ratio_shape_similar_higher(tier: Tier, rng: random.Random) -> Quest
         prompt=prompt,
         solution_steps=tuple(steps),
         final_answer=answer,
-        dedup_key=f"ratio_shape_similar_h:{sub_type}:{len_a}:{len_b}:{measure_a}:{direction}",
+        dedup_key=f"ratio_shape_similar_h:{sub_type}:{len_a}:{len_b}:{measure_a}:{direction}:{shape_kind}:{orientation}",
         diagram=DiagramSpec(
             kind="two_similar_rectangles",
-            params={"a_width_label": f"{len_a} cm", "b_width_label": f"{len_b} cm"},
+            params={
+                "shape_kind": shape_kind,
+                "orientation": orientation,
+                "a_width_label": f"{len_a} cm",
+                "b_width_label": f"{len_b} cm",
+            },
         ),
     )
 
@@ -1126,6 +1152,7 @@ def generate_modelled_example_ratio_shape_similar_higher(
     tier: Tier, rng: random.Random
 ) -> ModelledExample:
     sub_type, exponent, len_a, len_b, k, measure_a, measure_b, direction = _build_similar_shape_higher(rng)
+    shape_kind, orientation = _pick_similar_shape(rng)
     unit_label = "cm²" if sub_type == "area" else "cm^3"
     noun = sub_type
 
@@ -1194,7 +1221,12 @@ def generate_modelled_example_ratio_shape_similar_higher(
         final_answer=answer,
         diagram=DiagramSpec(
             kind="two_similar_rectangles",
-            params={"a_width_label": f"{len_a} cm", "b_width_label": f"{len_b} cm"},
+            params={
+                "shape_kind": shape_kind,
+                "orientation": orientation,
+                "a_width_label": f"{len_a} cm",
+                "b_width_label": f"{len_b} cm",
+            },
         ),
     )
 
