@@ -612,31 +612,39 @@
     },
     {
       "topic_id": "pressure_H",
-      "prompt": "A table leg has a rectangular base measuring 23 cm × 18 cm and exerts a force of 170 N. Find the pressure it exerts, correct to 2 decimal places.",
+      "prompt": "The table leg below exerts a pressure of 12 N/cm² on its base. Find the force it exerts.",
       "solution_steps": [
-        "area = length × width = 23 × 18 = 414 cm²",
-        "pressure = force ÷ area = 170 ÷ 414 = 0.41 N/cm² (2 d.p.)"
+        "area = ½ × base × height = ½ × 19 × 8 = 76 cm²",
+        "force = pressure × area = 12 × 76 = 912 N"
       ],
-      "final_answer": "0.41 N/cm²",
+      "final_answer": "912 N",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "area = length × width = 23 × 18 = 414 cm²",
+          "description": "area = ½ × base × height = ½ × 19 × 8 = 76 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "pressure = force ÷ area = 170 ÷ 414 = 0.41 N/cm² (2 d.p.)",
+          "description": "force = pressure × area = 12 × 76 = 912 N",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0.41 N/cm² oe",
+          "description": "912 N oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "triangle_area",
+        "params": {
+          "base": 19,
+          "height": 8,
+          "base_label": "19 cm",
+          "height_label": "8 cm"
+        }
+      },
       "solution_diagram": null
     },
     {

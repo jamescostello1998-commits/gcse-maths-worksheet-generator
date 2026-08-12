@@ -1325,18 +1325,57 @@ def generate_modelled_example_pressure(tier: Tier, rng: random.Random) -> Modell
 # ===========================================================================
 
 
+def _pressure_dimension_shape(rng: random.Random) -> tuple:
+    """Pick a base shape (rectangle / square / right-triangle), returning
+    (shape, area, area_calc_step, area_teaching_sentence, DiagramSpec). The
+    dimensions live on the diagram, so the prompt need not restate them; the
+    worked steps still show how the contact area is found from them."""
+    shape = rng.choice(["rectangle", "square", "right_triangle"])
+    if shape == "square":
+        s = rng.randint(2, 20)
+        area = s * s
+        if _mul_via_repeated_addition(s, s) != area:
+            raise ValueError("pressure dimension-shape verification failed (square)")
+        area_calc = f"area = side² = {s} × {s} = {area} cm²"
+        area_teach = f"For a square base, area = side × side = {s} × {s} = {area} cm²."
+        diagram = DiagramSpec(kind="rectangle", params={
+            "width": s, "height": s, "width_label": f"{s} cm", "height_label": f"{s} cm",
+        })
+    elif shape == "right_triangle":
+        while True:
+            base, tri_h = rng.randint(3, 20), rng.randint(3, 16)
+            if (base * tri_h) % 2 == 0:
+                break
+        area = base * tri_h // 2
+        if _mul_via_repeated_addition(base, tri_h) != 2 * area:
+            raise ValueError("pressure dimension-shape verification failed (triangle)")
+        area_calc = f"area = ½ × base × height = ½ × {base} × {tri_h} = {area} cm²"
+        area_teach = (
+            f"For a triangular base, area = ½ × base × height = ½ × {base} × {tri_h} = {area} cm²."
+        )
+        diagram = DiagramSpec(kind="triangle_area", params={
+            "base": base, "height": tri_h, "base_label": f"{base} cm", "height_label": f"{tri_h} cm",
+        })
+    else:  # rectangle
+        length, width = rng.randint(2, 30), rng.randint(2, 30)
+        area = length * width
+        if _mul_via_repeated_addition(length, width) != area:
+            raise ValueError("pressure dimension-shape verification failed (rectangle)")
+        area_calc = f"area = length × width = {length} × {width} = {area} cm²"
+        area_teach = f"For a rectangular base, area = length × width = {length} × {width} = {area} cm²."
+        diagram = DiagramSpec(kind="rectangle", params={
+            "width": length, "height": width, "width_label": f"{length} cm", "height_label": f"{width} cm",
+        })
+    return shape, area, area_calc, area_teach, diagram
+
+
 def generate_pressure_higher(tier: Tier, rng: random.Random) -> Question:
     obj = rng.choice(_PRESSURE_CONTEXTS)
     flavour = rng.choice(["from_dimensions", "unit_conversion"])
+    diagram = None
 
     if flavour == "from_dimensions":
-        length, width = rng.randint(2, 30), rng.randint(2, 30)
-        area = length * width
-        # Independent verification of the area via repeated addition instead
-        # of `*`.
-        area_check = _mul_via_repeated_addition(length, width)
-        if area_check != area:
-            raise ValueError("pressure_higher verification failed (area from dimensions)")
+        shape, area, area_calc, _area_teach, diagram = _pressure_dimension_shape(rng)
 
         unknown = rng.choice(["force", "pressure"])
         if unknown == "force":
@@ -1344,12 +1383,9 @@ def generate_pressure_higher(tier: Tier, rng: random.Random) -> Question:
             force = pressure * area
             if Fraction(force, area) != Fraction(pressure):
                 raise ValueError("pressure_higher verification failed (force)")
-            prompt = (
-                f"A {obj} has a rectangular base measuring {length} cm × {width} cm and exerts "
-                f"a pressure of {pressure} N/cm². Find the force it exerts."
-            )
+            prompt = f"The {obj} below exerts a pressure of {pressure} N/cm² on its base. Find the force it exerts."
             steps = [
-                f"area = length × width = {length} × {width} = {area} cm²",
+                area_calc,
                 f"force = pressure × area = {pressure} × {area} = {force} N",
             ]
             answer = f"{force} N"
@@ -1360,15 +1396,15 @@ def generate_pressure_higher(tier: Tier, rng: random.Random) -> Question:
             if check_dec != pressure_dec:
                 raise ValueError("pressure_higher verification failed (pressure)")
             prompt = (
-                f"A {obj} has a rectangular base measuring {length} cm × {width} cm and exerts "
-                f"a force of {force} N. Find the pressure it exerts, correct to 2 decimal places."
+                f"The {obj} below exerts a force of {force} N on its base. "
+                "Find the pressure it exerts, correct to 2 decimal places."
             )
             steps = [
-                f"area = length × width = {length} × {width} = {area} cm²",
+                area_calc,
                 f"pressure = force ÷ area = {force} ÷ {area} = {_fmt_num(pressure_dec)} N/cm² (2 d.p.)",
             ]
             answer = f"{_fmt_num(pressure_dec)} N/cm²"
-        dedup = f"pressure_h:dims:{unknown}:{length}:{width}:{pressure if unknown == 'force' else force}"
+        dedup = f"pressure_h:dims:{shape}:{unknown}:{area}:{pressure if unknown == 'force' else force}"
     else:  # unit_conversion
         force = rng.randint(500, 6000)
         area_cm2 = rng.randint(100, 5000)
@@ -1407,19 +1443,17 @@ def generate_pressure_higher(tier: Tier, rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=dedup,
+        diagram=diagram,
     )
 
 
 def generate_modelled_example_pressure_higher(tier: Tier, rng: random.Random) -> ModelledExample:
     obj = rng.choice(_PRESSURE_CONTEXTS)
     flavour = rng.choice(["from_dimensions", "unit_conversion"])
+    diagram = None
 
     if flavour == "from_dimensions":
-        length, width = rng.randint(2, 30), rng.randint(2, 30)
-        area = length * width
-        area_check = _mul_via_repeated_addition(length, width)
-        if area_check != area:
-            raise ValueError("modelled example pressure_higher verification failed (area)")
+        shape, area, area_calc, area_teach, diagram = _pressure_dimension_shape(rng)
 
         unknown = rng.choice(["force", "pressure"])
         if unknown == "force":
@@ -1427,21 +1461,18 @@ def generate_modelled_example_pressure_higher(tier: Tier, rng: random.Random) ->
             force = pressure * area
             if Fraction(force, area) != Fraction(pressure):
                 raise ValueError("modelled example pressure_higher verification failed (force)")
-            prompt = (
-                f"A {obj} has a rectangular base measuring {length} cm × {width} cm and exerts "
-                f"a pressure of {pressure} N/cm². Find the force it exerts."
-            )
+            prompt = f"The {obj} below exerts a pressure of {pressure} N/cm² on its base. Find the force it exerts."
             answer = f"{force} N"
             teaching_steps = [
                 "Before the pressure formula can be used, we need the contact area - and here "
-                "it's given as a rectangle's dimensions rather than as a single number.",
-                f"area = length × width = {length} × {width} = {area} cm².",
+                "it has to be worked out from the base shown, not read off directly.",
+                area_teach,
                 f"Now use force = pressure × area = {pressure} × {area} = {force} N.",
                 f"As a check, dividing that force back by the area returns the original "
                 f"pressure: {force} ÷ {area} = {pressure}, which matches.",
             ]
             worked_calculation = [
-                f"area = {length} × {width} = {area} cm²",
+                area_calc,
                 f"force = {pressure} × {area} = {force} N",
             ]
         else:  # pressure
@@ -1451,22 +1482,21 @@ def generate_modelled_example_pressure_higher(tier: Tier, rng: random.Random) ->
             if check_dec != pressure_dec:
                 raise ValueError("modelled example pressure_higher verification failed (pressure)")
             prompt = (
-                f"A {obj} has a rectangular base measuring {length} cm × {width} cm and exerts "
-                f"a force of {force} N. Find the pressure it exerts, correct to 2 decimal places."
+                f"The {obj} below exerts a force of {force} N on its base. "
+                "Find the pressure it exerts, correct to 2 decimal places."
             )
             answer = f"{_fmt_num(pressure_dec)} N/cm²"
             teaching_steps = [
                 "The extra step here is finding the contact area before applying the pressure "
-                "formula, since only the rectangle's dimensions are given.",
-                f"area = length × width = {length} × {width} = {area} cm².",
+                "formula, since only the base shape is given, not the area directly.",
+                area_teach,
                 f"Now use pressure = force ÷ area = {force} ÷ {area} ≈ {_fmt_num(pressure_dec)} "
                 "N/cm², rounded to 2 decimal places.",
-                "As a check, the area was verified using repeated addition instead of "
-                "multiplication, and the final division was redone as an exact fraction "
-                "before rounding - both agree with the answer above.",
+                "As a check, the final division was redone as an exact fraction before "
+                "rounding, and it agrees with the answer above.",
             ]
             worked_calculation = [
-                f"area = {length} × {width} = {area} cm²",
+                area_calc,
                 f"pressure = {force} ÷ {area} = {_fmt_num(pressure_dec)} N/cm² (2 d.p.)",
             ]
     else:  # unit_conversion
@@ -1513,6 +1543,7 @@ def generate_modelled_example_pressure_higher(tier: Tier, rng: random.Random) ->
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
+        diagram=diagram,
     )
 
 

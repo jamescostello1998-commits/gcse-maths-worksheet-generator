@@ -621,31 +621,39 @@
     },
     {
       "topic_id": "pressure_H",
-      "prompt": "A table leg has a rectangular base measuring 13 cm × 7 cm and exerts a pressure of 24 N/cm². Find the force it exerts.",
+      "prompt": "The table leg below exerts a pressure of 24 N/cm² on its base. Find the force it exerts.",
       "solution_steps": [
-        "area = length × width = 13 × 7 = 91 cm²",
-        "force = pressure × area = 24 × 91 = 2184 N"
+        "area = side² = 7 × 7 = 49 cm²",
+        "force = pressure × area = 24 × 49 = 1176 N"
       ],
-      "final_answer": "2184 N",
+      "final_answer": "1176 N",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "area = length × width = 13 × 7 = 91 cm²",
+          "description": "area = side² = 7 × 7 = 49 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "force = pressure × area = 24 × 91 = 2184 N",
+          "description": "force = pressure × area = 24 × 49 = 1176 N",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2184 N oe",
+          "description": "1176 N oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "rectangle",
+        "params": {
+          "width": 7,
+          "height": 7,
+          "width_label": "7 cm",
+          "height_label": "7 cm"
+        }
+      },
       "solution_diagram": null
     },
     {

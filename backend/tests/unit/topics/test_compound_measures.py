@@ -50,6 +50,28 @@ def test_density_higher_from_dimensions_shows_a_shape_diagram_not_prose_dimensio
     assert shapes == {"cube", "cuboid", "triangular_prism"}
 
 
+def test_pressure_higher_from_dimensions_shows_a_base_shape_diagram():
+    # When the student must work out the contact area, the base shape
+    # (rectangle / square / right-triangle) is drawn with its dimensions on
+    # it, and the prompt no longer restates the dimensions in words.
+    rng = random.Random(7)
+    shapes = set()
+    saw_dims = False
+    for _ in range(600):
+        q = compound_measures.generate_pressure_higher(Tier.HIGHER, rng)
+        if q.dedup_key.startswith("pressure_h:dims"):
+            saw_dims = True
+            assert q.diagram is not None
+            assert q.diagram.kind in {"rectangle", "triangle_area"}
+            assert "measuring" not in q.prompt
+            assert "below" in q.prompt
+            shapes.add(q.dedup_key.split(":")[2])
+        else:  # unit_conversion variant has no shape diagram
+            assert q.diagram is None
+    assert saw_dims
+    assert shapes == {"rectangle", "square", "right_triangle"}
+
+
 def test_dedup_keys_vary_per_generator():
     for generate, tier in GENERATORS:
         rng = random.Random(32)

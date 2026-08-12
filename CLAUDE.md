@@ -51,7 +51,12 @@ Still 313 topics, suite 983, all practice papers 100 marks. See chronology step 
 **✅ DONE (step 51) — `density_H`**: the "work out the volume yourself" variant now shows a
 cube / cuboid / triangular-prism diagram with the dimensions on it, and the prompt no longer
 restates them ("The block below has a mass of 2175 g. Find its density…"). Still 313 topics,
-suite 984, all papers 100 marks. See chronology step 51.
+all papers 100 marks. See chronology step 51.
+
+**✅ DONE (step 52) — `pressure_H`**: the same treatment as density_H — the "work out the
+contact area" variant now shows a rectangle / square / right-triangle base with dimensions on
+it, and the prompt reads "The {obj} below exerts a force/pressure of … on its base. Find …".
+Still 313 topics, suite 985, all papers 100 marks. See chronology step 52.
 
 **Next natural step:** the next chunk of review feedback (pages 201+), if the user resumes the
 review.
@@ -4358,12 +4363,23 @@ fixes), is committed and pushed (see `git log`).
     independent repeated-addition volume cross-check kept. The prompt now says "The {obj} below
     has a mass/density of … Find its …" with the dimensions only on the shape. Solid-only context
     list (`_DENSITY_SOLID_CONTEXTS` — a "sample of liquid" has no shape to draw). The
-    `unit_conversion` flavour is unchanged and stays diagram-less. `pressure_H` has the exact same
-    `from_dimensions`/`unit_conversion` structure but the user only flagged density, so it was
-    left as-is. No topic-count change (313). Rebuilt all 60 Practice Test papers (density_H can
-    now carry a diagram) — all 100 marks. Backend suite 983 → 984 (+1: density_H dimensions
-    questions carry a shape diagram, three kinds, no prose dimensions). Review PDFs regenerated
-    (313/323) and sent. Committed and pushed.
+    `unit_conversion` flavour is unchanged and stays diagram-less. (`pressure_H` got the same
+    treatment next, step 52.) No topic-count change (313). Rebuilt all 60 Practice Test papers
+    (density_H can now carry a diagram) — all 100 marks. Backend suite 983 → 984 (+1: density_H
+    dimensions questions carry a shape diagram, three kinds, no prose dimensions). Review PDFs
+    regenerated (313/323) and sent. Committed and pushed.
+
+52. Same review thread — the user asked for `pressure_H` to get the same treatment as
+    `density_H` (step 51). Reworked `generate_pressure_higher`'s `from_dimensions` branch (+
+    modelled twin): new `_pressure_dimension_shape(rng)` picks a **rectangle / square /
+    right-triangle** base, returns the contact area + area-working step + a `DiagramSpec`
+    (`draw_rectangle` for rectangle/square, `draw_triangle_area` for the triangle — dimensions
+    on the diagram, independent repeated-addition area cross-check kept). Prompt reworded to
+    "The {obj} below exerts a pressure/force of … on its base. Find the …", dimensions only on
+    the shape. `unit_conversion` flavour unchanged (no diagram). No topic-count change (313).
+    Rebuilt all 60 Practice Test papers — all 100 marks. Backend suite 984 → 985 (+1: pressure_H
+    dimensions questions carry a base-shape diagram, three kinds, no prose dimensions). Review
+    PDFs regenerated (313/323) and sent. Committed and pushed.
 
 ## Environment gotchas (Windows, this machine specifically)
 

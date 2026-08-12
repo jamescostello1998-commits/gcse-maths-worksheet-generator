@@ -635,31 +635,39 @@
     },
     {
       "topic_id": "pressure_H",
-      "prompt": "A concrete block has a rectangular base measuring 24 cm × 17 cm and exerts a force of 4225 N. Find the pressure it exerts, correct to 2 decimal places.",
+      "prompt": "The concrete block below exerts a pressure of 8 N/cm² on its base. Find the force it exerts.",
       "solution_steps": [
-        "area = length × width = 24 × 17 = 408 cm²",
-        "pressure = force ÷ area = 4225 ÷ 408 = 10.36 N/cm² (2 d.p.)"
+        "area = ½ × base × height = ½ × 18 × 7 = 63 cm²",
+        "force = pressure × area = 8 × 63 = 504 N"
       ],
-      "final_answer": "10.36 N/cm²",
+      "final_answer": "504 N",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "area = length × width = 24 × 17 = 408 cm²",
+          "description": "area = ½ × base × height = ½ × 18 × 7 = 63 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "pressure = force ÷ area = 4225 ÷ 408 = 10.36 N/cm² (2 d.p.)",
+          "description": "force = pressure × area = 8 × 63 = 504 N",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10.36 N/cm² oe",
+          "description": "504 N oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "triangle_area",
+        "params": {
+          "base": 18,
+          "height": 7,
+          "base_label": "18 cm",
+          "height_label": "7 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
