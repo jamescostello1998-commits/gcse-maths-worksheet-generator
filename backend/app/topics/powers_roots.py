@@ -1976,6 +1976,128 @@ def generate_modelled_example_algebraic_surds(tier: Tier, rng: random.Random) ->
     )
 
 
+def _fmt_coeff_surd(coeff: int, k: int) -> str:
+    """Render coeff*√k, omitting a coefficient of 1/-1."""
+    if coeff == 1:
+        return f"√{k}"
+    if coeff == -1:
+        return f"-√{k}"
+    return f"{coeff}√{k}"
+
+
+def _build_surds_add_subtract(rng: random.Random) -> tuple[str, str, str, str, list[str]]:
+    """Return (prompt_expr, answer, root, dedup, steps). Verifies the answer
+    numerically (via math.sqrt) against the original expression - a path
+    independent of the coefficient arithmetic that builds the answer string."""
+    shape = rng.choice(["like", "like_three", "simplify_then_combine"])
+
+    if shape == "like":
+        k = rng.choice(_SQUARE_FREE_FACTORS)
+        while True:
+            a, b = rng.randint(2, 9), rng.randint(1, 9)
+            op = rng.choice(["+", "-"])
+            result = a + b if op == "+" else a - b
+            if result != 0:
+                break
+        prompt = f"{a}√{k} {op} {b}√{k}"
+        answer = _fmt_coeff_surd(result, k)
+        lhs = a * math.sqrt(k) + (b if op == "+" else -b) * math.sqrt(k)
+        root, dedup = k, f"like:{a}:{op}:{b}:{k}"
+        steps = [
+            f"Both terms are multiples of √{k}, so they are 'like surds' and can be combined.",
+            f"Combine the whole-number coefficients: {a} {op} {b} = {result}.",
+            f"= {answer}",
+        ]
+
+    elif shape == "like_three":
+        k = rng.choice(_SQUARE_FREE_FACTORS)
+        while True:
+            a, b, c = rng.randint(2, 9), rng.randint(1, 7), rng.randint(1, 7)
+            op1, op2 = rng.choice(["+", "-"]), rng.choice(["+", "-"])
+            result = a + (b if op1 == "+" else -b) + (c if op2 == "+" else -c)
+            if result != 0:
+                break
+        prompt = f"{a}√{k} {op1} {b}√{k} {op2} {c}√{k}"
+        answer = _fmt_coeff_surd(result, k)
+        lhs = (
+            a * math.sqrt(k)
+            + (b if op1 == "+" else -b) * math.sqrt(k)
+            + (c if op2 == "+" else -c) * math.sqrt(k)
+        )
+        root, dedup = k, f"like3:{a}:{op1}:{b}:{op2}:{c}:{k}"
+        steps = [
+            f"Every term is a multiple of √{k}, so they are all like surds.",
+            f"Combine the coefficients in order: {a} {op1} {b} {op2} {c} = {result}.",
+            f"= {answer}",
+        ]
+
+    else:  # simplify_then_combine, e.g. √8 + √18 = 2√2 + 3√2 = 5√2
+        while True:
+            s = rng.choice(_SQUARE_FREE_FACTORS)
+            p, q = rng.randint(2, 5), rng.randint(1, 5)
+            op = rng.choice(["+", "-"])
+            m, n = p * p * s, q * q * s
+            if m == n or m > 300 or n > 300:
+                continue
+            coeff = p + q if op == "+" else p - q
+            if coeff != 0:
+                break
+        prompt = f"√{m} {op} √{n}"
+        answer = _fmt_coeff_surd(coeff, s)
+        lhs = math.sqrt(m) + (1 if op == "+" else -1) * math.sqrt(n)
+        root, dedup = s, f"simp:{m}:{op}:{n}"
+        steps = [
+            f"Simplify each surd first: √{m} = {p}√{s} and √{n} = {q}√{s}.",
+            f"They are now like surds, so combine the coefficients: {p} {op} {q} = {coeff}.",
+            f"= {answer}",
+        ]
+
+    # Independent numeric verification: the exact answer coeff*√root must equal
+    # the original expression evaluated with floating-point square roots.
+    result_coeff = -1 if answer.startswith("-√") else (1 if answer.startswith("√") else int(answer.split("√")[0]))
+    rhs = result_coeff * math.sqrt(root)
+    if abs(lhs - rhs) > 1e-9:
+        raise ValueError("surds_add_subtract verification failed")
+
+    return prompt, answer, str(root), dedup, steps
+
+
+def generate_surds_add_subtract(tier: Tier, rng: random.Random) -> Question:
+    prompt, answer, _root, dedup, steps = _build_surds_add_subtract(rng)
+    return Question(
+        topic_id="surds_add_subtract_H",
+        tier=Tier.HIGHER,
+        prompt=f"Simplify {prompt}, giving your answer in the form a√b.",
+        solution_steps=tuple(steps),
+        final_answer=answer,
+        dedup_key=f"surdadd:{dedup}",
+    )
+
+
+def generate_modelled_example_surds_add_subtract(tier: Tier, rng: random.Random) -> ModelledExample:
+    prompt, answer, _root, _dedup, steps = _build_surds_add_subtract(rng)
+    teaching_steps = [
+        f"The expression is {prompt}. Adding and subtracting surds works exactly like collecting "
+        "like terms in algebra: you can only combine surds that have the same number under the "
+        "root sign (these are called 'like surds'), and √b behaves just like a letter would.",
+        "If the surds aren't already alike, simplify each one first by taking out its largest "
+        "square factor - two surds that look different, like √8 and √18, often turn out to be "
+        "multiples of the same simpler surd once simplified.",
+        "Once every term is a multiple of the same surd, add or subtract only the whole numbers in "
+        "front (the coefficients); the surd part itself stays unchanged.",
+        f"Carrying that out here: {'; '.join(steps[:-1])} giving {answer}.",
+    ]
+    worked_calculation = [prompt] + steps
+    return ModelledExample(
+        topic_id="surds_add_subtract_H",
+        tier=Tier.HIGHER,
+        prompt=f"Simplify {prompt}, giving your answer in the form a√b.",
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=answer,
+    )
+
+
 TOPIC_POWERS_FOUNDATION = TopicDefinition(
     id="powers_F",
     display_name="Powers & Indices",
@@ -2084,4 +2206,15 @@ TOPIC_ALGEBRAIC_SURDS = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_algebraic_surds,
+)
+
+TOPIC_SURDS_ADD_SUBTRACT = TopicDefinition(
+    id="surds_add_subtract_H",
+    display_name="Adding and Subtracting Surds",
+    description="Add and subtract surds by simplifying to like surds and combining coefficients.",
+    generate=generate_surds_add_subtract,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.HIGHER,
+    generate_modelled_example=generate_modelled_example_surds_add_subtract,
 )

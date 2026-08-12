@@ -1,4 +1,5 @@
 import itertools
+import math
 import random
 from decimal import Decimal
 from fractions import Fraction
@@ -854,6 +855,157 @@ def generate_modelled_example_sample_space_diagrams(tier: Tier, rng: random.Rand
     )
 
 
+# --------------------------------------------------------------------------
+# Listing and describing sets (roster form / set-builder notation)
+# --------------------------------------------------------------------------
+
+_FACTOR_TARGETS = [12, 16, 18, 20, 24, 28, 30, 36, 40, 45, 48]
+
+
+def _divisor_count(n: int) -> int:
+    """Number of factors of n via prime factorisation (product of exp+1) - an
+    independent path from listing divisors by trial division."""
+    count, remaining, d = 1, n, 2
+    while d * d <= remaining:
+        exp = 0
+        while remaining % d == 0:
+            remaining //= d
+            exp += 1
+        count *= exp + 1
+        d += 1
+    if remaining > 1:
+        count *= 2
+    return count
+
+
+def _build_set_listing(rng: random.Random) -> tuple[str, str, list[str], str]:
+    """Return (description_phrase, set_builder_condition, steps, roster_answer,
+    dedup) for a set described by a property. The roster is built by scanning
+    the range/target (primary), then its length is independently checked against
+    a closed-form count."""
+    shape = rng.choice(["even", "odd", "multiple", "square", "factors"])
+
+    if shape == "factors":
+        n = rng.choice(_FACTOR_TARGETS)
+        elems = [d for d in range(1, n + 1) if n % d == 0]
+        expected = _divisor_count(n)
+        phrase = f"the factors of {n}"
+        condition = f"x is a factor of {n}"
+        dedup = f"factors:{n}"
+    else:
+        while True:
+            if shape == "multiple":
+                k = rng.randint(2, 6)
+                lo = rng.choice([1, k])
+                hi = rng.randint(lo + 4 * k, lo + 9 * k)
+                pred = lambda x, k=k: x % k == 0
+                expected_fn = lambda lo, hi, k=k: hi // k - (lo - 1) // k
+                phrase = f"the multiples of {k} between {lo} and {hi} inclusive"
+                condition = f"x is a multiple of {k}"
+                dedup = f"multiple:{k}:{lo}:{hi}"
+            elif shape == "even":
+                lo, hi = rng.randint(1, 6), rng.randint(16, 30)
+                pred = lambda x: x % 2 == 0
+                expected_fn = lambda lo, hi: hi // 2 - (lo - 1) // 2
+                phrase = f"the even numbers between {lo} and {hi} inclusive"
+                condition = "x is even"
+                dedup = f"even:{lo}:{hi}"
+            elif shape == "odd":
+                lo, hi = rng.randint(1, 6), rng.randint(16, 30)
+                pred = lambda x: x % 2 == 1
+                expected_fn = lambda lo, hi: (hi + 1) // 2 - lo // 2
+                phrase = f"the odd numbers between {lo} and {hi} inclusive"
+                condition = "x is an odd number"
+                dedup = f"odd:{lo}:{hi}"
+            else:  # square
+                lo, hi = rng.randint(1, 5), rng.randint(30, 80)
+                pred = lambda x: math.isqrt(x) ** 2 == x
+                expected_fn = lambda lo, hi: math.isqrt(hi) - math.isqrt(lo - 1)
+                phrase = f"the square numbers between {lo} and {hi} inclusive"
+                condition = "x is a square number"
+                dedup = f"square:{lo}:{hi}"
+
+            elems = [x for x in range(lo, hi + 1) if pred(x)]
+            expected = expected_fn(lo, hi)
+            if 3 <= len(elems) <= 12:
+                break
+
+    # Independent verification: the number of listed elements must match the
+    # closed-form count (a different computation than the element-by-element
+    # scan that produced the list).
+    if len(elems) != expected:
+        raise ValueError("set_listing verification failed: count mismatch")
+
+    # The set-builder form must carry the range too, or "{ x : x is odd }"
+    # would describe an infinite set - only the factors shape is self-bounded.
+    builder_cond = condition if shape == "factors" else f"{condition}, {lo} ≤ x ≤ {hi}"
+
+    roster = "{" + ", ".join(str(x) for x in elems) + "}"
+    use_builder = rng.random() < 0.5
+    steps = [
+        (f"Read the set-builder rule: it means 'the set of all x such that {builder_cond}'."
+         if use_builder else f"We want to list every number in {phrase}."),
+        "Go through the candidates in order and keep only the ones that fit the description.",
+        f"Written out in a list (roster form): {roster}",
+    ]
+    prompt = (
+        f"List the elements of the set A = {{ x : {builder_cond} }}."
+        if use_builder
+        else f"List the members of the set of {phrase}."
+    )
+    return prompt, roster, steps, dedup
+
+
+def generate_set_listing(tier: Tier, rng: random.Random) -> Question:
+    for _ in range(60):
+        try:
+            prompt, roster, steps, dedup = _build_set_listing(rng)
+            break
+        except ValueError:
+            continue
+    else:
+        raise ValueError("set_listing could not build a valid question")
+    return Question(
+        topic_id="set_listing_F",
+        tier=Tier.FOUNDATION,
+        prompt=prompt,
+        solution_steps=tuple(steps),
+        final_answer=roster,
+        dedup_key=f"set_listing:{dedup}",
+    )
+
+
+def generate_modelled_example_set_listing(tier: Tier, rng: random.Random) -> ModelledExample:
+    for _ in range(60):
+        try:
+            prompt, roster, _steps, _dedup = _build_set_listing(rng)
+            break
+        except ValueError:
+            continue
+    else:
+        raise ValueError("set_listing modelled example could not build a valid question")
+    teaching_steps = [
+        "A set is just a collection of items, and 'listing' a set means writing out every member "
+        "inside curly brackets { }, separated by commas - this is called roster form.",
+        "Sometimes the set is described in words and sometimes with set-builder notation like "
+        "{ x : ... }, which reads as 'the set of all values of x such that ...'. Either way, the "
+        "job is the same: find every value that fits the rule.",
+        "Work through the possible values in order and test each one against the description, "
+        "keeping the ones that pass and ignoring the ones that don't. Going in order means you "
+        "won't accidentally miss one or repeat one.",
+        f"Collecting the values that fit gives the set in roster form: {roster}.",
+    ]
+    worked_calculation = [prompt, f"= {roster}"]
+    return ModelledExample(
+        topic_id="set_listing_F",
+        tier=Tier.FOUNDATION,
+        prompt=prompt,
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=roster,
+    )
+
+
 TOPIC_SET_NOTATION = TopicDefinition(
     id="set_notation_H",
     display_name="Set Notation",
@@ -874,6 +1026,17 @@ TOPIC_SET_NOTATION_FOUNDATION = TopicDefinition(
     group=GROUP_COUNTING,
     fixed_tier=Tier.FOUNDATION,
     generate_modelled_example=generate_modelled_example_set_notation_foundation,
+)
+
+TOPIC_SET_LISTING = TopicDefinition(
+    id="set_listing_F",
+    display_name="Listing and Describing Sets",
+    description="List the elements of a set described in words or set-builder notation (roster form).",
+    generate=generate_set_listing,
+    section=SECTION,
+    group=GROUP_COUNTING,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_set_listing,
 )
 
 TOPIC_PRODUCT_RULE_COUNTING = TopicDefinition(

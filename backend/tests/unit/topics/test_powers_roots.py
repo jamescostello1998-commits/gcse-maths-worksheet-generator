@@ -18,6 +18,7 @@ GENERATORS = [
     (powers_roots.generate_indices_common_base_equations, Tier.HIGHER),
     (powers_roots.generate_surds_multiply_divide, Tier.HIGHER),
     (powers_roots.generate_algebraic_surds, Tier.HIGHER),
+    (powers_roots.generate_surds_add_subtract, Tier.HIGHER),
 ]
 
 
@@ -105,6 +106,7 @@ MODELLED_EXAMPLE_GENERATORS = [
     ),
     (powers_roots.generate_modelled_example_surds_multiply_divide, Tier.HIGHER, "surds_multiply_divide_H"),
     (powers_roots.generate_modelled_example_algebraic_surds, Tier.HIGHER, "algebraic_surds_H"),
+    (powers_roots.generate_modelled_example_surds_add_subtract, Tier.HIGHER, "surds_add_subtract_H"),
 ]
 
 
@@ -219,3 +221,21 @@ def test_algebraic_surds_answer_always_contains_a_surd_term():
         q = powers_roots.generate_algebraic_surds(Tier.HIGHER, rng)
         # Both shapes are constructed so the surd coefficient is never zero.
         assert "√" in q.final_answer
+
+
+def test_surds_add_subtract_answer_is_simplified_and_nonzero():
+    import math as _math
+
+    rng = random.Random(715)
+    for _ in range(TRIALS):
+        q = powers_roots.generate_surds_add_subtract(Tier.HIGHER, rng)
+        answer = q.final_answer
+        assert "√" in answer  # always a single like-surd result
+        coeff_str, radicand = answer.split("√")
+        coeff = -1 if coeff_str == "-" else (1 if coeff_str == "" else int(coeff_str))
+        assert coeff != 0
+        # Radicand must be square-free (fully simplified surd).
+        r = int(radicand)
+        assert r > 1
+        for p in range(2, _math.isqrt(r) + 1):
+            assert r % (p * p) != 0

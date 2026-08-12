@@ -63,17 +63,15 @@ def generate_sine_rule(tier: Tier, rng: random.Random) -> Question:
                 "Use the sine rule: a / sin(A) = b / sin(B)",
                 f"b = ({side_a} × sin({angle_B}°)) ÷ sin({angle_A}°) = {b_str} cm ({rounding.short})",
             ]
-            prompt = (
-                f"In triangle ABC, angle A = {angle_A}°, angle B = {angle_B}°, and side a = {side_a} cm. "
-                f"Find the length of side b, correct to {rounding.phrase}."
-            )
+            prompt = f"Find the length of side b, correct to {rounding.phrase}."
             answer = f"{b_str} cm"
             dedup_key = f"sine_rule_side:{angle_A}:{angle_B}:{side_a}"
             diagram = DiagramSpec(
                 kind="general_triangle",
                 params={
-                    "side_a_label": f"{side_a} cm", "side_b_label": "x cm", "side_c_label": None,
+                    "side_a_label": f"{side_a} cm", "side_b_label": None, "side_c_label": None,
                     "angle_A_label": f"{angle_A}°", "angle_B_label": f"{angle_B}°", "angle_C_label": None,
+                    "show_vertices": True,
                 },
             )
         else:
@@ -101,17 +99,15 @@ def generate_sine_rule(tier: Tier, rng: random.Random) -> Question:
                 f"sin(B) = ({b_str} × sin({angle_A}°)) ÷ {side_a}",
                 f"B = {angle_B}.0° (1 d.p.)",
             ]
-            prompt = (
-                f"In triangle ABC, angle A = {angle_A}°, side a = {side_a} cm, and side b = {b_str} cm. "
-                "Find angle B, correct to 1 decimal place."
-            )
+            prompt = "Find the size of angle B, correct to 1 decimal place."
             answer = f"{angle_B}.0°"
             dedup_key = f"sine_rule_angle:{angle_A}:{side_a}:{b_str}"
             diagram = DiagramSpec(
                 kind="general_triangle",
                 params={
                     "side_a_label": f"{side_a} cm", "side_b_label": f"{b_str} cm", "side_c_label": None,
-                    "angle_A_label": f"{angle_A}°", "angle_B_label": "x°", "angle_C_label": None,
+                    "angle_A_label": f"{angle_A}°", "angle_B_label": "", "angle_C_label": None,
+                    "show_vertices": True,
                 },
             )
 
@@ -172,16 +168,14 @@ def generate_modelled_example_sine_rule(tier: Tier, rng: random.Random) -> Model
                 f"b = ({side_a} × sin({angle_B}°)) ÷ sin({angle_A}°)",
                 f"b = {b_str} cm",
             ]
-            prompt = (
-                f"In triangle ABC, angle A = {angle_A}°, angle B = {angle_B}°, and side a = {side_a} cm. "
-                f"Find the length of side b, correct to {rounding.phrase}."
-            )
+            prompt = f"Find the length of side b, correct to {rounding.phrase}."
             answer = f"{b_str} cm"
             diagram = DiagramSpec(
                 kind="general_triangle",
                 params={
                     "side_a_label": f"{side_a} cm", "side_b_label": f"{b_str} cm", "side_c_label": None,
                     "angle_A_label": f"{angle_A}°", "angle_B_label": f"{angle_B}°", "angle_C_label": None,
+                    "show_vertices": True,
                 },
             )
         else:
@@ -215,16 +209,14 @@ def generate_modelled_example_sine_rule(tier: Tier, rng: random.Random) -> Model
                 f"sin(B) = ({b_str} × sin({angle_A}°)) ÷ {side_a}",
                 f"B = {angle_B}.0°",
             ]
-            prompt = (
-                f"In triangle ABC, angle A = {angle_A}°, side a = {side_a} cm, and side b = {b_str} cm. "
-                "Find angle B, correct to 1 decimal place."
-            )
+            prompt = "Find the size of angle B, correct to 1 decimal place."
             answer = f"{angle_B}.0°"
             diagram = DiagramSpec(
                 kind="general_triangle",
                 params={
                     "side_a_label": f"{side_a} cm", "side_b_label": f"{b_str} cm", "side_c_label": None,
                     "angle_A_label": f"{angle_A}°", "angle_B_label": f"{angle_B}.0°", "angle_C_label": None,
+                    "show_vertices": True,
                 },
             )
 
@@ -265,17 +257,15 @@ def generate_cosine_rule(tier: Tier, rng: random.Random) -> Question:
             f"a² = {b}² + {c}² - 2×{b}×{c}×cos({angle_A}°) = {a_sq_str}",
             f"a = √{a_sq_str} = {_fmt_dec(rounded)} cm ({rounding.short})",
         ]
-        prompt = (
-            f"In triangle ABC, side b = {b} cm, side c = {c} cm, and the angle between them, "
-            f"angle A = {angle_A}°. Find the length of side a, correct to {rounding.phrase}."
-        )
+        prompt = f"Find the length of side a, correct to {rounding.phrase}."
         answer = f"{_fmt_dec(rounded)} cm"
         dedup_key = f"cosine_rule_side:{b}:{c}:{angle_A}"
         diagram = DiagramSpec(
             kind="general_triangle",
             params={
-                "side_a_label": "x cm", "side_b_label": f"{b} cm", "side_c_label": f"{c} cm",
+                "side_a_label": None, "side_b_label": f"{b} cm", "side_c_label": f"{c} cm",
                 "angle_A_label": f"{angle_A}°", "angle_B_label": None, "angle_C_label": None,
+                "show_vertices": True,
             },
         )
     else:
@@ -313,17 +303,15 @@ def generate_cosine_rule(tier: Tier, rng: random.Random) -> Question:
             f"cos(A) = ({b}² + {c}² - {a}²) ÷ (2×{b}×{c}) = {cos_a_str}",
             f"A = cos^-1({cos_a_str}) = {_fmt_dec(rounded)}° (1 d.p.)",
         ]
-        prompt = (
-            f"In triangle ABC, side a = {a} cm, side b = {b} cm, and side c = {c} cm. "
-            "Find angle A, correct to 1 decimal place."
-        )
+        prompt = "Find the size of angle A, correct to 1 decimal place."
         answer = f"{_fmt_dec(rounded)}°"
         dedup_key = f"cosine_rule_angle:{a}:{b}:{c}"
         diagram = DiagramSpec(
             kind="general_triangle",
             params={
                 "side_a_label": f"{a} cm", "side_b_label": f"{b} cm", "side_c_label": f"{c} cm",
-                "angle_A_label": "x°", "angle_B_label": None, "angle_C_label": None,
+                "angle_A_label": "", "angle_B_label": None, "angle_C_label": None,
+                "show_vertices": True,
             },
         )
 
@@ -374,16 +362,14 @@ def generate_modelled_example_cosine_rule(tier: Tier, rng: random.Random) -> Mod
             f"a² = {b}² + {c}² - 2×{b}×{c}×cos({angle_A}°) = {a_sq_str}",
             f"a = √{a_sq_str} = {_fmt_dec(rounded)} cm",
         ]
-        prompt = (
-            f"In triangle ABC, side b = {b} cm, side c = {c} cm, and the angle between them, "
-            f"angle A = {angle_A}°. Find the length of side a, correct to {rounding.phrase}."
-        )
+        prompt = f"Find the length of side a, correct to {rounding.phrase}."
         answer = f"{_fmt_dec(rounded)} cm"
         diagram = DiagramSpec(
             kind="general_triangle",
             params={
                 "side_a_label": f"{_fmt_dec(rounded)} cm", "side_b_label": f"{b} cm", "side_c_label": f"{c} cm",
                 "angle_A_label": f"{angle_A}°", "angle_B_label": None, "angle_C_label": None,
+                "show_vertices": True,
             },
         )
     else:
@@ -430,16 +416,14 @@ def generate_modelled_example_cosine_rule(tier: Tier, rng: random.Random) -> Mod
             f"cos(A) = ({b}² + {c}² - {a}²) ÷ (2×{b}×{c}) = {cos_a_str}",
             f"A = cos^-1({cos_a_str}) = {_fmt_dec(rounded)}°",
         ]
-        prompt = (
-            f"In triangle ABC, side a = {a} cm, side b = {b} cm, and side c = {c} cm. "
-            "Find angle A, correct to 1 decimal place."
-        )
+        prompt = "Find the size of angle A, correct to 1 decimal place."
         answer = f"{_fmt_dec(rounded)}°"
         diagram = DiagramSpec(
             kind="general_triangle",
             params={
                 "side_a_label": f"{a} cm", "side_b_label": f"{b} cm", "side_c_label": f"{c} cm",
                 "angle_A_label": f"{_fmt_dec(rounded)}°", "angle_B_label": None, "angle_C_label": None,
+                "show_vertices": True,
             },
         )
 

@@ -9,6 +9,7 @@ TRIALS = 200
 GENERATORS = [
     (data_handling.generate_set_notation, Tier.HIGHER),
     (data_handling.generate_set_notation_foundation, Tier.FOUNDATION),
+    (data_handling.generate_set_listing, Tier.FOUNDATION),
     (data_handling.generate_product_rule_counting, Tier.HIGHER),
     (data_handling.generate_relative_frequency, Tier.FOUNDATION),
     (data_handling.generate_two_way_tables, Tier.FOUNDATION),
@@ -103,12 +104,33 @@ def test_modelled_example_topics_are_wired_up():
     for t in (
         data_handling.TOPIC_SET_NOTATION,
         data_handling.TOPIC_SET_NOTATION_FOUNDATION,
+        data_handling.TOPIC_SET_LISTING,
         data_handling.TOPIC_PRODUCT_RULE_COUNTING,
         data_handling.TOPIC_RELATIVE_FREQUENCY,
         data_handling.TOPIC_TWO_WAY_TABLES,
         data_handling.TOPIC_SAMPLE_SPACE_DIAGRAMS,
     ):
         assert t.generate_modelled_example is not None
+
+
+def test_modelled_example_set_listing_produces_verified_examples():
+    rng = random.Random(447)
+    for _ in range(TRIALS):
+        example = data_handling.generate_modelled_example_set_listing(Tier.FOUNDATION, rng)
+        assert example.topic_id == "set_listing_F"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer.startswith("{") and example.final_answer.endswith("}")
+
+
+def test_set_listing_roster_matches_the_stated_condition():
+    rng = random.Random(448)
+    for _ in range(TRIALS):
+        q = data_handling.generate_set_listing(Tier.FOUNDATION, rng)
+        elems = [int(x) for x in q.final_answer.strip("{}").split(",") if x.strip()]
+        assert elems == sorted(elems)
+        assert len(elems) >= 1
 
 
 def test_modelled_example_set_notation_produces_verified_examples():

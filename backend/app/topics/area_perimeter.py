@@ -688,23 +688,24 @@ def generate_semicircle_compound(tier: Tier, rng: random.Random) -> Question:
     rect_area = width * height
     semicircle_coeff = sp.Rational(radius**2, 2)
     exact_total = rect_area + semicircle_coeff * sp.pi
-    approx_total = sp.N(exact_total, 3)
+    independent = rect_area + (radius**2 / 2) * math.pi
+    if independent <= 0 or abs(float(sp.N(exact_total, 15)) - independent) / independent > 1e-9:
+        raise ValueError("semicircle_compound verification failed")
 
+    rounding = pick_rounding(rng)
+    decimal_answer = format(rounding.round_fn(independent), "f")
     steps = [
         f"Area of rectangle = {width} × {height} = {rect_area} cm²",
         f"Radius of semicircle = {width} ÷ 2 = {radius} cm",
         f"Area of semicircle = (1/2) × π × {radius}² = {_fmt_pi_term(semicircle_coeff)} cm²",
-        f"Total area = {rect_area} + {_fmt_pi_term(semicircle_coeff)} ≈ {approx_total} cm² (3 s.f.)",
+        f"Total area = {rect_area} + {_fmt_pi_term(semicircle_coeff)} ≈ {decimal_answer} cm² ({rounding.short})",
     ]
     return Question(
         topic_id="area_semicircle_compound_F",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"A shape is made from a rectangle {width} cm by {height} cm with a semicircle "
-            f"of diameter {width} cm attached to one side. Find the total area, correct to 3 s.f."
-        ),
+        prompt=f"Find the total area of the following compound shape, correct to {rounding.phrase}.",
         solution_steps=tuple(steps),
-        final_answer=f"≈ {approx_total} cm²",
+        final_answer=f"{decimal_answer} cm²",
         dedup_key=f"semicircle_compound:{width}:{height}",
         diagram=DiagramSpec(
             kind="rectangle_semicircle",
@@ -727,7 +728,6 @@ def generate_modelled_example_semicircle_compound(tier: Tier, rng: random.Random
     rect_area = width * height
     semicircle_coeff = sp.Rational(radius**2, 2)
     exact_total = rect_area + semicircle_coeff * sp.pi
-    approx_total = sp.N(exact_total, 3)
 
     # Independent check: a full circle of this radius would have area pi*r^2,
     # so the semicircle should be exactly half that - re-derive it that way
@@ -736,34 +736,36 @@ def generate_modelled_example_semicircle_compound(tier: Tier, rng: random.Random
     if full_circle_coeff / 2 != semicircle_coeff:
         raise ValueError("modelled example semicircle_compound verification failed")
 
+    rounding = pick_rounding(rng)
+    independent = rect_area + (radius**2 / 2) * math.pi
+    decimal_answer = format(rounding.round_fn(independent), "f")
+
     teaching_steps = [
         "This shape is made of two simpler pieces joined together: a rectangle, and a "
         "semicircle sitting on one of its short sides - so the total area is just the sum "
-        "of the two separate areas.",
+        "of the two separate areas. Read the rectangle's width and height straight off the "
+        "diagram, and note the semicircle sits along the full width, so its diameter is that width.",
         f"The rectangle's area is straightforward: {width} × {height} = {rect_area} cm².",
         f"The semicircle's diameter matches the rectangle's width, {width} cm, so its radius "
         f"is half of that: {width} ÷ 2 = {radius} cm. A full circle of that radius would have "
         f"area π × {radius}² = {_fmt_pi_term(full_circle_coeff)} cm², so the semicircle - being "
         f"half a circle - has area {_fmt_pi_term(semicircle_coeff)} cm².",
         f"Add the rectangle and semicircle areas together: {rect_area} + {_fmt_pi_term(semicircle_coeff)} "
-        f"≈ {approx_total} cm² (3 s.f.).",
+        f"≈ {decimal_answer} cm², correct to {rounding.phrase}.",
     ]
     worked_calculation = [
         f"Rectangle area = {width} × {height} = {rect_area} cm²",
         f"Semicircle radius = {width} ÷ 2 = {radius} cm",
         f"Semicircle area = (1/2) × π × {radius}² = {_fmt_pi_term(semicircle_coeff)} cm²",
-        f"Total = {rect_area} + {_fmt_pi_term(semicircle_coeff)} ≈ {approx_total} cm²",
+        f"Total = {rect_area} + {_fmt_pi_term(semicircle_coeff)} ≈ {decimal_answer} cm² ({rounding.short})",
     ]
     return ModelledExample(
         topic_id="area_semicircle_compound_F",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"A shape is made from a rectangle {width} cm by {height} cm with a semicircle "
-            f"of diameter {width} cm attached to one side. Find the total area, correct to 3 s.f."
-        ),
+        prompt=f"Find the total area of the following compound shape, correct to {rounding.phrase}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
-        final_answer=f"≈ {approx_total} cm²",
+        final_answer=f"{decimal_answer} cm²",
         diagram=DiagramSpec(
             kind="rectangle_semicircle",
             params={
@@ -801,11 +803,7 @@ def generate_semicircle_compound_higher(tier: Tier, rng: random.Random) -> Quest
     return Question(
         topic_id="area_semicircle_compound_H",
         tier=Tier.HIGHER,
-        prompt=(
-            f"A shape is made from a rectangle {width} cm by {height} cm with a semicircle "
-            f"of diameter {width} cm attached to one side. Find the total area, giving your "
-            "answer in terms of π."
-        ),
+        prompt="Find the total area of the following compound shape, giving your answer in terms of π.",
         solution_steps=tuple(steps),
         final_answer=f"({rect_area} + {pi_term}) cm²",
         dedup_key=f"semicircle_compound_h:{width}:{height}",
@@ -857,11 +855,7 @@ def generate_modelled_example_semicircle_compound_higher(tier: Tier, rng: random
     return ModelledExample(
         topic_id="area_semicircle_compound_H",
         tier=Tier.HIGHER,
-        prompt=(
-            f"A shape is made from a rectangle {width} cm by {height} cm with a semicircle "
-            f"of diameter {width} cm attached to one side. Find the total area, giving your "
-            "answer in terms of π."
-        ),
+        prompt="Find the total area of the following compound shape, giving your answer in terms of π.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"({rect_area} + {pi_term}) cm²",

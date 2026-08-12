@@ -63,11 +63,7 @@ def generate_3d_pythagoras(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="pythagoras_3d_H",
         tier=Tier.HIGHER,
-        prompt=(
-            f"A cuboid has length {l} cm, width {w} cm and height {h} cm. Find the length of the "
-            "diagonal ag that runs from one corner of the cuboid to the opposite corner, correct "
-            f"to {rounding.phrase}."
-        ),
+        prompt=f"Find the length of ag, correct to {rounding.phrase}.",
         solution_steps=tuple(steps),
         final_answer=f"{rounded} cm",
         dedup_key=f"3d_pyth:{l}:{w}:{h}",
@@ -114,11 +110,7 @@ def generate_modelled_example_3d_pythagoras(tier: Tier, rng: random.Random) -> M
     return ModelledExample(
         topic_id="pythagoras_3d_H",
         tier=Tier.HIGHER,
-        prompt=(
-            f"A cuboid has length {l} cm, width {w} cm and height {h} cm. Find the length of the "
-            "diagonal ag that runs from one corner of the cuboid to the opposite corner, correct "
-            f"to {rounding.phrase}."
-        ),
+        prompt=f"Find the length of ag, correct to {rounding.phrase}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{rounded} cm",
@@ -167,11 +159,7 @@ def generate_3d_trigonometry(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="trig_3d_H",
         tier=Tier.HIGHER,
-        prompt=(
-            f"A cuboid has length {l} cm, width {w} cm and height {h} cm. Find the angle between "
-            "the diagonal ag (from one corner to the opposite corner) and the base of the cuboid, "
-            "correct to 1 decimal place."
-        ),
+        prompt="Find the angle gac, correct to 1 decimal place.",
         solution_steps=tuple(steps),
         final_answer=f"{rounded}°",
         dedup_key=f"3d_trig:{l}:{w}:{h}",
@@ -182,6 +170,7 @@ def generate_3d_trigonometry(tier: Tier, rng: random.Random) -> Question:
                 "width_label": f"{w} cm",
                 "height_label": f"{h} cm",
                 "show_diagonal": True,
+                "show_base_diagonal": True,
                 "vertex_labels": ["a", "b", "c", "d", "e", "f", "g", "h"],
             },
         ),
@@ -219,11 +208,7 @@ def generate_modelled_example_3d_trigonometry(tier: Tier, rng: random.Random) ->
     return ModelledExample(
         topic_id="trig_3d_H",
         tier=Tier.HIGHER,
-        prompt=(
-            f"A cuboid has length {l} cm, width {w} cm and height {h} cm. Find the angle between "
-            "the diagonal ag (from one corner to the opposite corner) and the base of the cuboid, "
-            "correct to 1 decimal place."
-        ),
+        prompt="Find the angle gac, correct to 1 decimal place.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{rounded}°",
@@ -234,6 +219,7 @@ def generate_modelled_example_3d_trigonometry(tier: Tier, rng: random.Random) ->
                 "width_label": f"{w} cm",
                 "height_label": f"{h} cm",
                 "show_diagonal": True,
+                "show_base_diagonal": True,
                 "vertex_labels": ["a", "b", "c", "d", "e", "f", "g", "h"],
             },
         ),

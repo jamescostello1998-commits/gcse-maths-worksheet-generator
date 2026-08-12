@@ -25,10 +25,13 @@ scheme. The full chronology below still uses the *old* ids in its historical ent
 tier suffix if you go looking for one. See step 44 for the exact rename rule and how the
 migration was done safely.
 
-**CURRENT STATE (HEAD `b29dc71`, all committed & pushed):** **314 topics**, backend suite
-**981/981**, frontend **65/65**, all 60 Practice Test papers exactly 100 marks. Working tree is
-clean apart from the two deliberately-untracked `backend/all_topics_review_*.pdf` (now
-`.gitignore`d — see step 49). No known bugs.
+**CURRENT STATE:** **320 topics**, backend suite **1000/1000**, frontend **65/65**, all 60
+Practice Test papers exactly 100 marks. **Steps 54-56 are NOT yet committed** — step 54 (6 new
+topics from a maths4everyone.com coverage audit), step 55 (a review-feedback batch of 5
+diagram/wording fixes), step 56 (a review batch of 4 fixes on the 3D + triangle-rule diagrams);
+everything up to HEAD `99eeac3` is committed & pushed. Practice Tests were deliberately NOT
+rebuilt in any of these steps (no existing diagram param SCHEMA changed - only optional new
+params, label positions, and prompt text, all backward-compatible). No known bugs.
 
 **What the last stretch of sessions did (ongoing aesthetic-review process — the user works
 through the review PDFs and sends feedback in chunks; steps 34-53).** The most recent chunks:
@@ -440,11 +443,11 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 
 | Section | Groups | Topics |
 |---|---|---|
-| Number | Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 56 |
-| Algebra | Expressions/Formulae/Equations/Identities, Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Substitution into Formulae, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Equation of a Circle, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Kinematics (SUVAT), Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 81 |
+| Number | Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 57 |
+| Algebra | Expressions/Formulae/Equations/Identities (incl. Collecting Like Terms), Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Substitution into Formulae, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Equation of a Circle, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Kinematics (SUVAT), Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs, Coordinate Geometry | 84 |
 | Ratio & Proportion | Percentages, Best Buys, Ratio, Proportion, Compound Measures | 37 |
-| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations, Bearings, Map Scales and Scale Drawings, Constructions, Loci | 89 |
-| Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams, Venn Diagrams | 22 |
+| Geometry | Area & Perimeter, Parts of a Circle, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations, Bearings, Map Scales and Scale Drawings, Constructions, Loci | 90 |
+| Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams, Venn Diagrams | 23 |
 | Statistics | Averages from a List, Frequency Tables, Working Backwards, Charts and Graphs, Cumulative Frequency & Box Plots, Histograms, Sampling and Populations | 29 |
 
 **First curriculum-audit dual-tier siblings**: Foundation-difficulty siblings for three
@@ -4419,6 +4422,109 @@ fixes), is committed and pushed (see `git log`).
     985 → 981 (the redesign replaced 7 combo-internal tests with 3 behavioural ones; the new
     topic is covered via the generic generator/modelled lists). Review PDFs regenerated (314/326)
     and sent. Symmetry topics (a separate Geometry group) were left untouched. Committed and pushed.
+
+54. New session, a **coverage-gap audit against maths4everyone.com** (the user asked to read
+    every GCSE Foundation & Higher worksheet topic on that site and advise on gaps), followed
+    by "do all 5" - build the genuine gaps found. The site is JS-driven and its listing is
+    virtualised, so the taxonomy was pulled cleanly by POSTing its own data endpoint directly
+    (`/data/resources/r-worksheets.php`, params `sFilter` = f/h and `tFilter` = 1-9) from the
+    in-app browser's `javascript_tool` and parsing the returned `.h-topic`/`.h-subtopic`/
+    `.h-skill`/`.sub-skill` HTML fragments - all 18 tier×category combinations in two fetches.
+    The site's GCSE collection turned out far thinner than this app; cross-referencing every
+    listed topic against the 314-topic registry (verified against the actual code, not memory -
+    e.g. `expand_single_bracket_F`/`factorise_common_factor_F`/`fractions_mixed_number_arithmetic_H`
+    already existed, so were NOT gaps) left 5 genuine gaps, all built this step (314 → 320):
+    - `collect_like_terms_F` (new `simplify_expressions.py`, Algebra "Expressions, Formulae,
+      Equations & Identities" group): simplify by collecting like terms (single-var, with
+      constants, two-var a/b, x^2+x). Answer built by summing coefficients per symbol; verified
+      independently via `sp.expand(original - answer) == 0`. Uses a/b (upright) for two-var and
+      x (italic) for the rest, since mathtext only italicises x/n - mixing would look inconsistent.
+    - `midpoint_of_segment_F` + `distance_between_points_H` (new `coordinate_geometry.py`, new
+      Algebra group "Coordinate Geometry"): midpoint by averaging coordinates (verified via the
+      vector-equality definition M-A == B-M); distance via Pythagoras giving a simplified surd
+      (points rerolled so d² is never a perfect square, verified against `math.hypot`). **Two
+      cosmetic fixes were made after rendering, not caught by tests**: the generic formula line
+      `(x2 - x1)²` rendered with x italic but y plain (mathtext quirk) - reworded to
+      "horizontal/vertical gap"; and the "simplify the surd" step showed a silly "√(1² × 185)"
+      when the surd was already simplest (k=1) - special-cased to "already in its simplest form".
+    - `surds_add_subtract_H` (added to `powers_roots.py`, same "Powers, Roots & Indices" group):
+      add/subtract like surds and simplify-then-combine (√8 + √18 = 5√2). Verified numerically
+      via `math.sqrt` against the answer coeff×√root.
+    - `circle_parts_F` (new `circle_parts.py` + new `circle_part` diagram kind in `diagrams.py`,
+      new Geometry group "Parts of a Circle"): name the highlighted part (radius/diameter/chord/
+      tangent/arc/sector/segment/circumference/centre). A recall topic - no verify() (like
+      Constructions/3D-properties), `question_count=len(_PARTS)`=9. The diagram draws one feature
+      in ACCENT with NO text labels (so nothing can overlap); segment uses the fill-then-erase
+      trick (wedge minus centre-triangle). Rendered and eyeballed all 9 parts - clean.
+    - `set_listing_F` (added to `data_handling.py`, "Sets and Counting" group): list a set from a
+      property or set-builder notation (even/odd/multiple/square/factors), roster form. Distinct
+      from `set_notation_F` (which is Venn set-operations). Verified via a closed-form count
+      independent of the element-by-element scan; set-builder form carries the range so it's finite.
+    Registry wired; the 4 hardcoded `314` count assertions bumped to `320`. New test files
+    (`test_simplify_expressions.py`, `test_coordinate_geometry.py`, `test_circle_parts.py`) plus
+    additions to `test_powers_roots.py`/`test_data_handling.py`. Backend suite 981 → **1000**;
+    frontend unaffected (65/65 - new groups render generically). Practice Tests NOT rebuilt (no
+    existing diagram schema changed). Review PDFs NOT regenerated (this wasn't a review batch).
+    **Not yet committed** as of writing - commit/push when ready.
+
+55. Same session, a review-feedback batch of 5 diagram/wording items (all fixed by rendering
+    real PDFs and iterating, per the standing "render and look closely" discipline - no new
+    tests added, backend stays 1000/1000):
+    - `area_semicircle_compound_F`/`_H`: prompt was a verbose prose description of the shape's
+      dimensions even though the diagram already shows them. Trimmed to "Find the total area of
+      the following compound shape, ..." - F now also uses the shared dp/sf `rounding` engine
+      ("correct to {phrase}", matching `area_mixed_compound`); H keeps its exact-in-terms-of-π
+      form (that's the whole F/H distinction), just reworded to "...giving your answer in terms
+      of π." Dimensions read off the diagram (semicircle diameter = the labelled rectangle width).
+    - `area_subtract_compound_F`/`_H` (`draw_l_shape` shade_frame branch): the hole's height
+      label floated in the middle of the white hole. Moved both hole dimension labels into the
+      SHADED frame hugging their side (width just below the hole, height just right of it), with
+      a fallback to just-inside-the-hole for a very thin frame (inner ≈ outer).
+    - `arc_length_F`/`_H`, `area_sector_F`/`_H` (`draw_sector`): radius label moved from inside
+      the wedge to just OUTSIDE it, left of the fixed vertical (90°) radius edge - that strip is
+      always outside the wedge (a sector spans [90-angle, 90], never above 90°), so it never sits
+      on the fill for any angle incl. reflex. Verified across 30/90/150/240/300°.
+    - `angles_straight_line_H` (`draw_angle_line`): a wide algebraic label like "(5x - 30)°" in a
+      moderately narrow wedge sat on top of the middle ray. Replaced the fixed radius-by-band
+      rule with a width-aware analytic one: place the label at the radius where its measured
+      half-width clears both rays (R = (half_w+6)/sin(v/2)), or just BEYOND the ray tips (open
+      space) when the wedge is too narrow to fit it inside. Verified across seeds + around_point
+      regression.
+    - `angles_triangle_H`, `angles_exterior_H`: the algebraic angle label sat far from its own
+      angle (the analytic clearance pushed a wide label ~120px down an edge to fully clear both
+      sides). Added a `compact` mode to `_place_angle_label` (caps the push so the label sits just
+      beyond the arc, near the angle - accepting a light touch of the sides, as exam papers do) for
+      `draw_triangle_angles`/`draw_polygon_angles`; and reduced `draw_exterior_triangle`'s `_inset`
+      factor cap (0.85 → 0.55) so the interior algebraic label sits by its vertex, not the centroid.
+    Practice Tests NOT rebuilt (no diagram param SCHEMA changed - only label positions/prompt
+    text, both backward-compatible; frozen papers still render). **Not yet committed.**
+
+56. Same session, a review-feedback batch of 4 items on the 3D and triangle-rule diagrams (all
+    verified by rendering real PDFs; no new tests, backend stays 1000/1000):
+    - `pythagoras_3d_H`: the depth ("15 cm") label sat ON the slanting depth edge b->c. Fixed in
+      `draw_cuboid` by offsetting the length label PERPENDICULAR to that edge (outward, down-right)
+      so the edge line no longer runs through the number. Prompt trimmed to just
+      "Find the length of ag, correct to {phrase}." (ag = the a<->g space diagonal, endpoints
+      lettered on the diagram; dimensions read off the diagram).
+    - `trig_3d_H`: prompt trimmed to "Find the angle gac, correct to 1 decimal place." (three-
+      letter notation, vertex a in the middle). Added a `show_base_diagonal` param to `draw_cuboid`
+      that draws the base diagonal a->c, so the right-angled triangle a-c-g for angle gac is fully
+      visible (base diagonal ac + vertical edge cg + space diagonal ag).
+    - `sine_rule_H`, `cosine_rule_H`: removed the "In triangle ABC, ... = ..." prose so the prompt
+      reads only e.g. "Find the length of side b, correct to 3 significant figures." /
+      "Find the size of angle A, ...". Values are now read off the diagram: added a `show_vertices`
+      param to `draw_general_triangle` (letters the vertices A/B/C, grounding "side b"/"angle B"),
+      the given sides/angles show their numbers, the unknown SIDE is left unmarked, and the unknown
+      ANGLE is drawn as a BARE ARC (via passing angle_X_label="" - `draw_general_triangle`'s angle
+      loop now draws an arc for any non-None label, empty string => arc with no text, so there's no
+      letter clash with the vertex label). Both worksheet + modelled-example prompts updated.
+    - `triangle_area_sine_rule_H`: a small included angle made `draw_general_triangle` a razor-thin
+      sliver that crammed the labels. Since the figure is "not to scale", `draw_general_triangle`
+      now falls back to a legible plausible scalene shape whenever the constructed triangle's
+      smallest angle is < 28 deg (new `_triangle_min_angle` helper) - the true angle value still
+      shows in its label. (This also benefits any sine/cosine case with a very acute angle.)
+    Practice Tests NOT rebuilt (only optional new params + label/prompt changes, all backward-
+    compatible - frozen papers still render). **Not yet committed.**
 
 ## Environment gotchas (Windows, this machine specifically)
 

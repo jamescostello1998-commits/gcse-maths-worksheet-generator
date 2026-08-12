@@ -343,6 +343,17 @@ def _fit_triangle(A: tuple, B: tuple, C: tuple, margin: float = 48) -> tuple:
     return pts[0], pts[1], pts[2]
 
 
+def _triangle_min_angle(verts: list) -> float:
+    """Smallest interior angle (degrees) of a triangle given its 3 vertices."""
+    def _ang(p, q, r) -> float:
+        v1, v2 = (q[0] - p[0], q[1] - p[1]), (r[0] - p[0], r[1] - p[1])
+        n = (math.hypot(*v1) * math.hypot(*v2)) or 1.0
+        cos = max(-1.0, min(1.0, (v1[0] * v2[0] + v1[1] * v2[1]) / n))
+        return math.degrees(math.acos(cos))
+    A, B, C = verts
+    return min(_ang(A, B, C), _ang(B, A, C), _ang(C, A, B))
+
+
 def _construct_triangle(a: float, b: float, c: float, Ad: float, Bd: float, Cd: float):
     """Build a triangle's three vertices (A, B, C) to its true shape from
     whatever is given: side lengths a/b/c (opposite A/B/C; 0 if unknown) and
@@ -627,32 +638,29 @@ def draw_l_shape(params: dict) -> Drawing:
     else:
         d.add(_label(x0 - 10, y0 + oh_s / 2, params["outer_labels"][1], anchor="end"))
     if params.get("shade_frame") and params.get("inner_labels"):
-        # Two real edge labels for the inner (hole) rectangle, placed inside
-        # its own unshaded interior where they're always legible - replaces
-        # the old combined "6 × 5" caption, which only ever stated the hole's
-        # two numbers together rather than attaching each to a real side.
-        # Stacking them vertically only works when the hole is tall enough;
-        # a short/wide hole needs them side by side instead, or they cross
-        # the hole's own top/bottom edges. For a genuinely tiny hole, neither
-        # layout has real room even at the smaller font (found via rendering
-        # a small-hole case, not assumed up front) - fall back to a single
-        # combined caption just below the hole, in the shaded frame, which
-        # always has plenty of room.
+        # Place each hole dimension in the SHADED frame, hugging the hole's own
+        # side, so it obviously belongs to that side (an earlier version put
+        # them inside the white hole, where the height label floated in the
+        # middle and read ambiguously). The width label goes in the shaded band
+        # just below the hole's bottom edge; the height label in the shaded band
+        # just right of the hole's right edge. Both bands are symmetric with the
+        # top/left ones, so if one is too thin the label falls back to hugging
+        # the same edge from just inside the hole instead.
         cx, cy = ix0 + iw_s / 2, iy0 + ih_s / 2
         w_label, h_label = params["inner_labels"]
-        w_width = stringWidth(str(w_label), _LABEL_FONT, _LABEL_SIZE)
         h_width = stringWidth(str(h_label), _LABEL_FONT, _LABEL_SIZE)
-        # Attach each hole dimension to its own edge: the width just inside the
-        # hole's top edge, the height just inside its left edge (both in the
-        # unshaded interior). Only when the hole is genuinely too small for
-        # both to sit clear does it fall back to a single combined caption
-        # below the hole, in the always-spacious shaded frame.
-        edge_fits = ih_s >= 30 and iw_s >= max(w_width, h_width) + 10
-        if edge_fits:
-            d.add(_label(cx, iy0 + ih_s - 13, w_label))
-            d.add(_label(ix0 + 5, cy - 3, h_label, anchor="start"))
+        bottom_band = iy0 - y0          # == top band (hole is centred)
+        right_band = (x0 + ow_s) - (ix0 + iw_s)  # == left band
+
+        if bottom_band >= 16:
+            d.add(_label(cx, iy0 - 13, w_label))            # in shaded band below the hole
         else:
-            d.add(_label(cx, iy0 - 14, f"{w_label} × {h_label}"))
+            d.add(_label(cx, iy0 + ih_s - 13, w_label))     # just inside the hole's top edge
+
+        if right_band >= h_width + 8:
+            d.add(_label(ix0 + iw_s + 6, cy - 3, h_label, anchor="start"))  # shaded band right of hole
+        else:
+            d.add(_label(ix0 + iw_s - 5, cy - 3, h_label, anchor="end"))    # just inside the hole's right edge
     elif params.get("inner_labels"):
         inner_text = f"{params['inner_labels'][0]} × {params['inner_labels'][1]}"
         d.add(_label(x0 + ow_s / 2, y0 + oh_s + 14, inner_text, color=MUTED))
@@ -734,6 +742,67 @@ def draw_circle(params: dict) -> Drawing:
     # clearance and visibly crossed the line (found by rendering, now that
     # this label is often the only place the radius value appears at all).
     d.add(_label(cx + r / 2, cy + 9, params["label"]))
+    return d
+
+
+def draw_circle_part(params: dict) -> Drawing:
+    """Draw a circle with a single named part highlighted (in ACCENT), for the
+    'name the parts of a circle' topic. No text labels on the figure - the
+    question asks the student to name the highlighted feature - so there is
+    nothing here that can overlap. `params["part"]` selects the feature."""
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    cx, cy = DIAGRAM_WIDTH / 2, DIAGRAM_HEIGHT / 2
+    r = min(DIAGRAM_WIDTH, DIAGRAM_HEIGHT) / 2 - 22
+    part = params["part"]
+    hl = 2.6  # highlighted-feature stroke width
+
+    def pt(angle_deg: float) -> tuple[float, float]:
+        a = math.radians(angle_deg)
+        return (cx + r * math.cos(a), cy + r * math.sin(a))
+
+    # Region features are shaded beneath the outline, so fill them first.
+    if part == "sector":
+        d.add(Wedge(cx, cy, r, 35, 145, strokeColor=None, fillColor=HIGHLIGHT, strokeWidth=0))
+    elif part == "segment":
+        a1, a2 = 30, 150
+        pa, pb = pt(a1), pt(a2)
+        d.add(Wedge(cx, cy, r, a1, a2, strokeColor=None, fillColor=HIGHLIGHT, strokeWidth=0))
+        # Erase the triangle (centre-A-B) with the page colour, leaving only
+        # the circular segment between the chord AB and the arc shaded.
+        d.add(Polygon([cx, cy, pa[0], pa[1], pb[0], pb[1]], strokeColor=None, fillColor=PAPER, strokeWidth=0))
+
+    # The circle outline itself (thick + accent when the circumference is the
+    # feature being named, otherwise the ordinary ink outline).
+    outline_color = ACCENT if part == "circumference" else INK
+    d.add(Circle(cx, cy, r, strokeColor=outline_color, fillColor=None,
+                 strokeWidth=3 if part == "circumference" else 1.2))
+
+    if part == "radius":
+        d.add(Line(cx, cy, *pt(35), strokeColor=ACCENT, strokeWidth=hl))
+        d.add(Circle(cx, cy, 1.6, strokeColor=INK, fillColor=INK))
+    elif part == "diameter":
+        d.add(Line(*pt(200), *pt(20), strokeColor=ACCENT, strokeWidth=hl))
+        d.add(Circle(cx, cy, 1.6, strokeColor=INK, fillColor=INK))
+    elif part == "chord":
+        d.add(Line(*pt(40), *pt(150), strokeColor=ACCENT, strokeWidth=hl))
+    elif part == "tangent":
+        tx, ty = pt(270)
+        ext = r * 0.95
+        d.add(Line(tx - ext, ty, tx + ext, ty, strokeColor=ACCENT, strokeWidth=hl))
+        d.add(Circle(tx, ty, 1.9, strokeColor=INK, fillColor=INK))
+    elif part == "arc":
+        pts: list[float] = []
+        for i in range(61):
+            pts.extend(pt(30 + 120 * i / 60))
+        d.add(PolyLine(pts, strokeColor=ACCENT, strokeWidth=3.2))
+    elif part == "sector":
+        d.add(Line(cx, cy, *pt(35), strokeColor=ACCENT, strokeWidth=1.6))
+        d.add(Line(cx, cy, *pt(145), strokeColor=ACCENT, strokeWidth=1.6))
+    elif part == "segment":
+        d.add(Line(*pt(30), *pt(150), strokeColor=ACCENT, strokeWidth=hl))
+    elif part == "centre":
+        d.add(Circle(cx, cy, 2.8, strokeColor=ACCENT, fillColor=ACCENT))
+
     return d
 
 
@@ -830,11 +899,13 @@ def draw_sector(params: dict) -> Drawing:
     arc = ArcPath(strokeColor=INK, fillColor=None, strokeWidth=0.9)
     arc.addArc(cx, cy, arc_r, start, end, moveTo=True)
     d.add(arc)
-    # Next to the straight radius edge itself (the fixed top ray, at 90 deg)
-    # rather than out near the arc's own endpoint - anchored at that ray's
-    # midpoint so it reads as labelling the radius line specifically, even
-    # though that puts it inside the sector for a wide-angle wedge.
-    d.add(_label(cx + 8, cy + r * 0.5, params["radius_label"], anchor="start"))
+    # Label the radius on the OUTSIDE of the shape, just left of the fixed
+    # vertical (90 deg) radius edge. That strip is always outside the wedge -
+    # the sector spans [90 - angle, 90], so it never covers any direction above
+    # 90 deg - so the label never sits on the shaded fill, for any angle
+    # (narrow, right, obtuse, or reflex). Anchored end so the text grows away
+    # from the shape into the clear margin.
+    d.add(_label(cx - 8, cy + r * 0.55, params["radius_label"], anchor="end"))
     mid = math.radians((start + end) / 2)
     # A narrow sector's own straight width (2 x radius x sin(angle/2)) can be
     # far smaller than the label text at any radius up to the sector's own
@@ -953,17 +1024,20 @@ def draw_angle_line(params: dict) -> Drawing:
     running = 0.0
     for v, lbl in zip(angle_values, labels):
         d.add(_swept_angle_arc(cx, cy, running, running + v, radius=arc_r))
-        if v < 20:
-            # Narrow wedges: the arc itself has little room, so place the
-            # label just beyond the ray tips entirely rather than cramming
-            # it into the wedge.
-            label_radius = radius + 16
-        elif v < 35:
-            label_radius = arc_r + 26
+        # Width-aware placement: the label sits on the wedge's bisector, so at
+        # radius R the perpendicular clearance to each bounding ray is
+        # R*sin(v/2). Pick the smallest R that fits the label's own measured
+        # half-width inside the wedge; if even at the ray tips there isn't room
+        # (a narrow wedge with a wide algebraic label like "(5x - 30)°"), place
+        # the label just BEYOND the ray tips instead, where the rays have ended
+        # and there is open space - fixes the wide-label-crosses-the-ray overlap.
+        half_w = stringWidth(str(lbl), _LABEL_FONT, _LABEL_SIZE) / 2
+        sin_half = max(math.sin(math.radians(v) / 2), 1e-6)
+        r_fit = (half_w + 6) / sin_half
+        if r_fit <= radius - 8:
+            label_radius = max(arc_r + 18, r_fit)
         else:
-            # Sit close to the arc rather than most of the way out to the
-            # ray tips.
-            label_radius = arc_r + 20
+            label_radius = radius + 16
         mid_rad = math.radians(running + v / 2)
         lx, ly = cx + label_radius * math.cos(mid_rad), cy + label_radius * math.sin(mid_rad)
         # A narrow wedge's label_radius pushes well past the ray tips with no
@@ -1006,7 +1080,7 @@ def draw_triangle_angles(params: dict) -> Drawing:
     n = len(vertices)
     for i, (vertex, lbl) in enumerate(zip(vertices, labels)):
         other1, other2 = vertices[(i - 1) % n], vertices[(i + 1) % n]
-        _place_angle_label(d, vertex, other1, other2, lbl, size=_LABEL_SIZE, arc_radius=11)
+        _place_angle_label(d, vertex, other1, other2, lbl, size=_LABEL_SIZE, arc_radius=11, compact=True)
     return d
 
 
@@ -1048,7 +1122,7 @@ def draw_polygon_angles(params: dict) -> Drawing:
 
     for i, (vertex, lbl) in enumerate(zip(vertices, labels)):
         other1, other2 = vertices[(i - 1) % n], vertices[(i + 1) % n]
-        _place_angle_label(d, vertex, other1, other2, lbl, size=_LABEL_SIZE, arc_radius=11)
+        _place_angle_label(d, vertex, other1, other2, lbl, size=_LABEL_SIZE, arc_radius=11, compact=True)
     return d
 
 
@@ -1167,8 +1241,13 @@ def draw_exterior_triangle(params: dict) -> Drawing:
         # the inset point itself was still too close to the vertex, so the
         # text immediately ran into the sloped edge on its way out. The fix
         # is a genuinely bigger inset distance, not a different anchor.
+        # Keep the label near its own angle: a smaller inset than before, so a
+        # wide algebraic label sits just inside the vertex by its arc rather
+        # than drifting out toward the centroid (review: "move the algebraic
+        # measurement closer to the angle"). Still scaled by width so a wider
+        # label insets a little further and doesn't sit on top of the arc.
         width = stringWidth(str(label), _LABEL_FONT, _LABEL_SIZE)
-        factor = min(0.85, 0.25 + width / 100)
+        factor = min(0.55, 0.30 + width / 260)
         return (vertex[0] + (centroid[0] - vertex[0]) * factor, vertex[1] + (centroid[1] - vertex[1]) * factor)
 
     ax, ay = _inset(A, params["interior1_label"])
@@ -1358,7 +1437,8 @@ def _place_side_label(d: Drawing, P: tuple, Q: tuple, R: tuple, label, size: flo
 
 
 def _place_angle_label(
-    d: Drawing, vertex: tuple, other1: tuple, other2: tuple, label, size: float, arc_radius: float = 10, gap: float = 2.5
+    d: Drawing, vertex: tuple, other1: tuple, other2: tuple, label, size: float, arc_radius: float = 10,
+    gap: float = 2.5, compact: bool = False,
 ) -> None:
     """Draw the angle arc at `vertex` and place `label` along the interior
     bisector, positioned analytically so a label of this size clears BOTH
@@ -1391,6 +1471,13 @@ def _place_angle_label(
         arc_radius + gap + along_half,
         along_half + (gap + perp_half * math.cos(half)) / math.sin(half),
     )
+    if compact:
+        # Keep the label near its own angle rather than pushed far down an edge
+        # to fully clear both sides (which a wide algebraic label like
+        # "(2x + 33)°" in an acute vertex otherwise forces). It sits just beyond
+        # the arc; its outer corners may touch the sides a little, which reads
+        # fine and matches how exam papers write an algebraic angle by its arc.
+        dist = min(dist, arc_radius + gap + along_half + 12)
     cx, cy = vertex[0] + bx * dist, vertex[1] + by * dist
     d.add(_label(cx, cy - size * 0.34, label, size=size, anchor="middle"))
 
@@ -1477,6 +1564,13 @@ def draw_general_triangle(params: dict) -> Drawing:
         _parse_leading_number(str(params.get("angle_B_label", ""))),
         _parse_leading_number(str(params.get("angle_C_label", ""))),
     )
+    # A very acute angle makes the true shape a razor-thin sliver that crams the
+    # labels against the near-parallel sides (user review: small angles intersect
+    # the shape). The figure is schematic ("not to scale"), so fall back to a
+    # legible plausible scalene shape in that case - the true angle value is still
+    # shown in its own label.
+    if constructed is not None and _triangle_min_angle(list(constructed)) < 28:
+        constructed = None
     if constructed is not None:
         A, B, C = _fit_triangle(*_orient(list(constructed), _shape_variant(params, 8)))
     else:
@@ -1494,8 +1588,23 @@ def draw_general_triangle(params: dict) -> Drawing:
     for vertex, other1, other2, key in (
         (A, B, C, "angle_A_label"), (B, A, C, "angle_B_label"), (C, A, B, "angle_C_label"),
     ):
-        if params.get(key):
+        # A non-None label draws the arc; an empty string "" draws the arc with
+        # no text (a bare arc marking the unknown angle - the vertex letter and
+        # prompt name it, so there's no clash with a letter drawn at that vertex).
+        if params.get(key) is not None:
             _place_angle_label(d, vertex, other1, other2, params[key], size=size, arc_radius=11)
+
+    # Optionally letter the three vertices A/B/C just outside each corner, so a
+    # question can refer to "side b" / "angle B" without spelling the givens out
+    # in prose (they're read off the diagram instead). The letters sit outward
+    # from the centroid, clear of the inside angle values and edge side labels.
+    if params.get("show_vertices"):
+        gx = (A[0] + B[0] + C[0]) / 3
+        gy = (A[1] + B[1] + C[1]) / 3
+        for pt, letter in ((A, "A"), (B, "B"), (C, "C")):
+            dx_l, dy_l = pt[0] - gx, pt[1] - gy
+            dist = math.hypot(dx_l, dy_l) or 1.0
+            d.add(_label(pt[0] + dx_l / dist * 15, pt[1] + dy_l / dist * 15, letter, size=size))
 
     _not_to_scale(d)
     return d
@@ -3967,9 +4076,21 @@ def draw_cuboid(params: dict) -> Drawing:
     lmx = (FBR[0] + BBR[0]) / 2
     lmy = (FBR[1] + BBR[1]) / 2
     if params.get("vertex_labels"):
-        d.add(_label(lmx, lmy - 13, params["length_label"]))
+        # Offset the label PERPENDICULAR to the (slanting) depth edge, to its
+        # lower-right (outside the box), so the edge line never runs through the
+        # text - the old straight-down "-13" drop left the slanting edge cutting
+        # across the number (user review: "the number intersects the line").
+        ex, ey = BBR[0] - FBR[0], BBR[1] - FBR[1]
+        elen = math.hypot(ex, ey) or 1.0
+        px, py = ey / elen, -ex / elen  # outward normal, pointing down-right
+        d.add(_label(lmx + px * 15, lmy + py * 15, params["length_label"], anchor="start"))
     else:
         d.add(_label(lmx + 6, lmy - 6, params["length_label"], anchor="start"))
+    # An optional base diagonal (front-bottom-left to back-bottom-right, a<->c)
+    # so a "find the angle gac" question can show the full right-angled triangle
+    # a-c-g (base diagonal ac + vertical edge cg + space diagonal ag).
+    if params.get("show_base_diagonal"):
+        d.add(Line(*FBL, *BBR, strokeColor=INK, strokeWidth=0.75, strokeDashArray=[2, 2]))
     # The space diagonal (FBL<->BTR) is drawn dashed whenever either a label
     # is wanted OR show_diagonal is set - the latter lets a caller (e.g.
     # pythagoras_3d/trig_3d) show the diagonal with no "?"/"theta" text on it,
@@ -4581,6 +4702,7 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "l_shape": draw_l_shape,
     "t_shape": draw_t_shape,
     "circle": draw_circle,
+    "circle_part": draw_circle_part,
     "rectangle_semicircle": draw_rectangle_semicircle,
     "angle_line": draw_angle_line,
     "triangle_angles": draw_triangle_angles,
