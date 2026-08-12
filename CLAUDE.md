@@ -26,12 +26,12 @@ tier suffix if you go looking for one. See step 44 for the exact rename rule and
 migration was done safely.
 
 **CURRENT STATE:** **320 topics**, backend suite **1000/1000**, frontend **65/65**, all 60
-Practice Test papers exactly 100 marks. Everything is committed & pushed (HEAD `c6cce8f`) —
-step 54 (6 new topics from a maths4everyone.com coverage audit), step 55 (a review-feedback
-batch of 5 diagram/wording fixes), and step 56 (a review batch of 4 fixes on the 3D +
-triangle-rule diagrams) all landed in commit `c6cce8f`. Practice Tests were deliberately NOT
-rebuilt in any of these steps (no existing diagram param SCHEMA changed - only optional new
-params, label positions, and prompt text, all backward-compatible). No known bugs.
+Practice Test papers exactly 100 marks. Steps 54-56 are committed & pushed (commit `c6cce8f`,
+CLAUDE.md handoff `b4658b0`). **Step 57 (a review batch of 3 fixes: plans/elevations grids,
+the cube diagram, and standardising every volume/surface-area prompt) is NOT yet committed.**
+Practice Tests were deliberately NOT rebuilt in any of these steps (no existing diagram param
+SCHEMA changed - only optional new params, label positions, and prompt text, all backward-
+compatible). No known bugs.
 
 **What the last stretch of sessions did (ongoing aesthetic-review process — the user works
 through the review PDFs and sends feedback in chunks; steps 34-53).** The most recent chunks:
@@ -4525,6 +4525,28 @@ fixes), is committed and pushed (see `git log`).
       shows in its label. (This also benefits any sine/cosine case with a very acute angle.)
     Practice Tests NOT rebuilt (only optional new params + label/prompt changes, all backward-
     compatible - frozen papers still render). Committed in c6cce8f.
+
+57. Same session, a review batch of 3 items on the 3D-solid diagrams/prompts (all verified by
+    rendering real PDFs; no new tests, backend stays 1000/1000):
+    - `plans_and_elevations_F`: the three blank grids (front/side elevation + plan) the student
+      draws into were only ~6 squares - too few to draw an up-to-8 cm solid to scale. Enlarged
+      `draw_plans_and_elevations_blank` to 10x10 squares at ~13pt each (real squared-paper size);
+      `render_diagram` places the composed Drawing at natural size (no down-scaling while it fits
+      the page width), so the bigger boxes actually render bigger. Also centred the solid sketch
+      above the grid in `draw_plans_and_elevations_question`.
+    - `volume_surface_area_cube_F`: the cube looked like a long box because `draw_cuboid` drew the
+      receding depth at its full (equal) edge length. For `is_cube`, foreshorten the depth to
+      ~0.55x the front edge (standard cabinet-projection convention) so it reads as a cube.
+    - **Every volume/surface-area prompt standardised** to "Here is a {shape}. Find its
+      {volume|surface area}[, correct to {phrase} | in terms of π]." with the dimensions read off
+      the diagram (per the reviewer's rule "for all volume and surface area"). Covers cuboid, cube,
+      triangular prism (+ a new `hyp_label` on `draw_triangular_prism` so the surface-area case can
+      read the hypotenuse off the figure), cylinder F/H, cone, sphere/hemisphere, square-based
+      pyramid, and frustum. The two `compound_3d_*` topics were left as-is (a compound of two
+      solids has no single shape name, so "Here is a X" doesn't fit).
+    Practice Tests NOT rebuilt (no diagram param SCHEMA changed - `hyp_label`/`is_cube` are
+    optional params, the rest are prompt-text/label changes; frozen papers still render). **Not
+    yet committed.**
 
 ## Environment gotchas (Windows, this machine specifically)
 

@@ -64,10 +64,7 @@ def generate_volume_surface_area_cylinder_foundation(tier: Tier, rng: random.Ran
     return Question(
         topic_id="volume_surface_area_cylinder_F",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"Find the {_MEASURE_LABEL[measure]} of the cylinder, correct to "
-            f"{rounding.phrase}."
-        ),
+        prompt=f"Here is a cylinder. Find its {_MEASURE_LABEL[measure]}, correct to {rounding.phrase}.",
         solution_steps=tuple(steps),
         final_answer=f"{decimal_answer} {unit}",
         dedup_key=f"cyl_f:{radius}:{height}:{measure}",
@@ -131,10 +128,7 @@ def generate_modelled_example_volume_surface_area_cylinder_foundation(
     return ModelledExample(
         topic_id="volume_surface_area_cylinder_F",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"Find the {_MEASURE_LABEL[measure]} of the cylinder, correct to "
-            f"{rounding.phrase}."
-        ),
+        prompt=f"Here is a cylinder. Find its {_MEASURE_LABEL[measure]}, correct to {rounding.phrase}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"{decimal_answer} {unit}",
@@ -191,9 +185,7 @@ def generate_volume_surface_area_cylinder(tier: Tier, rng: random.Random) -> Que
     return Question(
         topic_id="volume_surface_area_cylinder_H",
         tier=Tier.HIGHER,
-        prompt=(
-            f"Find the exact {_MEASURE_LABEL[measure]} of the cylinder, in terms of π."
-        ),
+        prompt=f"Here is a cylinder. Find its {_MEASURE_LABEL[measure]}, giving your answer in terms of π.",
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=f"cyl_h:{radius}:{height}:{measure}",
@@ -257,9 +249,7 @@ def generate_modelled_example_volume_surface_area_cylinder(tier: Tier, rng: rand
     return ModelledExample(
         topic_id="volume_surface_area_cylinder_H",
         tier=Tier.HIGHER,
-        prompt=(
-            f"Find the exact {_MEASURE_LABEL[measure]} of the cylinder, in terms of π."
-        ),
+        prompt=f"Here is a cylinder. Find its {_MEASURE_LABEL[measure]}, giving your answer in terms of π.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
@@ -363,10 +353,7 @@ def generate_volume_surface_area_cone(tier: Tier, rng: random.Random) -> Questio
     return Question(
         topic_id="volume_surface_area_cone_H",
         tier=Tier.HIGHER,
-        prompt=(
-            f"A cone has {given_desc}. Find its {_MEASURE_LABEL[measure]}, correct to "
-            f"{rounding.phrase}."
-        ),
+        prompt=f"Here is a cone. Find its {_MEASURE_LABEL[measure]}, correct to {rounding.phrase}.",
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=f"cone:{branch}:{radius}:{round(dedup_value, 3)}:{measure}",
@@ -476,10 +463,7 @@ def generate_modelled_example_volume_surface_area_cone(tier: Tier, rng: random.R
     return ModelledExample(
         topic_id="volume_surface_area_cone_H",
         tier=Tier.HIGHER,
-        prompt=(
-            f"A cone has {given_desc}. Find its {_MEASURE_LABEL[measure]}, correct to "
-            f"{rounding.phrase}."
-        ),
+        prompt=f"Here is a cone. Find its {_MEASURE_LABEL[measure]}, correct to {rounding.phrase}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,

@@ -4052,6 +4052,12 @@ def draw_cuboid(params: dict) -> Drawing:
     scale = min(avail_w / (w + length * _DEPTH_UX), avail_h / (h + length * _DEPTH_UY))
     fw, fh = _clamp(w * scale, 24, avail_w), _clamp(h * scale, 22, avail_h)
     depth = _clamp(length * scale, 20, 90)
+    if params.get("is_cube"):
+        # A cube's three real edges are equal, but drawing the receding depth at
+        # its full (equal) length in oblique projection makes it read as a long
+        # box, not a cube. Foreshorten the depth to ~0.55x the front edge -
+        # standard cabinet-projection convention - so it actually looks cubic.
+        depth = fw * 0.55
     ddx, ddy = depth * _DEPTH_UX, depth * _DEPTH_UY
     x0 = 46 + (avail_w - (fw + ddx)) / 2
     y0 = 34 + (avail_h - (fh + ddy)) / 2
@@ -4170,6 +4176,17 @@ def draw_triangular_prism(params: dict) -> Drawing:
     d.add(_label((A[0] + B[0]) / 2, A[1] - 14, params["base_label"]))
     d.add(_label(A[0] - 10, (A[1] + C[1]) / 2, params["triangle_height_label"], anchor="end"))
     d.add(_label((B[0] + B2[0]) / 2 + 6, (B[1] + B2[1]) / 2 - 4, params["length_label"], anchor="start"))
+    # Optional hypotenuse label on the slanting front edge B->C, placed just
+    # inside the (empty) front triangular face - offset from the edge midpoint
+    # toward the triangle's centroid, where there's clear space, rather than
+    # outside it where the prism's own depth edges run. Needed for a surface-
+    # area question that reads its dimensions off the diagram.
+    if params.get("hyp_label"):
+        mx, my = (B[0] + C[0]) / 2, (B[1] + C[1]) / 2
+        gx, gy = (A[0] + B[0] + C[0]) / 3, (A[1] + B[1] + C[1]) / 3
+        dx, dy = gx - mx, gy - my
+        dl = math.hypot(dx, dy) or 1.0
+        d.add(_label(mx + dx / dl * 15, my + dy / dl * 15, params["hyp_label"]))
     _not_to_scale(d, x=SOLID_WIDTH / 2, y=8)
     return d
 
@@ -4263,8 +4280,15 @@ def draw_plans_and_elevations_blank(params: dict) -> Drawing:
     boxes, NOT scaled to the solid's real proportions (unlike the answer
     version) - the blank grid must never hint at the solid's actual shape or
     dimensions before the student has worked it out."""
-    box = 74
-    grid_step = 12
+    # Big enough (10 squares of ~13pt each) that the student can draw each view
+    # to scale on it - the solid's dimensions are capped at 8, so 10 squares
+    # gives room to plot an 8 cm edge with a margin, at a real squared-paper
+    # square size (user review: "ensure the grids are big enough to draw to
+    # scale"). render_diagram places the Drawing at natural size (no down-
+    # scaling while it fits the page width), so a bigger box really renders
+    # bigger.
+    grid_step = 13
+    box = grid_step * 10
     # Horizontal gap clears the two side-by-side 11pt captions; vertical gap
     # (front->plan) stays small so the whole grid isn't needlessly tall.
     h_gap = 46
@@ -4325,9 +4349,9 @@ def draw_plans_and_elevations_question(params: dict) -> Drawing:
     d_height = solid.height + gap + blank.height
     d = Drawing(d_width, d_height)
 
-    blank.transform = (1, 0, 0, 1, 0, 0)
+    blank.transform = (1, 0, 0, 1, max(0, (d_width - blank.width) / 2), 0)
     d.add(blank)
-    solid.transform = (1, 0, 0, 1, 0, blank.height + gap)
+    solid.transform = (1, 0, 0, 1, max(0, (d_width - solid.width) / 2), blank.height + gap)
     d.add(solid)
 
     return d

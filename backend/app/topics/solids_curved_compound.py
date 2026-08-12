@@ -80,7 +80,7 @@ def generate_volume_surface_area_sphere(tier: Tier, rng: random.Random) -> Quest
     measure_label = "volume" if measure == "volume" else "total surface area"
     flat_face_note = " (including its flat circular face)" if (is_hemisphere and measure == "surface_area") else ""
     prompt = (
-        f"A {shape_word} has radius {radius} cm. Find its {measure_label}{flat_face_note}, "
+        f"Here is a {shape_word}. Find its {measure_label}{flat_face_note}, "
         f"correct to {rounding.phrase}."
     )
 
@@ -178,7 +178,7 @@ def generate_modelled_example_volume_surface_area_sphere(tier: Tier, rng: random
     measure_label = "volume" if measure == "volume" else "total surface area"
     flat_face_note = " (including its flat circular face)" if (is_hemisphere and measure == "surface_area") else ""
     prompt = (
-        f"A {shape_word} has radius {radius} cm. Find its {measure_label}{flat_face_note}, "
+        f"Here is a {shape_word}. Find its {measure_label}{flat_face_note}, "
         f"correct to {rounding.phrase}."
     )
 
@@ -253,10 +253,7 @@ def generate_volume_surface_area_pyramid(tier: Tier, rng: random.Random) -> Ques
             f"= {vol_str} cm³",
         ]
         final_answer = f"{vol_str} cm³"
-        prompt = (
-            f"A square-based pyramid has a base of side {base} cm and a perpendicular height "
-            f"of {height} cm. Find its volume."
-        )
+        prompt = "Here is a square-based pyramid. Find its volume."
     else:
         l_display = format(rounding.round_fn(l_float_independent), "f")
         sa_display = format(rounding.round_fn(sa_float_independent), "f")
@@ -266,10 +263,7 @@ def generate_volume_surface_area_pyramid(tier: Tier, rng: random.Random) -> Ques
             f"= {sa_display} cm² ({rounding.short})",
         ]
         final_answer = f"{sa_display} cm²"
-        prompt = (
-            f"A square-based pyramid has a base of side {base} cm and a perpendicular height "
-            f"of {height} cm. Find its total surface area, correct to {rounding.phrase}."
-        )
+        prompt = f"Here is a square-based pyramid. Find its total surface area, correct to {rounding.phrase}."
 
     # Diagram shows only the given measurements (base + perpendicular height,
     # always integers) - the slant height is a derived, usually-irrational
@@ -336,10 +330,7 @@ def generate_modelled_example_volume_surface_area_pyramid(tier: Tier, rng: rando
             f"= {vol_str} cm³",
         ]
         final_answer = f"{vol_str} cm³"
-        prompt = (
-            f"A square-based pyramid has a base of side {base} cm and a perpendicular height "
-            f"of {height} cm. Find its volume."
-        )
+        prompt = "Here is a square-based pyramid. Find its volume."
     else:
         l_display = format(rounding.round_fn(l_float_independent), "f")
         sa_display = format(rounding.round_fn(sa_float_independent), "f")
@@ -362,10 +353,7 @@ def generate_modelled_example_volume_surface_area_pyramid(tier: Tier, rng: rando
             f"= {sa_display} cm² ({rounding.short})",
         ]
         final_answer = f"{sa_display} cm²"
-        prompt = (
-            f"A square-based pyramid has a base of side {base} cm and a perpendicular height "
-            f"of {height} cm. Find its total surface area, correct to {rounding.phrase}."
-        )
+        prompt = f"Here is a square-based pyramid. Find its total surface area, correct to {rounding.phrase}."
 
     # Diagram shows only the given measurements (base + perpendicular height,
     # always integers) - the slant height is a derived, usually-irrational
@@ -450,11 +438,7 @@ def generate_frustum_volume_surface_area(tier: Tier, rng: random.Random) -> Ques
             f"= {volume_display} cm³ ({rounding.short})",
         ]
         final_answer = f"{volume_display} cm³"
-        prompt = (
-            f"A frustum is formed from a cone with a bottom radius of {R} cm and a top radius "
-            f"of {r} cm, and a vertical height of {h} cm. Find its volume, correct to "
-            f"{rounding.phrase}."
-        )
+        prompt = f"Here is a frustum. Find its volume, correct to {rounding.phrase}."
     else:
         l_display = format(rounding.round_fn(l_float_independent), "f")
         sa_display = format(rounding.round_fn(sa_float_independent), "f")
@@ -465,11 +449,7 @@ def generate_frustum_volume_surface_area(tier: Tier, rng: random.Random) -> Ques
             f"= {sa_display} cm² ({rounding.short})",
         ]
         final_answer = f"{sa_display} cm²"
-        prompt = (
-            f"A frustum is formed from a cone with a bottom radius of {R} cm and a top radius "
-            f"of {r} cm, and a vertical height of {h} cm. Find its total surface area, correct "
-            f"to {rounding.phrase}."
-        )
+        prompt = f"Here is a frustum. Find its total surface area, correct to {rounding.phrase}."
 
     return Question(
         topic_id="frustum_volume_surface_area_H",
@@ -549,11 +529,7 @@ def generate_modelled_example_frustum_volume_surface_area(tier: Tier, rng: rando
             f"≈ {volume_display} cm³ ({rounding.short})",
         ]
         final_answer = f"{volume_display} cm³"
-        prompt = (
-            f"A frustum is formed from a cone with a bottom radius of {R} cm and a top radius "
-            f"of {r} cm, and a vertical height of {h} cm. Find its volume, correct to "
-            f"{rounding.phrase}."
-        )
+        prompt = f"Here is a frustum. Find its volume, correct to {rounding.phrase}."
     else:
         l_display = format(rounding.round_fn(l_float_independent), "f")
         sa_display = format(rounding.round_fn(sa_float_independent), "f")
@@ -576,11 +552,7 @@ def generate_modelled_example_frustum_volume_surface_area(tier: Tier, rng: rando
             f"≈ {sa_display} cm² ({rounding.short})",
         ]
         final_answer = f"{sa_display} cm²"
-        prompt = (
-            f"A frustum is formed from a cone with a bottom radius of {R} cm and a top radius "
-            f"of {r} cm, and a vertical height of {h} cm. Find its total surface area, correct "
-            f"to {rounding.phrase}."
-        )
+        prompt = f"Here is a frustum. Find its total surface area, correct to {rounding.phrase}."
 
     return ModelledExample(
         topic_id="frustum_volume_surface_area_H",

@@ -64,10 +64,7 @@ def generate_volume_surface_area_cuboid(tier: Tier, rng: random.Random) -> Quest
     return Question(
         topic_id="volume_surface_area_cuboid_F",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"A cuboid has length {length} cm, width {width} cm and height {height} cm. "
-            f"Find its {_measure_label(measure)}."
-        ),
+        prompt=f"Here is a cuboid. Find its {_measure_label(measure)}.",
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=f"cuboid:{length}:{width}:{height}:{measure}",
@@ -145,10 +142,7 @@ def generate_modelled_example_volume_surface_area_cuboid(tier: Tier, rng: random
     return ModelledExample(
         topic_id="volume_surface_area_cuboid_F",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"A cuboid has length {length} cm, width {width} cm and height {height} cm. "
-            f"Find its {_measure_label(measure)}."
-        ),
+        prompt=f"Here is a cuboid. Find its {_measure_label(measure)}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
@@ -198,7 +192,7 @@ def generate_volume_surface_area_cube(tier: Tier, rng: random.Random) -> Questio
     return Question(
         topic_id="volume_surface_area_cube_F",
         tier=Tier.FOUNDATION,
-        prompt=f"A cube has side length {side} cm. Find its {_measure_label(measure)}.",
+        prompt=f"Here is a cube. Find its {_measure_label(measure)}.",
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=f"cube:{side}:{measure}",
@@ -262,7 +256,7 @@ def generate_modelled_example_volume_surface_area_cube(tier: Tier, rng: random.R
     return ModelledExample(
         topic_id="volume_surface_area_cube_F",
         tier=Tier.FOUNDATION,
-        prompt=f"A cube has side length {side} cm. Find its {_measure_label(measure)}.",
+        prompt=f"Here is a cube. Find its {_measure_label(measure)}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
@@ -340,11 +334,7 @@ def generate_volume_surface_area_triangular_prism(tier: Tier, rng: random.Random
     return Question(
         topic_id="volume_surface_area_triangular_prism_F",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"A triangular prism has a right-angled triangular cross-section with sides {p} cm "
-            f"and {q} cm (hypotenuse {hyp} cm), and length {length} cm. Find its "
-            f"{_measure_label(measure)}."
-        ),
+        prompt=f"Here is a triangular prism. Find its {_measure_label(measure)}.",
         solution_steps=tuple(steps),
         final_answer=answer,
         dedup_key=f"tri_prism:{p}:{q}:{hyp}:{length}:{measure}",
@@ -354,6 +344,7 @@ def generate_volume_surface_area_triangular_prism(tier: Tier, rng: random.Random
                 "base_label": f"{p} cm",
                 "triangle_height_label": f"{q} cm",
                 "length_label": f"{length} cm",
+                "hyp_label": f"{hyp} cm",
             },
         ),
     )
@@ -427,11 +418,7 @@ def generate_modelled_example_volume_surface_area_triangular_prism(
     return ModelledExample(
         topic_id="volume_surface_area_triangular_prism_F",
         tier=Tier.FOUNDATION,
-        prompt=(
-            f"A triangular prism has a right-angled triangular cross-section with sides {p} cm "
-            f"and {q} cm (hypotenuse {hyp} cm), and length {length} cm. Find its "
-            f"{_measure_label(measure)}."
-        ),
+        prompt=f"Here is a triangular prism. Find its {_measure_label(measure)}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=answer,
@@ -441,6 +428,7 @@ def generate_modelled_example_volume_surface_area_triangular_prism(
                 "base_label": f"{p} cm",
                 "triangle_height_label": f"{q} cm",
                 "length_label": f"{length} cm",
+                "hyp_label": f"{hyp} cm",
             },
         ),
     )
