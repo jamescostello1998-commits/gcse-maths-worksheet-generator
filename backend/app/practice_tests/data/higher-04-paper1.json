@@ -718,14 +718,14 @@
     },
     {
       "topic_id": "transform_enlarge_complete_H",
-      "prompt": "Enlarge shape ABCDEF by scale factor -1, centre (4, 0).",
+      "prompt": "Enlarge shape A by scale factor -1, centre (4, 0).",
       "solution_steps": [
         "The centre of enlargement is (4, 0) and the scale factor is -1.",
-        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-2, 2) from the centre, so A' = (4, 0) + -1 × (-2, 2) = (6, -2).",
-        "Repeat for every vertex: A(2, 2) -> A'(6, -2), B(7, 2) -> B'(1, -2), C(7, 4) -> C'(1, -4), D(5, 4) -> D'(3, -4), E(5, 6) -> E'(3, -6), F(2, 6) -> F'(6, -6)",
+        "For each vertex, find its displacement from the centre and multiply by the scale factor: e.g. (2, 2) is a displacement of (-2, 2) from the centre, so it maps to (4, 0) + -1 × (-2, 2) = (6, -2).",
+        "Repeat for every vertex. The image, shape B, has vertices (6, -2), (1, -2), (1, -4), (3, -4), (3, -6), (6, -6).",
         "A negative scale factor puts the image on the opposite side of the centre from the original shape."
       ],
-      "final_answer": "A'(6, -2), B'(1, -2), C'(1, -4), D'(3, -4), E'(3, -6), F'(6, -6)",
+      "final_answer": "Image (shape B): (6, -2), (1, -2), (1, -4), (3, -4), (3, -6), (6, -6)",
       "marks": 5,
       "mark_scheme": [
         {
@@ -735,12 +735,12 @@
         },
         {
           "code": "M1",
-          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-2, 2) from the centre, so A' = (4, 0) + -1 × (-2, 2) = (6, -2).",
+          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: e.g. (2, 2) is a displacement of (-2, 2) from the centre, so it maps to (4, 0) + -1 × (-2, 2) = (6, -2).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Repeat for every vertex: A(2, 2) -> A'(6, -2), B(7, 2) -> B'(1, -2), C(7, 4) -> C'(1, -4), D(5, 4) -> D'(3, -4), E(5, 6) -> E'(3, -6), F(2, 6) -> F'(6, -6)",
+          "description": "Repeat for every vertex. The image, shape B, has vertices (6, -2), (1, -2), (1, -4), (3, -4), (3, -6), (6, -6).",
           "marks": 1
         },
         {
@@ -750,7 +750,7 @@
         },
         {
           "code": "A1",
-          "description": "A'(6, -2), B'(1, -2), C'(1, -4), D'(3, -4), E'(3, -6), F'(6, -6) oe",
+          "description": "Image (shape B): (6, -2), (1, -2), (1, -4), (3, -4), (3, -6), (6, -6) oe",
           "marks": 1
         }
       ],
@@ -788,17 +788,14 @@
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ],
-          "centre": [
-            4,
-            0
-          ]
+          "original_shape_label": "A"
         }
       },
       "solution_diagram": {
@@ -835,17 +832,14 @@
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ],
-          "centre": [
-            4,
-            0
-          ],
+          "original_shape_label": "A",
           "image_vertices": [
             [
               6,
@@ -873,22 +867,23 @@
             ]
           ],
           "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'",
-            "E'",
-            "F'"
-          ]
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "image_shape_label": "B"
         }
       }
     },
     {
       "topic_id": "transform_enlarge_describe_H",
-      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
       "solution_steps": [
         "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
-        "For this pair, the lines meet at (1, 1) and the ratio works out as -1."
+        "For mapping shape A onto shape B, the lines meet at (1, 1) and the scale factor works out as -1."
       ],
       "final_answer": "Enlargement, scale factor -1, centre (1, 1)",
       "marks": 3,
@@ -900,7 +895,7 @@
         },
         {
           "code": "M1",
-          "description": "For this pair, the lines meet at (1, 1) and the ratio works out as -1.",
+          "description": "For mapping shape A onto shape B, the lines meet at (1, 1) and the scale factor works out as -1.",
           "marks": 1
         },
         {
@@ -965,7 +960,8 @@
             "",
             ""
           ],
-          "image_shape_label": "B"
+          "image_shape_label": "B",
+          "image_same_color": true
         }
       },
       "solution_diagram": null

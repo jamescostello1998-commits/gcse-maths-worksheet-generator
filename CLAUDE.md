@@ -56,7 +56,13 @@ all papers 100 marks. See chronology step 51.
 **✅ DONE (step 52) — `pressure_H`**: the same treatment as density_H — the "work out the
 contact area" variant now shows a rectangle / square / right-triangle base with dimensions on
 it, and the prompt reads "The {obj} below exerts a force/pressure of … on its base. Find …".
-Still 313 topics, suite 985, all papers 100 marks. See chronology step 52.
+Still 313 topics, all papers 100 marks. See chronology step 52.
+
+**✅ DONE (step 53) — whole Transformations group reworked**: no vertex dots/labels (shapes
+labelled A/B inside), "describe" diagrams both-black, "complete" diagrams drop the centre dot,
+translation vectors render as column vectors, new `transform_enlarge_describe_F` (313→314), and
+`combined_transformations_H` redesigned to "apply 2-3 transformations yourself and draw the
+final image". Suite 981, all papers 100 marks. See chronology step 53.
 
 **Next natural step:** the next chunk of review feedback (pages 201+), if the user resumes the
 review.
@@ -117,7 +123,7 @@ pending review feedback.
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**313 topics across 6 sections**, all procedurally generated with independent
+**314 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.),
@@ -441,7 +447,7 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 | Number | Fractions, Decimals, Order of Operations (BIDMAS), Standard Form, Estimation & Bounds, Negative Numbers, Multiplying & Dividing by Powers of 10, Factors/Multiples & Primes, Powers/Roots & Indices | 56 |
 | Algebra | Expressions/Formulae/Equations/Identities, Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Substitution into Formulae, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Equation of a Circle, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Kinematics (SUVAT), Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs | 81 |
 | Ratio & Proportion | Percentages, Best Buys, Ratio, Proportion, Compound Measures | 37 |
-| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations, Bearings, Map Scales and Scale Drawings, Constructions, Loci | 88 |
+| Geometry | Area & Perimeter, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations, Bearings, Map Scales and Scale Drawings, Constructions, Loci | 89 |
 | Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams, Venn Diagrams | 22 |
 | Statistics | Averages from a List, Frequency Tables, Working Backwards, Charts and Graphs, Cumulative Frequency & Box Plots, Histograms, Sampling and Populations | 29 |
 
@@ -4380,6 +4386,43 @@ fixes), is committed and pushed (see `git log`).
     Rebuilt all 60 Practice Test papers — all 100 marks. Backend suite 984 → 985 (+1: pressure_H
     dimensions questions carry a base-shape diagram, three kinds, no prose dimensions). Review
     PDFs regenerated (313/323) and sent. Committed and pushed.
+
+53. Same review thread, a large batch on the whole **Transformations** group (reflect/rotate/
+    translate/enlarge × complete/describe, plus combined). Global rules (all transformation
+    diagrams): vertices are never dotted or labelled - each shape is identified by a single
+    whole-shape letter (A original, B image) drawn at its centroid; prompts use just those
+    letters ("Rotate shape A 180° about (0, -1)", not "shape ABCD"). Implemented in
+    `draw_grid_transformation` (`diagrams.py`): removed the vertex `Circle` dots; added an
+    `image_same_color` param so "describe" diagrams draw BOTH shapes black (distinguished only by
+    the A/B label) while "complete" solution diagrams keep the image a distinct colour to
+    highlight the answer. New helpers in `transformations.py`: `_transform_diagram` (builds the
+    standard blank-vertex + A/B spec, never drawing a centre dot or translation arrow),
+    `_image_coords` (coordinate-list answers, no vertex letters), `_polygons_intersect`
+    (edge-cross + point-in-polygon), and `_fmt_vector` now returns a real `\colvec{}{}` column
+    vector everywhere. Per-topic: all "complete" topics (reflect/rotate/translate/enlarge F+H)
+    switched to shape labels + coordinate-list steps/answers, and rotate/enlarge complete no
+    longer draw the centre on the diagram (the student plots it from the text);
+    translate_complete's vector renders as a column vector. All "describe" topics dropped
+    "shown on the grid" and draw both shapes black; `translate_describe` gained its missing A/B
+    labels; `rotate_describe_H` rerolls until the two shapes don't overlap
+    (`_random_rotate_describe_instance`, intersecting rate ~0%, well under the requested 5%).
+    New topic **`transform_enlarge_describe_F`** (313→314): positive scale factors only
+    (3/2, 5/2, 1/2, 1/3, 1/4), built by scaling a small base template by the factor's
+    numerator/denominator so integer grid points are guaranteed (the general
+    `_random_enlarge_instance` can't - it needs every vertex offset divisible by the
+    denominator, which almost never happens with no integer factor to fall back on); wording is
+    90% "maps A onto B" / 10% "maps B onto A" (the reverse answer is the reciprocal scale
+    factor). **`combined_transformations_H` fully redesigned** from "describe the single
+    equivalent transformation" to "apply 2-3 transformations yourself and draw the final image":
+    `_random_combined_sequence` applies a random mix of reflect/rotate/translate/enlarge steps,
+    checking every intermediate fits the grid and verifying each step via the existing
+    `_verify_*` helpers; the question shows shape A only, the solution shows the final image B.
+    The old single-equivalent-transformation machinery (`_ComboInstance`, `_random_combo_*`,
+    `_ROTATE_COMBO_PAIRS`, `_build_combo_instance`) was removed. Rebuilt all 60 Practice Test
+    papers (diagram schemas changed + topic #314 in the pool) - all 100 marks. Backend suite
+    985 → 981 (the redesign replaced 7 combo-internal tests with 3 behavioural ones; the new
+    topic is covered via the generic generator/modelled lists). Review PDFs regenerated (314/326)
+    and sent. Symmetry topics (a separate Geometry group) were left untouched. Committed and pushed.
 
 ## Environment gotchas (Windows, this machine specifically)
 

@@ -718,27 +718,27 @@
     },
     {
       "topic_id": "transform_reflect_complete_F",
-      "prompt": "Reflect shape ABC in the line y = -1.",
+      "prompt": "Reflect shape A in the line y = -1.",
       "solution_steps": [
-        "Reflect each vertex in the line y = -1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
-        "A(0, 3) -> A'(0, -5), B(3, 3) -> B'(3, -5), C(0, 5) -> C'(0, -7)"
+        "Reflect each vertex of shape A in the line y = -1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+        "The image, shape B, has vertices (0, -5), (3, -5), (0, -7)."
       ],
-      "final_answer": "A'(0, -5), B'(3, -5), C'(0, -7)",
+      "final_answer": "Image (shape B): (0, -5), (3, -5), (0, -7)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Reflect each vertex in the line y = -1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+          "description": "Reflect each vertex of shape A in the line y = -1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A(0, 3) -> A'(0, -5), B(3, 3) -> B'(3, -5), C(0, 5) -> C'(0, -7)",
+          "description": "The image, shape B, has vertices (0, -5), (3, -5), (0, -7).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(0, -5), B'(3, -5), C'(0, -7) oe",
+          "description": "Image (shape B): (0, -5), (3, -5), (0, -7) oe",
           "marks": 1
         }
       ],
@@ -764,10 +764,11 @@
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C"
+            "",
+            "",
+            ""
           ],
+          "original_shape_label": "A",
           "mirror_line": {
             "type": "horizontal",
             "y": -1,
@@ -797,10 +798,11 @@
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C"
+            "",
+            "",
+            ""
           ],
+          "original_shape_label": "A",
           "mirror_line": {
             "type": "horizontal",
             "y": -1,
@@ -821,50 +823,73 @@
             ]
           ],
           "image_labels": [
-            "A'",
-            "B'",
-            "C'"
-          ]
+            "",
+            "",
+            ""
+          ],
+          "image_shape_label": "B"
         }
       }
     },
     {
-      "topic_id": "nets_3d_shapes_F",
-      "prompt": "What 2D shapes make up the net of a cube?",
+      "topic_id": "plans_and_elevations_F",
+      "prompt": "The diagram shows a solid with its dimensions labelled. Draw and label the front elevation, side elevation, and plan view of the solid.",
       "solution_steps": [
-        "Imagine unfolding a cube flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
-        "A cube's net is made up of: 6 squares.",
-        "So the answer is: 6 squares."
+        "The front elevation is what you see looking at the solid straight on from the front.",
+        "Front elevation: a right-angled triangle, base 6 cm and height 8 cm.",
+        "The side elevation is what you see looking at the solid straight on from the side.",
+        "Side elevation: a rectangle, 3 cm by 8 cm.",
+        "The plan view is what you see looking straight down at the solid from above.",
+        "Plan view: a rectangle, 6 cm by 3 cm."
       ],
-      "final_answer": "6 squares",
-      "marks": 4,
+      "final_answer": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm. Side elevation: a rectangle, 3 cm by 8 cm. Plan view: a rectangle, 6 cm by 3 cm.",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Imagine unfolding a cube flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
+          "description": "The front elevation is what you see looking at the solid straight on from the front.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A cube's net is made up of: 6 squares.",
+          "description": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "So the answer is: 6 squares.",
+          "description": "The side elevation is what you see looking at the solid straight on from the side.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Side elevation: a rectangle, 3 cm by 8 cm. The plan view is what you see looking straight down at the solid from above. Plan view: a rectangle, 6 cm by 3 cm.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6 squares oe",
+          "description": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm. Side elevation: a rectangle, 3 cm by 8 cm. Plan view: a rectangle, 6 cm by 3 cm. oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": {
-        "kind": "net",
+      "diagram": {
+        "kind": "plans_and_elevations_question",
         "params": {
-          "shape": "cube"
+          "shape": "triangular_prism",
+          "base_label": "6 cm",
+          "triangle_height_label": "8 cm",
+          "length_label": "3 cm"
+        }
+      },
+      "solution_diagram": {
+        "kind": "plans_and_elevations",
+        "params": {
+          "shape": "triangular_prism",
+          "base": 6,
+          "tri_height": 8,
+          "length": 3,
+          "base_label": "6 cm",
+          "tri_height_label": "8 cm",
+          "length_label": "3 cm"
         }
       }
     },
@@ -905,54 +930,45 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_subtract_compound_F",
-      "prompt": "Find the shaded area.",
+      "topic_id": "probability_single_event_F",
+      "prompt": "A bag contains 8 red, 2 blue, 6 purple counters. A counter is picked at random. Find the probability that it is purple.",
       "solution_steps": [
-        "Area of large rectangle = 11 × 15 = 165 cm²",
-        "Area of rectangular hole = 5 × 5 = 25 cm²",
-        "Shaded area = 165 - 25 = 140 cm²"
+        "Total counters = 16",
+        "Number of purple counters = 6",
+        "P(purple) = 6/16 = 3/8"
       ],
-      "final_answer": "140 cm²",
+      "final_answer": "3/8",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area of large rectangle = 11 × 15 = 165 cm²",
+          "description": "Total counters = 16",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Area of rectangular hole = 5 × 5 = 25 cm²",
+          "description": "Number of purple counters = 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Shaded area = 165 - 25 = 140 cm²",
+          "description": "P(purple) = 6/16 = 3/8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "140 cm² oe",
+          "description": "3/8 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "l_shape",
+        "kind": "bag_of_counters",
         "params": {
-          "outer_w": 11,
-          "outer_h": 15,
-          "inner_w": 5,
-          "inner_h": 5,
-          "notch": "center",
-          "shade_frame": true,
-          "outer_labels": [
-            "11 cm",
-            "15 cm"
-          ],
-          "inner_labels": [
-            "5 cm",
-            "5 cm"
-          ]
+          "counts": {
+            "red": 8,
+            "blue": 2,
+            "purple": 6
+          }
         }
       },
       "solution_diagram": null
@@ -1009,126 +1025,57 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "set_notation_F",
-      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, A = {2, 4, 7, 10}, B = {3, 4, 10}. List the elements that are in A but not in B.",
+      "topic_id": "stats_reverse_mean_F",
+      "prompt": "The mean of three numbers is 10. Two of the numbers are 5, 14. Find the missing number.",
       "solution_steps": [
-        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
-        "A = {2, 4, 7, 10}",
-        "B = {3, 4, 10}",
-        "Check each element of ξ in turn to see whether it are in A but not in B.",
-        "Elements that are in A but not in B: {2, 7}"
+        "Total of all 3 numbers = mean × count = 10 × 3 = 30",
+        "Sum of the known numbers = 5 + 14 = 19",
+        "Missing number = 30 - 19 = 11"
       ],
-      "final_answer": "{2, 7}",
-      "marks": 5,
+      "final_answer": "11",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+          "description": "Total of all 3 numbers = mean × count = 10 × 3 = 30",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A = {2, 4, 7, 10}",
+          "description": "Sum of the known numbers = 5 + 14 = 19",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "B = {3, 4, 10}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Check each element of ξ in turn to see whether it are in A but not in B. Elements that are in A but not in B: {2, 7}",
+          "description": "Missing number = 30 - 19 = 11",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "{2, 7} oe",
+          "description": "11 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "venn_diagram",
-        "params": {
-          "labels": [
-            "A",
-            "B"
-          ],
-          "universal_label": "ξ"
-        }
-      },
-      "solution_diagram": {
-        "kind": "venn_diagram",
-        "params": {
-          "labels": [
-            "A",
-            "B"
-          ],
-          "universal_label": "ξ",
-          "region_text": {
-            "a_only": "2, 7",
-            "b_only": "3",
-            "both": "4, 10",
-            "neither": "1, 5, 6, 8, 9"
-          }
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof_F",
-      "prompt": "Shown below are two congruent triangles. Give a reason why they are congruent. A) ASA  B) SSS  C) SAS  D) RHS",
+      "topic_id": "fractions_equivalent_F",
+      "prompt": "Which of the following fractions is equivalent to 1/5? A) 4/19, B) 4/20, C) 4/21, D) 3/20",
       "solution_steps": [
-        "Look at which measurements are marked equal on both triangles - here they match the Side-Side-Side (SSS) pattern.",
-        "So the two triangles are congruent by Side-Side-Side (SSS)."
+        "Cross-multiply 1/5 against each option: a candidate p/q is equivalent only if 1 × q = p × 5.",
+        "Only option B) 4/20 works: 1 × 20 = 4 × 5 = 20."
       ],
-      "final_answer": "B) SSS",
+      "final_answer": "B) 4/20",
       "marks": 1,
       "mark_scheme": [
         {
           "code": "B1",
-          "description": "B) SSS (selecting the correct option)",
+          "description": "B) 4/20 (selecting the correct option)",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "two_triangle_congruence",
-        "params": {
-          "side_labels_1": [
-            [
-              0,
-              1,
-              "9 cm"
-            ],
-            [
-              0,
-              2,
-              "8 cm"
-            ],
-            [
-              1,
-              2,
-              "11 cm"
-            ]
-          ],
-          "side_labels_2": [
-            [
-              0,
-              1,
-              "9 cm"
-            ],
-            [
-              0,
-              2,
-              "8 cm"
-            ],
-            [
-              1,
-              2,
-              "11 cm"
-            ]
-          ]
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     }
   ]

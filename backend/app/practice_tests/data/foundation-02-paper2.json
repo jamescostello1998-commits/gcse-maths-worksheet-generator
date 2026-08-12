@@ -71,34 +71,32 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_parallelogram_F",
-      "prompt": "Find the area of the following parallelogram.",
+      "topic_id": "fractions_simplify_F",
+      "prompt": "Fully simplify 4/24.",
       "solution_steps": [
-        "Area = base × height = 19 × 8 = 152 cm²"
+        "Find the highest common factor of 4 and 24: 4",
+        "Divide numerator and denominator by 4: \\frac{4÷4}{24÷4} = 1/6"
       ],
-      "final_answer": "152 cm²",
-      "marks": 2,
+      "final_answer": "1/6",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = base × height = 19 × 8 = 152 cm²",
+          "description": "Find the highest common factor of 4 and 24: 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide numerator and denominator by 4: \\frac{4÷4}{24÷4} = 1/6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "152 cm² oe",
+          "description": "1/6 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "parallelogram",
-        "params": {
-          "base": 19,
-          "height": 8,
-          "base_label": "19 cm",
-          "height_label": "8 cm"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -294,41 +292,22 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_double_brackets_F",
-      "prompt": "Expand and simplify: (4x + 9)(3x + 2)",
+      "topic_id": "stats_median_F",
+      "prompt": "Find the median of this data set: 10, 3, 25, 7, 5, 6, 11, 6.",
       "solution_steps": [
-        "First: 4x × 3x = 12x^2",
-        "Outer: 4x × 2 = 8x",
-        "Inner: 9 × 3x = 27x",
-        "Last: 9 × 2 = 18",
-        "Combine like terms: 12x^2 + 35x + 18"
+        "Sort the data: 3, 5, 6, 6, 7, 10, 11, 25. The middle two values are 6 and 7, so the median = (6 + 7) ÷ 2 = 6.50."
       ],
-      "final_answer": "12x^2 + 35x + 18",
-      "marks": 5,
+      "final_answer": "6.50",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First: 4x × 3x = 12x^2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Outer: 4x × 2 = 8x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Inner: 9 × 3x = 27x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Last: 9 × 2 = 18 Combine like terms: 12x^2 + 35x + 18",
+          "description": "Sort the data: 3, 5, 6, 6, 7, 10, 11, 25. The middle two values are 6 and 7, so the median = (6 + 7) ÷ 2 = 6.50.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12x^2 + 35x + 18 oe",
+          "description": "6.50 oe",
           "marks": 1
         }
       ],
@@ -796,28 +775,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_translate_describe_F",
-      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
+      "topic_id": "transform_enlarge_complete_F",
+      "prompt": "Enlarge shape A by scale factor 2, centre (7, 0).",
       "solution_steps": [
-        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (2, 3), with the matching vertex of shape B, (-2, -1), gives the vector (-4, -4).",
-        "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
+        "The centre of enlargement is (7, 0) and the scale factor is 2.",
+        "For each vertex, find its displacement from the centre and multiply by the scale factor: e.g. (1, -2) is a displacement of (-6, -2) from the centre, so it maps to (7, 0) + 2 × (-6, -2) = (-5, -4).",
+        "Repeat for every vertex. The image, shape B, has vertices (-5, -4), (3, -4), (1, 4), (-7, 2)."
       ],
-      "final_answer": "Translation by the vector (-4, -4)",
-      "marks": 3,
+      "final_answer": "Image (shape B): (-5, -4), (3, -4), (1, 4), (-7, 2)",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (2, 3), with the matching vertex of shape B, (-2, -1), gives the vector (-4, -4).",
+          "description": "The centre of enlargement is (7, 0) and the scale factor is 2.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Checking the other vertices confirms the same vector applies throughout, so this is a translation.",
+          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: e.g. (1, -2) is a displacement of (-6, -2) from the centre, so it maps to (7, 0) + 2 × (-6, -2) = (-5, -4).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Repeat for every vertex. The image, shape B, has vertices (-5, -4), (3, -4), (1, 4), (-7, 2).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Translation by the vector (-4, -4) oe",
+          "description": "Image (shape B): (-5, -4), (3, -4), (1, 4), (-7, 2) oe",
           "marks": 1
         }
       ],
@@ -830,75 +815,90 @@
           "y_max": 8,
           "original_vertices": [
             [
-              2,
-              3
-            ],
-            [
-              7,
-              3
-            ],
-            [
-              7,
-              5
+              1,
+              -2
             ],
             [
               5,
-              5
+              -2
             ],
             [
-              5,
-              7
+              4,
+              2
             ],
             [
-              2,
-              7
+              0,
+              1
             ]
           ],
           "original_labels": [
             "",
             "",
             "",
+            ""
+          ],
+          "original_shape_label": "A"
+        }
+      },
+      "solution_diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              1,
+              -2
+            ],
+            [
+              5,
+              -2
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "original_labels": [
+            "",
             "",
             "",
             ""
           ],
+          "original_shape_label": "A",
           "image_vertices": [
             [
-              -2,
-              -1
+              -5,
+              -4
             ],
             [
               3,
-              -1
-            ],
-            [
-              3,
-              1
+              -4
             ],
             [
               1,
-              1
+              4
             ],
             [
-              1,
-              3
-            ],
-            [
-              -2,
-              3
+              -7,
+              2
             ]
           ],
           "image_labels": [
             "",
             "",
             "",
-            "",
-            "",
             ""
-          ]
+          ],
+          "image_shape_label": "B"
         }
-      },
-      "solution_diagram": null
+      }
     },
     {
       "topic_id": "pythagoras_hypotenuse_triple_F",
@@ -1153,22 +1153,28 @@
       }
     },
     {
-      "topic_id": "stats_median_F",
-      "prompt": "Find the median of this data set: 10, 3, 25, 7, 5, 6, 11, 6.",
+      "topic_id": "fractions_equivalent_F",
+      "prompt": "5/7 = \\frac{?}{42}. Find the missing number.",
       "solution_steps": [
-        "Sort the data: 3, 5, 6, 6, 7, 10, 11, 25. The middle two values are 6 and 7, so the median = (6 + 7) ÷ 2 = 6.50."
+        "Find the scale factor between the denominators: 42 ÷ 7 = 6",
+        "Multiply the numerator by the same scale factor: 5 × 6 = 30"
       ],
-      "final_answer": "6.50",
-      "marks": 2,
+      "final_answer": "30",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Sort the data: 3, 5, 6, 6, 7, 10, 11, 25. The middle two values are 6 and 7, so the median = (6 + 7) ÷ 2 = 6.50.",
+          "description": "Find the scale factor between the denominators: 42 ÷ 7 = 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply the numerator by the same scale factor: 5 × 6 = 30",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6.50 oe",
+          "description": "30 oe",
           "marks": 1
         }
       ],

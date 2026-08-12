@@ -432,6 +432,40 @@ _ENLARGE_K_FOUNDATION: tuple[Fraction, ...] = (Fraction(2), Fraction(3))
 _ENLARGE_K_HIGHER: tuple[Fraction, ...] = (
     Fraction(-1), Fraction(-2), Fraction(-3), Fraction(1, 2), Fraction(-1, 2),
 )
+# Foundation "describe the enlargement": positive only - the enlargements
+# 1.5, 2.5, and the shrinks 1/2, 1/3, 1/4 (per review feedback).
+_ENLARGE_DESCRIBE_K_FOUNDATION: tuple[Fraction, ...] = (
+    Fraction(3, 2), Fraction(5, 2), Fraction(1, 2), Fraction(1, 3), Fraction(1, 4),
+)
+# A small asymmetric base (span ~2) for constructing describe-enlargement
+# instances with a scale factor p/q: the original is q x base and the image
+# is p x base (both from the centre), so every vertex is an exact integer grid
+# point for ANY of the fractional factors above - the general
+# _random_enlarge_instance can't reliably do this, since it would need every
+# vertex's offset from the centre to be divisible by q, which almost never
+# happens by chance when no integer scale factor is available to fall back on.
+_ENLARGE_DESCRIBE_F_BASE: tuple[Point, ...] = ((0, 0), (2, 0), (2, 1), (0, 2))
+
+
+def _enlarge_describe_foundation_raw(rng: random.Random) -> tuple[list, Point, Fraction, list]:
+    for _ in range(_REROLL_ATTEMPTS):
+        k = Fraction(rng.choice(_ENLARGE_DESCRIBE_K_FOUNDATION))
+        p, q = k.numerator, k.denominator
+        orig_rel = [(q * x, q * y) for x, y in _ENLARGE_DESCRIBE_F_BASE]
+        img_rel = [(p * x, p * y) for x, y in _ENLARGE_DESCRIBE_F_BASE]
+        xs = [x for x, _ in orig_rel + img_rel]
+        ys = [y for _, y in orig_rel + img_rel]
+        cx_lo, cx_hi = _GRID_MIN - min(xs), _GRID_MAX - max(xs)
+        cy_lo, cy_hi = _GRID_MIN - min(ys), _GRID_MAX - max(ys)
+        if cx_lo > cx_hi or cy_lo > cy_hi:
+            continue
+        centre = (rng.randint(cx_lo, cx_hi), rng.randint(cy_lo, cy_hi))
+        shape = [(centre[0] + x, centre[1] + y) for x, y in orig_rel]
+        image = [(centre[0] + x, centre[1] + y) for x, y in img_rel]
+        if _fits_grid(shape) and _fits_grid(image):
+            _verify_enlargement(shape, centre, k, image)
+            return shape, centre, k, image
+    raise ValueError("transformations: could not fit a foundation describe-enlargement instance")
 
 
 def _random_enlarge_centre(rng: random.Random, shape: list) -> Point:
@@ -485,7 +519,47 @@ def _fmt_point(p: tuple) -> str:
 
 
 def _fmt_vector(v: tuple) -> str:
-    return f"({v[0]}, {v[1]})"
+    # A real stacked column vector (via the \colvec mathtext marker), the
+    # correct GCSE notation for a translation vector - not a coordinate pair.
+    return f"\\colvec{{{v[0]}}}{{{v[1]}}}"
+
+
+def _segments_cross(p1, p2, p3, p4) -> bool:
+    def ccw(a, b, c):
+        return (c[1] - a[1]) * (b[0] - a[0]) - (b[1] - a[1]) * (c[0] - a[0])
+    d1, d2 = ccw(p3, p4, p1), ccw(p3, p4, p2)
+    d3, d4 = ccw(p1, p2, p3), ccw(p1, p2, p4)
+    return ((d1 > 0) != (d2 > 0)) and ((d3 > 0) != (d4 > 0))
+
+
+def _point_in_poly(pt, poly) -> bool:
+    x, y = pt
+    inside = False
+    n = len(poly)
+    for i in range(n):
+        x1, y1 = poly[i]
+        x2, y2 = poly[(i + 1) % n]
+        if (y1 > y) != (y2 > y):
+            xint = x1 + (y - y1) * (x2 - x1) / (y2 - y1)
+            if x < xint:
+                inside = not inside
+    return inside
+
+
+def _polygons_intersect(a: list, b: list) -> bool:
+    """True if two polygons overlap (an edge crosses, or one contains a
+    vertex of the other). Used to keep the two shapes in a 'describe a
+    rotation' question from sitting on top of each other."""
+    na, nb = len(a), len(b)
+    for i in range(na):
+        for j in range(nb):
+            if _segments_cross(a[i], a[(i + 1) % na], b[j], b[(j + 1) % nb]):
+                return True
+    if any(_point_in_poly(p, b) for p in a):
+        return True
+    if any(_point_in_poly(p, a) for p in b):
+        return True
+    return False
 
 
 def _fmt_scale_factor(k: Fraction) -> str:
@@ -494,6 +568,34 @@ def _fmt_scale_factor(k: Fraction) -> str:
 
 def _shape_name(labels: tuple) -> str:
     return "".join(labels)
+
+
+def _image_coords(image: list) -> str:
+    """The image's vertices as a plain coordinate list (no per-vertex letters,
+    since vertices are no longer labelled)."""
+    return ", ".join(_fmt_point(p) for p in image)
+
+
+def _transform_diagram(original: list, image=None, *, mirror=None, image_same_color: bool = False) -> DiagramSpec:
+    """Build a grid_transformation spec with the current conventions: vertices
+    unlabelled, each shape identified by a whole-shape letter (A original,
+    B image). No centre dot or translation arrow is ever drawn (the student
+    reads/plots those from the text). The mirror line, when given, is still
+    shown. image=None gives the blank question-page version."""
+    params: dict = {
+        "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
+        "original_vertices": original, "original_labels": tuple("" for _ in original),
+        "original_shape_label": "A",
+    }
+    if mirror is not None:
+        params["mirror_line"] = mirror
+    if image is not None:
+        params["image_vertices"] = image
+        params["image_labels"] = tuple("" for _ in image)
+        params["image_shape_label"] = "B"
+        if image_same_color:
+            params["image_same_color"] = True
+    return DiagramSpec(kind="grid_transformation", params=params)
 
 
 def _article(name: str) -> str:
@@ -838,49 +940,31 @@ def generate_modelled_example_symmetry_rotational(tier: Tier, rng: random.Random
 def generate_transform_reflect_complete(tier: Tier, rng: random.Random) -> Question:
     shape, mirror, image = _random_reflect_instance(rng, tier)
     _verify_reflection(shape, mirror, image)
-    labels = _VERTEX_LABELS[: len(shape)]
-    image_labels = tuple(f"{l}'" for l in labels)
-    name, image_name = _shape_name(labels), _shape_name(image_labels)
 
     steps = [
-        f"Reflect each vertex in the line {mirror['label']}: the mirror line is the perpendicular bisector "
-        "of every point and its image, so each point stays the same distance from the line, on the other side.",
-        _vertex_mapping_text(labels, shape, image_labels, image),
+        f"Reflect each vertex of shape A in the line {mirror['label']}: the mirror line is the perpendicular "
+        "bisector of every point and its image, so each point stays the same distance from the line, on the "
+        "other side.",
+        f"The image, shape B, has vertices {_image_coords(image)}.",
     ]
     return Question(
         topic_id="transform_reflect_complete_F",
         tier=Tier.FOUNDATION,
-        prompt=f"Reflect shape {name} in the line {mirror['label']}.",
+        prompt=f"Reflect shape A in the line {mirror['label']}.",
         solution_steps=tuple(steps),
-        final_answer=", ".join(f"{il}{_fmt_point(p)}" for il, p in zip(image_labels, image)),
+        final_answer=f"Image (shape B): {_image_coords(image)}",
         dedup_key=f"reflect:{shape}:{mirror['label']}",
-        diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": labels, "mirror_line": mirror,
-            },
-        ),
-        solution_diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": labels, "mirror_line": mirror,
-                "image_vertices": image, "image_labels": image_labels,
-            },
-        ),
+        diagram=_transform_diagram(shape, mirror=mirror),
+        solution_diagram=_transform_diagram(shape, image, mirror=mirror),
     )
 
 
 def generate_modelled_example_transform_reflect_complete(tier: Tier, rng: random.Random) -> ModelledExample:
     shape, mirror, image = _random_reflect_instance(rng, tier)
     _verify_reflection(shape, mirror, image)
-    labels = _VERTEX_LABELS[: len(shape)]
-    image_labels = tuple(f"{l}'" for l in labels)
-    name, image_name = _shape_name(labels), _shape_name(image_labels)
 
     teaching_steps = [
-        f"To reflect a shape in the line {mirror['label']}, imagine folding the grid along that line - each "
+        f"To reflect shape A in the line {mirror['label']}, imagine folding the grid along that line - each "
         "point of the shape lands exactly on top of its image.",
         "That means the mirror line is always the perpendicular bisector of the line joining a point to its "
         "image: same distance from the line, directly opposite it.",
@@ -890,31 +974,20 @@ def generate_modelled_example_transform_reflect_complete(tier: Tier, rng: random
     return ModelledExample(
         topic_id="transform_reflect_complete_F",
         tier=Tier.FOUNDATION,
-        prompt=f"Reflect shape {name} in the line {mirror['label']}.",
+        prompt=f"Reflect shape A in the line {mirror['label']}.",
         worked_calculation=(
-            _vertex_mapping_text(labels, shape, image_labels, image),
             f"mirror line: {mirror['label']}",
+            f"image (shape B): {_image_coords(image)}",
         ),
         teaching_steps=tuple(teaching_steps),
-        final_answer=", ".join(f"{il}{_fmt_point(p)}" for il, p in zip(image_labels, image)),
-        diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": labels, "mirror_line": mirror,
-                "image_vertices": image, "image_labels": image_labels,
-            },
-        ),
+        final_answer=f"Image (shape B): {_image_coords(image)}",
+        diagram=_transform_diagram(shape, image, mirror=mirror),
     )
 
 
 def generate_transform_reflect_describe(tier: Tier, rng: random.Random) -> Question:
     shape, mirror, image = _random_reflect_instance(rng, tier)
     _verify_reflection(shape, mirror, image)
-    labels = _VERTEX_LABELS[: len(shape)]
-    image_labels = tuple(f"{l}'" for l in labels)
-    blank_labels = tuple("" for _ in shape)
-    name, image_name = _shape_name(labels), _shape_name(image_labels)
 
     steps = [
         f"Every vertex and its image are the same distance from a single line, on opposite sides of it - "
@@ -924,28 +997,17 @@ def generate_transform_reflect_describe(tier: Tier, rng: random.Random) -> Quest
     return Question(
         topic_id="transform_reflect_describe_F",
         tier=Tier.FOUNDATION,
-        prompt="Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
+        prompt="Describe fully the single transformation that maps shape A onto shape B.",
         solution_steps=tuple(steps),
         final_answer=f"Reflection in the line {mirror['label']}",
         dedup_key=f"reflect_describe:{shape}:{mirror['label']}",
-        diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": blank_labels, "original_shape_label": "A",
-                "image_vertices": image, "image_labels": blank_labels, "image_shape_label": "B",
-            },
-        ),
+        diagram=_transform_diagram(shape, image, image_same_color=True),
     )
 
 
 def generate_modelled_example_transform_reflect_describe(tier: Tier, rng: random.Random) -> ModelledExample:
     shape, mirror, image = _random_reflect_instance(rng, tier)
     _verify_reflection(shape, mirror, image)
-    labels = _VERTEX_LABELS[: len(shape)]
-    image_labels = tuple(f"{l}'" for l in labels)
-    blank_labels = tuple("" for _ in shape)
-    name, image_name = _shape_name(labels), _shape_name(image_labels)
 
     teaching_steps = [
         f"'Describe fully' a reflection means naming the mirror line, not just saying 'reflection'.",
@@ -957,21 +1019,14 @@ def generate_modelled_example_transform_reflect_describe(tier: Tier, rng: random
     return ModelledExample(
         topic_id="transform_reflect_describe_F",
         tier=Tier.FOUNDATION,
-        prompt="Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
+        prompt="Describe fully the single transformation that maps shape A onto shape B.",
         worked_calculation=(
             f"{_fmt_point(shape[0])} -> {_fmt_point(image[0])}",
             f"mirror line: {mirror['label']}",
         ),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"Reflection in the line {mirror['label']}",
-        diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": blank_labels, "original_shape_label": "A",
-                "image_vertices": image, "image_labels": blank_labels, "image_shape_label": "B",
-            },
-        ),
+        diagram=_transform_diagram(shape, image, image_same_color=True),
     )
 
 
@@ -983,51 +1038,32 @@ def generate_modelled_example_transform_reflect_describe(tier: Tier, rng: random
 def generate_transform_rotate_complete(tier: Tier, rng: random.Random) -> Question:
     shape, centre, angle, image = _random_rotate_instance(rng)
     _verify_rotation(shape, centre, angle, image)
-    labels = _VERTEX_LABELS[: len(shape)]
-    image_labels = tuple(f"{l}'" for l in labels)
-    name, image_name = _shape_name(labels), _shape_name(image_labels)
     wording = _rotation_wording(angle)
 
     steps = [
-        f"Rotate each vertex {wording} about the centre {_fmt_point(centre)}: every point stays the same "
-        "distance from the centre and turns through the same angle.",
-        _vertex_mapping_text(labels, shape, image_labels, image),
+        f"Rotate each vertex of shape A {wording} about the centre {_fmt_point(centre)}: every point stays "
+        "the same distance from the centre and turns through the same angle.",
+        f"The image, shape B, has vertices {_image_coords(image)}.",
     ]
     return Question(
         topic_id="transform_rotate_complete_F",
         tier=Tier.FOUNDATION,
-        prompt=f"Rotate shape {name} {wording} about the centre {_fmt_point(centre)}.",
+        prompt=f"Rotate shape A {wording} about the centre {_fmt_point(centre)}.",
         solution_steps=tuple(steps),
-        final_answer=", ".join(f"{il}{_fmt_point(p)}" for il, p in zip(image_labels, image)),
+        final_answer=f"Image (shape B): {_image_coords(image)}",
         dedup_key=f"rotate:{shape}:{centre}:{angle}",
-        diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": labels, "centre": centre,
-            },
-        ),
-        solution_diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": labels, "centre": centre,
-                "image_vertices": image, "image_labels": image_labels,
-            },
-        ),
+        diagram=_transform_diagram(shape),
+        solution_diagram=_transform_diagram(shape, image),
     )
 
 
 def generate_modelled_example_transform_rotate_complete(tier: Tier, rng: random.Random) -> ModelledExample:
     shape, centre, angle, image = _random_rotate_instance(rng)
     _verify_rotation(shape, centre, angle, image)
-    labels = _VERTEX_LABELS[: len(shape)]
-    image_labels = tuple(f"{l}'" for l in labels)
-    name, image_name = _shape_name(labels), _shape_name(image_labels)
     wording = _rotation_wording(angle)
 
     teaching_steps = [
-        f"A rotation turns every point of the shape through the same angle ({wording}) about a fixed centre, "
+        f"A rotation turns every point of shape A through the same angle ({wording}) about a fixed centre, "
         f"here {_fmt_point(centre)} - every point stays the same distance from the centre.",
         "Tracing paper (or counting squares round the centre) makes this easier: for a 90° turn, swap and "
         "flip the coordinates relative to the centre; for 180°, both coordinates flip sign relative to it.",
@@ -1036,31 +1072,34 @@ def generate_modelled_example_transform_rotate_complete(tier: Tier, rng: random.
     return ModelledExample(
         topic_id="transform_rotate_complete_F",
         tier=Tier.FOUNDATION,
-        prompt=f"Rotate shape {name} {wording} about the centre {_fmt_point(centre)}.",
+        prompt=f"Rotate shape A {wording} about the centre {_fmt_point(centre)}.",
         worked_calculation=(
-            _vertex_mapping_text(labels, shape, image_labels, image),
             f"centre: {_fmt_point(centre)}, rotation: {wording}",
+            f"image (shape B): {_image_coords(image)}",
         ),
         teaching_steps=tuple(teaching_steps),
-        final_answer=", ".join(f"{il}{_fmt_point(p)}" for il, p in zip(image_labels, image)),
-        diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": labels, "centre": centre,
-                "image_vertices": image, "image_labels": image_labels,
-            },
-        ),
+        final_answer=f"Image (shape B): {_image_coords(image)}",
+        diagram=_transform_diagram(shape, image),
     )
 
 
+def _random_rotate_describe_instance(rng: random.Random):
+    """A rotation instance whose original and image do not overlap - so the
+    two shapes on a 'describe the rotation' diagram sit clearly apart. Falls
+    back to whatever it last generated if a non-intersecting pair isn't found
+    within the budget (which keeps the intersecting rate well under 5%)."""
+    result = _random_rotate_instance(rng)
+    for _ in range(80):
+        shape, _centre, _angle, image = result
+        if not _polygons_intersect(shape, image):
+            return result
+        result = _random_rotate_instance(rng)
+    return result
+
+
 def generate_transform_rotate_describe(tier: Tier, rng: random.Random) -> Question:
-    shape, centre, angle, image = _random_rotate_instance(rng)
+    shape, centre, angle, image = _random_rotate_describe_instance(rng)
     _verify_rotation(shape, centre, angle, image)
-    labels = _VERTEX_LABELS[: len(shape)]
-    image_labels = tuple(f"{l}'" for l in labels)
-    blank_labels = tuple("" for _ in shape)
-    name, image_name = _shape_name(labels), _shape_name(image_labels)
     wording = _rotation_wording(angle)
 
     steps = [
@@ -1071,28 +1110,17 @@ def generate_transform_rotate_describe(tier: Tier, rng: random.Random) -> Questi
     return Question(
         topic_id="transform_rotate_describe_H",
         tier=Tier.HIGHER,
-        prompt="Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
+        prompt="Describe fully the single transformation that maps shape A onto shape B.",
         solution_steps=tuple(steps),
         final_answer=f"Rotation {wording} about {_fmt_point(centre)}",
         dedup_key=f"rotate_describe:{shape}:{centre}:{angle}",
-        diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": blank_labels, "original_shape_label": "A",
-                "image_vertices": image, "image_labels": blank_labels, "image_shape_label": "B",
-            },
-        ),
+        diagram=_transform_diagram(shape, image, image_same_color=True),
     )
 
 
 def generate_modelled_example_transform_rotate_describe(tier: Tier, rng: random.Random) -> ModelledExample:
-    shape, centre, angle, image = _random_rotate_instance(rng)
+    shape, centre, angle, image = _random_rotate_describe_instance(rng)
     _verify_rotation(shape, centre, angle, image)
-    labels = _VERTEX_LABELS[: len(shape)]
-    image_labels = tuple(f"{l}'" for l in labels)
-    blank_labels = tuple("" for _ in shape)
-    name, image_name = _shape_name(labels), _shape_name(image_labels)
     wording = _rotation_wording(angle)
 
     teaching_steps = [
@@ -1106,7 +1134,7 @@ def generate_modelled_example_transform_rotate_describe(tier: Tier, rng: random.
     return ModelledExample(
         topic_id="transform_rotate_describe_H",
         tier=Tier.HIGHER,
-        prompt="Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
+        prompt="Describe fully the single transformation that maps shape A onto shape B.",
         worked_calculation=(
             f"perpendicular bisectors of two vertex-and-image pairs meet at "
             f"{_fmt_point(centre)}",
@@ -1114,14 +1142,7 @@ def generate_modelled_example_transform_rotate_describe(tier: Tier, rng: random.
         ),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"Rotation {wording} about {_fmt_point(centre)}",
-        diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": blank_labels, "original_shape_label": "A",
-                "image_vertices": image, "image_labels": blank_labels, "image_shape_label": "B",
-            },
-        ),
+        diagram=_transform_diagram(shape, image, image_same_color=True),
     )
 
 
@@ -1133,53 +1154,33 @@ def generate_modelled_example_transform_rotate_describe(tier: Tier, rng: random.
 def generate_transform_translate_complete(tier: Tier, rng: random.Random) -> Question:
     shape, vector, image = _random_translate_instance(rng)
     _verify_translation(shape, vector, image)
-    labels = _VERTEX_LABELS[: len(shape)]
-    image_labels = tuple(f"{l}'" for l in labels)
-    name, image_name = _shape_name(labels), _shape_name(image_labels)
 
     steps = [
-        f"Translate every vertex by the vector {_fmt_vector(vector)}: move each point {abs(vector[0])} "
-        f"square{'s' if abs(vector[0]) != 1 else ''} {'right' if vector[0] >= 0 else 'left'} and "
-        f"{abs(vector[1])} square{'s' if abs(vector[1]) != 1 else ''} {'up' if vector[1] >= 0 else 'down'}.",
-        _vertex_mapping_text(labels, shape, image_labels, image),
+        f"Translate every vertex of shape A by the vector {_fmt_vector(vector)}: move each point "
+        f"{abs(vector[0])} square{'s' if abs(vector[0]) != 1 else ''} "
+        f"{'right' if vector[0] >= 0 else 'left'} and {abs(vector[1])} "
+        f"square{'s' if abs(vector[1]) != 1 else ''} {'up' if vector[1] >= 0 else 'down'}.",
+        f"The image, shape B, has vertices {_image_coords(image)}.",
     ]
     return Question(
         topic_id="transform_translate_complete_F",
         tier=Tier.FOUNDATION,
-        prompt=f"Translate shape {name} by the vector {_fmt_vector(vector)}.",
+        prompt=f"Translate shape A by the vector {_fmt_vector(vector)}.",
         solution_steps=tuple(steps),
-        final_answer=", ".join(f"{il}{_fmt_point(p)}" for il, p in zip(image_labels, image)),
+        final_answer=f"Image (shape B): {_image_coords(image)}",
         dedup_key=f"translate:{shape}:{vector}",
-        # No direction arrow on the diagram (see draw_grid_transformation's
-        # "translation_vector" handling) - the vector is still given in the
-        # prompt/solution text above, just not visualised with an arrow.
-        diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": labels,
-            },
-        ),
-        solution_diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": labels,
-                "image_vertices": image, "image_labels": image_labels,
-            },
-        ),
+        # No direction arrow on the diagram - the vector is given in the text.
+        diagram=_transform_diagram(shape),
+        solution_diagram=_transform_diagram(shape, image),
     )
 
 
 def generate_modelled_example_transform_translate_complete(tier: Tier, rng: random.Random) -> ModelledExample:
     shape, vector, image = _random_translate_instance(rng)
     _verify_translation(shape, vector, image)
-    labels = _VERTEX_LABELS[: len(shape)]
-    image_labels = tuple(f"{l}'" for l in labels)
-    name, image_name = _shape_name(labels), _shape_name(image_labels)
 
     teaching_steps = [
-        f"A translation slides every point of the shape by the same vector, {_fmt_vector(vector)} - the shape "
+        f"A translation slides every point of shape A by the same vector, {_fmt_vector(vector)} - the shape "
         "doesn't turn or flip, it just moves.",
         f"The top number of the vector is how far to move left/right ({vector[0]}), and the bottom number is "
         f"how far to move up/down ({vector[1]}).",
@@ -1188,32 +1189,20 @@ def generate_modelled_example_transform_translate_complete(tier: Tier, rng: rand
     return ModelledExample(
         topic_id="transform_translate_complete_F",
         tier=Tier.FOUNDATION,
-        prompt=f"Translate shape {name} by the vector {_fmt_vector(vector)}.",
+        prompt=f"Translate shape A by the vector {_fmt_vector(vector)}.",
         worked_calculation=(
-            _vertex_mapping_text(labels, shape, image_labels, image),
             f"vector: {_fmt_vector(vector)}",
+            f"image (shape B): {_image_coords(image)}",
         ),
         teaching_steps=tuple(teaching_steps),
-        final_answer=", ".join(f"{il}{_fmt_point(p)}" for il, p in zip(image_labels, image)),
-        diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": labels,
-                "image_vertices": image, "image_labels": image_labels,
-            },
-        ),
+        final_answer=f"Image (shape B): {_image_coords(image)}",
+        diagram=_transform_diagram(shape, image),
     )
 
 
 def generate_transform_translate_describe(tier: Tier, rng: random.Random) -> Question:
     shape, vector, image = _random_translate_instance(rng)
     _verify_translation(shape, vector, image)
-    # No vertex labels on this topic's diagram (see the blank_labels comment
-    # below) - the two shapes are referred to simply as "shape A"/"shape B"
-    # as whole units, not per-vertex, since the answer (a single translation
-    # vector) never needs to name a specific vertex.
-    blank_labels = tuple("" for _ in shape)
 
     steps = [
         f"Every vertex moves by exactly the same amount: comparing a vertex of shape A, {_fmt_point(shape[0])}, "
@@ -1223,25 +1212,17 @@ def generate_transform_translate_describe(tier: Tier, rng: random.Random) -> Que
     return Question(
         topic_id="transform_translate_describe_F",
         tier=Tier.FOUNDATION,
-        prompt="Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
+        prompt="Describe fully the single transformation that maps shape A onto shape B.",
         solution_steps=tuple(steps),
         final_answer=f"Translation by the vector {_fmt_vector(vector)}",
         dedup_key=f"translate_describe:{shape}:{vector}",
-        diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": blank_labels,
-                "image_vertices": image, "image_labels": blank_labels,
-            },
-        ),
+        diagram=_transform_diagram(shape, image, image_same_color=True),
     )
 
 
 def generate_modelled_example_transform_translate_describe(tier: Tier, rng: random.Random) -> ModelledExample:
     shape, vector, image = _random_translate_instance(rng)
     _verify_translation(shape, vector, image)
-    blank_labels = tuple("" for _ in shape)
 
     teaching_steps = [
         "If the image is the same size and orientation as the original, just slid to a new position, it's a "
@@ -1254,21 +1235,14 @@ def generate_modelled_example_transform_translate_describe(tier: Tier, rng: rand
     return ModelledExample(
         topic_id="transform_translate_describe_F",
         tier=Tier.FOUNDATION,
-        prompt="Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
+        prompt="Describe fully the single transformation that maps shape A onto shape B.",
         worked_calculation=(
             f"{_fmt_point(image[0])} - {_fmt_point(shape[0])} = {_fmt_vector(vector)}",
             f"vector: {_fmt_vector(vector)}",
         ),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"Translation by the vector {_fmt_vector(vector)}",
-        diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": blank_labels,
-                "image_vertices": image, "image_labels": blank_labels,
-            },
-        ),
+        diagram=_transform_diagram(shape, image, image_same_color=True),
     )
 
 
@@ -1277,62 +1251,42 @@ def generate_modelled_example_transform_translate_describe(tier: Tier, rng: rand
 # ---------------------------------------------------------------------------
 
 
-def _enlarge_steps(labels: tuple, shape: list, centre: Point, k: Fraction, image_labels: tuple, image: list) -> list:
+def _enlarge_steps(shape: list, centre: Point, k: Fraction, image: list) -> list:
     p0, q0 = shape[0], image[0]
     offset0 = (p0[0] - centre[0], p0[1] - centre[1])
     return [
         f"The centre of enlargement is {_fmt_point(centre)} and the scale factor is {_fmt_scale_factor(k)}.",
-        f"For each vertex, find its displacement from the centre and multiply by the scale factor: "
-        f"{labels[0]} is a displacement of ({offset0[0]}, {offset0[1]}) from the centre, so "
-        f"{image_labels[0]} = {_fmt_point(centre)} + {_fmt_scale_factor(k)} × ({offset0[0]}, {offset0[1]}) "
-        f"= {_fmt_point(q0)}.",
-        "Repeat for every vertex: " + _vertex_mapping_text(labels, shape, image_labels, image),
+        f"For each vertex, find its displacement from the centre and multiply by the scale factor: e.g. "
+        f"{_fmt_point(p0)} is a displacement of ({offset0[0]}, {offset0[1]}) from the centre, so it maps to "
+        f"{_fmt_point(centre)} + {_fmt_scale_factor(k)} × ({offset0[0]}, {offset0[1]}) = {_fmt_point(q0)}.",
+        f"Repeat for every vertex. The image, shape B, has vertices {_image_coords(image)}.",
     ]
 
 
 def generate_transform_enlarge_complete_foundation(tier: Tier, rng: random.Random) -> Question:
     shape, centre, k, image = _random_enlarge_instance(rng, _ENLARGE_K_FOUNDATION)
     _verify_enlargement(shape, centre, k, image)
-    labels = _VERTEX_LABELS[: len(shape)]
-    image_labels = tuple(f"{l}'" for l in labels)
-    name, image_name = _shape_name(labels), _shape_name(image_labels)
 
     return Question(
         topic_id="transform_enlarge_complete_F",
         tier=Tier.FOUNDATION,
-        prompt=f"Enlarge shape {name} by scale factor {_fmt_scale_factor(k)}, centre {_fmt_point(centre)}.",
-        solution_steps=tuple(_enlarge_steps(labels, shape, centre, k, image_labels, image)),
-        final_answer=", ".join(f"{il}{_fmt_point(p)}" for il, p in zip(image_labels, image)),
+        prompt=f"Enlarge shape A by scale factor {_fmt_scale_factor(k)}, centre {_fmt_point(centre)}.",
+        solution_steps=tuple(_enlarge_steps(shape, centre, k, image)),
+        final_answer=f"Image (shape B): {_image_coords(image)}",
         dedup_key=f"enlarge_f:{shape}:{centre}:{k}",
-        diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": labels, "centre": centre,
-            },
-        ),
-        solution_diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": labels, "centre": centre,
-                "image_vertices": image, "image_labels": image_labels,
-            },
-        ),
+        diagram=_transform_diagram(shape),
+        solution_diagram=_transform_diagram(shape, image),
     )
 
 
 def generate_modelled_example_transform_enlarge_complete_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
     shape, centre, k, image = _random_enlarge_instance(rng, _ENLARGE_K_FOUNDATION)
     _verify_enlargement(shape, centre, k, image)
-    labels = _VERTEX_LABELS[: len(shape)]
-    image_labels = tuple(f"{l}'" for l in labels)
-    name, image_name = _shape_name(labels), _shape_name(image_labels)
 
     teaching_steps = [
         f"An enlargement scales every distance from the centre of enlargement by the scale factor - here, "
-        f"scale factor {_fmt_scale_factor(k)} means every point ends up {_fmt_scale_factor(k)} times as far "
-        f"from {_fmt_point(centre)} as it started.",
+        f"scale factor {_fmt_scale_factor(k)} means every point of shape A ends up {_fmt_scale_factor(k)} "
+        f"times as far from {_fmt_point(centre)} as it started.",
         "Count the squares across and up from the centre to each vertex, multiply both by the scale factor, "
         "then count that new distance from the centre in the same direction to plot the image.",
         "The shape gets bigger but keeps exactly the same proportions, since every vertex is scaled by the "
@@ -1341,32 +1295,22 @@ def generate_modelled_example_transform_enlarge_complete_foundation(tier: Tier, 
     return ModelledExample(
         topic_id="transform_enlarge_complete_F",
         tier=Tier.FOUNDATION,
-        prompt=f"Enlarge shape {name} by scale factor {_fmt_scale_factor(k)}, centre {_fmt_point(centre)}.",
+        prompt=f"Enlarge shape A by scale factor {_fmt_scale_factor(k)}, centre {_fmt_point(centre)}.",
         worked_calculation=(
-            _vertex_mapping_text(labels, shape, image_labels, image),
             f"centre: {_fmt_point(centre)}, scale factor: {_fmt_scale_factor(k)}",
+            f"image (shape B): {_image_coords(image)}",
         ),
         teaching_steps=tuple(teaching_steps),
-        final_answer=", ".join(f"{il}{_fmt_point(p)}" for il, p in zip(image_labels, image)),
-        diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": labels, "centre": centre,
-                "image_vertices": image, "image_labels": image_labels,
-            },
-        ),
+        final_answer=f"Image (shape B): {_image_coords(image)}",
+        diagram=_transform_diagram(shape, image),
     )
 
 
 def generate_transform_enlarge_complete_higher(tier: Tier, rng: random.Random) -> Question:
     shape, centre, k, image = _random_enlarge_instance(rng, _ENLARGE_K_HIGHER)
     _verify_enlargement(shape, centre, k, image)
-    labels = _VERTEX_LABELS[: len(shape)]
-    image_labels = tuple(f"{l}'" for l in labels)
-    name, image_name = _shape_name(labels), _shape_name(image_labels)
 
-    steps = _enlarge_steps(labels, shape, centre, k, image_labels, image)
+    steps = _enlarge_steps(shape, centre, k, image)
     if k < 0:
         steps.append(
             "A negative scale factor puts the image on the opposite side of the centre from the original shape."
@@ -1379,34 +1323,18 @@ def generate_transform_enlarge_complete_higher(tier: Tier, rng: random.Random) -
     return Question(
         topic_id="transform_enlarge_complete_H",
         tier=Tier.HIGHER,
-        prompt=f"Enlarge shape {name} by scale factor {_fmt_scale_factor(k)}, centre {_fmt_point(centre)}.",
+        prompt=f"Enlarge shape A by scale factor {_fmt_scale_factor(k)}, centre {_fmt_point(centre)}.",
         solution_steps=tuple(steps),
-        final_answer=", ".join(f"{il}{_fmt_point(p)}" for il, p in zip(image_labels, image)),
+        final_answer=f"Image (shape B): {_image_coords(image)}",
         dedup_key=f"enlarge_h:{shape}:{centre}:{k}",
-        diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": labels, "centre": centre,
-            },
-        ),
-        solution_diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": labels, "centre": centre,
-                "image_vertices": image, "image_labels": image_labels,
-            },
-        ),
+        diagram=_transform_diagram(shape),
+        solution_diagram=_transform_diagram(shape, image),
     )
 
 
 def generate_modelled_example_transform_enlarge_complete_higher(tier: Tier, rng: random.Random) -> ModelledExample:
     shape, centre, k, image = _random_enlarge_instance(rng, _ENLARGE_K_HIGHER)
     _verify_enlargement(shape, centre, k, image)
-    labels = _VERTEX_LABELS[: len(shape)]
-    image_labels = tuple(f"{l}'" for l in labels)
-    name, image_name = _shape_name(labels), _shape_name(image_labels)
 
     if k < 0:
         extra = (
@@ -1427,95 +1355,97 @@ def generate_modelled_example_transform_enlarge_complete_higher(tier: Tier, rng:
     return ModelledExample(
         topic_id="transform_enlarge_complete_H",
         tier=Tier.HIGHER,
-        prompt=f"Enlarge shape {name} by scale factor {_fmt_scale_factor(k)}, centre {_fmt_point(centre)}.",
+        prompt=f"Enlarge shape A by scale factor {_fmt_scale_factor(k)}, centre {_fmt_point(centre)}.",
         worked_calculation=(
-            _vertex_mapping_text(labels, shape, image_labels, image),
             f"centre: {_fmt_point(centre)}, scale factor: {_fmt_scale_factor(k)}",
+            f"image (shape B): {_image_coords(image)}",
         ),
         teaching_steps=tuple(teaching_steps),
-        final_answer=", ".join(f"{il}{_fmt_point(p)}" for il, p in zip(image_labels, image)),
-        diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": labels, "centre": centre,
-                "image_vertices": image, "image_labels": image_labels,
-            },
-        ),
+        final_answer=f"Image (shape B): {_image_coords(image)}",
+        diagram=_transform_diagram(shape, image),
     )
 
 
-def generate_transform_enlarge_describe(tier: Tier, rng: random.Random) -> Question:
-    shape, centre, k, image = _random_enlarge_instance(rng, _ENLARGE_K_HIGHER)
+def _enlarge_describe_instance(rng: random.Random, instance_fn, allow_reverse: bool):
+    """Set up a 'describe the enlargement' question. Shape A is the original,
+    shape B its image under scale factor k about `centre` (built by
+    instance_fn). When allow_reverse (Foundation), 10% of the time the question
+    instead asks what maps B onto A - the same centre with the reciprocal scale
+    factor 1/k."""
+    shape, centre, k, image = instance_fn(rng)
     _verify_enlargement(shape, centre, k, image)
-    labels = _VERTEX_LABELS[: len(shape)]
-    image_labels = tuple(f"{l}'" for l in labels)
-    blank_labels = tuple("" for _ in shape)
-    name, image_name = _shape_name(labels), _shape_name(image_labels)
+    reverse = allow_reverse and rng.random() < 0.10
+    if reverse:
+        src, dst, answer_k = "B", "A", Fraction(1) / k
+    else:
+        src, dst, answer_k = "A", "B", k
+    return shape, centre, k, image, src, dst, answer_k, reverse
 
+
+def _enlarge_describe_question(topic_id: str, tier: Tier, instance_fn, allow_reverse: bool, rng: random.Random) -> Question:
+    shape, centre, k, image, src, dst, answer_k, reverse = _enlarge_describe_instance(rng, instance_fn, allow_reverse)
     steps = [
         "The centre of enlargement is where lines joining each vertex to its image all meet (extended if "
         "needed) - the scale factor is the ratio of a side length in the image to the matching side in the "
         "original.",
-        f"For this pair, the lines meet at {_fmt_point(centre)} and the ratio works out as "
-        f"{_fmt_scale_factor(k)}.",
+        f"For mapping shape {src} onto shape {dst}, the lines meet at {_fmt_point(centre)} and the scale "
+        f"factor works out as {_fmt_scale_factor(answer_k)}.",
     ]
     return Question(
-        topic_id="transform_enlarge_describe_H",
-        tier=Tier.HIGHER,
-        prompt="Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
+        topic_id=topic_id,
+        tier=tier,
+        prompt=f"Describe fully the single transformation that maps shape {src} onto shape {dst}.",
         solution_steps=tuple(steps),
-        final_answer=f"Enlargement, scale factor {_fmt_scale_factor(k)}, centre {_fmt_point(centre)}",
-        dedup_key=f"enlarge_describe:{shape}:{centre}:{k}",
-        diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": blank_labels, "original_shape_label": "A",
-                "image_vertices": image, "image_labels": blank_labels, "image_shape_label": "B",
-            },
-        ),
+        final_answer=f"Enlargement, scale factor {_fmt_scale_factor(answer_k)}, centre {_fmt_point(centre)}",
+        dedup_key=f"enlarge_describe:{topic_id}:{shape}:{centre}:{k}:{reverse}",
+        diagram=_transform_diagram(shape, image, image_same_color=True),
     )
 
 
-def generate_modelled_example_transform_enlarge_describe(tier: Tier, rng: random.Random) -> ModelledExample:
-    shape, centre, k, image = _random_enlarge_instance(rng, _ENLARGE_K_HIGHER)
-    _verify_enlargement(shape, centre, k, image)
-    labels = _VERTEX_LABELS[: len(shape)]
-    image_labels = tuple(f"{l}'" for l in labels)
-    blank_labels = tuple("" for _ in shape)
-    name, image_name = _shape_name(labels), _shape_name(image_labels)
-
-    p0, q0 = shape[0], image[0]
-    offset0 = (p0[0] - centre[0], p0[1] - centre[1])
-    image_offset0 = (q0[0] - centre[0], q0[1] - centre[1])
+def _enlarge_describe_modelled(topic_id: str, tier: Tier, instance_fn, allow_reverse: bool, rng: random.Random) -> ModelledExample:
+    shape, centre, k, image, src, dst, answer_k, reverse = _enlarge_describe_instance(rng, instance_fn, allow_reverse)
     teaching_steps = [
         "A full description of an enlargement needs the word 'enlargement', the scale factor, and the centre.",
-        f"Find the centre by drawing a line through a vertex and its image and extending it, e.g. through "
-        f"{_fmt_point(shape[0])} and {_fmt_point(image[0])}; do the same for a "
-        f"second vertex pair - where the lines cross is the centre, {_fmt_point(centre)}.",
-        f"Find the scale factor by comparing displacement from the centre: a vertex of shape A is "
-        f"({offset0[0]}, {offset0[1]}) from the centre, and its image on shape B is "
-        f"({image_offset0[0]}, {image_offset0[1]}) from it - a scale factor of {_fmt_scale_factor(k)}.",
+        f"Find the centre by drawing a line through a vertex and its image and extending it, then doing the "
+        f"same for a second vertex pair - where the lines cross is the centre, {_fmt_point(centre)}.",
+        f"Find the scale factor by comparing distances from the centre for the direction asked "
+        f"(shape {src} onto shape {dst}): it works out as {_fmt_scale_factor(answer_k)}.",
     ]
     return ModelledExample(
-        topic_id="transform_enlarge_describe_H",
-        tier=Tier.HIGHER,
-        prompt="Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
+        topic_id=topic_id,
+        tier=tier,
+        prompt=f"Describe fully the single transformation that maps shape {src} onto shape {dst}.",
         worked_calculation=(
             f"lines through vertex/image pairs meet at {_fmt_point(centre)}",
-            f"scale factor: {_fmt_scale_factor(k)}",
+            f"scale factor ({src} -> {dst}): {_fmt_scale_factor(answer_k)}",
         ),
         teaching_steps=tuple(teaching_steps),
-        final_answer=f"Enlargement, scale factor {_fmt_scale_factor(k)}, centre {_fmt_point(centre)}",
-        diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": blank_labels, "original_shape_label": "A",
-                "image_vertices": image, "image_labels": blank_labels, "image_shape_label": "B",
-            },
-        ),
+        final_answer=f"Enlargement, scale factor {_fmt_scale_factor(answer_k)}, centre {_fmt_point(centre)}",
+        diagram=_transform_diagram(shape, image, image_same_color=True),
+    )
+
+
+def _enlarge_describe_higher_raw(rng: random.Random):
+    return _random_enlarge_instance(rng, _ENLARGE_K_HIGHER)
+
+
+def generate_transform_enlarge_describe(tier: Tier, rng: random.Random) -> Question:
+    return _enlarge_describe_question("transform_enlarge_describe_H", Tier.HIGHER, _enlarge_describe_higher_raw, False, rng)
+
+
+def generate_modelled_example_transform_enlarge_describe(tier: Tier, rng: random.Random) -> ModelledExample:
+    return _enlarge_describe_modelled("transform_enlarge_describe_H", Tier.HIGHER, _enlarge_describe_higher_raw, False, rng)
+
+
+def generate_transform_enlarge_describe_foundation(tier: Tier, rng: random.Random) -> Question:
+    return _enlarge_describe_question(
+        "transform_enlarge_describe_F", Tier.FOUNDATION, _enlarge_describe_foundation_raw, True, rng
+    )
+
+
+def generate_modelled_example_transform_enlarge_describe_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
+    return _enlarge_describe_modelled(
+        "transform_enlarge_describe_F", Tier.FOUNDATION, _enlarge_describe_foundation_raw, True, rng
     )
 
 
@@ -1647,326 +1577,136 @@ TOPIC_TRANSFORM_ENLARGE_DESCRIBE = TopicDefinition(
     generate_modelled_example=generate_modelled_example_transform_enlarge_describe,
 )
 
-
-# ---------------------------------------------------------------------------
-# Combined transformations (Higher) - two transformations applied in
-# sequence, described as the single equivalent transformation. Scoped to 4
-# combination types, each with a known closed-form composition rule:
-#   1. two translations -> a single translation (vector sum)
-#   2. two reflections in parallel mirrors (both vertical or both
-#      horizontal) -> a single translation, perpendicular to the mirrors,
-#      of twice the distance between them
-#   3. two rotations about the SAME centre -> a single rotation about that
-#      centre, by the sum of the two angles
-#   4. reflection in the x-axis then the y-axis (either order - both give
-#      the same result) -> a single 180 deg rotation about the origin
-# Unlike the four _describe topics above (which show only the final image
-# and ask the student to work out what happened), this topic states both
-# given transformations explicitly in the prompt text - matching the real
-# GCSE phrasing for this question type ("...is reflected in x = 1 to give
-# A'B'C'. A'B'C' is then reflected in x = 4 to give A''B''C''. Describe
-# fully the single transformation that maps ABC onto A''B''C''.") - so the
-# diagram only ever needs to show the original and the final image (no
-# intermediate shape), reusing draw_grid_transformation exactly as the
-# _describe topics already do.
-#
-# Rotation angles are drawn from the same _ROTATIONS pool (90/180/270) used
-# throughout this file, so every non-degenerate pair's angle sum reduces
-# (mod 360) to another value in {90, 180, 270} automatically - see
-# _ROTATE_COMBO_PAIRS below - which is exactly the "keep it a nice
-# describable rotation" requirement without any extra reflex-angle handling.
-# ---------------------------------------------------------------------------
-
-
-class _ComboInstance(NamedTuple):
-    shape: list
-    step1_text: str          # e.g. "translated by the vector (2, 3)"
-    step2_text: str          # e.g. "translated by the vector (1, -1)"
-    reasoning_steps: tuple    # solution_steps content specific to this combo
-    final_answer: str
-    dedup_key: str
-    final: list
-
-
-_COMBO_TYPES = ("translate_translate", "reflect_parallel", "rotate_same_centre", "reflect_axes")
-
-
-def _random_combo_translate_translate(rng: random.Random) -> tuple:
-    for _ in range(_REROLL_ATTEMPTS):
-        shape = _random_shape(rng)
-        v1 = (rng.randint(-5, 5), rng.randint(-5, 5))
-        v2 = (rng.randint(-5, 5), rng.randint(-5, 5))
-        if v1 == (0, 0) or v2 == (0, 0):
-            continue
-        combined = (v1[0] + v2[0], v1[1] + v2[1])
-        if combined == (0, 0):
-            continue  # the two translations would cancel out - not describable as "a" transformation
-        intermediate = [(x + v1[0], y + v1[1]) for x, y in shape]
-        final = [(x + v2[0], y + v2[1]) for x, y in intermediate]
-        if (_fits_grid(shape) and _fits_grid(final) and _well_separated(shape, final)
-                and _clear_of_axis_name_labels(shape) and _clear_of_axis_name_labels(final)
-                and _clear_of_axis_tick_labels(shape) and _clear_of_axis_tick_labels(final)):
-            return shape, v1, v2, combined, final
-    raise ValueError("transformations: could not fit a translate+translate combined instance on the grid")
-
-
-def _verify_combo_translate_translate(shape: list, combined: Point, final: list) -> None:
-    """Independent check: apply the *claimed* single translation (the vector
-    sum) directly to the original vertices, and confirm it reproduces the
-    same final image as actually simulating the two given translations in
-    sequence - this re-derives the answer by simulation rather than trusting
-    the composition rule itself."""
-    direct = [(x + combined[0], y + combined[1]) for x, y in shape]
-    if direct != final:
-        raise ValueError("transformations: combined translate+translate verification failed")
-
-
-_PARALLEL_MIRROR_OFFSETS = tuple(range(-3, 4))  # -3..3; these mirror lines are
-# never drawn (the diagram shows only the original and final image, matching
-# every other _describe topic), so - unlike _random_mirror_line's drawn
-# mirrors - there's no axis-name-label collision risk in including 0 here.
-
-
-def _random_combo_reflect_parallel(rng: random.Random) -> tuple:
-    for _ in range(_REROLL_ATTEMPTS):
-        shape = _random_shape(rng)
-        orientation = rng.choice(("vertical", "horizontal"))
-        a, b = rng.sample(_PARALLEL_MIRROR_OFFSETS, 2)
-        key = "x" if orientation == "vertical" else "y"
-        mirror1 = {"type": orientation, key: a}
-        mirror2 = {"type": orientation, key: b}
-        intermediate = [_reflect_point(p, mirror1) for p in shape]
-        final = [_reflect_point(p, mirror2) for p in intermediate]
-        combined_vector = (2 * (b - a), 0) if orientation == "vertical" else (0, 2 * (b - a))
-        if (_fits_grid(shape) and _fits_grid(final) and _well_separated(shape, final)
-                and _clear_of_axis_name_labels(shape) and _clear_of_axis_name_labels(final)
-                and _clear_of_axis_tick_labels(shape) and _clear_of_axis_tick_labels(final)):
-            return shape, orientation, a, b, combined_vector, final
-    raise ValueError("transformations: could not fit a reflect-parallel combined instance on the grid")
-
-
-def _verify_combo_reflect_parallel(shape: list, combined_vector: Point, final: list) -> None:
-    """Independent check: apply the *claimed* single translation (twice the
-    gap between the mirrors, perpendicular to them) directly to the original
-    vertices, and confirm it reproduces the same final image as actually
-    reflecting in both mirror lines in sequence."""
-    direct = [(x + combined_vector[0], y + combined_vector[1]) for x, y in shape]
-    if direct != final:
-        raise ValueError("transformations: combined reflect-parallel verification failed")
-
-
-# Only pairs whose angle sum is NOT a multiple of 360 (i.e. doesn't compose
-# to the identity, which can't meaningfully be "described" as a rotation) -
-# every remaining pair's sum reduces mod 360 to another value already in
-# _ROTATIONS (90/180/270), confirmed by direct enumeration of all 9 pairs.
-_ROTATE_COMBO_PAIRS: tuple = tuple(
-    (a1, a2) for a1 in _ROTATIONS for a2 in _ROTATIONS if (a1 + a2) % 360 != 0
+TOPIC_TRANSFORM_ENLARGE_DESCRIBE_FOUNDATION = TopicDefinition(
+    id="transform_enlarge_describe_F",
+    display_name="Describe an Enlargement",
+    description="Describe fully a positive enlargement (including fractional scale factors) that maps one shape onto another.",
+    generate=generate_transform_enlarge_describe_foundation,
+    section=SECTION,
+    group=GROUP_TRANSFORMATIONS,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_transform_enlarge_describe_foundation,
 )
 
 
-def _random_combo_rotate_same_centre(rng: random.Random) -> tuple:
+# ---------------------------------------------------------------------------
+# Combined transformations (Higher) - the student applies a sequence of 2 or 3
+# transformations to shape A themselves and draws the final image B (rather
+# than describing a single equivalent transformation). Each step is a genuine
+# reflection / rotation / translation / enlargement; every intermediate and
+# the final image is checked to fit the grid, and each step is independently
+# verified via the same _verify_* helpers the single-transform topics use.
+# ---------------------------------------------------------------------------
+
+
+def _combo_apply_reflect(shape: list, rng: random.Random):
+    mirror = _random_mirror_line(rng, Tier.HIGHER)
+    image = [_reflect_point(p, mirror) for p in shape]
+    _verify_reflection(shape, mirror, image)
+    return image, f"reflected in the line {mirror['label']}"
+
+
+def _combo_apply_rotate(shape: list, rng: random.Random):
+    centre = (rng.randint(-3, 3), rng.randint(-3, 3))
+    angle = rng.choice(_ROTATIONS)
+    image = [_rotate_point(p, centre, angle) for p in shape]
+    _verify_rotation(shape, centre, angle, image)
+    return image, f"rotated {_rotation_wording(angle)} about {_fmt_point(centre)}"
+
+
+def _combo_apply_translate(shape: list, rng: random.Random):
+    vector = (0, 0)
+    while vector == (0, 0):
+        vector = (rng.randint(-6, 6), rng.randint(-6, 6))
+    image = [(p[0] + vector[0], p[1] + vector[1]) for p in shape]
+    _verify_translation(shape, vector, image)
+    return image, f"translated by the vector {_fmt_vector(vector)}"
+
+
+def _combo_apply_enlarge(shape: list, rng: random.Random):
+    k = Fraction(rng.choice((2, Fraction(1, 2))))
+    centre = (rng.randint(-3, 3), rng.randint(-3, 3))
+    offsets = [(p[0] - centre[0], p[1] - centre[1]) for p in shape]
+    if k.denominator != 1 and any(ox % k.denominator or oy % k.denominator for ox, oy in offsets):
+        return None  # image wouldn't land on integer grid points
+    image = [(int(centre[0] + k * ox), int(centre[1] + k * oy)) for ox, oy in offsets]
+    _verify_enlargement(shape, centre, k, image)
+    return image, f"enlarged by scale factor {_fmt_scale_factor(k)}, centre {_fmt_point(centre)}"
+
+
+_COMBO_APPLIERS = (_combo_apply_reflect, _combo_apply_rotate, _combo_apply_translate, _combo_apply_enlarge)
+
+
+def _random_combined_sequence(rng: random.Random):
+    """Shape A plus a sequence of 2-3 transformations (of any type), returning
+    (shape, step_texts, final_image). Every intermediate and the final image is
+    kept on the grid; each step is independently verified as it is built."""
     for _ in range(_REROLL_ATTEMPTS):
         shape = _random_shape(rng)
-        centre = (rng.randint(-4, 4), rng.randint(-4, 4))
-        angle1, angle2 = rng.choice(_ROTATE_COMBO_PAIRS)
-        combined_angle = (angle1 + angle2) % 360
-        intermediate = [_rotate_point(p, centre, angle1) for p in shape]
-        final = [_rotate_point(p, centre, angle2) for p in intermediate]
-        if (_fits_grid(shape) and _fits_grid(final) and _well_separated(shape, final)
-                and _clear_of_axis_name_labels(shape) and _clear_of_axis_name_labels(final)
-                and _clear_of_axis_tick_labels(shape) and _clear_of_axis_tick_labels(final)):
-            return shape, centre, angle1, angle2, combined_angle, final
-    raise ValueError("transformations: could not fit a rotate-same-centre combined instance on the grid")
-
-
-def _verify_combo_rotate_same_centre(shape: list, centre: Point, combined_angle: int, final: list) -> None:
-    """Independent check: apply the *claimed* single rotation (the angle
-    sum) directly to the original vertices, and confirm it reproduces the
-    same final image as actually rotating twice about the same centre in
-    sequence."""
-    direct = [_rotate_point(p, centre, combined_angle) for p in shape]
-    if direct != final:
-        raise ValueError("transformations: combined rotate-same-centre verification failed")
-
-
-_MIRROR_X_AXIS = {"type": "horizontal", "y": 0}  # the line y = 0 IS the x-axis
-_MIRROR_Y_AXIS = {"type": "vertical", "x": 0}     # the line x = 0 IS the y-axis
-
-
-def _random_combo_reflect_axes(rng: random.Random) -> tuple:
-    for _ in range(_REROLL_ATTEMPTS):
-        shape = _random_shape(rng)
-        order = rng.choice(("x_then_y", "y_then_x"))
-        first, second = (_MIRROR_X_AXIS, _MIRROR_Y_AXIS) if order == "x_then_y" else (_MIRROR_Y_AXIS, _MIRROR_X_AXIS)
-        intermediate = [_reflect_point(p, first) for p in shape]
-        final = [_reflect_point(p, second) for p in intermediate]
-        if (_fits_grid(shape) and _fits_grid(final) and _well_separated(shape, final)
-                and _clear_of_axis_name_labels(shape) and _clear_of_axis_name_labels(final)
-                and _clear_of_axis_tick_labels(shape) and _clear_of_axis_tick_labels(final)):
-            return shape, order, final
-    raise ValueError("transformations: could not fit a reflect-axes combined instance on the grid")
-
-
-def _verify_combo_reflect_axes(shape: list, final: list) -> None:
-    """Independent check: apply the *claimed* single 180 deg rotation about
-    the origin directly to the original vertices, and confirm it reproduces
-    the same final image as actually reflecting in the x-axis then the
-    y-axis (or vice versa) in sequence."""
-    direct = [_rotate_point(p, (0, 0), 180) for p in shape]
-    if direct != final:
-        raise ValueError("transformations: combined reflect-axes verification failed")
-
-
-def _build_combo_instance(rng: random.Random, combo_type: str) -> _ComboInstance:
-    if combo_type == "translate_translate":
-        shape, v1, v2, combined, final = _random_combo_translate_translate(rng)
-        _verify_combo_translate_translate(shape, combined, final)
-        reasoning_steps = (
-            "Two translations in a row combine into a single translation - just add the two vectors together.",
-            f"{_fmt_vector(v1)} + {_fmt_vector(v2)} = {_fmt_vector(combined)}.",
-        )
-        return _ComboInstance(
-            shape=shape,
-            step1_text=f"translated by the vector {_fmt_vector(v1)}",
-            step2_text=f"translated by the vector {_fmt_vector(v2)}",
-            reasoning_steps=reasoning_steps,
-            final_answer=f"Translation by the vector {_fmt_vector(combined)}",
-            dedup_key=f"combo_tt:{shape}:{v1}:{v2}",
-            final=final,
-        )
-
-    if combo_type == "reflect_parallel":
-        shape, orientation, a, b, combined_vector, final = _random_combo_reflect_parallel(rng)
-        _verify_combo_reflect_parallel(shape, combined_vector, final)
-        line = "x" if orientation == "vertical" else "y"
-        reasoning_steps = (
-            "Two reflections in parallel mirror lines combine into a single translation, perpendicular to "
-            "the mirrors, of twice the distance between them.",
-            f"The mirror lines are a distance {abs(b - a)} apart, so the combined translation is "
-            f"{_fmt_vector(combined_vector)}.",
-        )
-        return _ComboInstance(
-            shape=shape,
-            step1_text=f"reflected in the line {line} = {a}",
-            step2_text=f"reflected in the line {line} = {b}",
-            reasoning_steps=reasoning_steps,
-            final_answer=f"Translation by the vector {_fmt_vector(combined_vector)}",
-            dedup_key=f"combo_rp:{shape}:{orientation}:{a}:{b}",
-            final=final,
-        )
-
-    if combo_type == "rotate_same_centre":
-        shape, centre, angle1, angle2, combined_angle, final = _random_combo_rotate_same_centre(rng)
-        _verify_combo_rotate_same_centre(shape, centre, combined_angle, final)
-        reasoning_steps = (
-            "Two rotations about the same centre combine into a single rotation about that centre, by the "
-            "sum of the two angles.",
-            f"Measuring both turns anticlockwise: {angle1}° + {angle2}° = {angle1 + angle2}°, "
-            f"which is the same as {_rotation_wording(combined_angle)}.",
-        )
-        return _ComboInstance(
-            shape=shape,
-            step1_text=f"rotated {_rotation_wording(angle1)} about the centre {_fmt_point(centre)}",
-            step2_text=f"rotated {_rotation_wording(angle2)} about the same centre",
-            reasoning_steps=reasoning_steps,
-            final_answer=f"Rotation {_rotation_wording(combined_angle)} about {_fmt_point(centre)}",
-            dedup_key=f"combo_rc:{shape}:{centre}:{angle1}:{angle2}",
-            final=final,
-        )
-
-    # reflect_axes
-    shape, order, final = _random_combo_reflect_axes(rng)
-    _verify_combo_reflect_axes(shape, final)
-    if order == "x_then_y":
-        step1_text, step2_text = "reflected in the x-axis", "reflected in the y-axis"
-    else:
-        step1_text, step2_text = "reflected in the y-axis", "reflected in the x-axis"
-    reasoning_steps = (
-        "Reflecting in the x-axis then the y-axis (or the other way round - the order doesn't matter here) "
-        "sends every point (x, y) to (-x, -y).",
-        "That is exactly the same effect as a single 180° rotation about the origin.",
-    )
-    return _ComboInstance(
-        shape=shape,
-        step1_text=step1_text,
-        step2_text=step2_text,
-        reasoning_steps=reasoning_steps,
-        final_answer="Rotation 180° about (0, 0)",
-        dedup_key=f"combo_ra:{shape}:{order}",
-        final=final,
-    )
+        if not _fits_grid(shape):
+            continue
+        n_steps = rng.choice((2, 2, 3))
+        current = shape
+        texts: list[str] = []
+        ok = True
+        for _ in range(n_steps):
+            applier = rng.choice(_COMBO_APPLIERS)
+            result = applier(current, rng)
+            if result is None:
+                ok = False
+                break
+            image, text = result
+            if not _fits_grid(image):
+                ok = False
+                break
+            current = image
+            texts.append(text)
+        if ok and len(texts) == n_steps and current != shape:
+            return shape, texts, current
+    raise ValueError("transformations: could not build a combined sequence on the grid")
 
 
 def generate_combined_transformations(tier: Tier, rng: random.Random) -> Question:
-    instance = _build_combo_instance(rng, rng.choice(_COMBO_TYPES))
-    shape, final = instance.shape, instance.final
-    labels = _VERTEX_LABELS[: len(shape)]
-    image_labels = tuple(f"{l}''" for l in labels)
-    intermediate_name = _shape_name(tuple(f"{l}'" for l in labels))
-    name, image_name = _shape_name(labels), _shape_name(image_labels)
-
-    prompt = (
-        f"Shape {name} is {instance.step1_text} to give shape {intermediate_name}. "
-        f"Shape {intermediate_name} is then {instance.step2_text} to give shape {image_name}. "
-        f"Describe fully the single transformation that maps {name} directly onto {image_name}."
-    )
+    shape, texts, final = _random_combined_sequence(rng)
+    prompt = "Shape A is " + ", then ".join(texts) + ". Draw and label the final image B."
+    steps = ["Apply each transformation in order, carrying the image of one step into the next as the shape to transform for the next step."]
+    steps += [f"Step {i + 1}: {text}." for i, text in enumerate(texts)]
+    steps.append(f"The final image, shape B, has vertices {_image_coords(final)}.")
     return Question(
         topic_id="combined_transformations_H",
         tier=Tier.HIGHER,
         prompt=prompt,
-        solution_steps=instance.reasoning_steps,
-        final_answer=instance.final_answer,
-        dedup_key=instance.dedup_key,
-        diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": labels,
-                "image_vertices": final, "image_labels": image_labels,
-            },
-        ),
+        solution_steps=tuple(steps),
+        final_answer=f"Final image (shape B): {_image_coords(final)}",
+        dedup_key=f"combined:{shape}:{final}",
+        diagram=_transform_diagram(shape),
+        solution_diagram=_transform_diagram(shape, final),
     )
 
 
 def generate_modelled_example_combined_transformations(tier: Tier, rng: random.Random) -> ModelledExample:
-    instance = _build_combo_instance(rng, rng.choice(_COMBO_TYPES))
-    shape, final = instance.shape, instance.final
-    labels = _VERTEX_LABELS[: len(shape)]
-    image_labels = tuple(f"{l}''" for l in labels)
-    intermediate_name = _shape_name(tuple(f"{l}'" for l in labels))
-    name, image_name = _shape_name(labels), _shape_name(image_labels)
-
-    prompt = (
-        f"Shape {name} is {instance.step1_text} to give shape {intermediate_name}. "
-        f"Shape {intermediate_name} is then {instance.step2_text} to give shape {image_name}. "
-        f"Describe fully the single transformation that maps {name} directly onto {image_name}."
-    )
+    shape, texts, final = _random_combined_sequence(rng)
+    prompt = "Shape A is " + ", then ".join(texts) + ". Draw and label the final image B."
     teaching_steps = [
-        "Two transformations applied one after another can often be combined into a single equivalent "
-        "transformation - the key is knowing the combination rule for that particular pair of transformation "
-        "types.",
-        instance.reasoning_steps[0],
-        instance.reasoning_steps[1],
-        f"So the single transformation that maps {name} directly onto {image_name} is: {instance.final_answer}.",
+        "When several transformations are applied one after another, do them strictly in order: the image "
+        "from each step becomes the shape you transform in the next step - never transform the original each "
+        "time.",
+        "Transform one vertex at a time through the whole sequence, or transform the whole shape at each step "
+        "and redraw it before moving on - both work as long as you keep the order.",
+        "The order of the steps here is: " + "; ".join(f"({i + 1}) {text}" for i, text in enumerate(texts)) + ".",
+        f"After the last step, the final image (shape B) has vertices {_image_coords(final)}.",
     ]
     return ModelledExample(
         topic_id="combined_transformations_H",
         tier=Tier.HIGHER,
         prompt=prompt,
         worked_calculation=(
-            f"{labels[0]}{_fmt_point(shape[0])} -> {image_labels[0]}{_fmt_point(final[0])}",
-            f"combined: {instance.final_answer}",
+            "apply the transformations in order",
+            f"final image (shape B): {_image_coords(final)}",
         ),
         teaching_steps=tuple(teaching_steps),
-        final_answer=instance.final_answer,
-        diagram=DiagramSpec(
-            kind="grid_transformation",
-            params={
-                "x_min": _GRID_MIN, "x_max": _GRID_MAX, "y_min": _GRID_MIN, "y_max": _GRID_MAX,
-                "original_vertices": shape, "original_labels": labels,
-                "image_vertices": final, "image_labels": image_labels,
-            },
-        ),
+        final_answer=f"Final image (shape B): {_image_coords(final)}",
+        diagram=_transform_diagram(shape, final),
     )
 
 

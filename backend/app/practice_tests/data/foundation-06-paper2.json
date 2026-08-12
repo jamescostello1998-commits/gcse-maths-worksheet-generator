@@ -999,32 +999,49 @@
       }
     },
     {
-      "topic_id": "volume_surface_area_cube_F",
-      "prompt": "A cube has side length 10 cm. Find its surface area.",
+      "topic_id": "volume_surface_area_triangular_prism_F",
+      "prompt": "A triangular prism has a right-angled triangular cross-section with sides 5 cm and 12 cm (hypotenuse 13 cm), and length 14 cm. Find its surface area.",
       "solution_steps": [
-        "Surface area = 6 × side² = 6 × 10² = 6 × 100 = 600 cm²"
+        "Area of the two triangular ends = 2 × (1/2) × 5 × 12 = 60 cm²",
+        "Perimeter of the triangular cross-section = 5 + 12 + 13 = 30 cm",
+        "Area of the three rectangular faces = 30 × 14 = 420 cm²",
+        "Surface area = 60 + 420 = 480 cm²"
       ],
-      "final_answer": "600 cm²",
-      "marks": 2,
+      "final_answer": "480 cm²",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Surface area = 6 × side² = 6 × 10² = 6 × 100 = 600 cm²",
+          "description": "Area of the two triangular ends = 2 × (1/2) × 5 × 12 = 60 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Perimeter of the triangular cross-section = 5 + 12 + 13 = 30 cm",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of the three rectangular faces = 30 × 14 = 420 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Surface area = 60 + 420 = 480 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "600 cm² oe",
+          "description": "480 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cuboid",
+        "kind": "triangular_prism",
         "params": {
-          "width_label": "10 cm",
-          "height_label": "10 cm",
-          "length_label": "10 cm",
-          "is_cube": true
+          "base_label": "5 cm",
+          "triangle_height_label": "12 cm",
+          "length_label": "14 cm"
         }
       },
       "solution_diagram": null
@@ -1071,72 +1088,6 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "set_notation_F",
-      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, A = {3, 4, 6, 8, 10}, B = {3, 5, 7}. List the elements that are in A but not in B.",
-      "solution_steps": [
-        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
-        "A = {3, 4, 6, 8, 10}",
-        "B = {3, 5, 7}",
-        "Check each element of ξ in turn to see whether it are in A but not in B.",
-        "Elements that are in A but not in B: {4, 6, 8, 10}"
-      ],
-      "final_answer": "{4, 6, 8, 10}",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A = {3, 4, 6, 8, 10}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "B = {3, 5, 7}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Check each element of ξ in turn to see whether it are in A but not in B. Elements that are in A but not in B: {4, 6, 8, 10}",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "{4, 6, 8, 10} oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "venn_diagram",
-        "params": {
-          "labels": [
-            "A",
-            "B"
-          ],
-          "universal_label": "ξ"
-        }
-      },
-      "solution_diagram": {
-        "kind": "venn_diagram",
-        "params": {
-          "labels": [
-            "A",
-            "B"
-          ],
-          "universal_label": "ξ",
-          "region_text": {
-            "a_only": "4, 6, 8, 10",
-            "b_only": "5, 7",
-            "both": "3",
-            "neither": "1, 2, 9"
-          }
-        }
-      }
-    },
-    {
       "topic_id": "relative_frequency_F",
       "prompt": "A drawing pin is tested 50 times, and it lands point up 35 times. Use this relative frequency to estimate how many times this would happen in 80 trials.",
       "solution_steps": [
@@ -1159,6 +1110,29 @@
         {
           "code": "A1",
           "description": "56 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "stats_range_F",
+      "prompt": "Find the range of this data set: 26, 2, 11, 7, 1, 24, 28, 5.",
+      "solution_steps": [
+        "Range = largest - smallest = 28 - 1 = 27"
+      ],
+      "final_answer": "27",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Range = largest - smallest = 28 - 1 = 27",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "27 oe",
           "marks": 1
         }
       ],

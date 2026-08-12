@@ -735,81 +735,117 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "symmetry_rotational_F",
-      "prompt": "The diagram shows a rhombus. State the order of rotational symmetry.",
+      "topic_id": "transform_reflect_complete_F",
+      "prompt": "Reflect shape A in the line x = -1.",
       "solution_steps": [
-        "Rotating the rhombus about its centre, it looks exactly the same 2 times during a full 360° turn.",
-        "So the order of rotational symmetry is 2."
+        "Reflect each vertex of shape A in the line x = -1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+        "The image, shape B, has vertices (-4, 1), (-7, 1), (-4, 3)."
       ],
-      "final_answer": "order 2",
+      "final_answer": "Image (shape B): (-4, 1), (-7, 1), (-4, 3)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rotating the rhombus about its centre, it looks exactly the same 2 times during a full 360° turn.",
+          "description": "Reflect each vertex of shape A in the line x = -1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "So the order of rotational symmetry is 2.",
+          "description": "The image, shape B, has vertices (-4, 1), (-7, 1), (-4, 3).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "order 2 oe",
+          "description": "Image (shape B): (-4, 1), (-7, 1), (-4, 3) oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "symmetry_shape",
+        "kind": "grid_transformation",
         "params": {
-          "vertices": [
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
             [
-              0,
-              -3
+              2,
+              1
             ],
             [
-              4,
-              0
+              5,
+              1
             ],
             [
-              0,
+              2,
               3
-            ],
-            [
-              -4,
-              0
             ]
           ],
-          "blank": true
+          "original_labels": [
+            "",
+            "",
+            ""
+          ],
+          "original_shape_label": "A",
+          "mirror_line": {
+            "type": "vertical",
+            "x": -1,
+            "label": "x = -1"
+          }
         }
       },
       "solution_diagram": {
-        "kind": "symmetry_shape",
+        "kind": "grid_transformation",
         "params": {
-          "vertices": [
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
             [
-              0,
-              -3
+              2,
+              1
             ],
             [
-              4,
-              0
+              5,
+              1
             ],
             [
-              0,
+              2,
               3
+            ]
+          ],
+          "original_labels": [
+            "",
+            "",
+            ""
+          ],
+          "original_shape_label": "A",
+          "mirror_line": {
+            "type": "vertical",
+            "x": -1,
+            "label": "x = -1"
+          },
+          "image_vertices": [
+            [
+              -4,
+              1
+            ],
+            [
+              -7,
+              1
             ],
             [
               -4,
-              0
+              3
             ]
           ],
-          "rotation_centre": [
-            0.0,
-            0.0
+          "image_labels": [
+            "",
+            "",
+            ""
           ],
-          "rotation_order": 2
+          "image_shape_label": "B"
         }
       }
     },
@@ -857,37 +893,36 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_triangular_prism_F",
-      "prompt": "A triangular prism has a right-angled triangular cross-section with sides 12 cm and 16 cm (hypotenuse 20 cm), and length 7 cm. Find its volume.",
+      "topic_id": "volume_surface_area_cylinder_F",
+      "prompt": "Find the volume of the cylinder, correct to 2 decimal places.",
       "solution_steps": [
-        "Cross-section area = (1/2) × 12 × 16 = 96 cm²",
-        "Volume = cross-section area × length = 96 × 7 = 672 cm³"
+        "Volume = π × r² × h = π × 12² × 19",
+        "= 8595.40 cm³ (2 d.p., using a calculator value of π)"
       ],
-      "final_answer": "672 cm³",
+      "final_answer": "8595.40 cm³",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Cross-section area = (1/2) × 12 × 16 = 96 cm²",
+          "description": "Volume = π × r² × h = π × 12² × 19",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Volume = cross-section area × length = 96 × 7 = 672 cm³",
+          "description": "= 8595.40 cm³ (2 d.p., using a calculator value of π)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "672 cm³ oe",
+          "description": "8595.40 cm³ oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "triangular_prism",
+        "kind": "cylinder",
         "params": {
-          "base_label": "12 cm",
-          "triangle_height_label": "16 cm",
-          "length_label": "7 cm"
+          "radius_label": "12 cm",
+          "height_label": "19 cm"
         }
       },
       "solution_diagram": null
@@ -970,32 +1005,46 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_equivalent_F",
-      "prompt": "1/2 = \\frac{?}{16}. Find the missing number.",
+      "topic_id": "probability_listing_outcomes_F",
+      "prompt": "Two 3-sided spinners are spun: one labelled B, Y, G and the other labelled P, G, Y. List all the possible outcomes.",
       "solution_steps": [
-        "Find the scale factor between the denominators: 16 ÷ 2 = 8",
-        "Multiply the numerator by the same scale factor: 1 × 8 = 8"
+        "There are 3 possible outcomes for the first event and 3 for the second, so there are 3 × 3 = 9 possible combined outcomes.",
+        "For each outcome of the first event, list every outcome of the second event: BP, BG, BY, YP, YG, YY, GP, GG, GY"
       ],
-      "final_answer": "8",
+      "final_answer": "BP, BG, BY, YP, YG, YY, GP, GG, GY",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the scale factor between the denominators: 16 ÷ 2 = 8",
+          "description": "There are 3 possible outcomes for the first event and 3 for the second, so there are 3 × 3 = 9 possible combined outcomes.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the numerator by the same scale factor: 1 × 8 = 8",
+          "description": "For each outcome of the first event, list every outcome of the second event: BP, BG, BY, YP, YG, YY, GP, GG, GY",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8 oe",
+          "description": "BP, BG, BY, YP, YG, YY, GP, GG, GY oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "spinner_pair",
+        "params": {
+          "sectors_a": [
+            "B",
+            "Y",
+            "G"
+          ],
+          "sectors_b": [
+            "P",
+            "G",
+            "Y"
+          ]
+        }
+      },
       "solution_diagram": null
     }
   ]

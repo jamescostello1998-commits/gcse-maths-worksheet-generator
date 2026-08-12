@@ -837,12 +837,12 @@
     },
     {
       "topic_id": "transform_rotate_describe_H",
-      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
       "solution_steps": [
         "The centre of rotation is the one point that is the same distance from a vertex and its image, for every vertex - it can be found where the perpendicular bisectors of two such pairs cross.",
-        "Measuring the turn from a vertex to its image about that point gives 90° clockwise about (-2, 4)."
+        "Measuring the turn from a vertex to its image about that point gives 90° clockwise about (0, 4)."
       ],
-      "final_answer": "Rotation 90° clockwise about (-2, 4)",
+      "final_answer": "Rotation 90° clockwise about (0, 4)",
       "marks": 3,
       "mark_scheme": [
         {
@@ -852,12 +852,12 @@
         },
         {
           "code": "M1",
-          "description": "Measuring the turn from a vertex to its image about that point gives 90° clockwise about (-2, 4).",
+          "description": "Measuring the turn from a vertex to its image about that point gives 90° clockwise about (0, 4).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Rotation 90° clockwise about (-2, 4) oe",
+          "description": "Rotation 90° clockwise about (0, 4) oe",
           "marks": 1
         }
       ],
@@ -870,19 +870,34 @@
           "y_max": 8,
           "original_vertices": [
             [
-              -2,
-              2
+              1,
+              -1
+            ],
+            [
+              5,
+              -1
+            ],
+            [
+              5,
+              1
             ],
             [
               3,
-              2
+              1
             ],
             [
-              -1,
-              6
+              3,
+              4
+            ],
+            [
+              1,
+              4
             ]
           ],
           "original_labels": [
+            "",
+            "",
+            "",
             "",
             "",
             ""
@@ -890,12 +905,24 @@
           "original_shape_label": "A",
           "image_vertices": [
             [
-              -4,
-              4
+              -5,
+              3
             ],
             [
-              -4,
+              -5,
               -1
+            ],
+            [
+              -3,
+              -1
+            ],
+            [
+              -3,
+              1
+            ],
+            [
+              0,
+              1
             ],
             [
               0,
@@ -905,9 +932,13 @@
           "image_labels": [
             "",
             "",
+            "",
+            "",
+            "",
             ""
           ],
-          "image_shape_label": "B"
+          "image_shape_label": "B",
+          "image_same_color": true
         }
       },
       "solution_diagram": null
@@ -1096,28 +1127,28 @@
       }
     },
     {
-      "topic_id": "factorise_quadratics_H",
-      "prompt": "Factorise: x^2 - x - 2",
+      "topic_id": "surds_multiply_divide_H",
+      "prompt": "Calculate √54 × √6, giving your answer as an integer.",
       "solution_steps": [
-        "Find two numbers that multiply to -2 and add to -1: 1 and -2",
-        "Write as two brackets: (x + 1)(x - 2)"
+        "√54 × √6 = √(54 × 6) = √324",
+        "√324 = 18"
       ],
-      "final_answer": "(x + 1)(x - 2)",
+      "final_answer": "18",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to -2 and add to -1: 1 and -2",
+          "description": "√54 × √6 = √(54 × 6) = √324",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write as two brackets: (x + 1)(x - 2)",
+          "description": "√324 = 18",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(x + 1)(x - 2) oe",
+          "description": "18 oe",
           "marks": 1
         }
       ],

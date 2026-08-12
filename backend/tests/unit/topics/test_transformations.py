@@ -17,6 +17,7 @@ GENERATORS = [
     (transformations.generate_transform_enlarge_complete_foundation, Tier.FOUNDATION),
     (transformations.generate_transform_enlarge_complete_higher, Tier.HIGHER),
     (transformations.generate_transform_enlarge_describe, Tier.HIGHER),
+    (transformations.generate_transform_enlarge_describe_foundation, Tier.FOUNDATION),
     (transformations.generate_combined_transformations, Tier.HIGHER),
 ]
 
@@ -286,6 +287,7 @@ MODELLED_EXAMPLE_GENERATORS = [
     (transformations.generate_modelled_example_transform_enlarge_complete_foundation, Tier.FOUNDATION, "transform_enlarge_complete_F"),
     (transformations.generate_modelled_example_transform_enlarge_complete_higher, Tier.HIGHER, "transform_enlarge_complete_H"),
     (transformations.generate_modelled_example_transform_enlarge_describe, Tier.HIGHER, "transform_enlarge_describe_H"),
+    (transformations.generate_modelled_example_transform_enlarge_describe_foundation, Tier.FOUNDATION, "transform_enlarge_describe_F"),
     (transformations.generate_modelled_example_combined_transformations, Tier.HIGHER, "combined_transformations_H"),
 ]
 
@@ -315,80 +317,59 @@ def test_modelled_examples_are_valid():
 # ---------------------------------------------------------------------------
 
 
-def test_combined_transformations_all_four_combo_types_are_reachable():
+def test_combined_transformations_apply_two_or_three_and_draw_final():
+    """The redesigned topic asks the student to apply 2-3 transformations in
+    sequence and draw the final image: the question page shows only shape A,
+    the solution page shows the final image B, and every final image fits the
+    grid."""
     rng = random.Random(410)
-    seen = set()
-    for _ in range(400):
-        q = transformations.generate_combined_transformations(Tier.HIGHER, rng)
-        if "translated by the vector" in q.prompt:
-            seen.add("translate_translate")
-        elif "reflected in the line" in q.prompt:
-            seen.add("reflect_parallel")
-        elif "about the centre" in q.prompt:
-            seen.add("rotate_same_centre")
-        elif "x-axis" in q.prompt and "y-axis" in q.prompt:
-            seen.add("reflect_axes")
-    assert seen == {"translate_translate", "reflect_parallel", "rotate_same_centre", "reflect_axes"}
-
-
-def test_combined_transformations_tier_and_group():
-    rng = random.Random(4101)
+    step_counts = set()
     for _ in range(TRIALS):
         q = transformations.generate_combined_transformations(Tier.HIGHER, rng)
         assert q.tier == Tier.HIGHER
-        assert q.solution_diagram is None  # only original + final image, no intermediate shape shown
+        assert q.prompt.startswith("Shape A is ")
+        assert q.prompt.endswith("Draw and label the final image B.")
+        assert q.final_answer.startswith("Final image (shape B):")
+        assert q.diagram is not None and q.solution_diagram is not None
+        assert "image_vertices" not in q.diagram.params  # question shows shape A only
+        image = q.solution_diagram.params["image_vertices"]
+        assert all(
+            transformations._GRID_MIN <= x <= transformations._GRID_MAX
+            and transformations._GRID_MIN <= y <= transformations._GRID_MAX
+            for x, y in image
+        )
+        step_counts.add(q.prompt.count(", then ") + 1)
+    assert step_counts == {2, 3}
 
 
-def test_combined_translate_translate_matches_vector_sum():
-    """Independently re-derive: the claimed vector (v1 + v2) applied once
-    directly to the original must reproduce the same image as simulating
-    both translations in sequence."""
-    rng = random.Random(411)
-    for _ in range(TRIALS):
-        shape, v1, v2, combined, final = transformations._random_combo_translate_translate(rng)
-        assert combined == (v1[0] + v2[0], v1[1] + v2[1])
-        recombined = [(x + combined[0], y + combined[1]) for x, y in shape]
-        assert recombined == final
+def test_enlarge_describe_foundation_wording_split_and_scale_factors():
+    """90% ask 'maps A onto B', 10% ask 'maps B onto A'; the generating scale
+    factors are the positive set 3/2, 5/2, 1/2, 1/3, 1/4."""
+    rng = random.Random(70)
+    a_to_b = b_to_a = 0
+    n = 4000
+    for _ in range(n):
+        q = transformations.generate_transform_enlarge_describe_foundation(Tier.FOUNDATION, rng)
+        if "maps shape A onto shape B" in q.prompt:
+            a_to_b += 1
+        elif "maps shape B onto shape A" in q.prompt:
+            b_to_a += 1
+        assert q.final_answer.startswith("Enlargement, scale factor")
+    assert a_to_b + b_to_a == n
+    assert 0.05 < b_to_a / n < 0.16  # ~10%
 
 
-def test_combined_reflect_parallel_matches_translation_formula():
-    """Independently re-derive: twice the gap between the two mirror lines,
-    perpendicular to them, applied once directly to the original must
-    reproduce the same image as reflecting in both mirrors in sequence."""
-    rng = random.Random(412)
-    for _ in range(TRIALS):
-        shape, orientation, a, b, combined_vector, final = transformations._random_combo_reflect_parallel(rng)
-        expected = (2 * (b - a), 0) if orientation == "vertical" else (0, 2 * (b - a))
-        assert combined_vector == expected
-        recombined = [(x + combined_vector[0], y + combined_vector[1]) for x, y in shape]
-        assert recombined == final
-
-
-def test_combined_rotate_same_centre_matches_angle_sum():
-    """Independently re-derive: the summed angle (reduced mod 360, always a
-    value already in _ROTATIONS) applied once directly about the shared
-    centre must reproduce the same image as rotating twice in sequence."""
-    rng = random.Random(413)
-    for _ in range(TRIALS):
-        shape, centre, angle1, angle2, combined_angle, final = transformations._random_combo_rotate_same_centre(rng)
-        assert combined_angle == (angle1 + angle2) % 360
-        assert combined_angle in transformations._ROTATIONS
-        recombined = [transformations._rotate_point(p, centre, combined_angle) for p in shape]
-        assert recombined == final
-
-
-def test_combined_reflect_axes_gives_180_rotation_about_origin():
-    """Independently re-derive: a single 180 deg rotation about the origin
-    applied directly to the original must reproduce the same image as
-    reflecting in the x-axis then the y-axis (or vice versa) in sequence."""
-    rng = random.Random(414)
-    for _ in range(TRIALS):
-        shape, order, final = transformations._random_combo_reflect_axes(rng)
-        recombined = [transformations._rotate_point(p, (0, 0), 180) for p in shape]
-        assert recombined == final
-
-
-def test_combined_rotate_combo_pairs_never_compose_to_the_identity():
-    for angle1, angle2 in transformations._ROTATE_COMBO_PAIRS:
-        assert (angle1 + angle2) % 360 != 0
-        assert (angle1 + angle2) % 360 in transformations._ROTATIONS
+def test_combined_transformations_reach_all_transform_types():
+    rng = random.Random(4102)
+    seen = set()
+    for _ in range(600):
+        q = transformations.generate_combined_transformations(Tier.HIGHER, rng)
+        if "reflected in the line" in q.prompt:
+            seen.add("reflect")
+        if "rotated " in q.prompt:
+            seen.add("rotate")
+        if "translated by the vector" in q.prompt:
+            seen.add("translate")
+        if "enlarged by scale factor" in q.prompt:
+            seen.add("enlarge")
+    assert seen == {"reflect", "rotate", "translate", "enlarge"}

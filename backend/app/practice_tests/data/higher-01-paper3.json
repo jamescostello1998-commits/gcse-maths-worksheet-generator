@@ -913,10 +913,10 @@
     },
     {
       "topic_id": "transform_enlarge_describe_H",
-      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
       "solution_steps": [
         "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
-        "For this pair, the lines meet at (-1, 2) and the ratio works out as -1."
+        "For mapping shape A onto shape B, the lines meet at (-1, 2) and the scale factor works out as -1."
       ],
       "final_answer": "Enlargement, scale factor -1, centre (-1, 2)",
       "marks": 3,
@@ -928,7 +928,7 @@
         },
         {
           "code": "M1",
-          "description": "For this pair, the lines meet at (-1, 2) and the ratio works out as -1.",
+          "description": "For mapping shape A onto shape B, the lines meet at (-1, 2) and the scale factor works out as -1.",
           "marks": 1
         },
         {
@@ -1013,14 +1013,15 @@
             "",
             ""
           ],
-          "image_shape_label": "B"
+          "image_shape_label": "B",
+          "image_same_color": true
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "transform_rotate_describe_H",
-      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
       "solution_steps": [
         "The centre of rotation is the one point that is the same distance from a vertex and its image, for every vertex - it can be found where the perpendicular bisectors of two such pairs cross.",
         "Measuring the turn from a vertex to its image about that point gives 180° about (3, -1)."
@@ -1090,7 +1091,8 @@
             "",
             ""
           ],
-          "image_shape_label": "B"
+          "image_shape_label": "B",
+          "image_same_color": true
         }
       },
       "solution_diagram": null

@@ -781,28 +781,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "symmetry_lines_F",
-      "prompt": "The diagram shows a regular pentagon. How many lines of symmetry does it have?",
+      "topic_id": "symmetry_rotational_F",
+      "prompt": "The diagram shows a kite. State the order of rotational symmetry.",
       "solution_steps": [
-        "A regular pentagon has 5 lines of symmetry.",
-        "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram."
+        "Rotating the kite about its centre, it only looks the same once during a full 360° turn (back at the start).",
+        "So the order of rotational symmetry is 1."
       ],
-      "final_answer": "5 lines of symmetry",
+      "final_answer": "order 1",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A regular pentagon has 5 lines of symmetry.",
+          "description": "Rotating the kite about its centre, it only looks the same once during a full 360° turn (back at the start).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram.",
+          "description": "So the order of rotational symmetry is 1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5 lines of symmetry oe",
+          "description": "order 1 oe",
           "marks": 1
         }
       ],
@@ -811,24 +811,20 @@
         "params": {
           "vertices": [
             [
-              2.4492935982947064e-16,
-              4.0
+              0,
+              -2
             ],
             [
-              -3.804226065180614,
-              1.23606797749979
+              3,
+              1
             ],
             [
-              -2.351141009169893,
-              -3.2360679774997894
+              0,
+              5
             ],
             [
-              2.3511410091698917,
-              -3.2360679774997902
-            ],
-            [
-              3.8042260651806146,
-              1.2360679774997887
+              -3,
+              1
             ]
           ],
           "blank": true
@@ -839,78 +835,27 @@
         "params": {
           "vertices": [
             [
-              2.4492935982947064e-16,
-              4.0
+              0,
+              -2
             ],
             [
-              -3.804226065180614,
-              1.23606797749979
+              3,
+              1
             ],
             [
-              -2.351141009169893,
-              -3.2360679774997894
+              0,
+              5
             ],
             [
-              2.3511410091698917,
-              -3.2360679774997902
-            ],
-            [
-              3.8042260651806146,
-              1.2360679774997887
+              -3,
+              1
             ]
           ],
-          "symmetry_lines": [
-            {
-              "p1": [
-                -3.1840816777831187e-16,
-                -5.2
-              ],
-              "p2": [
-                3.1840816777831187e-16,
-                5.2
-              ]
-            },
-            {
-              "p1": [
-                3.05648331192086,
-                -4.206888370749727
-              ],
-              "p2": [
-                -3.05648331192086,
-                4.206888370749727
-              ]
-            },
-            {
-              "p1": [
-                4.945493884734798,
-                -1.606888370749727
-              ],
-              "p2": [
-                -4.945493884734798,
-                1.606888370749727
-              ]
-            },
-            {
-              "p1": [
-                4.945493884734799,
-                1.606888370749726
-              ],
-              "p2": [
-                -4.945493884734799,
-                -1.606888370749726
-              ]
-            },
-            {
-              "p1": [
-                3.056483311920861,
-                4.206888370749726
-              ],
-              "p2": [
-                -3.056483311920861,
-                -4.206888370749726
-              ]
-            }
-          ]
+          "rotation_centre": [
+            0.0,
+            1.25
+          ],
+          "rotation_order": 1
         }
       }
     },
@@ -951,90 +896,58 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plans_and_elevations_F",
-      "prompt": "The diagram shows a solid with its dimensions labelled. Draw and label the front elevation, side elevation, and plan view of the solid.",
+      "topic_id": "volume_surface_area_cuboid_F",
+      "prompt": "A cuboid has length 7 cm, width 4 cm and height 6 cm. Find its volume.",
       "solution_steps": [
-        "The front elevation is what you see looking at the solid straight on from the front.",
-        "Front elevation: a right-angled triangle, base 6 cm and height 8 cm.",
-        "The side elevation is what you see looking at the solid straight on from the side.",
-        "Side elevation: a rectangle, 4 cm by 8 cm.",
-        "The plan view is what you see looking straight down at the solid from above.",
-        "Plan view: a rectangle, 6 cm by 4 cm."
+        "Volume = length × width × height = 7 × 4 × 6 = 168 cm³"
       ],
-      "final_answer": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm. Side elevation: a rectangle, 4 cm by 8 cm. Plan view: a rectangle, 6 cm by 4 cm.",
-      "marks": 5,
+      "final_answer": "168 cm³",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The front elevation is what you see looking at the solid straight on from the front.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The side elevation is what you see looking at the solid straight on from the side.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Side elevation: a rectangle, 4 cm by 8 cm. The plan view is what you see looking straight down at the solid from above. Plan view: a rectangle, 6 cm by 4 cm.",
+          "description": "Volume = length × width × height = 7 × 4 × 6 = 168 cm³",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm. Side elevation: a rectangle, 4 cm by 8 cm. Plan view: a rectangle, 6 cm by 4 cm. oe",
+          "description": "168 cm³ oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "plans_and_elevations_question",
+        "kind": "cuboid",
         "params": {
-          "shape": "triangular_prism",
-          "base_label": "6 cm",
-          "triangle_height_label": "8 cm",
-          "length_label": "4 cm"
+          "width_label": "4 cm",
+          "height_label": "6 cm",
+          "length_label": "7 cm"
         }
       },
-      "solution_diagram": {
-        "kind": "plans_and_elevations",
-        "params": {
-          "shape": "triangular_prism",
-          "base": 6,
-          "tri_height": 8,
-          "length": 4,
-          "base_label": "6 cm",
-          "tri_height_label": "8 cm",
-          "length_label": "4 cm"
-        }
-      }
+      "solution_diagram": null
     },
     {
       "topic_id": "transform_reflect_complete_F",
-      "prompt": "Reflect shape ABC in the line y = -3.",
+      "prompt": "Reflect shape A in the line y = -3.",
       "solution_steps": [
-        "Reflect each vertex in the line y = -3: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
-        "A(1, -1) -> A'(1, -5), B(4, -1) -> B'(4, -5), C(1, 1) -> C'(1, -7)"
+        "Reflect each vertex of shape A in the line y = -3: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+        "The image, shape B, has vertices (1, -5), (4, -5), (1, -7)."
       ],
-      "final_answer": "A'(1, -5), B'(4, -5), C'(1, -7)",
+      "final_answer": "Image (shape B): (1, -5), (4, -5), (1, -7)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Reflect each vertex in the line y = -3: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+          "description": "Reflect each vertex of shape A in the line y = -3: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A(1, -1) -> A'(1, -5), B(4, -1) -> B'(4, -5), C(1, 1) -> C'(1, -7)",
+          "description": "The image, shape B, has vertices (1, -5), (4, -5), (1, -7).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(1, -5), B'(4, -5), C'(1, -7) oe",
+          "description": "Image (shape B): (1, -5), (4, -5), (1, -7) oe",
           "marks": 1
         }
       ],
@@ -1060,10 +973,11 @@
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C"
+            "",
+            "",
+            ""
           ],
+          "original_shape_label": "A",
           "mirror_line": {
             "type": "horizontal",
             "y": -3,
@@ -1093,10 +1007,11 @@
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C"
+            "",
+            "",
+            ""
           ],
+          "original_shape_label": "A",
           "mirror_line": {
             "type": "horizontal",
             "y": -3,
@@ -1117,10 +1032,11 @@
             ]
           ],
           "image_labels": [
-            "A'",
-            "B'",
-            "C'"
-          ]
+            "",
+            "",
+            ""
+          ],
+          "image_shape_label": "B"
         }
       }
     },
@@ -1161,45 +1077,45 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_and_or_rule_F",
-      "prompt": "A bag contains coloured counters. P(green) = 4/10. P(yellow) = 4/10. A counter cannot be both colours. Find P(green or yellow).",
+      "topic_id": "angles_straight_line_F",
+      "prompt": "The angles 46°, 26° and x° lie on a straight line. Find x.",
       "solution_steps": [
-        "A counter cannot be both green and yellow, so these events are mutually exclusive.",
-        "For mutually exclusive events, P(A or B) = P(A) + P(B).",
-        "P(green or yellow) = 4/10 + 4/10 = 4/5"
+        "Angles on a straight line sum to 180°.",
+        "x = 180 - (46 + 26) = 180 - 72 = 108"
       ],
-      "final_answer": "4/5",
-      "marks": 4,
+      "final_answer": "108",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A counter cannot be both green and yellow, so these events are mutually exclusive.",
+          "description": "Angles on a straight line sum to 180°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For mutually exclusive events, P(A or B) = P(A) + P(B).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(green or yellow) = 4/10 + 4/10 = 4/5",
+          "description": "x = 180 - (46 + 26) = 180 - 72 = 108",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4/5 oe",
+          "description": "108 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "bag_of_counters",
+        "kind": "angle_line",
         "params": {
-          "counts": {
-            "green": 4,
-            "yellow": 4,
-            "other": 2
-          }
+          "angle_values": [
+            46,
+            26,
+            108
+          ],
+          "labels": [
+            "46°",
+            "26°",
+            "x"
+          ],
+          "around_point": false
         }
       },
       "solution_diagram": null
@@ -1374,6 +1290,50 @@
           ]
         }
       }
+    },
+    {
+      "topic_id": "probability_and_or_rule_F",
+      "prompt": "A bag contains coloured counters. P(green) = 4/10. P(yellow) = 4/10. A counter cannot be both colours. Find P(green or yellow).",
+      "solution_steps": [
+        "A counter cannot be both green and yellow, so these events are mutually exclusive.",
+        "For mutually exclusive events, P(A or B) = P(A) + P(B).",
+        "P(green or yellow) = 4/10 + 4/10 = 4/5"
+      ],
+      "final_answer": "4/5",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A counter cannot be both green and yellow, so these events are mutually exclusive.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For mutually exclusive events, P(A or B) = P(A) + P(B).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(green or yellow) = 4/10 + 4/10 = 4/5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4/5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "bag_of_counters",
+        "params": {
+          "counts": {
+            "green": 4,
+            "yellow": 4,
+            "other": 2
+          }
+        }
+      },
+      "solution_diagram": null
     }
   ]
 }

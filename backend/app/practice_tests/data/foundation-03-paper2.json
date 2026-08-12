@@ -660,34 +660,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "vectors_arithmetic_F",
-      "prompt": "\\vec{a} = \\colvec{0}{-1} and \\vec{b} = \\colvec{-3}{-2}. Find 2\\vec{a} - \\vec{b}.",
+      "topic_id": "properties_3d_shapes_F",
+      "prompt": "How many edges does a cone have?",
       "solution_steps": [
-        "\\vec{a} = \\colvec{0}{-1}, \\vec{b} = \\colvec{-3}{-2}",
-        "2\\vec{a} = \\colvec{0}{-2} and \\vec{b} = \\colvec{-3}{-2}",
-        "2\\vec{a} - \\vec{b} = \\colvec{3}{0}"
+        "An edge is a line where two faces meet.",
+        "By GCSE convention, a cone has 2 faces (1 flat circular base + 1 curved surface), 1 edge (where the curved surface meets the circular base), and 1 vertex (the apex point at the top).",
+        "So a cone has 1 edges."
       ],
-      "final_answer": "\\colvec{3}{0}",
+      "final_answer": "1",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "\\vec{a} = \\colvec{0}{-1}, \\vec{b} = \\colvec{-3}{-2}",
+          "description": "An edge is a line where two faces meet.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2\\vec{a} = \\colvec{0}{-2} and \\vec{b} = \\colvec{-3}{-2}",
+          "description": "By GCSE convention, a cone has 2 faces (1 flat circular base + 1 curved surface), 1 edge (where the curved surface meets the circular base), and 1 vertex (the apex point at the top).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2\\vec{a} - \\vec{b} = \\colvec{3}{0}",
+          "description": "So a cone has 1 edges.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "\\colvec{3}{0} oe",
+          "description": "1 oe",
           "marks": 1
         }
       ],
@@ -695,102 +695,33 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_shorter_leg_F",
-      "prompt": "A right-angled triangle has hypotenuse 116 cm and one side 80 cm. Find the length of x.",
+      "topic_id": "pythagoras_ladder_context_F",
+      "prompt": "A ladder of length 51 m leans against a vertical wall with its base 24 m from the wall. Find the height the ladder reaches up the wall.",
       "solution_steps": [
-        "b² = c² - a² = 116² - 80² = 13456 - 6400 = 7056",
-        "b = √7056 = 84"
+        "height² = ladder² - base² = 51² - 24² = 2601 - 576 = 2025",
+        "height = √2025 = 45 m"
       ],
-      "final_answer": "84 cm",
+      "final_answer": "45 m",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "b² = c² - a² = 116² - 80² = 13456 - 6400 = 7056",
+          "description": "height² = ladder² - base² = 51² - 24² = 2601 - 576 = 2025",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "b = √7056 = 84",
+          "description": "height = √2025 = 45 m",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "84 cm oe",
+          "description": "45 m oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "right_triangle",
-        "params": {
-          "leg1_label": "80 cm",
-          "leg2_label": "x",
-          "hyp_label": "116 cm"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
-    },
-    {
-      "topic_id": "plans_and_elevations_F",
-      "prompt": "The diagram shows a solid with its dimensions labelled. Draw and label the front elevation, side elevation, and plan view of the solid.",
-      "solution_steps": [
-        "The front elevation is what you see looking at the solid straight on from the front.",
-        "Front elevation: a rectangle, 8 cm by 6 cm.",
-        "The side elevation is what you see looking at the solid straight on from the side.",
-        "Side elevation: a rectangle, 8 cm by 6 cm.",
-        "The plan view is what you see looking straight down at the solid from above.",
-        "Plan view: a rectangle, 8 cm by 8 cm."
-      ],
-      "final_answer": "Front elevation: a rectangle, 8 cm by 6 cm. Side elevation: a rectangle, 8 cm by 6 cm. Plan view: a rectangle, 8 cm by 8 cm.",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The front elevation is what you see looking at the solid straight on from the front.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Front elevation: a rectangle, 8 cm by 6 cm.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The side elevation is what you see looking at the solid straight on from the side.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Side elevation: a rectangle, 8 cm by 6 cm. The plan view is what you see looking straight down at the solid from above. Plan view: a rectangle, 8 cm by 8 cm.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Front elevation: a rectangle, 8 cm by 6 cm. Side elevation: a rectangle, 8 cm by 6 cm. Plan view: a rectangle, 8 cm by 8 cm. oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "plans_and_elevations_question",
-        "params": {
-          "shape": "cuboid",
-          "length_label": "8 cm",
-          "width_label": "8 cm",
-          "height_label": "6 cm"
-        }
-      },
-      "solution_diagram": {
-        "kind": "plans_and_elevations",
-        "params": {
-          "shape": "cuboid",
-          "length": 8,
-          "width": 8,
-          "height": 6,
-          "length_label": "8 cm",
-          "width_label": "8 cm",
-          "height_label": "6 cm"
-        }
-      }
     },
     {
       "topic_id": "volume_surface_area_cuboid_F",
@@ -823,34 +754,65 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "properties_3d_shapes_F",
-      "prompt": "How many edges does a cone have?",
+      "topic_id": "volume_surface_area_cube_F",
+      "prompt": "A cube has side length 4 cm. Find its surface area.",
       "solution_steps": [
-        "An edge is a line where two faces meet.",
-        "By GCSE convention, a cone has 2 faces (1 flat circular base + 1 curved surface), 1 edge (where the curved surface meets the circular base), and 1 vertex (the apex point at the top).",
-        "So a cone has 1 edges."
+        "Surface area = 6 × side² = 6 × 4² = 6 × 16 = 96 cm²"
       ],
-      "final_answer": "1",
-      "marks": 4,
+      "final_answer": "96 cm²",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "An edge is a line where two faces meet.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "By GCSE convention, a cone has 2 faces (1 flat circular base + 1 curved surface), 1 edge (where the curved surface meets the circular base), and 1 vertex (the apex point at the top).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "So a cone has 1 edges.",
+          "description": "Surface area = 6 × side² = 6 × 4² = 6 × 16 = 96 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 oe",
+          "description": "96 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "cuboid",
+        "params": {
+          "width_label": "4 cm",
+          "height_label": "4 cm",
+          "length_label": "4 cm",
+          "is_cube": true
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "vectors_arithmetic_F",
+      "prompt": "\\vec{a} = \\colvec{0}{-1} and \\vec{b} = \\colvec{-3}{-2}. Find 2\\vec{a} - \\vec{b}.",
+      "solution_steps": [
+        "\\vec{a} = \\colvec{0}{-1}, \\vec{b} = \\colvec{-3}{-2}",
+        "2\\vec{a} = \\colvec{0}{-2} and \\vec{b} = \\colvec{-3}{-2}",
+        "2\\vec{a} - \\vec{b} = \\colvec{3}{0}"
+      ],
+      "final_answer": "\\colvec{3}{0}",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "\\vec{a} = \\colvec{0}{-1}, \\vec{b} = \\colvec{-3}{-2}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2\\vec{a} = \\colvec{0}{-2} and \\vec{b} = \\colvec{-3}{-2}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2\\vec{a} - \\vec{b} = \\colvec{3}{0}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "\\colvec{3}{0} oe",
           "marks": 1
         }
       ],
@@ -1106,6 +1068,79 @@
           ]
         }
       }
+    },
+    {
+      "topic_id": "scatter_graph_interpret_F",
+      "prompt": "The scatter graph shows the number of hours a group of students revised for a test and their test score. Describe the correlation shown.",
+      "solution_steps": [
+        "As hours revised increases, test score (%) tends to increase.",
+        "This means the scatter graph shows positive correlation."
+      ],
+      "final_answer": "Positive correlation",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "As hours revised increases, test score (%) tends to increase.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "This means the scatter graph shows positive correlation.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Positive correlation oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "scatter_graph",
+        "params": {
+          "points": [
+            [
+              1,
+              35.3
+            ],
+            [
+              2,
+              31.0
+            ],
+            [
+              3,
+              38.9
+            ],
+            [
+              4,
+              58.3
+            ],
+            [
+              6,
+              56.1
+            ],
+            [
+              7,
+              64.2
+            ],
+            [
+              8,
+              77.0
+            ],
+            [
+              9,
+              86.7
+            ],
+            [
+              10,
+              91.9
+            ]
+          ],
+          "x_label": "Hours revised",
+          "y_label": "Test score (%)"
+        }
+      },
+      "solution_diagram": null
     }
   ]
 }

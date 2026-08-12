@@ -688,14 +688,14 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "properties_3d_shapes_F",
-      "prompt": "How many faces does a cube have?",
+      "topic_id": "properties_3d_shapes_diagram_F",
+      "prompt": "How many faces does the square-based pyramid shown have?",
       "solution_steps": [
         "A face is a flat or curved surface on the outside of a 3D shape.",
-        "A cube has 6 square faces, 12 edges, and 8 vertices (corners).",
-        "So a cube has 6 faces."
+        "A square-based pyramid has 5 faces (1 square base + 4 triangular sides), 8 edges, and 5 vertices (4 base corners + 1 apex).",
+        "So a square-based pyramid has 5 faces."
       ],
-      "final_answer": "6",
+      "final_answer": "5",
       "marks": 4,
       "mark_scheme": [
         {
@@ -705,21 +705,27 @@
         },
         {
           "code": "M1",
-          "description": "A cube has 6 square faces, 12 edges, and 8 vertices (corners).",
+          "description": "A square-based pyramid has 5 faces (1 square base + 4 triangular sides), 8 edges, and 5 vertices (4 base corners + 1 apex).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "So a cube has 6 faces.",
+          "description": "So a square-based pyramid has 5 faces.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6 oe",
+          "description": "5 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "pyramid",
+        "params": {
+          "base_label": "5 cm",
+          "height_label": "6 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -810,39 +816,32 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_shorter_leg_F",
-      "prompt": "A right-angled triangle has hypotenuse 26 cm and one side 10 cm. Find the length of x.",
+      "topic_id": "pythagoras_ladder_context_F",
+      "prompt": "A ladder of length 15 m leans against a vertical wall with its base 9 m from the wall. Find the height the ladder reaches up the wall.",
       "solution_steps": [
-        "b² = c² - a² = 26² - 10² = 676 - 100 = 576",
-        "b = √576 = 24"
+        "height² = ladder² - base² = 15² - 9² = 225 - 81 = 144",
+        "height = √144 = 12 m"
       ],
-      "final_answer": "24 cm",
+      "final_answer": "12 m",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "b² = c² - a² = 26² - 10² = 676 - 100 = 576",
+          "description": "height² = ladder² - base² = 15² - 9² = 225 - 81 = 144",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "b = √576 = 24",
+          "description": "height = √144 = 12 m",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "24 cm oe",
+          "description": "12 m oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "right_triangle",
-        "params": {
-          "leg1_label": "10 cm",
-          "leg2_label": "x",
-          "hyp_label": "26 cm"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {

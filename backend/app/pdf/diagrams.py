@@ -2397,14 +2397,16 @@ def draw_grid_transformation(params: dict) -> Drawing:
         d.add(Polygon(pts, strokeColor=color, fillColor=None, strokeWidth=1.3))
         cx = sum(p[0] for p in px_vertices) / len(px_vertices)
         cy = sum(p[1] for p in px_vertices) / len(px_vertices)
+        # Vertices are never dotted or per-vertex-labelled any more (user review
+        # feedback: don't mark or label the vertices) - a shape is identified
+        # only by its whole-shape letter, drawn at the centroid below.
         for (px, py), label in zip(px_vertices, labels):
-            d.add(Circle(px, py, 1.8, strokeColor=color, fillColor=color))
-            dx, dy = px - cx, py - cy
-            dist = math.hypot(dx, dy) or 1.0
-            d.add(_label(px + dx / dist * 9, py + dy / dist * 9, label, color=color, size=7.5))
-        # A whole-shape label (e.g. "A"/"B") for "describe the transformation"
-        # questions, where the shapes are referred to as wholes, not per-vertex.
-        # Placed at the centroid, in the shape's own colour.
+            if label:
+                dx, dy = px - cx, py - cy
+                dist = math.hypot(dx, dy) or 1.0
+                d.add(_label(px + dx / dist * 9, py + dy / dist * 9, label, color=color, size=7.5))
+        # A whole-shape label (e.g. "A"/"B") placed at the centroid, in the
+        # shape's own colour.
         if shape_label:
             d.add(_label(cx, cy - 3.5, shape_label, color=color, size=11))
 
@@ -2456,7 +2458,13 @@ def draw_grid_transformation(params: dict) -> Drawing:
 
     draw_shape(params["original_vertices"], params["original_labels"], INK, params.get("original_shape_label"))
     if params.get("image_vertices"):
-        draw_shape(params["image_vertices"], params["image_labels"], ACCENT, params.get("image_shape_label"))
+        # For "describe" questions both shapes are drawn the same (black), so
+        # the diagram gives no colour cue as to which is the image - the
+        # student works purely from the A/B labels. For "complete" questions
+        # the drawn image stays a distinct colour on the solution so the
+        # answer stands out. (user review feedback)
+        image_color = INK if params.get("image_same_color") else ACCENT
+        draw_shape(params["image_vertices"], params["image_labels"], image_color, params.get("image_shape_label"))
 
     return d
 

@@ -7,98 +7,28 @@
   "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "standard_form_to_F",
-      "prompt": "Write 46900000 in standard form.",
+      "topic_id": "number_powers_of_ten_F",
+      "prompt": "Work out 489 ÷ 100.",
       "solution_steps": [
-        "Move the decimal point until there is one non-zero digit before it: 4.69",
-        "Count how many places the decimal point moved: 7",
-        "46900000 = 4.69 × 10^7"
+        "Dividing by 100 moves the decimal point 2 places to the left.",
+        "489 ÷ 100 = 4.89"
       ],
-      "final_answer": "4.69 × 10^7",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Move the decimal point until there is one non-zero digit before it: 4.69",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Count how many places the decimal point moved: 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "46900000 = 4.69 × 10^7",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "4.69 × 10^7 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "standard_form_to_small_F",
-      "prompt": "Write 0.0000083 in standard form.",
-      "solution_steps": [
-        "Move the decimal point until there is one non-zero digit before it: 8.3",
-        "Count how many places the decimal point moved: 6 (the number is less than 1, so the power is negative)",
-        "0.0000083 = 8.3 × 10^-6"
-      ],
-      "final_answer": "8.3 × 10^-6",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Move the decimal point until there is one non-zero digit before it: 8.3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Count how many places the decimal point moved: 6 (the number is less than 1, so the power is negative)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "0.0000083 = 8.3 × 10^-6",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "8.3 × 10^-6 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "decimals_add_subtract_F",
-      "prompt": "Work out 72.0 + 4.8.",
-      "solution_steps": [
-        "Line up the decimal points, padding with a zero so both numbers have the same number of decimal places.",
-        "72.0 + 4.8 = 76.8"
-      ],
-      "final_answer": "76.8",
+      "final_answer": "4.89",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Line up the decimal points, padding with a zero so both numbers have the same number of decimal places.",
+          "description": "Dividing by 100 moves the decimal point 2 places to the left.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "72.0 + 4.8 = 76.8",
+          "description": "489 ÷ 100 = 4.89",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "76.8 oe",
+          "description": "4.89 oe",
           "marks": 1
         }
       ],
@@ -106,34 +36,156 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_multiply_F",
-      "prompt": "Work out 20.00 × 2.4.",
+      "topic_id": "roots_F",
+      "prompt": "Without using a calculator, show that √47 lies between two consecutive whole numbers, and state them.",
       "solution_steps": [
-        "Ignore the decimal points and multiply the whole numbers: 2000 × 24 = 48000",
-        "Count the total decimal places in the question: 2 + 1 = 3",
-        "Place the decimal point 3 places from the right: 48.000"
+        "6^2 = 36 and 7^2 = 49",
+        "Since 36 < 47 < 49, √47 is between 6 and 7."
       ],
-      "final_answer": "48.000",
-      "marks": 4,
+      "final_answer": "between 6 and 7",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Ignore the decimal points and multiply the whole numbers: 2000 × 24 = 48000",
+          "description": "6^2 = 36 and 7^2 = 49",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Count the total decimal places in the question: 2 + 1 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Place the decimal point 3 places from the right: 48.000",
+          "description": "Since 36 < 47 < 49, √47 is between 6 and 7.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "48.000 oe",
+          "description": "between 6 and 7 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "standard_form_to_F",
+      "prompt": "Write 546000000 in standard form.",
+      "solution_steps": [
+        "Move the decimal point until there is one non-zero digit before it: 5.46",
+        "Count how many places the decimal point moved: 8",
+        "546000000 = 5.46 × 10^8"
+      ],
+      "final_answer": "5.46 × 10^8",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Move the decimal point until there is one non-zero digit before it: 5.46",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Count how many places the decimal point moved: 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "546000000 = 5.46 × 10^8",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5.46 × 10^8 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "bidmas_two_three_F",
+      "prompt": "Work out (4 + 3) × 4.",
+      "solution_steps": [
+        "Brackets: (4 + 3) = 7",
+        "Multiplication: 7 × 4 = 28"
+      ],
+      "final_answer": "28",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Brackets: (4 + 3) = 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiplication: 7 × 4 = 28",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "28 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "negative_ordering_F",
+      "prompt": "Write these numbers in ascending order: 7, 1, -3, 8, 9",
+      "solution_steps": [
+        "Place the numbers on a number line: 7, 1, -3, 8, 9.",
+        "Reading them in order from smallest to largest gives: -3, 1, 7, 8, 9."
+      ],
+      "final_answer": "-3, 1, 7, 8, 9",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Place the numbers on a number line: 7, 1, -3, 8, 9.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Reading them in order from smallest to largest gives: -3, 1, 7, 8, 9.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-3, 1, 7, 8, 9 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_divide_F",
+      "prompt": "Calculate 1/3 ÷ 1/4. Give your answer as a fraction in its simplest form.",
+      "solution_steps": [
+        "Keep-change-flip: 1/3 ÷ 1/4 = 1/3 × 4/1",
+        "Multiply: \\frac{(1×4)}{(3×1)} = 4/3",
+        "Simplify: 4/3"
+      ],
+      "final_answer": "4/3",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Keep-change-flip: 1/3 ÷ 1/4 = 1/3 × 4/1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply: \\frac{(1×4)}{(3×1)} = 4/3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify: 4/3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4/3 oe",
           "marks": 1
         }
       ],
@@ -142,27 +194,27 @@
     },
     {
       "topic_id": "decimals_round_sf_F",
-      "prompt": "Round 865.941 to 1 significant figure.",
+      "prompt": "Round 392.769 to 3 significant figures.",
       "solution_steps": [
-        "Identify the first 1 significant figure of 865.941.",
-        "865.941 rounded to 1 significant figure = 900"
+        "Identify the first 3 significant figures of 392.769.",
+        "392.769 rounded to 3 significant figures = 393"
       ],
-      "final_answer": "900",
+      "final_answer": "393",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Identify the first 1 significant figure of 865.941.",
+          "description": "Identify the first 3 significant figures of 392.769.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "865.941 rounded to 1 significant figure = 900",
+          "description": "392.769 rounded to 3 significant figures = 393",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "900 oe",
+          "description": "393 oe",
           "marks": 1
         }
       ],
@@ -170,98 +222,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_add_subtract_F",
-      "prompt": "Work out 5/6 + 4/10. Give your answer as a fraction in its simplest form.",
+      "topic_id": "error_interval_F",
+      "prompt": "A number, x, is 36000 rounded to the nearest 1000. Write down the error interval for x.",
       "solution_steps": [
-        "Find a common denominator: LCM(6, 10) = 30",
-        "Convert: 5/6 = 25/30, 4/10 = 12/30",
-        "Add: 25/30 + 12/30 = 37/30",
-        "Simplify: 37/30"
+        "36000 is rounded to the nearest 1000, so x can be up to half of that precision above or below 36000.",
+        "Lower bound: 36000 - 500 = 35500",
+        "Upper bound: 36000 + 500 = 36500"
       ],
-      "final_answer": "37/30",
-      "marks": 5,
+      "final_answer": "35500 ≤ x < 36500",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find a common denominator: LCM(6, 10) = 30",
+          "description": "36000 is rounded to the nearest 1000, so x can be up to half of that precision above or below 36000.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Convert: 5/6 = 25/30, 4/10 = 12/30",
+          "description": "Lower bound: 36000 - 500 = 35500",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add: 25/30 + 12/30 = 37/30",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Simplify: 37/30",
+          "description": "Upper bound: 36000 + 500 = 36500",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "37/30 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "fractions_equivalent_F",
-      "prompt": "9/10 = \\frac{72}{?}. Find the missing number.",
-      "solution_steps": [
-        "Find the scale factor between the numerators: 72 ÷ 9 = 8",
-        "Multiply the denominator by the same scale factor: 10 × 8 = 80"
-      ],
-      "final_answer": "80",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find the scale factor between the numerators: 72 ÷ 9 = 8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the denominator by the same scale factor: 10 × 8 = 80",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "80 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "negative_indices_F",
-      "prompt": "Fully simplify 2^-4 × 2^-3, giving your answer as a single power of 2.",
-      "solution_steps": [
-        "Add the powers: -4 + (-3) = -7",
-        "2^-4 × 2^-3 = 2^-7"
-      ],
-      "final_answer": "2^-7",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Add the powers: -4 + (-3) = -7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2^-4 × 2^-3 = 2^-7",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2^-7 oe",
+          "description": "35500 ≤ x < 36500 oe",
           "marks": 1
         }
       ],
@@ -270,33 +258,33 @@
     },
     {
       "topic_id": "sequences_nth_term_F",
-      "prompt": "Here are the first four terms of a sequence: -3, -8, -13, -18.\nFind an expression for the nth term.",
+      "prompt": "Here are the first four terms of a sequence: 9, 8, 7, 6.\nFind an expression for the nth term.",
       "solution_steps": [
-        "Common difference = -5",
-        "nth term = -5n + 2",
-        "nth term = -5n + 2"
+        "Common difference = -1",
+        "nth term = -1n + 10",
+        "nth term = -n + 10"
       ],
-      "final_answer": "-5n + 2",
+      "final_answer": "-n + 10",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Common difference = -5",
+          "description": "Common difference = -1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = -5n + 2",
+          "description": "nth term = -1n + 10",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = -5n + 2",
+          "description": "nth term = -n + 10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-5n + 2 oe",
+          "description": "-n + 10 oe",
           "marks": 1
         }
       ],
@@ -304,42 +292,81 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "satisfying_inequalities_F",
-      "prompt": "Solve the inequality -10 < 4x + 2 ≤ 4, then list the integer values of x that satisfy it.",
+      "topic_id": "simultaneous_forming_and_solving_F",
+      "prompt": "5 pens and 2 pencils cost £4.82 in total. 2 pens and 1 pencil cost £2.10 in total. Form and solve a pair of simultaneous equations to find the cost of one pen and one pencil.",
       "solution_steps": [
-        "-10 < 4x + 2 ≤ 4",
-        "Subtract 2 from all three parts:",
-        "-12 < 4x ≤ 2",
-        "Divide all three parts by 4:",
-        "-3 < x ≤ 1/2",
-        "The integers satisfying this are: -2, -1, 0"
+        "Let x = cost of one pen (pence), y = cost of one pencil (pence).",
+        "5x + 2y = 482  (1)",
+        "2x + 1y = 210  (2)",
+        "Solving simultaneously: x = 62, y = 86"
       ],
-      "final_answer": "-2, -1, 0",
+      "final_answer": "pen = £0.62, pencil = £0.86",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "-10 < 4x + 2 ≤ 4",
+          "description": "Let x = cost of one pen (pence), y = cost of one pencil (pence).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 2 from all three parts:",
+          "description": "5x + 2y = 482  (1)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-12 < 4x ≤ 2",
+          "description": "2x + 1y = 210  (2)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide all three parts by 4: -3 < x ≤ 1/2 The integers satisfying this are: -2, -1, 0",
+          "description": "Solving simultaneously: x = 62, y = 86",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-2, -1, 0 oe",
+          "description": "pen = £0.62, pencil = £0.86 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "substitution_F",
+      "prompt": "v = u + at. Find the value of v when u = 11, a = 6 and t = 7.",
+      "solution_steps": [
+        "v = u + at",
+        "v = 11 + 6 × 7",
+        "v = 11 + 42",
+        "v = 53"
+      ],
+      "final_answer": "v = 53",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "v = u + at",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "v = 11 + 6 × 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "v = 11 + 42",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "v = 53",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "v = 53 oe",
           "marks": 1
         }
       ],
@@ -348,27 +375,27 @@
     },
     {
       "topic_id": "functions_evaluate_F",
-      "prompt": "f(x) = -4x - 6. Find f(-8).",
+      "prompt": "f(x) = -5x - 1. Find f(-3).",
       "solution_steps": [
-        "f(-8) = -4×(-8) + -6",
-        "f(-8) = 26"
+        "f(-3) = -5×(-3) + -1",
+        "f(-3) = 14"
       ],
-      "final_answer": "26",
+      "final_answer": "14",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "f(-8) = -4×(-8) + -6",
+          "description": "f(-3) = -5×(-3) + -1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "f(-8) = 26",
+          "description": "f(-3) = 14",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "26 oe",
+          "description": "14 oe",
           "marks": 1
         }
       ],
@@ -376,500 +403,614 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_double_brackets_no_coefficient_F",
-      "prompt": "Expand and simplify: (x + 4)(x + 3)",
+      "topic_id": "plot_straight_line_F",
+      "prompt": "Complete a table of values for y = -2x + 4 for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "First: x × x = x^2",
-        "Outer: x × 3 = 3x",
-        "Inner: 4 × x = 4x",
-        "Last: 4 × 3 = 12",
-        "Combine like terms: x^2 + 7x + 12"
+        "Table of values for y = -2x + 4:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: 10, 8, 6, 4, 2, 0, -2",
+        "Plot each (x, y) point and join them with a single ruled straight line."
       ],
-      "final_answer": "x^2 + 7x + 12",
+      "final_answer": "Straight line: y = -2x + 4",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First: x × x = x^2",
+          "description": "Table of values for y = -2x + 4:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Outer: x × 3 = 3x",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Inner: 4 × x = 4x",
+          "description": "y: 10, 8, 6, 4, 2, 0, -2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Last: 4 × 3 = 12 Combine like terms: x^2 + 7x + 12",
+          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x^2 + 7x + 12 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "factorise_common_factor_F",
-      "prompt": "Factorise: 72x + 40",
-      "solution_steps": [
-        "Find the highest common factor of 72 and 40: 8",
-        "Factorise: 8(9x + 5)"
-      ],
-      "final_answer": "8(9x + 5)",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find the highest common factor of 72 and 40: 8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise: 8(9x + 5)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "8(9x + 5) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "cross_multiplication_F",
-      "prompt": "Solve the following equation.\n\\frac{8}{x} = \\frac{2}{10}",
-      "solution_steps": [
-        "Cross-multiply: 8 × 10 = 2 × x",
-        "x = 40"
-      ],
-      "final_answer": "x = 40",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Cross-multiply: 8 × 10 = 2 × x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 40",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = 40 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "substitution_rearrange_F",
-      "prompt": "A = (1/2)bh. Make h the subject of the formula, then find the value of h when A = 70 and b = 7.",
-      "solution_steps": [
-        "A = (1/2)bh",
-        "Rearrange to make h the subject: h = \\frac{2A}{b}",
-        "Substitute A = 70 and b = 7: h = \\frac{2 × 70}{7}",
-        "h = 20"
-      ],
-      "final_answer": "h = 20",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "A = (1/2)bh",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Rearrange to make h the subject: h = \\frac{2A}{b}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute A = 70 and b = 7: h = \\frac{2 × 70}{7}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "h = 20",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "h = 20 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_share_three_part_F",
-      "prompt": "Share 91 in the ratio 2:6:5.",
-      "solution_steps": [
-        "Total parts = 2 + 6 + 5 = 13",
-        "Value of one part = 91 ÷ 13 = 7",
-        "Share 1 = 2 × 7 = 14",
-        "Share 2 = 6 × 7 = 42",
-        "Share 3 = 5 × 7 = 35"
-      ],
-      "final_answer": "14 : 42 : 35",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total parts = 2 + 6 + 5 = 13",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Value of one part = 91 ÷ 13 = 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 2 × 7 = 14",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 6 × 7 = 42 Share 3 = 5 × 7 = 35",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "14 : 42 : 35 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_find_missing_share_F",
-      "prompt": "h : k = 5 : 4. h = 65. What is the value of k?",
-      "solution_steps": [
-        "Value of one part = 65 ÷ 5 = 13",
-        "k = 4 × 13 = 52"
-      ],
-      "final_answer": "52",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Value of one part = 65 ÷ 5 = 13",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "k = 4 × 13 = 52",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "52 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "percentage_of_amount_F",
-      "prompt": "Find 10% of 120.",
-      "solution_steps": [
-        "Convert 10% to a fraction: 10/100",
-        "Multiply: 10/100 × 120 = 12"
-      ],
-      "final_answer": "12",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert 10% to a fraction: 10/100",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply: 10/100 × 120 = 12",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "12 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simple_interest_F",
-      "prompt": "£2200 is invested at a simple interest rate of 5% per year for 2 years. Find the total amount in the account after 2 years.",
-      "solution_steps": [
-        "Simple interest formula: I = P × r × t ÷ 100",
-        "I = 2200 × 5 × 2 ÷ 100 = £220",
-        "Total in the account = P + I = £2200 + £220 = £2420"
-      ],
-      "final_answer": "£2420",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Simple interest formula: I = P × r × t ÷ 100",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "I = 2200 × 5 × 2 ÷ 100 = £220",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total in the account = P + I = £2200 + £220 = £2420",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£2420 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "volume_surface_area_cylinder_F",
-      "prompt": "Find the total surface area of the cylinder, correct to 1 decimal place.",
-      "solution_steps": [
-        "Surface area = 2πr² + 2πrh = (2 × π × 2²) + (2 × π × 2 × 4)",
-        "= 75.4 cm² (1 d.p., using a calculator value of π)"
-      ],
-      "final_answer": "75.4 cm²",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Surface area = 2πr² + 2πrh = (2 × π × 2²) + (2 × π × 2 × 4)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 75.4 cm² (1 d.p., using a calculator value of π)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "75.4 cm² oe",
+          "description": "Straight line: y = -2x + 4 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cylinder",
+        "kind": "function_graph",
         "params": {
-          "radius_label": "2 cm",
-          "height_label": "4 cm"
+          "kind": "linear",
+          "m": -2,
+          "c": 4,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -3,
+          "y_max": 11,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "linear",
+          "m": -2,
+          "c": 4,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -3,
+          "y_max": 11,
+          "table_points": [
+            [
+              -3,
+              10
+            ],
+            [
+              -2,
+              8
+            ],
+            [
+              -1,
+              6
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              3,
+              -2
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "linear_brackets_F",
+      "prompt": "Solve: 4(2x + 8) = 64",
+      "solution_steps": [
+        "Expand the bracket: 4(2x + 8) = 8x + 32",
+        "8x + 32 = 64",
+        "Subtract 32 from both sides:",
+        "8x = 32",
+        "Divide both sides by 8:",
+        "x = 4"
+      ],
+      "final_answer": "4",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: 4(2x + 8) = 8x + 32",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "8x + 32 = 64",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 32 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "8x = 32 Divide both sides by 8: x = 4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "solve_quadratic_factorising_F",
+      "prompt": "Solve x^2 + 15x + 54 = 0 by factorising.",
+      "solution_steps": [
+        "Find two numbers that multiply to 54 and add to 15: 9 and 6",
+        "Factorise: (x + 9)(x + 6) = 0",
+        "Either x + 9 = 0 or x + 6 = 0",
+        "x = -9 or x = -6"
+      ],
+      "final_answer": "x = -9 or x = -6",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find two numbers that multiply to 54 and add to 15: 9 and 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: (x + 9)(x + 6) = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Either x + 9 = 0 or x + 6 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -9 or x = -6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = -9 or x = -6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "inverse_proportion_noncalculator_F",
+      "prompt": "It takes 5 painters 24 hours to paint a fence. Working at the same rate, how long would it take 6 painters?",
+      "solution_steps": [
+        "Constant = 5 × 24 = 120",
+        "Time for 6 painters = 120 ÷ 6 = 20"
+      ],
+      "final_answer": "20 hours",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Constant = 5 × 24 = 120",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Time for 6 painters = 120 ÷ 6 = 20",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "20 hours oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "best_buys_noncalculator_F",
+      "prompt": "A shop sells breakfast cereal in different sizes: A: £7.20 for 600g; B: £3.80 for 200g. Which option is the better value for money? Show your working.",
+      "solution_steps": [
+        "Work out the price per 100g for each option:",
+        "A: £7.20 ÷ 600 × 100 = 120p per 100g",
+        "B: £3.80 ÷ 200 × 100 = 190p per 100g",
+        "The lowest price per 100g is A at 120p per 100g, so A is the best value."
+      ],
+      "final_answer": "A (£7.20 for 600g)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Work out the price per 100g for each option:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A: £7.20 ÷ 600 × 100 = 120p per 100g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B: £3.80 ÷ 200 × 100 = 190p per 100g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The lowest price per 100g is A at 120p per 100g, so A is the best value.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "A (£7.20 for 600g) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "direct_proportion_noncalculator_F",
+      "prompt": "If 12 rulers cost 192p, how much would 4 rulers cost?",
+      "solution_steps": [
+        "Unit value = 192p ÷ 12 = 16p",
+        "Answer = 16p × 4 = 64p"
+      ],
+      "final_answer": "64p",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Unit value = 192p ÷ 12 = 16p",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Answer = 16p × 4 = 64p",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "64p oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pressure_F",
+      "prompt": "A crate exerts a force of 4645 N and a pressure of 178 N/m². Find the contact area, correct to 2 decimal places.",
+      "solution_steps": [
+        "area = force ÷ pressure",
+        "area = 4645 ÷ 178 = 26.1 m² (2 d.p.)"
+      ],
+      "final_answer": "26.1 m²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "area = force ÷ pressure",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "area = 4645 ÷ 178 = 26.1 m² (2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "26.1 m² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_difference_F",
+      "prompt": "h : k = 3 : 7.\nk - h = 24.\nFind h and k.",
+      "solution_steps": [
+        "Difference in parts = 7 - 3 = 4 parts",
+        "Value of one part = 24 ÷ 4 = 6",
+        "h = 3 × 6 = 18",
+        "k = 7 × 6 = 42"
+      ],
+      "final_answer": "h = 18, k = 42",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Difference in parts = 7 - 3 = 4 parts",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Value of one part = 24 ÷ 4 = 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "h = 3 × 6 = 18",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "k = 7 × 6 = 42",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "h = 18, k = 42 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_distance_time_F",
+      "prompt": "A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop 5 km away after 20 minutes. They stay at the shop until 30 minutes, then cycle straight back home at a constant speed, arriving home at 50 minutes. Draw a distance-time graph to show this journey, and find the total distance travelled.",
+      "solution_steps": [
+        "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 5 km after 20 minutes.",
+        "Stay at 5 km until 30 minutes.",
+        "Return at a constant speed to 0 km, arriving home at 50 minutes.",
+        "Plot these points and join each stage with a straight line segment.",
+        "Total distance travelled = 5 km out + 5 km back = 10 km"
+      ],
+      "final_answer": "10 km",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 5 km after 20 minutes.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Stay at 5 km until 30 minutes.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Return at a constant speed to 0 km, arriving home at 50 minutes.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot these points and join each stage with a straight line segment. Total distance travelled = 5 km out + 5 km back = 10 km",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "10 km oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              20,
+              5
+            ],
+            [
+              30,
+              5
+            ],
+            [
+              50,
+              0
+            ]
+          ],
+          "x_max": 55,
+          "y_max": 7,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)",
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              20,
+              5
+            ],
+            [
+              30,
+              5
+            ],
+            [
+              50,
+              0
+            ]
+          ],
+          "x_max": 55,
+          "y_max": 7,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)"
+        }
+      }
+    },
+    {
+      "topic_id": "area_sector_F",
+      "prompt": "Find the area of the following sector, correct to 3 significant figures.",
+      "solution_steps": [
+        "Area = (θ ÷ 360) × π × r² = (43 ÷ 360) × π × 6²",
+        "= 13.5 cm² (3 s.f., using a calculator value of π)"
+      ],
+      "final_answer": "13.5 cm²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area = (θ ÷ 360) × π × r² = (43 ÷ 360) × π × 6²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 13.5 cm² (3 s.f., using a calculator value of π)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "13.5 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "sector",
+        "params": {
+          "angle": 43,
+          "radius_label": "6 cm",
+          "angle_label": "43°"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_hypotenuse_triple_F",
-      "prompt": "A right-angled triangle has sides 44 cm and 240 cm. Find the length of x.",
+      "topic_id": "area_parallelogram_F",
+      "prompt": "Find the area of the following parallelogram.",
       "solution_steps": [
-        "c² = a² + b² = 44² + 240² = 1936 + 57600 = 59536",
-        "c = √59536 = 244"
+        "Area = base × height = 16 × 12 = 192 cm²"
       ],
-      "final_answer": "244 cm",
-      "marks": 3,
+      "final_answer": "192 cm²",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "c² = a² + b² = 44² + 240² = 1936 + 57600 = 59536",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "c = √59536 = 244",
+          "description": "Area = base × height = 16 × 12 = 192 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "244 cm oe",
+          "description": "192 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "parallelogram",
+        "params": {
+          "base": 16,
+          "height": 12,
+          "base_label": "16 cm",
+          "height_label": "12 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pythagoras_shorter_leg_F",
+      "prompt": "A right-angled triangle has hypotenuse 123 cm and one side 27 cm. Find the length of x.",
+      "solution_steps": [
+        "b² = c² - a² = 123² - 27² = 15129 - 729 = 14400",
+        "b = √14400 = 120"
+      ],
+      "final_answer": "120 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "b² = c² - a² = 123² - 27² = 15129 - 729 = 14400",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "b = √14400 = 120",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "120 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "right_triangle",
         "params": {
-          "leg1_label": "44 cm",
-          "leg2_label": "240 cm",
-          "hyp_label": "x"
+          "leg1_label": "27 cm",
+          "leg2_label": "x",
+          "hyp_label": "123 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "stats_averages_combined_F",
-      "prompt": "For this data set, find (a) the mean (b) the mode (c) the median (d) the range: 4, 13, 7, 13, 5, 13, 17.",
+      "topic_id": "construction_perpendicular_bisector_F",
+      "prompt": "Line segment IN has length 10 cm. Describe, step by step, how to construct the perpendicular bisector of IN using only a ruler and a pair of compasses.",
       "solution_steps": [
-        "(a) Mean = (4 + 13 + 7 + 13 + 5 + 13 + 17) ÷ 7 = 72 ÷ 7 = 72/7",
-        "(b) Mode = the most frequent value = 13 (appears 3 times)",
-        "(c) Median: Sorted: 4, 5, 7, 13, 13, 13, 17. Middle value = 13.",
-        "(d) Range = 17 - 4 = 13"
+        "Open the compasses to a radius more than half of 10 cm (more than half the length of IN).",
+        "With the compass point on I, draw an arc above and below the line.",
+        "Without changing the compass radius, place the point on N and draw two more arcs, crossing the first two.",
+        "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of IN."
       ],
-      "final_answer": "Mean = 72/7, Mode = 13, Median = 13, Range = 13",
+      "final_answer": "A straight line through the two arc intersections, crossing IN at its midpoint at a right angle.",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "(a) Mean = (4 + 13 + 7 + 13 + 5 + 13 + 17) ÷ 7 = 72 ÷ 7 = 72/7",
+          "description": "Open the compasses to a radius more than half of 10 cm (more than half the length of IN).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(b) Mode = the most frequent value = 13 (appears 3 times)",
+          "description": "With the compass point on I, draw an arc above and below the line.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(c) Median: Sorted: 4, 5, 7, 13, 13, 13, 17. Middle value = 13.",
+          "description": "Without changing the compass radius, place the point on N and draw two more arcs, crossing the first two.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(d) Range = 17 - 4 = 13",
+          "description": "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of IN.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Mean = 72/7, Mode = 13, Median = 13, Range = 13 oe",
+          "description": "A straight line through the two arc intersections, crossing IN at its midpoint at a right angle. oe",
           "marks": 1
         }
       ],
       "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "construction_perpendicular_from_point_F",
-      "prompt": "Point K lies on line segment EO (length 14 cm). Describe, step by step, how to construct the perpendicular to EO at K using only a ruler and a pair of compasses.",
-      "solution_steps": [
-        "With the compass point on K, draw two arcs of equal radius along the line EO, one on each side of K, marking two new points that are the same distance from K.",
-        "Open the compasses to a larger radius than before.",
-        "With the point on each of the two new points in turn, draw two arcs above (or below) the line so that they intersect each other.",
-        "Draw a straight line from K through the point where these two arcs intersect. This line is perpendicular to EO at K."
-      ],
-      "final_answer": "The straight line from K through the intersection of the two larger-radius arcs is perpendicular to EO at K.",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "With the compass point on K, draw two arcs of equal radius along the line EO, one on each side of K, marking two new points that are the same distance from K.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Open the compasses to a larger radius than before.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "With the point on each of the two new points in turn, draw two arcs above (or below) the line so that they intersect each other.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Draw a straight line from K through the point where these two arcs intersect. This line is perpendicular to EO at K.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "The straight line from K through the intersection of the two larger-radius arcs is perpendicular to EO at K. oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "trig_missing_angle_F",
-      "prompt": "In the triangle shown, find the angle x, correct to 1 decimal place.",
-      "solution_steps": [
-        "Use tan, since we know two of the three sides.",
-        "tan(x) = 19 ÷ 7",
-        "x = tan^-1(19 ÷ 7) = 69.8° (1 d.p.)"
-      ],
-      "final_answer": "69.8°",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Use tan, since we know two of the three sides.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "tan(x) = 19 ÷ 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = tan^-1(19 ÷ 7) = 69.8° (1 d.p.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "69.8° oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "trig_triangle",
-        "params": {
-          "adjacent_label": "7 cm",
-          "opposite_label": "19 cm",
-          "hyp_label": null,
-          "angle_label": "x°"
-        }
-      },
       "solution_diagram": null
     },
     {
       "topic_id": "tree_diagram_independent_F",
-      "prompt": "A bag contains 7 red and 2 blue counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that the first counter is blue and the second counter is blue.",
+      "prompt": "A bag contains 4 red and 7 green counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that the first counter is green and the second counter is green.",
       "solution_steps": [
-        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(red) = 7/9, P(blue) = 2/9.",
-        "P(blue then blue) = 2/9 × 2/9 = 4/81"
+        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(red) = 4/11, P(green) = 7/11.",
+        "P(green then green) = 7/11 × 7/11 = 49/121"
       ],
-      "final_answer": "4/81",
+      "final_answer": "49/121",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(red) = 7/9, P(blue) = 2/9.",
+          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(red) = 4/11, P(green) = 7/11.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(blue then blue) = 2/9 × 2/9 = 4/81",
+          "description": "P(green then green) = 7/11 × 7/11 = 49/121",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4/81 oe",
+          "description": "49/121 oe",
           "marks": 1
         }
       ],
@@ -879,32 +1020,32 @@
           "stage1": [
             [
               "Red",
-              "7/9"
+              "4/11"
             ],
             [
-              "Blue",
-              "2/9"
+              "Green",
+              "7/11"
             ]
           ],
           "stage2": [
             [
               [
                 "Red",
-                "7/9"
+                "4/11"
               ],
               [
-                "Blue",
-                "2/9"
+                "Green",
+                "7/11"
               ]
             ],
             [
               [
                 "Red",
-                "7/9"
+                "4/11"
               ],
               [
-                "Blue",
-                "2/9"
+                "Green",
+                "7/11"
               ]
             ]
           ]
@@ -913,61 +1054,18 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_complement_F",
-      "prompt": "A bag contains 3 green, 8 yellow, 2 blue, 5 purple counters. A counter is picked at random. Find the probability that it is NOT purple.",
+      "topic_id": "fractions_equivalent_F",
+      "prompt": "Which of the following fractions is equivalent to 3/4? A) 8/12, B) 27/40, C) 9/12, D) 10/12",
       "solution_steps": [
-        "P(purple) = 5/18 = 5/18",
-        "P(not purple) = 1 - 5/18 = 13/18"
+        "Cross-multiply 3/4 against each option: a candidate p/q is equivalent only if 3 × q = p × 4.",
+        "Only option C) 9/12 works: 3 × 12 = 9 × 4 = 36."
       ],
-      "final_answer": "13/18",
-      "marks": 3,
+      "final_answer": "C) 9/12",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "P(purple) = 5/18 = 5/18",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(not purple) = 1 - 5/18 = 13/18",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "13/18 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "bag_of_counters",
-        "params": {
-          "counts": {
-            "green": 3,
-            "yellow": 8,
-            "blue": 2,
-            "purple": 5
-          }
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "stats_range_F",
-      "prompt": "Find the range of this data set: 5, 18, 12, 21, 13, 25, 5.",
-      "solution_steps": [
-        "Range = largest - smallest = 25 - 5 = 20"
-      ],
-      "final_answer": "20",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Range = largest - smallest = 25 - 5 = 20",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "20 oe",
+          "code": "B1",
+          "description": "C) 9/12 (selecting the correct option)",
           "marks": 1
         }
       ],

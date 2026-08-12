@@ -851,123 +851,89 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_missing_angle_F",
-      "prompt": "In the triangle shown, find the angle x, correct to 1 decimal place.",
+      "topic_id": "congruent_triangle_proof_F",
+      "prompt": "Shown below are two congruent triangles. Give a reason why they are congruent. A) SSS  B) SAS  C) RHS  D) ASA",
       "solution_steps": [
-        "Use cos, since we know two of the three sides.",
-        "cos(x) = 12 ÷ 17",
-        "x = cos^-1(12 ÷ 17) = 45.1° (1 d.p.)"
+        "Look at which measurements are marked equal on both triangles - here they match the Angle-Side-Angle (ASA) pattern.",
+        "So the two triangles are congruent by Angle-Side-Angle (ASA)."
       ],
-      "final_answer": "45.1°",
-      "marks": 4,
+      "final_answer": "D) ASA",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "Use cos, since we know two of the three sides.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "cos(x) = 12 ÷ 17",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = cos^-1(12 ÷ 17) = 45.1° (1 d.p.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "45.1° oe",
+          "code": "B1",
+          "description": "D) ASA (selecting the correct option)",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "trig_triangle",
+        "kind": "two_triangle_congruence",
         "params": {
-          "adjacent_label": "12 cm",
-          "opposite_label": null,
-          "hyp_label": "17 cm",
-          "angle_label": "x°"
+          "side_labels_1": [
+            [
+              0,
+              1,
+              "11 cm"
+            ]
+          ],
+          "side_labels_2": [
+            [
+              0,
+              1,
+              "11 cm"
+            ]
+          ],
+          "angle_labels_1": [
+            [
+              0,
+              "35°"
+            ],
+            [
+              1,
+              "40°"
+            ]
+          ],
+          "angle_labels_2": [
+            [
+              0,
+              "35°"
+            ],
+            [
+              1,
+              "40°"
+            ]
+          ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "tree_diagram_independent_F",
-      "prompt": "A bag contains 7 yellow and 5 red counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that both counters are the same colour.",
+      "topic_id": "pythagoras_ladder_context_F",
+      "prompt": "A ladder of length 50 m leans against a vertical wall with its base 14 m from the wall. Find the height the ladder reaches up the wall.",
       "solution_steps": [
-        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(yellow) = 7/12, P(red) = 5/12.",
-        "P(both yellow) = 7/12 × 7/12 = 49/144",
-        "P(both red) = 5/12 × 5/12 = 25/144",
-        "P(same colour) = 49/144 + 25/144 = 37/72"
+        "height² = ladder² - base² = 50² - 14² = 2500 - 196 = 2304",
+        "height = √2304 = 48 m"
       ],
-      "final_answer": "37/72",
-      "marks": 5,
+      "final_answer": "48 m",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(yellow) = 7/12, P(red) = 5/12.",
+          "description": "height² = ladder² - base² = 50² - 14² = 2500 - 196 = 2304",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(both yellow) = 7/12 × 7/12 = 49/144",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(both red) = 5/12 × 5/12 = 25/144",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(same colour) = 49/144 + 25/144 = 37/72",
+          "description": "height = √2304 = 48 m",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "37/72 oe",
+          "description": "48 m oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "tree_diagram",
-        "params": {
-          "stage1": [
-            [
-              "Yellow",
-              "7/12"
-            ],
-            [
-              "Red",
-              "5/12"
-            ]
-          ],
-          "stage2": [
-            [
-              [
-                "Yellow",
-                "7/12"
-              ],
-              [
-                "Red",
-                "5/12"
-              ]
-            ],
-            [
-              [
-                "Yellow",
-                "7/12"
-              ],
-              [
-                "Red",
-                "5/12"
-              ]
-            ]
-          ]
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -1062,117 +1028,111 @@
       }
     },
     {
-      "topic_id": "composite_bar_chart_F",
-      "prompt": "The composite bar chart shows the number of commuters split by Bus and Car. Find the difference between Bus and Car for Week 1.",
+      "topic_id": "relative_frequency_F",
+      "prompt": "A coin is tested 100 times, and it lands on heads 64 times. Use this relative frequency to estimate how many times this would happen in 225 trials.",
       "solution_steps": [
-        "Bus: 9, Car: 7.",
-        "Difference = 2."
+        "Relative frequency = frequency ÷ number of trials = 64/100 = 16/25",
+        "Estimated number of times in 225 trials = 16/25 × 225 = 144"
       ],
-      "final_answer": "2",
+      "final_answer": "144",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Bus: 9, Car: 7.",
+          "description": "Relative frequency = frequency ÷ number of trials = 64/100 = 16/25",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Difference = 2.",
+          "description": "Estimated number of times in 225 trials = 16/25 × 225 = 144",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2 oe",
+          "description": "144 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "bar_chart",
-        "params": {
-          "categories": [
-            "Week 1",
-            "Week 2",
-            "Week 3"
-          ],
-          "series": [
-            [
-              9,
-              7
-            ],
-            [
-              11,
-              5
-            ],
-            [
-              13,
-              4
-            ]
-          ],
-          "series_labels": [
-            "Bus",
-            "Car"
-          ],
-          "y_label": "Frequency"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof_F",
-      "prompt": "Shown below are two congruent triangles. Give a reason why they are congruent. A) SSS  B) SAS  C) RHS  D) ASA",
+      "topic_id": "venn_diagram_shading_F",
+      "prompt": "Shade the region that represents the elements that are not in both A and B at the same time.",
       "solution_steps": [
-        "Look at which measurements are marked equal on both triangles - here they match the Angle-Side-Angle (ASA) pattern.",
-        "So the two triangles are congruent by Angle-Side-Angle (ASA)."
+        "The Venn diagram has two circles, A and B, inside a rectangle representing everything being considered.",
+        "'Shade the region that represents the elements that are not in both A and B at the same time.' tells you which of the four regions (in A only, in B only, in both, or in neither) needs shading.",
+        "Everywhere except the overlap of A and B."
       ],
-      "final_answer": "D) ASA",
-      "marks": 1,
+      "final_answer": "Everywhere except the overlap of A and B.",
+      "marks": 4,
       "mark_scheme": [
         {
-          "code": "B1",
-          "description": "D) ASA (selecting the correct option)",
+          "code": "M1",
+          "description": "The Venn diagram has two circles, A and B, inside a rectangle representing everything being considered.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "'Shade the region that represents the elements that are not in both A and B at the same time.' tells you which of the four regions (in A only, in B only, in both, or in neither) needs shading.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Everywhere except the overlap of A and B.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Everywhere except the overlap of A and B. oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "two_triangle_congruence",
+        "kind": "venn_diagram",
         "params": {
-          "side_labels_1": [
-            [
-              0,
-              1,
-              "11 cm"
-            ]
-          ],
-          "side_labels_2": [
-            [
-              0,
-              1,
-              "11 cm"
-            ]
-          ],
-          "angle_labels_1": [
-            [
-              0,
-              "35°"
-            ],
-            [
-              1,
-              "40°"
-            ]
-          ],
-          "angle_labels_2": [
-            [
-              0,
-              "35°"
-            ],
-            [
-              1,
-              "40°"
-            ]
+          "labels": [
+            "A",
+            "B"
           ]
         }
       },
+      "solution_diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "shade": [
+            "a_only",
+            "b_only",
+            "neither"
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "stats_mean_F",
+      "prompt": "Find the mean of this data set: 4, 25, 19, 19, 21.",
+      "solution_steps": [
+        "Mean = sum ÷ count = (4 + 25 + 19 + 19 + 21) ÷ 5 = 88 ÷ 5 = 17.60"
+      ],
+      "final_answer": "17.60",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Mean = sum ÷ count = (4 + 25 + 19 + 19 + 21) ÷ 5 = 88 ÷ 5 = 17.60",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "17.60 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     }
   ]

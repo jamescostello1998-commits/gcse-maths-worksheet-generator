@@ -784,22 +784,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "symmetry_lines_F",
-      "prompt": "The diagram shows an irregular pentagon. How many lines of symmetry does it have?",
+      "topic_id": "symmetry_rotational_F",
+      "prompt": "The diagram shows a regular hexagon. State the order of rotational symmetry.",
       "solution_steps": [
-        "An irregular pentagon (of this kind) has no lines of symmetry - no mirror line maps it back onto itself."
+        "Rotating the regular hexagon about its centre, it looks exactly the same 6 times during a full 360° turn.",
+        "So the order of rotational symmetry is 6."
       ],
-      "final_answer": "0 lines of symmetry",
-      "marks": 2,
+      "final_answer": "order 6",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "An irregular pentagon (of this kind) has no lines of symmetry - no mirror line maps it back onto itself.",
+          "description": "Rotating the regular hexagon about its centre, it looks exactly the same 6 times during a full 360° turn.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "So the order of rotational symmetry is 6.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0 lines of symmetry oe",
+          "description": "order 6 oe",
           "marks": 1
         }
       ],
@@ -808,24 +814,28 @@
         "params": {
           "vertices": [
             [
-              0,
-              0
+              2.4492935982947064e-16,
+              4.0
             ],
             [
-              5,
-              0
+              -3.464101615137755,
+              1.9999999999999998
             ],
             [
-              6,
-              3
+              -3.4641016151377544,
+              -2.0000000000000004
             ],
             [
-              2,
-              5
+              -7.347880794884119e-16,
+              -4.0
             ],
             [
-              -2,
-              2
+              3.4641016151377535,
+              -2.0000000000000018
+            ],
+            [
+              3.4641016151377544,
+              2.0
             ]
           ],
           "blank": true
@@ -836,27 +846,215 @@
         "params": {
           "vertices": [
             [
-              0,
-              0
+              2.4492935982947064e-16,
+              4.0
             ],
             [
-              5,
-              0
+              -3.464101615137755,
+              1.9999999999999998
+            ],
+            [
+              -3.4641016151377544,
+              -2.0000000000000004
+            ],
+            [
+              -7.347880794884119e-16,
+              -4.0
+            ],
+            [
+              3.4641016151377535,
+              -2.0000000000000018
+            ],
+            [
+              3.4641016151377544,
+              2.0
+            ]
+          ],
+          "rotation_centre": [
+            -3.036877248681882e-16,
+            -4.070817756958907e-16
+          ],
+          "rotation_order": 6
+        }
+      }
+    },
+    {
+      "topic_id": "volume_surface_area_cube_F",
+      "prompt": "A cube has side length 12 cm. Find its volume.",
+      "solution_steps": [
+        "Volume = side³ = 12³ = 1728 cm³"
+      ],
+      "final_answer": "1728 cm³",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Volume = side³ = 12³ = 1728 cm³",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1728 cm³ oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "cuboid",
+        "params": {
+          "width_label": "12 cm",
+          "height_label": "12 cm",
+          "length_label": "12 cm",
+          "is_cube": true
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "stats_mean_F",
+      "prompt": "Find the mean of this data set: 30, 5, 13, 11, 23, 22.",
+      "solution_steps": [
+        "Mean = sum ÷ count = (30 + 5 + 13 + 11 + 23 + 22) ÷ 6 = 104 ÷ 6 = 52/3"
+      ],
+      "final_answer": "52/3",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Mean = sum ÷ count = (30 + 5 + 13 + 11 + 23 + 22) ÷ 6 = 104 ÷ 6 = 52/3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "52/3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "transform_enlarge_complete_F",
+      "prompt": "Enlarge shape A by scale factor 2, centre (11, 1).",
+      "solution_steps": [
+        "The centre of enlargement is (11, 1) and the scale factor is 2.",
+        "For each vertex, find its displacement from the centre and multiply by the scale factor: e.g. (3, -3) is a displacement of (-8, -4) from the centre, so it maps to (11, 1) + 2 × (-8, -4) = (-5, -7).",
+        "Repeat for every vertex. The image, shape B, has vertices (-5, -7), (3, -7), (1, 1), (-7, -1)."
+      ],
+      "final_answer": "Image (shape B): (-5, -7), (3, -7), (1, 1), (-7, -1)",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The centre of enlargement is (11, 1) and the scale factor is 2.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: e.g. (3, -3) is a displacement of (-8, -4) from the centre, so it maps to (11, 1) + 2 × (-8, -4) = (-5, -7).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Repeat for every vertex. The image, shape B, has vertices (-5, -7), (3, -7), (1, 1), (-7, -1).",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Image (shape B): (-5, -7), (3, -7), (1, 1), (-7, -1) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              3,
+              -3
+            ],
+            [
+              7,
+              -3
             ],
             [
               6,
-              3
+              1
             ],
             [
               2,
-              5
-            ],
-            [
-              -2,
-              2
+              0
             ]
           ],
-          "symmetry_lines": []
+          "original_labels": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "original_shape_label": "A"
+        }
+      },
+      "solution_diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              3,
+              -3
+            ],
+            [
+              7,
+              -3
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          "original_labels": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "original_shape_label": "A",
+          "image_vertices": [
+            [
+              -5,
+              -7
+            ],
+            [
+              3,
+              -7
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              -7,
+              -1
+            ]
+          ],
+          "image_labels": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "image_shape_label": "B"
         }
       }
     },
@@ -886,6 +1084,81 @@
           "width_label": "10 cm",
           "height_label": "4 cm",
           "length_label": "3 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pythagoras_hypotenuse_triple_F",
+      "prompt": "A right-angled triangle has sides 60 cm and 63 cm. Find the length of x.",
+      "solution_steps": [
+        "c² = a² + b² = 60² + 63² = 3600 + 3969 = 7569",
+        "c = √7569 = 87"
+      ],
+      "final_answer": "87 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "c² = a² + b² = 60² + 63² = 3600 + 3969 = 7569",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "c = √7569 = 87",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "87 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "right_triangle",
+        "params": {
+          "leg1_label": "60 cm",
+          "leg2_label": "63 cm",
+          "hyp_label": "x"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_listing_outcomes_F",
+      "prompt": "A coin is flipped and a 4-sided spinner (labelled P, G, B, R) is spun. List all the possible outcomes.",
+      "solution_steps": [
+        "There are 2 possible outcomes for the first event and 4 for the second, so there are 2 × 4 = 8 possible combined outcomes.",
+        "For each outcome of the first event, list every outcome of the second event: HP, HG, HB, HR, TP, TG, TB, TR"
+      ],
+      "final_answer": "HP, HG, HB, HR, TP, TG, TB, TR",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "There are 2 possible outcomes for the first event and 4 for the second, so there are 2 × 4 = 8 possible combined outcomes.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For each outcome of the first event, list every outcome of the second event: HP, HG, HB, HR, TP, TG, TB, TR",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "HP, HG, HB, HR, TP, TG, TB, TR oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "spinner",
+        "params": {
+          "sectors": [
+            "P",
+            "G",
+            "B",
+            "R"
+          ]
         }
       },
       "solution_diagram": null
@@ -937,257 +1210,6 @@
           ]
         }
       },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "transform_enlarge_complete_F",
-      "prompt": "Enlarge shape ABCD by scale factor 2, centre (11, 1).",
-      "solution_steps": [
-        "The centre of enlargement is (11, 1) and the scale factor is 2.",
-        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-8, -4) from the centre, so A' = (11, 1) + 2 × (-8, -4) = (-5, -7).",
-        "Repeat for every vertex: A(3, -3) -> A'(-5, -7), B(7, -3) -> B'(3, -7), C(6, 1) -> C'(1, 1), D(2, 0) -> D'(-7, -1)"
-      ],
-      "final_answer": "A'(-5, -7), B'(3, -7), C'(1, 1), D'(-7, -1)",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The centre of enlargement is (11, 1) and the scale factor is 2.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-8, -4) from the centre, so A' = (11, 1) + 2 × (-8, -4) = (-5, -7).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Repeat for every vertex: A(3, -3) -> A'(-5, -7), B(7, -3) -> B'(3, -7), C(6, 1) -> C'(1, 1), D(2, 0) -> D'(-7, -1)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "A'(-5, -7), B'(3, -7), C'(1, 1), D'(-7, -1) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              3,
-              -3
-            ],
-            [
-              7,
-              -3
-            ],
-            [
-              6,
-              1
-            ],
-            [
-              2,
-              0
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
-          ],
-          "centre": [
-            11,
-            1
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              3,
-              -3
-            ],
-            [
-              7,
-              -3
-            ],
-            [
-              6,
-              1
-            ],
-            [
-              2,
-              0
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
-          ],
-          "centre": [
-            11,
-            1
-          ],
-          "image_vertices": [
-            [
-              -5,
-              -7
-            ],
-            [
-              3,
-              -7
-            ],
-            [
-              1,
-              1
-            ],
-            [
-              -7,
-              -1
-            ]
-          ],
-          "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'"
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "plans_and_elevations_F",
-      "prompt": "The diagram shows a solid with its dimensions labelled. Draw and label the front elevation, side elevation, and plan view of the solid.",
-      "solution_steps": [
-        "The front elevation is what you see looking at the solid straight on from the front.",
-        "Front elevation: a right-angled triangle, base 6 cm and height 8 cm.",
-        "The side elevation is what you see looking at the solid straight on from the side.",
-        "Side elevation: a rectangle, 7 cm by 8 cm.",
-        "The plan view is what you see looking straight down at the solid from above.",
-        "Plan view: a rectangle, 6 cm by 7 cm."
-      ],
-      "final_answer": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm. Side elevation: a rectangle, 7 cm by 8 cm. Plan view: a rectangle, 6 cm by 7 cm.",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The front elevation is what you see looking at the solid straight on from the front.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The side elevation is what you see looking at the solid straight on from the side.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Side elevation: a rectangle, 7 cm by 8 cm. The plan view is what you see looking straight down at the solid from above. Plan view: a rectangle, 6 cm by 7 cm.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm. Side elevation: a rectangle, 7 cm by 8 cm. Plan view: a rectangle, 6 cm by 7 cm. oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "plans_and_elevations_question",
-        "params": {
-          "shape": "triangular_prism",
-          "base_label": "6 cm",
-          "triangle_height_label": "8 cm",
-          "length_label": "7 cm"
-        }
-      },
-      "solution_diagram": {
-        "kind": "plans_and_elevations",
-        "params": {
-          "shape": "triangular_prism",
-          "base": 6,
-          "tri_height": 8,
-          "length": 7,
-          "base_label": "6 cm",
-          "tri_height_label": "8 cm",
-          "length_label": "7 cm"
-        }
-      }
-    },
-    {
-      "topic_id": "probability_expectation_F",
-      "prompt": "A biased coin has P(heads) = 5/10. The coin is flipped 60 times. How many times would you expect to get heads?",
-      "solution_steps": [
-        "Expected number of times = probability × number of trials = 5/10 × 60",
-        "= 30"
-      ],
-      "final_answer": "30",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Expected number of times = probability × number of trials = 5/10 × 60",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 30",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "30 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "fractions_equivalent_F",
-      "prompt": "1/2 = \\frac{?}{6}. Find the missing number.",
-      "solution_steps": [
-        "Find the scale factor between the denominators: 6 ÷ 2 = 3",
-        "Multiply the numerator by the same scale factor: 1 × 3 = 3"
-      ],
-      "final_answer": "3",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find the scale factor between the denominators: 6 ÷ 2 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the numerator by the same scale factor: 1 × 3 = 3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
       "solution_diagram": null
     }
   ]

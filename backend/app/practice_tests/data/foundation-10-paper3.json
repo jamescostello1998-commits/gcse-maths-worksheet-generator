@@ -94,99 +94,27 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_distance_time_F",
-      "prompt": "A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop 6 km away after 15 minutes. They stay at the shop until 30 minutes, then cycle straight back home at a constant speed, arriving home at 40 minutes. Draw a distance-time graph to show this journey, and find the total distance travelled.",
+      "topic_id": "negative_multiply_divide_F",
+      "prompt": "Work out 5 × (-8).",
       "solution_steps": [
-        "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 6 km after 15 minutes.",
-        "Stay at 6 km until 30 minutes.",
-        "Return at a constant speed to 0 km, arriving home at 40 minutes.",
-        "Plot these points and join each stage with a straight line segment.",
-        "Total distance travelled = 6 km out + 6 km back = 12 km"
+        "5 × (-8) = -40"
       ],
-      "final_answer": "12 km",
-      "marks": 5,
+      "final_answer": "-40",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 6 km after 15 minutes.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Stay at 6 km until 30 minutes.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Return at a constant speed to 0 km, arriving home at 40 minutes.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot these points and join each stage with a straight line segment. Total distance travelled = 6 km out + 6 km back = 12 km",
+          "description": "5 × (-8) = -40",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 km oe",
+          "description": "-40 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              15,
-              6
-            ],
-            [
-              30,
-              6
-            ],
-            [
-              40,
-              0
-            ]
-          ],
-          "x_max": 45,
-          "y_max": 8,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)",
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              15,
-              6
-            ],
-            [
-              30,
-              6
-            ],
-            [
-              40,
-              0
-            ]
-          ],
-          "x_max": 45,
-          "y_max": 8,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)"
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     },
     {
       "topic_id": "negative_add_subtract_F",
@@ -790,63 +718,105 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cylinder_F",
-      "prompt": "Find the total surface area of the cylinder, correct to 2 decimal places.",
+      "topic_id": "symmetry_lines_F",
+      "prompt": "The diagram shows an irregular pentagon. How many lines of symmetry does it have?",
       "solution_steps": [
-        "Surface area = 2πr² + 2πrh = (2 × π × 10²) + (2 × π × 10 × 19)",
-        "= 1822.12 cm² (2 d.p., using a calculator value of π)"
+        "An irregular pentagon (of this kind) has no lines of symmetry - no mirror line maps it back onto itself."
       ],
-      "final_answer": "1822.12 cm²",
-      "marks": 3,
+      "final_answer": "0 lines of symmetry",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Surface area = 2πr² + 2πrh = (2 × π × 10²) + (2 × π × 10 × 19)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 1822.12 cm² (2 d.p., using a calculator value of π)",
+          "description": "An irregular pentagon (of this kind) has no lines of symmetry - no mirror line maps it back onto itself.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1822.12 cm² oe",
+          "description": "0 lines of symmetry oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cylinder",
+        "kind": "symmetry_shape",
         "params": {
-          "radius_label": "10 cm",
-          "height_label": "19 cm"
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              -2,
+              2
+            ]
+          ],
+          "blank": true
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "symmetry_shape",
+        "params": {
+          "vertices": [
+            [
+              0,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              -2,
+              2
+            ]
+          ],
+          "symmetry_lines": []
+        }
+      }
     },
     {
       "topic_id": "transform_reflect_complete_F",
-      "prompt": "Reflect shape ABC in the line y = 2.",
+      "prompt": "Reflect shape A in the line y = 2.",
       "solution_steps": [
-        "Reflect each vertex in the line y = 2: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
-        "A(1, -2) -> A'(1, 6), B(4, -2) -> B'(4, 6), C(1, 0) -> C'(1, 4)"
+        "Reflect each vertex of shape A in the line y = 2: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+        "The image, shape B, has vertices (1, 6), (4, 6), (1, 4)."
       ],
-      "final_answer": "A'(1, 6), B'(4, 6), C'(1, 4)",
+      "final_answer": "Image (shape B): (1, 6), (4, 6), (1, 4)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Reflect each vertex in the line y = 2: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+          "description": "Reflect each vertex of shape A in the line y = 2: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A(1, -2) -> A'(1, 6), B(4, -2) -> B'(4, 6), C(1, 0) -> C'(1, 4)",
+          "description": "The image, shape B, has vertices (1, 6), (4, 6), (1, 4).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(1, 6), B'(4, 6), C'(1, 4) oe",
+          "description": "Image (shape B): (1, 6), (4, 6), (1, 4) oe",
           "marks": 1
         }
       ],
@@ -872,10 +842,11 @@
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C"
+            "",
+            "",
+            ""
           ],
+          "original_shape_label": "A",
           "mirror_line": {
             "type": "horizontal",
             "y": 2,
@@ -905,10 +876,11 @@
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C"
+            "",
+            "",
+            ""
           ],
+          "original_shape_label": "A",
           "mirror_line": {
             "type": "horizontal",
             "y": 2,
@@ -929,10 +901,11 @@
             ]
           ],
           "image_labels": [
-            "A'",
-            "B'",
-            "C'"
-          ]
+            "",
+            "",
+            ""
+          ],
+          "image_shape_label": "B"
         }
       }
     },
@@ -1145,60 +1118,46 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof_F",
-      "prompt": "Shown below are two congruent triangles. Give a reason why they are congruent. A) ASA  B) SAS  C) RHS  D) SSS",
+      "topic_id": "forming_equations_F",
+      "prompt": "I think of a number, multiply it by 9 and add 12. The result is 57. Form an equation and solve it to find the number.",
       "solution_steps": [
-        "Look at which measurements are marked equal on both triangles - here they match the Angle-Side-Angle (ASA) pattern.",
-        "So the two triangles are congruent by Angle-Side-Angle (ASA)."
+        "Let the number be x.",
+        "9x + 12 = 57",
+        "Subtract 12 from both sides:",
+        "9x = 45",
+        "Divide both sides by 9:",
+        "x = 5"
       ],
-      "final_answer": "A) ASA",
-      "marks": 1,
+      "final_answer": "5",
+      "marks": 5,
       "mark_scheme": [
         {
-          "code": "B1",
-          "description": "A) ASA (selecting the correct option)",
+          "code": "M1",
+          "description": "Let the number be x.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "9x + 12 = 57",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 12 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "9x = 45 Divide both sides by 9: x = 5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "two_triangle_congruence",
-        "params": {
-          "side_labels_1": [
-            [
-              0,
-              1,
-              "9 cm"
-            ]
-          ],
-          "side_labels_2": [
-            [
-              0,
-              1,
-              "9 cm"
-            ]
-          ],
-          "angle_labels_1": [
-            [
-              0,
-              "59°"
-            ],
-            [
-              1,
-              "42°"
-            ]
-          ],
-          "angle_labels_2": [
-            [
-              0,
-              "59°"
-            ],
-            [
-              1,
-              "42°"
-            ]
-          ]
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     }
   ]

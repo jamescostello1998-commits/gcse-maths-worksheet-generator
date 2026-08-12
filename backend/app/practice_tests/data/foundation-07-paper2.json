@@ -808,32 +808,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_parallelogram_F",
-      "prompt": "Find the area of the following parallelogram.",
+      "topic_id": "area_trapezium_F",
+      "prompt": "Find the area of the following trapezium.",
       "solution_steps": [
-        "Area = base × height = 12 × 4 = 48 cm²"
+        "Area = ½ × (a + b) × height = ½ × (12 + 17) × 6 = 87 cm²"
       ],
-      "final_answer": "48 cm²",
+      "final_answer": "87 cm²",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = base × height = 12 × 4 = 48 cm²",
+          "description": "Area = ½ × (a + b) × height = ½ × (12 + 17) × 6 = 87 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "48 cm² oe",
+          "description": "87 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "parallelogram",
+        "kind": "trapezium",
         "params": {
-          "base": 12,
-          "height": 4,
-          "base_label": "12 cm",
-          "height_label": "4 cm"
+          "a": 12,
+          "b": 17,
+          "height": 6,
+          "a_label": "12 cm",
+          "b_label": "17 cm",
+          "height_label": "6 cm"
         }
       },
       "solution_diagram": null
@@ -916,28 +918,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_rotate_complete_F",
-      "prompt": "Rotate shape ABCDEF 90° anticlockwise about the centre (0, 0).",
+      "topic_id": "transform_translate_complete_F",
+      "prompt": "Translate shape A by the vector \\colvec{5}{0}.",
       "solution_steps": [
-        "Rotate each vertex 90° anticlockwise about the centre (0, 0): every point stays the same distance from the centre and turns through the same angle.",
-        "A(-2, 1) -> A'(-1, -2), B(3, 1) -> B'(-1, 3), C(3, 3) -> C'(-3, 3), D(1, 3) -> D'(-3, 1), E(1, 5) -> E'(-5, 1), F(-2, 5) -> F'(-5, -2)"
+        "Translate every vertex of shape A by the vector \\colvec{5}{0}: move each point 5 squares right and 0 squares up.",
+        "The image, shape B, has vertices (2, 3), (7, 3), (3, 7)."
       ],
-      "final_answer": "A'(-1, -2), B'(-1, 3), C'(-3, 3), D'(-3, 1), E'(-5, 1), F'(-5, -2)",
+      "final_answer": "Image (shape B): (2, 3), (7, 3), (3, 7)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rotate each vertex 90° anticlockwise about the centre (0, 0): every point stays the same distance from the centre and turns through the same angle.",
+          "description": "Translate every vertex of shape A by the vector \\colvec{5}{0}: move each point 5 squares right and 0 squares up.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A(-2, 1) -> A'(-1, -2), B(3, 1) -> B'(-1, 3), C(3, 3) -> C'(-3, 3), D(1, 3) -> D'(-3, 1), E(1, 5) -> E'(-5, 1), F(-2, 5) -> F'(-5, -2)",
+          "description": "The image, shape B, has vertices (2, 3), (7, 3), (3, 7).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(-1, -2), B'(-1, 3), C'(-3, 3), D'(-3, 1), E'(-5, 1), F'(-5, -2) oe",
+          "description": "Image (shape B): (2, 3), (7, 3), (3, 7) oe",
           "marks": 1
         }
       ],
@@ -950,42 +952,24 @@
           "y_max": 8,
           "original_vertices": [
             [
-              -2,
-              1
-            ],
-            [
-              3,
-              1
-            ],
-            [
-              3,
+              -3,
               3
             ],
             [
-              1,
+              2,
               3
             ],
             [
-              1,
-              5
-            ],
-            [
               -2,
-              5
+              7
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
+            "",
+            "",
+            ""
           ],
-          "centre": [
-            0,
-            0
-          ]
+          "original_shape_label": "A"
         }
       },
       "solution_diagram": {
@@ -997,132 +981,96 @@
           "y_max": 8,
           "original_vertices": [
             [
-              -2,
-              1
-            ],
-            [
-              3,
-              1
-            ],
-            [
-              3,
+              -3,
               3
             ],
             [
-              1,
+              2,
               3
             ],
             [
-              1,
-              5
-            ],
-            [
               -2,
-              5
+              7
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
+            "",
+            "",
+            ""
           ],
-          "centre": [
-            0,
-            0
-          ],
+          "original_shape_label": "A",
           "image_vertices": [
             [
-              -1,
-              -2
-            ],
-            [
-              -1,
+              2,
               3
             ],
             [
-              -3,
+              7,
               3
             ],
             [
-              -3,
-              1
-            ],
-            [
-              -5,
-              1
-            ],
-            [
-              -5,
-              -2
+              3,
+              7
             ]
           ],
           "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'",
-            "E'",
-            "F'"
-          ]
+            "",
+            "",
+            ""
+          ],
+          "image_shape_label": "B"
         }
       }
     },
     {
-      "topic_id": "area_composite_rectangles_F",
-      "prompt": "Find the area of this compound shape.",
+      "topic_id": "area_subtract_compound_F",
+      "prompt": "Find the shaded area.",
       "solution_steps": [
-        "Work out the width of the top bar: 6 + 4 + 6 = 16 cm.",
-        "Area of the top bar = 16 × 5 = 80 cm²",
-        "Area of the stem = 4 × 12 = 48 cm²",
-        "Total area = 80 + 48 = 128 cm²"
+        "Area of large rectangle = 11 × 14 = 154 cm²",
+        "Area of rectangular hole = 9 × 4 = 36 cm²",
+        "Shaded area = 154 - 36 = 118 cm²"
       ],
-      "final_answer": "128 cm²",
-      "marks": 5,
+      "final_answer": "118 cm²",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Work out the width of the top bar: 6 + 4 + 6 = 16 cm.",
+          "description": "Area of large rectangle = 11 × 14 = 154 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Area of the top bar = 16 × 5 = 80 cm²",
+          "description": "Area of rectangular hole = 9 × 4 = 36 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Area of the stem = 4 × 12 = 48 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total area = 80 + 48 = 128 cm²",
+          "description": "Shaded area = 154 - 36 = 118 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "128 cm² oe",
+          "description": "118 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "t_shape",
+        "kind": "l_shape",
         "params": {
-          "top_w": 16,
-          "top_h": 5,
-          "stem_w": 4,
-          "stem_h": 12,
-          "edge_labels": {
-            "bar_left": "5 cm",
-            "bar_right": "5 cm",
-            "notch_left": "6 cm",
-            "notch_right": "6 cm",
-            "stem_bottom": "4 cm",
-            "stem_left": "12 cm"
-          }
+          "outer_w": 11,
+          "outer_h": 14,
+          "inner_w": 9,
+          "inner_h": 4,
+          "notch": "center",
+          "shade_frame": true,
+          "outer_labels": [
+            "11 cm",
+            "14 cm"
+          ],
+          "inner_labels": [
+            "9 cm",
+            "4 cm"
+          ]
         }
       },
       "solution_diagram": null
@@ -1177,26 +1125,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "stats_range_F",
-      "prompt": "Find the range of this data set: 22, 2, 1, 10, 9, 4.",
+      "topic_id": "probability_complement_F",
+      "prompt": "A bag contains 2 green, 8 purple counters. A counter is picked at random. Find the probability that it is NOT purple.",
       "solution_steps": [
-        "Range = largest - smallest = 22 - 1 = 21"
+        "P(purple) = 8/10 = 4/5",
+        "P(not purple) = 1 - 4/5 = 1/5"
       ],
-      "final_answer": "21",
-      "marks": 2,
+      "final_answer": "1/5",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Range = largest - smallest = 22 - 1 = 21",
+          "description": "P(purple) = 8/10 = 4/5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(not purple) = 1 - 4/5 = 1/5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "21 oe",
+          "description": "1/5 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "bag_of_counters",
+        "params": {
+          "counts": {
+            "green": 2,
+            "purple": 8
+          }
+        }
+      },
       "solution_diagram": null
     }
   ]

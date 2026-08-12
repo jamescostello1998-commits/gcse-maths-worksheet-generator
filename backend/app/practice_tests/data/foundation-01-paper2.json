@@ -164,28 +164,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "negative_ordering_F",
-      "prompt": "Write these numbers in descending order: 5, -2, 3, -5, 0",
+      "topic_id": "expand_double_brackets_F",
+      "prompt": "Expand and simplify: (2x + 1)(4x + 6)",
       "solution_steps": [
-        "Place the numbers on a number line: 5, -2, 3, -5, 0.",
-        "Reading them in order from largest to smallest gives: 5, 3, 0, -2, -5."
+        "First: 2x × 4x = 8x^2",
+        "Outer: 2x × 6 = 12x",
+        "Inner: 1 × 4x = 4x",
+        "Last: 1 × 6 = 6",
+        "Combine like terms: 8x^2 + 16x + 6"
       ],
-      "final_answer": "5, 3, 0, -2, -5",
-      "marks": 3,
+      "final_answer": "8x^2 + 16x + 6",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Place the numbers on a number line: 5, -2, 3, -5, 0.",
+          "description": "First: 2x × 4x = 8x^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Reading them in order from largest to smallest gives: 5, 3, 0, -2, -5.",
+          "description": "Outer: 2x × 6 = 12x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Inner: 1 × 4x = 4x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Last: 1 × 6 = 6 Combine like terms: 8x^2 + 16x + 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5, 3, 0, -2, -5 oe",
+          "description": "8x^2 + 16x + 6 oe",
           "marks": 1
         }
       ],
@@ -690,32 +703,49 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cube_F",
-      "prompt": "A cube has side length 20 cm. Find its surface area.",
+      "topic_id": "volume_surface_area_triangular_prism_F",
+      "prompt": "A triangular prism has a right-angled triangular cross-section with sides 16 cm and 30 cm (hypotenuse 34 cm), and length 12 cm. Find its surface area.",
       "solution_steps": [
-        "Surface area = 6 × side² = 6 × 20² = 6 × 400 = 2400 cm²"
+        "Area of the two triangular ends = 2 × (1/2) × 16 × 30 = 480 cm²",
+        "Perimeter of the triangular cross-section = 16 + 30 + 34 = 80 cm",
+        "Area of the three rectangular faces = 80 × 12 = 960 cm²",
+        "Surface area = 480 + 960 = 1440 cm²"
       ],
-      "final_answer": "2400 cm²",
-      "marks": 2,
+      "final_answer": "1440 cm²",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Surface area = 6 × side² = 6 × 20² = 6 × 400 = 2400 cm²",
+          "description": "Area of the two triangular ends = 2 × (1/2) × 16 × 30 = 480 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Perimeter of the triangular cross-section = 16 + 30 + 34 = 80 cm",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of the three rectangular faces = 80 × 12 = 960 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Surface area = 480 + 960 = 1440 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2400 cm² oe",
+          "description": "1440 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cuboid",
+        "kind": "triangular_prism",
         "params": {
-          "width_label": "20 cm",
-          "height_label": "20 cm",
-          "length_label": "20 cm",
-          "is_cube": true
+          "base_label": "16 cm",
+          "triangle_height_label": "30 cm",
+          "length_label": "12 cm"
         }
       },
       "solution_diagram": null
@@ -796,28 +826,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_translate_describe_F",
-      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
+      "topic_id": "transform_enlarge_complete_F",
+      "prompt": "Enlarge shape A by scale factor 2, centre (8, 3).",
       "solution_steps": [
-        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-2, 0), with the matching vertex of shape B, (-1, -4), gives the vector (1, -4).",
-        "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
+        "The centre of enlargement is (8, 3) and the scale factor is 2.",
+        "For each vertex, find its displacement from the centre and multiply by the scale factor: e.g. (2, -1) is a displacement of (-6, -4) from the centre, so it maps to (8, 3) + 2 × (-6, -4) = (-4, -5).",
+        "Repeat for every vertex. The image, shape B, has vertices (-4, -5), (4, -5), (4, -1), (0, -1), (0, 5), (-4, 5)."
       ],
-      "final_answer": "Translation by the vector (1, -4)",
-      "marks": 3,
+      "final_answer": "Image (shape B): (-4, -5), (4, -5), (4, -1), (0, -1), (0, 5), (-4, 5)",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-2, 0), with the matching vertex of shape B, (-1, -4), gives the vector (1, -4).",
+          "description": "The centre of enlargement is (8, 3) and the scale factor is 2.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Checking the other vertices confirms the same vector applies throughout, so this is a translation.",
+          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: e.g. (2, -1) is a displacement of (-6, -4) from the centre, so it maps to (8, 3) + 2 × (-6, -4) = (-4, -5).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Repeat for every vertex. The image, shape B, has vertices (-4, -5), (4, -5), (4, -1), (0, -1), (0, 5), (-4, 5).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Translation by the vector (1, -4) oe",
+          "description": "Image (shape B): (-4, -5), (4, -5), (4, -1), (0, -1), (0, 5), (-4, 5) oe",
           "marks": 1
         }
       ],
@@ -830,28 +866,28 @@
           "y_max": 8,
           "original_vertices": [
             [
-              -2,
-              0
+              2,
+              -1
+            ],
+            [
+              6,
+              -1
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              4
             ],
             [
               2,
-              0
-            ],
-            [
-              2,
-              2
-            ],
-            [
-              0,
-              2
-            ],
-            [
-              0,
-              5
-            ],
-            [
-              -2,
-              5
+              4
             ]
           ],
           "original_labels": [
@@ -862,30 +898,75 @@
             "",
             ""
           ],
+          "original_shape_label": "A"
+        }
+      },
+      "solution_diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              2,
+              -1
+            ],
+            [
+              6,
+              -1
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          "original_labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "original_shape_label": "A",
           "image_vertices": [
             [
-              -1,
-              -4
+              -4,
+              -5
             ],
             [
-              3,
-              -4
+              4,
+              -5
             ],
             [
-              3,
-              -2
+              4,
+              -1
             ],
             [
-              1,
-              -2
+              0,
+              -1
             ],
             [
-              1,
-              1
+              0,
+              5
             ],
             [
-              -1,
-              1
+              -4,
+              5
             ]
           ],
           "image_labels": [
@@ -895,173 +976,137 @@
             "",
             "",
             ""
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "pythagoras_ladder_context_F",
-      "prompt": "A ladder of length 26 m leans against a vertical wall with its base 10 m from the wall. Find the height the ladder reaches up the wall.",
-      "solution_steps": [
-        "height² = ladder² - base² = 26² - 10² = 676 - 100 = 576",
-        "height = √576 = 24 m"
-      ],
-      "final_answer": "24 m",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "height² = ladder² - base² = 26² - 10² = 676 - 100 = 576",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "height = √576 = 24 m",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "24 m oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "area_trapezium_F",
-      "prompt": "Find the area of the following trapezium.",
-      "solution_steps": [
-        "Area = ½ × (a + b) × height = ½ × (6 + 13) × 8 = 76 cm²"
-      ],
-      "final_answer": "76 cm²",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Area = ½ × (a + b) × height = ½ × (6 + 13) × 8 = 76 cm²",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "76 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "trapezium",
-        "params": {
-          "a": 6,
-          "b": 13,
-          "height": 8,
-          "a_label": "6 cm",
-          "b_label": "13 cm",
-          "height_label": "8 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "relative_frequency_F",
-      "prompt": "A drawing pin is tested 80 times, and it lands point up 11 times. Use this relative frequency to estimate how many times this would happen in 1040 trials.",
-      "solution_steps": [
-        "Relative frequency = frequency ÷ number of trials = 11/80 = 11/80",
-        "Estimated number of times in 1040 trials = 11/80 × 1040 = 143"
-      ],
-      "final_answer": "143",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Relative frequency = frequency ÷ number of trials = 11/80 = 11/80",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Estimated number of times in 1040 trials = 11/80 × 1040 = 143",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "143 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "venn_diagram_shading_F",
-      "prompt": "Shade the region that represents the elements in neither A nor B.",
-      "solution_steps": [
-        "The Venn diagram has two circles, A and B, inside a rectangle representing everything being considered.",
-        "'Shade the region that represents the elements in neither A nor B.' tells you which of the four regions (in A only, in B only, in both, or in neither) needs shading.",
-        "The region outside both A and B."
-      ],
-      "final_answer": "The region outside both A and B.",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The Venn diagram has two circles, A and B, inside a rectangle representing everything being considered.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "'Shade the region that represents the elements in neither A nor B.' tells you which of the four regions (in A only, in B only, in both, or in neither) needs shading.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The region outside both A and B.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "The region outside both A and B. oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "venn_diagram",
-        "params": {
-          "labels": [
-            "A",
-            "B"
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "venn_diagram",
-        "params": {
-          "labels": [
-            "A",
-            "B"
           ],
-          "shade": [
-            "neither"
-          ]
+          "image_shape_label": "B"
         }
       }
     },
     {
-      "topic_id": "stats_range_F",
-      "prompt": "Find the range of this data set: 3, 11, 18, 16, 21, 17, 7, 19.",
+      "topic_id": "tree_diagram_independent_F",
+      "prompt": "A bag contains 4 blue and 2 yellow counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that the first counter is yellow and the second counter is yellow.",
       "solution_steps": [
-        "Range = largest - smallest = 21 - 3 = 18"
+        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(blue) = 2/3, P(yellow) = 1/3.",
+        "P(yellow then yellow) = 1/3 × 1/3 = 1/9"
       ],
-      "final_answer": "18",
-      "marks": 2,
+      "final_answer": "1/9",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Range = largest - smallest = 21 - 3 = 18",
+          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(blue) = 2/3, P(yellow) = 1/3.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(yellow then yellow) = 1/3 × 1/3 = 1/9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "18 oe",
+          "description": "1/9 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Blue",
+              "2/3"
+            ],
+            [
+              "Yellow",
+              "1/3"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Blue",
+                "2/3"
+              ],
+              [
+                "Yellow",
+                "1/3"
+              ]
+            ],
+            [
+              [
+                "Blue",
+                "2/3"
+              ],
+              [
+                "Yellow",
+                "1/3"
+              ]
+            ]
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_listing_outcomes_F",
+      "prompt": "A 3-sided spinner (labelled 1, 2, 3) and a 4-sided spinner (labelled 1, 2, 3, 4) are both spun. List all the possible outcomes.",
+      "solution_steps": [
+        "There are 3 possible outcomes for the first event and 4 for the second, so there are 3 × 4 = 12 possible combined outcomes.",
+        "For each outcome of the first event, list every outcome of the second event: 11, 12, 13, 14, 21, 22, 23, 24, 31, 32, 33, 34"
+      ],
+      "final_answer": "11, 12, 13, 14, 21, 22, 23, 24, 31, 32, 33, 34",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "There are 3 possible outcomes for the first event and 4 for the second, so there are 3 × 4 = 12 possible combined outcomes.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For each outcome of the first event, list every outcome of the second event: 11, 12, 13, 14, 21, 22, 23, 24, 31, 32, 33, 34",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "11, 12, 13, 14, 21, 22, 23, 24, 31, 32, 33, 34 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "spinner_pair",
+        "params": {
+          "sectors_a": [
+            "1",
+            "2",
+            "3"
+          ],
+          "sectors_b": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "stats_median_F",
+      "prompt": "Find the median of this data set: 18, 28, 27, 28, 18.",
+      "solution_steps": [
+        "Sort the data: 18, 18, 27, 28, 28. The middle value is 27."
+      ],
+      "final_answer": "27",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Sort the data: 18, 18, 27, 28, 28. The middle value is 27.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "27 oe",
           "marks": 1
         }
       ],

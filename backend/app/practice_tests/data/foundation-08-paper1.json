@@ -804,28 +804,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_translate_complete_F",
-      "prompt": "Translate shape ABCDEF by the vector (-5, -6).",
+      "topic_id": "transform_translate_describe_F",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
       "solution_steps": [
-        "Translate every vertex by the vector (-5, -6): move each point 5 squares left and 6 squares down.",
-        "A(0, -1) -> A'(-5, -7), B(4, -1) -> B'(-1, -7), C(4, 1) -> C'(-1, -5), D(2, 1) -> D'(-3, -5), E(2, 4) -> E'(-3, -2), F(0, 4) -> F'(-5, -2)"
+        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (1, 0), with the matching vertex of shape B, (2, -3), gives the vector \\colvec{1}{-3}.",
+        "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
       ],
-      "final_answer": "A'(-5, -7), B'(-1, -7), C'(-1, -5), D'(-3, -5), E'(-3, -2), F'(-5, -2)",
+      "final_answer": "Translation by the vector \\colvec{1}{-3}",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Translate every vertex by the vector (-5, -6): move each point 5 squares left and 6 squares down.",
+          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (1, 0), with the matching vertex of shape B, (2, -3), gives the vector \\colvec{1}{-3}.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A(0, -1) -> A'(-5, -7), B(4, -1) -> B'(-1, -7), C(4, 1) -> C'(-1, -5), D(2, 1) -> D'(-3, -5), E(2, 4) -> E'(-3, -2), F(0, 4) -> F'(-5, -2)",
+          "description": "Checking the other vertices confirms the same vector applies throughout, so this is a translation.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(-5, -7), B'(-1, -7), C'(-1, -5), D'(-3, -5), E'(-3, -2), F'(-5, -2) oe",
+          "description": "Translation by the vector \\colvec{1}{-3} oe",
           "marks": 1
         }
       ],
@@ -838,117 +838,78 @@
           "y_max": 8,
           "original_vertices": [
             [
-              0,
-              -1
+              1,
+              0
             ],
             [
-              4,
-              -1
+              5,
+              0
             ],
             [
-              4,
-              1
+              5,
+              2
             ],
             [
-              2,
-              1
+              3,
+              2
             ],
             [
-              2,
-              4
+              3,
+              5
             ],
             [
-              0,
-              4
+              1,
+              5
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              0,
-              -1
-            ],
-            [
-              4,
-              -1
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              2,
-              1
-            ],
-            [
-              2,
-              4
-            ],
-            [
-              0,
-              4
-            ]
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F"
-          ],
+          "original_shape_label": "A",
           "image_vertices": [
             [
-              -5,
-              -7
+              2,
+              -3
             ],
             [
-              -1,
-              -7
+              6,
+              -3
             ],
             [
-              -1,
-              -5
+              6,
+              -1
             ],
             [
-              -3,
-              -5
+              4,
+              -1
             ],
             [
-              -3,
-              -2
+              4,
+              2
             ],
             [
-              -5,
-              -2
+              2,
+              2
             ]
           ],
           "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'",
-            "E'",
-            "F'"
-          ]
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "image_shape_label": "B",
+          "image_same_color": true
         }
-      }
+      },
+      "solution_diagram": null
     },
     {
       "topic_id": "construction_triangle_F",
@@ -992,28 +953,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_reflect_complete_F",
-      "prompt": "Reflect shape ABC in the line x = 1.",
+      "topic_id": "transform_reflect_describe_F",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
       "solution_steps": [
-        "Reflect each vertex in the line x = 1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
-        "A(3, 3) -> A'(-1, 3), B(6, 3) -> B'(-4, 3), C(3, 5) -> C'(-1, 5)"
+        "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
+        "Comparing corresponding vertices shows the mirror line is y = -1."
       ],
-      "final_answer": "A'(-1, 3), B'(-4, 3), C'(-1, 5)",
+      "final_answer": "Reflection in the line y = -1",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Reflect each vertex in the line x = 1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+          "description": "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A(3, 3) -> A'(-1, 3), B(6, 3) -> B'(-4, 3), C(3, 5) -> C'(-1, 5)",
+          "description": "Comparing corresponding vertices shows the mirror line is y = -1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(-1, 3), B'(-4, 3), C'(-1, 5) oe",
+          "description": "Reflection in the line y = -1 oe",
           "marks": 1
         }
       ],
@@ -1026,82 +987,58 @@
           "y_max": 8,
           "original_vertices": [
             [
-              3,
-              3
+              2,
+              1
             ],
             [
               6,
-              3
+              1
             ],
             [
-              3,
+              5,
               5
+            ],
+            [
+              1,
+              4
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C"
+            "",
+            "",
+            "",
+            ""
           ],
-          "mirror_line": {
-            "type": "vertical",
-            "x": 1,
-            "label": "x = 1"
-          }
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              3,
-              3
-            ],
-            [
-              6,
-              3
-            ],
-            [
-              3,
-              5
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C"
-          ],
-          "mirror_line": {
-            "type": "vertical",
-            "x": 1,
-            "label": "x = 1"
-          },
+          "original_shape_label": "A",
           "image_vertices": [
             [
-              -1,
-              3
+              2,
+              -3
             ],
             [
-              -4,
-              3
+              6,
+              -3
             ],
             [
-              -1,
-              5
+              5,
+              -7
+            ],
+            [
+              1,
+              -6
             ]
           ],
           "image_labels": [
-            "A'",
-            "B'",
-            "C'"
-          ]
+            "",
+            "",
+            "",
+            ""
+          ],
+          "image_shape_label": "B",
+          "image_same_color": true
         }
-      }
+      },
+      "solution_diagram": null
     },
     {
       "topic_id": "probability_single_event_F",

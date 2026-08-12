@@ -1093,42 +1093,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "substitution_H",
-      "prompt": "v^2 = u^2 + 2as. Find the value of v when u = 3, a = 5 and s = 19. Give your answer to 3 significant figures if it is not exact.",
+      "topic_id": "substitution_rearrange_H",
+      "prompt": "a = \\frac{v - u}{t}. Make u the subject of the formula, then find the value of u when v = 33, a = -1 and t = 8.",
       "solution_steps": [
-        "v^2 = u^2 + 2as",
-        "v^2 = 3^2 + 2 × 5 × 19",
-        "v^2 = 9 + 190",
-        "v^2 = 199",
-        "v = √199 = 14.1 (3 s.f.)",
-        "Take the positive square root only, since v represents a speed and must be positive."
+        "a = \\frac{v - u}{t}",
+        "Rearrange to make u the subject: u = v - at",
+        "Substitute v = 33, a = -1 and t = 8: u = 33 - -1 × 8",
+        "u = 41"
       ],
-      "final_answer": "v = 14.1 (3 s.f.)",
+      "final_answer": "u = 41",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "v^2 = u^2 + 2as",
+          "description": "a = \\frac{v - u}{t}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "v^2 = 3^2 + 2 × 5 × 19",
+          "description": "Rearrange to make u the subject: u = v - at",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "v^2 = 9 + 190",
+          "description": "Substitute v = 33, a = -1 and t = 8: u = 33 - -1 × 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "v^2 = 199 v = √199 = 14.1 (3 s.f.) Take the positive square root only, since v represents a speed and must be positive.",
+          "description": "u = 41",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "v = 14.1 (3 s.f.) oe",
+          "description": "u = 41 oe",
           "marks": 1
         }
       ],

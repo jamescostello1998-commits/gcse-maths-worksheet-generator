@@ -759,111 +759,116 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof_F",
-      "prompt": "Shown below are two congruent triangles. Give a reason why they are congruent. A) SSS  B) RHS  C) SAS  D) ASA",
+      "topic_id": "vectors_arithmetic_F",
+      "prompt": "\\vec{a} = \\colvec{2}{-8} and \\vec{b} = \\colvec{-5}{6}. Find \\vec{a} + \\vec{b}.",
       "solution_steps": [
-        "Look at which measurements are marked equal on both triangles - here they match the Right angle-Hypotenuse-Side (RHS) pattern.",
-        "So the two triangles are congruent by Right angle-Hypotenuse-Side (RHS)."
+        "\\vec{a} = \\colvec{2}{-8}, \\vec{b} = \\colvec{-5}{6}",
+        "\\vec{a} = \\colvec{2}{-8} and \\vec{b} = \\colvec{-5}{6}",
+        "\\vec{a} + \\vec{b} = \\colvec{-3}{-2}"
       ],
-      "final_answer": "B) RHS",
-      "marks": 1,
-      "mark_scheme": [
-        {
-          "code": "B1",
-          "description": "B) RHS (selecting the correct option)",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "two_triangle_congruence",
-        "params": {
-          "right_angle_1": 0,
-          "right_angle_2": 0,
-          "side_labels_1": [
-            [
-              1,
-              2,
-              "25 cm"
-            ],
-            [
-              0,
-              1,
-              "7 cm"
-            ]
-          ],
-          "side_labels_2": [
-            [
-              1,
-              2,
-              "25 cm"
-            ],
-            [
-              0,
-              1,
-              "7 cm"
-            ]
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "area_sector_F",
-      "prompt": "Find the area of the following sector, correct to 1 decimal place.",
-      "solution_steps": [
-        "Area = (θ ÷ 360) × π × r² = (279 ÷ 360) × π × 13²",
-        "= 411.5 cm² (1 d.p., using a calculator value of π)"
-      ],
-      "final_answer": "411.5 cm²",
-      "marks": 3,
+      "final_answer": "\\colvec{-3}{-2}",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = (θ ÷ 360) × π × r² = (279 ÷ 360) × π × 13²",
+          "description": "\\vec{a} = \\colvec{2}{-8}, \\vec{b} = \\colvec{-5}{6}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 411.5 cm² (1 d.p., using a calculator value of π)",
+          "description": "\\vec{a} = \\colvec{2}{-8} and \\vec{b} = \\colvec{-5}{6}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "\\vec{a} + \\vec{b} = \\colvec{-3}{-2}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "411.5 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "sector",
-        "params": {
-          "angle": 279,
-          "radius_label": "13 cm",
-          "angle_label": "279°"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "angles_polygon_interior_F",
-      "prompt": "A polygon has 12 sides. Find the sum of its interior angles.",
-      "solution_steps": [
-        "Sum of interior angles = (n - 2) × 180 = (12 - 2) × 180 = 1800°"
-      ],
-      "final_answer": "1800°",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Sum of interior angles = (n - 2) × 180 = (12 - 2) × 180 = 1800°",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1800° oe",
+          "description": "\\colvec{-3}{-2} oe",
           "marks": 1
         }
       ],
       "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "angles_straight_line_F",
+      "prompt": "The angles 138° and x° lie on a straight line. Find x.",
+      "solution_steps": [
+        "Angles on a straight line sum to 180°.",
+        "x = 180 - (138) = 180 - 138 = 42"
+      ],
+      "final_answer": "42",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles on a straight line sum to 180°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 180 - (138) = 180 - 138 = 42",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "42 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "angle_line",
+        "params": {
+          "angle_values": [
+            138,
+            42
+          ],
+          "labels": [
+            "138°",
+            "x"
+          ],
+          "around_point": false
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pythagoras_hypotenuse_triple_F",
+      "prompt": "A right-angled triangle has sides 8 cm and 15 cm. Find the length of x.",
+      "solution_steps": [
+        "c² = a² + b² = 8² + 15² = 64 + 225 = 289",
+        "c = √289 = 17"
+      ],
+      "final_answer": "17 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "c² = a² + b² = 8² + 15² = 64 + 225 = 289",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "c = √289 = 17",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "17 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "right_triangle",
+        "params": {
+          "leg1_label": "8 cm",
+          "leg2_label": "15 cm",
+          "hyp_label": "x"
+        }
+      },
       "solution_diagram": null
     },
     {
@@ -898,79 +903,6 @@
           "angle": 129,
           "radius_label": "3 cm",
           "angle_label": "129°"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "area_circle_F",
-      "prompt": "Find the area of the following circle, correct to 2 decimal places.",
-      "solution_steps": [
-        "Area = π × r² = π × 12² = π × 144",
-        "= 452.39 cm² (2 d.p., using a calculator value of π)"
-      ],
-      "final_answer": "452.39 cm²",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Area = π × r² = π × 12² = π × 144",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 452.39 cm² (2 d.p., using a calculator value of π)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "452.39 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "circle",
-        "params": {
-          "radius": 12,
-          "label": "12 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "angles_exterior_F",
-      "prompt": "An exterior angle of a triangle is x°. The two remote interior angles are 61° and 60°. Find x.",
-      "solution_steps": [
-        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
-        "x = 61 + 60 = 121"
-      ],
-      "final_answer": "121",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 61 + 60 = 121",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "121 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "exterior_triangle",
-        "params": {
-          "interior1_label": "61°",
-          "interior2_label": "60°",
-          "exterior_label": "x",
-          "interior1_value": 61,
-          "shape_variant": 1
         }
       },
       "solution_diagram": null
@@ -1021,95 +953,56 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "two_way_tables_F",
-      "prompt": "The two-way table shows the number of boys and girls who prefer football or tennis. Find the missing values.",
+      "topic_id": "probability_expectation_F",
+      "prompt": "In a batch of items, the probability that an item is defective is 4/12. 240 items are checked. How many would you expect to be defective?",
       "solution_steps": [
-        "'Boys' / 'Football': using the 'Boys' row total: 22 - 9 = 13",
-        "'Girls' / 'Tennis': using the 'Girls' row total: 21 - 5 = 16"
+        "Expected number of times = probability × number of trials = 4/12 × 240",
+        "= 80"
       ],
-      "final_answer": "'Boys' / 'Football' = 13; 'Girls' / 'Tennis' = 16",
+      "final_answer": "80",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "'Boys' / 'Football': using the 'Boys' row total: 22 - 9 = 13",
+          "description": "Expected number of times = probability × number of trials = 4/12 × 240",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "'Girls' / 'Tennis': using the 'Girls' row total: 21 - 5 = 16",
+          "description": "= 80",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "'Boys' / 'Football' = 13; 'Girls' / 'Tennis' = 16 oe",
+          "description": "80 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "two_way_table",
-        "params": {
-          "row_labels": [
-            "Boys",
-            "Girls",
-            "Total"
-          ],
-          "col_labels": [
-            "Football",
-            "Tennis",
-            "Total"
-          ],
-          "cells": [
-            [
-              "",
-              "9",
-              "22"
-            ],
-            [
-              "5",
-              "",
-              "21"
-            ],
-            [
-              "18",
-              "25",
-              "43"
-            ]
-          ]
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "stats_mean_F",
+      "prompt": "Find the mean of this data set: 2, 11, 30, 25, 1, 11.",
+      "solution_steps": [
+        "Mean = sum ÷ count = (2 + 11 + 30 + 25 + 1 + 11) ÷ 6 = 80 ÷ 6 = 40/3"
+      ],
+      "final_answer": "40/3",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Mean = sum ÷ count = (2 + 11 + 30 + 25 + 1 + 11) ÷ 6 = 80 ÷ 6 = 40/3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "40/3 oe",
+          "marks": 1
         }
-      },
-      "solution_diagram": {
-        "kind": "two_way_table",
-        "params": {
-          "row_labels": [
-            "Boys",
-            "Girls",
-            "Total"
-          ],
-          "col_labels": [
-            "Football",
-            "Tennis",
-            "Total"
-          ],
-          "cells": [
-            [
-              "13",
-              "9",
-              "22"
-            ],
-            [
-              "5",
-              "16",
-              "21"
-            ],
-            [
-              "18",
-              "25",
-              "43"
-            ]
-          ]
-        }
-      }
+      ],
+      "diagram": null,
+      "solution_diagram": null
     }
   ]
 }

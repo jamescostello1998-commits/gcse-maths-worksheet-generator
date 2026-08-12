@@ -672,34 +672,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "vectors_arithmetic_F",
-      "prompt": "\\vec{a} = \\colvec{8}{-5} and \\vec{b} = \\colvec{5}{1}. Find \\vec{a} - 4\\vec{b}.",
+      "topic_id": "properties_3d_shapes_F",
+      "prompt": "How many faces does a cylinder have?",
       "solution_steps": [
-        "\\vec{a} = \\colvec{8}{-5}, \\vec{b} = \\colvec{5}{1}",
-        "\\vec{a} = \\colvec{8}{-5} and 4\\vec{b} = \\colvec{20}{4}",
-        "\\vec{a} - 4\\vec{b} = \\colvec{-12}{-9}"
+        "A face is a flat or curved surface on the outside of a 3D shape.",
+        "By GCSE convention, a cylinder has 3 faces (2 flat circular faces + 1 curved surface), 2 edges (where the curved surface meets each circular face), and 0 vertices (there are no sharp corners).",
+        "So a cylinder has 3 faces."
       ],
-      "final_answer": "\\colvec{-12}{-9}",
+      "final_answer": "3",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "\\vec{a} = \\colvec{8}{-5}, \\vec{b} = \\colvec{5}{1}",
+          "description": "A face is a flat or curved surface on the outside of a 3D shape.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "\\vec{a} = \\colvec{8}{-5} and 4\\vec{b} = \\colvec{20}{4}",
+          "description": "By GCSE convention, a cylinder has 3 faces (2 flat circular faces + 1 curved surface), 2 edges (where the curved surface meets each circular face), and 0 vertices (there are no sharp corners).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "\\vec{a} - 4\\vec{b} = \\colvec{-12}{-9}",
+          "description": "So a cylinder has 3 faces.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "\\colvec{-12}{-9} oe",
+          "description": "3 oe",
           "marks": 1
         }
       ],
@@ -749,19 +749,19 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "properties_3d_shapes_F",
-      "prompt": "How many faces does a cylinder have?",
+      "topic_id": "properties_3d_shapes_diagram_F",
+      "prompt": "How many edges does the cylinder shown have?",
       "solution_steps": [
-        "A face is a flat or curved surface on the outside of a 3D shape.",
+        "An edge is a line where two faces meet.",
         "By GCSE convention, a cylinder has 3 faces (2 flat circular faces + 1 curved surface), 2 edges (where the curved surface meets each circular face), and 0 vertices (there are no sharp corners).",
-        "So a cylinder has 3 faces."
+        "So a cylinder has 2 edges."
       ],
-      "final_answer": "3",
+      "final_answer": "2",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A face is a flat or curved surface on the outside of a 3D shape.",
+          "description": "An edge is a line where two faces meet.",
           "marks": 1
         },
         {
@@ -771,49 +771,55 @@
         },
         {
           "code": "M1",
-          "description": "So a cylinder has 3 faces.",
+          "description": "So a cylinder has 2 edges.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 oe",
+          "description": "2 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "cylinder",
+        "params": {
+          "radius_label": "3 cm",
+          "height_label": "8 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "pythagoras_hypotenuse_triple_F",
-      "prompt": "A right-angled triangle has sides 9 cm and 12 cm. Find the length of x.",
+      "topic_id": "pythagoras_hypotenuse_decimal_F",
+      "prompt": "A right-angled triangle has sides 19 cm and 16 cm. Find the length of x, correct to 1 decimal place.",
       "solution_steps": [
-        "c² = a² + b² = 9² + 12² = 81 + 144 = 225",
-        "c = √225 = 15"
+        "c² = a² + b² = 19² + 16² = 361 + 256 = 617",
+        "c = √617 ≈ 24.8 cm (1 d.p.)"
       ],
-      "final_answer": "15 cm",
+      "final_answer": "24.8 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "c² = a² + b² = 9² + 12² = 81 + 144 = 225",
+          "description": "c² = a² + b² = 19² + 16² = 361 + 256 = 617",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "c = √225 = 15",
+          "description": "c = √617 ≈ 24.8 cm (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "15 cm oe",
+          "description": "24.8 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "right_triangle",
         "params": {
-          "leg1_label": "9 cm",
-          "leg2_label": "12 cm",
+          "leg1_label": "19 cm",
+          "leg2_label": "16 cm",
           "hyp_label": "x"
         }
       },

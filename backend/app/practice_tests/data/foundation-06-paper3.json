@@ -628,41 +628,38 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_exterior_F",
-      "prompt": "An exterior angle of a triangle is x°. The two remote interior angles are 56° and 67°. Find x.",
+      "topic_id": "properties_3d_shapes_F",
+      "prompt": "How many faces does a sphere have?",
       "solution_steps": [
-        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
-        "x = 56 + 67 = 123"
+        "A face is a flat or curved surface on the outside of a 3D shape.",
+        "A sphere has 1 face (the curved surface), 0 edges, and 0 vertices - there are no flat surfaces, corners, or edges anywhere on a sphere.",
+        "So a sphere has 1 faces."
       ],
-      "final_answer": "123",
-      "marks": 3,
+      "final_answer": "1",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+          "description": "A face is a flat or curved surface on the outside of a 3D shape.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 56 + 67 = 123",
+          "description": "A sphere has 1 face (the curved surface), 0 edges, and 0 vertices - there are no flat surfaces, corners, or edges anywhere on a sphere.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "So a sphere has 1 faces.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "123 oe",
+          "description": "1 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "exterior_triangle",
-        "params": {
-          "interior1_label": "56°",
-          "interior2_label": "67°",
-          "exterior_label": "x",
-          "interior1_value": 56,
-          "shape_variant": 0
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
@@ -765,66 +762,66 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_parallel_lines_F",
-      "prompt": "A line crosses two parallel lines. The angle 72° and the angle x° are corresponding angles. Find x.",
+      "topic_id": "angles_exterior_F",
+      "prompt": "An exterior angle of a triangle is x°. The two remote interior angles are 56° and 67°. Find x.",
       "solution_steps": [
-        "Corresponding angles are equal.",
-        "x = 72"
+        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+        "x = 56 + 67 = 123"
       ],
-      "final_answer": "72",
+      "final_answer": "123",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Corresponding angles are equal.",
+          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 72",
+          "description": "x = 56 + 67 = 123",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "72 oe",
+          "description": "123 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "parallel_lines",
+        "kind": "exterior_triangle",
         "params": {
-          "known_label": "72°",
-          "unknown_label": "x",
-          "relation": "corresponding",
-          "known_value": 72,
-          "x_frac": 0.32
+          "interior1_label": "56°",
+          "interior2_label": "67°",
+          "exterior_label": "x",
+          "interior1_value": 56,
+          "shape_variant": 0
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "symmetry_lines_F",
-      "prompt": "The diagram shows an isosceles trapezium. How many lines of symmetry does it have?",
+      "topic_id": "symmetry_rotational_F",
+      "prompt": "The diagram shows an equilateral triangle. State the order of rotational symmetry.",
       "solution_steps": [
-        "An isosceles trapezium has 1 line of symmetry.",
-        "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram."
+        "Rotating the equilateral triangle about its centre, it looks exactly the same 3 times during a full 360° turn.",
+        "So the order of rotational symmetry is 3."
       ],
-      "final_answer": "1 line of symmetry",
+      "final_answer": "order 3",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "An isosceles trapezium has 1 line of symmetry.",
+          "description": "Rotating the equilateral triangle about its centre, it looks exactly the same 3 times during a full 360° turn.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram.",
+          "description": "So the order of rotational symmetry is 3.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 line of symmetry oe",
+          "description": "order 3 oe",
           "marks": 1
         }
       ],
@@ -833,20 +830,16 @@
         "params": {
           "vertices": [
             [
-              0,
-              0
+              2.4492935982947064e-16,
+              4.0
             ],
             [
-              6,
-              0
+              -3.4641016151377544,
+              -2.0000000000000004
             ],
             [
-              4,
-              3
-            ],
-            [
-              2,
-              3
+              3.4641016151377535,
+              -2.0000000000000018
             ]
           ],
           "blank": true
@@ -857,34 +850,23 @@
         "params": {
           "vertices": [
             [
-              0,
-              0
+              2.4492935982947064e-16,
+              4.0
             ],
             [
-              6,
-              0
+              -3.4641016151377544,
+              -2.0000000000000004
             ],
             [
-              4,
-              3
-            ],
-            [
-              2,
-              3
+              3.4641016151377535,
+              -2.0000000000000018
             ]
           ],
-          "symmetry_lines": [
-            {
-              "p1": [
-                3,
-                -1
-              ],
-              "p2": [
-                3,
-                4
-              ]
-            }
-          ]
+          "rotation_centre": [
+            -2.1441635329021817e-16,
+            -7.401486830834377e-16
+          ],
+          "rotation_order": 3
         }
       }
     },
@@ -930,28 +912,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_rotate_complete_F",
-      "prompt": "Rotate shape ABCD 90° anticlockwise about the centre (-2, -2).",
+      "topic_id": "transform_translate_complete_F",
+      "prompt": "Translate shape A by the vector \\colvec{-2}{-6}.",
       "solution_steps": [
-        "Rotate each vertex 90° anticlockwise about the centre (-2, -2): every point stays the same distance from the centre and turns through the same angle.",
-        "A(0, -3) -> A'(-1, 0), B(4, -3) -> B'(-1, 4), C(3, 1) -> C'(-5, 3), D(-1, 0) -> D'(-4, -1)"
+        "Translate every vertex of shape A by the vector \\colvec{-2}{-6}: move each point 2 squares left and 6 squares down.",
+        "The image, shape B, has vertices (-4, -4), (1, -4), (1, -2), (-1, -2), (-1, 0), (-4, 0)."
       ],
-      "final_answer": "A'(-1, 0), B'(-1, 4), C'(-5, 3), D'(-4, -1)",
+      "final_answer": "Image (shape B): (-4, -4), (1, -4), (1, -2), (-1, -2), (-1, 0), (-4, 0)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rotate each vertex 90° anticlockwise about the centre (-2, -2): every point stays the same distance from the centre and turns through the same angle.",
+          "description": "Translate every vertex of shape A by the vector \\colvec{-2}{-6}: move each point 2 squares left and 6 squares down.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A(0, -3) -> A'(-1, 0), B(4, -3) -> B'(-1, 4), C(3, 1) -> C'(-5, 3), D(-1, 0) -> D'(-4, -1)",
+          "description": "The image, shape B, has vertices (-4, -4), (1, -4), (1, -2), (-1, -2), (-1, 0), (-4, 0).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(-1, 0), B'(-1, 4), C'(-5, 3), D'(-4, -1) oe",
+          "description": "Image (shape B): (-4, -4), (1, -4), (1, -2), (-1, -2), (-1, 0), (-4, 0) oe",
           "marks": 1
         }
       ],
@@ -964,32 +946,39 @@
           "y_max": 8,
           "original_vertices": [
             [
-              0,
-              -3
-            ],
-            [
-              4,
-              -3
+              -2,
+              2
             ],
             [
               3,
-              1
+              2
             ],
             [
-              -1,
-              0
+              3,
+              4
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              1,
+              6
+            ],
+            [
+              -2,
+              6
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
           ],
-          "centre": [
-            -2,
-            -2
-          ]
+          "original_shape_label": "A"
         }
       },
       "solution_diagram": {
@@ -1001,91 +990,104 @@
           "y_max": 8,
           "original_vertices": [
             [
-              0,
-              -3
-            ],
-            [
-              4,
-              -3
+              -2,
+              2
             ],
             [
               3,
-              1
+              2
             ],
             [
-              -1,
-              0
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
-          ],
-          "centre": [
-            -2,
-            -2
-          ],
-          "image_vertices": [
-            [
-              -1,
-              0
-            ],
-            [
-              -1,
+              3,
               4
             ],
             [
-              -5,
-              3
+              1,
+              4
+            ],
+            [
+              1,
+              6
+            ],
+            [
+              -2,
+              6
+            ]
+          ],
+          "original_labels": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "original_shape_label": "A",
+          "image_vertices": [
+            [
+              -4,
+              -4
+            ],
+            [
+              1,
+              -4
+            ],
+            [
+              1,
+              -2
+            ],
+            [
+              -1,
+              -2
+            ],
+            [
+              -1,
+              0
             ],
             [
               -4,
-              -1
+              0
             ]
           ],
           "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'"
-          ]
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "image_shape_label": "B"
         }
       }
     },
     {
-      "topic_id": "volume_surface_area_cuboid_F",
-      "prompt": "A cuboid has length 15 cm, width 5 cm and height 10 cm. Find its surface area.",
+      "topic_id": "volume_surface_area_cube_F",
+      "prompt": "A cube has side length 13 cm. Find its volume.",
       "solution_steps": [
-        "Surface area = 2 × (lw + lh + wh) = 2 × (15×5 + 15×10 + 5×10)",
-        "= 2 × (75 + 150 + 50) = 550 cm²"
+        "Volume = side³ = 13³ = 2197 cm³"
       ],
-      "final_answer": "550 cm²",
-      "marks": 3,
+      "final_answer": "2197 cm³",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Surface area = 2 × (lw + lh + wh) = 2 × (15×5 + 15×10 + 5×10)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 2 × (75 + 150 + 50) = 550 cm²",
+          "description": "Volume = side³ = 13³ = 2197 cm³",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "550 cm² oe",
+          "description": "2197 cm³ oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "cuboid",
         "params": {
-          "width_label": "5 cm",
-          "height_label": "10 cm",
-          "length_label": "15 cm"
+          "width_label": "13 cm",
+          "height_label": "13 cm",
+          "length_label": "13 cm",
+          "is_cube": true
         }
       },
       "solution_diagram": null

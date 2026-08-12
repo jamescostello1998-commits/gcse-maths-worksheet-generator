@@ -264,42 +264,39 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "relative_frequency_F",
-      "prompt": "A spinner is tested 80 times, and it lands on red 27 times. Use this relative frequency to estimate how many times this would happen in 400 trials.",
+      "topic_id": "probability_expectation_F",
+      "prompt": "A biased die has P(rolling a 5) = 6/20. The die is rolled 80 times. How many times would you expect to get a 5?",
       "solution_steps": [
-        "Relative frequency = frequency ÷ number of trials = 27/80 = 27/80",
-        "Estimated number of times in 400 trials = 27/80 × 400 = 135"
+        "Expected number of times = probability × number of trials = 6/20 × 80",
+        "= 24"
       ],
-      "final_answer": "135",
+      "final_answer": "24",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Relative frequency = frequency ÷ number of trials = 27/80 = 27/80",
+          "description": "Expected number of times = probability × number of trials = 6/20 × 80",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Estimated number of times in 400 trials = 27/80 × 400 = 135",
+          "description": "= 24",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "135 oe",
+          "description": "24 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "spinner",
+        "kind": "dice",
         "params": {
-          "sectors": [
-            "",
-            "",
-            "R",
-            ""
+          "values": [
+            5
           ],
           "highlight": [
-            2
+            0
           ]
         }
       },
@@ -863,27 +860,27 @@
     },
     {
       "topic_id": "transform_translate_complete_F",
-      "prompt": "Translate shape ABCD by the vector (-4, -2).",
+      "prompt": "Translate shape A by the vector \\colvec{-4}{-2}.",
       "solution_steps": [
-        "Translate every vertex by the vector (-4, -2): move each point 4 squares left and 2 squares down.",
-        "A(1, 3) -> A'(-3, 1), B(5, 3) -> B'(1, 1), C(4, 7) -> C'(0, 5), D(0, 6) -> D'(-4, 4)"
+        "Translate every vertex of shape A by the vector \\colvec{-4}{-2}: move each point 4 squares left and 2 squares down.",
+        "The image, shape B, has vertices (-3, 1), (1, 1), (0, 5), (-4, 4)."
       ],
-      "final_answer": "A'(-3, 1), B'(1, 1), C'(0, 5), D'(-4, 4)",
+      "final_answer": "Image (shape B): (-3, 1), (1, 1), (0, 5), (-4, 4)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Translate every vertex by the vector (-4, -2): move each point 4 squares left and 2 squares down.",
+          "description": "Translate every vertex of shape A by the vector \\colvec{-4}{-2}: move each point 4 squares left and 2 squares down.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A(1, 3) -> A'(-3, 1), B(5, 3) -> B'(1, 1), C(4, 7) -> C'(0, 5), D(0, 6) -> D'(-4, 4)",
+          "description": "The image, shape B, has vertices (-3, 1), (1, 1), (0, 5), (-4, 4).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(-3, 1), B'(1, 1), C'(0, 5), D'(-4, 4) oe",
+          "description": "Image (shape B): (-3, 1), (1, 1), (0, 5), (-4, 4) oe",
           "marks": 1
         }
       ],
@@ -913,11 +910,12 @@
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
-          ]
+            "",
+            "",
+            "",
+            ""
+          ],
+          "original_shape_label": "A"
         }
       },
       "solution_diagram": {
@@ -946,11 +944,12 @@
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
+            "",
+            "",
+            "",
+            ""
           ],
+          "original_shape_label": "A",
           "image_vertices": [
             [
               -3,
@@ -970,49 +969,50 @@
             ]
           ],
           "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'"
-          ]
+            "",
+            "",
+            "",
+            ""
+          ],
+          "image_shape_label": "B"
         }
       }
     },
     {
-      "topic_id": "construction_perpendicular_bisector_F",
-      "prompt": "Line segment RD has length 9 cm. Describe, step by step, how to construct the perpendicular bisector of RD using only a ruler and a pair of compasses.",
+      "topic_id": "construction_angle_bisector_F",
+      "prompt": "Angle MYR = 70°. Describe, step by step, how to construct the bisector of angle MYR using only a ruler and a pair of compasses.",
       "solution_steps": [
-        "Open the compasses to a radius more than half of 9 cm (more than half the length of RD).",
-        "With the compass point on R, draw an arc above and below the line.",
-        "Without changing the compass radius, place the point on D and draw two more arcs, crossing the first two.",
-        "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of RD."
+        "Open the compasses to any radius and place the point on Y (the vertex of the angle).",
+        "Draw an arc that crosses both arms of the angle, at a point on YM and a point on YR.",
+        "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
+        "Draw a straight line from Y through the point where the two arcs intersect. This line is the bisector of angle MYR."
       ],
-      "final_answer": "A straight line through the two arc intersections, crossing RD at its midpoint at a right angle.",
+      "final_answer": "The straight line from Y through the intersection of the two equal-radius arcs bisects angle MYR into two equal angles.",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Open the compasses to a radius more than half of 9 cm (more than half the length of RD).",
+          "description": "Open the compasses to any radius and place the point on Y (the vertex of the angle).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "With the compass point on R, draw an arc above and below the line.",
+          "description": "Draw an arc that crosses both arms of the angle, at a point on YM and a point on YR.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Without changing the compass radius, place the point on D and draw two more arcs, crossing the first two.",
+          "description": "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of RD.",
+          "description": "Draw a straight line from Y through the point where the two arcs intersect. This line is the bisector of angle MYR.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A straight line through the two arc intersections, crossing RD at its midpoint at a right angle. oe",
+          "description": "The straight line from Y through the intersection of the two equal-radius arcs bisects angle MYR into two equal angles. oe",
           "marks": 1
         }
       ],
@@ -1020,115 +1020,173 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_polygon_interior_F",
-      "prompt": "A regular polygon has 12 sides. Find the size of one exterior angle.",
+      "topic_id": "pythagoras_hypotenuse_triple_F",
+      "prompt": "A right-angled triangle has sides 12 cm and 16 cm. Find the length of x.",
       "solution_steps": [
-        "Exterior angles of a regular polygon sum to 360°: each exterior angle = 360 ÷ 12 = 30°"
+        "c² = a² + b² = 12² + 16² = 144 + 256 = 400",
+        "c = √400 = 20"
       ],
-      "final_answer": "30°",
-      "marks": 2,
+      "final_answer": "20 cm",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Exterior angles of a regular polygon sum to 360°: each exterior angle = 360 ÷ 12 = 30°",
+          "description": "c² = a² + b² = 12² + 16² = 144 + 256 = 400",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "c = √400 = 20",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "30° oe",
+          "description": "20 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "polygon",
+        "kind": "right_triangle",
         "params": {
-          "n_sides": 12,
-          "marked_angle_label": "?",
-          "mode": "exterior"
+          "leg1_label": "12 cm",
+          "leg2_label": "16 cm",
+          "hyp_label": "x"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "nets_3d_shapes_F",
-      "prompt": "How many triangles does the net of a square-based pyramid contain?",
+      "topic_id": "plans_and_elevations_F",
+      "prompt": "The diagram shows a solid with its dimensions labelled. Draw and label the front elevation, side elevation, and plan view of the solid.",
       "solution_steps": [
-        "Imagine unfolding a square-based pyramid flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
-        "A square-based pyramid's net is made up of: 1 square and 4 triangles.",
-        "So the answer is: 4."
+        "The front elevation is what you see looking at the solid straight on from the front.",
+        "Front elevation: a rectangle, 5 cm by 8 cm.",
+        "The side elevation is what you see looking at the solid straight on from the side.",
+        "Side elevation: a rectangle, 8 cm by 8 cm.",
+        "The plan view is what you see looking straight down at the solid from above.",
+        "Plan view: a rectangle, 5 cm by 8 cm."
       ],
-      "final_answer": "4",
-      "marks": 4,
+      "final_answer": "Front elevation: a rectangle, 5 cm by 8 cm. Side elevation: a rectangle, 8 cm by 8 cm. Plan view: a rectangle, 5 cm by 8 cm.",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Imagine unfolding a square-based pyramid flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
+          "description": "The front elevation is what you see looking at the solid straight on from the front.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A square-based pyramid's net is made up of: 1 square and 4 triangles.",
+          "description": "Front elevation: a rectangle, 5 cm by 8 cm.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "So the answer is: 4.",
+          "description": "The side elevation is what you see looking at the solid straight on from the side.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Side elevation: a rectangle, 8 cm by 8 cm. The plan view is what you see looking straight down at the solid from above. Plan view: a rectangle, 5 cm by 8 cm.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4 oe",
+          "description": "Front elevation: a rectangle, 5 cm by 8 cm. Side elevation: a rectangle, 8 cm by 8 cm. Plan view: a rectangle, 5 cm by 8 cm. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "plans_and_elevations_question",
+        "params": {
+          "shape": "cuboid",
+          "length_label": "5 cm",
+          "width_label": "8 cm",
+          "height_label": "8 cm"
+        }
+      },
+      "solution_diagram": {
+        "kind": "plans_and_elevations",
+        "params": {
+          "shape": "cuboid",
+          "length": 5,
+          "width": 8,
+          "height": 8,
+          "length_label": "5 cm",
+          "width_label": "8 cm",
+          "height_label": "8 cm"
+        }
+      }
+    },
+    {
+      "topic_id": "tree_diagram_drawing_F",
+      "prompt": "A bag contains 8 red and 3 yellow counters. A counter is picked at random, replaced, and then a second counter is picked at random. Draw a fully-labelled tree diagram to show this information, and use it to find the probability that the first counter is red and the second counter is yellow.",
+      "solution_steps": [
+        "Draw two branches from the start: P(red) = 8/11, P(yellow) = 3/11.",
+        "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
+        "P(red then yellow) = 8/11 × 3/11 = 24/121"
+      ],
+      "final_answer": "24/121",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Draw two branches from the start: P(red) = 8/11, P(yellow) = 3/11.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(red then yellow) = 8/11 × 3/11 = 24/121",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "24/121 oe",
           "marks": 1
         }
       ],
       "diagram": null,
       "solution_diagram": {
-        "kind": "net",
+        "kind": "tree_diagram",
         "params": {
-          "shape": "pyramid"
+          "stage1": [
+            [
+              "Red",
+              "8/11"
+            ],
+            [
+              "Yellow",
+              "3/11"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Red",
+                "8/11"
+              ],
+              [
+                "Yellow",
+                "3/11"
+              ]
+            ],
+            [
+              [
+                "Red",
+                "8/11"
+              ],
+              [
+                "Yellow",
+                "3/11"
+              ]
+            ]
+          ]
         }
       }
-    },
-    {
-      "topic_id": "properties_3d_shapes_diagram_F",
-      "prompt": "How many vertices does the cylinder shown have?",
-      "solution_steps": [
-        "A vertex is a corner point where edges meet.",
-        "By GCSE convention, a cylinder has 3 faces (2 flat circular faces + 1 curved surface), 2 edges (where the curved surface meets each circular face), and 0 vertices (there are no sharp corners).",
-        "So a cylinder has 0 vertices."
-      ],
-      "final_answer": "0",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "A vertex is a corner point where edges meet.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "By GCSE convention, a cylinder has 3 faces (2 flat circular faces + 1 curved surface), 2 edges (where the curved surface meets each circular face), and 0 vertices (there are no sharp corners).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "So a cylinder has 0 vertices.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "0 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "cylinder",
-        "params": {
-          "radius_label": "3 cm",
-          "height_label": "8 cm"
-        }
-      },
-      "solution_diagram": null
     },
     {
       "topic_id": "venn_diagram_probability_F",
@@ -1180,43 +1238,57 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_listing_outcomes_F",
-      "prompt": "Two 3-sided spinners are spun: one labelled 1, 2, 3 and the other labelled B, G, P. List all the possible outcomes.",
+      "topic_id": "congruent_triangle_proof_F",
+      "prompt": "Shown below are two congruent triangles. Give a reason why they are congruent. A) SAS  B) RHS  C) SSS  D) ASA",
       "solution_steps": [
-        "There are 3 possible outcomes for the first event and 3 for the second, so there are 3 × 3 = 9 possible combined outcomes.",
-        "For each outcome of the first event, list every outcome of the second event: 1B, 1G, 1P, 2B, 2G, 2P, 3B, 3G, 3P"
+        "Look at which measurements are marked equal on both triangles - here they match the Side-Side-Side (SSS) pattern.",
+        "So the two triangles are congruent by Side-Side-Side (SSS)."
       ],
-      "final_answer": "1B, 1G, 1P, 2B, 2G, 2P, 3B, 3G, 3P",
-      "marks": 3,
+      "final_answer": "C) SSS",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "There are 3 possible outcomes for the first event and 3 for the second, so there are 3 × 3 = 9 possible combined outcomes.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For each outcome of the first event, list every outcome of the second event: 1B, 1G, 1P, 2B, 2G, 2P, 3B, 3G, 3P",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1B, 1G, 1P, 2B, 2G, 2P, 3B, 3G, 3P oe",
+          "code": "B1",
+          "description": "C) SSS (selecting the correct option)",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "spinner_pair",
+        "kind": "two_triangle_congruence",
         "params": {
-          "sectors_a": [
-            "1",
-            "2",
-            "3"
+          "side_labels_1": [
+            [
+              0,
+              1,
+              "6 cm"
+            ],
+            [
+              0,
+              2,
+              "6 cm"
+            ],
+            [
+              1,
+              2,
+              "9 cm"
+            ]
           ],
-          "sectors_b": [
-            "B",
-            "G",
-            "P"
+          "side_labels_2": [
+            [
+              0,
+              1,
+              "6 cm"
+            ],
+            [
+              0,
+              2,
+              "6 cm"
+            ],
+            [
+              1,
+              2,
+              "9 cm"
+            ]
           ]
         }
       },

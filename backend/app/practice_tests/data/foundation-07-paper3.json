@@ -769,6 +769,65 @@
       "solution_diagram": null
     },
     {
+      "topic_id": "pythagoras_shorter_leg_F",
+      "prompt": "A right-angled triangle has hypotenuse 164 cm and one side 36 cm. Find the length of x.",
+      "solution_steps": [
+        "b² = c² - a² = 164² - 36² = 26896 - 1296 = 25600",
+        "b = √25600 = 160"
+      ],
+      "final_answer": "160 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "b² = c² - a² = 164² - 36² = 26896 - 1296 = 25600",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "b = √25600 = 160",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "160 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "right_triangle",
+        "params": {
+          "leg1_label": "36 cm",
+          "leg2_label": "x",
+          "hyp_label": "164 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "stats_range_F",
+      "prompt": "Find the range of this data set: 12, 27, 25, 6, 17, 20, 23, 15.",
+      "solution_steps": [
+        "Range = largest - smallest = 27 - 6 = 21"
+      ],
+      "final_answer": "21",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Range = largest - smallest = 27 - 6 = 21",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "21 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "pythagoras_hypotenuse_decimal_F",
       "prompt": "A right-angled triangle has sides 11 cm and 11 cm. Find the length of x, correct to 1 decimal place.",
       "solution_steps": [
@@ -799,65 +858,6 @@
         "params": {
           "leg1_label": "11 cm",
           "leg2_label": "11 cm",
-          "hyp_label": "x"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "stats_range_F",
-      "prompt": "Find the range of this data set: 12, 27, 25, 6, 17, 20, 23, 15.",
-      "solution_steps": [
-        "Range = largest - smallest = 27 - 6 = 21"
-      ],
-      "final_answer": "21",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Range = largest - smallest = 27 - 6 = 21",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "21 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "pythagoras_hypotenuse_triple_F",
-      "prompt": "A right-angled triangle has sides 10 cm and 24 cm. Find the length of x.",
-      "solution_steps": [
-        "c² = a² + b² = 10² + 24² = 100 + 576 = 676",
-        "c = √676 = 26"
-      ],
-      "final_answer": "26 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "c² = a² + b² = 10² + 24² = 100 + 576 = 676",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "c = √676 = 26",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "26 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "right_triangle",
-        "params": {
-          "leg1_label": "10 cm",
-          "leg2_label": "24 cm",
           "hyp_label": "x"
         }
       },

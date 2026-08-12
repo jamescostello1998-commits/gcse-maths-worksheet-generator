@@ -193,22 +193,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_divide_F",
-      "prompt": "Evaluate 61.8 ÷ 6.",
+      "topic_id": "substitution_rearrange_F",
+      "prompt": "A = (1/2)bh. Make h the subject of the formula, then find the value of h when A = 20 and b = 4.",
       "solution_steps": [
-        "61.8 ÷ 6 = 10.3"
+        "A = (1/2)bh",
+        "Rearrange to make h the subject: h = \\frac{2A}{b}",
+        "Substitute A = 20 and b = 4: h = \\frac{2 × 20}{4}",
+        "h = 10"
       ],
-      "final_answer": "10.3",
-      "marks": 2,
+      "final_answer": "h = 10",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "61.8 ÷ 6 = 10.3",
+          "description": "A = (1/2)bh",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rearrange to make h the subject: h = \\frac{2A}{b}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute A = 20 and b = 4: h = \\frac{2 × 20}{4}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "h = 10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10.3 oe",
+          "description": "h = 10 oe",
           "marks": 1
         }
       ],
@@ -849,40 +867,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "construction_angle_bisector_F",
-      "prompt": "Angle ZQS = 152°. Describe, step by step, how to construct the bisector of angle ZQS using only a ruler and a pair of compasses.",
+      "topic_id": "map_scale_drawings_F",
+      "prompt": "A map has a scale of 1 cm represents 1 km. Two towns are 11 km apart in real life. Find the distance between the towns on the map, in cm.",
       "solution_steps": [
-        "Open the compasses to any radius and place the point on Q (the vertex of the angle).",
-        "Draw an arc that crosses both arms of the angle, at a point on QZ and a point on QS.",
-        "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
-        "Draw a straight line from Q through the point where the two arcs intersect. This line is the bisector of angle ZQS."
+        "The scale means 1 cm on the map represents 1 km in real life.",
+        "Map distance = 11 ÷ 1 = 11 cm"
       ],
-      "final_answer": "The straight line from Q through the intersection of the two equal-radius arcs bisects angle ZQS into two equal angles.",
-      "marks": 5,
+      "final_answer": "11 cm",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Open the compasses to any radius and place the point on Q (the vertex of the angle).",
+          "description": "The scale means 1 cm on the map represents 1 km in real life.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Draw an arc that crosses both arms of the angle, at a point on QZ and a point on QS.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Draw a straight line from Q through the point where the two arcs intersect. This line is the bisector of angle ZQS.",
+          "description": "Map distance = 11 ÷ 1 = 11 cm",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "The straight line from Q through the intersection of the two equal-radius arcs bisects angle ZQS into two equal angles. oe",
+          "description": "11 cm oe",
           "marks": 1
         }
       ],
@@ -890,28 +896,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "symmetry_lines_F",
-      "prompt": "The diagram shows an isosceles trapezium. How many lines of symmetry does it have?",
+      "topic_id": "symmetry_rotational_F",
+      "prompt": "The diagram shows a rhombus. State the order of rotational symmetry.",
       "solution_steps": [
-        "An isosceles trapezium has 1 line of symmetry.",
-        "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram."
+        "Rotating the rhombus about its centre, it looks exactly the same 2 times during a full 360° turn.",
+        "So the order of rotational symmetry is 2."
       ],
-      "final_answer": "1 line of symmetry",
+      "final_answer": "order 2",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "An isosceles trapezium has 1 line of symmetry.",
+          "description": "Rotating the rhombus about its centre, it looks exactly the same 2 times during a full 360° turn.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram.",
+          "description": "So the order of rotational symmetry is 2.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 line of symmetry oe",
+          "description": "order 2 oe",
           "marks": 1
         }
       ],
@@ -921,19 +927,19 @@
           "vertices": [
             [
               0,
-              0
-            ],
-            [
-              6,
-              0
+              -3
             ],
             [
               4,
+              0
+            ],
+            [
+              0,
               3
             ],
             [
-              2,
-              3
+              -4,
+              0
             ]
           ],
           "blank": true
@@ -945,33 +951,26 @@
           "vertices": [
             [
               0,
-              0
-            ],
-            [
-              6,
-              0
+              -3
             ],
             [
               4,
+              0
+            ],
+            [
+              0,
               3
             ],
             [
-              2,
-              3
+              -4,
+              0
             ]
           ],
-          "symmetry_lines": [
-            {
-              "p1": [
-                3,
-                -1
-              ],
-              "p2": [
-                3,
-                4
-              ]
-            }
-          ]
+          "rotation_centre": [
+            0.0,
+            0.0
+          ],
+          "rotation_order": 2
         }
       }
     },
@@ -1081,41 +1080,47 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solving_inequalities_F",
-      "prompt": "Solve the inequality: \\frac{x}{3} + 4 ≥ 0",
+      "topic_id": "probability_expectation_F",
+      "prompt": "In a batch of items, the probability that an item is defective is 2/10. 40 items are checked. How many would you expect to be defective?",
       "solution_steps": [
-        "\\frac{x}{3} + 4 ≥ 0",
-        "Subtract 4 from both sides:",
-        "\\frac{x}{3} ≥ -4",
-        "Multiply both sides by 3:",
-        "x ≥ -12"
+        "Expected number of times = probability × number of trials = 2/10 × 40",
+        "= 8"
       ],
-      "final_answer": "x ≥ -12",
-      "marks": 5,
+      "final_answer": "8",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "\\frac{x}{3} + 4 ≥ 0",
+          "description": "Expected number of times = probability × number of trials = 2/10 × 40",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 4 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "\\frac{x}{3} ≥ -4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply both sides by 3: x ≥ -12",
+          "description": "= 8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x ≥ -12 oe",
+          "description": "8 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_equivalent_F",
+      "prompt": "Which of the following fractions is equivalent to 2/5? A) 10/30, B) 10/25, C) 9/25, D) 4/15",
+      "solution_steps": [
+        "Cross-multiply 2/5 against each option: a candidate p/q is equivalent only if 2 × q = p × 5.",
+        "Only option B) 10/25 works: 2 × 25 = 10 × 5 = 50."
+      ],
+      "final_answer": "B) 10/25",
+      "marks": 1,
+      "mark_scheme": [
+        {
+          "code": "B1",
+          "description": "B) 10/25 (selecting the correct option)",
           "marks": 1
         }
       ],

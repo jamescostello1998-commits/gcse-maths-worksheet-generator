@@ -1094,13 +1094,13 @@
     },
     {
       "topic_id": "transform_enlarge_complete_F",
-      "prompt": "Enlarge shape ABCD by scale factor 2, centre (-2, 8).",
+      "prompt": "Enlarge shape A by scale factor 2, centre (-2, 8).",
       "solution_steps": [
         "The centre of enlargement is (-2, 8) and the scale factor is 2.",
-        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-1, -6) from the centre, so A' = (-2, 8) + 2 × (-1, -6) = (-4, -4).",
-        "Repeat for every vertex: A(-3, 2) -> A'(-4, -4), B(1, 2) -> B'(4, -4), C(0, 6) -> C'(2, 4), D(-4, 5) -> D'(-6, 2)"
+        "For each vertex, find its displacement from the centre and multiply by the scale factor: e.g. (-3, 2) is a displacement of (-1, -6) from the centre, so it maps to (-2, 8) + 2 × (-1, -6) = (-4, -4).",
+        "Repeat for every vertex. The image, shape B, has vertices (-4, -4), (4, -4), (2, 4), (-6, 2)."
       ],
-      "final_answer": "A'(-4, -4), B'(4, -4), C'(2, 4), D'(-6, 2)",
+      "final_answer": "Image (shape B): (-4, -4), (4, -4), (2, 4), (-6, 2)",
       "marks": 4,
       "mark_scheme": [
         {
@@ -1110,17 +1110,17 @@
         },
         {
           "code": "M1",
-          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-1, -6) from the centre, so A' = (-2, 8) + 2 × (-1, -6) = (-4, -4).",
+          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: e.g. (-3, 2) is a displacement of (-1, -6) from the centre, so it maps to (-2, 8) + 2 × (-1, -6) = (-4, -4).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Repeat for every vertex: A(-3, 2) -> A'(-4, -4), B(1, 2) -> B'(4, -4), C(0, 6) -> C'(2, 4), D(-4, 5) -> D'(-6, 2)",
+          "description": "Repeat for every vertex. The image, shape B, has vertices (-4, -4), (4, -4), (2, 4), (-6, 2).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(-4, -4), B'(4, -4), C'(2, 4), D'(-6, 2) oe",
+          "description": "Image (shape B): (-4, -4), (4, -4), (2, 4), (-6, 2) oe",
           "marks": 1
         }
       ],
@@ -1150,15 +1150,12 @@
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
+            "",
+            "",
+            "",
+            ""
           ],
-          "centre": [
-            -2,
-            8
-          ]
+          "original_shape_label": "A"
         }
       },
       "solution_diagram": {
@@ -1187,15 +1184,12 @@
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
+            "",
+            "",
+            "",
+            ""
           ],
-          "centre": [
-            -2,
-            8
-          ],
+          "original_shape_label": "A",
           "image_vertices": [
             [
               -4,
@@ -1215,11 +1209,12 @@
             ]
           ],
           "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'"
-          ]
+            "",
+            "",
+            "",
+            ""
+          ],
+          "image_shape_label": "B"
         }
       }
     },

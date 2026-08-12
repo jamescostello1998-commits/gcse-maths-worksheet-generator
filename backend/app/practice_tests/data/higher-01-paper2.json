@@ -782,10 +782,10 @@
     },
     {
       "topic_id": "transform_enlarge_describe_H",
-      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B.",
       "solution_steps": [
         "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
-        "For this pair, the lines meet at (0, -1) and the ratio works out as -1."
+        "For mapping shape A onto shape B, the lines meet at (0, -1) and the scale factor works out as -1."
       ],
       "final_answer": "Enlargement, scale factor -1, centre (0, -1)",
       "marks": 3,
@@ -797,7 +797,7 @@
         },
         {
           "code": "M1",
-          "description": "For this pair, the lines meet at (0, -1) and the ratio works out as -1.",
+          "description": "For mapping shape A onto shape B, the lines meet at (0, -1) and the scale factor works out as -1.",
           "marks": 1
         },
         {
@@ -852,7 +852,8 @@
             "",
             ""
           ],
-          "image_shape_label": "B"
+          "image_shape_label": "B",
+          "image_same_color": true
         }
       },
       "solution_diagram": null
