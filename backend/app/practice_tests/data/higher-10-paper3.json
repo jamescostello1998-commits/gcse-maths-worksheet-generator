@@ -7,28 +7,34 @@
   "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "roots_H",
-      "prompt": "Simplify √125, giving your answer in the form a√b.",
+      "topic_id": "bounds_calculation_H",
+      "prompt": "A rectangle has length 26 cm and width 6 cm, both measured to the nearest cm. Calculate the lower bound for the area of the rectangle.",
       "solution_steps": [
-        "Find the largest square factor of 125: 5^2 × 5 = 125",
-        "√125 = √(5^2 × 5) = 5√5"
+        "Length: 26 cm (to the nearest cm) gives 25.5 ≤ length < 26.5",
+        "Width: 6 cm (to the nearest cm) gives 5.5 ≤ width < 6.5",
+        "For the lower bound of the area, use the lower bound of each measurement: 25.5 × 5.5 = 140.25 cm²"
       ],
-      "final_answer": "5√5",
-      "marks": 3,
+      "final_answer": "140.25 cm²",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the largest square factor of 125: 5^2 × 5 = 125",
+          "description": "Length: 26 cm (to the nearest cm) gives 25.5 ≤ length < 26.5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "√125 = √(5^2 × 5) = 5√5",
+          "description": "Width: 6 cm (to the nearest cm) gives 5.5 ≤ width < 6.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For the lower bound of the area, use the lower bound of each measurement: 25.5 × 5.5 = 140.25 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5√5 oe",
+          "description": "140.25 cm² oe",
           "marks": 1
         }
       ],
@@ -37,39 +43,68 @@
     },
     {
       "topic_id": "simplifying_indices_challenging_H",
-      "prompt": "Simplify 27^(1/3) × 27^-3, giving your answer as a fraction where necessary.",
+      "prompt": "Simplify (6^-1 × 6^-2)^2, giving your answer as a fraction where necessary.",
       "solution_steps": [
-        "27^(1/3) is the cube root of 27, which is 3, so 27^(1/3) = 3^1",
-        "27^-3 = \\frac{1}{27³} = \\frac{1}{3⁹}",
-        "27^(1/3) × 27^-3 = 3^1 × \\frac{1}{3⁹} = 3^(1-9) = 3^-8",
-        "3^-8 = 1/6561"
+        "Add the powers inside the bracket first: -1 + -2 = -3",
+        "(6^-1 × 6^-2)^2 = (6^-3)^2",
+        "Multiply the powers: -3 × 2 = -6",
+        "(6^-3)^2 = 6^-6 = 1/46656"
       ],
-      "final_answer": "1/6561",
+      "final_answer": "1/46656",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "27^(1/3) is the cube root of 27, which is 3, so 27^(1/3) = 3^1",
+          "description": "Add the powers inside the bracket first: -1 + -2 = -3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "27^-3 = \\frac{1}{27³} = \\frac{1}{3⁹}",
+          "description": "(6^-1 × 6^-2)^2 = (6^-3)^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "27^(1/3) × 27^-3 = 3^1 × \\frac{1}{3⁹} = 3^(1-9) = 3^-8",
+          "description": "Multiply the powers: -3 × 2 = -6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3^-8 = 1/6561",
+          "description": "(6^-3)^2 = 6^-6 = 1/46656",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/6561 oe",
+          "description": "1/46656 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "surds_multiply_divide_H",
+      "prompt": "Work out √125 ÷ √5, giving your answer as an integer.",
+      "solution_steps": [
+        "√125 ÷ √5 = √(125/5) = √25",
+        "√25 = 5"
+      ],
+      "final_answer": "5",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "√125 ÷ √5 = √(125/5) = √25",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√25 = 5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5 oe",
           "marks": 1
         }
       ],
@@ -78,111 +113,39 @@
     },
     {
       "topic_id": "indices_common_base_equations_H",
-      "prompt": "Solve 9^x = 27.",
+      "prompt": "Solve 27^x = 243.",
       "solution_steps": [
-        "Write both sides as powers of 3: 9 = 3^2 and 27 = 3^3",
-        "9^x = 27 becomes (3^2)^x = 3^3, i.e. 3^(2x) = 3^3",
-        "Since the bases match, the powers must be equal: 2x = 3",
-        "x = 3/2"
+        "Write both sides as powers of 3: 27 = 3^3 and 243 = 3^5",
+        "27^x = 243 becomes (3^3)^x = 3^5, i.e. 3^(3x) = 3^5",
+        "Since the bases match, the powers must be equal: 3x = 5",
+        "x = 5/3"
       ],
-      "final_answer": "3/2",
+      "final_answer": "5/3",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Write both sides as powers of 3: 9 = 3^2 and 27 = 3^3",
+          "description": "Write both sides as powers of 3: 27 = 3^3 and 243 = 3^5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "9^x = 27 becomes (3^2)^x = 3^3, i.e. 3^(2x) = 3^3",
+          "description": "27^x = 243 becomes (3^3)^x = 3^5, i.e. 3^(3x) = 3^5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Since the bases match, the powers must be equal: 2x = 3",
+          "description": "Since the bases match, the powers must be equal: 3x = 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 3/2",
+          "description": "x = 5/3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3/2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "rationalise_denominator_H",
-      "prompt": "Rationalise the denominator of \\frac{4}{9 + √13}, giving your answer in its simplest form.",
-      "solution_steps": [
-        "Multiply the numerator and denominator by the conjugate of the denominator, (9 - √13):",
-        "\\frac{4}{9 + √13}",
-        "= \\frac{4(9 - √13)}{[(9 + √13)(9 - √13)]}",
-        "The denominator is a difference of two squares: 9^2 - 13 = 68",
-        "The numerator is 4(9 - √13) = 36 - 4√13",
-        "Simplify by dividing numerator and denominator by 4: \\frac{9 - √13}{17}"
-      ],
-      "final_answer": "\\frac{9 - √13}{17}",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiply the numerator and denominator by the conjugate of the denominator, (9 - √13):",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "\\frac{4}{9 + √13}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= \\frac{4(9 - √13)}{[(9 + √13)(9 - √13)]}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The denominator is a difference of two squares: 9^2 - 13 = 68 The numerator is 4(9 - √13) = 36 - 4√13 Simplify by dividing numerator and denominator by 4: \\frac{9 - √13}{17}",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "\\frac{9 - √13}{17} oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "prime_factors_H",
-      "prompt": "Write 684 as a product of its prime factors, giving your answer in index form.",
-      "solution_steps": [
-        "Divide 684 repeatedly by the smallest prime that fits: 2 × 2 × 3 × 3 × 19",
-        "Write repeated factors using index notation: 684 = 2^2 × 3^2 × 19"
-      ],
-      "final_answer": "2^2 × 3^2 × 19",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Divide 684 repeatedly by the smallest prime that fits: 2 × 2 × 3 × 3 × 19",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Write repeated factors using index notation: 684 = 2^2 × 3^2 × 19",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2^2 × 3^2 × 19 oe",
+          "description": "5/3 oe",
           "marks": 1
         }
       ],
@@ -191,33 +154,283 @@
     },
     {
       "topic_id": "fractions_mixed_number_arithmetic_H",
-      "prompt": "Evaluate 1 1/2 - 1 1/2. Give your answer as a mixed number.",
+      "prompt": "Work out 5 3/6 - 3 2/3. Give your answer as a mixed number.",
       "solution_steps": [
-        "Convert to improper fractions: 1 1/2 = 3/2, 1 1/2 = 3/2",
-        "Subtract the improper fractions: 3/2 - 3/2 = 0/1",
-        "Convert back to a mixed number: 0"
+        "Convert to improper fractions: 5 3/6 = 11/2, 3 2/3 = 11/3",
+        "Subtract the improper fractions: 11/2 - 11/3 = 11/6",
+        "Convert back to a mixed number: 1 5/6"
       ],
-      "final_answer": "0",
+      "final_answer": "1 5/6",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert to improper fractions: 1 1/2 = 3/2, 1 1/2 = 3/2",
+          "description": "Convert to improper fractions: 5 3/6 = 11/2, 3 2/3 = 11/3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract the improper fractions: 3/2 - 3/2 = 0/1",
+          "description": "Subtract the improper fractions: 11/2 - 11/3 = 11/6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Convert back to a mixed number: 0",
+          "description": "Convert back to a mixed number: 1 5/6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0 oe",
+          "description": "1 5/6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "recurring_decimal_two_digit_H",
+      "prompt": "Show that \\recur{0.}{09} can be written as 1/11.",
+      "solution_steps": [
+        "Let x = \\recur{0.}{09}, so 100x = 09.0909... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Subtract: 100x - x = 9 - 0, so 99x = 9",
+        "x = 9/99 = 1/11"
+      ],
+      "final_answer": "1/11",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let x = \\recur{0.}{09}, so 100x = 09.0909... (two digits repeat, so multiply by 100 to shift a full block)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract: 100x - x = 9 - 0, so 99x = 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 9/99 = 1/11",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/11 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "forming_equations_H",
+      "prompt": "I think of a number. I add 8 to it, then multiply the result by 5. The answer is 120. Form an equation and solve it to find the number.",
+      "solution_steps": [
+        "Let the number be x.",
+        "5(x + 8) = 120",
+        "Expand the bracket:",
+        "5x + 40 = 120",
+        "Subtract 40 from both sides:",
+        "5x = 80",
+        "Divide both sides by 5:",
+        "x = 16"
+      ],
+      "final_answer": "16",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let the number be x.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5(x + 8) = 120",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand the bracket:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x + 40 = 120 Subtract 40 from both sides: 5x = 80 Divide both sides by 5: x = 16",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "16 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "expand_triple_brackets_no_coefficient_H",
+      "prompt": "Expand and simplify: (x + 3)(x - 4)(x + 1)",
+      "solution_steps": [
+        "First expand two of the brackets: (x + 3)(x - 4) = x^2 - x - 12",
+        "Multiply the result by (x + 1) and collect like terms",
+        "= x^3 - 13x - 12"
+      ],
+      "final_answer": "x^3 - 13x - 12",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First expand two of the brackets: (x + 3)(x - 4) = x^2 - x - 12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply the result by (x + 1) and collect like terms",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= x^3 - 13x - 12",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x^3 - 13x - 12 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "trial_and_improvement_H",
+      "prompt": "f(x) = x^3 - 2x - 17. Show that f(x) = 0 has a root between x = 2 and x = 3, then use trial and improvement to find this root correct to 1 decimal place.",
+      "solution_steps": [
+        "f(x) = x^3 - 2x - 17",
+        "f(2) = -13.00 (negative)",
+        "f(3) = 4.00 (positive)",
+        "f(2.1) = -11.94 (negative)",
+        "f(2.2) = -10.75 (negative)",
+        "f(2.3) = -9.43 (negative)",
+        "f(2.4) = -7.98 (negative)",
+        "f(2.5) = -6.38 (negative)",
+        "f(2.6) = -4.62 (negative)",
+        "f(2.7) = -2.72 (negative)",
+        "f(2.8) = -0.65 (negative)",
+        "f(2.9) = 1.59 (positive)",
+        "The sign changes between x = 2.8 and x = 2.9, so try the midpoint x = 2.85: f(2.85) = 0.45.",
+        "f(2.85) has the same sign as f(2.9), so the root lies between 2.8 and 2.85 - to 1 decimal place, this rounds down to 2.8."
+      ],
+      "final_answer": "x = 2.8",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "f(x) = x^3 - 2x - 17",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "f(2) = -13.00 (negative)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "f(3) = 4.00 (positive)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "f(2.1) = -11.94 (negative) f(2.2) = -10.75 (negative) f(2.3) = -9.43 (negative) f(2.4) = -7.98 (negative) f(2.5) = -6.38 (negative) f(2.6) = -4.62 (negative) f(2.7) = -2.72 (negative) f(2.8) = -0.65 (negative) f(2.9) = 1.59 (positive) The sign changes between x = 2.8 and x = 2.9, so try the midpoint x = 2.85: f(2.85) = 0.45. f(2.85) has the same sign as f(2.9), so the root lies between 2.8 and 2.85 - to 1 decimal place, this rounds down to 2.8.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 2.8 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_proof_H",
+      "prompt": "Prove algebraically that (n + 3)^2 - (n + 1)^2 is always a multiple of 4.",
+      "solution_steps": [
+        "Let n be any integer, with n + 1 and n + 3 two integers 2 apart from each other.",
+        "Write the given expression algebraically: (n + 3)^2 - (n + 1)^2.",
+        "Expand and simplify: (n + 3)^2 - (n + 1)^2 = 4n + 8.",
+        "Factorise/rearrange to expose the structure: 4n + 8 = 4(n + 2).",
+        "Since 4n + 8 factorises exactly to 4(n + 2), the difference is always 4 times a whole number, so it is always a multiple of 4."
+      ],
+      "final_answer": "Proven: (n + 3)^2 - (n + 1)^2 = 4(n + 2), always a multiple of 4.",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Let n be any integer, with n + 1 and n + 3 two integers 2 apart from each other.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write the given expression algebraically: (n + 3)^2 - (n + 1)^2.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand and simplify: (n + 3)^2 - (n + 1)^2 = 4n + 8.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise/rearrange to expose the structure: 4n + 8 = 4(n + 2). Since 4n + 8 factorises exactly to 4(n + 2), the difference is always 4 times a whole number, so it is always a multiple of 4.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Proven: (n + 3)^2 - (n + 1)^2 = 4(n + 2), always a multiple of 4. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_quadratic_H",
+      "prompt": "Solve the simultaneous equations: y = x^2 + 4x + 1 and y = 8x + 13",
+      "solution_steps": [
+        "Substitute y = 8x + 13 into y = x^2 + 4x + 1: 8x + 13 = x^2 + 4x + 1",
+        "Rearrange: x^2 - 4x - 12 = 0",
+        "Factorise: (x + 2)(x - 6) = 0",
+        "x = -2 or x = 6",
+        "When x = -2, y = -3. When x = 6, y = 61."
+      ],
+      "final_answer": "(-2, -3) and (6, 61)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Substitute y = 8x + 13 into y = x^2 + 4x + 1: 8x + 13 = x^2 + 4x + 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rearrange: x^2 - 4x - 12 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: (x + 2)(x - 6) = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -2 or x = 6 When x = -2, y = -3. When x = 6, y = 61.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(-2, -3) and (6, 61) oe",
           "marks": 1
         }
       ],
@@ -226,39 +439,39 @@
     },
     {
       "topic_id": "algebraic_fractions_add_subtract_H",
-      "prompt": "Simplify \\frac{4}{x - 1} + \\frac{8}{x - 7}, giving your answer as a single fraction.",
+      "prompt": "Simplify \\frac{1}{x + 8} + \\frac{1}{x - 7}, giving your answer as a single fraction.",
       "solution_steps": [
-        "Write both fractions over the common denominator (x - 1)(x - 7):",
-        "\\frac{4}{x - 1} + \\frac{8}{x - 7} = \\frac{4(x - 7) + 8(x - 1)}{(x - 1)(x - 7)}",
-        "Expand the numerator: 4(x - 7) + 8(x - 1) = 12x - 36",
-        "= \\frac{12x - 36}{(x - 1)(x - 7)}"
+        "Write both fractions over the common denominator (x + 8)(x - 7):",
+        "\\frac{1}{x + 8} + \\frac{1}{x - 7} = \\frac{1(x - 7) + 1(x + 8)}{(x + 8)(x - 7)}",
+        "Expand the numerator: 1(x - 7) + 1(x + 8) = 2x + 1",
+        "= \\frac{2x + 1}{(x + 8)(x - 7)}"
       ],
-      "final_answer": "\\frac{12x - 36}{(x - 1)(x - 7)}",
+      "final_answer": "\\frac{2x + 1}{(x + 8)(x - 7)}",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Write both fractions over the common denominator (x - 1)(x - 7):",
+          "description": "Write both fractions over the common denominator (x + 8)(x - 7):",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "\\frac{4}{x - 1} + \\frac{8}{x - 7} = \\frac{4(x - 7) + 8(x - 1)}{(x - 1)(x - 7)}",
+          "description": "\\frac{1}{x + 8} + \\frac{1}{x - 7} = \\frac{1(x - 7) + 1(x + 8)}{(x + 8)(x - 7)}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand the numerator: 4(x - 7) + 8(x - 1) = 12x - 36",
+          "description": "Expand the numerator: 1(x - 7) + 1(x + 8) = 2x + 1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= \\frac{12x - 36}{(x - 1)(x - 7)}",
+          "description": "= \\frac{2x + 1}{(x + 8)(x - 7)}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "\\frac{12x - 36}{(x - 1)(x - 7)} oe",
+          "description": "\\frac{2x + 1}{(x + 8)(x - 7)} oe",
           "marks": 1
         }
       ],
@@ -266,255 +479,76 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solve_quadratic_completing_square_H",
-      "prompt": "Solve x^2 - 2x - 98 = 0 by completing the square, giving your answers in exact surd form.",
+      "topic_id": "inequalities_number_line_H",
+      "prompt": "Write down the inequality (or pair of inequalities) shown by the number line below.",
       "solution_steps": [
-        "Half the coefficient of x: -2 ÷ 2 = -1",
-        "Complete the square: x^2 - 2x - 98 = (x - 1)^2 - 99",
-        "Set (x - 1)^2 - 99 = 0, so (x - 1)^2 = 99",
-        "(x - 1) = ±√99 = ±3√11",
-        "x = 1 + 3√11 or x = 1 - 3√11"
+        "The circle at -1 is open and the circle at 2 is filled.",
+        "The shading lies between the two circles, so both bounds must hold at once: -1 < x ≤ 2."
       ],
-      "final_answer": "x = 1 + 3√11 or x = 1 - 3√11",
-      "marks": 5,
+      "final_answer": "-1 < x ≤ 2",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Half the coefficient of x: -2 ÷ 2 = -1",
+          "description": "The circle at -1 is open and the circle at 2 is filled.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Complete the square: x^2 - 2x - 98 = (x - 1)^2 - 99",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Set (x - 1)^2 - 99 = 0, so (x - 1)^2 = 99",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(x - 1) = ±√99 = ±3√11 x = 1 + 3√11 or x = 1 - 3√11",
+          "description": "The shading lies between the two circles, so both bounds must hold at once: -1 < x ≤ 2.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 1 + 3√11 or x = 1 - 3√11 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "functions_inverse_evaluate_H",
-      "prompt": "f(x) = 6x + 1. Find f^-1(-5).",
-      "solution_steps": [
-        "f^-1(x) = \\frac{x - 1}{6}",
-        "f^-1(-5) = \\frac{-5 - 1}{6}",
-        "f^-1(-5) = -1"
-      ],
-      "final_answer": "-1",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "f^-1(x) = \\frac{x - 1}{6}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "f^-1(-5) = \\frac{-5 - 1}{6}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "f^-1(-5) = -1",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-1 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "substitution_H",
-      "prompt": "E = (1/2)mv^2. Find the value of E when m = 6 and v = 1.",
-      "solution_steps": [
-        "E = (1/2)mv^2",
-        "E = (1/2) × 6 × 1^2",
-        "E = (1/2) × 6 × 1",
-        "E = 6/2",
-        "E = 3"
-      ],
-      "final_answer": "E = 3",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "E = (1/2)mv^2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "E = (1/2) × 6 × 1^2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "E = (1/2) × 6 × 1",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "E = 6/2 E = 3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "E = 3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "plot_reciprocal_H",
-      "prompt": "Complete a table of values for y = -\\frac{24}{x} for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
-      "solution_steps": [
-        "Table of values for y = -\\frac{24}{x}:",
-        "x: -4, -3, -2, -1, 1, 2, 3, 4",
-        "y: 6, 8, 12, 24, -24, -12, -8, -6",
-        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
-      ],
-      "final_answer": "Reciprocal curve: y = -\\frac{24}{x}",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Table of values for y = -\\frac{24}{x}:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y: 6, 8, 12, 24, -24, -12, -8, -6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Reciprocal curve: y = -\\frac{24}{x} oe",
+          "description": "-1 < x ≤ 2 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "function_graph",
+        "kind": "number_line",
         "params": {
-          "kind": "reciprocal",
-          "a": -24,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -26,
-          "y_max": 26,
-          "blank": true
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [
+            {
+              "value": -1,
+              "closed": false
+            },
+            {
+              "value": 2,
+              "closed": true
+            }
+          ],
+          "shade": "between"
         }
       },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "reciprocal",
-          "a": -24,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -26,
-          "y_max": 26,
-          "table_points": [
-            [
-              -4,
-              6
-            ],
-            [
-              -3,
-              8
-            ],
-            [
-              -2,
-              12
-            ],
-            [
-              -1,
-              24
-            ],
-            [
-              1,
-              -24
-            ],
-            [
-              2,
-              -12
-            ],
-            [
-              3,
-              -8
-            ],
-            [
-              4,
-              -6
-            ]
-          ]
-        }
-      }
+      "solution_diagram": null
     },
     {
-      "topic_id": "substitution_rearrange_H",
-      "prompt": "E = (1/2)mv^2. Make m the subject of the formula, then find the value of m when E = 567/2 and v = 9.",
+      "topic_id": "reverse_percentage_H",
+      "prompt": "After a 17.5% increase, an item costs £408.90. Find the original price.",
       "solution_steps": [
-        "E = (1/2)mv^2",
-        "Rearrange to make m the subject: m = \\frac{2E}{v^2}",
-        "Substitute E = 567/2 and v = 9: m = \\frac{2 × 567/2}{9^2}",
-        "m = 7"
+        "Convert 17.5% to a multiplier: 1.18 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 408.90 ÷ 1.18 = 348"
       ],
-      "final_answer": "m = 7",
-      "marks": 5,
+      "final_answer": "£348",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "E = (1/2)mv^2",
+          "description": "Convert 17.5% to a multiplier: 1.18 (original × multiplier = new value)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rearrange to make m the subject: m = \\frac{2E}{v^2}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute E = 567/2 and v = 9: m = \\frac{2 × 567/2}{9^2}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "m = 7",
+          "description": "Divide the new value by the multiplier: 408.90 ÷ 1.18 = 348",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "m = 7 oe",
+          "description": "£348 oe",
           "marks": 1
         }
       ],
@@ -522,34 +556,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "kinematics_suvat_H",
-      "prompt": "An object starts with a velocity of 2 m/s and has a constant acceleration of 3 m/s^2 for 2 s. Find its final velocity (v).",
+      "topic_id": "ratio_to_equation_H",
+      "prompt": "(x + 1) : (4x - 20) = 7:4. Find the value of x.",
       "solution_steps": [
-        "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
-        "v = u + at",
-        "Substitute u = 2, a = 3, t = 2: v = 2 + 3 × 2 = 2 + 6 = 8"
+        "Cross-multiply: 4(x + 1) = 7(4x - 20)",
+        "Expand: 4x + 4 = 28x - 140",
+        "Collect x terms: -24x = -144",
+        "x = -144 ÷ -24 = 6"
       ],
-      "final_answer": "8 m/s",
-      "marks": 4,
+      "final_answer": "x = 6",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
+          "description": "Cross-multiply: 4(x + 1) = 7(4x - 20)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "v = u + at",
+          "description": "Expand: 4x + 4 = 28x - 140",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute u = 2, a = 3, t = 2: v = 2 + 3 × 2 = 2 + 6 = 8",
+          "description": "Collect x terms: -24x = -144",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -144 ÷ -24 = 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8 m/s oe",
+          "description": "x = 6 oe",
           "marks": 1
         }
       ],
@@ -558,27 +598,27 @@
     },
     {
       "topic_id": "speed_with_conversions_H",
-      "prompt": "A motorbike travels 45 km in 50 minutes. Find its average speed in km/h, correct to 1 decimal place.",
+      "prompt": "A delivery van travels 764 m in 10 minutes. Find its average speed in m/s, correct to 1 decimal place.",
       "solution_steps": [
-        "Convert time to hours: 50 minutes = 50 ÷ 60 hours",
-        "speed = distance ÷ time = 45 ÷ (50 ÷ 60) = 54 km/h (1 d.p.)"
+        "Convert time to seconds: 10 minutes = 10 × 60 = 600 seconds",
+        "speed = distance ÷ time = 764 ÷ 600 = 1.3 m/s (1 d.p.)"
       ],
-      "final_answer": "54 km/h",
+      "final_answer": "1.3 m/s",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert time to hours: 50 minutes = 50 ÷ 60 hours",
+          "description": "Convert time to seconds: 10 minutes = 10 × 60 = 600 seconds",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "speed = distance ÷ time = 45 ÷ (50 ÷ 60) = 54 km/h (1 d.p.)",
+          "description": "speed = distance ÷ time = 764 ÷ 600 = 1.3 m/s (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "54 km/h oe",
+          "description": "1.3 m/s oe",
           "marks": 1
         }
       ],
@@ -586,86 +626,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "percentage_increase_decrease_calculator_H",
-      "prompt": "Using a calculator, increase £756.00 by 3.6%. Give your answer to 2 decimal places.",
+      "topic_id": "unit_conversions_H",
+      "prompt": "Convert 3663 cm² to m².",
       "solution_steps": [
-        "Convert 3.6% to a multiplier: 1.036",
-        "Multiply: £756.00 × 1.036 = £783.22 (calculator, 2 d.p.)"
+        "Linear conversion factor: 1 m = 100 cm, so for area, 1 m² = 100^2 = 10000 cm²",
+        "3663 cm² = 3663 ÷ 10000 = 0.3663 m²"
       ],
-      "final_answer": "£783.22",
+      "final_answer": "0.3663 m²",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 3.6% to a multiplier: 1.036",
+          "description": "Linear conversion factor: 1 m = 100 cm, so for area, 1 m² = 100^2 = 10000 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: £756.00 × 1.036 = £783.22 (calculator, 2 d.p.)",
+          "description": "3663 cm² = 3663 ÷ 10000 = 0.3663 m²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£783.22 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "compound_percentage_H",
-      "prompt": "A price of £152 increases by 17.5%, then decreases by 35%. Find the final price.",
-      "solution_steps": [
-        "After the first change: 152 × 1.18 = 178.60",
-        "After the second change: 178.60 × 0.65 = 116.09"
-      ],
-      "final_answer": "£116.09",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "After the first change: 152 × 1.18 = 178.60",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "After the second change: 178.60 × 0.65 = 116.09",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£116.09 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "pressure_H",
-      "prompt": "A machine foot has a rectangular base measuring 18 cm × 17 cm and exerts a force of 4800 N. Find the pressure it exerts, correct to 2 decimal places.",
-      "solution_steps": [
-        "area = length × width = 18 × 17 = 306 cm²",
-        "pressure = force ÷ area = 4800 ÷ 306 = 15.69 N/cm² (2 d.p.)"
-      ],
-      "final_answer": "15.69 N/cm²",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "area = length × width = 18 × 17 = 306 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "pressure = force ÷ area = 4800 ÷ 306 = 15.69 N/cm² (2 d.p.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "15.69 N/cm² oe",
+          "description": "0.3663 m² oe",
           "marks": 1
         }
       ],
@@ -674,40 +656,40 @@
     },
     {
       "topic_id": "ratio_difference_H",
-      "prompt": "s : t : u = 3 : 6 : 2.\nt - u = 60.\nFind s, t and u.",
+      "prompt": "s : t : u = 5 : 7 : 9.\nu - s = 20.\nFind s, t and u.",
       "solution_steps": [
-        "Difference in parts = 6 - 2 = 4 parts",
-        "Value of one part = 60 ÷ 4 = 15",
-        "s = 3 × 15 = 45",
-        "t = 6 × 15 = 90",
-        "u = 2 × 15 = 30"
+        "Difference in parts = 9 - 5 = 4 parts",
+        "Value of one part = 20 ÷ 4 = 5",
+        "s = 5 × 5 = 25",
+        "t = 7 × 5 = 35",
+        "u = 9 × 5 = 45"
       ],
-      "final_answer": "s = 45, t = 90, u = 30",
+      "final_answer": "s = 25, t = 35, u = 45",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Difference in parts = 6 - 2 = 4 parts",
+          "description": "Difference in parts = 9 - 5 = 4 parts",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 60 ÷ 4 = 15",
+          "description": "Value of one part = 20 ÷ 4 = 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "s = 3 × 15 = 45",
+          "description": "s = 5 × 5 = 25",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "t = 6 × 15 = 90 u = 2 × 15 = 30",
+          "description": "t = 7 × 5 = 35 u = 9 × 5 = 45",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "s = 45, t = 90, u = 30 oe",
+          "description": "s = 25, t = 35, u = 45 oe",
           "marks": 1
         }
       ],
@@ -715,207 +697,229 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "area_subtract_compound_H",
-      "prompt": "Find the shaded area.",
+      "topic_id": "vectors_arithmetic_H",
+      "prompt": "\\vec{a} = \\colvec{0}{-12} and \\vec{b} = \\colvec{-7}{5}. Find -1\\vec{a} - (-5\\vec{b}).",
       "solution_steps": [
-        "Area of large rectangle = 18 × 15 = 270 cm²",
-        "Area of rectangular hole = 6 × 13 = 78 cm²",
-        "Shaded area = 270 - 78 = 192 cm²"
+        "\\vec{a} = \\colvec{0}{-12}, \\vec{b} = \\colvec{-7}{5}",
+        "-1\\vec{a} = \\colvec{0}{12} and -5\\vec{b} = \\colvec{35}{-25}",
+        "-1\\vec{a} - (-5\\vec{b}) = \\colvec{-35}{37}"
       ],
-      "final_answer": "192 cm²",
+      "final_answer": "\\colvec{-35}{37}",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area of large rectangle = 18 × 15 = 270 cm²",
+          "description": "\\vec{a} = \\colvec{0}{-12}, \\vec{b} = \\colvec{-7}{5}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Area of rectangular hole = 6 × 13 = 78 cm²",
+          "description": "-1\\vec{a} = \\colvec{0}{12} and -5\\vec{b} = \\colvec{35}{-25}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Shaded area = 270 - 78 = 192 cm²",
+          "description": "-1\\vec{a} - (-5\\vec{b}) = \\colvec{-35}{37}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "192 cm² oe",
+          "description": "\\colvec{-35}{37} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "bearings_cosine_rule_H",
+      "prompt": "A ship sails from port A on a bearing of 211° for 12 km to point B. It then changes course and sails on a bearing of 324° for 7 km to point C. Find the direct distance from A to C, correct to 2 decimal places.",
+      "solution_steps": [
+        "The back bearing of A from B is 211° + 180° = 031°.",
+        "Angle ABC is the difference between this back bearing and the bearing of C from B: angle ABC = 67°.",
+        "Use the cosine rule: AC² = AB² + BC² - 2×AB×BC×cos(ABC)",
+        "AC² = 12² + 7² - 2×12×7×cos(67°) = 127.4",
+        "AC = √127.4 = 11.29 km (2 d.p.)"
+      ],
+      "final_answer": "11.29 km",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The back bearing of A from B is 211° + 180° = 031°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Angle ABC is the difference between this back bearing and the bearing of C from B: angle ABC = 67°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Use the cosine rule: AC² = AB² + BC² - 2×AB×BC×cos(ABC)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "AC² = 12² + 7² - 2×12×7×cos(67°) = 127.4 AC = √127.4 = 11.29 km (2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "11.29 km oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "l_shape",
+        "kind": "bearings",
         "params": {
-          "outer_w": 18,
-          "outer_h": 15,
-          "inner_w": 6,
-          "inner_h": 13,
-          "notch": "center",
-          "shade_frame": true,
-          "outer_labels": [
-            "18 cm",
-            "15 cm"
+          "labels": [
+            "A",
+            "B",
+            "C"
           ],
-          "inner_labels": [
-            "6 cm",
-            "13 cm"
+          "bearing_at_A": 211,
+          "bearing_at_B": 324,
+          "leg1_label": "12 km",
+          "leg2_label": "7 km",
+          "unknown_label": "x km"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "volume_surface_area_cone_H",
+      "prompt": "A cone has radius 9 cm and (perpendicular) height 4 cm. Find its volume, correct to 3 significant figures.",
+      "solution_steps": [
+        "Volume = (1/3) × π × r² × h = (1/3) × π × 9² × 4.000",
+        "= 339 cm³ (3 s.f., using a calculator value of π)"
+      ],
+      "final_answer": "339 cm³",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Volume = (1/3) × π × r² × h = (1/3) × π × 9² × 4.000",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 339 cm³ (3 s.f., using a calculator value of π)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "339 cm³ oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "cone",
+        "params": {
+          "radius_label": "9 cm",
+          "height_label": "4 cm",
+          "show_height_triangle": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "cone",
+        "params": {
+          "radius_label": "9 cm",
+          "height_label": "4 cm",
+          "show_height_triangle": true,
+          "slant_label": "9.85 cm"
+        }
+      }
+    },
+    {
+      "topic_id": "angles_triangle_H",
+      "prompt": "A triangle has angles 33°, 51°, and (5x + 86)°. Find x.",
+      "solution_steps": [
+        "Angles in a triangle sum to 180°.",
+        "5x + 86 = 96",
+        "Subtract 86 from both sides:",
+        "5x = 10",
+        "Divide both sides by 5:",
+        "x = 2"
+      ],
+      "final_answer": "2",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Angles in a triangle sum to 180°.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x + 86 = 96",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 86 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x = 10 Divide both sides by 5: x = 2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "triangle_angles",
+        "params": {
+          "angle_labels": [
+            "33°",
+            "51°",
+            "(5x + 86)°"
           ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_missing_angle_H",
-      "prompt": "In the triangle shown, find the angle x, correct to 1 decimal place.",
+      "topic_id": "tree_diagram_dependent_H",
+      "prompt": "A bag contains 8 yellow and 7 green counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the two counters are different colours.",
       "solution_steps": [
-        "Use cos, since we know two of the three sides.",
-        "cos(x) = 37 ÷ 38",
-        "x = cos^-1(37 ÷ 38) = 13.2° (1 d.p.)"
+        "After the first counter is picked (without replacement), there are 14 counters left.",
+        "P(yellow then yellow) = 8/15 × 1/2 = 4/15",
+        "P(yellow then green) = 8/15 × 1/2 = 4/15",
+        "P(green then yellow) = 7/15 × 4/7 = 4/15",
+        "P(green then green) = 7/15 × 3/7 = 1/5",
+        "P(the two counters are different colours) = 8/15"
       ],
-      "final_answer": "13.2°",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Use cos, since we know two of the three sides.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "cos(x) = 37 ÷ 38",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = cos^-1(37 ÷ 38) = 13.2° (1 d.p.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "13.2° oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "trig_triangle",
-        "params": {
-          "adjacent_label": "37 cm",
-          "opposite_label": null,
-          "hyp_label": "38 cm",
-          "angle_label": "x°"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "vectors_arithmetic_H",
-      "prompt": "\\vec{a} = \\colvec{-12}{-3} and \\vec{b} = \\colvec{-5}{0}. Find -1\\vec{a} + 2\\vec{b}.",
-      "solution_steps": [
-        "\\vec{a} = \\colvec{-12}{-3}, \\vec{b} = \\colvec{-5}{0}",
-        "-1\\vec{a} = \\colvec{12}{3} and 2\\vec{b} = \\colvec{-10}{0}",
-        "-1\\vec{a} + 2\\vec{b} = \\colvec{2}{3}"
-      ],
-      "final_answer": "\\colvec{2}{3}",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "\\vec{a} = \\colvec{-12}{-3}, \\vec{b} = \\colvec{-5}{0}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "-1\\vec{a} = \\colvec{12}{3} and 2\\vec{b} = \\colvec{-10}{0}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "-1\\vec{a} + 2\\vec{b} = \\colvec{2}{3}",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "\\colvec{2}{3} oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "arc_length_H",
-      "prompt": "Find the exact arc length of the following sector, in terms of π.",
-      "solution_steps": [
-        "Arc length = (θ ÷ 360) × 2 × π × r = (45 ÷ 360) × 2 × π × 8",
-        "= 2π cm"
-      ],
-      "final_answer": "2π cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Arc length = (θ ÷ 360) × 2 × π × r = (45 ÷ 360) × 2 × π × 8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 2π cm",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2π cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "sector",
-        "params": {
-          "angle": 45,
-          "radius_label": "8 cm",
-          "angle_label": "45°"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "tree_diagram_mixed_H",
-      "prompt": "A bag contains 3 blue and 6 green counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that both counters are the same colour.",
-      "solution_steps": [
-        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(blue) = 1/3, P(green) = 2/3.",
-        "P(both blue) = 1/3 × 1/3 = 1/9",
-        "P(both green) = 2/3 × 2/3 = 4/9",
-        "P(same colour) = 1/9 + 4/9 = 5/9"
-      ],
-      "final_answer": "5/9",
+      "final_answer": "8/15",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(blue) = 1/3, P(green) = 2/3.",
+          "description": "After the first counter is picked (without replacement), there are 14 counters left.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(both blue) = 1/3 × 1/3 = 1/9",
+          "description": "P(yellow then yellow) = 8/15 × 1/2 = 4/15",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(both green) = 2/3 × 2/3 = 4/9",
+          "description": "P(yellow then green) = 8/15 × 1/2 = 4/15",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(same colour) = 1/9 + 4/9 = 5/9",
+          "description": "P(green then yellow) = 7/15 × 4/7 = 4/15 P(green then green) = 7/15 × 3/7 = 1/5 P(the two counters are different colours) = 8/15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5/9 oe",
+          "description": "8/15 oe",
           "marks": 1
         }
       ],
@@ -924,34 +928,44 @@
         "params": {
           "stage1": [
             [
-              "Blue",
-              "1/3"
+              "Yellow",
+              "8/15"
             ],
             [
               "Green",
-              "2/3"
+              "7/15"
             ]
           ],
           "stage2": [
             [
               [
-                "Blue",
-                "1/3"
+                "Yellow",
+                "1/2"
               ],
               [
                 "Green",
-                "2/3"
+                "1/2"
               ]
             ],
             [
               [
-                "Blue",
-                "1/3"
+                "Yellow",
+                "4/7"
               ],
               [
                 "Green",
-                "2/3"
+                "3/7"
               ]
+            ]
+          ],
+          "leaf_probs": [
+            [
+              "4/15",
+              "4/15"
+            ],
+            [
+              "4/15",
+              "1/5"
             ]
           ]
         }
@@ -959,89 +973,27 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "histogram_plot_H",
-      "prompt": "The table shows the times (in minutes) taken to complete a puzzle. Complete a frequency density column and draw a histogram.",
+      "topic_id": "product_rule_counting_H",
+      "prompt": "A shop sells 4 different shirts, 5 different pairs of trousers and 6 different pairs of shoes. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
       "solution_steps": [
-        "Frequency density = frequency ÷ class width, for each class:",
-        "0-20: 22 ÷ 20 = 1.1",
-        "20-30: 23 ÷ 10 = 2.3",
-        "30-40: 12 ÷ 10 = 1.2",
-        "40-60: 25 ÷ 20 = 1.25",
-        "Frequency densities: 1.1, 2.3, 1.2, 1.25"
+        "Total combinations = 4 × 5 × 6 = 120"
       ],
-      "final_answer": "Frequency densities: 1.1, 2.3, 1.2, 1.25",
-      "marks": 5,
+      "final_answer": "120",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Frequency density = frequency ÷ class width, for each class:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "0-20: 22 ÷ 20 = 1.1",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "20-30: 23 ÷ 10 = 2.3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "30-40: 12 ÷ 10 = 1.2 40-60: 25 ÷ 20 = 1.25 Frequency densities: 1.1, 2.3, 1.2, 1.25",
+          "description": "Total combinations = 4 × 5 × 6 = 120",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Frequency densities: 1.1, 2.3, 1.2, 1.25 oe",
+          "description": "120 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "histogram_question",
-        "params": {
-          "boundaries": [
-            0,
-            20,
-            30,
-            40,
-            60
-          ],
-          "frequencies": [
-            22,
-            23,
-            12,
-            25
-          ],
-          "frequency_densities": [
-            1.1,
-            2.3,
-            1.2,
-            1.25
-          ],
-          "x_label": "Time (minutes)"
-        }
-      },
-      "solution_diagram": {
-        "kind": "histogram",
-        "params": {
-          "boundaries": [
-            0,
-            20,
-            30,
-            40,
-            60
-          ],
-          "frequency_densities": [
-            1.1,
-            2.3,
-            1.2,
-            1.25
-          ],
-          "x_label": "Time (minutes)"
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     }
   ]
 }

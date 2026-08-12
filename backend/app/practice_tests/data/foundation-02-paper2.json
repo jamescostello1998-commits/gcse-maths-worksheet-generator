@@ -8,21 +8,27 @@
   "questions": [
     {
       "topic_id": "decimals_divide_F",
-      "prompt": "Calculate 6.6 ÷ 2.",
+      "prompt": "Work out 2 ÷ 0.5.",
       "solution_steps": [
-        "6.6 ÷ 2 = 3.3"
+        "Multiply both numbers by 10 so the divisor becomes a whole number: 2 × 10 = 20, 0.5 × 10 = 5",
+        "20 ÷ 5 = 4"
       ],
-      "final_answer": "3.3",
-      "marks": 2,
+      "final_answer": "4",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "6.6 ÷ 2 = 3.3",
+          "description": "Multiply both numbers by 10 so the divisor becomes a whole number: 2 × 10 = 20, 0.5 × 10 = 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "20 ÷ 5 = 4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3.3 oe",
+          "description": "4 oe",
           "marks": 1
         }
       ],
@@ -31,33 +37,33 @@
     },
     {
       "topic_id": "fractions_ordering_F",
-      "prompt": "Write these fractions in descending order: 2/5, 1/2, 1/6, 1/12",
+      "prompt": "Write these fractions in ascending order: 2/9, 1/2, 2/7, 1/3",
       "solution_steps": [
-        "Convert every fraction to the same denominator, the LCM of 5, 2, 6, 12: 60",
-        "Rewrite each fraction over 60: 2/5 = 24/60, 1/2 = 30/60, 1/6 = 10/60, 1/12 = 5/60",
-        "Order the numerators in descending order and convert back: 1/2, 2/5, 1/6, 1/12"
+        "Convert every fraction to the same denominator, the LCM of 9, 2, 7, 3: 126",
+        "Rewrite each fraction over 126: 2/9 = 28/126, 1/2 = 63/126, 2/7 = 36/126, 1/3 = 42/126",
+        "Order the numerators in ascending order and convert back: 2/9, 2/7, 1/3, 1/2"
       ],
-      "final_answer": "1/2, 2/5, 1/6, 1/12",
+      "final_answer": "2/9, 2/7, 1/3, 1/2",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert every fraction to the same denominator, the LCM of 5, 2, 6, 12: 60",
+          "description": "Convert every fraction to the same denominator, the LCM of 9, 2, 7, 3: 126",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rewrite each fraction over 60: 2/5 = 24/60, 1/2 = 30/60, 1/6 = 10/60, 1/12 = 5/60",
+          "description": "Rewrite each fraction over 126: 2/9 = 28/126, 1/2 = 63/126, 2/7 = 36/126, 1/3 = 42/126",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Order the numerators in descending order and convert back: 1/2, 2/5, 1/6, 1/12",
+          "description": "Order the numerators in ascending order and convert back: 2/9, 2/7, 1/3, 1/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/2, 2/5, 1/6, 1/12 oe",
+          "description": "2/9, 2/7, 1/3, 1/2 oe",
           "marks": 1
         }
       ],
@@ -65,63 +71,59 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_one_step_F",
-      "prompt": "Solve: 5x = 25",
+      "topic_id": "area_parallelogram_F",
+      "prompt": "Find the area of the following parallelogram.",
       "solution_steps": [
-        "5x = 25",
-        "Divide both sides by 5:",
-        "x = 5"
+        "Area = base × height = 19 × 8 = 152 cm²"
       ],
-      "final_answer": "5",
-      "marks": 4,
+      "final_answer": "152 cm²",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5x = 25",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by 5:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 5",
+          "description": "Area = base × height = 19 × 8 = 152 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5 oe",
+          "description": "152 cm² oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "parallelogram",
+        "params": {
+          "base": 19,
+          "height": 8,
+          "base_label": "19 cm",
+          "height_label": "8 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
       "topic_id": "powers_F",
-      "prompt": "Simplify 5^4 ÷ 5^2, giving your answer as a single power of 5.",
+      "prompt": "Fully simplify 2^5 × 2^2, giving your answer as a single power of 2.",
       "solution_steps": [
-        "Subtract the powers: 4 - 2 = 2",
-        "5^4 ÷ 5^2 = 5^2"
+        "Add the powers: 5 + 2 = 7",
+        "2^5 × 2^2 = 2^7"
       ],
-      "final_answer": "5^2",
+      "final_answer": "2^7",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Subtract the powers: 4 - 2 = 2",
+          "description": "Add the powers: 5 + 2 = 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5^4 ÷ 5^2 = 5^2",
+          "description": "2^5 × 2^2 = 2^7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5^2 oe",
+          "description": "2^7 oe",
           "marks": 1
         }
       ],
@@ -130,27 +132,27 @@
     },
     {
       "topic_id": "factors_F",
-      "prompt": "Is 61 a factor of 66?",
+      "prompt": "How many factors does 10 have?",
       "solution_steps": [
-        "66 ÷ 61 = 1 remainder 5",
-        "No, 61 is not a factor of 66."
+        "List every factor of 10 by checking each whole number from 1 to 10: 1, 2, 5, 10.",
+        "Count them: 4 factors."
       ],
-      "final_answer": "No",
+      "final_answer": "4",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "66 ÷ 61 = 1 remainder 5",
+          "description": "List every factor of 10 by checking each whole number from 1 to 10: 1, 2, 5, 10.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "No, 61 is not a factor of 66.",
+          "description": "Count them: 4 factors.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "No oe",
+          "description": "4 oe",
           "marks": 1
         }
       ],
@@ -159,33 +161,33 @@
     },
     {
       "topic_id": "fractions_divide_F",
-      "prompt": "Evaluate 5/3 ÷ 6/2. Give your answer as a fraction in its simplest form.",
+      "prompt": "Calculate 4/6 ÷ 1/3. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
-        "Keep-change-flip: 5/3 ÷ 6/2 = 5/3 × 2/6",
-        "Multiply: \\frac{(5×2)}{(3×6)} = 10/18",
-        "Simplify: 5/9"
+        "Keep-change-flip: 4/6 ÷ 1/3 = 4/6 × 3/1",
+        "Multiply: \\frac{(4×3)}{(6×1)} = 12/6",
+        "Simplify: 2"
       ],
-      "final_answer": "5/9",
+      "final_answer": "2",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Keep-change-flip: 5/3 ÷ 6/2 = 5/3 × 2/6",
+          "description": "Keep-change-flip: 4/6 ÷ 1/3 = 4/6 × 3/1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: \\frac{(5×2)}{(3×6)} = 10/18",
+          "description": "Multiply: \\frac{(4×3)}{(6×1)} = 12/6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify: 5/9",
+          "description": "Simplify: 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5/9 oe",
+          "description": "2 oe",
           "marks": 1
         }
       ],
@@ -193,34 +195,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "recurring_decimal_single_digit_F",
-      "prompt": "Write \\recur{0.}{1} as a fraction in its simplest form.",
+      "topic_id": "bidmas_two_three_F",
+      "prompt": "Work out (9 + 7) × 6 - 22.",
       "solution_steps": [
-        "Let x = \\recur{0.}{1}, so 10x = 1.111... (only one digit repeats, so multiply by 10 to shift it one place)",
-        "Subtract: 10x - x = 1 - 0, so 9x = 1",
-        "x = 1/9 = 1/9"
+        "Brackets: (9 + 7) = 16",
+        "Multiplication: 16 × 6 = 96",
+        "Subtraction: 96 - 22 = 74"
       ],
-      "final_answer": "1/9",
+      "final_answer": "74",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = \\recur{0.}{1}, so 10x = 1.111... (only one digit repeats, so multiply by 10 to shift it one place)",
+          "description": "Brackets: (9 + 7) = 16",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract: 10x - x = 1 - 0, so 9x = 1",
+          "description": "Multiplication: 16 × 6 = 96",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 1/9 = 1/9",
+          "description": "Subtraction: 96 - 22 = 74",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/9 oe",
+          "description": "74 oe",
           "marks": 1
         }
       ],
@@ -229,27 +231,27 @@
     },
     {
       "topic_id": "negative_ordering_F",
-      "prompt": "Write these numbers in descending order: 7, -2, 2, -1, 10",
+      "prompt": "Write these numbers in descending order: -2, -4, 10, -3, -10",
       "solution_steps": [
-        "Place the numbers on a number line: 7, -2, 2, -1, 10.",
-        "Reading them in order from largest to smallest gives: 10, 7, 2, -1, -2."
+        "Place the numbers on a number line: -2, -4, 10, -3, -10.",
+        "Reading them in order from largest to smallest gives: 10, -2, -3, -4, -10."
       ],
-      "final_answer": "10, 7, 2, -1, -2",
+      "final_answer": "10, -2, -3, -4, -10",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Place the numbers on a number line: 7, -2, 2, -1, 10.",
+          "description": "Place the numbers on a number line: -2, -4, 10, -3, -10.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Reading them in order from largest to smallest gives: 10, 7, 2, -1, -2.",
+          "description": "Reading them in order from largest to smallest gives: 10, -2, -3, -4, -10.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10, 7, 2, -1, -2 oe",
+          "description": "10, -2, -3, -4, -10 oe",
           "marks": 1
         }
       ],
@@ -257,87 +259,76 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "line_equation_from_graph_F",
-      "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
+      "topic_id": "hcf_by_listing_F",
+      "prompt": "Find the highest common factor (HCF) of 25 and 7.",
       "solution_steps": [
-        "Gradient = rise/run = \\frac{7 - -2}{1 - -2} = 3",
-        "Using y = mx + c with the point (-2, -2): -2 = 3×(-2) + c, so c = 4",
-        "Equation of the line: y = 3x + 4"
+        "Factors of 25: 1, 5, 25",
+        "Factors of 7: 1, 7",
+        "Highest common factor = 1"
       ],
-      "final_answer": "y = 3x + 4",
+      "final_answer": "1",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Gradient = rise/run = \\frac{7 - -2}{1 - -2} = 3",
+          "description": "Factors of 25: 1, 5, 25",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Using y = mx + c with the point (-2, -2): -2 = 3×(-2) + c, so c = 4",
+          "description": "Factors of 7: 1, 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Equation of the line: y = 3x + 4",
+          "description": "Highest common factor = 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = 3x + 4 oe",
+          "description": "1 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "linear",
-          "m": 3,
-          "c": 4,
-          "x_min": -3,
-          "x_max": 2,
-          "y_min": -6,
-          "y_max": 11
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_double_brackets_no_coefficient_F",
-      "prompt": "Expand and simplify: (x + 8)(x + 9)",
+      "topic_id": "expand_double_brackets_F",
+      "prompt": "Expand and simplify: (4x + 9)(3x + 2)",
       "solution_steps": [
-        "First: x × x = x^2",
-        "Outer: x × 9 = 9x",
-        "Inner: 8 × x = 8x",
-        "Last: 8 × 9 = 72",
-        "Combine like terms: x^2 + 17x + 72"
+        "First: 4x × 3x = 12x^2",
+        "Outer: 4x × 2 = 8x",
+        "Inner: 9 × 3x = 27x",
+        "Last: 9 × 2 = 18",
+        "Combine like terms: 12x^2 + 35x + 18"
       ],
-      "final_answer": "x^2 + 17x + 72",
+      "final_answer": "12x^2 + 35x + 18",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First: x × x = x^2",
+          "description": "First: 4x × 3x = 12x^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Outer: x × 9 = 9x",
+          "description": "Outer: 4x × 2 = 8x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Inner: 8 × x = 8x",
+          "description": "Inner: 9 × 3x = 27x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Last: 8 × 9 = 72 Combine like terms: x^2 + 17x + 72",
+          "description": "Last: 9 × 2 = 18 Combine like terms: 12x^2 + 35x + 18",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x^2 + 17x + 72 oe",
+          "description": "12x^2 + 35x + 18 oe",
           "marks": 1
         }
       ],
@@ -346,76 +337,41 @@
     },
     {
       "topic_id": "linear_multi_step_F",
-      "prompt": "Solve: 5x + 1 + 5x + 6 = 57",
+      "prompt": "Solve: 4x + 4 + 6x + 5 = 89",
       "solution_steps": [
-        "Collect like terms: 5x + 5x = 10x, 1 + 6 = 7",
-        "10x + 7 = 57",
-        "Subtract 7 from both sides:",
-        "10x = 50",
+        "Collect like terms: 4x + 6x = 10x, 4 + 5 = 9",
+        "10x + 9 = 89",
+        "Subtract 9 from both sides:",
+        "10x = 80",
         "Divide both sides by 10:",
-        "x = 5"
+        "x = 8"
       ],
-      "final_answer": "5",
+      "final_answer": "8",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Collect like terms: 5x + 5x = 10x, 1 + 6 = 7",
+          "description": "Collect like terms: 4x + 6x = 10x, 4 + 5 = 9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "10x + 7 = 57",
+          "description": "10x + 9 = 89",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 7 from both sides:",
+          "description": "Subtract 9 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "10x = 50 Divide both sides by 10: x = 5",
+          "description": "10x = 80 Divide both sides by 10: x = 8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "algebraic_indices_F",
-      "prompt": "Simplify 2x^4 ÷ x^3",
-      "solution_steps": [
-        "Dividing powers of the same base: subtract the exponents, and divide the coefficients.",
-        "2x^4 ÷ x^3 = (2÷1) x^(4-3)",
-        "= 2x"
-      ],
-      "final_answer": "2x",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Dividing powers of the same base: subtract the exponents, and divide the coefficients.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2x^4 ÷ x^3 = (2÷1) x^(4-3)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 2x",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2x oe",
+          "description": "8 oe",
           "marks": 1
         }
       ],
@@ -424,39 +380,39 @@
     },
     {
       "topic_id": "solve_quadratic_factorising_F",
-      "prompt": "Solve x^2 + 9x + 20 = 0 by factorising.",
+      "prompt": "Solve x^2 + 13x + 36 = 0 by factorising.",
       "solution_steps": [
-        "Find two numbers that multiply to 20 and add to 9: 4 and 5",
-        "Factorise: (x + 4)(x + 5) = 0",
-        "Either x + 4 = 0 or x + 5 = 0",
-        "x = -4 or x = -5"
+        "Find two numbers that multiply to 36 and add to 13: 4 and 9",
+        "Factorise: (x + 4)(x + 9) = 0",
+        "Either x + 4 = 0 or x + 9 = 0",
+        "x = -4 or x = -9"
       ],
-      "final_answer": "x = -4 or x = -5",
+      "final_answer": "x = -4 or x = -9",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find two numbers that multiply to 20 and add to 9: 4 and 5",
+          "description": "Find two numbers that multiply to 36 and add to 13: 4 and 9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: (x + 4)(x + 5) = 0",
+          "description": "Factorise: (x + 4)(x + 9) = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Either x + 4 = 0 or x + 5 = 0",
+          "description": "Either x + 4 = 0 or x + 9 = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = -4 or x = -5",
+          "description": "x = -4 or x = -9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -4 or x = -5 oe",
+          "description": "x = -4 or x = -9 oe",
           "marks": 1
         }
       ],
@@ -464,63 +420,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_single_bracket_F",
-      "prompt": "Expand: -6(9x - 3)",
+      "topic_id": "factorise_quadratics_F",
+      "prompt": "Factorise: x^2 + 2x + 1",
       "solution_steps": [
-        "Multiply -6 by 9x: -54x",
-        "Multiply -6 by -3: 18",
-        "Combine: -54x + 18"
+        "Find two numbers that multiply to 1 and add to 2: 1 and 1",
+        "Write as two brackets: (x + 1)(x + 1)"
       ],
-      "final_answer": "-54x + 18",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiply -6 by 9x: -54x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply -6 by -3: 18",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Combine: -54x + 18",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-54x + 18 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "special_sequences_F",
-      "prompt": "Here are the first 4 terms of a sequence: 12, 14, 16, 18. Find the next term.",
-      "solution_steps": [
-        "This is an arithmetic sequence: it goes up (or down) by the same amount, 2, each time.",
-        "Next term = 18 + 2 = 20"
-      ],
-      "final_answer": "20",
+      "final_answer": "(x + 1)(x + 1)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "This is an arithmetic sequence: it goes up (or down) by the same amount, 2, each time.",
+          "description": "Find two numbers that multiply to 1 and add to 2: 1 and 1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Next term = 18 + 2 = 20",
+          "description": "Write as two brackets: (x + 1)(x + 1)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "20 oe",
+          "description": "(x + 1)(x + 1) oe",
           "marks": 1
         }
       ],
@@ -528,28 +449,163 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_find_missing_share_F",
-      "prompt": "a : b = 9 : 6. b = 30. What is the value of a?",
+      "topic_id": "substitution_rearrange_F",
+      "prompt": "P = 2L + 2w. Make w the subject of the formula, then find the value of w when P = 62 and L = 17.",
       "solution_steps": [
-        "Value of one part = 30 ÷ 6 = 5",
-        "a = 9 × 5 = 45"
+        "P = 2L + 2w",
+        "Rearrange to make w the subject: w = \\frac{P - 2L}{2}",
+        "Substitute P = 62 and L = 17: w = \\frac{62 - 2×17}{2}",
+        "w = 28/2 = 14"
       ],
-      "final_answer": "45",
-      "marks": 3,
+      "final_answer": "w = 14",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Value of one part = 30 ÷ 6 = 5",
+          "description": "P = 2L + 2w",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "a = 9 × 5 = 45",
+          "description": "Rearrange to make w the subject: w = \\frac{P - 2L}{2}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute P = 62 and L = 17: w = \\frac{62 - 2×17}{2}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "w = 28/2 = 14",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "45 oe",
+          "description": "w = 14 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_straight_line_F",
+      "prompt": "Complete a table of values for y = 3x + 2 for x = -3 to 3, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = 3x + 2:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: -7, -4, -1, 2, 5, 8, 11",
+        "Plot each (x, y) point and join them with a single ruled straight line."
+      ],
+      "final_answer": "Straight line: y = 3x + 2",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = 3x + 2:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: -7, -4, -1, 2, 5, 8, 11",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Straight line: y = 3x + 2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "linear",
+          "m": 3,
+          "c": 2,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -8,
+          "y_max": 12,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "linear",
+          "m": 3,
+          "c": 2,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -8,
+          "y_max": 12,
+          "table_points": [
+            [
+              -3,
+              -7
+            ],
+            [
+              -2,
+              -4
+            ],
+            [
+              -1,
+              -1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              8
+            ],
+            [
+              3,
+              11
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "functions_evaluate_F",
+      "prompt": "f(x) = 2x + 2. Find f(-5).",
+      "solution_steps": [
+        "f(-5) = 2×(-5) + 2",
+        "f(-5) = -8"
+      ],
+      "final_answer": "-8",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "f(-5) = 2×(-5) + 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "f(-5) = -8",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-8 oe",
           "marks": 1
         }
       ],
@@ -558,27 +614,27 @@
     },
     {
       "topic_id": "reverse_percentage_F",
-      "prompt": "After a 25% decrease, an item costs £60. Find the original price.",
+      "prompt": "After a 50% decrease, an item costs £180. Find the original price.",
       "solution_steps": [
-        "Convert 25% to a multiplier: 0.75 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 60 ÷ 0.75 = 80"
+        "Convert 50% to a multiplier: 0.50 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 180 ÷ 0.50 = 360"
       ],
-      "final_answer": "£80",
+      "final_answer": "£360",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 25% to a multiplier: 0.75 (original × multiplier = new value)",
+          "description": "Convert 50% to a multiplier: 0.50 (original × multiplier = new value)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide the new value by the multiplier: 60 ÷ 0.75 = 80",
+          "description": "Divide the new value by the multiplier: 180 ÷ 0.50 = 360",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£80 oe",
+          "description": "£360 oe",
           "marks": 1
         }
       ],
@@ -587,12 +643,12 @@
     },
     {
       "topic_id": "percentage_change_F",
-      "prompt": "Increase 260 by 25%.",
+      "prompt": "Increase 180 by 25%.",
       "solution_steps": [
         "Convert 25% to a multiplier: 1.25",
-        "Multiply: 260 × 1.25 = 325"
+        "Multiply: 180 × 1.25 = 225"
       ],
-      "final_answer": "325",
+      "final_answer": "225",
       "marks": 3,
       "mark_scheme": [
         {
@@ -602,12 +658,12 @@
         },
         {
           "code": "M1",
-          "description": "Multiply: 260 × 1.25 = 325",
+          "description": "Multiply: 180 × 1.25 = 225",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "325 oe",
+          "description": "225 oe",
           "marks": 1
         }
       ],
@@ -616,12 +672,12 @@
     },
     {
       "topic_id": "pressure_F",
-      "prompt": "A storage container exerts a pressure of 35 N/cm² over a contact area of 36 cm². Find the force.",
+      "prompt": "A storage container exerts a pressure of 175 N/m² over a contact area of 50 m². Find the force.",
       "solution_steps": [
         "force = pressure × area",
-        "force = 35 × 36 = 1260 N"
+        "force = 175 × 50 = 8750 N"
       ],
-      "final_answer": "1260 N",
+      "final_answer": "8750 N",
       "marks": 3,
       "mark_scheme": [
         {
@@ -631,12 +687,12 @@
         },
         {
           "code": "M1",
-          "description": "force = 35 × 36 = 1260 N",
+          "description": "force = 175 × 50 = 8750 N",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1260 N oe",
+          "description": "8750 N oe",
           "marks": 1
         }
       ],
@@ -645,27 +701,27 @@
     },
     {
       "topic_id": "sdt_mixed_F",
-      "prompt": "A car travels 512 miles in 8 hours. Find its average speed in mph.",
+      "prompt": "A delivery van travels 435 m at an average speed of 5 m/s. Find how long the journey takes.",
       "solution_steps": [
-        "speed = distance ÷ time",
-        "speed = 512 ÷ 8 = 64 mph"
+        "time = distance ÷ speed",
+        "time = 435 ÷ 5 = 87 seconds"
       ],
-      "final_answer": "64 mph",
+      "final_answer": "87 seconds",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "speed = distance ÷ time",
+          "description": "time = distance ÷ speed",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "speed = 512 ÷ 8 = 64 mph",
+          "description": "time = 435 ÷ 5 = 87 seconds",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "64 mph oe",
+          "description": "87 seconds oe",
           "marks": 1
         }
       ],
@@ -673,40 +729,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "construction_perpendicular_bisector_F",
-      "prompt": "Line segment UN has length 8 cm. Describe, step by step, how to construct the perpendicular bisector of UN using only a ruler and a pair of compasses.",
+      "topic_id": "unit_conversions_F",
+      "prompt": "Convert 54 km to m.",
       "solution_steps": [
-        "Open the compasses to a radius more than half of 8 cm (more than half the length of UN).",
-        "With the compass point on U, draw an arc above and below the line.",
-        "Without changing the compass radius, place the point on N and draw two more arcs, crossing the first two.",
-        "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of UN."
+        "1 km = 1000 m",
+        "54 km = 54 × 1000 = 54000 m"
       ],
-      "final_answer": "A straight line through the two arc intersections, crossing UN at its midpoint at a right angle.",
-      "marks": 5,
+      "final_answer": "54000 m",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Open the compasses to a radius more than half of 8 cm (more than half the length of UN).",
+          "description": "1 km = 1000 m",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "With the compass point on U, draw an arc above and below the line.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Without changing the compass radius, place the point on N and draw two more arcs, crossing the first two.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of UN.",
+          "description": "54 km = 54 × 1000 = 54000 m",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A straight line through the two arc intersections, crossing UN at its midpoint at a right angle. oe",
+          "description": "54000 m oe",
           "marks": 1
         }
       ],
@@ -715,38 +759,38 @@
     },
     {
       "topic_id": "angles_parallel_lines_F",
-      "prompt": "A line crosses two parallel lines. The angle 93° and the angle x° are alternate angles. Find x.",
+      "prompt": "A line crosses two parallel lines. The angle 44° and the angle x° are corresponding angles. Find x.",
       "solution_steps": [
-        "Alternate angles are equal.",
-        "x = 93"
+        "Corresponding angles are equal.",
+        "x = 44"
       ],
-      "final_answer": "93",
+      "final_answer": "44",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Alternate angles are equal.",
+          "description": "Corresponding angles are equal.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 93",
+          "description": "x = 44",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "93 oe",
+          "description": "44 oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "parallel_lines",
         "params": {
-          "known_label": "93°",
+          "known_label": "44°",
           "unknown_label": "x",
-          "relation": "alternate",
-          "known_value": 93,
-          "x_frac": 0.32
+          "relation": "corresponding",
+          "known_value": 44,
+          "x_frac": 0.38
         }
       },
       "solution_diagram": null
@@ -755,7 +799,7 @@
       "topic_id": "transform_translate_describe_F",
       "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
       "solution_steps": [
-        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-1, -2), with the matching vertex of shape B, (-5, -6), gives the vector (-4, -4).",
+        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (2, 3), with the matching vertex of shape B, (-2, -1), gives the vector (-4, -4).",
         "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
       ],
       "final_answer": "Translation by the vector (-4, -4)",
@@ -763,7 +807,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-1, -2), with the matching vertex of shape B, (-5, -6), gives the vector (-4, -4).",
+          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (2, 3), with the matching vertex of shape B, (-2, -1), gives the vector (-4, -4).",
           "marks": 1
         },
         {
@@ -786,28 +830,28 @@
           "y_max": 8,
           "original_vertices": [
             [
-              -1,
-              -2
+              2,
+              3
             ],
             [
-              4,
-              -2
+              7,
+              3
             ],
             [
-              4,
-              0
+              7,
+              5
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              5,
+              7
             ],
             [
               2,
-              0
-            ],
-            [
-              2,
-              2
-            ],
-            [
-              -1,
-              2
+              7
             ]
           ],
           "original_labels": [
@@ -820,28 +864,28 @@
           ],
           "image_vertices": [
             [
-              -5,
-              -6
+              -2,
+              -1
             ],
             [
-              0,
-              -6
+              3,
+              -1
             ],
             [
-              0,
-              -4
+              3,
+              1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              3
             ],
             [
               -2,
-              -4
-            ],
-            [
-              -2,
-              -2
-            ],
-            [
-              -5,
-              -2
+              3
             ]
           ],
           "image_labels": [
@@ -857,147 +901,135 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_polygon_interior_F",
-      "prompt": "A polygon has 9 sides. Find the sum of its interior angles.",
+      "topic_id": "pythagoras_hypotenuse_triple_F",
+      "prompt": "A right-angled triangle has sides 18 cm and 80 cm. Find the length of x.",
       "solution_steps": [
-        "Sum of interior angles = (n - 2) × 180 = (9 - 2) × 180 = 1260°"
+        "c² = a² + b² = 18² + 80² = 324 + 6400 = 6724",
+        "c = √6724 = 82"
       ],
-      "final_answer": "1260°",
-      "marks": 2,
+      "final_answer": "82 cm",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Sum of interior angles = (n - 2) × 180 = (9 - 2) × 180 = 1260°",
+          "description": "c² = a² + b² = 18² + 80² = 324 + 6400 = 6724",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "c = √6724 = 82",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1260° oe",
+          "description": "82 cm oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "right_triangle",
+        "params": {
+          "leg1_label": "18 cm",
+          "leg2_label": "80 cm",
+          "hyp_label": "x"
+        }
+      },
       "solution_diagram": null
     },
     {
       "topic_id": "area_rectangle_F",
       "prompt": "Find the perimeter of the following rectangle.",
       "solution_steps": [
-        "Perimeter = 2 × (length + width) = 2 × (4 + 19) = 46 cm"
+        "Perimeter = 2 × (length + width) = 2 × (17 + 4) = 42 cm"
       ],
-      "final_answer": "46 cm",
+      "final_answer": "42 cm",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Perimeter = 2 × (length + width) = 2 × (4 + 19) = 46 cm",
+          "description": "Perimeter = 2 × (length + width) = 2 × (17 + 4) = 42 cm",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "46 cm oe",
+          "description": "42 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "rectangle",
         "params": {
-          "width": 4,
-          "height": 19,
-          "width_label": "4 cm",
-          "height_label": "19 cm"
+          "width": 17,
+          "height": 4,
+          "width_label": "17 cm",
+          "height_label": "4 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "tree_diagram_independent_F",
-      "prompt": "A bag contains 6 yellow and 7 blue counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that the first counter is blue and the second counter is blue.",
+      "topic_id": "nets_3d_shapes_F",
+      "prompt": "How many squares does the net of a cube contain?",
       "solution_steps": [
-        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(yellow) = 6/13, P(blue) = 7/13.",
-        "P(blue then blue) = 7/13 × 7/13 = 49/169"
+        "Imagine unfolding a cube flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
+        "A cube's net is made up of: 6 squares.",
+        "So the answer is: 6."
       ],
-      "final_answer": "49/169",
-      "marks": 3,
+      "final_answer": "6",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(yellow) = 6/13, P(blue) = 7/13.",
+          "description": "Imagine unfolding a cube flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(blue then blue) = 7/13 × 7/13 = 49/169",
+          "description": "A cube's net is made up of: 6 squares.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "So the answer is: 6.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "49/169 oe",
+          "description": "6 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "tree_diagram",
+      "diagram": null,
+      "solution_diagram": {
+        "kind": "net",
         "params": {
-          "stage1": [
-            [
-              "Yellow",
-              "6/13"
-            ],
-            [
-              "Blue",
-              "7/13"
-            ]
-          ],
-          "stage2": [
-            [
-              [
-                "Yellow",
-                "6/13"
-              ],
-              [
-                "Blue",
-                "7/13"
-              ]
-            ],
-            [
-              [
-                "Yellow",
-                "6/13"
-              ],
-              [
-                "Blue",
-                "7/13"
-              ]
-            ]
-          ]
+          "shape": "cube"
         }
-      },
-      "solution_diagram": null
+      }
     },
     {
       "topic_id": "two_way_tables_F",
       "prompt": "The two-way table shows the number of year 10 and year 11 who prefer cats or dogs. Find the missing values.",
       "solution_steps": [
-        "'Year 11' / 'Dogs': using the 'Year 11' row total: 25 - 5 = 20",
-        "'Year 10' / 'Dogs': using the 'Year 10' row total: 14 - 6 = 8"
+        "'Year 11' / 'Dogs': using the 'Dogs' column total: 34 - 20 = 14",
+        "'Year 11' / 'Cats': using the 'Cats' column total: 20 - 15 = 5"
       ],
-      "final_answer": "'Year 11' / 'Dogs' = 20; 'Year 10' / 'Dogs' = 8",
+      "final_answer": "'Year 11' / 'Dogs' = 14; 'Year 11' / 'Cats' = 5",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "'Year 11' / 'Dogs': using the 'Year 11' row total: 25 - 5 = 20",
+          "description": "'Year 11' / 'Dogs': using the 'Dogs' column total: 34 - 20 = 14",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "'Year 10' / 'Dogs': using the 'Year 10' row total: 14 - 6 = 8",
+          "description": "'Year 11' / 'Cats': using the 'Cats' column total: 20 - 15 = 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "'Year 11' / 'Dogs' = 20; 'Year 10' / 'Dogs' = 8 oe",
+          "description": "'Year 11' / 'Dogs' = 14; 'Year 11' / 'Cats' = 5 oe",
           "marks": 1
         }
       ],
@@ -1016,236 +1048,131 @@
           ],
           "cells": [
             [
-              "6",
-              "",
-              "14"
-            ],
-            [
-              "5",
-              "",
-              "25"
-            ],
-            [
-              "11",
-              "28",
-              "39"
-            ]
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "two_way_table",
-        "params": {
-          "row_labels": [
-            "Year 10",
-            "Year 11",
-            "Total"
-          ],
-          "col_labels": [
-            "Cats",
-            "Dogs",
-            "Total"
-          ],
-          "cells": [
-            [
-              "6",
-              "8",
-              "14"
-            ],
-            [
-              "5",
-              "20",
-              "25"
-            ],
-            [
-              "11",
-              "28",
-              "39"
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "scatter_graph_construct_F",
-      "prompt": "The table shows the midday temperature on a number of days and the number of ice creams a shop sold. Draw a scatter graph of this data, and describe the correlation.",
-      "solution_steps": [
-        "Plot each (Temperature (°C), Ice creams sold) pair as a single point - do not join the points up with a line or curve.",
-        "As temperature (°c) increases, ice creams sold tends to increase too, so the points show positive correlation."
-      ],
-      "final_answer": "Positive correlation",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Plot each (Temperature (°C), Ice creams sold) pair as a single point - do not join the points up with a line or curve.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "As temperature (°c) increases, ice creams sold tends to increase too, so the points show positive correlation.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Positive correlation oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "two_way_table",
-        "params": {
-          "row_labels": [
-            "Temperature (°C)",
-            "Ice creams sold"
-          ],
-          "col_labels": [
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9"
-          ],
-          "cells": [
-            [
-              "12",
-              "13",
               "15",
-              "18",
-              "19",
-              "23",
-              "28",
-              "29",
-              "30"
+              "20",
+              "35"
             ],
             [
-              "43.7",
-              "55.3",
-              "45.1",
-              "55.9",
-              "66.0",
-              "74.4",
-              "90.0",
-              "88.2",
-              "95.6"
+              "",
+              "",
+              "19"
+            ],
+            [
+              "20",
+              "34",
+              "54"
             ]
           ]
         }
       },
       "solution_diagram": {
-        "kind": "scatter_graph",
+        "kind": "two_way_table",
         "params": {
-          "points": [
-            [
-              12,
-              43.7
-            ],
-            [
-              13,
-              55.3
-            ],
-            [
-              15,
-              45.1
-            ],
-            [
-              18,
-              55.9
-            ],
-            [
-              19,
-              66.0
-            ],
-            [
-              23,
-              74.4
-            ],
-            [
-              28,
-              90.0
-            ],
-            [
-              29,
-              88.2
-            ],
-            [
-              30,
-              95.6
-            ]
+          "row_labels": [
+            "Year 10",
+            "Year 11",
+            "Total"
           ],
-          "x_label": "Temperature (°C)",
-          "y_label": "Ice creams sold"
+          "col_labels": [
+            "Cats",
+            "Dogs",
+            "Total"
+          ],
+          "cells": [
+            [
+              "15",
+              "20",
+              "35"
+            ],
+            [
+              "5",
+              "14",
+              "19"
+            ],
+            [
+              "20",
+              "34",
+              "54"
+            ]
+          ]
         }
       }
     },
     {
-      "topic_id": "stats_mean_frequency_table_F",
-      "prompt": "Find the mean number of pets.",
+      "topic_id": "venn_diagram_shading_F",
+      "prompt": "Shade the region that represents the elements in B but not in A.",
       "solution_steps": [
-        "Multiply each value by its frequency and sum: 0×3 + 1×4 + 2×9 + 3×5 + 4×3 = 49",
-        "Total frequency = 3 + 4 + 9 + 5 + 3 = 24",
-        "Mean = 49 ÷ 24 = 49/24"
+        "The Venn diagram has two circles, A and B, inside a rectangle representing everything being considered.",
+        "'Shade the region that represents the elements in B but not in A.' tells you which of the four regions (in A only, in B only, in both, or in neither) needs shading.",
+        "The region inside B only (not in A)."
       ],
-      "final_answer": "49/24",
+      "final_answer": "The region inside B only (not in A).",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply each value by its frequency and sum: 0×3 + 1×4 + 2×9 + 3×5 + 4×3 = 49",
+          "description": "The Venn diagram has two circles, A and B, inside a rectangle representing everything being considered.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total frequency = 3 + 4 + 9 + 5 + 3 = 24",
+          "description": "'Shade the region that represents the elements in B but not in A.' tells you which of the four regions (in A only, in B only, in both, or in neither) needs shading.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Mean = 49 ÷ 24 = 49/24",
+          "description": "The region inside B only (not in A).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "49/24 oe",
+          "description": "The region inside B only (not in A). oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "two_way_table",
+        "kind": "venn_diagram",
         "params": {
-          "row_labels": [
-            "0",
-            "1",
-            "2",
-            "3",
-            "4"
-          ],
-          "col_labels": [
-            "Frequency"
-          ],
-          "cells": [
-            [
-              "3"
-            ],
-            [
-              "4"
-            ],
-            [
-              "9"
-            ],
-            [
-              "5"
-            ],
-            [
-              "3"
-            ]
+          "labels": [
+            "A",
+            "B"
           ]
         }
       },
+      "solution_diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "shade": [
+            "b_only"
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "stats_median_F",
+      "prompt": "Find the median of this data set: 10, 3, 25, 7, 5, 6, 11, 6.",
+      "solution_steps": [
+        "Sort the data: 3, 5, 6, 6, 7, 10, 11, 25. The middle two values are 6 and 7, so the median = (6 + 7) ÷ 2 = 6.50."
+      ],
+      "final_answer": "6.50",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Sort the data: 3, 5, 6, 6, 7, 10, 11, 25. The middle two values are 6 and 7, so the median = (6 + 7) ÷ 2 = 6.50.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6.50 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     }
   ]

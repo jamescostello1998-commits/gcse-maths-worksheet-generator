@@ -69,6 +69,27 @@ def test_all_generators_attach_a_matching_diagram():
         assert q.diagram.kind in expected_kinds
 
 
+def test_composite_rectangles_use_corbett_style_edge_labels():
+    # Every composite question labels its own boundary edges (edge_labels),
+    # never the old outer_labels/inner_labels caption scheme; a find-x
+    # question always carries the unknown "x" on one edge.
+    rng = random.Random(202)
+    seen_branches = set()
+    saw_x = False
+    for _ in range(400):
+        q = area_perimeter.generate_composite_rectangles(Tier.FOUNDATION, rng)
+        assert "edge_labels" in q.diagram.params
+        assert "outer_labels" not in q.diagram.params
+        assert "inner_labels" not in q.diagram.params
+        branch = q.dedup_key.split(":")[1]
+        seen_branches.add(branch)
+        if branch == "x":
+            assert "x" in q.diagram.params["edge_labels"].values()
+            saw_x = True
+    assert {"l", "t", "x"} <= seen_branches
+    assert saw_x
+
+
 def test_rectangle_diagram_params_match_generated_values():
     rng = random.Random(43)
     q = area_perimeter.generate_rectangle(Tier.FOUNDATION, rng)

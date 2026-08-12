@@ -8,33 +8,33 @@
   "questions": [
     {
       "topic_id": "standard_form_to_F",
-      "prompt": "Write 7000 in standard form.",
+      "prompt": "Write 4900000 in standard form.",
       "solution_steps": [
-        "Move the decimal point until there is one non-zero digit before it: 7",
-        "Count how many places the decimal point moved: 3",
-        "7000 = 7 × 10^3"
+        "Move the decimal point until there is one non-zero digit before it: 4.9",
+        "Count how many places the decimal point moved: 6",
+        "4900000 = 4.9 × 10^6"
       ],
-      "final_answer": "7 × 10^3",
+      "final_answer": "4.9 × 10^6",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Move the decimal point until there is one non-zero digit before it: 7",
+          "description": "Move the decimal point until there is one non-zero digit before it: 4.9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Count how many places the decimal point moved: 3",
+          "description": "Count how many places the decimal point moved: 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "7000 = 7 × 10^3",
+          "description": "4900000 = 4.9 × 10^6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7 × 10^3 oe",
+          "description": "4.9 × 10^6 oe",
           "marks": 1
         }
       ],
@@ -42,28 +42,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "prime_factors_F",
-      "prompt": "Write 76 as a product of its prime factors.",
+      "topic_id": "factors_F",
+      "prompt": "Is 13 a factor of 65?",
       "solution_steps": [
-        "Divide 76 repeatedly by the smallest prime that fits: 2 × 2 × 19",
-        "76 = 2 × 2 × 19"
+        "65 ÷ 13 = 5 remainder 0",
+        "Yes, 13 is a factor of 65."
       ],
-      "final_answer": "2 × 2 × 19",
+      "final_answer": "Yes",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide 76 repeatedly by the smallest prime that fits: 2 × 2 × 19",
+          "description": "65 ÷ 13 = 5 remainder 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "76 = 2 × 2 × 19",
+          "description": "Yes, 13 is a factor of 65.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2 × 2 × 19 oe",
+          "description": "Yes oe",
           "marks": 1
         }
       ],
@@ -71,193 +71,51 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sample_space_diagrams_F",
-      "prompt": "Two fair spinners, one numbered 1 to 4 and the other numbered 1 to 4, are spun together. Complete the sample space diagram showing the sum of the two spinners, and use it to find the probability that the sum is even.",
+      "topic_id": "negative_multiply_divide_F",
+      "prompt": "Work out -10 × (-7).",
       "solution_steps": [
-        "The sample space diagram shows every possible sum of the two spinners.",
-        "Number of favourable outcomes (the sum is even) = 8",
-        "Total number of equally likely outcomes = 16",
-        "P(the sum is even) = 1/2"
+        "-10 × (-7) = 70"
       ],
-      "final_answer": "1/2",
-      "marks": 5,
+      "final_answer": "70",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The sample space diagram shows every possible sum of the two spinners.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Number of favourable outcomes (the sum is even) = 8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total number of equally likely outcomes = 16",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(the sum is even) = 1/2",
+          "description": "-10 × (-7) = 70",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/2 oe",
+          "description": "70 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "sample_space_diagram",
-        "params": {
-          "row_values": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "col_values": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "cells": [
-            [
-              "",
-              "",
-              "",
-              ""
-            ],
-            [
-              "",
-              "",
-              "",
-              ""
-            ],
-            [
-              "",
-              "",
-              "",
-              ""
-            ],
-            [
-              "",
-              "",
-              "",
-              ""
-            ]
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "sample_space_diagram",
-        "params": {
-          "row_values": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "col_values": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "cells": [
-            [
-              "2",
-              "3",
-              "4",
-              "5"
-            ],
-            [
-              "3",
-              "4",
-              "5",
-              "6"
-            ],
-            [
-              "4",
-              "5",
-              "6",
-              "7"
-            ],
-            [
-              "5",
-              "6",
-              "7",
-              "8"
-            ]
-          ],
-          "highlight": [
-            [
-              0,
-              0
-            ],
-            [
-              0,
-              2
-            ],
-            [
-              1,
-              1
-            ],
-            [
-              1,
-              3
-            ],
-            [
-              2,
-              0
-            ],
-            [
-              2,
-              2
-            ],
-            [
-              3,
-              1
-            ],
-            [
-              3,
-              3
-            ]
-          ]
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     },
     {
-      "topic_id": "recurring_decimal_single_digit_F",
-      "prompt": "Write \\recur{0.}{6} as a fraction in its simplest form.",
+      "topic_id": "bidmas_two_three_F",
+      "prompt": "Work out 3 × 9 - 7.",
       "solution_steps": [
-        "Let x = \\recur{0.}{6}, so 10x = 6.666... (only one digit repeats, so multiply by 10 to shift it one place)",
-        "Subtract: 10x - x = 6 - 0, so 9x = 6",
-        "x = 6/9 = 2/3"
+        "Multiplication: 3 × 9 = 27",
+        "Subtraction: 27 - 7 = 20"
       ],
-      "final_answer": "2/3",
-      "marks": 4,
+      "final_answer": "20",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = \\recur{0.}{6}, so 10x = 6.666... (only one digit repeats, so multiply by 10 to shift it one place)",
+          "description": "Multiplication: 3 × 9 = 27",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract: 10x - x = 6 - 0, so 9x = 6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 6/9 = 2/3",
+          "description": "Subtraction: 27 - 7 = 20",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2/3 oe",
+          "description": "20 oe",
           "marks": 1
         }
       ],
@@ -266,33 +124,39 @@
     },
     {
       "topic_id": "bidmas_F",
-      "prompt": "Work out 27 - 10 ÷ 5 × (4 + 9).",
+      "prompt": "Work out (9 + 5) × 6 - 2 ÷ 2.",
       "solution_steps": [
-        "Brackets: (4 + 9) = 13",
-        "Division and multiplication have equal priority, so work left to right: 10 ÷ 5 = 2, then × 13 = 26",
-        "Subtraction: 27 - 26 = 1"
+        "Brackets: (9 + 5) = 14",
+        "Multiplication: 14 × 6 = 84",
+        "Division: 2 ÷ 2 = 1",
+        "Subtraction: 84 - 1 = 83"
       ],
-      "final_answer": "1",
-      "marks": 4,
+      "final_answer": "83",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Brackets: (4 + 9) = 13",
+          "description": "Brackets: (9 + 5) = 14",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Division and multiplication have equal priority, so work left to right: 10 ÷ 5 = 2, then × 13 = 26",
+          "description": "Multiplication: 14 × 6 = 84",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtraction: 27 - 26 = 1",
+          "description": "Division: 2 ÷ 2 = 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtraction: 84 - 1 = 83",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 oe",
+          "description": "83 oe",
           "marks": 1
         }
       ],
@@ -301,27 +165,27 @@
     },
     {
       "topic_id": "decimals_round_dp_F",
-      "prompt": "Round 12.305 to 1 decimal place.",
+      "prompt": "Round 51.780 to 1 decimal place.",
       "solution_steps": [
-        "Look at the digit after the 1 decimal place we want: 0, so round down.",
-        "12.305 rounded to 1 decimal place = 12.3"
+        "Look at the digit after the 1 decimal place we want: 8, so round up.",
+        "51.780 rounded to 1 decimal place = 51.8"
       ],
-      "final_answer": "12.3",
+      "final_answer": "51.8",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Look at the digit after the 1 decimal place we want: 0, so round down.",
+          "description": "Look at the digit after the 1 decimal place we want: 8, so round up.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "12.305 rounded to 1 decimal place = 12.3",
+          "description": "51.780 rounded to 1 decimal place = 51.8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12.3 oe",
+          "description": "51.8 oe",
           "marks": 1
         }
       ],
@@ -329,28 +193,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_multiply_divide_F",
-      "prompt": "Work out (8 × 10^3) ÷ (4 × 10^2). Give your answer in standard form.",
+      "topic_id": "standard_form_from_small_F",
+      "prompt": "Write 5.1 × 10^-3 as an ordinary number.",
       "solution_steps": [
-        "Divide the mantissas: 8 ÷ 4 = 2",
-        "Subtract the powers of 10: 3 - 2 = 1"
+        "Multiply 5.1 by 10^-3, which means moving the decimal point 3 place(s) left.",
+        "5.1 × 10^-3 = 0.0051"
       ],
-      "final_answer": "2 × 10^1",
+      "final_answer": "0.0051",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide the mantissas: 8 ÷ 4 = 2",
+          "description": "Multiply 5.1 by 10^-3, which means moving the decimal point 3 place(s) left.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract the powers of 10: 3 - 2 = 1",
+          "description": "5.1 × 10^-3 = 0.0051",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2 × 10^1 oe",
+          "description": "0.0051 oe",
           "marks": 1
         }
       ],
@@ -358,70 +222,76 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_two_step_F",
-      "prompt": "Solve: 7x + 4 = 11",
+      "topic_id": "fractions_equivalent_diagram_F",
+      "prompt": "The first shape shows 1/4 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
       "solution_steps": [
-        "7x + 4 = 11",
-        "Subtract 4 from both sides:",
-        "7x = 7",
-        "Divide both sides by 7:",
-        "x = 1"
+        "Cross-multiply 1/4 against each labelled shape: a shape shows an equivalent fraction only if 1 × (its denominator) = (its shaded count) × 4.",
+        "Only shape B) 3/12 works: 1 × 12 = 3 × 4 = 12."
       ],
-      "final_answer": "1",
-      "marks": 5,
+      "final_answer": "B) 3/12",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "7x + 4 = 11",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 4 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "7x = 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by 7: x = 1",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1 oe",
+          "code": "B1",
+          "description": "B) 3/12 (selecting the correct option)",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "fraction_shapes",
+        "params": {
+          "shapes": [
+            {
+              "kind": "bar",
+              "parts": 4,
+              "shaded": 1
+            },
+            {
+              "kind": "bar",
+              "parts": 12,
+              "shaded": 2,
+              "label": "A)"
+            },
+            {
+              "kind": "bar",
+              "parts": 12,
+              "shaded": 3,
+              "label": "B)"
+            },
+            {
+              "kind": "bar",
+              "parts": 6,
+              "shaded": 3,
+              "label": "C)"
+            }
+          ]
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_next_term_F",
-      "prompt": "Find the next term in the sequence: 4, 0, -4, -8, ...",
+      "topic_id": "negative_ordering_F",
+      "prompt": "Write these numbers in descending order: 1, -5, 6, -1, -7",
       "solution_steps": [
-        "Subtract 4 each time.",
-        "Next term = -8 - 4 = -12"
+        "Place the numbers on a number line: 1, -5, 6, -1, -7.",
+        "Reading them in order from largest to smallest gives: 6, 1, -1, -5, -7."
       ],
-      "final_answer": "-12",
+      "final_answer": "6, 1, -1, -5, -7",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Subtract 4 each time.",
+          "description": "Place the numbers on a number line: 1, -5, 6, -1, -7.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Next term = -8 - 4 = -12",
+          "description": "Reading them in order from largest to smallest gives: 6, 1, -1, -5, -7.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-12 oe",
+          "description": "6, 1, -1, -5, -7 oe",
           "marks": 1
         }
       ],
@@ -429,34 +299,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "change_subject_F",
-      "prompt": "Make t the subject of the formula v = u + 13t.",
+      "topic_id": "cross_multiplication_F",
+      "prompt": "Solve the following equation.\n\\frac{x - 6}{7} = \\frac{4}{7}",
       "solution_steps": [
-        "v = u + 13t",
-        "Subtract u from both sides: v - u = 13t",
-        "Divide both sides by 13: t = \\frac{v - u}{13}"
+        "Cross-multiply: (x - 6) × 7 = 7 × 4",
+        "x = 10"
       ],
-      "final_answer": "t = \\frac{v - u}{13}",
-      "marks": 4,
+      "final_answer": "x = 10",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "v = u + 13t",
+          "description": "Cross-multiply: (x - 6) × 7 = 7 × 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract u from both sides: v - u = 13t",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by 13: t = \\frac{v - u}{13}",
+          "description": "x = 10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "t = \\frac{v - u}{13} oe",
+          "description": "x = 10 oe",
           "marks": 1
         }
       ],
@@ -465,27 +329,27 @@
     },
     {
       "topic_id": "distance_time_interpret_F",
-      "prompt": "The distance-time graph shows a delivery van's journey. Find the total distance travelled.",
+      "prompt": "The distance-time graph shows a delivery van's journey. Find the average speed for the whole journey, in km/h.",
       "solution_steps": [
-        "Distance out = 6 km. Distance back = 6 km.",
-        "Total distance travelled = 6 + 6 = 12 km"
+        "Total distance = 10 km. Total time = 50 minutes = 5/6 hours.",
+        "Average speed = 10 ÷ 5/6 = 12 km/h"
       ],
-      "final_answer": "12 km",
+      "final_answer": "12 km/h",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Distance out = 6 km. Distance back = 6 km.",
+          "description": "Total distance = 10 km. Total time = 50 minutes = 5/6 hours.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total distance travelled = 6 + 6 = 12 km",
+          "description": "Average speed = 10 ÷ 5/6 = 12 km/h",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 km oe",
+          "description": "12 km/h oe",
           "marks": 1
         }
       ],
@@ -498,20 +362,20 @@
               0
             ],
             [
-              25,
-              6
+              30,
+              5
             ],
             [
-              45,
-              6
+              40,
+              5
             ],
             [
-              85,
+              50,
               0
             ]
           ],
-          "x_max": 90,
-          "y_max": 8,
+          "x_max": 55,
+          "y_max": 7,
           "x_label": "Time (minutes)",
           "y_label": "Distance (km)"
         }
@@ -522,31 +386,31 @@
       "topic_id": "line_equation_from_graph_F",
       "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
       "solution_steps": [
-        "Gradient = rise/run = \\frac{-8 - 4}{1 - -2} = -4",
-        "Using y = mx + c with the point (-2, 4): 4 = -4×(-2) + c, so c = -4",
-        "Equation of the line: y = -4x - 4"
+        "Gradient = rise/run = \\frac{-14 - 2}{2 - -2} = -4",
+        "Using y = mx + c with the point (-2, 2): 2 = -4×(-2) + c, so c = -6",
+        "Equation of the line: y = -4x - 6"
       ],
-      "final_answer": "y = -4x - 4",
+      "final_answer": "y = -4x - 6",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Gradient = rise/run = \\frac{-8 - 4}{1 - -2} = -4",
+          "description": "Gradient = rise/run = \\frac{-14 - 2}{2 - -2} = -4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Using y = mx + c with the point (-2, 4): 4 = -4×(-2) + c, so c = -4",
+          "description": "Using y = mx + c with the point (-2, 2): 2 = -4×(-2) + c, so c = -6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Equation of the line: y = -4x - 4",
+          "description": "Equation of the line: y = -4x - 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = -4x - 4 oe",
+          "description": "y = -4x - 6 oe",
           "marks": 1
         }
       ],
@@ -555,44 +419,50 @@
         "params": {
           "kind": "linear",
           "m": -4,
-          "c": -4,
+          "c": -6,
           "x_min": -3,
-          "x_max": 2,
-          "y_min": -13,
-          "y_max": 9
+          "x_max": 3,
+          "y_min": -19,
+          "y_max": 7
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_indices_F",
-      "prompt": "Simplify 20x^6 ÷ 4x^2",
+      "topic_id": "solve_quadratic_factorising_F",
+      "prompt": "Solve x^2 + 8x + 12 = 0 by factorising.",
       "solution_steps": [
-        "Dividing powers of the same base: subtract the exponents, and divide the coefficients.",
-        "20x^6 ÷ 4x^2 = (20÷4) x^(6-2)",
-        "= 5x^4"
+        "Find two numbers that multiply to 12 and add to 8: 2 and 6",
+        "Factorise: (x + 2)(x + 6) = 0",
+        "Either x + 2 = 0 or x + 6 = 0",
+        "x = -2 or x = -6"
       ],
-      "final_answer": "5x^4",
-      "marks": 4,
+      "final_answer": "x = -2 or x = -6",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Dividing powers of the same base: subtract the exponents, and divide the coefficients.",
+          "description": "Find two numbers that multiply to 12 and add to 8: 2 and 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "20x^6 ÷ 4x^2 = (20÷4) x^(6-2)",
+          "description": "Factorise: (x + 2)(x + 6) = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 5x^4",
+          "description": "Either x + 2 = 0 or x + 6 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -2 or x = -6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5x^4 oe",
+          "description": "x = -2 or x = -6 oe",
           "marks": 1
         }
       ],
@@ -601,40 +471,40 @@
     },
     {
       "topic_id": "solving_inequalities_F",
-      "prompt": "Solve the inequality: 5x + 6 > 3",
+      "prompt": "Solve the inequality: \\frac{x}{3} - 9 > -5",
       "solution_steps": [
-        "5x + 6 > 3",
-        "Subtract 6 from both sides:",
-        "5x > -3",
-        "Divide both sides by 5:",
-        "x > -3/5"
+        "\\frac{x}{3} - 9 > -5",
+        "Add 9 to both sides:",
+        "\\frac{x}{3} > 4",
+        "Multiply both sides by 3:",
+        "x > 12"
       ],
-      "final_answer": "x > -3/5",
+      "final_answer": "x > 12",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5x + 6 > 3",
+          "description": "\\frac{x}{3} - 9 > -5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 6 from both sides:",
+          "description": "Add 9 to both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x > -3",
+          "description": "\\frac{x}{3} > 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 5: x > -3/5",
+          "description": "Multiply both sides by 3: x > 12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x > -3/5 oe",
+          "description": "x > 12 oe",
           "marks": 1
         }
       ],
@@ -642,28 +512,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "functions_evaluate_F",
-      "prompt": "f(x) = 3x + 3. Find f(-1).",
+      "topic_id": "factorise_quadratics_F",
+      "prompt": "Factorise: x^2 + 6x + 8",
       "solution_steps": [
-        "f(-1) = 3×(-1) + 3",
-        "f(-1) = 0"
+        "Find two numbers that multiply to 8 and add to 6: 4 and 2",
+        "Write as two brackets: (x + 4)(x + 2)"
       ],
-      "final_answer": "0",
+      "final_answer": "(x + 4)(x + 2)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "f(-1) = 3×(-1) + 3",
+          "description": "Find two numbers that multiply to 8 and add to 6: 4 and 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "f(-1) = 0",
+          "description": "Write as two brackets: (x + 4)(x + 2)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0 oe",
+          "description": "(x + 4)(x + 2) oe",
           "marks": 1
         }
       ],
@@ -671,170 +541,86 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simple_interest_F",
-      "prompt": "£3000 is invested at a simple interest rate of 6% per year for 1 years. Find the interest earned.",
+      "topic_id": "forming_equations_F",
+      "prompt": "The perimeter of the rectangle shown is 56 cm. Form an equation and solve it to find x.",
       "solution_steps": [
-        "Simple interest formula: I = P × r × t ÷ 100",
-        "I = 3000 × 6 × 1 ÷ 100 = £180"
+        "Perimeter = 2 × (sum of two different side lengths).",
+        "2(x + 10) + 2(10) = 56",
+        "2x + 40 = 56",
+        "Subtract 40 from both sides:",
+        "2x = 16",
+        "Divide both sides by 2:",
+        "x = 8"
       ],
-      "final_answer": "£180",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Simple interest formula: I = P × r × t ÷ 100",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "I = 3000 × 6 × 1 ÷ 100 = £180",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£180 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "percentage_of_amount_F",
-      "prompt": "Find 25% of 160.",
-      "solution_steps": [
-        "Convert 25% to a fraction: 25/100",
-        "Multiply: 25/100 × 160 = 40"
-      ],
-      "final_answer": "40",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert 25% to a fraction: 25/100",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply: 25/100 × 160 = 40",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "40 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_share_three_part_F",
-      "prompt": "Share 162 in the ratio 7:7:4.",
-      "solution_steps": [
-        "Total parts = 7 + 7 + 4 = 18",
-        "Value of one part = 162 ÷ 18 = 9",
-        "Share 1 = 7 × 9 = 63",
-        "Share 2 = 7 × 9 = 63",
-        "Share 3 = 4 × 9 = 36"
-      ],
-      "final_answer": "63 : 63 : 36",
+      "final_answer": "8",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 7 + 7 + 4 = 18",
+          "description": "Perimeter = 2 × (sum of two different side lengths).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 162 ÷ 18 = 9",
+          "description": "2(x + 10) + 2(10) = 56",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 1 = 7 × 9 = 63",
+          "description": "2x + 40 = 56",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 2 = 7 × 9 = 63 Share 3 = 4 × 9 = 36",
+          "description": "Subtract 40 from both sides: 2x = 16 Divide both sides by 2: x = 8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "63 : 63 : 36 oe",
+          "description": "8 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "inverse_proportion_F",
-      "prompt": "It takes 2 machines 55 hours to complete a production run. Working at the same rate, how long would it take 11 machines?",
-      "solution_steps": [
-        "Constant = 2 × 55 = 110",
-        "Time for 11 machines = 110 ÷ 11 = 10"
-      ],
-      "final_answer": "10 hours",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Constant = 2 × 55 = 110",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Time for 11 machines = 110 ÷ 11 = 10",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "10 hours oe",
-          "marks": 1
+      "diagram": {
+        "kind": "rectangle",
+        "params": {
+          "width": 18,
+          "height": 10,
+          "width_label": "(x + 10) cm",
+          "height_label": "10 cm"
         }
-      ],
-      "diagram": null,
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "best_buys_F",
-      "prompt": "A shop sells breakfast cereal in different sizes: A: £13.92 for 600g; B: £18.60 for 750g; C: £8.84 for 650g. Which option is the better value for money? Show your working.",
+      "topic_id": "linear_one_step_F",
+      "prompt": "Solve: 3x = 30",
       "solution_steps": [
-        "Work out the price per 100g for each option:",
-        "A: £13.92 ÷ 600 × 100 = 232.00p per 100g",
-        "B: £18.60 ÷ 750 × 100 = 248.00p per 100g",
-        "C: £8.84 ÷ 650 × 100 = 136.00p per 100g",
-        "The lowest price per 100g is C at 136.00p per 100g, so C is the best value."
+        "3x = 30",
+        "Divide both sides by 3:",
+        "x = 10"
       ],
-      "final_answer": "C (£8.84 for 650g)",
-      "marks": 5,
+      "final_answer": "10",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Work out the price per 100g for each option:",
+          "description": "3x = 30",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A: £13.92 ÷ 600 × 100 = 232.00p per 100g",
+          "description": "Divide both sides by 3:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "B: £18.60 ÷ 750 × 100 = 248.00p per 100g",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "C: £8.84 ÷ 650 × 100 = 136.00p per 100g The lowest price per 100g is C at 136.00p per 100g, so C is the best value.",
+          "description": "x = 10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "C (£8.84 for 650g) oe",
+          "description": "10 oe",
           "marks": 1
         }
       ],
@@ -843,12 +629,12 @@
     },
     {
       "topic_id": "angles_exterior_F",
-      "prompt": "An exterior angle of a triangle is x°. The two remote interior angles are 46° and 32°. Find x.",
+      "prompt": "An exterior angle of a triangle is x°. The two remote interior angles are 56° and 67°. Find x.",
       "solution_steps": [
         "The exterior angle of a triangle equals the sum of the two remote interior angles.",
-        "x = 46 + 32 = 78"
+        "x = 56 + 67 = 123"
       ],
-      "final_answer": "78",
+      "final_answer": "123",
       "marks": 3,
       "mark_scheme": [
         {
@@ -858,35 +644,134 @@
         },
         {
           "code": "M1",
-          "description": "x = 46 + 32 = 78",
+          "description": "x = 56 + 67 = 123",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "78 oe",
+          "description": "123 oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "exterior_triangle",
         "params": {
-          "interior1_label": "46°",
-          "interior2_label": "32°",
+          "interior1_label": "56°",
+          "interior2_label": "67°",
           "exterior_label": "x",
-          "interior1_value": 46,
-          "shape_variant": 1
+          "interior1_value": 56,
+          "shape_variant": 0
         }
       },
       "solution_diagram": null
     },
     {
+      "topic_id": "inverse_proportion_F",
+      "prompt": "It takes 9 painters 12 hours to paint a fence. Working at the same rate, how long would it take 4 painters?",
+      "solution_steps": [
+        "Constant = 9 × 12 = 108",
+        "Time for 4 painters = 108 ÷ 4 = 27"
+      ],
+      "final_answer": "27 hours",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Constant = 9 × 12 = 108",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Time for 4 painters = 108 ÷ 4 = 27",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "27 hours oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "compound_percentage_F",
+      "prompt": "A price of £60 increases by 20%, then decreases by 50%. Find the final price.",
+      "solution_steps": [
+        "After the first change: 60 × 1.20 = 72",
+        "After the second change: 72 × 0.50 = 36"
+      ],
+      "final_answer": "£36",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "After the first change: 60 × 1.20 = 72",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "After the second change: 72 × 0.50 = 36",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£36 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "best_buys_F",
+      "prompt": "A shop sells pasta in different sizes: A: £7.92 for 300g; B: £15.68 for 700g. Which option is the better value for money? Show your working.",
+      "solution_steps": [
+        "Work out the price per 100g for each option:",
+        "A: £7.92 ÷ 300 × 100 = 264.00p per 100g",
+        "B: £15.68 ÷ 700 × 100 = 224.00p per 100g",
+        "The lowest price per 100g is B at 224.00p per 100g, so B is the best value."
+      ],
+      "final_answer": "B (£15.68 for 700g)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Work out the price per 100g for each option:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A: £7.92 ÷ 300 × 100 = 264.00p per 100g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B: £15.68 ÷ 700 × 100 = 224.00p per 100g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The lowest price per 100g is B at 224.00p per 100g, so B is the best value.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "B (£15.68 for 700g) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
       "topic_id": "angles_parallel_lines_F",
-      "prompt": "A line crosses two parallel lines. The angle 130° and the angle x° are corresponding angles. Find x.",
+      "prompt": "A line crosses two parallel lines. The angle 72° and the angle x° are corresponding angles. Find x.",
       "solution_steps": [
         "Corresponding angles are equal.",
-        "x = 130"
+        "x = 72"
       ],
-      "final_answer": "130",
+      "final_answer": "72",
       "marks": 3,
       "mark_scheme": [
         {
@@ -896,22 +781,22 @@
         },
         {
           "code": "M1",
-          "description": "x = 130",
+          "description": "x = 72",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "130 oe",
+          "description": "72 oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "parallel_lines",
         "params": {
-          "known_label": "130°",
+          "known_label": "72°",
           "unknown_label": "x",
           "relation": "corresponding",
-          "known_value": 130,
+          "known_value": 72,
           "x_frac": 0.32
         }
       },
@@ -919,17 +804,17 @@
     },
     {
       "topic_id": "symmetry_lines_F",
-      "prompt": "The diagram shows a rhombus. How many lines of symmetry does it have?",
+      "prompt": "The diagram shows an isosceles trapezium. How many lines of symmetry does it have?",
       "solution_steps": [
-        "A rhombus has 2 lines of symmetry.",
+        "An isosceles trapezium has 1 line of symmetry.",
         "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram."
       ],
-      "final_answer": "2 lines of symmetry",
+      "final_answer": "1 line of symmetry",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A rhombus has 2 lines of symmetry.",
+          "description": "An isosceles trapezium has 1 line of symmetry.",
           "marks": 1
         },
         {
@@ -939,7 +824,7 @@
         },
         {
           "code": "A1",
-          "description": "2 lines of symmetry oe",
+          "description": "1 line of symmetry oe",
           "marks": 1
         }
       ],
@@ -949,19 +834,19 @@
           "vertices": [
             [
               0,
-              -3
+              0
+            ],
+            [
+              6,
+              0
             ],
             [
               4,
-              0
-            ],
-            [
-              0,
               3
             ],
             [
-              -4,
-              0
+              2,
+              3
             ]
           ],
           "blank": true
@@ -973,39 +858,29 @@
           "vertices": [
             [
               0,
-              -3
+              0
+            ],
+            [
+              6,
+              0
             ],
             [
               4,
-              0
-            ],
-            [
-              0,
               3
             ],
             [
-              -4,
-              0
+              2,
+              3
             ]
           ],
           "symmetry_lines": [
             {
               "p1": [
-                -5,
-                0
+                3,
+                -1
               ],
               "p2": [
-                5,
-                0
-              ]
-            },
-            {
-              "p1": [
-                0,
-                -4
-              ],
-              "p2": [
-                0,
+                3,
                 4
               ]
             }
@@ -1015,39 +890,39 @@
     },
     {
       "topic_id": "construction_triangle_F",
-      "prompt": "Triangle HAV has HA = 6 cm, the angle at H equal to 42°, and the angle at A equal to 55°. Describe, step by step, how to construct triangle HAV using a ruler and a protractor.",
+      "prompt": "Triangle UCX has UC = 9 cm, the angle at U equal to 70°, and the angle at C equal to 22°. Describe, step by step, how to construct triangle UCX using a ruler and a protractor.",
       "solution_steps": [
-        "Draw the line segment HA = 6 cm using a ruler.",
-        "At H, use a protractor to draw a ray at 42° from the line HA.",
-        "At A, use a protractor to draw a ray at 55° from the line AH.",
-        "Label the point where the two new rays cross as V. This completes triangle HAV."
+        "Draw the line segment UC = 9 cm using a ruler.",
+        "At U, use a protractor to draw a ray at 70° from the line UC.",
+        "At C, use a protractor to draw a ray at 22° from the line CU.",
+        "Label the point where the two new rays cross as X. This completes triangle UCX."
       ],
-      "final_answer": "Triangle HAV, with V located where the two angle rays from H and A cross.",
+      "final_answer": "Triangle UCX, with X located where the two angle rays from U and C cross.",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw the line segment HA = 6 cm using a ruler.",
+          "description": "Draw the line segment UC = 9 cm using a ruler.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "At H, use a protractor to draw a ray at 42° from the line HA.",
+          "description": "At U, use a protractor to draw a ray at 70° from the line UC.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "At A, use a protractor to draw a ray at 55° from the line AH.",
+          "description": "At C, use a protractor to draw a ray at 22° from the line CU.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Label the point where the two new rays cross as V. This completes triangle HAV.",
+          "description": "Label the point where the two new rays cross as X. This completes triangle UCX.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Triangle HAV, with V located where the two angle rays from H and A cross. oe",
+          "description": "Triangle UCX, with X located where the two angle rays from U and C cross. oe",
           "marks": 1
         }
       ],
@@ -1056,27 +931,27 @@
     },
     {
       "topic_id": "transform_rotate_complete_F",
-      "prompt": "Rotate shape ABCD 90° anticlockwise about the centre (3, 0). Draw and label the image A'B'C'D'.",
+      "prompt": "Rotate shape ABCD 90° anticlockwise about the centre (-2, -2).",
       "solution_steps": [
-        "Rotate each vertex 90° anticlockwise about the centre (3, 0): every point stays the same distance from the centre and turns through the same angle.",
-        "A(-1, -1) -> A'(4, -4), B(3, -1) -> B'(4, 0), C(2, 3) -> C'(0, -1), D(-2, 2) -> D'(1, -5)"
+        "Rotate each vertex 90° anticlockwise about the centre (-2, -2): every point stays the same distance from the centre and turns through the same angle.",
+        "A(0, -3) -> A'(-1, 0), B(4, -3) -> B'(-1, 4), C(3, 1) -> C'(-5, 3), D(-1, 0) -> D'(-4, -1)"
       ],
-      "final_answer": "A'(4, -4), B'(4, 0), C'(0, -1), D'(1, -5)",
+      "final_answer": "A'(-1, 0), B'(-1, 4), C'(-5, 3), D'(-4, -1)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rotate each vertex 90° anticlockwise about the centre (3, 0): every point stays the same distance from the centre and turns through the same angle.",
+          "description": "Rotate each vertex 90° anticlockwise about the centre (-2, -2): every point stays the same distance from the centre and turns through the same angle.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A(-1, -1) -> A'(4, -4), B(3, -1) -> B'(4, 0), C(2, 3) -> C'(0, -1), D(-2, 2) -> D'(1, -5)",
+          "description": "A(0, -3) -> A'(-1, 0), B(4, -3) -> B'(-1, 4), C(3, 1) -> C'(-5, 3), D(-1, 0) -> D'(-4, -1)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(4, -4), B'(4, 0), C'(0, -1), D'(1, -5) oe",
+          "description": "A'(-1, 0), B'(-1, 4), C'(-5, 3), D'(-4, -1) oe",
           "marks": 1
         }
       ],
@@ -1089,20 +964,20 @@
           "y_max": 8,
           "original_vertices": [
             [
-              -1,
-              -1
+              0,
+              -3
+            ],
+            [
+              4,
+              -3
             ],
             [
               3,
-              -1
+              1
             ],
             [
-              2,
-              3
-            ],
-            [
-              -2,
-              2
+              -1,
+              0
             ]
           ],
           "original_labels": [
@@ -1112,8 +987,8 @@
             "D"
           ],
           "centre": [
-            3,
-            0
+            -2,
+            -2
           ]
         }
       },
@@ -1126,20 +1001,20 @@
           "y_max": 8,
           "original_vertices": [
             [
-              -1,
-              -1
+              0,
+              -3
+            ],
+            [
+              4,
+              -3
             ],
             [
               3,
-              -1
+              1
             ],
             [
-              2,
-              3
-            ],
-            [
-              -2,
-              2
+              -1,
+              0
             ]
           ],
           "original_labels": [
@@ -1149,25 +1024,25 @@
             "D"
           ],
           "centre": [
-            3,
-            0
+            -2,
+            -2
           ],
           "image_vertices": [
             [
-              4,
-              -4
-            ],
-            [
-              4,
+              -1,
               0
             ],
             [
-              0,
-              -1
+              -1,
+              4
             ],
             [
-              1,
-              -5
+              -5,
+              3
+            ],
+            [
+              -4,
+              -1
             ]
           ],
           "image_labels": [
@@ -1180,57 +1055,64 @@
       }
     },
     {
-      "topic_id": "relative_frequency_F",
-      "prompt": "A drawing pin is tested 40 times, and it lands point up 33 times. Use this relative frequency to estimate how many times this would happen in 280 trials.",
+      "topic_id": "volume_surface_area_cuboid_F",
+      "prompt": "A cuboid has length 15 cm, width 5 cm and height 10 cm. Find its surface area.",
       "solution_steps": [
-        "Relative frequency = frequency ÷ number of trials = 33/40 = 33/40",
-        "Estimated number of times in 280 trials = 33/40 × 280 = 231"
+        "Surface area = 2 × (lw + lh + wh) = 2 × (15×5 + 15×10 + 5×10)",
+        "= 2 × (75 + 150 + 50) = 550 cm²"
       ],
-      "final_answer": "231",
+      "final_answer": "550 cm²",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Relative frequency = frequency ÷ number of trials = 33/40 = 33/40",
+          "description": "Surface area = 2 × (lw + lh + wh) = 2 × (15×5 + 15×10 + 5×10)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Estimated number of times in 280 trials = 33/40 × 280 = 231",
+          "description": "= 2 × (75 + 150 + 50) = 550 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "231 oe",
+          "description": "550 cm² oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "cuboid",
+        "params": {
+          "width_label": "5 cm",
+          "height_label": "10 cm",
+          "length_label": "15 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
       "topic_id": "probability_complement_F",
-      "prompt": "A bag contains 4 blue, 4 yellow counters. A counter is picked at random. Find the probability that it is NOT yellow.",
+      "prompt": "A bag contains 4 yellow, 3 blue counters. A counter is picked at random. Find the probability that it is NOT yellow.",
       "solution_steps": [
-        "P(yellow) = 4/8 = 1/2",
-        "P(not yellow) = 1 - 1/2 = 1/2"
+        "P(yellow) = 4/7 = 4/7",
+        "P(not yellow) = 1 - 4/7 = 3/7"
       ],
-      "final_answer": "1/2",
+      "final_answer": "3/7",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "P(yellow) = 4/8 = 1/2",
+          "description": "P(yellow) = 4/7 = 4/7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(not yellow) = 1 - 1/2 = 1/2",
+          "description": "P(not yellow) = 1 - 4/7 = 3/7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/2 oe",
+          "description": "3/7 oe",
           "marks": 1
         }
       ],
@@ -1238,81 +1120,95 @@
         "kind": "bag_of_counters",
         "params": {
           "counts": {
-            "blue": 4,
-            "yellow": 4
+            "yellow": 4,
+            "blue": 3
           }
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof_F",
-      "prompt": "ABCD is a parallelogram with AB parallel to DC. Its diagonals AC and BD cross at O. Which congruence criterion proves that the two triangles are congruent? A) RHS  B) ASA  C) SSS  D) SAS",
+      "topic_id": "relative_frequency_F",
+      "prompt": "A drawing pin is tested 20 times, and it lands point up 12 times. Use this relative frequency to estimate how many times this would happen in 15 trials.",
       "solution_steps": [
-        "angle OAB = angle OCD (alternate angles, AB parallel to DC)",
-        "AB = CD (opposite sides of a parallelogram)",
-        "angle OBA = angle ODC (alternate angles, AB parallel to DC)",
-        "These facts match the Angle-Side-Angle (ASA) congruence criterion."
+        "Relative frequency = frequency ÷ number of trials = 12/20 = 3/5",
+        "Estimated number of times in 15 trials = 3/5 × 15 = 9"
       ],
-      "final_answer": "B) ASA",
-      "marks": 1,
+      "final_answer": "9",
+      "marks": 3,
       "mark_scheme": [
         {
-          "code": "B1",
-          "description": "B) ASA (selecting the correct option)",
+          "code": "M1",
+          "description": "Relative frequency = frequency ÷ number of trials = 12/20 = 3/5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Estimated number of times in 15 trials = 3/5 × 15 = 9",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "9 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "venn_diagram_shading_F",
+      "prompt": "Shade the region that represents the elements in neither R nor T.",
+      "solution_steps": [
+        "The Venn diagram has two circles, R and T, inside a rectangle representing everything being considered.",
+        "'Shade the region that represents the elements in neither R nor T.' tells you which of the four regions (in R only, in T only, in both, or in neither) needs shading.",
+        "The region outside both R and T."
+      ],
+      "final_answer": "The region outside both R and T.",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The Venn diagram has two circles, R and T, inside a rectangle representing everything being considered.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "'Shade the region that represents the elements in neither R nor T.' tells you which of the four regions (in R only, in T only, in both, or in neither) needs shading.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The region outside both R and T.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "The region outside both R and T. oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "two_triangle_congruence",
+        "kind": "venn_diagram",
         "params": {
-          "labels_1": [
-            "A",
-            "B",
-            "O"
-          ],
-          "labels_2": [
-            "C",
-            "D",
-            "O"
-          ],
-          "ticks_1": [
-            [
-              0,
-              1,
-              1
-            ]
-          ],
-          "ticks_2": [
-            [
-              0,
-              1,
-              1
-            ]
-          ],
-          "arcs_1": [
-            [
-              0,
-              1
-            ],
-            [
-              1,
-              2
-            ]
-          ],
-          "arcs_2": [
-            [
-              0,
-              1
-            ],
-            [
-              1,
-              2
-            ]
+          "labels": [
+            "R",
+            "T"
           ]
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "R",
+            "T"
+          ],
+          "shade": [
+            "neither"
+          ]
+        }
+      }
     }
   ]
 }

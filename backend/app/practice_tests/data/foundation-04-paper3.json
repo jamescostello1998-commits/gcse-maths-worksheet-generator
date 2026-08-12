@@ -8,33 +8,33 @@
   "questions": [
     {
       "topic_id": "standard_form_to_F",
-      "prompt": "Write 800 in standard form.",
+      "prompt": "Write 46900000 in standard form.",
       "solution_steps": [
-        "Move the decimal point until there is one non-zero digit before it: 8",
-        "Count how many places the decimal point moved: 2",
-        "800 = 8 × 10^2"
+        "Move the decimal point until there is one non-zero digit before it: 4.69",
+        "Count how many places the decimal point moved: 7",
+        "46900000 = 4.69 × 10^7"
       ],
-      "final_answer": "8 × 10^2",
+      "final_answer": "4.69 × 10^7",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Move the decimal point until there is one non-zero digit before it: 8",
+          "description": "Move the decimal point until there is one non-zero digit before it: 4.69",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Count how many places the decimal point moved: 2",
+          "description": "Count how many places the decimal point moved: 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "800 = 8 × 10^2",
+          "description": "46900000 = 4.69 × 10^7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8 × 10^2 oe",
+          "description": "4.69 × 10^7 oe",
           "marks": 1
         }
       ],
@@ -42,28 +42,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_from_large_F",
-      "prompt": "Write 2 × 10^6 as an ordinary number.",
+      "topic_id": "standard_form_to_small_F",
+      "prompt": "Write 0.0000083 in standard form.",
       "solution_steps": [
-        "Multiply 2 by 10^6, which means moving the decimal point 6 place(s) right.",
-        "2 × 10^6 = 2000000"
+        "Move the decimal point until there is one non-zero digit before it: 8.3",
+        "Count how many places the decimal point moved: 6 (the number is less than 1, so the power is negative)",
+        "0.0000083 = 8.3 × 10^-6"
       ],
-      "final_answer": "2000000",
-      "marks": 3,
+      "final_answer": "8.3 × 10^-6",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply 2 by 10^6, which means moving the decimal point 6 place(s) right.",
+          "description": "Move the decimal point until there is one non-zero digit before it: 8.3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2 × 10^6 = 2000000",
+          "description": "Count how many places the decimal point moved: 6 (the number is less than 1, so the power is negative)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "0.0000083 = 8.3 × 10^-6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2000000 oe",
+          "description": "8.3 × 10^-6 oe",
           "marks": 1
         }
       ],
@@ -72,12 +78,12 @@
     },
     {
       "topic_id": "decimals_add_subtract_F",
-      "prompt": "Work out 77.07 - 9.35.",
+      "prompt": "Work out 72.0 + 4.8.",
       "solution_steps": [
         "Line up the decimal points, padding with a zero so both numbers have the same number of decimal places.",
-        "77.07 - 9.35 = 67.72"
+        "72.0 + 4.8 = 76.8"
       ],
-      "final_answer": "67.72",
+      "final_answer": "76.8",
       "marks": 3,
       "mark_scheme": [
         {
@@ -87,12 +93,12 @@
         },
         {
           "code": "M1",
-          "description": "77.07 - 9.35 = 67.72",
+          "description": "72.0 + 4.8 = 76.8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "67.72 oe",
+          "description": "76.8 oe",
           "marks": 1
         }
       ],
@@ -101,33 +107,33 @@
     },
     {
       "topic_id": "decimals_multiply_F",
-      "prompt": "Calculate 4.7 × 2.61.",
+      "prompt": "Work out 20.00 × 2.4.",
       "solution_steps": [
-        "Ignore the decimal points and multiply the whole numbers: 47 × 261 = 12267",
-        "Count the total decimal places in the question: 1 + 2 = 3",
-        "Place the decimal point 3 places from the right: 12.267"
+        "Ignore the decimal points and multiply the whole numbers: 2000 × 24 = 48000",
+        "Count the total decimal places in the question: 2 + 1 = 3",
+        "Place the decimal point 3 places from the right: 48.000"
       ],
-      "final_answer": "12.267",
+      "final_answer": "48.000",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Ignore the decimal points and multiply the whole numbers: 47 × 261 = 12267",
+          "description": "Ignore the decimal points and multiply the whole numbers: 2000 × 24 = 48000",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Count the total decimal places in the question: 1 + 2 = 3",
+          "description": "Count the total decimal places in the question: 2 + 1 = 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Place the decimal point 3 places from the right: 12.267",
+          "description": "Place the decimal point 3 places from the right: 48.000",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12.267 oe",
+          "description": "48.000 oe",
           "marks": 1
         }
       ],
@@ -135,28 +141,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_round_dp_F",
-      "prompt": "Round 84.597 to 2 decimal places.",
+      "topic_id": "decimals_round_sf_F",
+      "prompt": "Round 865.941 to 1 significant figure.",
       "solution_steps": [
-        "Look at the digit after the 2 decimal places we want: 7, so round up.",
-        "84.597 rounded to 2 decimal places = 84.60"
+        "Identify the first 1 significant figure of 865.941.",
+        "865.941 rounded to 1 significant figure = 900"
       ],
-      "final_answer": "84.60",
+      "final_answer": "900",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Look at the digit after the 2 decimal places we want: 7, so round up.",
+          "description": "Identify the first 1 significant figure of 865.941.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "84.597 rounded to 2 decimal places = 84.60",
+          "description": "865.941 rounded to 1 significant figure = 900",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "84.60 oe",
+          "description": "900 oe",
           "marks": 1
         }
       ],
@@ -165,39 +171,39 @@
     },
     {
       "topic_id": "fractions_add_subtract_F",
-      "prompt": "Calculate 8/10 - 2/4. Give your answer as a fraction in its simplest form.",
+      "prompt": "Work out 5/6 + 4/10. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
-        "Find a common denominator: LCM(10, 4) = 20",
-        "Convert: 8/10 = 16/20, 2/4 = 10/20",
-        "Subtract: 16/20 - 10/20 = 6/20",
-        "Simplify: 3/10"
+        "Find a common denominator: LCM(6, 10) = 30",
+        "Convert: 5/6 = 25/30, 4/10 = 12/30",
+        "Add: 25/30 + 12/30 = 37/30",
+        "Simplify: 37/30"
       ],
-      "final_answer": "3/10",
+      "final_answer": "37/30",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find a common denominator: LCM(10, 4) = 20",
+          "description": "Find a common denominator: LCM(6, 10) = 30",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Convert: 8/10 = 16/20, 2/4 = 10/20",
+          "description": "Convert: 5/6 = 25/30, 4/10 = 12/30",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract: 16/20 - 10/20 = 6/20",
+          "description": "Add: 25/30 + 12/30 = 37/30",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify: 3/10",
+          "description": "Simplify: 37/30",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3/10 oe",
+          "description": "37/30 oe",
           "marks": 1
         }
       ],
@@ -206,27 +212,27 @@
     },
     {
       "topic_id": "fractions_equivalent_F",
-      "prompt": "3/4 = \\frac{24}{?}. Find the missing number.",
+      "prompt": "9/10 = \\frac{72}{?}. Find the missing number.",
       "solution_steps": [
-        "Find the scale factor between the numerators: 24 ÷ 3 = 8",
-        "Multiply the denominator by the same scale factor: 4 × 8 = 32"
+        "Find the scale factor between the numerators: 72 ÷ 9 = 8",
+        "Multiply the denominator by the same scale factor: 10 × 8 = 80"
       ],
-      "final_answer": "32",
+      "final_answer": "80",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the scale factor between the numerators: 24 ÷ 3 = 8",
+          "description": "Find the scale factor between the numerators: 72 ÷ 9 = 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply the denominator by the same scale factor: 4 × 8 = 32",
+          "description": "Multiply the denominator by the same scale factor: 10 × 8 = 80",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "32 oe",
+          "description": "80 oe",
           "marks": 1
         }
       ],
@@ -234,34 +240,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "parallel_lines_equation_F",
-      "prompt": "A line is parallel to y = -x + 6 and passes through the point (-4, 3). Find the equation of the line.",
+      "topic_id": "negative_indices_F",
+      "prompt": "Fully simplify 2^-4 × 2^-3, giving your answer as a single power of 2.",
       "solution_steps": [
-        "Parallel lines have the same gradient, so m = -1.",
-        "Substitute (-4, 3) into y = -1x + c: 3 = -1×(-4) + c, so c = -1",
-        "Equation of the line: y = -x - 1"
+        "Add the powers: -4 + (-3) = -7",
+        "2^-4 × 2^-3 = 2^-7"
       ],
-      "final_answer": "y = -x - 1",
-      "marks": 4,
+      "final_answer": "2^-7",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Parallel lines have the same gradient, so m = -1.",
+          "description": "Add the powers: -4 + (-3) = -7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute (-4, 3) into y = -1x + c: 3 = -1×(-4) + c, so c = -1",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Equation of the line: y = -x - 1",
+          "description": "2^-4 × 2^-3 = 2^-7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = -x - 1 oe",
+          "description": "2^-7 oe",
           "marks": 1
         }
       ],
@@ -270,33 +270,33 @@
     },
     {
       "topic_id": "sequences_nth_term_F",
-      "prompt": "Here are the first four terms of a sequence: -1, 2, 5, 8.\nFind an expression for the nth term.",
+      "prompt": "Here are the first four terms of a sequence: -3, -8, -13, -18.\nFind an expression for the nth term.",
       "solution_steps": [
-        "Common difference = 3",
-        "nth term = 3n - 4",
-        "nth term = 3n - 4"
+        "Common difference = -5",
+        "nth term = -5n + 2",
+        "nth term = -5n + 2"
       ],
-      "final_answer": "3n - 4",
+      "final_answer": "-5n + 2",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Common difference = 3",
+          "description": "Common difference = -5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = 3n - 4",
+          "description": "nth term = -5n + 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = 3n - 4",
+          "description": "nth term = -5n + 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3n - 4 oe",
+          "description": "-5n + 2 oe",
           "marks": 1
         }
       ],
@@ -305,41 +305,41 @@
     },
     {
       "topic_id": "satisfying_inequalities_F",
-      "prompt": "Solve the inequality 0 < 3x - 4 < 21, then list the integer values of x that satisfy it.",
+      "prompt": "Solve the inequality -10 < 4x + 2 ≤ 4, then list the integer values of x that satisfy it.",
       "solution_steps": [
-        "0 < 3x - 4 < 21",
-        "Add 4 to all three parts:",
-        "4 < 3x < 25",
-        "Divide all three parts by 3:",
-        "4/3 < x < 25/3",
-        "The integers satisfying this are: 2, 3, 4, 5, 6, 7, 8"
+        "-10 < 4x + 2 ≤ 4",
+        "Subtract 2 from all three parts:",
+        "-12 < 4x ≤ 2",
+        "Divide all three parts by 4:",
+        "-3 < x ≤ 1/2",
+        "The integers satisfying this are: -2, -1, 0"
       ],
-      "final_answer": "2, 3, 4, 5, 6, 7, 8",
+      "final_answer": "-2, -1, 0",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "0 < 3x - 4 < 21",
+          "description": "-10 < 4x + 2 ≤ 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add 4 to all three parts:",
+          "description": "Subtract 2 from all three parts:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4 < 3x < 25",
+          "description": "-12 < 4x ≤ 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide all three parts by 3: 4/3 < x < 25/3 The integers satisfying this are: 2, 3, 4, 5, 6, 7, 8",
+          "description": "Divide all three parts by 4: -3 < x ≤ 1/2 The integers satisfying this are: -2, -1, 0",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2, 3, 4, 5, 6, 7, 8 oe",
+          "description": "-2, -1, 0 oe",
           "marks": 1
         }
       ],
@@ -348,40 +348,69 @@
     },
     {
       "topic_id": "functions_evaluate_F",
-      "prompt": "f(x) = -x + 6. Find the value of x for which f(x) = -1.",
+      "prompt": "f(x) = -4x - 6. Find f(-8).",
       "solution_steps": [
-        "-x + 6 = -1",
-        "Subtract 6 from both sides:",
-        "-x = -7",
-        "Divide both sides by -1:",
-        "x = 7"
+        "f(-8) = -4×(-8) + -6",
+        "f(-8) = 26"
       ],
-      "final_answer": "7",
-      "marks": 5,
+      "final_answer": "26",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "-x + 6 = -1",
+          "description": "f(-8) = -4×(-8) + -6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 6 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "-x = -7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide both sides by -1: x = 7",
+          "description": "f(-8) = 26",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7 oe",
+          "description": "26 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "expand_double_brackets_no_coefficient_F",
+      "prompt": "Expand and simplify: (x + 4)(x + 3)",
+      "solution_steps": [
+        "First: x × x = x^2",
+        "Outer: x × 3 = 3x",
+        "Inner: 4 × x = 4x",
+        "Last: 4 × 3 = 12",
+        "Combine like terms: x^2 + 7x + 12"
+      ],
+      "final_answer": "x^2 + 7x + 12",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First: x × x = x^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Outer: x × 3 = 3x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Inner: 4 × x = 4x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Last: 4 × 3 = 12 Combine like terms: x^2 + 7x + 12",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x^2 + 7x + 12 oe",
           "marks": 1
         }
       ],
@@ -390,27 +419,27 @@
     },
     {
       "topic_id": "factorise_common_factor_F",
-      "prompt": "Factorise: 81x + 63",
+      "prompt": "Factorise: 72x + 40",
       "solution_steps": [
-        "Find the highest common factor of 81 and 63: 9",
-        "Factorise: 9(9x + 7)"
+        "Find the highest common factor of 72 and 40: 8",
+        "Factorise: 8(9x + 5)"
       ],
-      "final_answer": "9(9x + 7)",
+      "final_answer": "8(9x + 5)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the highest common factor of 81 and 63: 9",
+          "description": "Find the highest common factor of 72 and 40: 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: 9(9x + 7)",
+          "description": "Factorise: 8(9x + 5)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9(9x + 7) oe",
+          "description": "8(9x + 5) oe",
           "marks": 1
         }
       ],
@@ -418,117 +447,69 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cube_F",
-      "prompt": "A cube has side length 4 cm. Find its volume.",
+      "topic_id": "cross_multiplication_F",
+      "prompt": "Solve the following equation.\n\\frac{8}{x} = \\frac{2}{10}",
       "solution_steps": [
-        "Volume = side³ = 4³ = 64 cm³"
+        "Cross-multiply: 8 × 10 = 2 × x",
+        "x = 40"
       ],
-      "final_answer": "64 cm³",
-      "marks": 2,
+      "final_answer": "x = 40",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Volume = side³ = 4³ = 64 cm³",
+          "description": "Cross-multiply: 8 × 10 = 2 × x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 40",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "64 cm³ oe",
+          "description": "x = 40 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "cuboid",
-        "params": {
-          "width_label": "4 cm",
-          "height_label": "4 cm",
-          "length_label": "4 cm",
-          "is_cube": true
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "forming_equations_F",
-      "prompt": "The perimeter of the rectangle shown is 52 cm. Form an equation and solve it to find x.",
+      "topic_id": "substitution_rearrange_F",
+      "prompt": "A = (1/2)bh. Make h the subject of the formula, then find the value of h when A = 70 and b = 7.",
       "solution_steps": [
-        "Perimeter = 2 × (sum of two different side lengths).",
-        "2(x + 3) + 2(12) = 52",
-        "2x + 30 = 52",
-        "Subtract 30 from both sides:",
-        "2x = 22",
-        "Divide both sides by 2:",
-        "x = 11"
+        "A = (1/2)bh",
+        "Rearrange to make h the subject: h = \\frac{2A}{b}",
+        "Substitute A = 70 and b = 7: h = \\frac{2 × 70}{7}",
+        "h = 20"
       ],
-      "final_answer": "11",
+      "final_answer": "h = 20",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Perimeter = 2 × (sum of two different side lengths).",
+          "description": "A = (1/2)bh",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2(x + 3) + 2(12) = 52",
+          "description": "Rearrange to make h the subject: h = \\frac{2A}{b}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x + 30 = 52",
+          "description": "Substitute A = 70 and b = 7: h = \\frac{2 × 70}{7}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 30 from both sides: 2x = 22 Divide both sides by 2: x = 11",
+          "description": "h = 20",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "11 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "rectangle",
-        "params": {
-          "width": 14,
-          "height": 12,
-          "width_label": "(x + 3) cm",
-          "height_label": "12 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "expand_single_bracket_F",
-      "prompt": "Expand: -8(-4x - 4)",
-      "solution_steps": [
-        "Multiply -8 by -4x: 32x",
-        "Multiply -8 by -4: 32",
-        "Combine: 32x + 32"
-      ],
-      "final_answer": "32x + 32",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiply -8 by -4x: 32x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply -8 by -4: 32",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Combine: 32x + 32",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "32x + 32 oe",
+          "description": "h = 20 oe",
           "marks": 1
         }
       ],
@@ -537,40 +518,40 @@
     },
     {
       "topic_id": "ratio_share_three_part_F",
-      "prompt": "Share 81 in the ratio 1:1:7.",
+      "prompt": "Share 91 in the ratio 2:6:5.",
       "solution_steps": [
-        "Total parts = 1 + 1 + 7 = 9",
-        "Value of one part = 81 ÷ 9 = 9",
-        "Share 1 = 1 × 9 = 9",
-        "Share 2 = 1 × 9 = 9",
-        "Share 3 = 7 × 9 = 63"
+        "Total parts = 2 + 6 + 5 = 13",
+        "Value of one part = 91 ÷ 13 = 7",
+        "Share 1 = 2 × 7 = 14",
+        "Share 2 = 6 × 7 = 42",
+        "Share 3 = 5 × 7 = 35"
       ],
-      "final_answer": "9 : 9 : 63",
+      "final_answer": "14 : 42 : 35",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 1 + 1 + 7 = 9",
+          "description": "Total parts = 2 + 6 + 5 = 13",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 81 ÷ 9 = 9",
+          "description": "Value of one part = 91 ÷ 13 = 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 1 = 1 × 9 = 9",
+          "description": "Share 1 = 2 × 7 = 14",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 2 = 1 × 9 = 9 Share 3 = 7 × 9 = 63",
+          "description": "Share 2 = 6 × 7 = 42 Share 3 = 5 × 7 = 35",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9 : 9 : 63 oe",
+          "description": "14 : 42 : 35 oe",
           "marks": 1
         }
       ],
@@ -579,27 +560,27 @@
     },
     {
       "topic_id": "ratio_find_missing_share_F",
-      "prompt": "p : q = 9 : 1. p = 18. What is the value of q?",
+      "prompt": "h : k = 5 : 4. h = 65. What is the value of k?",
       "solution_steps": [
-        "Value of one part = 18 ÷ 9 = 2",
-        "q = 1 × 2 = 2"
+        "Value of one part = 65 ÷ 5 = 13",
+        "k = 4 × 13 = 52"
       ],
-      "final_answer": "2",
+      "final_answer": "52",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Value of one part = 18 ÷ 9 = 2",
+          "description": "Value of one part = 65 ÷ 5 = 13",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "q = 1 × 2 = 2",
+          "description": "k = 4 × 13 = 52",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2 oe",
+          "description": "52 oe",
           "marks": 1
         }
       ],
@@ -608,27 +589,27 @@
     },
     {
       "topic_id": "percentage_of_amount_F",
-      "prompt": "Find 20% of 220.",
+      "prompt": "Find 10% of 120.",
       "solution_steps": [
-        "Convert 20% to a fraction: 20/100",
-        "Multiply: 20/100 × 220 = 44"
+        "Convert 10% to a fraction: 10/100",
+        "Multiply: 10/100 × 120 = 12"
       ],
-      "final_answer": "44",
+      "final_answer": "12",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 20% to a fraction: 20/100",
+          "description": "Convert 10% to a fraction: 10/100",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: 20/100 × 220 = 44",
+          "description": "Multiply: 10/100 × 120 = 12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "44 oe",
+          "description": "12 oe",
           "marks": 1
         }
       ],
@@ -637,13 +618,13 @@
     },
     {
       "topic_id": "simple_interest_F",
-      "prompt": "£2300 is invested at a simple interest rate of 5% per year for 2 years. Find the total amount in the account after 2 years.",
+      "prompt": "£2200 is invested at a simple interest rate of 5% per year for 2 years. Find the total amount in the account after 2 years.",
       "solution_steps": [
         "Simple interest formula: I = P × r × t ÷ 100",
-        "I = 2300 × 5 × 2 ÷ 100 = £230",
-        "Total in the account = P + I = £2300 + £230 = £2530"
+        "I = 2200 × 5 × 2 ÷ 100 = £220",
+        "Total in the account = P + I = £2200 + £220 = £2420"
       ],
-      "final_answer": "£2530",
+      "final_answer": "£2420",
       "marks": 4,
       "mark_scheme": [
         {
@@ -653,17 +634,17 @@
         },
         {
           "code": "M1",
-          "description": "I = 2300 × 5 × 2 ÷ 100 = £230",
+          "description": "I = 2200 × 5 × 2 ÷ 100 = £220",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total in the account = P + I = £2300 + £230 = £2530",
+          "description": "Total in the account = P + I = £2200 + £220 = £2420",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£2530 oe",
+          "description": "£2420 oe",
           "marks": 1
         }
       ],
@@ -671,136 +652,152 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inverse_proportion_F",
-      "prompt": "It takes 10 painters 55 hours to paint a fence. Working at the same rate, how long would it take 11 painters?",
+      "topic_id": "volume_surface_area_cylinder_F",
+      "prompt": "Find the total surface area of the cylinder, correct to 1 decimal place.",
       "solution_steps": [
-        "Constant = 10 × 55 = 550",
-        "Time for 11 painters = 550 ÷ 11 = 50"
+        "Surface area = 2πr² + 2πrh = (2 × π × 2²) + (2 × π × 2 × 4)",
+        "= 75.4 cm² (1 d.p., using a calculator value of π)"
       ],
-      "final_answer": "50 hours",
+      "final_answer": "75.4 cm²",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Constant = 10 × 55 = 550",
+          "description": "Surface area = 2πr² + 2πrh = (2 × π × 2²) + (2 × π × 2 × 4)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Time for 11 painters = 550 ÷ 11 = 50",
+          "description": "= 75.4 cm² (1 d.p., using a calculator value of π)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "50 hours oe",
+          "description": "75.4 cm² oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "cylinder",
+        "params": {
+          "radius_label": "2 cm",
+          "height_label": "4 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
       "topic_id": "pythagoras_hypotenuse_triple_F",
-      "prompt": "A right-angled triangle has sides 24 cm and 70 cm. Find the length of x.",
+      "prompt": "A right-angled triangle has sides 44 cm and 240 cm. Find the length of x.",
       "solution_steps": [
-        "c² = a² + b² = 24² + 70² = 576 + 4900 = 5476",
-        "c = √5476 = 74"
+        "c² = a² + b² = 44² + 240² = 1936 + 57600 = 59536",
+        "c = √59536 = 244"
       ],
-      "final_answer": "74 cm",
+      "final_answer": "244 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "c² = a² + b² = 24² + 70² = 576 + 4900 = 5476",
+          "description": "c² = a² + b² = 44² + 240² = 1936 + 57600 = 59536",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "c = √5476 = 74",
+          "description": "c = √59536 = 244",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "74 cm oe",
+          "description": "244 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "right_triangle",
         "params": {
-          "leg1_label": "24 cm",
-          "leg2_label": "70 cm",
+          "leg1_label": "44 cm",
+          "leg2_label": "240 cm",
           "hyp_label": "x"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "area_rectangle_F",
-      "prompt": "Find the perimeter of the following rectangle.",
+      "topic_id": "stats_averages_combined_F",
+      "prompt": "For this data set, find (a) the mean (b) the mode (c) the median (d) the range: 4, 13, 7, 13, 5, 13, 17.",
       "solution_steps": [
-        "Perimeter = 2 × (length + width) = 2 × (15 + 8) = 46 cm"
+        "(a) Mean = (4 + 13 + 7 + 13 + 5 + 13 + 17) ÷ 7 = 72 ÷ 7 = 72/7",
+        "(b) Mode = the most frequent value = 13 (appears 3 times)",
+        "(c) Median: Sorted: 4, 5, 7, 13, 13, 13, 17. Middle value = 13.",
+        "(d) Range = 17 - 4 = 13"
       ],
-      "final_answer": "46 cm",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Perimeter = 2 × (length + width) = 2 × (15 + 8) = 46 cm",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "46 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "rectangle",
-        "params": {
-          "width": 15,
-          "height": 8,
-          "width_label": "15 cm",
-          "height_label": "8 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "construction_perpendicular_from_point_F",
-      "prompt": "Point E is not on line segment QT (length 7 cm). Describe, step by step, how to construct the perpendicular from E to the line QT using only a ruler and a pair of compasses.",
-      "solution_steps": [
-        "Open the compasses to a radius large enough to reach the line QT from E.",
-        "With the compass point on E, draw an arc that crosses QT at two points.",
-        "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs on the far side of QT from E, so that they intersect each other.",
-        "Draw a straight line from E through the point where these two arcs intersect. This line is the perpendicular from E to QT, crossing it at the foot of the perpendicular."
-      ],
-      "final_answer": "The straight line from E through the intersection of the two far-side arcs is perpendicular to QT.",
+      "final_answer": "Mean = 72/7, Mode = 13, Median = 13, Range = 13",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Open the compasses to a radius large enough to reach the line QT from E.",
+          "description": "(a) Mean = (4 + 13 + 7 + 13 + 5 + 13 + 17) ÷ 7 = 72 ÷ 7 = 72/7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "With the compass point on E, draw an arc that crosses QT at two points.",
+          "description": "(b) Mode = the most frequent value = 13 (appears 3 times)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs on the far side of QT from E, so that they intersect each other.",
+          "description": "(c) Median: Sorted: 4, 5, 7, 13, 13, 13, 17. Middle value = 13.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Draw a straight line from E through the point where these two arcs intersect. This line is the perpendicular from E to QT, crossing it at the foot of the perpendicular.",
+          "description": "(d) Range = 17 - 4 = 13",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "The straight line from E through the intersection of the two far-side arcs is perpendicular to QT. oe",
+          "description": "Mean = 72/7, Mode = 13, Median = 13, Range = 13 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "construction_perpendicular_from_point_F",
+      "prompt": "Point K lies on line segment EO (length 14 cm). Describe, step by step, how to construct the perpendicular to EO at K using only a ruler and a pair of compasses.",
+      "solution_steps": [
+        "With the compass point on K, draw two arcs of equal radius along the line EO, one on each side of K, marking two new points that are the same distance from K.",
+        "Open the compasses to a larger radius than before.",
+        "With the point on each of the two new points in turn, draw two arcs above (or below) the line so that they intersect each other.",
+        "Draw a straight line from K through the point where these two arcs intersect. This line is perpendicular to EO at K."
+      ],
+      "final_answer": "The straight line from K through the intersection of the two larger-radius arcs is perpendicular to EO at K.",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "With the compass point on K, draw two arcs of equal radius along the line EO, one on each side of K, marking two new points that are the same distance from K.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Open the compasses to a larger radius than before.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "With the point on each of the two new points in turn, draw two arcs above (or below) the line so that they intersect each other.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Draw a straight line from K through the point where these two arcs intersect. This line is perpendicular to EO at K.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "The straight line from K through the intersection of the two larger-radius arcs is perpendicular to EO at K. oe",
           "marks": 1
         }
       ],
@@ -811,105 +808,133 @@
       "topic_id": "trig_missing_angle_F",
       "prompt": "In the triangle shown, find the angle x, correct to 1 decimal place.",
       "solution_steps": [
-        "Use sin, since we know two of the three sides.",
-        "sin(x) = 18 ÷ 19",
-        "x = sin^-1(18 ÷ 19) = 71.3° (1 d.p.)"
+        "Use tan, since we know two of the three sides.",
+        "tan(x) = 19 ÷ 7",
+        "x = tan^-1(19 ÷ 7) = 69.8° (1 d.p.)"
       ],
-      "final_answer": "71.3°",
+      "final_answer": "69.8°",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Use sin, since we know two of the three sides.",
+          "description": "Use tan, since we know two of the three sides.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "sin(x) = 18 ÷ 19",
+          "description": "tan(x) = 19 ÷ 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = sin^-1(18 ÷ 19) = 71.3° (1 d.p.)",
+          "description": "x = tan^-1(19 ÷ 7) = 69.8° (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "71.3° oe",
+          "description": "69.8° oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "trig_triangle",
         "params": {
-          "adjacent_label": null,
-          "opposite_label": "18 cm",
-          "hyp_label": "19 cm",
+          "adjacent_label": "7 cm",
+          "opposite_label": "19 cm",
+          "hyp_label": null,
           "angle_label": "x°"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_missing_side_F",
-      "prompt": "In the triangle shown, find the length of x, correct to 1 decimal place.",
+      "topic_id": "tree_diagram_independent_F",
+      "prompt": "A bag contains 7 red and 2 blue counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that the first counter is blue and the second counter is blue.",
       "solution_steps": [
-        "We know the hypotenuse and want the adjacent, so use cos.",
-        "x = 17 × cos(69°) = 6.1 (1 d.p.)"
+        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(red) = 7/9, P(blue) = 2/9.",
+        "P(blue then blue) = 2/9 × 2/9 = 4/81"
       ],
-      "final_answer": "6.1 cm",
+      "final_answer": "4/81",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "We know the hypotenuse and want the adjacent, so use cos.",
+          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(red) = 7/9, P(blue) = 2/9.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 17 × cos(69°) = 6.1 (1 d.p.)",
+          "description": "P(blue then blue) = 2/9 × 2/9 = 4/81",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6.1 cm oe",
+          "description": "4/81 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "trig_triangle",
+        "kind": "tree_diagram",
         "params": {
-          "adjacent_label": "x cm",
-          "opposite_label": null,
-          "hyp_label": "17 cm",
-          "angle_label": "69°"
+          "stage1": [
+            [
+              "Red",
+              "7/9"
+            ],
+            [
+              "Blue",
+              "2/9"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Red",
+                "7/9"
+              ],
+              [
+                "Blue",
+                "2/9"
+              ]
+            ],
+            [
+              [
+                "Red",
+                "7/9"
+              ],
+              [
+                "Blue",
+                "2/9"
+              ]
+            ]
+          ]
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "probability_complement_F",
-      "prompt": "A bag contains 3 green, 3 blue counters. A counter is picked at random. Find the probability that it is NOT blue.",
+      "prompt": "A bag contains 3 green, 8 yellow, 2 blue, 5 purple counters. A counter is picked at random. Find the probability that it is NOT purple.",
       "solution_steps": [
-        "P(blue) = 3/6 = 1/2",
-        "P(not blue) = 1 - 1/2 = 1/2"
+        "P(purple) = 5/18 = 5/18",
+        "P(not purple) = 1 - 5/18 = 13/18"
       ],
-      "final_answer": "1/2",
+      "final_answer": "13/18",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "P(blue) = 3/6 = 1/2",
+          "description": "P(purple) = 5/18 = 5/18",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(not blue) = 1 - 1/2 = 1/2",
+          "description": "P(not purple) = 1 - 5/18 = 13/18",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/2 oe",
+          "description": "13/18 oe",
           "marks": 1
         }
       ],
@@ -918,142 +943,36 @@
         "params": {
           "counts": {
             "green": 3,
-            "blue": 3
+            "yellow": 8,
+            "blue": 2,
+            "purple": 5
           }
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "sample_space_diagrams_F",
-      "prompt": "Two fair spinners, one numbered 1 to 4 and the other numbered 1 to 4, are spun together. Complete the sample space diagram showing the product of the two spinners, and use it to find the probability that the product is greater than 12.",
+      "topic_id": "stats_range_F",
+      "prompt": "Find the range of this data set: 5, 18, 12, 21, 13, 25, 5.",
       "solution_steps": [
-        "The sample space diagram shows every possible product of the two spinners.",
-        "Number of favourable outcomes (the product is greater than 12) = 1",
-        "Total number of equally likely outcomes = 16",
-        "P(the product is greater than 12) = 1/16"
+        "Range = largest - smallest = 25 - 5 = 20"
       ],
-      "final_answer": "1/16",
-      "marks": 5,
+      "final_answer": "20",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The sample space diagram shows every possible product of the two spinners.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Number of favourable outcomes (the product is greater than 12) = 1",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total number of equally likely outcomes = 16",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(the product is greater than 12) = 1/16",
+          "description": "Range = largest - smallest = 25 - 5 = 20",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/16 oe",
+          "description": "20 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "sample_space_diagram",
-        "params": {
-          "row_values": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "col_values": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "cells": [
-            [
-              "",
-              "",
-              "",
-              ""
-            ],
-            [
-              "",
-              "",
-              "",
-              ""
-            ],
-            [
-              "",
-              "",
-              "",
-              ""
-            ],
-            [
-              "",
-              "",
-              "",
-              ""
-            ]
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "sample_space_diagram",
-        "params": {
-          "row_values": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "col_values": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "cells": [
-            [
-              "1",
-              "2",
-              "3",
-              "4"
-            ],
-            [
-              "2",
-              "4",
-              "6",
-              "8"
-            ],
-            [
-              "3",
-              "6",
-              "9",
-              "12"
-            ],
-            [
-              "4",
-              "8",
-              "12",
-              "16"
-            ]
-          ],
-          "highlight": [
-            [
-              3,
-              3
-            ]
-          ]
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     }
   ]
 }

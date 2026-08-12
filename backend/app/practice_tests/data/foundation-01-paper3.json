@@ -8,33 +8,33 @@
   "questions": [
     {
       "topic_id": "fractions_ordering_F",
-      "prompt": "Write these fractions in descending order: 1/12, 1/3, 2/5, 1/2, 3/11",
+      "prompt": "Write these fractions in ascending order: 1/2, 2/5, 6/11, 1/8, 3/7",
       "solution_steps": [
-        "Convert every fraction to the same denominator, the LCM of 12, 3, 5, 2, 11: 660",
-        "Rewrite each fraction over 660: 1/12 = 55/660, 1/3 = 220/660, 2/5 = 264/660, 1/2 = 330/660, 3/11 = 180/660",
-        "Order the numerators in descending order and convert back: 1/2, 2/5, 1/3, 3/11, 1/12"
+        "Convert every fraction to the same denominator, the LCM of 2, 5, 11, 8, 7: 3080",
+        "Rewrite each fraction over 3080: 1/2 = 1540/3080, 2/5 = 1232/3080, 6/11 = 1680/3080, 1/8 = 385/3080, 3/7 = 1320/3080",
+        "Order the numerators in ascending order and convert back: 1/8, 2/5, 3/7, 1/2, 6/11"
       ],
-      "final_answer": "1/2, 2/5, 1/3, 3/11, 1/12",
+      "final_answer": "1/8, 2/5, 3/7, 1/2, 6/11",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert every fraction to the same denominator, the LCM of 12, 3, 5, 2, 11: 660",
+          "description": "Convert every fraction to the same denominator, the LCM of 2, 5, 11, 8, 7: 3080",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rewrite each fraction over 660: 1/12 = 55/660, 1/3 = 220/660, 2/5 = 264/660, 1/2 = 330/660, 3/11 = 180/660",
+          "description": "Rewrite each fraction over 3080: 1/2 = 1540/3080, 2/5 = 1232/3080, 6/11 = 1680/3080, 1/8 = 385/3080, 3/7 = 1320/3080",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Order the numerators in descending order and convert back: 1/2, 2/5, 1/3, 3/11, 1/12",
+          "description": "Order the numerators in ascending order and convert back: 1/8, 2/5, 3/7, 1/2, 6/11",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/2, 2/5, 1/3, 3/11, 1/12 oe",
+          "description": "1/8, 2/5, 3/7, 1/2, 6/11 oe",
           "marks": 1
         }
       ],
@@ -42,22 +42,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "negative_add_subtract_F",
-      "prompt": "Work out -16 + (-6).",
+      "topic_id": "error_interval_F",
+      "prompt": "A number, x, is 24000 rounded to the nearest 1000. Write down the error interval for x.",
       "solution_steps": [
-        "-16 + (-6) = -22"
+        "24000 is rounded to the nearest 1000, so x can be up to half of that precision above or below 24000.",
+        "Lower bound: 24000 - 500 = 23500",
+        "Upper bound: 24000 + 500 = 24500"
       ],
-      "final_answer": "-22",
-      "marks": 2,
+      "final_answer": "23500 ≤ x < 24500",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "-16 + (-6) = -22",
+          "description": "24000 is rounded to the nearest 1000, so x can be up to half of that precision above or below 24000.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Lower bound: 24000 - 500 = 23500",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Upper bound: 24000 + 500 = 24500",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-22 oe",
+          "description": "23500 ≤ x < 24500 oe",
           "marks": 1
         }
       ],
@@ -65,28 +77,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_round_sf_F",
-      "prompt": "Round 186.295 to 3 significant figures.",
+      "topic_id": "decimals_ordering_F",
+      "prompt": "Write these values in descending order: 3/4, 63/100, 0.69, 68%",
       "solution_steps": [
-        "Identify the first 3 significant figures of 186.295.",
-        "186.295 rounded to 3 significant figures = 186"
+        "Convert each value to a decimal: 3/4 = 0.75, 63/100 = 0.63, 0.69 = 0.69, 68% = 0.68",
+        "Order in descending order: 3/4, 0.69, 68%, 63/100"
       ],
-      "final_answer": "186",
+      "final_answer": "3/4, 0.69, 68%, 63/100",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Identify the first 3 significant figures of 186.295.",
+          "description": "Convert each value to a decimal: 3/4 = 0.75, 63/100 = 0.63, 0.69 = 0.69, 68% = 0.68",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "186.295 rounded to 3 significant figures = 186",
+          "description": "Order in descending order: 3/4, 0.69, 68%, 63/100",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "186 oe",
+          "description": "3/4, 0.69, 68%, 63/100 oe",
           "marks": 1
         }
       ],
@@ -94,119 +106,58 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_equivalent_diagram_F",
-      "prompt": "How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
+      "topic_id": "estimation_rounding_F",
+      "prompt": "Work out an estimate for (79.3 × 4.2) ÷ 5.2 by rounding each number to 1 significant figure.",
       "solution_steps": [
-        "Shape A shows 4/5 shaded; Shape B has 10 equal parts.",
-        "Find the scale factor between the denominators: 10 ÷ 5 = 2",
-        "Multiply the shaded count by the same scale factor: 4 × 2 = 8"
+        "Round each value to 1 significant figure: 79.3 ≈ 80, 4.2 ≈ 4, 5.2 ≈ 5",
+        "(80 × 4) ÷ 5 = 64"
       ],
-      "final_answer": "8",
-      "marks": 4,
+      "final_answer": "64",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Shape A shows 4/5 shaded; Shape B has 10 equal parts.",
+          "description": "Round each value to 1 significant figure: 79.3 ≈ 80, 4.2 ≈ 4, 5.2 ≈ 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Find the scale factor between the denominators: 10 ÷ 5 = 2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the shaded count by the same scale factor: 4 × 2 = 8",
+          "description": "(80 × 4) ÷ 5 = 64",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8 oe",
+          "description": "64 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "bar",
-              "parts": 5,
-              "shaded": 4
-            },
-            {
-              "kind": "bar",
-              "parts": 10,
-              "shaded": 0
-            }
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "bar",
-              "parts": 5,
-              "shaded": 4
-            },
-            {
-              "kind": "bar",
-              "parts": 10,
-              "shaded": 8
-            }
-          ]
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     },
     {
       "topic_id": "hcf_by_listing_F",
-      "prompt": "Find the highest common factor (HCF) of 15 and 55.",
+      "prompt": "Find the highest common factor (HCF) of 12 and 39.",
       "solution_steps": [
-        "Factors of 15: 1, 3, 5, 15",
-        "Factors of 55: 1, 5, 11, 55",
-        "Highest common factor = 5"
+        "Factors of 12: 1, 2, 3, 4, 6, 12",
+        "Factors of 39: 1, 3, 13, 39",
+        "Highest common factor = 3"
       ],
-      "final_answer": "5",
+      "final_answer": "3",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Factors of 15: 1, 3, 5, 15",
+          "description": "Factors of 12: 1, 2, 3, 4, 6, 12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factors of 55: 1, 5, 11, 55",
+          "description": "Factors of 39: 1, 3, 13, 39",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Highest common factor = 5",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "5 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "negative_multiply_divide_F",
-      "prompt": "Work out -18 ÷ (-6).",
-      "solution_steps": [
-        "-18 ÷ (-6) = 3"
-      ],
-      "final_answer": "3",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "-18 ÷ (-6) = 3",
+          "description": "Highest common factor = 3",
           "marks": 1
         },
         {
@@ -219,28 +170,51 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "decimals_round_dp_F",
-      "prompt": "Round 20.575 to 1 decimal place.",
+      "topic_id": "negative_multiply_divide_F",
+      "prompt": "Work out -10 × 2.",
       "solution_steps": [
-        "Look at the digit after the 1 decimal place we want: 7, so round up.",
-        "20.575 rounded to 1 decimal place = 20.6"
+        "-10 × 2 = -20"
       ],
-      "final_answer": "20.6",
-      "marks": 3,
+      "final_answer": "-20",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Look at the digit after the 1 decimal place we want: 7, so round up.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "20.575 rounded to 1 decimal place = 20.6",
+          "description": "-10 × 2 = -20",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "20.6 oe",
+          "description": "-20 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "decimals_round_sf_F",
+      "prompt": "Round 897.146 to 2 significant figures.",
+      "solution_steps": [
+        "Identify the first 2 significant figures of 897.146.",
+        "897.146 rounded to 2 significant figures = 900"
+      ],
+      "final_answer": "900",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Identify the first 2 significant figures of 897.146.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "897.146 rounded to 2 significant figures = 900",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "900 oe",
           "marks": 1
         }
       ],
@@ -249,255 +223,219 @@
     },
     {
       "topic_id": "fractions_improper_mixed_F",
-      "prompt": "Write 1 1/3 as an improper fraction.",
+      "prompt": "Express 2 1/2 as an improper fraction.",
       "solution_steps": [
-        "Multiply the whole number by the denominator: 1 × 3 = 3",
-        "Add the numerator: 3 + 1 = 4",
-        "Write over the same denominator: 4/3"
+        "Multiply the whole number by the denominator: 2 × 2 = 4",
+        "Add the numerator: 4 + 1 = 5",
+        "Write over the same denominator: 5/2"
       ],
-      "final_answer": "4/3",
+      "final_answer": "5/2",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply the whole number by the denominator: 1 × 3 = 3",
+          "description": "Multiply the whole number by the denominator: 2 × 2 = 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add the numerator: 3 + 1 = 4",
+          "description": "Add the numerator: 4 + 1 = 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write over the same denominator: 4/3",
+          "description": "Write over the same denominator: 5/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4/3 oe",
+          "description": "5/2 oe",
           "marks": 1
         }
       ],
       "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "decimals_ordering_F",
-      "prompt": "Write these values in ascending order: 0.28, 27%, 19/100, 35%",
-      "solution_steps": [
-        "Convert each value to a decimal: 0.28 = 0.28, 27% = 0.27, 19/100 = 0.19, 35% = 0.35",
-        "Order in ascending order: 19/100, 27%, 0.28, 35%"
-      ],
-      "final_answer": "19/100, 27%, 0.28, 35%",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert each value to a decimal: 0.28 = 0.28, 27% = 0.27, 19/100 = 0.19, 35% = 0.35",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Order in ascending order: 19/100, 27%, 0.28, 35%",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "19/100, 27%, 0.28, 35% oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "factorise_quadratics_F",
-      "prompt": "Factorise: x^2 + 15x + 54",
-      "solution_steps": [
-        "Find two numbers that multiply to 54 and add to 15: 6 and 9",
-        "Write as two brackets: (x + 6)(x + 9)"
-      ],
-      "final_answer": "(x + 6)(x + 9)",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find two numbers that multiply to 54 and add to 15: 6 and 9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Write as two brackets: (x + 6)(x + 9)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(x + 6)(x + 9) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "congruent_triangle_proof_F",
-      "prompt": "Triangles ABC and ABD are both right-angled (at C and at D respectively) and share hypotenuse AB, with AC = AD. Which congruence criterion proves that the two triangles are congruent? A) SSS  B) RHS  C) ASA  D) SAS",
-      "solution_steps": [
-        "angle ACB = angle ADB = 90° (given)",
-        "AB is the common hypotenuse",
-        "AC = AD (given)",
-        "These facts match the Right angle-Hypotenuse-Side (RHS) congruence criterion."
-      ],
-      "final_answer": "B) RHS",
-      "marks": 1,
-      "mark_scheme": [
-        {
-          "code": "B1",
-          "description": "B) RHS (selecting the correct option)",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "two_triangle_congruence",
-        "params": {
-          "labels_1": [
-            "A",
-            "C",
-            "B"
-          ],
-          "labels_2": [
-            "A",
-            "D",
-            "B"
-          ],
-          "ticks_1": [
-            [
-              0,
-              2,
-              1
-            ],
-            [
-              0,
-              1,
-              2
-            ]
-          ],
-          "ticks_2": [
-            [
-              0,
-              2,
-              1
-            ],
-            [
-              0,
-              1,
-              2
-            ]
-          ],
-          "arcs_1": [
-            [
-              1,
-              1
-            ]
-          ],
-          "arcs_2": [
-            [
-              1,
-              1
-            ]
-          ],
-          "note": "AB is the common hypotenuse."
-        }
-      },
       "solution_diagram": null
     },
     {
       "topic_id": "forming_equations_F",
-      "prompt": "The angles 88° and (2x + 234)° lie around a point. Form an equation and solve it to find x.",
+      "prompt": "A triangle has angles 18°, 21°, and (x + 127)°. Form an equation and solve it to find x.",
       "solution_steps": [
-        "Angles around a point sum to 360°.",
-        "88 + (2x + 234) = 360",
-        "2x + 234 = 272",
-        "Subtract 234 from both sides:",
-        "2x = 38",
-        "Divide both sides by 2:",
-        "x = 19"
+        "Angles in a triangle sum to 180°.",
+        "18 + 21 + (x + 127) = 180",
+        "x + 127 = 141",
+        "Subtract 127 from both sides:",
+        "x = 14",
+        "x = 14"
       ],
-      "final_answer": "19",
+      "final_answer": "14",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles around a point sum to 360°.",
+          "description": "Angles in a triangle sum to 180°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "88 + (2x + 234) = 360",
+          "description": "18 + 21 + (x + 127) = 180",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x + 234 = 272",
+          "description": "x + 127 = 141",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 234 from both sides: 2x = 38 Divide both sides by 2: x = 19",
+          "description": "Subtract 127 from both sides: x = 14 x = 14",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "19 oe",
+          "description": "14 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "angle_line",
+        "kind": "triangle_angles",
         "params": {
-          "angle_values": [
-            88,
-            272
-          ],
-          "labels": [
-            "88°",
-            "(2x + 234)°"
-          ],
-          "around_point": true
+          "angle_labels": [
+            "18°",
+            "21°",
+            "(x + 127)°"
+          ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_one_step_F",
-      "prompt": "Solve: 6x = 54",
+      "topic_id": "factorise_quadratics_F",
+      "prompt": "Factorise: x^2 + 15x + 56",
       "solution_steps": [
-        "6x = 54",
-        "Divide both sides by 6:",
-        "x = 9"
+        "Find two numbers that multiply to 56 and add to 15: 7 and 8",
+        "Write as two brackets: (x + 7)(x + 8)"
       ],
-      "final_answer": "9",
-      "marks": 4,
+      "final_answer": "(x + 7)(x + 8)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "6x = 54",
+          "description": "Find two numbers that multiply to 56 and add to 15: 7 and 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 6:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 9",
+          "description": "Write as two brackets: (x + 7)(x + 8)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9 oe",
+          "description": "(x + 7)(x + 8) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "solve_quadratic_factorising_F",
+      "prompt": "Solve x^2 + 2x + 1 = 0 by factorising.",
+      "solution_steps": [
+        "Find two numbers that multiply to 1 and add to 2: 1 and 1",
+        "Factorise: (x + 1)(x + 1) = 0",
+        "Either x + 1 = 0 or x + 1 = 0",
+        "x = -1 or x = -1"
+      ],
+      "final_answer": "x = -1 or x = -1",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find two numbers that multiply to 1 and add to 2: 1 and 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: (x + 1)(x + 1) = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Either x + 1 = 0 or x + 1 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -1 or x = -1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = -1 or x = -1 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractional_equations_F",
+      "prompt": "Solve the following equation.\n\\frac{x}{11} = 2",
+      "solution_steps": [
+        "Multiply both sides by 11: x = 2 × 11",
+        "x = 22"
+      ],
+      "final_answer": "x = 22",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply both sides by 11: x = 2 × 11",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 22",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 22 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_one_step_F",
+      "prompt": "Solve: 9x = 108",
+      "solution_steps": [
+        "9x = 108",
+        "Divide both sides by 9:",
+        "x = 12"
+      ],
+      "final_answer": "12",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "9x = 108",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 9:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 12",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "12 oe",
           "marks": 1
         }
       ],
@@ -506,12 +444,12 @@
     },
     {
       "topic_id": "simultaneous_graphically_F",
-      "prompt": "The graphs of y = 4x - 1 and y = -3x - 8 are shown below. Use the graphs to write down the solution to the simultaneous equations.",
+      "prompt": "The graphs of y = -4x + 20 and y = x are shown below. Use the graphs to write down the solution to the simultaneous equations.",
       "solution_steps": [
         "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
-        "The lines cross at x = -1, y = -5."
+        "The lines cross at x = 4, y = 4."
       ],
-      "final_answer": "x = -1, y = -5",
+      "final_answer": "x = 4, y = 4",
       "marks": 3,
       "mark_scheme": [
         {
@@ -521,45 +459,45 @@
         },
         {
           "code": "M1",
-          "description": "The lines cross at x = -1, y = -5.",
+          "description": "The lines cross at x = 4, y = 4.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -1, y = -5 oe",
+          "description": "x = 4, y = 4 oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "linear_graph_pair",
         "params": {
-          "label1": "y = 4x - 1",
-          "label2": "y = -3x - 8",
-          "m1": 4,
-          "c1": -1,
-          "m2": -3,
-          "c2": -8,
-          "sol_x": -1,
-          "sol_y": -5
+          "label1": "y = -4x + 20",
+          "label2": "y = x",
+          "m1": -4,
+          "c1": 20,
+          "m2": 1,
+          "c2": 0,
+          "sol_x": 4,
+          "sol_y": 4
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "plot_quadratic_F",
-      "prompt": "Complete a table of values for y = x^2 + x + 3 for x = -3 to 3, then plot the graph.",
+      "prompt": "Complete a table of values for y = -x^2 + x + 3 for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = x^2 + x + 3:",
+        "Table of values for y = -x^2 + x + 3:",
         "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: 9, 5, 3, 3, 5, 9, 15",
+        "y: -9, -3, 1, 3, 3, 1, -3",
         "Plot each (x, y) point and join them with a single smooth curve."
       ],
-      "final_answer": "Quadratic curve: y = x^2 + x + 3",
+      "final_answer": "Quadratic curve: y = -x^2 + x + 3",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = x^2 + x + 3:",
+          "description": "Table of values for y = -x^2 + x + 3:",
           "marks": 1
         },
         {
@@ -569,7 +507,7 @@
         },
         {
           "code": "M1",
-          "description": "y: 9, 5, 3, 3, 5, 9, 15",
+          "description": "y: -9, -3, 1, 3, 3, 1, -3",
           "marks": 1
         },
         {
@@ -579,7 +517,7 @@
         },
         {
           "code": "A1",
-          "description": "Quadratic curve: y = x^2 + x + 3 oe",
+          "description": "Quadratic curve: y = -x^2 + x + 3 oe",
           "marks": 1
         }
       ],
@@ -587,13 +525,13 @@
         "kind": "function_graph",
         "params": {
           "kind": "quadratic",
-          "a": 1,
+          "a": -1,
           "b": 1,
           "c": 3,
           "x_min": -4,
           "x_max": 4,
-          "y_min": 2,
-          "y_max": 16,
+          "y_min": -10,
+          "y_max": 4,
           "blank": true
         }
       },
@@ -601,25 +539,25 @@
         "kind": "function_graph",
         "params": {
           "kind": "quadratic",
-          "a": 1,
+          "a": -1,
           "b": 1,
           "c": 3,
           "x_min": -4,
           "x_max": 4,
-          "y_min": 2,
-          "y_max": 16,
+          "y_min": -10,
+          "y_max": 4,
           "table_points": [
             [
               -3,
-              9
+              -9
             ],
             [
               -2,
-              5
+              -3
             ],
             [
               -1,
-              3
+              1
             ],
             [
               0,
@@ -627,15 +565,15 @@
             ],
             [
               1,
-              5
+              3
             ],
             [
               2,
-              9
+              1
             ],
             [
               3,
-              15
+              -3
             ]
           ]
         }
@@ -645,31 +583,31 @@
       "topic_id": "line_equation_from_graph_F",
       "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
       "solution_steps": [
-        "Gradient = rise/run = \\frac{-4 - 11}{1 - -4} = -3",
-        "Using y = mx + c with the point (-4, 11): 11 = -3×(-4) + c, so c = -1",
-        "Equation of the line: y = -3x - 1"
+        "Gradient = rise/run = \\frac{-2 - 13}{1 - -4} = -3",
+        "Using y = mx + c with the point (-4, 13): 13 = -3×(-4) + c, so c = 1",
+        "Equation of the line: y = -3x + 1"
       ],
-      "final_answer": "y = -3x - 1",
+      "final_answer": "y = -3x + 1",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Gradient = rise/run = \\frac{-4 - 11}{1 - -4} = -3",
+          "description": "Gradient = rise/run = \\frac{-2 - 13}{1 - -4} = -3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Using y = mx + c with the point (-4, 11): 11 = -3×(-4) + c, so c = -1",
+          "description": "Using y = mx + c with the point (-4, 13): 13 = -3×(-4) + c, so c = 1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Equation of the line: y = -3x - 1",
+          "description": "Equation of the line: y = -3x + 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = -3x - 1 oe",
+          "description": "y = -3x + 1 oe",
           "marks": 1
         }
       ],
@@ -678,44 +616,38 @@
         "params": {
           "kind": "linear",
           "m": -3,
-          "c": -1,
+          "c": 1,
           "x_min": -5,
           "x_max": 2,
-          "y_min": -8,
-          "y_max": 15
+          "y_min": -6,
+          "y_max": 17
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_nth_term_F",
-      "prompt": "Here are the first four terms of a sequence: 20, 15, 10, 5.\nFind an expression for the nth term.",
+      "topic_id": "inverse_proportion_noncalculator_F",
+      "prompt": "It takes 3 pipes 6 hours to fill a tank. Working at the same rate, how long would it take 6 pipes?",
       "solution_steps": [
-        "Common difference = -5",
-        "nth term = -5n + 25",
-        "nth term = -5n + 25"
+        "Constant = 3 × 6 = 18",
+        "Time for 6 pipes = 18 ÷ 6 = 3"
       ],
-      "final_answer": "-5n + 25",
-      "marks": 4,
+      "final_answer": "3 hours",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Common difference = -5",
+          "description": "Constant = 3 × 6 = 18",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = -5n + 25",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "nth term = -5n + 25",
+          "description": "Time for 6 pipes = 18 ÷ 6 = 3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-5n + 25 oe",
+          "description": "3 hours oe",
           "marks": 1
         }
       ],
@@ -724,27 +656,27 @@
     },
     {
       "topic_id": "sdt_mixed_F",
-      "prompt": "A hiker travels 3934 m in 281 seconds. Find its average speed in m/s.",
+      "prompt": "A plane travels 198 miles at an average speed of 33 mph. Find how long the journey takes.",
       "solution_steps": [
-        "speed = distance ÷ time",
-        "speed = 3934 ÷ 281 = 14 m/s"
+        "time = distance ÷ speed",
+        "time = 198 ÷ 33 = 6 hours"
       ],
-      "final_answer": "14 m/s",
+      "final_answer": "6 hours",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "speed = distance ÷ time",
+          "description": "time = distance ÷ speed",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "speed = 3934 ÷ 281 = 14 m/s",
+          "description": "time = 198 ÷ 33 = 6 hours",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "14 m/s oe",
+          "description": "6 hours oe",
           "marks": 1
         }
       ],
@@ -753,27 +685,27 @@
     },
     {
       "topic_id": "reverse_percentage_F",
-      "prompt": "After a 50% increase, an item costs £240. Find the original price.",
+      "prompt": "After a 25% decrease, an item costs £90. Find the original price.",
       "solution_steps": [
-        "Convert 50% to a multiplier: 1.50 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 240 ÷ 1.50 = 160"
+        "Convert 25% to a multiplier: 0.75 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 90 ÷ 0.75 = 120"
       ],
-      "final_answer": "£160",
+      "final_answer": "£120",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 50% to a multiplier: 1.50 (original × multiplier = new value)",
+          "description": "Convert 25% to a multiplier: 0.75 (original × multiplier = new value)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide the new value by the multiplier: 240 ÷ 1.50 = 160",
+          "description": "Divide the new value by the multiplier: 90 ÷ 0.75 = 120",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£160 oe",
+          "description": "£120 oe",
           "marks": 1
         }
       ],
@@ -782,27 +714,27 @@
     },
     {
       "topic_id": "direct_proportion_F",
-      "prompt": "If 2 exercise books cost £8.90, how much would 8 exercise books cost?",
+      "prompt": "If 5 cm on a map represents 45 km in real life, how many km does 8 cm represent?",
       "solution_steps": [
-        "Unit value = £8.90 ÷ 2 = £4.45",
-        "Answer = £4.45 × 8 = £35.60"
+        "Unit value = 45 km ÷ 5 = 9 km",
+        "Answer = 9 km × 8 = 72 km"
       ],
-      "final_answer": "£35.60",
+      "final_answer": "72 km",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Unit value = £8.90 ÷ 2 = £4.45",
+          "description": "Unit value = 45 km ÷ 5 = 9 km",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer = £4.45 × 8 = £35.60",
+          "description": "Answer = 9 km × 8 = 72 km",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£35.60 oe",
+          "description": "72 km oe",
           "marks": 1
         }
       ],
@@ -811,165 +743,296 @@
     },
     {
       "topic_id": "ratio_shape_similar_F",
-      "prompt": "Shape A and Shape B are similar. Find the length of side z.",
+      "prompt": "Shape A and Shape B are similar. Find the length of side x.",
       "solution_steps": [
-        "Scale factor = 2 ÷ 3 = 2/3",
-        "Corresponding length = 9 × 2/3 = 6"
+        "Scale factor = 6 ÷ 24 = 1/4",
+        "Corresponding length = 8 × 1/4 = 2"
       ],
-      "final_answer": "6 cm",
+      "final_answer": "2 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Scale factor = 2 ÷ 3 = 2/3",
+          "description": "Scale factor = 6 ÷ 24 = 1/4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Corresponding length = 9 × 2/3 = 6",
+          "description": "Corresponding length = 8 × 1/4 = 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6 cm oe",
+          "description": "2 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "two_similar_rectangles",
         "params": {
-          "a_width_label": "3 cm",
-          "a_height_label": "9 cm",
-          "b_width_label": "2 cm",
-          "b_height_label": "z"
+          "a_width_label": "24 cm",
+          "a_height_label": "8 cm",
+          "b_width_label": "6 cm",
+          "b_height_label": "x"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "direct_proportion_noncalculator_F",
-      "prompt": "If a recipe for 20 people uses 400g of sugar, how much sugar is needed for 4 people?",
+      "topic_id": "symmetry_lines_F",
+      "prompt": "The diagram shows a regular pentagon. How many lines of symmetry does it have?",
       "solution_steps": [
-        "Unit value = 400g ÷ 20 = 20g",
-        "Answer = 20g × 4 = 80g"
+        "A regular pentagon has 5 lines of symmetry.",
+        "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram."
       ],
-      "final_answer": "80g",
+      "final_answer": "5 lines of symmetry",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Unit value = 400g ÷ 20 = 20g",
+          "description": "A regular pentagon has 5 lines of symmetry.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer = 20g × 4 = 80g",
+          "description": "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "80g oe",
+          "description": "5 lines of symmetry oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "symmetry_shape",
+        "params": {
+          "vertices": [
+            [
+              2.4492935982947064e-16,
+              4.0
+            ],
+            [
+              -3.804226065180614,
+              1.23606797749979
+            ],
+            [
+              -2.351141009169893,
+              -3.2360679774997894
+            ],
+            [
+              2.3511410091698917,
+              -3.2360679774997902
+            ],
+            [
+              3.8042260651806146,
+              1.2360679774997887
+            ]
+          ],
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "symmetry_shape",
+        "params": {
+          "vertices": [
+            [
+              2.4492935982947064e-16,
+              4.0
+            ],
+            [
+              -3.804226065180614,
+              1.23606797749979
+            ],
+            [
+              -2.351141009169893,
+              -3.2360679774997894
+            ],
+            [
+              2.3511410091698917,
+              -3.2360679774997902
+            ],
+            [
+              3.8042260651806146,
+              1.2360679774997887
+            ]
+          ],
+          "symmetry_lines": [
+            {
+              "p1": [
+                -3.1840816777831187e-16,
+                -5.2
+              ],
+              "p2": [
+                3.1840816777831187e-16,
+                5.2
+              ]
+            },
+            {
+              "p1": [
+                3.05648331192086,
+                -4.206888370749727
+              ],
+              "p2": [
+                -3.05648331192086,
+                4.206888370749727
+              ]
+            },
+            {
+              "p1": [
+                4.945493884734798,
+                -1.606888370749727
+              ],
+              "p2": [
+                -4.945493884734798,
+                1.606888370749727
+              ]
+            },
+            {
+              "p1": [
+                4.945493884734799,
+                1.606888370749726
+              ],
+              "p2": [
+                -4.945493884734799,
+                -1.606888370749726
+              ]
+            },
+            {
+              "p1": [
+                3.056483311920861,
+                4.206888370749726
+              ],
+              "p2": [
+                -3.056483311920861,
+                -4.206888370749726
+              ]
+            }
+          ]
+        }
+      }
     },
     {
       "topic_id": "pythagoras_shorter_leg_F",
-      "prompt": "A right-angled triangle has hypotenuse 183 cm and one side 33 cm. Find the length of x.",
+      "prompt": "A right-angled triangle has hypotenuse 10 cm and one side 6 cm. Find the length of x.",
       "solution_steps": [
-        "b² = c² - a² = 183² - 33² = 33489 - 1089 = 32400",
-        "b = √32400 = 180"
+        "b² = c² - a² = 10² - 6² = 100 - 36 = 64",
+        "b = √64 = 8"
       ],
-      "final_answer": "180 cm",
+      "final_answer": "8 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "b² = c² - a² = 183² - 33² = 33489 - 1089 = 32400",
+          "description": "b² = c² - a² = 10² - 6² = 100 - 36 = 64",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "b = √32400 = 180",
+          "description": "b = √64 = 8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "180 cm oe",
+          "description": "8 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "right_triangle",
         "params": {
-          "leg1_label": "33 cm",
+          "leg1_label": "6 cm",
           "leg2_label": "x",
-          "hyp_label": "183 cm"
+          "hyp_label": "10 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cuboid_F",
-      "prompt": "A cuboid has length 12 cm, width 9 cm and height 14 cm. Find its surface area.",
+      "topic_id": "plans_and_elevations_F",
+      "prompt": "The diagram shows a solid with its dimensions labelled. Draw and label the front elevation, side elevation, and plan view of the solid.",
       "solution_steps": [
-        "Surface area = 2 × (lw + lh + wh) = 2 × (12×9 + 12×14 + 9×14)",
-        "= 2 × (108 + 168 + 126) = 804 cm²"
+        "The front elevation is what you see looking at the solid straight on from the front.",
+        "Front elevation: a right-angled triangle, base 6 cm and height 8 cm.",
+        "The side elevation is what you see looking at the solid straight on from the side.",
+        "Side elevation: a rectangle, 4 cm by 8 cm.",
+        "The plan view is what you see looking straight down at the solid from above.",
+        "Plan view: a rectangle, 6 cm by 4 cm."
       ],
-      "final_answer": "804 cm²",
-      "marks": 3,
+      "final_answer": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm. Side elevation: a rectangle, 4 cm by 8 cm. Plan view: a rectangle, 6 cm by 4 cm.",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Surface area = 2 × (lw + lh + wh) = 2 × (12×9 + 12×14 + 9×14)",
+          "description": "The front elevation is what you see looking at the solid straight on from the front.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 2 × (108 + 168 + 126) = 804 cm²",
+          "description": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The side elevation is what you see looking at the solid straight on from the side.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Side elevation: a rectangle, 4 cm by 8 cm. The plan view is what you see looking straight down at the solid from above. Plan view: a rectangle, 6 cm by 4 cm.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "804 cm² oe",
+          "description": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm. Side elevation: a rectangle, 4 cm by 8 cm. Plan view: a rectangle, 6 cm by 4 cm. oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cuboid",
+        "kind": "plans_and_elevations_question",
         "params": {
-          "width_label": "9 cm",
-          "height_label": "14 cm",
-          "length_label": "12 cm"
+          "shape": "triangular_prism",
+          "base_label": "6 cm",
+          "triangle_height_label": "8 cm",
+          "length_label": "4 cm"
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "plans_and_elevations",
+        "params": {
+          "shape": "triangular_prism",
+          "base": 6,
+          "tri_height": 8,
+          "length": 4,
+          "base_label": "6 cm",
+          "tri_height_label": "8 cm",
+          "length_label": "4 cm"
+        }
+      }
     },
     {
       "topic_id": "transform_reflect_complete_F",
-      "prompt": "Reflect shape ABC in the line y = 1. Draw and label the image A'B'C'.",
+      "prompt": "Reflect shape ABC in the line y = -3.",
       "solution_steps": [
-        "Reflect each vertex in the line y = 1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
-        "A(-3, 3) -> A'(-3, -1), B(0, 3) -> B'(0, -1), C(-3, 5) -> C'(-3, -3)"
+        "Reflect each vertex in the line y = -3: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+        "A(1, -1) -> A'(1, -5), B(4, -1) -> B'(4, -5), C(1, 1) -> C'(1, -7)"
       ],
-      "final_answer": "A'(-3, -1), B'(0, -1), C'(-3, -3)",
+      "final_answer": "A'(1, -5), B'(4, -5), C'(1, -7)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Reflect each vertex in the line y = 1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+          "description": "Reflect each vertex in the line y = -3: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A(-3, 3) -> A'(-3, -1), B(0, 3) -> B'(0, -1), C(-3, 5) -> C'(-3, -3)",
+          "description": "A(1, -1) -> A'(1, -5), B(4, -1) -> B'(4, -5), C(1, 1) -> C'(1, -7)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(-3, -1), B'(0, -1), C'(-3, -3) oe",
+          "description": "A'(1, -5), B'(4, -5), C'(1, -7) oe",
           "marks": 1
         }
       ],
@@ -982,16 +1045,16 @@
           "y_max": 8,
           "original_vertices": [
             [
-              -3,
-              3
+              1,
+              -1
             ],
             [
-              0,
-              3
+              4,
+              -1
             ],
             [
-              -3,
-              5
+              1,
+              1
             ]
           ],
           "original_labels": [
@@ -1001,8 +1064,8 @@
           ],
           "mirror_line": {
             "type": "horizontal",
-            "y": 1,
-            "label": "y = 1"
+            "y": -3,
+            "label": "y = -3"
           }
         }
       },
@@ -1015,16 +1078,16 @@
           "y_max": 8,
           "original_vertices": [
             [
-              -3,
-              3
+              1,
+              -1
             ],
             [
-              0,
-              3
+              4,
+              -1
             ],
             [
-              -3,
-              5
+              1,
+              1
             ]
           ],
           "original_labels": [
@@ -1034,21 +1097,21 @@
           ],
           "mirror_line": {
             "type": "horizontal",
-            "y": 1,
-            "label": "y = 1"
+            "y": -3,
+            "label": "y = -3"
           },
           "image_vertices": [
             [
-              -3,
-              -1
+              1,
+              -5
             ],
             [
-              0,
-              -1
+              4,
+              -5
             ],
             [
-              -3,
-              -3
+              1,
+              -7
             ]
           ],
           "image_labels": [
@@ -1061,229 +1124,54 @@
     },
     {
       "topic_id": "area_sector_F",
-      "prompt": "Find the area of the following sector, correct to 2 decimal places.",
+      "prompt": "Find the area of the following sector, correct to 1 decimal place.",
       "solution_steps": [
-        "Area = (θ ÷ 360) × π × r² = (22 ÷ 360) × π × 8²",
-        "= 12.29 cm² (2 d.p., using a calculator value of π)"
+        "Area = (θ ÷ 360) × π × r² = (261 ÷ 360) × π × 5²",
+        "= 56.9 cm² (1 d.p., using a calculator value of π)"
       ],
-      "final_answer": "12.29 cm²",
+      "final_answer": "56.9 cm²",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = (θ ÷ 360) × π × r² = (22 ÷ 360) × π × 8²",
+          "description": "Area = (θ ÷ 360) × π × r² = (261 ÷ 360) × π × 5²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 12.29 cm² (2 d.p., using a calculator value of π)",
+          "description": "= 56.9 cm² (1 d.p., using a calculator value of π)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12.29 cm² oe",
+          "description": "56.9 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "sector",
         "params": {
-          "angle": 22,
-          "radius_label": "8 cm",
-          "angle_label": "22°"
+          "angle": 261,
+          "radius_label": "5 cm",
+          "angle_label": "261°"
         }
       },
       "solution_diagram": null
-    },
-    {
-      "topic_id": "angles_straight_line_F",
-      "prompt": "The angles 92°, 48° and x° lie on a straight line. Find x.",
-      "solution_steps": [
-        "Angles on a straight line sum to 180°.",
-        "x = 180 - (92 + 48) = 180 - 140 = 40"
-      ],
-      "final_answer": "40",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Angles on a straight line sum to 180°.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 180 - (92 + 48) = 180 - 140 = 40",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "40 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "angle_line",
-        "params": {
-          "angle_values": [
-            92,
-            48,
-            40
-          ],
-          "labels": [
-            "92°",
-            "48°",
-            "x"
-          ],
-          "around_point": false
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "transform_enlarge_complete_F",
-      "prompt": "Enlarge shape ABCD by scale factor 2, centre (0, 9). Draw and label the image A'B'C'D'.",
-      "solution_steps": [
-        "The centre of enlargement is (0, 9) and the scale factor is 2.",
-        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-1, -8) from the centre, so A' = (0, 9) + 2 × (-1, -8) = (-2, -7).",
-        "Repeat for every vertex: A(-1, 1) -> A'(-2, -7), B(3, 1) -> B'(6, -7), C(2, 5) -> C'(4, 1), D(-2, 4) -> D'(-4, -1)"
-      ],
-      "final_answer": "A'(-2, -7), B'(6, -7), C'(4, 1), D'(-4, -1)",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The centre of enlargement is (0, 9) and the scale factor is 2.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-1, -8) from the centre, so A' = (0, 9) + 2 × (-1, -8) = (-2, -7).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Repeat for every vertex: A(-1, 1) -> A'(-2, -7), B(3, 1) -> B'(6, -7), C(2, 5) -> C'(4, 1), D(-2, 4) -> D'(-4, -1)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "A'(-2, -7), B'(6, -7), C'(4, 1), D'(-4, -1) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              -1,
-              1
-            ],
-            [
-              3,
-              1
-            ],
-            [
-              2,
-              5
-            ],
-            [
-              -2,
-              4
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
-          ],
-          "centre": [
-            0,
-            9
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              -1,
-              1
-            ],
-            [
-              3,
-              1
-            ],
-            [
-              2,
-              5
-            ],
-            [
-              -2,
-              4
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
-          ],
-          "centre": [
-            0,
-            9
-          ],
-          "image_vertices": [
-            [
-              -2,
-              -7
-            ],
-            [
-              6,
-              -7
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              -4,
-              -1
-            ]
-          ],
-          "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'"
-          ]
-        }
-      }
     },
     {
       "topic_id": "probability_and_or_rule_F",
-      "prompt": "A bag contains coloured counters. P(purple) = 2/8. P(red) = 5/8. A counter cannot be both colours. Find P(purple or red).",
+      "prompt": "A bag contains coloured counters. P(green) = 4/10. P(yellow) = 4/10. A counter cannot be both colours. Find P(green or yellow).",
       "solution_steps": [
-        "A counter cannot be both purple and red, so these events are mutually exclusive.",
+        "A counter cannot be both green and yellow, so these events are mutually exclusive.",
         "For mutually exclusive events, P(A or B) = P(A) + P(B).",
-        "P(purple or red) = 2/8 + 5/8 = 7/8"
+        "P(green or yellow) = 4/10 + 4/10 = 4/5"
       ],
-      "final_answer": "7/8",
+      "final_answer": "4/5",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A counter cannot be both purple and red, so these events are mutually exclusive.",
+          "description": "A counter cannot be both green and yellow, so these events are mutually exclusive.",
           "marks": 1
         },
         {
@@ -1293,12 +1181,12 @@
         },
         {
           "code": "M1",
-          "description": "P(purple or red) = 2/8 + 5/8 = 7/8",
+          "description": "P(green or yellow) = 4/10 + 4/10 = 4/5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7/8 oe",
+          "description": "4/5 oe",
           "marks": 1
         }
       ],
@@ -1306,58 +1194,184 @@
         "kind": "bag_of_counters",
         "params": {
           "counts": {
-            "purple": 2,
-            "red": 5,
-            "other": 1
+            "green": 4,
+            "yellow": 4,
+            "other": 2
           }
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_single_event_F",
-      "prompt": "A bag contains 4 purple, 8 yellow, 5 blue, 7 red counters. A counter is picked at random. Find the probability that it is blue.",
+      "topic_id": "sample_space_diagrams_F",
+      "prompt": "Two fair spinners, one numbered 1 to 6 and the other numbered 1 to 4, are spun together. Complete the sample space diagram showing the sum of the two spinners, and use it to find the probability that the sum is 5.",
       "solution_steps": [
-        "Total counters = 24",
-        "Number of blue counters = 5",
-        "P(blue) = 5/24 = 5/24"
+        "The sample space diagram shows every possible sum of the two spinners.",
+        "Number of favourable outcomes (the sum is 5) = 4",
+        "Total number of equally likely outcomes = 24",
+        "P(the sum is 5) = 1/6"
       ],
-      "final_answer": "5/24",
-      "marks": 4,
+      "final_answer": "1/6",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total counters = 24",
+          "description": "The sample space diagram shows every possible sum of the two spinners.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Number of blue counters = 5",
+          "description": "Number of favourable outcomes (the sum is 5) = 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(blue) = 5/24 = 5/24",
+          "description": "Total number of equally likely outcomes = 24",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(the sum is 5) = 1/6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5/24 oe",
+          "description": "1/6 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "bag_of_counters",
+        "kind": "sample_space_diagram",
         "params": {
-          "counts": {
-            "purple": 4,
-            "yellow": 8,
-            "blue": 5,
-            "red": 7
-          }
+          "row_values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "col_values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "cells": [
+            [
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              ""
+            ]
+          ]
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "sample_space_diagram",
+        "params": {
+          "row_values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "col_values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "cells": [
+            [
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            [
+              "3",
+              "4",
+              "5",
+              "6"
+            ],
+            [
+              "4",
+              "5",
+              "6",
+              "7"
+            ],
+            [
+              "5",
+              "6",
+              "7",
+              "8"
+            ],
+            [
+              "6",
+              "7",
+              "8",
+              "9"
+            ],
+            [
+              "7",
+              "8",
+              "9",
+              "10"
+            ]
+          ],
+          "highlight": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              3,
+              0
+            ]
+          ]
+        }
+      }
     }
   ]
 }

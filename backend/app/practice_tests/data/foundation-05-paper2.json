@@ -8,27 +8,27 @@
   "questions": [
     {
       "topic_id": "decimals_round_sf_F",
-      "prompt": "Round 808.203 to 1 significant figure.",
+      "prompt": "Round 33.693 to 2 significant figures.",
       "solution_steps": [
-        "Identify the first 1 significant figure of 808.203.",
-        "808.203 rounded to 1 significant figure = 800"
+        "Identify the first 2 significant figures of 33.693.",
+        "33.693 rounded to 2 significant figures = 34"
       ],
-      "final_answer": "800",
+      "final_answer": "34",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Identify the first 1 significant figure of 808.203.",
+          "description": "Identify the first 2 significant figures of 33.693.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "808.203 rounded to 1 significant figure = 800",
+          "description": "33.693 rounded to 2 significant figures = 34",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "800 oe",
+          "description": "34 oe",
           "marks": 1
         }
       ],
@@ -37,18 +37,18 @@
     },
     {
       "topic_id": "standard_form_to_F",
-      "prompt": "Write 10000 in standard form.",
+      "prompt": "Write 55000 in standard form.",
       "solution_steps": [
-        "Move the decimal point until there is one non-zero digit before it: 1",
+        "Move the decimal point until there is one non-zero digit before it: 5.5",
         "Count how many places the decimal point moved: 4",
-        "10000 = 1 × 10^4"
+        "55000 = 5.5 × 10^4"
       ],
-      "final_answer": "1 × 10^4",
+      "final_answer": "5.5 × 10^4",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Move the decimal point until there is one non-zero digit before it: 1",
+          "description": "Move the decimal point until there is one non-zero digit before it: 5.5",
           "marks": 1
         },
         {
@@ -58,12 +58,12 @@
         },
         {
           "code": "M1",
-          "description": "10000 = 1 × 10^4",
+          "description": "55000 = 5.5 × 10^4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 × 10^4 oe",
+          "description": "5.5 × 10^4 oe",
           "marks": 1
         }
       ],
@@ -72,40 +72,39 @@
     },
     {
       "topic_id": "bidmas_F",
-      "prompt": "Work out 20 + 6 × (8 - 6)^2 ÷ 3.",
+      "prompt": "Work out (3 + 8) × 5 - 8 ÷ 4.",
       "solution_steps": [
-        "Brackets: (8 - 6) = 2",
-        "Indices: 2^2 = 4",
-        "Multiplication: 6 × 4 = 24",
-        "Division: 24 ÷ 3 = 8",
-        "Addition: 20 + 8 = 28"
+        "Brackets: (3 + 8) = 11",
+        "Multiplication: 11 × 5 = 55",
+        "Division: 8 ÷ 4 = 2",
+        "Subtraction: 55 - 2 = 53"
       ],
-      "final_answer": "28",
+      "final_answer": "53",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Brackets: (8 - 6) = 2",
+          "description": "Brackets: (3 + 8) = 11",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Indices: 2^2 = 4",
+          "description": "Multiplication: 11 × 5 = 55",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiplication: 6 × 4 = 24",
+          "description": "Division: 8 ÷ 4 = 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Division: 24 ÷ 3 = 8 Addition: 20 + 8 = 28",
+          "description": "Subtraction: 55 - 2 = 53",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "28 oe",
+          "description": "53 oe",
           "marks": 1
         }
       ],
@@ -114,27 +113,27 @@
     },
     {
       "topic_id": "decimals_ordering_F",
-      "prompt": "Write these values in ascending order: 0.61, 67%, 63/100, 70%",
+      "prompt": "Write these values in descending order: 0.65, 0.52, 1/2, 68%",
       "solution_steps": [
-        "Convert each value to a decimal: 0.61 = 0.61, 67% = 0.67, 63/100 = 0.63, 70% = 0.70",
-        "Order in ascending order: 0.61, 63/100, 67%, 70%"
+        "Convert each value to a decimal: 0.65 = 0.65, 0.52 = 0.52, 1/2 = 0.50, 68% = 0.68",
+        "Order in descending order: 68%, 0.65, 0.52, 1/2"
       ],
-      "final_answer": "0.61, 63/100, 67%, 70%",
+      "final_answer": "68%, 0.65, 0.52, 1/2",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert each value to a decimal: 0.61 = 0.61, 67% = 0.67, 63/100 = 0.63, 70% = 0.70",
+          "description": "Convert each value to a decimal: 0.65 = 0.65, 0.52 = 0.52, 1/2 = 0.50, 68% = 0.68",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Order in ascending order: 0.61, 63/100, 67%, 70%",
+          "description": "Order in descending order: 68%, 0.65, 0.52, 1/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0.61, 63/100, 67%, 70% oe",
+          "description": "68%, 0.65, 0.52, 1/2 oe",
           "marks": 1
         }
       ],
@@ -143,33 +142,33 @@
     },
     {
       "topic_id": "standard_form_multiply_divide_F",
-      "prompt": "Work out (3 × 10^3) ÷ (4 × 10^5). Give your answer in standard form.",
+      "prompt": "Work out (2 × 10^5) × (9 × 10^2). Give your answer in standard form.",
       "solution_steps": [
-        "Divide the mantissas: 3 ÷ 4 = 0.75",
-        "Subtract the powers of 10: 3 - 5 = -2",
-        "Renormalize so the mantissa is between 1 and 10: 7.5 × 10^-3"
+        "Multiply the mantissas: 2 × 9 = 18",
+        "Add the powers of 10: 5 + 2 = 7",
+        "Renormalize so the mantissa is between 1 and 10: 1.8 × 10^8"
       ],
-      "final_answer": "7.5 × 10^-3",
+      "final_answer": "1.8 × 10^8",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide the mantissas: 3 ÷ 4 = 0.75",
+          "description": "Multiply the mantissas: 2 × 9 = 18",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract the powers of 10: 3 - 5 = -2",
+          "description": "Add the powers of 10: 5 + 2 = 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Renormalize so the mantissa is between 1 and 10: 7.5 × 10^-3",
+          "description": "Renormalize so the mantissa is between 1 and 10: 1.8 × 10^8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7.5 × 10^-3 oe",
+          "description": "1.8 × 10^8 oe",
           "marks": 1
         }
       ],
@@ -178,33 +177,33 @@
     },
     {
       "topic_id": "decimals_multiply_F",
-      "prompt": "Evaluate 19.0 × 17.6.",
+      "prompt": "Work out 2.24 × 13.8.",
       "solution_steps": [
-        "Ignore the decimal points and multiply the whole numbers: 190 × 176 = 33440",
-        "Count the total decimal places in the question: 1 + 1 = 2",
-        "Place the decimal point 2 places from the right: 334.40"
+        "Ignore the decimal points and multiply the whole numbers: 224 × 138 = 30912",
+        "Count the total decimal places in the question: 2 + 1 = 3",
+        "Place the decimal point 3 places from the right: 30.912"
       ],
-      "final_answer": "334.40",
+      "final_answer": "30.912",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Ignore the decimal points and multiply the whole numbers: 190 × 176 = 33440",
+          "description": "Ignore the decimal points and multiply the whole numbers: 224 × 138 = 30912",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Count the total decimal places in the question: 1 + 1 = 2",
+          "description": "Count the total decimal places in the question: 2 + 1 = 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Place the decimal point 2 places from the right: 334.40",
+          "description": "Place the decimal point 3 places from the right: 30.912",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "334.40 oe",
+          "description": "30.912 oe",
           "marks": 1
         }
       ],
@@ -213,33 +212,33 @@
     },
     {
       "topic_id": "lcm_by_listing_F",
-      "prompt": "Find the lowest common multiple (LCM) of 10 and 13.",
+      "prompt": "Find the lowest common multiple (LCM) of 2 and 8.",
       "solution_steps": [
-        "Multiples of 10: 10, 20, 30, 40, 50, ...",
-        "Multiples of 13: 13, 26, 39, 52, 65, ...",
-        "Lowest common multiple = 130"
+        "Multiples of 2: 2, 4, 6, 8, 10, ...",
+        "Multiples of 8: 8, 16, 24, 32, 40, ...",
+        "Lowest common multiple = 8"
       ],
-      "final_answer": "130",
+      "final_answer": "8",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiples of 10: 10, 20, 30, 40, 50, ...",
+          "description": "Multiples of 2: 2, 4, 6, 8, 10, ...",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiples of 13: 13, 26, 39, 52, 65, ...",
+          "description": "Multiples of 8: 8, 16, 24, 32, 40, ...",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Lowest common multiple = 130",
+          "description": "Lowest common multiple = 8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "130 oe",
+          "description": "8 oe",
           "marks": 1
         }
       ],
@@ -248,12 +247,12 @@
     },
     {
       "topic_id": "simultaneous_graphically_F",
-      "prompt": "The graphs of y = 4x - 10 and y = -3x + 4 are shown below. Use the graphs to write down the solution to the simultaneous equations.",
+      "prompt": "The graphs of y = 3x + 14 and y = 2x + 9 are shown below. Use the graphs to write down the solution to the simultaneous equations.",
       "solution_steps": [
         "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
-        "The lines cross at x = 2, y = -2."
+        "The lines cross at x = -5, y = -1."
       ],
-      "final_answer": "x = 2, y = -2",
+      "final_answer": "x = -5, y = -1",
       "marks": 3,
       "mark_scheme": [
         {
@@ -263,65 +262,65 @@
         },
         {
           "code": "M1",
-          "description": "The lines cross at x = 2, y = -2.",
+          "description": "The lines cross at x = -5, y = -1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 2, y = -2 oe",
+          "description": "x = -5, y = -1 oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "linear_graph_pair",
         "params": {
-          "label1": "y = 4x - 10",
-          "label2": "y = -3x + 4",
-          "m1": 4,
-          "c1": -10,
-          "m2": -3,
-          "c2": 4,
-          "sol_x": 2,
-          "sol_y": -2
+          "label1": "y = 3x + 14",
+          "label2": "y = 2x + 9",
+          "m1": 3,
+          "c1": 14,
+          "m2": 2,
+          "c2": 9,
+          "sol_x": -5,
+          "sol_y": -1
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_forming_and_solving_F",
-      "prompt": "2 tickets and 2 programmes cost £1.84 in total. 5 tickets and 2 programmes cost £3.19 in total. Form and solve a pair of simultaneous equations to find the cost of one ticket and one programme.",
+      "topic_id": "simultaneous_common_coefficient_F",
+      "prompt": "Solve the simultaneous equations: 2x + 5y = 14 and x - 5y = -23",
       "solution_steps": [
-        "Let x = cost of one ticket (pence), y = cost of one programme (pence).",
-        "2x + 2y = 184  (1)",
-        "5x + 2y = 319  (2)",
-        "Solving simultaneously: x = 45, y = 47"
+        "2x + 5y = 14  (1)",
+        "x - 5y = -23  (2)",
+        "Add the equations to eliminate y: 3x = -9, so x = -3",
+        "Substitute x = -3 into (1): 5y = 20, so y = 4"
       ],
-      "final_answer": "ticket = £0.45, programme = £0.47",
+      "final_answer": "x = -3, y = 4",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = cost of one ticket (pence), y = cost of one programme (pence).",
+          "description": "2x + 5y = 14  (1)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x + 2y = 184  (1)",
+          "description": "x - 5y = -23  (2)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x + 2y = 319  (2)",
+          "description": "Add the equations to eliminate y: 3x = -9, so x = -3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Solving simultaneously: x = 45, y = 47",
+          "description": "Substitute x = -3 into (1): 5y = 20, so y = 4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "ticket = £0.45, programme = £0.47 oe",
+          "description": "x = -3, y = 4 oe",
           "marks": 1
         }
       ],
@@ -329,96 +328,75 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "distance_time_interpret_F",
-      "prompt": "The distance-time graph shows a delivery van's journey. Find the total distance travelled.",
+      "topic_id": "parallel_lines_equation_F",
+      "prompt": "A line is parallel to y = 3x - 8 and passes through the point (6, 0). Find the equation of the line.",
       "solution_steps": [
-        "Distance out = 12 km. Distance back = 12 km.",
-        "Total distance travelled = 12 + 12 = 24 km"
+        "Parallel lines have the same gradient, so m = 3.",
+        "Substitute (6, 0) into y = 3x + c: 0 = 3×(6) + c, so c = -18",
+        "Equation of the line: y = 3x - 18"
       ],
-      "final_answer": "24 km",
-      "marks": 3,
+      "final_answer": "y = 3x - 18",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Distance out = 12 km. Distance back = 12 km.",
+          "description": "Parallel lines have the same gradient, so m = 3.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total distance travelled = 12 + 12 = 24 km",
+          "description": "Substitute (6, 0) into y = 3x + c: 0 = 3×(6) + c, so c = -18",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Equation of the line: y = 3x - 18",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "24 km oe",
+          "description": "y = 3x - 18 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              30,
-              12
-            ],
-            [
-              40,
-              12
-            ],
-            [
-              80,
-              0
-            ]
-          ],
-          "x_max": 85,
-          "y_max": 14,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "solving_inequalities_F",
-      "prompt": "Solve the inequality: \\frac{x}{2} - 3 > -9",
+      "topic_id": "simultaneous_forming_and_solving_F",
+      "prompt": "5 apples and 1 banana cost £1.50 in total. 4 apples and 4 bananas cost £1.84 in total. Form and solve a pair of simultaneous equations to find the cost of one apple and one banana.",
       "solution_steps": [
-        "\\frac{x}{2} - 3 > -9",
-        "Add 3 to both sides:",
-        "\\frac{x}{2} > -6",
-        "Multiply both sides by 2:",
-        "x > -12"
+        "Let x = cost of one apple (pence), y = cost of one banana (pence).",
+        "5x + 1y = 150  (1)",
+        "4x + 4y = 184  (2)",
+        "Solving simultaneously: x = 26, y = 20"
       ],
-      "final_answer": "x > -12",
+      "final_answer": "apple = £0.26, banana = £0.20",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "\\frac{x}{2} - 3 > -9",
+          "description": "Let x = cost of one apple (pence), y = cost of one banana (pence).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add 3 to both sides:",
+          "description": "5x + 1y = 150  (1)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "\\frac{x}{2} > -6",
+          "description": "4x + 4y = 184  (2)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply both sides by 2: x > -12",
+          "description": "Solving simultaneously: x = 26, y = 20",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x > -12 oe",
+          "description": "apple = £0.26, banana = £0.20 oe",
           "marks": 1
         }
       ],
@@ -427,19 +405,19 @@
     },
     {
       "topic_id": "plot_quadratic_F",
-      "prompt": "Complete a table of values for y = x^2 - 1 for x = -3 to 3, then plot the graph.",
+      "prompt": "Complete a table of values for y = -x^2 - x - 2 for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = x^2 - 1:",
+        "Table of values for y = -x^2 - x - 2:",
         "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: 8, 3, 0, -1, 0, 3, 8",
+        "y: -8, -4, -2, -2, -4, -8, -14",
         "Plot each (x, y) point and join them with a single smooth curve."
       ],
-      "final_answer": "Quadratic curve: y = x^2 - 1",
+      "final_answer": "Quadratic curve: y = -x^2 - x - 2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = x^2 - 1:",
+          "description": "Table of values for y = -x^2 - x - 2:",
           "marks": 1
         },
         {
@@ -449,7 +427,7 @@
         },
         {
           "code": "M1",
-          "description": "y: 8, 3, 0, -1, 0, 3, 8",
+          "description": "y: -8, -4, -2, -2, -4, -8, -14",
           "marks": 1
         },
         {
@@ -459,7 +437,7 @@
         },
         {
           "code": "A1",
-          "description": "Quadratic curve: y = x^2 - 1 oe",
+          "description": "Quadratic curve: y = -x^2 - x - 2 oe",
           "marks": 1
         }
       ],
@@ -467,13 +445,13 @@
         "kind": "function_graph",
         "params": {
           "kind": "quadratic",
-          "a": 1,
-          "b": 0,
-          "c": -1,
+          "a": -1,
+          "b": -1,
+          "c": -2,
           "x_min": -4,
           "x_max": 4,
-          "y_min": -2,
-          "y_max": 9,
+          "y_min": -15,
+          "y_max": -1,
           "blank": true
         }
       },
@@ -481,81 +459,75 @@
         "kind": "function_graph",
         "params": {
           "kind": "quadratic",
-          "a": 1,
-          "b": 0,
-          "c": -1,
+          "a": -1,
+          "b": -1,
+          "c": -2,
           "x_min": -4,
           "x_max": 4,
-          "y_min": -2,
-          "y_max": 9,
+          "y_min": -15,
+          "y_max": -1,
           "table_points": [
             [
               -3,
-              8
+              -8
             ],
             [
               -2,
-              3
+              -4
             ],
             [
               -1,
-              0
+              -2
             ],
             [
               0,
-              -1
+              -2
             ],
             [
               1,
-              0
+              -4
             ],
             [
               2,
-              3
+              -8
             ],
             [
               3,
-              8
+              -14
             ]
           ]
         }
       }
     },
     {
-      "topic_id": "substitution_F",
-      "prompt": "A = (1/2)bh. Find the value of A when b = 20 and h = 8.",
+      "topic_id": "change_subject_F",
+      "prompt": "Make x the subject of the formula y = 6x - 10.",
       "solution_steps": [
-        "A = (1/2)bh",
-        "A = (1/2) × 20 × 8",
-        "A = 160/2",
-        "A = 80"
+        "y = 6x - 10",
+        "Add 10 to both sides: y + 10 = 6x",
+        "Divide both sides by 6: x = \\frac{y + 10}{6}"
       ],
-      "final_answer": "A = 80",
-      "marks": 5,
+      "final_answer": "x = \\frac{y + 10}{6}",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A = (1/2)bh",
+          "description": "y = 6x - 10",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A = (1/2) × 20 × 8",
+          "description": "Add 10 to both sides: y + 10 = 6x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A = 160/2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A = 80",
+          "description": "Divide both sides by 6: x = \\frac{y + 10}{6}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A = 80 oe",
+          "description": "x = \\frac{y + 10}{6} oe",
           "marks": 1
         }
       ],
@@ -564,20 +536,20 @@
     },
     {
       "topic_id": "linear_two_step_F",
-      "prompt": "Solve: 8x + 5 = 37",
+      "prompt": "Solve: 5x + 5 = 45",
       "solution_steps": [
-        "8x + 5 = 37",
+        "5x + 5 = 45",
         "Subtract 5 from both sides:",
-        "8x = 32",
-        "Divide both sides by 8:",
-        "x = 4"
+        "5x = 40",
+        "Divide both sides by 5:",
+        "x = 8"
       ],
-      "final_answer": "4",
+      "final_answer": "8",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "8x + 5 = 37",
+          "description": "5x + 5 = 45",
           "marks": 1
         },
         {
@@ -587,17 +559,17 @@
         },
         {
           "code": "M1",
-          "description": "8x = 32",
+          "description": "5x = 40",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 8: x = 4",
+          "description": "Divide both sides by 5: x = 8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4 oe",
+          "description": "8 oe",
           "marks": 1
         }
       ],
@@ -606,27 +578,27 @@
     },
     {
       "topic_id": "find_percentage_change_F",
-      "prompt": "The price of an item changes from £120 to £102. Find the percentage decrease.",
+      "prompt": "The price of an item changes from £160 to £80. Find the percentage decrease.",
       "solution_steps": [
-        "Find the difference between the two values: £102 and £120 differ by £18",
-        "Divide by the ORIGINAL value and convert to a percentage: £18 ÷ £120 × 100 = 15%"
+        "Find the difference between the two values: £80 and £160 differ by £80",
+        "Divide by the ORIGINAL value and convert to a percentage: £80 ÷ £160 × 100 = 50%"
       ],
-      "final_answer": "15% decrease",
+      "final_answer": "50% decrease",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the difference between the two values: £102 and £120 differ by £18",
+          "description": "Find the difference between the two values: £80 and £160 differ by £80",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide by the ORIGINAL value and convert to a percentage: £18 ÷ £120 × 100 = 15%",
+          "description": "Divide by the ORIGINAL value and convert to a percentage: £80 ÷ £160 × 100 = 50%",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "15% decrease oe",
+          "description": "50% decrease oe",
           "marks": 1
         }
       ],
@@ -635,40 +607,39 @@
     },
     {
       "topic_id": "best_buys_noncalculator_F",
-      "prompt": "A shop sells breakfast cereal in different sizes: A: £9.00 for 600g; B: £3.60 for 200g; C: £1.40 for 700g. Which option is the better value for money? Show your working.",
+      "prompt": "A shop sells washing-up liquid in different sizes: A: £3.00 for 500ml; B: £13.60 for 800ml. Which option is the better value for money? Show your working.",
       "solution_steps": [
-        "Work out the price per 100g for each option:",
-        "A: £9.00 ÷ 600 × 100 = 150p per 100g",
-        "B: £3.60 ÷ 200 × 100 = 180p per 100g",
-        "C: £1.40 ÷ 700 × 100 = 20p per 100g",
-        "The lowest price per 100g is C at 20p per 100g, so C is the best value."
+        "Work out the price per 100ml for each option:",
+        "A: £3.00 ÷ 500 × 100 = 60p per 100ml",
+        "B: £13.60 ÷ 800 × 100 = 170p per 100ml",
+        "The lowest price per 100ml is A at 60p per 100ml, so A is the best value."
       ],
-      "final_answer": "C (£1.40 for 700g)",
+      "final_answer": "A (£3.00 for 500ml)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Work out the price per 100g for each option:",
+          "description": "Work out the price per 100ml for each option:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A: £9.00 ÷ 600 × 100 = 150p per 100g",
+          "description": "A: £3.00 ÷ 500 × 100 = 60p per 100ml",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "B: £3.60 ÷ 200 × 100 = 180p per 100g",
+          "description": "B: £13.60 ÷ 800 × 100 = 170p per 100ml",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "C: £1.40 ÷ 700 × 100 = 20p per 100g The lowest price per 100g is C at 20p per 100g, so C is the best value.",
+          "description": "The lowest price per 100ml is A at 60p per 100ml, so A is the best value.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "C (£1.40 for 700g) oe",
+          "description": "A (£3.00 for 500ml) oe",
           "marks": 1
         }
       ],
@@ -677,12 +648,12 @@
     },
     {
       "topic_id": "pressure_F",
-      "prompt": "A machine foot exerts a force of 1185 N and a pressure of 113 N/m². Find the contact area, correct to 2 decimal places.",
+      "prompt": "A storage container exerts a force of 946 N and a pressure of 17 N/cm². Find the contact area, correct to 2 decimal places.",
       "solution_steps": [
         "area = force ÷ pressure",
-        "area = 1185 ÷ 113 = 10.49 m² (2 d.p.)"
+        "area = 946 ÷ 17 = 55.65 cm² (2 d.p.)"
       ],
-      "final_answer": "10.49 m²",
+      "final_answer": "55.65 cm²",
       "marks": 3,
       "mark_scheme": [
         {
@@ -692,12 +663,12 @@
         },
         {
           "code": "M1",
-          "description": "area = 1185 ÷ 113 = 10.49 m² (2 d.p.)",
+          "description": "area = 946 ÷ 17 = 55.65 cm² (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10.49 m² oe",
+          "description": "55.65 cm² oe",
           "marks": 1
         }
       ],
@@ -706,40 +677,40 @@
     },
     {
       "topic_id": "ratio_share_three_part_F",
-      "prompt": "Share 16 in the ratio 4:3:1.",
+      "prompt": "Share 112 in the ratio 3:5:8.",
       "solution_steps": [
-        "Total parts = 4 + 3 + 1 = 8",
-        "Value of one part = 16 ÷ 8 = 2",
-        "Share 1 = 4 × 2 = 8",
-        "Share 2 = 3 × 2 = 6",
-        "Share 3 = 1 × 2 = 2"
+        "Total parts = 3 + 5 + 8 = 16",
+        "Value of one part = 112 ÷ 16 = 7",
+        "Share 1 = 3 × 7 = 21",
+        "Share 2 = 5 × 7 = 35",
+        "Share 3 = 8 × 7 = 56"
       ],
-      "final_answer": "8 : 6 : 2",
+      "final_answer": "21 : 35 : 56",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 4 + 3 + 1 = 8",
+          "description": "Total parts = 3 + 5 + 8 = 16",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 16 ÷ 8 = 2",
+          "description": "Value of one part = 112 ÷ 16 = 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 1 = 4 × 2 = 8",
+          "description": "Share 1 = 3 × 7 = 21",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 2 = 3 × 2 = 6 Share 3 = 1 × 2 = 2",
+          "description": "Share 2 = 5 × 7 = 35 Share 3 = 8 × 7 = 56",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8 : 6 : 2 oe",
+          "description": "21 : 35 : 56 oe",
           "marks": 1
         }
       ],
@@ -748,12 +719,12 @@
     },
     {
       "topic_id": "transform_reflect_complete_F",
-      "prompt": "Reflect shape ABC in the line y = -1. Draw and label the image A'B'C'.",
+      "prompt": "Reflect shape ABC in the line y = -1.",
       "solution_steps": [
         "Reflect each vertex in the line y = -1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
-        "A(-3, 2) -> A'(-3, -4), B(0, 2) -> B'(0, -4), C(-3, 4) -> C'(-3, -6)"
+        "A(3, 3) -> A'(3, -5), B(6, 3) -> B'(6, -5), C(3, 5) -> C'(3, -7)"
       ],
-      "final_answer": "A'(-3, -4), B'(0, -4), C'(-3, -6)",
+      "final_answer": "A'(3, -5), B'(6, -5), C'(3, -7)",
       "marks": 3,
       "mark_scheme": [
         {
@@ -763,12 +734,12 @@
         },
         {
           "code": "M1",
-          "description": "A(-3, 2) -> A'(-3, -4), B(0, 2) -> B'(0, -4), C(-3, 4) -> C'(-3, -6)",
+          "description": "A(3, 3) -> A'(3, -5), B(6, 3) -> B'(6, -5), C(3, 5) -> C'(3, -7)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(-3, -4), B'(0, -4), C'(-3, -6) oe",
+          "description": "A'(3, -5), B'(6, -5), C'(3, -7) oe",
           "marks": 1
         }
       ],
@@ -781,16 +752,16 @@
           "y_max": 8,
           "original_vertices": [
             [
-              -3,
-              2
+              3,
+              3
             ],
             [
-              0,
-              2
+              6,
+              3
             ],
             [
-              -3,
-              4
+              3,
+              5
             ]
           ],
           "original_labels": [
@@ -814,16 +785,16 @@
           "y_max": 8,
           "original_vertices": [
             [
-              -3,
-              2
+              3,
+              3
             ],
             [
-              0,
-              2
+              6,
+              3
             ],
             [
-              -3,
-              4
+              3,
+              5
             ]
           ],
           "original_labels": [
@@ -838,16 +809,16 @@
           },
           "image_vertices": [
             [
-              -3,
-              -4
+              3,
+              -5
             ],
             [
-              0,
-              -4
+              6,
+              -5
             ],
             [
-              -3,
-              -6
+              3,
+              -7
             ]
           ],
           "image_labels": [
@@ -862,56 +833,56 @@
       "topic_id": "area_rectangle_F",
       "prompt": "Find the area of the following rectangle.",
       "solution_steps": [
-        "Area = length × width = 18 × 20 = 360 cm²"
+        "Area = length × width = 5 × 9 = 45 cm²"
       ],
-      "final_answer": "360 cm²",
+      "final_answer": "45 cm²",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = length × width = 18 × 20 = 360 cm²",
+          "description": "Area = length × width = 5 × 9 = 45 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "360 cm² oe",
+          "description": "45 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "rectangle",
         "params": {
-          "width": 18,
-          "height": 20,
-          "width_label": "18 cm",
-          "height_label": "20 cm"
+          "width": 5,
+          "height": 9,
+          "width_label": "5 cm",
+          "height_label": "9 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_translate_describe_F",
-      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
+      "topic_id": "transform_translate_complete_F",
+      "prompt": "Translate shape ABCD by the vector (-1, -1).",
       "solution_steps": [
-        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-1, 0), with the matching vertex of shape B, (-4, -4), gives the vector (-3, -4).",
-        "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
+        "Translate every vertex by the vector (-1, -1): move each point 1 square left and 1 square down.",
+        "A(1, 0) -> A'(0, -1), B(5, 0) -> B'(4, -1), C(4, 4) -> C'(3, 3), D(0, 3) -> D'(-1, 2)"
       ],
-      "final_answer": "Translation by the vector (-3, -4)",
+      "final_answer": "A'(0, -1), B'(4, -1), C'(3, 3), D'(-1, 2)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-1, 0), with the matching vertex of shape B, (-4, -4), gives the vector (-3, -4).",
+          "description": "Translate every vertex by the vector (-1, -1): move each point 1 square left and 1 square down.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Checking the other vertices confirms the same vector applies throughout, so this is a translation.",
+          "description": "A(1, 0) -> A'(0, -1), B(5, 0) -> B'(4, -1), C(4, 4) -> C'(3, 3), D(0, 3) -> D'(-1, 2)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Translation by the vector (-3, -4) oe",
+          "description": "A'(0, -1), B'(4, -1), C'(3, 3), D'(-1, 2) oe",
           "marks": 1
         }
       ],
@@ -924,75 +895,117 @@
           "y_max": 8,
           "original_vertices": [
             [
-              -1,
+              1,
+              0
+            ],
+            [
+              5,
               0
             ],
             [
               4,
-              0
+              4
             ],
             [
               0,
-              4
+              3
             ]
           ],
           "original_labels": [
-            "",
-            "",
-            ""
-          ],
-          "image_vertices": [
-            [
-              -4,
-              -4
-            ],
-            [
-              1,
-              -4
-            ],
-            [
-              -3,
-              0
-            ]
-          ],
-          "image_labels": [
-            "",
-            "",
-            ""
+            "A",
+            "B",
+            "C",
+            "D"
           ]
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              1,
+              0
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "image_vertices": [
+            [
+              0,
+              -1
+            ],
+            [
+              4,
+              -1
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              -1,
+              2
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'",
+            "D'"
+          ]
+        }
+      }
     },
     {
       "topic_id": "area_trapezium_F",
       "prompt": "Find the area of the following trapezium.",
       "solution_steps": [
-        "Area = ½ × (a + b) × height = ½ × (4 + 6) × 10 = 50 cm²"
+        "Area = ½ × (a + b) × height = ½ × (11 + 19) × 9 = 135 cm²"
       ],
-      "final_answer": "50 cm²",
+      "final_answer": "135 cm²",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = ½ × (a + b) × height = ½ × (4 + 6) × 10 = 50 cm²",
+          "description": "Area = ½ × (a + b) × height = ½ × (11 + 19) × 9 = 135 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "50 cm² oe",
+          "description": "135 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "trapezium",
         "params": {
-          "a": 4,
-          "b": 6,
-          "height": 10,
-          "a_label": "4 cm",
-          "b_label": "6 cm",
-          "height_label": "10 cm"
+          "a": 11,
+          "b": 19,
+          "height": 9,
+          "a_label": "11 cm",
+          "b_label": "19 cm",
+          "height_label": "9 cm"
         }
       },
       "solution_diagram": null
@@ -1026,10 +1039,10 @@
       "diagram": {
         "kind": "loci_construction",
         "params": {
-          "x_min": -1.0,
-          "x_max": 6.168309414322496,
-          "y_min": -2.2940952255126037,
-          "y_max": 5.095760221444957,
+          "x_min": -3.113091308703496,
+          "x_max": 5.8296291314453415,
+          "y_min": -5.984692828701574,
+          "y_max": 1.0,
           "points": [
             {
               "xy": [
@@ -1040,15 +1053,15 @@
             },
             {
               "xy": [
-                4.8296291314453415,
-                -1.2940952255126035
+                -2.113091308703496,
+                -4.531538935183251
               ],
               "label": "X"
             },
             {
               "xy": [
-                2.8678821817552325,
-                4.095760221444957
+                4.8296291314453415,
+                -1.2940952255126035
               ],
               "label": "Z"
             }
@@ -1060,8 +1073,8 @@
                 0.0
               ],
               "p2": [
-                4.8296291314453415,
-                -1.2940952255126035
+                -2.113091308703496,
+                -4.531538935183251
               ]
             },
             {
@@ -1070,8 +1083,8 @@
                 0.0
               ],
               "p2": [
-                2.8678821817552325,
-                4.095760221444957
+                4.8296291314453415,
+                -1.2940952255126035
               ]
             }
           ]
@@ -1080,10 +1093,10 @@
       "solution_diagram": {
         "kind": "loci_construction",
         "params": {
-          "x_min": -1.0,
-          "x_max": 6.168309414322496,
-          "y_min": -2.2940952255126037,
-          "y_max": 5.095760221444957,
+          "x_min": -3.113091308703496,
+          "x_max": 5.8296291314453415,
+          "y_min": -5.984692828701574,
+          "y_max": 1.0,
           "points": [
             {
               "xy": [
@@ -1094,15 +1107,15 @@
             },
             {
               "xy": [
-                4.8296291314453415,
-                -1.2940952255126035
+                -2.113091308703496,
+                -4.531538935183251
               ],
               "label": "X"
             },
             {
               "xy": [
-                2.8678821817552325,
-                4.095760221444957
+                4.8296291314453415,
+                -1.2940952255126035
               ],
               "label": "Z"
             }
@@ -1114,8 +1127,8 @@
                 0.0
               ],
               "p2": [
-                4.8296291314453415,
-                -1.2940952255126035
+                -2.113091308703496,
+                -4.531538935183251
               ]
             },
             {
@@ -1124,8 +1137,8 @@
                 0.0
               ],
               "p2": [
-                2.8678821817552325,
-                4.095760221444957
+                4.8296291314453415,
+                -1.2940952255126035
               ]
             }
           ],
@@ -1136,8 +1149,8 @@
               0.0
             ],
             "p2": [
-              5.168309414322496,
-              1.881110788291179
+              2.324400439573848,
+              -4.984692828701574
             ],
             "dashed": false
           }
@@ -1146,12 +1159,12 @@
     },
     {
       "topic_id": "transform_reflect_describe_F",
-      "prompt": "Shape ABC is reflected to give shape A'B'C', shown on the grid. Describe fully the single transformation that maps ABC onto A'B'C'.",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
       "solution_steps": [
         "Every vertex and its image are the same distance from a single line, on opposite sides of it - that line is the mirror line.",
-        "Comparing corresponding vertices shows the mirror line is x = -1."
+        "Comparing corresponding vertices shows the mirror line is y = -1."
       ],
-      "final_answer": "Reflection in the line x = -1",
+      "final_answer": "Reflection in the line y = -1",
       "marks": 3,
       "mark_scheme": [
         {
@@ -1161,12 +1174,12 @@
         },
         {
           "code": "M1",
-          "description": "Comparing corresponding vertices shows the mirror line is x = -1.",
+          "description": "Comparing corresponding vertices shows the mirror line is y = -1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Reflection in the line x = -1 oe",
+          "description": "Reflection in the line y = -1 oe",
           "marks": 1
         }
       ],
@@ -1179,63 +1192,65 @@
           "y_max": 8,
           "original_vertices": [
             [
-              2,
-              2
+              -3,
+              1
             ],
             [
-              5,
-              2
+              0,
+              1
             ],
             [
-              2,
-              4
+              -3,
+              3
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C"
+            "",
+            "",
+            ""
           ],
+          "original_shape_label": "A",
           "image_vertices": [
             [
-              -4,
-              2
+              -3,
+              -3
             ],
             [
-              -7,
-              2
+              0,
+              -3
             ],
             [
-              -4,
-              4
+              -3,
+              -5
             ]
           ],
           "image_labels": [
-            "A'",
-            "B'",
-            "C'"
-          ]
+            "",
+            "",
+            ""
+          ],
+          "image_shape_label": "B"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "negative_multiply_divide_F",
-      "prompt": "Work out -96 ÷ (-12).",
+      "prompt": "Work out -6 × (-11).",
       "solution_steps": [
-        "-96 ÷ (-12) = 8"
+        "-6 × (-11) = 66"
       ],
-      "final_answer": "8",
+      "final_answer": "66",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "-96 ÷ (-12) = 8",
+          "description": "-6 × (-11) = 66",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8 oe",
+          "description": "66 oe",
           "marks": 1
         }
       ],
@@ -1244,33 +1259,33 @@
     },
     {
       "topic_id": "venn_diagram_probability_F",
-      "prompt": "The Venn diagram shows the number of students in each region for sets A and B. Find P(B).",
+      "prompt": "The Venn diagram shows the number of students in each region for sets A and B. Find P(A').",
       "solution_steps": [
-        "Total number of elements = 14 + 15 + 15 + 13 = 57",
-        "Number of outcomes in B = 15 + 15 = 30",
-        "P(B) = 30/57 = 10/19"
+        "Total number of elements = 5 + 6 + 11 + 5 = 27",
+        "Number of outcomes in A' = 6 + 5 = 11",
+        "P(A') = 11/27 = 11/27"
       ],
-      "final_answer": "10/19",
+      "final_answer": "11/27",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total number of elements = 14 + 15 + 15 + 13 = 57",
+          "description": "Total number of elements = 5 + 6 + 11 + 5 = 27",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Number of outcomes in B = 15 + 15 = 30",
+          "description": "Number of outcomes in A' = 6 + 5 = 11",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(B) = 30/57 = 10/19",
+          "description": "P(A') = 11/27 = 11/27",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10/19 oe",
+          "description": "11/27 oe",
           "marks": 1
         }
       ],
@@ -1282,10 +1297,10 @@
             "B"
           ],
           "region_text": {
-            "a_only": "14",
-            "b_only": "15",
-            "both": "15",
-            "neither": "13"
+            "a_only": "5",
+            "b_only": "6",
+            "both": "11",
+            "neither": "5"
           }
         }
       },
@@ -1293,18 +1308,18 @@
     },
     {
       "topic_id": "tree_diagram_drawing_F",
-      "prompt": "A bag contains 3 red and 5 yellow counters. A counter is picked at random, replaced, and then a second counter is picked at random. Draw a fully-labelled tree diagram to show this information, and use it to find the probability that the first counter is red and the second counter is red.",
+      "prompt": "A bag contains 7 green and 4 red counters. A counter is picked at random, replaced, and then a second counter is picked at random. Draw a fully-labelled tree diagram to show this information, and use it to find the probability that the first counter is green and the second counter is green.",
       "solution_steps": [
-        "Draw two branches from the start: P(red) = 3/8, P(yellow) = 5/8.",
+        "Draw two branches from the start: P(green) = 7/11, P(red) = 4/11.",
         "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
-        "P(red then red) = 3/8 × 3/8 = 9/64"
+        "P(green then green) = 7/11 × 7/11 = 49/121"
       ],
-      "final_answer": "9/64",
+      "final_answer": "49/121",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw two branches from the start: P(red) = 3/8, P(yellow) = 5/8.",
+          "description": "Draw two branches from the start: P(green) = 7/11, P(red) = 4/11.",
           "marks": 1
         },
         {
@@ -1314,12 +1329,12 @@
         },
         {
           "code": "M1",
-          "description": "P(red then red) = 3/8 × 3/8 = 9/64",
+          "description": "P(green then green) = 7/11 × 7/11 = 49/121",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9/64 oe",
+          "description": "49/121 oe",
           "marks": 1
         }
       ],
@@ -1329,33 +1344,33 @@
         "params": {
           "stage1": [
             [
-              "Red",
-              "3/8"
+              "Green",
+              "7/11"
             ],
             [
-              "Yellow",
-              "5/8"
+              "Red",
+              "4/11"
             ]
           ],
           "stage2": [
             [
               [
-                "Red",
-                "3/8"
+                "Green",
+                "7/11"
               ],
               [
-                "Yellow",
-                "5/8"
+                "Red",
+                "4/11"
               ]
             ],
             [
               [
-                "Red",
-                "3/8"
+                "Green",
+                "7/11"
               ],
               [
-                "Yellow",
-                "5/8"
+                "Red",
+                "4/11"
               ]
             ]
           ]

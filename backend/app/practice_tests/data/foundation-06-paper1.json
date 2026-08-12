@@ -8,33 +8,33 @@
   "questions": [
     {
       "topic_id": "error_interval_F",
-      "prompt": "A number, x, is 12.4 rounded to 1 decimal place. Write down the error interval for x.",
+      "prompt": "A number, x, is 29000 rounded to the nearest 1000. Write down the error interval for x.",
       "solution_steps": [
-        "12.4 is rounded to 1 decimal place, so x can be up to half of that precision above or below 12.4.",
-        "Lower bound: 12.4 - 0.05 = 12.35",
-        "Upper bound: 12.4 + 0.05 = 12.45"
+        "29000 is rounded to the nearest 1000, so x can be up to half of that precision above or below 29000.",
+        "Lower bound: 29000 - 500 = 28500",
+        "Upper bound: 29000 + 500 = 29500"
       ],
-      "final_answer": "12.35 ≤ x < 12.45",
+      "final_answer": "28500 ≤ x < 29500",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "12.4 is rounded to 1 decimal place, so x can be up to half of that precision above or below 12.4.",
+          "description": "29000 is rounded to the nearest 1000, so x can be up to half of that precision above or below 29000.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Lower bound: 12.4 - 0.05 = 12.35",
+          "description": "Lower bound: 29000 - 500 = 28500",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Upper bound: 12.4 + 0.05 = 12.45",
+          "description": "Upper bound: 29000 + 500 = 29500",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12.35 ≤ x < 12.45 oe",
+          "description": "28500 ≤ x < 29500 oe",
           "marks": 1
         }
       ],
@@ -43,27 +43,27 @@
     },
     {
       "topic_id": "decimals_round_dp_F",
-      "prompt": "Round 43.305 to 2 decimal places.",
+      "prompt": "Round 3.386 to 1 decimal place.",
       "solution_steps": [
-        "Look at the digit after the 2 decimal places we want: 5, so round up.",
-        "43.305 rounded to 2 decimal places = 43.31"
+        "Look at the digit after the 1 decimal place we want: 8, so round up.",
+        "3.386 rounded to 1 decimal place = 3.4"
       ],
-      "final_answer": "43.31",
+      "final_answer": "3.4",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Look at the digit after the 2 decimal places we want: 5, so round up.",
+          "description": "Look at the digit after the 1 decimal place we want: 8, so round up.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "43.305 rounded to 2 decimal places = 43.31",
+          "description": "3.386 rounded to 1 decimal place = 3.4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "43.31 oe",
+          "description": "3.4 oe",
           "marks": 1
         }
       ],
@@ -72,27 +72,27 @@
     },
     {
       "topic_id": "factors_F",
-      "prompt": "Is 11 a factor of 13?",
+      "prompt": "How many factors does 36 have?",
       "solution_steps": [
-        "13 ÷ 11 = 1 remainder 2",
-        "No, 11 is not a factor of 13."
+        "List every factor of 36 by checking each whole number from 1 to 36: 1, 2, 3, 4, 6, 9, 12, 18, 36.",
+        "Count them: 9 factors."
       ],
-      "final_answer": "No",
+      "final_answer": "9",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "13 ÷ 11 = 1 remainder 2",
+          "description": "List every factor of 36 by checking each whole number from 1 to 36: 1, 2, 3, 4, 6, 9, 12, 18, 36.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "No, 11 is not a factor of 13.",
+          "description": "Count them: 9 factors.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "No oe",
+          "description": "9 oe",
           "marks": 1
         }
       ],
@@ -101,27 +101,33 @@
     },
     {
       "topic_id": "standard_form_multiply_divide_F",
-      "prompt": "Work out (1 × 10^3) × (5 × 10^5). Give your answer in standard form.",
+      "prompt": "Work out (8 × 10^1) × (3 × 10^5). Give your answer in standard form.",
       "solution_steps": [
-        "Multiply the mantissas: 1 × 5 = 5",
-        "Add the powers of 10: 3 + 5 = 8"
+        "Multiply the mantissas: 8 × 3 = 24",
+        "Add the powers of 10: 1 + 5 = 6",
+        "Renormalize so the mantissa is between 1 and 10: 2.4 × 10^7"
       ],
-      "final_answer": "5 × 10^8",
-      "marks": 3,
+      "final_answer": "2.4 × 10^7",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply the mantissas: 1 × 5 = 5",
+          "description": "Multiply the mantissas: 8 × 3 = 24",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add the powers of 10: 3 + 5 = 8",
+          "description": "Add the powers of 10: 1 + 5 = 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Renormalize so the mantissa is between 1 and 10: 2.4 × 10^7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5 × 10^8 oe",
+          "description": "2.4 × 10^7 oe",
           "marks": 1
         }
       ],
@@ -130,21 +136,21 @@
     },
     {
       "topic_id": "negative_multiply_divide_F",
-      "prompt": "Work out 35 ÷ (-5).",
+      "prompt": "Work out 36 ÷ (-6).",
       "solution_steps": [
-        "35 ÷ (-5) = -7"
+        "36 ÷ (-6) = -6"
       ],
-      "final_answer": "-7",
+      "final_answer": "-6",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "35 ÷ (-5) = -7",
+          "description": "36 ÷ (-6) = -6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-7 oe",
+          "description": "-6 oe",
           "marks": 1
         }
       ],
@@ -152,40 +158,22 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "construction_triangle_F",
-      "prompt": "Triangle PST has PS = 11 cm, the angle at P equal to 38°, and the angle at S equal to 60°. Describe, step by step, how to construct triangle PST using a ruler and a protractor.",
+      "topic_id": "stats_range_F",
+      "prompt": "Find the range of this data set: 20, 12, 11, 13, 2.",
       "solution_steps": [
-        "Draw the line segment PS = 11 cm using a ruler.",
-        "At P, use a protractor to draw a ray at 38° from the line PS.",
-        "At S, use a protractor to draw a ray at 60° from the line SP.",
-        "Label the point where the two new rays cross as T. This completes triangle PST."
+        "Range = largest - smallest = 20 - 2 = 18"
       ],
-      "final_answer": "Triangle PST, with T located where the two angle rays from P and S cross.",
-      "marks": 5,
+      "final_answer": "18",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw the line segment PS = 11 cm using a ruler.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "At P, use a protractor to draw a ray at 38° from the line PS.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "At S, use a protractor to draw a ray at 60° from the line SP.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Label the point where the two new rays cross as T. This completes triangle PST.",
+          "description": "Range = largest - smallest = 20 - 2 = 18",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Triangle PST, with T located where the two angle rays from P and S cross. oe",
+          "description": "18 oe",
           "marks": 1
         }
       ],
@@ -194,39 +182,39 @@
     },
     {
       "topic_id": "fractions_add_subtract_F",
-      "prompt": "Evaluate 7/10 - 8/12. Give your answer as a fraction in its simplest form.",
+      "prompt": "Evaluate 6/8 + 3/11. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
-        "Find a common denominator: LCM(10, 12) = 60",
-        "Convert: 7/10 = 42/60, 8/12 = 40/60",
-        "Subtract: 42/60 - 40/60 = 2/60",
-        "Simplify: 1/30"
+        "Find a common denominator: LCM(8, 11) = 88",
+        "Convert: 6/8 = 66/88, 3/11 = 24/88",
+        "Add: 66/88 + 24/88 = 90/88",
+        "Simplify: 45/44"
       ],
-      "final_answer": "1/30",
+      "final_answer": "45/44",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find a common denominator: LCM(10, 12) = 60",
+          "description": "Find a common denominator: LCM(8, 11) = 88",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Convert: 7/10 = 42/60, 8/12 = 40/60",
+          "description": "Convert: 6/8 = 66/88, 3/11 = 24/88",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract: 42/60 - 40/60 = 2/60",
+          "description": "Add: 66/88 + 24/88 = 90/88",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify: 1/30",
+          "description": "Simplify: 45/44",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/30 oe",
+          "description": "45/44 oe",
           "marks": 1
         }
       ],
@@ -235,13 +223,13 @@
     },
     {
       "topic_id": "standard_form_to_F",
-      "prompt": "Write 100000 in standard form.",
+      "prompt": "Write 100 in standard form.",
       "solution_steps": [
         "Move the decimal point until there is one non-zero digit before it: 1",
-        "Count how many places the decimal point moved: 5",
-        "100000 = 1 × 10^5"
+        "Count how many places the decimal point moved: 2",
+        "100 = 1 × 10^2"
       ],
-      "final_answer": "1 × 10^5",
+      "final_answer": "1 × 10^2",
       "marks": 4,
       "mark_scheme": [
         {
@@ -251,17 +239,17 @@
         },
         {
           "code": "M1",
-          "description": "Count how many places the decimal point moved: 5",
+          "description": "Count how many places the decimal point moved: 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "100000 = 1 × 10^5",
+          "description": "100 = 1 × 10^2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 × 10^5 oe",
+          "description": "1 × 10^2 oe",
           "marks": 1
         }
       ],
@@ -270,39 +258,39 @@
     },
     {
       "topic_id": "simultaneous_forming_and_solving_F",
-      "prompt": "1 apple and 5 bananas cost £3.97 in total. 2 apples and 2 bananas cost £1.94 in total. Form and solve a pair of simultaneous equations to find the cost of one apple and one banana.",
+      "prompt": "3 tickets and 1 programme cost £1.93 in total. 2 tickets and 1 programme cost £1.35 in total. Form and solve a pair of simultaneous equations to find the cost of one ticket and one programme.",
       "solution_steps": [
-        "Let x = cost of one apple (pence), y = cost of one banana (pence).",
-        "1x + 5y = 397  (1)",
-        "2x + 2y = 194  (2)",
-        "Solving simultaneously: x = 22, y = 75"
+        "Let x = cost of one ticket (pence), y = cost of one programme (pence).",
+        "3x + 1y = 193  (1)",
+        "2x + 1y = 135  (2)",
+        "Solving simultaneously: x = 58, y = 19"
       ],
-      "final_answer": "apple = £0.22, banana = £0.75",
+      "final_answer": "ticket = £0.58, programme = £0.19",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = cost of one apple (pence), y = cost of one banana (pence).",
+          "description": "Let x = cost of one ticket (pence), y = cost of one programme (pence).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "1x + 5y = 397  (1)",
+          "description": "3x + 1y = 193  (1)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x + 2y = 194  (2)",
+          "description": "2x + 1y = 135  (2)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Solving simultaneously: x = 22, y = 75",
+          "description": "Solving simultaneously: x = 58, y = 19",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "apple = £0.22, banana = £0.75 oe",
+          "description": "ticket = £0.58, programme = £0.19 oe",
           "marks": 1
         }
       ],
@@ -311,33 +299,33 @@
     },
     {
       "topic_id": "expand_single_bracket_F",
-      "prompt": "Expand: -8(x + 7)",
+      "prompt": "Expand: -8(-4x + 2)",
       "solution_steps": [
-        "Multiply -8 by x: -8x",
-        "Multiply -8 by 7: -56",
-        "Combine: -8x - 56"
+        "Multiply -8 by -4x: 32x",
+        "Multiply -8 by 2: -16",
+        "Combine: 32x - 16"
       ],
-      "final_answer": "-8x - 56",
+      "final_answer": "32x - 16",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply -8 by x: -8x",
+          "description": "Multiply -8 by -4x: 32x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply -8 by 7: -56",
+          "description": "Multiply -8 by 2: -16",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Combine: -8x - 56",
+          "description": "Combine: 32x - 16",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-8x - 56 oe",
+          "description": "32x - 16 oe",
           "marks": 1
         }
       ],
@@ -345,41 +333,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_double_brackets_no_coefficient_F",
-      "prompt": "Expand and simplify: (x + 1)(x + 2)",
+      "topic_id": "substitution_rearrange_F",
+      "prompt": "v = u + at. Make a the subject of the formula, then find the value of a when v = 102, u = 12 and t = 9.",
       "solution_steps": [
-        "First: x × x = x^2",
-        "Outer: x × 2 = 2x",
-        "Inner: 1 × x = 1x",
-        "Last: 1 × 2 = 2",
-        "Combine like terms: x^2 + 3x + 2"
+        "v = u + at",
+        "Rearrange to make a the subject: a = \\frac{v - u}{t}",
+        "Substitute v = 102, u = 12 and t = 9: a = \\frac{102 - 12}{9}",
+        "a = 90/9 = 10"
       ],
-      "final_answer": "x^2 + 3x + 2",
+      "final_answer": "a = 10",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First: x × x = x^2",
+          "description": "v = u + at",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Outer: x × 2 = 2x",
+          "description": "Rearrange to make a the subject: a = \\frac{v - u}{t}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Inner: 1 × x = 1x",
+          "description": "Substitute v = 102, u = 12 and t = 9: a = \\frac{102 - 12}{9}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Last: 1 × 2 = 2 Combine like terms: x^2 + 3x + 2",
+          "description": "a = 90/9 = 10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x^2 + 3x + 2 oe",
+          "description": "a = 10 oe",
           "marks": 1
         }
       ],
@@ -387,28 +374,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "functions_evaluate_F",
-      "prompt": "f(x) = 5x + 6. Find f(4).",
+      "topic_id": "algebraic_indices_F",
+      "prompt": "Simplify (6x^5)^2",
       "solution_steps": [
-        "f(4) = 5×(4) + 6",
-        "f(4) = 26"
+        "Raising a power to another power: multiply the exponents, and raise the coefficient to that power too.",
+        "(6x^5)^2 = 6^2 x^(5×2)",
+        "= 36x^10"
       ],
-      "final_answer": "26",
-      "marks": 3,
+      "final_answer": "36x^10",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "f(4) = 5×(4) + 6",
+          "description": "Raising a power to another power: multiply the exponents, and raise the coefficient to that power too.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "f(4) = 26",
+          "description": "(6x^5)^2 = 6^2 x^(5×2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 36x^10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "26 oe",
+          "description": "36x^10 oe",
           "marks": 1
         }
       ],
@@ -416,42 +409,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "satisfying_inequalities_F",
-      "prompt": "Solve the inequality 5 ≤ 4x + 3 ≤ 13, then list the integer values of x that satisfy it.",
+      "topic_id": "solving_inequalities_F",
+      "prompt": "Solve the inequality: \\frac{x}{3} - 3 ≤ 1",
       "solution_steps": [
-        "5 ≤ 4x + 3 ≤ 13",
-        "Subtract 3 from all three parts:",
-        "2 ≤ 4x ≤ 10",
-        "Divide all three parts by 4:",
-        "1/2 ≤ x ≤ 5/2",
-        "The integers satisfying this are: 1, 2"
+        "\\frac{x}{3} - 3 ≤ 1",
+        "Add 3 to both sides:",
+        "\\frac{x}{3} ≤ 4",
+        "Multiply both sides by 3:",
+        "x ≤ 12"
       ],
-      "final_answer": "1, 2",
+      "final_answer": "x ≤ 12",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5 ≤ 4x + 3 ≤ 13",
+          "description": "\\frac{x}{3} - 3 ≤ 1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 3 from all three parts:",
+          "description": "Add 3 to both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2 ≤ 4x ≤ 10",
+          "description": "\\frac{x}{3} ≤ 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide all three parts by 4: 1/2 ≤ x ≤ 5/2 The integers satisfying this are: 1, 2",
+          "description": "Multiply both sides by 3: x ≤ 12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1, 2 oe",
+          "description": "x ≤ 12 oe",
           "marks": 1
         }
       ],
@@ -460,41 +452,41 @@
     },
     {
       "topic_id": "linear_multi_step_F",
-      "prompt": "Solve: 4x + 12 + 2x - 1 = 41",
+      "prompt": "Solve: 4x + 5 + 6x - 9 = 6",
       "solution_steps": [
-        "Collect like terms: 4x + 2x = 6x, 12 - 1 = 11",
-        "6x + 11 = 41",
-        "Subtract 11 from both sides:",
-        "6x = 30",
-        "Divide both sides by 6:",
-        "x = 5"
+        "Collect like terms: 4x + 6x = 10x, 5 - 9 = -4",
+        "10x - 4 = 6",
+        "Add 4 to both sides:",
+        "10x = 10",
+        "Divide both sides by 10:",
+        "x = 1"
       ],
-      "final_answer": "5",
+      "final_answer": "1",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Collect like terms: 4x + 2x = 6x, 12 - 1 = 11",
+          "description": "Collect like terms: 4x + 6x = 10x, 5 - 9 = -4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "6x + 11 = 41",
+          "description": "10x - 4 = 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 11 from both sides:",
+          "description": "Add 4 to both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "6x = 30 Divide both sides by 6: x = 5",
+          "description": "10x = 10 Divide both sides by 10: x = 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5 oe",
+          "description": "1 oe",
           "marks": 1
         }
       ],
@@ -503,41 +495,41 @@
     },
     {
       "topic_id": "linear_brackets_F",
-      "prompt": "Solve: 3(3x + 3) = 81",
+      "prompt": "Solve: 2(4x + 8) = 32",
       "solution_steps": [
-        "Expand the bracket: 3(3x + 3) = 9x + 9",
-        "9x + 9 = 81",
-        "Subtract 9 from both sides:",
-        "9x = 72",
-        "Divide both sides by 9:",
-        "x = 8"
+        "Expand the bracket: 2(4x + 8) = 8x + 16",
+        "8x + 16 = 32",
+        "Subtract 16 from both sides:",
+        "8x = 16",
+        "Divide both sides by 8:",
+        "x = 2"
       ],
-      "final_answer": "8",
+      "final_answer": "2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expand the bracket: 3(3x + 3) = 9x + 9",
+          "description": "Expand the bracket: 2(4x + 8) = 8x + 16",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "9x + 9 = 81",
+          "description": "8x + 16 = 32",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 9 from both sides:",
+          "description": "Subtract 16 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "9x = 72 Divide both sides by 9: x = 8",
+          "description": "8x = 16 Divide both sides by 8: x = 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8 oe",
+          "description": "2 oe",
           "marks": 1
         }
       ],
@@ -546,27 +538,27 @@
     },
     {
       "topic_id": "ratio_1_to_n_F",
-      "prompt": "Write the ratio 3:5 in the form 1:\\plain{n}.",
+      "prompt": "Write the ratio 7:8 in the form 1:\\plain{n}.",
       "solution_steps": [
-        "Divide both parts of the ratio by 3 (the first part) so the first part becomes 1.",
-        "3 ÷ 3 = 1, 5 ÷ 3 ≈ 1.67"
+        "Divide both parts of the ratio by 7 (the first part) so the first part becomes 1.",
+        "7 ÷ 7 = 1, 8 ÷ 7 ≈ 1.14"
       ],
-      "final_answer": "1 : 1.67 (to 2 d.p.)",
+      "final_answer": "1 : 1.14 (to 2 d.p.)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide both parts of the ratio by 3 (the first part) so the first part becomes 1.",
+          "description": "Divide both parts of the ratio by 7 (the first part) so the first part becomes 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3 ÷ 3 = 1, 5 ÷ 3 ≈ 1.67",
+          "description": "7 ÷ 7 = 1, 8 ÷ 7 ≈ 1.14",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 : 1.67 (to 2 d.p.) oe",
+          "description": "1 : 1.14 (to 2 d.p.) oe",
           "marks": 1
         }
       ],
@@ -575,27 +567,27 @@
     },
     {
       "topic_id": "unit_conversions_F",
-      "prompt": "Convert 270.1 km to m.",
+      "prompt": "Convert 4891 cm to m.",
       "solution_steps": [
-        "1 km = 1000 m",
-        "270.1 km = 270.1 × 1000 = 270100 m"
+        "1 m = 100 cm",
+        "4891 cm = 4891 ÷ 100 = 48.91 m"
       ],
-      "final_answer": "270100 m",
+      "final_answer": "48.91 m",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "1 km = 1000 m",
+          "description": "1 m = 100 cm",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "270.1 km = 270.1 × 1000 = 270100 m",
+          "description": "4891 cm = 4891 ÷ 100 = 48.91 m",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "270100 m oe",
+          "description": "48.91 m oe",
           "marks": 1
         }
       ],
@@ -604,40 +596,39 @@
     },
     {
       "topic_id": "ratio_difference_F",
-      "prompt": "s : t = 6 : 4.\ns - t = 28.\nFind s and t, and their total.",
+      "prompt": "a : b = 1 : 4.\nb - a = 27.\nFind a and b.",
       "solution_steps": [
-        "Difference in parts = 6 - 4 = 2 parts",
-        "Value of one part = 28 ÷ 2 = 14",
-        "s = 6 × 14 = 84",
-        "t = 4 × 14 = 56",
-        "s + t = 84 + 56 = 140"
+        "Difference in parts = 4 - 1 = 3 parts",
+        "Value of one part = 27 ÷ 3 = 9",
+        "a = 1 × 9 = 9",
+        "b = 4 × 9 = 36"
       ],
-      "final_answer": "s = 84, t = 56 (total 140)",
+      "final_answer": "a = 9, b = 36",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Difference in parts = 6 - 4 = 2 parts",
+          "description": "Difference in parts = 4 - 1 = 3 parts",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 28 ÷ 2 = 14",
+          "description": "Value of one part = 27 ÷ 3 = 9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "s = 6 × 14 = 84",
+          "description": "a = 1 × 9 = 9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "t = 4 × 14 = 56 s + t = 84 + 56 = 140",
+          "description": "b = 4 × 9 = 36",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "s = 84, t = 56 (total 140) oe",
+          "description": "a = 9, b = 36 oe",
           "marks": 1
         }
       ],
@@ -646,14 +637,13 @@
     },
     {
       "topic_id": "simple_interest_F",
-      "prompt": "£3600 is invested at a simple interest rate of 4% per year for 5 years. Find the total amount in the account after 5 years.",
+      "prompt": "£4100 is invested at a simple interest rate of 2% per year for 3 years. Find the interest earned.",
       "solution_steps": [
         "Simple interest formula: I = P × r × t ÷ 100",
-        "I = 3600 × 4 × 5 ÷ 100 = £720",
-        "Total in the account = P + I = £3600 + £720 = £4320"
+        "I = 4100 × 2 × 3 ÷ 100 = £246"
       ],
-      "final_answer": "£4320",
-      "marks": 4,
+      "final_answer": "£246",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
@@ -662,17 +652,12 @@
         },
         {
           "code": "M1",
-          "description": "I = 3600 × 4 × 5 ÷ 100 = £720",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total in the account = P + I = £3600 + £720 = £4320",
+          "description": "I = 4100 × 2 × 3 ÷ 100 = £246",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£4320 oe",
+          "description": "£246 oe",
           "marks": 1
         }
       ],
@@ -680,40 +665,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_two_part_F",
-      "prompt": "Share 132 in the ratio 9:2.",
+      "topic_id": "pythagoras_ladder_context_F",
+      "prompt": "A ladder of length 75 m leans against a vertical wall with its base 21 m from the wall. Find the height the ladder reaches up the wall.",
       "solution_steps": [
-        "Total parts = 9 + 2 = 11",
-        "Value of one part = 132 ÷ 11 = 12",
-        "Share 1 = 9 × 12 = 108",
-        "Share 2 = 2 × 12 = 24"
+        "height² = ladder² - base² = 75² - 21² = 5625 - 441 = 5184",
+        "height = √5184 = 72 m"
       ],
-      "final_answer": "108 : 24",
-      "marks": 5,
+      "final_answer": "72 m",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 9 + 2 = 11",
+          "description": "height² = ladder² - base² = 75² - 21² = 5625 - 441 = 5184",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 132 ÷ 11 = 12",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 9 × 12 = 108",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 2 × 12 = 24",
+          "description": "height = √5184 = 72 m",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "108 : 24 oe",
+          "description": "72 m oe",
           "marks": 1
         }
       ],
@@ -724,7 +697,7 @@
       "topic_id": "transform_translate_describe_F",
       "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
       "solution_steps": [
-        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-2, -2), with the matching vertex of shape B, (-1, -5), gives the vector (1, -3).",
+        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-2, -1), with the matching vertex of shape B, (-1, -4), gives the vector (1, -3).",
         "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
       ],
       "final_answer": "Translation by the vector (1, -3)",
@@ -732,7 +705,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-2, -2), with the matching vertex of shape B, (-1, -5), gives the vector (1, -3).",
+          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (-2, -1), with the matching vertex of shape B, (-1, -4), gives the vector (1, -3).",
           "marks": 1
         },
         {
@@ -756,27 +729,27 @@
           "original_vertices": [
             [
               -2,
-              -2
+              -1
             ],
             [
               2,
-              -2
+              -1
             ],
             [
               2,
-              0
+              1
             ],
             [
               0,
-              0
+              1
             ],
             [
               0,
-              3
+              4
             ],
             [
               -2,
-              3
+              4
             ]
           ],
           "original_labels": [
@@ -790,27 +763,27 @@
           "image_vertices": [
             [
               -1,
-              -5
+              -4
             ],
             [
               3,
-              -5
+              -4
             ],
             [
               3,
-              -3
+              -2
             ],
             [
               1,
-              -3
+              -2
             ],
             [
               1,
-              0
+              1
             ],
             [
               -1,
-              0
+              1
             ]
           ],
           "image_labels": [
@@ -829,278 +802,98 @@
       "topic_id": "area_parallelogram_F",
       "prompt": "Find the area of the following parallelogram.",
       "solution_steps": [
-        "Area = base × height = 10 × 14 = 140 cm²"
+        "Area = base × height = 7 × 12 = 84 cm²"
       ],
-      "final_answer": "140 cm²",
+      "final_answer": "84 cm²",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = base × height = 10 × 14 = 140 cm²",
+          "description": "Area = base × height = 7 × 12 = 84 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "140 cm² oe",
+          "description": "84 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "parallelogram",
         "params": {
-          "base": 10,
-          "height": 14,
-          "base_label": "10 cm",
-          "height_label": "14 cm"
+          "base": 7,
+          "height": 12,
+          "base_label": "7 cm",
+          "height_label": "12 cm"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "pythagoras_hypotenuse_triple_F",
-      "prompt": "A right-angled triangle has sides 36 cm and 105 cm. Find the length of x.",
+      "prompt": "A right-angled triangle has sides 20 cm and 48 cm. Find the length of x.",
       "solution_steps": [
-        "c² = a² + b² = 36² + 105² = 1296 + 11025 = 12321",
-        "c = √12321 = 111"
+        "c² = a² + b² = 20² + 48² = 400 + 2304 = 2704",
+        "c = √2704 = 52"
       ],
-      "final_answer": "111 cm",
+      "final_answer": "52 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "c² = a² + b² = 36² + 105² = 1296 + 11025 = 12321",
+          "description": "c² = a² + b² = 20² + 48² = 400 + 2304 = 2704",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "c = √12321 = 111",
+          "description": "c = √2704 = 52",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "111 cm oe",
+          "description": "52 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "right_triangle",
         "params": {
-          "leg1_label": "36 cm",
-          "leg2_label": "105 cm",
+          "leg1_label": "20 cm",
+          "leg2_label": "48 cm",
           "hyp_label": "x"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof_F",
-      "prompt": "Triangles ABC and ADC share side AC, with AB = AD and BC = DC. Which congruence criterion proves that the two triangles are congruent? A) SSS  B) RHS  C) SAS  D) ASA",
+      "topic_id": "vectors_arithmetic_F",
+      "prompt": "\\vec{a} = \\colvec{-2}{5} and \\vec{b} = \\colvec{-3}{-6}. Find \\vec{a} + 3\\vec{b}.",
       "solution_steps": [
-        "AB = AD (given)",
-        "BC = DC (given)",
-        "AC is common to both triangles",
-        "These facts match the Side-Side-Side (SSS) congruence criterion."
+        "\\vec{a} = \\colvec{-2}{5}, \\vec{b} = \\colvec{-3}{-6}",
+        "\\vec{a} = \\colvec{-2}{5} and 3\\vec{b} = \\colvec{-9}{-18}",
+        "\\vec{a} + 3\\vec{b} = \\colvec{-11}{-13}"
       ],
-      "final_answer": "A) SSS",
-      "marks": 1,
-      "mark_scheme": [
-        {
-          "code": "B1",
-          "description": "A) SSS (selecting the correct option)",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "two_triangle_congruence",
-        "params": {
-          "labels_1": [
-            "A",
-            "B",
-            "C"
-          ],
-          "labels_2": [
-            "A",
-            "D",
-            "C"
-          ],
-          "ticks_1": [
-            [
-              0,
-              1,
-              2
-            ],
-            [
-              1,
-              2,
-              3
-            ],
-            [
-              0,
-              2,
-              1
-            ]
-          ],
-          "ticks_2": [
-            [
-              0,
-              1,
-              2
-            ],
-            [
-              1,
-              2,
-              3
-            ],
-            [
-              0,
-              2,
-              1
-            ]
-          ],
-          "arcs_1": [],
-          "arcs_2": [],
-          "note": "AC is common to both triangles."
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "transform_translate_complete_F",
-      "prompt": "Translate shape ABC by the vector (-2, 5). Draw and label the image A'B'C'.",
-      "solution_steps": [
-        "Translate every vertex by the vector (-2, 5): move each point 2 squares left and 5 squares up.",
-        "A(-3, -2) -> A'(-5, 3), B(2, -2) -> B'(0, 3), C(-2, 2) -> C'(-4, 7)"
-      ],
-      "final_answer": "A'(-5, 3), B'(0, 3), C'(-4, 7)",
-      "marks": 3,
+      "final_answer": "\\colvec{-11}{-13}",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Translate every vertex by the vector (-2, 5): move each point 2 squares left and 5 squares up.",
+          "description": "\\vec{a} = \\colvec{-2}{5}, \\vec{b} = \\colvec{-3}{-6}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A(-3, -2) -> A'(-5, 3), B(2, -2) -> B'(0, 3), C(-2, 2) -> C'(-4, 7)",
+          "description": "\\vec{a} = \\colvec{-2}{5} and 3\\vec{b} = \\colvec{-9}{-18}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "\\vec{a} + 3\\vec{b} = \\colvec{-11}{-13}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(-5, 3), B'(0, 3), C'(-4, 7) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              -3,
-              -2
-            ],
-            [
-              2,
-              -2
-            ],
-            [
-              -2,
-              2
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C"
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "grid_transformation",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "original_vertices": [
-            [
-              -3,
-              -2
-            ],
-            [
-              2,
-              -2
-            ],
-            [
-              -2,
-              2
-            ]
-          ],
-          "original_labels": [
-            "A",
-            "B",
-            "C"
-          ],
-          "image_vertices": [
-            [
-              -5,
-              3
-            ],
-            [
-              0,
-              3
-            ],
-            [
-              -4,
-              7
-            ]
-          ],
-          "image_labels": [
-            "A'",
-            "B'",
-            "C'"
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "construction_angle_bisector_F",
-      "prompt": "Angle YUL = 49°. Describe, step by step, how to construct the bisector of angle YUL using only a ruler and a pair of compasses.",
-      "solution_steps": [
-        "Open the compasses to any radius and place the point on U (the vertex of the angle).",
-        "Draw an arc that crosses both arms of the angle, at a point on UY and a point on UL.",
-        "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
-        "Draw a straight line from U through the point where the two arcs intersect. This line is the bisector of angle YUL."
-      ],
-      "final_answer": "The straight line from U through the intersection of the two equal-radius arcs bisects angle YUL into two equal angles.",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Open the compasses to any radius and place the point on U (the vertex of the angle).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Draw an arc that crosses both arms of the angle, at a point on UY and a point on UL.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Draw a straight line from U through the point where the two arcs intersect. This line is the bisector of angle YUL.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "The straight line from U through the intersection of the two equal-radius arcs bisects angle YUL into two equal angles. oe",
+          "description": "\\colvec{-11}{-13} oe",
           "marks": 1
         }
       ],
@@ -1108,22 +901,271 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "stats_mean_F",
-      "prompt": "Find the mean of this data set: 10, 22, 12, 30, 28, 2.",
+      "topic_id": "sample_space_diagrams_F",
+      "prompt": "Two fair spinners, one numbered 1 to 4 and the other numbered 1 to 6, are spun together. Complete the sample space diagram showing the sum of the two spinners, and use it to find the probability that the sum is even.",
       "solution_steps": [
-        "Mean = sum ÷ count = (10 + 22 + 12 + 30 + 28 + 2) ÷ 6 = 104 ÷ 6 = 52/3"
+        "The sample space diagram shows every possible sum of the two spinners.",
+        "Number of favourable outcomes (the sum is even) = 12",
+        "Total number of equally likely outcomes = 24",
+        "P(the sum is even) = 1/2"
       ],
-      "final_answer": "52/3",
-      "marks": 2,
+      "final_answer": "1/2",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Mean = sum ÷ count = (10 + 22 + 12 + 30 + 28 + 2) ÷ 6 = 104 ÷ 6 = 52/3",
+          "description": "The sample space diagram shows every possible sum of the two spinners.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Number of favourable outcomes (the sum is even) = 12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total number of equally likely outcomes = 24",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(the sum is even) = 1/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "52/3 oe",
+          "description": "1/2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "sample_space_diagram",
+        "params": {
+          "row_values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "col_values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "cells": [
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ]
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "sample_space_diagram",
+        "params": {
+          "row_values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "col_values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "cells": [
+            [
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7"
+            ],
+            [
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8"
+            ],
+            [
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9"
+            ],
+            [
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+              "10"
+            ]
+          ],
+          "highlight": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              5
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "venn_diagram_shading_F",
+      "prompt": "Shade the region that represents the elements in X but not in Y.",
+      "solution_steps": [
+        "The Venn diagram has two circles, X and Y, inside a rectangle representing everything being considered.",
+        "'Shade the region that represents the elements in X but not in Y.' tells you which of the four regions (in X only, in Y only, in both, or in neither) needs shading.",
+        "The region inside X only (not in Y)."
+      ],
+      "final_answer": "The region inside X only (not in Y).",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The Venn diagram has two circles, X and Y, inside a rectangle representing everything being considered.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "'Shade the region that represents the elements in X but not in Y.' tells you which of the four regions (in X only, in Y only, in both, or in neither) needs shading.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The region inside X only (not in Y).",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "The region inside X only (not in Y). oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "X",
+            "Y"
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "X",
+            "Y"
+          ],
+          "shade": [
+            "a_only"
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "stats_median_F",
+      "prompt": "Find the median of this data set: 29, 24, 28, 20, 5, 18, 4.",
+      "solution_steps": [
+        "Sort the data: 4, 5, 18, 20, 24, 28, 29. The middle value is 20."
+      ],
+      "final_answer": "20",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Sort the data: 4, 5, 18, 20, 24, 28, 29. The middle value is 20.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "20 oe",
           "marks": 1
         }
       ],

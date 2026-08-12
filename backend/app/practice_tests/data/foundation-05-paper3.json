@@ -8,28 +8,192 @@
   "questions": [
     {
       "topic_id": "hcf_by_listing_F",
-      "prompt": "Find the highest common factor (HCF) of 16 and 46.",
+      "prompt": "Find the highest common factor (HCF) of 23 and 28.",
       "solution_steps": [
-        "Factors of 16: 1, 2, 4, 8, 16",
-        "Factors of 46: 1, 2, 23, 46",
-        "Highest common factor = 2"
+        "Factors of 23: 1, 23",
+        "Factors of 28: 1, 2, 4, 7, 14, 28",
+        "Highest common factor = 1"
       ],
-      "final_answer": "2",
+      "final_answer": "1",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Factors of 16: 1, 2, 4, 8, 16",
+          "description": "Factors of 23: 1, 23",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factors of 46: 1, 2, 23, 46",
+          "description": "Factors of 28: 1, 2, 4, 7, 14, 28",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Highest common factor = 2",
+          "description": "Highest common factor = 1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_of_amount_F",
+      "prompt": "Calculate 1/2 of 32.",
+      "solution_steps": [
+        "Divide by the denominator: 32 ÷ 2 = 16",
+        "Multiply by the numerator: 16 × 1 = 16"
+      ],
+      "final_answer": "16",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Divide by the denominator: 32 ÷ 2 = 16",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply by the numerator: 16 × 1 = 16",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "16 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "decimals_divide_F",
+      "prompt": "Calculate 28.7 ÷ 7.",
+      "solution_steps": [
+        "28.7 ÷ 7 = 4.1"
+      ],
+      "final_answer": "4.1",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "28.7 ÷ 7 = 4.1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4.1 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_ordering_F",
+      "prompt": "Write these fractions in descending order: 1/7, 9/10, 5/8, 1/2",
+      "solution_steps": [
+        "Convert every fraction to the same denominator, the LCM of 7, 10, 8, 2: 280",
+        "Rewrite each fraction over 280: 1/7 = 40/280, 9/10 = 252/280, 5/8 = 175/280, 1/2 = 140/280",
+        "Order the numerators in descending order and convert back: 9/10, 5/8, 1/2, 1/7"
+      ],
+      "final_answer": "9/10, 5/8, 1/2, 1/7",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert every fraction to the same denominator, the LCM of 7, 10, 8, 2: 280",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rewrite each fraction over 280: 1/7 = 40/280, 9/10 = 252/280, 5/8 = 175/280, 1/2 = 140/280",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Order the numerators in descending order and convert back: 9/10, 5/8, 1/2, 1/7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "9/10, 5/8, 1/2, 1/7 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_equivalent_diagram_F",
+      "prompt": "The first shape shows 1/2 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
+      "solution_steps": [
+        "Cross-multiply 1/2 against each labelled shape: a shape shows an equivalent fraction only if 1 × (its denominator) = (its shaded count) × 2.",
+        "Only shape A) 5/10 works: 1 × 10 = 5 × 2 = 10."
+      ],
+      "final_answer": "A) 5/10",
+      "marks": 1,
+      "mark_scheme": [
+        {
+          "code": "B1",
+          "description": "A) 5/10 (selecting the correct option)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "fraction_shapes",
+        "params": {
+          "shapes": [
+            {
+              "kind": "bar",
+              "parts": 2,
+              "shaded": 1
+            },
+            {
+              "kind": "bar",
+              "parts": 10,
+              "shaded": 5,
+              "label": "A)"
+            },
+            {
+              "kind": "bar",
+              "parts": 8,
+              "shaded": 3,
+              "label": "B)"
+            },
+            {
+              "kind": "bar",
+              "parts": 4,
+              "shaded": 3,
+              "label": "C)"
+            }
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "factors_F",
+      "prompt": "How many factors does 47 have?",
+      "solution_steps": [
+        "List every factor of 47 by checking each whole number from 1 to 47: 1, 47.",
+        "Count them: 2 factors."
+      ],
+      "final_answer": "2",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "List every factor of 47 by checking each whole number from 1 to 47: 1, 47.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Count them: 2 factors.",
           "marks": 1
         },
         {
@@ -42,223 +206,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_of_amount_F",
-      "prompt": "Calculate 9/10 of 310.",
-      "solution_steps": [
-        "Divide by the denominator: 310 ÷ 10 = 31",
-        "Multiply by the numerator: 31 × 9 = 279"
-      ],
-      "final_answer": "279",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Divide by the denominator: 310 ÷ 10 = 31",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply by the numerator: 31 × 9 = 279",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "279 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "decimals_divide_F",
-      "prompt": "Calculate 1.5 ÷ 0.5.",
-      "solution_steps": [
-        "Multiply both numbers by 10 so the divisor becomes a whole number: 1.5 × 10 = 15, 0.5 × 10 = 5",
-        "15 ÷ 5 = 3"
-      ],
-      "final_answer": "3",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiply both numbers by 10 so the divisor becomes a whole number: 1.5 × 10 = 15, 0.5 × 10 = 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "15 ÷ 5 = 3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "fractions_ordering_F",
-      "prompt": "Write these fractions in descending order: 1/2, 1/4, 1/9, 3/8, 4/7",
-      "solution_steps": [
-        "Convert every fraction to the same denominator, the LCM of 2, 4, 9, 8, 7: 504",
-        "Rewrite each fraction over 504: 1/2 = 252/504, 1/4 = 126/504, 1/9 = 56/504, 3/8 = 189/504, 4/7 = 288/504",
-        "Order the numerators in descending order and convert back: 4/7, 1/2, 3/8, 1/4, 1/9"
-      ],
-      "final_answer": "4/7, 1/2, 3/8, 1/4, 1/9",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert every fraction to the same denominator, the LCM of 2, 4, 9, 8, 7: 504",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Rewrite each fraction over 504: 1/2 = 252/504, 1/4 = 126/504, 1/9 = 56/504, 3/8 = 189/504, 4/7 = 288/504",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Order the numerators in descending order and convert back: 4/7, 1/2, 3/8, 1/4, 1/9",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "4/7, 1/2, 3/8, 1/4, 1/9 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "fractions_equivalent_diagram_F",
-      "prompt": "How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
-      "solution_steps": [
-        "Shape A shows 3/4 shaded; Shape B has 12 equal parts.",
-        "Find the scale factor between the denominators: 12 ÷ 4 = 3",
-        "Multiply the shaded count by the same scale factor: 3 × 3 = 9"
-      ],
-      "final_answer": "9",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Shape A shows 3/4 shaded; Shape B has 12 equal parts.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Find the scale factor between the denominators: 12 ÷ 4 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the shaded count by the same scale factor: 3 × 3 = 9",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "9 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "bar",
-              "parts": 4,
-              "shaded": 3
-            },
-            {
-              "kind": "bar",
-              "parts": 12,
-              "shaded": 0
-            }
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "bar",
-              "parts": 4,
-              "shaded": 3
-            },
-            {
-              "kind": "bar",
-              "parts": 12,
-              "shaded": 9
-            }
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "factors_F",
-      "prompt": "Is 74 a factor of 95?",
-      "solution_steps": [
-        "95 ÷ 74 = 1 remainder 21",
-        "No, 74 is not a factor of 95."
-      ],
-      "final_answer": "No",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "95 ÷ 74 = 1 remainder 21",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "No, 74 is not a factor of 95.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "No oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
       "topic_id": "lcm_by_listing_F",
-      "prompt": "Find the lowest common multiple (LCM) of 11 and 5.",
+      "prompt": "Find the lowest common multiple (LCM) of 3 and 15.",
       "solution_steps": [
-        "Multiples of 11: 11, 22, 33, 44, 55, ...",
-        "Multiples of 5: 5, 10, 15, 20, 25, ...",
-        "Lowest common multiple = 55"
+        "Multiples of 3: 3, 6, 9, 12, 15, ...",
+        "Multiples of 15: 15, 30, 45, 60, 75, ...",
+        "Lowest common multiple = 15"
       ],
-      "final_answer": "55",
+      "final_answer": "15",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiples of 11: 11, 22, 33, 44, 55, ...",
+          "description": "Multiples of 3: 3, 6, 9, 12, 15, ...",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiples of 5: 5, 10, 15, 20, 25, ...",
+          "description": "Multiples of 15: 15, 30, 45, 60, 75, ...",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Lowest common multiple = 55",
+          "description": "Lowest common multiple = 15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "55 oe",
+          "description": "15 oe",
           "marks": 1
         }
       ],
@@ -267,21 +242,21 @@
     },
     {
       "topic_id": "negative_multiply_divide_F",
-      "prompt": "Work out 1 × (-3).",
+      "prompt": "Work out -5 × 1.",
       "solution_steps": [
-        "1 × (-3) = -3"
+        "-5 × 1 = -5"
       ],
-      "final_answer": "-3",
+      "final_answer": "-5",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "1 × (-3) = -3",
+          "description": "-5 × 1 = -5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-3 oe",
+          "description": "-5 oe",
           "marks": 1
         }
       ],
@@ -290,27 +265,27 @@
     },
     {
       "topic_id": "standard_form_from_small_F",
-      "prompt": "Write 8.3 × 10^-3 as an ordinary number.",
+      "prompt": "Write 9.6 × 10^-5 as an ordinary number.",
       "solution_steps": [
-        "Multiply 8.3 by 10^-3, which means moving the decimal point 3 place(s) left.",
-        "8.3 × 10^-3 = 0.0083"
+        "Multiply 9.6 by 10^-5, which means moving the decimal point 5 place(s) left.",
+        "9.6 × 10^-5 = 0.000096"
       ],
-      "final_answer": "0.0083",
+      "final_answer": "0.000096",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply 8.3 by 10^-3, which means moving the decimal point 3 place(s) left.",
+          "description": "Multiply 9.6 by 10^-5, which means moving the decimal point 5 place(s) left.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "8.3 × 10^-3 = 0.0083",
+          "description": "9.6 × 10^-5 = 0.000096",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0.0083 oe",
+          "description": "0.000096 oe",
           "marks": 1
         }
       ],
@@ -319,19 +294,19 @@
     },
     {
       "topic_id": "plot_quadratic_F",
-      "prompt": "Complete a table of values for y = -x^2 + x + 4 for x = -3 to 3, then plot the graph.",
+      "prompt": "Complete a table of values for y = -x^2 - x for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = -x^2 + x + 4:",
+        "Table of values for y = -x^2 - x:",
         "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: -8, -2, 2, 4, 4, 2, -2",
+        "y: -6, -2, 0, 0, -2, -6, -12",
         "Plot each (x, y) point and join them with a single smooth curve."
       ],
-      "final_answer": "Quadratic curve: y = -x^2 + x + 4",
+      "final_answer": "Quadratic curve: y = -x^2 - x",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = -x^2 + x + 4:",
+          "description": "Table of values for y = -x^2 - x:",
           "marks": 1
         },
         {
@@ -341,7 +316,7 @@
         },
         {
           "code": "M1",
-          "description": "y: -8, -2, 2, 4, 4, 2, -2",
+          "description": "y: -6, -2, 0, 0, -2, -6, -12",
           "marks": 1
         },
         {
@@ -351,7 +326,7 @@
         },
         {
           "code": "A1",
-          "description": "Quadratic curve: y = -x^2 + x + 4 oe",
+          "description": "Quadratic curve: y = -x^2 - x oe",
           "marks": 1
         }
       ],
@@ -360,12 +335,12 @@
         "params": {
           "kind": "quadratic",
           "a": -1,
-          "b": 1,
-          "c": 4,
+          "b": -1,
+          "c": 0,
           "x_min": -4,
           "x_max": 4,
-          "y_min": -9,
-          "y_max": 5,
+          "y_min": -13,
+          "y_max": 1,
           "blank": true
         }
       },
@@ -374,16 +349,16 @@
         "params": {
           "kind": "quadratic",
           "a": -1,
-          "b": 1,
-          "c": 4,
+          "b": -1,
+          "c": 0,
           "x_min": -4,
           "x_max": 4,
-          "y_min": -9,
-          "y_max": 5,
+          "y_min": -13,
+          "y_max": 1,
           "table_points": [
             [
               -3,
-              -8
+              -6
             ],
             [
               -2,
@@ -391,57 +366,63 @@
             ],
             [
               -1,
-              2
+              0
             ],
             [
               0,
-              4
+              0
             ],
             [
               1,
-              4
+              -2
             ],
             [
               2,
-              2
+              -6
             ],
             [
               3,
-              -2
+              -12
             ]
           ]
         }
       }
     },
     {
-      "topic_id": "algebraic_indices_F",
-      "prompt": "Simplify (5x^3)^3",
+      "topic_id": "solve_quadratic_factorising_F",
+      "prompt": "Solve x^2 + 17x + 72 = 0 by factorising.",
       "solution_steps": [
-        "Raising a power to another power: multiply the exponents, and raise the coefficient to that power too.",
-        "(5x^3)^3 = 5^3 x^(3×3)",
-        "= 125x^9"
+        "Find two numbers that multiply to 72 and add to 17: 8 and 9",
+        "Factorise: (x + 8)(x + 9) = 0",
+        "Either x + 8 = 0 or x + 9 = 0",
+        "x = -8 or x = -9"
       ],
-      "final_answer": "125x^9",
-      "marks": 4,
+      "final_answer": "x = -8 or x = -9",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Raising a power to another power: multiply the exponents, and raise the coefficient to that power too.",
+          "description": "Find two numbers that multiply to 72 and add to 17: 8 and 9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(5x^3)^3 = 5^3 x^(3×3)",
+          "description": "Factorise: (x + 8)(x + 9) = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 125x^9",
+          "description": "Either x + 8 = 0 or x + 9 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -8 or x = -9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "125x^9 oe",
+          "description": "x = -8 or x = -9 oe",
           "marks": 1
         }
       ],
@@ -450,33 +431,33 @@
     },
     {
       "topic_id": "parallel_lines_equation_F",
-      "prompt": "A line is parallel to y = -3x - 1 and passes through the point (2, -8). Find the equation of the line.",
+      "prompt": "A line is parallel to y = x - 7 and passes through the point (-5, 1). Find the equation of the line.",
       "solution_steps": [
-        "Parallel lines have the same gradient, so m = -3.",
-        "Substitute (2, -8) into y = -3x + c: -8 = -3×(2) + c, so c = -2",
-        "Equation of the line: y = -3x - 2"
+        "Parallel lines have the same gradient, so m = 1.",
+        "Substitute (-5, 1) into y = 1x + c: 1 = 1×(-5) + c, so c = 6",
+        "Equation of the line: y = x + 6"
       ],
-      "final_answer": "y = -3x - 2",
+      "final_answer": "y = x + 6",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Parallel lines have the same gradient, so m = -3.",
+          "description": "Parallel lines have the same gradient, so m = 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute (2, -8) into y = -3x + c: -8 = -3×(2) + c, so c = -2",
+          "description": "Substitute (-5, 1) into y = 1x + c: 1 = 1×(-5) + c, so c = 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Equation of the line: y = -3x - 2",
+          "description": "Equation of the line: y = x + 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = -3x - 2 oe",
+          "description": "y = x + 6 oe",
           "marks": 1
         }
       ],
@@ -484,55 +465,54 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solving_inequalities_F",
-      "prompt": "Solve the inequality: \\frac{x}{4} + 7 ≥ -7",
+      "topic_id": "simultaneous_graphically_F",
+      "prompt": "The graphs of y = 4x + 3 and y = -x - 7 are shown below. Use the graphs to write down the solution to the simultaneous equations.",
       "solution_steps": [
-        "\\frac{x}{4} + 7 ≥ -7",
-        "Subtract 7 from both sides:",
-        "\\frac{x}{4} ≥ -14",
-        "Multiply both sides by 4:",
-        "x ≥ -56"
+        "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
+        "The lines cross at x = -2, y = -5."
       ],
-      "final_answer": "x ≥ -56",
-      "marks": 5,
+      "final_answer": "x = -2, y = -5",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "\\frac{x}{4} + 7 ≥ -7",
+          "description": "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 7 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "\\frac{x}{4} ≥ -14",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply both sides by 4: x ≥ -56",
+          "description": "The lines cross at x = -2, y = -5.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x ≥ -56 oe",
+          "description": "x = -2, y = -5 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "linear_graph_pair",
+        "params": {
+          "label1": "y = 4x + 3",
+          "label2": "y = -x - 7",
+          "m1": 4,
+          "c1": 3,
+          "m2": -1,
+          "c2": -7,
+          "sol_x": -2,
+          "sol_y": -5
+        }
+      },
       "solution_diagram": null
     },
     {
       "topic_id": "special_sequences_F",
-      "prompt": "The first 5 cube numbers are: 1, 8, 27, 64, 125. Find the next term in the sequence.",
+      "prompt": "The first 3 cube numbers are: 1, 8, 27. Find the 5th term of the sequence.",
       "solution_steps": [
         "These are the cube numbers: the nth term is given by n^3.",
-        "Term 6 = 6^3 = 216"
+        "Term 5 = 5^3 = 125"
       ],
-      "final_answer": "216",
+      "final_answer": "125",
       "marks": 3,
       "mark_scheme": [
         {
@@ -542,12 +522,12 @@
         },
         {
           "code": "M1",
-          "description": "Term 6 = 6^3 = 216",
+          "description": "Term 5 = 5^3 = 125",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "216 oe",
+          "description": "125 oe",
           "marks": 1
         }
       ],
@@ -556,56 +536,27 @@
     },
     {
       "topic_id": "sequences_term_to_term_rule_F",
-      "prompt": "Here are the first four terms of a sequence: -1, -2, -4, -8. Describe the term-to-term rule, and find the next term.",
+      "prompt": "Here are the first four terms of a sequence: 8, 4, 0, -4. Describe the term-to-term rule, and find the next term.",
       "solution_steps": [
-        "Term-to-term rule: multiply by 2",
-        "Next term = -16"
+        "Term-to-term rule: subtract 4",
+        "Next term = -8"
       ],
-      "final_answer": "Rule: multiply by 2. Next term = -16",
+      "final_answer": "Rule: subtract 4. Next term = -8",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Term-to-term rule: multiply by 2",
+          "description": "Term-to-term rule: subtract 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Next term = -16",
+          "description": "Next term = -8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Rule: multiply by 2. Next term = -16 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "factorise_common_factor_F",
-      "prompt": "Factorise: 45x - 81",
-      "solution_steps": [
-        "Find the highest common factor of 45 and -81: 9",
-        "Factorise: 9(5x - 9)"
-      ],
-      "final_answer": "9(5x - 9)",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find the highest common factor of 45 and -81: 9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise: 9(5x - 9)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "9(5x - 9) oe",
+          "description": "Rule: subtract 4. Next term = -8 oe",
           "marks": 1
         }
       ],
@@ -614,15 +565,15 @@
     },
     {
       "topic_id": "expand_double_brackets_no_coefficient_F",
-      "prompt": "Expand and simplify: (x + 6)(x + 6)",
+      "prompt": "Expand and simplify: (x + 9)(x + 3)",
       "solution_steps": [
         "First: x × x = x^2",
-        "Outer: x × 6 = 6x",
-        "Inner: 6 × x = 6x",
-        "Last: 6 × 6 = 36",
-        "Combine like terms: x^2 + 12x + 36"
+        "Outer: x × 3 = 3x",
+        "Inner: 9 × x = 9x",
+        "Last: 9 × 3 = 27",
+        "Combine like terms: x^2 + 12x + 27"
       ],
-      "final_answer": "x^2 + 12x + 36",
+      "final_answer": "x^2 + 12x + 27",
       "marks": 5,
       "mark_scheme": [
         {
@@ -632,22 +583,64 @@
         },
         {
           "code": "M1",
-          "description": "Outer: x × 6 = 6x",
+          "description": "Outer: x × 3 = 3x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Inner: 6 × x = 6x",
+          "description": "Inner: 9 × x = 9x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Last: 6 × 6 = 36 Combine like terms: x^2 + 12x + 36",
+          "description": "Last: 9 × 3 = 27 Combine like terms: x^2 + 12x + 27",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x^2 + 12x + 36 oe",
+          "description": "x^2 + 12x + 27 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "expand_double_brackets_F",
+      "prompt": "Expand and simplify: (3x + 2)(x + 8)",
+      "solution_steps": [
+        "First: 3x × 1x = 3x^2",
+        "Outer: 3x × 8 = 24x",
+        "Inner: 2 × 1x = 2x",
+        "Last: 2 × 8 = 16",
+        "Combine like terms: 3x^2 + 26x + 16"
+      ],
+      "final_answer": "3x^2 + 26x + 16",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First: 3x × 1x = 3x^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Outer: 3x × 8 = 24x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Inner: 2 × 1x = 2x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Last: 2 × 8 = 16 Combine like terms: 3x^2 + 26x + 16",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3x^2 + 26x + 16 oe",
           "marks": 1
         }
       ],
@@ -656,27 +649,27 @@
     },
     {
       "topic_id": "compound_percentage_F",
-      "prompt": "A price of £300 increases by 50%, then decreases by 50%. Find the final price.",
+      "prompt": "A price of £340 decreases by 25%, then increases by 25%. Find the final price.",
       "solution_steps": [
-        "After the first change: 300 × 1.50 = 450",
-        "After the second change: 450 × 0.50 = 225"
+        "After the first change: 340 × 0.75 = 255",
+        "After the second change: 255 × 1.25 = 318.75"
       ],
-      "final_answer": "£225",
+      "final_answer": "£318.75",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first change: 300 × 1.50 = 450",
+          "description": "After the first change: 340 × 0.75 = 255",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "After the second change: 450 × 0.50 = 225",
+          "description": "After the second change: 255 × 1.25 = 318.75",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£225 oe",
+          "description": "£318.75 oe",
           "marks": 1
         }
       ],
@@ -685,27 +678,27 @@
     },
     {
       "topic_id": "unit_conversions_F",
-      "prompt": "Convert 315 cm to mm.",
+      "prompt": "Convert 2819 m to km.",
       "solution_steps": [
-        "1 cm = 10 mm",
-        "315 cm = 315 × 10 = 3150 mm"
+        "1 km = 1000 m",
+        "2819 m = 2819 ÷ 1000 = 2.819 km"
       ],
-      "final_answer": "3150 mm",
+      "final_answer": "2.819 km",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "1 cm = 10 mm",
+          "description": "1 km = 1000 m",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "315 cm = 315 × 10 = 3150 mm",
+          "description": "2819 m = 2819 ÷ 1000 = 2.819 km",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3150 mm oe",
+          "description": "2.819 km oe",
           "marks": 1
         }
       ],
@@ -713,100 +706,69 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof_F",
-      "prompt": "ABCD is an isosceles trapezium with AB parallel to DC and AD = BC. AC and BD are its diagonals. Which congruence criterion proves that the two triangles are congruent? A) SSS  B) RHS  C) ASA  D) SAS",
+      "topic_id": "best_buys_noncalculator_F",
+      "prompt": "A shop sells rice in different sizes: A: £3.50 for 700g; B: £0.30 for 100g. Which option is the better value for money? Show your working.",
       "solution_steps": [
-        "AB is common to both triangles",
-        "angle DAB = angle CBA (base angles of an isosceles trapezium are equal)",
-        "AD = BC (given, the equal sides of the trapezium)",
-        "These facts match the Side-Angle-Side (SAS) congruence criterion."
+        "Work out the price per 100g for each option:",
+        "A: £3.50 ÷ 700 × 100 = 50p per 100g",
+        "B: £0.30 ÷ 100 × 100 = 30p per 100g",
+        "The lowest price per 100g is B at 30p per 100g, so B is the best value."
       ],
-      "final_answer": "D) SAS",
-      "marks": 1,
-      "mark_scheme": [
-        {
-          "code": "B1",
-          "description": "D) SAS (selecting the correct option)",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "two_triangle_congruence",
-        "params": {
-          "labels_1": [
-            "A",
-            "B",
-            "D"
-          ],
-          "labels_2": [
-            "B",
-            "A",
-            "C"
-          ],
-          "ticks_1": [
-            [
-              0,
-              1,
-              1
-            ],
-            [
-              0,
-              2,
-              2
-            ]
-          ],
-          "ticks_2": [
-            [
-              0,
-              1,
-              1
-            ],
-            [
-              0,
-              2,
-              2
-            ]
-          ],
-          "arcs_1": [
-            [
-              0,
-              1
-            ]
-          ],
-          "arcs_2": [
-            [
-              0,
-              1
-            ]
-          ],
-          "note": "AB is common to both triangles."
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "percentage_of_amount_F",
-      "prompt": "Find 25% of 160.",
-      "solution_steps": [
-        "Convert 25% to a fraction: 25/100",
-        "Multiply: 25/100 × 160 = 40"
-      ],
-      "final_answer": "40",
-      "marks": 3,
+      "final_answer": "B (£0.30 for 100g)",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 25% to a fraction: 25/100",
+          "description": "Work out the price per 100g for each option:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: 25/100 × 160 = 40",
+          "description": "A: £3.50 ÷ 700 × 100 = 50p per 100g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B: £0.30 ÷ 100 × 100 = 30p per 100g",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The lowest price per 100g is B at 30p per 100g, so B is the best value.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "40 oe",
+          "description": "B (£0.30 for 100g) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "percentage_of_amount_F",
+      "prompt": "Find 20% of 240.",
+      "solution_steps": [
+        "Convert 20% to a fraction: 20/100",
+        "Multiply: 20/100 × 240 = 48"
+      ],
+      "final_answer": "48",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert 20% to a fraction: 20/100",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply: 20/100 × 240 = 48",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "48 oe",
           "marks": 1
         }
       ],
@@ -815,40 +777,40 @@
     },
     {
       "topic_id": "ratio_share_three_part_F",
-      "prompt": "Share 18 in the ratio 1:3:2.",
+      "prompt": "Share 28 in the ratio 4:7:3.",
       "solution_steps": [
-        "Total parts = 1 + 3 + 2 = 6",
-        "Value of one part = 18 ÷ 6 = 3",
-        "Share 1 = 1 × 3 = 3",
-        "Share 2 = 3 × 3 = 9",
-        "Share 3 = 2 × 3 = 6"
+        "Total parts = 4 + 7 + 3 = 14",
+        "Value of one part = 28 ÷ 14 = 2",
+        "Share 1 = 4 × 2 = 8",
+        "Share 2 = 7 × 2 = 14",
+        "Share 3 = 3 × 2 = 6"
       ],
-      "final_answer": "3 : 9 : 6",
+      "final_answer": "8 : 14 : 6",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 1 + 3 + 2 = 6",
+          "description": "Total parts = 4 + 7 + 3 = 14",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 18 ÷ 6 = 3",
+          "description": "Value of one part = 28 ÷ 14 = 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 1 = 1 × 3 = 3",
+          "description": "Share 1 = 4 × 2 = 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 2 = 3 × 3 = 9 Share 3 = 2 × 3 = 6",
+          "description": "Share 2 = 7 × 2 = 14 Share 3 = 3 × 2 = 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 : 9 : 6 oe",
+          "description": "8 : 14 : 6 oe",
           "marks": 1
         }
       ],
@@ -857,87 +819,91 @@
     },
     {
       "topic_id": "volume_surface_area_cylinder_F",
-      "prompt": "A cylinder has radius 9 cm and height 19 cm. Find its total surface area, correct to 3 significant figures.",
+      "prompt": "Find the total surface area of the cylinder, correct to 2 decimal places.",
       "solution_steps": [
-        "Surface area = 2πr² + 2πrh = (2 × π × 9²) + (2 × π × 9 × 19)",
-        "= 1580 cm² (3 s.f., using a calculator value of π)"
+        "Surface area = 2πr² + 2πrh = (2 × π × 2²) + (2 × π × 2 × 13)",
+        "= 188.50 cm² (2 d.p., using a calculator value of π)"
       ],
-      "final_answer": "1580 cm²",
+      "final_answer": "188.50 cm²",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Surface area = 2πr² + 2πrh = (2 × π × 9²) + (2 × π × 9 × 19)",
+          "description": "Surface area = 2πr² + 2πrh = (2 × π × 2²) + (2 × π × 2 × 13)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 1580 cm² (3 s.f., using a calculator value of π)",
+          "description": "= 188.50 cm² (2 d.p., using a calculator value of π)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1580 cm² oe",
+          "description": "188.50 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "cylinder",
         "params": {
-          "radius_label": "9 cm",
-          "height_label": "19 cm"
+          "radius_label": "2 cm",
+          "height_label": "13 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "area_subtract_compound_F",
-      "prompt": "Find the shaded area.",
+      "topic_id": "congruent_triangle_proof_F",
+      "prompt": "Shown below are two congruent triangles. Give a reason why they are congruent. A) SAS  B) SSS  C) RHS  D) ASA",
       "solution_steps": [
-        "Area of large rectangle = 11 × 14 = 154 cm²",
-        "Area of rectangular hole = 7 × 7 = 49 cm²",
-        "Shaded area = 154 - 49 = 105 cm²"
+        "Look at which measurements are marked equal on both triangles - here they match the Angle-Side-Angle (ASA) pattern.",
+        "So the two triangles are congruent by Angle-Side-Angle (ASA)."
       ],
-      "final_answer": "105 cm²",
-      "marks": 4,
+      "final_answer": "D) ASA",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "Area of large rectangle = 11 × 14 = 154 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Area of rectangular hole = 7 × 7 = 49 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Shaded area = 154 - 49 = 105 cm²",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "105 cm² oe",
+          "code": "B1",
+          "description": "D) ASA (selecting the correct option)",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "l_shape",
+        "kind": "two_triangle_congruence",
         "params": {
-          "outer_w": 11,
-          "outer_h": 14,
-          "inner_w": 7,
-          "inner_h": 7,
-          "notch": "center",
-          "shade_frame": true,
-          "outer_labels": [
-            "11 cm",
-            "14 cm"
+          "side_labels_1": [
+            [
+              0,
+              1,
+              "13 cm"
+            ]
           ],
-          "inner_labels": [
-            "7 cm",
-            "7 cm"
+          "side_labels_2": [
+            [
+              0,
+              1,
+              "13 cm"
+            ]
+          ],
+          "angle_labels_1": [
+            [
+              0,
+              "48°"
+            ],
+            [
+              1,
+              "38°"
+            ]
+          ],
+          "angle_labels_2": [
+            [
+              0,
+              "48°"
+            ],
+            [
+              1,
+              "38°"
+            ]
           ]
         }
       },
@@ -945,62 +911,79 @@
     },
     {
       "topic_id": "loci_constructions_F",
-      "prompt": "A and B are two fixed points (shown). Describe the locus of points that are equidistant from A and B (the same distance from both).",
+      "prompt": "Two straight lines meet at Y, passing through X and Z as shown. Describe the locus of points that are equidistant from line XY and line ZY.",
       "solution_steps": [
-        "The locus of points equidistant from two fixed points is the perpendicular bisector of the line segment joining them.",
-        "So the locus is the perpendicular bisector of AB: the line through the midpoint of AB, at a right angle to AB."
+        "The locus of points equidistant from two intersecting lines is the bisector of the angle between them.",
+        "So the locus is the bisector of angle XYZ: the line from Y that splits the angle into two equal halves."
       ],
-      "final_answer": "The perpendicular bisector of AB.",
+      "final_answer": "The angle bisector of angle XYZ.",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The locus of points equidistant from two fixed points is the perpendicular bisector of the line segment joining them.",
+          "description": "The locus of points equidistant from two intersecting lines is the bisector of the angle between them.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "So the locus is the perpendicular bisector of AB: the line through the midpoint of AB, at a right angle to AB.",
+          "description": "So the locus is the bisector of angle XYZ: the line from Y that splits the angle into two equal halves.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "The perpendicular bisector of AB. oe",
+          "description": "The angle bisector of angle XYZ. oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "loci_construction",
         "params": {
-          "x_min": -1.9152598729818497,
-          "x_max": 6.915259872981849,
-          "y_min": 0.0,
-          "y_max": 5.0,
+          "x_min": -1.0,
+          "x_max": 5.285836503510561,
+          "y_min": -5.90813591723832,
+          "y_max": 1.0,
           "points": [
             {
               "xy": [
-                2,
-                4
+                0.0,
+                0.0
               ],
-              "label": "A"
+              "label": "Y"
             },
             {
               "xy": [
-                3,
-                1
+                0.9540449768827255,
+                -4.90813591723832
               ],
-              "label": "B"
+              "label": "X"
+            },
+            {
+              "xy": [
+                4.285836503510561,
+                -2.5751903745502727
+              ],
+              "label": "Z"
             }
           ],
           "given_lines": [
             {
               "p1": [
-                2,
-                4
+                0.0,
+                0.0
               ],
               "p2": [
-                3,
-                1
+                0.9540449768827255,
+                -4.90813591723832
+              ]
+            },
+            {
+              "p1": [
+                0.0,
+                0.0
+              ],
+              "p2": [
+                4.285836503510561,
+                -2.5751903745502727
               ]
             }
           ]
@@ -1009,47 +992,64 @@
       "solution_diagram": {
         "kind": "loci_construction",
         "params": {
-          "x_min": -1.9152598729818497,
-          "x_max": 6.915259872981849,
-          "y_min": 0.0,
-          "y_max": 5.0,
+          "x_min": -1.0,
+          "x_max": 5.285836503510561,
+          "y_min": -5.90813591723832,
+          "y_max": 1.0,
           "points": [
             {
               "xy": [
-                2,
-                4
+                0.0,
+                0.0
               ],
-              "label": "A"
+              "label": "Y"
             },
             {
               "xy": [
-                3,
-                1
+                0.9540449768827255,
+                -4.90813591723832
               ],
-              "label": "B"
+              "label": "X"
+            },
+            {
+              "xy": [
+                4.285836503510561,
+                -2.5751903745502727
+              ],
+              "label": "Z"
             }
           ],
           "given_lines": [
             {
               "p1": [
-                2,
-                4
+                0.0,
+                0.0
               ],
               "p2": [
-                3,
-                1
+                0.9540449768827255,
+                -4.90813591723832
+              ]
+            },
+            {
+              "p1": [
+                0.0,
+                0.0
+              ],
+              "p2": [
+                4.285836503510561,
+                -2.5751903745502727
               ]
             }
           ],
           "circle": null,
           "segment": {
             "p1": [
-              5.915259872981849,
-              3.6384199576606164
+              0.0,
+              0.0
             ],
             "p2": [
-              -0.9152598729818497,
-              1.3615800423393833
+              3.1546703999307533,
+              -4.505336243589455
             ],
             "dashed": false
           }
@@ -1057,57 +1057,70 @@
       }
     },
     {
-      "topic_id": "angles_polygon_interior_F",
-      "prompt": "A polygon has 9 sides. Find the sum of its interior angles.",
+      "topic_id": "pythagoras_hypotenuse_triple_F",
+      "prompt": "A right-angled triangle has sides 80 cm and 84 cm. Find the length of x.",
       "solution_steps": [
-        "Sum of interior angles = (n - 2) × 180 = (9 - 2) × 180 = 1260°"
+        "c² = a² + b² = 80² + 84² = 6400 + 7056 = 13456",
+        "c = √13456 = 116"
       ],
-      "final_answer": "1260°",
-      "marks": 2,
+      "final_answer": "116 cm",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Sum of interior angles = (n - 2) × 180 = (9 - 2) × 180 = 1260°",
+          "description": "c² = a² + b² = 80² + 84² = 6400 + 7056 = 13456",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "c = √13456 = 116",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1260° oe",
+          "description": "116 cm oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "right_triangle",
+        "params": {
+          "leg1_label": "80 cm",
+          "leg2_label": "84 cm",
+          "hyp_label": "x"
+        }
+      },
       "solution_diagram": null
     },
     {
       "topic_id": "transform_enlarge_complete_F",
-      "prompt": "Enlarge shape ABCDEF by scale factor 2, centre (6, 2). Draw and label the image A'B'C'D'E'F'.",
+      "prompt": "Enlarge shape ABCD by scale factor 2, centre (-2, 8).",
       "solution_steps": [
-        "The centre of enlargement is (6, 2) and the scale factor is 2.",
-        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-6, -4) from the centre, so A' = (6, 2) + 2 × (-6, -4) = (-6, -6).",
-        "Repeat for every vertex: A(0, -2) -> A'(-6, -6), B(4, -2) -> B'(2, -6), C(4, 0) -> C'(2, -2), D(2, 0) -> D'(-2, -2), E(2, 3) -> E'(-2, 4), F(0, 3) -> F'(-6, 4)"
+        "The centre of enlargement is (-2, 8) and the scale factor is 2.",
+        "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-1, -6) from the centre, so A' = (-2, 8) + 2 × (-1, -6) = (-4, -4).",
+        "Repeat for every vertex: A(-3, 2) -> A'(-4, -4), B(1, 2) -> B'(4, -4), C(0, 6) -> C'(2, 4), D(-4, 5) -> D'(-6, 2)"
       ],
-      "final_answer": "A'(-6, -6), B'(2, -6), C'(2, -2), D'(-2, -2), E'(-2, 4), F'(-6, 4)",
+      "final_answer": "A'(-4, -4), B'(4, -4), C'(2, 4), D'(-6, 2)",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The centre of enlargement is (6, 2) and the scale factor is 2.",
+          "description": "The centre of enlargement is (-2, 8) and the scale factor is 2.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-6, -4) from the centre, so A' = (6, 2) + 2 × (-6, -4) = (-6, -6).",
+          "description": "For each vertex, find its displacement from the centre and multiply by the scale factor: A is a displacement of (-1, -6) from the centre, so A' = (-2, 8) + 2 × (-1, -6) = (-4, -4).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Repeat for every vertex: A(0, -2) -> A'(-6, -6), B(4, -2) -> B'(2, -6), C(4, 0) -> C'(2, -2), D(2, 0) -> D'(-2, -2), E(2, 3) -> E'(-2, 4), F(0, 3) -> F'(-6, 4)",
+          "description": "Repeat for every vertex: A(-3, 2) -> A'(-4, -4), B(1, 2) -> B'(4, -4), C(0, 6) -> C'(2, 4), D(-4, 5) -> D'(-6, 2)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(-6, -6), B'(2, -6), C'(2, -2), D'(-2, -2), E'(-2, 4), F'(-6, 4) oe",
+          "description": "A'(-4, -4), B'(4, -4), C'(2, 4), D'(-6, 2) oe",
           "marks": 1
         }
       ],
@@ -1120,41 +1133,31 @@
           "y_max": 8,
           "original_vertices": [
             [
-              0,
-              -2
+              -3,
+              2
             ],
             [
-              4,
-              -2
-            ],
-            [
-              4,
-              0
-            ],
-            [
-              2,
-              0
-            ],
-            [
-              2,
-              3
+              1,
+              2
             ],
             [
               0,
-              3
+              6
+            ],
+            [
+              -4,
+              5
             ]
           ],
           "original_labels": [
             "A",
             "B",
             "C",
-            "D",
-            "E",
-            "F"
+            "D"
           ],
           "centre": [
-            6,
-            2
+            -2,
+            8
           ]
         }
       },
@@ -1167,114 +1170,94 @@
           "y_max": 8,
           "original_vertices": [
             [
-              0,
-              -2
+              -3,
+              2
             ],
             [
-              4,
-              -2
-            ],
-            [
-              4,
-              0
-            ],
-            [
-              2,
-              0
-            ],
-            [
-              2,
-              3
+              1,
+              2
             ],
             [
               0,
-              3
+              6
+            ],
+            [
+              -4,
+              5
             ]
           ],
           "original_labels": [
             "A",
             "B",
             "C",
-            "D",
-            "E",
-            "F"
+            "D"
           ],
           "centre": [
-            6,
-            2
+            -2,
+            8
           ],
           "image_vertices": [
             [
-              -6,
-              -6
+              -4,
+              -4
+            ],
+            [
+              4,
+              -4
             ],
             [
               2,
-              -6
-            ],
-            [
-              2,
-              -2
-            ],
-            [
-              -2,
-              -2
-            ],
-            [
-              -2,
               4
             ],
             [
               -6,
-              4
+              2
             ]
           ],
           "image_labels": [
             "A'",
             "B'",
             "C'",
-            "D'",
-            "E'",
-            "F'"
+            "D'"
           ]
         }
       }
     },
     {
       "topic_id": "sample_space_diagrams_F",
-      "prompt": "Two fair spinners, one numbered 1 to 6 and the other numbered 1 to 6, are spun together. Complete the sample space diagram showing the product of the two spinners, and use it to find the probability that the product is 9.",
+      "prompt": "Two fair spinners, one numbered 1 to 4 and the other numbered 1 to 6, are spun together. Complete the sample space diagram showing the sum of the two spinners, and use it to find the probability that the sum is 6.",
       "solution_steps": [
-        "The sample space diagram shows every possible product of the two spinners.",
-        "Number of favourable outcomes (the product is 9) = 1",
-        "Total number of equally likely outcomes = 36",
-        "P(the product is 9) = 1/36"
+        "The sample space diagram shows every possible sum of the two spinners.",
+        "Number of favourable outcomes (the sum is 6) = 4",
+        "Total number of equally likely outcomes = 24",
+        "P(the sum is 6) = 1/6"
       ],
-      "final_answer": "1/36",
+      "final_answer": "1/6",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The sample space diagram shows every possible product of the two spinners.",
+          "description": "The sample space diagram shows every possible sum of the two spinners.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Number of favourable outcomes (the product is 9) = 1",
+          "description": "Number of favourable outcomes (the sum is 6) = 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total number of equally likely outcomes = 36",
+          "description": "Total number of equally likely outcomes = 24",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(the product is 9) = 1/36",
+          "description": "P(the sum is 6) = 1/6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/36 oe",
+          "description": "1/6 oe",
           "marks": 1
         }
       ],
@@ -1285,9 +1268,7 @@
             1,
             2,
             3,
-            4,
-            5,
-            6
+            4
           ],
           "col_values": [
             1,
@@ -1298,22 +1279,6 @@
             6
           ],
           "cells": [
-            [
-              "",
-              "",
-              "",
-              "",
-              "",
-              ""
-            ],
-            [
-              "",
-              "",
-              "",
-              "",
-              "",
-              ""
-            ],
             [
               "",
               "",
@@ -1356,9 +1321,7 @@
             1,
             2,
             3,
-            4,
-            5,
-            6
+            4
           ],
           "col_values": [
             1,
@@ -1370,80 +1333,82 @@
           ],
           "cells": [
             [
-              "1",
               "2",
               "3",
               "4",
               "5",
-              "6"
-            ],
-            [
-              "2",
-              "4",
               "6",
-              "8",
-              "10",
-              "12"
+              "7"
             ],
             [
               "3",
+              "4",
+              "5",
               "6",
+              "7",
+              "8"
+            ],
+            [
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9"
+            ],
+            [
+              "5",
+              "6",
+              "7",
+              "8",
               "9",
-              "12",
-              "15",
-              "18"
-            ],
-            [
-              "4",
-              "8",
-              "12",
-              "16",
-              "20",
-              "24"
-            ],
-            [
-              "5",
-              "10",
-              "15",
-              "20",
-              "25",
-              "30"
-            ],
-            [
-              "6",
-              "12",
-              "18",
-              "24",
-              "30",
-              "36"
+              "10"
             ]
           ],
           "highlight": [
             [
+              0,
+              4
+            ],
+            [
+              1,
+              3
+            ],
+            [
               2,
               2
+            ],
+            [
+              3,
+              1
             ]
           ]
         }
       }
     },
     {
-      "topic_id": "stats_range_F",
-      "prompt": "Find the range of this data set: 8, 28, 1, 28, 30, 17, 5.",
+      "topic_id": "fractions_equivalent_F",
+      "prompt": "1/6 = \\frac{9}{?}. Find the missing number.",
       "solution_steps": [
-        "Range = largest - smallest = 30 - 1 = 29"
+        "Find the scale factor between the numerators: 9 ÷ 1 = 9",
+        "Multiply the denominator by the same scale factor: 6 × 9 = 54"
       ],
-      "final_answer": "29",
-      "marks": 2,
+      "final_answer": "54",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Range = largest - smallest = 30 - 1 = 29",
+          "description": "Find the scale factor between the numerators: 9 ÷ 1 = 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply the denominator by the same scale factor: 6 × 9 = 54",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "29 oe",
+          "description": "54 oe",
           "marks": 1
         }
       ],

@@ -8,27 +8,41 @@
   "questions": [
     {
       "topic_id": "rationalise_denominator_H",
-      "prompt": "Rationalise the denominator of \\frac{6}{√6}, giving your answer in its simplest form.",
+      "prompt": "Rationalise the denominator of \\frac{7}{3 - √5}, giving your answer in its simplest form.",
       "solution_steps": [
-        "Multiply the top and bottom by √6: \\frac{6}{√6} = \\frac{6√6}{6}",
-        "Simplify 6/6 by dividing by 6: √6"
+        "Multiply the numerator and denominator by the conjugate of the denominator, (3 + √5):",
+        "\\frac{7}{3 - √5}",
+        "= \\frac{7(3 + √5)}{[(3 - √5)(3 + √5)]}",
+        "The denominator is a difference of two squares: 3^2 - 5 = 4",
+        "The numerator is 7(3 + √5) = 21 + 7√5",
+        "= \\frac{21 + 7√5}{4}"
       ],
-      "final_answer": "√6",
-      "marks": 3,
+      "final_answer": "\\frac{21 + 7√5}{4}",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply the top and bottom by √6: \\frac{6}{√6} = \\frac{6√6}{6}",
+          "description": "Multiply the numerator and denominator by the conjugate of the denominator, (3 + √5):",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify 6/6 by dividing by 6: √6",
+          "description": "\\frac{7}{3 - √5}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= \\frac{7(3 + √5)}{[(3 - √5)(3 + √5)]}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The denominator is a difference of two squares: 3^2 - 5 = 4 The numerator is 7(3 + √5) = 21 + 7√5 = \\frac{21 + 7√5}{4}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "√6 oe",
+          "description": "\\frac{21 + 7√5}{4} oe",
           "marks": 1
         }
       ],
@@ -37,33 +51,33 @@
     },
     {
       "topic_id": "fractions_divide_H",
-      "prompt": "Calculate 9/7 ÷ 8/12. Give your answer as a fraction in its simplest form.",
+      "prompt": "Calculate 8/11 ÷ 1/6. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
-        "Keep-change-flip: 9/7 ÷ 8/12 = 9/7 × 12/8",
-        "Multiply: \\frac{(9×12)}{(7×8)} = 108/56",
-        "Simplify: 27/14"
+        "Keep-change-flip: 8/11 ÷ 1/6 = 8/11 × 6/1",
+        "Multiply: \\frac{(8×6)}{(11×1)} = 48/11",
+        "Simplify: 48/11"
       ],
-      "final_answer": "27/14",
+      "final_answer": "48/11",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Keep-change-flip: 9/7 ÷ 8/12 = 9/7 × 12/8",
+          "description": "Keep-change-flip: 8/11 ÷ 1/6 = 8/11 × 6/1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: \\frac{(9×12)}{(7×8)} = 108/56",
+          "description": "Multiply: \\frac{(8×6)}{(11×1)} = 48/11",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify: 27/14",
+          "description": "Simplify: 48/11",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "27/14 oe",
+          "description": "48/11 oe",
           "marks": 1
         }
       ],
@@ -72,27 +86,27 @@
     },
     {
       "topic_id": "roots_H",
-      "prompt": "Fully simplify √18, giving your answer in the form a√b.",
+      "prompt": "Simplify √125, giving your answer in the form a√b.",
       "solution_steps": [
-        "Find the largest square factor of 18: 3^2 × 2 = 18",
-        "√18 = √(3^2 × 2) = 3√2"
+        "Find the largest square factor of 125: 5^2 × 5 = 125",
+        "√125 = √(5^2 × 5) = 5√5"
       ],
-      "final_answer": "3√2",
+      "final_answer": "5√5",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the largest square factor of 18: 3^2 × 2 = 18",
+          "description": "Find the largest square factor of 125: 5^2 × 5 = 125",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "√18 = √(3^2 × 2) = 3√2",
+          "description": "√125 = √(5^2 × 5) = 5√5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3√2 oe",
+          "description": "5√5 oe",
           "marks": 1
         }
       ],
@@ -101,19 +115,19 @@
     },
     {
       "topic_id": "decimals_recurring_to_fraction_H",
-      "prompt": "Show that \\recur{0.1}{6} can be written as 1/6.",
+      "prompt": "Show that \\recur{0.}{3} can be written as 1/3.",
       "solution_steps": [
-        "Let x = \\recur{0.1}{6}",
+        "Let x = \\recur{0.}{3}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
-        "This gives x = 15/90",
-        "Simplify: 1/6"
+        "This gives x = 3/9",
+        "Simplify: 1/3"
       ],
-      "final_answer": "1/6",
+      "final_answer": "1/3",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = \\recur{0.1}{6}",
+          "description": "Let x = \\recur{0.}{3}",
           "marks": 1
         },
         {
@@ -123,17 +137,17 @@
         },
         {
           "code": "M1",
-          "description": "This gives x = 15/90",
+          "description": "This gives x = 3/9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify: 1/6",
+          "description": "Simplify: 1/3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/6 oe",
+          "description": "1/3 oe",
           "marks": 1
         }
       ],
@@ -142,33 +156,33 @@
     },
     {
       "topic_id": "standard_form_multiply_divide_H",
-      "prompt": "Work out (6 × 10^-2) × (6 × 10^-3). Give your answer in standard form.",
+      "prompt": "Work out (8 × 10^6) × (7 × 10^-2). Give your answer in standard form.",
       "solution_steps": [
-        "Multiply the mantissas: 6 × 6 = 36",
-        "Add the powers of 10: -2 + -3 = -5",
-        "Renormalize so the mantissa is between 1 and 10: 3.6 × 10^-4"
+        "Multiply the mantissas: 8 × 7 = 56",
+        "Add the powers of 10: 6 + -2 = 4",
+        "Renormalize so the mantissa is between 1 and 10: 5.6 × 10^5"
       ],
-      "final_answer": "3.6 × 10^-4",
+      "final_answer": "5.6 × 10^5",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply the mantissas: 6 × 6 = 36",
+          "description": "Multiply the mantissas: 8 × 7 = 56",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add the powers of 10: -2 + -3 = -5",
+          "description": "Add the powers of 10: 6 + -2 = 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Renormalize so the mantissa is between 1 and 10: 3.6 × 10^-4",
+          "description": "Renormalize so the mantissa is between 1 and 10: 5.6 × 10^5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3.6 × 10^-4 oe",
+          "description": "5.6 × 10^5 oe",
           "marks": 1
         }
       ],
@@ -177,27 +191,27 @@
     },
     {
       "topic_id": "prime_factors_H",
-      "prompt": "Write 304 as a product of its prime factors, giving your answer in index form.",
+      "prompt": "Write 912 as a product of its prime factors, giving your answer in index form.",
       "solution_steps": [
-        "Divide 304 repeatedly by the smallest prime that fits: 2 × 2 × 2 × 2 × 19",
-        "Write repeated factors using index notation: 304 = 2^4 × 19"
+        "Divide 912 repeatedly by the smallest prime that fits: 2 × 2 × 2 × 2 × 3 × 19",
+        "Write repeated factors using index notation: 912 = 2^4 × 3 × 19"
       ],
-      "final_answer": "2^4 × 19",
+      "final_answer": "2^4 × 3 × 19",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide 304 repeatedly by the smallest prime that fits: 2 × 2 × 2 × 2 × 19",
+          "description": "Divide 912 repeatedly by the smallest prime that fits: 2 × 2 × 2 × 2 × 3 × 19",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write repeated factors using index notation: 304 = 2^4 × 19",
+          "description": "Write repeated factors using index notation: 912 = 2^4 × 3 × 19",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2^4 × 19 oe",
+          "description": "2^4 × 3 × 19 oe",
           "marks": 1
         }
       ],
@@ -206,39 +220,39 @@
     },
     {
       "topic_id": "indices_common_base_equations_H",
-      "prompt": "Solve 25^x = 15625.",
+      "prompt": "Solve 3^x = 1/9.",
       "solution_steps": [
-        "Write both sides as powers of 5: 25 = 5^2 and 15625 = 5^6",
-        "25^x = 15625 becomes (5^2)^x = 5^6, i.e. 5^(2x) = 5^6",
-        "Since the bases match, the powers must be equal: 2x = 6",
-        "x = 6/2 = 3"
+        "Write the right-hand side as a power of 3: \\frac{1}{3²} = 3^-2",
+        "3^x = 3^-2",
+        "Since the bases match, the powers must be equal: x = -2",
+        "x = -2"
       ],
-      "final_answer": "3",
+      "final_answer": "-2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Write both sides as powers of 5: 25 = 5^2 and 15625 = 5^6",
+          "description": "Write the right-hand side as a power of 3: \\frac{1}{3²} = 3^-2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "25^x = 15625 becomes (5^2)^x = 5^6, i.e. 5^(2x) = 5^6",
+          "description": "3^x = 3^-2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Since the bases match, the powers must be equal: 2x = 6",
+          "description": "Since the bases match, the powers must be equal: x = -2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 6/2 = 3",
+          "description": "x = -2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 oe",
+          "description": "-2 oe",
           "marks": 1
         }
       ],
@@ -247,41 +261,41 @@
     },
     {
       "topic_id": "linear_brackets_H",
-      "prompt": "Solve: 5(6x + 6) = 60",
+      "prompt": "Solve: 4(4x + 1) = 100",
       "solution_steps": [
-        "Expand the bracket: 5(6x + 6) = 30x + 30",
-        "30x + 30 = 60",
-        "Subtract 30 from both sides:",
-        "30x = 30",
-        "Divide both sides by 30:",
-        "x = 1"
+        "Expand the bracket: 4(4x + 1) = 16x + 4",
+        "16x + 4 = 100",
+        "Subtract 4 from both sides:",
+        "16x = 96",
+        "Divide both sides by 16:",
+        "x = 6"
       ],
-      "final_answer": "1",
+      "final_answer": "6",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expand the bracket: 5(6x + 6) = 30x + 30",
+          "description": "Expand the bracket: 4(4x + 1) = 16x + 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "30x + 30 = 60",
+          "description": "16x + 4 = 100",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 30 from both sides:",
+          "description": "Subtract 4 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "30x = 30 Divide both sides by 30: x = 1",
+          "description": "16x = 96 Divide both sides by 16: x = 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 oe",
+          "description": "6 oe",
           "marks": 1
         }
       ],
@@ -289,136 +303,135 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_exponential_H",
-      "prompt": "Complete a table of values for y = 2^x for x = 0 to 4, then plot the graph.",
+      "topic_id": "plot_cubic_H",
+      "prompt": "Complete a table of values for y = -x^3 - x for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = 2^x:",
-        "x: 0, 1, 2, 3, 4",
-        "y: 1, 2, 4, 8, 16",
-        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
+        "Table of values for y = -x^3 - x:",
+        "x: -3, -2, -1, 0, 1, 2, 3",
+        "y: 30, 10, 2, 0, -2, -10, -30",
+        "Plot each (x, y) point and join them with a single smooth curve."
       ],
-      "final_answer": "Exponential curve: y = 2^x",
+      "final_answer": "Cubic curve: y = -x^3 - x",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = 2^x:",
+          "description": "Table of values for y = -x^3 - x:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: 0, 1, 2, 3, 4",
+          "description": "x: -3, -2, -1, 0, 1, 2, 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: 1, 2, 4, 8, 16",
+          "description": "y: 30, 10, 2, 0, -2, -10, -30",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
+          "description": "Plot each (x, y) point and join them with a single smooth curve.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Exponential curve: y = 2^x oe",
+          "description": "Cubic curve: y = -x^3 - x oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "exponential",
-          "a": 1,
-          "base": 2,
-          "x_min": -1,
+          "kind": "cubic",
+          "a": -1,
+          "b": -1,
+          "x_min": -4,
           "x_max": 4,
-          "y_min": 0,
-          "y_max": 17.6,
+          "y_min": -32,
+          "y_max": 32,
           "blank": true
         }
       },
       "solution_diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "exponential",
-          "a": 1,
-          "base": 2,
-          "x_min": -1,
+          "kind": "cubic",
+          "a": -1,
+          "b": -1,
+          "x_min": -4,
           "x_max": 4,
-          "y_min": 0,
-          "y_max": 17.6,
+          "y_min": -32,
+          "y_max": 32,
           "table_points": [
             [
-              0,
-              1
+              -3,
+              30
             ],
             [
-              1,
+              -2,
+              10
+            ],
+            [
+              -1,
               2
             ],
             [
+              0,
+              0
+            ],
+            [
+              1,
+              -2
+            ],
+            [
               2,
-              4
+              -10
             ],
             [
               3,
-              8
-            ],
-            [
-              4,
-              16
+              -30
             ]
           ]
         }
       }
     },
     {
-      "topic_id": "satisfying_inequalities_H",
-      "prompt": "x satisfies both 3x + 8 > -5 and 5x - 10 < 12. List the integer values of x that satisfy both.",
+      "topic_id": "simultaneous_quadratic_H",
+      "prompt": "Solve the simultaneous equations: y = x^2 - 3x - 3 and y = -5x + 5",
       "solution_steps": [
-        "Solve the first inequality:",
-        "3x + 8 > -5",
-        "Subtract 8 from both sides:",
-        "3x > -13",
-        "Divide both sides by 3:",
-        "x > -13/3",
-        "Solve the second inequality:",
-        "5x - 10 < 12",
-        "Add 10 to both sides:",
-        "5x < 22",
-        "Divide both sides by 5:",
-        "x < 22/5",
-        "Combine both results into a single range: -13/3 < x < 22/5",
-        "The integers satisfying both inequalities are: -4, -3, -2, -1, 0, 1, 2, 3, 4"
+        "Substitute y = -5x + 5 into y = x^2 - 3x - 3: -5x + 5 = x^2 - 3x - 3",
+        "Rearrange: x^2 + 2x - 8 = 0",
+        "Factorise: (x + 4)(x - 2) = 0",
+        "x = -4 or x = 2",
+        "When x = -4, y = 25. When x = 2, y = -5."
       ],
-      "final_answer": "-4, -3, -2, -1, 0, 1, 2, 3, 4",
+      "final_answer": "(-4, 25) and (2, -5)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Solve the first inequality:",
+          "description": "Substitute y = -5x + 5 into y = x^2 - 3x - 3: -5x + 5 = x^2 - 3x - 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3x + 8 > -5",
+          "description": "Rearrange: x^2 + 2x - 8 = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 8 from both sides:",
+          "description": "Factorise: (x + 4)(x - 2) = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3x > -13 Divide both sides by 3: x > -13/3 Solve the second inequality: 5x - 10 < 12 Add 10 to both sides: 5x < 22 Divide both sides by 5: x < 22/5 Combine both results into a single range: -13/3 < x < 22/5 The integers satisfying both inequalities are: -4, -3, -2, -1, 0, 1, 2, 3, 4",
+          "description": "x = -4 or x = 2 When x = -4, y = 25. When x = 2, y = -5.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-4, -3, -2, -1, 0, 1, 2, 3, 4 oe",
+          "description": "(-4, 25) and (2, -5) oe",
           "marks": 1
         }
       ],
@@ -426,94 +439,105 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inequalities_region_H",
-      "prompt": "The shaded region on the grid satisfies two inequalities. State both inequalities.",
+      "topic_id": "inequalities_number_line_H",
+      "prompt": "Draw the inequality/ies of -2 < x < 2 on a number line.",
       "solution_steps": [
-        "The boundary line y = \\frac{x}{2} + 2 is dashed, and the shading lies on the lower side of it, giving y < \\frac{x}{2} + 2.",
-        "The boundary line y = -\\frac{x}{2} + 1 is dashed, and the shading lies on the upper side of it, giving y > -\\frac{x}{2} + 1."
+        "Draw an open circle at -2 and an open circle at 2.",
+        "Shade the segment of the line between the two circles."
       ],
-      "final_answer": "y < \\frac{x}{2} + 2 and y > -\\frac{x}{2} + 1",
+      "final_answer": "-2 < x < 2",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The boundary line y = \\frac{x}{2} + 2 is dashed, and the shading lies on the lower side of it, giving y < \\frac{x}{2} + 2.",
+          "description": "Draw an open circle at -2 and an open circle at 2.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The boundary line y = -\\frac{x}{2} + 1 is dashed, and the shading lies on the upper side of it, giving y > -\\frac{x}{2} + 1.",
+          "description": "Shade the segment of the line between the two circles.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y < \\frac{x}{2} + 2 and y > -\\frac{x}{2} + 1 oe",
+          "description": "-2 < x < 2 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "inequality_region",
+        "kind": "number_line",
         "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "lines": [
-            {
-              "m": 0.5,
-              "c": 2,
-              "op": "<"
-            },
-            {
-              "m": -0.5,
-              "c": 1,
-              "op": ">"
-            }
-          ]
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [],
+          "blank": true
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
+          "boundaries": [
+            {
+              "value": -2,
+              "closed": false
+            },
+            {
+              "value": 2,
+              "closed": false
+            }
+          ],
+          "shade": "between"
+        }
+      }
     },
     {
       "topic_id": "trial_and_improvement_H",
-      "prompt": "f(x) = x^3 + 3x - 46. Show that f(x) = 0 has a root between x = 3 and x = 4, then use trial and improvement to find this root correct to 1 decimal place.",
+      "prompt": "f(x) = x^3 + 3x - 56. Show that f(x) = 0 has a root between x = 3 and x = 4, then use trial and improvement to find this root correct to 1 decimal place.",
       "solution_steps": [
-        "f(x) = x^3 + 3x - 46",
-        "f(3) = -10.00 (negative)",
-        "f(4) = 30.00 (positive)",
-        "f(3.1) = -6.91 (negative)",
-        "f(3.2) = -3.63 (negative)",
-        "f(3.3) = -0.16 (negative)",
-        "f(3.4) = 3.50 (positive)",
-        "The sign changes between x = 3.3 and x = 3.4, so try the midpoint x = 3.35: f(3.35) = 1.65.",
-        "f(3.35) has the same sign as f(3.4), so the root lies between 3.3 and 3.35 - to 1 decimal place, this rounds down to 3.3."
+        "f(x) = x^3 + 3x - 56",
+        "f(3) = -20.00 (negative)",
+        "f(4) = 20.00 (positive)",
+        "f(3.1) = -16.91 (negative)",
+        "f(3.2) = -13.63 (negative)",
+        "f(3.3) = -10.16 (negative)",
+        "f(3.4) = -6.50 (negative)",
+        "f(3.5) = -2.63 (negative)",
+        "f(3.6) = 1.46 (positive)",
+        "The sign changes between x = 3.5 and x = 3.6, so try the midpoint x = 3.55: f(3.55) = -0.61.",
+        "f(3.55) has the same sign as f(3.5), so the root lies between 3.55 and 3.6 - to 1 decimal place, this rounds up to 3.6."
       ],
-      "final_answer": "x = 3.3",
+      "final_answer": "x = 3.6",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "f(x) = x^3 + 3x - 46",
+          "description": "f(x) = x^3 + 3x - 56",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "f(3) = -10.00 (negative)",
+          "description": "f(3) = -20.00 (negative)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "f(4) = 30.00 (positive)",
+          "description": "f(4) = 20.00 (positive)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "f(3.1) = -6.91 (negative) f(3.2) = -3.63 (negative) f(3.3) = -0.16 (negative) f(3.4) = 3.50 (positive) The sign changes between x = 3.3 and x = 3.4, so try the midpoint x = 3.35: f(3.35) = 1.65. f(3.35) has the same sign as f(3.4), so the root lies between 3.3 and 3.35 - to 1 decimal place, this rounds down to 3.3.",
+          "description": "f(3.1) = -16.91 (negative) f(3.2) = -13.63 (negative) f(3.3) = -10.16 (negative) f(3.4) = -6.50 (negative) f(3.5) = -2.63 (negative) f(3.6) = 1.46 (positive) The sign changes between x = 3.5 and x = 3.6, so try the midpoint x = 3.55: f(3.55) = -0.61. f(3.55) has the same sign as f(3.5), so the root lies between 3.55 and 3.6 - to 1 decimal place, this rounds up to 3.6.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 3.3 oe",
+          "description": "x = 3.6 oe",
           "marks": 1
         }
       ],
@@ -521,40 +545,42 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "substitution_rearrange_H",
-      "prompt": "a = \\frac{v - u}{t}. Make u the subject of the formula, then find the value of u when v = 98, a = 8 and t = 10.",
+      "topic_id": "substitution_H",
+      "prompt": "v^2 = u^2 + 2as. Find the value of v when u = 7, a = 7 and s = 10. Give your answer to 2 decimal places if it is not exact.",
       "solution_steps": [
-        "a = \\frac{v - u}{t}",
-        "Rearrange to make u the subject: u = v - at",
-        "Substitute v = 98, a = 8 and t = 10: u = 98 - 8 × 10",
-        "u = 18"
+        "v^2 = u^2 + 2as",
+        "v^2 = 7^2 + 2 × 7 × 10",
+        "v^2 = 49 + 140",
+        "v^2 = 189",
+        "v = √189 = 13.75 (2 d.p.)",
+        "Take the positive square root only, since v represents a speed and must be positive."
       ],
-      "final_answer": "u = 18",
+      "final_answer": "v = 13.75 (2 d.p.)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "a = \\frac{v - u}{t}",
+          "description": "v^2 = u^2 + 2as",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rearrange to make u the subject: u = v - at",
+          "description": "v^2 = 7^2 + 2 × 7 × 10",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute v = 98, a = 8 and t = 10: u = 98 - 8 × 10",
+          "description": "v^2 = 49 + 140",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "u = 18",
+          "description": "v^2 = 189 v = √189 = 13.75 (2 d.p.) Take the positive square root only, since v represents a speed and must be positive.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "u = 18 oe",
+          "description": "v = 13.75 (2 d.p.) oe",
           "marks": 1
         }
       ],
@@ -562,41 +588,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solve_quadratic_completing_square_H",
-      "prompt": "Solve x^2 - 14x + 21 = 0 by completing the square, giving your answers in exact surd form.",
+      "topic_id": "turning_point_of_graph_H",
+      "prompt": "Find the coordinates of the turning point of the curve y = x^2 - 14x - 14.",
       "solution_steps": [
-        "Half the coefficient of x: -14 ÷ 2 = -7",
-        "Complete the square: x^2 - 14x + 21 = (x - 7)^2 - 28",
-        "Set (x - 7)^2 - 28 = 0, so (x - 7)^2 = 28",
-        "(x - 7) = ±√28 = ±2√7",
-        "x = 7 + 2√7 or x = 7 - 2√7"
+        "Complete the square: x^2 - 14x - 14 = (x - 7)^2 - 63",
+        "The turning point of y = (x + p)^2 + q is (-p, q).",
+        "Turning point = (7, -63)"
       ],
-      "final_answer": "x = 7 + 2√7 or x = 7 - 2√7",
-      "marks": 5,
+      "final_answer": "(7, -63)",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Half the coefficient of x: -14 ÷ 2 = -7",
+          "description": "Complete the square: x^2 - 14x - 14 = (x - 7)^2 - 63",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Complete the square: x^2 - 14x + 21 = (x - 7)^2 - 28",
+          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Set (x - 7)^2 - 28 = 0, so (x - 7)^2 = 28",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(x - 7) = ±√28 = ±2√7 x = 7 + 2√7 or x = 7 - 2√7",
+          "description": "Turning point = (7, -63)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 7 + 2√7 or x = 7 - 2√7 oe",
+          "description": "(7, -63) oe",
           "marks": 1
         }
       ],
@@ -605,27 +624,27 @@
     },
     {
       "topic_id": "speed_with_conversions_H",
-      "prompt": "A cyclist travels 117 km in 1 hours. Find its average speed in m/s, correct to 1 decimal place.",
+      "prompt": "A car travels 894 m in 6 minutes. Find its average speed in m/s, correct to 1 decimal place.",
       "solution_steps": [
-        "speed = distance ÷ time = 117 ÷ 1 = 117 km/h",
-        "Convert to m/s: 117 ÷ 3.6 = 32.5 m/s (1 d.p.)"
+        "Convert time to seconds: 6 minutes = 6 × 60 = 360 seconds",
+        "speed = distance ÷ time = 894 ÷ 360 = 2.5 m/s (1 d.p.)"
       ],
-      "final_answer": "32.5 m/s",
+      "final_answer": "2.5 m/s",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "speed = distance ÷ time = 117 ÷ 1 = 117 km/h",
+          "description": "Convert time to seconds: 6 minutes = 6 × 60 = 360 seconds",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Convert to m/s: 117 ÷ 3.6 = 32.5 m/s (1 d.p.)",
+          "description": "speed = distance ÷ time = 894 ÷ 360 = 2.5 m/s (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "32.5 m/s oe",
+          "description": "2.5 m/s oe",
           "marks": 1
         }
       ],
@@ -634,39 +653,39 @@
     },
     {
       "topic_id": "algebraic_direct_proportion_H",
-      "prompt": "y is directly proportional to x^2. When x = 9, y = 243. Find the value of y when x = 4.",
+      "prompt": "y is directly proportional to x^3. When x = 9, y = 7290. Find the value of y when x = 4.",
       "solution_steps": [
-        "y = kx^2",
-        "243 = k × 9^2 = k × 81",
-        "k = 243 ÷ 81 = 3",
-        "y = 3 × 4^2 = 3 × 16 = 48"
+        "y = kx^3",
+        "7290 = k × 9^3 = k × 729",
+        "k = 7290 ÷ 729 = 10",
+        "y = 10 × 4^3 = 10 × 64 = 640"
       ],
-      "final_answer": "48",
+      "final_answer": "640",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = kx^2",
+          "description": "y = kx^3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "243 = k × 9^2 = k × 81",
+          "description": "7290 = k × 9^3 = k × 729",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "k = 243 ÷ 81 = 3",
+          "description": "k = 7290 ÷ 729 = 10",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y = 3 × 4^2 = 3 × 16 = 48",
+          "description": "y = 10 × 4^3 = 10 × 64 = 640",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "48 oe",
+          "description": "640 oe",
           "marks": 1
         }
       ],
@@ -675,68 +694,68 @@
     },
     {
       "topic_id": "ratio_shape_similar_H",
-      "prompt": "Shape A and Shape B are similar. The volume of shape A is 243 cm^3. Find the volume of shape B.",
+      "prompt": "Shape A and Shape B are similar. The volume of shape B is 108 cm^3. Find the volume of shape A.",
       "solution_steps": [
-        "Linear scale factor = 4 ÷ 3 = 4/3",
-        "Volume scale factor = (4/3)^3 = 64/27",
-        "Volume of B = 243 × 64/27 = 576 cm^3"
+        "Linear scale factor = 6 ÷ 2 = 3",
+        "Volume scale factor = (3)^3 = 27",
+        "Volume of A = 108 ÷ 27 = 4 cm^3"
       ],
-      "final_answer": "576 cm^3",
+      "final_answer": "4 cm^3",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Linear scale factor = 4 ÷ 3 = 4/3",
+          "description": "Linear scale factor = 6 ÷ 2 = 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Volume scale factor = (4/3)^3 = 64/27",
+          "description": "Volume scale factor = (3)^3 = 27",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Volume of B = 243 × 64/27 = 576 cm^3",
+          "description": "Volume of A = 108 ÷ 27 = 4 cm^3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "576 cm^3 oe",
+          "description": "4 cm^3 oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "two_similar_rectangles",
         "params": {
-          "a_width_label": "3 cm",
-          "b_width_label": "4 cm"
+          "a_width_label": "2 cm",
+          "b_width_label": "6 cm"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "reverse_percentage_H",
-      "prompt": "After a 42.5% increase, an item costs £416.10. Find the original price.",
+      "prompt": "After a 17.5% increase, an item costs £314.90. Find the original price.",
       "solution_steps": [
-        "Convert 42.5% to a multiplier: 1.43 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 416.10 ÷ 1.43 = 292"
+        "Convert 17.5% to a multiplier: 1.18 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 314.90 ÷ 1.18 = 268"
       ],
-      "final_answer": "£292",
+      "final_answer": "£268",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 42.5% to a multiplier: 1.43 (original × multiplier = new value)",
+          "description": "Convert 17.5% to a multiplier: 1.18 (original × multiplier = new value)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide the new value by the multiplier: 416.10 ÷ 1.43 = 292",
+          "description": "Divide the new value by the multiplier: 314.90 ÷ 1.18 = 268",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£292 oe",
+          "description": "£268 oe",
           "marks": 1
         }
       ],
@@ -745,117 +764,106 @@
     },
     {
       "topic_id": "circle_theorems_H",
-      "prompt": "PQ is a chord of a circle, with a tangent at P. R is a point on the circle in the alternate segment. Find the angle between the tangent and the chord PQ, x.",
+      "prompt": "Find the size of angle x.",
       "solution_steps": [
-        "The alternate segment theorem: the angle between a tangent and a chord equals the angle subtended by that chord in the alternate segment.",
-        "x = 36°"
+        "TA and TB are tangents, so angle OAT = angle OBT = 90° (radius meets tangent at a right angle).",
+        "Angles in quadrilateral OATB sum to 360°: x = 360 - 90 - 90 - 40 = 140"
       ],
-      "final_answer": "36°",
+      "final_answer": "140°",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The alternate segment theorem: the angle between a tangent and a chord equals the angle subtended by that chord in the alternate segment.",
+          "description": "TA and TB are tangents, so angle OAT = angle OBT = 90° (radius meets tangent at a right angle).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 36°",
+          "description": "Angles in quadrilateral OATB sum to 360°: x = 360 - 90 - 90 - 40 = 140",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "36° oe",
+          "description": "140° oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "circle_alternate_segment",
+        "kind": "circle_two_tangents",
         "params": {
-          "tangent_angle_label": "x°",
-          "segment_angle_label": "36°"
+          "external_label": "40°",
+          "centre_label": "x°"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "stats_interquartile_range_H",
-      "prompt": "Find the interquartile range (IQR) of this data set: 34, 5, 15, 35, 3, 32, 29, 16, 11.",
+      "topic_id": "graph_transformations_H",
+      "prompt": "The graph of y = f(x) undergoes a translation by vector (2, 0). Write down the equation of the transformed graph in terms of f(x).",
       "solution_steps": [
-        "Sort the data: 3, 5, 11, 15, 16, 29, 32, 34, 35.",
-        "Split into a lower half [3, 5, 11, 15] and an upper half [29, 32, 34, 35] (excluding the overall middle value when 9 is odd).",
-        "Q1 = median of the lower half = 8",
-        "Q3 = median of the upper half = 33",
-        "Interquartile range = Q3 - Q1 = 33 - 8 = 25"
+        "y = f(x - 2) corresponds to a translation by vector (2, 0)."
       ],
-      "final_answer": "25",
-      "marks": 5,
+      "final_answer": "y = f(x - 2)",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Sort the data: 3, 5, 11, 15, 16, 29, 32, 34, 35.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Split into a lower half [3, 5, 11, 15] and an upper half [29, 32, 34, 35] (excluding the overall middle value when 9 is odd).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Q1 = median of the lower half = 8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Q3 = median of the upper half = 33 Interquartile range = Q3 - Q1 = 33 - 8 = 25",
+          "description": "y = f(x - 2) corresponds to a translation by vector (2, 0).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "25 oe",
+          "description": "y = f(x - 2) oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "graph_transformation",
+        "params": {
+          "transform": "translate_right",
+          "shift": 2,
+          "original_label": "y = f(x)",
+          "transformed_label": "y = f(x - 2)"
+        }
+      },
       "solution_diagram": null
     },
     {
       "topic_id": "congruent_triangle_proof_H",
-      "prompt": "Triangles ABC and ABD both have a right angle at B, and share side AB, with angle BAC = angle BAD. Prove that the two triangles are congruent.",
+      "prompt": "ABCD is a kite with AB = AD and CB = CD. AC is a diagonal of the kite. Prove that the two triangles are congruent.",
       "solution_steps": [
-        "angle BAC = angle BAD (given)",
-        "AB is common to both triangles",
-        "angle ABC = angle ABD = 90° (given)",
-        "By Angle-Side-Angle (ASA), the triangles are congruent.",
-        "Since two angles and the included side match, triangles ABC and ABD are congruent - so BC = BD."
+        "AB = AD (given, adjacent sides of the kite)",
+        "CB = CD (given, adjacent sides of the kite)",
+        "AC is common to both triangles",
+        "By Side-Side-Side (SSS), the triangles are congruent.",
+        "Since all three corresponding sides are equal, triangles ABC and ADC are congruent - this is why a kite's diagonal AC is a line of symmetry."
       ],
-      "final_answer": "Triangles are congruent (ASA).",
+      "final_answer": "Triangles are congruent (SSS).",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "angle BAC = angle BAD (given)",
+          "description": "AB = AD (given, adjacent sides of the kite)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "AB is common to both triangles",
+          "description": "CB = CD (given, adjacent sides of the kite)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "angle ABC = angle ABD = 90° (given)",
+          "description": "AC is common to both triangles",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "By Angle-Side-Angle (ASA), the triangles are congruent. Since two angles and the included side match, triangles ABC and ABD are congruent - so BC = BD.",
+          "description": "By Side-Side-Side (SSS), the triangles are congruent. Since all three corresponding sides are equal, triangles ABC and ADC are congruent - this is why a kite's diagonal AC is a line of symmetry.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Triangles are congruent (ASA). oe",
+          "description": "Triangles are congruent (SSS). oe",
           "marks": 1
         }
       ],
@@ -869,13 +877,23 @@
           ],
           "labels_2": [
             "A",
-            "B",
-            "D"
+            "D",
+            "C"
           ],
           "ticks_1": [
             [
               0,
               1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ],
+            [
+              0,
+              2,
               1
             ]
           ],
@@ -883,46 +901,38 @@
             [
               0,
               1,
-              1
-            ]
-          ],
-          "arcs_1": [
-            [
-              0,
-              1
+              2
             ],
             [
               1,
-              2
-            ]
-          ],
-          "arcs_2": [
-            [
-              0,
-              1
+              2,
+              3
             ],
             [
-              1,
-              2
+              0,
+              2,
+              1
             ]
           ],
-          "note": "AB is common to both triangles."
+          "arcs_1": [],
+          "arcs_2": [],
+          "note": "AC is common to both triangles."
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "angles_around_point_H",
-      "prompt": "The angles 139°, 114°, 14° and (5x + 68)° are angles around a point. Find x.",
+      "prompt": "The angles 96°, 12°, 120° and (3x + 120)° are angles around a point. Find x.",
       "solution_steps": [
         "Angles around a point sum to 360°.",
-        "5x + 68 = 93",
-        "Subtract 68 from both sides:",
-        "5x = 25",
-        "Divide both sides by 5:",
-        "x = 5"
+        "3x + 120 = 132",
+        "Subtract 120 from both sides:",
+        "3x = 12",
+        "Divide both sides by 3:",
+        "x = 4"
       ],
-      "final_answer": "5",
+      "final_answer": "4",
       "marks": 5,
       "mark_scheme": [
         {
@@ -932,22 +942,22 @@
         },
         {
           "code": "M1",
-          "description": "5x + 68 = 93",
+          "description": "3x + 120 = 132",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 68 from both sides:",
+          "description": "Subtract 120 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x = 25 Divide both sides by 5: x = 5",
+          "description": "3x = 12 Divide both sides by 3: x = 4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5 oe",
+          "description": "4 oe",
           "marks": 1
         }
       ],
@@ -955,16 +965,16 @@
         "kind": "angle_line",
         "params": {
           "angle_values": [
-            139,
-            114,
-            14,
-            93
+            96,
+            12,
+            120,
+            132
           ],
           "labels": [
-            "139°",
-            "114°",
-            "14°",
-            "(5x + 68)°"
+            "96°",
+            "12°",
+            "120°",
+            "(3x + 120)°"
           ],
           "around_point": true
         }
@@ -973,41 +983,41 @@
     },
     {
       "topic_id": "tree_diagram_dependent_H",
-      "prompt": "A bag contains 6 red and 8 yellow counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the first counter is yellow and the second counter is red.",
+      "prompt": "A bag contains 4 green and 4 yellow counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the two counters are different colours.",
       "solution_steps": [
-        "After the first counter is picked (without replacement), there are 13 counters left.",
-        "P(red then red) = 3/7 × 5/13 = 15/91",
-        "P(red then yellow) = 3/7 × 8/13 = 24/91",
-        "P(yellow then red) = 4/7 × 6/13 = 24/91",
-        "P(yellow then yellow) = 4/7 × 7/13 = 4/13",
-        "P(the first counter is yellow and the second counter is red) = 24/91"
+        "After the first counter is picked (without replacement), there are 7 counters left.",
+        "P(green then green) = 1/2 × 3/7 = 3/14",
+        "P(green then yellow) = 1/2 × 4/7 = 2/7",
+        "P(yellow then green) = 1/2 × 4/7 = 2/7",
+        "P(yellow then yellow) = 1/2 × 3/7 = 3/14",
+        "P(the two counters are different colours) = 4/7"
       ],
-      "final_answer": "24/91",
+      "final_answer": "4/7",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first counter is picked (without replacement), there are 13 counters left.",
+          "description": "After the first counter is picked (without replacement), there are 7 counters left.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(red then red) = 3/7 × 5/13 = 15/91",
+          "description": "P(green then green) = 1/2 × 3/7 = 3/14",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(red then yellow) = 3/7 × 8/13 = 24/91",
+          "description": "P(green then yellow) = 1/2 × 4/7 = 2/7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(yellow then red) = 4/7 × 6/13 = 24/91 P(yellow then yellow) = 4/7 × 7/13 = 4/13 P(the first counter is yellow and the second counter is red) = 24/91",
+          "description": "P(yellow then green) = 1/2 × 4/7 = 2/7 P(yellow then yellow) = 1/2 × 3/7 = 3/14 P(the two counters are different colours) = 4/7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "24/91 oe",
+          "description": "4/7 oe",
           "marks": 1
         }
       ],
@@ -1016,44 +1026,44 @@
         "params": {
           "stage1": [
             [
-              "Red",
-              "3/7"
+              "Green",
+              "1/2"
             ],
             [
               "Yellow",
-              "4/7"
+              "1/2"
             ]
           ],
           "stage2": [
             [
               [
-                "Red",
-                "5/13"
+                "Green",
+                "3/7"
               ],
               [
                 "Yellow",
-                "8/13"
+                "4/7"
               ]
             ],
             [
               [
-                "Red",
-                "6/13"
+                "Green",
+                "4/7"
               ],
               [
                 "Yellow",
-                "7/13"
+                "3/7"
               ]
             ]
           ],
           "leaf_probs": [
             [
-              "15/91",
-              "24/91"
+              "3/14",
+              "2/7"
             ],
             [
-              "24/91",
-              "4/13"
+              "2/7",
+              "3/14"
             ]
           ]
         }
@@ -1081,6 +1091,55 @@
         }
       ],
       "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "velocity_time_interpret_H",
+      "prompt": "The velocity-time graph shows a car's journey. Find its acceleration during the first phase.",
+      "solution_steps": [
+        "Acceleration = change in velocity ÷ time = 15 ÷ 12 = 5/4 m/s^2"
+      ],
+      "final_answer": "5/4 m/s^2",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Acceleration = change in velocity ÷ time = 15 ÷ 12 = 5/4 m/s^2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5/4 m/s^2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              12,
+              15
+            ],
+            [
+              32,
+              15
+            ],
+            [
+              37,
+              0
+            ]
+          ],
+          "x_max": 42,
+          "y_max": 20,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
+        }
+      },
       "solution_diagram": null
     }
   ]

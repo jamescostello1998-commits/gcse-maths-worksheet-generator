@@ -8,33 +8,33 @@
   "questions": [
     {
       "topic_id": "fractions_divide_F",
-      "prompt": "Calculate 6/7 ÷ 1/3. Give your answer as a fraction in its simplest form.",
+      "prompt": "Calculate 1/7 ÷ 5/6. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
-        "Keep-change-flip: 6/7 ÷ 1/3 = 6/7 × 3/1",
-        "Multiply: \\frac{(6×3)}{(7×1)} = 18/7",
-        "Simplify: 18/7"
+        "Keep-change-flip: 1/7 ÷ 5/6 = 1/7 × 6/5",
+        "Multiply: \\frac{(1×6)}{(7×5)} = 6/35",
+        "Simplify: 6/35"
       ],
-      "final_answer": "18/7",
+      "final_answer": "6/35",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Keep-change-flip: 6/7 ÷ 1/3 = 6/7 × 3/1",
+          "description": "Keep-change-flip: 1/7 ÷ 5/6 = 1/7 × 6/5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: \\frac{(6×3)}{(7×1)} = 18/7",
+          "description": "Multiply: \\frac{(1×6)}{(7×5)} = 6/35",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify: 18/7",
+          "description": "Simplify: 6/35",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "18/7 oe",
+          "description": "6/35 oe",
           "marks": 1
         }
       ],
@@ -43,27 +43,27 @@
     },
     {
       "topic_id": "fractions_of_amount_F",
-      "prompt": "Calculate 3/5 of 100.",
+      "prompt": "Calculate 2/6 of 168.",
       "solution_steps": [
-        "Divide by the denominator: 100 ÷ 5 = 20",
-        "Multiply by the numerator: 20 × 3 = 60"
+        "Divide by the denominator: 168 ÷ 6 = 28",
+        "Multiply by the numerator: 28 × 2 = 56"
       ],
-      "final_answer": "60",
+      "final_answer": "56",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide by the denominator: 100 ÷ 5 = 20",
+          "description": "Divide by the denominator: 168 ÷ 6 = 28",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply by the numerator: 20 × 3 = 60",
+          "description": "Multiply by the numerator: 28 × 2 = 56",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "60 oe",
+          "description": "56 oe",
           "marks": 1
         }
       ],
@@ -72,27 +72,21 @@
     },
     {
       "topic_id": "multiples_F",
-      "prompt": "Is 23 a multiple of 3?",
+      "prompt": "Write down the first 5 multiples of 10.",
       "solution_steps": [
-        "23 ÷ 3 = 7 remainder 2",
-        "No, 23 is not a multiple of 3."
+        "Multiply 10 by 1, 2, 3, 4, 5: 10, 20, 30, 40, 50"
       ],
-      "final_answer": "No",
-      "marks": 3,
+      "final_answer": "10, 20, 30, 40, 50",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "23 ÷ 3 = 7 remainder 2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "No, 23 is not a multiple of 3.",
+          "description": "Multiply 10 by 1, 2, 3, 4, 5: 10, 20, 30, 40, 50",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "No oe",
+          "description": "10, 20, 30, 40, 50 oe",
           "marks": 1
         }
       ],
@@ -100,17 +94,112 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "negative_multiply_divide_F",
-      "prompt": "Work out -3 × (-1).",
+      "topic_id": "plot_distance_time_F",
+      "prompt": "A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop 6 km away after 15 minutes. They stay at the shop until 30 minutes, then cycle straight back home at a constant speed, arriving home at 40 minutes. Draw a distance-time graph to show this journey, and find the total distance travelled.",
       "solution_steps": [
-        "-3 × (-1) = 3"
+        "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 6 km after 15 minutes.",
+        "Stay at 6 km until 30 minutes.",
+        "Return at a constant speed to 0 km, arriving home at 40 minutes.",
+        "Plot these points and join each stage with a straight line segment.",
+        "Total distance travelled = 6 km out + 6 km back = 12 km"
+      ],
+      "final_answer": "12 km",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 6 km after 15 minutes.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Stay at 6 km until 30 minutes.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Return at a constant speed to 0 km, arriving home at 40 minutes.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot these points and join each stage with a straight line segment. Total distance travelled = 6 km out + 6 km back = 12 km",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "12 km oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              15,
+              6
+            ],
+            [
+              30,
+              6
+            ],
+            [
+              40,
+              0
+            ]
+          ],
+          "x_max": 45,
+          "y_max": 8,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)",
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              15,
+              6
+            ],
+            [
+              30,
+              6
+            ],
+            [
+              40,
+              0
+            ]
+          ],
+          "x_max": 45,
+          "y_max": 8,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)"
+        }
+      }
+    },
+    {
+      "topic_id": "negative_add_subtract_F",
+      "prompt": "Work out -11 + 14.",
+      "solution_steps": [
+        "-11 + 14 = 3"
       ],
       "final_answer": "3",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "-3 × (-1) = 3",
+          "description": "-11 + 14 = 3",
           "marks": 1
         },
         {
@@ -123,51 +212,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "negative_add_subtract_F",
-      "prompt": "Work out 11 - (-10).",
-      "solution_steps": [
-        "11 - (-10) = 21"
-      ],
-      "final_answer": "21",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "11 - (-10) = 21",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "21 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
       "topic_id": "standard_form_from_large_F",
-      "prompt": "Write 2.42 × 10^4 as an ordinary number.",
+      "prompt": "Write 9 × 10^4 as an ordinary number.",
       "solution_steps": [
-        "Multiply 2.42 by 10^4, which means moving the decimal point 4 place(s) right.",
-        "2.42 × 10^4 = 24200"
+        "Multiply 9 by 10^4, which means moving the decimal point 4 place(s) right.",
+        "9 × 10^4 = 90000"
       ],
-      "final_answer": "24200",
+      "final_answer": "90000",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply 2.42 by 10^4, which means moving the decimal point 4 place(s) right.",
+          "description": "Multiply 9 by 10^4, which means moving the decimal point 4 place(s) right.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2.42 × 10^4 = 24200",
+          "description": "9 × 10^4 = 90000",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "24200 oe",
+          "description": "90000 oe",
           "marks": 1
         }
       ],
@@ -176,39 +242,39 @@
     },
     {
       "topic_id": "fractions_add_subtract_F",
-      "prompt": "Calculate 9/12 - 2/3. Give your answer as a fraction in its simplest form.",
+      "prompt": "Evaluate 2/3 - 6/11. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
-        "Find a common denominator: LCM(12, 3) = 12",
-        "Convert: 9/12 = 9/12, 2/3 = 8/12",
-        "Subtract: 9/12 - 8/12 = 1/12",
-        "Simplify: 1/12"
+        "Find a common denominator: LCM(3, 11) = 33",
+        "Convert: 2/3 = 22/33, 6/11 = 18/33",
+        "Subtract: 22/33 - 18/33 = 4/33",
+        "Simplify: 4/33"
       ],
-      "final_answer": "1/12",
+      "final_answer": "4/33",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find a common denominator: LCM(12, 3) = 12",
+          "description": "Find a common denominator: LCM(3, 11) = 33",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Convert: 9/12 = 9/12, 2/3 = 8/12",
+          "description": "Convert: 2/3 = 22/33, 6/11 = 18/33",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract: 9/12 - 8/12 = 1/12",
+          "description": "Subtract: 22/33 - 18/33 = 4/33",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify: 1/12",
+          "description": "Simplify: 4/33",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/12 oe",
+          "description": "4/33 oe",
           "marks": 1
         }
       ],
@@ -217,27 +283,27 @@
     },
     {
       "topic_id": "prime_numbers_F",
-      "prompt": "From this list, write down all the prime numbers: 61, 60, 35, 65, 99, 59",
+      "prompt": "From this list, write down all the prime numbers: 17, 26, 76, 95, 46, 24",
       "solution_steps": [
-        "Check each number for factors other than 1 and itself: 61, 60, 35, 65, 99, 59",
-        "Prime numbers: 59, 61"
+        "Check each number for factors other than 1 and itself: 17, 26, 76, 95, 46, 24",
+        "Prime numbers: 17"
       ],
-      "final_answer": "59, 61",
+      "final_answer": "17",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Check each number for factors other than 1 and itself: 61, 60, 35, 65, 99, 59",
+          "description": "Check each number for factors other than 1 and itself: 17, 26, 76, 95, 46, 24",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Prime numbers: 59, 61",
+          "description": "Prime numbers: 17",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "59, 61 oe",
+          "description": "17 oe",
           "marks": 1
         }
       ],
@@ -245,170 +311,112 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_single_bracket_F",
-      "prompt": "Expand: 6(-7x + 6)",
+      "topic_id": "substitution_rearrange_F",
+      "prompt": "P = 2L + 2w. Make w the subject of the formula, then find the value of w when P = 94 and L = 22.",
       "solution_steps": [
-        "Multiply 6 by -7x: -42x",
-        "Multiply 6 by 6: 36",
-        "Combine: -42x + 36"
+        "P = 2L + 2w",
+        "Rearrange to make w the subject: w = \\frac{P - 2L}{2}",
+        "Substitute P = 94 and L = 22: w = \\frac{94 - 2×22}{2}",
+        "w = 50/2 = 25"
       ],
-      "final_answer": "-42x + 36",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiply 6 by -7x: -42x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply 6 by 6: 36",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Combine: -42x + 36",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-42x + 36 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "plot_straight_line_F",
-      "prompt": "Complete a table of values for y = -2x - 4 for x = -3 to 3, then plot the graph.",
-      "solution_steps": [
-        "Table of values for y = -2x - 4:",
-        "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: 2, 0, -2, -4, -6, -8, -10",
-        "Plot each (x, y) point and join them with a single ruled straight line."
-      ],
-      "final_answer": "Straight line: y = -2x - 4",
+      "final_answer": "w = 25",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = -2x - 4:",
+          "description": "P = 2L + 2w",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "description": "Rearrange to make w the subject: w = \\frac{P - 2L}{2}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: 2, 0, -2, -4, -6, -8, -10",
+          "description": "Substitute P = 94 and L = 22: w = \\frac{94 - 2×22}{2}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single ruled straight line.",
+          "description": "w = 50/2 = 25",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Straight line: y = -2x - 4 oe",
+          "description": "w = 25 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "linear",
-          "m": -2,
-          "c": -4,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -11,
-          "y_max": 3,
-          "blank": true
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "special_sequences_F",
+      "prompt": "The first 4 triangular numbers are: 1, 3, 6, 10. Find the next term in the sequence.",
+      "solution_steps": [
+        "These are the triangular numbers: the nth term is given by \\frac{n(n + 1)}{2}.",
+        "Term 5 = \\frac{5(5 + 1)}{2} = 30/2 = 15"
+      ],
+      "final_answer": "15",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "These are the triangular numbers: the nth term is given by \\frac{n(n + 1)}{2}.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Term 5 = \\frac{5(5 + 1)}{2} = 30/2 = 15",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "15 oe",
+          "marks": 1
         }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "linear",
-          "m": -2,
-          "c": -4,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -11,
-          "y_max": 3,
-          "table_points": [
-            [
-              -3,
-              2
-            ],
-            [
-              -2,
-              0
-            ],
-            [
-              -1,
-              -2
-            ],
-            [
-              0,
-              -4
-            ],
-            [
-              1,
-              -6
-            ],
-            [
-              2,
-              -8
-            ],
-            [
-              3,
-              -10
-            ]
-          ]
-        }
-      }
+      ],
+      "diagram": null,
+      "solution_diagram": null
     },
     {
       "topic_id": "satisfying_inequalities_F",
-      "prompt": "Solve the inequality -10 ≤ x + 5 < 2, then list the integer values of x that satisfy it.",
+      "prompt": "Solve the inequality 2 < 4x + 1 ≤ 17, then list the integer values of x that satisfy it.",
       "solution_steps": [
-        "-10 ≤ x + 5 < 2",
-        "Subtract 5 from all three parts:",
-        "-15 ≤ x < -3",
-        "-15 ≤ x < -3",
-        "The integers satisfying this are: -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4"
+        "2 < 4x + 1 ≤ 17",
+        "Subtract 1 from all three parts:",
+        "1 < 4x ≤ 16",
+        "Divide all three parts by 4:",
+        "1/4 < x ≤ 4",
+        "The integers satisfying this are: 1, 2, 3, 4"
       ],
-      "final_answer": "-15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4",
+      "final_answer": "1, 2, 3, 4",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "-10 ≤ x + 5 < 2",
+          "description": "2 < 4x + 1 ≤ 17",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 5 from all three parts:",
+          "description": "Subtract 1 from all three parts:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-15 ≤ x < -3",
+          "description": "1 < 4x ≤ 16",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-15 ≤ x < -3 The integers satisfying this are: -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4",
+          "description": "Divide all three parts by 4: 1/4 < x ≤ 4 The integers satisfying this are: 1, 2, 3, 4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4 oe",
+          "description": "1, 2, 3, 4 oe",
           "marks": 1
         }
       ],
@@ -417,18 +425,18 @@
     },
     {
       "topic_id": "linear_one_step_F",
-      "prompt": "Solve: 3x = 21",
+      "prompt": "Solve: 3x = 9",
       "solution_steps": [
-        "3x = 21",
+        "3x = 9",
         "Divide both sides by 3:",
-        "x = 7"
+        "x = 3"
       ],
-      "final_answer": "7",
+      "final_answer": "3",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "3x = 21",
+          "description": "3x = 9",
           "marks": 1
         },
         {
@@ -438,12 +446,12 @@
         },
         {
           "code": "M1",
-          "description": "x = 7",
+          "description": "x = 3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7 oe",
+          "description": "3 oe",
           "marks": 1
         }
       ],
@@ -451,40 +459,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_common_coefficient_F",
-      "prompt": "Solve the simultaneous equations: 5x + y = 31 and 2x + y = 13",
+      "topic_id": "algebraic_indices_F",
+      "prompt": "Simplify 6x^8 ÷ 3x^4",
       "solution_steps": [
-        "5x + y = 31  (1)",
-        "2x + y = 13  (2)",
-        "Subtract the equations to eliminate y: 3x = 18, so x = 6",
-        "Substitute x = 6 into (1): 1y = 1, so y = 1"
+        "Dividing powers of the same base: subtract the exponents, and divide the coefficients.",
+        "6x^8 ÷ 3x^4 = (6÷3) x^(8-4)",
+        "= 2x^4"
       ],
-      "final_answer": "x = 6, y = 1",
-      "marks": 5,
+      "final_answer": "2x^4",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5x + y = 31  (1)",
+          "description": "Dividing powers of the same base: subtract the exponents, and divide the coefficients.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x + y = 13  (2)",
+          "description": "6x^8 ÷ 3x^4 = (6÷3) x^(8-4)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract the equations to eliminate y: 3x = 18, so x = 6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute x = 6 into (1): 1y = 1, so y = 1",
+          "description": "= 2x^4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 6, y = 1 oe",
+          "description": "2x^4 oe",
           "marks": 1
         }
       ],
@@ -493,42 +495,41 @@
     },
     {
       "topic_id": "linear_both_sides_F",
-      "prompt": "Solve: 2x + 6 = 5x - 24",
+      "prompt": "Solve: 5x + 3 = 4x + 7",
       "solution_steps": [
-        "2x + 6 = 5x - 24",
-        "Subtract 5x from both sides:",
-        "-3x + 6 = -24",
-        "Subtract 6 from both sides:",
-        "-3x = -30",
-        "Divide both sides by -3:",
-        "x = 10"
+        "5x + 3 = 4x + 7",
+        "Subtract 4x from both sides:",
+        "x + 3 = 7",
+        "Subtract 3 from both sides:",
+        "x = 4",
+        "x = 4"
       ],
-      "final_answer": "10",
+      "final_answer": "4",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "2x + 6 = 5x - 24",
+          "description": "5x + 3 = 4x + 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 5x from both sides:",
+          "description": "Subtract 4x from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-3x + 6 = -24",
+          "description": "x + 3 = 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 6 from both sides: -3x = -30 Divide both sides by -3: x = 10",
+          "description": "Subtract 3 from both sides: x = 4 x = 4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10 oe",
+          "description": "4 oe",
           "marks": 1
         }
       ],
@@ -539,31 +540,31 @@
       "topic_id": "line_equation_from_graph_F",
       "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
       "solution_steps": [
-        "Gradient = rise/run = \\frac{7 - -14}{3 - -4} = 3",
-        "Using y = mx + c with the point (-4, -14): -14 = 3×(-4) + c, so c = -2",
-        "Equation of the line: y = 3x - 2"
+        "Gradient = rise/run = \\frac{8 - 0}{1 - -1} = 4",
+        "Using y = mx + c with the point (-1, 0): 0 = 4×(-1) + c, so c = 4",
+        "Equation of the line: y = 4x + 4"
       ],
-      "final_answer": "y = 3x - 2",
+      "final_answer": "y = 4x + 4",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Gradient = rise/run = \\frac{7 - -14}{3 - -4} = 3",
+          "description": "Gradient = rise/run = \\frac{8 - 0}{1 - -1} = 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Using y = mx + c with the point (-4, -14): -14 = 3×(-4) + c, so c = -2",
+          "description": "Using y = mx + c with the point (-1, 0): 0 = 4×(-1) + c, so c = 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Equation of the line: y = 3x - 2",
+          "description": "Equation of the line: y = 4x + 4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = 3x - 2 oe",
+          "description": "y = 4x + 4 oe",
           "marks": 1
         }
       ],
@@ -571,39 +572,39 @@
         "kind": "function_graph",
         "params": {
           "kind": "linear",
-          "m": 3,
-          "c": -2,
-          "x_min": -5,
-          "x_max": 4,
-          "y_min": -18,
-          "y_max": 11
+          "m": 4,
+          "c": 4,
+          "x_min": -2,
+          "x_max": 2,
+          "y_min": -5,
+          "y_max": 13
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "ratio_1_to_n_F",
-      "prompt": "Write the ratio 10:6 in the form 1:\\plain{n}.",
+      "prompt": "Write the ratio 6:8 in the form \\plain{n}:1.",
       "solution_steps": [
-        "Divide both parts of the ratio by 10 (the first part) so the first part becomes 1.",
-        "10 ÷ 10 = 1, 6 ÷ 10 ≈ 0.60"
+        "Divide both parts of the ratio by 8 (the second part) so the second part becomes 1.",
+        "6 ÷ 8 ≈ 0.75, 8 ÷ 8 = 1"
       ],
-      "final_answer": "1 : 0.60 (to 2 d.p.)",
+      "final_answer": "0.75 : 1 (to 2 d.p.)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide both parts of the ratio by 10 (the first part) so the first part becomes 1.",
+          "description": "Divide both parts of the ratio by 8 (the second part) so the second part becomes 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "10 ÷ 10 = 1, 6 ÷ 10 ≈ 0.60",
+          "description": "6 ÷ 8 ≈ 0.75, 8 ÷ 8 = 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 : 0.60 (to 2 d.p.) oe",
+          "description": "0.75 : 1 (to 2 d.p.) oe",
           "marks": 1
         }
       ],
@@ -612,14 +613,15 @@
     },
     {
       "topic_id": "best_buys_noncalculator_F",
-      "prompt": "A shop sells ground coffee in different sizes: A: £15.20 for 800g; B: £2.10 for 700g. Which option is the better value for money? Show your working.",
+      "prompt": "A shop sells ground coffee in different sizes: A: £7.20 for 900g; B: £2.80 for 200g; C: £8.00 for 500g. Which option is the better value for money? Show your working.",
       "solution_steps": [
         "Work out the price per 100g for each option:",
-        "A: £15.20 ÷ 800 × 100 = 190p per 100g",
-        "B: £2.10 ÷ 700 × 100 = 30p per 100g",
-        "The lowest price per 100g is B at 30p per 100g, so B is the best value."
+        "A: £7.20 ÷ 900 × 100 = 80p per 100g",
+        "B: £2.80 ÷ 200 × 100 = 140p per 100g",
+        "C: £8.00 ÷ 500 × 100 = 160p per 100g",
+        "The lowest price per 100g is A at 80p per 100g, so A is the best value."
       ],
-      "final_answer": "B (£2.10 for 700g)",
+      "final_answer": "A (£7.20 for 900g)",
       "marks": 5,
       "mark_scheme": [
         {
@@ -629,22 +631,22 @@
         },
         {
           "code": "M1",
-          "description": "A: £15.20 ÷ 800 × 100 = 190p per 100g",
+          "description": "A: £7.20 ÷ 900 × 100 = 80p per 100g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "B: £2.10 ÷ 700 × 100 = 30p per 100g",
+          "description": "B: £2.80 ÷ 200 × 100 = 140p per 100g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The lowest price per 100g is B at 30p per 100g, so B is the best value.",
+          "description": "C: £8.00 ÷ 500 × 100 = 160p per 100g The lowest price per 100g is A at 80p per 100g, so A is the best value.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "B (£2.10 for 700g) oe",
+          "description": "A (£7.20 for 900g) oe",
           "marks": 1
         }
       ],
@@ -653,39 +655,27 @@
     },
     {
       "topic_id": "direct_proportion_F",
-      "prompt": "If a recipe for 9 people uses 2.529kg of sugar, how much sugar is needed for 4 people?",
+      "prompt": "If 10 pencils cost £42.10, how much would 16 pencils cost?",
       "solution_steps": [
-        "2.529kg = 2529g",
-        "Unit value = 2529g ÷ 9 = 281g",
-        "Answer = 281g × 4 = 1124g",
-        "1124g = 1.124kg"
+        "Unit value = £42.10 ÷ 10 = £4.21",
+        "Answer = £4.21 × 16 = £67.36"
       ],
-      "final_answer": "1.124kg",
-      "marks": 5,
+      "final_answer": "£67.36",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "2.529kg = 2529g",
+          "description": "Unit value = £42.10 ÷ 10 = £4.21",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Unit value = 2529g ÷ 9 = 281g",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Answer = 281g × 4 = 1124g",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "1124g = 1.124kg",
+          "description": "Answer = £4.21 × 16 = £67.36",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1.124kg oe",
+          "description": "£67.36 oe",
           "marks": 1
         }
       ],
@@ -694,39 +684,39 @@
     },
     {
       "topic_id": "ratio_share_two_part_F",
-      "prompt": "Share 72 in the ratio 7:2.",
+      "prompt": "Share 170 in the ratio 6:4.",
       "solution_steps": [
-        "Total parts = 7 + 2 = 9",
-        "Value of one part = 72 ÷ 9 = 8",
-        "Share 1 = 7 × 8 = 56",
-        "Share 2 = 2 × 8 = 16"
+        "Total parts = 6 + 4 = 10",
+        "Value of one part = 170 ÷ 10 = 17",
+        "Share 1 = 6 × 17 = 102",
+        "Share 2 = 4 × 17 = 68"
       ],
-      "final_answer": "56 : 16",
+      "final_answer": "102 : 68",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 7 + 2 = 9",
+          "description": "Total parts = 6 + 4 = 10",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 72 ÷ 9 = 8",
+          "description": "Value of one part = 170 ÷ 10 = 17",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 1 = 7 × 8 = 56",
+          "description": "Share 1 = 6 × 17 = 102",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 2 = 2 × 8 = 16",
+          "description": "Share 2 = 4 × 17 = 68",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "56 : 16 oe",
+          "description": "102 : 68 oe",
           "marks": 1
         }
       ],
@@ -734,131 +724,94 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof_F",
-      "prompt": "Triangles ABC and ADC share side AC, with AB = AD and BC = DC. Which congruence criterion proves that the two triangles are congruent? A) RHS  B) SAS  C) ASA  D) SSS",
+      "topic_id": "vectors_arithmetic_F",
+      "prompt": "\\vec{a} = \\colvec{-8}{1} and \\vec{b} = \\colvec{0}{-3}. Find 4\\vec{a} - 2\\vec{b}.",
       "solution_steps": [
-        "AB = AD (given)",
-        "BC = DC (given)",
-        "AC is common to both triangles",
-        "These facts match the Side-Side-Side (SSS) congruence criterion."
+        "\\vec{a} = \\colvec{-8}{1}, \\vec{b} = \\colvec{0}{-3}",
+        "4\\vec{a} = \\colvec{-32}{4} and 2\\vec{b} = \\colvec{0}{-6}",
+        "4\\vec{a} - 2\\vec{b} = \\colvec{-32}{10}"
       ],
-      "final_answer": "D) SSS",
-      "marks": 1,
-      "mark_scheme": [
-        {
-          "code": "B1",
-          "description": "D) SSS (selecting the correct option)",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "two_triangle_congruence",
-        "params": {
-          "labels_1": [
-            "A",
-            "B",
-            "C"
-          ],
-          "labels_2": [
-            "A",
-            "D",
-            "C"
-          ],
-          "ticks_1": [
-            [
-              0,
-              1,
-              2
-            ],
-            [
-              1,
-              2,
-              3
-            ],
-            [
-              0,
-              2,
-              1
-            ]
-          ],
-          "ticks_2": [
-            [
-              0,
-              1,
-              2
-            ],
-            [
-              1,
-              2,
-              3
-            ],
-            [
-              0,
-              2,
-              1
-            ]
-          ],
-          "arcs_1": [],
-          "arcs_2": [],
-          "note": "AC is common to both triangles."
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "area_triangle_F",
-      "prompt": "A triangle has base 8 cm and height 4 cm. Find its area.",
-      "solution_steps": [
-        "Area = (1/2) × base × height = (1/2) × 8 × 4 = 16 cm²"
-      ],
-      "final_answer": "16 cm²",
-      "marks": 2,
+      "final_answer": "\\colvec{-32}{10}",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = (1/2) × base × height = (1/2) × 8 × 4 = 16 cm²",
+          "description": "\\vec{a} = \\colvec{-8}{1}, \\vec{b} = \\colvec{0}{-3}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4\\vec{a} = \\colvec{-32}{4} and 2\\vec{b} = \\colvec{0}{-6}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "4\\vec{a} - 2\\vec{b} = \\colvec{-32}{10}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "16 cm² oe",
+          "description": "\\colvec{-32}{10} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_triangle_F",
+      "prompt": "A triangle has base 12 cm and height 17 cm. Find its area.",
+      "solution_steps": [
+        "Area = (1/2) × base × height = (1/2) × 12 × 17 = 102 cm²"
+      ],
+      "final_answer": "102 cm²",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area = (1/2) × base × height = (1/2) × 12 × 17 = 102 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "102 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "triangle_area",
         "params": {
-          "base": 8,
-          "height": 4,
-          "base_label": "8 cm",
-          "height_label": "4 cm"
+          "base": 12,
+          "height": 17,
+          "base_label": "12 cm",
+          "height_label": "17 cm"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "volume_surface_area_cylinder_F",
-      "prompt": "A cylinder has radius 10 cm and height 12 cm. Find its volume, correct to 2 decimal places.",
+      "prompt": "Find the total surface area of the cylinder, correct to 2 decimal places.",
       "solution_steps": [
-        "Volume = π × r² × h = π × 10² × 12",
-        "= 3769.91 cm³ (2 d.p., using a calculator value of π)"
+        "Surface area = 2πr² + 2πrh = (2 × π × 10²) + (2 × π × 10 × 19)",
+        "= 1822.12 cm² (2 d.p., using a calculator value of π)"
       ],
-      "final_answer": "3769.91 cm³",
+      "final_answer": "1822.12 cm²",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Volume = π × r² × h = π × 10² × 12",
+          "description": "Surface area = 2πr² + 2πrh = (2 × π × 10²) + (2 × π × 10 × 19)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 3769.91 cm³ (2 d.p., using a calculator value of π)",
+          "description": "= 1822.12 cm² (2 d.p., using a calculator value of π)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3769.91 cm³ oe",
+          "description": "1822.12 cm² oe",
           "marks": 1
         }
       ],
@@ -866,34 +819,34 @@
         "kind": "cylinder",
         "params": {
           "radius_label": "10 cm",
-          "height_label": "12 cm"
+          "height_label": "19 cm"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "transform_reflect_complete_F",
-      "prompt": "Reflect shape ABC in the line x = 1. Draw and label the image A'B'C'.",
+      "prompt": "Reflect shape ABC in the line y = 2.",
       "solution_steps": [
-        "Reflect each vertex in the line x = 1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
-        "A(3, 1) -> A'(-1, 1), B(6, 1) -> B'(-4, 1), C(3, 3) -> C'(-1, 3)"
+        "Reflect each vertex in the line y = 2: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+        "A(1, -2) -> A'(1, 6), B(4, -2) -> B'(4, 6), C(1, 0) -> C'(1, 4)"
       ],
-      "final_answer": "A'(-1, 1), B'(-4, 1), C'(-1, 3)",
+      "final_answer": "A'(1, 6), B'(4, 6), C'(1, 4)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Reflect each vertex in the line x = 1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+          "description": "Reflect each vertex in the line y = 2: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A(3, 1) -> A'(-1, 1), B(6, 1) -> B'(-4, 1), C(3, 3) -> C'(-1, 3)",
+          "description": "A(1, -2) -> A'(1, 6), B(4, -2) -> B'(4, 6), C(1, 0) -> C'(1, 4)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A'(-1, 1), B'(-4, 1), C'(-1, 3) oe",
+          "description": "A'(1, 6), B'(4, 6), C'(1, 4) oe",
           "marks": 1
         }
       ],
@@ -906,16 +859,16 @@
           "y_max": 8,
           "original_vertices": [
             [
-              3,
-              1
+              1,
+              -2
             ],
             [
-              6,
-              1
+              4,
+              -2
             ],
             [
-              3,
-              3
+              1,
+              0
             ]
           ],
           "original_labels": [
@@ -924,9 +877,9 @@
             "C"
           ],
           "mirror_line": {
-            "type": "vertical",
-            "x": 1,
-            "label": "x = 1"
+            "type": "horizontal",
+            "y": 2,
+            "label": "y = 2"
           }
         }
       },
@@ -939,16 +892,16 @@
           "y_max": 8,
           "original_vertices": [
             [
-              3,
-              1
+              1,
+              -2
             ],
             [
-              6,
-              1
+              4,
+              -2
             ],
             [
-              3,
-              3
+              1,
+              0
             ]
           ],
           "original_labels": [
@@ -957,22 +910,22 @@
             "C"
           ],
           "mirror_line": {
-            "type": "vertical",
-            "x": 1,
-            "label": "x = 1"
+            "type": "horizontal",
+            "y": 2,
+            "label": "y = 2"
           },
           "image_vertices": [
             [
-              -1,
-              1
+              1,
+              6
             ],
             [
-              -4,
-              1
+              4,
+              6
             ],
             [
-              -1,
-              3
+              1,
+              4
             ]
           ],
           "image_labels": [
@@ -985,104 +938,140 @@
     },
     {
       "topic_id": "volume_surface_area_triangular_prism_F",
-      "prompt": "A triangular prism has a right-angled triangular cross-section with sides 16 cm and 30 cm (hypotenuse 34 cm), and length 18 cm. Find its volume.",
+      "prompt": "A triangular prism has a right-angled triangular cross-section with sides 10 cm and 24 cm (hypotenuse 26 cm), and length 10 cm. Find its volume.",
       "solution_steps": [
-        "Cross-section area = (1/2) × 16 × 30 = 240 cm²",
-        "Volume = cross-section area × length = 240 × 18 = 4320 cm³"
+        "Cross-section area = (1/2) × 10 × 24 = 120 cm²",
+        "Volume = cross-section area × length = 120 × 10 = 1200 cm³"
       ],
-      "final_answer": "4320 cm³",
+      "final_answer": "1200 cm³",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Cross-section area = (1/2) × 16 × 30 = 240 cm²",
+          "description": "Cross-section area = (1/2) × 10 × 24 = 120 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Volume = cross-section area × length = 240 × 18 = 4320 cm³",
+          "description": "Volume = cross-section area × length = 120 × 10 = 1200 cm³",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4320 cm³ oe",
+          "description": "1200 cm³ oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "triangular_prism",
         "params": {
-          "base_label": "16 cm",
-          "triangle_height_label": "30 cm",
-          "length_label": "18 cm"
+          "base_label": "10 cm",
+          "triangle_height_label": "24 cm",
+          "length_label": "10 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "vectors_arithmetic_F",
-      "prompt": "\\vec{a} = \\colvec{-1}{-2} and \\vec{b} = \\colvec{4}{-4}. Find 3\\vec{a} - 2\\vec{b}.",
+      "topic_id": "tree_diagram_drawing_F",
+      "prompt": "A bag contains 7 green and 8 blue counters. A counter is picked at random, replaced, and then a second counter is picked at random. Draw a fully-labelled tree diagram to show this information, and use it to find the probability that the first counter is green and the second counter is green.",
       "solution_steps": [
-        "\\vec{a} = \\colvec{-1}{-2}, \\vec{b} = \\colvec{4}{-4}",
-        "3\\vec{a} = \\colvec{-3}{-6} and 2\\vec{b} = \\colvec{8}{-8}",
-        "3\\vec{a} - 2\\vec{b} = \\colvec{-11}{2}"
+        "Draw two branches from the start: P(green) = 7/15, P(blue) = 8/15.",
+        "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
+        "P(green then green) = 7/15 × 7/15 = 49/225"
       ],
-      "final_answer": "\\colvec{-11}{2}",
+      "final_answer": "49/225",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "\\vec{a} = \\colvec{-1}{-2}, \\vec{b} = \\colvec{4}{-4}",
+          "description": "Draw two branches from the start: P(green) = 7/15, P(blue) = 8/15.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3\\vec{a} = \\colvec{-3}{-6} and 2\\vec{b} = \\colvec{8}{-8}",
+          "description": "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3\\vec{a} - 2\\vec{b} = \\colvec{-11}{2}",
+          "description": "P(green then green) = 7/15 × 7/15 = 49/225",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "\\colvec{-11}{2} oe",
+          "description": "49/225 oe",
           "marks": 1
         }
       ],
       "diagram": null,
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Green",
+              "7/15"
+            ],
+            [
+              "Blue",
+              "8/15"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Green",
+                "7/15"
+              ],
+              [
+                "Blue",
+                "8/15"
+              ]
+            ],
+            [
+              [
+                "Green",
+                "7/15"
+              ],
+              [
+                "Blue",
+                "8/15"
+              ]
+            ]
+          ]
+        }
+      }
     },
     {
       "topic_id": "probability_single_event_F",
-      "prompt": "A bag contains 4 purple, 5 red counters. A counter is picked at random. Find the probability that it is purple.",
+      "prompt": "A bag contains 8 yellow, 6 blue, 8 purple counters. A counter is picked at random. Find the probability that it is purple.",
       "solution_steps": [
-        "Total counters = 9",
-        "Number of purple counters = 4",
-        "P(purple) = 4/9 = 4/9"
+        "Total counters = 22",
+        "Number of purple counters = 8",
+        "P(purple) = 8/22 = 4/11"
       ],
-      "final_answer": "4/9",
+      "final_answer": "4/11",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total counters = 9",
+          "description": "Total counters = 22",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Number of purple counters = 4",
+          "description": "Number of purple counters = 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(purple) = 4/9 = 4/9",
+          "description": "P(purple) = 8/22 = 4/11",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4/9 oe",
+          "description": "4/11 oe",
           "marks": 1
         }
       ],
@@ -1090,125 +1079,126 @@
         "kind": "bag_of_counters",
         "params": {
           "counts": {
-            "purple": 4,
-            "red": 5
+            "yellow": 8,
+            "blue": 6,
+            "purple": 8
           }
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "two_way_tables_F",
-      "prompt": "The two-way table shows the number of boys and girls who prefer cats or dogs. Find the missing values.",
+      "topic_id": "composite_bar_chart_F",
+      "prompt": "The composite bar chart shows the number of sales split by 2023 and 2024. Find the difference between 2023 and 2024 for Jan.",
       "solution_steps": [
-        "'Girls' / 'Cats': using the 'Girls' row total: 19 - 14 = 5",
-        "'Boys' / 'Cats': using the 'Boys' row total: 9 - 4 = 5"
+        "2023: 6, 2024: 7.",
+        "Difference = 1."
       ],
-      "final_answer": "'Girls' / 'Cats' = 5; 'Boys' / 'Cats' = 5",
+      "final_answer": "1",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "'Girls' / 'Cats': using the 'Girls' row total: 19 - 14 = 5",
+          "description": "2023: 6, 2024: 7.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "'Boys' / 'Cats': using the 'Boys' row total: 9 - 4 = 5",
+          "description": "Difference = 1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "'Girls' / 'Cats' = 5; 'Boys' / 'Cats' = 5 oe",
+          "description": "1 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "two_way_table",
+        "kind": "bar_chart",
         "params": {
-          "row_labels": [
-            "Boys",
-            "Girls",
-            "Total"
+          "categories": [
+            "Jan",
+            "Feb",
+            "Mar"
           ],
-          "col_labels": [
-            "Cats",
-            "Dogs",
-            "Total"
-          ],
-          "cells": [
+          "series": [
             [
-              "",
-              "4",
-              "9"
+              6,
+              7
             ],
             [
-              "",
-              "14",
-              "19"
+              4,
+              12
             ],
             [
-              "10",
-              "18",
-              "28"
+              9,
+              13
+            ]
+          ],
+          "series_labels": [
+            "2023",
+            "2024"
+          ],
+          "y_label": "Frequency"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "congruent_triangle_proof_F",
+      "prompt": "Shown below are two congruent triangles. Give a reason why they are congruent. A) ASA  B) SAS  C) RHS  D) SSS",
+      "solution_steps": [
+        "Look at which measurements are marked equal on both triangles - here they match the Angle-Side-Angle (ASA) pattern.",
+        "So the two triangles are congruent by Angle-Side-Angle (ASA)."
+      ],
+      "final_answer": "A) ASA",
+      "marks": 1,
+      "mark_scheme": [
+        {
+          "code": "B1",
+          "description": "A) ASA (selecting the correct option)",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "two_triangle_congruence",
+        "params": {
+          "side_labels_1": [
+            [
+              0,
+              1,
+              "9 cm"
+            ]
+          ],
+          "side_labels_2": [
+            [
+              0,
+              1,
+              "9 cm"
+            ]
+          ],
+          "angle_labels_1": [
+            [
+              0,
+              "59°"
+            ],
+            [
+              1,
+              "42°"
+            ]
+          ],
+          "angle_labels_2": [
+            [
+              0,
+              "59°"
+            ],
+            [
+              1,
+              "42°"
             ]
           ]
         }
       },
-      "solution_diagram": {
-        "kind": "two_way_table",
-        "params": {
-          "row_labels": [
-            "Boys",
-            "Girls",
-            "Total"
-          ],
-          "col_labels": [
-            "Cats",
-            "Dogs",
-            "Total"
-          ],
-          "cells": [
-            [
-              "5",
-              "4",
-              "9"
-            ],
-            [
-              "5",
-              "14",
-              "19"
-            ],
-            [
-              "10",
-              "18",
-              "28"
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "stats_median_F",
-      "prompt": "Find the median of this data set: 14, 13, 6, 9, 9, 29, 25.",
-      "solution_steps": [
-        "Sort the data: 6, 9, 9, 13, 14, 25, 29. The middle value is 13."
-      ],
-      "final_answer": "13",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Sort the data: 6, 9, 9, 13, 14, 25, 29. The middle value is 13.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "13 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
       "solution_diagram": null
     }
   ]

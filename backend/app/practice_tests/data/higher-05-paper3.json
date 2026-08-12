@@ -7,187 +7,40 @@
   "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "fractions_mixed_number_arithmetic_H",
-      "prompt": "Evaluate 5 3/7 + 5 2/3. Give your answer as a mixed number.",
-      "solution_steps": [
-        "Convert to improper fractions: 5 3/7 = 38/7, 5 2/3 = 17/3",
-        "Add the improper fractions: 38/7 + 17/3 = 233/21",
-        "Convert back to a mixed number: 11 2/21"
-      ],
-      "final_answer": "11 2/21",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert to improper fractions: 5 3/7 = 38/7, 5 2/3 = 17/3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add the improper fractions: 38/7 + 17/3 = 233/21",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Convert back to a mixed number: 11 2/21",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "11 2/21 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "cumulative_frequency_plot_H",
-      "prompt": "The table shows the times (in minutes) taken to run a race. Draw a cumulative frequency graph to show this information.",
-      "solution_steps": [
-        "Running total of the frequencies, class by class: 20-30: 6, 30-40: 3, 40-50: 15, 50-60: 10, 60-70: 6.",
-        "Cumulative frequencies: 6, 9, 24, 34, 40",
-        "Plot each (upper class boundary, cumulative frequency) point and join with a smooth curve."
-      ],
-      "final_answer": "Cumulative frequencies: 6, 9, 24, 34, 40",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Running total of the frequencies, class by class: 20-30: 6, 30-40: 3, 40-50: 15, 50-60: 10, 60-70: 6.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Cumulative frequencies: 6, 9, 24, 34, 40",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot each (upper class boundary, cumulative frequency) point and join with a smooth curve.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Cumulative frequencies: 6, 9, 24, 34, 40 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "cumulative_frequency_question",
-        "params": {
-          "points": [
-            [
-              20,
-              0
-            ],
-            [
-              30,
-              6
-            ],
-            [
-              40,
-              9
-            ],
-            [
-              50,
-              24
-            ],
-            [
-              60,
-              34
-            ],
-            [
-              70,
-              40
-            ]
-          ],
-          "boundaries": [
-            20,
-            30,
-            40,
-            50,
-            60,
-            70
-          ],
-          "frequencies": [
-            6,
-            3,
-            15,
-            10,
-            6
-          ],
-          "x_label": "Time (minutes)"
-        }
-      },
-      "solution_diagram": {
-        "kind": "cumulative_frequency",
-        "params": {
-          "points": [
-            [
-              20,
-              0
-            ],
-            [
-              30,
-              6
-            ],
-            [
-              40,
-              9
-            ],
-            [
-              50,
-              24
-            ],
-            [
-              60,
-              34
-            ],
-            [
-              70,
-              40
-            ]
-          ],
-          "x_label": "Time (minutes)"
-        }
-      }
-    },
-    {
       "topic_id": "indices_common_base_equations_H",
-      "prompt": "Solve 5^(x+2) = 625^(2x).",
+      "prompt": "Solve 8^x = 8.",
       "solution_steps": [
-        "Write both sides as powers of 5: 5 = 5^1 and 625 = 5^4",
-        "5^(x+2) = 625^(2x) becomes 5^(x+2) = 5^(4×2x), i.e. 5^(x+2) = 5^(8x)",
-        "Since the bases match, the powers must be equal: x + 2 = 8x",
-        "Rearranging: -7x = -2, so x = -2/-7 = 2/7"
+        "Write both sides as powers of 2: 8 = 2^3 and 8 = 2^3",
+        "8^x = 8 becomes (2^3)^x = 2^3, i.e. 2^(3x) = 2^3",
+        "Since the bases match, the powers must be equal: 3x = 3",
+        "x = 3/3 = 1"
       ],
-      "final_answer": "2/7",
+      "final_answer": "1",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Write both sides as powers of 5: 5 = 5^1 and 625 = 5^4",
+          "description": "Write both sides as powers of 2: 8 = 2^3 and 8 = 2^3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5^(x+2) = 625^(2x) becomes 5^(x+2) = 5^(4×2x), i.e. 5^(x+2) = 5^(8x)",
+          "description": "8^x = 8 becomes (2^3)^x = 2^3, i.e. 2^(3x) = 2^3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Since the bases match, the powers must be equal: x + 2 = 8x",
+          "description": "Since the bases match, the powers must be equal: 3x = 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rearranging: -7x = -2, so x = -2/-7 = 2/7",
+          "description": "x = 3/3 = 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2/7 oe",
+          "description": "1 oe",
           "marks": 1
         }
       ],
@@ -195,28 +48,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "prime_factors_H",
-      "prompt": "Write 837 as a product of its prime factors, giving your answer in index form.",
+      "topic_id": "standard_form_multiply_divide_H",
+      "prompt": "Work out (2 × 10^4) × (5 × 10^5). Give your answer in standard form.",
       "solution_steps": [
-        "Divide 837 repeatedly by the smallest prime that fits: 3 × 3 × 3 × 31",
-        "Write repeated factors using index notation: 837 = 3^3 × 31"
+        "Multiply the mantissas: 2 × 5 = 10",
+        "Add the powers of 10: 4 + 5 = 9",
+        "Renormalize so the mantissa is between 1 and 10: 1 × 10^10"
       ],
-      "final_answer": "3^3 × 31",
-      "marks": 3,
+      "final_answer": "1 × 10^10",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide 837 repeatedly by the smallest prime that fits: 3 × 3 × 3 × 31",
+          "description": "Multiply the mantissas: 2 × 5 = 10",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write repeated factors using index notation: 837 = 3^3 × 31",
+          "description": "Add the powers of 10: 4 + 5 = 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Renormalize so the mantissa is between 1 and 10: 1 × 10^10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3^3 × 31 oe",
+          "description": "1 × 10^10 oe",
           "marks": 1
         }
       ],
@@ -224,40 +83,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simplifying_indices_challenging_H",
-      "prompt": "Simplify 16^(3/2) × 16^-3, giving your answer as a fraction where necessary.",
+      "topic_id": "fractions_mixed_number_arithmetic_H",
+      "prompt": "Calculate 4 1/2 - 3 4/6. Give your answer as a mixed number.",
       "solution_steps": [
-        "16^(1/2) is the square root of 16, which is 4, so 16^(3/2) = 4^3",
-        "16^-3 = \\frac{1}{16³} = \\frac{1}{4⁶}",
-        "16^(3/2) × 16^-3 = 4^3 × \\frac{1}{4⁶} = 4^(3-6) = 4^-3",
-        "4^-3 = 1/64"
+        "Convert to improper fractions: 4 1/2 = 9/2, 3 4/6 = 11/3",
+        "Subtract the improper fractions: 9/2 - 11/3 = 5/6",
+        "Convert back to a mixed number: 0 5/6"
       ],
-      "final_answer": "1/64",
-      "marks": 5,
+      "final_answer": "0 5/6",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "16^(1/2) is the square root of 16, which is 4, so 16^(3/2) = 4^3",
+          "description": "Convert to improper fractions: 4 1/2 = 9/2, 3 4/6 = 11/3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "16^-3 = \\frac{1}{16³} = \\frac{1}{4⁶}",
+          "description": "Subtract the improper fractions: 9/2 - 11/3 = 5/6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "16^(3/2) × 16^-3 = 4^3 × \\frac{1}{4⁶} = 4^(3-6) = 4^-3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "4^-3 = 1/64",
+          "description": "Convert back to a mixed number: 0 5/6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/64 oe",
+          "description": "0 5/6 oe",
           "marks": 1
         }
       ],
@@ -266,33 +119,33 @@
     },
     {
       "topic_id": "bounds_calculation_H",
-      "prompt": "A rectangle has length 16 cm and width 20 cm, both measured to the nearest cm. Calculate the lower bound for the area of the rectangle.",
+      "prompt": "A car travels 255 km (to the nearest km) in 15 hours (to the nearest hour). Calculate the lower bound for the average speed of the car, to 1 decimal place.",
       "solution_steps": [
-        "Length: 16 cm (to the nearest cm) gives 15.5 ≤ length < 16.5",
-        "Width: 20 cm (to the nearest cm) gives 19.5 ≤ width < 20.5",
-        "For the lower bound of the area, use the lower bound of each measurement: 15.5 × 19.5 = 302.25 cm²"
+        "Distance: 255 km (to the nearest km) gives 254.5 ≤ distance < 255.5",
+        "Time: 15 hours (to the nearest hour) gives 14.5 ≤ time < 15.5",
+        "For the lower bound of the speed, divide the lower bound of distance by the upper bound of time: 254.5 ÷ 15.5 = 509/31 ≈ 16.4 km/h"
       ],
-      "final_answer": "302.25 cm²",
+      "final_answer": "16.4 km/h (to 1 d.p.)",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Length: 16 cm (to the nearest cm) gives 15.5 ≤ length < 16.5",
+          "description": "Distance: 255 km (to the nearest km) gives 254.5 ≤ distance < 255.5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Width: 20 cm (to the nearest cm) gives 19.5 ≤ width < 20.5",
+          "description": "Time: 15 hours (to the nearest hour) gives 14.5 ≤ time < 15.5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For the lower bound of the area, use the lower bound of each measurement: 15.5 × 19.5 = 302.25 cm²",
+          "description": "For the lower bound of the speed, divide the lower bound of distance by the upper bound of time: 254.5 ÷ 15.5 = 509/31 ≈ 16.4 km/h",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "302.25 cm² oe",
+          "description": "16.4 km/h (to 1 d.p.) oe",
           "marks": 1
         }
       ],
@@ -300,63 +153,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_add_subtract_H",
-      "prompt": "Work out (7 × 10^6) + (9 × 10^4). Give your answer in standard form.",
+      "topic_id": "roots_H",
+      "prompt": "Fully simplify √50, giving your answer in the form a√b.",
       "solution_steps": [
-        "Write both numbers with the same power of 10: 7×10^6 = 700×10^4, 9×10^4 = 9×10^4",
-        "Add the coefficients: 700 + 9 = 709",
-        "Write in standard form: 709 × 10^4 = 7.09 × 10^6"
+        "Find the largest square factor of 50: 5^2 × 2 = 50",
+        "√50 = √(5^2 × 2) = 5√2"
       ],
-      "final_answer": "7.09 × 10^6",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Write both numbers with the same power of 10: 7×10^6 = 700×10^4, 9×10^4 = 9×10^4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add the coefficients: 700 + 9 = 709",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Write in standard form: 709 × 10^4 = 7.09 × 10^6",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "7.09 × 10^6 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "special_sequences_H",
-      "prompt": "The first 4 terms of a Fibonacci-type sequence are: 6, 1, 7, 8. Each term (from the 3rd onwards) is found by adding the two terms before it. Find the next term of the sequence.",
-      "solution_steps": [
-        "Rule: each term (from the 3rd onwards) is found by adding the two terms before it.",
-        "7 + 8 = 15"
-      ],
-      "final_answer": "15",
+      "final_answer": "5√2",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Rule: each term (from the 3rd onwards) is found by adding the two terms before it.",
+          "description": "Find the largest square factor of 50: 5^2 × 2 = 50",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "7 + 8 = 15",
+          "description": "√50 = √(5^2 × 2) = 5√2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "15 oe",
+          "description": "5√2 oe",
           "marks": 1
         }
       ],
@@ -364,41 +182,69 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "iteration_H",
-      "prompt": "The iterative formula x_(n+1) = \\frac{7 - x_n^2}{5} is used with x_0 = 0. Find the values of x_1, x_2 and x_3, giving each answer to 3 decimal places.",
+      "topic_id": "surds_multiply_divide_H",
+      "prompt": "Work out √72 ÷ √8, giving your answer as an integer.",
       "solution_steps": [
-        "Iterative formula: x_(n+1) = \\frac{7 - x_n^2}{5}",
-        "x_0 = 0",
-        "x_1 = g(x_0) = \\frac{7 - 0^2}{5} = 1.400",
-        "x_2 = g(x_1) = \\frac{7 - 1.400^2}{5} = 1.008",
-        "x_3 = g(x_2) = \\frac{7 - 1.008^2}{5} = 1.197"
+        "√72 ÷ √8 = √(72/8) = √9",
+        "√9 = 3"
       ],
-      "final_answer": "x_1 = 1.400, x_2 = 1.008, x_3 = 1.197",
+      "final_answer": "3",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "√72 ÷ √8 = √(72/8) = √9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "√9 = 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "hcf_lcm_by_prime_factors_H",
+      "prompt": "Using prime factorisation, find the LCM of 132 and 96.",
+      "solution_steps": [
+        "132 = 2^2 × 3 × 11",
+        "96 = 2^5 × 3",
+        "LCM: take the highest power of each prime",
+        "LCM = 1056"
+      ],
+      "final_answer": "1056",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Iterative formula: x_(n+1) = \\frac{7 - x_n^2}{5}",
+          "description": "132 = 2^2 × 3 × 11",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x_0 = 0",
+          "description": "96 = 2^5 × 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x_1 = g(x_0) = \\frac{7 - 0^2}{5} = 1.400",
+          "description": "LCM: take the highest power of each prime",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x_2 = g(x_1) = \\frac{7 - 1.400^2}{5} = 1.008 x_3 = g(x_2) = \\frac{7 - 1.008^2}{5} = 1.197",
+          "description": "LCM = 1056",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x_1 = 1.400, x_2 = 1.008, x_3 = 1.197 oe",
+          "description": "1056 oe",
           "marks": 1
         }
       ],
@@ -406,34 +252,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "change_subject_factorise_H",
-      "prompt": "Make x the subject of the formula kx + 6x = 23.",
+      "topic_id": "completing_the_square_H",
+      "prompt": "Write x^2 - 18x + 10 in the form (x + p)^2 + q.",
       "solution_steps": [
-        "kx + 6x = 23",
-        "Factorise the left-hand side: x(k + 6) = 23",
-        "Divide both sides by (k + 6): x = \\frac{23}{k + 6}"
+        "Half the coefficient of x: -18 ÷ 2 = -9",
+        "(x - 9)^2 = x^2 - 18x + 81",
+        "x^2 - 18x + 10 = (x - 9)^2 + (10 - 81) = (x - 9)^2 - 71"
       ],
-      "final_answer": "x = \\frac{23}{k + 6}",
+      "final_answer": "(x - 9)^2 - 71",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "kx + 6x = 23",
+          "description": "Half the coefficient of x: -18 ÷ 2 = -9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise the left-hand side: x(k + 6) = 23",
+          "description": "(x - 9)^2 = x^2 - 18x + 81",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by (k + 6): x = \\frac{23}{k + 6}",
+          "description": "x^2 - 18x + 10 = (x - 9)^2 + (10 - 81) = (x - 9)^2 - 71",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = \\frac{23}{k + 6} oe",
+          "description": "(x - 9)^2 - 71 oe",
           "marks": 1
         }
       ],
@@ -441,336 +287,215 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "change_subject_H",
-      "prompt": "Make x the subject of the formula y = \\frac{x + 2}{x - 10}.",
+      "topic_id": "graph_transformations_H",
+      "prompt": "The graph of y = f(x) is transformed to give the graph of y = f(x) - 2. Describe this transformation fully.",
       "solution_steps": [
-        "y = \\frac{x + 2}{x - 10}",
-        "Multiply both sides by (x - 10): y(x - 10) = x + 2",
-        "Expand the bracket: yx - 10y = x + 2",
-        "Collect the x-terms on one side: yx - x = 2 + 10y",
-        "Factorise: x(y - 1) = 2 + 10y",
-        "Divide both sides by (y - 1): x = \\frac{2 + 10y}{y - 1}"
+        "y = f(x) - 2 corresponds to a translation by vector (0, -2)."
       ],
-      "final_answer": "x = \\frac{2 + 10y}{y - 1}",
-      "marks": 5,
+      "final_answer": "Translation by vector (0, -2)",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = \\frac{x + 2}{x - 10}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply both sides by (x - 10): y(x - 10) = x + 2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Expand the bracket: yx - 10y = x + 2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Collect the x-terms on one side: yx - x = 2 + 10y Factorise: x(y - 1) = 2 + 10y Divide both sides by (y - 1): x = \\frac{2 + 10y}{y - 1}",
+          "description": "y = f(x) - 2 corresponds to a translation by vector (0, -2).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = \\frac{2 + 10y}{y - 1} oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "forming_equations_H",
-      "prompt": "The perimeter of the L-shape shown is 66 cm. Form an equation and solve it to find x.",
-      "solution_steps": [
-        "Perimeter of an L-shape = 2 × (outer width) + 2 × (outer height).",
-        "2(x + 4) + 2(14 + 6) = 66",
-        "Expand the brackets and collect the constants:",
-        "2x + 48 = 66",
-        "Subtract 48 from both sides:",
-        "2x = 18",
-        "Divide both sides by 2:",
-        "x = 9"
-      ],
-      "final_answer": "9",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Perimeter of an L-shape = 2 × (outer width) + 2 × (outer height).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2(x + 4) + 2(14 + 6) = 66",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Expand the brackets and collect the constants:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2x + 48 = 66 Subtract 48 from both sides: 2x = 18 Divide both sides by 2: x = 9",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "9 oe",
+          "description": "Translation by vector (0, -2) oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "l_shape",
+        "kind": "graph_transformation",
         "params": {
-          "outer_w": 13,
-          "outer_h": 20,
-          "inner_w": 5,
-          "inner_h": 14,
-          "notch": "corner",
-          "outer_labels": [
-            "(x + 4) cm",
-            "(14 + 6) cm"
-          ],
-          "right_labels": [
-            "6 cm",
-            "14 cm"
-          ]
+          "transform": "translate_down",
+          "shift": 2,
+          "original_label": "y = f(x)",
+          "transformed_label": "y = f(x) - 2"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "inequalities_region_H",
-      "prompt": "The shaded region on the grid satisfies two inequalities. State both inequalities.",
+      "topic_id": "algebraic_proof_H",
+      "prompt": "Prove algebraically that the difference between the squares of two integers that differ by 4 is always a multiple of 8.",
       "solution_steps": [
-        "The boundary line y = -x + 1 is dashed, and the shading lies on the upper side of it, giving y > -x + 1.",
-        "The boundary line y = -\\frac{x}{2} - 1 is dashed, and the shading lies on the upper side of it, giving y > -\\frac{x}{2} - 1."
+        "Let two integers that differ by 4 be n and n + 4.",
+        "Write the given expression algebraically: (n + 4)^2 - n^2.",
+        "Expand and simplify: (n + 4)^2 - n^2 = 8n + 16.",
+        "Factorise/rearrange to expose the structure: 8n + 16 = 8(n + 2).",
+        "Since 8n + 16 factorises exactly to 8(n + 2), the difference is always 8 times a whole number, so it is always a multiple of 8."
       ],
-      "final_answer": "y > -x + 1 and y > -\\frac{x}{2} - 1",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The boundary line y = -x + 1 is dashed, and the shading lies on the upper side of it, giving y > -x + 1.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The boundary line y = -\\frac{x}{2} - 1 is dashed, and the shading lies on the upper side of it, giving y > -\\frac{x}{2} - 1.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "y > -x + 1 and y > -\\frac{x}{2} - 1 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "inequality_region",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "lines": [
-            {
-              "m": -1.0,
-              "c": 1,
-              "op": ">"
-            },
-            {
-              "m": -0.5,
-              "c": -1,
-              "op": ">"
-            }
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "inequalities_number_line_H",
-      "prompt": "Write down the inequality (or pair of inequalities) shown by the number line below.",
-      "solution_steps": [
-        "The circle at 2 is filled and the circle at 6 is open.",
-        "The shading lies between the two circles, so both bounds must hold at once: 2 ≤ x < 6."
-      ],
-      "final_answer": "2 ≤ x < 6",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The circle at 2 is filled and the circle at 6 is open.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The shading lies between the two circles, so both bounds must hold at once: 2 ≤ x < 6.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2 ≤ x < 6 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -8,
-            8
-          ],
-          "boundaries": [
-            {
-              "value": 2,
-              "closed": true
-            },
-            {
-              "value": 6,
-              "closed": false
-            }
-          ],
-          "shade": "between"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "plot_cubic_H",
-      "prompt": "Complete a table of values for y = x^3 + x for x = -3 to 3, then plot the graph.",
-      "solution_steps": [
-        "Table of values for y = x^3 + x:",
-        "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: -30, -10, -2, 0, 2, 10, 30",
-        "Plot each (x, y) point and join them with a single smooth curve."
-      ],
-      "final_answer": "Cubic curve: y = x^3 + x",
+      "final_answer": "Proven: (n + 4)^2 - n^2 = 8(n + 2), always a multiple of 8.",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = x^3 + x:",
+          "description": "Let two integers that differ by 4 be n and n + 4.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -3, -2, -1, 0, 1, 2, 3",
+          "description": "Write the given expression algebraically: (n + 4)^2 - n^2.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: -30, -10, -2, 0, 2, 10, 30",
+          "description": "Expand and simplify: (n + 4)^2 - n^2 = 8n + 16.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve.",
+          "description": "Factorise/rearrange to expose the structure: 8n + 16 = 8(n + 2). Since 8n + 16 factorises exactly to 8(n + 2), the difference is always 8 times a whole number, so it is always a multiple of 8.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Cubic curve: y = x^3 + x oe",
+          "description": "Proven: (n + 4)^2 - n^2 = 8(n + 2), always a multiple of 8. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_reciprocal_H",
+      "prompt": "Complete a table of values for y = \\frac{24}{x} for x = -4 to 4, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = \\frac{24}{x}:",
+        "x: -4, -3, -2, -1, 1, 2, 3, 4",
+        "y: -6, -8, -12, -24, 24, 12, 8, 6",
+        "There is no value at x = 0: dividing by 0 is undefined, so leave that column out of the table.",
+        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
+      ],
+      "final_answer": "Reciprocal curve: y = \\frac{24}{x}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = \\frac{24}{x}:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: -6, -8, -12, -24, 24, 12, 8, 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "There is no value at x = 0: dividing by 0 is undefined, so leave that column out of the table. Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Reciprocal curve: y = \\frac{24}{x} oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "cubic",
-          "a": 1,
-          "b": 1,
+          "kind": "reciprocal",
+          "a": 24,
           "x_min": -4,
           "x_max": 4,
-          "y_min": -32,
-          "y_max": 32,
+          "y_min": -26,
+          "y_max": 26,
           "blank": true
         }
       },
       "solution_diagram": {
         "kind": "function_graph",
         "params": {
-          "kind": "cubic",
-          "a": 1,
-          "b": 1,
+          "kind": "reciprocal",
+          "a": 24,
           "x_min": -4,
           "x_max": 4,
-          "y_min": -32,
-          "y_max": 32,
+          "y_min": -26,
+          "y_max": 26,
           "table_points": [
             [
+              -4,
+              -6
+            ],
+            [
               -3,
-              -30
+              -8
             ],
             [
               -2,
-              -10
+              -12
             ],
             [
               -1,
-              -2
-            ],
-            [
-              0,
-              0
+              -24
             ],
             [
               1,
-              2
+              24
             ],
             [
               2,
-              10
+              12
             ],
             [
               3,
-              30
+              8
+            ],
+            [
+              4,
+              6
             ]
           ]
         }
       }
     },
     {
-      "topic_id": "algebraic_direct_proportion_H",
-      "prompt": "y is directly proportional to x^3. When x = 7, y = 1372. Find the value of y when x = 6.",
+      "topic_id": "trial_and_improvement_H",
+      "prompt": "f(x) = x^3 + 1x - 16. Show that f(x) = 0 has a root between x = 2 and x = 3, then use trial and improvement to find this root correct to 1 decimal place.",
       "solution_steps": [
-        "y = kx^3",
-        "1372 = k × 7^3 = k × 343",
-        "k = 1372 ÷ 343 = 4",
-        "y = 4 × 6^3 = 4 × 216 = 864"
+        "f(x) = x^3 + 1x - 16",
+        "f(2) = -6.00 (negative)",
+        "f(3) = 14.00 (positive)",
+        "f(2.1) = -4.64 (negative)",
+        "f(2.2) = -3.15 (negative)",
+        "f(2.3) = -1.53 (negative)",
+        "f(2.4) = 0.22 (positive)",
+        "The sign changes between x = 2.3 and x = 2.4, so try the midpoint x = 2.35: f(2.35) = -0.67.",
+        "f(2.35) has the same sign as f(2.3), so the root lies between 2.35 and 2.4 - to 1 decimal place, this rounds up to 2.4."
       ],
-      "final_answer": "864",
+      "final_answer": "x = 2.4",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = kx^3",
+          "description": "f(x) = x^3 + 1x - 16",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "1372 = k × 7^3 = k × 343",
+          "description": "f(2) = -6.00 (negative)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "k = 1372 ÷ 343 = 4",
+          "description": "f(3) = 14.00 (positive)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y = 4 × 6^3 = 4 × 216 = 864",
+          "description": "f(2.1) = -4.64 (negative) f(2.2) = -3.15 (negative) f(2.3) = -1.53 (negative) f(2.4) = 0.22 (positive) The sign changes between x = 2.3 and x = 2.4, so try the midpoint x = 2.35: f(2.35) = -0.67. f(2.35) has the same sign as f(2.3), so the root lies between 2.35 and 2.4 - to 1 decimal place, this rounds up to 2.4.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "864 oe",
+          "description": "x = 2.4 oe",
           "marks": 1
         }
       ],
@@ -778,75 +503,104 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_pyramid_H",
-      "prompt": "A square-based pyramid has a base of side 6 cm and a perpendicular height of 8 cm. Find its volume.",
+      "topic_id": "algebraic_fractions_multiply_divide_H",
+      "prompt": "Simplify \\frac{x^2 - 25}{x - 3} × \\frac{x - 3}{x - 5}, giving your answer in its simplest form.",
       "solution_steps": [
-        "Volume = (1/3) × base² × height = (1/3) × 6² × 8",
-        "= 96 cm³"
+        "Factorise the difference of two squares: x^2 - 25 = (x - 5)(x + 5)",
+        "\\frac{(x - 5)(x + 5)}{x - 3} × \\frac{x - 3}{x - 5}",
+        "Cancel the common factors x - 3 and x - 5:",
+        "= x + 5"
       ],
-      "final_answer": "96 cm³",
+      "final_answer": "x + 5",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Factorise the difference of two squares: x^2 - 25 = (x - 5)(x + 5)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "\\frac{(x - 5)(x + 5)}{x - 3} × \\frac{x - 3}{x - 5}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Cancel the common factors x - 3 and x - 5:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= x + 5",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x + 5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "perpendicular_lines_equation_H",
+      "prompt": "A line is perpendicular to y = -2x + 1 and passes through the point (-4, -1). Find the equation of the line.",
+      "solution_steps": [
+        "Perpendicular gradients multiply to give -1: m × -2 = -1, so m = 1/2",
+        "Substitute (-4, -1) into y = 1/2x + c: -1 = 1/2×(-4) + c, so c = 1",
+        "Equation of the line: y = 1/2x + 1"
+      ],
+      "final_answer": "y = 1/2x + 1",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Perpendicular gradients multiply to give -1: m × -2 = -1, so m = 1/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute (-4, -1) into y = 1/2x + c: -1 = 1/2×(-4) + c, so c = 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Equation of the line: y = 1/2x + 1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y = 1/2x + 1 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pressure_H",
+      "prompt": "A brick exerts a force of 3359 N over a contact area of 3380 cm². Find the pressure in N/m², correct to 2 decimal places.",
+      "solution_steps": [
+        "Convert area to m²: 3380 cm² = 3380 ÷ 10000 = 0.338 m²",
+        "pressure = force ÷ area = 3359 ÷ 0.338 = 9937.87 N/m² (2 d.p.)"
+      ],
+      "final_answer": "9937.87 N/m²",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Volume = (1/3) × base² × height = (1/3) × 6² × 8",
+          "description": "Convert area to m²: 3380 cm² = 3380 ÷ 10000 = 0.338 m²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 96 cm³",
+          "description": "pressure = force ÷ area = 3359 ÷ 0.338 = 9937.87 N/m² (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "96 cm³ oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "pyramid",
-        "params": {
-          "base_label": "6 cm",
-          "height_label": "8 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_combine_H",
-      "prompt": "Given that a:b = 9:3 and b:c = 2:3, find a:b:c in its simplest form.",
-      "solution_steps": [
-        "Scale a:b = 9:3 by 2 so b = 6: a:b = 18:6",
-        "Scale b:c = 2:3 by 3 so b = 6: b:c = 6:9",
-        "Combine: a:b:c = 18:6:9",
-        "Simplify by dividing by 3: a:b:c = 6:2:3"
-      ],
-      "final_answer": "6 : 2 : 3",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Scale a:b = 9:3 by 2 so b = 6: a:b = 18:6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Scale b:c = 2:3 by 3 so b = 6: b:c = 6:9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Combine: a:b:c = 18:6:9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Simplify by dividing by 3: a:b:c = 6:2:3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "6 : 2 : 3 oe",
+          "description": "9937.87 N/m² oe",
           "marks": 1
         }
       ],
@@ -854,34 +608,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_inverse_proportion_H",
-      "prompt": "y is inversely proportional to x^2. When x = 5, y = 54. Find the value of y when x = 3.",
+      "topic_id": "reverse_percentage_H",
+      "prompt": "After a 42.5% increase, an item costs £290.70. Find the original price.",
       "solution_steps": [
-        "y = k ÷ x^2",
-        "k = y × x^2 = 54 × 5^2 = 54 × 25 = 1350",
-        "y = k ÷ x^2 = 1350 ÷ 3^2 = 1350 ÷ 9 = 150"
+        "Convert 42.5% to a multiplier: 1.43 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 290.70 ÷ 1.43 = 204"
       ],
-      "final_answer": "150",
-      "marks": 4,
+      "final_answer": "£204",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = k ÷ x^2",
+          "description": "Convert 42.5% to a multiplier: 1.43 (original × multiplier = new value)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "k = y × x^2 = 54 × 5^2 = 54 × 25 = 1350",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y = k ÷ x^2 = 1350 ÷ 3^2 = 1350 ÷ 9 = 150",
+          "description": "Divide the new value by the multiplier: 290.70 ÷ 1.43 = 204",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "150 oe",
+          "description": "£204 oe",
           "marks": 1
         }
       ],
@@ -889,295 +637,139 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_parallel_lines_H",
-      "prompt": "A line crosses two parallel lines. The angle 69° and the angle (2x + 101)° are co-interior angles. Find x.",
+      "topic_id": "percentage_increase_decrease_calculator_H",
+      "prompt": "Using a calculator, increase £199.20 by 3.6%. Give your answer to 2 decimal places.",
       "solution_steps": [
-        "Co-interior angles sum to 180°.",
-        "2x + 101 = 111",
-        "Subtract 101 from both sides:",
-        "2x = 10",
-        "Divide both sides by 2:",
-        "x = 5"
+        "Convert 3.6% to a multiplier: 1.036",
+        "Multiply: £199.20 × 1.036 = £206.37 (calculator, 2 d.p.)"
       ],
-      "final_answer": "5",
-      "marks": 5,
+      "final_answer": "£206.37",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Co-interior angles sum to 180°.",
+          "description": "Convert 3.6% to a multiplier: 1.036",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x + 101 = 111",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 101 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2x = 10 Divide both sides by 2: x = 5",
+          "description": "Multiply: £199.20 × 1.036 = £206.37 (calculator, 2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5 oe",
+          "description": "£206.37 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "parallel_lines",
-        "params": {
-          "known_label": "69°",
-          "unknown_label": "(2x + 101)°",
-          "relation": "co_interior",
-          "known_value": 69,
-          "x_frac": 0.38
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
-      "topic_id": "loci_regions_H",
-      "prompt": "A and B are two fixed points (shown). Shade the region containing points that are both within 6 cm of B AND closer to B than to A.",
+      "topic_id": "mixed_percentages_H",
+      "prompt": "A price of £136 decreases by 30%, then increases by 17.5%. Find the final price.",
       "solution_steps": [
-        "The boundary for 'within 6 cm of B' is a circle, centre B, radius 6 cm - the region is inside this circle.",
-        "The boundary for 'closer to B than to A' is the perpendicular bisector of BA - the region is on the B side of it.",
-        "The required region is where these two conditions overlap."
+        "After the first change: 136 × 0.70 = 95.20",
+        "After the second change: 95.20 × 1.18 = 111.86"
       ],
-      "final_answer": "The region inside the circle of radius 6 cm centred on B, and on the B side of the perpendicular bisector of BA.",
+      "final_answer": "£111.86",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "After the first change: 136 × 0.70 = 95.20",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "After the second change: 95.20 × 1.18 = 111.86",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£111.86 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_shape_similar_H",
+      "prompt": "Shape A and Shape B are similar. The volume of shape A is 9 cm^3. Find the volume of shape B.",
+      "solution_steps": [
+        "Linear scale factor = 6 ÷ 3 = 2",
+        "Volume scale factor = (2)^3 = 8",
+        "Volume of B = 9 × 8 = 72 cm^3"
+      ],
+      "final_answer": "72 cm^3",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The boundary for 'within 6 cm of B' is a circle, centre B, radius 6 cm - the region is inside this circle.",
+          "description": "Linear scale factor = 6 ÷ 3 = 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The boundary for 'closer to B than to A' is the perpendicular bisector of BA - the region is on the B side of it.",
+          "description": "Volume scale factor = (2)^3 = 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The required region is where these two conditions overlap.",
+          "description": "Volume of B = 9 × 8 = 72 cm^3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "The region inside the circle of radius 6 cm centred on B, and on the B side of the perpendicular bisector of BA. oe",
+          "description": "72 cm^3 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "loci_region",
+        "kind": "two_similar_rectangles",
         "params": {
-          "x_min": -11.0,
-          "x_max": 3.0,
-          "y_min": -8.0,
-          "y_max": 6.0,
-          "points": [
-            {
-              "xy": [
-                0,
-                3
-              ],
-              "label": "A"
-            },
-            {
-              "xy": [
-                -4,
-                -1
-              ],
-              "label": "B"
-            }
-          ],
-          "boundaries": [
-            {
-              "type": "circle",
-              "centre": [
-                -4,
-                -1
-              ],
-              "radius": 6
-            },
-            {
-              "type": "segment",
-              "p1": [
-                7.899494936611664,
-                -8.899494936611664
-              ],
-              "p2": [
-                -11.899494936611664,
-                10.899494936611664
-              ]
-            }
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "loci_region",
-        "params": {
-          "x_min": -11.0,
-          "x_max": 3.0,
-          "y_min": -8.0,
-          "y_max": 6.0,
-          "points": [
-            {
-              "xy": [
-                0,
-                3
-              ],
-              "label": "A"
-            },
-            {
-              "xy": [
-                -4,
-                -1
-              ],
-              "label": "B"
-            }
-          ],
-          "boundaries": [
-            {
-              "type": "circle",
-              "centre": [
-                -4,
-                -1
-              ],
-              "radius": 6
-            },
-            {
-              "type": "segment",
-              "p1": [
-                7.899494936611664,
-                -8.899494936611664
-              ],
-              "p2": [
-                -11.899494936611664,
-                10.899494936611664
-              ]
-            }
-          ],
-          "shade_constraints": [
-            {
-              "type": "disk",
-              "centre": [
-                -4,
-                -1
-              ],
-              "radius": 6,
-              "inside": true
-            },
-            {
-              "type": "half_plane",
-              "closer_to": [
-                -4,
-                -1
-              ],
-              "than": [
-                0,
-                3
-              ]
-            }
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "angles_straight_line_H",
-      "prompt": "The angles 51° and (4x + 121)° lie on a straight line. Find x.",
-      "solution_steps": [
-        "Angles on a straight line sum to 180°.",
-        "4x + 121 = 129",
-        "Subtract 121 from both sides:",
-        "4x = 8",
-        "Divide both sides by 4:",
-        "x = 2"
-      ],
-      "final_answer": "2",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Angles on a straight line sum to 180°.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "4x + 121 = 129",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 121 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "4x = 8 Divide both sides by 4: x = 2",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "angle_line",
-        "params": {
-          "angle_values": [
-            51,
-            129
-          ],
-          "labels": [
-            "51°",
-            "(4x + 121)°"
-          ],
-          "around_point": false
+          "a_width_label": "3 cm",
+          "b_width_label": "6 cm"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "compound_3d_surface_area_H",
-      "prompt": "An ice-cream-shaped solid is made from a cone of radius 2 cm and height 13 cm, with a hemisphere of the same radius attached to its open end. Find the total surface area, correct to 2 decimal places.",
+      "prompt": "An ice-cream-shaped solid is made from a cone of radius 4 cm and height 20 cm, with a hemisphere of the same radius attached to its open end. Find the total surface area, correct to 3 significant figures.",
       "solution_steps": [
-        "Slant height l = √(r² + h²) = √(2² + 13²) ≈ 13.15 cm",
-        "Cone curved surface = π × r × l = π × 2 × 13.15",
-        "Hemisphere curved surface = 2 × π × r² = 2 × π × 2² (the cone's base and the hemisphere's flat face are both glued together internally, so neither is exposed)",
-        "Total surface area ≈ 107.78 cm² (2 d.p.)"
+        "Slant height l = √(r² + h²) = √(4² + 20²) ≈ 20.4 cm",
+        "Cone curved surface = π × r × l = π × 4 × 20.4",
+        "Hemisphere curved surface = 2 × π × r² = 2 × π × 4² (the cone's base and the hemisphere's flat face are both glued together internally, so neither is exposed)",
+        "Total surface area ≈ 357 cm² (3 s.f.)"
       ],
-      "final_answer": "107.78 cm²",
+      "final_answer": "357 cm²",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Slant height l = √(r² + h²) = √(2² + 13²) ≈ 13.15 cm",
+          "description": "Slant height l = √(r² + h²) = √(4² + 20²) ≈ 20.4 cm",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Cone curved surface = π × r × l = π × 2 × 13.15",
+          "description": "Cone curved surface = π × r × l = π × 4 × 20.4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Hemisphere curved surface = 2 × π × r² = 2 × π × 2² (the cone's base and the hemisphere's flat face are both glued together internally, so neither is exposed)",
+          "description": "Hemisphere curved surface = 2 × π × r² = 2 × π × 4² (the cone's base and the hemisphere's flat face are both glued together internally, so neither is exposed)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total surface area ≈ 107.78 cm² (2 d.p.)",
+          "description": "Total surface area ≈ 357 cm² (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "107.78 cm² oe",
+          "description": "357 cm² oe",
           "marks": 1
         }
       ],
@@ -1185,33 +777,356 @@
         "kind": "compound_3d",
         "params": {
           "variant": "cone_hemisphere",
-          "radius_label": "2 cm",
-          "cone_height_label": "13 cm"
+          "radius_label": "4 cm",
+          "cone_height_label": "20 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "product_rule_counting_H",
-      "prompt": "A shop sells 2 different phone cases and 6 different screen protectors. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "topic_id": "volume_surface_area_pyramid_H",
+      "prompt": "A square-based pyramid has a base of side 12 cm and a perpendicular height of 10 cm. Find its total surface area, correct to 3 significant figures.",
       "solution_steps": [
-        "Total combinations = 2 × 6 = 12"
+        "Slant height l = √(height² + (base ÷ 2)²) = √(10² + (12 ÷ 2)²) ≈ 11.7 cm",
+        "Surface area = base² + 2 × base × l = 12² + 2 × 12 × 11.7",
+        "= 424 cm² (3 s.f.)"
       ],
-      "final_answer": "12",
-      "marks": 2,
+      "final_answer": "424 cm²",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total combinations = 2 × 6 = 12",
+          "description": "Slant height l = √(height² + (base ÷ 2)²) = √(10² + (12 ÷ 2)²) ≈ 11.7 cm",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Surface area = base² + 2 × base × l = 12² + 2 × 12 × 11.7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 424 cm² (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 oe",
+          "description": "424 cm² oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "pyramid",
+        "params": {
+          "base_label": "12 cm",
+          "height_label": "10 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "exact_trig_values_triangles_H",
+      "prompt": "In the triangle shown, find the exact length of x. Give your answer in surd form where appropriate.",
+      "solution_steps": [
+        "We know the adjacent and want the hypotenuse, so use cos(30°) = √3/2 - its exact value, not a decimal approximation.",
+        "x = 6 ÷ √3/2 = 4√3 cm"
+      ],
+      "final_answer": "4√3 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "We know the adjacent and want the hypotenuse, so use cos(30°) = √3/2 - its exact value, not a decimal approximation.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 6 ÷ √3/2 = 4√3 cm",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4√3 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "trig_triangle",
+        "params": {
+          "adjacent_label": "6 cm",
+          "opposite_label": null,
+          "hyp_label": "x cm",
+          "angle_label": "30°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pythagoras_3d_H",
+      "prompt": "A cuboid has length 13 cm, width 11 cm and height 12 cm. Find the length of the diagonal ag that runs from one corner of the cuboid to the opposite corner, correct to 2 decimal places.",
+      "solution_steps": [
+        "First find the diagonal across the base: base diagonal² = l² + w² = 13² + 11² = 290.",
+        "Then apply Pythagoras again using the height: ag² = base diagonal² + h² = 290 + 12² = 434.",
+        "ag = √434 = 20.83 cm (2 d.p.)"
+      ],
+      "final_answer": "20.83 cm",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First find the diagonal across the base: base diagonal² = l² + w² = 13² + 11² = 290.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Then apply Pythagoras again using the height: ag² = base diagonal² + h² = 290 + 12² = 434.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "ag = √434 = 20.83 cm (2 d.p.)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "20.83 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "cuboid",
+        "params": {
+          "length_label": "13 cm",
+          "width_label": "11 cm",
+          "height_label": "12 cm",
+          "show_diagonal": true,
+          "vertex_labels": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h"
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_conditional_H",
+      "prompt": "A bag contains 6 blue and 7 green counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
+      "solution_steps": [
+        "P(both blue) = 6/13 × 5/12 = 5/26",
+        "P(both green) = 7/13 × 6/12 = 7/26",
+        "P(both same colour) = 5/26 + 7/26 = 6/13"
+      ],
+      "final_answer": "6/13",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "P(both blue) = 6/13 × 5/12 = 5/26",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(both green) = 7/13 × 6/12 = 7/26",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(both same colour) = 5/26 + 7/26 = 6/13",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6/13 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Blue",
+              ""
+            ],
+            [
+              "Green",
+              ""
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Blue",
+                ""
+              ],
+              [
+                "Green",
+                ""
+              ]
+            ],
+            [
+              [
+                "Blue",
+                ""
+              ],
+              [
+                "Green",
+                ""
+              ]
+            ]
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Blue",
+              "6/13"
+            ],
+            [
+              "Green",
+              "7/13"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Blue",
+                "5/12"
+              ],
+              [
+                "Green",
+                "7/12"
+              ]
+            ],
+            [
+              [
+                "Blue",
+                "6/12"
+              ],
+              [
+                "Green",
+                "6/12"
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "tree_diagram_mixed_H",
+      "prompt": "A bag contains 6 yellow and 4 green counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that the first counter is green and the second counter is green.",
+      "solution_steps": [
+        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(yellow) = 3/5, P(green) = 2/5.",
+        "P(green then green) = 2/5 × 2/5 = 4/25"
+      ],
+      "final_answer": "4/25",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(yellow) = 3/5, P(green) = 2/5.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(green then green) = 2/5 × 2/5 = 4/25",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4/25 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Yellow",
+              "3/5"
+            ],
+            [
+              "Green",
+              "2/5"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Yellow",
+                "3/5"
+              ],
+              [
+                "Green",
+                "2/5"
+              ]
+            ],
+            [
+              [
+                "Yellow",
+                "3/5"
+              ],
+              [
+                "Green",
+                "2/5"
+              ]
+            ]
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "box_plot_interpret_H",
+      "prompt": "The box plot shows journey times (minutes). Find the median.",
+      "solution_steps": [
+        "The median is marked by the line drawn inside the box.",
+        "Median = 35.0."
+      ],
+      "final_answer": "35.0",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The median is marked by the line drawn inside the box.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Median = 35.0.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "35.0 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "box_plot",
+        "params": {
+          "box_plots": [
+            {
+              "min": 9,
+              "q1": 20.0,
+              "median": 35.0,
+              "q3": 42.0,
+              "max": 46
+            }
+          ],
+          "x_label": "Journey Times (Minutes)"
+        }
+      },
       "solution_diagram": null
     }
   ]

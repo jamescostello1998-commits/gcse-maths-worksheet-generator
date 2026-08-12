@@ -7,34 +7,34 @@
   "calculator_allowed": true,
   "questions": [
     {
-      "topic_id": "standard_form_to_small_F",
-      "prompt": "Write 0.0000597 in standard form.",
+      "topic_id": "standard_form_to_F",
+      "prompt": "Write 10000 in standard form.",
       "solution_steps": [
-        "Move the decimal point until there is one non-zero digit before it: 5.97",
-        "Count how many places the decimal point moved: 5 (the number is less than 1, so the power is negative)",
-        "0.0000597 = 5.97 × 10^-5"
+        "Move the decimal point until there is one non-zero digit before it: 1",
+        "Count how many places the decimal point moved: 4",
+        "10000 = 1 × 10^4"
       ],
-      "final_answer": "5.97 × 10^-5",
+      "final_answer": "1 × 10^4",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Move the decimal point until there is one non-zero digit before it: 5.97",
+          "description": "Move the decimal point until there is one non-zero digit before it: 1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Count how many places the decimal point moved: 5 (the number is less than 1, so the power is negative)",
+          "description": "Count how many places the decimal point moved: 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "0.0000597 = 5.97 × 10^-5",
+          "description": "10000 = 1 × 10^4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5.97 × 10^-5 oe",
+          "description": "1 × 10^4 oe",
           "marks": 1
         }
       ],
@@ -43,27 +43,27 @@
     },
     {
       "topic_id": "decimals_round_sf_F",
-      "prompt": "Round 173.636 to 3 significant figures.",
+      "prompt": "Round 764.587 to 2 significant figures.",
       "solution_steps": [
-        "Identify the first 3 significant figures of 173.636.",
-        "173.636 rounded to 3 significant figures = 174"
+        "Identify the first 2 significant figures of 764.587.",
+        "764.587 rounded to 2 significant figures = 760"
       ],
-      "final_answer": "174",
+      "final_answer": "760",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Identify the first 3 significant figures of 173.636.",
+          "description": "Identify the first 2 significant figures of 764.587.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "173.636 rounded to 3 significant figures = 174",
+          "description": "764.587 rounded to 2 significant figures = 760",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "174 oe",
+          "description": "760 oe",
           "marks": 1
         }
       ],
@@ -72,27 +72,27 @@
     },
     {
       "topic_id": "prime_numbers_F",
-      "prompt": "From this list, write down all the prime numbers: 87, 77, 70, 20, 81, 29",
+      "prompt": "From this list, write down all the prime numbers: 6, 31, 24, 15, 3, 34",
       "solution_steps": [
-        "Check each number for factors other than 1 and itself: 87, 77, 70, 20, 81, 29",
-        "Prime numbers: 29"
+        "Check each number for factors other than 1 and itself: 6, 31, 24, 15, 3, 34",
+        "Prime numbers: 3, 31"
       ],
-      "final_answer": "29",
+      "final_answer": "3, 31",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Check each number for factors other than 1 and itself: 87, 77, 70, 20, 81, 29",
+          "description": "Check each number for factors other than 1 and itself: 6, 31, 24, 15, 3, 34",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Prime numbers: 29",
+          "description": "Prime numbers: 3, 31",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "29 oe",
+          "description": "3, 31 oe",
           "marks": 1
         }
       ],
@@ -101,33 +101,33 @@
     },
     {
       "topic_id": "fractions_ordering_F",
-      "prompt": "Write these fractions in descending order: 3/4, 1/2, 9/11, 1/6",
+      "prompt": "Write these fractions in ascending order: 1/2, 1/4, 3/4, 1/6",
       "solution_steps": [
-        "Convert every fraction to the same denominator, the LCM of 4, 2, 11, 6: 132",
-        "Rewrite each fraction over 132: 3/4 = 99/132, 1/2 = 66/132, 9/11 = 108/132, 1/6 = 22/132",
-        "Order the numerators in descending order and convert back: 9/11, 3/4, 1/2, 1/6"
+        "Convert every fraction to the same denominator, the LCM of 2, 4, 4, 6: 12",
+        "Rewrite each fraction over 12: 1/2 = 6/12, 1/4 = 3/12, 3/4 = 9/12, 1/6 = 2/12",
+        "Order the numerators in ascending order and convert back: 1/6, 1/4, 1/2, 3/4"
       ],
-      "final_answer": "9/11, 3/4, 1/2, 1/6",
+      "final_answer": "1/6, 1/4, 1/2, 3/4",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert every fraction to the same denominator, the LCM of 4, 2, 11, 6: 132",
+          "description": "Convert every fraction to the same denominator, the LCM of 2, 4, 4, 6: 12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rewrite each fraction over 132: 3/4 = 99/132, 1/2 = 66/132, 9/11 = 108/132, 1/6 = 22/132",
+          "description": "Rewrite each fraction over 12: 1/2 = 6/12, 1/4 = 3/12, 3/4 = 9/12, 1/6 = 2/12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Order the numerators in descending order and convert back: 9/11, 3/4, 1/2, 1/6",
+          "description": "Order the numerators in ascending order and convert back: 1/6, 1/4, 1/2, 3/4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9/11, 3/4, 1/2, 1/6 oe",
+          "description": "1/6, 1/4, 1/2, 3/4 oe",
           "marks": 1
         }
       ],
@@ -136,33 +136,33 @@
     },
     {
       "topic_id": "lcm_by_listing_F",
-      "prompt": "Find the lowest common multiple (LCM) of 4 and 3.",
+      "prompt": "Find the lowest common multiple (LCM) of 9 and 13.",
       "solution_steps": [
-        "Multiples of 4: 4, 8, 12, 16, 20, ...",
-        "Multiples of 3: 3, 6, 9, 12, 15, ...",
-        "Lowest common multiple = 12"
+        "Multiples of 9: 9, 18, 27, 36, 45, ...",
+        "Multiples of 13: 13, 26, 39, 52, 65, ...",
+        "Lowest common multiple = 117"
       ],
-      "final_answer": "12",
+      "final_answer": "117",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiples of 4: 4, 8, 12, 16, 20, ...",
+          "description": "Multiples of 9: 9, 18, 27, 36, 45, ...",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiples of 3: 3, 6, 9, 12, 15, ...",
+          "description": "Multiples of 13: 13, 26, 39, 52, 65, ...",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Lowest common multiple = 12",
+          "description": "Lowest common multiple = 117",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 oe",
+          "description": "117 oe",
           "marks": 1
         }
       ],
@@ -171,10 +171,10 @@
     },
     {
       "topic_id": "hcf_by_listing_F",
-      "prompt": "Find the highest common factor (HCF) of 46 and 43.",
+      "prompt": "Find the highest common factor (HCF) of 9 and 20.",
       "solution_steps": [
-        "Factors of 46: 1, 2, 23, 46",
-        "Factors of 43: 1, 43",
+        "Factors of 9: 1, 3, 9",
+        "Factors of 20: 1, 2, 4, 5, 10, 20",
         "Highest common factor = 1"
       ],
       "final_answer": "1",
@@ -182,12 +182,12 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Factors of 46: 1, 2, 23, 46",
+          "description": "Factors of 9: 1, 3, 9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factors of 43: 1, 43",
+          "description": "Factors of 20: 1, 2, 4, 5, 10, 20",
           "marks": 1
         },
         {
@@ -206,22 +206,248 @@
     },
     {
       "topic_id": "fractions_of_amount_F",
-      "prompt": "Find 3/5 of 15.",
+      "prompt": "Find 2/4 of 136.",
       "solution_steps": [
-        "Divide by the denominator: 15 ÷ 5 = 3",
-        "Multiply by the numerator: 3 × 3 = 9"
+        "Divide by the denominator: 136 ÷ 4 = 34",
+        "Multiply by the numerator: 34 × 2 = 68"
       ],
-      "final_answer": "9",
+      "final_answer": "68",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide by the denominator: 15 ÷ 5 = 3",
+          "description": "Divide by the denominator: 136 ÷ 4 = 34",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply by the numerator: 3 × 3 = 9",
+          "description": "Multiply by the numerator: 34 × 2 = 68",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "68 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_graphically_F",
+      "prompt": "The graphs of y = -3x + 4 and y = 3x + 4 are shown below. Use the graphs to write down the solution to the simultaneous equations.",
+      "solution_steps": [
+        "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
+        "The lines cross at x = 0, y = 4."
+      ],
+      "final_answer": "x = 0, y = 4",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The lines cross at x = 0, y = 4.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 0, y = 4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "linear_graph_pair",
+        "params": {
+          "label1": "y = -3x + 4",
+          "label2": "y = 3x + 4",
+          "m1": -3,
+          "c1": 4,
+          "m2": 3,
+          "c2": 4,
+          "sol_x": 0,
+          "sol_y": 4
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_both_sides_F",
+      "prompt": "Solve: 6x + 11 = 5x + 15",
+      "solution_steps": [
+        "6x + 11 = 5x + 15",
+        "Subtract 5x from both sides:",
+        "x + 11 = 15",
+        "Subtract 11 from both sides:",
+        "x = 4",
+        "x = 4"
+      ],
+      "final_answer": "4",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "6x + 11 = 5x + 15",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 5x from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x + 11 = 15",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 11 from both sides: x = 4 x = 4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "factorise_quadratics_F",
+      "prompt": "Factorise: x^2 + 9x + 8",
+      "solution_steps": [
+        "Find two numbers that multiply to 8 and add to 9: 8 and 1",
+        "Write as two brackets: (x + 8)(x + 1)"
+      ],
+      "final_answer": "(x + 8)(x + 1)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find two numbers that multiply to 8 and add to 9: 8 and 1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write as two brackets: (x + 8)(x + 1)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(x + 8)(x + 1) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "distance_time_interpret_F",
+      "prompt": "The distance-time graph shows a delivery van's journey. For how many minutes was the van stationary?",
+      "solution_steps": [
+        "The graph is flat (constant distance = 9 km) between 15 and 30 minutes.",
+        "Stationary time = 30 - 15 = 15 minutes"
+      ],
+      "final_answer": "15 minutes",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The graph is flat (constant distance = 9 km) between 15 and 30 minutes.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Stationary time = 30 - 15 = 15 minutes",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "15 minutes oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              15,
+              9
+            ],
+            [
+              30,
+              9
+            ],
+            [
+              60,
+              0
+            ]
+          ],
+          "x_max": 65,
+          "y_max": 11,
+          "x_label": "Time (minutes)",
+          "y_label": "Distance (km)"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "powers_F",
+      "prompt": "Evaluate 12^3.",
+      "solution_steps": [
+        "12^3 = 12 × 12 × 12 = 1728"
+      ],
+      "final_answer": "1728",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "12^3 = 12 × 12 × 12 = 1728",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1728 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_one_step_F",
+      "prompt": "Solve: 2x = 18",
+      "solution_steps": [
+        "2x = 18",
+        "Divide both sides by 2:",
+        "x = 9"
+      ],
+      "final_answer": "9",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "2x = 18",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 2:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 9",
           "marks": 1
         },
         {
@@ -234,155 +460,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solving_inequalities_F",
-      "prompt": "Solve the inequality: \\frac{x}{3} + 5 < 2",
+      "topic_id": "plot_distance_time_F",
+      "prompt": "A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop 8 km away after 25 minutes. They stay at the shop until 35 minutes, then cycle straight back home at a constant speed, arriving home at 55 minutes. Draw a distance-time graph to show this journey, and find the total distance travelled.",
       "solution_steps": [
-        "\\frac{x}{3} + 5 < 2",
-        "Subtract 5 from both sides:",
-        "\\frac{x}{3} < -3",
-        "Multiply both sides by 3:",
-        "x < -9"
+        "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 8 km after 25 minutes.",
+        "Stay at 8 km until 35 minutes.",
+        "Return at a constant speed to 0 km, arriving home at 55 minutes.",
+        "Plot these points and join each stage with a straight line segment.",
+        "Total distance travelled = 8 km out + 8 km back = 16 km"
       ],
-      "final_answer": "x < -9",
+      "final_answer": "16 km",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "\\frac{x}{3} + 5 < 2",
+          "description": "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 8 km after 25 minutes.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 5 from both sides:",
+          "description": "Stay at 8 km until 35 minutes.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "\\frac{x}{3} < -3",
+          "description": "Return at a constant speed to 0 km, arriving home at 55 minutes.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply both sides by 3: x < -9",
+          "description": "Plot these points and join each stage with a straight line segment. Total distance travelled = 8 km out + 8 km back = 16 km",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x < -9 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "linear_both_sides_F",
-      "prompt": "Solve: 2x + 8 = 3x + 3",
-      "solution_steps": [
-        "2x + 8 = 3x + 3",
-        "Subtract 3x from both sides:",
-        "-x + 8 = 3",
-        "Subtract 8 from both sides:",
-        "-x = -5",
-        "Divide both sides by -1:",
-        "x = 5"
-      ],
-      "final_answer": "5",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "2x + 8 = 3x + 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 3x from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "-x + 8 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 8 from both sides: -x = -5 Divide both sides by -1: x = 5",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "5 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "solve_quadratic_factorising_F",
-      "prompt": "Solve x^2 + 7x + 6 = 0 by factorising.",
-      "solution_steps": [
-        "Find two numbers that multiply to 6 and add to 7: 1 and 6",
-        "Factorise: (x + 1)(x + 6) = 0",
-        "Either x + 1 = 0 or x + 6 = 0",
-        "x = -1 or x = -6"
-      ],
-      "final_answer": "x = -1 or x = -6",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find two numbers that multiply to 6 and add to 7: 1 and 6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise: (x + 1)(x + 6) = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Either x + 1 = 0 or x + 6 = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = -1 or x = -6",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = -1 or x = -6 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "distance_time_interpret_F",
-      "prompt": "The distance-time graph shows a delivery van's journey. Find the average speed for the whole journey, in km/h.",
-      "solution_steps": [
-        "Total distance = 12 km. Total time = 65 minutes = 13/12 hours.",
-        "Average speed = 12 ÷ 13/12 = 144/13 km/h"
-      ],
-      "final_answer": "144/13 km/h",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total distance = 12 km. Total time = 65 minutes = 13/12 hours.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Average speed = 12 ÷ 13/12 = 144/13 km/h",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "144/13 km/h oe",
+          "description": "16 km oe",
           "marks": 1
         }
       ],
@@ -393,166 +505,22 @@
             [
               0,
               0
-            ],
-            [
-              10,
-              6
             ],
             [
               25,
-              6
-            ],
-            [
-              65,
-              0
-            ]
-          ],
-          "x_max": 70,
-          "y_max": 8,
-          "x_label": "Time (minutes)",
-          "y_label": "Distance (km)"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "recurring_decimal_single_digit_F",
-      "prompt": "Show that \\recur{0.}{5} can be written as 5/9.",
-      "solution_steps": [
-        "Let x = \\recur{0.}{5}, so 10x = 5.555... (only one digit repeats, so multiply by 10 to shift it one place)",
-        "Subtract: 10x - x = 5 - 0, so 9x = 5",
-        "x = 5/9 = 5/9"
-      ],
-      "final_answer": "5/9",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Let x = \\recur{0.}{5}, so 10x = 5.555... (only one digit repeats, so multiply by 10 to shift it one place)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract: 10x - x = 5 - 0, so 9x = 5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 5/9 = 5/9",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "5/9 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "classify_expressions_F",
-      "prompt": "Is the following an expression, equation, formula, or identity?\n9x^2 - 8x + 2",
-      "solution_steps": [
-        "Look at the statement: 9x^2 - 8x + 2.",
-        "There is no '=' sign and no '≡' sign anywhere in it, so it isn't claiming that two things are equal at all.",
-        "It's just a single algebraic object built from numbers and a letter using +, -, ×, ÷ and powers - it can be simplified or evaluated for a given x, but there is nothing here to 'solve' or 'prove'.",
-        "Since it makes no equality claim whatsoever, this is an expression."
-      ],
-      "final_answer": "expression",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Look at the statement: 9x^2 - 8x + 2.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "There is no '=' sign and no '≡' sign anywhere in it, so it isn't claiming that two things are equal at all.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "It's just a single algebraic object built from numbers and a letter using +, -, ×, ÷ and powers - it can be simplified or evaluated for a given x, but there is nothing here to 'solve' or 'prove'.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Since it makes no equality claim whatsoever, this is an expression.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "expression oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "plot_distance_time_F",
-      "prompt": "A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop 4 km away after 20 minutes. They stay at the shop until 35 minutes, then cycle straight back home at a constant speed, arriving home at 50 minutes. Draw a distance-time graph to show this journey, and find the total distance travelled.",
-      "solution_steps": [
-        "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 4 km after 20 minutes.",
-        "Stay at 4 km until 35 minutes.",
-        "Return at a constant speed to 0 km, arriving home at 50 minutes.",
-        "Plot these points and join each stage with a straight line segment.",
-        "Total distance travelled = 4 km out + 4 km back = 8 km"
-      ],
-      "final_answer": "8 km",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 4 km after 20 minutes.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Stay at 4 km until 35 minutes.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Return at a constant speed to 0 km, arriving home at 50 minutes.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot these points and join each stage with a straight line segment. Total distance travelled = 4 km out + 4 km back = 8 km",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "8 km oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              20,
-              4
+              8
             ],
             [
               35,
-              4
+              8
             ],
             [
-              50,
+              55,
               0
             ]
           ],
-          "x_max": 55,
-          "y_max": 6,
+          "x_max": 60,
+          "y_max": 10,
           "x_label": "Time (minutes)",
           "y_label": "Distance (km)",
           "blank": true
@@ -567,77 +535,92 @@
               0
             ],
             [
-              20,
-              4
+              25,
+              8
             ],
             [
               35,
-              4
+              8
             ],
             [
-              50,
+              55,
               0
             ]
           ],
-          "x_max": 55,
-          "y_max": 6,
+          "x_max": 60,
+          "y_max": 10,
           "x_label": "Time (minutes)",
           "y_label": "Distance (km)"
         }
       }
     },
     {
-      "topic_id": "direct_proportion_noncalculator_F",
-      "prompt": "If a recipe for 15 people uses 30g of flour, how much flour is needed for 5 people?",
+      "topic_id": "inequalities_number_line_F",
+      "prompt": "Write down the inequality shown by the number line below.",
       "solution_steps": [
-        "Unit value = 30g ÷ 15 = 2g",
-        "Answer = 2g × 5 = 10g"
+        "The circle at -4 is open, so -4 is not included in the solution set.",
+        "The shading and arrow point to the left, so the solution is x < -4."
       ],
-      "final_answer": "10g",
+      "final_answer": "x < -4",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Unit value = 30g ÷ 15 = 2g",
+          "description": "The circle at -4 is open, so -4 is not included in the solution set.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer = 2g × 5 = 10g",
+          "description": "The shading and arrow point to the left, so the solution is x < -4.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10g oe",
+          "description": "x < -4 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -6,
+            6
+          ],
+          "boundaries": [
+            {
+              "value": -4,
+              "closed": false
+            }
+          ],
+          "shade": "left"
+        }
+      },
       "solution_diagram": null
     },
     {
       "topic_id": "pressure_F",
-      "prompt": "A table leg exerts a force of 2184 N over a contact area of 2 m². Find the pressure, correct to 2 decimal places.",
+      "prompt": "A table leg exerts a force of 1993 N and a pressure of 134 N/m². Find the contact area, correct to 2 decimal places.",
       "solution_steps": [
-        "pressure = force ÷ area",
-        "pressure = 2184 ÷ 2 = 1092 N/m² (2 d.p.)"
+        "area = force ÷ pressure",
+        "area = 1993 ÷ 134 = 14.87 m² (2 d.p.)"
       ],
-      "final_answer": "1092 N/m²",
+      "final_answer": "14.87 m²",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "pressure = force ÷ area",
+          "description": "area = force ÷ pressure",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "pressure = 2184 ÷ 2 = 1092 N/m² (2 d.p.)",
+          "description": "area = 1993 ÷ 134 = 14.87 m² (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1092 N/m² oe",
+          "description": "14.87 m² oe",
           "marks": 1
         }
       ],
@@ -645,16 +628,15 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "best_buys_F",
-      "prompt": "A shop sells pasta in different sizes: A: £8.88 for 600g; B: £17.60 for 800g; C: £2.86 for 650g. Which option is the better value for money? Show your working.",
+      "topic_id": "best_buys_noncalculator_F",
+      "prompt": "A shop sells ground coffee in different sizes: A: £0.80 for 400g; B: £4.50 for 500g. Which option is the better value for money? Show your working.",
       "solution_steps": [
         "Work out the price per 100g for each option:",
-        "A: £8.88 ÷ 600 × 100 = 148.00p per 100g",
-        "B: £17.60 ÷ 800 × 100 = 220.00p per 100g",
-        "C: £2.86 ÷ 650 × 100 = 44.00p per 100g",
-        "The lowest price per 100g is C at 44.00p per 100g, so C is the best value."
+        "A: £0.80 ÷ 400 × 100 = 20p per 100g",
+        "B: £4.50 ÷ 500 × 100 = 90p per 100g",
+        "The lowest price per 100g is A at 20p per 100g, so A is the best value."
       ],
-      "final_answer": "C (£2.86 for 650g)",
+      "final_answer": "A (£0.80 for 400g)",
       "marks": 5,
       "mark_scheme": [
         {
@@ -664,22 +646,22 @@
         },
         {
           "code": "M1",
-          "description": "A: £8.88 ÷ 600 × 100 = 148.00p per 100g",
+          "description": "A: £0.80 ÷ 400 × 100 = 20p per 100g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "B: £17.60 ÷ 800 × 100 = 220.00p per 100g",
+          "description": "B: £4.50 ÷ 500 × 100 = 90p per 100g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "C: £2.86 ÷ 650 × 100 = 44.00p per 100g The lowest price per 100g is C at 44.00p per 100g, so C is the best value.",
+          "description": "The lowest price per 100g is A at 20p per 100g, so A is the best value.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "C (£2.86 for 650g) oe",
+          "description": "A (£0.80 for 400g) oe",
           "marks": 1
         }
       ],
@@ -688,12 +670,12 @@
     },
     {
       "topic_id": "percentage_of_amount_F",
-      "prompt": "Find 20% of 280.",
+      "prompt": "Find 20% of 160.",
       "solution_steps": [
         "Convert 20% to a fraction: 20/100",
-        "Multiply: 20/100 × 280 = 56"
+        "Multiply: 20/100 × 160 = 32"
       ],
-      "final_answer": "56",
+      "final_answer": "32",
       "marks": 3,
       "mark_scheme": [
         {
@@ -703,12 +685,12 @@
         },
         {
           "code": "M1",
-          "description": "Multiply: 20/100 × 280 = 56",
+          "description": "Multiply: 20/100 × 160 = 32",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "56 oe",
+          "description": "32 oe",
           "marks": 1
         }
       ],
@@ -717,27 +699,27 @@
     },
     {
       "topic_id": "ratio_find_missing_share_F",
-      "prompt": "p : q = 1 : 4. q = 76. What is the value of p?",
+      "prompt": "a : b = 2 : 1. a = 36. What is the value of b?",
       "solution_steps": [
-        "Value of one part = 76 ÷ 4 = 19",
-        "p = 1 × 19 = 19"
+        "Value of one part = 36 ÷ 2 = 18",
+        "b = 1 × 18 = 18"
       ],
-      "final_answer": "19",
+      "final_answer": "18",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Value of one part = 76 ÷ 4 = 19",
+          "description": "Value of one part = 36 ÷ 2 = 18",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "p = 1 × 19 = 19",
+          "description": "b = 1 × 18 = 18",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "19 oe",
+          "description": "18 oe",
           "marks": 1
         }
       ],
@@ -745,110 +727,105 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_straight_line_F",
-      "prompt": "The angles 73° and x° lie on a straight line. Find x.",
+      "topic_id": "simple_interest_F",
+      "prompt": "£600 is invested at a simple interest rate of 3% per year for 4 years. Find the total amount in the account after 4 years.",
       "solution_steps": [
-        "Angles on a straight line sum to 180°.",
-        "x = 180 - (73) = 180 - 73 = 107"
+        "Simple interest formula: I = P × r × t ÷ 100",
+        "I = 600 × 3 × 4 ÷ 100 = £72",
+        "Total in the account = P + I = £600 + £72 = £672"
       ],
-      "final_answer": "107",
-      "marks": 3,
+      "final_answer": "£672",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles on a straight line sum to 180°.",
+          "description": "Simple interest formula: I = P × r × t ÷ 100",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 180 - (73) = 180 - 73 = 107",
+          "description": "I = 600 × 3 × 4 ÷ 100 = £72",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total in the account = P + I = £600 + £72 = £672",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "107 oe",
+          "description": "£672 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "properties_3d_shapes_diagram_F",
+      "prompt": "How many vertices does the cuboid shown have?",
+      "solution_steps": [
+        "A vertex is a corner point where edges meet.",
+        "A cuboid has 6 rectangular faces (3 congruent pairs), 12 edges, and 8 vertices (corners).",
+        "So a cuboid has 8 vertices."
+      ],
+      "final_answer": "8",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A vertex is a corner point where edges meet.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A cuboid has 6 rectangular faces (3 congruent pairs), 12 edges, and 8 vertices (corners).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "So a cuboid has 8 vertices.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "8 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "angle_line",
+        "kind": "cuboid",
         "params": {
-          "angle_values": [
-            73,
-            107
-          ],
-          "labels": [
-            "73°",
-            "x"
-          ],
-          "around_point": false
+          "width_label": "6 cm",
+          "height_label": "4 cm",
+          "length_label": "5 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "nets_3d_shapes_F",
-      "prompt": "Describe the net of a triangular prism.",
+      "topic_id": "transform_translate_complete_F",
+      "prompt": "Translate shape ABCDEF by the vector (-5, -6).",
       "solution_steps": [
-        "Imagine unfolding a triangular prism flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
-        "A triangular prism's net is made up of: 2 triangles and 3 rectangles.",
-        "So the answer is: 2 triangles and 3 rectangles."
+        "Translate every vertex by the vector (-5, -6): move each point 5 squares left and 6 squares down.",
+        "A(0, -1) -> A'(-5, -7), B(4, -1) -> B'(-1, -7), C(4, 1) -> C'(-1, -5), D(2, 1) -> D'(-3, -5), E(2, 4) -> E'(-3, -2), F(0, 4) -> F'(-5, -2)"
       ],
-      "final_answer": "2 triangles and 3 rectangles",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Imagine unfolding a triangular prism flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A triangular prism's net is made up of: 2 triangles and 3 rectangles.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "So the answer is: 2 triangles and 3 rectangles.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2 triangles and 3 rectangles oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": {
-        "kind": "net",
-        "params": {
-          "shape": "triangular_prism"
-        }
-      }
-    },
-    {
-      "topic_id": "transform_translate_describe_F",
-      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
-      "solution_steps": [
-        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (0, 0), with the matching vertex of shape B, (-5, 1), gives the vector (-5, 1).",
-        "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
-      ],
-      "final_answer": "Translation by the vector (-5, 1)",
+      "final_answer": "A'(-5, -7), B'(-1, -7), C'(-1, -5), D'(-3, -5), E'(-3, -2), F'(-5, -2)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (0, 0), with the matching vertex of shape B, (-5, 1), gives the vector (-5, 1).",
+          "description": "Translate every vertex by the vector (-5, -6): move each point 5 squares left and 6 squares down.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Checking the other vertices confirms the same vector applies throughout, so this is a translation.",
+          "description": "A(0, -1) -> A'(-5, -7), B(4, -1) -> B'(-1, -7), C(4, 1) -> C'(-1, -5), D(2, 1) -> D'(-3, -5), E(2, 4) -> E'(-3, -2), F(0, 4) -> F'(-5, -2)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Translation by the vector (-5, 1) oe",
+          "description": "A'(-5, -7), B'(-1, -7), C'(-1, -5), D'(-3, -5), E'(-3, -2), F'(-5, -2) oe",
           "marks": 1
         }
       ],
@@ -862,22 +839,22 @@
           "original_vertices": [
             [
               0,
-              0
+              -1
             ],
             [
-              5,
-              0
+              4,
+              -1
             ],
             [
-              5,
-              2
+              4,
+              1
             ],
             [
-              3,
-              2
+              2,
+              1
             ],
             [
-              3,
+              2,
               4
             ],
             [
@@ -886,86 +863,128 @@
             ]
           ],
           "original_labels": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
+            [
+              0,
+              -1
+            ],
+            [
+              4,
+              -1
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              0,
+              4
+            ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
           ],
           "image_vertices": [
             [
               -5,
-              1
+              -7
             ],
             [
-              0,
-              1
+              -1,
+              -7
             ],
             [
-              0,
-              3
+              -1,
+              -5
             ],
             [
-              -2,
-              3
+              -3,
+              -5
             ],
             [
-              -2,
-              5
+              -3,
+              -2
             ],
             [
               -5,
-              5
+              -2
             ]
           ],
           "image_labels": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
+            "A'",
+            "B'",
+            "C'",
+            "D'",
+            "E'",
+            "F'"
           ]
         }
-      },
-      "solution_diagram": null
+      }
     },
     {
       "topic_id": "construction_triangle_F",
-      "prompt": "Triangle QBX has QB = 12 cm, the angle at B equal to 125°, and BX = 7 cm. Describe, step by step, how to construct triangle QBX using a ruler, a protractor, and a pair of compasses.",
+      "prompt": "Triangle LKR has LK = 11 cm, the angle at K equal to 48°, and KR = 5 cm. Describe, step by step, how to construct triangle LKR using a ruler, a protractor, and a pair of compasses.",
       "solution_steps": [
-        "Draw the line segment QB = 12 cm using a ruler.",
-        "At B, use a protractor to draw a ray at 125° from the line BQ.",
-        "Along this new ray, measure 7 cm from B using a ruler and mark the point X.",
-        "Draw a straight line from Q to X to complete the triangle."
+        "Draw the line segment LK = 11 cm using a ruler.",
+        "At K, use a protractor to draw a ray at 48° from the line KL.",
+        "Along this new ray, measure 5 cm from K using a ruler and mark the point R.",
+        "Draw a straight line from L to R to complete the triangle."
       ],
-      "final_answer": "Triangle QBX, with X marked 7 cm from B along the 125° ray at B.",
+      "final_answer": "Triangle LKR, with R marked 5 cm from K along the 48° ray at K.",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Draw the line segment QB = 12 cm using a ruler.",
+          "description": "Draw the line segment LK = 11 cm using a ruler.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "At B, use a protractor to draw a ray at 125° from the line BQ.",
+          "description": "At K, use a protractor to draw a ray at 48° from the line KL.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Along this new ray, measure 7 cm from B using a ruler and mark the point X.",
+          "description": "Along this new ray, measure 5 cm from K using a ruler and mark the point R.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Draw a straight line from Q to X to complete the triangle.",
+          "description": "Draw a straight line from L to R to complete the triangle.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Triangle QBX, with X marked 7 cm from B along the 125° ray at B. oe",
+          "description": "Triangle LKR, with R marked 5 cm from K along the 48° ray at K. oe",
           "marks": 1
         }
       ],
@@ -973,125 +992,146 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "two_way_tables_F",
-      "prompt": "The two-way table shows the number of boys and girls who prefer football or tennis. Find the missing values.",
+      "topic_id": "transform_reflect_complete_F",
+      "prompt": "Reflect shape ABC in the line x = 1.",
       "solution_steps": [
-        "'Boys' / 'Tennis': using the 'Tennis' column total: 39 - 20 = 19",
-        "'Boys' / 'Football': using the 'Football' column total: 27 - 19 = 8"
+        "Reflect each vertex in the line x = 1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+        "A(3, 3) -> A'(-1, 3), B(6, 3) -> B'(-4, 3), C(3, 5) -> C'(-1, 5)"
       ],
-      "final_answer": "'Boys' / 'Tennis' = 19; 'Boys' / 'Football' = 8",
+      "final_answer": "A'(-1, 3), B'(-4, 3), C'(-1, 5)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "'Boys' / 'Tennis': using the 'Tennis' column total: 39 - 20 = 19",
+          "description": "Reflect each vertex in the line x = 1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "'Boys' / 'Football': using the 'Football' column total: 27 - 19 = 8",
+          "description": "A(3, 3) -> A'(-1, 3), B(6, 3) -> B'(-4, 3), C(3, 5) -> C'(-1, 5)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "'Boys' / 'Tennis' = 19; 'Boys' / 'Football' = 8 oe",
+          "description": "A'(-1, 3), B'(-4, 3), C'(-1, 5) oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "two_way_table",
+        "kind": "grid_transformation",
         "params": {
-          "row_labels": [
-            "Boys",
-            "Girls",
-            "Total"
-          ],
-          "col_labels": [
-            "Football",
-            "Tennis",
-            "Total"
-          ],
-          "cells": [
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
             [
-              "",
-              "",
-              "27"
+              3,
+              3
             ],
             [
-              "19",
-              "20",
-              "39"
+              6,
+              3
             ],
             [
-              "27",
-              "39",
-              "66"
+              3,
+              5
             ]
-          ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "mirror_line": {
+            "type": "vertical",
+            "x": 1,
+            "label": "x = 1"
+          }
         }
       },
       "solution_diagram": {
-        "kind": "two_way_table",
+        "kind": "grid_transformation",
         "params": {
-          "row_labels": [
-            "Boys",
-            "Girls",
-            "Total"
-          ],
-          "col_labels": [
-            "Football",
-            "Tennis",
-            "Total"
-          ],
-          "cells": [
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
             [
-              "8",
-              "19",
-              "27"
+              3,
+              3
             ],
             [
-              "19",
-              "20",
-              "39"
+              6,
+              3
             ],
             [
-              "27",
-              "39",
-              "66"
+              3,
+              5
             ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "mirror_line": {
+            "type": "vertical",
+            "x": 1,
+            "label": "x = 1"
+          },
+          "image_vertices": [
+            [
+              -1,
+              3
+            ],
+            [
+              -4,
+              3
+            ],
+            [
+              -1,
+              5
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'"
           ]
         }
       }
     },
     {
       "topic_id": "probability_single_event_F",
-      "prompt": "A bag contains 4 blue, 7 red counters. A counter is picked at random. Find the probability that it is red.",
+      "prompt": "A bag contains 5 green, 4 blue counters. A counter is picked at random. Find the probability that it is green.",
       "solution_steps": [
-        "Total counters = 11",
-        "Number of red counters = 7",
-        "P(red) = 7/11 = 7/11"
+        "Total counters = 9",
+        "Number of green counters = 5",
+        "P(green) = 5/9 = 5/9"
       ],
-      "final_answer": "7/11",
+      "final_answer": "5/9",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total counters = 11",
+          "description": "Total counters = 9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Number of red counters = 7",
+          "description": "Number of green counters = 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(red) = 7/11 = 7/11",
+          "description": "P(green) = 5/9 = 5/9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7/11 oe",
+          "description": "5/9 oe",
           "marks": 1
         }
       ],
@@ -1099,8 +1139,8 @@
         "kind": "bag_of_counters",
         "params": {
           "counts": {
-            "blue": 4,
-            "red": 7
+            "green": 5,
+            "blue": 4
           }
         }
       },
@@ -1108,33 +1148,33 @@
     },
     {
       "topic_id": "venn_diagram_probability_F",
-      "prompt": "The Venn diagram shows the number of students in each region for sets A and B. Find P(A ∩ B).",
+      "prompt": "The Venn diagram shows the number of students in each region for sets A and B. Find P(B).",
       "solution_steps": [
-        "Total number of elements = 9 + 4 + 14 + 7 = 34",
-        "Number of outcomes in A ∩ B = 14 = 14",
-        "P(A ∩ B) = 14/34 = 7/17"
+        "Total number of elements = 8 + 2 + 7 + 12 = 29",
+        "Number of outcomes in B = 2 + 7 = 9",
+        "P(B) = 9/29 = 9/29"
       ],
-      "final_answer": "7/17",
+      "final_answer": "9/29",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total number of elements = 9 + 4 + 14 + 7 = 34",
+          "description": "Total number of elements = 8 + 2 + 7 + 12 = 29",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Number of outcomes in A ∩ B = 14 = 14",
+          "description": "Number of outcomes in B = 2 + 7 = 9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(A ∩ B) = 14/34 = 7/17",
+          "description": "P(B) = 9/29 = 9/29",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7/17 oe",
+          "description": "9/29 oe",
           "marks": 1
         }
       ],
@@ -1146,13 +1186,71 @@
             "B"
           ],
           "region_text": {
-            "a_only": "9",
-            "b_only": "4",
-            "both": "14",
-            "neither": "7"
+            "a_only": "8",
+            "b_only": "2",
+            "both": "7",
+            "neither": "12"
           }
         }
       },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "decimals_round_dp_F",
+      "prompt": "Round 50.030 to 1 decimal place.",
+      "solution_steps": [
+        "Look at the digit after the 1 decimal place we want: 3, so round down.",
+        "50.030 rounded to 1 decimal place = 50.0"
+      ],
+      "final_answer": "50.0",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Look at the digit after the 1 decimal place we want: 3, so round down.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "50.030 rounded to 1 decimal place = 50.0",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "50.0 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_equivalent_F",
+      "prompt": "7/8 = \\frac{21}{?}. Find the missing number.",
+      "solution_steps": [
+        "Find the scale factor between the numerators: 21 ÷ 7 = 3",
+        "Multiply the denominator by the same scale factor: 8 × 3 = 24"
+      ],
+      "final_answer": "24",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find the scale factor between the numerators: 21 ÷ 7 = 3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply the denominator by the same scale factor: 8 × 3 = 24",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "24 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     }
   ]

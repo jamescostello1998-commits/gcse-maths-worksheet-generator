@@ -7,119 +7,34 @@
   "calculator_allowed": false,
   "questions": [
     {
-      "topic_id": "histogram_plot_H",
-      "prompt": "The table shows the times (in minutes) taken to complete a puzzle. Complete a frequency density column and draw a histogram.",
+      "topic_id": "fractions_mixed_number_arithmetic_H",
+      "prompt": "Work out 2 1/3 + 1 3/6. Give your answer as a mixed number.",
       "solution_steps": [
-        "Frequency density = frequency ÷ class width, for each class:",
-        "10-20: 33 ÷ 10 = 3.3",
-        "20-40: 33 ÷ 20 = 1.65",
-        "40-45: 32 ÷ 5 = 6.4",
-        "45-50: 37 ÷ 5 = 7.4",
-        "Frequency densities: 3.3, 1.65, 6.4, 7.4"
+        "Convert to improper fractions: 2 1/3 = 7/3, 1 3/6 = 3/2",
+        "Add the improper fractions: 7/3 + 3/2 = 23/6",
+        "Convert back to a mixed number: 3 5/6"
       ],
-      "final_answer": "Frequency densities: 3.3, 1.65, 6.4, 7.4",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Frequency density = frequency ÷ class width, for each class:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "10-20: 33 ÷ 10 = 3.3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "20-40: 33 ÷ 20 = 1.65",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "40-45: 32 ÷ 5 = 6.4 45-50: 37 ÷ 5 = 7.4 Frequency densities: 3.3, 1.65, 6.4, 7.4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Frequency densities: 3.3, 1.65, 6.4, 7.4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "histogram_question",
-        "params": {
-          "boundaries": [
-            10,
-            20,
-            40,
-            45,
-            50
-          ],
-          "frequencies": [
-            33,
-            33,
-            32,
-            37
-          ],
-          "frequency_densities": [
-            3.3,
-            1.65,
-            6.4,
-            7.4
-          ],
-          "x_label": "Time (minutes)"
-        }
-      },
-      "solution_diagram": {
-        "kind": "histogram",
-        "params": {
-          "boundaries": [
-            10,
-            20,
-            40,
-            45,
-            50
-          ],
-          "frequency_densities": [
-            3.3,
-            1.65,
-            6.4,
-            7.4
-          ],
-          "x_label": "Time (minutes)"
-        }
-      }
-    },
-    {
-      "topic_id": "recurring_decimal_two_digit_H",
-      "prompt": "Show that \\recur{0.}{49} can be written as 49/99.",
-      "solution_steps": [
-        "Let x = \\recur{0.}{49}, so 100x = 49.4949... (two digits repeat, so multiply by 100 to shift a full block)",
-        "Subtract: 100x - x = 49 - 0, so 99x = 49",
-        "x = 49/99 = 49/99"
-      ],
-      "final_answer": "49/99",
+      "final_answer": "3 5/6",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = \\recur{0.}{49}, so 100x = 49.4949... (two digits repeat, so multiply by 100 to shift a full block)",
+          "description": "Convert to improper fractions: 2 1/3 = 7/3, 1 3/6 = 3/2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract: 100x - x = 49 - 0, so 99x = 49",
+          "description": "Add the improper fractions: 7/3 + 3/2 = 23/6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 49/99 = 49/99",
+          "description": "Convert back to a mixed number: 3 5/6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "49/99 oe",
+          "description": "3 5/6 oe",
           "marks": 1
         }
       ],
@@ -127,34 +42,69 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bounds_calculation_H",
-      "prompt": "A car travels 204 km (to the nearest km) in 8 hours (to the nearest hour). Calculate the upper bound for the average speed of the car, to 1 decimal place.",
+      "topic_id": "recurring_decimal_two_digit_H",
+      "prompt": "Show that \\recur{0.}{46} can be written as 46/99.",
       "solution_steps": [
-        "Distance: 204 km (to the nearest km) gives 203.5 ≤ distance < 204.5",
-        "Time: 8 hours (to the nearest hour) gives 7.5 ≤ time < 8.5",
-        "For the upper bound of the speed, divide the upper bound of distance by the lower bound of time: 204.5 ÷ 7.5 = 409/15 ≈ 27.3 km/h"
+        "Let x = \\recur{0.}{46}, so 100x = 46.4646... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Subtract: 100x - x = 46 - 0, so 99x = 46",
+        "x = 46/99 = 46/99"
       ],
-      "final_answer": "27.3 km/h (to 1 d.p.)",
+      "final_answer": "46/99",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Distance: 204 km (to the nearest km) gives 203.5 ≤ distance < 204.5",
+          "description": "Let x = \\recur{0.}{46}, so 100x = 46.4646... (two digits repeat, so multiply by 100 to shift a full block)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Time: 8 hours (to the nearest hour) gives 7.5 ≤ time < 8.5",
+          "description": "Subtract: 100x - x = 46 - 0, so 99x = 46",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For the upper bound of the speed, divide the upper bound of distance by the lower bound of time: 204.5 ÷ 7.5 = 409/15 ≈ 27.3 km/h",
+          "description": "x = 46/99 = 46/99",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "27.3 km/h (to 1 d.p.) oe",
+          "description": "46/99 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "error_interval_H",
+      "prompt": "A number, x, is 6200 rounded to 2 significant figures. Write down the error interval for x.",
+      "solution_steps": [
+        "The last significant figure of 6200 has a place value of 100, so x can be up to half of that above or below 6200.",
+        "Lower bound: 6200 - 50 = 6150",
+        "Upper bound: 6200 + 50 = 6250"
+      ],
+      "final_answer": "6150 ≤ x < 6250",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The last significant figure of 6200 has a place value of 100, so x can be up to half of that above or below 6200.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Lower bound: 6200 - 50 = 6150",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Upper bound: 6200 + 50 = 6250",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6150 ≤ x < 6250 oe",
           "marks": 1
         }
       ],
@@ -163,10 +113,10 @@
     },
     {
       "topic_id": "hcf_lcm_by_prime_factors_H",
-      "prompt": "Using prime factorisation, find the HCF of 69 and 158.",
+      "prompt": "Using prime factorisation, find the HCF of 129 and 110.",
       "solution_steps": [
-        "69 = 3 × 23",
-        "158 = 2 × 79",
+        "129 = 3 × 43",
+        "110 = 2 × 5 × 11",
         "HCF: take the lowest power of each prime that appears in both numbers",
         "HCF = 1"
       ],
@@ -175,12 +125,12 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "69 = 3 × 23",
+          "description": "129 = 3 × 43",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "158 = 2 × 79",
+          "description": "110 = 2 × 5 × 11",
           "marks": 1
         },
         {
@@ -204,19 +154,19 @@
     },
     {
       "topic_id": "decimals_recurring_to_fraction_H",
-      "prompt": "Show that \\recur{0.9}{3} can be written as 14/15.",
+      "prompt": "Write \\recur{0.0}{6} as a fraction in its simplest form.",
       "solution_steps": [
-        "Let x = \\recur{0.9}{3}",
+        "Let x = \\recur{0.0}{6}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
-        "This gives x = 84/90",
-        "Simplify: 14/15"
+        "This gives x = 6/90",
+        "Simplify: 1/15"
       ],
-      "final_answer": "14/15",
+      "final_answer": "1/15",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = \\recur{0.9}{3}",
+          "description": "Let x = \\recur{0.0}{6}",
           "marks": 1
         },
         {
@@ -226,17 +176,17 @@
         },
         {
           "code": "M1",
-          "description": "This gives x = 84/90",
+          "description": "This gives x = 6/90",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify: 14/15",
+          "description": "Simplify: 1/15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "14/15 oe",
+          "description": "1/15 oe",
           "marks": 1
         }
       ],
@@ -244,40 +194,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simplifying_indices_challenging_H",
-      "prompt": "Fully simplify 9^(1/2) × 9^-2, giving your answer as a fraction where necessary.",
+      "topic_id": "powers_H",
+      "prompt": "Evaluate 125^(1/3).",
       "solution_steps": [
-        "9^(1/2) is the square root of 9, which is 3, so 9^(1/2) = 3^1",
-        "9^-2 = \\frac{1}{9²} = \\frac{1}{3⁴}",
-        "9^(1/2) × 9^-2 = 3^1 × \\frac{1}{3⁴} = 3^(1-4) = 3^-3",
-        "3^-3 = 1/27"
+        "125^(1/3) means the cube root of 125.",
+        "125^(1/3) = 5"
       ],
-      "final_answer": "1/27",
-      "marks": 5,
+      "final_answer": "5",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "9^(1/2) is the square root of 9, which is 3, so 9^(1/2) = 3^1",
+          "description": "125^(1/3) means the cube root of 125.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "9^-2 = \\frac{1}{9²} = \\frac{1}{3⁴}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "9^(1/2) × 9^-2 = 3^1 × \\frac{1}{3⁴} = 3^(1-4) = 3^-3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "3^-3 = 1/27",
+          "description": "125^(1/3) = 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/27 oe",
+          "description": "5 oe",
           "marks": 1
         }
       ],
@@ -286,76 +224,218 @@
     },
     {
       "topic_id": "graph_transformations_H",
-      "prompt": "The graph of y = f(x) is transformed to give the graph of y = f(x) - 5. Describe this transformation fully.",
+      "prompt": "The graph of y = f(x) undergoes a translation by vector (-4, 0). Write down the equation of the transformed graph in terms of f(x).",
       "solution_steps": [
-        "y = f(x) - 5 corresponds to a translation by vector (0, -5)."
+        "y = f(x + 4) corresponds to a translation by vector (-4, 0)."
       ],
-      "final_answer": "Translation by vector (0, -5)",
+      "final_answer": "y = f(x + 4)",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = f(x) - 5 corresponds to a translation by vector (0, -5).",
+          "description": "y = f(x + 4) corresponds to a translation by vector (-4, 0).",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Translation by vector (0, -5) oe",
+          "description": "y = f(x + 4) oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "graph_transformation",
         "params": {
-          "transform": "translate_down",
-          "shift": 5,
+          "transform": "translate_left",
+          "shift": 4,
           "original_label": "y = f(x)",
-          "transformed_label": "y = f(x) - 5"
+          "transformed_label": "y = f(x + 4)"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "circle_equation_H",
-      "prompt": "A circle has centre (0, 0) and radius 9. Write down the equation of the circle.",
+      "topic_id": "solve_quadratic_completing_square_H",
+      "prompt": "Solve x^2 - 10x + 12 = 0 by completing the square, giving your answers in exact surd form.",
       "solution_steps": [
-        "A circle centred at the origin with radius r has equation x^2 + y^2 = r^2.",
-        "Here r = 9, so r^2 = 81."
+        "Half the coefficient of x: -10 ÷ 2 = -5",
+        "Complete the square: x^2 - 10x + 12 = (x - 5)^2 - 13",
+        "Set (x - 5)^2 - 13 = 0, so (x - 5)^2 = 13",
+        "(x - 5) = ±√13",
+        "x = 5 + √13 or x = 5 - √13"
       ],
-      "final_answer": "x^2 + y^2 = 81",
-      "marks": 3,
+      "final_answer": "x = 5 + √13 or x = 5 - √13",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A circle centred at the origin with radius r has equation x^2 + y^2 = r^2.",
+          "description": "Half the coefficient of x: -10 ÷ 2 = -5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Here r = 9, so r^2 = 81.",
+          "description": "Complete the square: x^2 - 10x + 12 = (x - 5)^2 - 13",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Set (x - 5)^2 - 13 = 0, so (x - 5)^2 = 13",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(x - 5) = ±√13 x = 5 + √13 or x = 5 - √13",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x^2 + y^2 = 81 oe",
+          "description": "x = 5 + √13 or x = 5 - √13 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_exponential_H",
+      "prompt": "Complete a table of values for y = 4 × 2^x for x = 0 to 4, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = 4 × 2^x:",
+        "x: 0, 1, 2, 3, 4",
+        "y: 4, 8, 16, 32, 64",
+        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
+      ],
+      "final_answer": "Exponential curve: y = 4 × 2^x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = 4 × 2^x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: 0, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 4, 8, 16, 32, 64",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Exponential curve: y = 4 × 2^x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "exponential",
+          "a": 4,
+          "base": 2,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 70.4,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "exponential",
+          "a": 4,
+          "base": 2,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 70.4,
+          "table_points": [
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              8
+            ],
+            [
+              2,
+              16
+            ],
+            [
+              3,
+              32
+            ],
+            [
+              4,
+              64
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "circle_equation_H",
+      "prompt": "The point (-16, 63) lies on the circle x^2 + y^2 = 4225. Find the equation of the tangent to the circle at this point.",
+      "solution_steps": [
+        "The point (-16, 63) lies on the circle x^2 + y^2 = 4225, since -16^2 + 63^2 = 4225.",
+        "The radius to (-16, 63) has gradient \\frac{63}{-16}, so the tangent (perpendicular to the radius) has gradient -\\frac{-16}{63}.",
+        "The tangent line through (-16, 63) with that gradient simplifies to -16x + 63y = 4225."
+      ],
+      "final_answer": "-16x + 63y = 4225",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The point (-16, 63) lies on the circle x^2 + y^2 = 4225, since -16^2 + 63^2 = 4225.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The radius to (-16, 63) has gradient \\frac{63}{-16}, so the tangent (perpendicular to the radius) has gradient -\\frac{-16}{63}.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The tangent line through (-16, 63) with that gradient simplifies to -16x + 63y = 4225.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-16x + 63y = 4225 oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "loci_construction",
         "params": {
-          "x_min": -10,
-          "x_max": 10,
-          "y_min": -10,
-          "y_max": 10,
-          "points": [],
+          "x_min": -66,
+          "x_max": 66,
+          "y_min": -66,
+          "y_max": 66,
+          "points": [
+            {
+              "xy": [
+                -16,
+                63
+              ],
+              "label": null
+            }
+          ],
           "given_lines": [],
           "circle": {
             "centre": [
               0,
               0
             ],
-            "radius": 9
+            "radius": 65
           },
           "segment": null
         }
@@ -363,122 +443,79 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trig_graph_H",
-      "prompt": "Complete a table of values for y = cos(x°) for x = 0 to 360 (in steps of 90°), then plot the graph.",
+      "topic_id": "cross_multiplication_H",
+      "prompt": "Solve the following equation.\n\\frac{6x - 6}{6} = \\frac{5x + 7}{3}",
       "solution_steps": [
-        "Table of values for y = cos(x°):",
-        "x: 0, 90, 180, 270, 360",
-        "y: 1, 0, -1, 0, 1",
-        "Plot each (x, y) point and join them with a single smooth curve - y = cos(x°) repeats the same shape every 360°, and never goes above 1 or below -1."
+        "Cross-multiply: 3(6x - 6) = 6(5x + 7)",
+        "18x - 18 = 30x + 42",
+        "Subtract 30x from both sides:",
+        "-12x - 18 = 42",
+        "Add 18 to both sides:",
+        "-12x = 60",
+        "Divide both sides by -12:",
+        "x = -5"
       ],
-      "final_answer": "y = cos(x°)",
+      "final_answer": "x = -5",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = cos(x°):",
+          "description": "Cross-multiply: 3(6x - 6) = 6(5x + 7)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: 0, 90, 180, 270, 360",
+          "description": "18x - 18 = 30x + 42",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: 1, 0, -1, 0, 1",
+          "description": "Subtract 30x from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve - y = cos(x°) repeats the same shape every 360°, and never goes above 1 or below -1.",
+          "description": "-12x - 18 = 42 Add 18 to both sides: -12x = 60 Divide both sides by -12: x = -5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = cos(x°) oe",
+          "description": "x = -5 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "trigonometric",
-          "fn": "cos",
-          "sign": 1,
-          "x_min": 0,
-          "x_max": 360,
-          "y_min": -1.4,
-          "y_max": 1.4,
-          "x_label": "x (degrees)",
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "trigonometric",
-          "fn": "cos",
-          "sign": 1,
-          "x_min": 0,
-          "x_max": 360,
-          "y_min": -1.4,
-          "y_max": 1.4,
-          "x_label": "x (degrees)",
-          "table_points": [
-            [
-              0,
-              1
-            ],
-            [
-              90,
-              0
-            ],
-            [
-              180,
-              -1
-            ],
-            [
-              270,
-              0
-            ],
-            [
-              360,
-              1
-            ]
-          ]
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     },
     {
-      "topic_id": "functions_composite_inverse_H",
-      "prompt": "f(x) = 2x + 1 and g(x) = 2x - 6. Find fg(x).",
+      "topic_id": "turning_point_of_graph_H",
+      "prompt": "Find the coordinates of the turning point of the curve y = x^2 - 12x - 8.",
       "solution_steps": [
-        "fg(x) = f(2x - 6)",
-        "= 2(2x - 6) + 1",
-        "= 4x - 11"
+        "Complete the square: x^2 - 12x - 8 = (x - 6)^2 - 44",
+        "The turning point of y = (x + p)^2 + q is (-p, q).",
+        "Turning point = (6, -44)"
       ],
-      "final_answer": "4x - 11",
+      "final_answer": "(6, -44)",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "fg(x) = f(2x - 6)",
+          "description": "Complete the square: x^2 - 12x - 8 = (x - 6)^2 - 44",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 2(2x - 6) + 1",
+          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 4x - 11",
+          "description": "Turning point = (6, -44)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4x - 11 oe",
+          "description": "(6, -44) oe",
           "marks": 1
         }
       ],
@@ -486,90 +523,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "forming_equations_H",
-      "prompt": "A quadrilateral has angles 37°, 44°, (3x + 11)°, and (x + 232)°. Form an equation and solve it to find x.",
+      "topic_id": "special_sequences_H",
+      "prompt": "The first 3 terms of a geometric sequence are: 2, 1, 1/2. Find the 5th term of the sequence.",
       "solution_steps": [
-        "Angles in a quadrilateral sum to 360°.",
-        "37 + 44 + (3x + 11) + (x + 232) = 360",
-        "Collect the x-terms and constants together:",
-        "4x + 243 = 279",
-        "Subtract 243 from both sides:",
-        "4x = 36",
-        "Divide both sides by 4:",
-        "x = 9"
+        "Common ratio r = 1/2 (divide any term by the term before it).",
+        "nth term = a × r^(n - 1) = 2 × (1/2)^4",
+        "Term 5 = 1/8"
       ],
-      "final_answer": "9",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Angles in a quadrilateral sum to 360°.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "37 + 44 + (3x + 11) + (x + 232) = 360",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Collect the x-terms and constants together:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "4x + 243 = 279 Subtract 243 from both sides: 4x = 36 Divide both sides by 4: x = 9",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "9 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "polygon_angles",
-        "params": {
-          "n_sides": 4,
-          "angle_labels": [
-            "37°",
-            "44°",
-            "(3x + 11)°",
-            "(x + 232)°"
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "functions_inverse_evaluate_H",
-      "prompt": "f(x) = 2x - 7. Find f^-1(-10).",
-      "solution_steps": [
-        "f^-1(x) = \\frac{x + 7}{2}",
-        "f^-1(-10) = \\frac{-10 + 7}{2}",
-        "f^-1(-10) = -3/2"
-      ],
-      "final_answer": "-3/2",
+      "final_answer": "1/8",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "f^-1(x) = \\frac{x + 7}{2}",
+          "description": "Common ratio r = 1/2 (divide any term by the term before it).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "f^-1(-10) = \\frac{-10 + 7}{2}",
+          "description": "nth term = a × r^(n - 1) = 2 × (1/2)^4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "f^-1(-10) = -3/2",
+          "description": "Term 5 = 1/8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-3/2 oe",
+          "description": "1/8 oe",
           "marks": 1
         }
       ],
@@ -577,89 +558,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "trial_and_improvement_H",
-      "prompt": "f(x) = x^3 - 3x - 36. Show that f(x) = 0 has a root between x = 3 and x = 4, then use trial and improvement to find this root correct to 1 decimal place.",
+      "topic_id": "expand_triple_brackets_no_coefficient_H",
+      "prompt": "Expand and simplify: (x + 1)(x - 4)(x - 4)",
       "solution_steps": [
-        "f(x) = x^3 - 3x - 36",
-        "f(3) = -18.00 (negative)",
-        "f(4) = 16.00 (positive)",
-        "f(3.1) = -15.51 (negative)",
-        "f(3.2) = -12.83 (negative)",
-        "f(3.3) = -9.96 (negative)",
-        "f(3.4) = -6.90 (negative)",
-        "f(3.5) = -3.63 (negative)",
-        "f(3.6) = -0.14 (negative)",
-        "f(3.7) = 3.55 (positive)",
-        "The sign changes between x = 3.6 and x = 3.7, so try the midpoint x = 3.65: f(3.65) = 1.68.",
-        "f(3.65) has the same sign as f(3.7), so the root lies between 3.6 and 3.65 - to 1 decimal place, this rounds down to 3.6."
+        "First expand two of the brackets: (x + 1)(x - 4) = x^2 - 3x - 4",
+        "Multiply the result by (x - 4) and collect like terms",
+        "= x^3 - 7x^2 + 8x + 16"
       ],
-      "final_answer": "x = 3.6",
-      "marks": 5,
+      "final_answer": "x^3 - 7x^2 + 8x + 16",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "f(x) = x^3 - 3x - 36",
+          "description": "First expand two of the brackets: (x + 1)(x - 4) = x^2 - 3x - 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "f(3) = -18.00 (negative)",
+          "description": "Multiply the result by (x - 4) and collect like terms",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "f(4) = 16.00 (positive)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "f(3.1) = -15.51 (negative) f(3.2) = -12.83 (negative) f(3.3) = -9.96 (negative) f(3.4) = -6.90 (negative) f(3.5) = -3.63 (negative) f(3.6) = -0.14 (negative) f(3.7) = 3.55 (positive) The sign changes between x = 3.6 and x = 3.7, so try the midpoint x = 3.65: f(3.65) = 1.68. f(3.65) has the same sign as f(3.7), so the root lies between 3.6 and 3.65 - to 1 decimal place, this rounds down to 3.6.",
+          "description": "= x^3 - 7x^2 + 8x + 16",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 3.6 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "solve_quadratic_factorising_H",
-      "prompt": "Solve x^2 - 2x - 15 = 0 by factorising.",
-      "solution_steps": [
-        "Find two numbers that multiply to -15 and add to -2: 3 and -5",
-        "Factorise: (x + 3)(x - 5) = 0",
-        "Either x + 3 = 0 or x + -5 = 0",
-        "x = -3 or x = 5"
-      ],
-      "final_answer": "x = -3 or x = 5",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find two numbers that multiply to -15 and add to -2: 3 and -5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise: (x + 3)(x - 5) = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Either x + 3 = 0 or x + -5 = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = -3 or x = 5",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = -3 or x = 5 oe",
+          "description": "x^3 - 7x^2 + 8x + 16 oe",
           "marks": 1
         }
       ],
@@ -668,39 +594,39 @@
     },
     {
       "topic_id": "ratio_to_equation_H",
-      "prompt": "(x - 2) : (5x - 46) = 5:7. Find the value of x.",
+      "prompt": "(x + 6) : (3x + 4) = 5:8. Find the value of x.",
       "solution_steps": [
-        "Cross-multiply: 7(x - 2) = 5(5x - 46)",
-        "Expand: 7x - 14 = 25x - 230",
-        "Collect x terms: -18x = -216",
-        "x = -216 ÷ -18 = 12"
+        "Cross-multiply: 8(x + 6) = 5(3x + 4)",
+        "Expand: 8x + 48 = 15x + 20",
+        "Collect x terms: -7x = -28",
+        "x = -28 ÷ -7 = 4"
       ],
-      "final_answer": "x = 12",
+      "final_answer": "x = 4",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Cross-multiply: 7(x - 2) = 5(5x - 46)",
+          "description": "Cross-multiply: 8(x + 6) = 5(3x + 4)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand: 7x - 14 = 25x - 230",
+          "description": "Expand: 8x + 48 = 15x + 20",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Collect x terms: -18x = -216",
+          "description": "Collect x terms: -7x = -28",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = -216 ÷ -18 = 12",
+          "description": "x = -28 ÷ -7 = 4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 12 oe",
+          "description": "x = 4 oe",
           "marks": 1
         }
       ],
@@ -709,27 +635,27 @@
     },
     {
       "topic_id": "reverse_percentage_H",
-      "prompt": "After a 12% decrease, an item costs £21.12. Find the original price.",
+      "prompt": "After a 35% decrease, an item costs £143. Find the original price.",
       "solution_steps": [
-        "Convert 12% to a multiplier: 0.88 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 21.12 ÷ 0.88 = 24"
+        "Convert 35% to a multiplier: 0.65 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 143 ÷ 0.65 = 220"
       ],
-      "final_answer": "£24",
+      "final_answer": "£220",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 12% to a multiplier: 0.88 (original × multiplier = new value)",
+          "description": "Convert 35% to a multiplier: 0.65 (original × multiplier = new value)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide the new value by the multiplier: 21.12 ÷ 0.88 = 24",
+          "description": "Divide the new value by the multiplier: 143 ÷ 0.65 = 220",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£24 oe",
+          "description": "£220 oe",
           "marks": 1
         }
       ],
@@ -738,55 +664,55 @@
     },
     {
       "topic_id": "ratio_shape_similar_H",
-      "prompt": "Shape A and Shape B are similar. The volume of shape A is 8 cm^3. Find the volume of shape B.",
+      "prompt": "Shape A and Shape B are similar. The area of shape A is 54 cm². Find the area of shape B.",
       "solution_steps": [
-        "Linear scale factor = 6 ÷ 2 = 3",
-        "Volume scale factor = (3)^3 = 27",
-        "Volume of B = 8 × 27 = 216 cm^3"
+        "Linear scale factor = 4 ÷ 3 = 4/3",
+        "Area scale factor = (4/3)^2 = 16/9",
+        "Area of B = 54 × 16/9 = 96 cm²"
       ],
-      "final_answer": "216 cm^3",
+      "final_answer": "96 cm²",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Linear scale factor = 6 ÷ 2 = 3",
+          "description": "Linear scale factor = 4 ÷ 3 = 4/3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Volume scale factor = (3)^3 = 27",
+          "description": "Area scale factor = (4/3)^2 = 16/9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Volume of B = 8 × 27 = 216 cm^3",
+          "description": "Area of B = 54 × 16/9 = 96 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "216 cm^3 oe",
+          "description": "96 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "two_similar_rectangles",
         "params": {
-          "a_width_label": "2 cm",
-          "b_width_label": "6 cm"
+          "a_width_label": "3 cm",
+          "b_width_label": "4 cm"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "algebraic_direct_proportion_H",
-      "prompt": "y is directly proportional to x^3. When x = 4, y = 640. Find the value of y when x = 2.",
+      "prompt": "y is directly proportional to x^3. When x = 3, y = 81. Find the value of y when x = 2.",
       "solution_steps": [
         "y = kx^3",
-        "640 = k × 4^3 = k × 64",
-        "k = 640 ÷ 64 = 10",
-        "y = 10 × 2^3 = 10 × 8 = 80"
+        "81 = k × 3^3 = k × 27",
+        "k = 81 ÷ 27 = 3",
+        "y = 3 × 2^3 = 3 × 8 = 24"
       ],
-      "final_answer": "80",
+      "final_answer": "24",
       "marks": 5,
       "mark_scheme": [
         {
@@ -796,22 +722,22 @@
         },
         {
           "code": "M1",
-          "description": "640 = k × 4^3 = k × 64",
+          "description": "81 = k × 3^3 = k × 27",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "k = 640 ÷ 64 = 10",
+          "description": "k = 81 ÷ 27 = 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y = 10 × 2^3 = 10 × 8 = 80",
+          "description": "y = 3 × 2^3 = 3 × 8 = 24",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "80 oe",
+          "description": "24 oe",
           "marks": 1
         }
       ],
@@ -820,12 +746,12 @@
     },
     {
       "topic_id": "transform_enlarge_describe_H",
-      "prompt": "Shape ABCD is enlarged to give shape A'B'C'D', shown on the grid. Describe fully the single transformation that maps ABCD onto A'B'C'D'.",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
       "solution_steps": [
         "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
-        "For this pair, the lines meet at (0, -1) and the ratio works out as -1."
+        "For this pair, the lines meet at (-1, -1) and the ratio works out as -1."
       ],
-      "final_answer": "Enlargement, scale factor -1, centre (0, -1)",
+      "final_answer": "Enlargement, scale factor -1, centre (-1, -1)",
       "marks": 3,
       "mark_scheme": [
         {
@@ -835,12 +761,12 @@
         },
         {
           "code": "M1",
-          "description": "For this pair, the lines meet at (0, -1) and the ratio works out as -1.",
+          "description": "For this pair, the lines meet at (-1, -1) and the ratio works out as -1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Enlargement, scale factor -1, centre (0, -1) oe",
+          "description": "Enlargement, scale factor -1, centre (-1, -1) oe",
           "marks": 1
         }
       ],
@@ -857,64 +783,56 @@
               1
             ],
             [
-              1,
+              2,
               1
             ],
             [
-              0,
+              -2,
               5
-            ],
-            [
-              -4,
-              4
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
+            "",
+            "",
+            ""
           ],
+          "original_shape_label": "A",
           "image_vertices": [
             [
-              3,
+              1,
               -3
             ],
             [
-              -1,
+              -4,
               -3
             ],
             [
               0,
               -7
-            ],
-            [
-              4,
-              -6
             ]
           ],
           "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'"
-          ]
+            "",
+            "",
+            ""
+          ],
+          "image_shape_label": "B"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "angles_triangle_H",
-      "prompt": "A triangle has angles 21°, 41°, and (5x + 28)°. Find x.",
+      "prompt": "A triangle has angles 88°, 70°, and (2x - 10)°. Find x.",
       "solution_steps": [
         "Angles in a triangle sum to 180°.",
-        "5x + 28 = 118",
-        "Subtract 28 from both sides:",
-        "5x = 90",
-        "Divide both sides by 5:",
-        "x = 18"
+        "2x - 10 = 22",
+        "Add 10 to both sides:",
+        "2x = 32",
+        "Divide both sides by 2:",
+        "x = 16"
       ],
-      "final_answer": "18",
+      "final_answer": "16",
       "marks": 5,
       "mark_scheme": [
         {
@@ -924,22 +842,22 @@
         },
         {
           "code": "M1",
-          "description": "5x + 28 = 118",
+          "description": "2x - 10 = 22",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 28 from both sides:",
+          "description": "Add 10 to both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x = 90 Divide both sides by 5: x = 18",
+          "description": "2x = 32 Divide both sides by 2: x = 16",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "18 oe",
+          "description": "16 oe",
           "marks": 1
         }
       ],
@@ -947,9 +865,9 @@
         "kind": "triangle_angles",
         "params": {
           "angle_labels": [
-            "21°",
-            "41°",
-            "(5x + 28)°"
+            "88°",
+            "70°",
+            "(2x - 10)°"
           ]
         }
       },
@@ -957,33 +875,33 @@
     },
     {
       "topic_id": "vectors_arithmetic_H",
-      "prompt": "\\vec{a} = \\colvec{-3}{3} and \\vec{b} = \\colvec{-4}{-5}. Find 4\\vec{a} + 5\\vec{b}.",
+      "prompt": "\\vec{a} = \\colvec{-8}{3} and \\vec{b} = \\colvec{-6}{-6}. Find 2\\vec{a} + 4\\vec{b}.",
       "solution_steps": [
-        "\\vec{a} = \\colvec{-3}{3}, \\vec{b} = \\colvec{-4}{-5}",
-        "4\\vec{a} = \\colvec{-12}{12} and 5\\vec{b} = \\colvec{-20}{-25}",
-        "4\\vec{a} + 5\\vec{b} = \\colvec{-32}{-13}"
+        "\\vec{a} = \\colvec{-8}{3}, \\vec{b} = \\colvec{-6}{-6}",
+        "2\\vec{a} = \\colvec{-16}{6} and 4\\vec{b} = \\colvec{-24}{-24}",
+        "2\\vec{a} + 4\\vec{b} = \\colvec{-40}{-18}"
       ],
-      "final_answer": "\\colvec{-32}{-13}",
+      "final_answer": "\\colvec{-40}{-18}",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "\\vec{a} = \\colvec{-3}{3}, \\vec{b} = \\colvec{-4}{-5}",
+          "description": "\\vec{a} = \\colvec{-8}{3}, \\vec{b} = \\colvec{-6}{-6}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4\\vec{a} = \\colvec{-12}{12} and 5\\vec{b} = \\colvec{-20}{-25}",
+          "description": "2\\vec{a} = \\colvec{-16}{6} and 4\\vec{b} = \\colvec{-24}{-24}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4\\vec{a} + 5\\vec{b} = \\colvec{-32}{-13}",
+          "description": "2\\vec{a} + 4\\vec{b} = \\colvec{-40}{-18}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "\\colvec{-32}{-13} oe",
+          "description": "\\colvec{-40}{-18} oe",
           "marks": 1
         }
       ],
@@ -994,75 +912,75 @@
       "topic_id": "exact_trig_values_triangles_H",
       "prompt": "In the triangle shown, find the exact length of x. Give your answer in surd form where appropriate.",
       "solution_steps": [
-        "We know the adjacent and want the hypotenuse, so use cos(45°) = √2/2 - its exact value, not a decimal approximation.",
-        "x = 9 ÷ √2/2 = 9√2 cm"
+        "We know the adjacent and want the opposite, so use tan(30°) = √3/3 - its exact value, not a decimal approximation.",
+        "x = 3 × √3/3 = √3 cm"
       ],
-      "final_answer": "9√2 cm",
+      "final_answer": "√3 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "We know the adjacent and want the hypotenuse, so use cos(45°) = √2/2 - its exact value, not a decimal approximation.",
+          "description": "We know the adjacent and want the opposite, so use tan(30°) = √3/3 - its exact value, not a decimal approximation.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 9 ÷ √2/2 = 9√2 cm",
+          "description": "x = 3 × √3/3 = √3 cm",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9√2 cm oe",
+          "description": "√3 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "trig_triangle",
         "params": {
-          "adjacent_label": "9 cm",
-          "opposite_label": null,
-          "hyp_label": "x cm",
-          "angle_label": "45°"
+          "adjacent_label": "3 cm",
+          "opposite_label": "x cm",
+          "hyp_label": null,
+          "angle_label": "30°"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "set_notation_H",
-      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}, A = {6, 10, 12}, B = {1, 8, 10}. List the elements of (A ∪ B)'.",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}, A = {2, 3, 4, 5, 10}, B = {1, 4, 5, 9}. List the elements of A'.",
       "solution_steps": [
-        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}",
-        "A = {6, 10, 12}",
-        "B = {1, 8, 10}",
-        "(A ∪ B)' means the complement of A union B.",
-        "(A ∪ B)' = {2, 3, 4, 5, 7, 9, 11}"
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}",
+        "A = {2, 3, 4, 5, 10}",
+        "B = {1, 4, 5, 9}",
+        "A' means the complement of A (elements not in A).",
+        "A' = {1, 6, 7, 8, 9, 11}"
       ],
-      "final_answer": "{2, 3, 4, 5, 7, 9, 11}",
+      "final_answer": "{1, 6, 7, 8, 9, 11}",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A = {6, 10, 12}",
+          "description": "A = {2, 3, 4, 5, 10}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "B = {1, 8, 10}",
+          "description": "B = {1, 4, 5, 9}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(A ∪ B)' means the complement of A union B. (A ∪ B)' = {2, 3, 4, 5, 7, 9, 11}",
+          "description": "A' means the complement of A (elements not in A). A' = {1, 6, 7, 8, 9, 11}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "{2, 3, 4, 5, 7, 9, 11} oe",
+          "description": "{1, 6, 7, 8, 9, 11} oe",
           "marks": 1
         }
       ],
@@ -1085,35 +1003,68 @@
           ],
           "universal_label": "ξ",
           "region_text": {
-            "a_only": "6, 12",
-            "b_only": "1, 8",
-            "both": "10",
-            "neither": "2, 3, 4, 5, 7, 9, 11"
+            "a_only": "2, 3, 10",
+            "b_only": "1, 9",
+            "both": "4, 5",
+            "neither": "6, 7, 8, 11"
           }
         }
       }
     },
     {
-      "topic_id": "product_rule_counting_H",
-      "prompt": "A shop sells 4 different phone cases and 6 different screen protectors. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "topic_id": "venn_diagram_notation_H",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6}. The Venn diagram shows sets A and B. List the elements of B ∩ A'.",
       "solution_steps": [
-        "Total combinations = 4 × 6 = 24"
+        "ξ = {1, 2, 3, 4, 5, 6}",
+        "A = {1, 2, 3, 5}, B = {2, 4}",
+        "B ∩ A' means the elements in B but not in A.",
+        "B ∩ A' = {4}"
       ],
-      "final_answer": "24",
-      "marks": 2,
+      "final_answer": "{4}",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total combinations = 4 × 6 = 24",
+          "description": "ξ = {1, 2, 3, 4, 5, 6}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {1, 2, 3, 5}, B = {2, 4}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B ∩ A' means the elements in B but not in A.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B ∩ A' = {4}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "24 oe",
+          "description": "{4} oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "S",
+          "region_text": {
+            "a_only": "1, 3, 5",
+            "b_only": "4",
+            "both": "2",
+            "neither": "6"
+          }
+        }
+      },
       "solution_diagram": null
     }
   ]

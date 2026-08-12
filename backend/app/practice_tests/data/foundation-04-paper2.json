@@ -8,21 +8,21 @@
   "questions": [
     {
       "topic_id": "negative_add_subtract_F",
-      "prompt": "Work out 8 + (-10).",
+      "prompt": "Work out -8 + 10.",
       "solution_steps": [
-        "8 + (-10) = -2"
+        "-8 + 10 = 2"
       ],
-      "final_answer": "-2",
+      "final_answer": "2",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "8 + (-10) = -2",
+          "description": "-8 + 10 = 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-2 oe",
+          "description": "2 oe",
           "marks": 1
         }
       ],
@@ -31,33 +31,33 @@
     },
     {
       "topic_id": "fractions_improper_mixed_F",
-      "prompt": "Convert 3 1/3 to an improper fraction.",
+      "prompt": "Express 3 3/4 as an improper fraction.",
       "solution_steps": [
-        "Multiply the whole number by the denominator: 3 × 3 = 9",
-        "Add the numerator: 9 + 1 = 10",
-        "Write over the same denominator: 10/3"
+        "Multiply the whole number by the denominator: 3 × 4 = 12",
+        "Add the numerator: 12 + 3 = 15",
+        "Write over the same denominator: 15/4"
       ],
-      "final_answer": "10/3",
+      "final_answer": "15/4",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply the whole number by the denominator: 3 × 3 = 9",
+          "description": "Multiply the whole number by the denominator: 3 × 4 = 12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add the numerator: 9 + 1 = 10",
+          "description": "Add the numerator: 12 + 3 = 15",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write over the same denominator: 10/3",
+          "description": "Write over the same denominator: 15/4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10/3 oe",
+          "description": "15/4 oe",
           "marks": 1
         }
       ],
@@ -65,100 +65,57 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof_F",
-      "prompt": "M is the midpoint of AB. P is a point such that PM is perpendicular to AB. Which congruence criterion proves that the two triangles are congruent? A) RHS  B) ASA  C) SSS  D) SAS",
+      "topic_id": "standard_form_from_small_F",
+      "prompt": "Write 2.07 × 10^-3 as an ordinary number.",
       "solution_steps": [
-        "AM = BM (M is the midpoint of AB)",
-        "angle AMP = angle BMP = 90° (PM is perpendicular to AB)",
-        "PM is common to both triangles",
-        "These facts match the Side-Angle-Side (SAS) congruence criterion."
+        "Multiply 2.07 by 10^-3, which means moving the decimal point 3 place(s) left.",
+        "2.07 × 10^-3 = 0.00207"
       ],
-      "final_answer": "D) SAS",
-      "marks": 1,
-      "mark_scheme": [
-        {
-          "code": "B1",
-          "description": "D) SAS (selecting the correct option)",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "two_triangle_congruence",
-        "params": {
-          "labels_1": [
-            "A",
-            "M",
-            "P"
-          ],
-          "labels_2": [
-            "B",
-            "M",
-            "P"
-          ],
-          "ticks_1": [
-            [
-              0,
-              1,
-              2
-            ],
-            [
-              1,
-              2,
-              1
-            ]
-          ],
-          "ticks_2": [
-            [
-              0,
-              1,
-              2
-            ],
-            [
-              1,
-              2,
-              1
-            ]
-          ],
-          "arcs_1": [
-            [
-              1,
-              1
-            ]
-          ],
-          "arcs_2": [
-            [
-              1,
-              1
-            ]
-          ],
-          "note": "MP is common to both triangles."
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "decimals_round_dp_F",
-      "prompt": "Round 41.274 to 1 decimal place.",
-      "solution_steps": [
-        "Look at the digit after the 1 decimal place we want: 7, so round up.",
-        "41.274 rounded to 1 decimal place = 41.3"
-      ],
-      "final_answer": "41.3",
+      "final_answer": "0.00207",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Look at the digit after the 1 decimal place we want: 7, so round up.",
+          "description": "Multiply 2.07 by 10^-3, which means moving the decimal point 3 place(s) left.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "41.274 rounded to 1 decimal place = 41.3",
+          "description": "2.07 × 10^-3 = 0.00207",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "41.3 oe",
+          "description": "0.00207 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "decimals_round_sf_F",
+      "prompt": "Round 990.228 to 1 significant figure.",
+      "solution_steps": [
+        "Identify the first 1 significant figure of 990.228.",
+        "990.228 rounded to 1 significant figure = 1000"
+      ],
+      "final_answer": "1000",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Identify the first 1 significant figure of 990.228.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "990.228 rounded to 1 significant figure = 1000",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1000 oe",
           "marks": 1
         }
       ],
@@ -167,21 +124,27 @@
     },
     {
       "topic_id": "multiples_F",
-      "prompt": "Write down the first 5 multiples of 11.",
+      "prompt": "Is 27 a multiple of 10?",
       "solution_steps": [
-        "Multiply 11 by 1, 2, 3, 4, 5: 11, 22, 33, 44, 55"
+        "27 ÷ 10 = 2 remainder 7",
+        "No, 27 is not a multiple of 10."
       ],
-      "final_answer": "11, 22, 33, 44, 55",
-      "marks": 2,
+      "final_answer": "No",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply 11 by 1, 2, 3, 4, 5: 11, 22, 33, 44, 55",
+          "description": "27 ÷ 10 = 2 remainder 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "No, 27 is not a multiple of 10.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "11, 22, 33, 44, 55 oe",
+          "description": "No oe",
           "marks": 1
         }
       ],
@@ -190,27 +153,27 @@
     },
     {
       "topic_id": "negative_indices_F",
-      "prompt": "Fully simplify 8^-3 × 8^-4, giving your answer as a single power of 8.",
+      "prompt": "Simplify 9^-4 ÷ 9^-1, giving your answer as a single power of 9.",
       "solution_steps": [
-        "Add the powers: -3 + (-4) = -7",
-        "8^-3 × 8^-4 = 8^-7"
+        "Subtract the powers: -4 - (-1) = -3",
+        "9^-4 ÷ 9^-1 = 9^-3"
       ],
-      "final_answer": "8^-7",
+      "final_answer": "9^-3",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Add the powers: -3 + (-4) = -7",
+          "description": "Subtract the powers: -4 - (-1) = -3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "8^-3 × 8^-4 = 8^-7",
+          "description": "9^-4 ÷ 9^-1 = 9^-3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8^-7 oe",
+          "description": "9^-3 oe",
           "marks": 1
         }
       ],
@@ -219,12 +182,12 @@
     },
     {
       "topic_id": "decimals_add_subtract_F",
-      "prompt": "Evaluate 85.2 + 15.0.",
+      "prompt": "Evaluate 35.6 + 26.7.",
       "solution_steps": [
         "Line up the decimal points, padding with a zero so both numbers have the same number of decimal places.",
-        "85.2 + 15.0 = 100.2"
+        "35.6 + 26.7 = 62.3"
       ],
-      "final_answer": "100.2",
+      "final_answer": "62.3",
       "marks": 3,
       "mark_scheme": [
         {
@@ -234,12 +197,12 @@
         },
         {
           "code": "M1",
-          "description": "85.2 + 15.0 = 100.2",
+          "description": "35.6 + 26.7 = 62.3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "100.2 oe",
+          "description": "62.3 oe",
           "marks": 1
         }
       ],
@@ -248,27 +211,27 @@
     },
     {
       "topic_id": "decimals_ordering_F",
-      "prompt": "Write these values in ascending order: 41%, 33%, 17/50, 0.25",
+      "prompt": "Write these values in ascending order: 0.21, 33/100, 34%, 0.27",
       "solution_steps": [
-        "Convert each value to a decimal: 41% = 0.41, 33% = 0.33, 17/50 = 0.34, 0.25 = 0.25",
-        "Order in ascending order: 0.25, 33%, 17/50, 41%"
+        "Convert each value to a decimal: 0.21 = 0.21, 33/100 = 0.33, 34% = 0.34, 0.27 = 0.27",
+        "Order in ascending order: 0.21, 0.27, 33/100, 34%"
       ],
-      "final_answer": "0.25, 33%, 17/50, 41%",
+      "final_answer": "0.21, 0.27, 33/100, 34%",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert each value to a decimal: 41% = 0.41, 33% = 0.33, 17/50 = 0.34, 0.25 = 0.25",
+          "description": "Convert each value to a decimal: 0.21 = 0.21, 33/100 = 0.33, 34% = 0.34, 0.27 = 0.27",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Order in ascending order: 0.25, 33%, 17/50, 41%",
+          "description": "Order in ascending order: 0.21, 0.27, 33/100, 34%",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0.25, 33%, 17/50, 41% oe",
+          "description": "0.21, 0.27, 33/100, 34% oe",
           "marks": 1
         }
       ],
@@ -276,69 +239,69 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_simplify_F",
-      "prompt": "Fully simplify 7/21.",
+      "topic_id": "classify_expressions_F",
+      "prompt": "Is the following an expression, equation, formula, or identity?\n(7x - 8)/8",
       "solution_steps": [
-        "Find the highest common factor of 7 and 21: 7",
-        "Divide numerator and denominator by 7: \\frac{7÷7}{21÷7} = 1/3"
+        "Look at the statement: (7x - 8)/8.",
+        "There is no '=' sign and no '≡' sign anywhere in it, so it isn't claiming that two things are equal at all.",
+        "It's just a single algebraic object built from numbers and a letter using +, -, ×, ÷ and powers - it can be simplified or evaluated for a given x, but there is nothing here to 'solve' or 'prove'.",
+        "Since it makes no equality claim whatsoever, this is an expression."
       ],
-      "final_answer": "1/3",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find the highest common factor of 7 and 21: 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Divide numerator and denominator by 7: \\frac{7÷7}{21÷7} = 1/3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1/3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simultaneous_common_coefficient_F",
-      "prompt": "Solve the simultaneous equations: 6x + 2y = 12 and 2x + 2y = 8",
-      "solution_steps": [
-        "6x + 2y = 12  (1)",
-        "2x + 2y = 8  (2)",
-        "Subtract the equations to eliminate y: 4x = 4, so x = 1",
-        "Substitute x = 1 into (1): 2y = 6, so y = 3"
-      ],
-      "final_answer": "x = 1, y = 3",
+      "final_answer": "expression",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "6x + 2y = 12  (1)",
+          "description": "Look at the statement: (7x - 8)/8.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x + 2y = 8  (2)",
+          "description": "There is no '=' sign and no '≡' sign anywhere in it, so it isn't claiming that two things are equal at all.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract the equations to eliminate y: 4x = 4, so x = 1",
+          "description": "It's just a single algebraic object built from numbers and a letter using +, -, ×, ÷ and powers - it can be simplified or evaluated for a given x, but there is nothing here to 'solve' or 'prove'.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute x = 1 into (1): 2y = 6, so y = 3",
+          "description": "Since it makes no equality claim whatsoever, this is an expression.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 1, y = 3 oe",
+          "description": "expression oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "functions_evaluate_F",
+      "prompt": "f(x) = 6x + 2. Find f(-2).",
+      "solution_steps": [
+        "f(-2) = 6×(-2) + 2",
+        "f(-2) = -10"
+      ],
+      "final_answer": "-10",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "f(-2) = 6×(-2) + 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "f(-2) = -10",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-10 oe",
           "marks": 1
         }
       ],
@@ -347,27 +310,27 @@
     },
     {
       "topic_id": "factorise_common_factor_F",
-      "prompt": "Factorise: 10x + 16",
+      "prompt": "Factorise: -32x + 40",
       "solution_steps": [
-        "Find the highest common factor of 10 and 16: 2",
-        "Factorise: 2(5x + 8)"
+        "Find the highest common factor of -32 and 40: 8",
+        "Factorise: 8(-4x + 5)"
       ],
-      "final_answer": "2(5x + 8)",
+      "final_answer": "8(-4x + 5)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the highest common factor of 10 and 16: 2",
+          "description": "Find the highest common factor of -32 and 40: 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factorise: 2(5x + 8)",
+          "description": "Factorise: 8(-4x + 5)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2(5x + 8) oe",
+          "description": "8(-4x + 5) oe",
           "marks": 1
         }
       ],
@@ -376,41 +339,41 @@
     },
     {
       "topic_id": "linear_multi_step_F",
-      "prompt": "Solve: 2x + 11 + 6x + 5 = 96",
+      "prompt": "Solve: 3x + 13 + 2x + 6 = 44",
       "solution_steps": [
-        "Collect like terms: 2x + 6x = 8x, 11 + 5 = 16",
-        "8x + 16 = 96",
-        "Subtract 16 from both sides:",
-        "8x = 80",
-        "Divide both sides by 8:",
-        "x = 10"
+        "Collect like terms: 3x + 2x = 5x, 13 + 6 = 19",
+        "5x + 19 = 44",
+        "Subtract 19 from both sides:",
+        "5x = 25",
+        "Divide both sides by 5:",
+        "x = 5"
       ],
-      "final_answer": "10",
+      "final_answer": "5",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Collect like terms: 2x + 6x = 8x, 11 + 5 = 16",
+          "description": "Collect like terms: 3x + 2x = 5x, 13 + 6 = 19",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "8x + 16 = 96",
+          "description": "5x + 19 = 44",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 16 from both sides:",
+          "description": "Subtract 19 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "8x = 80 Divide both sides by 8: x = 10",
+          "description": "5x = 25 Divide both sides by 5: x = 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10 oe",
+          "description": "5 oe",
           "marks": 1
         }
       ],
@@ -418,34 +381,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_single_bracket_F",
-      "prompt": "Expand: -4(-2x - 1)",
+      "topic_id": "substitution_rearrange_F",
+      "prompt": "A = LW. Make L the subject of the formula, then find the value of L when A = 44 and w = 4.",
       "solution_steps": [
-        "Multiply -4 by -2x: 8x",
-        "Multiply -4 by -1: 4",
-        "Combine: 8x + 4"
+        "A = LW",
+        "Rearrange to make L the subject: L = \\frac{A}{w}",
+        "Substitute A = 44 and w = 4: L = \\frac{44}{4}",
+        "L = 11"
       ],
-      "final_answer": "8x + 4",
-      "marks": 4,
+      "final_answer": "L = 11",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply -4 by -2x: 8x",
+          "description": "A = LW",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply -4 by -1: 4",
+          "description": "Rearrange to make L the subject: L = \\frac{A}{w}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Combine: 8x + 4",
+          "description": "Substitute A = 44 and w = 4: L = \\frac{44}{4}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "L = 11",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8x + 4 oe",
+          "description": "L = 11 oe",
           "marks": 1
         }
       ],
@@ -453,72 +422,71 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inequalities_number_line_F",
-      "prompt": "Write down the inequality shown by the number line below.",
+      "topic_id": "satisfying_inequalities_F",
+      "prompt": "Solve the inequality -8 ≤ 3x + 5 < 13, then list the integer values of x that satisfy it.",
       "solution_steps": [
-        "The circle at -5 is filled, so -5 is included in the solution set.",
-        "The shading and arrow point to the right, so the solution is x ≥ -5."
+        "-8 ≤ 3x + 5 < 13",
+        "Subtract 5 from all three parts:",
+        "-13 ≤ 3x < 8",
+        "Divide all three parts by 3:",
+        "-13/3 ≤ x < 8/3",
+        "The integers satisfying this are: -4, -3, -2, -1, 0, 1, 2"
       ],
-      "final_answer": "x ≥ -5",
-      "marks": 3,
+      "final_answer": "-4, -3, -2, -1, 0, 1, 2",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The circle at -5 is filled, so -5 is included in the solution set.",
+          "description": "-8 ≤ 3x + 5 < 13",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The shading and arrow point to the right, so the solution is x ≥ -5.",
+          "description": "Subtract 5 from all three parts:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-13 ≤ 3x < 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide all three parts by 3: -13/3 ≤ x < 8/3 The integers satisfying this are: -4, -3, -2, -1, 0, 1, 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x ≥ -5 oe",
+          "description": "-4, -3, -2, -1, 0, 1, 2 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "number_line",
-        "params": {
-          "range": [
-            -6,
-            6
-          ],
-          "boundaries": [
-            {
-              "value": -5,
-              "closed": true
-            }
-          ],
-          "shade": "right"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
       "topic_id": "special_sequences_F",
-      "prompt": "The first 5 square numbers are: 1, 4, 9, 16, 25. Find the 7th term of the sequence.",
+      "prompt": "Here are the first 4 terms of a sequence: -3, 3, 9, 15. Find the next term.",
       "solution_steps": [
-        "These are the square numbers: the nth term is given by n^2.",
-        "Term 7 = 7^2 = 49"
+        "This is an arithmetic sequence: it goes up (or down) by the same amount, 6, each time.",
+        "Next term = 15 + 6 = 21"
       ],
-      "final_answer": "49",
+      "final_answer": "21",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "These are the square numbers: the nth term is given by n^2.",
+          "description": "This is an arithmetic sequence: it goes up (or down) by the same amount, 6, each time.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Term 7 = 7^2 = 49",
+          "description": "Next term = 15 + 6 = 21",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "49 oe",
+          "description": "21 oe",
           "marks": 1
         }
       ],
@@ -526,34 +494,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_indices_F",
-      "prompt": "Simplify (5x^2)^3",
+      "topic_id": "ratio_find_missing_share_F",
+      "prompt": "p : q = 9 : 6. p = 54. What is the value of q?",
       "solution_steps": [
-        "Raising a power to another power: multiply the exponents, and raise the coefficient to that power too.",
-        "(5x^2)^3 = 5^3 x^(2×3)",
-        "= 125x^6"
+        "Value of one part = 54 ÷ 9 = 6",
+        "q = 6 × 6 = 36"
       ],
-      "final_answer": "125x^6",
-      "marks": 4,
+      "final_answer": "36",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Raising a power to another power: multiply the exponents, and raise the coefficient to that power too.",
+          "description": "Value of one part = 54 ÷ 9 = 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(5x^2)^3 = 5^3 x^(2×3)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 125x^6",
+          "description": "q = 6 × 6 = 36",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "125x^6 oe",
+          "description": "36 oe",
           "marks": 1
         }
       ],
@@ -561,34 +523,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_nth_term_F",
-      "prompt": "Here are the first four terms of a sequence: -8, -7, -6, -5.\nFind an expression for the nth term.",
+      "topic_id": "inverse_proportion_noncalculator_F",
+      "prompt": "It takes 6 machines 4 hours to complete a production run. Working at the same rate, how long would it take 2 machines?",
       "solution_steps": [
-        "Common difference = 1",
-        "nth term = 1n - 9",
-        "nth term = n - 9"
+        "Constant = 6 × 4 = 24",
+        "Time for 2 machines = 24 ÷ 2 = 12"
       ],
-      "final_answer": "n - 9",
-      "marks": 4,
+      "final_answer": "12 hours",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Common difference = 1",
+          "description": "Constant = 6 × 4 = 24",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = 1n - 9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "nth term = n - 9",
+          "description": "Time for 2 machines = 24 ÷ 2 = 12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "n - 9 oe",
+          "description": "12 hours oe",
           "marks": 1
         }
       ],
@@ -597,27 +553,27 @@
     },
     {
       "topic_id": "direct_proportion_noncalculator_F",
-      "prompt": "If 2 cm on a map represents 14 km in real life, how many km does 8 cm represent?",
+      "prompt": "If 16 cm on a map represents 288 km in real life, how many km does 4 cm represent?",
       "solution_steps": [
-        "Unit value = 14 km ÷ 2 = 7 km",
-        "Answer = 7 km × 8 = 56 km"
+        "Unit value = 288 km ÷ 16 = 18 km",
+        "Answer = 18 km × 4 = 72 km"
       ],
-      "final_answer": "56 km",
+      "final_answer": "72 km",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Unit value = 14 km ÷ 2 = 7 km",
+          "description": "Unit value = 288 km ÷ 16 = 18 km",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer = 7 km × 8 = 56 km",
+          "description": "Answer = 18 km × 4 = 72 km",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "56 km oe",
+          "description": "72 km oe",
           "marks": 1
         }
       ],
@@ -625,241 +581,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "best_buys_noncalculator_F",
-      "prompt": "A shop sells orange juice in different sizes: A: £10.50 for 700ml; B: £4.80 for 400ml. Which option is the better value for money? Show your working.",
+      "topic_id": "simple_interest_F",
+      "prompt": "£1400 is invested at a simple interest rate of 4% per year for 3 years. Find the total amount in the account after 3 years.",
       "solution_steps": [
-        "Work out the price per 100ml for each option:",
-        "A: £10.50 ÷ 700 × 100 = 150p per 100ml",
-        "B: £4.80 ÷ 400 × 100 = 120p per 100ml",
-        "The lowest price per 100ml is B at 120p per 100ml, so B is the best value."
+        "Simple interest formula: I = P × r × t ÷ 100",
+        "I = 1400 × 4 × 3 ÷ 100 = £168",
+        "Total in the account = P + I = £1400 + £168 = £1568"
       ],
-      "final_answer": "B (£4.80 for 400ml)",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Work out the price per 100ml for each option:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A: £10.50 ÷ 700 × 100 = 150p per 100ml",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "B: £4.80 ÷ 400 × 100 = 120p per 100ml",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The lowest price per 100ml is B at 120p per 100ml, so B is the best value.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "B (£4.80 for 400ml) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "sdt_mixed_F",
-      "prompt": "A runner travels 45 miles at an average speed of 45 mph. Find how long the journey takes.",
-      "solution_steps": [
-        "time = distance ÷ speed",
-        "time = 45 ÷ 45 = 1 hours"
-      ],
-      "final_answer": "1 hours",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "time = distance ÷ speed",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "time = 45 ÷ 45 = 1 hours",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1 hours oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "percentage_of_amount_F",
-      "prompt": "Find 50% of 20.",
-      "solution_steps": [
-        "Convert 50% to a fraction: 50/100",
-        "Multiply: 50/100 × 20 = 10"
-      ],
-      "final_answer": "10",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert 50% to a fraction: 50/100",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply: 50/100 × 20 = 10",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "10 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "percentage_change_F",
-      "prompt": "Decrease 120 by 10%.",
-      "solution_steps": [
-        "Convert 10% to a multiplier: 0.90",
-        "Multiply: 120 × 0.90 = 108"
-      ],
-      "final_answer": "108",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert 10% to a multiplier: 0.90",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply: 120 × 0.90 = 108",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "108 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "symmetry_rotational_F",
-      "prompt": "The diagram shows an isosceles trapezium. State the order of rotational symmetry.",
-      "solution_steps": [
-        "Rotating the isosceles trapezium about its centre, it only looks the same once during a full 360° turn (back at the start).",
-        "So the order of rotational symmetry is 1."
-      ],
-      "final_answer": "order 1",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Rotating the isosceles trapezium about its centre, it only looks the same once during a full 360° turn (back at the start).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "So the order of rotational symmetry is 1.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "order 1 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "symmetry_shape",
-        "params": {
-          "vertices": [
-            [
-              0,
-              0
-            ],
-            [
-              6,
-              0
-            ],
-            [
-              4,
-              3
-            ],
-            [
-              2,
-              3
-            ]
-          ],
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "symmetry_shape",
-        "params": {
-          "vertices": [
-            [
-              0,
-              0
-            ],
-            [
-              6,
-              0
-            ],
-            [
-              4,
-              3
-            ],
-            [
-              2,
-              3
-            ]
-          ],
-          "rotation_centre": [
-            3.0,
-            1.5
-          ],
-          "rotation_order": 1
-        }
-      }
-    },
-    {
-      "topic_id": "properties_3d_shapes_F",
-      "prompt": "How many edges does a tetrahedron (triangular-based pyramid) have?",
-      "solution_steps": [
-        "An edge is a line where two faces meet.",
-        "A tetrahedron has 4 triangular faces, 6 edges, and 4 vertices (corners) - every face is a triangle, including the base.",
-        "So a tetrahedron (triangular-based pyramid) has 6 edges."
-      ],
-      "final_answer": "6",
+      "final_answer": "£1568",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "An edge is a line where two faces meet.",
+          "description": "Simple interest formula: I = P × r × t ÷ 100",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A tetrahedron has 4 triangular faces, 6 edges, and 4 vertices (corners) - every face is a triangle, including the base.",
+          "description": "I = 1400 × 4 × 3 ÷ 100 = £168",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "So a tetrahedron (triangular-based pyramid) has 6 edges.",
+          "description": "Total in the account = P + I = £1400 + £168 = £1568",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6 oe",
+          "description": "£1568 oe",
           "marks": 1
         }
       ],
@@ -867,60 +616,51 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_exterior_F",
-      "prompt": "An exterior angle of a triangle is x°. The two remote interior angles are 40° and 20°. Find x.",
+      "topic_id": "unit_conversions_F",
+      "prompt": "Convert 464 m to cm.",
       "solution_steps": [
-        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
-        "x = 40 + 20 = 60"
+        "1 m = 100 cm",
+        "464 m = 464 × 100 = 46400 cm"
       ],
-      "final_answer": "60",
+      "final_answer": "46400 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+          "description": "1 m = 100 cm",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 40 + 20 = 60",
+          "description": "464 m = 464 × 100 = 46400 cm",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "60 oe",
+          "description": "46400 cm oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "exterior_triangle",
-        "params": {
-          "interior1_label": "40°",
-          "interior2_label": "20°",
-          "exterior_label": "x",
-          "interior1_value": 40,
-          "shape_variant": 0
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
       "topic_id": "area_rectangle_F",
-      "prompt": "Find the area of the following rectangle.",
+      "prompt": "Find the perimeter of the following rectangle.",
       "solution_steps": [
-        "Area = length × width = 6 × 19 = 114 cm²"
+        "Perimeter = 2 × (length + width) = 2 × (6 + 5) = 22 cm"
       ],
-      "final_answer": "114 cm²",
+      "final_answer": "22 cm",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = length × width = 6 × 19 = 114 cm²",
+          "description": "Perimeter = 2 × (length + width) = 2 × (6 + 5) = 22 cm",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "114 cm² oe",
+          "description": "22 cm oe",
           "marks": 1
         }
       ],
@@ -928,158 +668,382 @@
         "kind": "rectangle",
         "params": {
           "width": 6,
-          "height": 19,
+          "height": 5,
           "width_label": "6 cm",
-          "height_label": "19 cm"
+          "height_label": "5 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_triangle_F",
-      "prompt": "A triangle has angles 58°, 28°, and x°. Find x.",
+      "topic_id": "ratio_share_two_part_F",
+      "prompt": "Share 143 in the ratio 8:3.",
       "solution_steps": [
-        "Angles in a triangle sum to 180°.",
-        "x = 180 - (58 + 28) = 180 - 86 = 94"
+        "Total parts = 8 + 3 = 11",
+        "Value of one part = 143 ÷ 11 = 13",
+        "Share 1 = 8 × 13 = 104",
+        "Share 2 = 3 × 13 = 39"
       ],
-      "final_answer": "94",
-      "marks": 3,
+      "final_answer": "104 : 39",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles in a triangle sum to 180°.",
+          "description": "Total parts = 8 + 3 = 11",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 180 - (58 + 28) = 180 - 86 = 94",
+          "description": "Value of one part = 143 ÷ 11 = 13",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 1 = 8 × 13 = 104",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 2 = 3 × 13 = 39",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "94 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "triangle_angles",
-        "params": {
-          "angle_labels": [
-            "58°",
-            "28°",
-            "x"
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "tree_diagram_drawing_F",
-      "prompt": "A bag contains 2 red and 2 blue counters. A counter is picked at random, replaced, and then a second counter is picked at random. Draw a fully-labelled tree diagram to show this information, and use it to find the probability that the first counter is red and the second counter is blue.",
-      "solution_steps": [
-        "Draw two branches from the start: P(red) = 1/2, P(blue) = 1/2.",
-        "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
-        "P(red then blue) = 1/2 × 1/2 = 1/4"
-      ],
-      "final_answer": "1/4",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Draw two branches from the start: P(red) = 1/2, P(blue) = 1/2.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(red then blue) = 1/2 × 1/2 = 1/4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1/4 oe",
+          "description": "104 : 39 oe",
           "marks": 1
         }
       ],
       "diagram": null,
-      "solution_diagram": {
-        "kind": "tree_diagram",
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "transform_reflect_complete_F",
+      "prompt": "Reflect shape ABC in the line y = -1.",
+      "solution_steps": [
+        "Reflect each vertex in the line y = -1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+        "A(0, 3) -> A'(0, -5), B(3, 3) -> B'(3, -5), C(0, 5) -> C'(0, -7)"
+      ],
+      "final_answer": "A'(0, -5), B'(3, -5), C'(0, -7)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Reflect each vertex in the line y = -1: the mirror line is the perpendicular bisector of every point and its image, so each point stays the same distance from the line, on the other side.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A(0, 3) -> A'(0, -5), B(3, 3) -> B'(3, -5), C(0, 5) -> C'(0, -7)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "A'(0, -5), B'(3, -5), C'(0, -7) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "grid_transformation",
         "params": {
-          "stage1": [
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
             [
-              "Red",
-              "1/2"
+              0,
+              3
             ],
             [
-              "Blue",
-              "1/2"
+              3,
+              3
+            ],
+            [
+              0,
+              5
             ]
           ],
-          "stage2": [
+          "original_labels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "mirror_line": {
+            "type": "horizontal",
+            "y": -1,
+            "label": "y = -1"
+          }
+        }
+      },
+      "solution_diagram": {
+        "kind": "grid_transformation",
+        "params": {
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
             [
-              [
-                "Red",
-                "1/2"
-              ],
-              [
-                "Blue",
-                "1/2"
-              ]
+              0,
+              3
             ],
             [
-              [
-                "Red",
-                "1/2"
-              ],
-              [
-                "Blue",
-                "1/2"
-              ]
+              3,
+              3
+            ],
+            [
+              0,
+              5
             ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C"
+          ],
+          "mirror_line": {
+            "type": "horizontal",
+            "y": -1,
+            "label": "y = -1"
+          },
+          "image_vertices": [
+            [
+              0,
+              -5
+            ],
+            [
+              3,
+              -5
+            ],
+            [
+              0,
+              -7
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'"
           ]
         }
       }
     },
     {
-      "topic_id": "set_notation_F",
-      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8}, A = {2, 3, 4, 5, 7}, B = {1, 3, 8}. List the elements that are in A but not in B.",
+      "topic_id": "nets_3d_shapes_F",
+      "prompt": "What 2D shapes make up the net of a cube?",
       "solution_steps": [
-        "ξ = {1, 2, 3, 4, 5, 6, 7, 8}",
-        "A = {2, 3, 4, 5, 7}",
-        "B = {1, 3, 8}",
-        "Check each element of ξ in turn to see whether it are in A but not in B.",
-        "Elements that are in A but not in B: {2, 4, 5, 7}"
+        "Imagine unfolding a cube flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
+        "A cube's net is made up of: 6 squares.",
+        "So the answer is: 6 squares."
       ],
-      "final_answer": "{2, 4, 5, 7}",
-      "marks": 5,
+      "final_answer": "6 squares",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8}",
+          "description": "Imagine unfolding a cube flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A = {2, 3, 4, 5, 7}",
+          "description": "A cube's net is made up of: 6 squares.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "B = {1, 3, 8}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Check each element of ξ in turn to see whether it are in A but not in B. Elements that are in A but not in B: {2, 4, 5, 7}",
+          "description": "So the answer is: 6 squares.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "{2, 4, 5, 7} oe",
+          "description": "6 squares oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": {
+        "kind": "net",
+        "params": {
+          "shape": "cube"
+        }
+      }
+    },
+    {
+      "topic_id": "pythagoras_hypotenuse_triple_F",
+      "prompt": "A right-angled triangle has sides 44 cm and 240 cm. Find the length of x.",
+      "solution_steps": [
+        "c² = a² + b² = 44² + 240² = 1936 + 57600 = 59536",
+        "c = √59536 = 244"
+      ],
+      "final_answer": "244 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "c² = a² + b² = 44² + 240² = 1936 + 57600 = 59536",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "c = √59536 = 244",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "244 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "right_triangle",
+        "params": {
+          "leg1_label": "44 cm",
+          "leg2_label": "240 cm",
+          "hyp_label": "x"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_subtract_compound_F",
+      "prompt": "Find the shaded area.",
+      "solution_steps": [
+        "Area of large rectangle = 11 × 15 = 165 cm²",
+        "Area of rectangular hole = 5 × 5 = 25 cm²",
+        "Shaded area = 165 - 25 = 140 cm²"
+      ],
+      "final_answer": "140 cm²",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area of large rectangle = 11 × 15 = 165 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of rectangular hole = 5 × 5 = 25 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Shaded area = 165 - 25 = 140 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "140 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "l_shape",
+        "params": {
+          "outer_w": 11,
+          "outer_h": 15,
+          "inner_w": 5,
+          "inner_h": 5,
+          "notch": "center",
+          "shade_frame": true,
+          "outer_labels": [
+            "11 cm",
+            "15 cm"
+          ],
+          "inner_labels": [
+            "5 cm",
+            "5 cm"
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "probability_and_or_rule_F",
+      "prompt": "A coin is flipped (P(heads) = 1/2) and a fair die is rolled (P(rolling a 1) = 1/6). These two events are independent. Find P(heads and rolling a 1).",
+      "solution_steps": [
+        "P(heads) = 1/2",
+        "P(rolling a 1) = 1/6",
+        "These are independent events, so P(heads and rolling a 1) = P(heads) × P(rolling a 1) = 1/2 × 1/6 = 1/12"
+      ],
+      "final_answer": "1/12",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "P(heads) = 1/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(rolling a 1) = 1/6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "These are independent events, so P(heads and rolling a 1) = P(heads) × P(rolling a 1) = 1/2 × 1/6 = 1/12",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/12 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "event_pair",
+        "params": {
+          "event_a": {
+            "kind": "coin"
+          },
+          "event_b": {
+            "kind": "dice",
+            "values": [
+              1
+            ],
+            "highlight": [
+              0
+            ]
+          }
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "set_notation_F",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, A = {2, 4, 7, 10}, B = {3, 4, 10}. List the elements that are in A but not in B.",
+      "solution_steps": [
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+        "A = {2, 4, 7, 10}",
+        "B = {3, 4, 10}",
+        "Check each element of ξ in turn to see whether it are in A but not in B.",
+        "Elements that are in A but not in B: {2, 7}"
+      ],
+      "final_answer": "{2, 7}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {2, 4, 7, 10}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "B = {3, 4, 10}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Check each element of ξ in turn to see whether it are in A but not in B. Elements that are in A but not in B: {2, 7}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "{2, 7} oe",
           "marks": 1
         }
       ],
@@ -1102,80 +1066,70 @@
           ],
           "universal_label": "ξ",
           "region_text": {
-            "a_only": "2, 4, 5, 7",
-            "b_only": "1, 8",
-            "both": "3",
-            "neither": "6"
+            "a_only": "2, 7",
+            "b_only": "3",
+            "both": "4, 10",
+            "neither": "1, 5, 6, 8, 9"
           }
         }
       }
     },
     {
-      "topic_id": "fractions_equivalent_diagram_F",
-      "prompt": "How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
+      "topic_id": "congruent_triangle_proof_F",
+      "prompt": "Shown below are two congruent triangles. Give a reason why they are congruent. A) ASA  B) SSS  C) SAS  D) RHS",
       "solution_steps": [
-        "Shape A shows 2/3 shaded; Shape B has 9 equal parts.",
-        "Find the scale factor between the denominators: 9 ÷ 3 = 3",
-        "Multiply the shaded count by the same scale factor: 2 × 3 = 6"
+        "Look at which measurements are marked equal on both triangles - here they match the Side-Side-Side (SSS) pattern.",
+        "So the two triangles are congruent by Side-Side-Side (SSS)."
       ],
-      "final_answer": "6",
-      "marks": 4,
+      "final_answer": "B) SSS",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "Shape A shows 2/3 shaded; Shape B has 9 equal parts.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Find the scale factor between the denominators: 9 ÷ 3 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply the shaded count by the same scale factor: 2 × 3 = 6",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "6 oe",
+          "code": "B1",
+          "description": "B) SSS (selecting the correct option)",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "fraction_shapes",
+        "kind": "two_triangle_congruence",
         "params": {
-          "shapes": [
-            {
-              "kind": "circle",
-              "parts": 3,
-              "shaded": 2
-            },
-            {
-              "kind": "circle",
-              "parts": 9,
-              "shaded": 0
-            }
+          "side_labels_1": [
+            [
+              0,
+              1,
+              "9 cm"
+            ],
+            [
+              0,
+              2,
+              "8 cm"
+            ],
+            [
+              1,
+              2,
+              "11 cm"
+            ]
+          ],
+          "side_labels_2": [
+            [
+              0,
+              1,
+              "9 cm"
+            ],
+            [
+              0,
+              2,
+              "8 cm"
+            ],
+            [
+              1,
+              2,
+              "11 cm"
+            ]
           ]
         }
       },
-      "solution_diagram": {
-        "kind": "fraction_shapes",
-        "params": {
-          "shapes": [
-            {
-              "kind": "circle",
-              "parts": 3,
-              "shaded": 2
-            },
-            {
-              "kind": "circle",
-              "parts": 9,
-              "shaded": 6
-            }
-          ]
-        }
-      }
+      "solution_diagram": null
     }
   ]
 }

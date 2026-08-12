@@ -8,40 +8,40 @@
   "questions": [
     {
       "topic_id": "algebraic_surds_H",
-      "prompt": "Expand and simplify (8 - √13)(4 + √13), giving your answer in the form p + q√13.",
+      "prompt": "Expand and simplify (2 - √13)(5 - √13), giving your answer in the form p + q√13.",
       "solution_steps": [
-        "Expand the brackets (FOIL): (8 - √13)(4 + √13) = 32 +8√13 -4√13 -13",
-        "√13 × √13 = 13, so the last term is a whole number: -13",
-        "Combine the whole-number terms: 32 -13 = 19",
-        "Combine the √13 terms: +8√13 -4√13 = +4√13",
-        "(8 - √13)(4 + √13) = 19 + 4√13"
+        "Expand the brackets (FOIL): (2 - √13)(5 - √13) = 10 -2√13 -5√13 +13",
+        "√13 × √13 = 13, so the last term is a whole number: +13",
+        "Combine the whole-number terms: 10 +13 = 23",
+        "Combine the √13 terms: -2√13 -5√13 = -7√13",
+        "(2 - √13)(5 - √13) = 23 - 7√13"
       ],
-      "final_answer": "19 + 4√13",
+      "final_answer": "23 - 7√13",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expand the brackets (FOIL): (8 - √13)(4 + √13) = 32 +8√13 -4√13 -13",
+          "description": "Expand the brackets (FOIL): (2 - √13)(5 - √13) = 10 -2√13 -5√13 +13",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "√13 × √13 = 13, so the last term is a whole number: -13",
+          "description": "√13 × √13 = 13, so the last term is a whole number: +13",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Combine the whole-number terms: 32 -13 = 19",
+          "description": "Combine the whole-number terms: 10 +13 = 23",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Combine the √13 terms: +8√13 -4√13 = +4√13 (8 - √13)(4 + √13) = 19 + 4√13",
+          "description": "Combine the √13 terms: -2√13 -5√13 = -7√13 (2 - √13)(5 - √13) = 23 - 7√13",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "19 + 4√13 oe",
+          "description": "23 - 7√13 oe",
           "marks": 1
         }
       ],
@@ -50,10 +50,10 @@
     },
     {
       "topic_id": "hcf_lcm_by_prime_factors_H",
-      "prompt": "Using prime factorisation, find the HCF of 106 and 125.",
+      "prompt": "Using prime factorisation, find the HCF of 123 and 94.",
       "solution_steps": [
-        "106 = 2 × 53",
-        "125 = 5^3",
+        "123 = 3 × 41",
+        "94 = 2 × 47",
         "HCF: take the lowest power of each prime that appears in both numbers",
         "HCF = 1"
       ],
@@ -62,12 +62,12 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "106 = 2 × 53",
+          "description": "123 = 3 × 41",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "125 = 5^3",
+          "description": "94 = 2 × 47",
           "marks": 1
         },
         {
@@ -90,34 +90,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "surds_multiply_divide_H",
-      "prompt": "Fully simplify √250 ÷ √2, giving your answer in the form a√b.",
+      "topic_id": "roots_H",
+      "prompt": "Fully simplify √44, giving your answer in the form a√b.",
       "solution_steps": [
-        "√250 ÷ √2 = √(250/2) = √125",
-        "Find the largest square factor of 125: 5^2 × 5 = 125",
-        "√125 = √(5^2 × 5) = 5√5"
+        "Find the largest square factor of 44: 2^2 × 11 = 44",
+        "√44 = √(2^2 × 11) = 2√11"
       ],
-      "final_answer": "5√5",
-      "marks": 4,
+      "final_answer": "2√11",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "√250 ÷ √2 = √(250/2) = √125",
+          "description": "Find the largest square factor of 44: 2^2 × 11 = 44",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Find the largest square factor of 125: 5^2 × 5 = 125",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "√125 = √(5^2 × 5) = 5√5",
+          "description": "√44 = √(2^2 × 11) = 2√11",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5√5 oe",
+          "description": "2√11 oe",
           "marks": 1
         }
       ],
@@ -125,28 +119,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "roots_H",
-      "prompt": "Simplify √45, giving your answer in the form a√b.",
+      "topic_id": "indices_common_base_equations_H",
+      "prompt": "Solve 2^(2x) = 1/16.",
       "solution_steps": [
-        "Find the largest square factor of 45: 3^2 × 5 = 45",
-        "√45 = √(3^2 × 5) = 3√5"
+        "Write the right-hand side as a power of 2: \\frac{1}{2⁴} = 2^-4",
+        "2^(2x) = 2^-4",
+        "Since the bases match, the powers must be equal: 2x = -4",
+        "x = -4/2 = -2"
       ],
-      "final_answer": "3√5",
-      "marks": 3,
+      "final_answer": "-2",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the largest square factor of 45: 3^2 × 5 = 45",
+          "description": "Write the right-hand side as a power of 2: \\frac{1}{2⁴} = 2^-4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "√45 = √(3^2 × 5) = 3√5",
+          "description": "2^(2x) = 2^-4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Since the bases match, the powers must be equal: 2x = -4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -4/2 = -2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3√5 oe",
+          "description": "-2 oe",
           "marks": 1
         }
       ],
@@ -155,41 +161,41 @@
     },
     {
       "topic_id": "rationalise_denominator_H",
-      "prompt": "Rationalise the denominator of \\frac{8}{9 + √14}, giving your answer in its simplest form.",
+      "prompt": "Rationalise the denominator of \\frac{3}{5 - √13}, giving your answer in its simplest form.",
       "solution_steps": [
-        "Multiply the numerator and denominator by the conjugate of the denominator, (9 - √14):",
-        "\\frac{8}{9 + √14}",
-        "= \\frac{8(9 - √14)}{[(9 + √14)(9 - √14)]}",
-        "The denominator is a difference of two squares: 9^2 - 14 = 67",
-        "The numerator is 8(9 - √14) = 72 - 8√14",
-        "= \\frac{72 - 8√14}{67}"
+        "Multiply the numerator and denominator by the conjugate of the denominator, (5 + √13):",
+        "\\frac{3}{5 - √13}",
+        "= \\frac{3(5 + √13)}{[(5 - √13)(5 + √13)]}",
+        "The denominator is a difference of two squares: 5^2 - 13 = 12",
+        "The numerator is 3(5 + √13) = 15 + 3√13",
+        "Simplify by dividing numerator and denominator by 3: \\frac{5 + √13}{4}"
       ],
-      "final_answer": "\\frac{72 - 8√14}{67}",
+      "final_answer": "\\frac{5 + √13}{4}",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply the numerator and denominator by the conjugate of the denominator, (9 - √14):",
+          "description": "Multiply the numerator and denominator by the conjugate of the denominator, (5 + √13):",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "\\frac{8}{9 + √14}",
+          "description": "\\frac{3}{5 - √13}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= \\frac{8(9 - √14)}{[(9 + √14)(9 - √14)]}",
+          "description": "= \\frac{3(5 + √13)}{[(5 - √13)(5 + √13)]}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The denominator is a difference of two squares: 9^2 - 14 = 67 The numerator is 8(9 - √14) = 72 - 8√14 = \\frac{72 - 8√14}{67}",
+          "description": "The denominator is a difference of two squares: 5^2 - 13 = 12 The numerator is 3(5 + √13) = 15 + 3√13 Simplify by dividing numerator and denominator by 3: \\frac{5 + √13}{4}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "\\frac{72 - 8√14}{67} oe",
+          "description": "\\frac{5 + √13}{4} oe",
           "marks": 1
         }
       ],
@@ -197,28 +203,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "powers_H",
-      "prompt": "Evaluate 216^(1/3).",
+      "topic_id": "bounds_calculation_H",
+      "prompt": "A rectangle has length 35 cm and width 20 cm, both measured to the nearest cm. Calculate the lower bound for the area of the rectangle.",
       "solution_steps": [
-        "216^(1/3) means the cube root of 216.",
-        "216^(1/3) = 6"
+        "Length: 35 cm (to the nearest cm) gives 34.5 ≤ length < 35.5",
+        "Width: 20 cm (to the nearest cm) gives 19.5 ≤ width < 20.5",
+        "For the lower bound of the area, use the lower bound of each measurement: 34.5 × 19.5 = 672.75 cm²"
       ],
-      "final_answer": "6",
-      "marks": 3,
+      "final_answer": "672.75 cm²",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "216^(1/3) means the cube root of 216.",
+          "description": "Length: 35 cm (to the nearest cm) gives 34.5 ≤ length < 35.5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "216^(1/3) = 6",
+          "description": "Width: 20 cm (to the nearest cm) gives 19.5 ≤ width < 20.5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "For the lower bound of the area, use the lower bound of each measurement: 34.5 × 19.5 = 672.75 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6 oe",
+          "description": "672.75 cm² oe",
           "marks": 1
         }
       ],
@@ -227,13 +239,13 @@
     },
     {
       "topic_id": "linear_brackets_H",
-      "prompt": "Solve: 6(5x + 5) = 270",
+      "prompt": "Solve: 6(3x - 7) = 102",
       "solution_steps": [
-        "Expand the bracket: 6(5x + 5) = 30x + 30",
-        "30x + 30 = 270",
-        "Subtract 30 from both sides:",
-        "30x = 240",
-        "Divide both sides by 30:",
+        "Expand the bracket: 6(3x - 7) = 18x - 42",
+        "18x - 42 = 102",
+        "Add 42 to both sides:",
+        "18x = 144",
+        "Divide both sides by 18:",
         "x = 8"
       ],
       "final_answer": "8",
@@ -241,22 +253,22 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expand the bracket: 6(5x + 5) = 30x + 30",
+          "description": "Expand the bracket: 6(3x - 7) = 18x - 42",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "30x + 30 = 270",
+          "description": "18x - 42 = 102",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 30 from both sides:",
+          "description": "Add 42 to both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "30x = 240 Divide both sides by 30: x = 8",
+          "description": "18x = 144 Divide both sides by 18: x = 8",
           "marks": 1
         },
         {
@@ -269,41 +281,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_double_brackets_H",
-      "prompt": "Expand and simplify: (4x + 1)(x + 5)",
+      "topic_id": "substitution_H",
+      "prompt": "a = \\frac{v - u}{t}. Find the value of a when u = 8, v = 10 and t = 2.",
       "solution_steps": [
-        "First: 4x × 1x = 4x^2",
-        "Outer: 4x × 5 = 20x",
-        "Inner: 1 × 1x = 1x",
-        "Last: 1 × 5 = 5",
-        "Combine like terms: 4x^2 + 21x + 5"
+        "a = \\frac{v - u}{t}",
+        "a = \\frac{10 - 8}{2}",
+        "a = 2/2",
+        "a = 1"
       ],
-      "final_answer": "4x^2 + 21x + 5",
+      "final_answer": "a = 1",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First: 4x × 1x = 4x^2",
+          "description": "a = \\frac{v - u}{t}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Outer: 4x × 5 = 20x",
+          "description": "a = \\frac{10 - 8}{2}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Inner: 1 × 1x = 1x",
+          "description": "a = 2/2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Last: 1 × 5 = 5 Combine like terms: 4x^2 + 21x + 5",
+          "description": "a = 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4x^2 + 21x + 5 oe",
+          "description": "a = 1 oe",
           "marks": 1
         }
       ],
@@ -311,41 +322,69 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "solve_quadratic_completing_square_H",
-      "prompt": "Solve x^2 - 14x + 43 = 0 by completing the square, giving your answers in exact surd form.",
+      "topic_id": "completing_the_square_H",
+      "prompt": "Write x^2 - 12x - 10 in the form (x + p)^2 + q.",
       "solution_steps": [
-        "Half the coefficient of x: -14 ÷ 2 = -7",
-        "Complete the square: x^2 - 14x + 43 = (x - 7)^2 - 6",
-        "Set (x - 7)^2 - 6 = 0, so (x - 7)^2 = 6",
-        "(x - 7) = ±√6",
-        "x = 7 + √6 or x = 7 - √6"
+        "Half the coefficient of x: -12 ÷ 2 = -6",
+        "(x - 6)^2 = x^2 - 12x + 36",
+        "x^2 - 12x - 10 = (x - 6)^2 + (-10 - 36) = (x - 6)^2 - 46"
       ],
-      "final_answer": "x = 7 + √6 or x = 7 - √6",
-      "marks": 5,
+      "final_answer": "(x - 6)^2 - 46",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Half the coefficient of x: -14 ÷ 2 = -7",
+          "description": "Half the coefficient of x: -12 ÷ 2 = -6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Complete the square: x^2 - 14x + 43 = (x - 7)^2 - 6",
+          "description": "(x - 6)^2 = x^2 - 12x + 36",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Set (x - 7)^2 - 6 = 0, so (x - 7)^2 = 6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(x - 7) = ±√6 x = 7 + √6 or x = 7 - √6",
+          "description": "x^2 - 12x - 10 = (x - 6)^2 + (-10 - 36) = (x - 6)^2 - 46",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 7 + √6 or x = 7 - √6 oe",
+          "description": "(x - 6)^2 - 46 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_indices_H",
+      "prompt": "Simplify (3x^-3)^4",
+      "solution_steps": [
+        "Raising a power to another power: multiply the exponents (this still works when the inner exponent is negative or zero), and raise the coefficient to that power too.",
+        "(3x^-3)^4 = 3^4 x^(-3×4)",
+        "= 81x^-12"
+      ],
+      "final_answer": "81x^-12",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Raising a power to another power: multiply the exponents (this still works when the inner exponent is negative or zero), and raise the coefficient to that power too.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(3x^-3)^4 = 3^4 x^(-3×4)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 81x^-12",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "81x^-12 oe",
           "marks": 1
         }
       ],
@@ -354,18 +393,18 @@
     },
     {
       "topic_id": "turning_point_of_graph_H",
-      "prompt": "Find the coordinates of the turning point of the curve y = x^2 - 2x - 12.",
+      "prompt": "Find the coordinates of the turning point of the curve y = x^2 + 14x + 1.",
       "solution_steps": [
-        "Complete the square: x^2 - 2x - 12 = (x - 1)^2 - 13",
+        "Complete the square: x^2 + 14x + 1 = (x + 7)^2 - 48",
         "The turning point of y = (x + p)^2 + q is (-p, q).",
-        "Turning point = (1, -13)"
+        "Turning point = (-7, -48)"
       ],
-      "final_answer": "(1, -13)",
+      "final_answer": "(-7, -48)",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Complete the square: x^2 - 2x - 12 = (x - 1)^2 - 13",
+          "description": "Complete the square: x^2 + 14x + 1 = (x + 7)^2 - 48",
           "marks": 1
         },
         {
@@ -375,12 +414,12 @@
         },
         {
           "code": "M1",
-          "description": "Turning point = (1, -13)",
+          "description": "Turning point = (-7, -48)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(1, -13) oe",
+          "description": "(-7, -48) oe",
           "marks": 1
         }
       ],
@@ -388,77 +427,44 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "completing_the_square_H",
-      "prompt": "Write x^2 + 14x + 6 in the form (x + p)^2 + q.",
+      "topic_id": "forming_equations_H",
+      "prompt": "I think of a number. I add 6 to it, then multiply the result by 6. The answer is 96. Form an equation and solve it to find the number.",
       "solution_steps": [
-        "Half the coefficient of x: 14 ÷ 2 = 7",
-        "(x + 7)^2 = x^2 + 14x + 49",
-        "x^2 + 14x + 6 = (x + 7)^2 + (6 - 49) = (x + 7)^2 - 43"
+        "Let the number be x.",
+        "6(x + 6) = 96",
+        "Expand the bracket:",
+        "6x + 36 = 96",
+        "Subtract 36 from both sides:",
+        "6x = 60",
+        "Divide both sides by 6:",
+        "x = 10"
       ],
-      "final_answer": "(x + 7)^2 - 43",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Half the coefficient of x: 14 ÷ 2 = 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(x + 7)^2 = x^2 + 14x + 49",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x^2 + 14x + 6 = (x + 7)^2 + (6 - 49) = (x + 7)^2 - 43",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(x + 7)^2 - 43 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "change_subject_H",
-      "prompt": "Make x the subject of the formula y = \\frac{x + 8}{x - 3}.",
-      "solution_steps": [
-        "y = \\frac{x + 8}{x - 3}",
-        "Multiply both sides by (x - 3): y(x - 3) = x + 8",
-        "Expand the bracket: yx - 3y = x + 8",
-        "Collect the x-terms on one side: yx - x = 8 + 3y",
-        "Factorise: x(y - 1) = 8 + 3y",
-        "Divide both sides by (y - 1): x = \\frac{8 + 3y}{y - 1}"
-      ],
-      "final_answer": "x = \\frac{8 + 3y}{y - 1}",
+      "final_answer": "10",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = \\frac{x + 8}{x - 3}",
+          "description": "Let the number be x.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply both sides by (x - 3): y(x - 3) = x + 8",
+          "description": "6(x + 6) = 96",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Expand the bracket: yx - 3y = x + 8",
+          "description": "Expand the bracket:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Collect the x-terms on one side: yx - x = 8 + 3y Factorise: x(y - 1) = 8 + 3y Divide both sides by (y - 1): x = \\frac{8 + 3y}{y - 1}",
+          "description": "6x + 36 = 96 Subtract 36 from both sides: 6x = 60 Divide both sides by 6: x = 10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = \\frac{8 + 3y}{y - 1} oe",
+          "description": "10 oe",
           "marks": 1
         }
       ],
@@ -466,63 +472,125 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "perpendicular_lines_equation_H",
-      "prompt": "A line is perpendicular to y = -4x - 7 and passes through the point (2, 7). Find the equation of the line.",
+      "topic_id": "plot_reciprocal_H",
+      "prompt": "Complete a table of values for y = \\frac{36}{x} for x = -4 to 4, then plot the graph.",
       "solution_steps": [
-        "Perpendicular gradients multiply to give -1: m × -4 = -1, so m = 1/4",
-        "Substitute (2, 7) into y = 1/4x + c: 7 = 1/4×(2) + c, so c = 13/2",
-        "Equation of the line: y = 1/4x + 13/2"
+        "Table of values for y = \\frac{36}{x}:",
+        "x: -4, -3, -2, -1, 1, 2, 3, 4",
+        "y: -9, -12, -18, -36, 36, 18, 12, 9",
+        "There is no value at x = 0: dividing by 0 is undefined, so leave that column out of the table.",
+        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
       ],
-      "final_answer": "y = 1/4x + 13/2",
-      "marks": 4,
+      "final_answer": "Reciprocal curve: y = \\frac{36}{x}",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Perpendicular gradients multiply to give -1: m × -4 = -1, so m = 1/4",
+          "description": "Table of values for y = \\frac{36}{x}:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute (2, 7) into y = 1/4x + c: 7 = 1/4×(2) + c, so c = 13/2",
+          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Equation of the line: y = 1/4x + 13/2",
+          "description": "y: -9, -12, -18, -36, 36, 18, 12, 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "There is no value at x = 0: dividing by 0 is undefined, so leave that column out of the table. Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = 1/4x + 13/2 oe",
+          "description": "Reciprocal curve: y = \\frac{36}{x} oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "reciprocal",
+          "a": 36,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -38,
+          "y_max": 38,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "reciprocal",
+          "a": 36,
+          "x_min": -4,
+          "x_max": 4,
+          "y_min": -38,
+          "y_max": 38,
+          "table_points": [
+            [
+              -4,
+              -9
+            ],
+            [
+              -3,
+              -12
+            ],
+            [
+              -2,
+              -18
+            ],
+            [
+              -1,
+              -36
+            ],
+            [
+              1,
+              36
+            ],
+            [
+              2,
+              18
+            ],
+            [
+              3,
+              12
+            ],
+            [
+              4,
+              9
+            ]
+          ]
+        }
+      }
     },
     {
       "topic_id": "density_H",
-      "prompt": "A sample of liquid in the shape of a cuboid has dimensions 9 cm × 10 cm × 6 cm and a mass of 829 g. Find its density, correct to 2 decimal places.",
+      "prompt": "A stone in the shape of a cuboid has dimensions 7 cm × 3 cm × 6 cm and a mass of 2116 g. Find its density, correct to 2 decimal places.",
       "solution_steps": [
-        "volume = length × width × height = 9 × 10 × 6 = 540 cm³",
-        "density = mass ÷ volume = 829 ÷ 540 = 1.54 g/cm³ (2 d.p.)"
+        "volume = length × width × height = 7 × 3 × 6 = 126 cm³",
+        "density = mass ÷ volume = 2116 ÷ 126 = 16.79 g/cm³ (2 d.p.)"
       ],
-      "final_answer": "1.54 g/cm³",
+      "final_answer": "16.79 g/cm³",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "volume = length × width × height = 9 × 10 × 6 = 540 cm³",
+          "description": "volume = length × width × height = 7 × 3 × 6 = 126 cm³",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "density = mass ÷ volume = 829 ÷ 540 = 1.54 g/cm³ (2 d.p.)",
+          "description": "density = mass ÷ volume = 2116 ÷ 126 = 16.79 g/cm³ (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1.54 g/cm³ oe",
+          "description": "16.79 g/cm³ oe",
           "marks": 1
         }
       ],
@@ -531,27 +599,27 @@
     },
     {
       "topic_id": "compound_percentage_H",
-      "prompt": "A price of £40 decreases by 42.5%, then increases by 42.5%. Find the final price.",
+      "prompt": "A price of £364 increases by 60%, then increases by 42.5%. Find the final price.",
       "solution_steps": [
-        "After the first change: 40 × 0.57 = 23",
-        "After the second change: 23 × 1.43 = 32.77"
+        "After the first change: 364 × 1.60 = 582.40",
+        "After the second change: 582.40 × 1.43 = 829.92"
       ],
-      "final_answer": "£32.77",
+      "final_answer": "£829.92",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first change: 40 × 0.57 = 23",
+          "description": "After the first change: 364 × 1.60 = 582.40",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "After the second change: 23 × 1.43 = 32.77",
+          "description": "After the second change: 582.40 × 1.43 = 829.92",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£32.77 oe",
+          "description": "£829.92 oe",
           "marks": 1
         }
       ],
@@ -560,27 +628,27 @@
     },
     {
       "topic_id": "pressure_H",
-      "prompt": "A concrete block has a rectangular base measuring 10 cm × 5 cm and exerts a force of 2755 N. Find the pressure it exerts, correct to 2 decimal places.",
+      "prompt": "A concrete block has a rectangular base measuring 24 cm × 17 cm and exerts a force of 4225 N. Find the pressure it exerts, correct to 2 decimal places.",
       "solution_steps": [
-        "area = length × width = 10 × 5 = 50 cm²",
-        "pressure = force ÷ area = 2755 ÷ 50 = 55.1 N/cm² (2 d.p.)"
+        "area = length × width = 24 × 17 = 408 cm²",
+        "pressure = force ÷ area = 4225 ÷ 408 = 10.36 N/cm² (2 d.p.)"
       ],
-      "final_answer": "55.1 N/cm²",
+      "final_answer": "10.36 N/cm²",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "area = length × width = 10 × 5 = 50 cm²",
+          "description": "area = length × width = 24 × 17 = 408 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "pressure = force ÷ area = 2755 ÷ 50 = 55.1 N/cm² (2 d.p.)",
+          "description": "pressure = force ÷ area = 4225 ÷ 408 = 10.36 N/cm² (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "55.1 N/cm² oe",
+          "description": "10.36 N/cm² oe",
           "marks": 1
         }
       ],
@@ -589,27 +657,27 @@
     },
     {
       "topic_id": "speed_with_conversions_H",
-      "prompt": "A cyclist travels 27 km in 24 minutes. Find its average speed in km/h, correct to 1 decimal place.",
+      "prompt": "A train travels 189 km in 3 hours. Find its average speed in m/s, correct to 1 decimal place.",
       "solution_steps": [
-        "Convert time to hours: 24 minutes = 24 ÷ 60 hours",
-        "speed = distance ÷ time = 27 ÷ (24 ÷ 60) = 67.5 km/h (1 d.p.)"
+        "speed = distance ÷ time = 189 ÷ 3 = 63 km/h",
+        "Convert to m/s: 63 ÷ 3.6 = 17.5 m/s (1 d.p.)"
       ],
-      "final_answer": "67.5 km/h",
+      "final_answer": "17.5 m/s",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert time to hours: 24 minutes = 24 ÷ 60 hours",
+          "description": "speed = distance ÷ time = 189 ÷ 3 = 63 km/h",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "speed = distance ÷ time = 27 ÷ (24 ÷ 60) = 67.5 km/h (1 d.p.)",
+          "description": "Convert to m/s: 63 ÷ 3.6 = 17.5 m/s (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "67.5 km/h oe",
+          "description": "17.5 m/s oe",
           "marks": 1
         }
       ],
@@ -618,27 +686,27 @@
     },
     {
       "topic_id": "unit_conversions_H",
-      "prompt": "Convert 46.5 cm³ to mm³.",
+      "prompt": "Convert 3082 cm³ to m³.",
       "solution_steps": [
-        "Linear conversion factor: 1 cm = 10 mm, so for volume, 1 cm³ = 10^3 = 1000 mm³",
-        "46.5 cm³ = 46.5 × 1000 = 46500 mm³"
+        "Linear conversion factor: 1 m = 100 cm, so for volume, 1 m³ = 100^3 = 1000000 cm³",
+        "3082 cm³ = 3082 ÷ 1000000 = 0.003082 m³"
       ],
-      "final_answer": "46500 mm³",
+      "final_answer": "0.003082 m³",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Linear conversion factor: 1 cm = 10 mm, so for volume, 1 cm³ = 10^3 = 1000 mm³",
+          "description": "Linear conversion factor: 1 m = 100 cm, so for volume, 1 m³ = 100^3 = 1000000 cm³",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "46.5 cm³ = 46.5 × 1000 = 46500 mm³",
+          "description": "3082 cm³ = 3082 ÷ 1000000 = 0.003082 m³",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "46500 mm³ oe",
+          "description": "0.003082 m³ oe",
           "marks": 1
         }
       ],
@@ -647,64 +715,64 @@
     },
     {
       "topic_id": "angles_parallel_lines_H",
-      "prompt": "A line crosses two parallel lines. The angle 72° and the angle (3x + 21)° are corresponding angles. Find x.",
+      "prompt": "A line crosses two parallel lines. The angle 42° and the angle (5x + 32)° are alternate angles. Find x.",
       "solution_steps": [
-        "Corresponding angles are equal.",
-        "3x + 21 = 72",
-        "Subtract 21 from both sides:",
-        "3x = 51",
-        "Divide both sides by 3:",
-        "x = 17"
+        "Alternate angles are equal.",
+        "5x + 32 = 42",
+        "Subtract 32 from both sides:",
+        "5x = 10",
+        "Divide both sides by 5:",
+        "x = 2"
       ],
-      "final_answer": "17",
+      "final_answer": "2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Corresponding angles are equal.",
+          "description": "Alternate angles are equal.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3x + 21 = 72",
+          "description": "5x + 32 = 42",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 21 from both sides:",
+          "description": "Subtract 32 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3x = 51 Divide both sides by 3: x = 17",
+          "description": "5x = 10 Divide both sides by 5: x = 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "17 oe",
+          "description": "2 oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "parallel_lines",
         "params": {
-          "known_label": "72°",
-          "unknown_label": "(3x + 21)°",
-          "relation": "corresponding",
-          "known_value": 72,
-          "x_frac": 0.32
+          "known_label": "42°",
+          "unknown_label": "(5x + 32)°",
+          "relation": "alternate",
+          "known_value": 42,
+          "x_frac": 0.38
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "transform_enlarge_describe_H",
-      "prompt": "Shape ABCD is enlarged to give shape A'B'C'D', shown on the grid. Describe fully the single transformation that maps ABCD onto A'B'C'D'.",
+      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
       "solution_steps": [
         "The centre of enlargement is where lines joining each vertex to its image all meet (extended if needed) - the scale factor is the ratio of a side length in the image to the matching side in the original.",
-        "For this pair, the lines meet at (-2, -1) and the ratio works out as -1."
+        "For this pair, the lines meet at (0, -1) and the ratio works out as -1."
       ],
-      "final_answer": "Enlargement, scale factor -1, centre (-2, -1)",
+      "final_answer": "Enlargement, scale factor -1, centre (0, -1)",
       "marks": 3,
       "mark_scheme": [
         {
@@ -714,12 +782,12 @@
         },
         {
           "code": "M1",
-          "description": "For this pair, the lines meet at (-2, -1) and the ratio works out as -1.",
+          "description": "For this pair, the lines meet at (0, -1) and the ratio works out as -1.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Enlargement, scale factor -1, centre (-2, -1) oe",
+          "description": "Enlargement, scale factor -1, centre (0, -1) oe",
           "marks": 1
         }
       ],
@@ -732,70 +800,62 @@
           "y_max": 8,
           "original_vertices": [
             [
-              -1,
-              1
+              2,
+              -3
+            ],
+            [
+              7,
+              -3
             ],
             [
               3,
               1
-            ],
-            [
-              2,
-              5
-            ],
-            [
-              -2,
-              4
             ]
           ],
           "original_labels": [
-            "A",
-            "B",
-            "C",
-            "D"
+            "",
+            "",
+            ""
           ],
+          "original_shape_label": "A",
           "image_vertices": [
             [
-              -3,
-              -3
+              -2,
+              1
             ],
             [
               -7,
+              1
+            ],
+            [
+              -3,
               -3
-            ],
-            [
-              -6,
-              -7
-            ],
-            [
-              -2,
-              -6
             ]
           ],
           "image_labels": [
-            "A'",
-            "B'",
-            "C'",
-            "D'"
-          ]
+            "",
+            "",
+            ""
+          ],
+          "image_shape_label": "B"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "loci_regions_H",
-      "prompt": "A and B are two fixed points (shown). Shade the region containing points that are both within 3 cm of A AND closer to A than to B.",
+      "prompt": "A and B are two fixed points (shown). Shade the region containing points that are both within 5 cm of A AND closer to A than to B.",
       "solution_steps": [
-        "The boundary for 'within 3 cm of A' is a circle, centre A, radius 3 cm - the region is inside this circle.",
+        "The boundary for 'within 5 cm of A' is a circle, centre A, radius 5 cm - the region is inside this circle.",
         "The boundary for 'closer to A than to B' is the perpendicular bisector of AB - the region is on the A side of it.",
         "The required region is where these two conditions overlap."
       ],
-      "final_answer": "The region inside the circle of radius 3 cm centred on A, and on the A side of the perpendicular bisector of AB.",
+      "final_answer": "The region inside the circle of radius 5 cm centred on A, and on the A side of the perpendicular bisector of AB.",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The boundary for 'within 3 cm of A' is a circle, centre A, radius 3 cm - the region is inside this circle.",
+          "description": "The boundary for 'within 5 cm of A' is a circle, centre A, radius 5 cm - the region is inside this circle.",
           "marks": 1
         },
         {
@@ -810,29 +870,29 @@
         },
         {
           "code": "A1",
-          "description": "The region inside the circle of radius 3 cm centred on A, and on the A side of the perpendicular bisector of AB. oe",
+          "description": "The region inside the circle of radius 5 cm centred on A, and on the A side of the perpendicular bisector of AB. oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "loci_region",
         "params": {
-          "x_min": -5.0,
-          "x_max": 4.0,
+          "x_min": -3.0,
+          "x_max": 9.0,
           "y_min": -6.0,
-          "y_max": 2.0,
+          "y_max": 6.0,
           "points": [
             {
               "xy": [
-                0,
-                -2
+                3,
+                0
               ],
               "label": "A"
             },
             {
               "xy": [
-                -4,
-                1
+                -2,
+                -2
               ],
               "label": "B"
             }
@@ -841,20 +901,20 @@
             {
               "type": "circle",
               "centre": [
-                0,
-                -2
+                3,
+                0
               ],
-              "radius": 3
+              "radius": 5
             },
             {
               "type": "segment",
               "p1": [
-                -7.3999999999999995,
-                -7.7
+                4.956688116249245,
+                -12.141720290623113
               ],
               "p2": [
-                3.3999999999999995,
-                6.7
+                -3.9566881162492447,
+                10.141720290623113
               ]
             }
           ]
@@ -863,22 +923,22 @@
       "solution_diagram": {
         "kind": "loci_region",
         "params": {
-          "x_min": -5.0,
-          "x_max": 4.0,
+          "x_min": -3.0,
+          "x_max": 9.0,
           "y_min": -6.0,
-          "y_max": 2.0,
+          "y_max": 6.0,
           "points": [
             {
               "xy": [
-                0,
-                -2
+                3,
+                0
               ],
               "label": "A"
             },
             {
               "xy": [
-                -4,
-                1
+                -2,
+                -2
               ],
               "label": "B"
             }
@@ -887,20 +947,20 @@
             {
               "type": "circle",
               "centre": [
-                0,
-                -2
+                3,
+                0
               ],
-              "radius": 3
+              "radius": 5
             },
             {
               "type": "segment",
               "p1": [
-                -7.3999999999999995,
-                -7.7
+                4.956688116249245,
+                -12.141720290623113
               ],
               "p2": [
-                3.3999999999999995,
-                6.7
+                -3.9566881162492447,
+                10.141720290623113
               ]
             }
           ],
@@ -908,21 +968,21 @@
             {
               "type": "disk",
               "centre": [
-                0,
-                -2
+                3,
+                0
               ],
-              "radius": 3,
+              "radius": 5,
               "inside": true
             },
             {
               "type": "half_plane",
               "closer_to": [
-                0,
-                -2
+                3,
+                0
               ],
               "than": [
-                -4,
-                1
+                -2,
+                -2
               ]
             }
           ]
@@ -931,92 +991,92 @@
     },
     {
       "topic_id": "angles_polygon_interior_H",
-      "prompt": "A polygon has 5 sides. 4 of its interior angles are each 102°, and the remaining interior angle is (5x + 87)°. Find x.",
+      "prompt": "A polygon has 6 sides. 5 of its interior angles are each 133°, and the remaining interior angle is (3x + 7)°. Find x.",
       "solution_steps": [
-        "Sum of interior angles = (n - 2) × 180 = (5 - 2) × 180 = 540°",
-        "Sum of the 4 equal angles = 4 × 102 = 408°",
-        "Remaining angle = 540 - 408 = 132°",
-        "5x + 87 = 132",
-        "Subtract 87 from both sides:",
-        "5x = 45",
-        "Divide both sides by 5:",
-        "x = 9"
+        "Sum of interior angles = (n - 2) × 180 = (6 - 2) × 180 = 720°",
+        "Sum of the 5 equal angles = 5 × 133 = 665°",
+        "Remaining angle = 720 - 665 = 55°",
+        "3x + 7 = 55",
+        "Subtract 7 from both sides:",
+        "3x = 48",
+        "Divide both sides by 3:",
+        "x = 16"
       ],
-      "final_answer": "9",
+      "final_answer": "16",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Sum of interior angles = (n - 2) × 180 = (5 - 2) × 180 = 540°",
+          "description": "Sum of interior angles = (n - 2) × 180 = (6 - 2) × 180 = 720°",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Sum of the 4 equal angles = 4 × 102 = 408°",
+          "description": "Sum of the 5 equal angles = 5 × 133 = 665°",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Remaining angle = 540 - 408 = 132°",
+          "description": "Remaining angle = 720 - 665 = 55°",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x + 87 = 132 Subtract 87 from both sides: 5x = 45 Divide both sides by 5: x = 9",
+          "description": "3x + 7 = 55 Subtract 7 from both sides: 3x = 48 Divide both sides by 3: x = 16",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9 oe",
+          "description": "16 oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "polygon",
         "params": {
-          "n_sides": 5,
-          "marked_angle_label": "(5x + 87)°"
+          "n_sides": 6,
+          "marked_angle_label": "(3x + 7)°"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "tree_diagram_dependent_H",
-      "prompt": "A bag contains 3 yellow and 4 blue counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the first counter is blue and the second counter is blue.",
+      "prompt": "A bag contains 7 red and 3 yellow counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that both counters are the same colour.",
       "solution_steps": [
-        "After the first counter is picked (without replacement), there are 6 counters left.",
-        "P(yellow then yellow) = 3/7 × 1/3 = 1/7",
-        "P(yellow then blue) = 3/7 × 2/3 = 2/7",
-        "P(blue then yellow) = 4/7 × 1/2 = 2/7",
-        "P(blue then blue) = 4/7 × 1/2 = 2/7",
-        "P(the first counter is blue and the second counter is blue) = 2/7"
+        "After the first counter is picked (without replacement), there are 9 counters left.",
+        "P(red then red) = 7/10 × 2/3 = 7/15",
+        "P(red then yellow) = 7/10 × 1/3 = 7/30",
+        "P(yellow then red) = 3/10 × 7/9 = 7/30",
+        "P(yellow then yellow) = 3/10 × 2/9 = 1/15",
+        "P(both counters are the same colour) = 8/15"
       ],
-      "final_answer": "2/7",
+      "final_answer": "8/15",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first counter is picked (without replacement), there are 6 counters left.",
+          "description": "After the first counter is picked (without replacement), there are 9 counters left.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(yellow then yellow) = 3/7 × 1/3 = 1/7",
+          "description": "P(red then red) = 7/10 × 2/3 = 7/15",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(yellow then blue) = 3/7 × 2/3 = 2/7",
+          "description": "P(red then yellow) = 7/10 × 1/3 = 7/30",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(blue then yellow) = 4/7 × 1/2 = 2/7 P(blue then blue) = 4/7 × 1/2 = 2/7 P(the first counter is blue and the second counter is blue) = 2/7",
+          "description": "P(yellow then red) = 3/10 × 7/9 = 7/30 P(yellow then yellow) = 3/10 × 2/9 = 1/15 P(both counters are the same colour) = 8/15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2/7 oe",
+          "description": "8/15 oe",
           "marks": 1
         }
       ],
@@ -1025,44 +1085,44 @@
         "params": {
           "stage1": [
             [
-              "Yellow",
-              "3/7"
+              "Red",
+              "7/10"
             ],
             [
-              "Blue",
-              "4/7"
+              "Yellow",
+              "3/10"
             ]
           ],
           "stage2": [
             [
               [
-                "Yellow",
-                "1/3"
+                "Red",
+                "2/3"
               ],
               [
-                "Blue",
-                "2/3"
+                "Yellow",
+                "1/3"
               ]
             ],
             [
               [
-                "Yellow",
-                "1/2"
+                "Red",
+                "7/9"
               ],
               [
-                "Blue",
-                "1/2"
+                "Yellow",
+                "2/9"
               ]
             ]
           ],
           "leaf_probs": [
             [
-              "1/7",
-              "2/7"
+              "7/15",
+              "7/30"
             ],
             [
-              "2/7",
-              "2/7"
+              "7/30",
+              "1/15"
             ]
           ]
         }
@@ -1071,33 +1131,33 @@
     },
     {
       "topic_id": "probability_conditional_H",
-      "prompt": "A bag contains 3 purple and 4 green counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
+      "prompt": "A bag contains 6 purple and 4 green counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
       "solution_steps": [
-        "P(both purple) = 3/7 × 2/6 = 1/7",
-        "P(both green) = 4/7 × 3/6 = 2/7",
-        "P(both same colour) = 1/7 + 2/7 = 3/7"
+        "P(both purple) = 6/10 × 5/9 = 1/3",
+        "P(both green) = 4/10 × 3/9 = 2/15",
+        "P(both same colour) = 1/3 + 2/15 = 7/15"
       ],
-      "final_answer": "3/7",
+      "final_answer": "7/15",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "P(both purple) = 3/7 × 2/6 = 1/7",
+          "description": "P(both purple) = 6/10 × 5/9 = 1/3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(both green) = 4/7 × 3/6 = 2/7",
+          "description": "P(both green) = 4/10 × 3/9 = 2/15",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(both same colour) = 1/7 + 2/7 = 3/7",
+          "description": "P(both same colour) = 1/3 + 2/15 = 7/15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3/7 oe",
+          "description": "7/15 oe",
           "marks": 1
         }
       ],
@@ -1144,68 +1204,37 @@
           "stage1": [
             [
               "Purple",
-              "3/7"
+              "6/10"
             ],
             [
               "Green",
-              "4/7"
+              "4/10"
             ]
           ],
           "stage2": [
             [
               [
                 "Purple",
-                "2/6"
+                "5/9"
               ],
               [
                 "Green",
-                "4/6"
+                "4/9"
               ]
             ],
             [
               [
                 "Purple",
-                "3/6"
+                "6/9"
               ],
               [
                 "Green",
-                "3/6"
+                "3/9"
               ]
             ]
           ]
         }
       }
-    },
-    {
-      "topic_id": "graph_transformations_H",
-      "prompt": "The graph of y = f(x) undergoes a reflection in the x-axis. Write down the equation of the transformed graph in terms of f(x).",
-      "solution_steps": [
-        "y = -f(x) corresponds to a reflection in the x-axis."
-      ],
-      "final_answer": "y = -f(x)",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "y = -f(x) corresponds to a reflection in the x-axis.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "y = -f(x) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "graph_transformation",
-        "params": {
-          "transform": "reflect_x",
-          "shift": 0,
-          "original_label": "y = f(x)",
-          "transformed_label": "y = -f(x)"
-        }
-      },
-      "solution_diagram": null
     }
   ]
 }

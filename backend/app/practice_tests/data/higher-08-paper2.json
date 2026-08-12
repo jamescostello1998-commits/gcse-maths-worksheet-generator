@@ -8,27 +8,27 @@
   "questions": [
     {
       "topic_id": "standard_form_multiply_divide_H",
-      "prompt": "Work out (4 × 10^6) ÷ (2 × 10^-2). Give your answer in standard form.",
+      "prompt": "Work out (9 × 10^2) ÷ (5 × 10^3). Give your answer in standard form.",
       "solution_steps": [
-        "Divide the mantissas: 4 ÷ 2 = 2",
-        "Subtract the powers of 10: 6 - -2 = 8"
+        "Divide the mantissas: 9 ÷ 5 = 1.8",
+        "Subtract the powers of 10: 2 - 3 = -1"
       ],
-      "final_answer": "2 × 10^8",
+      "final_answer": "1.8 × 10^-1",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide the mantissas: 4 ÷ 2 = 2",
+          "description": "Divide the mantissas: 9 ÷ 5 = 1.8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract the powers of 10: 6 - -2 = 8",
+          "description": "Subtract the powers of 10: 2 - 3 = -1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2 × 10^8 oe",
+          "description": "1.8 × 10^-1 oe",
           "marks": 1
         }
       ],
@@ -36,34 +36,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "recurring_decimal_two_digit_H",
-      "prompt": "Show that \\recur{0.}{94} can be written as 94/99.",
+      "topic_id": "decimals_recurring_to_fraction_H",
+      "prompt": "Write \\recur{0.}{461538} as a fraction in its simplest form.",
       "solution_steps": [
-        "Let x = \\recur{0.}{94}, so 100x = 94.9494... (two digits repeat, so multiply by 100 to shift a full block)",
-        "Subtract: 100x - x = 94 - 0, so 99x = 94",
-        "x = 94/99 = 94/99"
+        "Let x = \\recur{0.}{461538}",
+        "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
+        "This gives x = 461538/999999",
+        "Simplify: 6/13"
       ],
-      "final_answer": "94/99",
-      "marks": 4,
+      "final_answer": "6/13",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = \\recur{0.}{94}, so 100x = 94.9494... (two digits repeat, so multiply by 100 to shift a full block)",
+          "description": "Let x = \\recur{0.}{461538}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract: 100x - x = 94 - 0, so 99x = 94",
+          "description": "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 94/99 = 94/99",
+          "description": "This gives x = 461538/999999",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify: 6/13",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "94/99 oe",
+          "description": "6/13 oe",
           "marks": 1
         }
       ],
@@ -72,27 +78,27 @@
     },
     {
       "topic_id": "prime_factors_H",
-      "prompt": "Write 186 as a product of its prime factors, giving your answer in index form.",
+      "prompt": "Write 230 as a product of its prime factors, giving your answer in index form.",
       "solution_steps": [
-        "Divide 186 repeatedly by the smallest prime that fits: 2 × 3 × 31",
-        "Write repeated factors using index notation: 186 = 2 × 3 × 31"
+        "Divide 230 repeatedly by the smallest prime that fits: 2 × 5 × 23",
+        "Write repeated factors using index notation: 230 = 2 × 5 × 23"
       ],
-      "final_answer": "2 × 3 × 31",
+      "final_answer": "2 × 5 × 23",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide 186 repeatedly by the smallest prime that fits: 2 × 3 × 31",
+          "description": "Divide 230 repeatedly by the smallest prime that fits: 2 × 5 × 23",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write repeated factors using index notation: 186 = 2 × 3 × 31",
+          "description": "Write repeated factors using index notation: 230 = 2 × 5 × 23",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2 × 3 × 31 oe",
+          "description": "2 × 5 × 23 oe",
           "marks": 1
         }
       ],
@@ -100,63 +106,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "powers_H",
-      "prompt": "Work out 27^(1/3).",
+      "topic_id": "turning_point_of_graph_H",
+      "prompt": "Find the coordinates of the turning point of the curve y = x^2 + 2x + 1.",
       "solution_steps": [
-        "27^(1/3) means the cube root of 27.",
-        "27^(1/3) = 3"
+        "Complete the square: x^2 + 2x + 1 = (x + 1)^2",
+        "The turning point of y = (x + p)^2 + q is (-p, q).",
+        "Turning point = (-1, 0)"
       ],
-      "final_answer": "3",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "27^(1/3) means the cube root of 27.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "27^(1/3) = 3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "surds_multiply_divide_H",
-      "prompt": "Simplify √8 × √5, giving your answer in the form a√b.",
-      "solution_steps": [
-        "√8 × √5 = √(8 × 5) = √40",
-        "Find the largest square factor of 40: 2^2 × 10 = 40",
-        "√40 = √(2^2 × 10) = 2√10"
-      ],
-      "final_answer": "2√10",
+      "final_answer": "(-1, 0)",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "√8 × √5 = √(8 × 5) = √40",
+          "description": "Complete the square: x^2 + 2x + 1 = (x + 1)^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Find the largest square factor of 40: 2^2 × 10 = 40",
+          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "√40 = √(2^2 × 10) = 2√10",
+          "description": "Turning point = (-1, 0)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2√10 oe",
+          "description": "(-1, 0) oe",
           "marks": 1
         }
       ],
@@ -165,27 +142,68 @@
     },
     {
       "topic_id": "roots_H",
-      "prompt": "Simplify √176, giving your answer in the form a√b.",
+      "prompt": "Fully simplify √50, giving your answer in the form a√b.",
       "solution_steps": [
-        "Find the largest square factor of 176: 4^2 × 11 = 176",
-        "√176 = √(4^2 × 11) = 4√11"
+        "Find the largest square factor of 50: 5^2 × 2 = 50",
+        "√50 = √(5^2 × 2) = 5√2"
       ],
-      "final_answer": "4√11",
+      "final_answer": "5√2",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the largest square factor of 176: 4^2 × 11 = 176",
+          "description": "Find the largest square factor of 50: 5^2 × 2 = 50",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "√176 = √(4^2 × 11) = 4√11",
+          "description": "√50 = √(5^2 × 2) = 5√2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4√11 oe",
+          "description": "5√2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "indices_common_base_equations_H",
+      "prompt": "Solve 8^(x+1) = 16^(3x).",
+      "solution_steps": [
+        "Write both sides as powers of 2: 8 = 2^3 and 16 = 2^4",
+        "8^(x+1) = 16^(3x) becomes 2^(3(x+1)) = 2^(4×3x), i.e. 2^(3x+3) = 2^(12x)",
+        "Since the bases match, the powers must be equal: 3x + 3 = 12x",
+        "Rearranging: -9x = -3, so x = -3/-9 = 1/3"
+      ],
+      "final_answer": "1/3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Write both sides as powers of 2: 8 = 2^3 and 16 = 2^4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "8^(x+1) = 16^(3x) becomes 2^(3(x+1)) = 2^(4×3x), i.e. 2^(3x+3) = 2^(12x)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Since the bases match, the powers must be equal: 3x + 3 = 12x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rearranging: -9x = -3, so x = -3/-9 = 1/3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/3 oe",
           "marks": 1
         }
       ],
@@ -194,33 +212,33 @@
     },
     {
       "topic_id": "fractions_mixed_number_arithmetic_H",
-      "prompt": "Work out 4 1/2 + 1 1/4. Give your answer as a mixed number.",
+      "prompt": "Evaluate 5 4/8 + 3 6/8. Give your answer as a mixed number.",
       "solution_steps": [
-        "Convert to improper fractions: 4 1/2 = 9/2, 1 1/4 = 5/4",
-        "Add the improper fractions: 9/2 + 5/4 = 23/4",
-        "Convert back to a mixed number: 5 3/4"
+        "Convert to improper fractions: 5 4/8 = 11/2, 3 6/8 = 15/4",
+        "Add the improper fractions: 11/2 + 15/4 = 37/4",
+        "Convert back to a mixed number: 9 1/4"
       ],
-      "final_answer": "5 3/4",
+      "final_answer": "9 1/4",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert to improper fractions: 4 1/2 = 9/2, 1 1/4 = 5/4",
+          "description": "Convert to improper fractions: 5 4/8 = 11/2, 3 6/8 = 15/4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add the improper fractions: 9/2 + 5/4 = 23/4",
+          "description": "Add the improper fractions: 11/2 + 15/4 = 37/4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Convert back to a mixed number: 5 3/4",
+          "description": "Convert back to a mixed number: 9 1/4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5 3/4 oe",
+          "description": "9 1/4 oe",
           "marks": 1
         }
       ],
@@ -228,28 +246,313 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "inequalities_number_line_H",
-      "prompt": "Write down the inequality (or pair of inequalities) shown by the number line below.",
+      "topic_id": "cross_multiplication_H",
+      "prompt": "Solve the following equation.\n\\frac{2x + 1}{4} = \\frac{x - 5}{5}",
       "solution_steps": [
-        "The circle at -1 is filled and the circle at 4 is open.",
-        "The shading lies outside the two circles, so either bound alone is enough: x ≤ -1 or x > 4."
+        "Cross-multiply: 5(2x + 1) = 4(x - 5)",
+        "10x + 5 = 4x - 20",
+        "Subtract 4x from both sides:",
+        "6x + 5 = -20",
+        "Subtract 5 from both sides:",
+        "6x = -25",
+        "Divide both sides by 6:",
+        "x = -25/6"
       ],
-      "final_answer": "x ≤ -1 or x > 4",
-      "marks": 3,
+      "final_answer": "x = -25/6",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The circle at -1 is filled and the circle at 4 is open.",
+          "description": "Cross-multiply: 5(2x + 1) = 4(x - 5)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The shading lies outside the two circles, so either bound alone is enough: x ≤ -1 or x > 4.",
+          "description": "10x + 5 = 4x - 20",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 4x from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "6x + 5 = -20 Subtract 5 from both sides: 6x = -25 Divide both sides by 6: x = -25/6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x ≤ -1 or x > 4 oe",
+          "description": "x = -25/6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "sequences_quadratic_nth_term_H",
+      "prompt": "Here are the first four terms of a quadratic sequence: -6, -14, -28, -48.\nFind an expression for the nth term.",
+      "solution_steps": [
+        "First differences: -8, -14, -20",
+        "Second difference is constant: -6, so the coefficient of n^2 is -6 ÷ 2 = -3",
+        "nth term = -3n^2 + n - 4"
+      ],
+      "final_answer": "-3n^2 + n - 4",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First differences: -8, -14, -20",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Second difference is constant: -6, so the coefficient of n^2 is -6 ÷ 2 = -3",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "nth term = -3n^2 + n - 4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-3n^2 + n - 4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_exponential_H",
+      "prompt": "Complete a table of values for y = 8 × 2^x for x = 0 to 4, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = 8 × 2^x:",
+        "x: 0, 1, 2, 3, 4",
+        "y: 8, 16, 32, 64, 128",
+        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
+      ],
+      "final_answer": "Exponential curve: y = 8 × 2^x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = 8 × 2^x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: 0, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 8, 16, 32, 64, 128",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Exponential curve: y = 8 × 2^x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "exponential",
+          "a": 8,
+          "base": 2,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 140.8,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "exponential",
+          "a": 8,
+          "base": 2,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 140.8,
+          "table_points": [
+            [
+              0,
+              8
+            ],
+            [
+              1,
+              16
+            ],
+            [
+              2,
+              32
+            ],
+            [
+              3,
+              64
+            ],
+            [
+              4,
+              128
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "graph_transformations_H",
+      "prompt": "The graph of y = f(x) is transformed to give the graph of y = f(-x). Describe this transformation fully.",
+      "solution_steps": [
+        "y = f(-x) corresponds to a reflection in the y-axis."
+      ],
+      "final_answer": "Reflection in the y-axis",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = f(-x) corresponds to a reflection in the y-axis.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Reflection in the y-axis oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "graph_transformation",
+        "params": {
+          "transform": "reflect_y",
+          "shift": 0,
+          "original_label": "y = f(x)",
+          "transformed_label": "y = f(-x)"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "trig_graph_H",
+      "prompt": "Complete a table of values for y = -sin(x°) for x = 0 to 360 (in steps of 90°), then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = -sin(x°):",
+        "x: 0, 90, 180, 270, 360",
+        "y: 0, -1, 0, 1, 0",
+        "Plot each (x, y) point and join them with a single smooth curve - y = -sin(x°) repeats the same shape every 360°, and never goes above 1 or below -1."
+      ],
+      "final_answer": "y = -sin(x°)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = -sin(x°):",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: 0, 90, 180, 270, 360",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 0, -1, 0, 1, 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve - y = -sin(x°) repeats the same shape every 360°, and never goes above 1 or below -1.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y = -sin(x°) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "trigonometric",
+          "fn": "sin",
+          "sign": -1,
+          "x_min": 0,
+          "x_max": 360,
+          "y_min": -1.4,
+          "y_max": 1.4,
+          "x_label": "x (degrees)",
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "trigonometric",
+          "fn": "sin",
+          "sign": -1,
+          "x_min": 0,
+          "x_max": 360,
+          "y_min": -1.4,
+          "y_max": 1.4,
+          "x_label": "x (degrees)",
+          "table_points": [
+            [
+              0,
+              0
+            ],
+            [
+              90,
+              -1
+            ],
+            [
+              180,
+              0
+            ],
+            [
+              270,
+              1
+            ],
+            [
+              360,
+              0
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "inequalities_number_line_H",
+      "prompt": "Draw the inequality/ies of 0 ≤ x < 4 on a number line.",
+      "solution_steps": [
+        "Draw a filled circle at 0 and an open circle at 4.",
+        "Shade the segment of the line between the two circles."
+      ],
+      "final_answer": "0 ≤ x < 4",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Draw a filled circle at 0 and an open circle at 4.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Shade the segment of the line between the two circles.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "0 ≤ x < 4 oe",
           "marks": 1
         }
       ],
@@ -260,9 +563,20 @@
             -8,
             8
           ],
+          "boundaries": [],
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -8,
+            8
+          ],
           "boundaries": [
             {
-              "value": -1,
+              "value": 0,
               "closed": true
             },
             {
@@ -270,40 +584,39 @@
               "closed": false
             }
           ],
-          "shade": "outside"
+          "shade": "between"
         }
-      },
-      "solution_diagram": null
+      }
     },
     {
-      "topic_id": "special_sequences_H",
-      "prompt": "The first 3 terms of a geometric sequence are: 6, 18, 54. Find the 5th term of the sequence.",
+      "topic_id": "kinematics_suvat_H",
+      "prompt": "An object starts with an initial velocity (u) of 2 m/s and has a constant acceleration (a) of 5 m/s^2 for a time (t) of 3 s. Find the total displacement (s).",
       "solution_steps": [
-        "Common ratio r = 3 (divide any term by the term before it).",
-        "nth term = a × r^(n - 1) = 6 × (3)^4",
-        "Term 5 = 486"
+        "This question gives three of s, u, a and t and asks for another, so use s = ut + (1/2)at^2, the equation linking exactly those four (note: t is never the unknown here, since solving this equation for t needs the quadratic formula).",
+        "s = ut + (1/2)at^2",
+        "Substitute u = 2, a = 5, t = 3: s = 2 × 3 + (1/2) × 5 × 3^2 = 6 + 45/2 = 28.5"
       ],
-      "final_answer": "486",
+      "final_answer": "28.5 m",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Common ratio r = 3 (divide any term by the term before it).",
+          "description": "This question gives three of s, u, a and t and asks for another, so use s = ut + (1/2)at^2, the equation linking exactly those four (note: t is never the unknown here, since solving this equation for t needs the quadratic formula).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = a × r^(n - 1) = 6 × (3)^4",
+          "description": "s = ut + (1/2)at^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Term 5 = 486",
+          "description": "Substitute u = 2, a = 5, t = 3: s = 2 × 3 + (1/2) × 5 × 3^2 = 6 + 45/2 = 28.5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "486 oe",
+          "description": "28.5 m oe",
           "marks": 1
         }
       ],
@@ -311,388 +624,17 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_exponential_H",
-      "prompt": "Complete a table of values for y = 3 × 3^x for x = 0 to 4, then plot the graph.",
-      "solution_steps": [
-        "Table of values for y = 3 × 3^x:",
-        "x: 0, 1, 2, 3, 4",
-        "y: 3, 9, 27, 81, 243",
-        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
-      ],
-      "final_answer": "Exponential curve: y = 3 × 3^x",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Table of values for y = 3 × 3^x:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x: 0, 1, 2, 3, 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y: 3, 9, 27, 81, 243",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Exponential curve: y = 3 × 3^x oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "exponential",
-          "a": 3,
-          "base": 3,
-          "x_min": -1,
-          "x_max": 4,
-          "y_min": 0,
-          "y_max": 267.3,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "exponential",
-          "a": 3,
-          "base": 3,
-          "x_min": -1,
-          "x_max": 4,
-          "y_min": 0,
-          "y_max": 267.3,
-          "table_points": [
-            [
-              0,
-              3
-            ],
-            [
-              1,
-              9
-            ],
-            [
-              2,
-              27
-            ],
-            [
-              3,
-              81
-            ],
-            [
-              4,
-              243
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "graph_transformations_H",
-      "prompt": "The graph of y = f(x) undergoes a translation by vector (3, 0). Write down the equation of the transformed graph in terms of f(x).",
-      "solution_steps": [
-        "y = f(x - 3) corresponds to a translation by vector (3, 0)."
-      ],
-      "final_answer": "y = f(x - 3)",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "y = f(x - 3) corresponds to a translation by vector (3, 0).",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "y = f(x - 3) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "graph_transformation",
-        "params": {
-          "transform": "translate_right",
-          "shift": 3,
-          "original_label": "y = f(x)",
-          "transformed_label": "y = f(x - 3)"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "plot_reciprocal_H",
-      "prompt": "Complete a table of values for y = \\frac{48}{x} for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
-      "solution_steps": [
-        "Table of values for y = \\frac{48}{x}:",
-        "x: -4, -3, -2, -1, 1, 2, 3, 4",
-        "y: -12, -16, -24, -48, 48, 24, 16, 12",
-        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
-      ],
-      "final_answer": "Reciprocal curve: y = \\frac{48}{x}",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Table of values for y = \\frac{48}{x}:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y: -12, -16, -24, -48, 48, 24, 16, 12",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Reciprocal curve: y = \\frac{48}{x} oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "reciprocal",
-          "a": 48,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -50,
-          "y_max": 50,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "reciprocal",
-          "a": 48,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -50,
-          "y_max": 50,
-          "table_points": [
-            [
-              -4,
-              -12
-            ],
-            [
-              -3,
-              -16
-            ],
-            [
-              -2,
-              -24
-            ],
-            [
-              -1,
-              -48
-            ],
-            [
-              1,
-              48
-            ],
-            [
-              2,
-              24
-            ],
-            [
-              3,
-              16
-            ],
-            [
-              4,
-              12
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "inequalities_region_H",
-      "prompt": "On the grid, shade the region that satisfies both y < -\\frac{x}{2} - 2 and y ≤ x - 4.",
-      "solution_steps": [
-        "Draw the line y = -\\frac{x}{2} - 2 (dashed - the line itself is not included in the region).",
-        "Draw the line y = x - 4 (solid - the line itself is included in the region).",
-        "Shade the region where both y < -\\frac{x}{2} - 2 and y ≤ x - 4 are true at the same time."
-      ],
-      "final_answer": "y < -\\frac{x}{2} - 2 and y ≤ x - 4",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Draw the line y = -\\frac{x}{2} - 2 (dashed - the line itself is not included in the region).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Draw the line y = x - 4 (solid - the line itself is included in the region).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Shade the region where both y < -\\frac{x}{2} - 2 and y ≤ x - 4 are true at the same time.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "y < -\\frac{x}{2} - 2 and y ≤ x - 4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "inequality_region",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "inequality_region",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "lines": [
-            {
-              "m": -0.5,
-              "c": -2,
-              "op": "<"
-            },
-            {
-              "m": 1.0,
-              "c": -4,
-              "op": "<="
-            }
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "plot_cubic_H",
-      "prompt": "Complete a table of values for y = -x^3 for x = -3 to 3, then plot the graph.",
-      "solution_steps": [
-        "Table of values for y = -x^3:",
-        "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: 27, 8, 1, 0, -1, -8, -27",
-        "Plot each (x, y) point and join them with a single smooth curve."
-      ],
-      "final_answer": "Cubic curve: y = -x^3",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Table of values for y = -x^3:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x: -3, -2, -1, 0, 1, 2, 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y: 27, 8, 1, 0, -1, -8, -27",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Cubic curve: y = -x^3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "cubic",
-          "a": -1,
-          "b": 0,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -29,
-          "y_max": 29,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "cubic",
-          "a": -1,
-          "b": 0,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -29,
-          "y_max": 29,
-          "table_points": [
-            [
-              -3,
-              27
-            ],
-            [
-              -2,
-              8
-            ],
-            [
-              -1,
-              1
-            ],
-            [
-              0,
-              0
-            ],
-            [
-              1,
-              -1
-            ],
-            [
-              2,
-              -8
-            ],
-            [
-              3,
-              -27
-            ]
-          ]
-        }
-      }
-    },
-    {
       "topic_id": "velocity_time_interpret_H",
       "prompt": "The velocity-time graph shows a car's journey. Find its deceleration during the final phase.",
       "solution_steps": [
-        "Deceleration = change in velocity ÷ time = 10 ÷ 8 = 5/4 m/s^2"
+        "Deceleration = change in velocity ÷ time = 15 ÷ 12 = 5/4 m/s^2"
       ],
       "final_answer": "5/4 m/s^2",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Deceleration = change in velocity ÷ time = 10 ÷ 8 = 5/4 m/s^2",
+          "description": "Deceleration = change in velocity ÷ time = 15 ÷ 12 = 5/4 m/s^2",
           "marks": 1
         },
         {
@@ -710,20 +652,20 @@
               0
             ],
             [
-              10,
-              10
+              8,
+              15
             ],
             [
-              20,
-              10
+              33,
+              15
             ],
             [
-              28,
+              45,
               0
             ]
           ],
-          "x_max": 33,
-          "y_max": 15,
+          "x_max": 50,
+          "y_max": 20,
           "x_label": "Time (s)",
           "y_label": "Velocity (m/s)"
         }
@@ -731,34 +673,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "turning_point_of_graph_H",
-      "prompt": "Find the coordinates of the turning point of the curve y = x^2 + 6x - 15.",
+      "topic_id": "ratio_to_equation_H",
+      "prompt": "(x + 9) : (3x + 22) = 2:1. Find the value of x.",
       "solution_steps": [
-        "Complete the square: x^2 + 6x - 15 = (x + 3)^2 - 24",
-        "The turning point of y = (x + p)^2 + q is (-p, q).",
-        "Turning point = (-3, -24)"
+        "Cross-multiply: 1(x + 9) = 2(3x + 22)",
+        "Expand: x + 9 = 6x + 44",
+        "Collect x terms: -5x = 35",
+        "x = 35 ÷ -5 = -7"
       ],
-      "final_answer": "(-3, -24)",
-      "marks": 4,
+      "final_answer": "x = -7",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Complete the square: x^2 + 6x - 15 = (x + 3)^2 - 24",
+          "description": "Cross-multiply: 1(x + 9) = 2(3x + 22)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
+          "description": "Expand: x + 9 = 6x + 44",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Turning point = (-3, -24)",
+          "description": "Collect x terms: -5x = 35",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 35 ÷ -5 = -7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(-3, -24) oe",
+          "description": "x = -7 oe",
           "marks": 1
         }
       ],
@@ -767,39 +715,39 @@
     },
     {
       "topic_id": "ratio_combine_H",
-      "prompt": "Given that a:b = 1:3 and b:c = 2:3, find a:b:c in its simplest form.",
+      "prompt": "Given that a:b = 4:2 and b:c = 5:6, find a:b:c in its simplest form.",
       "solution_steps": [
-        "Scale a:b = 1:3 by 2 so b = 6: a:b = 2:6",
-        "Scale b:c = 2:3 by 3 so b = 6: b:c = 6:9",
-        "Combine: a:b:c = 2:6:9",
-        "Simplify by dividing by 1: a:b:c = 2:6:9"
+        "Scale a:b = 4:2 by 5 so b = 10: a:b = 20:10",
+        "Scale b:c = 5:6 by 2 so b = 10: b:c = 10:12",
+        "Combine: a:b:c = 20:10:12",
+        "Simplify by dividing by 2: a:b:c = 10:5:6"
       ],
-      "final_answer": "2 : 6 : 9",
+      "final_answer": "10 : 5 : 6",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Scale a:b = 1:3 by 2 so b = 6: a:b = 2:6",
+          "description": "Scale a:b = 4:2 by 5 so b = 10: a:b = 20:10",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Scale b:c = 2:3 by 3 so b = 6: b:c = 6:9",
+          "description": "Scale b:c = 5:6 by 2 so b = 10: b:c = 10:12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Combine: a:b:c = 2:6:9",
+          "description": "Combine: a:b:c = 20:10:12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify by dividing by 1: a:b:c = 2:6:9",
+          "description": "Simplify by dividing by 2: a:b:c = 10:5:6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2 : 6 : 9 oe",
+          "description": "10 : 5 : 6 oe",
           "marks": 1
         }
       ],
@@ -808,27 +756,27 @@
     },
     {
       "topic_id": "density_H",
-      "prompt": "A piece of wood in the shape of a cuboid has dimensions 6 cm × 10 cm × 4 cm and a density of 12 g/cm³. Find its mass.",
+      "prompt": "A sculpture has a mass of 16 kg and a volume of 113 cm³. Find its density in g/cm³, correct to 2 decimal places.",
       "solution_steps": [
-        "volume = length × width × height = 6 × 10 × 4 = 240 cm³",
-        "mass = density × volume = 12 × 240 = 2880 g"
+        "Convert mass to grams: 16 kg = 16 × 1000 = 16000 g",
+        "density = mass ÷ volume = 16000 ÷ 113 = 141.59 g/cm³ (2 d.p.)"
       ],
-      "final_answer": "2880 g",
+      "final_answer": "141.59 g/cm³",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "volume = length × width × height = 6 × 10 × 4 = 240 cm³",
+          "description": "Convert mass to grams: 16 kg = 16 × 1000 = 16000 g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "mass = density × volume = 12 × 240 = 2880 g",
+          "description": "density = mass ÷ volume = 16000 ÷ 113 = 141.59 g/cm³ (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2880 g oe",
+          "description": "141.59 g/cm³ oe",
           "marks": 1
         }
       ],
@@ -836,28 +784,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "mixed_percentages_H",
-      "prompt": "After a 30% decrease, an item costs £109.20. Find the original price.",
+      "topic_id": "unit_conversions_H",
+      "prompt": "Convert 11 cm² to mm².",
       "solution_steps": [
-        "Convert 30% to a multiplier: 0.70 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 109.20 ÷ 0.70 = 156"
+        "Linear conversion factor: 1 cm = 10 mm, so for area, 1 cm² = 10^2 = 100 mm²",
+        "11 cm² = 11 × 100 = 1100 mm²"
       ],
-      "final_answer": "£156",
+      "final_answer": "1100 mm²",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 30% to a multiplier: 0.70 (original × multiplier = new value)",
+          "description": "Linear conversion factor: 1 cm = 10 mm, so for area, 1 cm² = 10^2 = 100 mm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide the new value by the multiplier: 109.20 ÷ 0.70 = 156",
+          "description": "11 cm² = 11 × 100 = 1100 mm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£156 oe",
+          "description": "1100 mm² oe",
           "marks": 1
         }
       ],
@@ -865,40 +813,70 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_direct_proportion_H",
-      "prompt": "y is directly proportional to x^3. When x = 3, y = 54. Find the value of y when x = 7.",
+      "topic_id": "arc_length_H",
+      "prompt": "Find the exact arc length of the following sector, in terms of π.",
       "solution_steps": [
-        "y = kx^3",
-        "54 = k × 3^3 = k × 27",
-        "k = 54 ÷ 27 = 2",
-        "y = 2 × 7^3 = 2 × 343 = 686"
+        "Arc length = (θ ÷ 360) × 2 × π × r = (210 ÷ 360) × 2 × π × 3",
+        "= (7/2)π cm"
       ],
-      "final_answer": "686",
-      "marks": 5,
+      "final_answer": "(7/2)π cm",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = kx^3",
+          "description": "Arc length = (θ ÷ 360) × 2 × π × r = (210 ÷ 360) × 2 × π × 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "54 = k × 3^3 = k × 27",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "k = 54 ÷ 27 = 2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y = 2 × 7^3 = 2 × 343 = 686",
+          "description": "= (7/2)π cm",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "686 oe",
+          "description": "(7/2)π cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "sector",
+        "params": {
+          "angle": 210,
+          "radius_label": "3 cm",
+          "angle_label": "210°"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "vectors_arithmetic_H",
+      "prompt": "\\vec{a} = \\colvec{9}{-5} and \\vec{b} = \\colvec{-2}{-3}. Find -1\\vec{a} + (-1\\vec{b}).",
+      "solution_steps": [
+        "\\vec{a} = \\colvec{9}{-5}, \\vec{b} = \\colvec{-2}{-3}",
+        "-1\\vec{a} = \\colvec{-9}{5} and -1\\vec{b} = \\colvec{2}{3}",
+        "-1\\vec{a} + (-1\\vec{b}) = \\colvec{-7}{8}"
+      ],
+      "final_answer": "\\colvec{-7}{8}",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "\\vec{a} = \\colvec{9}{-5}, \\vec{b} = \\colvec{-2}{-3}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-1\\vec{a} = \\colvec{-9}{5} and -1\\vec{b} = \\colvec{2}{3}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-1\\vec{a} + (-1\\vec{b}) = \\colvec{-7}{8}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "\\colvec{-7}{8} oe",
           "marks": 1
         }
       ],
@@ -909,92 +887,92 @@
       "topic_id": "area_subtract_compound_H",
       "prompt": "Find the shaded area.",
       "solution_steps": [
-        "Area of large rectangle = 13 × 24 = 312 cm²",
-        "Area of rectangular hole = 9 × 12 = 108 cm²",
-        "Shaded area = 312 - 108 = 204 cm²"
+        "Area of large rectangle = 18 × 14 = 252 cm²",
+        "Area of rectangular hole = 11 × 6 = 66 cm²",
+        "Shaded area = 252 - 66 = 186 cm²"
       ],
-      "final_answer": "204 cm²",
+      "final_answer": "186 cm²",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area of large rectangle = 13 × 24 = 312 cm²",
+          "description": "Area of large rectangle = 18 × 14 = 252 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Area of rectangular hole = 9 × 12 = 108 cm²",
+          "description": "Area of rectangular hole = 11 × 6 = 66 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Shaded area = 312 - 108 = 204 cm²",
+          "description": "Shaded area = 252 - 66 = 186 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "204 cm² oe",
+          "description": "186 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "l_shape",
         "params": {
-          "outer_w": 13,
-          "outer_h": 24,
-          "inner_w": 9,
-          "inner_h": 12,
+          "outer_w": 18,
+          "outer_h": 14,
+          "inner_w": 11,
+          "inner_h": 6,
           "notch": "center",
           "shade_frame": true,
           "outer_labels": [
-            "13 cm",
-            "24 cm"
+            "18 cm",
+            "14 cm"
           ],
           "inner_labels": [
-            "9 cm",
-            "12 cm"
+            "11 cm",
+            "6 cm"
           ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_straight_line_H",
-      "prompt": "The angles 119° and (4x - 11)° lie on a straight line. Find x.",
+      "topic_id": "angles_around_point_H",
+      "prompt": "The angles 28°, 110°, 73° and (3x + 143)° are angles around a point. Find x.",
       "solution_steps": [
-        "Angles on a straight line sum to 180°.",
-        "4x - 11 = 61",
-        "Add 11 to both sides:",
-        "4x = 72",
-        "Divide both sides by 4:",
-        "x = 18"
+        "Angles around a point sum to 360°.",
+        "3x + 143 = 149",
+        "Subtract 143 from both sides:",
+        "3x = 6",
+        "Divide both sides by 3:",
+        "x = 2"
       ],
-      "final_answer": "18",
+      "final_answer": "2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles on a straight line sum to 180°.",
+          "description": "Angles around a point sum to 360°.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x - 11 = 61",
+          "description": "3x + 143 = 149",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add 11 to both sides:",
+          "description": "Subtract 143 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x = 72 Divide both sides by 4: x = 18",
+          "description": "3x = 6 Divide both sides by 3: x = 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "18 oe",
+          "description": "2 oe",
           "marks": 1
         }
       ],
@@ -1002,187 +980,235 @@
         "kind": "angle_line",
         "params": {
           "angle_values": [
-            119,
-            61
+            28,
+            110,
+            73,
+            149
           ],
           "labels": [
-            "119°",
-            "(4x - 11)°"
+            "28°",
+            "110°",
+            "73°",
+            "(3x + 143)°"
           ],
-          "around_point": false
+          "around_point": true
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_triangle_H",
-      "prompt": "A triangle has angles 48°, 35°, and (2x + 91)°. Find x.",
+      "topic_id": "tree_diagram_dependent_H",
+      "prompt": "A bag contains 6 red and 4 green counters. Two counters are picked at random, one after the other, without replacement. The tree diagram shows this information. Find the probability that the two counters are different colours.",
       "solution_steps": [
-        "Angles in a triangle sum to 180°.",
-        "2x + 91 = 97",
-        "Subtract 91 from both sides:",
-        "2x = 6",
-        "Divide both sides by 2:",
-        "x = 3"
+        "After the first counter is picked (without replacement), there are 9 counters left.",
+        "P(red then red) = 3/5 × 5/9 = 1/3",
+        "P(red then green) = 3/5 × 4/9 = 4/15",
+        "P(green then red) = 2/5 × 2/3 = 4/15",
+        "P(green then green) = 2/5 × 1/3 = 2/15",
+        "P(the two counters are different colours) = 8/15"
       ],
-      "final_answer": "3",
+      "final_answer": "8/15",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles in a triangle sum to 180°.",
+          "description": "After the first counter is picked (without replacement), there are 9 counters left.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x + 91 = 97",
+          "description": "P(red then red) = 3/5 × 5/9 = 1/3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 91 from both sides:",
+          "description": "P(red then green) = 3/5 × 4/9 = 4/15",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x = 6 Divide both sides by 2: x = 3",
+          "description": "P(green then red) = 2/5 × 2/3 = 4/15 P(green then green) = 2/5 × 1/3 = 2/15 P(the two counters are different colours) = 8/15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 oe",
+          "description": "8/15 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "triangle_angles",
+        "kind": "tree_diagram",
         "params": {
-          "angle_labels": [
-            "48°",
-            "35°",
-            "(2x + 91)°"
+          "stage1": [
+            [
+              "Red",
+              "3/5"
+            ],
+            [
+              "Green",
+              "2/5"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Red",
+                "5/9"
+              ],
+              [
+                "Green",
+                "4/9"
+              ]
+            ],
+            [
+              [
+                "Red",
+                "2/3"
+              ],
+              [
+                "Green",
+                "1/3"
+              ]
+            ]
+          ],
+          "leaf_probs": [
+            [
+              "1/3",
+              "4/15"
+            ],
+            [
+              "4/15",
+              "2/15"
+            ]
           ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "arc_length_H",
-      "prompt": "Find the exact arc length of the following sector, in terms of π.",
+      "topic_id": "probability_conditional_H",
+      "prompt": "A bag contains 7 yellow and 7 green counters. Two counters are picked at random without replacement. Find the probability that both counters are the same colour. Use the tree diagram to help you.",
       "solution_steps": [
-        "Arc length = (θ ÷ 360) × 2 × π × r = (270 ÷ 360) × 2 × π × 3",
-        "= (9/2)π cm"
+        "P(both yellow) = 7/14 × 6/13 = 3/13",
+        "P(both green) = 7/14 × 6/13 = 3/13",
+        "P(both same colour) = 3/13 + 3/13 = 6/13"
       ],
-      "final_answer": "(9/2)π cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Arc length = (θ ÷ 360) × 2 × π × r = (270 ÷ 360) × 2 × π × 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= (9/2)π cm",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(9/2)π cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "sector",
-        "params": {
-          "angle": 270,
-          "radius_label": "3 cm",
-          "angle_label": "270°"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "probability_combined_dice_H",
-      "prompt": "Two fair six-sided dice are rolled. Find the probability that both dice show 4.",
-      "solution_steps": [
-        "P(first die is 4) = 1/6, P(second die is 4) = 1/6",
-        "Independent events multiply: P(both 4) = 1/6 × 1/6 = 1/36"
-      ],
-      "final_answer": "1/36",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "P(first die is 4) = 1/6, P(second die is 4) = 1/6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Independent events multiply: P(both 4) = 1/6 × 1/6 = 1/36",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1/36 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "product_rule_counting_H",
-      "prompt": "A shop sells 5 different fonts, 4 different colours and 4 different paper sizes. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
-      "solution_steps": [
-        "Total combinations = 5 × 4 × 4 = 80"
-      ],
-      "final_answer": "80",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total combinations = 5 × 4 × 4 = 80",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "80 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "stats_reverse_mean_H",
-      "prompt": "The mean of six numbers is 13. Five of the numbers are 1, 18, 4, 17, 12. Find the missing number.",
-      "solution_steps": [
-        "Total of all 6 numbers = mean × count = 13 × 6 = 78",
-        "Sum of the known numbers = 1 + 18 + 4 + 17 + 12 = 52",
-        "Missing number = 78 - 52 = 26"
-      ],
-      "final_answer": "26",
+      "final_answer": "6/13",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total of all 6 numbers = mean × count = 13 × 6 = 78",
+          "description": "P(both yellow) = 7/14 × 6/13 = 3/13",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Sum of the known numbers = 1 + 18 + 4 + 17 + 12 = 52",
+          "description": "P(both green) = 7/14 × 6/13 = 3/13",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Missing number = 78 - 52 = 26",
+          "description": "P(both same colour) = 3/13 + 3/13 = 6/13",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "26 oe",
+          "description": "6/13 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Yellow",
+              ""
+            ],
+            [
+              "Green",
+              ""
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Yellow",
+                ""
+              ],
+              [
+                "Green",
+                ""
+              ]
+            ],
+            [
+              [
+                "Yellow",
+                ""
+              ],
+              [
+                "Green",
+                ""
+              ]
+            ]
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Yellow",
+              "7/14"
+            ],
+            [
+              "Green",
+              "7/14"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Yellow",
+                "6/13"
+              ],
+              [
+                "Green",
+                "7/13"
+              ]
+            ],
+            [
+              [
+                "Yellow",
+                "7/13"
+              ],
+              [
+                "Green",
+                "6/13"
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "product_rule_counting_H",
+      "prompt": "A shop sells 6 different phone cases, 4 different screen protectors and 2 different chargers. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
+      "solution_steps": [
+        "Total combinations = 6 × 4 × 2 = 48"
+      ],
+      "final_answer": "48",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total combinations = 6 × 4 × 2 = 48",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "48 oe",
           "marks": 1
         }
       ],

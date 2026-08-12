@@ -162,6 +162,27 @@ def _label(x: float, y: float, text: str, anchor: str = "middle", color=INK, siz
     return group
 
 
+def _place_edge_label(d: Drawing, p1: tuple, p2: tuple, cx: float, cy: float, text: str, offset: float = 13) -> None:
+    """Place a label against the midpoint of the boundary edge p1->p2, pushed
+    outward (away from the shape's centre (cx, cy)) so it sits clear of the
+    edge. Used for the Corbett-style compound-shape diagrams, where each given
+    length is written directly against its own side of the outline."""
+    if not text:
+        return
+    mx, my = (p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2
+    edge_dx, edge_dy = p2[0] - p1[0], p2[1] - p1[1]
+    if abs(edge_dy) >= abs(edge_dx):  # a (near-)vertical edge -> label to its outward side
+        if mx >= cx:
+            d.add(_label(mx + offset, my - 3, text, anchor="start"))
+        else:
+            d.add(_label(mx - offset, my - 3, text, anchor="end"))
+    else:  # a (near-)horizontal edge -> label above or below it, centred
+        if my >= cy:
+            d.add(_label(mx, my + offset, text, anchor="middle"))
+        else:
+            d.add(_label(mx, my - offset - 4, text, anchor="middle"))
+
+
 def _angle_arc(cx: float, cy: float, angle1_deg: float, angle2_deg: float, radius: float = 12, color=INK) -> ArcPath:
     """An unfilled arc marking the (non-reflex) angle swept between two rays
     from (cx, cy) at angle1_deg and angle2_deg - standard maths convention,
@@ -537,6 +558,34 @@ def draw_l_shape(params: dict) -> Drawing:
                 x0, y0 + oh_s,
             ]
         d.add(Polygon(pts, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+
+        if params.get("edge_labels"):
+            # Corbett-style: label each boundary edge directly (some left
+            # blank, so the student deduces the missing lengths), instead of
+            # the old "outer W x H + floating cut-out caption" scheme.
+            cx, cy = x0 + ow_s / 2, y0 + oh_s / 2
+            if corner == "top_left":
+                p = [
+                    (x0, y0), (x0 + ow_s, y0), (x0 + ow_s, y0 + oh_s),
+                    (x0 + iw_s, y0 + oh_s), (x0 + iw_s, y0 + oh_s - ih_s), (x0, y0 + oh_s - ih_s),
+                ]
+                edges = {
+                    "bottom": (p[0], p[1]), "right": (p[1], p[2]), "top": (p[2], p[3]),
+                    "notch_down": (p[3], p[4]), "notch_across": (p[4], p[5]), "left_lower": (p[5], p[0]),
+                }
+            else:  # top_right
+                p = [
+                    (x0, y0), (x0 + ow_s, y0), (x0 + ow_s, y0 + oh_s - ih_s),
+                    (x0 + ow_s - iw_s, y0 + oh_s - ih_s), (x0 + ow_s - iw_s, y0 + oh_s), (x0, y0 + oh_s),
+                ]
+                edges = {
+                    "bottom": (p[0], p[1]), "right_lower": (p[1], p[2]), "notch_across": (p[2], p[3]),
+                    "notch_down": (p[3], p[4]), "top": (p[4], p[5]), "left": (p[5], p[0]),
+                }
+            for name, text in params["edge_labels"].items():
+                if name in edges:
+                    _place_edge_label(d, edges[name][0], edges[name][1], cx, cy, str(text))
+            return d
     elif params.get("shade_frame"):
         # Shade the remaining "frame" region (outer minus the inner hole) so
         # the question can ask for the shaded area directly - fill-then-erase,
@@ -583,18 +632,16 @@ def draw_l_shape(params: dict) -> Drawing:
         w_label, h_label = params["inner_labels"]
         w_width = stringWidth(str(w_label), _LABEL_FONT, _LABEL_SIZE)
         h_width = stringWidth(str(h_label), _LABEL_FONT, _LABEL_SIZE)
-        side_by_side_fits = iw_s >= w_width + h_width + 8
-        stacked_fits = ih_s >= 34 and iw_s >= max(w_width, h_width) + 6
-        if stacked_fits:
-            d.add(_label(cx, cy + 7, w_label))
-            d.add(_label(cx, cy - 13, h_label))
-        elif side_by_side_fits:
-            d.add(_label(cx - iw_s * 0.24, cy - 4, w_label))
-            d.add(_label(cx + iw_s * 0.24, cy - 4, h_label))
+        # Attach each hole dimension to its own edge: the width just inside the
+        # hole's top edge, the height just inside its left edge (both in the
+        # unshaded interior). Only when the hole is genuinely too small for
+        # both to sit clear does it fall back to a single combined caption
+        # below the hole, in the always-spacious shaded frame.
+        edge_fits = ih_s >= 30 and iw_s >= max(w_width, h_width) + 10
+        if edge_fits:
+            d.add(_label(cx, iy0 + ih_s - 13, w_label))
+            d.add(_label(ix0 + 5, cy - 3, h_label, anchor="start"))
         else:
-            # Neither layout fits inside a small hole even at uniform size -
-            # a single combined caption below the hole (in the spacious shaded
-            # frame) stays legible.
             d.add(_label(cx, iy0 - 14, f"{w_label} × {h_label}"))
     elif params.get("inner_labels"):
         inner_text = f"{params['inner_labels'][0]} × {params['inner_labels'][1]}"
@@ -630,6 +677,34 @@ def draw_t_shape(params: dict) -> Drawing:
         stem_x0, y0 + sh_s,
     ]
     d.add(Polygon(pts, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+
+    if params.get("edge_labels"):
+        # Corbett-style per-edge labelling (some edges left blank, so the top
+        # width has to be worked out from the notch + stem + notch pieces).
+        cx, cy = x0 + tw_s / 2, y0 + (sh_s + th_s) / 2
+        p = [
+            (stem_x0, y0), (stem_x0 + sw_s, y0), (stem_x0 + sw_s, y0 + sh_s),
+            (x0 + tw_s, y0 + sh_s), (x0 + tw_s, y0 + sh_s + th_s), (x0, y0 + sh_s + th_s),
+            (x0, y0 + sh_s), (stem_x0, y0 + sh_s),
+        ]
+        edges = {
+            "stem_bottom": (p[0], p[1]), "stem_right": (p[1], p[2]), "notch_right": (p[2], p[3]),
+            "bar_right": (p[3], p[4]), "bar_top": (p[4], p[5]), "bar_left": (p[5], p[6]),
+            "notch_left": (p[6], p[7]), "stem_left": (p[7], p[0]),
+        }
+        for name, text in params["edge_labels"].items():
+            if name not in edges or not str(text):
+                continue
+            p1, p2 = edges[name]
+            if name in ("notch_left", "notch_right"):
+                # The notch edges are the underside of the bar's overhang - the
+                # empty space is BELOW them (beside the stem), not above on the
+                # thin bar, so the centroid heuristic would point the wrong way.
+                mx = (p1[0] + p2[0]) / 2
+                d.add(_label(mx, p1[1] - 16, str(text)))
+            else:
+                _place_edge_label(d, p1, p2, cx, cy, str(text))
+        return d
 
     d.add(_label(x0 + tw_s / 2, y0 + sh_s + th_s + 14, params["top_label"]))
     d.add(_label(x0 + tw_s + 8, y0 + sh_s + th_s / 2, params["side_label"], anchor="start"))
@@ -829,14 +904,17 @@ def draw_mixed_compound(params: dict) -> Drawing:
         cut_r = params["cut_radius"] * scale
         d.add(Wedge(x0, y0, cut_r, 0, 90, fillColor=PAPER, strokeColor=None))
         d.add(Wedge(x0, y0, cut_r, 0, 90, fillColor=None, strokeColor=INK, strokeWidth=1.2))
-        d.add(_label(x0 - 6, y0 - 2, params["cut_label"], color=MUTED, anchor="end"))
+        d.add(_label(x0 - 10, y0 - 13, params["cut_label"], color=MUTED, anchor="end"))
     else:
         # A semicircular bite taken out of the middle of the bottom edge,
         # same fill-then-erase-then-stroke-arc trick as the corner cut.
         notch_r = params["notch_radius"] * scale
         d.add(Wedge(apex_x, y0, notch_r, 0, 180, fillColor=PAPER, strokeColor=None))
         d.add(Wedge(apex_x, y0, notch_r, 0, 180, fillColor=None, strokeColor=INK, strokeWidth=1.2))
-        d.add(_label(apex_x + notch_r + 8, y0 + 4, params["cut_label"], color=MUTED, anchor="start"))
+        # Just above the notch, inside the shape body - beside it ran into the
+        # right-hand edge for a wide notch, and directly below it collided with
+        # the centred width label.
+        d.add(_label(apex_x, y0 + notch_r + 8, params["cut_label"], color=MUTED))
 
     d.add(_label(x0 + rw / 2, y0 - 14, params["width_label"]))
     d.add(_label(x0 - 10, y0 + rh / 2, params["height_label"], anchor="end"))

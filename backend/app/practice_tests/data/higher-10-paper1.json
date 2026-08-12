@@ -8,27 +8,27 @@
   "questions": [
     {
       "topic_id": "roots_H",
-      "prompt": "Fully simplify √180, giving your answer in the form a√b.",
+      "prompt": "Simplify √56, giving your answer in the form a√b.",
       "solution_steps": [
-        "Find the largest square factor of 180: 6^2 × 5 = 180",
-        "√180 = √(6^2 × 5) = 6√5"
+        "Find the largest square factor of 56: 2^2 × 14 = 56",
+        "√56 = √(2^2 × 14) = 2√14"
       ],
-      "final_answer": "6√5",
+      "final_answer": "2√14",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the largest square factor of 180: 6^2 × 5 = 180",
+          "description": "Find the largest square factor of 56: 2^2 × 14 = 56",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "√180 = √(6^2 × 5) = 6√5",
+          "description": "√56 = √(2^2 × 14) = 2√14",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6√5 oe",
+          "description": "2√14 oe",
           "marks": 1
         }
       ],
@@ -37,39 +37,39 @@
     },
     {
       "topic_id": "indices_common_base_equations_H",
-      "prompt": "Solve 5^(x+3) = 625^(2x).",
+      "prompt": "Solve 25^(x+2) = 5^(3x).",
       "solution_steps": [
-        "Write both sides as powers of 5: 5 = 5^1 and 625 = 5^4",
-        "5^(x+3) = 625^(2x) becomes 5^(x+3) = 5^(4×2x), i.e. 5^(x+3) = 5^(8x)",
-        "Since the bases match, the powers must be equal: x + 3 = 8x",
-        "Rearranging: -7x = -3, so x = -3/-7 = 3/7"
+        "Write both sides as powers of 5: 25 = 5^2 and 5 = 5^1",
+        "25^(x+2) = 5^(3x) becomes 5^(2(x+2)) = 5^(3x), i.e. 5^(2x+4) = 5^(3x)",
+        "Since the bases match, the powers must be equal: 2x + 4 = 3x",
+        "Rearranging: -1x = -4, so x = -4/-1 = 4"
       ],
-      "final_answer": "3/7",
+      "final_answer": "4",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Write both sides as powers of 5: 5 = 5^1 and 625 = 5^4",
+          "description": "Write both sides as powers of 5: 25 = 5^2 and 5 = 5^1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5^(x+3) = 625^(2x) becomes 5^(x+3) = 5^(4×2x), i.e. 5^(x+3) = 5^(8x)",
+          "description": "25^(x+2) = 5^(3x) becomes 5^(2(x+2)) = 5^(3x), i.e. 5^(2x+4) = 5^(3x)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Since the bases match, the powers must be equal: x + 3 = 8x",
+          "description": "Since the bases match, the powers must be equal: 2x + 4 = 3x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rearranging: -7x = -3, so x = -3/-7 = 3/7",
+          "description": "Rearranging: -1x = -4, so x = -4/-1 = 4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3/7 oe",
+          "description": "4 oe",
           "marks": 1
         }
       ],
@@ -77,34 +77,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bounds_calculation_H",
-      "prompt": "A rectangle has length 36 cm and width 6 cm, both measured to the nearest cm. Calculate the lower bound for the area of the rectangle.",
+      "topic_id": "error_interval_H",
+      "prompt": "A number, x, is 68400 rounded to 3 significant figures. Write down the error interval for x.",
       "solution_steps": [
-        "Length: 36 cm (to the nearest cm) gives 35.5 ≤ length < 36.5",
-        "Width: 6 cm (to the nearest cm) gives 5.5 ≤ width < 6.5",
-        "For the lower bound of the area, use the lower bound of each measurement: 35.5 × 5.5 = 195.25 cm²"
+        "The last significant figure of 68400 has a place value of 100, so x can be up to half of that above or below 68400.",
+        "Lower bound: 68400 - 50 = 68350",
+        "Upper bound: 68400 + 50 = 68450"
       ],
-      "final_answer": "195.25 cm²",
+      "final_answer": "68350 ≤ x < 68450",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Length: 36 cm (to the nearest cm) gives 35.5 ≤ length < 36.5",
+          "description": "The last significant figure of 68400 has a place value of 100, so x can be up to half of that above or below 68400.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Width: 6 cm (to the nearest cm) gives 5.5 ≤ width < 6.5",
+          "description": "Lower bound: 68400 - 50 = 68350",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "For the lower bound of the area, use the lower bound of each measurement: 35.5 × 5.5 = 195.25 cm²",
+          "description": "Upper bound: 68400 + 50 = 68450",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "195.25 cm² oe",
+          "description": "68350 ≤ x < 68450 oe",
           "marks": 1
         }
       ],
@@ -112,75 +112,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_add_subtract_H",
-      "prompt": "Work out (1 × 10^7) + (3 × 10^6). Give your answer in standard form.",
+      "topic_id": "powers_H",
+      "prompt": "Evaluate 3^0.",
       "solution_steps": [
-        "Write both numbers with the same power of 10: 1×10^7 = 10×10^6, 3×10^6 = 3×10^6",
-        "Add the coefficients: 10 + 3 = 13",
-        "Write in standard form: 13 × 10^6 = 1.3 × 10^7"
+        "Any nonzero number raised to the power 0 equals 1.",
+        "3^0 = 1"
       ],
-      "final_answer": "1.3 × 10^7",
-      "marks": 4,
+      "final_answer": "1",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Write both numbers with the same power of 10: 1×10^7 = 10×10^6, 3×10^6 = 3×10^6",
+          "description": "Any nonzero number raised to the power 0 equals 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add the coefficients: 10 + 3 = 13",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Write in standard form: 13 × 10^6 = 1.3 × 10^7",
+          "description": "3^0 = 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1.3 × 10^7 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simplifying_indices_challenging_H",
-      "prompt": "Fully simplify (5^-2)^3 ÷ 5^-3, giving your answer as a fraction where necessary.",
-      "solution_steps": [
-        "Multiply the powers in the bracket: -2 × 3 = -6",
-        "(5^-2)^3 = 5^-6",
-        "Subtract the powers to divide: -6 - (-3) = -3",
-        "5^-6 ÷ 5^-3 = 5^-3 = 1/125"
-      ],
-      "final_answer": "1/125",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiply the powers in the bracket: -2 × 3 = -6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(5^-2)^3 = 5^-6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract the powers to divide: -6 - (-3) = -3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "5^-6 ÷ 5^-3 = 5^-3 = 1/125",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1/125 oe",
+          "description": "1 oe",
           "marks": 1
         }
       ],
@@ -189,41 +142,27 @@
     },
     {
       "topic_id": "rationalise_denominator_H",
-      "prompt": "Rationalise the denominator of \\frac{10}{9 - √14}, giving your answer in its simplest form.",
+      "prompt": "Rationalise the denominator of \\frac{9}{√3}, giving your answer in its simplest form.",
       "solution_steps": [
-        "Multiply the numerator and denominator by the conjugate of the denominator, (9 + √14):",
-        "\\frac{10}{9 - √14}",
-        "= \\frac{10(9 + √14)}{[(9 - √14)(9 + √14)]}",
-        "The denominator is a difference of two squares: 9^2 - 14 = 67",
-        "The numerator is 10(9 + √14) = 90 + 10√14",
-        "= \\frac{90 + 10√14}{67}"
+        "Multiply the top and bottom by √3: \\frac{9}{√3} = \\frac{9√3}{3}",
+        "Simplify 9/3 by dividing by 3: 3√3"
       ],
-      "final_answer": "\\frac{90 + 10√14}{67}",
-      "marks": 5,
+      "final_answer": "3√3",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply the numerator and denominator by the conjugate of the denominator, (9 + √14):",
+          "description": "Multiply the top and bottom by √3: \\frac{9}{√3} = \\frac{9√3}{3}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "\\frac{10}{9 - √14}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= \\frac{10(9 + √14)}{[(9 - √14)(9 + √14)]}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The denominator is a difference of two squares: 9^2 - 14 = 67 The numerator is 10(9 + √14) = 90 + 10√14 = \\frac{90 + 10√14}{67}",
+          "description": "Simplify 9/3 by dividing by 3: 3√3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "\\frac{90 + 10√14}{67} oe",
+          "description": "3√3 oe",
           "marks": 1
         }
       ],
@@ -231,41 +170,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_double_brackets_H",
-      "prompt": "Expand and simplify: (6x + 4)(3x - 3)",
+      "topic_id": "recurring_decimal_two_digit_H",
+      "prompt": "Write \\recur{0.}{70} as a fraction in its simplest form.",
       "solution_steps": [
-        "First: 6x × 3x = 18x^2",
-        "Outer: 6x × -3 = -18x",
-        "Inner: 4 × 3x = 12x",
-        "Last: 4 × -3 = -12",
-        "Combine like terms: 18x^2 - 6x - 12"
+        "Let x = \\recur{0.}{70}, so 100x = 70.7070... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Subtract: 100x - x = 70 - 0, so 99x = 70",
+        "x = 70/99 = 70/99"
       ],
-      "final_answer": "18x^2 - 6x - 12",
-      "marks": 5,
+      "final_answer": "70/99",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First: 6x × 3x = 18x^2",
+          "description": "Let x = \\recur{0.}{70}, so 100x = 70.7070... (two digits repeat, so multiply by 100 to shift a full block)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Outer: 6x × -3 = -18x",
+          "description": "Subtract: 100x - x = 70 - 0, so 99x = 70",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Inner: 4 × 3x = 12x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Last: 4 × -3 = -12 Combine like terms: 18x^2 - 6x - 12",
+          "description": "x = 70/99 = 70/99",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "18x^2 - 6x - 12 oe",
+          "description": "70/99 oe",
           "marks": 1
         }
       ],
@@ -273,76 +205,270 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "forming_equations_H",
-      "prompt": "A quadrilateral has angles 82°, 52°, (2x + 8)°, and (4x + 140)°. Form an equation and solve it to find x.",
+      "topic_id": "cross_multiplication_H",
+      "prompt": "Solve the following equation.\n\\frac{5x - 2}{2} = \\frac{5x + 1}{5}",
       "solution_steps": [
-        "Angles in a quadrilateral sum to 360°.",
-        "82 + 52 + (2x + 8) + (4x + 140) = 360",
-        "Collect the x-terms and constants together:",
-        "6x + 148 = 226",
-        "Subtract 148 from both sides:",
-        "6x = 78",
-        "Divide both sides by 6:",
-        "x = 13"
+        "Cross-multiply: 5(5x - 2) = 2(5x + 1)",
+        "25x - 10 = 10x + 2",
+        "Subtract 10x from both sides:",
+        "15x - 10 = 2",
+        "Add 10 to both sides:",
+        "15x = 12",
+        "Divide both sides by 15:",
+        "x = 4/5"
       ],
-      "final_answer": "13",
+      "final_answer": "x = 4/5",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Angles in a quadrilateral sum to 360°.",
+          "description": "Cross-multiply: 5(5x - 2) = 2(5x + 1)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "82 + 52 + (2x + 8) + (4x + 140) = 360",
+          "description": "25x - 10 = 10x + 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Collect the x-terms and constants together:",
+          "description": "Subtract 10x from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "6x + 148 = 226 Subtract 148 from both sides: 6x = 78 Divide both sides by 6: x = 13",
+          "description": "15x - 10 = 2 Add 10 to both sides: 15x = 12 Divide both sides by 15: x = 4/5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "13 oe",
+          "description": "x = 4/5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "kinematics_suvat_H",
+      "prompt": "An object starts with an initial velocity (u) of 22 m/s and has a constant acceleration (a) of 10 m/s^2 over a displacement (s) of 38 m. Find its final velocity (v). Give your answer correct to 1 decimal place.",
+      "solution_steps": [
+        "This question gives three of v, u, a and s and asks for the fourth, so use v^2 = u^2 + 2as, the equation linking exactly those four (note: no t appears here).",
+        "v^2 = u^2 + 2as",
+        "Substitute u = 22, a = 10, s = 38: v^2 = 22^2 + 2 × 10 × 38 = 484 + 760 = 1244",
+        "v = √1244 = 35.3 m/s (taking the positive root, since speed cannot be negative)"
+      ],
+      "final_answer": "35.3 m/s (taking the positive root)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "This question gives three of v, u, a and s and asks for the fourth, so use v^2 = u^2 + 2as, the equation linking exactly those four (note: no t appears here).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "v^2 = u^2 + 2as",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute u = 22, a = 10, s = 38: v^2 = 22^2 + 2 × 10 × 38 = 484 + 760 = 1244",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "v = √1244 = 35.3 m/s (taking the positive root, since speed cannot be negative)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "35.3 m/s (taking the positive root) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "completing_the_square_H",
+      "prompt": "Write x^2 + 8x - 5 in the form (x + p)^2 + q.",
+      "solution_steps": [
+        "Half the coefficient of x: 8 ÷ 2 = 4",
+        "(x + 4)^2 = x^2 + 8x + 16",
+        "x^2 + 8x - 5 = (x + 4)^2 + (-5 - 16) = (x + 4)^2 - 21"
+      ],
+      "final_answer": "(x + 4)^2 - 21",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Half the coefficient of x: 8 ÷ 2 = 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(x + 4)^2 = x^2 + 8x + 16",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x^2 + 8x - 5 = (x + 4)^2 + (-5 - 16) = (x + 4)^2 - 21",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(x + 4)^2 - 21 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "solve_quadratic_factorising_H",
+      "prompt": "Solve x^2 - 7x - 18 = 0 by factorising.",
+      "solution_steps": [
+        "Find two numbers that multiply to -18 and add to -7: 2 and -9",
+        "Factorise: (x + 2)(x - 9) = 0",
+        "Either x + 2 = 0 or x + -9 = 0",
+        "x = -2 or x = 9"
+      ],
+      "final_answer": "x = -2 or x = 9",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find two numbers that multiply to -18 and add to -7: 2 and -9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: (x + 2)(x - 9) = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Either x + 2 = 0 or x + -9 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -2 or x = 9",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = -2 or x = 9 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "trig_graph_H",
+      "prompt": "Complete a table of values for y = -cos(x°) for x = 0 to 360 (in steps of 90°), then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = -cos(x°):",
+        "x: 0, 90, 180, 270, 360",
+        "y: -1, 0, 1, 0, -1",
+        "Plot each (x, y) point and join them with a single smooth curve - y = -cos(x°) repeats the same shape every 360°, and never goes above 1 or below -1."
+      ],
+      "final_answer": "y = -cos(x°)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = -cos(x°):",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: 0, 90, 180, 270, 360",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: -1, 0, 1, 0, -1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve - y = -cos(x°) repeats the same shape every 360°, and never goes above 1 or below -1.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "y = -cos(x°) oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "polygon_angles",
+        "kind": "function_graph",
         "params": {
-          "n_sides": 4,
-          "angle_labels": [
-            "82°",
-            "52°",
-            "(2x + 8)°",
-            "(4x + 140)°"
-          ]
+          "kind": "trigonometric",
+          "fn": "cos",
+          "sign": -1,
+          "x_min": 0,
+          "x_max": 360,
+          "y_min": -1.4,
+          "y_max": 1.4,
+          "x_label": "x (degrees)",
+          "blank": true
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "trigonometric",
+          "fn": "cos",
+          "sign": -1,
+          "x_min": 0,
+          "x_max": 360,
+          "y_min": -1.4,
+          "y_max": 1.4,
+          "x_label": "x (degrees)",
+          "table_points": [
+            [
+              0,
+              -1
+            ],
+            [
+              90,
+              0
+            ],
+            [
+              180,
+              1
+            ],
+            [
+              270,
+              0
+            ],
+            [
+              360,
+              -1
+            ]
+          ]
+        }
+      }
     },
     {
       "topic_id": "plot_cubic_H",
-      "prompt": "Complete a table of values for y = x^3 - x for x = -3 to 3, then plot the graph.",
+      "prompt": "Complete a table of values for y = x^3 - 3x for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = x^3 - x:",
+        "Table of values for y = x^3 - 3x:",
         "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: -24, -6, 0, 0, 0, 6, 24",
+        "y: -18, -2, 2, 0, -2, 2, 18",
         "Plot each (x, y) point and join them with a single smooth curve."
       ],
-      "final_answer": "Cubic curve: y = x^3 - x",
+      "final_answer": "Cubic curve: y = x^3 - 3x",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = x^3 - x:",
+          "description": "Table of values for y = x^3 - 3x:",
           "marks": 1
         },
         {
@@ -352,7 +478,7 @@
         },
         {
           "code": "M1",
-          "description": "y: -24, -6, 0, 0, 0, 6, 24",
+          "description": "y: -18, -2, 2, 0, -2, 2, 18",
           "marks": 1
         },
         {
@@ -362,7 +488,7 @@
         },
         {
           "code": "A1",
-          "description": "Cubic curve: y = x^3 - x oe",
+          "description": "Cubic curve: y = x^3 - 3x oe",
           "marks": 1
         }
       ],
@@ -371,11 +497,11 @@
         "params": {
           "kind": "cubic",
           "a": 1,
-          "b": -1,
+          "b": -3,
           "x_min": -4,
           "x_max": 4,
-          "y_min": -26,
-          "y_max": 26,
+          "y_min": -20,
+          "y_max": 20,
           "blank": true
         }
       },
@@ -384,23 +510,23 @@
         "params": {
           "kind": "cubic",
           "a": 1,
-          "b": -1,
+          "b": -3,
           "x_min": -4,
           "x_max": 4,
-          "y_min": -26,
-          "y_max": 26,
+          "y_min": -20,
+          "y_max": 20,
           "table_points": [
             [
               -3,
-              -24
+              -18
             ],
             [
               -2,
-              -6
+              -2
             ],
             [
               -1,
-              0
+              2
             ],
             [
               0,
@@ -408,91 +534,49 @@
             ],
             [
               1,
-              0
+              -2
             ],
             [
               2,
-              6
+              2
             ],
             [
               3,
-              24
+              18
             ]
           ]
         }
       }
     },
     {
-      "topic_id": "quadratic_formula_H",
-      "prompt": "Solve 4x^2 + 5x - 14 = 0 using the quadratic formula, giving your answers to 2 decimal places.",
+      "topic_id": "perpendicular_lines_equation_H",
+      "prompt": "A line is perpendicular to y = 3x + 8 and passes through the point (1, 2). Find the equation of the line.",
       "solution_steps": [
-        "x = (-b ± √(b^2 - 4ac)) / 2a",
-        "a = 4, b = 5, c = -14",
-        "x = \\frac{-5 ± √(5^2 - 4×4×-14)}{2×4}",
-        "x = \\frac{-5 ± √249}{8}",
-        "x = 1.35 or x = -2.60"
+        "Perpendicular gradients multiply to give -1: m × 3 = -1, so m = -1/3",
+        "Substitute (1, 2) into y = -1/3x + c: 2 = -1/3×(1) + c, so c = 7/3",
+        "Equation of the line: y = -1/3x + 7/3"
       ],
-      "final_answer": "x = 1.35 or x = -2.60",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "x = (-b ± √(b^2 - 4ac)) / 2a",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "a = 4, b = 5, c = -14",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = \\frac{-5 ± √(5^2 - 4×4×-14)}{2×4}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = \\frac{-5 ± √249}{8} x = 1.35 or x = -2.60",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x = 1.35 or x = -2.60 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "turning_point_of_graph_H",
-      "prompt": "Find the coordinates of the turning point of the curve y = x^2 - 16x + 9.",
-      "solution_steps": [
-        "Complete the square: x^2 - 16x + 9 = (x - 8)^2 - 55",
-        "The turning point of y = (x + p)^2 + q is (-p, q).",
-        "Turning point = (8, -55)"
-      ],
-      "final_answer": "(8, -55)",
+      "final_answer": "y = -1/3x + 7/3",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Complete the square: x^2 - 16x + 9 = (x - 8)^2 - 55",
+          "description": "Perpendicular gradients multiply to give -1: m × 3 = -1, so m = -1/3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The turning point of y = (x + p)^2 + q is (-p, q).",
+          "description": "Substitute (1, 2) into y = -1/3x + c: 2 = -1/3×(1) + c, so c = 7/3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Turning point = (8, -55)",
+          "description": "Equation of the line: y = -1/3x + 7/3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "(8, -55) oe",
+          "description": "y = -1/3x + 7/3 oe",
           "marks": 1
         }
       ],
@@ -500,137 +584,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "plot_reciprocal_H",
-      "prompt": "Complete a table of values for y = -\\frac{36}{x} for x = -4, -3, -2, -1, 1, 2, 3, 4, then plot the graph.",
+      "topic_id": "algebraic_direct_proportion_H",
+      "prompt": "y is directly proportional to x^3. When x = 3, y = 135. Find the value of y when x = 7.",
       "solution_steps": [
-        "Table of values for y = -\\frac{36}{x}:",
-        "x: -4, -3, -2, -1, 1, 2, 3, 4",
-        "y: 9, 12, 18, 36, -36, -18, -12, -9",
-        "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0."
+        "y = kx^3",
+        "135 = k × 3^3 = k × 27",
+        "k = 135 ÷ 27 = 5",
+        "y = 5 × 7^3 = 5 × 343 = 1715"
       ],
-      "final_answer": "Reciprocal curve: y = -\\frac{36}{x}",
+      "final_answer": "1715",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = -\\frac{36}{x}:",
+          "description": "y = kx^3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x: -4, -3, -2, -1, 1, 2, 3, 4",
+          "description": "135 = k × 3^3 = k × 27",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y: 9, 12, 18, 36, -36, -18, -12, -9",
+          "description": "k = 135 ÷ 27 = 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot each (x, y) point. The graph has two separate curved branches and never touches x = 0.",
+          "description": "y = 5 × 7^3 = 5 × 343 = 1715",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Reciprocal curve: y = -\\frac{36}{x} oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "reciprocal",
-          "a": -36,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -38,
-          "y_max": 38,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "reciprocal",
-          "a": -36,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -38,
-          "y_max": 38,
-          "table_points": [
-            [
-              -4,
-              9
-            ],
-            [
-              -3,
-              12
-            ],
-            [
-              -2,
-              18
-            ],
-            [
-              -1,
-              36
-            ],
-            [
-              1,
-              -36
-            ],
-            [
-              2,
-              -18
-            ],
-            [
-              3,
-              -12
-            ],
-            [
-              4,
-              -9
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "iteration_H",
-      "prompt": "The iterative formula x_(n+1) = √(33 - x_n) is used with x_0 = 2. Find the values of x_1, x_2 and x_3, giving each answer to 3 decimal places.",
-      "solution_steps": [
-        "Iterative formula: x_(n+1) = √(33 - x_n)",
-        "x_0 = 2",
-        "x_1 = g(x_0) = √(33 - 2) = 5.568",
-        "x_2 = g(x_1) = √(33 - 5.568) = 5.238",
-        "x_3 = g(x_2) = √(33 - 5.238) = 5.269"
-      ],
-      "final_answer": "x_1 = 5.568, x_2 = 5.238, x_3 = 5.269",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Iterative formula: x_(n+1) = √(33 - x_n)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x_0 = 2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x_1 = g(x_0) = √(33 - 2) = 5.568",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x_2 = g(x_1) = √(33 - 5.568) = 5.238 x_3 = g(x_2) = √(33 - 5.238) = 5.269",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x_1 = 5.568, x_2 = 5.238, x_3 = 5.269 oe",
+          "description": "1715 oe",
           "marks": 1
         }
       ],
@@ -639,27 +626,27 @@
     },
     {
       "topic_id": "pressure_H",
-      "prompt": "A storage container has a rectangular base measuring 13 cm × 26 cm and exerts a force of 3621 N. Find the pressure it exerts, correct to 2 decimal places.",
+      "prompt": "A concrete block exerts a force of 1551 N over a contact area of 2298 cm². Find the pressure in N/m², correct to 2 decimal places.",
       "solution_steps": [
-        "area = length × width = 13 × 26 = 338 cm²",
-        "pressure = force ÷ area = 3621 ÷ 338 = 10.71 N/cm² (2 d.p.)"
+        "Convert area to m²: 2298 cm² = 2298 ÷ 10000 = 0.2298 m²",
+        "pressure = force ÷ area = 1551 ÷ 0.2298 = 6749.35 N/m² (2 d.p.)"
       ],
-      "final_answer": "10.71 N/cm²",
+      "final_answer": "6749.35 N/m²",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "area = length × width = 13 × 26 = 338 cm²",
+          "description": "Convert area to m²: 2298 cm² = 2298 ÷ 10000 = 0.2298 m²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "pressure = force ÷ area = 3621 ÷ 338 = 10.71 N/cm² (2 d.p.)",
+          "description": "pressure = force ÷ area = 1551 ÷ 0.2298 = 6749.35 N/m² (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10.71 N/cm² oe",
+          "description": "6749.35 N/m² oe",
           "marks": 1
         }
       ],
@@ -667,69 +654,57 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_shape_similar_H",
-      "prompt": "Shape A and Shape B are similar. The volume of shape A is 16 cm^3. Find the volume of shape B.",
+      "topic_id": "speed_with_conversions_H",
+      "prompt": "A motorbike travels 5 km in 75 minutes. Find its average speed in km/h, correct to 1 decimal place.",
       "solution_steps": [
-        "Linear scale factor = 6 ÷ 4 = 3/2",
-        "Volume scale factor = (3/2)^3 = 27/8",
-        "Volume of B = 16 × 27/8 = 54 cm^3"
+        "Convert time to hours: 75 minutes = 75 ÷ 60 hours",
+        "speed = distance ÷ time = 5 ÷ (75 ÷ 60) = 4 km/h (1 d.p.)"
       ],
-      "final_answer": "54 cm^3",
-      "marks": 4,
+      "final_answer": "4 km/h",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Linear scale factor = 6 ÷ 4 = 3/2",
+          "description": "Convert time to hours: 75 minutes = 75 ÷ 60 hours",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Volume scale factor = (3/2)^3 = 27/8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Volume of B = 16 × 27/8 = 54 cm^3",
+          "description": "speed = distance ÷ time = 5 ÷ (75 ÷ 60) = 4 km/h (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "54 cm^3 oe",
+          "description": "4 km/h oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "two_similar_rectangles",
-        "params": {
-          "a_width_label": "4 cm",
-          "b_width_label": "6 cm"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     },
     {
       "topic_id": "density_H",
-      "prompt": "A sample of liquid has a mass of 15 kg and a volume of 272 cm³. Find its density in g/cm³, correct to 2 decimal places.",
+      "prompt": "A metal block has a mass of 3 kg and a volume of 1677 cm³. Find its density in g/cm³, correct to 2 decimal places.",
       "solution_steps": [
-        "Convert mass to grams: 15 kg = 15 × 1000 = 15000 g",
-        "density = mass ÷ volume = 15000 ÷ 272 = 55.15 g/cm³ (2 d.p.)"
+        "Convert mass to grams: 3 kg = 3 × 1000 = 3000 g",
+        "density = mass ÷ volume = 3000 ÷ 1677 = 1.79 g/cm³ (2 d.p.)"
       ],
-      "final_answer": "55.15 g/cm³",
+      "final_answer": "1.79 g/cm³",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert mass to grams: 15 kg = 15 × 1000 = 15000 g",
+          "description": "Convert mass to grams: 3 kg = 3 × 1000 = 3000 g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "density = mass ÷ volume = 15000 ÷ 272 = 55.15 g/cm³ (2 d.p.)",
+          "description": "density = mass ÷ volume = 3000 ÷ 1677 = 1.79 g/cm³ (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "55.15 g/cm³ oe",
+          "description": "1.79 g/cm³ oe",
           "marks": 1
         }
       ],
@@ -737,118 +712,59 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_inverse_proportion_H",
-      "prompt": "y is inversely proportional to x^2. When x = 2, y = 54. Find the value of y when x = 3.",
+      "topic_id": "ratio_share_three_part_H",
+      "prompt": "Share 156 in the ratio 3:4:5.",
       "solution_steps": [
-        "y = k ÷ x^2",
-        "k = y × x^2 = 54 × 2^2 = 54 × 4 = 216",
-        "y = k ÷ x^2 = 216 ÷ 3^2 = 216 ÷ 9 = 24"
+        "Total parts = 3 + 4 + 5 = 12",
+        "Value of one part = 156 ÷ 12 = 13",
+        "Share 1 = 3 × 13 = 39",
+        "Share 2 = 4 × 13 = 52",
+        "Share 3 = 5 × 13 = 65"
       ],
-      "final_answer": "24",
-      "marks": 4,
+      "final_answer": "39 : 52 : 65",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = k ÷ x^2",
+          "description": "Total parts = 3 + 4 + 5 = 12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "k = y × x^2 = 54 × 2^2 = 54 × 4 = 216",
+          "description": "Value of one part = 156 ÷ 12 = 13",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "y = k ÷ x^2 = 216 ÷ 3^2 = 216 ÷ 9 = 24",
+          "description": "Share 1 = 3 × 13 = 39",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Share 2 = 4 × 13 = 52 Share 3 = 5 × 13 = 65",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "24 oe",
+          "description": "39 : 52 : 65 oe",
           "marks": 1
         }
       ],
       "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "unit_conversions_H",
-      "prompt": "Convert 25 cm² to mm².",
-      "solution_steps": [
-        "Linear conversion factor: 1 cm = 10 mm, so for area, 1 cm² = 10^2 = 100 mm²",
-        "25 cm² = 25 × 100 = 2500 mm²"
-      ],
-      "final_answer": "2500 mm²",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Linear conversion factor: 1 cm = 10 mm, so for area, 1 cm² = 10^2 = 100 mm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "25 cm² = 25 × 100 = 2500 mm²",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2500 mm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "trig_missing_side_H",
-      "prompt": "In the triangle shown, find the length of x, correct to 2 decimal places.",
-      "solution_steps": [
-        "We know the opposite and want the hypotenuse, so use sin.",
-        "x = 26 ÷ sin(28°) = 55.38 (2 d.p.)"
-      ],
-      "final_answer": "55.38 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "We know the opposite and want the hypotenuse, so use sin.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 26 ÷ sin(28°) = 55.38 (2 d.p.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "55.38 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "trig_triangle",
-        "params": {
-          "adjacent_label": null,
-          "opposite_label": "26 cm",
-          "hyp_label": "x cm",
-          "angle_label": "28°"
-        }
-      },
       "solution_diagram": null
     },
     {
       "topic_id": "angles_around_point_H",
-      "prompt": "The angles 89°, 82° and (2x + 185)° are angles around a point. Find x.",
+      "prompt": "The angles 92°, 83°, 133° and (5x - 23)° are angles around a point. Find x.",
       "solution_steps": [
         "Angles around a point sum to 360°.",
-        "2x + 185 = 189",
-        "Subtract 185 from both sides:",
-        "2x = 4",
-        "Divide both sides by 2:",
-        "x = 2"
+        "5x - 23 = 52",
+        "Add 23 to both sides:",
+        "5x = 75",
+        "Divide both sides by 5:",
+        "x = 15"
       ],
-      "final_answer": "2",
+      "final_answer": "15",
       "marks": 5,
       "mark_scheme": [
         {
@@ -858,22 +774,22 @@
         },
         {
           "code": "M1",
-          "description": "2x + 185 = 189",
+          "description": "5x - 23 = 52",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 185 from both sides:",
+          "description": "Add 23 to both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x = 4 Divide both sides by 2: x = 2",
+          "description": "5x = 75 Divide both sides by 5: x = 15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2 oe",
+          "description": "15 oe",
           "marks": 1
         }
       ],
@@ -881,14 +797,16 @@
         "kind": "angle_line",
         "params": {
           "angle_values": [
-            89,
-            82,
-            189
+            92,
+            83,
+            133,
+            52
           ],
           "labels": [
-            "89°",
-            "82°",
-            "(2x + 185)°"
+            "92°",
+            "83°",
+            "133°",
+            "(5x - 23)°"
           ],
           "around_point": true
         }
@@ -897,117 +815,262 @@
     },
     {
       "topic_id": "volume_surface_area_pyramid_H",
-      "prompt": "A square-based pyramid has a base of side 16 cm and a perpendicular height of 9 cm. Find its total surface area, correct to 1 decimal place.",
+      "prompt": "A square-based pyramid has a base of side 12 cm and a perpendicular height of 18 cm. Find its total surface area, correct to 3 significant figures.",
       "solution_steps": [
-        "Slant height l = √(height² + (base ÷ 2)²) = √(9² + (16 ÷ 2)²) ≈ 12.0 cm",
-        "Surface area = base² + 2 × base × l = 16² + 2 × 16 × 12.0",
-        "= 641.3 cm² (1 d.p.)"
+        "Slant height l = √(height² + (base ÷ 2)²) = √(18² + (12 ÷ 2)²) ≈ 19.0 cm",
+        "Surface area = base² + 2 × base × l = 12² + 2 × 12 × 19.0",
+        "= 599 cm² (3 s.f.)"
       ],
-      "final_answer": "641.3 cm²",
+      "final_answer": "599 cm²",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Slant height l = √(height² + (base ÷ 2)²) = √(9² + (16 ÷ 2)²) ≈ 12.0 cm",
+          "description": "Slant height l = √(height² + (base ÷ 2)²) = √(18² + (12 ÷ 2)²) ≈ 19.0 cm",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Surface area = base² + 2 × base × l = 16² + 2 × 16 × 12.0",
+          "description": "Surface area = base² + 2 × base × l = 12² + 2 × 12 × 19.0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 641.3 cm² (1 d.p.)",
+          "description": "= 599 cm² (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "641.3 cm² oe",
+          "description": "599 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "pyramid",
         "params": {
-          "base_label": "16 cm",
-          "height_label": "9 cm",
-          "slant_label": "12.04 cm"
+          "base_label": "12 cm",
+          "height_label": "18 cm"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "area_circle_H",
-      "prompt": "Find the circumference of the following circle, in terms of π.",
+      "prompt": "Find the area of the following circle, in terms of π.",
       "solution_steps": [
-        "Circumference = 2 × π × r = 2 × π × 9 = 18π cm",
-        "≈ 56.5 cm (3 s.f.)"
+        "Area = π × r² = π × 8² = 64π cm²",
+        "≈ 201 cm² (3 s.f.)"
       ],
-      "final_answer": "18π cm (≈ 56.5 cm)",
+      "final_answer": "64π cm² (≈ 201 cm²)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Circumference = 2 × π × r = 2 × π × 9 = 18π cm",
+          "description": "Area = π × r² = π × 8² = 64π cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "≈ 56.5 cm (3 s.f.)",
+          "description": "≈ 201 cm² (3 s.f.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "18π cm (≈ 56.5 cm) oe",
+          "description": "64π cm² (≈ 201 cm²) oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "circle",
         "params": {
-          "radius": 9,
-          "label": "9 cm"
+          "radius": 8,
+          "label": "8 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "venn_diagram_algebra_H",
-      "prompt": "The Venn diagram shows the number of elements in each region of sets A and B, given in terms of x. There are 52 elements in total. Find the value of x, and hence find the number of elements in B only.",
+      "topic_id": "loci_regions_H",
+      "prompt": "A and B are two fixed points (shown). Shade the region containing points that are both within 4 cm of B AND closer to B than to A.",
       "solution_steps": [
-        "a_only + b_only + both + neither = total: (3x) + (x) + (2x + 3) + 13 = 52",
-        "Collecting like terms: 6x + 16 = 52",
-        "x = 6",
-        "Substituting x = 6: A only = 18, B only = 6, both = 15, neither = 13",
-        "The number of elements in B only = 6"
+        "The boundary for 'within 4 cm of B' is a circle, centre B, radius 4 cm - the region is inside this circle.",
+        "The boundary for 'closer to B than to A' is the perpendicular bisector of BA - the region is on the B side of it.",
+        "The required region is where these two conditions overlap."
       ],
-      "final_answer": "6",
-      "marks": 5,
+      "final_answer": "The region inside the circle of radius 4 cm centred on B, and on the B side of the perpendicular bisector of BA.",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "a_only + b_only + both + neither = total: (3x) + (x) + (2x + 3) + 13 = 52",
+          "description": "The boundary for 'within 4 cm of B' is a circle, centre B, radius 4 cm - the region is inside this circle.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Collecting like terms: 6x + 16 = 52",
+          "description": "The boundary for 'closer to B than to A' is the perpendicular bisector of BA - the region is on the B side of it.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substituting x = 6: A only = 18, B only = 6, both = 15, neither = 13 The number of elements in B only = 6",
+          "description": "The required region is where these two conditions overlap.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6 oe",
+          "description": "The region inside the circle of radius 4 cm centred on B, and on the B side of the perpendicular bisector of BA. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "loci_region",
+        "params": {
+          "x_min": -9.0,
+          "x_max": 1.0,
+          "y_min": -9.0,
+          "y_max": 1.0,
+          "points": [
+            {
+              "xy": [
+                -4,
+                0
+              ],
+              "label": "A"
+            },
+            {
+              "xy": [
+                -4,
+                -4
+              ],
+              "label": "B"
+            }
+          ],
+          "boundaries": [
+            {
+              "type": "circle",
+              "centre": [
+                -4,
+                -4
+              ],
+              "radius": 4
+            },
+            {
+              "type": "segment",
+              "p1": [
+                6.0,
+                -2.0
+              ],
+              "p2": [
+                -14.0,
+                -2.0
+              ]
+            }
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "loci_region",
+        "params": {
+          "x_min": -9.0,
+          "x_max": 1.0,
+          "y_min": -9.0,
+          "y_max": 1.0,
+          "points": [
+            {
+              "xy": [
+                -4,
+                0
+              ],
+              "label": "A"
+            },
+            {
+              "xy": [
+                -4,
+                -4
+              ],
+              "label": "B"
+            }
+          ],
+          "boundaries": [
+            {
+              "type": "circle",
+              "centre": [
+                -4,
+                -4
+              ],
+              "radius": 4
+            },
+            {
+              "type": "segment",
+              "p1": [
+                6.0,
+                -2.0
+              ],
+              "p2": [
+                -14.0,
+                -2.0
+              ]
+            }
+          ],
+          "shade_constraints": [
+            {
+              "type": "disk",
+              "centre": [
+                -4,
+                -4
+              ],
+              "radius": 4,
+              "inside": true
+            },
+            {
+              "type": "half_plane",
+              "closer_to": [
+                -4,
+                -4
+              ],
+              "than": [
+                -4,
+                0
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "venn_diagram_notation_H",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8}. The Venn diagram shows sets A and B. List the elements of A ∩ B'.",
+      "solution_steps": [
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8}",
+        "A = {2, 5, 6}, B = {2, 3, 4, 6}",
+        "A ∩ B' means the elements in A but not in B.",
+        "A ∩ B' = {5}"
+      ],
+      "final_answer": "{5}",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = {2, 5, 6}, B = {2, 3, 4, 6}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A ∩ B' means the elements in A but not in B.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A ∩ B' = {5}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "{5} oe",
           "marks": 1
         }
       ],
@@ -1018,39 +1081,54 @@
             "A",
             "B"
           ],
+          "universal_label": "S",
           "region_text": {
-            "a_only": "3x",
-            "b_only": "x",
-            "both": "2x + 3",
-            "neither": "13"
+            "a_only": "5",
+            "b_only": "3, 4",
+            "both": "2, 6",
+            "neither": "1, 7, 8"
           }
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_combined_dice_H",
-      "prompt": "Two fair six-sided dice are rolled. Find the probability that the two scores add up to 3.",
+      "topic_id": "substitution_H",
+      "prompt": "v^2 = u^2 + 2as. Find the value of v when u = 3, a = 5 and s = 19. Give your answer to 3 significant figures if it is not exact.",
       "solution_steps": [
-        "Number of ways to score a total of 3 out of 36 equally likely outcomes = 2",
-        "P(total = 3) = 2/36 = 1/18"
+        "v^2 = u^2 + 2as",
+        "v^2 = 3^2 + 2 × 5 × 19",
+        "v^2 = 9 + 190",
+        "v^2 = 199",
+        "v = √199 = 14.1 (3 s.f.)",
+        "Take the positive square root only, since v represents a speed and must be positive."
       ],
-      "final_answer": "1/18",
-      "marks": 3,
+      "final_answer": "v = 14.1 (3 s.f.)",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Number of ways to score a total of 3 out of 36 equally likely outcomes = 2",
+          "description": "v^2 = u^2 + 2as",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(total = 3) = 2/36 = 1/18",
+          "description": "v^2 = 3^2 + 2 × 5 × 19",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "v^2 = 9 + 190",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "v^2 = 199 v = √199 = 14.1 (3 s.f.) Take the positive square root only, since v represents a speed and must be positive.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/18 oe",
+          "description": "v = 14.1 (3 s.f.) oe",
           "marks": 1
         }
       ],

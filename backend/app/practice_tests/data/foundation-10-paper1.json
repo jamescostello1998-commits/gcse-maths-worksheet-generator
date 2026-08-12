@@ -8,12 +8,12 @@
   "questions": [
     {
       "topic_id": "decimals_add_subtract_F",
-      "prompt": "Calculate 40.12 + 23.7.",
+      "prompt": "Work out 24.59 + 72.8.",
       "solution_steps": [
         "Line up the decimal points, padding with a zero so both numbers have the same number of decimal places.",
-        "40.12 + 23.7 = 63.82"
+        "24.59 + 72.8 = 97.39"
       ],
-      "final_answer": "63.82",
+      "final_answer": "97.39",
       "marks": 3,
       "mark_scheme": [
         {
@@ -23,12 +23,12 @@
         },
         {
           "code": "M1",
-          "description": "40.12 + 23.7 = 63.82",
+          "description": "24.59 + 72.8 = 97.39",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "63.82 oe",
+          "description": "97.39 oe",
           "marks": 1
         }
       ],
@@ -36,22 +36,22 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "negative_multiply_divide_F",
-      "prompt": "Work out 108 ÷ (-9).",
+      "topic_id": "negative_add_subtract_F",
+      "prompt": "Work out -12 - 6.",
       "solution_steps": [
-        "108 ÷ (-9) = -12"
+        "-12 - 6 = -18"
       ],
-      "final_answer": "-12",
+      "final_answer": "-18",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "108 ÷ (-9) = -12",
+          "description": "-12 - 6 = -18",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-12 oe",
+          "description": "-18 oe",
           "marks": 1
         }
       ],
@@ -60,27 +60,27 @@
     },
     {
       "topic_id": "number_powers_of_ten_F",
-      "prompt": "Evaluate 635 ÷ 1000.",
+      "prompt": "Calculate 829 × 1000.",
       "solution_steps": [
-        "Dividing by 1000 moves the decimal point 3 places to the left.",
-        "635 ÷ 1000 = 0.635"
+        "Multiplying by 1000 moves the decimal point 3 places to the right.",
+        "829 × 1000 = 829000"
       ],
-      "final_answer": "0.635",
+      "final_answer": "829000",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Dividing by 1000 moves the decimal point 3 places to the left.",
+          "description": "Multiplying by 1000 moves the decimal point 3 places to the right.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "635 ÷ 1000 = 0.635",
+          "description": "829 × 1000 = 829000",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0.635 oe",
+          "description": "829000 oe",
           "marks": 1
         }
       ],
@@ -89,56 +89,27 @@
     },
     {
       "topic_id": "decimals_round_sf_F",
-      "prompt": "Round 462.318 to 1 significant figure.",
+      "prompt": "Round 940.847 to 3 significant figures.",
       "solution_steps": [
-        "Identify the first 1 significant figure of 462.318.",
-        "462.318 rounded to 1 significant figure = 500"
+        "Identify the first 3 significant figures of 940.847.",
+        "940.847 rounded to 3 significant figures = 941"
       ],
-      "final_answer": "500",
+      "final_answer": "941",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Identify the first 1 significant figure of 462.318.",
+          "description": "Identify the first 3 significant figures of 940.847.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "462.318 rounded to 1 significant figure = 500",
+          "description": "940.847 rounded to 3 significant figures = 941",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "500 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "estimation_rounding_F",
-      "prompt": "Work out an estimate for (52.1 × 6.2) ÷ 7.7 by rounding each number to 1 significant figure.",
-      "solution_steps": [
-        "Round each value to 1 significant figure: 52.1 ≈ 50, 6.2 ≈ 6, 7.7 ≈ 8",
-        "(50 × 6) ÷ 8 = 37.5"
-      ],
-      "final_answer": "37.5",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Round each value to 1 significant figure: 52.1 ≈ 50, 6.2 ≈ 6, 7.7 ≈ 8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(50 × 6) ÷ 8 = 37.5",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "37.5 oe",
+          "description": "941 oe",
           "marks": 1
         }
       ],
@@ -147,39 +118,39 @@
     },
     {
       "topic_id": "standard_form_calculator_F",
-      "prompt": "Use a calculator to work out (4.5 × 10^-1) ÷ (5.1 × 10^0). Give your answer in standard form, rounded to 3 significant figures if necessary.",
+      "prompt": "Use a calculator to work out (1.7 × 10^-6) ÷ (5.7 × 10^1). Give your answer in standard form, rounded to 3 significant figures if necessary.",
       "solution_steps": [
-        "Divide the mantissas on your calculator: 4.5 ÷ 5.1 = 0.882353",
-        "Subtract the powers of 10: -1 - 0 = -1",
-        "Renormalise so the mantissa is between 1 and 10: 8.823529 × 10^-2",
-        "Round the mantissa to 3 significant figures: 8.82 × 10^-2"
+        "Divide the mantissas on your calculator: 1.7 ÷ 5.7 = 0.298246",
+        "Subtract the powers of 10: -6 - 1 = -7",
+        "Renormalise so the mantissa is between 1 and 10: 2.982456 × 10^-8",
+        "Round the mantissa to 3 significant figures: 2.98 × 10^-8"
       ],
-      "final_answer": "8.82 × 10^-2",
+      "final_answer": "2.98 × 10^-8",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide the mantissas on your calculator: 4.5 ÷ 5.1 = 0.882353",
+          "description": "Divide the mantissas on your calculator: 1.7 ÷ 5.7 = 0.298246",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract the powers of 10: -1 - 0 = -1",
+          "description": "Subtract the powers of 10: -6 - 1 = -7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Renormalise so the mantissa is between 1 and 10: 8.823529 × 10^-2",
+          "description": "Renormalise so the mantissa is between 1 and 10: 2.982456 × 10^-8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Round the mantissa to 3 significant figures: 8.82 × 10^-2",
+          "description": "Round the mantissa to 3 significant figures: 2.98 × 10^-8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8.82 × 10^-2 oe",
+          "description": "2.98 × 10^-8 oe",
           "marks": 1
         }
       ],
@@ -187,34 +158,57 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "recurring_decimal_single_digit_F",
-      "prompt": "Write \\recur{0.}{3} as a fraction in its simplest form.",
+      "topic_id": "estimation_rounding_F",
+      "prompt": "Work out an estimate for (39.2 × 2.7) ÷ 2.6 by rounding each number to 1 significant figure.",
       "solution_steps": [
-        "Let x = \\recur{0.}{3}, so 10x = 3.333... (only one digit repeats, so multiply by 10 to shift it one place)",
-        "Subtract: 10x - x = 3 - 0, so 9x = 3",
-        "x = 3/9 = 1/3"
+        "Round each value to 1 significant figure: 39.2 ≈ 40, 2.7 ≈ 3, 2.6 ≈ 3",
+        "(40 × 3) ÷ 3 = 40"
       ],
-      "final_answer": "1/3",
-      "marks": 4,
+      "final_answer": "40",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = \\recur{0.}{3}, so 10x = 3.333... (only one digit repeats, so multiply by 10 to shift it one place)",
+          "description": "Round each value to 1 significant figure: 39.2 ≈ 40, 2.7 ≈ 3, 2.6 ≈ 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract: 10x - x = 3 - 0, so 9x = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 3/9 = 1/3",
+          "description": "(40 × 3) ÷ 3 = 40",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/3 oe",
+          "description": "40 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "bidmas_two_three_F",
+      "prompt": "Work out 3 + 2 × 9.",
+      "solution_steps": [
+        "Multiplication: 2 × 9 = 18",
+        "Addition: 3 + 18 = 21"
+      ],
+      "final_answer": "21",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiplication: 2 × 9 = 18",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Addition: 3 + 18 = 21",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "21 oe",
           "marks": 1
         }
       ],
@@ -223,27 +217,27 @@
     },
     {
       "topic_id": "powers_F",
-      "prompt": "Simplify (2^3)^2, giving your answer as a single power of 2.",
+      "prompt": "Fully simplify 7^4 × 7^5, giving your answer as a single power of 7.",
       "solution_steps": [
-        "Multiply the powers: 3 × 2 = 6",
-        "(2^3)^2 = 2^6"
+        "Add the powers: 4 + 5 = 9",
+        "7^4 × 7^5 = 7^9"
       ],
-      "final_answer": "2^6",
+      "final_answer": "7^9",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply the powers: 3 × 2 = 6",
+          "description": "Add the powers: 4 + 5 = 9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "(2^3)^2 = 2^6",
+          "description": "7^4 × 7^5 = 7^9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2^6 oe",
+          "description": "7^9 oe",
           "marks": 1
         }
       ],
@@ -251,15 +245,15 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "substitution_rearrange_F",
-      "prompt": "v = u + at. Make a the subject of the formula, then find the value of a when v = 9, u = 1 and t = 2.",
+      "topic_id": "substitution_F",
+      "prompt": "v = u + at. Find the value of v when u = 13, a = 3 and t = 2.",
       "solution_steps": [
         "v = u + at",
-        "Rearrange to make a the subject: a = \\frac{v - u}{t}",
-        "Substitute v = 9, u = 1 and t = 2: a = \\frac{9 - 1}{2}",
-        "a = 8/2 = 4"
+        "v = 13 + 3 × 2",
+        "v = 13 + 6",
+        "v = 19"
       ],
-      "final_answer": "a = 4",
+      "final_answer": "v = 19",
       "marks": 5,
       "mark_scheme": [
         {
@@ -269,22 +263,22 @@
         },
         {
           "code": "M1",
-          "description": "Rearrange to make a the subject: a = \\frac{v - u}{t}",
+          "description": "v = 13 + 3 × 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute v = 9, u = 1 and t = 2: a = \\frac{9 - 1}{2}",
+          "description": "v = 13 + 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "a = 8/2 = 4",
+          "description": "v = 19",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "a = 4 oe",
+          "description": "v = 19 oe",
           "marks": 1
         }
       ],
@@ -293,27 +287,27 @@
     },
     {
       "topic_id": "sequences_next_term_F",
-      "prompt": "Find the next term in the sequence: 4, 5, 6, 7, ...",
+      "prompt": "Find the next term in the sequence: -6, -2, 2, 6, 10, ...",
       "solution_steps": [
-        "Add 1 each time.",
-        "Next term = 7 + 1 = 8"
+        "Add 4 each time.",
+        "Next term = 10 + 4 = 14"
       ],
-      "final_answer": "8",
+      "final_answer": "14",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Add 1 each time.",
+          "description": "Add 4 each time.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Next term = 7 + 1 = 8",
+          "description": "Next term = 10 + 4 = 14",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8 oe",
+          "description": "14 oe",
           "marks": 1
         }
       ],
@@ -321,76 +315,88 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "parallel_lines_equation_F",
-      "prompt": "A line is parallel to y = -2x + 5 and passes through the point (6, 5). Find the equation of the line.",
+      "topic_id": "line_equation_from_graph_F",
+      "prompt": "The graph shows a straight line. Find the equation of the line in the form y = mx + c.",
       "solution_steps": [
-        "Parallel lines have the same gradient, so m = -2.",
-        "Substitute (6, 5) into y = -2x + c: 5 = -2×(6) + c, so c = 17",
-        "Equation of the line: y = -2x + 17"
+        "Gradient = rise/run = \\frac{-3 - 5}{1 - -1} = -4",
+        "Using y = mx + c with the point (-1, 5): 5 = -4×(-1) + c, so c = 1",
+        "Equation of the line: y = -4x + 1"
       ],
-      "final_answer": "y = -2x + 17",
+      "final_answer": "y = -4x + 1",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Parallel lines have the same gradient, so m = -2.",
+          "description": "Gradient = rise/run = \\frac{-3 - 5}{1 - -1} = -4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute (6, 5) into y = -2x + c: 5 = -2×(6) + c, so c = 17",
+          "description": "Using y = mx + c with the point (-1, 5): 5 = -4×(-1) + c, so c = 1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Equation of the line: y = -2x + 17",
+          "description": "Equation of the line: y = -4x + 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = -2x + 17 oe",
+          "description": "y = -4x + 1 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "linear",
+          "m": -4,
+          "c": 1,
+          "x_min": -2,
+          "x_max": 2,
+          "y_min": -8,
+          "y_max": 10
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_two_step_F",
-      "prompt": "Solve: 5x + 15 = 65",
+      "topic_id": "linear_multi_step_F",
+      "prompt": "Solve: 5x + 13 + 5x + 5 = 108",
       "solution_steps": [
-        "5x + 15 = 65",
-        "Subtract 15 from both sides:",
-        "5x = 50",
-        "Divide both sides by 5:",
-        "x = 10"
+        "Collect like terms: 5x + 5x = 10x, 13 + 5 = 18",
+        "10x + 18 = 108",
+        "Subtract 18 from both sides:",
+        "10x = 90",
+        "Divide both sides by 10:",
+        "x = 9"
       ],
-      "final_answer": "10",
+      "final_answer": "9",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5x + 15 = 65",
+          "description": "Collect like terms: 5x + 5x = 10x, 13 + 5 = 18",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 15 from both sides:",
+          "description": "10x + 18 = 108",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x = 50",
+          "description": "Subtract 18 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 5: x = 10",
+          "description": "10x = 90 Divide both sides by 10: x = 9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10 oe",
+          "description": "9 oe",
           "marks": 1
         }
       ],
@@ -399,39 +405,41 @@
     },
     {
       "topic_id": "linear_brackets_F",
-      "prompt": "Solve: 4(3x) = 36",
+      "prompt": "Solve: 2(5x + 8) = 76",
       "solution_steps": [
-        "Expand the bracket: 4(3x) = 12x",
-        "12x = 36",
-        "Divide both sides by 12:",
-        "x = 3"
+        "Expand the bracket: 2(5x + 8) = 10x + 16",
+        "10x + 16 = 76",
+        "Subtract 16 from both sides:",
+        "10x = 60",
+        "Divide both sides by 10:",
+        "x = 6"
       ],
-      "final_answer": "3",
+      "final_answer": "6",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expand the bracket: 4(3x) = 12x",
+          "description": "Expand the bracket: 2(5x + 8) = 10x + 16",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "12x = 36",
+          "description": "10x + 16 = 76",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 12:",
+          "description": "Subtract 16 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 3",
+          "description": "10x = 60 Divide both sides by 10: x = 6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 oe",
+          "description": "6 oe",
           "marks": 1
         }
       ],
@@ -440,19 +448,19 @@
     },
     {
       "topic_id": "plot_quadratic_F",
-      "prompt": "Complete a table of values for y = x^2 + x - 1 for x = -3 to 3, then plot the graph.",
+      "prompt": "Complete a table of values for y = x^2 + x + 4 for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = x^2 + x - 1:",
+        "Table of values for y = x^2 + x + 4:",
         "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: 5, 1, -1, -1, 1, 5, 11",
+        "y: 10, 6, 4, 4, 6, 10, 16",
         "Plot each (x, y) point and join them with a single smooth curve."
       ],
-      "final_answer": "Quadratic curve: y = x^2 + x - 1",
+      "final_answer": "Quadratic curve: y = x^2 + x + 4",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = x^2 + x - 1:",
+          "description": "Table of values for y = x^2 + x + 4:",
           "marks": 1
         },
         {
@@ -462,7 +470,7 @@
         },
         {
           "code": "M1",
-          "description": "y: 5, 1, -1, -1, 1, 5, 11",
+          "description": "y: 10, 6, 4, 4, 6, 10, 16",
           "marks": 1
         },
         {
@@ -472,7 +480,7 @@
         },
         {
           "code": "A1",
-          "description": "Quadratic curve: y = x^2 + x - 1 oe",
+          "description": "Quadratic curve: y = x^2 + x + 4 oe",
           "marks": 1
         }
       ],
@@ -482,11 +490,11 @@
           "kind": "quadratic",
           "a": 1,
           "b": 1,
-          "c": -1,
+          "c": 4,
           "x_min": -4,
           "x_max": 4,
-          "y_min": -2,
-          "y_max": 12,
+          "y_min": 3,
+          "y_max": 17,
           "blank": true
         }
       },
@@ -496,73 +504,67 @@
           "kind": "quadratic",
           "a": 1,
           "b": 1,
-          "c": -1,
+          "c": 4,
           "x_min": -4,
           "x_max": 4,
-          "y_min": -2,
-          "y_max": 12,
+          "y_min": 3,
+          "y_max": 17,
           "table_points": [
             [
               -3,
-              5
+              10
             ],
             [
               -2,
-              1
+              6
             ],
             [
               -1,
-              -1
+              4
             ],
             [
               0,
-              -1
+              4
             ],
             [
               1,
-              1
+              6
             ],
             [
               2,
-              5
+              10
             ],
             [
               3,
-              11
+              16
             ]
           ]
         }
       }
     },
     {
-      "topic_id": "sequences_nth_term_F",
-      "prompt": "Here are the first four terms of a sequence: -8, -3, 2, 7.\nFind an expression for the nth term.",
+      "topic_id": "sequences_term_to_term_rule_F",
+      "prompt": "Here are the first four terms of a sequence: 2, 6, 18, 54. Describe the term-to-term rule, and find the next term.",
       "solution_steps": [
-        "Common difference = 5",
-        "nth term = 5n - 13",
-        "nth term = 5n - 13"
+        "Term-to-term rule: multiply by 3",
+        "Next term = 162"
       ],
-      "final_answer": "5n - 13",
-      "marks": 4,
+      "final_answer": "Rule: multiply by 3. Next term = 162",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Common difference = 5",
+          "description": "Term-to-term rule: multiply by 3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = 5n - 13",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "nth term = 5n - 13",
+          "description": "Next term = 162",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5n - 13 oe",
+          "description": "Rule: multiply by 3. Next term = 162 oe",
           "marks": 1
         }
       ],
@@ -571,27 +573,27 @@
     },
     {
       "topic_id": "compound_percentage_F",
-      "prompt": "A price of £300 increases by 20%, then increases by 10%. Find the final price.",
+      "prompt": "A price of £320 increases by 10%, then increases by 25%. Find the final price.",
       "solution_steps": [
-        "After the first change: 300 × 1.20 = 360",
-        "After the second change: 360 × 1.10 = 396"
+        "After the first change: 320 × 1.10 = 352",
+        "After the second change: 352 × 1.25 = 440"
       ],
-      "final_answer": "£396",
+      "final_answer": "£440",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first change: 300 × 1.20 = 360",
+          "description": "After the first change: 320 × 1.10 = 352",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "After the second change: 360 × 1.10 = 396",
+          "description": "After the second change: 352 × 1.25 = 440",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£396 oe",
+          "description": "£440 oe",
           "marks": 1
         }
       ],
@@ -600,27 +602,27 @@
     },
     {
       "topic_id": "direct_proportion_F",
-      "prompt": "If 6 rulers cost £7.62, how much would 7 rulers cost?",
+      "prompt": "If £4 exchanges for $5.92, how much is £15 worth in dollars ($)?",
       "solution_steps": [
-        "Unit value = £7.62 ÷ 6 = £1.27",
-        "Answer = £1.27 × 7 = £8.89"
+        "Unit value = $5.92 ÷ 4 = $1.48",
+        "Answer = $1.48 × 15 = $22.20"
       ],
-      "final_answer": "£8.89",
+      "final_answer": "$22.20",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Unit value = £7.62 ÷ 6 = £1.27",
+          "description": "Unit value = $5.92 ÷ 4 = $1.48",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer = £1.27 × 7 = £8.89",
+          "description": "Answer = $1.48 × 15 = $22.20",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£8.89 oe",
+          "description": "$22.20 oe",
           "marks": 1
         }
       ],
@@ -629,27 +631,27 @@
     },
     {
       "topic_id": "reverse_percentage_F",
-      "prompt": "After a 25% increase, an item costs £50. Find the original price.",
+      "prompt": "After a 25% decrease, an item costs £75. Find the original price.",
       "solution_steps": [
-        "Convert 25% to a multiplier: 1.25 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 50 ÷ 1.25 = 40"
+        "Convert 25% to a multiplier: 0.75 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 75 ÷ 0.75 = 100"
       ],
-      "final_answer": "£40",
+      "final_answer": "£100",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 25% to a multiplier: 1.25 (original × multiplier = new value)",
+          "description": "Convert 25% to a multiplier: 0.75 (original × multiplier = new value)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide the new value by the multiplier: 50 ÷ 1.25 = 40",
+          "description": "Divide the new value by the multiplier: 75 ÷ 0.75 = 100",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£40 oe",
+          "description": "£100 oe",
           "marks": 1
         }
       ],
@@ -658,27 +660,27 @@
     },
     {
       "topic_id": "percentage_change_F",
-      "prompt": "Decrease 200 by 25%.",
+      "prompt": "Increase 220 by 25%.",
       "solution_steps": [
-        "Convert 25% to a multiplier: 0.75",
-        "Multiply: 200 × 0.75 = 150"
+        "Convert 25% to a multiplier: 1.25",
+        "Multiply: 220 × 1.25 = 275"
       ],
-      "final_answer": "150",
+      "final_answer": "275",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 25% to a multiplier: 0.75",
+          "description": "Convert 25% to a multiplier: 1.25",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: 200 × 0.75 = 150",
+          "description": "Multiply: 220 × 1.25 = 275",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "150 oe",
+          "description": "275 oe",
           "marks": 1
         }
       ],
@@ -687,13 +689,13 @@
     },
     {
       "topic_id": "simple_interest_F",
-      "prompt": "£4800 is invested at a simple interest rate of 2% per year for 3 years. Find the total amount in the account after 3 years.",
+      "prompt": "£4800 is invested at a simple interest rate of 2% per year for 2 years. Find the total amount in the account after 2 years.",
       "solution_steps": [
         "Simple interest formula: I = P × r × t ÷ 100",
-        "I = 4800 × 2 × 3 ÷ 100 = £288",
-        "Total in the account = P + I = £4800 + £288 = £5088"
+        "I = 4800 × 2 × 2 ÷ 100 = £192",
+        "Total in the account = P + I = £4800 + £192 = £4992"
       ],
-      "final_answer": "£5088",
+      "final_answer": "£4992",
       "marks": 4,
       "mark_scheme": [
         {
@@ -703,17 +705,17 @@
         },
         {
           "code": "M1",
-          "description": "I = 4800 × 2 × 3 ÷ 100 = £288",
+          "description": "I = 4800 × 2 × 2 ÷ 100 = £192",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total in the account = P + I = £4800 + £288 = £5088",
+          "description": "Total in the account = P + I = £4800 + £192 = £4992",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£5088 oe",
+          "description": "£4992 oe",
           "marks": 1
         }
       ],
@@ -722,77 +724,82 @@
     },
     {
       "topic_id": "area_composite_rectangles_F",
-      "prompt": "Find the area of this compound shape.",
+      "prompt": "The area of this compound shape is 147 cm². Find the length x.",
       "solution_steps": [
-        "Area of full rectangle = 22 × 22 = 484 cm²",
-        "Area of the cut-out corner = 15 × 14 = 210 cm²",
-        "Area of the shape = 484 - 210 = 274 cm²"
+        "Split the shape into two rectangles with a vertical cut down the inside edge.",
+        "Right rectangle: 9 × 15 = 135 cm²",
+        "Left rectangle: x × 4 = 4x",
+        "Total: 135 + 4x = 147, so 4x = 12 and x = 12 ÷ 4 = 3"
       ],
-      "final_answer": "274 cm²",
-      "marks": 4,
+      "final_answer": "x = 3 cm",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area of full rectangle = 22 × 22 = 484 cm²",
+          "description": "Split the shape into two rectangles with a vertical cut down the inside edge.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Area of the cut-out corner = 15 × 14 = 210 cm²",
+          "description": "Right rectangle: 9 × 15 = 135 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Area of the shape = 484 - 210 = 274 cm²",
+          "description": "Left rectangle: x × 4 = 4x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total: 135 + 4x = 147, so 4x = 12 and x = 12 ÷ 4 = 3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "274 cm² oe",
+          "description": "x = 3 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "l_shape",
         "params": {
-          "outer_w": 22,
-          "outer_h": 22,
-          "inner_w": 15,
-          "inner_h": 14,
+          "outer_w": 12,
+          "outer_h": 15,
+          "inner_w": 3,
+          "inner_h": 11,
           "notch": "corner",
-          "corner": "top_right",
-          "outer_labels": [
-            "22 cm",
-            "22 cm"
-          ],
-          "inner_labels": [
-            "15 cm",
-            "14 cm"
-          ]
+          "corner": "top_left",
+          "edge_labels": {
+            "bottom": "",
+            "right": "15 cm",
+            "top": "9 cm",
+            "notch_across": "x",
+            "left_lower": "4 cm"
+          }
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "construction_angle_bisector_F",
-      "prompt": "Angle MSD = 76°. Describe, step by step, how to construct the bisector of angle MSD using only a ruler and a pair of compasses.",
+      "prompt": "Angle URS = 36°. Describe, step by step, how to construct the bisector of angle URS using only a ruler and a pair of compasses.",
       "solution_steps": [
-        "Open the compasses to any radius and place the point on S (the vertex of the angle).",
-        "Draw an arc that crosses both arms of the angle, at a point on SM and a point on SD.",
+        "Open the compasses to any radius and place the point on R (the vertex of the angle).",
+        "Draw an arc that crosses both arms of the angle, at a point on RU and a point on RS.",
         "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
-        "Draw a straight line from S through the point where the two arcs intersect. This line is the bisector of angle MSD."
+        "Draw a straight line from R through the point where the two arcs intersect. This line is the bisector of angle URS."
       ],
-      "final_answer": "The straight line from S through the intersection of the two equal-radius arcs bisects angle MSD into two equal angles.",
+      "final_answer": "The straight line from R through the intersection of the two equal-radius arcs bisects angle URS into two equal angles.",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Open the compasses to any radius and place the point on S (the vertex of the angle).",
+          "description": "Open the compasses to any radius and place the point on R (the vertex of the angle).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Draw an arc that crosses both arms of the angle, at a point on SM and a point on SD.",
+          "description": "Draw an arc that crosses both arms of the angle, at a point on RU and a point on RS.",
           "marks": 1
         },
         {
@@ -802,12 +809,12 @@
         },
         {
           "code": "M1",
-          "description": "Draw a straight line from S through the point where the two arcs intersect. This line is the bisector of angle MSD.",
+          "description": "Draw a straight line from R through the point where the two arcs intersect. This line is the bisector of angle URS.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "The straight line from S through the intersection of the two equal-radius arcs bisects angle MSD into two equal angles. oe",
+          "description": "The straight line from R through the intersection of the two equal-radius arcs bisects angle URS into two equal angles. oe",
           "marks": 1
         }
       ],
@@ -816,27 +823,27 @@
     },
     {
       "topic_id": "map_scale_drawings_F",
-      "prompt": "A map has a scale of 1 : 50000. The distance between two towns on the map is 2 cm. Find the real-life distance between the towns, in m.",
+      "prompt": "A map has a scale of 1 cm represents 5 km. Two towns are 30 km apart in real life. Find the distance between the towns on the map, in cm.",
       "solution_steps": [
-        "The scale 1 : 50000 means 1 cm on the map represents 50000 cm in real life, which is 500 m.",
-        "Real-life distance = 2 × 500 = 1000 m"
+        "The scale means 1 cm on the map represents 5 km in real life.",
+        "Map distance = 30 ÷ 5 = 6 cm"
       ],
-      "final_answer": "1000 m",
+      "final_answer": "6 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The scale 1 : 50000 means 1 cm on the map represents 50000 cm in real life, which is 500 m.",
+          "description": "The scale means 1 cm on the map represents 5 km in real life.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Real-life distance = 2 × 500 = 1000 m",
+          "description": "Map distance = 30 ÷ 5 = 6 cm",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1000 m oe",
+          "description": "6 cm oe",
           "marks": 1
         }
       ],
@@ -844,70 +851,83 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "volume_surface_area_cuboid_F",
-      "prompt": "A cuboid has length 5 cm, width 4 cm and height 13 cm. Find its volume.",
+      "topic_id": "trig_missing_angle_F",
+      "prompt": "In the triangle shown, find the angle x, correct to 1 decimal place.",
       "solution_steps": [
-        "Volume = length × width × height = 5 × 4 × 13 = 260 cm³"
+        "Use cos, since we know two of the three sides.",
+        "cos(x) = 12 ÷ 17",
+        "x = cos^-1(12 ÷ 17) = 45.1° (1 d.p.)"
       ],
-      "final_answer": "260 cm³",
-      "marks": 2,
+      "final_answer": "45.1°",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Volume = length × width × height = 5 × 4 × 13 = 260 cm³",
+          "description": "Use cos, since we know two of the three sides.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "cos(x) = 12 ÷ 17",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = cos^-1(12 ÷ 17) = 45.1° (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "260 cm³ oe",
+          "description": "45.1° oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "cuboid",
+        "kind": "trig_triangle",
         "params": {
-          "width_label": "4 cm",
-          "height_label": "13 cm",
-          "length_label": "5 cm"
+          "adjacent_label": "12 cm",
+          "opposite_label": null,
+          "hyp_label": "17 cm",
+          "angle_label": "x°"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "tree_diagram_independent_F",
-      "prompt": "A bag contains 4 green and 3 red counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that both counters are the same colour.",
+      "prompt": "A bag contains 7 yellow and 5 red counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that both counters are the same colour.",
       "solution_steps": [
-        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(green) = 4/7, P(red) = 3/7.",
-        "P(both green) = 4/7 × 4/7 = 16/49",
-        "P(both red) = 3/7 × 3/7 = 9/49",
-        "P(same colour) = 16/49 + 9/49 = 25/49"
+        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(yellow) = 7/12, P(red) = 5/12.",
+        "P(both yellow) = 7/12 × 7/12 = 49/144",
+        "P(both red) = 5/12 × 5/12 = 25/144",
+        "P(same colour) = 49/144 + 25/144 = 37/72"
       ],
-      "final_answer": "25/49",
+      "final_answer": "37/72",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(green) = 4/7, P(red) = 3/7.",
+          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(yellow) = 7/12, P(red) = 5/12.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(both green) = 4/7 × 4/7 = 16/49",
+          "description": "P(both yellow) = 7/12 × 7/12 = 49/144",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(both red) = 3/7 × 3/7 = 9/49",
+          "description": "P(both red) = 5/12 × 5/12 = 25/144",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(same colour) = 16/49 + 9/49 = 25/49",
+          "description": "P(same colour) = 49/144 + 25/144 = 37/72",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "25/49 oe",
+          "description": "37/72 oe",
           "marks": 1
         }
       ],
@@ -916,33 +936,33 @@
         "params": {
           "stage1": [
             [
-              "Green",
-              "4/7"
+              "Yellow",
+              "7/12"
             ],
             [
               "Red",
-              "3/7"
+              "5/12"
             ]
           ],
           "stage2": [
             [
               [
-                "Green",
-                "4/7"
+                "Yellow",
+                "7/12"
               ],
               [
                 "Red",
-                "3/7"
+                "5/12"
               ]
             ],
             [
               [
-                "Green",
-                "4/7"
+                "Yellow",
+                "7/12"
               ],
               [
                 "Red",
-                "3/7"
+                "5/12"
               ]
             ]
           ]
@@ -954,25 +974,25 @@
       "topic_id": "two_way_tables_F",
       "prompt": "The two-way table shows the number of boys and girls who prefer bus or walk. Find the missing values.",
       "solution_steps": [
-        "'Girls' / 'Bus': using the 'Girls' row total: 29 - 10 = 19",
-        "'Boys' / 'Walk': using the 'Boys' row total: 21 - 4 = 17"
+        "'Girls' / 'Bus': using the 'Girls' row total: 14 - 10 = 4",
+        "'Boys' / 'Bus': using the 'Boys' row total: 23 - 10 = 13"
       ],
-      "final_answer": "'Girls' / 'Bus' = 19; 'Boys' / 'Walk' = 17",
+      "final_answer": "'Girls' / 'Bus' = 4; 'Boys' / 'Bus' = 13",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "'Girls' / 'Bus': using the 'Girls' row total: 29 - 10 = 19",
+          "description": "'Girls' / 'Bus': using the 'Girls' row total: 14 - 10 = 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "'Boys' / 'Walk': using the 'Boys' row total: 21 - 4 = 17",
+          "description": "'Boys' / 'Bus': using the 'Boys' row total: 23 - 10 = 13",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "'Girls' / 'Bus' = 19; 'Boys' / 'Walk' = 17 oe",
+          "description": "'Girls' / 'Bus' = 4; 'Boys' / 'Bus' = 13 oe",
           "marks": 1
         }
       ],
@@ -991,19 +1011,19 @@
           ],
           "cells": [
             [
-              "4",
               "",
-              "21"
+              "10",
+              "23"
             ],
             [
               "",
               "10",
-              "29"
+              "14"
             ],
             [
-              "23",
-              "27",
-              "50"
+              "17",
+              "20",
+              "37"
             ]
           ]
         }
@@ -1023,19 +1043,19 @@
           ],
           "cells": [
             [
-              "4",
-              "17",
-              "21"
-            ],
-            [
-              "19",
+              "13",
               "10",
-              "29"
+              "23"
             ],
             [
-              "23",
-              "27",
-              "50"
+              "4",
+              "10",
+              "14"
+            ],
+            [
+              "17",
+              "20",
+              "37"
             ]
           ]
         }
@@ -1043,27 +1063,27 @@
     },
     {
       "topic_id": "composite_bar_chart_F",
-      "prompt": "The composite bar chart shows the number of students split by Boys and Girls. Find the grand total across every category and segment.",
+      "prompt": "The composite bar chart shows the number of commuters split by Bus and Car. Find the difference between Bus and Car for Week 1.",
       "solution_steps": [
-        "Add up every segment in every bar, category by category.",
-        "Total = 41."
+        "Bus: 9, Car: 7.",
+        "Difference = 2."
       ],
-      "final_answer": "41",
+      "final_answer": "2",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Add up every segment in every bar, category by category.",
+          "description": "Bus: 9, Car: 7.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total = 41.",
+          "description": "Difference = 2.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "41 oe",
+          "description": "2 oe",
           "marks": 1
         }
       ],
@@ -1071,27 +1091,27 @@
         "kind": "bar_chart",
         "params": {
           "categories": [
-            "Mon",
-            "Tue",
-            "Wed"
+            "Week 1",
+            "Week 2",
+            "Week 3"
           ],
           "series": [
             [
-              12,
-              6
+              9,
+              7
             ],
             [
-              12,
-              3
-            ],
-            [
-              3,
+              11,
               5
+            ],
+            [
+              13,
+              4
             ]
           ],
           "series_labels": [
-            "Boys",
-            "Girls"
+            "Bus",
+            "Car"
           ],
           "y_label": "Frequency"
         }
@@ -1099,26 +1119,60 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "stats_mean_F",
-      "prompt": "Find the mean of this data set: 15, 9, 3, 16, 12, 30, 3.",
+      "topic_id": "congruent_triangle_proof_F",
+      "prompt": "Shown below are two congruent triangles. Give a reason why they are congruent. A) SSS  B) SAS  C) RHS  D) ASA",
       "solution_steps": [
-        "Mean = sum ÷ count = (15 + 9 + 3 + 16 + 12 + 30 + 3) ÷ 7 = 88 ÷ 7 = 88/7"
+        "Look at which measurements are marked equal on both triangles - here they match the Angle-Side-Angle (ASA) pattern.",
+        "So the two triangles are congruent by Angle-Side-Angle (ASA)."
       ],
-      "final_answer": "88/7",
-      "marks": 2,
+      "final_answer": "D) ASA",
+      "marks": 1,
       "mark_scheme": [
         {
-          "code": "M1",
-          "description": "Mean = sum ÷ count = (15 + 9 + 3 + 16 + 12 + 30 + 3) ÷ 7 = 88 ÷ 7 = 88/7",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "88/7 oe",
+          "code": "B1",
+          "description": "D) ASA (selecting the correct option)",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "two_triangle_congruence",
+        "params": {
+          "side_labels_1": [
+            [
+              0,
+              1,
+              "11 cm"
+            ]
+          ],
+          "side_labels_2": [
+            [
+              0,
+              1,
+              "11 cm"
+            ]
+          ],
+          "angle_labels_1": [
+            [
+              0,
+              "35°"
+            ],
+            [
+              1,
+              "40°"
+            ]
+          ],
+          "angle_labels_2": [
+            [
+              0,
+              "35°"
+            ],
+            [
+              1,
+              "40°"
+            ]
+          ]
+        }
+      },
       "solution_diagram": null
     }
   ]

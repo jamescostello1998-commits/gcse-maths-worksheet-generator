@@ -8,33 +8,33 @@
   "questions": [
     {
       "topic_id": "fractions_mixed_number_arithmetic_H",
-      "prompt": "Calculate 2 4/5 - 1 3/4. Give your answer as a mixed number.",
+      "prompt": "Calculate 5 1/3 + 1 2/5. Give your answer as a mixed number.",
       "solution_steps": [
-        "Convert to improper fractions: 2 4/5 = 14/5, 1 3/4 = 7/4",
-        "Subtract the improper fractions: 14/5 - 7/4 = 21/20",
-        "Convert back to a mixed number: 1 1/20"
+        "Convert to improper fractions: 5 1/3 = 16/3, 1 2/5 = 7/5",
+        "Add the improper fractions: 16/3 + 7/5 = 101/15",
+        "Convert back to a mixed number: 6 11/15"
       ],
-      "final_answer": "1 1/20",
+      "final_answer": "6 11/15",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert to improper fractions: 2 4/5 = 14/5, 1 3/4 = 7/4",
+          "description": "Convert to improper fractions: 5 1/3 = 16/3, 1 2/5 = 7/5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract the improper fractions: 14/5 - 7/4 = 21/20",
+          "description": "Add the improper fractions: 16/3 + 7/5 = 101/15",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Convert back to a mixed number: 1 1/20",
+          "description": "Convert back to a mixed number: 6 11/15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 1/20 oe",
+          "description": "6 11/15 oe",
           "marks": 1
         }
       ],
@@ -43,33 +43,33 @@
     },
     {
       "topic_id": "recurring_decimal_two_digit_H",
-      "prompt": "Write \\recur{0.}{27} as a fraction in its simplest form.",
+      "prompt": "Write \\recur{0.}{87} as a fraction in its simplest form.",
       "solution_steps": [
-        "Let x = \\recur{0.}{27}, so 100x = 27.2727... (two digits repeat, so multiply by 100 to shift a full block)",
-        "Subtract: 100x - x = 27 - 0, so 99x = 27",
-        "x = 27/99 = 3/11"
+        "Let x = \\recur{0.}{87}, so 100x = 87.8787... (two digits repeat, so multiply by 100 to shift a full block)",
+        "Subtract: 100x - x = 87 - 0, so 99x = 87",
+        "x = 87/99 = 29/33"
       ],
-      "final_answer": "3/11",
+      "final_answer": "29/33",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = \\recur{0.}{27}, so 100x = 27.2727... (two digits repeat, so multiply by 100 to shift a full block)",
+          "description": "Let x = \\recur{0.}{87}, so 100x = 87.8787... (two digits repeat, so multiply by 100 to shift a full block)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract: 100x - x = 27 - 0, so 99x = 27",
+          "description": "Subtract: 100x - x = 87 - 0, so 99x = 87",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 27/99 = 3/11",
+          "description": "x = 87/99 = 29/33",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3/11 oe",
+          "description": "29/33 oe",
           "marks": 1
         }
       ],
@@ -78,33 +78,33 @@
     },
     {
       "topic_id": "standard_form_multiply_divide_H",
-      "prompt": "Work out (4 × 10^0) × (8 × 10^6). Give your answer in standard form.",
+      "prompt": "Work out (2 × 10^4) × (6 × 10^-4). Give your answer in standard form.",
       "solution_steps": [
-        "Multiply the mantissas: 4 × 8 = 32",
-        "Add the powers of 10: 0 + 6 = 6",
-        "Renormalize so the mantissa is between 1 and 10: 3.2 × 10^7"
+        "Multiply the mantissas: 2 × 6 = 12",
+        "Add the powers of 10: 4 + -4 = 0",
+        "Renormalize so the mantissa is between 1 and 10: 1.2 × 10^1"
       ],
-      "final_answer": "3.2 × 10^7",
+      "final_answer": "1.2 × 10^1",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply the mantissas: 4 × 8 = 32",
+          "description": "Multiply the mantissas: 2 × 6 = 12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add the powers of 10: 0 + 6 = 6",
+          "description": "Add the powers of 10: 4 + -4 = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Renormalize so the mantissa is between 1 and 10: 3.2 × 10^7",
+          "description": "Renormalize so the mantissa is between 1 and 10: 1.2 × 10^1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3.2 × 10^7 oe",
+          "description": "1.2 × 10^1 oe",
           "marks": 1
         }
       ],
@@ -113,24 +113,24 @@
     },
     {
       "topic_id": "hcf_lcm_by_prime_factors_H",
-      "prompt": "Using prime factorisation, find the HCF of 189 and 138.",
+      "prompt": "Using prime factorisation, find the HCF of 155 and 130.",
       "solution_steps": [
-        "189 = 3^3 × 7",
-        "138 = 2 × 3 × 23",
+        "155 = 5 × 31",
+        "130 = 2 × 5 × 13",
         "HCF: take the lowest power of each prime that appears in both numbers",
-        "HCF = 3"
+        "HCF = 5"
       ],
-      "final_answer": "3",
+      "final_answer": "5",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "189 = 3^3 × 7",
+          "description": "155 = 5 × 31",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "138 = 2 × 3 × 23",
+          "description": "130 = 2 × 5 × 13",
           "marks": 1
         },
         {
@@ -140,12 +140,12 @@
         },
         {
           "code": "M1",
-          "description": "HCF = 3",
+          "description": "HCF = 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 oe",
+          "description": "5 oe",
           "marks": 1
         }
       ],
@@ -153,63 +153,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "surds_multiply_divide_H",
-      "prompt": "Simplify √8 × √7, giving your answer in the form a√b.",
+      "topic_id": "roots_H",
+      "prompt": "Simplify √216, giving your answer in the form a√b.",
       "solution_steps": [
-        "√8 × √7 = √(8 × 7) = √56",
-        "Find the largest square factor of 56: 2^2 × 14 = 56",
-        "√56 = √(2^2 × 14) = 2√14"
+        "Find the largest square factor of 216: 6^2 × 6 = 216",
+        "√216 = √(6^2 × 6) = 6√6"
       ],
-      "final_answer": "2√14",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "√8 × √7 = √(8 × 7) = √56",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Find the largest square factor of 56: 2^2 × 14 = 56",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "√56 = √(2^2 × 14) = 2√14",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "2√14 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "powers_H",
-      "prompt": "Evaluate 27^(1/3).",
-      "solution_steps": [
-        "27^(1/3) means the cube root of 27.",
-        "27^(1/3) = 3"
-      ],
-      "final_answer": "3",
+      "final_answer": "6√6",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "27^(1/3) means the cube root of 27.",
+          "description": "Find the largest square factor of 216: 6^2 × 6 = 216",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "27^(1/3) = 3",
+          "description": "√216 = √(6^2 × 6) = 6√6",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 oe",
+          "description": "6√6 oe",
           "marks": 1
         }
       ],
@@ -217,465 +182,92 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bounds_calculation_H",
-      "prompt": "A rectangle has length 39 cm and width 19 cm, both measured to the nearest cm. Calculate the lower bound for the area of the rectangle.",
+      "topic_id": "prime_factors_H",
+      "prompt": "Write 225 as a product of its prime factors, giving your answer in index form.",
       "solution_steps": [
-        "Length: 39 cm (to the nearest cm) gives 38.5 ≤ length < 39.5",
-        "Width: 19 cm (to the nearest cm) gives 18.5 ≤ width < 19.5",
-        "For the lower bound of the area, use the lower bound of each measurement: 38.5 × 18.5 = 712.25 cm²"
+        "Divide 225 repeatedly by the smallest prime that fits: 3 × 3 × 5 × 5",
+        "Write repeated factors using index notation: 225 = 3^2 × 5^2"
       ],
-      "final_answer": "712.25 cm²",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Length: 39 cm (to the nearest cm) gives 38.5 ≤ length < 39.5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Width: 19 cm (to the nearest cm) gives 18.5 ≤ width < 19.5",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "For the lower bound of the area, use the lower bound of each measurement: 38.5 × 18.5 = 712.25 cm²",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "712.25 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "inequalities_region_H",
-      "prompt": "On the grid, shade the region that satisfies both y > \\frac{x}{2} - 3 and y < 2x - 4.",
-      "solution_steps": [
-        "Draw the line y = \\frac{x}{2} - 3 (dashed - the line itself is not included in the region).",
-        "Draw the line y = 2x - 4 (dashed - the line itself is not included in the region).",
-        "Shade the region where both y > \\frac{x}{2} - 3 and y < 2x - 4 are true at the same time."
-      ],
-      "final_answer": "y > \\frac{x}{2} - 3 and y < 2x - 4",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Draw the line y = \\frac{x}{2} - 3 (dashed - the line itself is not included in the region).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Draw the line y = 2x - 4 (dashed - the line itself is not included in the region).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Shade the region where both y > \\frac{x}{2} - 3 and y < 2x - 4 are true at the same time.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "y > \\frac{x}{2} - 3 and y < 2x - 4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "inequality_region",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "inequality_region",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "lines": [
-            {
-              "m": 0.5,
-              "c": -3,
-              "op": ">"
-            },
-            {
-              "m": 2.0,
-              "c": -4,
-              "op": "<"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "forming_equations_H",
-      "prompt": "A quadrilateral has angles 67°, 66°, (4x - 8)°, and (3x + 102)°. Form an equation and solve it to find x.",
-      "solution_steps": [
-        "Angles in a quadrilateral sum to 360°.",
-        "67 + 66 + (4x - 8) + (3x + 102) = 360",
-        "Collect the x-terms and constants together:",
-        "7x + 94 = 227",
-        "Subtract 94 from both sides:",
-        "7x = 133",
-        "Divide both sides by 7:",
-        "x = 19"
-      ],
-      "final_answer": "19",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Angles in a quadrilateral sum to 360°.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "67 + 66 + (4x - 8) + (3x + 102) = 360",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Collect the x-terms and constants together:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "7x + 94 = 227 Subtract 94 from both sides: 7x = 133 Divide both sides by 7: x = 19",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "19 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "polygon_angles",
-        "params": {
-          "n_sides": 4,
-          "angle_labels": [
-            "67°",
-            "66°",
-            "(4x - 8)°",
-            "(3x + 102)°"
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "trig_graph_H",
-      "prompt": "Complete a table of values for y = sin(x°) for x = 0 to 360 (in steps of 90°), then plot the graph.",
-      "solution_steps": [
-        "Table of values for y = sin(x°):",
-        "x: 0, 90, 180, 270, 360",
-        "y: 0, 1, 0, -1, 0",
-        "Plot each (x, y) point and join them with a single smooth curve - y = sin(x°) repeats the same shape every 360°, and never goes above 1 or below -1."
-      ],
-      "final_answer": "y = sin(x°)",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Table of values for y = sin(x°):",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x: 0, 90, 180, 270, 360",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y: 0, 1, 0, -1, 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve - y = sin(x°) repeats the same shape every 360°, and never goes above 1 or below -1.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "y = sin(x°) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "trigonometric",
-          "fn": "sin",
-          "sign": 1,
-          "x_min": 0,
-          "x_max": 360,
-          "y_min": -1.4,
-          "y_max": 1.4,
-          "x_label": "x (degrees)",
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "trigonometric",
-          "fn": "sin",
-          "sign": 1,
-          "x_min": 0,
-          "x_max": 360,
-          "y_min": -1.4,
-          "y_max": 1.4,
-          "x_label": "x (degrees)",
-          "table_points": [
-            [
-              0,
-              0
-            ],
-            [
-              90,
-              1
-            ],
-            [
-              180,
-              0
-            ],
-            [
-              270,
-              -1
-            ],
-            [
-              360,
-              0
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "kinematics_suvat_H",
-      "prompt": "An object starts with a velocity of 15 m/s and has a constant acceleration of -5 m/s^2 for 1 s. Find the total displacement (s).",
-      "solution_steps": [
-        "This question gives three of s, u, a and t and asks for another, so use s = ut + (1/2)at^2, the equation linking exactly those four (note: t is never the unknown here, since solving this equation for t needs the quadratic formula).",
-        "s = ut + (1/2)at^2",
-        "Substitute u = 15, a = -5, t = 1: s = 15 × 1 + (1/2) × -5 × 1^2 = 15 + -5/2 = 12.5"
-      ],
-      "final_answer": "12.5 m",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "This question gives three of s, u, a and t and asks for another, so use s = ut + (1/2)at^2, the equation linking exactly those four (note: t is never the unknown here, since solving this equation for t needs the quadratic formula).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "s = ut + (1/2)at^2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute u = 15, a = -5, t = 1: s = 15 × 1 + (1/2) × -5 × 1^2 = 15 + -5/2 = 12.5",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "12.5 m oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "linear_brackets_H",
-      "prompt": "Solve: 3(2x + 8) = -18",
-      "solution_steps": [
-        "Expand the bracket: 3(2x + 8) = 6x + 24",
-        "6x + 24 = -18",
-        "Subtract 24 from both sides:",
-        "6x = -42",
-        "Divide both sides by 6:",
-        "x = -7"
-      ],
-      "final_answer": "-7",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Expand the bracket: 3(2x + 8) = 6x + 24",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "6x + 24 = -18",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 24 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "6x = -42 Divide both sides by 6: x = -7",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-7 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "circle_equation_H",
-      "prompt": "The point (11, -60) lies on the circle x^2 + y^2 = 3721. Find the equation of the tangent to the circle at this point.",
-      "solution_steps": [
-        "The point (11, -60) lies on the circle x^2 + y^2 = 3721, since 11^2 + -60^2 = 3721.",
-        "The radius to (11, -60) has gradient \\frac{-60}{11}, so the tangent (perpendicular to the radius) has gradient -\\frac{11}{-60}.",
-        "The tangent line through (11, -60) with that gradient simplifies to 11x - 60y = 3721."
-      ],
-      "final_answer": "11x - 60y = 3721",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The point (11, -60) lies on the circle x^2 + y^2 = 3721, since 11^2 + -60^2 = 3721.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The radius to (11, -60) has gradient \\frac{-60}{11}, so the tangent (perpendicular to the radius) has gradient -\\frac{11}{-60}.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The tangent line through (11, -60) with that gradient simplifies to 11x - 60y = 3721.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "11x - 60y = 3721 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "loci_construction",
-        "params": {
-          "x_min": -62,
-          "x_max": 62,
-          "y_min": -62,
-          "y_max": 62,
-          "points": [
-            {
-              "xy": [
-                11,
-                -60
-              ],
-              "label": null
-            }
-          ],
-          "given_lines": [],
-          "circle": {
-            "centre": [
-              0,
-              0
-            ],
-            "radius": 61
-          },
-          "segment": null
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "velocity_time_interpret_H",
-      "prompt": "The velocity-time graph shows a car's journey. Find the total distance travelled.",
-      "solution_steps": [
-        "Total distance = total area under the graph (a trapezium)",
-        "Distance = ½ × (35 + 20) × 20 = 550 m"
-      ],
-      "final_answer": "550 m",
+      "final_answer": "3^2 × 5^2",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total distance = total area under the graph (a trapezium)",
+          "description": "Divide 225 repeatedly by the smallest prime that fits: 3 × 3 × 5 × 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Distance = ½ × (35 + 20) × 20 = 550 m",
+          "description": "Write repeated factors using index notation: 225 = 3^2 × 5^2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "550 m oe",
+          "description": "3^2 × 5^2 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "piecewise_graph",
-        "params": {
-          "points": [
-            [
-              0,
-              0
-            ],
-            [
-              5,
-              20
-            ],
-            [
-              25,
-              20
-            ],
-            [
-              35,
-              0
-            ]
-          ],
-          "x_max": 40,
-          "y_max": 25,
-          "x_label": "Time (s)",
-          "y_label": "Velocity (m/s)"
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "error_interval_H",
+      "prompt": "A number, x, is 6000 rounded to 1 significant figure. Write down the error interval for x.",
+      "solution_steps": [
+        "The last significant figure of 6000 has a place value of 1000, so x can be up to half of that above or below 6000.",
+        "Lower bound: 6000 - 500 = 5500",
+        "Upper bound: 6000 + 500 = 6500"
+      ],
+      "final_answer": "5500 ≤ x < 6500",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The last significant figure of 6000 has a place value of 1000, so x can be up to half of that above or below 6000.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Lower bound: 6000 - 500 = 5500",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Upper bound: 6000 + 500 = 6500",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5500 ≤ x < 6500 oe",
+          "marks": 1
         }
-      },
+      ],
+      "diagram": null,
       "solution_diagram": null
     },
     {
       "topic_id": "inequalities_number_line_H",
       "prompt": "Write down the inequality (or pair of inequalities) shown by the number line below.",
       "solution_steps": [
-        "The circle at -4 is filled and the circle at -1 is open.",
-        "The shading lies outside the two circles, so either bound alone is enough: x ≤ -4 or x > -1."
+        "The circle at -1 is open and the circle at 5 is open.",
+        "The shading lies between the two circles, so both bounds must hold at once: -1 < x < 5."
       ],
-      "final_answer": "x ≤ -4 or x > -1",
+      "final_answer": "-1 < x < 5",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The circle at -4 is filled and the circle at -1 is open.",
+          "description": "The circle at -1 is open and the circle at 5 is open.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The shading lies outside the two circles, so either bound alone is enough: x ≤ -4 or x > -1.",
+          "description": "The shading lies between the two circles, so both bounds must hold at once: -1 < x < 5.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x ≤ -4 or x > -1 oe",
+          "description": "-1 < x < 5 oe",
           "marks": 1
         }
       ],
@@ -688,42 +280,379 @@
           ],
           "boundaries": [
             {
-              "value": -4,
-              "closed": true
+              "value": -1,
+              "closed": false
             },
             {
-              "value": -1,
+              "value": 5,
               "closed": false
             }
           ],
-          "shade": "outside"
+          "shade": "between"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "unit_conversions_H",
-      "prompt": "Convert 4149 mm² to cm².",
+      "topic_id": "fractional_equations_H",
+      "prompt": "Solve the following equation.\n\\frac{x}{2} + \\frac{x}{4} = 11",
       "solution_steps": [
-        "Linear conversion factor: 1 cm = 10 mm, so for area, 1 cm² = 10^2 = 100 mm²",
-        "4149 mm² = 4149 ÷ 100 = 41.49 cm²"
+        "Multiply every term by the LCM of 2 and 4, which is 4:",
+        "2x + 1x = 44",
+        "3x = 44",
+        "x = 44/3"
       ],
-      "final_answer": "41.49 cm²",
-      "marks": 3,
+      "final_answer": "x = 44/3",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Linear conversion factor: 1 cm = 10 mm, so for area, 1 cm² = 10^2 = 100 mm²",
+          "description": "Multiply every term by the LCM of 2 and 4, which is 4:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4149 mm² = 4149 ÷ 100 = 41.49 cm²",
+          "description": "2x + 1x = 44",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3x = 44",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = 44/3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "41.49 cm² oe",
+          "description": "x = 44/3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plot_exponential_H",
+      "prompt": "Complete a table of values for y = 3 × 3^x for x = 0 to 4, then plot the graph.",
+      "solution_steps": [
+        "Table of values for y = 3 × 3^x:",
+        "x: 0, 1, 2, 3, 4",
+        "y: 3, 9, 27, 81, 243",
+        "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases."
+      ],
+      "final_answer": "Exponential curve: y = 3 × 3^x",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Table of values for y = 3 × 3^x:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x: 0, 1, 2, 3, 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y: 3, 9, 27, 81, 243",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot each (x, y) point and join them with a single smooth curve, getting steeper as x increases and approaching (but never touching) the x-axis as x decreases.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Exponential curve: y = 3 × 3^x oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "exponential",
+          "a": 3,
+          "base": 3,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 267.3,
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "function_graph",
+        "params": {
+          "kind": "exponential",
+          "a": 3,
+          "base": 3,
+          "x_min": -1,
+          "x_max": 4,
+          "y_min": 0,
+          "y_max": 267.3,
+          "table_points": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              9
+            ],
+            [
+              2,
+              27
+            ],
+            [
+              3,
+              81
+            ],
+            [
+              4,
+              243
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "trial_and_improvement_H",
+      "prompt": "f(x) = x^3 - 1x - 33. Show that f(x) = 0 has a root between x = 3 and x = 4, then use trial and improvement to find this root correct to 1 decimal place.",
+      "solution_steps": [
+        "f(x) = x^3 - 1x - 33",
+        "f(3) = -9.00 (negative)",
+        "f(4) = 27.00 (positive)",
+        "f(3.1) = -6.31 (negative)",
+        "f(3.2) = -3.43 (negative)",
+        "f(3.3) = -0.36 (negative)",
+        "f(3.4) = 2.90 (positive)",
+        "The sign changes between x = 3.3 and x = 3.4, so try the midpoint x = 3.35: f(3.35) = 1.25.",
+        "f(3.35) has the same sign as f(3.4), so the root lies between 3.3 and 3.35 - to 1 decimal place, this rounds down to 3.3."
+      ],
+      "final_answer": "x = 3.3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "f(x) = x^3 - 1x - 33",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "f(3) = -9.00 (negative)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "f(4) = 27.00 (positive)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "f(3.1) = -6.31 (negative) f(3.2) = -3.43 (negative) f(3.3) = -0.36 (negative) f(3.4) = 2.90 (positive) The sign changes between x = 3.3 and x = 3.4, so try the midpoint x = 3.35: f(3.35) = 1.25. f(3.35) has the same sign as f(3.4), so the root lies between 3.3 and 3.35 - to 1 decimal place, this rounds down to 3.3.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 3.3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "cross_multiplication_H",
+      "prompt": "Solve the following equation.\n\\frac{x + 2}{3} = \\frac{6x}{6}",
+      "solution_steps": [
+        "Cross-multiply: 6(x + 2) = 3(6x)",
+        "6x + 12 = 18x",
+        "Subtract 18x from both sides:",
+        "-12x + 12 = 0",
+        "Subtract 12 from both sides:",
+        "-12x = -12",
+        "Divide both sides by -12:",
+        "x = 1"
+      ],
+      "final_answer": "x = 1",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Cross-multiply: 6(x + 2) = 3(6x)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "6x + 12 = 18x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 18x from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-12x + 12 = 0 Subtract 12 from both sides: -12x = -12 Divide both sides by -12: x = 1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 1 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "factorise_quadratics_H",
+      "prompt": "Factorise: x^2 + x - 72",
+      "solution_steps": [
+        "Find two numbers that multiply to -72 and add to 1: -8 and 9",
+        "Write as two brackets: (x - 8)(x + 9)"
+      ],
+      "final_answer": "(x - 8)(x + 9)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find two numbers that multiply to -72 and add to 1: -8 and 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write as two brackets: (x - 8)(x + 9)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(x - 8)(x + 9) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "velocity_time_interpret_H",
+      "prompt": "The velocity-time graph shows a car's journey. Find the total distance travelled.",
+      "solution_steps": [
+        "Total distance = total area under the graph (a trapezium)",
+        "Distance = ½ × (49 + 25) × 20 = 740 m"
+      ],
+      "final_answer": "740 m",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Total distance = total area under the graph (a trapezium)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Distance = ½ × (49 + 25) × 20 = 740 m",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "740 m oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "piecewise_graph",
+        "params": {
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              12,
+              20
+            ],
+            [
+              37,
+              20
+            ],
+            [
+              49,
+              0
+            ]
+          ],
+          "x_max": 54,
+          "y_max": 25,
+          "x_label": "Time (s)",
+          "y_label": "Velocity (m/s)"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "algebraic_inverse_proportion_H",
+      "prompt": "y is inversely proportional to x. When x = 6, y = 16. Find the value of y when x = 4.",
+      "solution_steps": [
+        "y = k ÷ x",
+        "k = y × x = 16 × 6 = 16 × 6 = 96",
+        "y = k ÷ x = 96 ÷ 4 = 96 ÷ 4 = 24"
+      ],
+      "final_answer": "24",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "y = k ÷ x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "k = y × x = 16 × 6 = 16 × 6 = 96",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "y = k ÷ x = 96 ÷ 4 = 96 ÷ 4 = 24",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "24 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "unit_conversions_H",
+      "prompt": "Convert 3896 cm² to m².",
+      "solution_steps": [
+        "Linear conversion factor: 1 m = 100 cm, so for area, 1 m² = 100^2 = 10000 cm²",
+        "3896 cm² = 3896 ÷ 10000 = 0.3896 m²"
+      ],
+      "final_answer": "0.3896 m²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Linear conversion factor: 1 m = 100 cm, so for area, 1 m² = 100^2 = 10000 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "3896 cm² = 3896 ÷ 10000 = 0.3896 m²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "0.3896 m² oe",
           "marks": 1
         }
       ],
@@ -732,40 +661,40 @@
     },
     {
       "topic_id": "ratio_share_three_part_H",
-      "prompt": "Share 27 in the ratio 2:2:5.",
+      "prompt": "Share 56 in the ratio 2:4:8.",
       "solution_steps": [
-        "Total parts = 2 + 2 + 5 = 9",
-        "Value of one part = 27 ÷ 9 = 3",
-        "Share 1 = 2 × 3 = 6",
-        "Share 2 = 2 × 3 = 6",
-        "Share 3 = 5 × 3 = 15"
+        "Total parts = 2 + 4 + 8 = 14",
+        "Value of one part = 56 ÷ 14 = 4",
+        "Share 1 = 2 × 4 = 8",
+        "Share 2 = 4 × 4 = 16",
+        "Share 3 = 8 × 4 = 32"
       ],
-      "final_answer": "6 : 6 : 15",
+      "final_answer": "8 : 16 : 32",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 2 + 2 + 5 = 9",
+          "description": "Total parts = 2 + 4 + 8 = 14",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 27 ÷ 9 = 3",
+          "description": "Value of one part = 56 ÷ 14 = 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 1 = 2 × 3 = 6",
+          "description": "Share 1 = 2 × 4 = 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 2 = 2 × 3 = 6 Share 3 = 5 × 3 = 15",
+          "description": "Share 2 = 4 × 4 = 16 Share 3 = 8 × 4 = 32",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6 : 6 : 15 oe",
+          "description": "8 : 16 : 32 oe",
           "marks": 1
         }
       ],
@@ -773,155 +702,153 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "mixed_percentages_H",
-      "prompt": "After a 42.5% increase, an item costs £461.70. Find the original price.",
+      "topic_id": "area_semicircle_compound_H",
+      "prompt": "A shape is made from a rectangle 12 cm by 17 cm with a semicircle of diameter 12 cm attached to one side. Find the total area, giving your answer in terms of π.",
       "solution_steps": [
-        "Convert 42.5% to a multiplier: 1.43 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 461.70 ÷ 1.43 = 324"
+        "Area of rectangle = 12 × 17 = 204 cm²",
+        "Radius of semicircle = 12 ÷ 2 = 6 cm",
+        "Area of semicircle = (1/2) × π × 6² = 18π cm²",
+        "Total area = 204 + 18π cm² (exact form)"
       ],
-      "final_answer": "£324",
-      "marks": 3,
+      "final_answer": "(204 + 18π) cm²",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 42.5% to a multiplier: 1.43 (original × multiplier = new value)",
+          "description": "Area of rectangle = 12 × 17 = 204 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide the new value by the multiplier: 461.70 ÷ 1.43 = 324",
+          "description": "Radius of semicircle = 12 ÷ 2 = 6 cm",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Area of semicircle = (1/2) × π × 6² = 18π cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total area = 204 + 18π cm² (exact form)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£324 oe",
+          "description": "(204 + 18π) cm² oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "rectangle_semicircle",
+        "params": {
+          "width": 12,
+          "height": 17,
+          "radius": 6,
+          "width_label": "12 cm",
+          "height_label": "17 cm"
+        }
+      },
       "solution_diagram": null
     },
     {
-      "topic_id": "reverse_percentage_H",
-      "prompt": "After a 42.5% increase, an item costs £364.80. Find the original price.",
+      "topic_id": "volume_surface_area_cylinder_H",
+      "prompt": "Find the exact total surface area of the cylinder, in terms of π.",
       "solution_steps": [
-        "Convert 42.5% to a multiplier: 1.43 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 364.80 ÷ 1.43 = 256"
+        "Surface area = 2πr(r + h) = 2 × π × 5 × (5 + 13)",
+        "= 180π cm²"
       ],
-      "final_answer": "£256",
+      "final_answer": "180π cm²",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 42.5% to a multiplier: 1.43 (original × multiplier = new value)",
+          "description": "Surface area = 2πr(r + h) = 2 × π × 5 × (5 + 13)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide the new value by the multiplier: 364.80 ÷ 1.43 = 256",
+          "description": "= 180π cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£256 oe",
+          "description": "180π cm² oe",
           "marks": 1
         }
       ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "speed_with_conversions_H",
-      "prompt": "A car travels 684 km in 6 hours. Find its average speed in m/s, correct to 1 decimal place.",
-      "solution_steps": [
-        "speed = distance ÷ time = 684 ÷ 6 = 114 km/h",
-        "Convert to m/s: 114 ÷ 3.6 = 31.7 m/s (1 d.p.)"
-      ],
-      "final_answer": "31.7 m/s",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "speed = distance ÷ time = 684 ÷ 6 = 114 km/h",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Convert to m/s: 114 ÷ 3.6 = 31.7 m/s (1 d.p.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "31.7 m/s oe",
-          "marks": 1
+      "diagram": {
+        "kind": "cylinder",
+        "params": {
+          "radius_label": "5 cm",
+          "height_label": "13 cm"
         }
-      ],
-      "diagram": null,
+      },
       "solution_diagram": null
     },
     {
       "topic_id": "angles_polygon_interior_H",
-      "prompt": "A polygon has 5 sides. 4 of its interior angles are each 124°, and the remaining interior angle is (4x + 40)°. Find x.",
+      "prompt": "A polygon has 7 sides. 6 of its interior angles are each 124°, and the remaining interior angle is (4x + 88)°. Find x.",
       "solution_steps": [
-        "Sum of interior angles = (n - 2) × 180 = (5 - 2) × 180 = 540°",
-        "Sum of the 4 equal angles = 4 × 124 = 496°",
-        "Remaining angle = 540 - 496 = 44°",
-        "4x + 40 = 44",
-        "Subtract 40 from both sides:",
-        "4x = 4",
+        "Sum of interior angles = (n - 2) × 180 = (7 - 2) × 180 = 900°",
+        "Sum of the 6 equal angles = 6 × 124 = 744°",
+        "Remaining angle = 900 - 744 = 156°",
+        "4x + 88 = 156",
+        "Subtract 88 from both sides:",
+        "4x = 68",
         "Divide both sides by 4:",
-        "x = 1"
+        "x = 17"
       ],
-      "final_answer": "1",
+      "final_answer": "17",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Sum of interior angles = (n - 2) × 180 = (5 - 2) × 180 = 540°",
+          "description": "Sum of interior angles = (n - 2) × 180 = (7 - 2) × 180 = 900°",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Sum of the 4 equal angles = 4 × 124 = 496°",
+          "description": "Sum of the 6 equal angles = 6 × 124 = 744°",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Remaining angle = 540 - 496 = 44°",
+          "description": "Remaining angle = 900 - 744 = 156°",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x + 40 = 44 Subtract 40 from both sides: 4x = 4 Divide both sides by 4: x = 1",
+          "description": "4x + 88 = 156 Subtract 88 from both sides: 4x = 68 Divide both sides by 4: x = 17",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 oe",
+          "description": "17 oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "polygon",
         "params": {
-          "n_sides": 5,
-          "marked_angle_label": "(4x + 40)°"
+          "n_sides": 7,
+          "marked_angle_label": "(4x + 88)°"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "angles_triangle_H",
-      "prompt": "A triangle has angles 88°, 43°, and (4x - 7)°. Find x.",
+      "prompt": "A triangle has angles 85°, 36°, and (4x + 51)°. Find x.",
       "solution_steps": [
         "Angles in a triangle sum to 180°.",
-        "4x - 7 = 49",
-        "Add 7 to both sides:",
-        "4x = 56",
+        "4x + 51 = 59",
+        "Subtract 51 from both sides:",
+        "4x = 8",
         "Divide both sides by 4:",
-        "x = 14"
+        "x = 2"
       ],
-      "final_answer": "14",
+      "final_answer": "2",
       "marks": 5,
       "mark_scheme": [
         {
@@ -931,22 +858,22 @@
         },
         {
           "code": "M1",
-          "description": "4x - 7 = 49",
+          "description": "4x + 51 = 59",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add 7 to both sides:",
+          "description": "Subtract 51 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x = 56 Divide both sides by 4: x = 14",
+          "description": "4x = 8 Divide both sides by 4: x = 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "14 oe",
+          "description": "2 oe",
           "marks": 1
         }
       ],
@@ -954,142 +881,115 @@
         "kind": "triangle_angles",
         "params": {
           "angle_labels": [
-            "88°",
-            "43°",
-            "(4x - 7)°"
+            "85°",
+            "36°",
+            "(4x + 51)°"
           ]
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof_H",
-      "prompt": "ABCD is a square, and AC is one of its diagonals. Prove that the two triangles are congruent.",
+      "topic_id": "set_notation_H",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, A = {4, 5, 6, 10}, B = {3, 7, 8}. List the elements of A ∪ B.",
       "solution_steps": [
-        "AB = AD (sides of the square)",
-        "angle ABC = angle ADC = 90° (angles of the square)",
-        "BC = DC (sides of the square)",
-        "By Side-Angle-Side (SAS), the triangles are congruent.",
-        "Since two sides and the included angle match, triangles ABC and ADC are congruent."
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
+        "A = {4, 5, 6, 10}",
+        "B = {3, 7, 8}",
+        "A ∪ B means A union B (elements in A, B, or both).",
+        "A ∪ B = {3, 4, 5, 6, 7, 8, 10}"
       ],
-      "final_answer": "Triangles are congruent (SAS).",
+      "final_answer": "{3, 4, 5, 6, 7, 8, 10}",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "AB = AD (sides of the square)",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "angle ABC = angle ADC = 90° (angles of the square)",
+          "description": "A = {4, 5, 6, 10}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "BC = DC (sides of the square)",
+          "description": "B = {3, 7, 8}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "By Side-Angle-Side (SAS), the triangles are congruent. Since two sides and the included angle match, triangles ABC and ADC are congruent.",
+          "description": "A ∪ B means A union B (elements in A, B, or both). A ∪ B = {3, 4, 5, 6, 7, 8, 10}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Triangles are congruent (SAS). oe",
+          "description": "{3, 4, 5, 6, 7, 8, 10} oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "two_triangle_congruence",
+        "kind": "venn_diagram",
         "params": {
-          "labels_1": [
+          "labels": [
             "A",
-            "B",
-            "C"
+            "B"
           ],
-          "labels_2": [
-            "A",
-            "D",
-            "C"
-          ],
-          "ticks_1": [
-            [
-              0,
-              1,
-              2
-            ],
-            [
-              1,
-              2,
-              3
-            ]
-          ],
-          "ticks_2": [
-            [
-              0,
-              1,
-              2
-            ],
-            [
-              1,
-              2,
-              3
-            ]
-          ],
-          "arcs_1": [
-            [
-              1,
-              1
-            ]
-          ],
-          "arcs_2": [
-            [
-              1,
-              1
-            ]
-          ],
-          "note": "AC is the shared diagonal of the square."
+          "universal_label": "ξ"
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "venn_diagram",
+        "params": {
+          "labels": [
+            "A",
+            "B"
+          ],
+          "universal_label": "ξ",
+          "region_text": {
+            "a_only": "4, 5, 6, 10",
+            "b_only": "3, 7, 8",
+            "both": "-",
+            "neither": "1, 2, 9"
+          }
+        }
+      }
     },
     {
       "topic_id": "venn_diagram_notation_H",
-      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7}. The Venn diagram shows sets A and B. List the elements of A ∪ B.",
+      "prompt": "ξ = {1, 2, 3, 4, 5, 6, 7, 8}. The Venn diagram shows sets A and B. List the elements of A'.",
       "solution_steps": [
-        "ξ = {1, 2, 3, 4, 5, 6, 7}",
-        "A = {1, 2, 6}, B = {1, 2, 3}",
-        "A ∪ B means the elements in A, in B, or in both.",
-        "A ∪ B = {1, 2, 3, 6}"
+        "ξ = {1, 2, 3, 4, 5, 6, 7, 8}",
+        "A = {2, 3, 4, 6, 7}, B = {6, 7, 8}",
+        "A' means the elements not in A.",
+        "A' = {1, 5, 8}"
       ],
-      "final_answer": "{1, 2, 3, 6}",
+      "final_answer": "{1, 5, 8}",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "ξ = {1, 2, 3, 4, 5, 6, 7}",
+          "description": "ξ = {1, 2, 3, 4, 5, 6, 7, 8}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A = {1, 2, 6}, B = {1, 2, 3}",
+          "description": "A = {2, 3, 4, 6, 7}, B = {6, 7, 8}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A ∪ B means the elements in A, in B, or in both.",
+          "description": "A' means the elements not in A.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A ∪ B = {1, 2, 3, 6}",
+          "description": "A' = {1, 5, 8}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "{1, 2, 3, 6} oe",
+          "description": "{1, 5, 8} oe",
           "marks": 1
         }
       ],
@@ -1102,44 +1002,48 @@
           ],
           "universal_label": "S",
           "region_text": {
-            "a_only": "6",
-            "b_only": "3",
-            "both": "1, 2",
-            "neither": "4, 5, 7"
+            "a_only": "2, 3, 4",
+            "b_only": "8",
+            "both": "6, 7",
+            "neither": "1, 5"
           }
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "graph_transformations_H",
-      "prompt": "The graph of y = f(x) undergoes a translation by vector (0, 2). Write down the equation of the transformed graph in terms of f(x).",
+      "topic_id": "stats_reverse_mean_H",
+      "prompt": "The mean of four numbers is 15. Three of the numbers are 30, 10, 6. Find the missing number.",
       "solution_steps": [
-        "y = f(x) + 2 corresponds to a translation by vector (0, 2)."
+        "Total of all 4 numbers = mean × count = 15 × 4 = 60",
+        "Sum of the known numbers = 30 + 10 + 6 = 46",
+        "Missing number = 60 - 46 = 14"
       ],
-      "final_answer": "y = f(x) + 2",
-      "marks": 2,
+      "final_answer": "14",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "y = f(x) + 2 corresponds to a translation by vector (0, 2).",
+          "description": "Total of all 4 numbers = mean × count = 15 × 4 = 60",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Sum of the known numbers = 30 + 10 + 6 = 46",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Missing number = 60 - 46 = 14",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = f(x) + 2 oe",
+          "description": "14 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "graph_transformation",
-        "params": {
-          "transform": "translate_up",
-          "shift": 2,
-          "original_label": "y = f(x)",
-          "transformed_label": "y = f(x) + 2"
-        }
-      },
+      "diagram": null,
       "solution_diagram": null
     }
   ]

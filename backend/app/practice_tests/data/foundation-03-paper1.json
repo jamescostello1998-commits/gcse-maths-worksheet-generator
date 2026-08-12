@@ -8,27 +8,21 @@
   "questions": [
     {
       "topic_id": "powers_F",
-      "prompt": "Simplify (4^3)^2, giving your answer as a single power of 4.",
+      "prompt": "Evaluate 3^3.",
       "solution_steps": [
-        "Multiply the powers: 3 × 2 = 6",
-        "(4^3)^2 = 4^6"
+        "3^3 = 3 × 3 × 3 = 27"
       ],
-      "final_answer": "4^6",
-      "marks": 3,
+      "final_answer": "27",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply the powers: 3 × 2 = 6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "(4^3)^2 = 4^6",
+          "description": "3^3 = 3 × 3 × 3 = 27",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4^6 oe",
+          "description": "27 oe",
           "marks": 1
         }
       ],
@@ -36,34 +30,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "fractions_divide_F",
-      "prompt": "Evaluate 4/5 ÷ 4/8. Give your answer as a fraction in its simplest form.",
+      "topic_id": "fractions_improper_mixed_F",
+      "prompt": "Write 5 4/5 as an improper fraction.",
       "solution_steps": [
-        "Keep-change-flip: 4/5 ÷ 4/8 = 4/5 × 8/4",
-        "Multiply: \\frac{(4×8)}{(5×4)} = 32/20",
-        "Simplify: 8/5"
+        "Multiply the whole number by the denominator: 5 × 5 = 25",
+        "Add the numerator: 25 + 4 = 29",
+        "Write over the same denominator: 29/5"
       ],
-      "final_answer": "8/5",
+      "final_answer": "29/5",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Keep-change-flip: 4/5 ÷ 4/8 = 4/5 × 8/4",
+          "description": "Multiply the whole number by the denominator: 5 × 5 = 25",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: \\frac{(4×8)}{(5×4)} = 32/20",
+          "description": "Add the numerator: 25 + 4 = 29",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify: 8/5",
+          "description": "Write over the same denominator: 29/5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8/5 oe",
+          "description": "29/5 oe",
           "marks": 1
         }
       ],
@@ -72,27 +66,27 @@
     },
     {
       "topic_id": "fractions_simplify_F",
-      "prompt": "Fully simplify 28/63.",
+      "prompt": "Simplify 25/55.",
       "solution_steps": [
-        "Find the highest common factor of 28 and 63: 7",
-        "Divide numerator and denominator by 7: \\frac{28÷7}{63÷7} = 4/9"
+        "Find the highest common factor of 25 and 55: 5",
+        "Divide numerator and denominator by 5: \\frac{25÷5}{55÷5} = 5/11"
       ],
-      "final_answer": "4/9",
+      "final_answer": "5/11",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the highest common factor of 28 and 63: 7",
+          "description": "Find the highest common factor of 25 and 55: 5",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide numerator and denominator by 7: \\frac{28÷7}{63÷7} = 4/9",
+          "description": "Divide numerator and denominator by 5: \\frac{25÷5}{55÷5} = 5/11",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4/9 oe",
+          "description": "5/11 oe",
           "marks": 1
         }
       ],
@@ -100,34 +94,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_indices_F",
-      "prompt": "Simplify 5x^2 × 4x^5",
+      "topic_id": "standard_form_calculator_F",
+      "prompt": "Use a calculator to work out (6.6 × 10^6) × (2.3 × 10^-6). Give your answer in standard form, rounded to 3 significant figures if necessary.",
       "solution_steps": [
-        "Multiplying powers of the same base: add the exponents, and multiply the coefficients.",
-        "5x^2 × 4x^5 = (5×4) x^(2+5)",
-        "= 20x^7"
+        "Multiply the mantissas on your calculator: 6.6 × 2.3 = 15.18",
+        "Add the powers of 10: 6 + -6 = 0",
+        "Renormalise so the mantissa is between 1 and 10: 1.518 × 10^1",
+        "Round the mantissa to 3 significant figures: 1.52 × 10^1"
       ],
-      "final_answer": "20x^7",
-      "marks": 4,
+      "final_answer": "1.52 × 10^1",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiplying powers of the same base: add the exponents, and multiply the coefficients.",
+          "description": "Multiply the mantissas on your calculator: 6.6 × 2.3 = 15.18",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "5x^2 × 4x^5 = (5×4) x^(2+5)",
+          "description": "Add the powers of 10: 6 + -6 = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 20x^7",
+          "description": "Renormalise so the mantissa is between 1 and 10: 1.518 × 10^1",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Round the mantissa to 3 significant figures: 1.52 × 10^1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "20x^7 oe",
+          "description": "1.52 × 10^1 oe",
           "marks": 1
         }
       ],
@@ -136,27 +136,27 @@
     },
     {
       "topic_id": "decimals_round_dp_F",
-      "prompt": "Round 90.897 to 2 decimal places.",
+      "prompt": "Round 62.604 to 2 decimal places.",
       "solution_steps": [
-        "Look at the digit after the 2 decimal places we want: 7, so round up.",
-        "90.897 rounded to 2 decimal places = 90.90"
+        "Look at the digit after the 2 decimal places we want: 4, so round down.",
+        "62.604 rounded to 2 decimal places = 62.60"
       ],
-      "final_answer": "90.90",
+      "final_answer": "62.60",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Look at the digit after the 2 decimal places we want: 7, so round up.",
+          "description": "Look at the digit after the 2 decimal places we want: 4, so round down.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "90.897 rounded to 2 decimal places = 90.90",
+          "description": "62.604 rounded to 2 decimal places = 62.60",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "90.90 oe",
+          "description": "62.60 oe",
           "marks": 1
         }
       ],
@@ -165,27 +165,27 @@
     },
     {
       "topic_id": "prime_numbers_F",
-      "prompt": "From this list, write down all the prime numbers: 23, 74, 47, 18, 93, 81",
+      "prompt": "From this list, write down all the prime numbers: 98, 16, 41, 34, 93, 76",
       "solution_steps": [
-        "Check each number for factors other than 1 and itself: 23, 74, 47, 18, 93, 81",
-        "Prime numbers: 23, 47"
+        "Check each number for factors other than 1 and itself: 98, 16, 41, 34, 93, 76",
+        "Prime numbers: 41"
       ],
-      "final_answer": "23, 47",
+      "final_answer": "41",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Check each number for factors other than 1 and itself: 23, 74, 47, 18, 93, 81",
+          "description": "Check each number for factors other than 1 and itself: 98, 16, 41, 34, 93, 76",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Prime numbers: 23, 47",
+          "description": "Prime numbers: 41",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "23, 47 oe",
+          "description": "41 oe",
           "marks": 1
         }
       ],
@@ -194,21 +194,21 @@
     },
     {
       "topic_id": "decimals_divide_F",
-      "prompt": "Calculate 60.0 ÷ 5.",
+      "prompt": "Evaluate 61.8 ÷ 6.",
       "solution_steps": [
-        "60.0 ÷ 5 = 12.0"
+        "61.8 ÷ 6 = 10.3"
       ],
-      "final_answer": "12.0",
+      "final_answer": "10.3",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "60.0 ÷ 5 = 12.0",
+          "description": "61.8 ÷ 6 = 10.3",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12.0 oe",
+          "description": "10.3 oe",
           "marks": 1
         }
       ],
@@ -217,12 +217,12 @@
     },
     {
       "topic_id": "decimals_add_subtract_F",
-      "prompt": "Calculate 36.9 - 2.10.",
+      "prompt": "Work out 49.0 + 30.5.",
       "solution_steps": [
         "Line up the decimal points, padding with a zero so both numbers have the same number of decimal places.",
-        "36.9 - 2.10 = 34.80"
+        "49.0 + 30.5 = 79.5"
       ],
-      "final_answer": "34.80",
+      "final_answer": "79.5",
       "marks": 3,
       "mark_scheme": [
         {
@@ -232,12 +232,12 @@
         },
         {
           "code": "M1",
-          "description": "36.9 - 2.10 = 34.80",
+          "description": "49.0 + 30.5 = 79.5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "34.80 oe",
+          "description": "79.5 oe",
           "marks": 1
         }
       ],
@@ -245,104 +245,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_from_small_F",
-      "prompt": "Write 6 × 10^-3 as an ordinary number.",
+      "topic_id": "algebraic_indices_F",
+      "prompt": "Simplify 3x^6 × 3x^3",
       "solution_steps": [
-        "Multiply 6 by 10^-3, which means moving the decimal point 3 place(s) left.",
-        "6 × 10^-3 = 0.006"
+        "Multiplying powers of the same base: add the exponents, and multiply the coefficients.",
+        "3x^6 × 3x^3 = (3×3) x^(6+3)",
+        "= 9x^9"
       ],
-      "final_answer": "0.006",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiply 6 by 10^-3, which means moving the decimal point 3 place(s) left.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "6 × 10^-3 = 0.006",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "0.006 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simultaneous_forming_and_solving_F",
-      "prompt": "4 tickets and 2 programmes cost £2.48 in total. 1 ticket and 2 programmes cost £1.76 in total. Form and solve a pair of simultaneous equations to find the cost of one ticket and one programme.",
-      "solution_steps": [
-        "Let x = cost of one ticket (pence), y = cost of one programme (pence).",
-        "4x + 2y = 248  (1)",
-        "1x + 2y = 176  (2)",
-        "Solving simultaneously: x = 24, y = 76"
-      ],
-      "final_answer": "ticket = £0.24, programme = £0.76",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Let x = cost of one ticket (pence), y = cost of one programme (pence).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "4x + 2y = 248  (1)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "1x + 2y = 176  (2)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Solving simultaneously: x = 24, y = 76",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "ticket = £0.24, programme = £0.76 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "substitution_F",
-      "prompt": "A = LW. Find the value of A when L = 11 and w = 16.",
-      "solution_steps": [
-        "A = LW",
-        "A = 11 × 16",
-        "A = 176"
-      ],
-      "final_answer": "A = 176",
+      "final_answer": "9x^9",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A = LW",
+          "description": "Multiplying powers of the same base: add the exponents, and multiply the coefficients.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A = 11 × 16",
+          "description": "3x^6 × 3x^3 = (3×3) x^(6+3)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A = 176",
+          "description": "= 9x^9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A = 176 oe",
+          "description": "9x^9 oe",
           "marks": 1
         }
       ],
@@ -350,70 +280,188 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_next_term_F",
-      "prompt": "Find the next term in the sequence: 18, 22, 26, 30, ...",
+      "topic_id": "simultaneous_common_coefficient_F",
+      "prompt": "Solve the simultaneous equations: 2x + 5y = -28 and 5x - 5y = 70",
       "solution_steps": [
-        "Add 4 each time.",
-        "Next term = 30 + 4 = 34"
+        "2x + 5y = -28  (1)",
+        "5x - 5y = 70  (2)",
+        "Add the equations to eliminate y: 7x = 42, so x = 6",
+        "Substitute x = 6 into (1): 5y = -40, so y = -8"
       ],
-      "final_answer": "34",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Add 4 each time.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Next term = 30 + 4 = 34",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "34 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "plot_distance_time_F",
-      "prompt": "A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop 4 km away after 20 minutes. They stay at the shop until 30 minutes, then cycle straight back home at a constant speed, arriving home at 55 minutes. Draw a distance-time graph to show this journey, and find the total distance travelled.",
-      "solution_steps": [
-        "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 4 km after 20 minutes.",
-        "Stay at 4 km until 30 minutes.",
-        "Return at a constant speed to 0 km, arriving home at 55 minutes.",
-        "Plot these points and join each stage with a straight line segment.",
-        "Total distance travelled = 4 km out + 4 km back = 8 km"
-      ],
-      "final_answer": "8 km",
+      "final_answer": "x = 6, y = -8",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 4 km after 20 minutes.",
+          "description": "2x + 5y = -28  (1)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Stay at 4 km until 30 minutes.",
+          "description": "5x - 5y = 70  (2)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Return at a constant speed to 0 km, arriving home at 55 minutes.",
+          "description": "Add the equations to eliminate y: 7x = 42, so x = 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Plot these points and join each stage with a straight line segment. Total distance travelled = 4 km out + 4 km back = 8 km",
+          "description": "Substitute x = 6 into (1): 5y = -40, so y = -8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8 km oe",
+          "description": "x = 6, y = -8 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "forming_equations_F",
+      "prompt": "The perimeter of the rectangle shown is 52 cm. Form an equation and solve it to find x.",
+      "solution_steps": [
+        "Perimeter = 2 × (sum of two different side lengths).",
+        "2(x + 6) + 2(4) = 52",
+        "2x + 20 = 52",
+        "Subtract 20 from both sides:",
+        "2x = 32",
+        "Divide both sides by 2:",
+        "x = 16"
+      ],
+      "final_answer": "16",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Perimeter = 2 × (sum of two different side lengths).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2(x + 6) + 2(4) = 52",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2x + 20 = 52",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 20 from both sides: 2x = 32 Divide both sides by 2: x = 16",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "16 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "rectangle",
+        "params": {
+          "width": 22,
+          "height": 4,
+          "width_label": "(x + 6) cm",
+          "height_label": "4 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "inequalities_number_line_F",
+      "prompt": "Draw the solution set of x < -5 on a number line.",
+      "solution_steps": [
+        "Draw an open circle at -5 (the boundary value is not included).",
+        "Shade the line to the left of -5, with an arrow showing it continues indefinitely."
+      ],
+      "final_answer": "x < -5",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Draw an open circle at -5 (the boundary value is not included).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Shade the line to the left of -5, with an arrow showing it continues indefinitely.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x < -5 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -6,
+            6
+          ],
+          "boundaries": [],
+          "blank": true
+        }
+      },
+      "solution_diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -6,
+            6
+          ],
+          "boundaries": [
+            {
+              "value": -5,
+              "closed": false
+            }
+          ],
+          "shade": "left"
+        }
+      }
+    },
+    {
+      "topic_id": "plot_distance_time_F",
+      "prompt": "A cyclist leaves home at 0 minutes. They cycle at a constant speed, reaching a shop 5 km away after 15 minutes. They stay at the shop until 20 minutes, then cycle straight back home at a constant speed, arriving home at 30 minutes. Draw a distance-time graph to show this journey, and find the total distance travelled.",
+      "solution_steps": [
+        "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 5 km after 15 minutes.",
+        "Stay at 5 km until 20 minutes.",
+        "Return at a constant speed to 0 km, arriving home at 30 minutes.",
+        "Plot these points and join each stage with a straight line segment.",
+        "Total distance travelled = 5 km out + 5 km back = 10 km"
+      ],
+      "final_answer": "10 km",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Set out at 0 minutes, 0 km. Travel at a constant speed, arriving at 5 km after 15 minutes.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Stay at 5 km until 20 minutes.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Return at a constant speed to 0 km, arriving home at 30 minutes.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Plot these points and join each stage with a straight line segment. Total distance travelled = 5 km out + 5 km back = 10 km",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "10 km oe",
           "marks": 1
         }
       ],
@@ -426,20 +474,20 @@
               0
             ],
             [
+              15,
+              5
+            ],
+            [
               20,
-              4
+              5
             ],
             [
               30,
-              4
-            ],
-            [
-              55,
               0
             ]
           ],
-          "x_max": 60,
-          "y_max": 6,
+          "x_max": 35,
+          "y_max": 7,
           "x_label": "Time (minutes)",
           "y_label": "Distance (km)",
           "blank": true
@@ -454,20 +502,20 @@
               0
             ],
             [
+              15,
+              5
+            ],
+            [
               20,
-              4
+              5
             ],
             [
               30,
-              4
-            ],
-            [
-              55,
               0
             ]
           ],
-          "x_max": 60,
-          "y_max": 6,
+          "x_max": 35,
+          "y_max": 7,
           "x_label": "Time (minutes)",
           "y_label": "Distance (km)"
         }
@@ -475,27 +523,27 @@
     },
     {
       "topic_id": "special_sequences_F",
-      "prompt": "The first 3 cube numbers are: 1, 8, 27. Find the 5th term of the sequence.",
+      "prompt": "Here are the first 4 terms of a sequence: 4, 7, 10, 13. Find the next term.",
       "solution_steps": [
-        "These are the cube numbers: the nth term is given by n^3.",
-        "Term 5 = 5^3 = 125"
+        "This is an arithmetic sequence: it goes up (or down) by the same amount, 3, each time.",
+        "Next term = 13 + 3 = 16"
       ],
-      "final_answer": "125",
+      "final_answer": "16",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "These are the cube numbers: the nth term is given by n^3.",
+          "description": "This is an arithmetic sequence: it goes up (or down) by the same amount, 3, each time.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Term 5 = 5^3 = 125",
+          "description": "Next term = 13 + 3 = 16",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "125 oe",
+          "description": "16 oe",
           "marks": 1
         }
       ],
@@ -503,42 +551,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "linear_brackets_F",
-      "prompt": "Solve: 5(5x + 4) = 95",
+      "topic_id": "fractional_equations_F",
+      "prompt": "Solve the following equation.\n\\frac{x - 2}{7} = 7",
       "solution_steps": [
-        "Expand the bracket: 5(5x + 4) = 25x + 20",
-        "25x + 20 = 95",
-        "Subtract 20 from both sides:",
-        "25x = 75",
-        "Divide both sides by 25:",
-        "x = 3"
+        "Multiply both sides by 7: x - 2 = 49",
+        "x = 51"
       ],
-      "final_answer": "3",
-      "marks": 5,
+      "final_answer": "x = 51",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expand the bracket: 5(5x + 4) = 25x + 20",
+          "description": "Multiply both sides by 7: x - 2 = 49",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "25x + 20 = 95",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 20 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "25x = 75 Divide both sides by 25: x = 3",
+          "description": "x = 51",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 oe",
+          "description": "x = 51 oe",
           "marks": 1
         }
       ],
@@ -547,40 +581,40 @@
     },
     {
       "topic_id": "linear_two_step_F",
-      "prompt": "Solve: 2x + 11 = 25",
+      "prompt": "Solve: 7x + 10 = 94",
       "solution_steps": [
-        "2x + 11 = 25",
-        "Subtract 11 from both sides:",
-        "2x = 14",
-        "Divide both sides by 2:",
-        "x = 7"
+        "7x + 10 = 94",
+        "Subtract 10 from both sides:",
+        "7x = 84",
+        "Divide both sides by 7:",
+        "x = 12"
       ],
-      "final_answer": "7",
+      "final_answer": "12",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "2x + 11 = 25",
+          "description": "7x + 10 = 94",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 11 from both sides:",
+          "description": "Subtract 10 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2x = 14",
+          "description": "7x = 84",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 2: x = 7",
+          "description": "Divide both sides by 7: x = 12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7 oe",
+          "description": "12 oe",
           "marks": 1
         }
       ],
@@ -589,40 +623,40 @@
     },
     {
       "topic_id": "best_buys_noncalculator_F",
-      "prompt": "A shop sells rice in different sizes: A: £11.20 for 700g; B: £1.80 for 600g; C: £0.50 for 100g. Which option is the better value for money? Show your working.",
+      "prompt": "A shop sells shampoo in different sizes: A: £3.80 for 200ml; B: £4.50 for 300ml; C: £11.20 for 800ml. Which option is the better value for money? Show your working.",
       "solution_steps": [
-        "Work out the price per 100g for each option:",
-        "A: £11.20 ÷ 700 × 100 = 160p per 100g",
-        "B: £1.80 ÷ 600 × 100 = 30p per 100g",
-        "C: £0.50 ÷ 100 × 100 = 50p per 100g",
-        "The lowest price per 100g is B at 30p per 100g, so B is the best value."
+        "Work out the price per 100ml for each option:",
+        "A: £3.80 ÷ 200 × 100 = 190p per 100ml",
+        "B: £4.50 ÷ 300 × 100 = 150p per 100ml",
+        "C: £11.20 ÷ 800 × 100 = 140p per 100ml",
+        "The lowest price per 100ml is C at 140p per 100ml, so C is the best value."
       ],
-      "final_answer": "B (£1.80 for 600g)",
+      "final_answer": "C (£11.20 for 800ml)",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Work out the price per 100g for each option:",
+          "description": "Work out the price per 100ml for each option:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A: £11.20 ÷ 700 × 100 = 160p per 100g",
+          "description": "A: £3.80 ÷ 200 × 100 = 190p per 100ml",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "B: £1.80 ÷ 600 × 100 = 30p per 100g",
+          "description": "B: £4.50 ÷ 300 × 100 = 150p per 100ml",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "C: £0.50 ÷ 100 × 100 = 50p per 100g The lowest price per 100g is B at 30p per 100g, so B is the best value.",
+          "description": "C: £11.20 ÷ 800 × 100 = 140p per 100ml The lowest price per 100ml is C at 140p per 100ml, so C is the best value.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "B (£1.80 for 600g) oe",
+          "description": "C (£11.20 for 800ml) oe",
           "marks": 1
         }
       ],
@@ -631,27 +665,27 @@
     },
     {
       "topic_id": "reverse_percentage_F",
-      "prompt": "After a 10% decrease, an item costs £72. Find the original price.",
+      "prompt": "After a 20% increase, an item costs £216. Find the original price.",
       "solution_steps": [
-        "Convert 10% to a multiplier: 0.90 (original × multiplier = new value)",
-        "Divide the new value by the multiplier: 72 ÷ 0.90 = 80"
+        "Convert 20% to a multiplier: 1.20 (original × multiplier = new value)",
+        "Divide the new value by the multiplier: 216 ÷ 1.20 = 180"
       ],
-      "final_answer": "£80",
+      "final_answer": "£180",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 10% to a multiplier: 0.90 (original × multiplier = new value)",
+          "description": "Convert 20% to a multiplier: 1.20 (original × multiplier = new value)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide the new value by the multiplier: 72 ÷ 0.90 = 80",
+          "description": "Divide the new value by the multiplier: 216 ÷ 1.20 = 180",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£80 oe",
+          "description": "£180 oe",
           "marks": 1
         }
       ],
@@ -660,27 +694,27 @@
     },
     {
       "topic_id": "direct_proportion_F",
-      "prompt": "If 12 notebooks cost £57.96, how much would 15 notebooks cost?",
+      "prompt": "If 4 cm on a map represents 100 km in real life, how many km does 9 cm represent?",
       "solution_steps": [
-        "Unit value = £57.96 ÷ 12 = £4.83",
-        "Answer = £4.83 × 15 = £72.45"
+        "Unit value = 100 km ÷ 4 = 25 km",
+        "Answer = 25 km × 9 = 225 km"
       ],
-      "final_answer": "£72.45",
+      "final_answer": "225 km",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Unit value = £57.96 ÷ 12 = £4.83",
+          "description": "Unit value = 100 km ÷ 4 = 25 km",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer = £4.83 × 15 = £72.45",
+          "description": "Answer = 25 km × 9 = 225 km",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£72.45 oe",
+          "description": "225 km oe",
           "marks": 1
         }
       ],
@@ -689,27 +723,27 @@
     },
     {
       "topic_id": "ratio_1_to_n_F",
-      "prompt": "Write the ratio 3:9 in the form \\plain{n}:1.",
+      "prompt": "Write the ratio 8:7 in the form \\plain{n}:1.",
       "solution_steps": [
-        "Divide both parts of the ratio by 9 (the second part) so the second part becomes 1.",
-        "3 ÷ 9 ≈ 0.33, 9 ÷ 9 = 1"
+        "Divide both parts of the ratio by 7 (the second part) so the second part becomes 1.",
+        "8 ÷ 7 ≈ 1.14, 7 ÷ 7 = 1"
       ],
-      "final_answer": "0.33 : 1 (to 2 d.p.)",
+      "final_answer": "1.14 : 1 (to 2 d.p.)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide both parts of the ratio by 9 (the second part) so the second part becomes 1.",
+          "description": "Divide both parts of the ratio by 7 (the second part) so the second part becomes 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3 ÷ 9 ≈ 0.33, 9 ÷ 9 = 1",
+          "description": "8 ÷ 7 ≈ 1.14, 7 ÷ 7 = 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0.33 : 1 (to 2 d.p.) oe",
+          "description": "1.14 : 1 (to 2 d.p.) oe",
           "marks": 1
         }
       ],
@@ -718,27 +752,27 @@
     },
     {
       "topic_id": "percentage_change_F",
-      "prompt": "Decrease 440 by 25%.",
+      "prompt": "Decrease 340 by 20%.",
       "solution_steps": [
-        "Convert 25% to a multiplier: 0.75",
-        "Multiply: 440 × 0.75 = 330"
+        "Convert 20% to a multiplier: 0.80",
+        "Multiply: 340 × 0.80 = 272"
       ],
-      "final_answer": "330",
+      "final_answer": "272",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 25% to a multiplier: 0.75",
+          "description": "Convert 20% to a multiplier: 0.80",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: 440 × 0.75 = 330",
+          "description": "Multiply: 340 × 0.80 = 272",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "330 oe",
+          "description": "272 oe",
           "marks": 1
         }
       ],
@@ -747,43 +781,43 @@
     },
     {
       "topic_id": "area_triangle_F",
-      "prompt": "A triangle has base 13 cm and height 13 cm. Find its area.",
+      "prompt": "A triangle has base 6 cm and height 6 cm. Find its area.",
       "solution_steps": [
-        "Area = (1/2) × base × height = (1/2) × 13 × 13 = 169/2 cm²"
+        "Area = (1/2) × base × height = (1/2) × 6 × 6 = 18 cm²"
       ],
-      "final_answer": "169/2 cm²",
+      "final_answer": "18 cm²",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = (1/2) × base × height = (1/2) × 13 × 13 = 169/2 cm²",
+          "description": "Area = (1/2) × base × height = (1/2) × 6 × 6 = 18 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "169/2 cm² oe",
+          "description": "18 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "triangle_area",
         "params": {
-          "base": 13,
-          "height": 13,
-          "base_label": "13 cm",
-          "height_label": "13 cm"
+          "base": 6,
+          "height": 6,
+          "base_label": "6 cm",
+          "height_label": "6 cm"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "angles_triangle_F",
-      "prompt": "A triangle has angles 29°, 80°, and x°. Find x.",
+      "prompt": "A triangle has angles 114°, 39°, and x°. Find x.",
       "solution_steps": [
         "Angles in a triangle sum to 180°.",
-        "x = 180 - (29 + 80) = 180 - 109 = 71"
+        "x = 180 - (114 + 39) = 180 - 153 = 27"
       ],
-      "final_answer": "71",
+      "final_answer": "27",
       "marks": 3,
       "mark_scheme": [
         {
@@ -793,12 +827,12 @@
         },
         {
           "code": "M1",
-          "description": "x = 180 - (29 + 80) = 180 - 109 = 71",
+          "description": "x = 180 - (114 + 39) = 180 - 153 = 27",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "71 oe",
+          "description": "27 oe",
           "marks": 1
         }
       ],
@@ -806,8 +840,8 @@
         "kind": "triangle_angles",
         "params": {
           "angle_labels": [
-            "29°",
-            "80°",
+            "114°",
+            "39°",
             "x"
           ]
         }
@@ -816,24 +850,24 @@
     },
     {
       "topic_id": "construction_angle_bisector_F",
-      "prompt": "Angle WDJ = 101°. Describe, step by step, how to construct the bisector of angle WDJ using only a ruler and a pair of compasses.",
+      "prompt": "Angle ZQS = 152°. Describe, step by step, how to construct the bisector of angle ZQS using only a ruler and a pair of compasses.",
       "solution_steps": [
-        "Open the compasses to any radius and place the point on D (the vertex of the angle).",
-        "Draw an arc that crosses both arms of the angle, at a point on DW and a point on DJ.",
+        "Open the compasses to any radius and place the point on Q (the vertex of the angle).",
+        "Draw an arc that crosses both arms of the angle, at a point on QZ and a point on QS.",
         "Without changing the compass radius, place the point on each of these two crossing points in turn and draw two more arcs so that they intersect each other.",
-        "Draw a straight line from D through the point where the two arcs intersect. This line is the bisector of angle WDJ."
+        "Draw a straight line from Q through the point where the two arcs intersect. This line is the bisector of angle ZQS."
       ],
-      "final_answer": "The straight line from D through the intersection of the two equal-radius arcs bisects angle WDJ into two equal angles.",
+      "final_answer": "The straight line from Q through the intersection of the two equal-radius arcs bisects angle ZQS into two equal angles.",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Open the compasses to any radius and place the point on D (the vertex of the angle).",
+          "description": "Open the compasses to any radius and place the point on Q (the vertex of the angle).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Draw an arc that crosses both arms of the angle, at a point on DW and a point on DJ.",
+          "description": "Draw an arc that crosses both arms of the angle, at a point on QZ and a point on QS.",
           "marks": 1
         },
         {
@@ -843,12 +877,12 @@
         },
         {
           "code": "M1",
-          "description": "Draw a straight line from D through the point where the two arcs intersect. This line is the bisector of angle WDJ.",
+          "description": "Draw a straight line from Q through the point where the two arcs intersect. This line is the bisector of angle ZQS.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "The straight line from D through the intersection of the two equal-radius arcs bisects angle WDJ into two equal angles. oe",
+          "description": "The straight line from Q through the intersection of the two equal-radius arcs bisects angle ZQS into two equal angles. oe",
           "marks": 1
         }
       ],
@@ -857,9 +891,9 @@
     },
     {
       "topic_id": "symmetry_lines_F",
-      "prompt": "The diagram shows an isosceles triangle. How many lines of symmetry does it have?",
+      "prompt": "The diagram shows an isosceles trapezium. How many lines of symmetry does it have?",
       "solution_steps": [
-        "An isosceles triangle has 1 line of symmetry.",
+        "An isosceles trapezium has 1 line of symmetry.",
         "Each line of symmetry divides the shape into two mirror-image halves - shown dashed on the diagram."
       ],
       "final_answer": "1 line of symmetry",
@@ -867,7 +901,7 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "An isosceles triangle has 1 line of symmetry.",
+          "description": "An isosceles trapezium has 1 line of symmetry.",
           "marks": 1
         },
         {
@@ -894,8 +928,12 @@
               0
             ],
             [
-              3,
-              4
+              4,
+              3
+            ],
+            [
+              2,
+              3
             ]
           ],
           "blank": true
@@ -914,8 +952,12 @@
               0
             ],
             [
-              3,
-              4
+              4,
+              3
+            ],
+            [
+              2,
+              3
             ]
           ],
           "symmetry_lines": [
@@ -926,7 +968,7 @@
               ],
               "p2": [
                 3,
-                5
+                4
               ]
             }
           ]
@@ -935,33 +977,33 @@
     },
     {
       "topic_id": "nets_3d_shapes_F",
-      "prompt": "How many sectors does the net of a cone contain?",
+      "prompt": "What 2D shapes make up the net of a triangular prism?",
       "solution_steps": [
-        "Imagine unfolding a cone flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
-        "A cone's net is made up of: 1 circle and 1 sector (the curved surface unrolled flat).",
-        "So the answer is: 1."
+        "Imagine unfolding a triangular prism flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
+        "A triangular prism's net is made up of: 2 triangles and 3 rectangles.",
+        "So the answer is: 2 triangles and 3 rectangles."
       ],
-      "final_answer": "1",
+      "final_answer": "2 triangles and 3 rectangles",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Imagine unfolding a cone flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
+          "description": "Imagine unfolding a triangular prism flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A cone's net is made up of: 1 circle and 1 sector (the curved surface unrolled flat).",
+          "description": "A triangular prism's net is made up of: 2 triangles and 3 rectangles.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "So the answer is: 1.",
+          "description": "So the answer is: 2 triangles and 3 rectangles.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 oe",
+          "description": "2 triangles and 3 rectangles oe",
           "marks": 1
         }
       ],
@@ -969,33 +1011,33 @@
       "solution_diagram": {
         "kind": "net",
         "params": {
-          "shape": "cone"
+          "shape": "triangular_prism"
         }
       }
     },
     {
       "topic_id": "tree_diagram_independent_F",
-      "prompt": "A bag contains 4 green and 3 blue counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that the first counter is blue and the second counter is blue.",
+      "prompt": "A bag contains 5 green and 6 yellow counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that the first counter is green and the second counter is yellow.",
       "solution_steps": [
-        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(green) = 4/7, P(blue) = 3/7.",
-        "P(blue then blue) = 3/7 × 3/7 = 9/49"
+        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(green) = 5/11, P(yellow) = 6/11.",
+        "P(green then yellow) = 5/11 × 6/11 = 30/121"
       ],
-      "final_answer": "9/49",
+      "final_answer": "30/121",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(green) = 4/7, P(blue) = 3/7.",
+          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(green) = 5/11, P(yellow) = 6/11.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(blue then blue) = 3/7 × 3/7 = 9/49",
+          "description": "P(green then yellow) = 5/11 × 6/11 = 30/121",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9/49 oe",
+          "description": "30/121 oe",
           "marks": 1
         }
       ],
@@ -1005,32 +1047,32 @@
           "stage1": [
             [
               "Green",
-              "4/7"
+              "5/11"
             ],
             [
-              "Blue",
-              "3/7"
+              "Yellow",
+              "6/11"
             ]
           ],
           "stage2": [
             [
               [
                 "Green",
-                "4/7"
+                "5/11"
               ],
               [
-                "Blue",
-                "3/7"
+                "Yellow",
+                "6/11"
               ]
             ],
             [
               [
                 "Green",
-                "4/7"
+                "5/11"
               ],
               [
-                "Blue",
-                "3/7"
+                "Yellow",
+                "6/11"
               ]
             ]
           ]
@@ -1039,155 +1081,46 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "sample_space_diagrams_F",
-      "prompt": "Two fair spinners, one numbered 1 to 4 and the other numbered 1 to 6, are spun together. Complete the sample space diagram showing the product of the two spinners, and use it to find the probability that the product is 9.",
+      "topic_id": "solving_inequalities_F",
+      "prompt": "Solve the inequality: \\frac{x}{3} + 4 ≥ 0",
       "solution_steps": [
-        "The sample space diagram shows every possible product of the two spinners.",
-        "Number of favourable outcomes (the product is 9) = 1",
-        "Total number of equally likely outcomes = 24",
-        "P(the product is 9) = 1/24"
+        "\\frac{x}{3} + 4 ≥ 0",
+        "Subtract 4 from both sides:",
+        "\\frac{x}{3} ≥ -4",
+        "Multiply both sides by 3:",
+        "x ≥ -12"
       ],
-      "final_answer": "1/24",
+      "final_answer": "x ≥ -12",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The sample space diagram shows every possible product of the two spinners.",
+          "description": "\\frac{x}{3} + 4 ≥ 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Number of favourable outcomes (the product is 9) = 1",
+          "description": "Subtract 4 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total number of equally likely outcomes = 24",
+          "description": "\\frac{x}{3} ≥ -4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(the product is 9) = 1/24",
+          "description": "Multiply both sides by 3: x ≥ -12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/24 oe",
+          "description": "x ≥ -12 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "sample_space_diagram",
-        "params": {
-          "row_values": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "col_values": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6
-          ],
-          "cells": [
-            [
-              "",
-              "",
-              "",
-              "",
-              "",
-              ""
-            ],
-            [
-              "",
-              "",
-              "",
-              "",
-              "",
-              ""
-            ],
-            [
-              "",
-              "",
-              "",
-              "",
-              "",
-              ""
-            ],
-            [
-              "",
-              "",
-              "",
-              "",
-              "",
-              ""
-            ]
-          ]
-        }
-      },
-      "solution_diagram": {
-        "kind": "sample_space_diagram",
-        "params": {
-          "row_values": [
-            1,
-            2,
-            3,
-            4
-          ],
-          "col_values": [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6
-          ],
-          "cells": [
-            [
-              "1",
-              "2",
-              "3",
-              "4",
-              "5",
-              "6"
-            ],
-            [
-              "2",
-              "4",
-              "6",
-              "8",
-              "10",
-              "12"
-            ],
-            [
-              "3",
-              "6",
-              "9",
-              "12",
-              "15",
-              "18"
-            ],
-            [
-              "4",
-              "8",
-              "12",
-              "16",
-              "20",
-              "24"
-            ]
-          ],
-          "highlight": [
-            [
-              2,
-              2
-            ]
-          ]
-        }
-      }
+      "diagram": null,
+      "solution_diagram": null
     }
   ]
 }

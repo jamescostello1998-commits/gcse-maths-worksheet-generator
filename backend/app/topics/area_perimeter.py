@@ -194,13 +194,22 @@ def generate_modelled_example_triangle(tier: Tier, rng: random.Random) -> Modell
 # ---------------------------------------------------------------------------
 
 
+# Corbett-style labelling: the shape's own boundary edges are labelled
+# directly (with some deliberately left blank, so the student works out the
+# missing lengths), rather than the old "outer W x H + a floating cut-out
+# caption" scheme. Each _build_* returns the geometry plus the exact
+# edge_labels dict the l_shape/t_shape diagram consumes.
+
+
 def _build_composite_l(rng: random.Random, corner: str) -> dict:
-    outer_w = rng.randint(10, 25)
-    outer_h = rng.randint(10, 25)
-    inner_w = rng.randint(2, outer_w - 2)
-    inner_h = rng.randint(2, outer_h - 2)
-    if not (inner_w < outer_w and inner_h < outer_h):
-        raise ValueError("composite_rectangles(l): sanity constraint failed")
+    """An L-shape: a W x H rectangle with a nw x nh corner notch removed.
+    Given (labelled) edges: the full width, the full uncut side, the notch's
+    across-length, and the remaining part of the notched side. Blank (the
+    student deduces): the top segment and the notch depth."""
+    outer_w = rng.randint(8, 16)
+    outer_h = rng.randint(8, 16)
+    inner_w = rng.randint(3, outer_w - 3)
+    inner_h = rng.randint(3, outer_h - 3)
 
     outer_area = outer_w * outer_h
     inner_area = inner_w * inner_h
@@ -215,18 +224,37 @@ def _build_composite_l(rng: random.Random, corner: str) -> dict:
     if outer_w * strip_h + (outer_w - inner_w) * inner_h != total_area:
         raise ValueError("composite_rectangles(l): cross-check failed")
 
+    # right_lower / left_lower = the still-full part of the notched vertical
+    # side; the notch depth (inner_h) is left blank for the student to deduce.
+    lower = outer_h - inner_h
+    if corner == "top_left":
+        edge_labels = {
+            "bottom": f"{outer_w} cm", "right": f"{outer_h} cm",
+            "notch_across": f"{inner_w} cm", "left_lower": f"{lower} cm",
+        }
+    else:  # top_right
+        edge_labels = {
+            "bottom": f"{outer_w} cm", "left": f"{outer_h} cm",
+            "notch_across": f"{inner_w} cm", "right_lower": f"{lower} cm",
+        }
+
     return {
         "branch": "l", "corner": corner,
         "outer_w": outer_w, "outer_h": outer_h, "inner_w": inner_w, "inner_h": inner_h,
         "outer_area": outer_area, "inner_area": inner_area, "total_area": total_area,
+        "lower": lower, "edge_labels": edge_labels,
     }
 
 
 def _build_composite_t(rng: random.Random) -> dict:
-    top_w = rng.randint(10, 20)
-    stem_w = rng.randint(2, top_w - 2)
-    top_h = rng.randint(2, 8)
-    stem_h = rng.randint(4, 16)
+    """A T-shape: a top bar (top_w x top_h) over a centred stem
+    (stem_w x stem_h). The two notch widths are labelled and the top width is
+    left blank, so the student adds notch + stem + notch to find it."""
+    stem_w = rng.randint(3, 8)
+    notch = rng.randint(2, 6)
+    top_w = stem_w + 2 * notch  # the two notches are equal, so top_w has the right parity
+    top_h = rng.randint(2, 6)
+    stem_h = rng.randint(5, 14)
 
     top_area = top_w * top_h
     stem_area = stem_w * stem_h
@@ -242,37 +270,54 @@ def _build_composite_t(rng: random.Random) -> dict:
     if bbox_area - notch_area != total_area:
         raise ValueError("composite_rectangles(t): cross-check failed")
 
+    edge_labels = {
+        "bar_left": f"{top_h} cm", "bar_right": f"{top_h} cm",
+        "notch_left": f"{notch} cm", "notch_right": f"{notch} cm",
+        "stem_bottom": f"{stem_w} cm", "stem_left": f"{stem_h} cm",
+    }
+
     return {
         "branch": "t",
-        "top_w": top_w, "top_h": top_h, "stem_w": stem_w, "stem_h": stem_h,
+        "top_w": top_w, "top_h": top_h, "stem_w": stem_w, "stem_h": stem_h, "notch": notch,
         "top_area": top_area, "stem_area": stem_area, "total_area": total_area,
+        "edge_labels": edge_labels,
     }
 
 
 def _build_composite_find_x(rng: random.Random) -> dict:
-    inner_w = rng.randint(2, 10)
-    inner_h = rng.randint(2, 10)
-    outer_h = rng.randint(inner_h + 2, 20)
-    outer_w = rng.randint(inner_w + 2, 25)
+    """A step-shape (an L with a top-left notch), area given, find x = the
+    inner across-length. Given edges: the top width (W - x), the full right
+    side (H), and the shorter left side (H - notch depth); x labels the inner
+    across edge. Area = top x H + x x left_lower is linear in x."""
+    x_val = rng.randint(3, 12)          # the answer: the notch across-length (nw)
+    top = rng.randint(4, 12)            # the labelled top segment (W - nw)
+    outer_h = rng.randint(6, 15)        # the full right-hand height (H)
+    lower = rng.randint(2, outer_h - 2)  # the labelled shorter left side (H - nh)
 
-    outer_area = outer_w * outer_h
-    inner_area = inner_w * inner_h
-    total_area = outer_area - inner_area
-    if total_area <= 0:
-        raise ValueError("composite_rectangles(find_x): non-positive area")
+    outer_w = top + x_val
+    inner_h = outer_h - lower
+    total_area = outer_w * outer_h - x_val * inner_h
 
-    # Independent check: solve the linear equation for outer_w (the unknown
-    # "x") directly via sympy - a genuinely different route than the forward
-    # multiplication used to construct total_area above.
+    # Independent check: solve the linear area relation A = top*H + x*lower for
+    # x directly via sympy - a different route than the forward construction.
     x_sym = sp.symbols("x")
-    solved = sp.solve(sp.Eq(x_sym * outer_h - inner_w * inner_h, total_area), x_sym)
-    if len(solved) != 1 or solved[0] != outer_w:
+    solved = sp.solve(sp.Eq(top * outer_h + x_sym * lower, total_area), x_sym)
+    if len(solved) != 1 or solved[0] != x_val:
         raise ValueError("composite_rectangles(find_x): verification failed")
 
+    edge_labels = {
+        "bottom": "",  # blank
+        "right": f"{outer_h} cm",
+        "top": f"{top} cm",
+        "notch_across": "x",
+        "left_lower": f"{lower} cm",
+    }
+
     return {
-        "branch": "find_x",
-        "outer_w": outer_w, "outer_h": outer_h, "inner_w": inner_w, "inner_h": inner_h,
-        "outer_area": outer_area, "inner_area": inner_area, "total_area": total_area,
+        "branch": "find_x", "corner": "top_left",
+        "outer_w": outer_w, "outer_h": outer_h, "inner_w": x_val, "inner_h": inner_h,
+        "x_val": x_val, "top": top, "lower": lower, "total_area": total_area,
+        "right_area": top * outer_h, "edge_labels": edge_labels,
     }
 
 
@@ -294,8 +339,7 @@ def _composite_l_diagram(b: dict) -> DiagramSpec:
             "outer_w": b["outer_w"], "outer_h": b["outer_h"],
             "inner_w": b["inner_w"], "inner_h": b["inner_h"],
             "notch": "corner", "corner": b["corner"],
-            "outer_labels": [f"{b['outer_w']} cm", f"{b['outer_h']} cm"],
-            "inner_labels": [f"{b['inner_w']} cm", f"{b['inner_h']} cm"],
+            "edge_labels": b["edge_labels"],
         },
     )
 
@@ -305,21 +349,7 @@ def _composite_t_diagram(b: dict) -> DiagramSpec:
         kind="t_shape",
         params={
             "top_w": b["top_w"], "top_h": b["top_h"], "stem_w": b["stem_w"], "stem_h": b["stem_h"],
-            "top_label": f"{b['top_w']} cm", "side_label": f"{b['top_h']} cm",
-            "stem_w_label": f"{b['stem_w']} cm", "stem_h_label": f"{b['stem_h']} cm",
-        },
-    )
-
-
-def _composite_find_x_diagram(b: dict) -> DiagramSpec:
-    return DiagramSpec(
-        kind="l_shape",
-        params={
-            "outer_w": b["outer_w"], "outer_h": b["outer_h"],
-            "inner_w": b["inner_w"], "inner_h": b["inner_h"],
-            "notch": "corner", "corner": "top_right",
-            "outer_labels": ["x", f"{b['outer_h']} cm"],
-            "inner_labels": [f"{b['inner_w']} cm", f"{b['inner_h']} cm"],
+            "edge_labels": b["edge_labels"],
         },
     )
 
@@ -329,7 +359,9 @@ def generate_composite_rectangles(tier: Tier, rng: random.Random) -> Question:
 
     if b["branch"] == "l":
         steps = [
-            f"Area of full rectangle = {b['outer_w']} × {b['outer_h']} = {b['outer_area']} cm²",
+            f"Fill in the missing sides: the notch is {b['inner_w']} cm across and "
+            f"{b['outer_h']} - {b['lower']} = {b['inner_h']} cm deep.",
+            f"Area of the full rectangle = {b['outer_w']} × {b['outer_h']} = {b['outer_area']} cm²",
             f"Area of the cut-out corner = {b['inner_w']} × {b['inner_h']} = {b['inner_area']} cm²",
             f"Area of the shape = {b['outer_area']} - {b['inner_area']} = {b['total_area']} cm²",
         ]
@@ -338,6 +370,7 @@ def generate_composite_rectangles(tier: Tier, rng: random.Random) -> Question:
         dedup_key = f"composite_rect:l:{b['corner']}:{b['outer_w']}:{b['outer_h']}:{b['inner_w']}:{b['inner_h']}"
     elif b["branch"] == "t":
         steps = [
+            f"Work out the width of the top bar: {b['notch']} + {b['stem_w']} + {b['notch']} = {b['top_w']} cm.",
             f"Area of the top bar = {b['top_w']} × {b['top_h']} = {b['top_area']} cm²",
             f"Area of the stem = {b['stem_w']} × {b['stem_h']} = {b['stem_area']} cm²",
             f"Total area = {b['top_area']} + {b['stem_area']} = {b['total_area']} cm²",
@@ -347,16 +380,18 @@ def generate_composite_rectangles(tier: Tier, rng: random.Random) -> Question:
         dedup_key = f"composite_rect:t:{b['top_w']}:{b['top_h']}:{b['stem_w']}:{b['stem_h']}"
     else:  # find_x
         steps = [
-            f"Area of the shape = (outer rectangle) - (cut-out corner) = "
-            f"x × {b['outer_h']} - {b['inner_w']} × {b['inner_h']}",
-            f"{b['total_area']} = {b['outer_h']}x - {b['inner_area']}",
-            f"x = ({b['total_area']} + {b['inner_area']}) ÷ {b['outer_h']} = {b['outer_w']}",
+            "Split the shape into two rectangles with a vertical cut down the inside edge.",
+            f"Right rectangle: {b['top']} × {b['outer_h']} = {b['right_area']} cm²",
+            f"Left rectangle: x × {b['lower']} = {b['lower']}x",
+            f"Total: {b['right_area']} + {b['lower']}x = {b['total_area']}, so "
+            f"{b['lower']}x = {b['total_area'] - b['right_area']} and "
+            f"x = {b['total_area'] - b['right_area']} ÷ {b['lower']} = {b['x_val']}",
         ]
-        prompt = f"The area of this compound shape is {b['total_area']} cm². Find the value of x."
-        diagram = _composite_find_x_diagram(b)
-        dedup_key = f"composite_rect:x:{b['outer_w']}:{b['outer_h']}:{b['inner_w']}:{b['inner_h']}"
+        prompt = f"The area of this compound shape is {b['total_area']} cm². Find the length x."
+        diagram = _composite_l_diagram(b)
+        dedup_key = f"composite_rect:x:{b['top']}:{b['outer_h']}:{b['lower']}:{b['x_val']}"
 
-    final_answer = f"{b['total_area']} cm²" if b["branch"] != "find_x" else f"x = {b['outer_w']} cm"
+    final_answer = f"{b['total_area']} cm²" if b["branch"] != "find_x" else f"x = {b['x_val']} cm"
     return Question(
         topic_id="area_composite_rectangles_F",
         tier=Tier.FOUNDATION,
@@ -374,17 +409,20 @@ def generate_modelled_example_composite_rectangles(tier: Tier, rng: random.Rando
     if b["branch"] == "l":
         prompt = "Find the area of this compound shape."
         teaching_steps = [
-            "A compound shape like this is easiest to handle by treating it as a big rectangle "
-            "with a corner missing - so start by imagining the shape 'filled in' to make a "
-            "complete rectangle.",
-            f"The full rectangle would measure {b['outer_w']} cm by {b['outer_h']} cm, giving an "
-            f"area of {b['outer_w']} × {b['outer_h']} = {b['outer_area']} cm².",
-            f"The missing corner is itself a rectangle, {b['inner_w']} cm by {b['inner_h']} cm, "
-            f"with area {b['inner_w']} × {b['inner_h']} = {b['inner_area']} cm².",
-            f"Since that corner isn't actually part of the shape, subtract it from the full "
-            f"rectangle: {b['outer_area']} - {b['inner_area']} = {b['total_area']} cm².",
+            "Not every side length is written on the diagram - the first job is to fill in the "
+            "missing ones using the sides you are given, because opposite sides of the overall "
+            "rectangle must match up.",
+            f"The full rectangle is {b['outer_w']} cm wide and {b['outer_h']} cm tall. The notch "
+            f"cut from the corner is {b['inner_w']} cm across, and its depth is "
+            f"{b['outer_h']} - {b['lower']} = {b['inner_h']} cm.",
+            f"Find the area of the whole rectangle as if the corner were filled in: "
+            f"{b['outer_w']} × {b['outer_h']} = {b['outer_area']} cm².",
+            f"The missing corner is a {b['inner_w']} cm by {b['inner_h']} cm rectangle, area "
+            f"{b['inner_w']} × {b['inner_h']} = {b['inner_area']} cm². Subtract it: "
+            f"{b['outer_area']} - {b['inner_area']} = {b['total_area']} cm².",
         ]
         worked_calculation = [
+            f"Notch depth = {b['outer_h']} - {b['lower']} = {b['inner_h']} cm",
             f"Full rectangle = {b['outer_w']} × {b['outer_h']} = {b['outer_area']} cm²",
             f"Cut-out corner = {b['inner_w']} × {b['inner_h']} = {b['inner_area']} cm²",
             f"Area = {b['outer_area']} - {b['inner_area']} = {b['total_area']} cm²",
@@ -394,16 +432,19 @@ def generate_modelled_example_composite_rectangles(tier: Tier, rng: random.Rando
     elif b["branch"] == "t":
         prompt = "Find the area of this compound shape."
         teaching_steps = [
-            "A T-shaped compound shape like this splits naturally into two rectangles - the "
-            "horizontal bar across the top, and the narrower stem hanging below it.",
-            f"The top bar measures {b['top_w']} cm by {b['top_h']} cm, giving an area of "
-            f"{b['top_w']} × {b['top_h']} = {b['top_area']} cm².",
-            f"The stem measures {b['stem_w']} cm by {b['stem_h']} cm, giving an area of "
-            f"{b['stem_w']} × {b['stem_h']} = {b['stem_area']} cm².",
-            f"Since the bar and the stem together make up the whole shape with no overlap, add "
-            f"the two areas: {b['top_area']} + {b['stem_area']} = {b['total_area']} cm².",
+            "A T-shaped compound shape splits naturally into two rectangles - the horizontal bar "
+            "across the top, and the narrower stem below it. First work out the width of the top "
+            "bar, which isn't labelled directly.",
+            f"The top bar's width is the stem plus the two notches either side: "
+            f"{b['notch']} + {b['stem_w']} + {b['notch']} = {b['top_w']} cm.",
+            f"The top bar is {b['top_w']} cm by {b['top_h']} cm, area "
+            f"{b['top_w']} × {b['top_h']} = {b['top_area']} cm². The stem is {b['stem_w']} cm by "
+            f"{b['stem_h']} cm, area {b['stem_w']} × {b['stem_h']} = {b['stem_area']} cm².",
+            f"The bar and stem together make the whole shape with no overlap, so add them: "
+            f"{b['top_area']} + {b['stem_area']} = {b['total_area']} cm².",
         ]
         worked_calculation = [
+            f"Top width = {b['notch']} + {b['stem_w']} + {b['notch']} = {b['top_w']} cm",
             f"Top bar = {b['top_w']} × {b['top_h']} = {b['top_area']} cm²",
             f"Stem = {b['stem_w']} × {b['stem_h']} = {b['stem_area']} cm²",
             f"Area = {b['top_area']} + {b['stem_area']} = {b['total_area']} cm²",
@@ -411,27 +452,28 @@ def generate_modelled_example_composite_rectangles(tier: Tier, rng: random.Rando
         diagram = _composite_t_diagram(b)
         final_answer = f"{b['total_area']} cm²"
     else:  # find_x
-        prompt = f"The area of this compound shape is {b['total_area']} cm². Find the value of x."
+        prompt = f"The area of this compound shape is {b['total_area']} cm². Find the length x."
         teaching_steps = [
-            "This is the same compound-shape method as usual, just worked backwards - instead of "
-            "computing the area from known side lengths, we're given the area and must find a "
-            "missing side length, x.",
-            f"Write the area the same way as always, as (outer rectangle) - (cut-out corner), but "
-            f"using x for the unknown outer width: x × {b['outer_h']} - "
-            f"{b['inner_w']} × {b['inner_h']} = x × {b['outer_h']} - {b['inner_area']}.",
-            f"Set that equal to the given area and solve for x: "
-            f"{b['total_area']} = {b['outer_h']}x - {b['inner_area']}, so "
-            f"{b['outer_h']}x = {b['total_area']} + {b['inner_area']} = {b['total_area'] + b['inner_area']}.",
-            f"Divide both sides by {b['outer_h']}: "
-            f"x = {b['total_area'] + b['inner_area']} ÷ {b['outer_h']} = {b['outer_w']}.",
+            "This is the usual compound-shape method worked backwards: we're given the total area "
+            "and must find a missing side length, x. Split the shape into two rectangles with a "
+            "vertical cut down the inside edge.",
+            f"The right-hand rectangle is {b['top']} cm wide and the full {b['outer_h']} cm tall, "
+            f"so its area is {b['top']} × {b['outer_h']} = {b['right_area']} cm².",
+            f"The left-hand rectangle is x cm wide and {b['lower']} cm tall, so its area is "
+            f"{b['lower']}x. The two areas must add to the given total: "
+            f"{b['right_area']} + {b['lower']}x = {b['total_area']}.",
+            f"Solve for x: {b['lower']}x = {b['total_area']} - {b['right_area']} = "
+            f"{b['total_area'] - b['right_area']}, so x = {b['total_area'] - b['right_area']} ÷ "
+            f"{b['lower']} = {b['x_val']} cm.",
         ]
         worked_calculation = [
-            f"{b['total_area']} = {b['outer_h']}x - {b['inner_area']}",
-            f"{b['outer_h']}x = {b['total_area'] + b['inner_area']}",
-            f"x = {b['total_area'] + b['inner_area']} ÷ {b['outer_h']} = {b['outer_w']}",
+            f"Right rectangle = {b['top']} × {b['outer_h']} = {b['right_area']} cm²",
+            f"{b['right_area']} + {b['lower']}x = {b['total_area']}",
+            f"{b['lower']}x = {b['total_area'] - b['right_area']}",
+            f"x = {b['total_area'] - b['right_area']} ÷ {b['lower']} = {b['x_val']} cm",
         ]
-        diagram = _composite_find_x_diagram(b)
-        final_answer = f"x = {b['outer_w']} cm"
+        diagram = _composite_l_diagram(b)
+        final_answer = f"x = {b['x_val']} cm"
 
     return ModelledExample(
         topic_id="area_composite_rectangles_F",

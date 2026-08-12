@@ -7,28 +7,22 @@
   "calculator_allowed": false,
   "questions": [
     {
-      "topic_id": "decimals_add_subtract_F",
-      "prompt": "Calculate 62.1 + 63.7.",
+      "topic_id": "roots_F",
+      "prompt": "Calculate √25.",
       "solution_steps": [
-        "Line up the decimal points, padding with a zero so both numbers have the same number of decimal places.",
-        "62.1 + 63.7 = 125.8"
+        "5^2 = 25, so √25 = 5"
       ],
-      "final_answer": "125.8",
-      "marks": 3,
+      "final_answer": "5",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Line up the decimal points, padding with a zero so both numbers have the same number of decimal places.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "62.1 + 63.7 = 125.8",
+          "description": "5^2 = 25, so √25 = 5",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "125.8 oe",
+          "description": "5 oe",
           "marks": 1
         }
       ],
@@ -37,27 +31,27 @@
     },
     {
       "topic_id": "standard_form_from_small_F",
-      "prompt": "Write 8 × 10^-4 as an ordinary number.",
+      "prompt": "Write 6.8 × 10^-5 as an ordinary number.",
       "solution_steps": [
-        "Multiply 8 by 10^-4, which means moving the decimal point 4 place(s) left.",
-        "8 × 10^-4 = 0.0008"
+        "Multiply 6.8 by 10^-5, which means moving the decimal point 5 place(s) left.",
+        "6.8 × 10^-5 = 0.000068"
       ],
-      "final_answer": "0.0008",
+      "final_answer": "0.000068",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply 8 by 10^-4, which means moving the decimal point 4 place(s) left.",
+          "description": "Multiply 6.8 by 10^-5, which means moving the decimal point 5 place(s) left.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "8 × 10^-4 = 0.0008",
+          "description": "6.8 × 10^-5 = 0.000068",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0.0008 oe",
+          "description": "0.000068 oe",
           "marks": 1
         }
       ],
@@ -65,28 +59,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "number_powers_of_ten_F",
-      "prompt": "Work out 919 × 100.",
+      "topic_id": "negative_ordering_F",
+      "prompt": "Write these numbers in descending order: 10, 7, -3, 2, -7",
       "solution_steps": [
-        "Multiplying by 100 moves the decimal point 2 places to the right.",
-        "919 × 100 = 91900"
+        "Place the numbers on a number line: 10, 7, -3, 2, -7.",
+        "Reading them in order from largest to smallest gives: 10, 7, 2, -3, -7."
       ],
-      "final_answer": "91900",
+      "final_answer": "10, 7, 2, -3, -7",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiplying by 100 moves the decimal point 2 places to the right.",
+          "description": "Place the numbers on a number line: 10, 7, -3, 2, -7.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "919 × 100 = 91900",
+          "description": "Reading them in order from largest to smallest gives: 10, 7, 2, -3, -7.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "91900 oe",
+          "description": "10, 7, 2, -3, -7 oe",
           "marks": 1
         }
       ],
@@ -94,17 +88,17 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "negative_multiply_divide_F",
-      "prompt": "Work out 16 ÷ (-8).",
+      "topic_id": "negative_add_subtract_F",
+      "prompt": "Work out -13 - (-11).",
       "solution_steps": [
-        "16 ÷ (-8) = -2"
+        "-13 - (-11) = -2"
       ],
       "final_answer": "-2",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "16 ÷ (-8) = -2",
+          "description": "-13 - (-11) = -2",
           "marks": 1
         },
         {
@@ -118,27 +112,33 @@
     },
     {
       "topic_id": "fractions_improper_mixed_F",
-      "prompt": "Convert 27/4 to a mixed number.",
+      "prompt": "Write 6 7/9 as an improper fraction.",
       "solution_steps": [
-        "Divide the numerator by the denominator: 27 ÷ 4 = 6 remainder 3",
-        "Write as a mixed number: 6 3/4"
+        "Multiply the whole number by the denominator: 6 × 9 = 54",
+        "Add the numerator: 54 + 7 = 61",
+        "Write over the same denominator: 61/9"
       ],
-      "final_answer": "6 3/4",
-      "marks": 3,
+      "final_answer": "61/9",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide the numerator by the denominator: 27 ÷ 4 = 6 remainder 3",
+          "description": "Multiply the whole number by the denominator: 6 × 9 = 54",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write as a mixed number: 6 3/4",
+          "description": "Add the numerator: 54 + 7 = 61",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write over the same denominator: 61/9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6 3/4 oe",
+          "description": "61/9 oe",
           "marks": 1
         }
       ],
@@ -147,27 +147,27 @@
     },
     {
       "topic_id": "decimals_ordering_F",
-      "prompt": "Write these values in ascending order: 1/2, 0.48, 0.44, 0.46",
+      "prompt": "Write these values in descending order: 0.28, 0.22, 2/5, 32%",
       "solution_steps": [
-        "Convert each value to a decimal: 1/2 = 0.50, 0.48 = 0.48, 0.44 = 0.44, 0.46 = 0.46",
-        "Order in ascending order: 0.44, 0.46, 0.48, 1/2"
+        "Convert each value to a decimal: 0.28 = 0.28, 0.22 = 0.22, 2/5 = 0.40, 32% = 0.32",
+        "Order in descending order: 2/5, 32%, 0.28, 0.22"
       ],
-      "final_answer": "0.44, 0.46, 0.48, 1/2",
+      "final_answer": "2/5, 32%, 0.28, 0.22",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert each value to a decimal: 1/2 = 0.50, 0.48 = 0.48, 0.44 = 0.44, 0.46 = 0.46",
+          "description": "Convert each value to a decimal: 0.28 = 0.28, 0.22 = 0.22, 2/5 = 0.40, 32% = 0.32",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Order in ascending order: 0.44, 0.46, 0.48, 1/2",
+          "description": "Order in descending order: 2/5, 32%, 0.28, 0.22",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0.44, 0.46, 0.48, 1/2 oe",
+          "description": "2/5, 32%, 0.28, 0.22 oe",
           "marks": 1
         }
       ],
@@ -176,33 +176,33 @@
     },
     {
       "topic_id": "hcf_by_listing_F",
-      "prompt": "Find the highest common factor (HCF) of 33 and 48.",
+      "prompt": "Find the highest common factor (HCF) of 37 and 54.",
       "solution_steps": [
-        "Factors of 33: 1, 3, 11, 33",
-        "Factors of 48: 1, 2, 3, 4, 6, 8, 12, 16, 24, 48",
-        "Highest common factor = 3"
+        "Factors of 37: 1, 37",
+        "Factors of 54: 1, 2, 3, 6, 9, 18, 27, 54",
+        "Highest common factor = 1"
       ],
-      "final_answer": "3",
+      "final_answer": "1",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Factors of 33: 1, 3, 11, 33",
+          "description": "Factors of 37: 1, 37",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factors of 48: 1, 2, 3, 4, 6, 8, 12, 16, 24, 48",
+          "description": "Factors of 54: 1, 2, 3, 6, 9, 18, 27, 54",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Highest common factor = 3",
+          "description": "Highest common factor = 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 oe",
+          "description": "1 oe",
           "marks": 1
         }
       ],
@@ -210,41 +210,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "bidmas_F",
-      "prompt": "Work out 1 + 6 × (7 - 1)^2 ÷ 3.",
+      "topic_id": "bidmas_two_three_F",
+      "prompt": "Work out 4 × 2 - 6.",
       "solution_steps": [
-        "Brackets: (7 - 1) = 6",
-        "Indices: 6^2 = 36",
-        "Multiplication: 6 × 36 = 216",
-        "Division: 216 ÷ 3 = 72",
-        "Addition: 1 + 72 = 73"
+        "Multiplication: 4 × 2 = 8",
+        "Subtraction: 8 - 6 = 2"
       ],
-      "final_answer": "73",
-      "marks": 5,
+      "final_answer": "2",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Brackets: (7 - 1) = 6",
+          "description": "Multiplication: 4 × 2 = 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Indices: 6^2 = 36",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiplication: 6 × 36 = 216",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Division: 216 ÷ 3 = 72 Addition: 1 + 72 = 73",
+          "description": "Subtraction: 8 - 6 = 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "73 oe",
+          "description": "2 oe",
           "marks": 1
         }
       ],
@@ -253,41 +240,41 @@
     },
     {
       "topic_id": "linear_multi_step_F",
-      "prompt": "Solve: 3x + 4 + 3x - 1 = 63",
+      "prompt": "Solve: 5x + 6 + 6x + 5 = 88",
       "solution_steps": [
-        "Collect like terms: 3x + 3x = 6x, 4 - 1 = 3",
-        "6x + 3 = 63",
-        "Subtract 3 from both sides:",
-        "6x = 60",
-        "Divide both sides by 6:",
-        "x = 10"
+        "Collect like terms: 5x + 6x = 11x, 6 + 5 = 11",
+        "11x + 11 = 88",
+        "Subtract 11 from both sides:",
+        "11x = 77",
+        "Divide both sides by 11:",
+        "x = 7"
       ],
-      "final_answer": "10",
+      "final_answer": "7",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Collect like terms: 3x + 3x = 6x, 4 - 1 = 3",
+          "description": "Collect like terms: 5x + 6x = 11x, 6 + 5 = 11",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "6x + 3 = 63",
+          "description": "11x + 11 = 88",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 3 from both sides:",
+          "description": "Subtract 11 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "6x = 60 Divide both sides by 6: x = 10",
+          "description": "11x = 77 Divide both sides by 11: x = 7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10 oe",
+          "description": "7 oe",
           "marks": 1
         }
       ],
@@ -296,82 +283,40 @@
     },
     {
       "topic_id": "linear_two_step_F",
-      "prompt": "Solve: 4x + 6 = 54",
+      "prompt": "Solve: 8x + 15 = 31",
       "solution_steps": [
-        "4x + 6 = 54",
-        "Subtract 6 from both sides:",
-        "4x = 48",
-        "Divide both sides by 4:",
-        "x = 12"
+        "8x + 15 = 31",
+        "Subtract 15 from both sides:",
+        "8x = 16",
+        "Divide both sides by 8:",
+        "x = 2"
       ],
-      "final_answer": "12",
+      "final_answer": "2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "4x + 6 = 54",
+          "description": "8x + 15 = 31",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 6 from both sides:",
+          "description": "Subtract 15 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x = 48",
+          "description": "8x = 16",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 4: x = 12",
+          "description": "Divide both sides by 8: x = 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "expand_double_brackets_F",
-      "prompt": "Expand and simplify: (4x + 5)(4x + 2)",
-      "solution_steps": [
-        "First: 4x × 4x = 16x^2",
-        "Outer: 4x × 2 = 8x",
-        "Inner: 5 × 4x = 20x",
-        "Last: 5 × 2 = 10",
-        "Combine like terms: 16x^2 + 28x + 10"
-      ],
-      "final_answer": "16x^2 + 28x + 10",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "First: 4x × 4x = 16x^2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Outer: 4x × 2 = 8x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Inner: 5 × 4x = 20x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Last: 5 × 2 = 10 Combine like terms: 16x^2 + 28x + 10",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "16x^2 + 28x + 10 oe",
+          "description": "2 oe",
           "marks": 1
         }
       ],
@@ -380,33 +325,33 @@
     },
     {
       "topic_id": "expand_single_bracket_F",
-      "prompt": "Expand: -5(x - 8)",
+      "prompt": "Expand: -4(5x - 8)",
       "solution_steps": [
-        "Multiply -5 by x: -5x",
-        "Multiply -5 by -8: 40",
-        "Combine: -5x + 40"
+        "Multiply -4 by 5x: -20x",
+        "Multiply -4 by -8: 32",
+        "Combine: -20x + 32"
       ],
-      "final_answer": "-5x + 40",
+      "final_answer": "-20x + 32",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply -5 by x: -5x",
+          "description": "Multiply -4 by 5x: -20x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply -5 by -8: 40",
+          "description": "Multiply -4 by -8: 32",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Combine: -5x + 40",
+          "description": "Combine: -20x + 32",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-5x + 40 oe",
+          "description": "-20x + 32 oe",
           "marks": 1
         }
       ],
@@ -414,41 +359,81 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_double_brackets_no_coefficient_F",
-      "prompt": "Expand and simplify: (x + 7)(x + 4)",
+      "topic_id": "substitution_rearrange_F",
+      "prompt": "v = u + at. Make a the subject of the formula, then find the value of a when v = 13, u = 11 and t = 1.",
       "solution_steps": [
-        "First: x × x = x^2",
-        "Outer: x × 4 = 4x",
-        "Inner: 7 × x = 7x",
-        "Last: 7 × 4 = 28",
-        "Combine like terms: x^2 + 11x + 28"
+        "v = u + at",
+        "Rearrange to make a the subject: a = \\frac{v - u}{t}",
+        "Substitute v = 13, u = 11 and t = 1: a = \\frac{13 - 11}{1}",
+        "a = 2/1 = 2"
       ],
-      "final_answer": "x^2 + 11x + 28",
+      "final_answer": "a = 2",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First: x × x = x^2",
+          "description": "v = u + at",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Outer: x × 4 = 4x",
+          "description": "Rearrange to make a the subject: a = \\frac{v - u}{t}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Inner: 7 × x = 7x",
+          "description": "Substitute v = 13, u = 11 and t = 1: a = \\frac{13 - 11}{1}",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Last: 7 × 4 = 28 Combine like terms: x^2 + 11x + 28",
+          "description": "a = 2/1 = 2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x^2 + 11x + 28 oe",
+          "description": "a = 2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "substitution_F",
+      "prompt": "A = (1/2)bh. Find the value of A when b = 12 and h = 18.",
+      "solution_steps": [
+        "A = (1/2)bh",
+        "A = (1/2) × 12 × 18",
+        "A = 216/2",
+        "A = 108"
+      ],
+      "final_answer": "A = 108",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A = (1/2)bh",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = (1/2) × 12 × 18",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = 216/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A = 108",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "A = 108 oe",
           "marks": 1
         }
       ],
@@ -459,25 +444,25 @@
       "topic_id": "distance_time_interpret_F",
       "prompt": "The distance-time graph shows a delivery van's journey. Find its speed during the outbound leg of the journey, in km/h.",
       "solution_steps": [
-        "Outbound: 10 km in 15 minutes = 10 km in 1/4 hours",
-        "Speed = distance ÷ time = 10 ÷ 1/4 = 40 km/h"
+        "Outbound: 5 km in 15 minutes = 5 km in 1/4 hours",
+        "Speed = distance ÷ time = 5 ÷ 1/4 = 20 km/h"
       ],
-      "final_answer": "40 km/h",
+      "final_answer": "20 km/h",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Outbound: 10 km in 15 minutes = 10 km in 1/4 hours",
+          "description": "Outbound: 5 km in 15 minutes = 5 km in 1/4 hours",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Speed = distance ÷ time = 10 ÷ 1/4 = 40 km/h",
+          "description": "Speed = distance ÷ time = 5 ÷ 1/4 = 20 km/h",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "40 km/h oe",
+          "description": "20 km/h oe",
           "marks": 1
         }
       ],
@@ -491,19 +476,19 @@
             ],
             [
               15,
-              10
+              5
             ],
             [
-              20,
-              10
+              25,
+              5
             ],
             [
-              50,
+              55,
               0
             ]
           ],
-          "x_max": 55,
-          "y_max": 12,
+          "x_max": 60,
+          "y_max": 7,
           "x_label": "Time (minutes)",
           "y_label": "Distance (km)"
         }
@@ -511,40 +496,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "simultaneous_common_coefficient_F",
-      "prompt": "Solve the simultaneous equations: 5x + 4y = -21 and 4x + 4y = -20",
+      "topic_id": "algebraic_indices_F",
+      "prompt": "Simplify 4x^8 ÷ x^4",
       "solution_steps": [
-        "5x + 4y = -21  (1)",
-        "4x + 4y = -20  (2)",
-        "Subtract the equations to eliminate y: 1x = -1, so x = -1",
-        "Substitute x = -1 into (1): 4y = -16, so y = -4"
+        "Dividing powers of the same base: subtract the exponents, and divide the coefficients.",
+        "4x^8 ÷ x^4 = (4÷1) x^(8-4)",
+        "= 4x^4"
       ],
-      "final_answer": "x = -1, y = -4",
-      "marks": 5,
+      "final_answer": "4x^4",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "5x + 4y = -21  (1)",
+          "description": "Dividing powers of the same base: subtract the exponents, and divide the coefficients.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x + 4y = -20  (2)",
+          "description": "4x^8 ÷ x^4 = (4÷1) x^(8-4)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract the equations to eliminate y: 1x = -1, so x = -1",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute x = -1 into (1): 4y = -16, so y = -4",
+          "description": "= 4x^4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = -1, y = -4 oe",
+          "description": "4x^4 oe",
           "marks": 1
         }
       ],
@@ -553,39 +532,39 @@
     },
     {
       "topic_id": "ratio_share_two_part_F",
-      "prompt": "Share 30 in the ratio 1:2.",
+      "prompt": "Share 72 in the ratio 2:7.",
       "solution_steps": [
-        "Total parts = 1 + 2 = 3",
-        "Value of one part = 30 ÷ 3 = 10",
-        "Share 1 = 1 × 10 = 10",
-        "Share 2 = 2 × 10 = 20"
+        "Total parts = 2 + 7 = 9",
+        "Value of one part = 72 ÷ 9 = 8",
+        "Share 1 = 2 × 8 = 16",
+        "Share 2 = 7 × 8 = 56"
       ],
-      "final_answer": "10 : 20",
+      "final_answer": "16 : 56",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 1 + 2 = 3",
+          "description": "Total parts = 2 + 7 = 9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 30 ÷ 3 = 10",
+          "description": "Value of one part = 72 ÷ 9 = 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 1 = 1 × 10 = 10",
+          "description": "Share 1 = 2 × 8 = 16",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 2 = 2 × 10 = 20",
+          "description": "Share 2 = 7 × 8 = 56",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10 : 20 oe",
+          "description": "16 : 56 oe",
           "marks": 1
         }
       ],
@@ -594,27 +573,27 @@
     },
     {
       "topic_id": "ratio_find_missing_share_F",
-      "prompt": "p : q = 5 : 4. p = 25. What is the value of q?",
+      "prompt": "s : t = 3 : 8. t = 144. What is the value of s?",
       "solution_steps": [
-        "Value of one part = 25 ÷ 5 = 5",
-        "q = 4 × 5 = 20"
+        "Value of one part = 144 ÷ 8 = 18",
+        "s = 3 × 18 = 54"
       ],
-      "final_answer": "20",
+      "final_answer": "54",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Value of one part = 25 ÷ 5 = 5",
+          "description": "Value of one part = 144 ÷ 8 = 18",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "q = 4 × 5 = 20",
+          "description": "s = 3 × 18 = 54",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "20 oe",
+          "description": "54 oe",
           "marks": 1
         }
       ],
@@ -623,27 +602,27 @@
     },
     {
       "topic_id": "find_percentage_change_F",
-      "prompt": "The price of an item changes from £360 to £342. Find the percentage decrease.",
+      "prompt": "The price of an item changes from £260 to £273. Find the percentage increase.",
       "solution_steps": [
-        "Find the difference between the two values: £342 and £360 differ by £18",
-        "Divide by the ORIGINAL value and convert to a percentage: £18 ÷ £360 × 100 = 5%"
+        "Find the difference between the two values: £273 and £260 differ by £13",
+        "Divide by the ORIGINAL value and convert to a percentage: £13 ÷ £260 × 100 = 5%"
       ],
-      "final_answer": "5% decrease",
+      "final_answer": "5% increase",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the difference between the two values: £342 and £360 differ by £18",
+          "description": "Find the difference between the two values: £273 and £260 differ by £13",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide by the ORIGINAL value and convert to a percentage: £18 ÷ £360 × 100 = 5%",
+          "description": "Divide by the ORIGINAL value and convert to a percentage: £13 ÷ £260 × 100 = 5%",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5% decrease oe",
+          "description": "5% increase oe",
           "marks": 1
         }
       ],
@@ -652,27 +631,27 @@
     },
     {
       "topic_id": "percentage_change_F",
-      "prompt": "Decrease 460 by 20%.",
+      "prompt": "Increase 380 by 50%.",
       "solution_steps": [
-        "Convert 20% to a multiplier: 0.80",
-        "Multiply: 460 × 0.80 = 368"
+        "Convert 50% to a multiplier: 1.50",
+        "Multiply: 380 × 1.50 = 570"
       ],
-      "final_answer": "368",
+      "final_answer": "570",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert 20% to a multiplier: 0.80",
+          "description": "Convert 50% to a multiplier: 1.50",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: 460 × 0.80 = 368",
+          "description": "Multiply: 380 × 1.50 = 570",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "368 oe",
+          "description": "570 oe",
           "marks": 1
         }
       ],
@@ -681,27 +660,27 @@
     },
     {
       "topic_id": "direct_proportion_noncalculator_F",
-      "prompt": "If 4 cm on a map represents 12 km in real life, how many km does 12 cm represent?",
+      "prompt": "If a recipe for 4 people uses 44g of sugar, how much sugar is needed for 16 people?",
       "solution_steps": [
-        "Unit value = 12 km ÷ 4 = 3 km",
-        "Answer = 3 km × 12 = 36 km"
+        "Unit value = 44g ÷ 4 = 11g",
+        "Answer = 11g × 16 = 176g"
       ],
-      "final_answer": "36 km",
+      "final_answer": "176g",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Unit value = 12 km ÷ 4 = 3 km",
+          "description": "Unit value = 44g ÷ 4 = 11g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Answer = 3 km × 12 = 36 km",
+          "description": "Answer = 11g × 16 = 176g",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "36 km oe",
+          "description": "176g oe",
           "marks": 1
         }
       ],
@@ -710,13 +689,13 @@
     },
     {
       "topic_id": "properties_3d_shapes_F",
-      "prompt": "How many faces does a tetrahedron (triangular-based pyramid) have?",
+      "prompt": "How many faces does a cube have?",
       "solution_steps": [
         "A face is a flat or curved surface on the outside of a 3D shape.",
-        "A tetrahedron has 4 triangular faces, 6 edges, and 4 vertices (corners) - every face is a triangle, including the base.",
-        "So a tetrahedron (triangular-based pyramid) has 4 faces."
+        "A cube has 6 square faces, 12 edges, and 8 vertices (corners).",
+        "So a cube has 6 faces."
       ],
-      "final_answer": "4",
+      "final_answer": "6",
       "marks": 4,
       "mark_scheme": [
         {
@@ -726,17 +705,17 @@
         },
         {
           "code": "M1",
-          "description": "A tetrahedron has 4 triangular faces, 6 edges, and 4 vertices (corners) - every face is a triangle, including the base.",
+          "description": "A cube has 6 square faces, 12 edges, and 8 vertices (corners).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "So a tetrahedron (triangular-based pyramid) has 4 faces.",
+          "description": "So a cube has 6 faces.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4 oe",
+          "description": "6 oe",
           "marks": 1
         }
       ],
@@ -745,12 +724,12 @@
     },
     {
       "topic_id": "angles_around_point_F",
-      "prompt": "The angles 109°, 23°, 148° and x° are angles around a point. Find x.",
+      "prompt": "The angles 73°, 97°, 56° and x° are angles around a point. Find x.",
       "solution_steps": [
         "Angles around a point sum to 360°.",
-        "x = 360 - (109 + 23 + 148) = 360 - 280 = 80"
+        "x = 360 - (73 + 97 + 56) = 360 - 226 = 134"
       ],
-      "final_answer": "80",
+      "final_answer": "134",
       "marks": 3,
       "mark_scheme": [
         {
@@ -760,12 +739,12 @@
         },
         {
           "code": "M1",
-          "description": "x = 360 - (109 + 23 + 148) = 360 - 280 = 80",
+          "description": "x = 360 - (73 + 97 + 56) = 360 - 226 = 134",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "80 oe",
+          "description": "134 oe",
           "marks": 1
         }
       ],
@@ -773,15 +752,15 @@
         "kind": "angle_line",
         "params": {
           "angle_values": [
-            109,
-            23,
-            148,
-            80
+            73,
+            97,
+            56,
+            134
           ],
           "labels": [
-            "109°",
-            "23°",
-            "148°",
+            "73°",
+            "97°",
+            "56°",
             "x"
           ],
           "around_point": true
@@ -791,39 +770,39 @@
     },
     {
       "topic_id": "construction_perpendicular_bisector_F",
-      "prompt": "Line segment JG has length 7 cm. Describe, step by step, how to construct the perpendicular bisector of JG using only a ruler and a pair of compasses.",
+      "prompt": "Line segment ST has length 6 cm. Describe, step by step, how to construct the perpendicular bisector of ST using only a ruler and a pair of compasses.",
       "solution_steps": [
-        "Open the compasses to a radius more than half of 7 cm (more than half the length of JG).",
-        "With the compass point on J, draw an arc above and below the line.",
-        "Without changing the compass radius, place the point on G and draw two more arcs, crossing the first two.",
-        "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of JG."
+        "Open the compasses to a radius more than half of 6 cm (more than half the length of ST).",
+        "With the compass point on S, draw an arc above and below the line.",
+        "Without changing the compass radius, place the point on T and draw two more arcs, crossing the first two.",
+        "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of ST."
       ],
-      "final_answer": "A straight line through the two arc intersections, crossing JG at its midpoint at a right angle.",
+      "final_answer": "A straight line through the two arc intersections, crossing ST at its midpoint at a right angle.",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Open the compasses to a radius more than half of 7 cm (more than half the length of JG).",
+          "description": "Open the compasses to a radius more than half of 6 cm (more than half the length of ST).",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "With the compass point on J, draw an arc above and below the line.",
+          "description": "With the compass point on S, draw an arc above and below the line.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Without changing the compass radius, place the point on G and draw two more arcs, crossing the first two.",
+          "description": "Without changing the compass radius, place the point on T and draw two more arcs, crossing the first two.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of JG.",
+          "description": "Draw a straight line through the two points where the arcs intersect. This line is the perpendicular bisector of ST.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A straight line through the two arc intersections, crossing JG at its midpoint at a right angle. oe",
+          "description": "A straight line through the two arc intersections, crossing ST at its midpoint at a right angle. oe",
           "marks": 1
         }
       ],
@@ -832,63 +811,63 @@
     },
     {
       "topic_id": "pythagoras_shorter_leg_F",
-      "prompt": "A right-angled triangle has hypotenuse 148 cm and one side 48 cm. Find the length of x.",
+      "prompt": "A right-angled triangle has hypotenuse 26 cm and one side 10 cm. Find the length of x.",
       "solution_steps": [
-        "b² = c² - a² = 148² - 48² = 21904 - 2304 = 19600",
-        "b = √19600 = 140"
+        "b² = c² - a² = 26² - 10² = 676 - 100 = 576",
+        "b = √576 = 24"
       ],
-      "final_answer": "140 cm",
+      "final_answer": "24 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "b² = c² - a² = 148² - 48² = 21904 - 2304 = 19600",
+          "description": "b² = c² - a² = 26² - 10² = 676 - 100 = 576",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "b = √19600 = 140",
+          "description": "b = √576 = 24",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "140 cm oe",
+          "description": "24 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "right_triangle",
         "params": {
-          "leg1_label": "48 cm",
+          "leg1_label": "10 cm",
           "leg2_label": "x",
-          "hyp_label": "148 cm"
+          "hyp_label": "26 cm"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "relative_frequency_F",
-      "prompt": "A drawing pin is tested 20 times, and it lands point up 12 times. Use this relative frequency to estimate how many times this would happen in 55 trials.",
+      "prompt": "A drawing pin is tested 100 times, and it lands point up 6 times. Use this relative frequency to estimate how many times this would happen in 300 trials.",
       "solution_steps": [
-        "Relative frequency = frequency ÷ number of trials = 12/20 = 3/5",
-        "Estimated number of times in 55 trials = 3/5 × 55 = 33"
+        "Relative frequency = frequency ÷ number of trials = 6/100 = 3/50",
+        "Estimated number of times in 300 trials = 3/50 × 300 = 18"
       ],
-      "final_answer": "33",
+      "final_answer": "18",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Relative frequency = frequency ÷ number of trials = 12/20 = 3/5",
+          "description": "Relative frequency = frequency ÷ number of trials = 6/100 = 3/50",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Estimated number of times in 55 trials = 3/5 × 55 = 33",
+          "description": "Estimated number of times in 300 trials = 3/50 × 300 = 18",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "33 oe",
+          "description": "18 oe",
           "marks": 1
         }
       ],
@@ -897,33 +876,33 @@
     },
     {
       "topic_id": "venn_diagram_probability_F",
-      "prompt": "The Venn diagram shows the number of students in each region for sets A and B. Find P(A ∪ B).",
+      "prompt": "The Venn diagram shows the number of students in each region for sets A and B. Find P(A ∩ B).",
       "solution_steps": [
-        "Total number of elements = 15 + 10 + 5 + 11 = 41",
-        "Number of outcomes in A ∪ B = 15 + 10 + 5 = 30",
-        "P(A ∪ B) = 30/41 = 30/41"
+        "Total number of elements = 9 + 3 + 11 + 4 = 27",
+        "Number of outcomes in A ∩ B = 11 = 11",
+        "P(A ∩ B) = 11/27 = 11/27"
       ],
-      "final_answer": "30/41",
+      "final_answer": "11/27",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total number of elements = 15 + 10 + 5 + 11 = 41",
+          "description": "Total number of elements = 9 + 3 + 11 + 4 = 27",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Number of outcomes in A ∪ B = 15 + 10 + 5 = 30",
+          "description": "Number of outcomes in A ∩ B = 11 = 11",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(A ∪ B) = 30/41 = 30/41",
+          "description": "P(A ∩ B) = 11/27 = 11/27",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "30/41 oe",
+          "description": "11/27 oe",
           "marks": 1
         }
       ],
@@ -935,10 +914,10 @@
             "B"
           ],
           "region_text": {
-            "a_only": "15",
-            "b_only": "10",
-            "both": "5",
-            "neither": "11"
+            "a_only": "9",
+            "b_only": "3",
+            "both": "11",
+            "neither": "4"
           }
         }
       },
@@ -946,46 +925,60 @@
     },
     {
       "topic_id": "probability_expectation_F",
-      "prompt": "A spinner has P(landing on purple) = 2/5. The spinner is spun 30 times. How many times would you expect it to land on purple?",
+      "prompt": "The probability that a particular bus is late is 1/10. The bus runs 150 times. On how many occasions would you expect it to be late?",
       "solution_steps": [
-        "Expected number of times = probability × number of trials = 2/5 × 30",
-        "= 12"
+        "Expected number of times = probability × number of trials = 1/10 × 150",
+        "= 15"
       ],
-      "final_answer": "12",
+      "final_answer": "15",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expected number of times = probability × number of trials = 2/5 × 30",
+          "description": "Expected number of times = probability × number of trials = 1/10 × 150",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 12",
+          "description": "= 15",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "12 oe",
+          "description": "15 oe",
           "marks": 1
         }
       ],
-      "diagram": {
-        "kind": "spinner",
-        "params": {
-          "sectors": [
-            "P",
-            "P",
-            "",
-            "",
-            ""
-          ],
-          "highlight": [
-            0,
-            1
-          ]
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_equivalent_F",
+      "prompt": "3/4 = \\frac{?}{20}. Find the missing number.",
+      "solution_steps": [
+        "Find the scale factor between the denominators: 20 ÷ 4 = 5",
+        "Multiply the numerator by the same scale factor: 3 × 5 = 15"
+      ],
+      "final_answer": "15",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find the scale factor between the denominators: 20 ÷ 4 = 5",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply the numerator by the same scale factor: 3 × 5 = 15",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "15 oe",
+          "marks": 1
         }
-      },
+      ],
+      "diagram": null,
       "solution_diagram": null
     }
   ]

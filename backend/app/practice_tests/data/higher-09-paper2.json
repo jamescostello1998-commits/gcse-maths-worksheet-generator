@@ -8,27 +8,27 @@
   "questions": [
     {
       "topic_id": "prime_factors_H",
-      "prompt": "Write 165 as a product of its prime factors, giving your answer in index form.",
+      "prompt": "Write 752 as a product of its prime factors, giving your answer in index form.",
       "solution_steps": [
-        "Divide 165 repeatedly by the smallest prime that fits: 3 × 5 × 11",
-        "Write repeated factors using index notation: 165 = 3 × 5 × 11"
+        "Divide 752 repeatedly by the smallest prime that fits: 2 × 2 × 2 × 2 × 47",
+        "Write repeated factors using index notation: 752 = 2^4 × 47"
       ],
-      "final_answer": "3 × 5 × 11",
+      "final_answer": "2^4 × 47",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide 165 repeatedly by the smallest prime that fits: 3 × 5 × 11",
+          "description": "Divide 752 repeatedly by the smallest prime that fits: 2 × 2 × 2 × 2 × 47",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Write repeated factors using index notation: 165 = 3 × 5 × 11",
+          "description": "Write repeated factors using index notation: 752 = 2^4 × 47",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3 × 5 × 11 oe",
+          "description": "2^4 × 47 oe",
           "marks": 1
         }
       ],
@@ -37,27 +37,132 @@
     },
     {
       "topic_id": "powers_H",
-      "prompt": "Work out 2^0.",
+      "prompt": "Evaluate 8^(2/3).",
       "solution_steps": [
-        "Any nonzero number raised to the power 0 equals 1.",
-        "2^0 = 1"
+        "8^(2/3) = (8^(1/3))^2",
+        "8^(1/3) = 2",
+        "2^2 = 4"
       ],
-      "final_answer": "1",
-      "marks": 3,
+      "final_answer": "4",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Any nonzero number raised to the power 0 equals 1.",
+          "description": "8^(2/3) = (8^(1/3))^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2^0 = 1",
+          "description": "8^(1/3) = 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2^2 = 4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 oe",
+          "description": "4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "standard_form_multiply_divide_H",
+      "prompt": "Work out (4 × 10^1) ÷ (5 × 10^-1). Give your answer in standard form.",
+      "solution_steps": [
+        "Divide the mantissas: 4 ÷ 5 = 0.8",
+        "Subtract the powers of 10: 1 - -1 = 2",
+        "Renormalize so the mantissa is between 1 and 10: 8 × 10^1"
+      ],
+      "final_answer": "8 × 10^1",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Divide the mantissas: 4 ÷ 5 = 0.8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract the powers of 10: 1 - -1 = 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Renormalize so the mantissa is between 1 and 10: 8 × 10^1",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "8 × 10^1 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "rationalise_denominator_H",
+      "prompt": "Rationalise the denominator of \\frac{10}{√2}, giving your answer in its simplest form.",
+      "solution_steps": [
+        "Multiply the top and bottom by √2: \\frac{10}{√2} = \\frac{10√2}{2}",
+        "Simplify 10/2 by dividing by 2: 5√2"
+      ],
+      "final_answer": "5√2",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply the top and bottom by √2: \\frac{10}{√2} = \\frac{10√2}{2}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify 10/2 by dividing by 2: 5√2",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5√2 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "standard_form_add_subtract_H",
+      "prompt": "Work out (1 × 10^5) - (4 × 10^4). Give your answer in standard form.",
+      "solution_steps": [
+        "Write both numbers with the same power of 10: 1×10^5 = 10×10^4, 4×10^4 = 4×10^4",
+        "Subtract the coefficients: 10 - 4 = 6",
+        "Write in standard form: 6 × 10^4 = 6 × 10^4"
+      ],
+      "final_answer": "6 × 10^4",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Write both numbers with the same power of 10: 1×10^5 = 10×10^4, 4×10^4 = 4×10^4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract the coefficients: 10 - 4 = 6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write in standard form: 6 × 10^4 = 6 × 10^4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6 × 10^4 oe",
           "marks": 1
         }
       ],
@@ -66,19 +171,19 @@
     },
     {
       "topic_id": "decimals_recurring_to_fraction_H",
-      "prompt": "Show that \\recur{0.}{461538} can be written as 6/13.",
+      "prompt": "Write \\recur{0.}{36} as a fraction in its simplest form.",
       "solution_steps": [
-        "Let x = \\recur{0.}{461538}",
+        "Let x = \\recur{0.}{36}",
         "Multiply x by a power of 10 so the recurring parts line up, then subtract to eliminate the recurring part.",
-        "This gives x = 461538/999999",
-        "Simplify: 6/13"
+        "This gives x = 36/99",
+        "Simplify: 4/11"
       ],
-      "final_answer": "6/13",
+      "final_answer": "4/11",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = \\recur{0.}{461538}",
+          "description": "Let x = \\recur{0.}{36}",
           "marks": 1
         },
         {
@@ -88,147 +193,17 @@
         },
         {
           "code": "M1",
-          "description": "This gives x = 461538/999999",
+          "description": "This gives x = 36/99",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify: 6/13",
+          "description": "Simplify: 4/11",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6/13 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "rationalise_denominator_H",
-      "prompt": "Rationalise the denominator of \\frac{12}{3 - √7}, giving your answer in its simplest form.",
-      "solution_steps": [
-        "Multiply the numerator and denominator by the conjugate of the denominator, (3 + √7):",
-        "\\frac{12}{3 - √7}",
-        "= \\frac{12(3 + √7)}{[(3 - √7)(3 + √7)]}",
-        "The denominator is a difference of two squares: 3^2 - 7 = 2",
-        "The numerator is 12(3 + √7) = 36 + 12√7",
-        "Simplify by dividing numerator and denominator by 2: 18 + 6√7"
-      ],
-      "final_answer": "18 + 6√7",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiply the numerator and denominator by the conjugate of the denominator, (3 + √7):",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "\\frac{12}{3 - √7}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= \\frac{12(3 + √7)}{[(3 - √7)(3 + √7)]}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The denominator is a difference of two squares: 3^2 - 7 = 2 The numerator is 12(3 + √7) = 36 + 12√7 Simplify by dividing numerator and denominator by 2: 18 + 6√7",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "18 + 6√7 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "angles_parallel_lines_H",
-      "prompt": "A line crosses two parallel lines. The angle 32° and the angle (4x - 28)° are alternate angles. Find x.",
-      "solution_steps": [
-        "Alternate angles are equal.",
-        "4x - 28 = 32",
-        "Add 28 to both sides:",
-        "4x = 60",
-        "Divide both sides by 4:",
-        "x = 15"
-      ],
-      "final_answer": "15",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Alternate angles are equal.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "4x - 28 = 32",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Add 28 to both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "4x = 60 Divide both sides by 4: x = 15",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "15 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "parallel_lines",
-        "params": {
-          "known_label": "32°",
-          "unknown_label": "(4x - 28)°",
-          "relation": "alternate",
-          "known_value": 32,
-          "x_frac": 0.44
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "recurring_decimal_two_digit_H",
-      "prompt": "Write \\recur{0.}{10} as a fraction in its simplest form.",
-      "solution_steps": [
-        "Let x = \\recur{0.}{10}, so 100x = 10.1010... (two digits repeat, so multiply by 100 to shift a full block)",
-        "Subtract: 100x - x = 10 - 0, so 99x = 10",
-        "x = 10/99 = 10/99"
-      ],
-      "final_answer": "10/99",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Let x = \\recur{0.}{10}, so 100x = 10.1010... (two digits repeat, so multiply by 100 to shift a full block)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract: 100x - x = 10 - 0, so 99x = 10",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 10/99 = 10/99",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "10/99 oe",
+          "description": "4/11 oe",
           "marks": 1
         }
       ],
@@ -237,259 +212,33 @@
     },
     {
       "topic_id": "fractions_mixed_number_arithmetic_H",
-      "prompt": "Work out 3 6/8 - 3 2/4. Give your answer as a mixed number.",
+      "prompt": "Calculate 1 1/8 + 5 3/4. Give your answer as a mixed number.",
       "solution_steps": [
-        "Convert to improper fractions: 3 6/8 = 15/4, 3 2/4 = 7/2",
-        "Subtract the improper fractions: 15/4 - 7/2 = 1/4",
-        "Convert back to a mixed number: 0 1/4"
+        "Convert to improper fractions: 1 1/8 = 9/8, 5 3/4 = 23/4",
+        "Add the improper fractions: 9/8 + 23/4 = 55/8",
+        "Convert back to a mixed number: 6 7/8"
       ],
-      "final_answer": "0 1/4",
+      "final_answer": "6 7/8",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert to improper fractions: 3 6/8 = 15/4, 3 2/4 = 7/2",
+          "description": "Convert to improper fractions: 1 1/8 = 9/8, 5 3/4 = 23/4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract the improper fractions: 15/4 - 7/2 = 1/4",
+          "description": "Add the improper fractions: 9/8 + 23/4 = 55/8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Convert back to a mixed number: 0 1/4",
+          "description": "Convert back to a mixed number: 6 7/8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0 1/4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "substitution_rearrange_H",
-      "prompt": "a = \\frac{v - u}{t}. Make u the subject of the formula, then find the value of u when v = 52, a = 3 and t = 7.",
-      "solution_steps": [
-        "a = \\frac{v - u}{t}",
-        "Rearrange to make u the subject: u = v - at",
-        "Substitute v = 52, a = 3 and t = 7: u = 52 - 3 × 7",
-        "u = 31"
-      ],
-      "final_answer": "u = 31",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "a = \\frac{v - u}{t}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Rearrange to make u the subject: u = v - at",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Substitute v = 52, a = 3 and t = 7: u = 52 - 3 × 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "u = 31",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "u = 31 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "inequalities_region_H",
-      "prompt": "The shaded region on the grid satisfies two inequalities. State both inequalities.",
-      "solution_steps": [
-        "The boundary line y = -\\frac{x}{2} + 2 is dashed, and the shading lies on the upper side of it, giving y > -\\frac{x}{2} + 2.",
-        "The boundary line y = -x + 1 is dashed, and the shading lies on the lower side of it, giving y < -x + 1."
-      ],
-      "final_answer": "y > -\\frac{x}{2} + 2 and y < -x + 1",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The boundary line y = -\\frac{x}{2} + 2 is dashed, and the shading lies on the upper side of it, giving y > -\\frac{x}{2} + 2.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The boundary line y = -x + 1 is dashed, and the shading lies on the lower side of it, giving y < -x + 1.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "y > -\\frac{x}{2} + 2 and y < -x + 1 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "inequality_region",
-        "params": {
-          "x_min": -8,
-          "x_max": 8,
-          "y_min": -8,
-          "y_max": 8,
-          "lines": [
-            {
-              "m": -0.5,
-              "c": 2,
-              "op": ">"
-            },
-            {
-              "m": -1.0,
-              "c": 1,
-              "op": "<"
-            }
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "plot_cubic_H",
-      "prompt": "Complete a table of values for y = x^3 - x for x = -3 to 3, then plot the graph.",
-      "solution_steps": [
-        "Table of values for y = x^3 - x:",
-        "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: -24, -6, 0, 0, 0, 6, 24",
-        "Plot each (x, y) point and join them with a single smooth curve."
-      ],
-      "final_answer": "Cubic curve: y = x^3 - x",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Table of values for y = x^3 - x:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x: -3, -2, -1, 0, 1, 2, 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "y: -24, -6, 0, 0, 0, 6, 24",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Plot each (x, y) point and join them with a single smooth curve.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Cubic curve: y = x^3 - x oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "cubic",
-          "a": 1,
-          "b": -1,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -26,
-          "y_max": 26,
-          "blank": true
-        }
-      },
-      "solution_diagram": {
-        "kind": "function_graph",
-        "params": {
-          "kind": "cubic",
-          "a": 1,
-          "b": -1,
-          "x_min": -4,
-          "x_max": 4,
-          "y_min": -26,
-          "y_max": 26,
-          "table_points": [
-            [
-              -3,
-              -24
-            ],
-            [
-              -2,
-              -6
-            ],
-            [
-              -1,
-              0
-            ],
-            [
-              0,
-              0
-            ],
-            [
-              1,
-              0
-            ],
-            [
-              2,
-              6
-            ],
-            [
-              3,
-              24
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "topic_id": "simultaneous_quadratic_H",
-      "prompt": "Solve the simultaneous equations: y = x^2 + x - 8 and y = x - 4",
-      "solution_steps": [
-        "Substitute y = x - 4 into y = x^2 + x - 8: x - 4 = x^2 + x - 8",
-        "Rearrange: x^2 - 4 = 0",
-        "Factorise: (x - 2)(x + 2) = 0",
-        "x = 2 or x = -2",
-        "When x = 2, y = -2. When x = -2, y = -6."
-      ],
-      "final_answer": "(2, -2) and (-2, -6)",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Substitute y = x - 4 into y = x^2 + x - 8: x - 4 = x^2 + x - 8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Rearrange: x^2 - 4 = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise: (x - 2)(x + 2) = 0",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 2 or x = -2 When x = 2, y = -2. When x = -2, y = -6.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "(2, -2) and (-2, -6) oe",
+          "description": "6 7/8 oe",
           "marks": 1
         }
       ],
@@ -498,15 +247,15 @@
     },
     {
       "topic_id": "substitution_H",
-      "prompt": "E = (1/2)mv^2. Find the value of E when m = 19 and v = -8.",
+      "prompt": "E = (1/2)mv^2. Find the value of E when m = 15 and v = 9.",
       "solution_steps": [
         "E = (1/2)mv^2",
-        "E = (1/2) × 19 × (-8)^2",
-        "E = (1/2) × 19 × 64",
-        "E = 1216/2",
-        "E = 608"
+        "E = (1/2) × 15 × 9^2",
+        "E = (1/2) × 15 × 81",
+        "E = 1215/2",
+        "E = 1215/2"
       ],
-      "final_answer": "E = 608",
+      "final_answer": "E = 1215/2",
       "marks": 5,
       "mark_scheme": [
         {
@@ -516,22 +265,22 @@
         },
         {
           "code": "M1",
-          "description": "E = (1/2) × 19 × (-8)^2",
+          "description": "E = (1/2) × 15 × 9^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "E = (1/2) × 19 × 64",
+          "description": "E = (1/2) × 15 × 81",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "E = 1216/2 E = 608",
+          "description": "E = 1215/2 E = 1215/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "E = 608 oe",
+          "description": "E = 1215/2 oe",
           "marks": 1
         }
       ],
@@ -539,34 +288,40 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "change_subject_H",
-      "prompt": "Make r the subject of the formula A = 6πr^2.",
+      "topic_id": "quadratic_inequalities_H",
+      "prompt": "Solve the inequality: x^2 - x ≤ 0",
       "solution_steps": [
-        "A = 6πr^2",
-        "Divide both sides by 6π: \\frac{A}{6π} = r^2",
-        "Take the square root of both sides: r = √(\\frac{A}{6π})"
+        "Factorise: x^2 - x = (x - 1)(x)",
+        "The critical values are x = 0 and x = 1.",
+        "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and ≤ 0 is satisfied between the two roots.",
+        "Answer: 0 ≤ x ≤ 1"
       ],
-      "final_answer": "r = √(\\frac{A}{6π})",
-      "marks": 4,
+      "final_answer": "0 ≤ x ≤ 1",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A = 6πr^2",
+          "description": "Factorise: x^2 - x = (x - 1)(x)",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide both sides by 6π: \\frac{A}{6π} = r^2",
+          "description": "The critical values are x = 0 and x = 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Take the square root of both sides: r = √(\\frac{A}{6π})",
+          "description": "The coefficient of x^2 is positive, so the graph is a U-shaped parabola, and ≤ 0 is satisfied between the two roots.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Answer: 0 ≤ x ≤ 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "r = √(\\frac{A}{6π}) oe",
+          "description": "0 ≤ x ≤ 1 oe",
           "marks": 1
         }
       ],
@@ -574,34 +329,212 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "algebraic_indices_H",
-      "prompt": "Simplify 8 ÷ 2x^-1",
+      "topic_id": "kinematics_suvat_H",
+      "prompt": "An object has a final velocity (v) of 6 m/s after a constant acceleration (a) of 1 m/s^2 for a time (t) of 6 s. Find its initial velocity (u).",
       "solution_steps": [
-        "Dividing powers of the same base: subtract the exponents (this still works when an exponent is negative or zero), and divide the coefficients.",
-        "8 ÷ 2x^-1 = (8÷2) x^(0-(-1))",
-        "= 4x"
+        "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
+        "v = u + at",
+        "Rearrange to make u the subject: u = v - at",
+        "Substitute v = 6, a = 1, t = 6: u = 6 - 1 × 6 = 6 - 6 = 0"
       ],
-      "final_answer": "4x",
-      "marks": 4,
+      "final_answer": "0 m/s",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Dividing powers of the same base: subtract the exponents (this still works when an exponent is negative or zero), and divide the coefficients.",
+          "description": "This question gives three of the four SUVAT quantities u, v, a and t (and asks for the fourth), so use v = u + at, the equation linking exactly those four.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "8 ÷ 2x^-1 = (8÷2) x^(0-(-1))",
+          "description": "v = u + at",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "= 4x",
+          "description": "Rearrange to make u the subject: u = v - at",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute v = 6, a = 1, t = 6: u = 6 - 1 × 6 = 6 - 6 = 0",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4x oe",
+          "description": "0 m/s oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simultaneous_different_coefficient_H",
+      "prompt": "Solve the simultaneous equations: 4x + 3y = -44 and 5x + 4y = -56",
+      "solution_steps": [
+        "4x + 3y = -44  (1)",
+        "5x + 4y = -56  (2)",
+        "(1) × 4: 16x + 12y = -176  (3)",
+        "(2) × 3: 15x + 12y = -168  (4)",
+        "(3) - (4): 1x = -8, so x = -8",
+        "Substitute x = -8 into (1): 3y = -12, so y = -4"
+      ],
+      "final_answer": "x = -8, y = -4",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "4x + 3y = -44  (1)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "5x + 4y = -56  (2)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(1) × 4: 16x + 12y = -176  (3)",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "(2) × 3: 15x + 12y = -168  (4) (3) - (4): 1x = -8, so x = -8 Substitute x = -8 into (1): 3y = -12, so y = -4",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = -8, y = -4 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "change_subject_factorise_H",
+      "prompt": "Make x the subject of the formula sx + 3x = 8.",
+      "solution_steps": [
+        "sx + 3x = 8",
+        "Factorise the left-hand side: x(s + 3) = 8",
+        "Divide both sides by (s + 3): x = \\frac{8}{s + 3}"
+      ],
+      "final_answer": "x = \\frac{8}{s + 3}",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "sx + 3x = 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise the left-hand side: x(s + 3) = 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by (s + 3): x = \\frac{8}{s + 3}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = \\frac{8}{s + 3} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "forming_equations_H",
+      "prompt": "The area of the rectangle shown is 153 cm². Form an equation and solve it to find x.",
+      "solution_steps": [
+        "Area of a rectangle = length × width.",
+        "9(x + 4) = 153",
+        "Expand the bracket:",
+        "9x + 36 = 153",
+        "Subtract 36 from both sides:",
+        "9x = 117",
+        "Divide both sides by 9:",
+        "x = 13"
+      ],
+      "final_answer": "13",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area of a rectangle = length × width.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "9(x + 4) = 153",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Expand the bracket:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "9x + 36 = 153 Subtract 36 from both sides: 9x = 117 Divide both sides by 9: x = 13",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "13 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "rectangle",
+        "params": {
+          "width": 17,
+          "height": 9,
+          "width_label": "(x + 4) cm",
+          "height_label": "9 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "solve_quadratic_factorising_H",
+      "prompt": "Solve x^2 + 14x + 45 = 0 by factorising.",
+      "solution_steps": [
+        "Find two numbers that multiply to 45 and add to 14: 5 and 9",
+        "Factorise: (x + 5)(x + 9) = 0",
+        "Either x + 5 = 0 or x + 9 = 0",
+        "x = -5 or x = -9"
+      ],
+      "final_answer": "x = -5 or x = -9",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find two numbers that multiply to 45 and add to 14: 5 and 9",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Factorise: (x + 5)(x + 9) = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Either x + 5 = 0 or x + 9 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -5 or x = -9",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = -5 or x = -9 oe",
           "marks": 1
         }
       ],
@@ -610,27 +543,27 @@
     },
     {
       "topic_id": "compound_percentage_H",
-      "prompt": "A price of £48 decreases by 17.5%, then decreases by 30%. Find the final price.",
+      "prompt": "A price of £156 increases by 30%, then decreases by 17.5%. Find the final price.",
       "solution_steps": [
-        "After the first change: 48 × 0.82 = 39.60",
-        "After the second change: 39.60 × 0.70 = 27.72"
+        "After the first change: 156 × 1.30 = 202.80",
+        "After the second change: 202.80 × 0.82 = 167.31"
       ],
-      "final_answer": "£27.72",
+      "final_answer": "£167.31",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "After the first change: 48 × 0.82 = 39.60",
+          "description": "After the first change: 156 × 1.30 = 202.80",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "After the second change: 39.60 × 0.70 = 27.72",
+          "description": "After the second change: 202.80 × 0.82 = 167.31",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "£27.72 oe",
+          "description": "£167.31 oe",
           "marks": 1
         }
       ],
@@ -639,27 +572,27 @@
     },
     {
       "topic_id": "density_H",
-      "prompt": "A stone has a mass of 13 kg and a volume of 147 cm³. Find its density in g/cm³, correct to 2 decimal places.",
+      "prompt": "A stone has a mass of 4 kg and a volume of 287 cm³. Find its density in g/cm³, correct to 2 decimal places.",
       "solution_steps": [
-        "Convert mass to grams: 13 kg = 13 × 1000 = 13000 g",
-        "density = mass ÷ volume = 13000 ÷ 147 = 88.44 g/cm³ (2 d.p.)"
+        "Convert mass to grams: 4 kg = 4 × 1000 = 4000 g",
+        "density = mass ÷ volume = 4000 ÷ 287 = 13.94 g/cm³ (2 d.p.)"
       ],
-      "final_answer": "88.44 g/cm³",
+      "final_answer": "13.94 g/cm³",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert mass to grams: 13 kg = 13 × 1000 = 13000 g",
+          "description": "Convert mass to grams: 4 kg = 4 × 1000 = 4000 g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "density = mass ÷ volume = 13000 ÷ 147 = 88.44 g/cm³ (2 d.p.)",
+          "description": "density = mass ÷ volume = 4000 ÷ 287 = 13.94 g/cm³ (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "88.44 g/cm³ oe",
+          "description": "13.94 g/cm³ oe",
           "marks": 1
         }
       ],
@@ -668,39 +601,39 @@
     },
     {
       "topic_id": "ratio_combine_H",
-      "prompt": "Given that a:b = 4:8 and b:c = 2:2, find a:b:c in its simplest form.",
+      "prompt": "Given that a:b = 7:9 and b:c = 5:7, find a:b:c in its simplest form.",
       "solution_steps": [
-        "Scale a:b = 4:8 by 1 so b = 8: a:b = 4:8",
-        "Scale b:c = 2:2 by 4 so b = 8: b:c = 8:8",
-        "Combine: a:b:c = 4:8:8",
-        "Simplify by dividing by 4: a:b:c = 1:2:2"
+        "Scale a:b = 7:9 by 5 so b = 45: a:b = 35:45",
+        "Scale b:c = 5:7 by 9 so b = 45: b:c = 45:63",
+        "Combine: a:b:c = 35:45:63",
+        "Simplify by dividing by 1: a:b:c = 35:45:63"
       ],
-      "final_answer": "1 : 2 : 2",
+      "final_answer": "35 : 45 : 63",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Scale a:b = 4:8 by 1 so b = 8: a:b = 4:8",
+          "description": "Scale a:b = 7:9 by 5 so b = 45: a:b = 35:45",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Scale b:c = 2:2 by 4 so b = 8: b:c = 8:8",
+          "description": "Scale b:c = 5:7 by 9 so b = 45: b:c = 45:63",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Combine: a:b:c = 4:8:8",
+          "description": "Combine: a:b:c = 35:45:63",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify by dividing by 4: a:b:c = 1:2:2",
+          "description": "Simplify by dividing by 1: a:b:c = 35:45:63",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 : 2 : 2 oe",
+          "description": "35 : 45 : 63 oe",
           "marks": 1
         }
       ],
@@ -709,33 +642,33 @@
     },
     {
       "topic_id": "ratio_shape_similar_H",
-      "prompt": "Shape A and Shape B are similar. The area of shape B is 12 cm². Find the area of shape A.",
+      "prompt": "Shape A and Shape B are similar. The area of shape A is 2 cm². Find the area of shape B.",
       "solution_steps": [
-        "Linear scale factor = 2 ÷ 3 = 2/3",
-        "Area scale factor = (2/3)^2 = 4/9",
-        "Area of A = 12 ÷ 4/9 = 27 cm²"
+        "Linear scale factor = 6 ÷ 3 = 2",
+        "Area scale factor = (2)^2 = 4",
+        "Area of B = 2 × 4 = 8 cm²"
       ],
-      "final_answer": "27 cm²",
+      "final_answer": "8 cm²",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Linear scale factor = 2 ÷ 3 = 2/3",
+          "description": "Linear scale factor = 6 ÷ 3 = 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Area scale factor = (2/3)^2 = 4/9",
+          "description": "Area scale factor = (2)^2 = 4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Area of A = 12 ÷ 4/9 = 27 cm²",
+          "description": "Area of B = 2 × 4 = 8 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "27 cm² oe",
+          "description": "8 cm² oe",
           "marks": 1
         }
       ],
@@ -743,25 +676,25 @@
         "kind": "two_similar_rectangles",
         "params": {
           "a_width_label": "3 cm",
-          "b_width_label": "2 cm"
+          "b_width_label": "6 cm"
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "loci_regions_H",
-      "prompt": "A and B are two fixed points (shown). Shade the region containing points that are both within 4 cm of B AND closer to B than to A.",
+      "prompt": "A and B are two fixed points (shown). Shade the region containing points that are both within 3 cm of B AND closer to B than to A.",
       "solution_steps": [
-        "The boundary for 'within 4 cm of B' is a circle, centre B, radius 4 cm - the region is inside this circle.",
+        "The boundary for 'within 3 cm of B' is a circle, centre B, radius 3 cm - the region is inside this circle.",
         "The boundary for 'closer to B than to A' is the perpendicular bisector of BA - the region is on the B side of it.",
         "The required region is where these two conditions overlap."
       ],
-      "final_answer": "The region inside the circle of radius 4 cm centred on B, and on the B side of the perpendicular bisector of BA.",
+      "final_answer": "The region inside the circle of radius 3 cm centred on B, and on the B side of the perpendicular bisector of BA.",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The boundary for 'within 4 cm of B' is a circle, centre B, radius 4 cm - the region is inside this circle.",
+          "description": "The boundary for 'within 3 cm of B' is a circle, centre B, radius 3 cm - the region is inside this circle.",
           "marks": 1
         },
         {
@@ -776,7 +709,7 @@
         },
         {
           "code": "A1",
-          "description": "The region inside the circle of radius 4 cm centred on B, and on the B side of the perpendicular bisector of BA. oe",
+          "description": "The region inside the circle of radius 3 cm centred on B, and on the B side of the perpendicular bisector of BA. oe",
           "marks": 1
         }
       ],
@@ -784,21 +717,21 @@
         "kind": "loci_region",
         "params": {
           "x_min": -5.0,
-          "x_max": 9.0,
+          "x_max": 7.0,
           "y_min": -4.0,
-          "y_max": 6.0,
+          "y_max": 5.0,
           "points": [
             {
               "xy": [
                 -4,
-                1
+                4
               ],
               "label": "A"
             },
             {
               "xy": [
-                4,
-                1
+                3,
+                0
               ],
               "label": "B"
             }
@@ -807,20 +740,20 @@
             {
               "type": "circle",
               "centre": [
-                4,
-                1
+                3,
+                0
               ],
-              "radius": 4
+              "radius": 3
             },
             {
               "type": "segment",
               "p1": [
-                0.0,
-                15.0
+                5.453667260282007,
+                12.418917705493511
               ],
               "p2": [
-                0.0,
-                -13.0
+                -6.453667260282007,
+                -8.418917705493511
               ]
             }
           ]
@@ -830,21 +763,21 @@
         "kind": "loci_region",
         "params": {
           "x_min": -5.0,
-          "x_max": 9.0,
+          "x_max": 7.0,
           "y_min": -4.0,
-          "y_max": 6.0,
+          "y_max": 5.0,
           "points": [
             {
               "xy": [
                 -4,
-                1
+                4
               ],
               "label": "A"
             },
             {
               "xy": [
-                4,
-                1
+                3,
+                0
               ],
               "label": "B"
             }
@@ -853,20 +786,20 @@
             {
               "type": "circle",
               "centre": [
-                4,
-                1
+                3,
+                0
               ],
-              "radius": 4
+              "radius": 3
             },
             {
               "type": "segment",
               "p1": [
-                0.0,
-                15.0
+                5.453667260282007,
+                12.418917705493511
               ],
               "p2": [
-                0.0,
-                -13.0
+                -6.453667260282007,
+                -8.418917705493511
               ]
             }
           ],
@@ -874,21 +807,21 @@
             {
               "type": "disk",
               "centre": [
-                4,
-                1
+                3,
+                0
               ],
-              "radius": 4,
+              "radius": 3,
               "inside": true
             },
             {
               "type": "half_plane",
               "closer_to": [
-                4,
-                1
+                3,
+                0
               ],
               "than": [
                 -4,
-                1
+                4
               ]
             }
           ]
@@ -897,16 +830,16 @@
     },
     {
       "topic_id": "angles_straight_line_H",
-      "prompt": "The angles 148° and (4x - 20)° lie on a straight line. Find x.",
+      "prompt": "The angles 103° and (4x + 73)° lie on a straight line. Find x.",
       "solution_steps": [
         "Angles on a straight line sum to 180°.",
-        "4x - 20 = 32",
-        "Add 20 to both sides:",
-        "4x = 52",
+        "4x + 73 = 77",
+        "Subtract 73 from both sides:",
+        "4x = 4",
         "Divide both sides by 4:",
-        "x = 13"
+        "x = 1"
       ],
-      "final_answer": "13",
+      "final_answer": "1",
       "marks": 5,
       "mark_scheme": [
         {
@@ -916,22 +849,22 @@
         },
         {
           "code": "M1",
-          "description": "4x - 20 = 32",
+          "description": "4x + 73 = 77",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add 20 to both sides:",
+          "description": "Subtract 73 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x = 52 Divide both sides by 4: x = 13",
+          "description": "4x = 4 Divide both sides by 4: x = 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "13 oe",
+          "description": "1 oe",
           "marks": 1
         }
       ],
@@ -939,12 +872,12 @@
         "kind": "angle_line",
         "params": {
           "angle_values": [
-            148,
-            32
+            103,
+            77
           ],
           "labels": [
-            "148°",
-            "(4x - 20)°"
+            "103°",
+            "(4x + 73)°"
           ],
           "around_point": false
         }
@@ -953,12 +886,12 @@
     },
     {
       "topic_id": "exact_trig_values_H",
-      "prompt": "Write down the exact value of tan(45°).",
+      "prompt": "Write down the exact value of cos(45°).",
       "solution_steps": [
         "Recall the exact-value triangles: 30°-60°-90° (sides 1, √3, 2) and 45°-45°-90° (sides 1, 1, √2) - no calculator needed for these special angles.",
-        "tan(45°) = 1"
+        "cos(45°) = √2/2"
       ],
-      "final_answer": "1",
+      "final_answer": "√2/2",
       "marks": 3,
       "mark_scheme": [
         {
@@ -968,12 +901,12 @@
         },
         {
           "code": "M1",
-          "description": "tan(45°) = 1",
+          "description": "cos(45°) = √2/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1 oe",
+          "description": "√2/2 oe",
           "marks": 1
         }
       ],
@@ -982,16 +915,16 @@
     },
     {
       "topic_id": "angles_triangle_H",
-      "prompt": "A triangle has angles 89°, 45°, and (3x + 40)°. Find x.",
+      "prompt": "A triangle has angles 33°, 36°, and (3x + 69)°. Find x.",
       "solution_steps": [
         "Angles in a triangle sum to 180°.",
-        "3x + 40 = 46",
-        "Subtract 40 from both sides:",
-        "3x = 6",
+        "3x + 69 = 111",
+        "Subtract 69 from both sides:",
+        "3x = 42",
         "Divide both sides by 3:",
-        "x = 2"
+        "x = 14"
       ],
-      "final_answer": "2",
+      "final_answer": "14",
       "marks": 5,
       "mark_scheme": [
         {
@@ -1001,22 +934,22 @@
         },
         {
           "code": "M1",
-          "description": "3x + 40 = 46",
+          "description": "3x + 69 = 111",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 40 from both sides:",
+          "description": "Subtract 69 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "3x = 6 Divide both sides by 3: x = 2",
+          "description": "3x = 42 Divide both sides by 3: x = 14",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2 oe",
+          "description": "14 oe",
           "marks": 1
         }
       ],
@@ -1024,9 +957,9 @@
         "kind": "triangle_angles",
         "params": {
           "angle_labels": [
-            "89°",
-            "45°",
-            "(3x + 40)°"
+            "33°",
+            "36°",
+            "(3x + 69)°"
           ]
         }
       },
@@ -1034,39 +967,39 @@
     },
     {
       "topic_id": "tree_diagram_algebraic_H",
-      "prompt": "A biased spinner can only land on red or blue. The probability that it lands on red is x, and the probability that it lands on blue is 1 - x. Landing on blue is 5 times as likely as landing on red. The spinner is spun twice. Find the probability that both spins land on red.",
+      "prompt": "A biased spinner can only land on red or green. The probability that it lands on red is 2x, and the probability that it lands on green is 3x. The spinner is spun twice. Find the probability that both spins land on green.",
       "solution_steps": [
-        "A biased spinner can only land on red or blue. The probability that it lands on red is x, and the probability that it lands on blue is 1 - x. Landing on blue is 5 times as likely as landing on red. Since the spinner can only land on red or blue, the two probabilities must sum to 1: x + 5x = 1.",
-        "Solving this equation gives x = 1/6.",
-        "Substituting back: P(red) = 1/6, P(blue) = 5/6.",
-        "P(both spins land on red) = 1/6 × 1/6 = 1/36"
+        "A biased spinner can only land on red or green. The probability that it lands on red is 2x, and the probability that it lands on green is 3x. Since the spinner can only land on red or green, the two probabilities must sum to 1: 2x + 3x = 1.",
+        "Solving this equation gives x = 1/5.",
+        "Substituting back: P(red) = 2/5, P(green) = 3/5.",
+        "P(both spins land on green) = 3/5 × 3/5 = 9/25"
       ],
-      "final_answer": "1/36",
+      "final_answer": "9/25",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A biased spinner can only land on red or blue. The probability that it lands on red is x, and the probability that it lands on blue is 1 - x. Landing on blue is 5 times as likely as landing on red. Since the spinner can only land on red or blue, the two probabilities must sum to 1: x + 5x = 1.",
+          "description": "A biased spinner can only land on red or green. The probability that it lands on red is 2x, and the probability that it lands on green is 3x. Since the spinner can only land on red or green, the two probabilities must sum to 1: 2x + 3x = 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Solving this equation gives x = 1/6.",
+          "description": "Solving this equation gives x = 1/5.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substituting back: P(red) = 1/6, P(blue) = 5/6.",
+          "description": "Substituting back: P(red) = 2/5, P(green) = 3/5.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(both spins land on red) = 1/6 × 1/6 = 1/36",
+          "description": "P(both spins land on green) = 3/5 × 3/5 = 9/25",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/36 oe",
+          "description": "9/25 oe",
           "marks": 1
         }
       ],
@@ -1076,32 +1009,32 @@
           "stage1": [
             [
               "Red",
-              "x"
+              "2x"
             ],
             [
-              "Blue",
-              "1-x"
+              "Green",
+              "3x"
             ]
           ],
           "stage2": [
             [
               [
                 "Red",
-                "x"
+                "2x"
               ],
               [
-                "Blue",
-                "1-x"
+                "Green",
+                "3x"
               ]
             ],
             [
               [
                 "Red",
-                "x"
+                "2x"
               ],
               [
-                "Blue",
-                "1-x"
+                "Green",
+                "3x"
               ]
             ]
           ]
@@ -1110,28 +1043,22 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "probability_combined_dice_H",
-      "prompt": "Two fair six-sided dice are rolled. Find the probability that at least one die shows 1.",
+      "topic_id": "product_rule_counting_H",
+      "prompt": "A shop sells 3 different starters, 6 different main courses and 5 different desserts. Use the product rule for counting to find how many different combinations are possible, choosing exactly one of each.",
       "solution_steps": [
-        "P(neither die shows 1) = 5/6 × 5/6 = 25/36",
-        "P(at least one 1) = 1 - 25/36 = 11/36"
+        "Total combinations = 3 × 6 × 5 = 90"
       ],
-      "final_answer": "11/36",
-      "marks": 3,
+      "final_answer": "90",
+      "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "P(neither die shows 1) = 5/6 × 5/6 = 25/36",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "P(at least one 1) = 1 - 25/36 = 11/36",
+          "description": "Total combinations = 3 × 6 × 5 = 90",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "11/36 oe",
+          "description": "90 oe",
           "marks": 1
         }
       ],

@@ -36,8 +36,15 @@ small-range gridded graph axes (numbered ticks now follow the gridline step in
 undefined); `draw_graph_transformation` sizes its window to both curves so neither clips, and
 its base curve is now asymmetric (`0.5x^2+0.6x-1.5`) so reflect-in-y shows two distinct curves;
 best_buys no-dominance reroll (an option can't be both cheapest AND biggest); ratio all parts
-distinct (`_rand_distinct_parts`). See chronology step 48 for full detail. **Next natural step:
-the next chunk of review feedback (pages 201+), if the user resumes the review.**
+distinct (`_rand_distinct_parts`). See chronology step 48 for full detail.
+
+**✅ DONE (step 49) — `area_composite_rectangles_F` reworked to Corbett-style edge labelling**
+(the shape's own boundary edges labelled directly, some omitted so the student deduces missing
+lengths; L/T/find-x branches), plus sibling compound-topic label fixes and a full Practice-Test
+rebuild (still 313 topics, 981/981, all papers 100 marks). See chronology step 49.
+
+**Next natural step:** the next chunk of review feedback (pages 201+), if the user resumes the
+review.
 
 *(The diagram-scale-overhaul, chronology step 47, is long since MERGED into `master` — commits
 `153131d`..`c200eb4`, then the pages-1–200 batch `25be496`. Ignore any "not merged"/branch
@@ -4266,6 +4273,47 @@ fixes), is committed and pushed (see `git log`).
     Backend suite grew 971 → 981 (new triple-bracket generator/modelled/topic tests; the
     other items were covered by existing tests). Review PDFs regenerated (313 question pages,
     up from 312; 323 answer pages) and sent to the user. Committed and pushed.
+
+49. Same session as step 48, a follow-up on one review item: `area_composite_rectangles_F`
+    "still hasn't changed" — the user linked Corbett Maths' "Area of Compound Shapes"
+    worksheet (Q1-4, Q6 as prime targets) as the "significantly better" bar. Downloaded and
+    read the PDF (via `fitz`; WebFetch can't parse PDF binaries), rendered the current app
+    output, and diagnosed the real gap: the app labelled the **full bounding rectangle + a
+    floating cut-out caption** (e.g. "24 cm × 12 cm" + "2 cm × 7 cm"), whereas Corbett labels
+    the shape's **own boundary edges directly, with some deliberately omitted** so the student
+    deduces the missing lengths (step 42's rework had added shape variety but kept the old
+    labelling). Locked 3 decisions via `AskUserQuestion`: (a) switch to Corbett edge-labelling
+    with some sides omitted; (b) rectilinear only — NO "house" (rectangle+triangle roof, Q6),
+    which already lives in `area_mixed_compound_H`; (c) also fix the sibling compound topics.
+
+    **Diagram engine** (`diagrams.py`): new `_place_edge_label` helper (labels an edge at its
+    midpoint, pushed outward from the shape centroid) + an additive `edge_labels` dict mode on
+    `draw_l_shape` (both corner orientations) and `draw_t_shape` — draws the shape to scale and
+    labels each named boundary edge, omitting blanks. Old param path (outer_labels/inner_labels/
+    right_labels) and `shade_frame` kept for backward compatibility. The T-shape's two notch
+    edges are special-cased (label goes BELOW the overhang, beside the stem — the centroid
+    heuristic points the wrong way for those concave edges; found by rendering).
+
+    **`area_composite_rectangles_F`** (`area_perimeter.py`) fully reworked: 4 branches — L
+    (top-right / top-left notch), T-shape, and a find-x step-shape (top-left notch, area given,
+    x on an inner edge, matching Corbett Q4). Each labels a Corbett-style subset of edges (e.g.
+    L gives bottom, full side, notch-across, and the notched side's remaining part; omits the
+    top segment and notch depth) and the steps show deducing the missing sides before splitting/
+    subtracting. Both existing two-decomposition verifications kept; find-x verified by solving
+    A = top·H + x·lower via sympy. 2604 distinct dedup keys.
+
+    **Siblings**: `area_subtract_compound_F/_H` — the hole's two dimensions were jammed together
+    inside it ("6 cm 3 cm"); now the width sits on the hole's top edge and the height on its
+    left edge (small-hole fallback to a combined caption kept). `area_mixed_compound_H` — the
+    quarter-circle and semicircle-notch cut-radius labels were cramped against the shape edges;
+    nudged clear (the semicircle-notch label moved to just above the notch, inside the body,
+    after a first attempt collided with the centred width label — caught by rendering).
+
+    No topic-count change (still 313). Rebuilt all 60 Practice Test papers (`area_composite`
+    diagram param schema changed; also picks up topic #313 from step 48 in the selection pool) —
+    all exactly 100 marks, non-calculator constraint intact. Backend suite 981/981 (+1 test:
+    composite diagrams use edge_labels, find-x carries "x"). Review PDFs regenerated (313/323,
+    unchanged counts) and sent. Committed and pushed.
 
 ## Environment gotchas (Windows, this machine specifically)
 

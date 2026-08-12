@@ -8,27 +8,27 @@
   "questions": [
     {
       "topic_id": "number_powers_of_ten_F",
-      "prompt": "Evaluate 2.90 × 10.",
+      "prompt": "Work out 60.93 × 100.",
       "solution_steps": [
-        "Multiplying by 10 moves the decimal point 1 place to the right.",
-        "2.90 × 10 = 29.0"
+        "Multiplying by 100 moves the decimal point 2 places to the right.",
+        "60.93 × 100 = 6093"
       ],
-      "final_answer": "29.0",
+      "final_answer": "6093",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiplying by 10 moves the decimal point 1 place to the right.",
+          "description": "Multiplying by 100 moves the decimal point 2 places to the right.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "2.90 × 10 = 29.0",
+          "description": "60.93 × 100 = 6093",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "29.0 oe",
+          "description": "6093 oe",
           "marks": 1
         }
       ],
@@ -37,33 +37,33 @@
     },
     {
       "topic_id": "standard_form_multiply_divide_F",
-      "prompt": "Work out (5 × 10^5) × (9 × 10^5). Give your answer in standard form.",
+      "prompt": "Work out (4 × 10^4) × (4 × 10^5). Give your answer in standard form.",
       "solution_steps": [
-        "Multiply the mantissas: 5 × 9 = 45",
-        "Add the powers of 10: 5 + 5 = 10",
-        "Renormalize so the mantissa is between 1 and 10: 4.5 × 10^11"
+        "Multiply the mantissas: 4 × 4 = 16",
+        "Add the powers of 10: 4 + 5 = 9",
+        "Renormalize so the mantissa is between 1 and 10: 1.6 × 10^10"
       ],
-      "final_answer": "4.5 × 10^11",
+      "final_answer": "1.6 × 10^10",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply the mantissas: 5 × 9 = 45",
+          "description": "Multiply the mantissas: 4 × 4 = 16",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add the powers of 10: 5 + 5 = 10",
+          "description": "Add the powers of 10: 4 + 5 = 9",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Renormalize so the mantissa is between 1 and 10: 4.5 × 10^11",
+          "description": "Renormalize so the mantissa is between 1 and 10: 1.6 × 10^10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4.5 × 10^11 oe",
+          "description": "1.6 × 10^10 oe",
           "marks": 1
         }
       ],
@@ -72,27 +72,27 @@
     },
     {
       "topic_id": "negative_ordering_F",
-      "prompt": "Write these numbers in ascending order: -6, -9, 7, 5, 2",
+      "prompt": "Write these numbers in ascending order: -2, 9, -6, -5, -1",
       "solution_steps": [
-        "Place the numbers on a number line: -6, -9, 7, 5, 2.",
-        "Reading them in order from smallest to largest gives: -9, -6, 2, 5, 7."
+        "Place the numbers on a number line: -2, 9, -6, -5, -1.",
+        "Reading them in order from smallest to largest gives: -6, -5, -2, -1, 9."
       ],
-      "final_answer": "-9, -6, 2, 5, 7",
+      "final_answer": "-6, -5, -2, -1, 9",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Place the numbers on a number line: -6, -9, 7, 5, 2.",
+          "description": "Place the numbers on a number line: -2, 9, -6, -5, -1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Reading them in order from smallest to largest gives: -9, -6, 2, 5, 7.",
+          "description": "Reading them in order from smallest to largest gives: -6, -5, -2, -1, 9.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-9, -6, 2, 5, 7 oe",
+          "description": "-6, -5, -2, -1, 9 oe",
           "marks": 1
         }
       ],
@@ -100,28 +100,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "standard_form_from_small_F",
-      "prompt": "Write 9.5 × 10^-5 as an ordinary number.",
+      "topic_id": "standard_form_from_large_F",
+      "prompt": "Write 4.59 × 10^5 as an ordinary number.",
       "solution_steps": [
-        "Multiply 9.5 by 10^-5, which means moving the decimal point 5 place(s) left.",
-        "9.5 × 10^-5 = 0.000095"
+        "Multiply 4.59 by 10^5, which means moving the decimal point 5 place(s) right.",
+        "4.59 × 10^5 = 459000"
       ],
-      "final_answer": "0.000095",
+      "final_answer": "459000",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply 9.5 by 10^-5, which means moving the decimal point 5 place(s) left.",
+          "description": "Multiply 4.59 by 10^5, which means moving the decimal point 5 place(s) right.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "9.5 × 10^-5 = 0.000095",
+          "description": "4.59 × 10^5 = 459000",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0.000095 oe",
+          "description": "459000 oe",
           "marks": 1
         }
       ],
@@ -130,33 +130,33 @@
     },
     {
       "topic_id": "fractions_multiply_F",
-      "prompt": "Work out 9/7 × 7/10. Give your answer as a fraction in its simplest form.",
+      "prompt": "Calculate 3/2 × 2/7. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
-        "Multiply numerators: 9 × 7 = 63",
-        "Multiply denominators: 7 × 10 = 70",
-        "Simplify 63/70 = 9/10"
+        "Multiply numerators: 3 × 2 = 6",
+        "Multiply denominators: 2 × 7 = 14",
+        "Simplify 6/14 = 3/7"
       ],
-      "final_answer": "9/10",
+      "final_answer": "3/7",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply numerators: 9 × 7 = 63",
+          "description": "Multiply numerators: 3 × 2 = 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply denominators: 7 × 10 = 70",
+          "description": "Multiply denominators: 2 × 7 = 14",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify 63/70 = 9/10",
+          "description": "Simplify 6/14 = 3/7",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9/10 oe",
+          "description": "3/7 oe",
           "marks": 1
         }
       ],
@@ -165,27 +165,27 @@
     },
     {
       "topic_id": "negative_indices_F",
-      "prompt": "Simplify 8^-2 × 8^-4, giving your answer as a single power of 8.",
+      "prompt": "Fully simplify 5^-3 × 5^-1, giving your answer as a single power of 5.",
       "solution_steps": [
-        "Add the powers: -2 + (-4) = -6",
-        "8^-2 × 8^-4 = 8^-6"
+        "Add the powers: -3 + (-1) = -4",
+        "5^-3 × 5^-1 = 5^-4"
       ],
-      "final_answer": "8^-6",
+      "final_answer": "5^-4",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Add the powers: -2 + (-4) = -6",
+          "description": "Add the powers: -3 + (-1) = -4",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "8^-2 × 8^-4 = 8^-6",
+          "description": "5^-3 × 5^-1 = 5^-4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8^-6 oe",
+          "description": "5^-4 oe",
           "marks": 1
         }
       ],
@@ -194,21 +194,21 @@
     },
     {
       "topic_id": "negative_add_subtract_F",
-      "prompt": "Work out -14 + (-12).",
+      "prompt": "Work out -1 + (-1).",
       "solution_steps": [
-        "-14 + (-12) = -26"
+        "-1 + (-1) = -2"
       ],
-      "final_answer": "-26",
+      "final_answer": "-2",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "-14 + (-12) = -26",
+          "description": "-1 + (-1) = -2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-26 oe",
+          "description": "-2 oe",
           "marks": 1
         }
       ],
@@ -217,17 +217,17 @@
     },
     {
       "topic_id": "fractions_equivalent_diagram_F",
-      "prompt": "The first shape shows 5/6 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
+      "prompt": "The first shape shows 1/4 shaded. Which of the labelled shapes A, B, C shows an equivalent fraction?",
       "solution_steps": [
-        "Cross-multiply 5/6 against each labelled shape: a shape shows an equivalent fraction only if 5 × (its denominator) = (its shaded count) × 6.",
-        "Only shape A) 10/12 works: 5 × 12 = 10 × 6 = 60."
+        "Cross-multiply 1/4 against each labelled shape: a shape shows an equivalent fraction only if 1 × (its denominator) = (its shaded count) × 4.",
+        "Only shape C) 3/12 works: 1 × 12 = 3 × 4 = 12."
       ],
-      "final_answer": "A) 10/12",
+      "final_answer": "C) 3/12",
       "marks": 1,
       "mark_scheme": [
         {
           "code": "B1",
-          "description": "A) 10/12 (selecting the correct option)",
+          "description": "C) 3/12 (selecting the correct option)",
           "marks": 1
         }
       ],
@@ -236,26 +236,26 @@
         "params": {
           "shapes": [
             {
-              "kind": "bar",
-              "parts": 6,
-              "shaded": 5
+              "kind": "circle",
+              "parts": 4,
+              "shaded": 1
             },
             {
-              "kind": "bar",
-              "parts": 12,
-              "shaded": 10,
+              "kind": "circle",
+              "parts": 6,
+              "shaded": 2,
               "label": "A)"
             },
             {
-              "kind": "bar",
-              "parts": 12,
-              "shaded": 11,
+              "kind": "circle",
+              "parts": 10,
+              "shaded": 5,
               "label": "B)"
             },
             {
-              "kind": "bar",
+              "kind": "circle",
               "parts": 12,
-              "shaded": 6,
+              "shaded": 3,
               "label": "C)"
             }
           ]
@@ -265,33 +265,33 @@
     },
     {
       "topic_id": "error_interval_F",
-      "prompt": "A number, x, is 8.7 rounded to 1 decimal place. Write down the error interval for x.",
+      "prompt": "A number, x, is 14.2 rounded to 1 decimal place. Write down the error interval for x.",
       "solution_steps": [
-        "8.7 is rounded to 1 decimal place, so x can be up to half of that precision above or below 8.7.",
-        "Lower bound: 8.7 - 0.05 = 8.65",
-        "Upper bound: 8.7 + 0.05 = 8.75"
+        "14.2 is rounded to 1 decimal place, so x can be up to half of that precision above or below 14.2.",
+        "Lower bound: 14.2 - 0.05 = 14.15",
+        "Upper bound: 14.2 + 0.05 = 14.25"
       ],
-      "final_answer": "8.65 ≤ x < 8.75",
+      "final_answer": "14.15 ≤ x < 14.25",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "8.7 is rounded to 1 decimal place, so x can be up to half of that precision above or below 8.7.",
+          "description": "14.2 is rounded to 1 decimal place, so x can be up to half of that precision above or below 14.2.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Lower bound: 8.7 - 0.05 = 8.65",
+          "description": "Lower bound: 14.2 - 0.05 = 14.15",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Upper bound: 8.7 + 0.05 = 8.75",
+          "description": "Upper bound: 14.2 + 0.05 = 14.25",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8.65 ≤ x < 8.75 oe",
+          "description": "14.15 ≤ x < 14.25 oe",
           "marks": 1
         }
       ],
@@ -300,42 +300,42 @@
     },
     {
       "topic_id": "linear_both_sides_F",
-      "prompt": "Solve: 6x + 4 = 2x + 44",
+      "prompt": "Solve: 2x + 3 = 3x - 6",
       "solution_steps": [
-        "6x + 4 = 2x + 44",
-        "Subtract 2x from both sides:",
-        "4x + 4 = 44",
-        "Subtract 4 from both sides:",
-        "4x = 40",
-        "Divide both sides by 4:",
-        "x = 10"
+        "2x + 3 = 3x - 6",
+        "Subtract 3x from both sides:",
+        "-x + 3 = -6",
+        "Subtract 3 from both sides:",
+        "-x = -9",
+        "Divide both sides by -1:",
+        "x = 9"
       ],
-      "final_answer": "10",
+      "final_answer": "9",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "6x + 4 = 2x + 44",
+          "description": "2x + 3 = 3x - 6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 2x from both sides:",
+          "description": "Subtract 3x from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4x + 4 = 44",
+          "description": "-x + 3 = -6",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 4 from both sides: 4x = 40 Divide both sides by 4: x = 10",
+          "description": "Subtract 3 from both sides: -x = -9 Divide both sides by -1: x = 9",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "10 oe",
+          "description": "9 oe",
           "marks": 1
         }
       ],
@@ -344,19 +344,19 @@
     },
     {
       "topic_id": "plot_straight_line_F",
-      "prompt": "Complete a table of values for y = 3x + 3 for x = -3 to 3, then plot the graph.",
+      "prompt": "Complete a table of values for y = 3x for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = 3x + 3:",
+        "Table of values for y = 3x:",
         "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: -6, -3, 0, 3, 6, 9, 12",
+        "y: -9, -6, -3, 0, 3, 6, 9",
         "Plot each (x, y) point and join them with a single ruled straight line."
       ],
-      "final_answer": "Straight line: y = 3x + 3",
+      "final_answer": "Straight line: y = 3x",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = 3x + 3:",
+          "description": "Table of values for y = 3x:",
           "marks": 1
         },
         {
@@ -366,7 +366,7 @@
         },
         {
           "code": "M1",
-          "description": "y: -6, -3, 0, 3, 6, 9, 12",
+          "description": "y: -9, -6, -3, 0, 3, 6, 9",
           "marks": 1
         },
         {
@@ -376,7 +376,7 @@
         },
         {
           "code": "A1",
-          "description": "Straight line: y = 3x + 3 oe",
+          "description": "Straight line: y = 3x oe",
           "marks": 1
         }
       ],
@@ -385,11 +385,11 @@
         "params": {
           "kind": "linear",
           "m": 3,
-          "c": 3,
+          "c": 0,
           "x_min": -4,
           "x_max": 4,
-          "y_min": -7,
-          "y_max": 13,
+          "y_min": -10,
+          "y_max": 10,
           "blank": true
         }
       },
@@ -398,110 +398,79 @@
         "params": {
           "kind": "linear",
           "m": 3,
-          "c": 3,
+          "c": 0,
           "x_min": -4,
           "x_max": 4,
-          "y_min": -7,
-          "y_max": 13,
+          "y_min": -10,
+          "y_max": 10,
           "table_points": [
             [
               -3,
-              -6
+              -9
             ],
             [
               -2,
-              -3
+              -6
             ],
             [
               -1,
-              0
+              -3
             ],
             [
               0,
-              3
+              0
             ],
             [
               1,
-              6
+              3
             ],
             [
               2,
-              9
+              6
             ],
             [
               3,
-              12
+              9
             ]
           ]
         }
       }
     },
     {
-      "topic_id": "satisfying_inequalities_F",
-      "prompt": "Solve the inequality -3 ≤ 2x + 1 ≤ 18, then list the integer values of x that satisfy it.",
+      "topic_id": "solving_inequalities_F",
+      "prompt": "Solve the inequality: x - 3 > 7",
       "solution_steps": [
-        "-3 ≤ 2x + 1 ≤ 18",
-        "Subtract 1 from all three parts:",
-        "-4 ≤ 2x ≤ 17",
-        "Divide all three parts by 2:",
-        "-2 ≤ x ≤ 17/2",
-        "The integers satisfying this are: -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8"
+        "x - 3 > 7",
+        "Add 3 to both sides:",
+        "x > 10",
+        "x > 10"
       ],
-      "final_answer": "-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8",
+      "final_answer": "x > 10",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "-3 ≤ 2x + 1 ≤ 18",
+          "description": "x - 3 > 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 1 from all three parts:",
+          "description": "Add 3 to both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "-4 ≤ 2x ≤ 17",
+          "description": "x > 10",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide all three parts by 2: -2 ≤ x ≤ 17/2 The integers satisfying this are: -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8",
+          "description": "x > 10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "sequences_next_term_F",
-      "prompt": "Find the next term in the sequence: 9, 15, 21, 27, 33, ...",
-      "solution_steps": [
-        "Add 6 each time.",
-        "Next term = 33 + 6 = 39"
-      ],
-      "final_answer": "39",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Add 6 each time.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Next term = 33 + 6 = 39",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "39 oe",
+          "description": "x > 10 oe",
           "marks": 1
         }
       ],
@@ -512,25 +481,25 @@
       "topic_id": "inequalities_number_line_F",
       "prompt": "Write down the inequality shown by the number line below.",
       "solution_steps": [
-        "The circle at 5 is filled, so 5 is included in the solution set.",
-        "The shading and arrow point to the left, so the solution is x ≤ 5."
+        "The circle at -4 is open, so -4 is not included in the solution set.",
+        "The shading and arrow point to the right, so the solution is x > -4."
       ],
-      "final_answer": "x ≤ 5",
+      "final_answer": "x > -4",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The circle at 5 is filled, so 5 is included in the solution set.",
+          "description": "The circle at -4 is open, so -4 is not included in the solution set.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "The shading and arrow point to the left, so the solution is x ≤ 5.",
+          "description": "The shading and arrow point to the right, so the solution is x > -4.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x ≤ 5 oe",
+          "description": "x > -4 oe",
           "marks": 1
         }
       ],
@@ -543,44 +512,73 @@
           ],
           "boundaries": [
             {
-              "value": 5,
-              "closed": true
+              "value": -4,
+              "closed": false
             }
           ],
-          "shade": "left"
+          "shade": "right"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "sequences_nth_term_F",
-      "prompt": "Here are the first four terms of a sequence: -10, -13, -16, -19.\nFind an expression for the nth term.",
+      "topic_id": "sequences_next_term_F",
+      "prompt": "Find the next term in the sequence: -6, -10, -14, -18, ...",
       "solution_steps": [
-        "Common difference = -3",
-        "nth term = -3n - 7",
-        "nth term = -3n - 7"
+        "Subtract 4 each time.",
+        "Next term = -18 - 4 = -22"
       ],
-      "final_answer": "-3n - 7",
+      "final_answer": "-22",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Subtract 4 each time.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Next term = -18 - 4 = -22",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "-22 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "sequences_nth_term_F",
+      "prompt": "Here are the first four terms of a sequence: 17, 16, 15, 14.\nFind an expression for the nth term.",
+      "solution_steps": [
+        "Common difference = -1",
+        "nth term = -1n + 18",
+        "nth term = -n + 18"
+      ],
+      "final_answer": "-n + 18",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Common difference = -3",
+          "description": "Common difference = -1",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = -3n - 7",
+          "description": "nth term = -1n + 18",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "nth term = -3n - 7",
+          "description": "nth term = -n + 18",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-3n - 7 oe",
+          "description": "-n + 18 oe",
           "marks": 1
         }
       ],
@@ -588,41 +586,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_double_brackets_F",
-      "prompt": "Expand and simplify: (2x + 4)(2x + 1)",
+      "topic_id": "expand_single_bracket_F",
+      "prompt": "Expand: -4(-5x + 7)",
       "solution_steps": [
-        "First: 2x × 2x = 4x^2",
-        "Outer: 2x × 1 = 2x",
-        "Inner: 4 × 2x = 8x",
-        "Last: 4 × 1 = 4",
-        "Combine like terms: 4x^2 + 10x + 4"
+        "Multiply -4 by -5x: 20x",
+        "Multiply -4 by 7: -28",
+        "Combine: 20x - 28"
       ],
-      "final_answer": "4x^2 + 10x + 4",
-      "marks": 5,
+      "final_answer": "20x - 28",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First: 2x × 2x = 4x^2",
+          "description": "Multiply -4 by -5x: 20x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Outer: 2x × 1 = 2x",
+          "description": "Multiply -4 by 7: -28",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Inner: 4 × 2x = 8x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Last: 4 × 1 = 4 Combine like terms: 4x^2 + 10x + 4",
+          "description": "Combine: 20x - 28",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4x^2 + 10x + 4 oe",
+          "description": "20x - 28 oe",
           "marks": 1
         }
       ],
@@ -630,40 +621,41 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_share_two_part_F",
-      "prompt": "Share 105 in the ratio 7:8.",
+      "topic_id": "expand_double_brackets_no_coefficient_F",
+      "prompt": "Expand and simplify: (x + 8)(x + 1)",
       "solution_steps": [
-        "Total parts = 7 + 8 = 15",
-        "Value of one part = 105 ÷ 15 = 7",
-        "Share 1 = 7 × 7 = 49",
-        "Share 2 = 8 × 7 = 56"
+        "First: x × x = x^2",
+        "Outer: x × 1 = 1x",
+        "Inner: 8 × x = 8x",
+        "Last: 8 × 1 = 8",
+        "Combine like terms: x^2 + 9x + 8"
       ],
-      "final_answer": "49 : 56",
+      "final_answer": "x^2 + 9x + 8",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total parts = 7 + 8 = 15",
+          "description": "First: x × x = x^2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 105 ÷ 15 = 7",
+          "description": "Outer: x × 1 = 1x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 1 = 7 × 7 = 49",
+          "description": "Inner: 8 × x = 8x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Share 2 = 8 × 7 = 56",
+          "description": "Last: 8 × 1 = 8 Combine like terms: x^2 + 9x + 8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "49 : 56 oe",
+          "description": "x^2 + 9x + 8 oe",
           "marks": 1
         }
       ],
@@ -672,12 +664,12 @@
     },
     {
       "topic_id": "density_F",
-      "prompt": "A metal block has a mass of 122 g and a volume of 63 cm³. Find its density, correct to 2 decimal places.",
+      "prompt": "A stone has a mass of 3919 kg and a volume of 5 m³. Find its density, correct to 2 decimal places.",
       "solution_steps": [
         "density = mass ÷ volume",
-        "density = 122 ÷ 63 = 1.94 g/cm³ (2 d.p.)"
+        "density = 3919 ÷ 5 = 783.8 kg/m³ (2 d.p.)"
       ],
-      "final_answer": "1.94 g/cm³",
+      "final_answer": "783.8 kg/m³",
       "marks": 3,
       "mark_scheme": [
         {
@@ -687,12 +679,12 @@
         },
         {
           "code": "M1",
-          "description": "density = 122 ÷ 63 = 1.94 g/cm³ (2 d.p.)",
+          "description": "density = 3919 ÷ 5 = 783.8 kg/m³ (2 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1.94 g/cm³ oe",
+          "description": "783.8 kg/m³ oe",
           "marks": 1
         }
       ],
@@ -700,41 +692,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "ratio_difference_F",
-      "prompt": "a : b = 2 : 3.\nb - a = 17.\nFind a and b, and their total.",
+      "topic_id": "ratio_1_to_n_F",
+      "prompt": "Write the ratio 6:1 in the form 1:\\plain{n}.",
       "solution_steps": [
-        "Difference in parts = 3 - 2 = 1 parts",
-        "Value of one part = 17 ÷ 1 = 17",
-        "a = 2 × 17 = 34",
-        "b = 3 × 17 = 51",
-        "a + b = 34 + 51 = 85"
+        "Divide both parts of the ratio by 6 (the first part) so the first part becomes 1.",
+        "6 ÷ 6 = 1, 1 ÷ 6 ≈ 0.17"
       ],
-      "final_answer": "a = 34, b = 51 (total 85)",
-      "marks": 5,
+      "final_answer": "1 : 0.17 (to 2 d.p.)",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Difference in parts = 3 - 2 = 1 parts",
+          "description": "Divide both parts of the ratio by 6 (the first part) so the first part becomes 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Value of one part = 17 ÷ 1 = 17",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "a = 2 × 17 = 34",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "b = 3 × 17 = 51 a + b = 34 + 51 = 85",
+          "description": "6 ÷ 6 = 1, 1 ÷ 6 ≈ 0.17",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "a = 34, b = 51 (total 85) oe",
+          "description": "1 : 0.17 (to 2 d.p.) oe",
           "marks": 1
         }
       ],
@@ -743,27 +722,27 @@
     },
     {
       "topic_id": "unit_conversions_F",
-      "prompt": "Convert 4968 g to kg.",
+      "prompt": "Convert 67 cm to mm.",
       "solution_steps": [
-        "1 kg = 1000 g",
-        "4968 g = 4968 ÷ 1000 = 4.968 kg"
+        "1 cm = 10 mm",
+        "67 cm = 67 × 10 = 670 mm"
       ],
-      "final_answer": "4.968 kg",
+      "final_answer": "670 mm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "1 kg = 1000 g",
+          "description": "1 cm = 10 mm",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "4968 g = 4968 ÷ 1000 = 4.968 kg",
+          "description": "67 cm = 67 × 10 = 670 mm",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4.968 kg oe",
+          "description": "670 mm oe",
           "marks": 1
         }
       ],
@@ -771,66 +750,194 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "angles_exterior_F",
-      "prompt": "An exterior angle of a triangle is x°. The two remote interior angles are 64° and 28°. Find x.",
+      "topic_id": "compound_percentage_F",
+      "prompt": "A price of £300 decreases by 50%, then decreases by 20%. Find the final price.",
       "solution_steps": [
-        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
-        "x = 64 + 28 = 92"
+        "After the first change: 300 × 0.50 = 150",
+        "After the second change: 150 × 0.80 = 120"
       ],
-      "final_answer": "92",
+      "final_answer": "£120",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
+          "description": "After the first change: 300 × 0.50 = 150",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "x = 64 + 28 = 92",
+          "description": "After the second change: 150 × 0.80 = 120",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "92 oe",
+          "description": "£120 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "direct_proportion_noncalculator_F",
+      "prompt": "If 2 cm on a map represents 32 km in real life, how many km does 10 cm represent?",
+      "solution_steps": [
+        "Unit value = 32 km ÷ 2 = 16 km",
+        "Answer = 16 km × 10 = 160 km"
+      ],
+      "final_answer": "160 km",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Unit value = 32 km ÷ 2 = 16 km",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Answer = 16 km × 10 = 160 km",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "160 km oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_parallelogram_F",
+      "prompt": "Find the area of the following parallelogram.",
+      "solution_steps": [
+        "Area = base × height = 12 × 4 = 48 cm²"
+      ],
+      "final_answer": "48 cm²",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area = base × height = 12 × 4 = 48 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "48 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "exterior_triangle",
+        "kind": "parallelogram",
         "params": {
-          "interior1_label": "64°",
-          "interior2_label": "28°",
-          "exterior_label": "x",
-          "interior1_value": 64,
-          "shape_variant": 1
+          "base": 12,
+          "height": 4,
+          "base_label": "12 cm",
+          "height_label": "4 cm"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "transform_translate_describe_F",
-      "prompt": "Describe fully the single transformation that maps shape A onto shape B, shown on the grid.",
+      "topic_id": "pythagoras_hypotenuse_triple_F",
+      "prompt": "A right-angled triangle has sides 22 cm and 120 cm. Find the length of x.",
       "solution_steps": [
-        "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (1, 0), with the matching vertex of shape B, (1, -3), gives the vector (0, -3).",
-        "Checking the other vertices confirms the same vector applies throughout, so this is a translation."
+        "c² = a² + b² = 22² + 120² = 484 + 14400 = 14884",
+        "c = √14884 = 122"
       ],
-      "final_answer": "Translation by the vector (0, -3)",
+      "final_answer": "122 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Every vertex moves by exactly the same amount: comparing a vertex of shape A, (1, 0), with the matching vertex of shape B, (1, -3), gives the vector (0, -3).",
+          "description": "c² = a² + b² = 22² + 120² = 484 + 14400 = 14884",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Checking the other vertices confirms the same vector applies throughout, so this is a translation.",
+          "description": "c = √14884 = 122",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "Translation by the vector (0, -3) oe",
+          "description": "122 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "right_triangle",
+        "params": {
+          "leg1_label": "22 cm",
+          "leg2_label": "120 cm",
+          "hyp_label": "x"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "construction_triangle_F",
+      "prompt": "Triangle IDG has ID = 13 cm, DG = 4 cm, and IG = 12 cm. Describe, step by step, how to construct triangle IDG using only a ruler and a pair of compasses.",
+      "solution_steps": [
+        "Draw the line segment ID = 13 cm using a ruler.",
+        "Open the compasses to 12 cm. With the point on I, draw an arc above the line.",
+        "Open the compasses to 4 cm. With the point on D, draw a second arc that crosses the first.",
+        "Label the point where the two arcs cross as G, then draw straight lines from I to G and from D to G to complete the triangle."
+      ],
+      "final_answer": "Triangle IDG, with G located at the intersection of the two compass arcs.",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Draw the line segment ID = 13 cm using a ruler.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Open the compasses to 12 cm. With the point on I, draw an arc above the line.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Open the compasses to 4 cm. With the point on D, draw a second arc that crosses the first.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Label the point where the two arcs cross as G, then draw straight lines from I to G and from D to G to complete the triangle.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Triangle IDG, with G located at the intersection of the two compass arcs. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "transform_rotate_complete_F",
+      "prompt": "Rotate shape ABCDEF 90° anticlockwise about the centre (0, 0).",
+      "solution_steps": [
+        "Rotate each vertex 90° anticlockwise about the centre (0, 0): every point stays the same distance from the centre and turns through the same angle.",
+        "A(-2, 1) -> A'(-1, -2), B(3, 1) -> B'(-1, 3), C(3, 3) -> C'(-3, 3), D(1, 3) -> D'(-3, 1), E(1, 5) -> E'(-5, 1), F(-2, 5) -> F'(-5, -2)"
+      ],
+      "final_answer": "A'(-1, -2), B'(-1, 3), C'(-3, 3), D'(-3, 1), E'(-5, 1), F'(-5, -2)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Rotate each vertex 90° anticlockwise about the centre (0, 0): every point stays the same distance from the centre and turns through the same angle.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "A(-2, 1) -> A'(-1, -2), B(3, 1) -> B'(-1, 3), C(3, 3) -> C'(-3, 3), D(1, 3) -> D'(-3, 1), E(1, 5) -> E'(-5, 1), F(-2, 5) -> F'(-5, -2)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "A'(-1, -2), B'(-1, 3), C'(-3, 3), D'(-3, 1), E'(-5, 1), F'(-5, -2) oe",
           "marks": 1
         }
       ],
@@ -843,294 +950,178 @@
           "y_max": 8,
           "original_vertices": [
             [
-              1,
-              0
-            ],
-            [
-              5,
-              0
-            ],
-            [
-              4,
-              4
-            ],
-            [
-              0,
-              3
-            ]
-          ],
-          "original_labels": [
-            "",
-            "",
-            "",
-            ""
-          ],
-          "image_vertices": [
-            [
-              1,
-              -3
-            ],
-            [
-              5,
-              -3
-            ],
-            [
-              4,
+              -2,
               1
             ],
             [
-              0,
-              0
-            ]
-          ],
-          "image_labels": [
-            "",
-            "",
-            "",
-            ""
-          ]
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "area_parallelogram_F",
-      "prompt": "Find the area of the following parallelogram.",
-      "solution_steps": [
-        "Area = base × height = 6 × 12 = 72 cm²"
-      ],
-      "final_answer": "72 cm²",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Area = base × height = 6 × 12 = 72 cm²",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "72 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "parallelogram",
-        "params": {
-          "base": 6,
-          "height": 12,
-          "base_label": "6 cm",
-          "height_label": "12 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "pythagoras_hypotenuse_triple_F",
-      "prompt": "A right-angled triangle has sides 24 cm and 70 cm. Find the length of x.",
-      "solution_steps": [
-        "c² = a² + b² = 24² + 70² = 576 + 4900 = 5476",
-        "c = √5476 = 74"
-      ],
-      "final_answer": "74 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "c² = a² + b² = 24² + 70² = 576 + 4900 = 5476",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "c = √5476 = 74",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "74 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "right_triangle",
-        "params": {
-          "leg1_label": "24 cm",
-          "leg2_label": "70 cm",
-          "hyp_label": "x"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "construction_triangle_F",
-      "prompt": "Triangle VPW has VP = 5 cm, the angle at P equal to 69°, and PW = 10 cm. Describe, step by step, how to construct triangle VPW using a ruler, a protractor, and a pair of compasses.",
-      "solution_steps": [
-        "Draw the line segment VP = 5 cm using a ruler.",
-        "At P, use a protractor to draw a ray at 69° from the line PV.",
-        "Along this new ray, measure 10 cm from P using a ruler and mark the point W.",
-        "Draw a straight line from V to W to complete the triangle."
-      ],
-      "final_answer": "Triangle VPW, with W marked 10 cm from P along the 69° ray at P.",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Draw the line segment VP = 5 cm using a ruler.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "At P, use a protractor to draw a ray at 69° from the line PV.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Along this new ray, measure 10 cm from P using a ruler and mark the point W.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Draw a straight line from V to W to complete the triangle.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Triangle VPW, with W marked 10 cm from P along the 69° ray at P. oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "two_way_tables_F",
-      "prompt": "The two-way table shows the number of year 10 and year 11 who prefer cats or dogs. Find the missing values.",
-      "solution_steps": [
-        "'Year 11' / 'Dogs': using the 'Dogs' column total: 24 - 17 = 7",
-        "'Year 11' / 'Cats': using the 'Cats' column total: 27 - 10 = 17"
-      ],
-      "final_answer": "'Year 11' / 'Dogs' = 7; 'Year 11' / 'Cats' = 17",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "'Year 11' / 'Dogs': using the 'Dogs' column total: 24 - 17 = 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "'Year 11' / 'Cats': using the 'Cats' column total: 27 - 10 = 17",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "'Year 11' / 'Dogs' = 7; 'Year 11' / 'Cats' = 17 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "two_way_table",
-        "params": {
-          "row_labels": [
-            "Year 10",
-            "Year 11",
-            "Total"
-          ],
-          "col_labels": [
-            "Cats",
-            "Dogs",
-            "Total"
-          ],
-          "cells": [
-            [
-              "10",
-              "17",
-              "27"
+              3,
+              1
             ],
             [
-              "",
-              "",
-              "24"
+              3,
+              3
             ],
             [
-              "27",
-              "24",
-              "51"
+              1,
+              3
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              -2,
+              5
             ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "centre": [
+            0,
+            0
           ]
         }
       },
       "solution_diagram": {
-        "kind": "two_way_table",
+        "kind": "grid_transformation",
         "params": {
-          "row_labels": [
-            "Year 10",
-            "Year 11",
-            "Total"
-          ],
-          "col_labels": [
-            "Cats",
-            "Dogs",
-            "Total"
-          ],
-          "cells": [
+          "x_min": -8,
+          "x_max": 8,
+          "y_min": -8,
+          "y_max": 8,
+          "original_vertices": [
             [
-              "10",
-              "17",
-              "27"
+              -2,
+              1
             ],
             [
-              "17",
-              "7",
-              "24"
+              3,
+              1
             ],
             [
-              "27",
-              "24",
-              "51"
+              3,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              -2,
+              5
             ]
+          ],
+          "original_labels": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+          ],
+          "centre": [
+            0,
+            0
+          ],
+          "image_vertices": [
+            [
+              -1,
+              -2
+            ],
+            [
+              -1,
+              3
+            ],
+            [
+              -3,
+              3
+            ],
+            [
+              -3,
+              1
+            ],
+            [
+              -5,
+              1
+            ],
+            [
+              -5,
+              -2
+            ]
+          ],
+          "image_labels": [
+            "A'",
+            "B'",
+            "C'",
+            "D'",
+            "E'",
+            "F'"
           ]
         }
       }
     },
     {
-      "topic_id": "probability_single_event_F",
-      "prompt": "A bag contains 3 red, 2 blue, 2 yellow counters. A counter is picked at random. Find the probability that it is yellow.",
+      "topic_id": "area_composite_rectangles_F",
+      "prompt": "Find the area of this compound shape.",
       "solution_steps": [
-        "Total counters = 7",
-        "Number of yellow counters = 2",
-        "P(yellow) = 2/7 = 2/7"
+        "Work out the width of the top bar: 6 + 4 + 6 = 16 cm.",
+        "Area of the top bar = 16 × 5 = 80 cm²",
+        "Area of the stem = 4 × 12 = 48 cm²",
+        "Total area = 80 + 48 = 128 cm²"
       ],
-      "final_answer": "2/7",
-      "marks": 4,
+      "final_answer": "128 cm²",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total counters = 7",
+          "description": "Work out the width of the top bar: 6 + 4 + 6 = 16 cm.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Number of yellow counters = 2",
+          "description": "Area of the top bar = 16 × 5 = 80 cm²",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(yellow) = 2/7 = 2/7",
+          "description": "Area of the stem = 4 × 12 = 48 cm²",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total area = 80 + 48 = 128 cm²",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2/7 oe",
+          "description": "128 cm² oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "bag_of_counters",
+        "kind": "t_shape",
         "params": {
-          "counts": {
-            "red": 3,
-            "blue": 2,
-            "yellow": 2
+          "top_w": 16,
+          "top_h": 5,
+          "stem_w": 4,
+          "stem_h": 12,
+          "edge_labels": {
+            "bar_left": "5 cm",
+            "bar_right": "5 cm",
+            "notch_left": "6 cm",
+            "notch_right": "6 cm",
+            "stem_bottom": "4 cm",
+            "stem_left": "12 cm"
           }
         }
       },
@@ -1138,33 +1129,33 @@
     },
     {
       "topic_id": "venn_diagram_probability_F",
-      "prompt": "The Venn diagram shows the number of students in each region for sets A and B. Find P(B only).",
+      "prompt": "The Venn diagram shows the number of students in each region for sets A and B. Find P(A).",
       "solution_steps": [
-        "Total number of elements = 2 + 14 + 11 + 5 = 32",
-        "Number of outcomes in B only = 14 = 14",
-        "P(B only) = 14/32 = 7/16"
+        "Total number of elements = 10 + 5 + 6 + 11 = 32",
+        "Number of outcomes in A = 10 + 6 = 16",
+        "P(A) = 16/32 = 1/2"
       ],
-      "final_answer": "7/16",
+      "final_answer": "1/2",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total number of elements = 2 + 14 + 11 + 5 = 32",
+          "description": "Total number of elements = 10 + 5 + 6 + 11 = 32",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Number of outcomes in B only = 14 = 14",
+          "description": "Number of outcomes in A = 10 + 6 = 16",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(B only) = 14/32 = 7/16",
+          "description": "P(A) = 16/32 = 1/2",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7/16 oe",
+          "description": "1/2 oe",
           "marks": 1
         }
       ],
@@ -1176,13 +1167,36 @@
             "B"
           ],
           "region_text": {
-            "a_only": "2",
-            "b_only": "14",
-            "both": "11",
-            "neither": "5"
+            "a_only": "10",
+            "b_only": "5",
+            "both": "6",
+            "neither": "11"
           }
         }
       },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "stats_range_F",
+      "prompt": "Find the range of this data set: 22, 2, 1, 10, 9, 4.",
+      "solution_steps": [
+        "Range = largest - smallest = 22 - 1 = 21"
+      ],
+      "final_answer": "21",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Range = largest - smallest = 22 - 1 = 21",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "21 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
       "solution_diagram": null
     }
   ]

@@ -8,27 +8,27 @@
   "questions": [
     {
       "topic_id": "decimals_divide_F",
-      "prompt": "Evaluate 5.4 ÷ 0.9.",
+      "prompt": "Evaluate 8.4 ÷ 0.7.",
       "solution_steps": [
-        "Multiply both numbers by 10 so the divisor becomes a whole number: 5.4 × 10 = 54, 0.9 × 10 = 9",
-        "54 ÷ 9 = 6"
+        "Multiply both numbers by 10 so the divisor becomes a whole number: 8.4 × 10 = 84, 0.7 × 10 = 7",
+        "84 ÷ 7 = 12"
       ],
-      "final_answer": "6",
+      "final_answer": "12",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Multiply both numbers by 10 so the divisor becomes a whole number: 5.4 × 10 = 54, 0.9 × 10 = 9",
+          "description": "Multiply both numbers by 10 so the divisor becomes a whole number: 8.4 × 10 = 84, 0.7 × 10 = 7",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "54 ÷ 9 = 6",
+          "description": "84 ÷ 7 = 12",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "6 oe",
+          "description": "12 oe",
           "marks": 1
         }
       ],
@@ -36,28 +36,28 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "prime_numbers_F",
-      "prompt": "From this list, write down all the prime numbers: 30, 8, 47, 11, 46, 5",
+      "topic_id": "number_powers_of_ten_F",
+      "prompt": "Calculate 18.17 × 100.",
       "solution_steps": [
-        "Check each number for factors other than 1 and itself: 30, 8, 47, 11, 46, 5",
-        "Prime numbers: 5, 11, 47"
+        "Multiplying by 100 moves the decimal point 2 places to the right.",
+        "18.17 × 100 = 1817"
       ],
-      "final_answer": "5, 11, 47",
+      "final_answer": "1817",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Check each number for factors other than 1 and itself: 30, 8, 47, 11, 46, 5",
+          "description": "Multiplying by 100 moves the decimal point 2 places to the right.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Prime numbers: 5, 11, 47",
+          "description": "18.17 × 100 = 1817",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5, 11, 47 oe",
+          "description": "1817 oe",
           "marks": 1
         }
       ],
@@ -66,10 +66,10 @@
     },
     {
       "topic_id": "hcf_by_listing_F",
-      "prompt": "Find the highest common factor (HCF) of 27 and 23.",
+      "prompt": "Find the highest common factor (HCF) of 37 and 6.",
       "solution_steps": [
-        "Factors of 27: 1, 3, 9, 27",
-        "Factors of 23: 1, 23",
+        "Factors of 37: 1, 37",
+        "Factors of 6: 1, 2, 3, 6",
         "Highest common factor = 1"
       ],
       "final_answer": "1",
@@ -77,12 +77,12 @@
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Factors of 27: 1, 3, 9, 27",
+          "description": "Factors of 37: 1, 37",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Factors of 23: 1, 23",
+          "description": "Factors of 6: 1, 2, 3, 6",
           "marks": 1
         },
         {
@@ -101,39 +101,39 @@
     },
     {
       "topic_id": "fractions_add_subtract_F",
-      "prompt": "Calculate 4/12 + 1/5. Give your answer as a fraction in its simplest form.",
+      "prompt": "Work out 2/3 + 7/8. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
-        "Find a common denominator: LCM(12, 5) = 60",
-        "Convert: 4/12 = 20/60, 1/5 = 12/60",
-        "Add: 20/60 + 12/60 = 32/60",
-        "Simplify: 8/15"
+        "Find a common denominator: LCM(3, 8) = 24",
+        "Convert: 2/3 = 16/24, 7/8 = 21/24",
+        "Add: 16/24 + 21/24 = 37/24",
+        "Simplify: 37/24"
       ],
-      "final_answer": "8/15",
+      "final_answer": "37/24",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find a common denominator: LCM(12, 5) = 60",
+          "description": "Find a common denominator: LCM(3, 8) = 24",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Convert: 4/12 = 20/60, 1/5 = 12/60",
+          "description": "Convert: 2/3 = 16/24, 7/8 = 21/24",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Add: 20/60 + 12/60 = 32/60",
+          "description": "Add: 16/24 + 21/24 = 37/24",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify: 8/15",
+          "description": "Simplify: 37/24",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "8/15 oe",
+          "description": "37/24 oe",
           "marks": 1
         }
       ],
@@ -142,33 +142,33 @@
     },
     {
       "topic_id": "fractions_divide_F",
-      "prompt": "Evaluate 1/4 ÷ 6/5. Give your answer as a fraction in its simplest form.",
+      "prompt": "Calculate 6/8 ÷ 3/7. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
-        "Keep-change-flip: 1/4 ÷ 6/5 = 1/4 × 5/6",
-        "Multiply: \\frac{(1×5)}{(4×6)} = 5/24",
-        "Simplify: 5/24"
+        "Keep-change-flip: 6/8 ÷ 3/7 = 6/8 × 7/3",
+        "Multiply: \\frac{(6×7)}{(8×3)} = 42/24",
+        "Simplify: 7/4"
       ],
-      "final_answer": "5/24",
+      "final_answer": "7/4",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Keep-change-flip: 1/4 ÷ 6/5 = 1/4 × 5/6",
+          "description": "Keep-change-flip: 6/8 ÷ 3/7 = 6/8 × 7/3",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Multiply: \\frac{(1×5)}{(4×6)} = 5/24",
+          "description": "Multiply: \\frac{(6×7)}{(8×3)} = 42/24",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Simplify: 5/24",
+          "description": "Simplify: 7/4",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5/24 oe",
+          "description": "7/4 oe",
           "marks": 1
         }
       ],
@@ -177,27 +177,27 @@
     },
     {
       "topic_id": "prime_factors_F",
-      "prompt": "Write 192 as a product of its prime factors.",
+      "prompt": "Write 153 as a product of its prime factors.",
       "solution_steps": [
-        "Divide 192 repeatedly by the smallest prime that fits: 2 × 2 × 2 × 2 × 2 × 2 × 3",
-        "192 = 2 × 2 × 2 × 2 × 2 × 2 × 3"
+        "Divide 153 repeatedly by the smallest prime that fits: 3 × 3 × 17",
+        "153 = 3 × 3 × 17"
       ],
-      "final_answer": "2 × 2 × 2 × 2 × 2 × 2 × 3",
+      "final_answer": "3 × 3 × 17",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide 192 repeatedly by the smallest prime that fits: 2 × 2 × 2 × 2 × 2 × 2 × 3",
+          "description": "Divide 153 repeatedly by the smallest prime that fits: 3 × 3 × 17",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "192 = 2 × 2 × 2 × 2 × 2 × 2 × 3",
+          "description": "153 = 3 × 3 × 17",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "2 × 2 × 2 × 2 × 2 × 2 × 3 oe",
+          "description": "3 × 3 × 17 oe",
           "marks": 1
         }
       ],
@@ -206,33 +206,33 @@
     },
     {
       "topic_id": "fractions_ordering_F",
-      "prompt": "Write these fractions in descending order: 1/2, 4/5, 7/12, 1/8, 1/4",
+      "prompt": "Write these fractions in descending order: 3/10, 2/3, 6/11, 5/8, 4/7",
       "solution_steps": [
-        "Convert every fraction to the same denominator, the LCM of 2, 5, 12, 8, 4: 120",
-        "Rewrite each fraction over 120: 1/2 = 60/120, 4/5 = 96/120, 7/12 = 70/120, 1/8 = 15/120, 1/4 = 30/120",
-        "Order the numerators in descending order and convert back: 4/5, 7/12, 1/2, 1/4, 1/8"
+        "Convert every fraction to the same denominator, the LCM of 10, 3, 11, 8, 7: 9240",
+        "Rewrite each fraction over 9240: 3/10 = 2772/9240, 2/3 = 6160/9240, 6/11 = 5040/9240, 5/8 = 5775/9240, 4/7 = 5280/9240",
+        "Order the numerators in descending order and convert back: 2/3, 5/8, 4/7, 6/11, 3/10"
       ],
-      "final_answer": "4/5, 7/12, 1/2, 1/4, 1/8",
+      "final_answer": "2/3, 5/8, 4/7, 6/11, 3/10",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Convert every fraction to the same denominator, the LCM of 2, 5, 12, 8, 4: 120",
+          "description": "Convert every fraction to the same denominator, the LCM of 10, 3, 11, 8, 7: 9240",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Rewrite each fraction over 120: 1/2 = 60/120, 4/5 = 96/120, 7/12 = 70/120, 1/8 = 15/120, 1/4 = 30/120",
+          "description": "Rewrite each fraction over 9240: 3/10 = 2772/9240, 2/3 = 6160/9240, 6/11 = 5040/9240, 5/8 = 5775/9240, 4/7 = 5280/9240",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Order the numerators in descending order and convert back: 4/5, 7/12, 1/2, 1/4, 1/8",
+          "description": "Order the numerators in descending order and convert back: 2/3, 5/8, 4/7, 6/11, 3/10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "4/5, 7/12, 1/2, 1/4, 1/8 oe",
+          "description": "2/3, 5/8, 4/7, 6/11, 3/10 oe",
           "marks": 1
         }
       ],
@@ -240,40 +240,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "substitution_F",
-      "prompt": "A = (1/2)bh. Find the value of A when b = 5 and h = 20.",
+      "topic_id": "change_subject_F",
+      "prompt": "Make x the subject of the formula y = 5x + 20.",
       "solution_steps": [
-        "A = (1/2)bh",
-        "A = (1/2) × 5 × 20",
-        "A = 100/2",
-        "A = 50"
+        "y = 5x + 20",
+        "Subtract 20 from both sides: y - 20 = 5x",
+        "Divide both sides by 5: x = \\frac{y - 20}{5}"
       ],
-      "final_answer": "A = 50",
-      "marks": 5,
+      "final_answer": "x = \\frac{y - 20}{5}",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A = (1/2)bh",
+          "description": "y = 5x + 20",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A = (1/2) × 5 × 20",
+          "description": "Subtract 20 from both sides: y - 20 = 5x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A = 100/2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "A = 50",
+          "description": "Divide both sides by 5: x = \\frac{y - 20}{5}",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "A = 50 oe",
+          "description": "x = \\frac{y - 20}{5} oe",
           "marks": 1
         }
       ],
@@ -282,41 +276,41 @@
     },
     {
       "topic_id": "linear_brackets_F",
-      "prompt": "Solve: 5(4x + 5) = 125",
+      "prompt": "Solve: 4(5x + 7) = 48",
       "solution_steps": [
-        "Expand the bracket: 5(4x + 5) = 20x + 25",
-        "20x + 25 = 125",
-        "Subtract 25 from both sides:",
-        "20x = 100",
+        "Expand the bracket: 4(5x + 7) = 20x + 28",
+        "20x + 28 = 48",
+        "Subtract 28 from both sides:",
+        "20x = 20",
         "Divide both sides by 20:",
-        "x = 5"
+        "x = 1"
       ],
-      "final_answer": "5",
+      "final_answer": "1",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Expand the bracket: 5(4x + 5) = 20x + 25",
+          "description": "Expand the bracket: 4(5x + 7) = 20x + 28",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "20x + 25 = 125",
+          "description": "20x + 28 = 48",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract 25 from both sides:",
+          "description": "Subtract 28 from both sides:",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "20x = 100 Divide both sides by 20: x = 5",
+          "description": "20x = 20 Divide both sides by 20: x = 1",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5 oe",
+          "description": "1 oe",
           "marks": 1
         }
       ],
@@ -325,19 +319,19 @@
     },
     {
       "topic_id": "plot_quadratic_F",
-      "prompt": "Complete a table of values for y = -x^2 + x + 3 for x = -3 to 3, then plot the graph.",
+      "prompt": "Complete a table of values for y = x^2 + 1 for x = -3 to 3, then plot the graph.",
       "solution_steps": [
-        "Table of values for y = -x^2 + x + 3:",
+        "Table of values for y = x^2 + 1:",
         "x: -3, -2, -1, 0, 1, 2, 3",
-        "y: -9, -3, 1, 3, 3, 1, -3",
+        "y: 10, 5, 2, 1, 2, 5, 10",
         "Plot each (x, y) point and join them with a single smooth curve."
       ],
-      "final_answer": "Quadratic curve: y = -x^2 + x + 3",
+      "final_answer": "Quadratic curve: y = x^2 + 1",
       "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Table of values for y = -x^2 + x + 3:",
+          "description": "Table of values for y = x^2 + 1:",
           "marks": 1
         },
         {
@@ -347,7 +341,7 @@
         },
         {
           "code": "M1",
-          "description": "y: -9, -3, 1, 3, 3, 1, -3",
+          "description": "y: 10, 5, 2, 1, 2, 5, 10",
           "marks": 1
         },
         {
@@ -357,7 +351,7 @@
         },
         {
           "code": "A1",
-          "description": "Quadratic curve: y = -x^2 + x + 3 oe",
+          "description": "Quadratic curve: y = x^2 + 1 oe",
           "marks": 1
         }
       ],
@@ -365,13 +359,13 @@
         "kind": "function_graph",
         "params": {
           "kind": "quadratic",
-          "a": -1,
-          "b": 1,
-          "c": 3,
+          "a": 1,
+          "b": 0,
+          "c": 1,
           "x_min": -4,
           "x_max": 4,
-          "y_min": -10,
-          "y_max": 4,
+          "y_min": 0,
+          "y_max": 11,
           "blank": true
         }
       },
@@ -379,98 +373,113 @@
         "kind": "function_graph",
         "params": {
           "kind": "quadratic",
-          "a": -1,
-          "b": 1,
-          "c": 3,
+          "a": 1,
+          "b": 0,
+          "c": 1,
           "x_min": -4,
           "x_max": 4,
-          "y_min": -10,
-          "y_max": 4,
+          "y_min": 0,
+          "y_max": 11,
           "table_points": [
             [
               -3,
-              -9
+              10
             ],
             [
               -2,
-              -3
+              5
             ],
             [
               -1,
-              1
+              2
             ],
             [
               0,
-              3
-            ],
-            [
-              1,
-              3
-            ],
-            [
-              2,
               1
             ],
             [
+              1,
+              2
+            ],
+            [
+              2,
+              5
+            ],
+            [
               3,
-              -3
+              10
             ]
           ]
         }
       }
     },
     {
-      "topic_id": "sequences_next_term_F",
-      "prompt": "Find the next term in the sequence: -3, -9, -15, -21, -27, ...",
+      "topic_id": "inequalities_number_line_F",
+      "prompt": "Write down the inequality shown by the number line below.",
       "solution_steps": [
-        "Subtract 6 each time.",
-        "Next term = -27 - 6 = -33"
+        "The circle at 5 is open, so 5 is not included in the solution set.",
+        "The shading and arrow point to the right, so the solution is x > 5."
       ],
-      "final_answer": "-33",
+      "final_answer": "x > 5",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Subtract 6 each time.",
+          "description": "The circle at 5 is open, so 5 is not included in the solution set.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Next term = -27 - 6 = -33",
+          "description": "The shading and arrow point to the right, so the solution is x > 5.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "-33 oe",
+          "description": "x > 5 oe",
           "marks": 1
         }
       ],
-      "diagram": null,
+      "diagram": {
+        "kind": "number_line",
+        "params": {
+          "range": [
+            -6,
+            6
+          ],
+          "boundaries": [
+            {
+              "value": 5,
+              "closed": false
+            }
+          ],
+          "shade": "right"
+        }
+      },
       "solution_diagram": null
     },
     {
       "topic_id": "distance_time_interpret_F",
-      "prompt": "The distance-time graph shows a delivery van's journey. For how many minutes was the van stationary?",
+      "prompt": "The distance-time graph shows a delivery van's journey. Find the average speed for the whole journey, in km/h.",
       "solution_steps": [
-        "The graph is flat (constant distance = 12 km) between 10 and 15 minutes.",
-        "Stationary time = 15 - 10 = 5 minutes"
+        "Total distance = 12 km. Total time = 49 minutes = 49/60 hours.",
+        "Average speed = 12 ÷ 49/60 = 720/49 km/h"
       ],
-      "final_answer": "5 minutes",
+      "final_answer": "720/49 km/h",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "The graph is flat (constant distance = 12 km) between 10 and 15 minutes.",
+          "description": "Total distance = 12 km. Total time = 49 minutes = 49/60 hours.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Stationary time = 15 - 10 = 5 minutes",
+          "description": "Average speed = 12 ÷ 49/60 = 720/49 km/h",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "5 minutes oe",
+          "description": "720/49 km/h oe",
           "marks": 1
         }
       ],
@@ -483,20 +492,20 @@
               0
             ],
             [
-              10,
-              12
+              24,
+              6
             ],
             [
-              15,
-              12
+              29,
+              6
             ],
             [
-              25,
+              49,
               0
             ]
           ],
-          "x_max": 30,
-          "y_max": 14,
+          "x_max": 54,
+          "y_max": 8,
           "x_label": "Time (minutes)",
           "y_label": "Distance (km)"
         }
@@ -504,41 +513,34 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "expand_double_brackets_F",
-      "prompt": "Expand and simplify: (3x + 5)(x + 7)",
+      "topic_id": "expand_single_bracket_F",
+      "prompt": "Expand: 4(4x + 5)",
       "solution_steps": [
-        "First: 3x × 1x = 3x^2",
-        "Outer: 3x × 7 = 21x",
-        "Inner: 5 × 1x = 5x",
-        "Last: 5 × 7 = 35",
-        "Combine like terms: 3x^2 + 26x + 35"
+        "Multiply 4 by 4x: 16x",
+        "Multiply 4 by 5: 20",
+        "Combine: 16x + 20"
       ],
-      "final_answer": "3x^2 + 26x + 35",
-      "marks": 5,
+      "final_answer": "16x + 20",
+      "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "First: 3x × 1x = 3x^2",
+          "description": "Multiply 4 by 4x: 16x",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Outer: 3x × 7 = 21x",
+          "description": "Multiply 4 by 5: 20",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Inner: 5 × 1x = 5x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Last: 5 × 7 = 35 Combine like terms: 3x^2 + 26x + 35",
+          "description": "Combine: 16x + 20",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "3x^2 + 26x + 35 oe",
+          "description": "16x + 20 oe",
           "marks": 1
         }
       ],
@@ -547,33 +549,33 @@
     },
     {
       "topic_id": "parallel_lines_equation_F",
-      "prompt": "A line is parallel to y = 3x and passes through the point (-5, 2). Find the equation of the line.",
+      "prompt": "A line is parallel to y = 4x - 7 and passes through the point (6, 2). Find the equation of the line.",
       "solution_steps": [
-        "Parallel lines have the same gradient, so m = 3.",
-        "Substitute (-5, 2) into y = 3x + c: 2 = 3×(-5) + c, so c = 17",
-        "Equation of the line: y = 3x + 17"
+        "Parallel lines have the same gradient, so m = 4.",
+        "Substitute (6, 2) into y = 4x + c: 2 = 4×(6) + c, so c = -22",
+        "Equation of the line: y = 4x - 22"
       ],
-      "final_answer": "y = 3x + 17",
+      "final_answer": "y = 4x - 22",
       "marks": 4,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Parallel lines have the same gradient, so m = 3.",
+          "description": "Parallel lines have the same gradient, so m = 4.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Substitute (-5, 2) into y = 3x + c: 2 = 3×(-5) + c, so c = 17",
+          "description": "Substitute (6, 2) into y = 4x + c: 2 = 4×(6) + c, so c = -22",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Equation of the line: y = 3x + 17",
+          "description": "Equation of the line: y = 4x - 22",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "y = 3x + 17 oe",
+          "description": "y = 4x - 22 oe",
           "marks": 1
         }
       ],
@@ -582,12 +584,12 @@
     },
     {
       "topic_id": "simultaneous_graphically_F",
-      "prompt": "The graphs of y = 3x + 3 and y = x + 3 are shown below. Use the graphs to write down the solution to the simultaneous equations.",
+      "prompt": "The graphs of y = x and y = -2x are shown below. Use the graphs to write down the solution to the simultaneous equations.",
       "solution_steps": [
         "The solution to a pair of simultaneous equations is the point where their graphs intersect.",
-        "The lines cross at x = 0, y = 3."
+        "The lines cross at x = 0, y = 0."
       ],
-      "final_answer": "x = 0, y = 3",
+      "final_answer": "x = 0, y = 0",
       "marks": 3,
       "mark_scheme": [
         {
@@ -597,53 +599,53 @@
         },
         {
           "code": "M1",
-          "description": "The lines cross at x = 0, y = 3.",
+          "description": "The lines cross at x = 0, y = 0.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "x = 0, y = 3 oe",
+          "description": "x = 0, y = 0 oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "linear_graph_pair",
         "params": {
-          "label1": "y = 3x + 3",
-          "label2": "y = x + 3",
-          "m1": 3,
-          "c1": 3,
-          "m2": 1,
-          "c2": 3,
+          "label1": "y = x",
+          "label2": "y = -2x",
+          "m1": 1,
+          "c1": 0,
+          "m2": -2,
+          "c2": 0,
           "sol_x": 0,
-          "sol_y": 3
+          "sol_y": 0
         }
       },
       "solution_diagram": null
     },
     {
       "topic_id": "inverse_proportion_noncalculator_F",
-      "prompt": "It takes 5 pipes 9 hours to fill a tank. Working at the same rate, how long would it take 3 pipes?",
+      "prompt": "It takes 4 workers 12 hours to build a wall. Working at the same rate, how long would it take 6 workers?",
       "solution_steps": [
-        "Constant = 5 × 9 = 45",
-        "Time for 3 pipes = 45 ÷ 3 = 15"
+        "Constant = 4 × 12 = 48",
+        "Time for 6 workers = 48 ÷ 6 = 8"
       ],
-      "final_answer": "15 hours",
+      "final_answer": "8 hours",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Constant = 5 × 9 = 45",
+          "description": "Constant = 4 × 12 = 48",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Time for 3 pipes = 45 ÷ 3 = 15",
+          "description": "Time for 6 workers = 48 ÷ 6 = 8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "15 hours oe",
+          "description": "8 hours oe",
           "marks": 1
         }
       ],
@@ -652,27 +654,27 @@
     },
     {
       "topic_id": "unit_conversions_F",
-      "prompt": "Convert 485 l to ml.",
+      "prompt": "Convert 1959 g to kg.",
       "solution_steps": [
-        "1 l = 1000 ml",
-        "485 l = 485 × 1000 = 485000 ml"
+        "1 kg = 1000 g",
+        "1959 g = 1959 ÷ 1000 = 1.959 kg"
       ],
-      "final_answer": "485000 ml",
+      "final_answer": "1.959 kg",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "1 l = 1000 ml",
+          "description": "1 kg = 1000 g",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "485 l = 485 × 1000 = 485000 ml",
+          "description": "1959 g = 1959 ÷ 1000 = 1.959 kg",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "485000 ml oe",
+          "description": "1.959 kg oe",
           "marks": 1
         }
       ],
@@ -681,27 +683,27 @@
     },
     {
       "topic_id": "find_percentage_change_F",
-      "prompt": "The price of an item changes from £300 to £240. Find the percentage decrease.",
+      "prompt": "The price of an item changes from £280 to £308. Find the percentage increase.",
       "solution_steps": [
-        "Find the difference between the two values: £240 and £300 differ by £60",
-        "Divide by the ORIGINAL value and convert to a percentage: £60 ÷ £300 × 100 = 20%"
+        "Find the difference between the two values: £308 and £280 differ by £28",
+        "Divide by the ORIGINAL value and convert to a percentage: £28 ÷ £280 × 100 = 10%"
       ],
-      "final_answer": "20% decrease",
+      "final_answer": "10% increase",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the difference between the two values: £240 and £300 differ by £60",
+          "description": "Find the difference between the two values: £308 and £280 differ by £28",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide by the ORIGINAL value and convert to a percentage: £60 ÷ £300 × 100 = 20%",
+          "description": "Divide by the ORIGINAL value and convert to a percentage: £28 ÷ £280 × 100 = 10%",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "20% decrease oe",
+          "description": "10% increase oe",
           "marks": 1
         }
       ],
@@ -710,27 +712,27 @@
     },
     {
       "topic_id": "inverse_proportion_F",
-      "prompt": "It takes 9 pipes 15 hours to fill a tank. Working at the same rate, how long would it take 3 pipes?",
+      "prompt": "It takes 6 pipes 70 hours to fill a tank. Working at the same rate, how long would it take 10 pipes?",
       "solution_steps": [
-        "Constant = 9 × 15 = 135",
-        "Time for 3 pipes = 135 ÷ 3 = 45"
+        "Constant = 6 × 70 = 420",
+        "Time for 10 pipes = 420 ÷ 10 = 42"
       ],
-      "final_answer": "45 hours",
+      "final_answer": "42 hours",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Constant = 9 × 15 = 135",
+          "description": "Constant = 6 × 70 = 420",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Time for 3 pipes = 135 ÷ 3 = 45",
+          "description": "Time for 10 pipes = 420 ÷ 10 = 42",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "45 hours oe",
+          "description": "42 hours oe",
           "marks": 1
         }
       ],
@@ -739,27 +741,27 @@
     },
     {
       "topic_id": "ratio_1_to_n_F",
-      "prompt": "Write the ratio 1:8 in the form \\plain{n}:1.",
+      "prompt": "Write the ratio 6:1 in the form 1:\\plain{n}.",
       "solution_steps": [
-        "Divide both parts of the ratio by 8 (the second part) so the second part becomes 1.",
-        "1 ÷ 8 ≈ 0.13, 8 ÷ 8 = 1"
+        "Divide both parts of the ratio by 6 (the first part) so the first part becomes 1.",
+        "6 ÷ 6 = 1, 1 ÷ 6 ≈ 0.17"
       ],
-      "final_answer": "0.13 : 1 (to 2 d.p.)",
+      "final_answer": "1 : 0.17 (to 2 d.p.)",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Divide both parts of the ratio by 8 (the second part) so the second part becomes 1.",
+          "description": "Divide both parts of the ratio by 6 (the first part) so the first part becomes 1.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "1 ÷ 8 ≈ 0.13, 8 ÷ 8 = 1",
+          "description": "6 ÷ 6 = 1, 1 ÷ 6 ≈ 0.17",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "0.13 : 1 (to 2 d.p.) oe",
+          "description": "1 : 0.17 (to 2 d.p.) oe",
           "marks": 1
         }
       ],
@@ -768,215 +770,57 @@
     },
     {
       "topic_id": "pythagoras_hypotenuse_decimal_F",
-      "prompt": "A right-angled triangle has sides 13 cm and 12 cm. Find the length of x, correct to 1 decimal place.",
+      "prompt": "A right-angled triangle has sides 11 cm and 11 cm. Find the length of x, correct to 1 decimal place.",
       "solution_steps": [
-        "c² = a² + b² = 13² + 12² = 169 + 144 = 313",
-        "c = √313 ≈ 17.7 cm (1 d.p.)"
+        "c² = a² + b² = 11² + 11² = 121 + 121 = 242",
+        "c = √242 ≈ 15.6 cm (1 d.p.)"
       ],
-      "final_answer": "17.7 cm",
+      "final_answer": "15.6 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "c² = a² + b² = 13² + 12² = 169 + 144 = 313",
+          "description": "c² = a² + b² = 11² + 11² = 121 + 121 = 242",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "c = √313 ≈ 17.7 cm (1 d.p.)",
+          "description": "c = √242 ≈ 15.6 cm (1 d.p.)",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "17.7 cm oe",
+          "description": "15.6 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
         "kind": "right_triangle",
         "params": {
-          "leg1_label": "13 cm",
-          "leg2_label": "12 cm",
+          "leg1_label": "11 cm",
+          "leg2_label": "11 cm",
           "hyp_label": "x"
         }
       },
       "solution_diagram": null
     },
     {
-      "topic_id": "area_semicircle_compound_F",
-      "prompt": "A shape is made from a rectangle 14 cm by 7 cm with a semicircle of diameter 14 cm attached to one side. Find the total area, correct to 3 s.f.",
+      "topic_id": "stats_range_F",
+      "prompt": "Find the range of this data set: 12, 27, 25, 6, 17, 20, 23, 15.",
       "solution_steps": [
-        "Area of rectangle = 14 × 7 = 98 cm²",
-        "Radius of semicircle = 14 ÷ 2 = 7 cm",
-        "Area of semicircle = (1/2) × π × 7² = (49/2)π cm²",
-        "Total area = 98 + (49/2)π ≈ 175 cm² (3 s.f.)"
+        "Range = largest - smallest = 27 - 6 = 21"
       ],
-      "final_answer": "≈ 175 cm²",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Area of rectangle = 14 × 7 = 98 cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Radius of semicircle = 14 ÷ 2 = 7 cm",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Area of semicircle = (1/2) × π × 7² = (49/2)π cm²",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total area = 98 + (49/2)π ≈ 175 cm² (3 s.f.)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "≈ 175 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "rectangle_semicircle",
-        "params": {
-          "width": 14,
-          "height": 7,
-          "radius": 7,
-          "width_label": "14 cm",
-          "height_label": "7 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "pythagoras_hypotenuse_triple_F",
-      "prompt": "A right-angled triangle has sides 60 cm and 63 cm. Find the length of x.",
-      "solution_steps": [
-        "c² = a² + b² = 60² + 63² = 3600 + 3969 = 7569",
-        "c = √7569 = 87"
-      ],
-      "final_answer": "87 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "c² = a² + b² = 60² + 63² = 3600 + 3969 = 7569",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "c = √7569 = 87",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "87 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "right_triangle",
-        "params": {
-          "leg1_label": "60 cm",
-          "leg2_label": "63 cm",
-          "hyp_label": "x"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "area_circle_F",
-      "prompt": "Find the circumference of the following circle, correct to 1 decimal place.",
-      "solution_steps": [
-        "Circumference = 2 × π × r = 2 × π × 12",
-        "= 75.4 cm (1 d.p., using a calculator value of π)"
-      ],
-      "final_answer": "75.4 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Circumference = 2 × π × r = 2 × π × 12",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 75.4 cm (1 d.p., using a calculator value of π)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "75.4 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "circle",
-        "params": {
-          "radius": 12,
-          "label": "12 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "area_triangle_F",
-      "prompt": "A triangle has base 15 cm and height 9 cm. Find its area.",
-      "solution_steps": [
-        "Area = (1/2) × base × height = (1/2) × 15 × 9 = 135/2 cm²"
-      ],
-      "final_answer": "135/2 cm²",
+      "final_answer": "21",
       "marks": 2,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Area = (1/2) × base × height = (1/2) × 15 × 9 = 135/2 cm²",
+          "description": "Range = largest - smallest = 27 - 6 = 21",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "135/2 cm² oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "triangle_area",
-        "params": {
-          "base": 15,
-          "height": 9,
-          "base_label": "15 cm",
-          "height_label": "9 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "relative_frequency_F",
-      "prompt": "A coin is tested 100 times, and it lands on heads 30 times. Use this relative frequency to estimate how many times this would happen in 150 trials.",
-      "solution_steps": [
-        "Relative frequency = frequency ÷ number of trials = 30/100 = 3/10",
-        "Estimated number of times in 150 trials = 3/10 × 150 = 45"
-      ],
-      "final_answer": "45",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Relative frequency = frequency ÷ number of trials = 30/100 = 3/10",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Estimated number of times in 150 trials = 3/10 × 150 = 45",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "45 oe",
+          "description": "21 oe",
           "marks": 1
         }
       ],
@@ -984,28 +828,172 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "tree_diagram_independent_F",
-      "prompt": "A bag contains 7 green and 3 yellow counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that the first counter is yellow and the second counter is yellow.",
+      "topic_id": "pythagoras_hypotenuse_triple_F",
+      "prompt": "A right-angled triangle has sides 10 cm and 24 cm. Find the length of x.",
       "solution_steps": [
-        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(green) = 7/10, P(yellow) = 3/10.",
-        "P(yellow then yellow) = 3/10 × 3/10 = 9/100"
+        "c² = a² + b² = 10² + 24² = 100 + 576 = 676",
+        "c = √676 = 26"
       ],
-      "final_answer": "9/100",
+      "final_answer": "26 cm",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(green) = 7/10, P(yellow) = 3/10.",
+          "description": "c² = a² + b² = 10² + 24² = 100 + 576 = 676",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(yellow then yellow) = 3/10 × 3/10 = 9/100",
+          "description": "c = √676 = 26",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "9/100 oe",
+          "description": "26 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "right_triangle",
+        "params": {
+          "leg1_label": "10 cm",
+          "leg2_label": "24 cm",
+          "hyp_label": "x"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_circle_F",
+      "prompt": "Find the area of the following circle, correct to 1 decimal place.",
+      "solution_steps": [
+        "Area = π × r² = π × 15² = π × 225",
+        "= 706.9 cm² (1 d.p., using a calculator value of π)"
+      ],
+      "final_answer": "706.9 cm²",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area = π × r² = π × 15² = π × 225",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "= 706.9 cm² (1 d.p., using a calculator value of π)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "706.9 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "circle",
+        "params": {
+          "radius": 15,
+          "label": "15 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "area_triangle_F",
+      "prompt": "A triangle has base 10 cm and height 6 cm. Find its area.",
+      "solution_steps": [
+        "Area = (1/2) × base × height = (1/2) × 10 × 6 = 30 cm²"
+      ],
+      "final_answer": "30 cm²",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Area = (1/2) × base × height = (1/2) × 10 × 6 = 30 cm²",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "30 cm² oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "triangle_area",
+        "params": {
+          "base": 10,
+          "height": 6,
+          "base_label": "10 cm",
+          "height_label": "6 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "relative_frequency_F",
+      "prompt": "A spinner is tested 40 times, and it lands on red 29 times. Use this relative frequency to estimate how many times this would happen in 280 trials.",
+      "solution_steps": [
+        "Relative frequency = frequency ÷ number of trials = 29/40 = 29/40",
+        "Estimated number of times in 280 trials = 29/40 × 280 = 203"
+      ],
+      "final_answer": "203",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Relative frequency = frequency ÷ number of trials = 29/40 = 29/40",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Estimated number of times in 280 trials = 29/40 × 280 = 203",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "203 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "spinner",
+        "params": {
+          "sectors": [
+            "",
+            "",
+            "R",
+            ""
+          ],
+          "highlight": [
+            2
+          ]
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "tree_diagram_independent_F",
+      "prompt": "A bag contains 4 blue and 6 green counters. A counter is picked at random, replaced, and then a second counter is picked at random. The tree diagram shows this information. Find the probability that the first counter is blue and the second counter is blue.",
+      "solution_steps": [
+        "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(blue) = 2/5, P(green) = 3/5.",
+        "P(blue then blue) = 2/5 × 2/5 = 4/25"
+      ],
+      "final_answer": "4/25",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A counter is picked, replaced, then a second counter is picked. The probabilities stay the same each time: P(blue) = 2/5, P(green) = 3/5.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(blue then blue) = 2/5 × 2/5 = 4/25",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "4/25 oe",
           "marks": 1
         }
       ],
@@ -1014,33 +1002,33 @@
         "params": {
           "stage1": [
             [
-              "Green",
-              "7/10"
+              "Blue",
+              "2/5"
             ],
             [
-              "Yellow",
-              "3/10"
+              "Green",
+              "3/5"
             ]
           ],
           "stage2": [
             [
               [
-                "Green",
-                "7/10"
+                "Blue",
+                "2/5"
               ],
               [
-                "Yellow",
-                "3/10"
+                "Green",
+                "3/5"
               ]
             ],
             [
               [
-                "Green",
-                "7/10"
+                "Blue",
+                "2/5"
               ],
               [
-                "Yellow",
-                "3/10"
+                "Green",
+                "3/5"
               ]
             ]
           ]
@@ -1050,27 +1038,27 @@
     },
     {
       "topic_id": "composite_bar_chart_F",
-      "prompt": "The composite bar chart shows the number of students split by Boys and Girls. Find the grand total across every category and segment.",
+      "prompt": "The composite bar chart shows the number of commuters split by Bus and Car. Find the total for Week 2.",
       "solution_steps": [
-        "Add up every segment in every bar, category by category.",
-        "Total = 87."
+        "Week 2's segments are 11, 2.",
+        "Add them: 11 + 2 = 13."
       ],
-      "final_answer": "87",
+      "final_answer": "13",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Add up every segment in every bar, category by category.",
+          "description": "Week 2's segments are 11, 2.",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Total = 87.",
+          "description": "Add them: 11 + 2 = 13.",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "87 oe",
+          "description": "13 oe",
           "marks": 1
         }
       ],
@@ -1078,32 +1066,27 @@
         "kind": "bar_chart",
         "params": {
           "categories": [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thu"
+            "Week 1",
+            "Week 2",
+            "Week 3"
           ],
           "series": [
             [
-              13,
-              3
-            ],
-            [
-              13,
-              4
-            ],
-            [
-              14,
-              15
+              2,
+              2
             ],
             [
               11,
-              14
+              2
+            ],
+            [
+              11,
+              7
             ]
           ],
           "series_labels": [
-            "Boys",
-            "Girls"
+            "Bus",
+            "Car"
           ],
           "y_label": "Frequency"
         }
@@ -1111,76 +1094,94 @@
       "solution_diagram": null
     },
     {
-      "topic_id": "congruent_triangle_proof_F",
-      "prompt": "Triangles ABC and ABD are both right-angled (at C and at D respectively) and share hypotenuse AB, with AC = AD. Which congruence criterion proves that the two triangles are congruent? A) ASA  B) SAS  C) RHS  D) SSS",
+      "topic_id": "stats_mean_F",
+      "prompt": "Find the mean of this data set: 18, 2, 25, 10, 24.",
       "solution_steps": [
-        "angle ACB = angle ADB = 90° (given)",
-        "AB is the common hypotenuse",
-        "AC = AD (given)",
-        "These facts match the Right angle-Hypotenuse-Side (RHS) congruence criterion."
+        "Mean = sum ÷ count = (18 + 2 + 25 + 10 + 24) ÷ 5 = 79 ÷ 5 = 15.80"
       ],
-      "final_answer": "C) RHS",
-      "marks": 1,
+      "final_answer": "15.80",
+      "marks": 2,
       "mark_scheme": [
         {
-          "code": "B1",
-          "description": "C) RHS (selecting the correct option)",
+          "code": "M1",
+          "description": "Mean = sum ÷ count = (18 + 2 + 25 + 10 + 24) ÷ 5 = 79 ÷ 5 = 15.80",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "15.80 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_equivalent_diagram_F",
+      "prompt": "How many parts of Shape B must be shaded to show a fraction equivalent to Shape A?",
+      "solution_steps": [
+        "Shape A shows 3/5 shaded; Shape B has 10 equal parts.",
+        "Find the scale factor between the denominators: 10 ÷ 5 = 2",
+        "Multiply the shaded count by the same scale factor: 3 × 2 = 6"
+      ],
+      "final_answer": "6",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Shape A shows 3/5 shaded; Shape B has 10 equal parts.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Find the scale factor between the denominators: 10 ÷ 5 = 2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply the shaded count by the same scale factor: 3 × 2 = 6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "6 oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "two_triangle_congruence",
+        "kind": "fraction_shapes",
         "params": {
-          "labels_1": [
-            "A",
-            "C",
-            "B"
-          ],
-          "labels_2": [
-            "A",
-            "D",
-            "B"
-          ],
-          "ticks_1": [
-            [
-              0,
-              2,
-              1
-            ],
-            [
-              0,
-              1,
-              2
-            ]
-          ],
-          "ticks_2": [
-            [
-              0,
-              2,
-              1
-            ],
-            [
-              0,
-              1,
-              2
-            ]
-          ],
-          "arcs_1": [
-            [
-              1,
-              1
-            ]
-          ],
-          "arcs_2": [
-            [
-              1,
-              1
-            ]
-          ],
-          "note": "AB is the common hypotenuse."
+          "shapes": [
+            {
+              "kind": "bar",
+              "parts": 5,
+              "shaded": 3
+            },
+            {
+              "kind": "bar",
+              "parts": 10,
+              "shaded": 0
+            }
+          ]
         }
       },
-      "solution_diagram": null
+      "solution_diagram": {
+        "kind": "fraction_shapes",
+        "params": {
+          "shapes": [
+            {
+              "kind": "bar",
+              "parts": 5,
+              "shaded": 3
+            },
+            {
+              "kind": "bar",
+              "parts": 10,
+              "shaded": 6
+            }
+          ]
+        }
+      }
     }
   ]
 }

@@ -7,34 +7,28 @@
   "calculator_allowed": false,
   "questions": [
     {
-      "topic_id": "recurring_decimal_single_digit_F",
-      "prompt": "Write \\recur{0.}{3} as a fraction in its simplest form.",
+      "topic_id": "bidmas_two_three_F",
+      "prompt": "Work out 13 + 4 × 3 - 17.",
       "solution_steps": [
-        "Let x = \\recur{0.}{3}, so 10x = 3.333... (only one digit repeats, so multiply by 10 to shift it one place)",
-        "Subtract: 10x - x = 3 - 0, so 9x = 3",
-        "x = 3/9 = 1/3"
+        "Multiplication: 4 × 3 = 12",
+        "Addition and subtraction, left to right: 13 + 12 = 25, then - 17 = 8"
       ],
-      "final_answer": "1/3",
-      "marks": 4,
+      "final_answer": "8",
+      "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Let x = \\recur{0.}{3}, so 10x = 3.333... (only one digit repeats, so multiply by 10 to shift it one place)",
+          "description": "Multiplication: 4 × 3 = 12",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Subtract: 10x - x = 3 - 0, so 9x = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 3/9 = 1/3",
+          "description": "Addition and subtraction, left to right: 13 + 12 = 25, then - 17 = 8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/3 oe",
+          "description": "8 oe",
           "marks": 1
         }
       ],
@@ -43,27 +37,27 @@
     },
     {
       "topic_id": "fractions_simplify_F",
-      "prompt": "Simplify 8/56.",
+      "prompt": "Fully simplify 6/20.",
       "solution_steps": [
-        "Find the highest common factor of 8 and 56: 8",
-        "Divide numerator and denominator by 8: \\frac{8÷8}{56÷8} = 1/7"
+        "Find the highest common factor of 6 and 20: 2",
+        "Divide numerator and denominator by 2: \\frac{6÷2}{20÷2} = 3/10"
       ],
-      "final_answer": "1/7",
+      "final_answer": "3/10",
       "marks": 3,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Find the highest common factor of 8 and 56: 8",
+          "description": "Find the highest common factor of 6 and 20: 2",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Divide numerator and denominator by 8: \\frac{8÷8}{56÷8} = 1/7",
+          "description": "Divide numerator and denominator by 2: \\frac{6÷2}{20÷2} = 3/10",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "1/7 oe",
+          "description": "3/10 oe",
           "marks": 1
         }
       ],
@@ -72,837 +66,34 @@
     },
     {
       "topic_id": "fractions_add_subtract_F",
-      "prompt": "Evaluate 4/5 - 4/9. Give your answer as a fraction in its simplest form.",
+      "prompt": "Calculate 2/8 + 6/8. Give your answer as a fraction in its simplest form.",
       "solution_steps": [
-        "Find a common denominator: LCM(5, 9) = 45",
-        "Convert: 4/5 = 36/45, 4/9 = 20/45",
-        "Subtract: 36/45 - 20/45 = 16/45",
-        "Simplify: 16/45"
-      ],
-      "final_answer": "16/45",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find a common denominator: LCM(5, 9) = 45",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Convert: 4/5 = 36/45, 4/9 = 20/45",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract: 36/45 - 20/45 = 16/45",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Simplify: 16/45",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "16/45 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "bidmas_F",
-      "prompt": "Work out 8^2 + 5 × 4 - 9 ÷ 3.",
-      "solution_steps": [
-        "Indices: 8^2 = 64",
-        "Multiplication: 5 × 4 = 20",
-        "Division: 9 ÷ 3 = 3",
-        "Addition: 64 + 20 = 84",
-        "Subtraction: 84 - 3 = 81"
-      ],
-      "final_answer": "81",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Indices: 8^2 = 64",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiplication: 5 × 4 = 20",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Division: 9 ÷ 3 = 3",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Addition: 64 + 20 = 84 Subtraction: 84 - 3 = 81",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "81 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "negative_indices_F",
-      "prompt": "Evaluate 3^-2. Give your answer as a fraction.",
-      "solution_steps": [
-        "A negative index means take the reciprocal: 3^-2 = \\frac{1}{3²}",
-        "3^2 = 9",
-        "3^-2 = 1/9"
-      ],
-      "final_answer": "1/9",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "A negative index means take the reciprocal: 3^-2 = \\frac{1}{3²}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "3^2 = 9",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "3^-2 = 1/9",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1/9 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "fractions_divide_F",
-      "prompt": "Work out 4/3 ÷ 6/7. Give your answer as a fraction in its simplest form.",
-      "solution_steps": [
-        "Keep-change-flip: 4/3 ÷ 6/7 = 4/3 × 7/6",
-        "Multiply: \\frac{(4×7)}{(3×6)} = 28/18",
-        "Simplify: 14/9"
-      ],
-      "final_answer": "14/9",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Keep-change-flip: 4/3 ÷ 6/7 = 4/3 × 7/6",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply: \\frac{(4×7)}{(3×6)} = 28/18",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Simplify: 14/9",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "14/9 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "fractions_ordering_F",
-      "prompt": "Write these fractions in ascending order: 1/10, 2/9, 6/7, 1/2, 2/3",
-      "solution_steps": [
-        "Convert every fraction to the same denominator, the LCM of 10, 9, 7, 2, 3: 630",
-        "Rewrite each fraction over 630: 1/10 = 63/630, 2/9 = 140/630, 6/7 = 540/630, 1/2 = 315/630, 2/3 = 420/630",
-        "Order the numerators in ascending order and convert back: 1/10, 2/9, 1/2, 2/3, 6/7"
-      ],
-      "final_answer": "1/10, 2/9, 1/2, 2/3, 6/7",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Convert every fraction to the same denominator, the LCM of 10, 9, 7, 2, 3: 630",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Rewrite each fraction over 630: 1/10 = 63/630, 2/9 = 140/630, 6/7 = 540/630, 1/2 = 315/630, 2/3 = 420/630",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Order the numerators in ascending order and convert back: 1/10, 2/9, 1/2, 2/3, 6/7",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "1/10, 2/9, 1/2, 2/3, 6/7 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "factorise_common_factor_F",
-      "prompt": "Factorise: 21x + 28",
-      "solution_steps": [
-        "Find the highest common factor of 21 and 28: 7",
-        "Factorise: 7(3x + 4)"
-      ],
-      "final_answer": "7(3x + 4)",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Find the highest common factor of 21 and 28: 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Factorise: 7(3x + 4)",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "7(3x + 4) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "forming_equations_F",
-      "prompt": "The perimeter of the rectangle shown is 36 cm. Form an equation and solve it to find x.",
-      "solution_steps": [
-        "Perimeter = 2 × (sum of two different side lengths).",
-        "2(x + 10) + 2(5) = 36",
-        "2x + 30 = 36",
-        "Subtract 30 from both sides:",
-        "2x = 6",
-        "Divide both sides by 2:",
-        "x = 3"
-      ],
-      "final_answer": "3",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Perimeter = 2 × (sum of two different side lengths).",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2(x + 10) + 2(5) = 36",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "2x + 30 = 36",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 30 from both sides: 2x = 6 Divide both sides by 2: x = 3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "rectangle",
-        "params": {
-          "width": 13,
-          "height": 5,
-          "width_label": "(x + 10) cm",
-          "height_label": "5 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "algebraic_indices_F",
-      "prompt": "Simplify 12x^6 ÷ 4x^2",
-      "solution_steps": [
-        "Dividing powers of the same base: subtract the exponents, and divide the coefficients.",
-        "12x^6 ÷ 4x^2 = (12÷4) x^(6-2)",
-        "= 3x^4"
-      ],
-      "final_answer": "3x^4",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Dividing powers of the same base: subtract the exponents, and divide the coefficients.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "12x^6 ÷ 4x^2 = (12÷4) x^(6-2)",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "= 3x^4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "3x^4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "linear_multi_step_F",
-      "prompt": "Solve: 5x + 12 + 6x + 4 = 49",
-      "solution_steps": [
-        "Collect like terms: 5x + 6x = 11x, 12 + 4 = 16",
-        "11x + 16 = 49",
-        "Subtract 16 from both sides:",
-        "11x = 33",
-        "Divide both sides by 11:",
-        "x = 3"
-      ],
-      "final_answer": "3",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Collect like terms: 5x + 6x = 11x, 12 + 4 = 16",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "11x + 16 = 49",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Subtract 16 from both sides:",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "11x = 33 Divide both sides by 11: x = 3",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "3 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "expand_double_brackets_no_coefficient_F",
-      "prompt": "Expand and simplify: (x + 4)(x + 1)",
-      "solution_steps": [
-        "First: x × x = x^2",
-        "Outer: x × 1 = 1x",
-        "Inner: 4 × x = 4x",
-        "Last: 4 × 1 = 4",
-        "Combine like terms: x^2 + 5x + 4"
-      ],
-      "final_answer": "x^2 + 5x + 4",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "First: x × x = x^2",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Outer: x × 1 = 1x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Inner: 4 × x = 4x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Last: 4 × 1 = 4 Combine like terms: x^2 + 5x + 4",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "x^2 + 5x + 4 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "expand_single_bracket_F",
-      "prompt": "Expand: 8(-x + 9)",
-      "solution_steps": [
-        "Multiply 8 by -x: -8x",
-        "Multiply 8 by 9: 72",
-        "Combine: -8x + 72"
-      ],
-      "final_answer": "-8x + 72",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Multiply 8 by -x: -8x",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Multiply 8 by 9: 72",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Combine: -8x + 72",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "-8x + 72 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "angles_exterior_F",
-      "prompt": "An exterior angle of a triangle is x°. The two remote interior angles are 55° and 59°. Find x.",
-      "solution_steps": [
-        "The exterior angle of a triangle equals the sum of the two remote interior angles.",
-        "x = 55 + 59 = 114"
-      ],
-      "final_answer": "114",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The exterior angle of a triangle equals the sum of the two remote interior angles.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "x = 55 + 59 = 114",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "114 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "exterior_triangle",
-        "params": {
-          "interior1_label": "55°",
-          "interior2_label": "59°",
-          "exterior_label": "x",
-          "interior1_value": 55,
-          "shape_variant": 0
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "simple_interest_F",
-      "prompt": "£5000 is invested at a simple interest rate of 2% per year for 4 years. Find the total amount in the account after 4 years.",
-      "solution_steps": [
-        "Simple interest formula: I = P × r × t ÷ 100",
-        "I = 5000 × 2 × 4 ÷ 100 = £400",
-        "Total in the account = P + I = £5000 + £400 = £5400"
-      ],
-      "final_answer": "£5400",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Simple interest formula: I = P × r × t ÷ 100",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "I = 5000 × 2 × 4 ÷ 100 = £400",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Total in the account = P + I = £5000 + £400 = £5400",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "£5400 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_difference_F",
-      "prompt": "p : q = 8 : 7.\np - q = 7.\nFind p and q, and their total.",
-      "solution_steps": [
-        "Difference in parts = 8 - 7 = 1 parts",
-        "Value of one part = 7 ÷ 1 = 7",
-        "p = 8 × 7 = 56",
-        "q = 7 × 7 = 49",
-        "p + q = 56 + 49 = 105"
-      ],
-      "final_answer": "p = 56, q = 49 (total 105)",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Difference in parts = 8 - 7 = 1 parts",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Value of one part = 7 ÷ 1 = 7",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "p = 8 × 7 = 56",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "q = 7 × 7 = 49 p + q = 56 + 49 = 105",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "p = 56, q = 49 (total 105) oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_shape_similar_F",
-      "prompt": "Shape A and Shape B are similar. Find the length of side z.",
-      "solution_steps": [
-        "Scale factor = 24 ÷ 6 = 4",
-        "Corresponding length = 5 × 4 = 20"
-      ],
-      "final_answer": "20 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Scale factor = 24 ÷ 6 = 4",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Corresponding length = 5 × 4 = 20",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "20 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "two_similar_rectangles",
-        "params": {
-          "a_width_label": "6 cm",
-          "a_height_label": "5 cm",
-          "b_width_label": "24 cm",
-          "b_height_label": "z"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_find_missing_share_F",
-      "prompt": "s : t = 7 : 9. s = 140. What is the value of t?",
-      "solution_steps": [
-        "Value of one part = 140 ÷ 7 = 20",
-        "t = 9 × 20 = 180"
-      ],
-      "final_answer": "180",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Value of one part = 140 ÷ 7 = 20",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "t = 9 × 20 = 180",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "180 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "ratio_share_two_part_F",
-      "prompt": "Share 128 in the ratio 8:8.",
-      "solution_steps": [
-        "Total parts = 8 + 8 = 16",
-        "Value of one part = 128 ÷ 16 = 8",
-        "Share 1 = 8 × 8 = 64",
-        "Share 2 = 8 × 8 = 64"
-      ],
-      "final_answer": "64 : 64",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Total parts = 8 + 8 = 16",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Value of one part = 128 ÷ 16 = 8",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 1 = 8 × 8 = 64",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Share 2 = 8 × 8 = 64",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "64 : 64 oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "pythagoras_shorter_leg_F",
-      "prompt": "A right-angled triangle has hypotenuse 148 cm and one side 48 cm. Find the length of x.",
-      "solution_steps": [
-        "b² = c² - a² = 148² - 48² = 21904 - 2304 = 19600",
-        "b = √19600 = 140"
-      ],
-      "final_answer": "140 cm",
-      "marks": 3,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "b² = c² - a² = 148² - 48² = 21904 - 2304 = 19600",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "b = √19600 = 140",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "140 cm oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "right_triangle",
-        "params": {
-          "leg1_label": "48 cm",
-          "leg2_label": "x",
-          "hyp_label": "148 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "plans_and_elevations_F",
-      "prompt": "The diagram shows a solid with its dimensions labelled. Draw and label the front elevation, side elevation, and plan view of the solid.",
-      "solution_steps": [
-        "The front elevation is what you see looking at the solid straight on from the front.",
-        "Front elevation: a right-angled triangle, base 6 cm and height 8 cm.",
-        "The side elevation is what you see looking at the solid straight on from the side.",
-        "Side elevation: a rectangle, 8 cm by 8 cm.",
-        "The plan view is what you see looking straight down at the solid from above.",
-        "Plan view: a rectangle, 6 cm by 8 cm."
-      ],
-      "final_answer": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm. Side elevation: a rectangle, 8 cm by 8 cm. Plan view: a rectangle, 6 cm by 8 cm.",
-      "marks": 5,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "The front elevation is what you see looking at the solid straight on from the front.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "The side elevation is what you see looking at the solid straight on from the side.",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "Side elevation: a rectangle, 8 cm by 8 cm. The plan view is what you see looking straight down at the solid from above. Plan view: a rectangle, 6 cm by 8 cm.",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "Front elevation: a right-angled triangle, base 6 cm and height 8 cm. Side elevation: a rectangle, 8 cm by 8 cm. Plan view: a rectangle, 6 cm by 8 cm. oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "plans_and_elevations_question",
-        "params": {
-          "shape": "triangular_prism",
-          "base_label": "6 cm",
-          "triangle_height_label": "8 cm",
-          "length_label": "8 cm"
-        }
-      },
-      "solution_diagram": {
-        "kind": "plans_and_elevations",
-        "params": {
-          "shape": "triangular_prism",
-          "base": 6,
-          "tri_height": 8,
-          "length": 8,
-          "base_label": "6 cm",
-          "tri_height_label": "8 cm",
-          "length_label": "8 cm"
-        }
-      }
-    },
-    {
-      "topic_id": "volume_surface_area_cuboid_F",
-      "prompt": "A cuboid has length 10 cm, width 4 cm and height 10 cm. Find its volume.",
-      "solution_steps": [
-        "Volume = length × width × height = 10 × 4 × 10 = 400 cm³"
-      ],
-      "final_answer": "400 cm³",
-      "marks": 2,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "Volume = length × width × height = 10 × 4 × 10 = 400 cm³",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "400 cm³ oe",
-          "marks": 1
-        }
-      ],
-      "diagram": {
-        "kind": "cuboid",
-        "params": {
-          "width_label": "4 cm",
-          "height_label": "10 cm",
-          "length_label": "10 cm"
-        }
-      },
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "vectors_arithmetic_F",
-      "prompt": "\\vec{a} = \\colvec{-6}{-1} and \\vec{b} = \\colvec{-4}{6}. Find \\vec{a} + 2\\vec{b}.",
-      "solution_steps": [
-        "\\vec{a} = \\colvec{-6}{-1}, \\vec{b} = \\colvec{-4}{6}",
-        "\\vec{a} = \\colvec{-6}{-1} and 2\\vec{b} = \\colvec{-8}{12}",
-        "\\vec{a} + 2\\vec{b} = \\colvec{-14}{11}"
-      ],
-      "final_answer": "\\colvec{-14}{11}",
-      "marks": 4,
-      "mark_scheme": [
-        {
-          "code": "M1",
-          "description": "\\vec{a} = \\colvec{-6}{-1}, \\vec{b} = \\colvec{-4}{6}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "\\vec{a} = \\colvec{-6}{-1} and 2\\vec{b} = \\colvec{-8}{12}",
-          "marks": 1
-        },
-        {
-          "code": "M1",
-          "description": "\\vec{a} + 2\\vec{b} = \\colvec{-14}{11}",
-          "marks": 1
-        },
-        {
-          "code": "A1",
-          "description": "\\colvec{-14}{11} oe",
-          "marks": 1
-        }
-      ],
-      "diagram": null,
-      "solution_diagram": null
-    },
-    {
-      "topic_id": "nets_3d_shapes_F",
-      "prompt": "How many squares does the net of a square-based pyramid contain?",
-      "solution_steps": [
-        "Imagine unfolding a square-based pyramid flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
-        "A square-based pyramid's net is made up of: 1 square and 4 triangles.",
-        "So the answer is: 1."
+        "Find a common denominator: LCM(8, 8) = 8",
+        "Convert: 2/8 = 2/8, 6/8 = 6/8",
+        "Add: 2/8 + 6/8 = 8/8",
+        "Simplify: 1"
       ],
       "final_answer": "1",
-      "marks": 4,
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Imagine unfolding a square-based pyramid flat, so every one of its faces lies in the same plane with none overlapping - this flattened-out shape is called its net.",
+          "description": "Find a common denominator: LCM(8, 8) = 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "A square-based pyramid's net is made up of: 1 square and 4 triangles.",
+          "description": "Convert: 2/8 = 2/8, 6/8 = 6/8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "So the answer is: 1.",
+          "description": "Add: 2/8 + 6/8 = 8/8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify: 1",
           "marks": 1
         },
         {
@@ -912,61 +103,1007 @@
         }
       ],
       "diagram": null,
-      "solution_diagram": {
-        "kind": "net",
-        "params": {
-          "shape": "pyramid"
-        }
-      }
+      "solution_diagram": null
     },
     {
-      "topic_id": "venn_diagram_probability_F",
-      "prompt": "The Venn diagram shows the number of students in each region for sets A and B. Find P(A ∩ B).",
+      "topic_id": "solve_quadratic_factorising_F",
+      "prompt": "Solve x^2 + 11x + 24 = 0 by factorising.",
       "solution_steps": [
-        "Total number of elements = 15 + 15 + 7 + 9 = 46",
-        "Number of outcomes in A ∩ B = 7 = 7",
-        "P(A ∩ B) = 7/46 = 7/46"
+        "Find two numbers that multiply to 24 and add to 11: 3 and 8",
+        "Factorise: (x + 3)(x + 8) = 0",
+        "Either x + 3 = 0 or x + 8 = 0",
+        "x = -3 or x = -8"
       ],
-      "final_answer": "7/46",
-      "marks": 4,
+      "final_answer": "x = -3 or x = -8",
+      "marks": 5,
       "mark_scheme": [
         {
           "code": "M1",
-          "description": "Total number of elements = 15 + 15 + 7 + 9 = 46",
+          "description": "Find two numbers that multiply to 24 and add to 11: 3 and 8",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "Number of outcomes in A ∩ B = 7 = 7",
+          "description": "Factorise: (x + 3)(x + 8) = 0",
           "marks": 1
         },
         {
           "code": "M1",
-          "description": "P(A ∩ B) = 7/46 = 7/46",
+          "description": "Either x + 3 = 0 or x + 8 = 0",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "x = -3 or x = -8",
           "marks": 1
         },
         {
           "code": "A1",
-          "description": "7/46 oe",
+          "description": "x = -3 or x = -8 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "negative_indices_F",
+      "prompt": "Evaluate 10^-2. Give your answer as a fraction.",
+      "solution_steps": [
+        "A negative index means take the reciprocal: 10^-2 = \\frac{1}{10²}",
+        "10^2 = 100",
+        "10^-2 = 1/100"
+      ],
+      "final_answer": "1/100",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A negative index means take the reciprocal: 10^-2 = \\frac{1}{10²}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "10^2 = 100",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "10^-2 = 1/100",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1/100 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_divide_F",
+      "prompt": "Calculate 2/8 ÷ 6/5. Give your answer as a fraction in its simplest form.",
+      "solution_steps": [
+        "Keep-change-flip: 2/8 ÷ 6/5 = 2/8 × 5/6",
+        "Multiply: \\frac{(2×5)}{(8×6)} = 10/48",
+        "Simplify: 5/24"
+      ],
+      "final_answer": "5/24",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Keep-change-flip: 2/8 ÷ 6/5 = 2/8 × 5/6",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply: \\frac{(2×5)}{(8×6)} = 10/48",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Simplify: 5/24",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "5/24 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractions_ordering_F",
+      "prompt": "Write these fractions in descending order: 1/10, 1/4, 3/5, 9/11",
+      "solution_steps": [
+        "Convert every fraction to the same denominator, the LCM of 10, 4, 5, 11: 220",
+        "Rewrite each fraction over 220: 1/10 = 22/220, 1/4 = 55/220, 3/5 = 132/220, 9/11 = 180/220",
+        "Order the numerators in descending order and convert back: 9/11, 3/5, 1/4, 1/10"
+      ],
+      "final_answer": "9/11, 3/5, 1/4, 1/10",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Convert every fraction to the same denominator, the LCM of 10, 4, 5, 11: 220",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rewrite each fraction over 220: 1/10 = 22/220, 1/4 = 55/220, 3/5 = 132/220, 9/11 = 180/220",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Order the numerators in descending order and convert back: 9/11, 3/5, 1/4, 1/10",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "9/11, 3/5, 1/4, 1/10 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "expand_double_brackets_no_coefficient_F",
+      "prompt": "Expand and simplify: (x + 2)(x + 6)",
+      "solution_steps": [
+        "First: x × x = x^2",
+        "Outer: x × 6 = 6x",
+        "Inner: 2 × x = 2x",
+        "Last: 2 × 6 = 12",
+        "Combine like terms: x^2 + 8x + 12"
+      ],
+      "final_answer": "x^2 + 8x + 12",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "First: x × x = x^2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Outer: x × 6 = 6x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Inner: 2 × x = 2x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Last: 2 × 6 = 12 Combine like terms: x^2 + 8x + 12",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x^2 + 8x + 12 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "fractional_equations_F",
+      "prompt": "Solve the following equation.\n\\frac{2x}{3} = 4",
+      "solution_steps": [
+        "Multiply both sides by 3: 2x = 12",
+        "Divide both sides by 2: x = 6"
+      ],
+      "final_answer": "x = 6",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply both sides by 3: 2x = 12",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Divide both sides by 2: x = 6",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "x = 6 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "factorise_quadratics_F",
+      "prompt": "Factorise: x^2 + 7x + 12",
+      "solution_steps": [
+        "Find two numbers that multiply to 12 and add to 7: 3 and 4",
+        "Write as two brackets: (x + 3)(x + 4)"
+      ],
+      "final_answer": "(x + 3)(x + 4)",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Find two numbers that multiply to 12 and add to 7: 3 and 4",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Write as two brackets: (x + 3)(x + 4)",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "(x + 3)(x + 4) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_both_sides_F",
+      "prompt": "Solve: 2x + 11 = 6x - 17",
+      "solution_steps": [
+        "2x + 11 = 6x - 17",
+        "Subtract 6x from both sides:",
+        "-4x + 11 = -17",
+        "Subtract 11 from both sides:",
+        "-4x = -28",
+        "Divide both sides by -4:",
+        "x = 7"
+      ],
+      "final_answer": "7",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "2x + 11 = 6x - 17",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 6x from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "-4x + 11 = -17",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 11 from both sides: -4x = -28 Divide both sides by -4: x = 7",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "7 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "expand_single_bracket_F",
+      "prompt": "Expand: 8(6x - 7)",
+      "solution_steps": [
+        "Multiply 8 by 6x: 48x",
+        "Multiply 8 by -7: -56",
+        "Combine: 48x - 56"
+      ],
+      "final_answer": "48x - 56",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Multiply 8 by 6x: 48x",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Multiply 8 by -7: -56",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Combine: 48x - 56",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "48x - 56 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "substitution_rearrange_F",
+      "prompt": "A = (1/2)bh. Make h the subject of the formula, then find the value of h when A = 84 and b = 14.",
+      "solution_steps": [
+        "A = (1/2)bh",
+        "Rearrange to make h the subject: h = \\frac{2A}{b}",
+        "Substitute A = 84 and b = 14: h = \\frac{2 × 84}{14}",
+        "h = 12"
+      ],
+      "final_answer": "h = 12",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "A = (1/2)bh",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Rearrange to make h the subject: h = \\frac{2A}{b}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Substitute A = 84 and b = 14: h = \\frac{2 × 84}{14}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "h = 12",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "h = 12 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "linear_brackets_F",
+      "prompt": "Solve: 4(4x + 2) = 56",
+      "solution_steps": [
+        "Expand the bracket: 4(4x + 2) = 16x + 8",
+        "16x + 8 = 56",
+        "Subtract 8 from both sides:",
+        "16x = 48",
+        "Divide both sides by 16:",
+        "x = 3"
+      ],
+      "final_answer": "3",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Expand the bracket: 4(4x + 2) = 16x + 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "16x + 8 = 56",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Subtract 8 from both sides:",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "16x = 48 Divide both sides by 16: x = 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "simple_interest_F",
+      "prompt": "£1800 is invested at a simple interest rate of 6% per year for 1 years. Find the total amount in the account after 1 years.",
+      "solution_steps": [
+        "Simple interest formula: I = P × r × t ÷ 100",
+        "I = 1800 × 6 × 1 ÷ 100 = £108",
+        "Total in the account = P + I = £1800 + £108 = £1908"
+      ],
+      "final_answer": "£1908",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Simple interest formula: I = P × r × t ÷ 100",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "I = 1800 × 6 × 1 ÷ 100 = £108",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total in the account = P + I = £1800 + £108 = £1908",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "£1908 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_difference_F",
+      "prompt": "a : b = 9 : 5.\na - b = 28.\nFind a and b, and their total.",
+      "solution_steps": [
+        "Difference in parts = 9 - 5 = 4 parts",
+        "Value of one part = 28 ÷ 4 = 7",
+        "a = 9 × 7 = 63",
+        "b = 5 × 7 = 35",
+        "a + b = 63 + 35 = 98"
+      ],
+      "final_answer": "a = 63, b = 35 (total 98)",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Difference in parts = 9 - 5 = 4 parts",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Value of one part = 28 ÷ 4 = 7",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "a = 9 × 7 = 63",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "b = 5 × 7 = 35 a + b = 63 + 35 = 98",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "a = 63, b = 35 (total 98) oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_shape_similar_F",
+      "prompt": "Shape A and Shape B are similar. Find the length of side x.",
+      "solution_steps": [
+        "Scale factor = 6 ÷ 12 = 1/2",
+        "Corresponding length = 6 × 1/2 = 3"
+      ],
+      "final_answer": "3 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Scale factor = 6 ÷ 12 = 1/2",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Corresponding length = 6 × 1/2 = 3",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "3 cm oe",
           "marks": 1
         }
       ],
       "diagram": {
-        "kind": "venn_diagram",
+        "kind": "two_similar_rectangles",
         "params": {
-          "labels": [
-            "A",
-            "B"
-          ],
-          "region_text": {
-            "a_only": "15",
-            "b_only": "15",
-            "both": "7",
-            "neither": "9"
-          }
+          "a_width_label": "12 cm",
+          "a_height_label": "6 cm",
+          "b_width_label": "6 cm",
+          "b_height_label": "x"
         }
       },
       "solution_diagram": null
+    },
+    {
+      "topic_id": "ratio_find_missing_share_F",
+      "prompt": "p : q = 5 : 4. q = 32. What is the value of p?",
+      "solution_steps": [
+        "Value of one part = 32 ÷ 4 = 8",
+        "p = 5 × 8 = 40"
+      ],
+      "final_answer": "40",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Value of one part = 32 ÷ 4 = 8",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "p = 5 × 8 = 40",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "40 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "vectors_arithmetic_F",
+      "prompt": "\\vec{a} = \\colvec{0}{-1} and \\vec{b} = \\colvec{-3}{-2}. Find 2\\vec{a} - \\vec{b}.",
+      "solution_steps": [
+        "\\vec{a} = \\colvec{0}{-1}, \\vec{b} = \\colvec{-3}{-2}",
+        "2\\vec{a} = \\colvec{0}{-2} and \\vec{b} = \\colvec{-3}{-2}",
+        "2\\vec{a} - \\vec{b} = \\colvec{3}{0}"
+      ],
+      "final_answer": "\\colvec{3}{0}",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "\\vec{a} = \\colvec{0}{-1}, \\vec{b} = \\colvec{-3}{-2}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2\\vec{a} = \\colvec{0}{-2} and \\vec{b} = \\colvec{-3}{-2}",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "2\\vec{a} - \\vec{b} = \\colvec{3}{0}",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "\\colvec{3}{0} oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "pythagoras_shorter_leg_F",
+      "prompt": "A right-angled triangle has hypotenuse 116 cm and one side 80 cm. Find the length of x.",
+      "solution_steps": [
+        "b² = c² - a² = 116² - 80² = 13456 - 6400 = 7056",
+        "b = √7056 = 84"
+      ],
+      "final_answer": "84 cm",
+      "marks": 3,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "b² = c² - a² = 116² - 80² = 13456 - 6400 = 7056",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "b = √7056 = 84",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "84 cm oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "right_triangle",
+        "params": {
+          "leg1_label": "80 cm",
+          "leg2_label": "x",
+          "hyp_label": "116 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "plans_and_elevations_F",
+      "prompt": "The diagram shows a solid with its dimensions labelled. Draw and label the front elevation, side elevation, and plan view of the solid.",
+      "solution_steps": [
+        "The front elevation is what you see looking at the solid straight on from the front.",
+        "Front elevation: a rectangle, 8 cm by 6 cm.",
+        "The side elevation is what you see looking at the solid straight on from the side.",
+        "Side elevation: a rectangle, 8 cm by 6 cm.",
+        "The plan view is what you see looking straight down at the solid from above.",
+        "Plan view: a rectangle, 8 cm by 8 cm."
+      ],
+      "final_answer": "Front elevation: a rectangle, 8 cm by 6 cm. Side elevation: a rectangle, 8 cm by 6 cm. Plan view: a rectangle, 8 cm by 8 cm.",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The front elevation is what you see looking at the solid straight on from the front.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Front elevation: a rectangle, 8 cm by 6 cm.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "The side elevation is what you see looking at the solid straight on from the side.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Side elevation: a rectangle, 8 cm by 6 cm. The plan view is what you see looking straight down at the solid from above. Plan view: a rectangle, 8 cm by 8 cm.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "Front elevation: a rectangle, 8 cm by 6 cm. Side elevation: a rectangle, 8 cm by 6 cm. Plan view: a rectangle, 8 cm by 8 cm. oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "plans_and_elevations_question",
+        "params": {
+          "shape": "cuboid",
+          "length_label": "8 cm",
+          "width_label": "8 cm",
+          "height_label": "6 cm"
+        }
+      },
+      "solution_diagram": {
+        "kind": "plans_and_elevations",
+        "params": {
+          "shape": "cuboid",
+          "length": 8,
+          "width": 8,
+          "height": 6,
+          "length_label": "8 cm",
+          "width_label": "8 cm",
+          "height_label": "6 cm"
+        }
+      }
+    },
+    {
+      "topic_id": "volume_surface_area_cuboid_F",
+      "prompt": "A cuboid has length 10 cm, width 15 cm and height 8 cm. Find its volume.",
+      "solution_steps": [
+        "Volume = length × width × height = 10 × 15 × 8 = 1200 cm³"
+      ],
+      "final_answer": "1200 cm³",
+      "marks": 2,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Volume = length × width × height = 10 × 15 × 8 = 1200 cm³",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1200 cm³ oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "cuboid",
+        "params": {
+          "width_label": "15 cm",
+          "height_label": "8 cm",
+          "length_label": "10 cm"
+        }
+      },
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "properties_3d_shapes_F",
+      "prompt": "How many edges does a cone have?",
+      "solution_steps": [
+        "An edge is a line where two faces meet.",
+        "By GCSE convention, a cone has 2 faces (1 flat circular base + 1 curved surface), 1 edge (where the curved surface meets the circular base), and 1 vertex (the apex point at the top).",
+        "So a cone has 1 edges."
+      ],
+      "final_answer": "1",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "An edge is a line where two faces meet.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "By GCSE convention, a cone has 2 faces (1 flat circular base + 1 curved surface), 1 edge (where the curved surface meets the circular base), and 1 vertex (the apex point at the top).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "So a cone has 1 edges.",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "1 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": null
+    },
+    {
+      "topic_id": "tree_diagram_drawing_F",
+      "prompt": "A bag contains 5 blue and 4 yellow counters. A counter is picked at random, replaced, and then a second counter is picked at random. Draw a fully-labelled tree diagram to show this information, and use it to find the probability that the first counter is blue and the second counter is yellow.",
+      "solution_steps": [
+        "Draw two branches from the start: P(blue) = 5/9, P(yellow) = 4/9.",
+        "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
+        "P(blue then yellow) = 5/9 × 4/9 = 20/81"
+      ],
+      "final_answer": "20/81",
+      "marks": 4,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "Draw two branches from the start: P(blue) = 5/9, P(yellow) = 4/9.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "From each of those branches, draw two more with the same probabilities (the counter is replaced).",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(blue then yellow) = 5/9 × 4/9 = 20/81",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "20/81 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": null,
+      "solution_diagram": {
+        "kind": "tree_diagram",
+        "params": {
+          "stage1": [
+            [
+              "Blue",
+              "5/9"
+            ],
+            [
+              "Yellow",
+              "4/9"
+            ]
+          ],
+          "stage2": [
+            [
+              [
+                "Blue",
+                "5/9"
+              ],
+              [
+                "Yellow",
+                "4/9"
+              ]
+            ],
+            [
+              [
+                "Blue",
+                "5/9"
+              ],
+              [
+                "Yellow",
+                "4/9"
+              ]
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "topic_id": "sample_space_diagrams_F",
+      "prompt": "Two fair spinners, one numbered 1 to 4 and the other numbered 1 to 4, are spun together. Complete the sample space diagram showing the product of the two spinners, and use it to find the probability that the product is greater than 2.",
+      "solution_steps": [
+        "The sample space diagram shows every possible product of the two spinners.",
+        "Number of favourable outcomes (the product is greater than 2) = 13",
+        "Total number of equally likely outcomes = 16",
+        "P(the product is greater than 2) = 13/16"
+      ],
+      "final_answer": "13/16",
+      "marks": 5,
+      "mark_scheme": [
+        {
+          "code": "M1",
+          "description": "The sample space diagram shows every possible product of the two spinners.",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Number of favourable outcomes (the product is greater than 2) = 13",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "Total number of equally likely outcomes = 16",
+          "marks": 1
+        },
+        {
+          "code": "M1",
+          "description": "P(the product is greater than 2) = 13/16",
+          "marks": 1
+        },
+        {
+          "code": "A1",
+          "description": "13/16 oe",
+          "marks": 1
+        }
+      ],
+      "diagram": {
+        "kind": "sample_space_diagram",
+        "params": {
+          "row_values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "col_values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "cells": [
+            [
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              ""
+            ]
+          ]
+        }
+      },
+      "solution_diagram": {
+        "kind": "sample_space_diagram",
+        "params": {
+          "row_values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "col_values": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "cells": [
+            [
+              "1",
+              "2",
+              "3",
+              "4"
+            ],
+            [
+              "2",
+              "4",
+              "6",
+              "8"
+            ],
+            [
+              "3",
+              "6",
+              "9",
+              "12"
+            ],
+            [
+              "4",
+              "8",
+              "12",
+              "16"
+            ]
+          ],
+          "highlight": [
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        }
+      }
     }
   ]
 }
