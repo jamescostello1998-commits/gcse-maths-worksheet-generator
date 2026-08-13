@@ -25,13 +25,13 @@ scheme. The full chronology below still uses the *old* ids in its historical ent
 tier suffix if you go looking for one. See step 44 for the exact rename rule and how the
 migration was done safely.
 
-**CURRENT STATE:** **320 topics**, backend suite **1000/1000**, frontend **65/65**, all 60
-Practice Test papers exactly 100 marks. Steps 54-57 are all committed & pushed (steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`).
+**CURRENT STATE:** **320 topics**, backend suite **1001/1001**, frontend **65/65**, all 60
+Practice Test papers exactly 100 marks. Steps 54-58 are all committed & pushed (steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`, step 58 in the latest commit).
 Practice Tests were deliberately NOT rebuilt in any of these steps (no existing diagram param
 SCHEMA changed - only optional new params, label positions, and prompt text, all backward-
 compatible). No known bugs.
 
-**What the recent sessions did — an ongoing aesthetic-review process (steps 34-57).** The user
+**What the recent sessions did — an ongoing aesthetic-review process (steps 34-58).** The user
 works through the two `all_topics_review_*.pdf` documents and sends feedback, mostly as per-topic
 items (occasionally by page range). Steps 34-53 are in the chronology; the most recent batches:
 - **Step 54** — a coverage-gap audit against maths4everyone.com, then built the 5 genuine gaps it
@@ -53,8 +53,16 @@ items (occasionally by page range). Steps 34-53 are in the chronology; the most 
   {volume|surface area}[, correct to … | in terms of π]." with dimensions read off the diagram
   (cuboid/cube/prism/cylinder F+H/cone/sphere/pyramid/frustum; `compound_3d_*` left as-is — no
   single shape name).
+- **Step 58** — histograms fixed so a student never estimates frequency density off the graph
+  (`histogram_plot_H`/`histogram_interpret_H`): frequencies now built as `k × (width÷5)` so every
+  density is an exact multiple of **0.2** (whole-number frequencies kept), and `draw_histogram`
+  rebuilt as genuine fine squared paper (small squares worth 0.2 density × 2.5 x, visually square,
+  y numbered every 1.0, x every 10) so every bar top lands on a gridline — density read by counting
+  squares. Also fixed the old clipped axis labels. +1 regression test (density ≡ 0.2 multiple).
+  Suite 1000 → 1001. No practice-test rebuild (no frozen paper uses a histogram topic; param
+  schema unchanged).
 
-See chronology steps 54-57 for the full technical detail on each.
+See chronology steps 54-58 for the full technical detail on each.
 
 **Next natural step (if the user returns to the review):** the next chunk of review feedback (the
 review is NOT confirmed finished — steps 49-57 were per-topic items the user sent directly rather
@@ -4512,6 +4520,40 @@ fixes), is committed and pushed (see `git log`).
     Practice Tests NOT rebuilt (no diagram param SCHEMA changed - `hyp_label`/`is_cube` are
     optional params, the rest are prompt-text/label changes; frozen papers still render). Committed
     in 9ba81d8.
+
+58. New session, a single review item on the two Histograms topics (`histogram_plot_H`,
+    `histogram_interpret_H`): the user's complaint was that to answer an "interpret" question the
+    student had to *estimate* the frequency density off the graph, because densities were messy
+    `frequency ÷ width` values (e.g. 3.6, 0.8, 2.2) that landed between the coarse 0.5 gridlines -
+    and asked for "smaller SQUARES", offering to be shown example ideas. Rendered the current
+    diagram to confirm the diagnosis, then built three design mockups (fine 0.2 squares / coarse
+    0.5 squares / very fine 0.1) and sent them via `AskUserQuestion`; the user picked the fine
+    **0.2-square** option (real GCSE graph-paper look).
+    - **Data** (`app/topics/histograms.py`, `_random_histogram_table`): frequencies are now
+      constructed as `rng.randint(2, 13) * (width // 5)` so each class density (frequency ÷ width)
+      is an exact multiple of **0.2** (density = k/5), while every frequency stays a whole number
+      (every width is a multiple of 5). This guarantees every bar top lands exactly on a 0.2
+      gridline - the density is read by *counting squares*, never estimated between lines. The
+      existing independent `density × width == frequency` check still holds exactly.
+    - **Diagram** (`app/pdf/diagrams.py`, `draw_histogram` - the one function behind the `histogram`
+      interpret diagram, the `histogram_question` blank plotting grid, and the plotting solution):
+      rebuilt from the generic `_draw_stats_axes(square_grid=True)` path (which used a `major/2`
+      minor step, i.e. 0.5 squares) into a dedicated fine squared-paper grid drawn directly - each
+      small square is **0.2** in frequency density (y) and **2.5** in the x quantity, drawn at a
+      fixed 10px so cells are visually square; minor gridlines every square, darker major lines +
+      numbered ticks every 1.0 (y) and every 10 (x). Also fixed the old clipped "Frequency density"
+      / x-axis labels (the generic path anchored the y-label hard against the left edge, clipping it
+      to "y density"). `_nice_tick_step`/`_grid_minor_step`/`square_grid` were left untouched - other
+      stats charts (bar/box/scatter/cumulative-frequency) still use them; only `draw_histogram` opted
+      out.
+    - Verified by rendering real diagrams across several seeds, the full plotting-question composite
+      (table + blank grid), and a full worksheet PDF (question + worked solutions) - every density on
+      a gridline, arithmetic exact, labels uncropped. Added 1 regression test
+      (`test_every_density_is_a_multiple_of_0_2_...`) guarding the invariant. Backend suite 1000 →
+      1001; frontend unaffected (65/65); no topic-count change (still 320). **Practice Tests NOT
+      rebuilt** - no frozen paper uses a histogram topic (confirmed via grep) and the diagram param
+      schema is unchanged, so nothing to regenerate. Review PDFs regenerated (320 question / 331
+      answer pages) and sent. Committed and pushed.
 
 ## Environment gotchas (Windows, this machine specifically)
 

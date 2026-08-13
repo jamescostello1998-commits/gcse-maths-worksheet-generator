@@ -31,7 +31,13 @@ def _random_histogram_table(rng: random.Random):
     boundaries = [start]
     for w in widths:
         boundaries.append(boundaries[-1] + w)
-    frequencies = [rng.randint(4, 40) for _ in widths]
+    # Frequencies are constructed so each class's density (frequency / width)
+    # is an exact multiple of 0.2: pick k, take density = k/5, then
+    # frequency = density * width = k * (width // 5) - a whole number, since
+    # every width is a multiple of 5. This guarantees every bar top lands
+    # exactly on a 0.2 gridline, so a student reads the frequency density off
+    # the graph by counting squares rather than estimating between lines.
+    frequencies = [rng.randint(2, 13) * (w // 5) for w in widths]
     return x_label, context, boundaries, frequencies
 
 

@@ -94,3 +94,20 @@ def test_histogram_interpret_frequency_equals_density_times_width():
         for d, w in zip(densities, widths):
             freq = d * w
             assert abs(freq - round(freq)) < 1e-6
+
+
+def test_every_density_is_a_multiple_of_0_2_so_bar_tops_land_on_a_gridline():
+    # The histogram grid draws small squares worth 0.2 in frequency density.
+    # If a density were not a multiple of 0.2, its bar top would fall between
+    # gridlines and a student would have to estimate the height off the graph
+    # - the exact thing the "interpret" topic must never require.
+    for generate in (h.generate_histogram_plot, h.generate_histogram_interpret):
+        rng = random.Random(706)
+        for _ in range(TRIALS):
+            q = generate(Tier.HIGHER, rng)
+            spec = q.solution_diagram or q.diagram
+            for density in spec.params["frequency_densities"]:
+                fifths = density * 5
+                assert abs(fifths - round(fifths)) < 1e-9, (
+                    f"{generate.__name__} produced density {density}, not a multiple of 0.2"
+                )

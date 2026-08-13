@@ -3527,9 +3527,15 @@ def draw_number_line(params: dict) -> Drawing:
 
 
 def draw_histogram(params: dict) -> Drawing:
-    """A histogram: params['boundaries'] is a list of n+1 class boundaries,
-    params['frequency_densities'] is a list of n bar heights (one per
-    class). params['blank'] draws axes only, no bars."""
+    """A histogram on fine squared paper. params['boundaries'] is n+1 class
+    boundaries (multiples of 5); params['frequency_densities'] is n bar
+    heights, generated as multiples of 0.2 so every bar top lands exactly on
+    a small-square gridline - the density is read by counting squares, never
+    estimated between lines. Each small square is 0.2 in frequency density
+    (y) and 2.5 in the x quantity, drawn at a fixed pixel size so the grid
+    reads as genuine (visually square) graph paper; the y-axis is numbered
+    every 1.0 and the x-axis every 10. params['blank'] draws the grid/axes
+    only (no bars) for a "draw the histogram" question."""
     boundaries: list = params["boundaries"]
     densities: list = params["frequency_densities"]
     blank = params.get("blank", False)
@@ -3537,25 +3543,63 @@ def draw_histogram(params: dict) -> Drawing:
     y_label = params.get("y_label", "Frequency density")
 
     x_min, x_max = boundaries[0], boundaries[-1]
-    y_max_raw = max(densities) if densities else 1
-    step = _nice_tick_step(0, y_max_raw * 1.15 or 1)
-    y_max = math.ceil((y_max_raw * 1.15 or step) / step) * step
+    max_density = max(densities) if densities else 1.0
+    # Round up to a whole number with at least one empty square of headroom,
+    # so the tallest bar always sits clearly below the top gridline.
+    y_max = math.ceil(max_density + 0.2 - 1e-9)
 
-    width, height = 230, 150
-    margin_l, margin_r, margin_t, margin_b = 34, 12, 10, 24
-    plot_w, plot_h = width - margin_l - margin_r, height - margin_t - margin_b
+    x_square, y_square, sq_px = 2.5, 0.2, 10.0
+    nx = round((x_max - x_min) / x_square)
+    ny = round(y_max / y_square)
+    plot_w, plot_h = nx * sq_px, ny * sq_px
+    margin_l, margin_r, margin_t, margin_b = 38, 14, 14, 26
+    width = margin_l + plot_w + margin_r
+    height = margin_b + plot_h + margin_t
     d = Drawing(width, height)
 
-    to_px = _draw_stats_axes(
-        d, margin_l, margin_b, plot_w, plot_h, x_min, x_max, 0, y_max,
-        x_label=x_label, y_label=y_label, square_grid=True,
-    )
+    def to_px(x: float, y: float) -> tuple[float, float]:
+        return (margin_l + (x - x_min) / (x_max - x_min) * plot_w,
+                margin_b + y / y_max * plot_h)
+
+    grid_major = colors.HexColor("#b4b4b4")
+    x_num_every = round(10 / x_square)   # number the x-axis every 10 units
+    y_num_every = round(1.0 / y_square)  # number the y-axis every 1.0
+
+    for i in range(nx + 1):
+        px = margin_l + i * sq_px
+        major = i % x_num_every == 0
+        d.add(Line(px, margin_b, px, margin_b + plot_h,
+                   strokeColor=grid_major if major else GRID,
+                   strokeWidth=0.5 if major else 0.3))
+    for j in range(ny + 1):
+        py = margin_b + j * sq_px
+        major = j % y_num_every == 0
+        d.add(Line(margin_l, py, margin_l + plot_w, py,
+                   strokeColor=grid_major if major else GRID,
+                   strokeWidth=0.5 if major else 0.3))
+
+    d.add(Line(margin_l, margin_b, margin_l + plot_w, margin_b, strokeColor=INK, strokeWidth=1.1))
+    d.add(Line(margin_l, margin_b, margin_l, margin_b + plot_h, strokeColor=INK, strokeWidth=1.1))
+
+    for j in range(0, ny + 1, y_num_every):
+        py = margin_b + j * sq_px
+        d.add(Line(margin_l - 3, py, margin_l, py, strokeColor=INK, strokeWidth=0.7))
+        d.add(_label(margin_l - 6, py - 2.5, _fmt_tick(j * y_square), anchor="end", size=7.5))
+    for i in range(0, nx + 1, x_num_every):
+        px = margin_l + i * sq_px
+        d.add(Line(px, margin_b - 3, px, margin_b, strokeColor=INK, strokeWidth=0.7))
+        d.add(_label(px, margin_b - 12, _fmt_tick(x_min + i * x_square), size=7.5))
 
     if not blank:
         for i in range(len(boundaries) - 1):
             x0, y0 = to_px(boundaries[i], 0)
             x1, y1 = to_px(boundaries[i + 1], densities[i])
-            d.add(Rect(x0, y0, x1 - x0, y1 - y0, fillColor=HIGHLIGHT, strokeColor=INK, strokeWidth=0.7))
+            d.add(Rect(x0, y0, x1 - x0, y1 - y0, fillColor=HIGHLIGHT, strokeColor=INK, strokeWidth=1.0))
+
+    if x_label:
+        d.add(_label(margin_l + plot_w, margin_b - 22, x_label, anchor="end", size=7.5))
+    if y_label:
+        d.add(_label(margin_l - 34, margin_b + plot_h + 6, y_label, anchor="start", size=7.5))
 
     return d
 
