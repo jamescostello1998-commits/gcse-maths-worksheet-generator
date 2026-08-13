@@ -642,3 +642,70 @@ def test_symmetry_shape_blank_omits_symmetry_lines():
 
     assert len(list(_all_lines(blank))) == 0
     assert len(list(_all_lines(solution))) == 2
+
+
+def test_clip_curve_segments_stops_at_window_edge_no_flat_cap():
+    # A curve running past the window is split into in-window segments with the
+    # exact boundary crossing inserted - never a flat horizontal cap.
+    from app.pdf.diagrams import _clip_curve_segments
+
+    pts = [(x, x) for x in range(-5, 6)]  # y = x, exits [-2, 2] at both ends
+    segs = _clip_curve_segments(pts, -2, 2)
+    assert len(segs) == 1
+    seg = segs[0]
+    assert all(-2 - 1e-9 <= y <= 2 + 1e-9 for _, y in seg)
+    # crossings are exact, not clamped-and-flat
+    assert seg[0] == pytest.approx((-2.0, -2.0))
+    assert seg[-1] == pytest.approx((2.0, 2.0))
+
+    # a segment that passes straight through the window (both ends outside)
+    through = _clip_curve_segments([(0, -10), (0, 10)], -2, 2)
+    assert len(through) == 1 and len(through[0]) == 2
+
+
+def test_function_graph_curve_never_flatlines_at_window_edge():
+    # y = x^3 over -3..3 far exceeds a +/-10 window; the drawn polyline must
+    # not contain a run of points pinned at the window's top/bottom (the old
+    # clamp bug), i.e. its points stay strictly inside except at true crossings.
+    from reportlab.graphics.shapes import Group, PolyLine
+
+    from app.pdf.diagrams import draw_function_graph
+
+    d = draw_function_graph({
+        "kind": "cubic", "a": 1, "b": 0,
+        "x_min": -3, "x_max": 3, "y_min": -10, "y_max": 10,
+    })
+
+    def polylines(shape):
+        if isinstance(shape, PolyLine):
+            yield shape
+        elif isinstance(shape, (Group, Drawing)):
+            for c in shape.contents:
+                yield from polylines(c)
+
+    pls = list(polylines(d))
+    assert pls, "expected at least one curve polyline"
+    # No polyline should have 3+ consecutive points at the same y (a flat cap).
+    for pl in pls:
+        ys = pl.points[1::2]
+        runs = 1
+        for a, b in zip(ys, ys[1:]):
+            runs = runs + 1 if abs(a - b) < 1e-6 else 1
+            assert runs < 3, "curve flatlines at the window edge (clamp bug)"
+
+
+def test_scaled_axes_cells_are_square():
+    # The minor grid squares must be square pixels (equal width and height),
+    # never rectangles, even for a lopsided range.
+    from reportlab.graphics.shapes import Line
+
+    from app.pdf.diagrams import GRID, _draw_scaled_axes
+
+    d = Drawing(210, 210)
+    _draw_scaled_axes(d, -4, 4, -20, 20)  # steep/lopsided
+    xs = sorted({round(s.x1, 3) for s in d.contents if isinstance(s, Line) and abs(s.x1 - s.x2) < 1e-6})
+    ys = sorted({round(s.y1, 3) for s in d.contents if isinstance(s, Line) and abs(s.y1 - s.y2) < 1e-6})
+    x_gaps = [b - a for a, b in zip(xs, xs[1:])]
+    y_gaps = [b - a for a, b in zip(ys, ys[1:])]
+    # the smallest (minor) gap on each axis should match: square cells
+    assert min(x_gaps) == pytest.approx(min(y_gaps), abs=0.5)

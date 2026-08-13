@@ -2161,16 +2161,19 @@ def draw_linear_graph_pair(params: dict) -> Drawing:
 
     to_px = _draw_scaled_axes(d, x_min, x_max, y_min, y_max)
 
-    def _plot_line(m: float, c: float) -> tuple[tuple[float, float], tuple[float, float]]:
-        y_lo = max(min(m * x_min + c, y_max), y_min)
-        y_hi = max(min(m * x_max + c, y_max), y_min)
-        p_lo = to_px(x_min, y_lo)
-        p_hi = to_px(x_max, y_hi)
-        d.add(PolyLine([p_lo[0], p_lo[1], p_hi[0], p_hi[1]], strokeColor=INK, strokeWidth=1.3))
-        return p_lo, p_hi
+    def _plot_line(m: float, c: float) -> None:
+        # Clip the line to the window (not a per-endpoint y-clamp, which drew a
+        # flat cap where the line ran off-screen).
+        xy = [(x_min, m * x_min + c), (x_max, m * x_max + c)]
+        for seg in _clip_curve_segments(xy, y_min, y_max):
+            pts = []
+            for sx, sy in seg:
+                px, py = to_px(sx, sy)
+                pts.extend([px, py])
+            d.add(PolyLine(pts, strokeColor=INK, strokeWidth=1.3))
 
-    pts1 = _plot_line(m1, c1)
-    pts2 = _plot_line(m2, c2)
+    _plot_line(m1, c1)
+    _plot_line(m2, c2)
 
     # Three earlier attempts all failed on real rendered spikes, not assumed:
     # (1) anchoring at a line's own endpoint and growing inward was safe
@@ -2267,6 +2270,87 @@ def _nice_tick_step(lo: float, hi: float) -> float:
 
 _MIN_SQUARE_UNIT_PX = 8.0
 
+# A gridline/cell must be at least this many pixels to be worth drawing as a
+# fine minor line - below it the grid would be an illegible grey smear.
+_MIN_MINOR_PX = 4.0
+# A slightly darker line for the numbered "major" gridlines, so the fine minor
+# squares (light GRID) read as subdivisions beneath them - real graph-paper
+# convention (the numbered lines are heavier than the small squares).
+GRID_DARK = colors.HexColor("#b0b0b0")
+
+
+def _grid_lines(d: Drawing, to_px: Callable, x_min: float, x_max: float,
+                y_min: float, y_max: float, step_x: float, step_y: float,
+                color, width: float) -> None:
+    """Draw vertical + horizontal gridlines at the given per-axis step."""
+    x = math.ceil(x_min / step_x) * step_x
+    while x <= x_max + 1e-9:
+        px, y0 = to_px(x, y_min)
+        _, y1 = to_px(x, y_max)
+        d.add(Line(px, y0, px, y1, strokeColor=color, strokeWidth=width))
+        x += step_x
+    y = math.ceil(y_min / step_y) * step_y
+    while y <= y_max + 1e-9:
+        x0, py = to_px(x_min, y)
+        x1, _ = to_px(x_max, y)
+        d.add(Line(x0, py, x1, py, strokeColor=color, strokeWidth=width))
+        y += step_y
+
+
+def _vertical_label(x: float, y: float, text: str, size: float = 8, color=INK) -> Group:
+    """A text label rotated 90 degrees (reads bottom-to-top), centred at
+    (x, y) - used for a descriptive y-axis title running up the axis, the
+    standard exam convention, so a long title (e.g. 'Cumulative frequency')
+    doesn't clip off the left edge."""
+    g = Group()
+    g.add(String(0, 0, text, fontSize=size, fillColor=color, textAnchor="middle", fontName=_LABEL_FONT))
+    g.transform = (0, 1, -1, 0, x, y)
+    return g
+
+
+def _clip_curve_segments(pts: list, y_min: float, y_max: float) -> list:
+    """Split a sampled (x, y) curve into the polyline pieces that lie within
+    [y_min, y_max], inserting the exact boundary-crossing point where it
+    enters/exits - so a curve running past the window stops cleanly at the
+    edge instead of being drawn as a flat horizontal cap (the old per-point
+    y-clamp behaviour). Returns a list of segments, each a list of (x, y)."""
+    def cross(p, q, yb):
+        return (p[0] + (q[0] - p[0]) * (yb - p[1]) / (q[1] - p[1]), yb)
+
+    def inside(p):
+        return y_min - 1e-9 <= p[1] <= y_max + 1e-9
+
+    segs: list = []
+    cur: list = []
+    prev = None
+    for p in pts:
+        if prev is None:
+            cur = [p] if inside(p) else []
+            prev = p
+            continue
+        if inside(prev) and inside(p):
+            cur.append(p)
+        elif inside(prev) and not inside(p):
+            yb = y_min if p[1] < y_min else y_max
+            cur.append(cross(prev, p, yb))
+            if len(cur) >= 2:
+                segs.append(cur)
+            cur = []
+        elif not inside(prev) and inside(p):
+            yb = y_min if prev[1] < y_min else y_max
+            cur = [cross(prev, p, yb), p]
+        else:
+            # Both endpoints out of range: only visible if the segment passes
+            # right through the window (opposite sides).
+            if (prev[1] < y_min and p[1] > y_max) or (prev[1] > y_max and p[1] < y_min):
+                yb1 = y_min if prev[1] < y_min else y_max
+                yb2 = y_max if p[1] > y_max else y_min
+                segs.append([cross(prev, p, yb1), cross(prev, p, yb2)])
+        prev = p
+    if len(cur) >= 2:
+        segs.append(cur)
+    return segs
+
 
 def _draw_scaled_axes(
     d: Drawing, x_min: float, x_max: float, y_min: float, y_max: float,
@@ -2282,73 +2366,56 @@ def _draw_scaled_axes(
     x_min, x_max = min(x_min, 0), max(x_max, 0)
     y_min, y_max = min(y_min, 0), max(y_max, 0)
 
-    plot_w = d.width - _GRAPH_MARGIN_L - _GRAPH_MARGIN_R
-    plot_h = d.height - _GRAPH_MARGIN_T - _GRAPH_MARGIN_B
+    # A long descriptive axis title (e.g. "Distance (km)", "Velocity (m/s)")
+    # gets extra margin - the y-title is rotated up the left margin and the
+    # x-title is centred below - so it never clips the way it used to. A bare
+    # "x"/"y" (pure coordinate graph) keeps the old compact top/right label.
+    long_x = len(x_axis_label) > 2
+    long_y = len(y_axis_label) > 2
+    margin_l = _GRAPH_MARGIN_L + (13 if long_y else 0)
+    margin_b = _GRAPH_MARGIN_B + (11 if long_x else 0)
+    margin_t, margin_r = _GRAPH_MARGIN_T, _GRAPH_MARGIN_R
+
+    plot_w = d.width - margin_l - margin_r
+    plot_h = d.height - margin_t - margin_b
     x_span = (x_max - x_min) or 1
     y_span = (y_max - y_min) or 1
-    px_per_unit_x = plot_w / x_span
-    px_per_unit_y = plot_h / y_span
 
-    # Prefer a true square UNIT grid (equal px-per-unit on both axes, one
-    # square = 1 unit by 1 unit, matching real squared exercise-book paper)
-    # whenever the tighter of the two per-axis scales still gives a legible
-    # unit-square size. For a lopsided range (e.g. a 360-degree trig sweep
-    # against a y range of +-1.4, or a distance-time graph running to 65
-    # minutes against 12 km), forcing 1-unit squares at a single shared
-    # scale would shrink the constrained axis's squares to sub-pixel
-    # slivers - the fix isn't to give up on square cells, it's to let a
-    # square be worth a DIFFERENT number of units on each axis (exactly
-    # like real squared paper used for e.g. a sin/cos graph, where one
-    # square might be 50 degrees by 0.2), while still rendering every
-    # square the same pixel size on both axes so cells never look
-    # rectangular. Picking a "nice" per-axis step (the same helper already
-    # used for numbered ticks) keeps the grid legible instead of packing
-    # hundreds of 1-unit lines into a narrow span (found via a real render
-    # of trig_graph/plot_cubic: the old code always used a raw 1-unit
-    # gridline step regardless of which branch fired, so the rectangular
-    # fallback still crammed e.g. 360 lines into ~170px on the constrained
-    # axis - a dense grey smear, not a fallback to something legible).
-    square_px = min(px_per_unit_x, px_per_unit_y)
-    if square_px >= _MIN_SQUARE_UNIT_PX:
-        grid_step_x = grid_step_y = 1.0
-        used_w, used_h = x_span * square_px, y_span * square_px
-        origin_x = _GRAPH_MARGIN_L + (plot_w - used_w) / 2
-        origin_y = _GRAPH_MARGIN_B + (plot_h - used_h) / 2
+    # Every grid cell is a SQUARE (equal pixels wide and tall) - never a
+    # rectangle. One shared pixel size per grid square is used on both axes,
+    # with each axis's "nice" tick step as the numbered MAJOR spacing, so a
+    # lopsided range (a 360-degree trig sweep, a steep line, a distance-time
+    # graph) is absorbed by a larger major step on the long axis rather than by
+    # stretching the cells out of square. A finer MINOR grid then subdivides
+    # every major square by a single shared factor k, keeping the minor cells
+    # square too, so every plotted/read value lands on a line (the whole point
+    # of this rework) on genuine squared paper.
+    major_x = _nice_tick_step(x_min, x_max)
+    major_y = _nice_tick_step(y_min, y_max)
+    nx, ny = x_span / major_x, y_span / major_y
+    px_per_major = min(plot_w / nx, plot_h / ny)
+    origin_x = margin_l + (plot_w - nx * px_per_major) / 2
+    origin_y = margin_b + (plot_h - ny * px_per_major) / 2
 
-        def to_px(x: float, y: float) -> tuple[float, float]:
-            return origin_x + (x - x_min) * square_px, origin_y + (y - y_min) * square_px
-    else:
-        grid_step_x = _nice_tick_step(x_min, x_max)
-        grid_step_y = _nice_tick_step(y_min, y_max)
-        nx, ny = x_span / grid_step_x, y_span / grid_step_y
-        px_per_square = min(plot_w / nx, plot_h / ny)
-        used_w, used_h = nx * px_per_square, ny * px_per_square
-        origin_x = _GRAPH_MARGIN_L + (plot_w - used_w) / 2
-        origin_y = _GRAPH_MARGIN_B + (plot_h - used_h) / 2
+    def to_px(x: float, y: float) -> tuple[float, float]:
+        return (origin_x + (x - x_min) / major_x * px_per_major,
+                origin_y + (y - y_min) / major_y * px_per_major)
 
-        def to_px(x: float, y: float) -> tuple[float, float]:
-            return (
-                origin_x + (x - x_min) / grid_step_x * px_per_square,
-                origin_y + (y - y_min) / grid_step_y * px_per_square,
-            )
+    # Subdivide each major square by the finest shared factor whose minor cell
+    # is still legible - never finer than the coarser numbered step, so a clean
+    # integer graph (major = 1) keeps plain 1-unit squares.
+    k = 1
+    for cand in (5, 4, 2):
+        if cand <= max(major_x, major_y) and px_per_major / cand >= _MIN_MINOR_PX:
+            k = cand
+            break
+    minor_x, minor_y = major_x / k, major_y / k
 
-    # Square gridlines, spaced at grid_step_x/grid_step_y on each axis.
-    x = math.ceil(x_min / grid_step_x) * grid_step_x
-    while x <= x_max + 1e-9:
-        px, y0 = to_px(x, y_min)
-        _, y1 = to_px(x, y_max)
-        d.add(Line(px, y0, px, y1, strokeColor=GRID, strokeWidth=0.4))
-        x += grid_step_x
-    y = math.ceil(y_min / grid_step_y) * grid_step_y
-    while y <= y_max + 1e-9:
-        x0, py = to_px(x_min, y)
-        x1, _ = to_px(x_max, y)
-        d.add(Line(x0, py, x1, py, strokeColor=GRID, strokeWidth=0.4))
-        y += grid_step_y
+    _grid_lines(d, to_px, x_min, x_max, y_min, y_max, minor_x, minor_y, GRID, 0.3)
+    _grid_lines(d, to_px, x_min, x_max, y_min, y_max, major_x, major_y, GRID_DARK, 0.5)
 
     # Bold axis lines through the origin (guaranteed in range by the clamp above).
-    axis_x0 = 0
-    axis_y0 = 0
+    axis_x0 = axis_y0 = 0
     ax0, ay0 = to_px(x_min, axis_y0)
     ax1, _ = to_px(x_max, axis_y0)
     d.add(Line(ax0, ay0, ax1, ay0, strokeColor=INK, strokeWidth=1.1))
@@ -2356,29 +2423,28 @@ def _draw_scaled_axes(
     _, by1 = to_px(axis_x0, y_max)
     d.add(Line(bx0, by0, bx0, by1, strokeColor=INK, strokeWidth=1.1))
 
-    # Numbered ticks follow the gridline spacing so that whenever gridlines
-    # are drawn at every integer (the square-unit branch always uses a
-    # grid_step of 1), every integer is labelled too - a real GCSE squared-
-    # paper convention (user review feedback: on the small-range plotting/
-    # reading topics, e.g. x = -4..4, every integer axis value should carry a
-    # number, not every other one). On a lopsided/wide graph the rectangular
-    # fallback already sets grid_step to a "nice" >1 value, so this doesn't
-    # over-crowd those.
-    xt = math.ceil(x_min / grid_step_x) * grid_step_x
+    # Numbers at the major (heavier) gridlines only.
+    xt = math.ceil(x_min / major_x) * major_x
     while xt <= x_max + 1e-9:
         if abs(xt) > 1e-9:
             px, py = to_px(xt, axis_y0)
             d.add(_label(px, py - 9, str(int(xt)), size=6.5))
-        xt += grid_step_x
-    yt = math.ceil(y_min / grid_step_y) * grid_step_y
+        xt += major_x
+    yt = math.ceil(y_min / major_y) * major_y
     while yt <= y_max + 1e-9:
         if abs(yt) > 1e-9:
             px, py = to_px(axis_x0, yt)
             d.add(_label(px - 6, py - 2, str(int(yt)), anchor="end", size=6.5))
-        yt += grid_step_y
+        yt += major_y
 
-    d.add(_label(ax1 + 4, ay0 - 2, x_axis_label, anchor="start", size=8))
-    d.add(_label(bx0 - 4, by1 + 6, y_axis_label, anchor="end", size=8))
+    if long_x:
+        d.add(_label((ax0 + ax1) / 2, 3, x_axis_label, anchor="middle", size=8))
+    else:
+        d.add(_label(ax1 + 4, ay0 - 2, x_axis_label, anchor="start", size=8))
+    if long_y:
+        d.add(_vertical_label(9, margin_b + plot_h / 2, y_axis_label, size=8))
+    else:
+        d.add(_label(bx0 - 4, by1 + 6, y_axis_label, anchor="end", size=8))
     return to_px
 
 
@@ -2435,13 +2501,16 @@ def draw_function_graph(params: dict) -> Drawing:
 
         for lo, hi in branches:
             n = 40
-            pts: list[float] = []
-            for i in range(n + 1):
-                x = lo + (hi - lo) * i / n
-                y = max(min(_fn_value(kind, x, params), y_max), y_min)
-                px, py = to_px(x, y)
-                pts.extend([px, py])
-            d.add(PolyLine(pts, strokeColor=INK, strokeWidth=1.3))
+            xy = [(lo + (hi - lo) * i / n, _fn_value(kind, lo + (hi - lo) * i / n, params))
+                  for i in range(n + 1)]
+            # Clip to the window instead of clamping each point's y (which drew
+            # a flat horizontal cap where the curve ran off-screen).
+            for seg in _clip_curve_segments(xy, y_min, y_max):
+                pts: list[float] = []
+                for sx, sy in seg:
+                    px, py = to_px(sx, sy)
+                    pts.extend([px, py])
+                d.add(PolyLine(pts, strokeColor=INK, strokeWidth=1.3))
 
         for tx, ty in params.get("table_points", []):
             px, py = to_px(tx, ty)
@@ -3129,18 +3198,24 @@ def _fmt_tick(v: float) -> str:
     return str(int(round(v))) if abs(v - round(v)) < 1e-9 else f"{v:.1f}"
 
 
-def _grid_minor_step(major_step: float) -> float:
-    """Half the major tick step, when that lands on a clean whole number
-    (e.g. a major step of 10 gives minor squares worth 5) - otherwise one
-    square per major tick, rather than an arbitrary/always-1 subdivision
-    regardless of the axis's real scale."""
-    half = major_step / 2
-    return half if abs(half - round(half)) < 1e-9 else major_step
+def _grid_minor_step(major_step: float, divisor: int = 2) -> float:
+    """The major tick step divided into `divisor` (default 2) minor squares,
+    when that lands on a clean whole number (e.g. a major of 10 with divisor 5
+    gives minor squares worth 2) - falling back to a coarser division, then to
+    one square per major tick, rather than an arbitrary/always-1 subdivision
+    regardless of the axis's real scale. A larger divisor is used for the
+    charts a value is read precisely off (cumulative frequency, box plots)."""
+    for dv in (divisor, 2):
+        step = major_step / dv
+        if abs(step - round(step)) < 1e-9 and step >= 1:
+            return step
+    return major_step
 
 
 def _draw_square_grid(
     d: Drawing, to_px: Callable, x0: float, y0: float, plot_w: float, plot_h: float,
     x_min: float, x_max: float, y_min: float, y_max: float, show_y_axis: bool,
+    divisor: int = 2,
 ) -> None:
     """A light squared-paper background, drawn underneath the real axes/
     ticks - square size is derived from each axis's own 'nice' tick step
@@ -3150,7 +3225,7 @@ def _draw_square_grid(
     instead mirror the x minor step's own pixel size, so the grid still
     reads as genuine squares rather than an invented numeric scale."""
     x_major = _nice_tick_step(x_min, x_max)
-    x_minor = _grid_minor_step(x_major)
+    x_minor = _grid_minor_step(x_major, divisor)
     xv = math.ceil(x_min / x_minor) * x_minor
     while xv <= x_max + 1e-9:
         px, _ = to_px(xv, y_min)
@@ -3159,7 +3234,7 @@ def _draw_square_grid(
 
     if show_y_axis:
         y_major = _nice_tick_step(y_min, y_max)
-        y_minor = _grid_minor_step(y_major)
+        y_minor = _grid_minor_step(y_major, divisor)
         yv = math.ceil(y_min / y_minor) * y_minor
         while yv <= y_max + 1e-9:
             _, py = to_px(x_min, yv)
@@ -3179,6 +3254,7 @@ def _draw_stats_axes(
     x_label: str = "", y_label: str = "",
     x_ticks: "list[float] | None" = None, y_ticks: "list[float] | None" = None,
     y_step: "float | None" = None, show_y_axis: bool = True, square_grid: bool = False,
+    fine_grid: bool = False,
 ) -> Callable[[float, float], tuple[float, float]]:
     """Draw a plain linear pair of axes (bold axis lines, a handful of ticks
     spaced via `_nice_tick_step` so the tick/gridline count never depends on
@@ -3200,7 +3276,8 @@ def _draw_stats_axes(
         return px, py
 
     if square_grid:
-        _draw_square_grid(d, to_px, x0, y0, plot_w, plot_h, x_min, x_max, y_min, y_max, show_y_axis)
+        _draw_square_grid(d, to_px, x0, y0, plot_w, plot_h, x_min, x_max, y_min, y_max,
+                          show_y_axis, divisor=5 if fine_grid else 2)
 
     ax0, ay0 = to_px(x_min, y_min)
     ax1, _ = to_px(x_max, y_min)
@@ -3242,10 +3319,14 @@ def _draw_stats_axes(
                     d.add(Line(px, py, to_px(x_max, yt)[0], py, strokeColor=GRID, strokeWidth=0.3))
                 yt += step_y
 
+    # Axis titles: the x-title centred below the axis and the y-title rotated
+    # up the left margin, so a long descriptive title (e.g. "Cumulative
+    # frequency", "Velocity (m/s)") no longer clips off the edge the way the
+    # old top-left / axis-end horizontal labels did.
     if x_label:
-        d.add(_label(ax1 + 4, ay0 - 2, x_label, anchor="start", size=7.5))
+        d.add(_label(x0 + plot_w / 2, y0 - 18, x_label, anchor="middle", size=7.5))
     if y_label and show_y_axis:
-        d.add(_label(ax0 - 4, ay1 + 6, y_label, anchor="end", size=7.5))
+        d.add(_vertical_label(8, y0 + plot_h / 2, y_label, size=7.5))
 
     return to_px
 
@@ -3416,7 +3497,7 @@ def draw_box_plot(params: dict) -> Drawing:
     axis_y = 24
     to_px = _draw_stats_axes(
         d, margin_l, axis_y, plot_w, height - axis_y, x_min, x_max, 0, 1, x_label=x_label,
-        show_y_axis=False, square_grid=True,
+        show_y_axis=False, square_grid=True, fine_grid=True,
     )
 
     if blank:
@@ -3700,7 +3781,7 @@ def draw_cumulative_frequency(params: dict) -> Drawing:
 
     to_px = _draw_stats_axes(
         d, margin_l, margin_b, plot_w, plot_h, x_min, x_max, 0, y_max,
-        x_label=x_label, y_label=y_label, x_ticks=xs, square_grid=True,
+        x_label=x_label, y_label=y_label, x_ticks=xs, square_grid=True, fine_grid=True,
     )
 
     if not blank:

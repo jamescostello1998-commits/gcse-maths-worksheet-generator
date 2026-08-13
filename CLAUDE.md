@@ -25,13 +25,23 @@ scheme. The full chronology below still uses the *old* ids in its historical ent
 tier suffix if you go looking for one. See step 44 for the exact rename rule and how the
 migration was done safely.
 
-**CURRENT STATE:** **320 topics**, backend suite **1001/1001**, frontend **65/65**, all 60
-Practice Test papers exactly 100 marks. Steps 54-58 are all committed & pushed (steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`, step 58 in the latest commit).
+**CURRENT STATE:** **320 topics**, backend suite **1004/1004**, frontend **65/65**, all 60
+Practice Test papers exactly 100 marks. Steps 54-59 are all committed & pushed (steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`, step 58 in `dbda953`, step 59 in the latest commit).
 Practice Tests were deliberately NOT rebuilt in any of these steps (no existing diagram param
 SCHEMA changed - only optional new params, label positions, and prompt text, all backward-
 compatible). No known bugs.
 
-**What the recent sessions did — an ongoing aesthetic-review process (steps 34-58).** The user
+**⚠️ One deliberately-deferred follow-up from step 59 (graph review):** the STATISTICS charts
+that have a numeric-numeric axis pair (cumulative frequency, scatter, time series) still use
+their reading grid with RECTANGULAR cells - only the coordinate/plotting graphs were made
+square-celled (that's where the user's "never rectangles" instruction was aimed; the stats
+scope they agreed was labels + finer CF/box grids, which is done). If the user asks for the
+stats graphs to be square too, that's a `_draw_stats_axes` rework (compute a square-celled
+centred plot area + matching `to_px`, like `_draw_scaled_axes` now does) applied to
+cumulative_frequency/scatter/time_series only - bar/box have a categorical axis so square cells
+don't apply there.
+
+**What the recent sessions did — an ongoing aesthetic-review process (steps 34-59).** The user
 works through the two `all_topics_review_*.pdf` documents and sends feedback, mostly as per-topic
 items (occasionally by page range). Steps 34-53 are in the chronology; the most recent batches:
 - **Step 54** — a coverage-gap audit against maths4everyone.com, then built the 5 genuine gaps it
@@ -61,8 +71,21 @@ items (occasionally by page range). Steps 34-53 are in the chronology; the most 
   squares. Also fixed the old clipped axis labels. +1 regression test (density ≡ 0.2 multiple).
   Suite 1000 → 1001. No practice-test rebuild (no frozen paper uses a histogram topic; param
   schema unchanged).
+- **Step 59** — a whole-app **graph review** (all coordinate/plotting graphs + stats charts). The
+  algebra graph engine (`_draw_scaled_axes`) was reworked so every grid cell is a **true square**
+  (never a rectangle — user's emphatic instruction): nice major step per axis + one shared
+  pixel-per-square + a shared minor subdivision, so a lopsided range (steep line, cubic, 0-360 trig)
+  is absorbed by a bigger major step instead of stretching cells, and a fine minor grid means every
+  plotted/read value lands on a line. The **flat-cap clamp bug** was fixed (curves now clipped
+  cleanly at the window via `_clip_curve_segments`, not drawn flat). **Axis titles** no longer clip:
+  long y-titles rotate vertically up the axis (`_vertical_label`), x-titles centre below - applied
+  to both `_draw_scaled_axes` and `_draw_stats_axes`. Stats: **cumulative-frequency & box-plot grids
+  made finer** (`_grid_minor_step` divisor). User chose **compact** size (square cells, current
+  footprint) and **different units per axis OK** (square pixels, e.g. trig 10°×0.2). +3 regression
+  tests. Suite 1001 → 1004. No practice-test rebuild (rendering-only, no schema change - verified a
+  frozen paper with function_graph+piecewise still renders). See the deferred stats-square note above.
 
-See chronology steps 54-58 for the full technical detail on each.
+See chronology steps 54-59 for the full technical detail on each.
 
 **Next natural step (if the user returns to the review):** the next chunk of review feedback (the
 review is NOT confirmed finished — steps 49-57 were per-topic items the user sent directly rather
@@ -4554,6 +4577,58 @@ fixes), is committed and pushed (see `git log`).
       rebuilt** - no frozen paper uses a histogram topic (confirmed via grep) and the diagram param
       schema is unchanged, so nothing to regenerate. Review PDFs regenerated (320 question / 331
       answer pages) and sent. Committed and pushed.
+
+59. Same review thread, a broad user request to review **all graphs** with the same "can a student
+    actually read/plot the values" lens as the histograms. Rendered a real example of every graph
+    family first (function/plotting graphs, read-off-graph algebra, all stats charts) and found four
+    recurring problems, reported with options + clarifying questions before touching code: (1) coarse
+    gridlines on large/steep ranges (the fallback in `_draw_scaled_axes` drew lines only at the
+    numbered nice-tick step - e.g. every 5, or every 50 on trig - with nothing between, so you
+    couldn't plot y=-4 or read the `simultaneous_graphically` intersection); (2) a **flat-cap clamp
+    bug** (curves/lines drawn flat where they ran past the window, via a per-point
+    `max(min(f(x),y_max),y_min)` clamp); (3) axis-title clipping on almost every stats chart +
+    distance/velocity-time ("Frequency"→"equency", "Velocity (m/s)"→"locity (m/s)", etc.); (4) coarse
+    reading grids on cumulative-frequency & box plots. Planned in plan mode
+    (`C:\Users\James\.claude\plans\graceful-giggling-cook.md`).
+
+    **Mid-implementation the user interrupted, emphatically: cells must be SQUARE, never rectangles,
+    even if that makes the graphs large.** A first attempt at the fallback (fill each axis
+    independently → rectangular cells) was scrapped. The final `_draw_scaled_axes` rework guarantees
+    **square pixel cells always**: a "nice" MAJOR step per axis (numbered, heavier line) + one shared
+    `px_per_major` (so major cells are square) + a shared subdivision factor k for the fine MINOR grid
+    (so minor cells stay square too). A lopsided range is absorbed by a larger major step on the long
+    axis (cubic → square overall, numbered every 5 with a minor line every 1; trig → 1 square = 10°×0.2,
+    still square pixels) rather than by stretching cells. Confirmed via `AskUserQuestion` (after showing
+    compact-vs-grown mockups): **compact** size (square cells, keep the current ~210px footprint) and
+    **different units per axis is fine** (square pixels, not literal 1:1 units - matching the histograms
+    they'd already approved). This subsumed the planned "generator range-capping" phase - the engine now
+    always yields a fine readable grid for any range (lines every 1-2 units even on big ranges, which is
+    how real exam papers scale big graphs), so no generator ranges were changed.
+
+    Other fixes: **flat-cap** replaced with true window clipping (`_clip_curve_segments` in
+    `draw_function_graph` + `draw_linear_graph_pair` - splits the sampled curve into in-window segments
+    with the exact boundary crossing inserted, so it stops cleanly at the edge). **Axis titles**: a new
+    `_vertical_label` (rotated 90° Group) draws a long descriptive y-title up the widened left margin and
+    the x-title centres below, in BOTH `_draw_scaled_axes` and `_draw_stats_axes` (a bare "x"/"y" keeps
+    the old compact label, so pure coordinate graphs are untouched). **Stats reading grids**:
+    `_grid_minor_step` gained a `divisor` param; `cumulative_frequency`/`box_plot` pass `fine_grid=True`
+    (finer minor squares so median/quartiles read closer to a line).
+
+    **Deliberately NOT done** (agreed scope + a deferred offer): the STATS charts keep their reading
+    grid with rectangular cells - only the coordinate/plotting graphs were made square, since that's
+    where the "never rectangles" instruction was aimed and the stats scope the user agreed earlier was
+    labels + finer CF/box grids. Squaring cumulative-frequency/scatter/time-series is offered as a
+    follow-up (see the deferred note near the top of this file); bar/box have a categorical axis so
+    square cells don't apply.
+
+    Verified by rendering every graph family across seeds (all square-celled, no flat caps, labels
+    uncropped, small-range coordinate graphs like circle/inequality unchanged) and a real frozen
+    Practice Test paper (function_graph + piecewise) to confirm backward-compat. Added 3 regression
+    tests (`_clip_curve_segments`; a cubic curve never flatlines at the window edge; `_draw_scaled_axes`
+    minor cells are square). Backend suite 1001 → 1004; frontend unaffected (65/65); no topic-count
+    change (still 320). **Practice Tests NOT rebuilt** - all changes are rendering-only and
+    backward-compatible (no new required diagram params), so the 60 frozen papers render on the new
+    engine unchanged (verified). Review PDFs regenerated and sent. Committed and pushed.
 
 ## Environment gotchas (Windows, this machine specifically)
 
