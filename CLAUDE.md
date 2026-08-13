@@ -31,31 +31,36 @@ Practice Tests were deliberately NOT rebuilt in any of these steps (no existing 
 SCHEMA changed - only optional new params, label positions, and prompt text, all backward-
 compatible). No known bugs.
 
-**What the last stretch of sessions did (ongoing aesthetic-review process — the user works
-through the review PDFs and sends feedback in chunks; steps 34-53).** The most recent chunks:
-- **Step 48** — review-PDF pages 1–200 batch (7 items): split `expand_triple_brackets_H` +
-  new `expand_triple_brackets_no_coefficient_H`; SUVAT letters on every quantity in
-  `kinematics_suvat_H`; label every integer on small-range gridded graph axes; `plot_reciprocal_H`
-  "for x = -4 to 4"; `graph_transformations` window fits both curves + asymmetric base curve;
-  best_buys no-dominance; ratio all parts distinct. (312→313 topics.)
-- **Step 49** — `area_composite_rectangles_F` reworked to Corbett-style boundary-edge labelling
-  (some sides omitted for the student to deduce), + sibling compound-topic label fixes.
-- **Step 50** — `ratio_shape_similar_F`/`_H`: letter A/B inside each shape; varied shape kinds
-  (rectangle / right-triangle in 4 orientations / parallelogram); shapes further apart.
-- **Steps 51-52** — `density_H` / `pressure_H`: when the volume/area must be worked out, show a
-  labelled solid/base-shape diagram (cube/cuboid/prism; rectangle/square/right-triangle) and
-  stop restating the dimensions in prose.
-- **Step 53** — whole **Transformations** group: no vertex dots/labels (shapes labelled A/B
-  inside); "describe" diagrams draw both shapes black; rotate/enlarge "complete" drop the centre
-  dot; translations render as column vectors; new `transform_enlarge_describe_F` (313→314);
-  `combined_transformations_H` redesigned to "apply 2-3 transformations and draw the final image".
+**What the recent sessions did — an ongoing aesthetic-review process (steps 34-57).** The user
+works through the two `all_topics_review_*.pdf` documents and sends feedback, mostly as per-topic
+items (occasionally by page range). Steps 34-53 are in the chronology; the most recent batches:
+- **Step 54** — a coverage-gap audit against maths4everyone.com, then built the 5 genuine gaps it
+  found: `collect_like_terms_F`; `midpoint_of_segment_F` + `distance_between_points_H` (new
+  `coordinate_geometry.py`); `surds_add_subtract_H`; `circle_parts_F` (+ new `circle_part`
+  diagram); `set_listing_F`. **314 → 320 topics.**
+- **Step 55** — 5 diagram/wording fixes: semicircle-compound prompts trimmed (F uses the dp/sf
+  rounding engine); subtract-compound hole labels moved into the shaded frame; sector radius label
+  moved outside the wedge; `angles_straight_line_H` width-aware label placement;
+  `angles_triangle_H`/`angles_exterior_H` algebraic labels moved closer to their angle.
+- **Step 56** — 4 fixes on the 3D + triangle-rule diagrams: `pythagoras_3d_H` length label off the
+  depth edge + prompt "Find ag"; `trig_3d_H` prompt "Find the angle gac" + base diagonal drawn;
+  `sine_rule_H`/`cosine_rule_H` context removed (vertices A/B/C lettered on the diagram, unknown
+  angle drawn as a bare arc via `angle_X_label=""`); `triangle_area_sine_rule_H` legible-shape
+  fallback for very acute angles (`_triangle_min_angle` < 28° → plausible scalene).
+- **Step 57** — 3 fixes: bigger plans/elevations blank grids (10×10 squares, real squared-paper
+  size); the cube diagram foreshortened (`is_cube` cabinet projection) so it reads as a cube;
+  **every volume/surface-area prompt standardised** to "Here is a {shape}. Find its
+  {volume|surface area}[, correct to … | in terms of π]." with dimensions read off the diagram
+  (cuboid/cube/prism/cylinder F+H/cone/sphere/pyramid/frustum; `compound_3d_*` left as-is — no
+  single shape name).
 
-See chronology steps 48-53 for the full technical detail on each.
+See chronology steps 54-57 for the full technical detail on each.
 
-**Next natural step (if the user returns to the review):** the next chunk of review feedback
-(the review is NOT confirmed finished — pages 201+ never arrived, and steps 49-53 were one-off
-per-topic requests the user sent directly rather than page ranges, so expect either). The review
-workflow each batch: read the named items → fix them (render REAL PDFs to verify diagram/overlap
+**Next natural step (if the user returns to the review):** the next chunk of review feedback (the
+review is NOT confirmed finished — steps 49-57 were per-topic items the user sent directly rather
+than page ranges, so expect either those or another page range; they may equally have a new
+one-off feature in mind, as steps 45-46 were). The review workflow each batch: read the named
+items → fix them (render REAL PDFs to verify diagram/overlap
 fixes; don't trust unit tests for visual issues) → if a topic count changed, bump the four
 `== N` assertions (`test_routes.py` ×2, `test_modelled_example_renderer.py`,
 `test_worksheet_builder.py`) and the per-section table below → if any diagram param SCHEMA
@@ -64,48 +69,10 @@ changed, rebuild the 60 Practice Test papers (`python -m app.practice_tests.buil
 `all_topics_review_*.pdf` (`python -m scripts.generate_review_pdfs`) → commit+push. If there's
 ever a gap with no pending review feedback, see "Ideas for a future session" (bottom of file).
 
-*(The diagram-scale-overhaul, chronology step 47, is long since MERGED into `master` — commits
-`153131d`..`c200eb4`, then the pages-1–200 batch `25be496`. Ignore any "not merged"/branch
-wording below; it's historical.)*
-
-The most recent *committed-to-master* pieces of work (PR #3 was merged into `master` as
-`2587551`; the `aqa-spec-gap-topics` branch was deleted):
-
-- **Step 46 (HEAD)**: a new **PDF / Word download-format toggle** — a home-page slider
-  (PDF | Word) that makes every topic's Worksheet *and* Modelled Example downloadable as
-  a real `.docx`, with full layout parity to the PDF and Bell-Tasks-style typography
-  (Calibri prose, Cambria Math + native Word equations, incl. native column vectors and
-  bold `\vec{a}`/`\vec{b}` vector letters). New `backend/app/docx/` package, new
-  `python-docx` dependency, `format` field on the worksheet/modelled-example routes, and a
-  global `FormatContext` on the frontend. Backend 971 (+12 docx tests), frontend 65 (+4).
-  See chronology step 46.
-- **Step 45**: fixed **fractional powers not rendering as raised powers** in the PDF
-  (`x^(1/2)` sat low next to the base like a coefficient) — one-line `mathtext.py` fix
-  (`valign="super"` on the fraction image instead of a `<super>` wrapper). See step 45.
-- **Step 44 (commit `9833db2`)**: the id `_F`/`_H` streamlining refactor above —
-  all 305 ids renamed, the 60 frozen Practice Test papers migrated *in place* (content
-  byte-identical, only their `topic_id` fields remapped — NOT rebuilt), tests + CLAUDE.md
-  updated.
-- **Step 43 (commits `42ffe3d` + `3ca66af`)**: a review-feedback batch covering pages
-  201-250 of the `all_topics_review_*.pdf` documents (~14 named items, mostly Geometry:
-  3D/trig diagrams, sine/cosine fonts, congruence-proof redesign, circle-theorem
-  wording, transformations). Added one topic (`properties_3d_shapes_diagram`, 304→305).
-
-**Steps 34-43 were a paginated aesthetic-review process** — the user works through the
-(now 305-topic) review PDF a chunk at a time. Steps 35-43 covered
-Number → Algebra → Ratio & Proportion → Geometry → Probability/Statistics
-(step 40 closed the first full pass) and then a **second pass by page range**
-(pages 1-100 = step 41, 101-200 = step 42, 201-250 = step 43). Steps 45-46 were separate
-one-off requests, not review chunks. The review is **not confirmed finished** (pages 251+
-never arrived) — so if the user returns to it, the natural next step is the next chunk of
-feedback; but they may equally have new one-off features in mind (as steps 45-46 were).
-
-The review workflow each batch: read the named items, fix them (render real PDFs to
-verify diagram/overlap fixes — don't trust unit tests for visual issues), regenerate
-both `all_topics_review_*.pdf` via `python -m scripts.generate_review_pdfs`, send them
-back to the user, then commit+push. See "Regenerating the all-topics aesthetic-review
-PDFs" below (the two PDFs are deliberately left untracked). 305 topics total, backend
-suite 971/971, frontend 65/65, no known bugs.
+*(Historical note: chronology steps 34-46 were merged to `master` long ago — the old PR #3 /
+`aqa-spec-gap-topics` branch is deleted, and the diagram-scale-overhaul (step 47) is also
+merged. Ignore any "not merged"/branch/`HEAD` wording in the chronology below; it was correct
+at the time. `master` is the working branch and is fully up to date.)*
 
 Once the user's next chunk of feedback (or confirmation the review is fully done)
 arrives, check "Ideas for a future session" (bottom of this file) for candidate
@@ -120,7 +87,7 @@ pending review feedback.
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**314 topics across 6 sections**, all procedurally generated with independent
+**320 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.),
