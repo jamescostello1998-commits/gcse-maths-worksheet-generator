@@ -113,3 +113,18 @@ def test_box_plot_interpret_comparison_labels_are_present():
             labels = [bp.get("label") for bp in q.diagram.params["box_plots"]]
             assert all(labels)
             assert len(set(labels)) == 2
+
+
+def test_grouped_table_always_starts_at_zero_with_a_bell_shaped_distribution():
+    # Real GCSE cumulative frequency curves are smooth S-shaped ogives
+    # starting at the origin: the first class boundary must be 0, and the
+    # underlying frequencies must be unimodal (peak in the interior, never
+    # at either end) so the cumulative curve rises steeply in the middle
+    # rather than zigzagging.
+    rng = random.Random(900)
+    for _ in range(300):
+        _, _, boundaries, frequencies = cf._random_grouped_table(rng)
+        assert boundaries[0] == 0
+        peak = max(frequencies)
+        assert frequencies[0] < peak
+        assert frequencies[-1] < peak

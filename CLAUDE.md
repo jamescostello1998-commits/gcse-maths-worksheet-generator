@@ -25,11 +25,20 @@ scheme. The full chronology below still uses the *old* ids in its historical ent
 tier suffix if you go looking for one. See step 44 for the exact rename rule and how the
 migration was done safely.
 
-**CURRENT STATE:** **320 topics**, backend suite **1005/1005**, frontend **65/65**, all 60
-Practice Test papers exactly 100 marks. Steps 54-59 are all committed & pushed (steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`, step 58 in `dbda953`, step 59 + its stats-square follow-up in the two latest commits).
+**CURRENT STATE:** **320 topics**, backend suite **1006/1006**, frontend **65/65**, all 60
+Practice Test papers exactly 100 marks. Steps 54-59 are all committed & pushed (steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`, step 58 in `dbda953`, step 59 + its two follow-ups in the latest commits).
 Practice Tests were deliberately NOT rebuilt in any of these steps (no existing diagram param
 SCHEMA changed - only optional new params, label positions, and prompt text, all backward-
 compatible). No known bugs.
+
+**Step 59 follow-up #3 (same session):** `cumulative_frequency_interpret_H`/`_plot_H` - user flagged
+that real GCSE cumulative-frequency curves are smooth S-shaped ogives starting at the origin.
+`app/topics/cumulative_frequency.py`'s `_random_grouped_table` had two bugs: the first class boundary
+was randomly 0/10/20 (curve often didn't touch the origin at all) and frequencies were fully
+independent-random per class (could zigzag - rise, fall, rise again - instead of forming a proper
+S-curve). Fixed: boundaries always start at 0; frequencies now come from a `_bell_shaped_frequencies`
+helper (a fixed unimodal base shape × a random scale + light per-class jitter, peak always interior)
+so the cumulative sum is always a genuine unimodal S-curve. +1 regression test.
 
 **Step 59 follow-up (done, same session):** the user then asked to **square the numeric-numeric
 stats charts too** (cumulative frequency, scatter, time series) and for **cumulative frequency to

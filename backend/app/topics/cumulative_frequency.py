@@ -16,13 +16,27 @@ _CF_CONTEXTS = [
 ]
 
 
+def _bell_shaped_frequencies(rng: random.Random, n: int) -> list[int]:
+    """Frequencies following a rough bell/unimodal shape - small at the two
+    extremes, peaking in the middle - rather than independently random per
+    class. A real grouped dataset is typically unimodal, and the resulting
+    cumulative-frequency curve (slow start, steep middle, slow finish) is
+    what produces the classic smooth S-shaped GCSE ogive; fully independent
+    per-class frequencies can zigzag (rise, fall, rise again) and never
+    settle into that shape at all."""
+    base = [1, 2, 3, 2, 1] if n == 5 else [1, 2, 3, 3, 2, 1]
+    scale = rng.randint(3, 6)
+    return [max(2, w * scale + rng.randint(0, 2)) for w in base]
+
+
 def _random_grouped_table(rng: random.Random):
     x_label, context = rng.choice(_CF_CONTEXTS)
     n_classes = rng.randint(5, 6)
     width = 10
-    start = rng.choice([0, 10, 20])
-    boundaries = [start + i * width for i in range(n_classes + 1)]
-    frequencies = [rng.randint(2, 15) for _ in range(n_classes)]
+    # The first class always starts at 0, so the cumulative frequency curve
+    # genuinely begins at the origin (0, 0) - real GCSE convention.
+    boundaries = [i * width for i in range(n_classes + 1)]
+    frequencies = _bell_shaped_frequencies(rng, n_classes)
     return x_label, context, boundaries, frequencies
 
 
