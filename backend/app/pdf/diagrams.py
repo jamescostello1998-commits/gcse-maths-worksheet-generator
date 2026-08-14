@@ -2998,31 +2998,107 @@ def draw_tree_diagram(params: dict) -> Drawing:
         else:
             d.add(Line(lx - 9, ly - 2, lx + 9, ly - 2, strokeColor=INK, strokeWidth=0.9))
 
-    def _node_label(x: float, y: float, text: str, size: float) -> None:
+    def _node_label(x: float, y: float, text: str, size: float, from_y: float) -> None:
         # Every line/dash leaving this node starts exactly at (x, y) and
-        # only ever extends to the right (greater x) - so a label centred
-        # directly ABOVE the node (same x, y offset only) never touches any
-        # of them, unlike a label offset to the right, which sat inside the
-        # narrow wedge those lines fan out into and collided with one of
-        # them as soon as the branches spread more than a few points apart.
-        d.add(_label(x, y + 10, text, size=size))
+        # only ever extends to the right (greater x), so a label placed to
+        # the LEFT of the node - matching real exam tree diagrams, which
+        # caption a mid-tree branch point beside it rather than above it -
+        # never touches any outgoing line. Nudged vertically away from the
+        # incoming branch's own approach direction (up if it climbed to get
+        # here, down if it descended) so it clears that line too.
+        ly = y + 7 if y >= from_y else y - 7
+        d.add(_label(x - 8, ly, text, anchor="end", size=size))
 
     for i, ((label1, prob1), y1) in enumerate(zip(stage1, node1_ys)):
         d.add(Line(root_x, root_y, x1, y1, strokeColor=INK, strokeWidth=1.2))
         _branch_prob(root_x, root_y, x1, y1, prob1, 9)
-        _node_label(x1, y1, label1, 9.5)
+        _node_label(x1, y1, label1, 9.5, root_y)
 
         for j, ((label2, prob2), y2) in enumerate(zip(stage2[i], leaf_ys[i])):
             d.add(Line(x1, y1, x2, y2, strokeColor=INK, strokeWidth=1.2))
             _branch_prob(x1, y1, x2, y2, prob2, 9)
             if leaf_probs is not None:
                 d.add(Line(x2, y2, x3, y2, strokeColor=MUTED, strokeWidth=0.5, strokeDashArray=[2, 2]))
-                _node_label(x2, y2, label2, 9.5)
+                _node_label(x2, y2, label2, 9.5, y1)
                 d.add(_label(x3 + 6, y2 + 3, leaf_probs[i][j], anchor="start", color=ACCENT, size=8.5))
             else:
                 d.add(_label(x2 + 6, y2 + 3, label2, anchor="start", size=9.5))
 
     d.add(Circle(root_x, root_y, 2.2, strokeColor=INK, fillColor=INK))
+    return d
+
+
+def draw_frequency_tree(params: dict) -> Drawing:
+    """A frequency tree: unlike draw_tree_diagram (a point vertex captioned
+    beside it, a fraction on each branch), every node here - root, stage1,
+    and stage2 - is drawn as an oval containing a raw count, and each
+    branch's category name sits on the line itself, matching real exam
+    frequency-tree questions. params['root'] is the total count (str, ""
+    for a blank oval); params['stage1'] = [(label, count_str), ...];
+    params['stage2'] (optional) = one list of (label, count_str) branches
+    per stage1 node, same nested shape as draw_tree_diagram's stage2 - a
+    count_str of "" draws a blank oval for the student to complete."""
+    root = str(params.get("root", ""))
+    stage1: list[tuple[str, str]] = params["stage1"]
+    stage2: list[list[tuple[str, str]]] | None = params.get("stage2")
+
+    branch_counts = [len(b) for b in stage2] if stage2 else [1] * len(stage1)
+    total_leaves = sum(branch_counts)
+
+    leaf_spacing, group_spacing = 44.0, 18.0
+    top_pad, bottom_pad = 16.0, 16.0
+    height = max(
+        120.0,
+        top_pad + bottom_pad + total_leaves * leaf_spacing + max(0, len(branch_counts) - 1) * group_spacing,
+    )
+    width = 420.0 if stage2 else 260.0
+    d = Drawing(width, height)
+
+    oval_w, oval_h = 42.0, 24.0
+    root_x = 26.0
+    x1 = width * (0.42 if stage2 else 0.80)
+    x2 = width * 0.88
+
+    leaf_ys: list[list[float]] = []
+    cursor = bottom_pad + leaf_spacing / 2
+    for count in branch_counts:
+        ys = [cursor + i * leaf_spacing for i in range(count)]
+        leaf_ys.append(ys)
+        cursor += count * leaf_spacing + group_spacing
+
+    node1_ys = [sum(ys) / len(ys) for ys in leaf_ys]
+    root_y = sum(node1_ys) / len(node1_ys)
+
+    def _oval(x: float, y: float, text: str) -> None:
+        d.add(Ellipse(x, y, oval_w / 2, oval_h / 2, strokeColor=INK, fillColor=PAPER, strokeWidth=1.1))
+        if text:
+            d.add(_label(x, y - 3.5, text, size=10))
+        else:
+            d.add(Line(x - 8, y - 1, x + 8, y - 1, strokeColor=INK, strokeWidth=0.9))
+
+    def _branch_label(x_from: float, y_from: float, x_to: float, y_to: float, text: str) -> None:
+        # Captioned above the line's own midpoint via a perpendicular
+        # offset (not a fixed vertical amount), so it clears the line
+        # itself regardless of the branch's slope - matching how real
+        # frequency trees caption each branch with its category name.
+        dx, dy = x_to - x_from, y_to - y_from
+        length = math.hypot(dx, dy) or 1.0
+        nx, ny = -dy / length, dx / length
+        lx, ly = (x_from + x_to) / 2 + nx * 10, (y_from + y_to) / 2 + ny * 10
+        d.add(_label(lx, ly, text, size=9))
+
+    _oval(root_x, root_y, root)
+    for i, ((label1, count1), y1) in enumerate(zip(stage1, node1_ys)):
+        d.add(Line(root_x + oval_w / 2, root_y, x1 - oval_w / 2, y1, strokeColor=INK, strokeWidth=1.2))
+        _branch_label(root_x, root_y, x1, y1, label1)
+        _oval(x1, y1, count1)
+
+        if stage2:
+            for (label2, count2), y2 in zip(stage2[i], leaf_ys[i]):
+                d.add(Line(x1 + oval_w / 2, y1, x2 - oval_w / 2, y2, strokeColor=INK, strokeWidth=1.2))
+                _branch_label(x1, y1, x2, y2, label2)
+                _oval(x2, y2, count2)
+
     return d
 
 
@@ -5067,6 +5143,7 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "loci_region": draw_loci_region,
     "inequality_region": draw_inequality_region,
     "tree_diagram": draw_tree_diagram,
+    "frequency_tree": draw_frequency_tree,
     "two_way_table": draw_two_way_table,
     "sample_space_diagram": draw_sample_space_diagram,
     "cumulative_frequency_question": draw_cumulative_frequency_question,

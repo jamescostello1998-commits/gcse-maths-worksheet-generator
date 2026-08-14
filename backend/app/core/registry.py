@@ -369,6 +369,7 @@ _TOPIC_LIST: list[TopicDefinition] = [
     tree_diagrams.TOPIC_TREE_DRAWING,
     tree_diagrams.TOPIC_TREE_ALGEBRAIC,
     tree_diagrams.TOPIC_TREE_MIXED,
+    tree_diagrams.TOPIC_FREQUENCY_TREE,
     data_handling.TOPIC_SET_NOTATION,
     data_handling.TOPIC_SET_NOTATION_FOUNDATION,
     data_handling.TOPIC_SET_LISTING,

@@ -11,6 +11,7 @@ GENERATORS = [
     (tree_diagrams.generate_tree_diagram_drawing, Tier.FOUNDATION),
     (tree_diagrams.generate_tree_diagram_algebraic, Tier.HIGHER),
     (tree_diagrams.generate_tree_diagram_mixed, Tier.HIGHER),
+    (tree_diagrams.generate_frequency_tree, Tier.FOUNDATION),
 ]
 
 
@@ -91,9 +92,10 @@ def test_topic_definitions_have_expected_metadata():
         tree_diagrams.TOPIC_TREE_DRAWING,
         tree_diagrams.TOPIC_TREE_ALGEBRAIC,
         tree_diagrams.TOPIC_TREE_MIXED,
+        tree_diagrams.TOPIC_FREQUENCY_TREE,
     ]
     ids = {t.id for t in topics}
-    assert len(ids) == 5
+    assert len(ids) == 6
     for t in topics:
         assert t.section == "probability"
         assert t.group == "Tree Diagrams"
@@ -103,6 +105,7 @@ def test_topic_definitions_have_expected_metadata():
     assert tree_diagrams.TOPIC_TREE_DEPENDENT.question_count is None
     assert tree_diagrams.TOPIC_TREE_ALGEBRAIC.fixed_tier == Tier.HIGHER
     assert tree_diagrams.TOPIC_TREE_MIXED.fixed_tier == Tier.HIGHER
+    assert tree_diagrams.TOPIC_FREQUENCY_TREE.fixed_tier == Tier.FOUNDATION
 
 
 def test_modelled_example_topics_are_wired_up():
@@ -112,6 +115,7 @@ def test_modelled_example_topics_are_wired_up():
         tree_diagrams.TOPIC_TREE_DRAWING,
         tree_diagrams.TOPIC_TREE_ALGEBRAIC,
         tree_diagrams.TOPIC_TREE_MIXED,
+        tree_diagrams.TOPIC_FREQUENCY_TREE,
     ):
         assert t.generate_modelled_example is not None
 
@@ -164,6 +168,51 @@ def test_modelled_example_tree_diagram_algebraic_produces_verified_examples():
         assert example.final_answer
         assert example.diagram is not None and example.diagram.kind == "tree_diagram"
         assert any("x" in prob_str for _, prob_str in example.diagram.params["stage1"])
+
+
+def test_frequency_tree_question_diagram_is_fully_blank_and_solution_is_fully_solved():
+    rng = random.Random(336)
+    for _ in range(TRIALS):
+        q = tree_diagrams.generate_frequency_tree(Tier.FOUNDATION, rng)
+        assert q.topic_id == "frequency_tree_F"
+        assert q.diagram is not None and q.diagram.kind == "frequency_tree"
+        assert q.solution_diagram is not None and q.solution_diagram.kind == "frequency_tree"
+        # Every count on the question page is blank; every count on the
+        # solution page is filled in and matches the stated final answer.
+        assert q.diagram.params["root"] != ""
+        for _, count in q.diagram.params["stage1"]:
+            assert count == ""
+        for branch in q.diagram.params["stage2"]:
+            for _, count in branch:
+                assert count == ""
+        for _, count in q.solution_diagram.params["stage1"]:
+            assert count != "" and count.isdigit()
+        leaf_counts = [int(count) for branch in q.solution_diagram.params["stage2"] for _, count in branch]
+        assert sum(leaf_counts) == int(q.solution_diagram.params["root"])
+        assert str(q.final_answer) in {str(c) for c in leaf_counts}
+
+
+def test_frequency_tree_generator_covers_multiple_contexts():
+    rng = random.Random(337)
+    subjects = set()
+    for _ in range(TRIALS):
+        q = tree_diagrams.generate_frequency_tree(Tier.FOUNDATION, rng)
+        subjects.add(q.prompt.split(" were surveyed")[0].split(" ", 1)[1])
+    assert len(subjects) > 1
+
+
+def test_modelled_example_frequency_tree_produces_verified_examples():
+    rng = random.Random(345)
+    for _ in range(TRIALS):
+        example = tree_diagrams.generate_modelled_example_frequency_tree(Tier.FOUNDATION, rng)
+        assert example.topic_id == "frequency_tree_F"
+        assert example.prompt
+        assert len(example.worked_calculation) >= 2
+        assert len(example.teaching_steps) >= 3
+        assert example.final_answer
+        assert example.diagram is not None and example.diagram.kind == "frequency_tree"
+        for _, count in example.diagram.params["stage1"]:
+            assert count.isdigit()
 
 
 def test_modelled_example_tree_diagram_mixed_produces_verified_examples():

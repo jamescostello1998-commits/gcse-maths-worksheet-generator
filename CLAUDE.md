@@ -25,14 +25,16 @@ scheme. The full chronology below still uses the *old* ids in its historical ent
 tier suffix if you go looking for one. See step 44 for the exact rename rule and how the
 migration was done safely.
 
-**CURRENT STATE:** **320 topics**, backend suite **1013/1013**, frontend **65/65**, all 60
+**CURRENT STATE:** **321 topics**, backend suite **1016/1016**, frontend **65/65**, all 60
 Practice Test papers exactly 100 marks. Steps 54-59 are all committed & pushed (steps 54-56 in
 `c6cce8f`, step 57 in `9ba81d8`, step 58 in `dbda953`, step 59 across seven commits ending
-`91048ec`). Practice Tests were deliberately NOT rebuilt in any of these steps (no existing
-diagram param SCHEMA changed - only optional new params, label positions, and prompt text, all
-backward-compatible). No known bugs. **The review queue is empty** - every item the user sent as
-of the last session has been fixed, verified, and committed; the next session starts by asking the
-user for the next batch (see "Next natural step" below).
+`91048ec`). Step 60 (tree-diagram AQA-style label fix + new `frequency_tree_F` topic/diagram) is
+**not yet committed as of the end of this session**. Practice Tests were deliberately NOT rebuilt
+in any of steps 54-60 (no existing diagram param SCHEMA changed - only optional new params, label
+positions, and prompt text, all backward-compatible; the new frequency-tree diagram kind is
+additive and isn't used by any frozen paper). No known bugs. **The review queue is empty** - every
+item the user sent as of the last session has been fixed, verified, and committed; the next
+session starts by asking the user for the next batch (see "Next natural step" below).
 
 **What the recent sessions did — an ongoing aesthetic-review process (steps 34-59).** The user
 works through the two `all_topics_review_*.pdf` documents and sends feedback, mostly as per-topic
@@ -96,6 +98,26 @@ items (occasionally by page range). Steps 34-53 are in the chronology; the most 
   table headers + context variety). No practice-test rebuild needed at any point (all rendering-only
   or affecting topics absent from every frozen paper).
 
+- **Step 60** — the user asked to check the Probability section's frequency/tree diagrams against
+  a real AQA-organised exam-question resource they have a login for (Exampro/doublestruck.eu,
+  the same AQA GCSE Maths 8300 spec already audited in step 31 — only the site's topic taxonomy
+  and generic layout conventions were referenced, never any copyrighted question text). Two
+  outcomes, confirmed via `AskUserQuestion` before building: (1) `draw_tree_diagram`'s mid-tree
+  node label (e.g. the first coin's "Heads"/"Tails") was centred *above* the vertex — real AQA
+  trees caption it level with the branch, off to the side — fixed by moving `_node_label` to the
+  left of the vertex, nudged vertically away from the incoming branch's approach direction so it
+  still clears every line. (2) **Frequency trees** (oval nodes holding a raw count, plain
+  connecting lines, category names captioned on the branches — a different diagram from a
+  probability tree, which was confirmed genuinely absent from the app) were built as a new
+  `draw_frequency_tree` diagram kind (`diagrams.py`) plus a new `frequency_tree_F` topic
+  (`tree_diagrams.py`, same "Tree Diagrams" Probability group) — a two-level frequency tree from
+  a total split by two independently-chosen fractions, verified via a Fraction/Decimal
+  cross-check (two different numeric representations) plus an integer-and-positivity reroll loop;
+  the question diagram is fully blank (student completes it from three stated fractions), the
+  solution diagram fully solved. **320 → 321 topics.** Suite 1013 → 1016. No practice-test
+  rebuild (the new diagram kind isn't used by any frozen paper; the tree-diagram label fix changed
+  only rendering, not the param schema). Frontend unaffected (65/65).
+
 See chronology step 59 (and its numbered follow-up sub-entries) for the full technical detail.
 
 **Next natural step:** ask the user for the next chunk of review feedback (the review is NOT
@@ -131,7 +153,7 @@ pending review feedback.
 
 *(For a session-by-session history of how it got here, see the Chronology section below.)*
 
-**320 topics across 6 sections**, all procedurally generated with independent
+**321 topics across 6 sections**, all procedurally generated with independent
 correctness verification (never trust the generator's own arithmetic — always
 cross-check via a second method: sympy substitution/solve, coordinate geometry,
 stdlib `statistics`/`Decimal`, brute-force sample-space enumeration, etc.),
@@ -456,7 +478,7 @@ practice for any new topic — the 13 topics added in the second curriculum audi
 | Algebra | Expressions/Formulae/Equations/Identities (incl. Collecting Like Terms), Solving Linear Equations, Forming and Solving Equations, Changing the Subject of a Formula, Substitution into Formulae, Expanding Brackets, Factorising, Algebraic Indices, Completing the Square, Turning Point of a Graph, Solving Quadratic Equations, Equation of a Circle, Functions, Algebraic Fractions, Simultaneous Equations, Inequalities, Algebraic Proof, Sequences, Iteration, Kinematics (SUVAT), Plotting Graphs, Equation of a Line, Real-Life Graphs, Transformations of Graphs, Coordinate Geometry | 84 |
 | Ratio & Proportion | Percentages, Best Buys, Ratio, Proportion, Compound Measures | 37 |
 | Geometry | Area & Perimeter, Parts of a Circle, Angles, Pythagoras' Theorem, Trigonometry, Sine Rule, Cosine Rule, Area of a Triangle, Vectors, Geometric Vectors, Circle Theorems, 3D Shapes, Congruence Proof, Symmetry, Transformations, Bearings, Map Scales and Scale Drawings, Constructions, Loci | 90 |
-| Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams, Venn Diagrams | 23 |
+| Probability | Probability, Tree Diagrams, Sets and Counting, Tables and Diagrams, Venn Diagrams | 24 |
 | Statistics | Averages from a List, Frequency Tables, Working Backwards, Charts and Graphs, Cumulative Frequency & Box Plots, Histograms, Sampling and Populations | 29 |
 
 **First curriculum-audit dual-tier siblings**: Foundation-difficulty siblings for three

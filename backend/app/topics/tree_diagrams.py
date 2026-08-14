@@ -1,6 +1,7 @@
 import dataclasses
 import itertools
 import random
+from decimal import Decimal
 from fractions import Fraction
 
 import sympy as sp
@@ -16,6 +17,189 @@ TREE_DRAWING_QUESTION_COUNT = 5
 
 ALGEBRAIC_TARGETS = ["both_first", "both_second", "first_then_second", "second_then_first", "at_least_one_first"]
 _X_SYM = sp.symbols("x")
+
+# (subject, cat1_a_clause, cat1_b_clause, cat1_a_short, cat1_b_short,
+#  cat2_a_clause, cat2_b_clause, cat2_a_short, cat2_b_short) - every clause
+# is a plural predicate that reads naturally after "who" (e.g. "students
+# who play a sport"), and the short forms are the branch captions used on
+# the frequency tree diagram itself.
+_FREQUENCY_TREE_CONTEXTS = [
+    ("students", "play a sport", "do not play a sport", "Sport", "No sport",
+     "are male", "are female", "Male", "Female"),
+    ("customers", "used a discount code", "did not use a discount code", "Discount", "No discount",
+     "paid by card", "paid by cash", "Card", "Cash"),
+    ("workers", "travel to work by bus", "do not travel to work by bus", "Bus", "No bus",
+     "work the morning shift", "work the evening shift", "Morning", "Evening"),
+    ("people surveyed", "own a pet", "do not own a pet", "Pet", "No pet",
+     "are under 18", "are 18 or over", "Under 18", "18 or over"),
+]
+
+_FREQUENCY_TREE_FRACTIONS = [
+    Fraction(1, 4), Fraction(3, 4), Fraction(1, 5), Fraction(2, 5), Fraction(3, 5), Fraction(4, 5),
+    Fraction(1, 8), Fraction(3, 8), Fraction(5, 8), Fraction(7, 8), Fraction(1, 10), Fraction(3, 10),
+    Fraction(7, 10), Fraction(9, 10), Fraction(1, 3), Fraction(2, 3),
+]
+
+_FREQUENCY_TREE_TOTALS = [40, 60, 80, 100, 120, 150, 160, 200, 240, 250, 300, 360, 400]
+
+
+def _build_frequency_tree(rng: random.Random) -> dict:
+    """Pick a total and three independent split fractions (top-level, then
+    one further split within each top-level branch), rerolling until every
+    one of the six resulting frequencies is a clean positive integer with
+    no branch degenerately small (< 2). Cross-checks the Fraction-based
+    counts against an independently computed Decimal path before accepting
+    them - a different numeric representation from the Fraction arithmetic,
+    not just a repeat of the same formula."""
+    for _ in range(500):
+        ctx = rng.choice(_FREQUENCY_TREE_CONTEXTS)
+        total = rng.choice(_FREQUENCY_TREE_TOTALS)
+        p1 = rng.choice(_FREQUENCY_TREE_FRACTIONS)
+        qa = rng.choice(_FREQUENCY_TREE_FRACTIONS)
+        qb = rng.choice(_FREQUENCY_TREE_FRACTIONS)
+
+        n_a_frac = total * p1
+        if n_a_frac.denominator != 1:
+            continue
+        n_a = int(n_a_frac)
+        n_b = total - n_a
+        if n_a < 2 or n_b < 2:
+            continue
+
+        n_aa_frac, n_ba_frac = n_a * qa, n_b * qb
+        if n_aa_frac.denominator != 1 or n_ba_frac.denominator != 1:
+            continue
+        n_aa, n_ba = int(n_aa_frac), int(n_ba_frac)
+        n_ab, n_bb = n_a - n_aa, n_b - n_ba
+        if min(n_aa, n_ab, n_ba, n_bb) < 1:
+            continue
+
+        d_total = Decimal(total)
+        d_n_a = d_total * Decimal(p1.numerator) / Decimal(p1.denominator)
+        d_n_aa = d_n_a * Decimal(qa.numerator) / Decimal(qa.denominator)
+        d_n_ba = (d_total - d_n_a) * Decimal(qb.numerator) / Decimal(qb.denominator)
+        if int(d_n_a) != n_a or int(d_n_aa) != n_aa or int(d_n_ba) != n_ba:
+            raise ValueError("frequency_tree: Fraction/Decimal cross-check mismatch")
+        if n_aa + n_ab + n_ba + n_bb != total:
+            raise ValueError("frequency_tree: leaf counts do not sum to the total")
+
+        return {
+            "ctx": ctx, "total": total, "p1": p1, "qa": qa, "qb": qb,
+            "n_a": n_a, "n_b": n_b, "n_aa": n_aa, "n_ab": n_ab, "n_ba": n_ba, "n_bb": n_bb,
+        }
+    raise ValueError("frequency_tree: failed to find a clean-integer combination")
+
+
+def _frequency_tree_prompt(data: dict, target_cat1: str, target_cat2: str) -> str:
+    subject, cat1_a, cat1_b, *_rest = data["ctx"]
+    cat2_a = data["ctx"][5]
+    total, p1, qa, qb = data["total"], data["p1"], data["qa"], data["qb"]
+    return (
+        f"{total} {subject} were surveyed. {_frac_str(p1)} of the {total} {subject} {cat1_a}; the rest "
+        f"{cat1_b}. Of the {subject} who {cat1_a}, {_frac_str(qa)} {cat2_a}. Of the {subject} who "
+        f"{cat1_b}, {_frac_str(qb)} {cat2_a}. Complete the frequency tree, then work out the number of "
+        f"the {total} {subject} who {target_cat1} and {target_cat2}."
+    )
+
+
+def generate_frequency_tree(tier: Tier, rng: random.Random) -> Question:
+    data = _build_frequency_tree(rng)
+    subject, cat1_a, cat1_b, cat1_a_short, cat1_b_short, cat2_a, cat2_b, cat2_a_short, cat2_b_short = data["ctx"]
+    total, p1, qa, qb = data["total"], data["p1"], data["qa"], data["qb"]
+    n_a, n_b = data["n_a"], data["n_b"]
+    n_aa, n_ab, n_ba, n_bb = data["n_aa"], data["n_ab"], data["n_ba"], data["n_bb"]
+
+    targets = [
+        (cat1_a, cat2_a, n_aa), (cat1_a, cat2_b, n_ab),
+        (cat1_b, cat2_a, n_ba), (cat1_b, cat2_b, n_bb),
+    ]
+    target_cat1, target_cat2, answer = rng.choice(targets)
+
+    stage1 = [(cat1_a_short, ""), (cat1_b_short, "")]
+    stage2 = [[(cat2_a_short, ""), (cat2_b_short, "")], [(cat2_a_short, ""), (cat2_b_short, "")]]
+
+    steps = [
+        f"Number who {cat1_a} = {_frac_str(p1)} × {total} = {n_a}",
+        f"Number who {cat1_b} = {total} - {n_a} = {n_b}",
+        f"Of the {n_a} who {cat1_a}: number who {cat2_a} = {_frac_str(qa)} × {n_a} = {n_aa}, "
+        f"so number who {cat2_b} = {n_a} - {n_aa} = {n_ab}",
+        f"Of the {n_b} who {cat1_b}: number who {cat2_a} = {_frac_str(qb)} × {n_b} = {n_ba}, "
+        f"so number who {cat2_b} = {n_b} - {n_ba} = {n_bb}",
+    ]
+
+    return Question(
+        topic_id="frequency_tree_F",
+        tier=Tier.FOUNDATION,
+        prompt=_frequency_tree_prompt(data, target_cat1, target_cat2),
+        solution_steps=tuple(steps),
+        final_answer=str(answer),
+        dedup_key=f"freq_tree:{subject}:{total}:{p1}:{qa}:{qb}:{target_cat1}:{target_cat2}",
+        diagram=DiagramSpec(kind="frequency_tree", params={"root": str(total), "stage1": stage1, "stage2": stage2}),
+        solution_diagram=DiagramSpec(
+            kind="frequency_tree",
+            params={
+                "root": str(total),
+                "stage1": [(cat1_a_short, str(n_a)), (cat1_b_short, str(n_b))],
+                "stage2": [
+                    [(cat2_a_short, str(n_aa)), (cat2_b_short, str(n_ab))],
+                    [(cat2_a_short, str(n_ba)), (cat2_b_short, str(n_bb))],
+                ],
+            },
+        ),
+    )
+
+
+def generate_modelled_example_frequency_tree(tier: Tier, rng: random.Random) -> ModelledExample:
+    data = _build_frequency_tree(rng)
+    subject, cat1_a, cat1_b, cat1_a_short, cat1_b_short, cat2_a, cat2_b, cat2_a_short, cat2_b_short = data["ctx"]
+    total, p1, qa, qb = data["total"], data["p1"], data["qa"], data["qb"]
+    n_a, n_b = data["n_a"], data["n_b"]
+    n_aa, n_ab, n_ba, n_bb = data["n_aa"], data["n_ab"], data["n_ba"], data["n_bb"]
+
+    targets = [
+        (cat1_a, cat2_a, n_aa), (cat1_a, cat2_b, n_ab),
+        (cat1_b, cat2_a, n_ba), (cat1_b, cat2_b, n_bb),
+    ]
+    target_cat1, target_cat2, answer = rng.choice(targets)
+
+    worked_calculation = [
+        f"{_frac_str(p1)} × {total} = {n_a} {cat1_a}; {total} - {n_a} = {n_b} {cat1_b}",
+        f"{_frac_str(qa)} × {n_a} = {n_aa}; {_frac_str(qb)} × {n_b} = {n_ba}",
+        f"Answer: {answer}",
+    ]
+    teaching_steps = [
+        "A frequency tree splits a total into branches using RAW COUNTS at each oval, not probabilities - "
+        "start from the given total and work outwards, one split at a time.",
+        f"The first split covers all {total} {subject}: {_frac_str(p1)} of them {cat1_a}, so that branch's "
+        f"count is {_frac_str(p1)} × {total} = {n_a}. The other branch (those who {cat1_b}) must make up "
+        f"the rest of the total: {total} - {n_a} = {n_b}.",
+        f"Each of those two branches then splits again. Of the {n_a} who {cat1_a}, {_frac_str(qa)} {cat2_a}: "
+        f"{_frac_str(qa)} × {n_a} = {n_aa}, leaving {n_a} - {n_aa} = {n_ab} who {cat2_b}. Of the {n_b} who "
+        f"{cat1_b}, {_frac_str(qb)} {cat2_a}: {_frac_str(qb)} × {n_b} = {n_ba}, leaving {n_b} - {n_ba} = "
+        f"{n_bb} who {cat2_b}.",
+        f"Every path through the tree ends at one of the four right-hand ovals - to answer the question, "
+        f"read off the oval for {subject} who {target_cat1} and {target_cat2}: {answer}.",
+    ]
+
+    return ModelledExample(
+        topic_id="frequency_tree_F",
+        tier=Tier.FOUNDATION,
+        prompt=_frequency_tree_prompt(data, target_cat1, target_cat2),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=str(answer),
+        diagram=DiagramSpec(
+            kind="frequency_tree",
+            params={
+                "root": str(total),
+                "stage1": [(cat1_a_short, str(n_a)), (cat1_b_short, str(n_b))],
+                "stage2": [
+                    [(cat2_a_short, str(n_aa)), (cat2_b_short, str(n_ab))],
+                    [(cat2_a_short, str(n_ba)), (cat2_b_short, str(n_bb))],
+                ],
+            },
+        ),
+    )
 
 
 def _frac_str(f: Fraction) -> str:
@@ -739,4 +923,15 @@ TOPIC_TREE_MIXED = TopicDefinition(
     group=GROUP,
     fixed_tier=Tier.HIGHER,
     generate_modelled_example=generate_modelled_example_tree_diagram_mixed,
+)
+
+TOPIC_FREQUENCY_TREE = TopicDefinition(
+    id="frequency_tree_F",
+    display_name="Frequency Trees",
+    description="Complete a frequency tree from given fractions of a total, then read off a specific frequency.",
+    generate=generate_frequency_tree,
+    section=SECTION,
+    group=GROUP,
+    fixed_tier=Tier.FOUNDATION,
+    generate_modelled_example=generate_modelled_example_frequency_tree,
 )
