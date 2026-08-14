@@ -86,14 +86,15 @@ def test_bar_chart_construct_diagram_blank_and_solution_complete():
         assert q.solution_diagram.params["series"] == q.diagram.params["series"]
 
 
-def test_pie_chart_construct_has_a_blank_angle_table_and_a_solved_solution():
+def test_pie_chart_construct_has_a_blank_angle_table_plus_blank_circle_and_a_solved_solution():
     rng = random.Random(504)
     for _ in range(TRIALS):
         q = charts.generate_pie_chart_construct(Tier.FOUNDATION, rng)
+        # Question page: frequency table (blank Angle column) stacked above a
+        # blank circle for the student to draw their own pie chart onto.
         assert q.diagram is not None
-        assert q.diagram.kind == "two_way_table"
-        assert q.diagram.params["col_labels"] == ["Frequency", "Angle"]
-        assert all(row[1] == "" for row in q.diagram.params["cells"])
+        assert q.diagram.kind == "pie_chart_question"
+        assert q.diagram.params["categories"] and q.diagram.params["values"]
         assert q.solution_diagram is not None
         assert q.solution_diagram.kind == "pie_chart_with_table"
 

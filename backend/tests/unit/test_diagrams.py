@@ -726,3 +726,49 @@ def test_cumulative_frequency_starts_at_origin_with_square_cells():
     x_gaps = [round(b - a, 2) for a, b in zip(sorted(set(vlines)), sorted(set(vlines))[1:])]
     y_gaps = [round(b - a, 2) for a, b in zip(sorted(set(hlines)), sorted(set(hlines))[1:])]
     assert min(x_gaps) == pytest.approx(min(y_gaps), abs=0.5), "cumulative frequency cells not square"
+
+
+def test_pie_chart_marks_a_right_angle_wedge_with_a_square_not_an_arc():
+    from reportlab.graphics.shapes import ArcPath, Line, PolyLine
+
+    from app.pdf.diagrams import draw_pie_chart
+
+    # 90/270 split: the 90-degree wedge gets a right-angle square marker (a
+    # 3-point PolyLine) instead of an angle arc; the other (270-degree, not a
+    # right angle) wedge still gets a normal arc.
+    d = draw_pie_chart(params={"categories": ["A", "B"], "values": [1, 3]})
+    polylines = [s for s in d.contents if isinstance(s, PolyLine)]
+    arcs = [s for s in d.contents if isinstance(s, ArcPath)]
+    assert len(polylines) == 1  # the right-angle marker, not an arc
+    assert len(arcs) == 1  # the other wedge's own (non-right-angle) arc
+    # a centre cross (two short crossing lines) is always present
+    lines = [s for s in d.contents if isinstance(s, Line)]
+    assert len(lines) == 2
+
+
+def test_pie_chart_narrow_wedge_falls_back_to_a_combined_label():
+    from app.pdf.diagrams import draw_pie_chart
+
+    d = draw_pie_chart(params={"categories": ["A", "B", "C"], "values": [1, 1, 34]})
+    texts = []
+    for s in d.contents:
+        if hasattr(s, "contents"):
+            for c in s.contents:
+                if hasattr(c, "text"):
+                    texts.append(c.text)
+    # the two ~10-degree wedges are too narrow for a separate arc + name, so
+    # they fall back to one combined "Category (n°)" label
+    assert any("A (" in t for t in texts)
+    assert any("B (" in t for t in texts)
+
+
+def test_pie_chart_blank_draws_only_the_outline_start_radius_and_centre_cross():
+    from reportlab.graphics.shapes import Circle, Line, Wedge
+
+    from app.pdf.diagrams import draw_pie_chart
+
+    d = draw_pie_chart(params={"categories": ["A", "B"], "values": [1, 1], "blank": True})
+    assert len([s for s in d.contents if isinstance(s, Wedge)]) == 0
+    assert len([s for s in d.contents if isinstance(s, Circle)]) == 1
+    # the starting radius line + the two centre-cross lines
+    assert len([s for s in d.contents if isinstance(s, Line)]) == 3

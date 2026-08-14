@@ -25,11 +25,33 @@ scheme. The full chronology below still uses the *old* ids in its historical ent
 tier suffix if you go looking for one. See step 44 for the exact rename rule and how the
 migration was done safely.
 
-**CURRENT STATE:** **320 topics**, backend suite **1006/1006**, frontend **65/65**, all 60
+**CURRENT STATE:** **320 topics**, backend suite **1009/1009**, frontend **65/65**, all 60
 Practice Test papers exactly 100 marks. Steps 54-59 are all committed & pushed (steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`, step 58 in `dbda953`, step 59 + its two follow-ups in the latest commits).
 Practice Tests were deliberately NOT rebuilt in any of these steps (no existing diagram param
 SCHEMA changed - only optional new params, label positions, and prompt text, all backward-
 compatible). No known bugs.
+
+**Step 59 follow-up #4 (same session):** the pie chart diagram was redesigned per a user-supplied
+reference image, and applied to every pie chart in the app (`pie_chart_interpret_F`,
+`pie_chart_construct_F`). `draw_pie_chart` (`app/pdf/diagrams.py`): a wide-enough wedge now shows
+just the bare category name inside it (no more "Category (72°)" suffix) plus the angle shown
+separately near the hub - a small arc + degree number (`_swept_angle_arc`, radius 13, number at
+radius 22 so it clears the arc), or a right-angle square marker (`_right_angle_marker`, reused from
+the triangle/angle diagrams) when the wedge is exactly 90°; a genuinely narrow wedge (<35°) still
+falls back to the old combined "Category (72°)" label outside the circle, since there's no room for
+a separate arc there. A small centre cross (`_cross_marker`) always marks the hub, matching real exam
+diagrams. The category-name radius is pushed outward (via a `stringWidth`-based clearance, scaled by
+how horizontal the wedge's bisector is) whenever needed to keep the name clear of the degree number -
+found and fixed via real renders, the same "render and look closely" discipline as everywhere else in
+this file (a purely fixed radius left the name touching the number whenever a wedge's bisector pointed
+close to due-east/west). `draw_pie_chart` also gained `blank=True` (bare circle outline + one starting
+12-o'clock radius + the centre cross, no wedges) and a new `pie_chart_question` composite
+(`draw_pie_chart_question`: the Category/Frequency table, blank Angle column, stacked above the blank
+circle) - `pie_chart_construct_F`'s question page previously had NO circle at all for the student to
+draw on (just the table), the same class of bug already fixed for `scatter_graph_construct_F`. No
+frozen Practice Test paper uses any pie-chart diagram kind (confirmed via grep), so no backward-
+compatibility risk at all. +4 regression tests (right-angle marker vs arc, narrow-wedge fallback,
+blank mode, centre cross).
 
 **Step 59 follow-up #3 (same session):** `cumulative_frequency_interpret_H`/`_plot_H` - user flagged
 that real GCSE cumulative-frequency curves are smooth S-shaped ogives starting at the origin.

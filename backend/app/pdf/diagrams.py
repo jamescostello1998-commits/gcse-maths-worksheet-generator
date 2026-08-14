@@ -3466,17 +3466,33 @@ def draw_bar_chart(params: dict) -> Drawing:
 
 def draw_pie_chart(params: dict) -> Drawing:
     """A pie chart. params['categories']: list of slice names. params
-    ['values']: list of numbers (proportional to slice angle). Every wedge
-    is unfilled (no colour) and labelled with its own category name and
-    angle out of 360 (e.g. "Football (72°)") - real GCSE convention reads a
-    pie chart's angles directly, not a colour key, so no legend is drawn.
-    A label sits inside its wedge when there's room, otherwise just outside
-    the circle (mirroring draw_spinner's narrow-sector handling)."""
+    ['values']: list of numbers (proportional to slice angle). Every wedge is
+    unfilled (no colour) - real GCSE convention reads a pie chart directly,
+    not a colour key, so no legend is drawn. A wedge wide enough to hold both
+    gets its category name alone inside it (no degree number attached) plus
+    the angle shown separately near the hub - a small arc + degree number, or
+    a right-angle square marker when it's exactly 90 degrees (the standard
+    exam convention for labelling a pie-chart angle, matching how every other
+    angle diagram in this file marks a right angle). A wedge too narrow for
+    that combination falls back to a single combined "Category (72°)" label
+    just outside the circle (mirroring draw_spinner's narrow-sector
+    handling). A small centre cross marks the hub, matching real exam
+    diagrams (the point every angle is measured from). params['blank'] draws
+    just the bare circle - the outline, the centre cross, and one starting
+    radius at 12 o'clock (the real convention every angle is then measured
+    clockwise from) - for a 'construct this yourself' question."""
     categories: list = params["categories"]
     values: list = params["values"]
+    cx, cy, r = 100, 82, 62
+
+    if params.get("blank", False):
+        d = Drawing(230, 164)
+        d.add(Circle(cx, cy, r, fillColor=PAPER, strokeColor=INK, strokeWidth=0.8))
+        d.add(Line(cx, cy, cx, cy + r, strokeColor=INK, strokeWidth=0.8))
+        _cross_marker(d, cx, cy, size=2.5, width=0.9)
+        return d
 
     total = sum(values)
-    cx, cy, r = 100, 82, 62
     d = Drawing(230, 164)
 
     cumulative = 0.0
@@ -3489,16 +3505,34 @@ def draw_pie_chart(params: dict) -> Drawing:
         mid = math.radians((start + end) / 2)
         angle_span = end - start
         angle_deg = round(v / total * 360)
-        label_text = f"{categories[i]} ({angle_deg}°)"
 
         if angle_span >= 35:
-            lx, ly = cx + r * 0.62 * math.cos(mid), cy + r * 0.62 * math.sin(mid) - 3
-            d.add(_label(lx, ly, label_text, size=7))
+            # The name label's radius is pushed out further whenever its
+            # bisector points close to horizontal - text is drawn horizontal
+            # regardless of the bisector's own angle, so a near-horizontal
+            # bisector is the worst case for the name running into the
+            # degree number near the hub (a near-vertical bisector already
+            # separates them vertically for free).
+            number_r = 22
+            clearance = (stringWidth(categories[i], _LABEL_FONT, 7) / 2
+                         + stringWidth(f"{angle_deg}°", _LABEL_FONT, 6.5) / 2 + 4)
+            name_r = max(r * 0.62, min(r * 0.85, number_r + clearance * abs(math.cos(mid))))
+            lx, ly = cx + name_r * math.cos(mid), cy + name_r * math.sin(mid) - 3
+            d.add(_label(lx, ly, categories[i], size=7))
+            if angle_deg == 90:
+                p1 = (cx + math.cos(math.radians(start)), cy + math.sin(math.radians(start)))
+                p2 = (cx + math.cos(math.radians(end)), cy + math.sin(math.radians(end)))
+                d.add(_right_angle_marker((cx, cy), p1, p2, s=10))
+            else:
+                d.add(_swept_angle_arc(cx, cy, start, end, radius=13))
+                nx, ny = cx + number_r * math.cos(mid), cy + number_r * math.sin(mid) - 2
+                d.add(_label(nx, ny, f"{angle_deg}°", size=6.5))
         else:
             lx, ly = cx + (r + 14) * math.cos(mid), cy + (r + 14) * math.sin(mid) - 3
             anchor = "start" if math.cos(mid) >= 0 else "end"
-            d.add(_label(lx, ly, label_text, size=7, anchor=anchor))
+            d.add(_label(lx, ly, f"{categories[i]} ({angle_deg}°)", size=7, anchor=anchor))
 
+    _cross_marker(d, cx, cy, size=2.5, width=0.9)
     return d
 
 
@@ -3526,6 +3560,33 @@ def draw_pie_chart_with_table(params: dict) -> Drawing:
     pie.transform = (1, 0, 0, 1, 0, 0)
     d.add(pie)
     table.transform = (1, 0, 0, 1, 0, pie.height + gap)
+    d.add(table)
+    return d
+
+
+def draw_pie_chart_question(params: dict) -> Drawing:
+    """The question-page diagram for pie_chart_construct: the Category/
+    Frequency table (Angle column blank, to fill in) stacked above a BLANK
+    circle (outline + starting radius + centre cross, no wedges) for the
+    student to draw their own pie chart onto - mirrors
+    draw_scatter_graph_question / draw_cumulative_frequency_question."""
+    categories: list = params["categories"]
+    values: list = params["values"]
+
+    table = draw_two_way_table({
+        "row_labels": [str(c) for c in categories],
+        "col_labels": ["Frequency", "Angle"],
+        "cells": [[str(v), ""] for v in values],
+    })
+    circle = draw_pie_chart({"categories": categories, "values": values, "blank": True})
+
+    gap = 10
+    width = max(table.width, circle.width)
+    height = table.height + gap + circle.height
+    d = Drawing(width, height)
+    circle.transform = (1, 0, 0, 1, 0, 0)
+    d.add(circle)
+    table.transform = (1, 0, 0, 1, 0, circle.height + gap)
     d.add(table)
     return d
 
@@ -4980,6 +5041,7 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "bar_chart": draw_bar_chart,
     "pie_chart": draw_pie_chart,
     "pie_chart_with_table": draw_pie_chart_with_table,
+    "pie_chart_question": draw_pie_chart_question,
     "box_plot": draw_box_plot,
     "histogram": draw_histogram,
     "cumulative_frequency": draw_cumulative_frequency,

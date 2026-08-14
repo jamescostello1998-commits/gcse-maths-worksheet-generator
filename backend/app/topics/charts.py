@@ -330,11 +330,8 @@ def generate_pie_chart_construct(tier: Tier, rng: random.Random) -> Question:
         final_answer=final_answer,
         dedup_key=f"pie_construct:{categories}:{values}:{total}",
         diagram=DiagramSpec(
-            kind="two_way_table",
-            params={
-                "row_labels": [str(c) for c in categories], "col_labels": ["Frequency", "Angle"],
-                "cells": [[str(v), ""] for v in values],
-            },
+            kind="pie_chart_question",
+            params={"categories": categories, "values": values},
         ),
         solution_diagram=DiagramSpec(
             kind="pie_chart_with_table",
