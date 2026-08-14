@@ -795,3 +795,20 @@ def test_bar_chart_blank_omits_category_labels_but_keeps_them_when_solved():
     for cat in params["categories"]:
         assert cat not in blank_texts
         assert cat in solved_texts
+
+
+def test_two_way_table_corner_label_renders_when_given_but_stays_blank_otherwise():
+    from app.pdf.diagrams import draw_two_way_table
+
+    def texts(d):
+        return [c.text for s in d.contents if hasattr(s, "contents") for c in s.contents if hasattr(c, "text")]
+
+    with_label = draw_two_way_table(params={
+        "row_labels": ["0", "1"], "col_labels": ["Frequency"], "cells": [["3"], ["5"]],
+        "corner_label": "Number of pets",
+    })
+    without_label = draw_two_way_table(params={
+        "row_labels": ["0", "1"], "col_labels": ["Frequency"], "cells": [["3"], ["5"]],
+    })
+    assert "Number of pets" in texts(with_label)
+    assert "Number of pets" not in texts(without_label)

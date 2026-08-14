@@ -25,11 +25,28 @@ scheme. The full chronology below still uses the *old* ids in its historical ent
 tier suffix if you go looking for one. See step 44 for the exact rename rule and how the
 migration was done safely.
 
-**CURRENT STATE:** **320 topics**, backend suite **1010/1010**, frontend **65/65**, all 60
-Practice Test papers exactly 100 marks. Steps 54-59 are all committed & pushed (steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`, step 58 in `dbda953`, step 59 + its three follow-ups in the latest commits).
+**CURRENT STATE:** **320 topics**, backend suite **1013/1013**, frontend **65/65**, all 60
+Practice Test papers exactly 100 marks. Steps 54-59 are all committed & pushed (steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`, step 58 in `dbda953`, step 59 + its four follow-ups in the latest commits).
 Practice Tests were deliberately NOT rebuilt in any of these steps (no existing diagram param
 SCHEMA changed - only optional new params, label positions, and prompt text, all backward-
 compatible). No known bugs.
+
+**Step 59 follow-up #6 (same session):** `stats_range_frequency_table_F`, `stats_median_frequency_table_F`,
+`stats_mode_frequency_table_F`, `stats_mean_grouped_frequency_table_F`/`_H`, `stats_mean_frequency_table_F`
+- two issues. (1) The shared `_freq_table_diagram`/`_grouped_freq_table_diagram` helpers
+(`app/topics/statistics.py`) titled only the "Frequency" column, leaving the value/class column
+blank - `draw_two_way_table` (`app/pdf/diagrams.py`) gained an optional `corner_label` param
+(backward-compatible default `""`, every other `two_way_table` caller unaffected) rendered in the
+previously-always-blank top-left cell, and both helpers now take a `value_label` (e.g. "Number of
+pets", "Weight (kg)") passed through to it. (2) User correctly suspected these 6 topics had NO
+context variety at all - confirmed genuine, not just an unlucky single example: all 6 (12
+functions incl. modelled examples) had a single hardcoded prompt string ("Find the mean number of
+pets." / "...times taken by a group of runners..."). Added two context pools -
+`_SIMPLE_FREQ_CONTEXTS` (7 discrete-count phrases: pets, siblings, books read, text messages sent,
+goals scored, sick days taken, cars owned - shared by mean/mode/median/range_frequency_table) and
+`_GROUPED_FREQ_CONTEXTS` (4 (axis-label, description, quantity-word) tuples: time/weight/height/age
+- shared by both mean_grouped_frequency_table tiers) - wired into all 12 functions. +3 regression
+tests. No frozen-paper risk (none of the 6 topics appear in any Practice Test paper).
 
 **Step 59 follow-up #5 (same session):** `bar_chart_interpret_F`/`composite_bar_chart_F`/
 `bar_chart_construct_F` - user flagged the bar chart grid was "not square boxes again."

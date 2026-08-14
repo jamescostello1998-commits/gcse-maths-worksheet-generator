@@ -3030,16 +3030,25 @@ def draw_two_way_table(params: dict) -> Drawing:
     """A grid table with row_labels down the side and col_labels across the
     top (typically including a trailing 'Total' row/column), filled with
     params['cells'] (a row_labels x col_labels 2D list of strings; blank
-    entries render as empty cells for a 'complete the table' question)."""
+    entries render as empty cells for a 'complete the table' question).
+    params['corner_label'] (optional) titles the row-label column itself
+    (e.g. 'Number of pets') in the otherwise-blank top-left cell - so both
+    columns of a two-column value/frequency table are titled, not just the
+    'Frequency' one."""
     row_labels: list[str] = params["row_labels"]
     col_labels: list[str] = params["col_labels"]
     cells: list[list[str]] = params["cells"]
+    corner_label: str = params.get("corner_label", "")
 
     cell_w, cell_h = 44, 22
-    # Wide enough for the longest row label (e.g. "Weekly sales (£1000s)"),
-    # not just the original fixed 66 - a label longer than that was
-    # overflowing straight through the header/first cell border.
-    header_w = max(66.0, max((stringWidth(str(rl), _LABEL_FONT, 7.5) for rl in row_labels), default=0) + 10)
+    # Wide enough for the longest row label (e.g. "Weekly sales (£1000s)")
+    # AND the corner label, not just the original fixed 66 - a label longer
+    # than that was overflowing straight through the header/first cell border.
+    header_w = max(
+        66.0,
+        max((stringWidth(str(rl), _LABEL_FONT, 7.5) for rl in row_labels), default=0) + 10,
+        stringWidth(corner_label, _LABEL_FONT, 7.5) + 10,
+    )
     n_rows, n_cols = len(row_labels), len(col_labels)
     width = header_w + cell_w * n_cols
     height = cell_h * (n_rows + 1)
@@ -3047,6 +3056,8 @@ def draw_two_way_table(params: dict) -> Drawing:
 
     top_y = height - cell_h
     d.add(Rect(0, top_y, header_w, cell_h, strokeColor=INK, fillColor=None, strokeWidth=0.8))
+    if corner_label:
+        d.add(_label(header_w / 2, top_y + cell_h / 2 - 3, corner_label, size=7.5))
     for j, col_label in enumerate(col_labels):
         x0 = header_w + j * cell_w
         d.add(Rect(x0, top_y, cell_w, cell_h, strokeColor=INK, fillColor=None, strokeWidth=0.8))

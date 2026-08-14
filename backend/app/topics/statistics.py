@@ -8,17 +8,22 @@ from app.topics.number_format import fmt_money
 from app.topics.number_format import num_word as _num_word
 
 
-def _freq_table_diagram(values: list, frequencies: list) -> DiagramSpec:
+def _freq_table_diagram(values: list, frequencies: list, value_label: str = "Value") -> DiagramSpec:
     """A simple value/frequency table, reusing the generic two-column
     two_way_table renderer (one row per value, a single 'Frequency'
-    column) - replaces the old prose listing with a real rendered table."""
+    column) - replaces the old prose listing with a real rendered table.
+    `value_label` titles the value column itself (e.g. 'Number of pets'),
+    so both columns are titled, not just 'Frequency'."""
     return DiagramSpec(
         kind="two_way_table",
-        params={"row_labels": [str(v) for v in values], "col_labels": ["Frequency"], "cells": [[str(f)] for f in frequencies]},
+        params={
+            "row_labels": [str(v) for v in values], "col_labels": ["Frequency"],
+            "cells": [[str(f)] for f in frequencies], "corner_label": value_label,
+        },
     )
 
 
-def _grouped_freq_table_diagram(classes: list, frequencies: list) -> DiagramSpec:
+def _grouped_freq_table_diagram(classes: list, frequencies: list, value_label: str = "Value") -> DiagramSpec:
     """Same as `_freq_table_diagram` but for grouped/class-interval data -
     each row is a class range string (e.g. "10-19") rather than a single
     value."""
@@ -26,9 +31,32 @@ def _grouped_freq_table_diagram(classes: list, frequencies: list) -> DiagramSpec
         kind="two_way_table",
         params={
             "row_labels": [f"{lo}-{hi}" for lo, hi in classes], "col_labels": ["Frequency"],
-            "cells": [[str(f)] for f in frequencies],
+            "cells": [[str(f)] for f in frequencies], "corner_label": value_label,
         },
     )
+
+
+# Contexts for the plain (ungrouped) value/frequency-table topics
+# (mean/mode/median/range_frequency_table) - a small discrete count that
+# reads naturally as "number of {phrase}", so the same prompt template and
+# table column header ("Number of {phrase}") work for every context without
+# further wording changes. Previously these 4 topics were hardcoded to
+# "pets" only (real user report - not just an unlucky single example).
+_SIMPLE_FREQ_CONTEXTS = [
+    "pets", "siblings", "books read", "text messages sent", "goals scored",
+    "sick days taken", "cars owned",
+]
+
+# Contexts for the grouped (class-interval) mean topic
+# (mean_grouped_frequency_table, F+H) - (axis/column label, prompt
+# description, bare quantity word for "the mean {word}"). Previously
+# hardcoded to "times taken by a group of runners" only.
+_GROUPED_FREQ_CONTEXTS = [
+    ("Time (minutes)", "the times (in minutes) taken by a group of runners", "time"),
+    ("Weight (kg)", "the weights (in kg) of a group of parcels", "weight"),
+    ("Height (cm)", "the heights (in cm) of a group of plants", "height"),
+    ("Age (years)", "the ages (in years) of visitors to a museum", "age"),
+]
 
 SECTION = "statistics"
 GROUP_AVERAGES = "Averages from a List"
@@ -531,6 +559,7 @@ def generate_modelled_example_interquartile_range(tier: Tier, rng: random.Random
 
 
 def generate_mean_frequency_table(tier: Tier, rng: random.Random) -> Question:
+    context = rng.choice(_SIMPLE_FREQ_CONTEXTS)
     n_values = rng.randint(4, 6)
     values = list(range(n_values))
     frequencies = [rng.randint(2, 10) for _ in values]
@@ -552,15 +581,16 @@ def generate_mean_frequency_table(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="stats_mean_frequency_table_F",
         tier=Tier.FOUNDATION,
-        prompt="Find the mean number of pets.",
+        prompt=f"Find the mean number of {context}.",
         solution_steps=tuple(steps),
         final_answer=fmt_money(mean),
-        dedup_key=f"freq_table:{values}:{frequencies}",
-        diagram=_freq_table_diagram(values, frequencies),
+        dedup_key=f"freq_table:{context}:{values}:{frequencies}",
+        diagram=_freq_table_diagram(values, frequencies, f"Number of {context}"),
     )
 
 
 def generate_modelled_example_mean_frequency_table(tier: Tier, rng: random.Random) -> ModelledExample:
+    context = rng.choice(_SIMPLE_FREQ_CONTEXTS)
     n_values = rng.randint(4, 6)
     values = list(range(n_values))
     frequencies = [rng.randint(2, 10) for _ in values]
@@ -595,15 +625,16 @@ def generate_modelled_example_mean_frequency_table(tier: Tier, rng: random.Rando
     return ModelledExample(
         topic_id="stats_mean_frequency_table_F",
         tier=Tier.FOUNDATION,
-        prompt="Find the mean number of pets.",
+        prompt=f"Find the mean number of {context}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=fmt_money(mean),
-        diagram=_freq_table_diagram(values, frequencies),
+        diagram=_freq_table_diagram(values, frequencies, f"Number of {context}"),
     )
 
 
 def generate_mean_grouped_frequency_table(tier: Tier, rng: random.Random) -> Question:
+    x_label, context_desc, quantity_word = rng.choice(_GROUPED_FREQ_CONTEXTS)
     n_classes = rng.randint(4, 5)
     class_width = rng.choice([10, 20])
     start = rng.choice([0, 10, 20])
@@ -632,15 +663,16 @@ def generate_mean_grouped_frequency_table(tier: Tier, rng: random.Random) -> Que
     return Question(
         topic_id="stats_mean_grouped_frequency_table_H",
         tier=Tier.HIGHER,
-        prompt="The table shows the times (in minutes) taken by a group of runners. Find an estimate of the mean time.",
+        prompt=f"The table shows {context_desc}. Find an estimate of the mean {quantity_word}.",
         solution_steps=tuple(steps),
         final_answer=f"≈ {fmt_money(mean)}",
-        dedup_key=f"grouped_freq:{classes}:{frequencies}",
-        diagram=_grouped_freq_table_diagram(classes, frequencies),
+        dedup_key=f"grouped_freq:{x_label}:{classes}:{frequencies}",
+        diagram=_grouped_freq_table_diagram(classes, frequencies, x_label),
     )
 
 
 def generate_modelled_example_mean_grouped_frequency_table(tier: Tier, rng: random.Random) -> ModelledExample:
+    x_label, context_desc, quantity_word = rng.choice(_GROUPED_FREQ_CONTEXTS)
     n_classes = rng.randint(4, 5)
     class_width = rng.choice([10, 20])
     start = rng.choice([0, 10, 20])
@@ -682,15 +714,16 @@ def generate_modelled_example_mean_grouped_frequency_table(tier: Tier, rng: rand
     return ModelledExample(
         topic_id="stats_mean_grouped_frequency_table_H",
         tier=Tier.HIGHER,
-        prompt="The table shows the times (in minutes) taken by a group of runners. Find an estimate of the mean time.",
+        prompt=f"The table shows {context_desc}. Find an estimate of the mean {quantity_word}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"≈ {fmt_money(mean)}",
-        diagram=_grouped_freq_table_diagram(classes, frequencies),
+        diagram=_grouped_freq_table_diagram(classes, frequencies, x_label),
     )
 
 
 def generate_mean_grouped_frequency_table_foundation(tier: Tier, rng: random.Random) -> Question:
+    x_label, context_desc, quantity_word = rng.choice(_GROUPED_FREQ_CONTEXTS)
     n_classes = 3
     class_width = 10
     start = 0
@@ -717,17 +750,18 @@ def generate_mean_grouped_frequency_table_foundation(tier: Tier, rng: random.Ran
     return Question(
         topic_id="stats_mean_grouped_frequency_table_F",
         tier=Tier.FOUNDATION,
-        prompt="The table shows the times (in minutes) taken by a group of runners. Find an estimate of the mean time.",
+        prompt=f"The table shows {context_desc}. Find an estimate of the mean {quantity_word}.",
         solution_steps=tuple(steps),
         final_answer=f"≈ {fmt_money(mean)}",
-        dedup_key=f"grouped_freq_f:{frequencies}",
-        diagram=_grouped_freq_table_diagram(classes, frequencies),
+        dedup_key=f"grouped_freq_f:{x_label}:{frequencies}",
+        diagram=_grouped_freq_table_diagram(classes, frequencies, x_label),
     )
 
 
 def generate_modelled_example_mean_grouped_frequency_table_foundation(
     tier: Tier, rng: random.Random
 ) -> ModelledExample:
+    x_label, context_desc, quantity_word = rng.choice(_GROUPED_FREQ_CONTEXTS)
     n_classes = 3
     class_width = 10
     start = 0
@@ -769,11 +803,11 @@ def generate_modelled_example_mean_grouped_frequency_table_foundation(
     return ModelledExample(
         topic_id="stats_mean_grouped_frequency_table_F",
         tier=Tier.FOUNDATION,
-        prompt="The table shows the times (in minutes) taken by a group of runners. Find an estimate of the mean time.",
+        prompt=f"The table shows {context_desc}. Find an estimate of the mean {quantity_word}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=f"≈ {fmt_money(mean)}",
-        diagram=_grouped_freq_table_diagram(classes, frequencies),
+        diagram=_grouped_freq_table_diagram(classes, frequencies, x_label),
     )
 
 
@@ -789,6 +823,7 @@ def _random_frequency_table(rng: random.Random) -> tuple[list[int], list[int]]:
 
 
 def generate_mode_frequency_table(tier: Tier, rng: random.Random) -> Question:
+    context = rng.choice(_SIMPLE_FREQ_CONTEXTS)
     for _ in range(200):
         values, frequencies = _random_frequency_table(rng)
         max_freq = max(frequencies)
@@ -813,15 +848,16 @@ def generate_mode_frequency_table(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="stats_mode_frequency_table_F",
         tier=Tier.FOUNDATION,
-        prompt="Find the modal number of pets.",
+        prompt=f"Find the modal number of {context}.",
         solution_steps=tuple(steps),
         final_answer=str(modal_value),
-        dedup_key=f"mode_freq:{values}:{frequencies}",
-        diagram=_freq_table_diagram(values, frequencies),
+        dedup_key=f"mode_freq:{context}:{values}:{frequencies}",
+        diagram=_freq_table_diagram(values, frequencies, f"Number of {context}"),
     )
 
 
 def generate_modelled_example_mode_frequency_table(tier: Tier, rng: random.Random) -> ModelledExample:
+    context = rng.choice(_SIMPLE_FREQ_CONTEXTS)
     for _ in range(200):
         values, frequencies = _random_frequency_table(rng)
         max_freq = max(frequencies)
@@ -852,15 +888,16 @@ def generate_modelled_example_mode_frequency_table(tier: Tier, rng: random.Rando
     return ModelledExample(
         topic_id="stats_mode_frequency_table_F",
         tier=Tier.FOUNDATION,
-        prompt="Find the modal number of pets.",
+        prompt=f"Find the modal number of {context}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=str(modal_value),
-        diagram=_freq_table_diagram(values, frequencies),
+        diagram=_freq_table_diagram(values, frequencies, f"Number of {context}"),
     )
 
 
 def generate_median_frequency_table(tier: Tier, rng: random.Random) -> Question:
+    context = rng.choice(_SIMPLE_FREQ_CONTEXTS)
     values, frequencies = _random_frequency_table(rng)
     flat = [v for v, f in zip(values, frequencies) for _ in range(f)]
     flat_sorted = sorted(flat)
@@ -883,15 +920,16 @@ def generate_median_frequency_table(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="stats_median_frequency_table_F",
         tier=Tier.FOUNDATION,
-        prompt="Find the median number of pets.",
+        prompt=f"Find the median number of {context}.",
         solution_steps=tuple(steps),
         final_answer=fmt_money(median),
-        dedup_key=f"median_freq:{values}:{frequencies}",
-        diagram=_freq_table_diagram(values, frequencies),
+        dedup_key=f"median_freq:{context}:{values}:{frequencies}",
+        diagram=_freq_table_diagram(values, frequencies, f"Number of {context}"),
     )
 
 
 def generate_modelled_example_median_frequency_table(tier: Tier, rng: random.Random) -> ModelledExample:
+    context = rng.choice(_SIMPLE_FREQ_CONTEXTS)
     values, frequencies = _random_frequency_table(rng)
     flat = [v for v, f in zip(values, frequencies) for _ in range(f)]
     flat_sorted = sorted(flat)
@@ -921,15 +959,16 @@ def generate_modelled_example_median_frequency_table(tier: Tier, rng: random.Ran
     return ModelledExample(
         topic_id="stats_median_frequency_table_F",
         tier=Tier.FOUNDATION,
-        prompt="Find the median number of pets.",
+        prompt=f"Find the median number of {context}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=fmt_money(median),
-        diagram=_freq_table_diagram(values, frequencies),
+        diagram=_freq_table_diagram(values, frequencies, f"Number of {context}"),
     )
 
 
 def generate_range_frequency_table(tier: Tier, rng: random.Random) -> Question:
+    context = rng.choice(_SIMPLE_FREQ_CONTEXTS)
     values, frequencies = _random_frequency_table(rng)
     data_range = values[-1] - values[0]
 
@@ -949,15 +988,16 @@ def generate_range_frequency_table(tier: Tier, rng: random.Random) -> Question:
     return Question(
         topic_id="stats_range_frequency_table_F",
         tier=Tier.FOUNDATION,
-        prompt="Find the range of the number of pets.",
+        prompt=f"Find the range of the number of {context}.",
         solution_steps=tuple(steps),
         final_answer=str(data_range),
-        dedup_key=f"range_freq:{values}:{frequencies}",
-        diagram=_freq_table_diagram(values, frequencies),
+        dedup_key=f"range_freq:{context}:{values}:{frequencies}",
+        diagram=_freq_table_diagram(values, frequencies, f"Number of {context}"),
     )
 
 
 def generate_modelled_example_range_frequency_table(tier: Tier, rng: random.Random) -> ModelledExample:
+    context = rng.choice(_SIMPLE_FREQ_CONTEXTS)
     values, frequencies = _random_frequency_table(rng)
     data_range = values[-1] - values[0]
 
@@ -982,11 +1022,11 @@ def generate_modelled_example_range_frequency_table(tier: Tier, rng: random.Rand
     return ModelledExample(
         topic_id="stats_range_frequency_table_F",
         tier=Tier.FOUNDATION,
-        prompt="Find the range of the number of pets.",
+        prompt=f"Find the range of the number of {context}.",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=str(data_range),
-        diagram=_freq_table_diagram(values, frequencies),
+        diagram=_freq_table_diagram(values, frequencies, f"Number of {context}"),
     )
 
 

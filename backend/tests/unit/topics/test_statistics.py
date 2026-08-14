@@ -243,3 +243,31 @@ def test_modelled_example_reverse_mean_foundation_produces_verified_examples():
         assert len(example.worked_calculation) >= 2
         assert len(example.teaching_steps) >= 3
         assert example.final_answer
+
+
+def test_frequency_table_topics_vary_their_context_not_just_pets():
+    # Real user report: these 6 topics were always "pets"/"runners" - no
+    # context pool at all. Confirm genuine variety now exists.
+    generators = [
+        stats_topic.generate_mean_frequency_table,
+        stats_topic.generate_mode_frequency_table,
+        stats_topic.generate_median_frequency_table,
+        stats_topic.generate_range_frequency_table,
+    ]
+    rng = random.Random(3001)
+    prompts = {gen.__name__: {gen(Tier.FOUNDATION, rng).prompt for _ in range(40)} for gen in generators}
+    for name, seen in prompts.items():
+        assert len(seen) > 1, f"{name} produced only one distinct prompt across 40 trials"
+
+    rng2 = random.Random(3002)
+    grouped_prompts = {stats_topic.generate_mean_grouped_frequency_table(Tier.HIGHER, rng2).prompt for _ in range(40)}
+    assert len(grouped_prompts) > 1
+
+
+def test_frequency_table_diagrams_have_a_titled_value_column():
+    rng = random.Random(3003)
+    q = stats_topic.generate_mean_frequency_table(Tier.FOUNDATION, rng)
+    assert q.diagram.params["corner_label"].startswith("Number of ")
+    rng2 = random.Random(3004)
+    q2 = stats_topic.generate_mean_grouped_frequency_table(Tier.HIGHER, rng2)
+    assert q2.diagram.params["corner_label"]
