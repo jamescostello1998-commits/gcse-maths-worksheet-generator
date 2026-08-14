@@ -26,90 +26,13 @@ tier suffix if you go looking for one. See step 44 for the exact rename rule and
 migration was done safely.
 
 **CURRENT STATE:** **320 topics**, backend suite **1013/1013**, frontend **65/65**, all 60
-Practice Test papers exactly 100 marks. Steps 54-59 are all committed & pushed (steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`, step 58 in `dbda953`, step 59 + its four follow-ups in the latest commits).
-Practice Tests were deliberately NOT rebuilt in any of these steps (no existing diagram param
-SCHEMA changed - only optional new params, label positions, and prompt text, all backward-
-compatible). No known bugs.
-
-**Step 59 follow-up #6 (same session):** `stats_range_frequency_table_F`, `stats_median_frequency_table_F`,
-`stats_mode_frequency_table_F`, `stats_mean_grouped_frequency_table_F`/`_H`, `stats_mean_frequency_table_F`
-- two issues. (1) The shared `_freq_table_diagram`/`_grouped_freq_table_diagram` helpers
-(`app/topics/statistics.py`) titled only the "Frequency" column, leaving the value/class column
-blank - `draw_two_way_table` (`app/pdf/diagrams.py`) gained an optional `corner_label` param
-(backward-compatible default `""`, every other `two_way_table` caller unaffected) rendered in the
-previously-always-blank top-left cell, and both helpers now take a `value_label` (e.g. "Number of
-pets", "Weight (kg)") passed through to it. (2) User correctly suspected these 6 topics had NO
-context variety at all - confirmed genuine, not just an unlucky single example: all 6 (12
-functions incl. modelled examples) had a single hardcoded prompt string ("Find the mean number of
-pets." / "...times taken by a group of runners..."). Added two context pools -
-`_SIMPLE_FREQ_CONTEXTS` (7 discrete-count phrases: pets, siblings, books read, text messages sent,
-goals scored, sick days taken, cars owned - shared by mean/mode/median/range_frequency_table) and
-`_GROUPED_FREQ_CONTEXTS` (4 (axis-label, description, quantity-word) tuples: time/weight/height/age
-- shared by both mean_grouped_frequency_table tiers) - wired into all 12 functions. +3 regression
-tests. No frozen-paper risk (none of the 6 topics appear in any Practice Test paper).
-
-**Step 59 follow-up #5 (same session):** `bar_chart_interpret_F`/`composite_bar_chart_F`/
-`bar_chart_construct_F` - user flagged the bar chart grid was "not square boxes again."
-`draw_bar_chart` (`app/pdf/diagrams.py`) previously routed through the shared
-`_draw_stats_axes(square_grid=True)` path, which scales the categorical x-axis (0..n, no real
-units) and the real numeric y-axis completely independently - genuinely rectangular cells (and
-in practice barely any visible vertical lines at all, since `_nice_tick_step(0, n)` for a small n
-gives only 1 line per category). Fixed by computing the square size purely from the y-axis's own
-nice minor step (the only axis with real numeric meaning) and repeating that SAME pixel spacing
-across x as pure squared-paper texture via the existing `_grid_lines` helper (already used by
-`_draw_scaled_axes`) - category positions/widths are unrelated to this background, it's just
-uniform graph paper underneath. Verified square in both a fine-minor case (bar_chart_interpret,
-y_minor=1) and a major-only case (composite_bar_chart, y_max=35 -> y_minor falls back to the
-major step itself, still square, just bigger cells) via a real rendered zoom. **Follow-up in the
-same reply**: user liked the interpret/composite fix but asked for the CONSTRUCT (blank,
-draw-your-own) grid to drop its x-axis category labels entirely, so the student decides bar
-position/width themselves - confirmed safe since `bar_chart_construct_F`'s prompt already states
-every category+value as text (`"Red: 11, Blue: 10, ..."`), the diagram is a pure drawing surface.
-`draw_bar_chart` now only draws category labels when `not blank` (the solution/interpret/
-composite charts are unaffected, still labelled). +2 regression tests. No frozen-paper rebuild
-needed (2 papers use `bar_chart`, both confirmed still render - no schema change, rendering only).
-
-**Step 59 follow-up #4 (same session):** the pie chart diagram was redesigned per a user-supplied
-reference image, and applied to every pie chart in the app (`pie_chart_interpret_F`,
-`pie_chart_construct_F`). `draw_pie_chart` (`app/pdf/diagrams.py`): a wide-enough wedge now shows
-just the bare category name inside it (no more "Category (72°)" suffix) plus the angle shown
-separately near the hub - a small arc + degree number (`_swept_angle_arc`, radius 13, number at
-radius 22 so it clears the arc), or a right-angle square marker (`_right_angle_marker`, reused from
-the triangle/angle diagrams) when the wedge is exactly 90°; a genuinely narrow wedge (<35°) still
-falls back to the old combined "Category (72°)" label outside the circle, since there's no room for
-a separate arc there. A small centre cross (`_cross_marker`) always marks the hub, matching real exam
-diagrams. The category-name radius is pushed outward (via a `stringWidth`-based clearance, scaled by
-how horizontal the wedge's bisector is) whenever needed to keep the name clear of the degree number -
-found and fixed via real renders, the same "render and look closely" discipline as everywhere else in
-this file (a purely fixed radius left the name touching the number whenever a wedge's bisector pointed
-close to due-east/west). `draw_pie_chart` also gained `blank=True` (bare circle outline + one starting
-12-o'clock radius + the centre cross, no wedges) and a new `pie_chart_question` composite
-(`draw_pie_chart_question`: the Category/Frequency table, blank Angle column, stacked above the blank
-circle) - `pie_chart_construct_F`'s question page previously had NO circle at all for the student to
-draw on (just the table), the same class of bug already fixed for `scatter_graph_construct_F`. No
-frozen Practice Test paper uses any pie-chart diagram kind (confirmed via grep), so no backward-
-compatibility risk at all. +4 regression tests (right-angle marker vs arc, narrow-wedge fallback,
-blank mode, centre cross).
-
-**Step 59 follow-up #3 (same session):** `cumulative_frequency_interpret_H`/`_plot_H` - user flagged
-that real GCSE cumulative-frequency curves are smooth S-shaped ogives starting at the origin.
-`app/topics/cumulative_frequency.py`'s `_random_grouped_table` had two bugs: the first class boundary
-was randomly 0/10/20 (curve often didn't touch the origin at all) and frequencies were fully
-independent-random per class (could zigzag - rise, fall, rise again - instead of forming a proper
-S-curve). Fixed: boundaries always start at 0; frequencies now come from a `_bell_shaped_frequencies`
-helper (a fixed unimodal base shape × a random scale + light per-class jitter, peak always interior)
-so the cumulative sum is always a genuine unimodal S-curve. +1 regression test.
-
-**Step 59 follow-up (done, same session):** the user then asked to **square the numeric-numeric
-stats charts too** (cumulative frequency, scatter, time series) and for **cumulative frequency to
-start from (0,0)**. Built a `square_cells=True` mode on `_draw_stats_axes` (nice major step per
-axis + one shared px-per-square + shared minor subdivision, centred - the same square-cell math as
-`_draw_scaled_axes`, but WITHOUT its origin-clamp since a scatter/time-series y-axis is legitimately
-truncated) and wired it into `draw_cumulative_frequency`/`draw_scatter_graph`/`draw_time_series`;
-`draw_cumulative_frequency` now forces `x_min=0` (origin shown; the curve still begins at the first
-class boundary). **bar/box deliberately keep the rectangular `square_grid`** (one axis is
-categorical). Backward-compatible (no schema change - a frozen paper with CF+scatter still renders,
-verified). +1 regression test. See step 59's chronology entry tail.
+Practice Test papers exactly 100 marks. Steps 54-59 are all committed & pushed (steps 54-56 in
+`c6cce8f`, step 57 in `9ba81d8`, step 58 in `dbda953`, step 59 across seven commits ending
+`91048ec`). Practice Tests were deliberately NOT rebuilt in any of these steps (no existing
+diagram param SCHEMA changed - only optional new params, label positions, and prompt text, all
+backward-compatible). No known bugs. **The review queue is empty** - every item the user sent as
+of the last session has been fixed, verified, and committed; the next session starts by asking the
+user for the next batch (see "Next natural step" below).
 
 **What the recent sessions did — an ongoing aesthetic-review process (steps 34-59).** The user
 works through the two `all_topics_review_*.pdf` documents and sends feedback, mostly as per-topic
@@ -141,34 +64,54 @@ items (occasionally by page range). Steps 34-53 are in the chronology; the most 
   squares. Also fixed the old clipped axis labels. +1 regression test (density ≡ 0.2 multiple).
   Suite 1000 → 1001. No practice-test rebuild (no frozen paper uses a histogram topic; param
   schema unchanged).
-- **Step 59** — a whole-app **graph review** (all coordinate/plotting graphs + stats charts). The
-  algebra graph engine (`_draw_scaled_axes`) was reworked so every grid cell is a **true square**
-  (never a rectangle — user's emphatic instruction): nice major step per axis + one shared
-  pixel-per-square + a shared minor subdivision, so a lopsided range (steep line, cubic, 0-360 trig)
-  is absorbed by a bigger major step instead of stretching cells, and a fine minor grid means every
-  plotted/read value lands on a line. The **flat-cap clamp bug** was fixed (curves now clipped
-  cleanly at the window via `_clip_curve_segments`, not drawn flat). **Axis titles** no longer clip:
-  long y-titles rotate vertically up the axis (`_vertical_label`), x-titles centre below - applied
-  to both `_draw_scaled_axes` and `_draw_stats_axes`. Stats: **cumulative-frequency & box-plot grids
-  made finer** (`_grid_minor_step` divisor). User chose **compact** size (square cells, current
-  footprint) and **different units per axis OK** (square pixels, e.g. trig 10°×0.2). +3 regression
-  tests. Suite 1001 → 1004. No practice-test rebuild (rendering-only, no schema change - verified a
-  frozen paper with function_graph+piecewise still renders). See the deferred stats-square note above.
+- **Step 59** — a whole-app **graph review**, the largest single step in the review arc, done across
+  seven commits in one long session (full blow-by-blow in the chronology entry below; this is the
+  short version). (1) The algebra graph engine (`_draw_scaled_axes`) was reworked so every grid cell
+  is a **true square** (never a rectangle — user's emphatic instruction): nice major step per axis +
+  one shared pixel-per-square + a shared minor subdivision, so a lopsided range (steep line, cubic,
+  0-360 trig) is absorbed by a bigger major step instead of stretching cells. The **flat-cap clamp
+  bug** was fixed (curves clipped cleanly via `_clip_curve_segments`, not drawn flat). **Axis titles**
+  no longer clip (rotated y-titles, centred x-titles) in both `_draw_scaled_axes` and
+  `_draw_stats_axes`; CF/box-plot grids made finer. (2) Follow-up: the numeric-numeric stats charts
+  (cumulative frequency, scatter, time series) squared too via a new `square_cells` mode on
+  `_draw_stats_axes`, and cumulative frequency forced to start its x-axis at (0,0) — **bar/box
+  deliberately kept their rectangular grid** (categorical axis). (3) Follow-up: `scatter_graph_
+  construct_F` gained a blank labelled grid to draw on (previously just a table); the rotated y-title
+  now hugs the axis instead of sitting at a fixed far-left offset. (4) Follow-up: cumulative frequency
+  generators fixed to always start at 0 with a genuinely unimodal (bell-shaped) frequency
+  distribution, so the curve is a real smooth S-shaped ogive, not an arbitrary zigzag. (5) Follow-up:
+  every pie chart redesigned per a user reference image — bare category name inside the wedge, angle
+  shown via a small arc + degree number (or a right-angle square marker at exactly 90°), a centre
+  cross, and `pie_chart_construct_F` gained a blank circle to draw on (previously no circle at all).
+  (6) Follow-up: bar charts (`bar_chart_interpret_F`/`composite_bar_chart_F`/`bar_chart_construct_F`)
+  squared the same way as the algebra engine (square size derived from the y-axis's own nice step,
+  repeated across x as texture), and the CONSTRUCT (blank) grid drops its category labels entirely so
+  the student decides bar position/width themselves. (7) Follow-up: 6 frequency-table topics
+  (`stats_*_frequency_table_F`/`_H`) got a titled value column (`draw_two_way_table`'s new
+  `corner_label`) and real context variety (two new shared context pools) — previously hardcoded to
+  "pets"/"a group of runners" with zero variety, a real bug not just an unlucky example. Suite
+  1001 → 1013 across the seven commits, in order: `f30e29b` (main square-cell rework), `56f583e`
+  (stats squares), `4d5def9` (scatter blank grid + label hug), `04563e9` (CF S-curve), `7e59f78`
+  (pie chart redesign), `5122df1` (bar chart squares + blank-grid labels), `91048ec` (frequency
+  table headers + context variety). No practice-test rebuild needed at any point (all rendering-only
+  or affecting topics absent from every frozen paper).
 
-See chronology steps 54-59 for the full technical detail on each.
+See chronology step 59 (and its numbered follow-up sub-entries) for the full technical detail.
 
-**Next natural step (if the user returns to the review):** the next chunk of review feedback (the
-review is NOT confirmed finished — steps 49-57 were per-topic items the user sent directly rather
-than page ranges, so expect either those or another page range; they may equally have a new
-one-off feature in mind, as steps 45-46 were). The review workflow each batch: read the named
-items → fix them (render REAL PDFs to verify diagram/overlap
-fixes; don't trust unit tests for visual issues) → if a topic count changed, bump the four
-`== N` assertions (`test_routes.py` ×2, `test_modelled_example_renderer.py`,
-`test_worksheet_builder.py`) and the per-section table below → if any diagram param SCHEMA
-changed, rebuild the 60 Practice Test papers (`python -m app.practice_tests.build`, from
-`backend/`) and confirm all 100 marks → full `pytest` → regenerate + send both
-`all_topics_review_*.pdf` (`python -m scripts.generate_review_pdfs`) → commit+push. If there's
-ever a gap with no pending review feedback, see "Ideas for a future session" (bottom of file).
+**Next natural step:** ask the user for the next chunk of review feedback (the review is NOT
+confirmed finished — recent batches have been per-topic items the user sends directly, sometimes
+several in one message, occasionally a page range; they may equally have a new one-off feature in
+mind, as steps 45-46 were). The review workflow each batch: read the named items → fix them (render
+REAL PDFs to verify diagram/overlap fixes; don't trust unit tests for visual issues — show the
+user a before/after render when a fix is non-trivial, per this session's pattern) → if a topic count
+changed, bump the four `== N` assertions (`test_routes.py` ×2, `test_modelled_example_renderer.py`,
+`test_worksheet_builder.py`) and the per-section table below → if any diagram param SCHEMA changed,
+rebuild the 60 Practice Test papers (`python -m app.practice_tests.build`, from `backend/`) and
+confirm all 100 marks → full `pytest` → regenerate + send both `all_topics_review_*.pdf`
+(`python -m scripts.generate_review_pdfs`) → commit+push (one commit per logical fix is fine, or
+per user reply if several land in one message — this session made seven separate commits for step
+59 alone, and that granularity worked well for reviewability). If there's ever a gap with no
+pending review feedback, see "Ideas for a future session" (bottom of file).
 
 *(Historical note: chronology steps 34-46 were merged to `master` long ago — the old PR #3 /
 `aqa-spec-gap-topics` branch is deleted, and the diagram-scale-overhaul (step 47) is also
@@ -4723,6 +4666,69 @@ fixes), is committed and pushed (see `git log`).
     of the widest y-number (`ax0 - stringWidth(...)`), hugging the axis wherever the plot centres;
     the x-title also centres on the real plot area, not the full box. Both fixes apply to CF/scatter/
     time-series. Test updated (construct question is now `scatter_graph_question`). Suite still 1005.
+    Committed and pushed.
+
+    **Follow-up (same session, fourth commit):** `cumulative_frequency_interpret_H`/`_plot_H` -
+    user flagged that real GCSE cumulative-frequency curves are smooth S-shaped ogives starting at
+    the origin. `_random_grouped_table` (`app/topics/cumulative_frequency.py`) had two real bugs:
+    the first class boundary was randomly 0/10/20 (the curve often didn't touch the origin at all),
+    and frequencies were fully independent-random per class (could zigzag - rise, fall, rise again -
+    instead of forming a proper S-curve). Fixed: boundaries always start at 0; a new
+    `_bell_shaped_frequencies` helper builds frequencies from a fixed unimodal base shape × a random
+    scale + light per-class jitter (peak always interior), so the cumulative sum is always a genuine
+    unimodal S-curve. +1 regression test. Suite 1005 → 1006. Committed and pushed (`04563e9`).
+
+    **Follow-up (same session, fifth commit):** the pie chart diagram was redesigned per a
+    user-supplied reference image, applied to every pie chart in the app (`pie_chart_interpret_F`,
+    `pie_chart_construct_F`). `draw_pie_chart`: a wide-enough wedge now shows just the bare category
+    name inside it (no more "Category (72°)" suffix) plus the angle shown separately near the hub -
+    a small arc + degree number (`_swept_angle_arc`), or a right-angle square marker
+    (`_right_angle_marker`, reused from the triangle/angle diagrams) when the wedge is exactly 90° -
+    a genuinely narrow wedge (<35°) still falls back to the old combined "Category (72°)" label
+    outside the circle, since there's no room for a separate arc there. A small centre cross
+    (`_cross_marker`) always marks the hub, matching real exam diagrams. The category-name radius is
+    pushed outward (stringWidth-based clearance, scaled by how horizontal the wedge's bisector is)
+    whenever needed to keep the name clear of the degree number - found and fixed via real renders.
+    `draw_pie_chart` also gained `blank=True` (bare circle outline + starting 12-o'clock radius +
+    centre cross) and a new `pie_chart_question` composite (table above the blank circle) -
+    `pie_chart_construct_F`'s question page previously had NO circle at all for the student to draw
+    on. No frozen Practice Test paper uses any pie-chart diagram kind, so no backward-compatibility
+    risk. +4 regression tests. Suite 1006 → 1009. Committed and pushed (`7e59f78`).
+
+    **Follow-up (same session, sixth commit):** `bar_chart_interpret_F`/`composite_bar_chart_F`/
+    `bar_chart_construct_F` - user flagged the bar chart grid was "not square boxes again."
+    `draw_bar_chart` previously routed through the shared `_draw_stats_axes(square_grid=True)` path,
+    which scales the categorical x-axis (0..n, no real units) and the real numeric y-axis completely
+    independently - genuinely rectangular cells. Fixed by computing the square size purely from the
+    y-axis's own nice minor step (the only axis with real numeric meaning) and repeating that same
+    pixel spacing across x as pure squared-paper texture via the existing `_grid_lines` helper -
+    category positions/widths are unrelated to this background, it's just uniform graph paper
+    underneath. Shown to the user for verification before committing, per their request. **Same-reply
+    follow-up**: the CONSTRUCT (blank, draw-your-own) grid now drops its x-axis category labels
+    entirely, so the student decides bar position/width themselves - confirmed safe since the
+    prompt already states every category+value as text; the solution/interpret/composite charts are
+    unaffected, still labelled. +2 regression tests. 2 frozen papers use `bar_chart`, both confirmed
+    still render (rendering-only change). Suite 1009 → 1010. Committed and pushed (`5122df1`).
+
+    **Follow-up (same session, seventh commit):** `stats_range_frequency_table_F`,
+    `stats_median_frequency_table_F`, `stats_mode_frequency_table_F`,
+    `stats_mean_grouped_frequency_table_F`/`_H`, `stats_mean_frequency_table_F` - two issues. (1) The
+    shared `_freq_table_diagram`/`_grouped_freq_table_diagram` helpers titled only the "Frequency"
+    column, leaving the value/class column blank - `draw_two_way_table` gained an optional
+    `corner_label` param (backward-compatible, default `""`) rendered in the previously-always-blank
+    top-left cell. (2) User correctly suspected these 6 topics had NO context variety at all -
+    confirmed genuine: all 6 topics (12 functions incl. modelled examples) had a single hardcoded
+    prompt ("Find the mean number of pets." / "...times taken by a group of runners..."). Added two
+    shared context pools - `_SIMPLE_FREQ_CONTEXTS` (7 discrete-count phrases: pets, siblings, books
+    read, text messages sent, goals scored, sick days taken, cars owned) and `_GROUPED_FREQ_CONTEXTS`
+    (4 axis-label/description/quantity-word tuples: time, weight, height, age) - wired into all 12
+    functions. Verified end-to-end via a real 3-question worksheet render (both fixes visible
+    together). +3 regression tests. None of the 6 topics appear in any frozen paper. Suite 1010 →
+    1013. Committed and pushed (`91048ec`).
+
+    **This closed out every review item sent this session** - graphs (coordinate + stats + bar +
+    pie), histograms (step 58), cumulative frequency, and frequency tables. See "Where to pick up
+    next" at the top of this file for the current handoff.
 
 ## Environment gotchas (Windows, this machine specifically)
 
