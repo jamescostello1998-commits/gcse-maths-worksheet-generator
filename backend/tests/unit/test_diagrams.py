@@ -709,3 +709,20 @@ def test_scaled_axes_cells_are_square():
     y_gaps = [b - a for a, b in zip(ys, ys[1:])]
     # the smallest (minor) gap on each axis should match: square cells
     assert min(x_gaps) == pytest.approx(min(y_gaps), abs=0.5)
+
+
+def test_cumulative_frequency_starts_at_origin_with_square_cells():
+    from reportlab.graphics.shapes import Line
+
+    from app.pdf.diagrams import draw_cumulative_frequency
+
+    d = draw_cumulative_frequency({
+        "points": [(10, 0), (20, 3), (30, 12), (40, 26), (50, 39), (60, 53)],
+        "x_label": "Weight (kg)",
+    })
+    vlines = [round(s.x1, 2) for s in d.contents if isinstance(s, Line) and abs(s.x1 - s.x2) < 1e-6]
+    hlines = [round(s.y1, 2) for s in d.contents if isinstance(s, Line) and abs(s.y1 - s.y2) < 1e-6]
+    # x-axis origin (x=0) is drawn, and minor cells are square
+    x_gaps = [round(b - a, 2) for a, b in zip(sorted(set(vlines)), sorted(set(vlines))[1:])]
+    y_gaps = [round(b - a, 2) for a, b in zip(sorted(set(hlines)), sorted(set(hlines))[1:])]
+    assert min(x_gaps) == pytest.approx(min(y_gaps), abs=0.5), "cumulative frequency cells not square"

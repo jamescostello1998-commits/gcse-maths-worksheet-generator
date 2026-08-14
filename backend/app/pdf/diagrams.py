@@ -3254,7 +3254,7 @@ def _draw_stats_axes(
     x_label: str = "", y_label: str = "",
     x_ticks: "list[float] | None" = None, y_ticks: "list[float] | None" = None,
     y_step: "float | None" = None, show_y_axis: bool = True, square_grid: bool = False,
-    fine_grid: bool = False,
+    fine_grid: bool = False, square_cells: bool = False,
 ) -> Callable[[float, float], tuple[float, float]]:
     """Draw a plain linear pair of axes (bold axis lines, a handful of ticks
     spaced via `_nice_tick_step` so the tick/gridline count never depends on
@@ -3268,7 +3268,61 @@ def _draw_stats_axes(
     vertical axis line and all y-axis ticks/labels (for a chart with no
     meaningful y-scale, e.g. a box plot). `square_grid=True` adds a light
     squared-paper background (see `_draw_square_grid`) for charts the
-    student draws onto or reads values off precisely."""
+    student draws onto or reads values off precisely. `square_cells=True`
+    instead lays the plot out on true SQUARE cells (equal pixels per grid
+    square on both axes, like `_draw_scaled_axes`), centred in the given
+    rectangle - for the numeric-numeric charts a value is plotted/read on a
+    grid (cumulative frequency, scatter, time series). It supersedes
+    `square_grid`; bar/box keep the rectangular `square_grid` since one of
+    their axes is categorical."""
+
+    if square_cells:
+        # Square-cell layout: nice major step per axis, one shared pixel size
+        # per square, centred - so every cell is a true square (never a
+        # rectangle), matching the algebra graphs.
+        x_span = (x_max - x_min) or 1
+        y_span = (y_max - y_min) or 1
+        major_x = _nice_tick_step(x_min, x_max)
+        major_y = _nice_tick_step(y_min, y_max)
+        nx, ny = x_span / major_x, y_span / major_y
+        px_per_major = min(plot_w / nx, plot_h / ny)
+        origin_x = x0 + (plot_w - nx * px_per_major) / 2
+        origin_y = y0 + (plot_h - ny * px_per_major) / 2
+
+        def to_px(x: float, y: float) -> tuple[float, float]:
+            return (origin_x + (x - x_min) / major_x * px_per_major,
+                    origin_y + (y - y_min) / major_y * px_per_major)
+
+        k = 1
+        for cand in (5, 4, 2):
+            if cand <= max(major_x, major_y) and px_per_major / cand >= _MIN_MINOR_PX:
+                k = cand
+                break
+        _grid_lines(d, to_px, x_min, x_max, y_min, y_max, major_x / k, major_y / k, GRID, 0.3)
+        _grid_lines(d, to_px, x_min, x_max, y_min, y_max, major_x, major_y, GRID_DARK, 0.5)
+
+        ax0, ay0 = to_px(x_min, y_min)
+        ax1, _ = to_px(x_max, y_min)
+        _, ay1 = to_px(x_min, y_max)
+        d.add(Line(ax0, ay0, ax1, ay0, strokeColor=INK, strokeWidth=1.1))
+        d.add(Line(ax0, ay0, ax0, ay1, strokeColor=INK, strokeWidth=1.1))
+        xt = math.ceil(x_min / major_x) * major_x
+        while xt <= x_max + 1e-9:
+            px, py = to_px(xt, y_min)
+            d.add(Line(px, py - 3, px, py, strokeColor=INK, strokeWidth=0.7))
+            d.add(_label(px, py - 11, _fmt_tick(xt), size=6.5))
+            xt += major_x
+        yt = math.ceil(y_min / major_y) * major_y
+        while yt <= y_max + 1e-9:
+            px, py = to_px(x_min, yt)
+            d.add(Line(px - 3, py, px, py, strokeColor=INK, strokeWidth=0.7))
+            d.add(_label(px - 6, py - 2, _fmt_tick(yt), anchor="end", size=6.5))
+            yt += major_y
+        if x_label:
+            d.add(_label(x0 + plot_w / 2, y0 - 18, x_label, anchor="middle", size=7.5))
+        if y_label:
+            d.add(_vertical_label(8, y0 + plot_h / 2, y_label, size=7.5))
+        return to_px
 
     def to_px(x: float, y: float) -> tuple[float, float]:
         px = x0 + (x - x_min) / (x_max - x_min) * plot_w
@@ -3769,19 +3823,21 @@ def draw_cumulative_frequency(params: dict) -> Drawing:
 
     xs = [p[0] for p in points]
     ys = [p[1] for p in points]
-    x_min, x_max = min(xs), max(xs)
+    # The x-axis always starts at 0 so the origin (0, 0) is shown (the curve
+    # itself still begins at the first class's lower boundary at cf 0).
+    x_min, x_max = 0, max(xs)
     y_max_raw = max(ys) if ys else 1
     step = _nice_tick_step(0, y_max_raw * 1.1 or 1)
     y_max = math.ceil((y_max_raw * 1.1 or step) / step) * step
 
     width, height = 230, 150
-    margin_l, margin_r, margin_t, margin_b = 30, 12, 10, 24
+    margin_l, margin_r, margin_t, margin_b = 34, 12, 10, 26
     plot_w, plot_h = width - margin_l - margin_r, height - margin_t - margin_b
     d = Drawing(width, height)
 
     to_px = _draw_stats_axes(
         d, margin_l, margin_b, plot_w, plot_h, x_min, x_max, 0, y_max,
-        x_label=x_label, y_label=y_label, x_ticks=xs, square_grid=True, fine_grid=True,
+        x_label=x_label, y_label=y_label, square_cells=True,
     )
 
     if not blank:
@@ -3838,13 +3894,13 @@ def draw_time_series(params: dict) -> Drawing:
     y_max = y_max_raw + span * 0.15
 
     width, height = 230, 150
-    margin_l, margin_r, margin_t, margin_b = 30, 12, 10, 24
+    margin_l, margin_r, margin_t, margin_b = 34, 12, 10, 26
     plot_w, plot_h = width - margin_l - margin_r, height - margin_t - margin_b
     d = Drawing(width, height)
 
     to_px = _draw_stats_axes(
         d, margin_l, margin_b, plot_w, plot_h, x_min, x_max, y_min, y_max,
-        x_label=x_label, y_label=y_label, x_ticks=sorted(set(xs)),
+        x_label=x_label, y_label=y_label, square_cells=True,
     )
 
     if not blank:
@@ -3884,13 +3940,13 @@ def draw_scatter_graph(params: dict) -> Drawing:
     y_max = y_max_raw
 
     width, height = 230, 150
-    margin_l, margin_r, margin_t, margin_b = 30, 12, 10, 24
+    margin_l, margin_r, margin_t, margin_b = 34, 12, 10, 26
     plot_w, plot_h = width - margin_l - margin_r, height - margin_t - margin_b
     d = Drawing(width, height)
 
     to_px = _draw_stats_axes(
         d, margin_l, margin_b, plot_w, plot_h, x_min, x_max, y_min, y_max,
-        x_label=x_label, y_label=y_label, square_grid=True,
+        x_label=x_label, y_label=y_label, square_cells=True,
     )
 
     if not blank:

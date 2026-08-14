@@ -25,21 +25,22 @@ scheme. The full chronology below still uses the *old* ids in its historical ent
 tier suffix if you go looking for one. See step 44 for the exact rename rule and how the
 migration was done safely.
 
-**CURRENT STATE:** **320 topics**, backend suite **1004/1004**, frontend **65/65**, all 60
-Practice Test papers exactly 100 marks. Steps 54-59 are all committed & pushed (steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`, step 58 in `dbda953`, step 59 in the latest commit).
+**CURRENT STATE:** **320 topics**, backend suite **1005/1005**, frontend **65/65**, all 60
+Practice Test papers exactly 100 marks. Steps 54-59 are all committed & pushed (steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`, step 58 in `dbda953`, step 59 + its stats-square follow-up in the two latest commits).
 Practice Tests were deliberately NOT rebuilt in any of these steps (no existing diagram param
 SCHEMA changed - only optional new params, label positions, and prompt text, all backward-
 compatible). No known bugs.
 
-**⚠️ One deliberately-deferred follow-up from step 59 (graph review):** the STATISTICS charts
-that have a numeric-numeric axis pair (cumulative frequency, scatter, time series) still use
-their reading grid with RECTANGULAR cells - only the coordinate/plotting graphs were made
-square-celled (that's where the user's "never rectangles" instruction was aimed; the stats
-scope they agreed was labels + finer CF/box grids, which is done). If the user asks for the
-stats graphs to be square too, that's a `_draw_stats_axes` rework (compute a square-celled
-centred plot area + matching `to_px`, like `_draw_scaled_axes` now does) applied to
-cumulative_frequency/scatter/time_series only - bar/box have a categorical axis so square cells
-don't apply there.
+**Step 59 follow-up (done, same session):** the user then asked to **square the numeric-numeric
+stats charts too** (cumulative frequency, scatter, time series) and for **cumulative frequency to
+start from (0,0)**. Built a `square_cells=True` mode on `_draw_stats_axes` (nice major step per
+axis + one shared px-per-square + shared minor subdivision, centred - the same square-cell math as
+`_draw_scaled_axes`, but WITHOUT its origin-clamp since a scatter/time-series y-axis is legitimately
+truncated) and wired it into `draw_cumulative_frequency`/`draw_scatter_graph`/`draw_time_series`;
+`draw_cumulative_frequency` now forces `x_min=0` (origin shown; the curve still begins at the first
+class boundary). **bar/box deliberately keep the rectangular `square_grid`** (one axis is
+categorical). Backward-compatible (no schema change - a frozen paper with CF+scatter still renders,
+verified). +1 regression test. See step 59's chronology entry tail.
 
 **What the recent sessions did — an ongoing aesthetic-review process (steps 34-59).** The user
 works through the two `all_topics_review_*.pdf` documents and sends feedback, mostly as per-topic
@@ -4629,6 +4630,19 @@ fixes), is committed and pushed (see `git log`).
     change (still 320). **Practice Tests NOT rebuilt** - all changes are rendering-only and
     backward-compatible (no new required diagram params), so the 60 frozen papers render on the new
     engine unchanged (verified). Review PDFs regenerated and sent. Committed and pushed.
+
+    **Follow-up (same session, second commit):** the user then asked to **square the numeric-numeric
+    stats charts too** and for **cumulative frequency to start from (0,0)**. Added a `square_cells=True`
+    mode to `_draw_stats_axes` (the same nice-major-step + shared-px-per-square + shared-minor-k
+    square-cell math as `_draw_scaled_axes`, but without its origin-clamp - a scatter/time-series
+    y-axis is legitimately truncated, not forced through 0) and wired it into
+    `draw_cumulative_frequency`/`draw_scatter_graph`/`draw_time_series`, replacing their rectangular
+    `square_grid`. `draw_cumulative_frequency` now forces `x_min=0` so the origin (0,0) shows (the
+    curve still begins at the first class boundary at cf 0). **bar/box deliberately keep the
+    rectangular `square_grid`** (one axis is categorical, so square cells don't apply). Shown to the
+    user as standalone mockups first (per their request), then implemented. Backward-compatible
+    (verified a frozen paper with CF+scatter still renders). +1 regression test. Suite 1004 → 1005.
+    Review PDFs regenerated and sent. Committed and pushed.
 
 ## Environment gotchas (Windows, this machine specifically)
 
