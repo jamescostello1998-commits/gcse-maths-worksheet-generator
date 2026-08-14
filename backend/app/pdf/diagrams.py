@@ -3423,9 +3423,25 @@ def draw_bar_chart(params: dict) -> Drawing:
     bar_w = bar_slot * 0.6
     gap = bar_slot - bar_w  # the same gap sits before every bar, including the first (see bx below)
 
+    # Square pixel cells, never rectangular: the x-axis is categorical (bar
+    # position has no real numeric scale), so only the y-axis's own nice
+    # minor step sets the square size - the same pixel spacing is then
+    # repeated across x purely as squared-paper texture, independent of
+    # where the category slots themselves fall.
+    y_major = _nice_tick_step(0, y_max)
+    y_minor = _grid_minor_step(y_major)
+    sq_px = plot_h / (y_max / y_minor)
+    step_x_minor = sq_px / bar_slot
+
+    def _grid_to_px(x: float, y: float) -> tuple[float, float]:
+        return margin_l + x / n * plot_w, y0 + y / y_max * plot_h
+
+    _grid_lines(d, _grid_to_px, 0, n, 0, y_max, step_x_minor, y_minor, GRID, 0.3)
+    _grid_lines(d, _grid_to_px, 0, n, 0, y_max, n, y_major, GRID_DARK, 0.5)
+
     to_px = _draw_stats_axes(
         d, margin_l, y0, plot_w, plot_h, 0, n, 0, y_max, y_label=y_label,
-        x_ticks=[], square_grid=True,
+        x_ticks=[],
     )
 
     if not blank:
@@ -3449,9 +3465,16 @@ def draw_bar_chart(params: dict) -> Drawing:
                 _, py1 = to_px(0, series[i])
                 d.add(Rect(bx, py0, bar_w, py1 - py0, fillColor=HIGHLIGHT, strokeColor=INK, strokeWidth=0.6))
 
-    for i, cat in enumerate(categories):
-        cx = margin_l + i * bar_slot + gap + bar_w / 2
-        d.add(_label(cx, y0 - 10, str(cat), size=7))
+    if not blank:
+        # A blank (construct-your-own) chart omits the category labels
+        # entirely - the categories/values are already given in the
+        # question's own prompt text, and leaving the axis unlabelled lets
+        # the student decide where each bar goes and how wide it is,
+        # genuinely constructing the chart rather than filling in
+        # pre-drawn slots.
+        for i, cat in enumerate(categories):
+            cx = margin_l + i * bar_slot + gap + bar_w / 2
+            d.add(_label(cx, y0 - 10, str(cat), size=7))
 
     if stacked and series_labels:
         lx, ly = margin_l, height - 2

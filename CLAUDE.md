@@ -25,11 +25,32 @@ scheme. The full chronology below still uses the *old* ids in its historical ent
 tier suffix if you go looking for one. See step 44 for the exact rename rule and how the
 migration was done safely.
 
-**CURRENT STATE:** **320 topics**, backend suite **1009/1009**, frontend **65/65**, all 60
-Practice Test papers exactly 100 marks. Steps 54-59 are all committed & pushed (steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`, step 58 in `dbda953`, step 59 + its two follow-ups in the latest commits).
+**CURRENT STATE:** **320 topics**, backend suite **1010/1010**, frontend **65/65**, all 60
+Practice Test papers exactly 100 marks. Steps 54-59 are all committed & pushed (steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`, step 58 in `dbda953`, step 59 + its three follow-ups in the latest commits).
 Practice Tests were deliberately NOT rebuilt in any of these steps (no existing diagram param
 SCHEMA changed - only optional new params, label positions, and prompt text, all backward-
 compatible). No known bugs.
+
+**Step 59 follow-up #5 (same session):** `bar_chart_interpret_F`/`composite_bar_chart_F`/
+`bar_chart_construct_F` - user flagged the bar chart grid was "not square boxes again."
+`draw_bar_chart` (`app/pdf/diagrams.py`) previously routed through the shared
+`_draw_stats_axes(square_grid=True)` path, which scales the categorical x-axis (0..n, no real
+units) and the real numeric y-axis completely independently - genuinely rectangular cells (and
+in practice barely any visible vertical lines at all, since `_nice_tick_step(0, n)` for a small n
+gives only 1 line per category). Fixed by computing the square size purely from the y-axis's own
+nice minor step (the only axis with real numeric meaning) and repeating that SAME pixel spacing
+across x as pure squared-paper texture via the existing `_grid_lines` helper (already used by
+`_draw_scaled_axes`) - category positions/widths are unrelated to this background, it's just
+uniform graph paper underneath. Verified square in both a fine-minor case (bar_chart_interpret,
+y_minor=1) and a major-only case (composite_bar_chart, y_max=35 -> y_minor falls back to the
+major step itself, still square, just bigger cells) via a real rendered zoom. **Follow-up in the
+same reply**: user liked the interpret/composite fix but asked for the CONSTRUCT (blank,
+draw-your-own) grid to drop its x-axis category labels entirely, so the student decides bar
+position/width themselves - confirmed safe since `bar_chart_construct_F`'s prompt already states
+every category+value as text (`"Red: 11, Blue: 10, ..."`), the diagram is a pure drawing surface.
+`draw_bar_chart` now only draws category labels when `not blank` (the solution/interpret/
+composite charts are unaffected, still labelled). +2 regression tests. No frozen-paper rebuild
+needed (2 papers use `bar_chart`, both confirmed still render - no schema change, rendering only).
 
 **Step 59 follow-up #4 (same session):** the pie chart diagram was redesigned per a user-supplied
 reference image, and applied to every pie chart in the app (`pie_chart_interpret_F`,

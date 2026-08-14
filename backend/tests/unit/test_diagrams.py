@@ -772,3 +772,26 @@ def test_pie_chart_blank_draws_only_the_outline_start_radius_and_centre_cross():
     assert len([s for s in d.contents if isinstance(s, Circle)]) == 1
     # the starting radius line + the two centre-cross lines
     assert len([s for s in d.contents if isinstance(s, Line)]) == 3
+
+
+def test_bar_chart_blank_omits_category_labels_but_keeps_them_when_solved():
+    from app.pdf.diagrams import draw_bar_chart
+
+    def category_texts(d):
+        texts = []
+        for s in d.contents:
+            if hasattr(s, "contents"):
+                for c in s.contents:
+                    if hasattr(c, "text"):
+                        texts.append(c.text)
+        return texts
+
+    params = {"categories": ["Red", "Blue", "Yellow"], "series": [11, 10, 8]}
+    blank = draw_bar_chart(params={**params, "blank": True})
+    solved = draw_bar_chart(params=params)
+
+    blank_texts = category_texts(blank)
+    solved_texts = category_texts(solved)
+    for cat in params["categories"]:
+        assert cat not in blank_texts
+        assert cat in solved_texts
