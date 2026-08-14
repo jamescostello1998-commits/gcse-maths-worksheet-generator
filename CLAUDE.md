@@ -4644,6 +4644,17 @@ fixes), is committed and pushed (see `git log`).
     (verified a frozen paper with CF+scatter still renders). +1 regression test. Suite 1004 → 1005.
     Review PDFs regenerated and sent. Committed and pushed.
 
+    **Two more scatter fixes (same session, third commit):** (1) `scatter_graph_construct_F`'s
+    question page only showed the data table - the student had nowhere to draw. Added a
+    `draw_scatter_graph_question` composite (kind `scatter_graph_question`): the x/y table stacked
+    above BLANK labelled square-celled scatter axes (spanning the data range), mirroring
+    `draw_cumulative_frequency_question`/`draw_histogram_question`; the old dead `_scatter_table`
+    helper was removed. (2) In `_draw_stats_axes`'s `square_cells` branch the rotated y-title was
+    pinned at the far left (x=8) while the plot is centred, leaving a big gap - now it sits just left
+    of the widest y-number (`ax0 - stringWidth(...)`), hugging the axis wherever the plot centres;
+    the x-title also centres on the real plot area, not the full box. Both fixes apply to CF/scatter/
+    time-series. Test updated (construct question is now `scatter_graph_question`). Suite still 1005.
+
 ## Environment gotchas (Windows, this machine specifically)
 
 Python, Node, and GitHub CLI were **not** installed on this machine when this project

@@ -3319,9 +3319,15 @@ def _draw_stats_axes(
             d.add(_label(px - 6, py - 2, _fmt_tick(yt), anchor="end", size=6.5))
             yt += major_y
         if x_label:
-            d.add(_label(x0 + plot_w / 2, y0 - 18, x_label, anchor="middle", size=7.5))
+            d.add(_label(origin_x + nx * px_per_major / 2, y0 - 18, x_label, anchor="middle", size=7.5))
         if y_label:
-            d.add(_vertical_label(8, y0 + plot_h / 2, y_label, size=7.5))
+            # Sit the rotated title just left of the widest y-axis number, so it
+            # hugs the axis wherever the (centred) plot sits - not pinned at the
+            # far left with a gap.
+            widest = max(stringWidth(_fmt_tick(y_min), _LABEL_FONT, 6.5),
+                         stringWidth(_fmt_tick(y_max), _LABEL_FONT, 6.5))
+            label_x = max(7, ax0 - 6 - widest - 5)
+            d.add(_vertical_label(label_x, origin_y + ny * px_per_major / 2, y_label, size=7.5))
         return to_px
 
     def to_px(x: float, y: float) -> tuple[float, float]:
@@ -3962,6 +3968,34 @@ def draw_scatter_graph(params: dict) -> Drawing:
             px1, py1 = to_px(x1, y1)
             d.add(Line(px0, py0, px1, py1, strokeColor=ACCENT, strokeWidth=1.3))
 
+    return d
+
+
+def draw_scatter_graph_question(params: dict) -> Drawing:
+    """The question-page diagram for scatter_graph_construct: the x/y data
+    table stacked above BLANK labelled, square-celled scatter axes for the
+    student to plot the points onto (the axes span the data's own range, so
+    every point fits) - composed as one Drawing, mirroring
+    draw_cumulative_frequency_question / draw_histogram_question."""
+    points: list = params["points"]
+    x_label = params.get("x_label", "x")
+    y_label = params.get("y_label", "y")
+
+    table = draw_two_way_table({
+        "row_labels": [x_label, y_label],
+        "col_labels": [str(i + 1) for i in range(len(points))],
+        "cells": [[str(x) for x, _y in points], [str(y) for _x, y in points]],
+    })
+    axes = draw_scatter_graph({"points": points, "x_label": x_label, "y_label": y_label, "blank": True})
+
+    gap = 10
+    width = max(table.width, axes.width)
+    height = table.height + gap + axes.height
+    d = Drawing(width, height)
+    axes.transform = (1, 0, 0, 1, 0, 0)
+    d.add(axes)
+    table.transform = (1, 0, 0, 1, 0, axes.height + gap)
+    d.add(table)
     return d
 
 
@@ -4951,6 +4985,7 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "cumulative_frequency": draw_cumulative_frequency,
     "time_series": draw_time_series,
     "scatter_graph": draw_scatter_graph,
+    "scatter_graph_question": draw_scatter_graph_question,
     "plans_and_elevations": draw_plans_and_elevations,
     "plans_and_elevations_question": draw_plans_and_elevations_question,
     "number_line": draw_number_line,

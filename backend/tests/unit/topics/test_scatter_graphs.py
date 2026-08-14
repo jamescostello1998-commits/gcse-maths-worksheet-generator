@@ -22,12 +22,14 @@ def test_all_generators_produce_valid_verified_questions():
             assert q.final_answer
 
 
-def test_construct_has_a_data_table_on_the_question_page_and_the_plot_on_the_solution():
+def test_construct_has_table_plus_blank_grid_on_question_and_the_plot_on_the_solution():
     rng = random.Random(1001)
     for _ in range(TRIALS):
         q = scatter_graphs.generate_scatter_graph_construct(Tier.FOUNDATION, rng)
+        # Question page: data table stacked above blank labelled axes to plot onto.
         assert q.diagram is not None
-        assert q.diagram.kind == "two_way_table"
+        assert q.diagram.kind == "scatter_graph_question"
+        assert q.diagram.params["points"] == q.solution_diagram.params["points"]
         assert q.solution_diagram is not None
         assert q.solution_diagram.kind == "scatter_graph"
         assert "best_fit" not in q.solution_diagram.params

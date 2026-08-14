@@ -81,20 +81,6 @@ def _scatter_case(rng: random.Random) -> dict:
     return {"ctx": ctx, "points": points, "correlation": correlation}
 
 
-def _scatter_table(ctx: dict, points: list) -> DiagramSpec:
-    """A two-row x/y data table, reusing the generic two_way_table renderer -
-    replaces the old prose listing of (x, y) pairs."""
-    n = len(points)
-    return DiagramSpec(
-        kind="two_way_table",
-        params={
-            "row_labels": [ctx["x_label"], ctx["y_label"]],
-            "col_labels": [str(i + 1) for i in range(n)],
-            "cells": [[str(x) for x, _y in points], [str(y) for _x, y in points]],
-        },
-    )
-
-
 def generate_scatter_graph_construct(tier: Tier, rng: random.Random) -> Question:
     c = _scatter_case(rng)
     ctx, points = c["ctx"], c["points"]
@@ -113,7 +99,10 @@ def generate_scatter_graph_construct(tier: Tier, rng: random.Random) -> Question
         solution_steps=tuple(steps),
         final_answer=f"{c['correlation'].capitalize()} correlation",
         dedup_key=f"scatter_construct:{ctx['x_label']}:{tuple(points)}",
-        diagram=_scatter_table(ctx, points),
+        diagram=DiagramSpec(
+            kind="scatter_graph_question",
+            params={"points": points, "x_label": ctx["x_label"], "y_label": ctx["y_label"]},
+        ),
         solution_diagram=DiagramSpec(
             kind="scatter_graph",
             params={"points": points, "x_label": ctx["x_label"], "y_label": ctx["y_label"]},
