@@ -876,6 +876,34 @@ def draw_trapezium(params: dict) -> Drawing:
     return d
 
 
+def draw_parallelogram_perimeter(params: dict) -> Drawing:
+    """A parallelogram labelled with its two DIFFERENT adjacent side lengths
+    (base + slant side) for a perimeter question - unlike draw_parallelogram
+    (built for an AREA question, which labels the base plus the dashed
+    perpendicular height instead, not a real side)."""
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    base_val = _parse_leading_number(str(params["base_label"])) or 8
+    side_val = _parse_leading_number(str(params["side_label"])) or 5
+    slant_frac = 0.3
+    scale = min(
+        (DIAGRAM_WIDTH - 2 * _MARGIN_X) / (base_val * (1 + slant_frac)),
+        (DIAGRAM_HEIGHT - 2 * _MARGIN_Y) / (side_val * 0.8),
+    )
+    bw = base_val * scale
+    bh = side_val * scale * 0.8  # a plausible visual height for the slant side
+    slant = bw * slant_frac
+    x0, y0 = (DIAGRAM_WIDTH - (bw + slant)) / 2, (DIAGRAM_HEIGHT - bh) / 2
+
+    d.add(Polygon(
+        [x0, y0, x0 + bw, y0, x0 + bw + slant, y0 + bh, x0 + slant, y0 + bh],
+        strokeColor=INK, fillColor=None, strokeWidth=1.2,
+    ))
+    d.add(_label(x0 + bw / 2, y0 - 14, params["base_label"]))
+    mx, my = x0 + slant / 2, y0 + bh / 2
+    d.add(_label(mx - 10, my, params["side_label"], anchor="end"))
+    return d
+
+
 def draw_sector(params: dict) -> Drawing:
     d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
     cx, cy = DIAGRAM_WIDTH / 2, DIAGRAM_HEIGHT / 2
@@ -1292,6 +1320,35 @@ def draw_polygon(params: dict) -> Drawing:
     return d
 
 
+def draw_regular_polygon_side(params: dict) -> Drawing:
+    """A regular polygon (n_sides) with ONE edge labelled - since a regular
+    polygon's sides are all equal by definition, labelling just one is
+    enough for a perimeter question. Reuses draw_polygon's own vertex
+    geometry (same fixed radius/orientation)."""
+    d = Drawing(DIAGRAM_WIDTH, DIAGRAM_HEIGHT)
+    n = params["n_sides"]
+    cx, cy = DIAGRAM_WIDTH / 2, DIAGRAM_HEIGHT / 2
+    r = 70
+    vertices = []
+    for i in range(n):
+        rad = math.radians(90 + i * 360 / n)
+        vertices.append((cx + r * math.cos(rad), cy + r * math.sin(rad)))
+    pts = [coord for vertex in vertices for coord in vertex]
+    d.add(Polygon(pts, strokeColor=INK, fillColor=None, strokeWidth=1.2))
+
+    # Label the bottom-most edge (smallest average y - this Drawing uses
+    # ReportLab's own Y-up convention, confirmed by printing real vertex
+    # coordinates rather than assumed) at its midpoint, via the same
+    # proven _place_side_label helper draw_general_triangle/draw_right_
+    # triangle use (anchors the text away from the edge's own direction,
+    # not just a fixed perpendicular offset, which a hand-rolled version
+    # of this got wrong for a steeply-slanted edge - caught by rendering).
+    edge_idx = min(range(n), key=lambda i: vertices[i][1] + vertices[(i + 1) % n][1])
+    p, q = vertices[edge_idx], vertices[(edge_idx + 1) % n]
+    _place_side_label(d, p, q, (cx, cy), params["side_label"], _LABEL_SIZE)
+    return d
+
+
 def _rotation_indicator(cx: float, cy: float, radius: float = 18, color=ACCENT) -> Group:
     """A centre dot plus a curved arc (270 degrees, counterclockwise) marking
     rotational symmetry about (cx, cy) - the order label is added separately
@@ -1479,6 +1536,12 @@ def _place_angle_label(
         # fine and matches how exam papers write an algebraic angle by its arc.
         dist = min(dist, arc_radius + gap + along_half + 12)
     cx, cy = vertex[0] + bx * dist, vertex[1] + by * dist
+    # Clamp to the drawing's own canvas width - the analytic placement above
+    # only ensures clearance from the angle's own two edges, not from the
+    # canvas edge, so a vertex near the left/right border with a wide
+    # algebraic label (e.g. "(4x - 9)°") could otherwise run off-canvas.
+    half_w = w / 2
+    cx = max(half_w + 2, min(DIAGRAM_WIDTH - half_w - 2, cx))
     d.add(_label(cx, cy - size * 0.34, label, size=size, anchor="middle"))
 
 
@@ -5261,6 +5324,7 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "parallel_lines": draw_parallel_lines,
     "exterior_triangle": draw_exterior_triangle,
     "polygon": draw_polygon,
+    "regular_polygon_side": draw_regular_polygon_side,
     "symmetry_shape": draw_symmetry_shape,
     "right_triangle": draw_right_triangle,
     "trig_triangle": draw_trig_triangle,
@@ -5312,6 +5376,7 @@ _RENDERERS: dict[str, Callable[[dict], Drawing]] = {
     "event_pair": draw_event_pair,
     "bag_of_counters": draw_bag,
     "parallelogram": draw_parallelogram,
+    "parallelogram_perimeter": draw_parallelogram_perimeter,
     "trapezium": draw_trapezium,
     "sector": draw_sector,
     "mixed_compound": draw_mixed_compound,

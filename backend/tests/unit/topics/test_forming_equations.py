@@ -29,6 +29,57 @@ def test_dedup_keys_vary_per_generator():
         assert len(keys) > 40
 
 
+def test_people_and_consecutive_contexts_appear_and_read_correctly():
+    # Regression test for two real wording bugs caught by rendering real
+    # output: "20 years old older than" (double unit - the difference
+    # clause needs "years", not the self-description's "years old") and
+    # "amount of moneys" (naive "+s" pluralization of a multi-word noun).
+    checks = [
+        (forming_equations.generate_forming_equations_foundation, Tier.FOUNDATION, "form_people", "form_consecutive"),
+        (forming_equations.generate_forming_equations_higher, Tier.HIGHER, "form_people_h", "form_consecutive_h"),
+    ]
+    for generate, tier, people_prefix, consecutive_prefix in checks:
+        rng = random.Random(41)
+        people_seen = consecutive_seen = False
+        for _ in range(3000):
+            q = generate(tier, rng)
+            if q.dedup_key.startswith(people_prefix + ":"):
+                people_seen = True
+                assert "years old older" not in q.prompt
+                assert "years old younger" not in q.prompt
+                assert "amount of moneys" not in q.prompt
+            elif q.dedup_key.startswith(consecutive_prefix + ":"):
+                consecutive_seen = True
+                assert "consecutive" in q.prompt
+                assert len(q.final_answer.split(",")) in (3, 5)
+            if people_seen and consecutive_seen:
+                break
+        assert people_seen, f"{generate.__name__} never produced a 'people' question"
+        assert consecutive_seen, f"{generate.__name__} never produced a 'consecutive' question"
+
+
+_PERIMETER_SHAPE_DIAGRAM_KINDS = {
+    "l_shape": "l_shape",
+    "rectangle": "rectangle",
+    "isosceles": "general_triangle",
+    "parallelogram": "parallelogram_perimeter",
+    "right_triangle": "right_triangle",
+    "polygon": "regular_polygon_side",
+}
+
+
+def test_perimeter_higher_covers_all_six_shapes_with_matching_diagrams():
+    rng = random.Random(37)
+    seen = set()
+    for _ in range(600):
+        shape, _desc, _eq, _expand, _coeff, _const, _total, _steps, _sol, _key, diagram = (
+            forming_equations._build_perimeter_higher(rng)
+        )
+        seen.add(shape)
+        assert diagram.kind == _PERIMETER_SHAPE_DIAGRAM_KINDS[shape]
+    assert seen == set(_PERIMETER_SHAPE_DIAGRAM_KINDS)
+
+
 def test_topic_definitions_have_expected_metadata():
     topics = [
         forming_equations.TOPIC_FORMING_EQUATIONS_FOUNDATION,

@@ -9,6 +9,39 @@ from app.topics.base import TopicDefinition
 SECTION = "geometry"
 GROUP = "Angles"
 
+# How often the Higher straight-line/around-a-point/triangle angle topics
+# use MULTIPLE algebraic terms (e.g. "(2x+25)deg and (x-10)deg on a straight
+# line", or a triangle with all 3 angles algebraic) instead of the original
+# always-exactly-one-algebraic-term form - real GCSE papers mix both, per
+# direct user request (confirmed against real Corbett Maths examples).
+_MULTI_ALGEBRAIC_CHANCE = 0.4
+
+
+def _build_multi_algebraic_angles(rng: random.Random, n_algebraic: int, n_known: int, target: int, known_range=(15, 90)):
+    """Shared by the Higher straight-line/around-a-point/triangle "multiple
+    algebraic terms" branches: picks n_known plain numeric angles and
+    n_algebraic (coeff, const) expressions that all sum exactly to `target`.
+    Coefficients are small positive integers (2-5), matching this file's
+    existing single-algebraic-term convention. Returns (known, terms, x_val,
+    combined_coeff, combined_const) where combined_coeff/combined_const
+    describe the SUM of the algebraic terms only (not the known ones)."""
+    for _ in range(300):
+        known = [rng.randint(*known_range) for _ in range(n_known)]
+        x_val = rng.randint(2, 20)
+        coeffs = [rng.randint(2, 5) for _ in range(n_algebraic)]
+        combined_coeff = sum(coeffs)
+        remaining = target - sum(known)
+        consts = [rng.randint(-15, 15) for _ in range(n_algebraic - 1)]
+        last_const = remaining - combined_coeff * x_val - sum(consts)
+        consts.append(last_const)
+        terms = list(zip(coeffs, consts))
+        values = [c * x_val + k for c, k in terms]
+        min_val = 5
+        max_val = remaining - min_val * (n_algebraic - 1)
+        if all(min_val <= v <= max_val for v in values) and all(min_val <= k <= target - min_val for k in known):
+            return known, terms, x_val, combined_coeff, sum(consts)
+    raise ValueError("could not build multi-algebraic angle terms")
+
 
 def generate_straight_line(tier: Tier, rng: random.Random) -> Question:
     n = rng.choice([2, 3])
@@ -95,6 +128,42 @@ def generate_modelled_example_straight_line(tier: Tier, rng: random.Random) -> M
 
 
 def generate_straight_line_higher(tier: Tier, rng: random.Random) -> Question:
+    if rng.random() < _MULTI_ALGEBRAIC_CHANCE:
+        _known, terms, _x_val, combined_coeff, combined_const = _build_multi_algebraic_angles(
+            rng, n_algebraic=2, n_known=0, target=180
+        )
+        exprs = [fmt_linear(c, k) for c, k in terms]
+        solve_steps, solution = solve_linear_with_steps(combined_coeff, combined_const, 0, 180)
+        check_total = sum(int((c * X + k).subs(X, solution)) for c, k in terms)
+        if check_total != 180:
+            raise ValueError("straight_line_higher (multi) verification failed")
+
+        equation_line = f"({exprs[0]}) + ({exprs[1]}) = 180"
+        simplified_line = f"{fmt_linear(combined_coeff, combined_const)} = 180"
+        steps = [
+            "Angles on a straight line sum to 180°.",
+            equation_line,
+            "Collect like terms:",
+            simplified_line,
+        ] + solve_steps[1:]
+        values = [c * _x_val + k for c, k in terms]
+        return Question(
+            topic_id="angles_straight_line_H",
+            tier=Tier.HIGHER,
+            prompt=f"The angles ({exprs[0]})° and ({exprs[1]})° lie on a straight line. Find x.",
+            solution_steps=tuple(steps),
+            final_answer=str(solution),
+            dedup_key=f"straight_line_h_multi:{terms}",
+            diagram=DiagramSpec(
+                kind="angle_line",
+                params={
+                    "angle_values": values,
+                    "labels": [f"({e})°" for e in exprs],
+                    "around_point": False,
+                },
+            ),
+        )
+
     known = rng.randint(20, 150)
     coeff = rng.choice([2, 3, 4, 5])
     x_sol = rng.randint(1, 20)
@@ -126,6 +195,47 @@ def generate_straight_line_higher(tier: Tier, rng: random.Random) -> Question:
 
 
 def generate_modelled_example_straight_line_higher(tier: Tier, rng: random.Random) -> ModelledExample:
+    if rng.random() < _MULTI_ALGEBRAIC_CHANCE:
+        _known, terms, _x_val, combined_coeff, combined_const = _build_multi_algebraic_angles(
+            rng, n_algebraic=2, n_known=0, target=180
+        )
+        exprs = [fmt_linear(c, k) for c, k in terms]
+        solve_steps, solution = solve_linear_with_steps(combined_coeff, combined_const, 0, 180)
+        check_total = sum(int((c * X + k).subs(X, solution)) for c, k in terms)
+        if check_total != 180:
+            raise ValueError("modelled example straight_line_higher (multi) verification failed")
+
+        equation_line = f"({exprs[0]}) + ({exprs[1]}) = 180"
+        simplified_line = f"{fmt_linear(combined_coeff, combined_const)} = 180"
+        teaching_steps = [
+            "Angles on a straight line always add up to 180° - this still holds even when "
+            "MULTIPLE of the angles are written as algebraic expressions instead of plain numbers.",
+            f"Add the two expressions together and set the total equal to 180°: {equation_line}.",
+            f"Collect the x-terms and constants together so only one term needs solving: "
+            f"{simplified_line}.",
+            f"Solve that equation for x the usual way, to get x = {solution}.",
+            "Check your answer makes sense: substitute x back into both expressions and confirm "
+            "they genuinely add up to 180°.",
+        ]
+        values = [c * _x_val + k for c, k in terms]
+        worked_calculation = [equation_line, simplified_line, f"x = {solution}"]
+        return ModelledExample(
+            topic_id="angles_straight_line_H",
+            tier=Tier.HIGHER,
+            prompt=f"The angles ({exprs[0]})° and ({exprs[1]})° lie on a straight line. Find x.",
+            worked_calculation=tuple(worked_calculation),
+            teaching_steps=tuple(teaching_steps),
+            final_answer=str(solution),
+            diagram=DiagramSpec(
+                kind="angle_line",
+                params={
+                    "angle_values": values,
+                    "labels": [f"({e})°" for e in exprs],
+                    "around_point": False,
+                },
+            ),
+        )
+
     known = rng.randint(20, 150)
     coeff = rng.choice([2, 3, 4, 5])
     x_sol = rng.randint(1, 20)
@@ -255,6 +365,51 @@ def generate_modelled_example_around_point(tier: Tier, rng: random.Random) -> Mo
 
 
 def generate_around_point_higher(tier: Tier, rng: random.Random) -> Question:
+    if rng.random() < _MULTI_ALGEBRAIC_CHANCE:
+        n = rng.choice([3, 4])
+        known, terms, _x_val, combined_coeff, combined_const = _build_multi_algebraic_angles(
+            rng, n_algebraic=2, n_known=n - 2, target=360
+        )
+        exprs = [fmt_linear(c, k) for c, k in terms]
+        target_eq = 360 - sum(known)
+        solve_steps, solution = solve_linear_with_steps(combined_coeff, combined_const, 0, target_eq)
+        check_total = sum(known) + sum(int((c * X + k).subs(X, solution)) for c, k in terms)
+        if check_total != 360:
+            raise ValueError("around_point_higher (multi) verification failed")
+
+        known_str = ", ".join(f"{a}°" for a in known)
+        expr_str = " and ".join(f"({e})°" for e in exprs)
+        parts_str = (known_str + ", " if known_str else "") + expr_str
+        equation_line = (
+            (" + ".join(str(a) for a in known) + " + " if known else "")
+            + " + ".join(f"({e})" for e in exprs)
+            + " = 360"
+        )
+        simplified_line = f"{fmt_linear(combined_coeff, combined_const)} = {target_eq}"
+        steps = [
+            "Angles around a point sum to 360°.",
+            equation_line,
+            "Collect like terms:",
+            simplified_line,
+        ] + solve_steps[1:]
+        values = known + [c * _x_val + k for c, k in terms]
+        return Question(
+            topic_id="angles_around_point_H",
+            tier=Tier.HIGHER,
+            prompt=f"The angles {parts_str} are angles around a point. Find x.",
+            solution_steps=tuple(steps),
+            final_answer=str(solution),
+            dedup_key=f"around_point_h_multi:{known}:{terms}",
+            diagram=DiagramSpec(
+                kind="angle_line",
+                params={
+                    "angle_values": values,
+                    "labels": [f"{a}°" for a in known] + [f"({e})°" for e in exprs],
+                    "around_point": True,
+                },
+            ),
+        )
+
     n = rng.choice([3, 4])
     given: list[int] = []
     remaining = 360
@@ -300,6 +455,54 @@ def generate_around_point_higher(tier: Tier, rng: random.Random) -> Question:
 
 
 def generate_modelled_example_around_point_higher(tier: Tier, rng: random.Random) -> ModelledExample:
+    if rng.random() < _MULTI_ALGEBRAIC_CHANCE:
+        n = rng.choice([3, 4])
+        known, terms, _x_val, combined_coeff, combined_const = _build_multi_algebraic_angles(
+            rng, n_algebraic=2, n_known=n - 2, target=360
+        )
+        exprs = [fmt_linear(c, k) for c, k in terms]
+        target_eq = 360 - sum(known)
+        solve_steps, solution = solve_linear_with_steps(combined_coeff, combined_const, 0, target_eq)
+        check_total = sum(known) + sum(int((c * X + k).subs(X, solution)) for c, k in terms)
+        if check_total != 360:
+            raise ValueError("modelled example around_point_higher (multi) verification failed")
+
+        known_str = ", ".join(f"{a}°" for a in known)
+        expr_str = " and ".join(f"({e})°" for e in exprs)
+        parts_str = (known_str + ", " if known_str else "") + expr_str
+        equation_line = (
+            (" + ".join(str(a) for a in known) + " + " if known else "")
+            + " + ".join(f"({e})" for e in exprs)
+            + " = 360"
+        )
+        simplified_line = f"{fmt_linear(combined_coeff, combined_const)} = {target_eq}"
+        teaching_steps = [
+            "Angles that meet at a single point and go all the way around it always add up to "
+            "360° - a full turn - and that's still true even when MULTIPLE of the angles are "
+            "written algebraically instead of as plain numbers.",
+            f"Add every angle together and set the total equal to 360°: {equation_line}.",
+            f"Collect the x-terms and constants together: {simplified_line}.",
+            f"Solve that equation for x the usual way, to get x = {solution}.",
+        ]
+        values = known + [c * _x_val + k for c, k in terms]
+        worked_calculation = [equation_line, simplified_line, f"x = {solution}"]
+        return ModelledExample(
+            topic_id="angles_around_point_H",
+            tier=Tier.HIGHER,
+            prompt=f"The angles {parts_str} are angles around a point. Find x.",
+            worked_calculation=tuple(worked_calculation),
+            teaching_steps=tuple(teaching_steps),
+            final_answer=str(solution),
+            diagram=DiagramSpec(
+                kind="angle_line",
+                params={
+                    "angle_values": values,
+                    "labels": [f"{a}°" for a in known] + [f"({e})°" for e in exprs],
+                    "around_point": True,
+                },
+            ),
+        )
+
     n = rng.choice([3, 4])
     given: list[int] = []
     remaining = 360
@@ -414,6 +617,36 @@ def generate_modelled_example_triangle_angles(tier: Tier, rng: random.Random) ->
 
 
 def generate_triangle_angles_higher(tier: Tier, rng: random.Random) -> Question:
+    if rng.random() < _MULTI_ALGEBRAIC_CHANCE:
+        _known, terms, _x_val, combined_coeff, combined_const = _build_multi_algebraic_angles(
+            rng, n_algebraic=3, n_known=0, target=180
+        )
+        exprs = [fmt_linear(c, k) for c, k in terms]
+        solve_steps, solution = solve_linear_with_steps(combined_coeff, combined_const, 0, 180)
+        check_total = sum(int((c * X + k).subs(X, solution)) for c, k in terms)
+        if check_total != 180:
+            raise ValueError("triangle_angles_higher (multi) verification failed")
+
+        equation_line = " + ".join(f"({e})" for e in exprs) + " = 180"
+        simplified_line = f"{fmt_linear(combined_coeff, combined_const)} = 180"
+        steps = [
+            "Angles in a triangle sum to 180°.",
+            equation_line,
+            "Collect like terms:",
+            simplified_line,
+        ] + solve_steps[1:]
+        return Question(
+            topic_id="angles_triangle_H",
+            tier=Tier.HIGHER,
+            prompt=f"A triangle has angles ({exprs[0]})°, ({exprs[1]})°, and ({exprs[2]})°. Find x.",
+            solution_steps=tuple(steps),
+            final_answer=str(solution),
+            dedup_key=f"triangle_angles_h_multi:{terms}",
+            diagram=DiagramSpec(
+                kind="triangle_angles", params={"angle_labels": [f"({e})°" for e in exprs]}
+            ),
+        )
+
     a = rng.randint(20, 100)
     b = rng.randint(20, min(100, 160 - a))
     target = 180 - a - b
@@ -445,6 +678,42 @@ def generate_triangle_angles_higher(tier: Tier, rng: random.Random) -> Question:
 
 
 def generate_modelled_example_triangle_angles_higher(tier: Tier, rng: random.Random) -> ModelledExample:
+    if rng.random() < _MULTI_ALGEBRAIC_CHANCE:
+        _known, terms, _x_val, combined_coeff, combined_const = _build_multi_algebraic_angles(
+            rng, n_algebraic=3, n_known=0, target=180
+        )
+        exprs = [fmt_linear(c, k) for c, k in terms]
+        solve_steps, solution = solve_linear_with_steps(combined_coeff, combined_const, 0, 180)
+        check_total = sum(int((c * X + k).subs(X, solution)) for c, k in terms)
+        if check_total != 180:
+            raise ValueError("modelled example triangle_angles_higher (multi) verification failed")
+
+        equation_line = " + ".join(f"({e})" for e in exprs) + " = 180"
+        simplified_line = f"{fmt_linear(combined_coeff, combined_const)} = 180"
+        teaching_steps = [
+            "Every triangle's three interior angles always add up to 180° - this still holds "
+            "even when ALL THREE angles are written as algebraic expressions instead of plain "
+            "numbers.",
+            f"Add all three expressions together and set the total equal to 180°: {equation_line}.",
+            f"Collect the x-terms and constants together so only one term needs solving: "
+            f"{simplified_line}.",
+            f"Solve that equation for x the usual way, to get x = {solution}.",
+            "Check your answer makes sense: substitute x back into every expression and confirm "
+            "they genuinely add up to 180°.",
+        ]
+        worked_calculation = [equation_line, simplified_line, f"x = {solution}"]
+        return ModelledExample(
+            topic_id="angles_triangle_H",
+            tier=Tier.HIGHER,
+            prompt=f"A triangle has angles ({exprs[0]})°, ({exprs[1]})°, and ({exprs[2]})°. Find x.",
+            worked_calculation=tuple(worked_calculation),
+            teaching_steps=tuple(teaching_steps),
+            final_answer=str(solution),
+            diagram=DiagramSpec(
+                kind="triangle_angles", params={"angle_labels": [f"({e})°" for e in exprs]}
+            ),
+        )
+
     a = rng.randint(20, 100)
     b = rng.randint(20, min(100, 160 - a))
     target = 180 - a - b

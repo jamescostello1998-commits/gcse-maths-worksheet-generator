@@ -373,7 +373,30 @@ def generate_modelled_example_multi_step(tier: Tier, rng: random.Random) -> Mode
     )
 
 
-def generate_both_sides(tier: Tier, rng: random.Random) -> Question:
+def _fmt_side_constant_first(coeff, const) -> str:
+    """coeff must be negative - renders 'const - |coeff|x' (e.g. '15 - x',
+    '27 - 3x') instead of the usual fmt_linear coefficient-first order."""
+    ax_abs = fmt_linear(-coeff, 0)
+    return f"{fmt_num(const)} - {ax_abs}"
+
+
+def _can_swap_constant_first(coeff, const) -> bool:
+    """Only swap to constant-first display when the constant is genuinely
+    positive - real GCSE papers write '15 - x', never '-9 - 5x' or '0 - 3x'
+    (that's just the ordinary coefficient-first form with nothing gained by
+    reordering it)."""
+    return coeff < 0 and const > 0
+
+
+def _build_both_sides(rng: random.Random):
+    """Build linear_both_sides_H content: ax+b = cx+d, negative coefficients
+    allowed on both sides (unchanged from before). NEW: each side
+    independently has a ~40% chance of being displayed constant-first
+    ("15 - x" instead of "-x + 15") whenever ITS OWN coefficient happens to
+    be negative - matching the mixed ordering seen in real GCSE both-sides
+    worksheets (a positive-coefficient side is never reordered this way;
+    real exam papers don't write "-1 + 8x", they'd write "8x - 1"). Returns
+    (a, b, c, d, sol, disp, steps, solution, orig_lhs, orig_rhs, dedup_key)."""
     a = _rand_nonzero(rng, -9, 9)
     c = _rand_nonzero(rng, -9, 9)
     while c == a:
@@ -382,35 +405,43 @@ def generate_both_sides(tier: Tier, rng: random.Random) -> Question:
     b = rng.randint(-15, 15)
     d = a * sol + b - c * sol
 
+    lhs_str = (
+        _fmt_side_constant_first(a, b)
+        if _can_swap_constant_first(a, b) and rng.random() < 0.4
+        else fmt_linear(a, b)
+    )
+    rhs_str = (
+        _fmt_side_constant_first(c, d)
+        if _can_swap_constant_first(c, d) and rng.random() < 0.4
+        else fmt_linear(c, d)
+    )
+    disp = f"{lhs_str} = {rhs_str}"
+
     orig_lhs = a * X + b
     orig_rhs = c * X + d
     steps, solution = solve_linear_with_steps(a, b, c, d)
+    steps = [disp] + steps[1:]
+    key = f"both_sides:{a}:{b}:{c}:{d}:{lhs_str}:{rhs_str}"
+    return a, b, c, d, sol, disp, steps, solution, orig_lhs, orig_rhs, key
+
+
+def generate_both_sides(tier: Tier, rng: random.Random) -> Question:
+    _a, _b, _c, _d, _sol, disp, steps, solution, orig_lhs, orig_rhs, key = _build_both_sides(rng)
     _verify(orig_lhs, orig_rhs, solution, "both_sides")
 
     return Question(
         topic_id="linear_both_sides_H",
         tier=Tier.HIGHER,
-        prompt=f"Solve: {fmt_linear(a, b)} = {fmt_linear(c, d)}",
+        prompt=f"Solve: {disp}",
         solution_steps=tuple(steps),
         final_answer=fmt_num(solution),
-        dedup_key=f"both_sides:{a}:{b}:{c}:{d}",
+        dedup_key=key,
     )
 
 
 def generate_modelled_example_both_sides(tier: Tier, rng: random.Random) -> ModelledExample:
-    a = _rand_nonzero(rng, -9, 9)
-    c = _rand_nonzero(rng, -9, 9)
-    while c == a:
-        c = _rand_nonzero(rng, -9, 9)
-    sol = _rand_nonzero(rng, -10, 10)
-    b = rng.randint(-15, 15)
-    d = a * sol + b - c * sol
-
-    orig_lhs = a * X + b
-    orig_rhs = c * X + d
-    residual = sp.simplify(orig_lhs.subs(X, sol) - orig_rhs.subs(X, sol))
-    if residual != 0:
-        raise ValueError("modelled example both_sides verification failed")
+    a, b, c, d, sol, disp, _steps, solution, orig_lhs, orig_rhs, _key = _build_both_sides(rng)
+    _verify(orig_lhs, orig_rhs, solution, "both_sides_modelled")
 
     new_coeff = a - c
     new_const = d - b
@@ -423,12 +454,11 @@ def generate_modelled_example_both_sides(tier: Tier, rng: random.Random) -> Mode
         f"{fmt_linear(new_coeff, 0)} = {fmt_num(new_const)}.",
         f"Divide both sides by {fmt_num(new_coeff)}: x = {fmt_num(new_const)} ÷ {fmt_num(new_coeff)} "
         f"= {sol}.",
-        f"Check by substituting x = {sol} into both sides of the original equation: left-hand side = "
-        f"{a}×({sol}) + {b} = {a * sol + b}; right-hand side = {c}×({sol}) + {d} = {c * sol + d}. Both "
-        "sides agree, so the solution is correct.",
+        f"Check by substituting x = {sol} back into the original equation - it should make both "
+        "sides equal.",
     ]
     worked_calculation = [
-        f"{fmt_linear(a, b)} = {fmt_linear(c, d)}",
+        disp,
         f"{fmt_linear(new_coeff, b)} = {fmt_num(d)}",
         f"{fmt_linear(new_coeff, 0)} = {fmt_num(new_const)}",
         f"x = {sol}",
@@ -436,7 +466,7 @@ def generate_modelled_example_both_sides(tier: Tier, rng: random.Random) -> Mode
     return ModelledExample(
         topic_id="linear_both_sides_H",
         tier=Tier.HIGHER,
-        prompt=f"Solve: {fmt_linear(a, b)} = {fmt_linear(c, d)}",
+        prompt=f"Solve: {disp}",
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=fmt_num(sol),

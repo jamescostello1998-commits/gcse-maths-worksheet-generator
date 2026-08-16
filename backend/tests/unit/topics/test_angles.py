@@ -1,6 +1,9 @@
 import random
 
+from reportlab.pdfbase.pdfmetrics import stringWidth
+
 from app.core.models import Tier
+from app.pdf.diagrams import DIAGRAM_WIDTH, _LABEL_FONT, draw_triangle_angles
 from app.topics import angles
 
 TRIALS = 200
@@ -210,6 +213,62 @@ def test_topic_definitions_have_modelled_examples_wired_up():
     ]
     for t in topics:
         assert t.generate_modelled_example is not None
+
+
+def test_higher_angle_topics_sometimes_use_multiple_algebraic_terms():
+    # straight_line_H/around_point_H get 2 algebraic terms; triangle_H gets
+    # all 3 - counted here by how many "(" appear in the prompt, since a
+    # known numeric angle is never parenthesised.
+    checks = [
+        (angles.generate_straight_line_higher, 2),
+        (angles.generate_around_point_higher, 2),
+        (angles.generate_triangle_angles_higher, 3),
+    ]
+    for generate, n_when_multi in checks:
+        rng = random.Random(61)
+        single_seen = False
+        multi_seen = False
+        for _ in range(500):
+            q = generate(Tier.HIGHER, rng)
+            n_algebraic = q.prompt.count("(")
+            if n_algebraic == n_when_multi:
+                multi_seen = True
+            elif n_algebraic == 1:
+                single_seen = True
+        assert single_seen, f"{generate.__name__} never produced a single-algebraic-term question"
+        assert multi_seen, f"{generate.__name__} never produced a multi-algebraic-term question"
+
+
+def test_triangle_angles_labels_never_clip_the_diagram_canvas():
+    # Regression test: a narrow/tall triangle variant combined with a wide
+    # algebraic label at the bottom-left vertex (e.g. "(4x - 9)deg") could
+    # run its opening "(" off the left edge of the diagram's own canvas -
+    # _place_angle_label's analytic placement only cleared the angle's own
+    # two edges, not the canvas bounds. Caught by rendering real output and
+    # looking closely, not by any test that only checks the final answer.
+    rng = random.Random(71)
+    checked = 0
+    for _ in range(500):
+        q = angles.generate_triangle_angles_higher(Tier.HIGHER, rng)
+        if q.diagram is None:
+            continue
+        checked += 1
+        d = draw_triangle_angles(q.diagram.params)
+
+        def walk(group):
+            for item in group.contents:
+                if hasattr(item, "contents"):
+                    yield from walk(item)
+                elif item.__class__.__name__ == "String":
+                    yield item
+
+        for item in walk(d):
+            w = stringWidth(item.text, _LABEL_FONT, item.fontSize)
+            left = item.x - w / 2 if item.textAnchor == "middle" else item.x
+            right = left + w
+            assert left >= -1, f"{item.text!r} clips the left edge ({left})"
+            assert right <= DIAGRAM_WIDTH + 1, f"{item.text!r} clips the right edge ({right})"
+    assert checked > 100
 
 
 def test_modelled_examples_produce_verified_examples_with_diagrams():

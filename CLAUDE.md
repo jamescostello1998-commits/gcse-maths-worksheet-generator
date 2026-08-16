@@ -25,12 +25,18 @@ scheme. The full chronology below still uses the *old* ids in its historical ent
 tier suffix if you go looking for one. See step 44 for the exact rename rule and how the
 migration was done safely.
 
-**CURRENT STATE:** **323 topics**, backend suite **1039/1039**, frontend **65/65**, all 60
-Practice Test papers exactly 100 marks (rebuilt twice during step 61). Steps 54-59 are committed
-(steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`, step 58 in `dbda953`, step 59 across seven commits
-ending `91048ec`); steps 60-61 (tree diagrams/`frequency_tree_F` + probability/loci/construction/
-bearings fixes, described below) are committed in `8abaf98`; step 62 (a Solving Linear Equations
-review batch — see chronology) is committed in the session that wrote this line. No known bugs.
+**CURRENT STATE:** **323 topics**, backend suite **1044/1044**, frontend **65/65**, all 60
+Practice Test papers exactly 100 marks (rebuilt twice during step 61 — steps 62-63 didn't need a
+rebuild: the touched topics are either diagram-free or don't appear in any frozen paper, see those
+steps for the exact reasoning). Steps 54-59 are committed (steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`, step 58
+in `dbda953`, step 59 across seven commits ending `91048ec`); steps 60-61 (tree diagrams/
+`frequency_tree_F` + probability/loci/construction/bearings fixes, described below) are committed
+in `8abaf98`; step 62 (a Solving Linear Equations review batch) is committed in `56e149c`; **step 63
+(a Corbett-Maths-gap audit + build batch — linear_both_sides_H reordering, multi-algebraic-term
+angles, 6 new forming_equations_H perimeter shapes, ages/money + consecutive-integer word problems)
+is NOT YET COMMITTED — a new session should commit and push this first** (full suite already
+confirmed 1044/1044 green with it included; see step 63 in the chronology for exactly what's in the
+diff). No known bugs.
 
 **What the recent sessions did — an ongoing aesthetic-review process (steps 34-59).** The user
 works through the two `all_topics_review_*.pdf` documents and sends feedback, mostly as per-topic
@@ -255,9 +261,12 @@ items (occasionally by page range). Steps 34-53 are in the chronology; the most 
 
 See chronology step 59 (and its numbered follow-up sub-entries) for the full technical detail.
 
-**Next natural step:** steps 60-62 are all committed and pushed (see "CURRENT STATE" above). Ask the
-user for the next chunk of review feedback (the review is NOT confirmed finished — recent batches
-have been per-topic
+**Next natural step:** commit and push step 63 FIRST (see "CURRENT STATE" above — it's the only
+thing not yet committed; the user has already reviewed the rendered output this step describes, so
+this isn't waiting on further confirmation — just verify `pytest` is still green, which it was
+at 1044/1044 when this step was written). Steps 60-62 are already committed and pushed. Then ask
+the user for the next chunk of review feedback (the review is NOT confirmed finished — recent
+batches have been per-topic
 items the user sends directly, sometimes several in one message, occasionally a page range; they
 may equally have a new one-off feature in mind, as steps 45-46 and 61's bearings topics were). The
 review workflow each batch: read the named items → fix them (render
@@ -4977,6 +4986,121 @@ fixes), is committed and pushed (see `git log`).
     have a diagram, so their already-generated static JSON content is unaffected by any of this
     step's changes (only future re-generations of those specific questions would use the new
     behaviour).
+
+63. Same session as step 62 (no new session boundary), a follow-up user question: "have we missed
+    anything" from three more Corbett Maths PDFs (`Equations-letters-both-sides-pdf.pdf`,
+    `Equations-angles-perimeter.pdf`, `Forming-Solving-Equations-115-pdf.pdf`) — a research request
+    first, then "build all of it" once the gaps were reported. Both PDFs read via `fitz` page
+    rendering (not text extraction, same reason as step 62). Found 4 genuine gaps, all confirmed
+    high-confidence and scoped via a single `AskUserQuestion` round before building (recorded
+    verbatim in the per-item write-ups below) — no new topics, every change extends an existing
+    topic's content mix.
+
+    **Gap-finding**: `linear_both_sides_H` always displayed coefficient-first (`fmt_linear`'s own
+    order) even though it already allows negative coefficients — Corbett's "Letters on Both Sides"
+    sheet regularly writes a negative-coefficient side constant-first instead (`80 - x = 8x - 1`,
+    `15 - x = 27 - 3x`). The Higher `angles_straight_line_H`/`angles_around_point_H`/
+    `angles_triangle_H` generators always had exactly ONE algebraic term (the rest plain numbers) —
+    Corbett's angle sheet regularly has TWO+ algebraic terms (`2x+25° and x-10° on a straight
+    line`) or a triangle with all three angles algebraic; this treatment already existed for the
+    Higher **quadrilateral** case in `forming_equations_H` but nowhere else. `forming_equations_H`'s
+    perimeter branch was L-shape only, one algebraic side — Corbett's "angles/perimeter" sheet
+    covers isosceles triangles, parallelograms, right-triangles, and regular polygons, often with
+    BOTH dimensions independently algebraic. `forming_equations_F`/`_H`'s only word-problem context
+    was "think of a number" (multiply/add chains) — Corbett's "Forming and Solving" sheet is mostly
+    a different, very common context this app had zero coverage of: multiple people/quantities
+    defined relative to x (ages, money) summing to a total, and consecutive-integer sums.
+
+    **`linear_both_sides_H`**: each side independently gets a ~40% chance of constant-first display
+    (`_fmt_side_constant_first`) whenever THAT side's own coefficient is negative AND its constant
+    is positive (`_can_swap_constant_first`) — a positive-coefficient side, or a negative constant,
+    is never reordered (real exam papers don't write `-9 - 5x` or `0 - 3x`; a first attempt without
+    the constant-positive guard produced exactly those two ugly forms, caught by rendering and
+    fixed). `_build_both_sides` is a new shared helper (both the practice and modelled-example
+    generators now call it) that overrides `solve_linear_with_steps`'s own first step-line with
+    whichever display order was chosen, so the worked solution's first line always matches the
+    prompt. **A second real bug, unrelated to this step's own work, was caught while rendering**:
+    `algebra_utils.solve_linear_with_steps`'s "Add/Subtract Nx from both sides" step used bare
+    `fmt_num` instead of `fmt_linear`, printing "Add 1x to both sides" instead of "Add x" whenever
+    the x-coefficient being cleared was exactly ±1 — fixed at the shared-helper level (two-line
+    fix), benefiting every caller, not just this topic.
+
+    **`angles_straight_line_H`/`angles_around_point_H`/`angles_triangle_H`**: each gained a ~40%
+    chance (`_MULTI_ALGEBRAIC_CHANCE`) of using a NEW shared builder, `_build_multi_algebraic_angles`
+    (picks n_algebraic terms + n_known plain numbers that sum exactly to the fact's target, each
+    coefficient a small positive integer 2-5, mirroring `_angles_higher`'s existing quadrilateral
+    convention) — straight-line gets 2 algebraic terms and 0 known numbers (matching Corbett's own
+    example exactly), around-a-point keeps its existing 3-or-4-ray structure but 2 of the angles
+    are now algebraic instead of 1, and triangle gets all 3 angles algebraic. Foundation siblings
+    deliberately untouched (confirmed via `AskUserQuestion` - only the 3 Higher topics selected).
+    Implemented as a guard-clause at the top of each of the 6 existing functions (practice +
+    modelled example × 3 topics) - the original single-algebraic-term code is untouched below it,
+    matching this session's own established low-risk-diff pattern from step 62. **A real diagram
+    bug was found and fixed via rendering, not by any test**: `_place_angle_label` (used by
+    `draw_triangle_angles`/`draw_polygon_angles`) computed a label position analytically clear of
+    the angle's own two edges, but never clamped against the Drawing's own canvas width - a wide
+    algebraic label (e.g. `(4x - 9)°`) at a vertex near the canvas edge could run its own opening
+    "(" off-canvas. Fixed with a straightforward post-hoc clamp inside `_place_angle_label` itself
+    (benefiting `draw_polygon_angles` too, not just the triangle diagram), verified by measuring
+    every real `String` element's bounding box across 800 rendered instances (0 clipped) and adding
+    a permanent regression test doing the same measurement.
+
+    **`forming_equations_H` perimeter branch** (`_area_higher`'s "perimeter" choice): reworked from
+    L-shape-only into a new shared `_build_perimeter_higher` helper choosing among 6 shapes -
+    L-shape (unchanged), rectangle/parallelogram (two independently algebraic sides, `x+b`/`x+e`),
+    isosceles triangle (two equal `x+k` sides + a different base), right-angled triangle (three
+    independently algebraic sides), and a regular polygon (pentagon-octagon, one algebraic side -
+    regular, so one label implies all). Every new shape's sides deliberately use a plain `x + k`
+    form (coefficient always 1), not also varying the coefficient - a scoped-down simplification
+    kept the construction/verification straightforward for a 6-shape batch built in one pass.
+    Two new diagram kinds: `draw_parallelogram_perimeter` (labels the base + one adjacent slant
+    side - deliberately NOT reusing the existing `draw_parallelogram`, which is built for an AREA
+    question and labels base + the dashed perpendicular height instead, not a real side) and
+    `draw_regular_polygon_side` (reuses `draw_polygon`'s own vertex geometry, labels one edge via
+    the already-proven `_place_side_label` helper). The right-angled-triangle and isosceles-triangle
+    shapes reuse the EXISTING `draw_right_triangle`/`draw_general_triangle` diagram kinds unchanged
+    (schematic, not-to-scale, so no Pythagorean consistency is needed between the three algebraic
+    side lengths). **Two real diagram bugs were found and fixed by rendering, not by any test**:
+    (1) `draw_regular_polygon_side`'s first version picked the edge to label by MAXIMUM y-sum,
+    intending "bottom-most" - this Drawing uses ReportLab's own Y-UP convention (confirmed by
+    printing real vertex coordinates, not assumed), so `max` actually picked the TOP-most edge;
+    fixed by switching to `min`. (2) Even after that fix, a steeply-slanted polygon edge (hexagon)
+    had its label rendered directly ON TOP of the edge line - a hand-rolled perpendicular-offset-
+    plus-directional-flip was insufficient clearance for a wide label on a steep diagonal; fixed by
+    discarding the hand-rolled logic entirely in favour of calling the already-proven
+    `_place_side_label` helper (the same one `draw_general_triangle`/`draw_right_triangle` use),
+    passing the polygon's own centre as the "away from" reference point.
+
+    **`forming_equations_F`/`_H` word-problem contexts**: two new context branches added to the
+    existing `words`/`angles`/`area` choice (now `words`/`people`/`consecutive`/`angles`/`area`,
+    each ~20%) - confirmed via `AskUserQuestion` to fold into the existing topics rather than create
+    new standalone ones. `people` (Foundation: 2 people, additive relationship only, e.g. "Daisy is
+    2 years older than Gregory"; Higher: 3 people, one additive + one MULTIPLICATIVE relationship,
+    e.g. "Priya has four times Noah's amount of money") draws from a shared `_PEOPLE_NAMES` pool (10
+    names, sampled without replacement for real variety) and `_TWO_PERSON_CONTEXTS` (ages / money,
+    each with its own natural relation words). `consecutive` (Foundation: 3 consecutive numbers;
+    Higher: 5 consecutive numbers OR 3 consecutive EVEN numbers) reuses the `_fmt_xk` helper
+    written for the perimeter shapes above. **Two real wording bugs were found and fixed by
+    rendering, not by any test**: (1) the ages context's "difference" clause read "Noah is 20 years
+    old older than Maya" - double unit, since the context dict's single `unit` field ("years old",
+    correct for a person's OWN age) was reused for the relative-difference clause too (which needs
+    plain "years"); fixed by splitting into separate `unit`/`diff_unit` fields. (2) The money
+    context's total-of-three-people sentence read "amounts of moneys" - naive `f"{item}s"`
+    pluralization of the multi-word noun "amount of money"; fixed by adding an explicit
+    `item_plural` field ("amounts of money") instead of string-concatenating an "s".
+
+    Central verification: full backend suite grew from 1039 to 1044 (2 new tests in
+    `test_linear_equations.py` for the both-sides reordering, 2 in `test_angles.py` for the
+    multi-algebraic variety + the label-clipping regression, 2 in `test_forming_equations.py` for
+    the 6 perimeter shapes + the people/consecutive wording regression); frontend unaffected
+    (65/65). No topic count change (still 323 - every change extends an existing topic's content
+    mix). No Practice Test rebuild - none of the touched topics (`linear_both_sides_H`,
+    `angles_straight_line_H`/`around_point_H`/`triangle_H`, `forming_equations_F`/`_H`) currently
+    appear in any frozen paper. Every change was verified by rendering real worksheet + worked-
+    solution PDFs (plus, for the perimeter shapes and people/consecutive contexts, a real
+    modelled-example PDF) and reading them closely - four of this step's five real bugs were only
+    caught this way, not by any test written in advance, matching this project's whole-history
+    discipline. **Not yet committed as of the end of this session — see "CURRENT STATE" above.**
 
 ## Environment gotchas (Windows, this machine specifically)
 

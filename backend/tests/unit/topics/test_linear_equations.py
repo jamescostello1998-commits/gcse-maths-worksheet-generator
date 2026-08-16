@@ -115,6 +115,32 @@ def test_two_step_covers_all_four_forms_weighted_toward_coefficient_first():
         assert count > 0, f"{op} never appeared in {n} trials"
 
 
+def test_both_sides_higher_constant_first_variety_and_correctness():
+    # A side is only ever displayed constant-first ("15 - x") when its own
+    # coefficient is negative - a positive-coefficient side always stays
+    # coefficient-first ("8x - 1"), matching real GCSE convention.
+    rng = random.Random(31)
+    n = 1500
+    swapped_seen = False
+    for _ in range(n):
+        a, b, c, d, _sol, disp, _steps, _solution, orig_lhs, orig_rhs, _key = (
+            linear_equations._build_both_sides(rng)
+        )
+        lhs_text, rhs_text = disp.split(" = ")
+        if lhs_text == linear_equations._fmt_side_constant_first(a, b):
+            assert a < 0 and b > 0  # only swapped when coeff<0 AND the constant is positive
+            swapped_seen = True
+        if rhs_text == linear_equations._fmt_side_constant_first(c, d):
+            assert c < 0 and d > 0
+            swapped_seen = True
+        # Whatever the display order, it must describe the true equation.
+        parsed_lhs = parse_expr(lhs_text, transformations=_PARSE_TRANSFORMS, local_dict={"x": sp.Symbol("x")})
+        parsed_rhs = parse_expr(rhs_text, transformations=_PARSE_TRANSFORMS, local_dict={"x": sp.Symbol("x")})
+        assert sp.simplify(parsed_lhs - orig_lhs) == 0
+        assert sp.simplify(parsed_rhs - orig_rhs) == 0
+    assert swapped_seen
+
+
 def test_multi_step_never_starts_negative_but_coeff2_sometimes_is():
     rng = random.Random(13)
     n = 1000

@@ -56,9 +56,9 @@ def solve_linear_with_steps(
     if rhs_coeff != 0:
         new_lhs_coeff = lhs_coeff - rhs_coeff
         if rhs_coeff > 0:
-            steps.append(f"Subtract {fmt_num(rhs_coeff)}x from both sides:")
+            steps.append(f"Subtract {fmt_linear(rhs_coeff, 0)} from both sides:")
         else:
-            steps.append(f"Add {fmt_num(sp.Abs(rhs_coeff))}x to both sides:")
+            steps.append(f"Add {fmt_linear(sp.Abs(rhs_coeff), 0)} to both sides:")
         steps.append(f"{fmt_linear(new_lhs_coeff, lhs_const)} = {fmt_num(rhs_const)}")
         lhs_coeff, rhs_coeff = new_lhs_coeff, sp.Integer(0)
 

@@ -10,6 +10,26 @@ from app.topics.base import TopicDefinition
 SECTION = "algebra"
 GROUP = "Forming and Solving Equations"
 
+# Shared by the "people" (ages/money) word-problem contexts, Foundation and
+# Higher alike - a small name pool for real variety (not the same two names
+# every time), and two contexts (ages / money) with their own natural
+# relation words ("older"/"younger" reads right for ages; "more"/"less"
+# reads right for money - "5 pence older" would be wrong).
+_PEOPLE_NAMES = [
+    "Alex", "Sam", "Priya", "Jordan", "Maya", "Liam", "Zara", "Ravi", "Ellie", "Noah",
+]
+_TWO_PERSON_CONTEXTS = [
+    {
+        "unit": "years old", "diff_unit": "years", "item": "age", "item_plural": "ages",
+        "more_word": "older", "less_word": "younger",
+    },
+    {
+        "unit": "pence", "diff_unit": "pence", "item": "amount of money", "item_plural": "amounts of money",
+        "more_word": "more", "less_word": "less",
+    },
+]
+_MULTIPLE_WORDS = {2: "double", 3: "three times", 4: "four times"}
+
 
 # ---------------------------------------------------------------------------
 # Foundation: one/two-step equations, positive coefficient throughout.
@@ -41,6 +61,90 @@ def _words_foundation(rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=fmt_num(solution),
         dedup_key=f"form_words:{a}:{b}:{c}",
+    )
+
+
+def _people_foundation(rng: random.Random) -> Question:
+    """Two people/quantities, one defined relative to the other by a plain
+    addition/subtraction ("N years older/younger than", "N pence more/less
+    than"), summing to a given total - a genuinely different word-problem
+    context from the "think of a number" style above (real GCSE papers use
+    both), per direct user request checked against real Corbett Maths
+    examples."""
+    name1, name2 = rng.sample(_PEOPLE_NAMES, 2)
+    ctx = rng.choice(_TWO_PERSON_CONTEXTS)
+    k = rng.randint(1, 20)
+    is_more = rng.random() < 0.5
+    word = ctx["more_word"] if is_more else ctx["less_word"]
+    const = k if is_more else -k
+    x_val = rng.randint(max(5, k + 1), 40)
+    total = x_val + (x_val + const)
+
+    equation_line = f"x + ({fmt_linear(1, const)}) = {total}"
+    collect_line = f"{fmt_linear(2, const)} = {total}"
+    solve_steps, solution = solve_linear_with_steps(2, const, 0, total)
+    # Independent verification: substitute the solution back into BOTH
+    # people's own original (unexpanded) values, not the combined 2x+const
+    # used to solve it.
+    computed = solution + (solution + const)
+    if computed != total:
+        raise ValueError("forming_equations people (foundation) verification failed")
+
+    steps = [
+        f"Let {name1}'s {ctx['item']} be x.",
+        equation_line,
+        "Collect like terms:",
+        collect_line,
+    ] + solve_steps[1:]
+    prompt = (
+        f"{name1} is x {ctx['unit']}.\n"
+        f"{name2} is {k} {ctx['diff_unit']} {word} than {name1}.\n"
+        f"The sum of their {ctx['item_plural']} is {total}.\n"
+        "Form an equation and solve it to find x."
+    )
+    return Question(
+        topic_id="forming_equations_F",
+        tier=Tier.FOUNDATION,
+        prompt=prompt,
+        solution_steps=tuple(steps),
+        final_answer=fmt_num(solution),
+        dedup_key=f"form_people:{ctx['unit']}:{k}:{is_more}:{x_val}",
+    )
+
+
+def _consecutive_foundation(rng: random.Random) -> Question:
+    """The sum of three consecutive numbers - a classic, distinct GCSE
+    forming-equations context (never reduces to a simple "multiply and
+    add" or "two people" question), per direct user request."""
+    x_val = rng.randint(1, 40)
+    total = x_val + (x_val + 1) + (x_val + 2)
+    coeff, const = 3, 3
+
+    equation_line = "x + (x + 1) + (x + 2) = " + str(total)
+    collect_line = f"{fmt_linear(coeff, const)} = {total}"
+    solve_steps, solution = solve_linear_with_steps(coeff, const, 0, total)
+    # Independent verification: substitute the solution back into the three
+    # original (unexpanded) consecutive terms, not the combined 3x+3.
+    computed = solution + (solution + 1) + (solution + 2)
+    if computed != total:
+        raise ValueError("forming_equations consecutive (foundation) verification failed")
+
+    steps = [
+        "Let the first number be x.",
+        equation_line,
+        "Collect like terms:",
+        collect_line,
+    ] + solve_steps[1:]
+    return Question(
+        topic_id="forming_equations_F",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"The sum of three consecutive numbers is {total}. Form an equation (using x for "
+            "the first number) and solve it to find the three numbers."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=f"{solution}, {solution + 1}, {solution + 2}",
+        dedup_key=f"form_consecutive:{x_val}",
     )
 
 
@@ -187,9 +291,13 @@ def _area_foundation(rng: random.Random) -> Question:
 
 
 def generate_forming_equations_foundation(tier: Tier, rng: random.Random) -> Question:
-    context = rng.choice(["words", "angles", "area"])
+    context = rng.choice(["words", "people", "consecutive", "angles", "area"])
     if context == "words":
         q = _words_foundation(rng)
+    elif context == "people":
+        q = _people_foundation(rng)
+    elif context == "consecutive":
+        q = _consecutive_foundation(rng)
     elif context == "angles":
         q = _angles_foundation(rng)
     else:
@@ -227,6 +335,141 @@ def _l_shape_perimeter_diagram(m: int, n: int, k: int, x_val: int) -> DiagramSpe
     )
 
 
+_POLYGON_NAMES = {5: "pentagon", 6: "hexagon", 7: "heptagon", 8: "octagon"}
+
+
+def _fmt_xk(k: int) -> str:
+    return f"(x + {k})" if k > 0 else "x"
+
+
+def _build_perimeter_higher(rng: random.Random):
+    """Build one of 6 Higher perimeter-forming-equation shapes: the
+    original L-shape (one algebraic side), or 5 new ones added per direct
+    user request (checked against real Corbett Maths examples) - a
+    rectangle/parallelogram with two independently algebraic sides
+    (x+b and x+d), an isosceles triangle (two equal x+k sides + a
+    different base), a right-angled triangle with three independently
+    algebraic sides, and a regular polygon with one algebraic side (all
+    sides equal, so one label is enough). Every new shape's sides use a
+    plain "x + k" form (coefficient 1) - deliberately simpler than also
+    varying the coefficient, to keep this batch's construction/
+    verification straightforward. Returns (shape_desc, equation_line,
+    expand_step, coeff, const, total, solve_steps, solution, dedup_key,
+    diagram)."""
+    shape = rng.choice(["l_shape", "rectangle", "isosceles", "parallelogram", "right_triangle", "polygon"])
+    x_val = rng.randint(2, 20)
+
+    if shape == "l_shape":
+        m = rng.randint(3, 15)
+        n = rng.randint(3, 15)
+        k = rng.randint(1, 10)
+        total = 2 * m + 2 * n + 2 * (x_val + k)
+        coeff, const = 2, 2 * m + 2 * n + 2 * k
+        shape_desc = "L-shape"
+        equation_line = f"2(x + {k}) + 2({m} + {n}) = {total}"
+        expand_step = f"Expand the bracket (2 × x and 2 × {k}) and collect the constants:"
+        dedup_key = f"perim_h:l_shape:{m}:{n}:{k}:{x_val}"
+        diagram = _l_shape_perimeter_diagram(m, n, k, x_val)
+    elif shape == "rectangle":
+        b = rng.randint(1, 10)
+        e = rng.randint(1, 10)
+        while e == b:
+            e = rng.randint(1, 10)
+        total = 2 * (x_val + b) + 2 * (x_val + e)
+        coeff, const = 4, 2 * (b + e)
+        shape_desc = "rectangle"
+        equation_line = f"2(x + {b}) + 2(x + {e}) = {total}"
+        expand_step = "Expand both brackets and collect like terms:"
+        dedup_key = f"perim_h:rectangle:{b}:{e}:{x_val}"
+        diagram = DiagramSpec(
+            kind="rectangle",
+            params={
+                "width": x_val + b, "height": x_val + e,
+                "width_label": f"(x + {b}) cm", "height_label": f"(x + {e}) cm",
+            },
+        )
+    elif shape == "isosceles":
+        k = rng.randint(1, 10)
+        m = rng.randint(0, 10)
+        while m == k:
+            m = rng.randint(0, 10)
+        total = 2 * (x_val + k) + (x_val + m)
+        coeff, const = 3, 2 * k + m
+        equal_label = f"(x + {k}) cm"
+        base_label = f"{_fmt_xk(m)} cm"
+        shape_desc = "isosceles triangle"
+        equation_line = f"(x + {k}) + (x + {k}) + {_fmt_xk(m)} = {total}"
+        expand_step = "Collect like terms:"
+        dedup_key = f"perim_h:isosceles:{k}:{m}:{x_val}"
+        diagram = DiagramSpec(
+            kind="general_triangle",
+            params={"side_a_label": equal_label, "side_b_label": equal_label, "side_c_label": base_label},
+        )
+    elif shape == "parallelogram":
+        b = rng.randint(1, 10)
+        s = rng.randint(1, 10)
+        while s == b:
+            s = rng.randint(1, 10)
+        total = 2 * (x_val + b) + 2 * (x_val + s)
+        coeff, const = 4, 2 * (b + s)
+        shape_desc = "parallelogram"
+        equation_line = f"2(x + {b}) + 2(x + {s}) = {total}"
+        expand_step = "Expand both brackets and collect like terms:"
+        dedup_key = f"perim_h:parallelogram:{b}:{s}:{x_val}"
+        diagram = DiagramSpec(
+            kind="parallelogram_perimeter",
+            params={"base_label": f"(x + {b}) cm", "side_label": f"(x + {s}) cm"},
+        )
+    elif shape == "right_triangle":
+        p, q, r = rng.sample(range(0, 11), 3)
+        total = (x_val + p) + (x_val + q) + (x_val + r)
+        coeff, const = 3, p + q + r
+        shape_desc = "right-angled triangle"
+        equation_line = f"{_fmt_xk(p)} + {_fmt_xk(q)} + {_fmt_xk(r)} = {total}"
+        expand_step = "Collect like terms:"
+        dedup_key = f"perim_h:right_triangle:{p}:{q}:{r}:{x_val}"
+        diagram = DiagramSpec(
+            kind="right_triangle",
+            params={
+                "leg1_label": f"{_fmt_xk(p)} cm", "leg2_label": f"{_fmt_xk(q)} cm",
+                "hyp_label": f"{_fmt_xk(r)} cm",
+            },
+        )
+    else:  # polygon
+        n_sides = rng.choice([5, 6, 7, 8])
+        k = rng.randint(1, 10)
+        total = n_sides * (x_val + k)
+        coeff, const = n_sides, n_sides * k
+        shape_desc = f"regular {_POLYGON_NAMES[n_sides]}"
+        equation_line = f"{n_sides}(x + {k}) = {total}"
+        expand_step = f"Expand the bracket ({n_sides} × x and {n_sides} × {k}):"
+        dedup_key = f"perim_h:polygon:{n_sides}:{k}:{x_val}"
+        diagram = DiagramSpec(
+            kind="regular_polygon_side", params={"n_sides": n_sides, "side_label": f"(x + {k}) cm"}
+        )
+
+    solve_steps, solution = solve_linear_with_steps(coeff, const, 0, total)
+    # Independent verification: substitute the SOLVED value back into each
+    # shape's own original (unexpanded) perimeter formula, not the combined
+    # coeff/const used to solve it.
+    if shape == "l_shape":
+        computed = 2 * m + 2 * n + 2 * (solution + k)
+    elif shape == "rectangle":
+        computed = 2 * (solution + b) + 2 * (solution + e)
+    elif shape == "isosceles":
+        computed = 2 * (solution + k) + (solution + m)
+    elif shape == "parallelogram":
+        computed = 2 * (solution + b) + 2 * (solution + s)
+    elif shape == "right_triangle":
+        computed = (solution + p) + (solution + q) + (solution + r)
+    else:
+        computed = n_sides * (solution + k)
+    if computed != total:
+        raise ValueError(f"forming_equations perimeter (higher, {shape}) verification failed")
+
+    return shape, shape_desc, equation_line, expand_step, coeff, const, total, solve_steps, solution, dedup_key, diagram
+
+
 def _words_higher(rng: random.Random) -> Question:
     a = rng.randint(2, 9)
     b = rng.randint(-15, 15)
@@ -258,6 +501,107 @@ def _words_higher(rng: random.Random) -> Question:
         solution_steps=tuple(steps),
         final_answer=fmt_num(solution),
         dedup_key=f"form_words_h:{a}:{b}:{c}",
+    )
+
+
+def _people_higher(rng: random.Random) -> Question:
+    """Three people/quantities: one defined additively relative to the
+    first ("N years older/younger than"), one defined MULTIPLICATIVELY
+    ("double"/"three times" the first) - genuinely harder than Foundation's
+    2-person, additive-only version, per direct user request checked
+    against real Corbett Maths examples."""
+    name1, name2, name3 = rng.sample(_PEOPLE_NAMES, 3)
+    ctx = rng.choice(_TWO_PERSON_CONTEXTS)
+    k = rng.randint(1, 20)
+    is_more = rng.random() < 0.5
+    second_word = ctx["more_word"] if is_more else ctx["less_word"]
+    second_const = k if is_more else -k
+    m = rng.choice([2, 3, 4])
+    mult_word = _MULTIPLE_WORDS[m]
+
+    x_val = rng.randint(max(5, k + 1), 30)
+    second_val = x_val + second_const
+    third_val = m * x_val
+    total = x_val + second_val + third_val
+    coeff, const = 2 + m, second_const
+
+    equation_line = f"x + ({fmt_linear(1, second_const)}) + {m}x = {total}"
+    collect_line = f"{fmt_linear(coeff, const)} = {total}"
+    solve_steps, solution = solve_linear_with_steps(coeff, const, 0, total)
+    # Independent verification: substitute the solution back into each
+    # person's own original (unexpanded) value, not the combined coeff/const.
+    computed = solution + (solution + second_const) + m * solution
+    if computed != total:
+        raise ValueError("forming_equations people (higher) verification failed")
+
+    steps = [
+        f"Let {name1}'s {ctx['item']} be x.",
+        equation_line,
+        "Collect like terms:",
+        collect_line,
+    ] + solve_steps[1:]
+    prompt = (
+        f"{name1} is x {ctx['unit']}.\n"
+        f"{name2} is {k} {ctx['diff_unit']} {second_word} than {name1}.\n"
+        f"{name3} has {mult_word} {name1}'s {ctx['item']}.\n"
+        f"The total of their {ctx['item_plural']} is {total}.\n"
+        "Form an equation and solve it to find x."
+    )
+    return Question(
+        topic_id="forming_equations_H",
+        tier=Tier.HIGHER,
+        prompt=prompt,
+        solution_steps=tuple(steps),
+        final_answer=fmt_num(solution),
+        dedup_key=f"form_people_h:{ctx['unit']}:{k}:{is_more}:{m}:{x_val}",
+    )
+
+
+def _consecutive_higher(rng: random.Random) -> Question:
+    """Five consecutive numbers, or three consecutive EVEN numbers - a
+    genuinely different/harder variant than Foundation's 3-consecutive-
+    numbers version (a longer run, or a non-1 step size), per direct user
+    request."""
+    kind = rng.choice(["five", "even"])
+    if kind == "five":
+        n, step, desc = 5, 1, "five consecutive numbers"
+    else:
+        n, step, desc = 3, 2, "three consecutive even numbers"
+
+    x_val = rng.randint(1, 40)
+    if kind == "even" and x_val % 2 != 0:
+        x_val += 1
+
+    total = sum(x_val + i * step for i in range(n))
+    coeff = n
+    const = total - coeff * x_val
+
+    equation_line = " + ".join(_fmt_xk(i * step) for i in range(n)) + f" = {total}"
+    collect_line = f"{fmt_linear(coeff, const)} = {total}"
+    solve_steps, solution = solve_linear_with_steps(coeff, const, 0, total)
+    # Independent verification: substitute the solution back into every
+    # original (unexpanded) term, not the combined coeff/const.
+    computed = sum(solution + i * step for i in range(n))
+    if computed != total:
+        raise ValueError("forming_equations consecutive (higher) verification failed")
+
+    steps = [
+        "Let the first number be x.",
+        equation_line,
+        "Collect like terms:",
+        collect_line,
+    ] + solve_steps[1:]
+    values = [solution + i * step for i in range(n)]
+    return Question(
+        topic_id="forming_equations_H",
+        tier=Tier.HIGHER,
+        prompt=(
+            f"The sum of {desc} is {total}. Form an equation (using x for the first number) "
+            "and solve it to find the numbers."
+        ),
+        solution_steps=tuple(steps),
+        final_answer=", ".join(str(v) for v in values),
+        dedup_key=f"form_consecutive_h:{kind}:{x_val}",
     )
 
 
@@ -329,29 +673,15 @@ def _angles_higher(rng: random.Random) -> Question:
 def _area_higher(rng: random.Random) -> Question:
     shape = rng.choice(["perimeter", "area"])
     if shape == "perimeter":
-        m = rng.randint(3, 15)
-        n = rng.randint(3, 15)
-        k = rng.randint(1, 10)
-        x_val = rng.randint(2, 20)
-        total = 2 * m + 2 * n + 2 * (x_val + k)
-
-        coeff, const = 2, 2 * m + 2 * n + 2 * k
-        solve_steps, solution = solve_linear_with_steps(coeff, const, 0, total)
-        # Independent verification: substitute back into the original
-        # (unexpanded) L-shape perimeter formula.
-        computed = 2 * m + 2 * n + 2 * (solution + k)
-        if computed != total:
-            raise ValueError("forming_equations area (higher, perimeter) verification failed")
-
-        prompt = f"The perimeter of the L-shape shown is {total} cm. Form an equation and solve it to find x."
-        equation_line = f"2(x + {k}) + 2({m} + {n}) = {total}"
+        _shape, shape_desc, equation_line, expand_step, _coeff, _const, total, solve_steps, solution, dedup_key, diagram = (
+            _build_perimeter_higher(rng)
+        )
+        prompt = f"The perimeter of the {shape_desc} shown is {total} cm. Form an equation and solve it to find x."
         steps = [
-            "Perimeter of an L-shape = 2 × (outer width) + 2 × (outer height).",
+            "Perimeter = sum of the side lengths shown.",
             equation_line,
-            "Expand the brackets and collect the constants:",
+            expand_step,
         ] + solve_steps
-        dedup_key = f"form_area_h:perimeter:{m}:{n}:{k}:{x_val}"
-        diagram = _l_shape_perimeter_diagram(m, n, k, x_val)
     else:
         m = rng.randint(3, 12)
         k = rng.randint(1, 10)
@@ -390,9 +720,13 @@ def _area_higher(rng: random.Random) -> Question:
 
 
 def generate_forming_equations_higher(tier: Tier, rng: random.Random) -> Question:
-    context = rng.choice(["words", "angles", "area"])
+    context = rng.choice(["words", "people", "consecutive", "angles", "area"])
     if context == "words":
         q = _words_higher(rng)
+    elif context == "people":
+        q = _people_higher(rng)
+    elif context == "consecutive":
+        q = _consecutive_higher(rng)
     elif context == "angles":
         q = _angles_higher(rng)
     else:
@@ -442,6 +776,86 @@ def _modelled_words_foundation(rng: random.Random) -> ModelledExample:
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=fmt_num(solution),
+    )
+
+
+def _modelled_people_foundation(rng: random.Random) -> ModelledExample:
+    name1, name2 = rng.sample(_PEOPLE_NAMES, 2)
+    ctx = rng.choice(_TWO_PERSON_CONTEXTS)
+    k = rng.randint(1, 20)
+    is_more = rng.random() < 0.5
+    word = ctx["more_word"] if is_more else ctx["less_word"]
+    const = k if is_more else -k
+    x_val = rng.randint(max(5, k + 1), 40)
+    total = x_val + (x_val + const)
+
+    equation_line = f"x + ({fmt_linear(1, const)}) = {total}"
+    collect_line = f"{fmt_linear(2, const)} = {total}"
+    solve_steps, solution = solve_linear_with_steps(2, const, 0, total)
+    computed = solution + (solution + const)
+    if computed != total:
+        raise ValueError("modelled example forming_equations people (foundation) verification failed")
+
+    teaching_steps = [
+        f"{name1}'s {ctx['item']} is unknown, so give it a letter - call it x. Every other "
+        f"person's {ctx['item']} can then be written in terms of x.",
+        f"{name2} is {k} {ctx['diff_unit']} {word} than {name1}, so {name2}'s {ctx['item']} is "
+        f"{fmt_linear(1, const)}.",
+        f"The two {ctx['item_plural']} add up to the given total, so: {equation_line}. Collecting "
+        f"like terms gives {collect_line}.",
+        f"Solve for x to get x = {fmt_num(solution)}.",
+        f"Check by substituting back: {name1}'s {ctx['item']} is {fmt_num(solution)} and "
+        f"{name2}'s is {fmt_num(solution + const)}, which together make {total}.",
+    ]
+    worked_calculation = [equation_line, collect_line, f"x = {fmt_num(solution)}"]
+    prompt = (
+        f"{name1} is x {ctx['unit']}.\n"
+        f"{name2} is {k} {ctx['diff_unit']} {word} than {name1}.\n"
+        f"The sum of their {ctx['item_plural']} is {total}.\n"
+        "Form an equation and solve it to find x."
+    )
+    return ModelledExample(
+        topic_id="forming_equations_F",
+        tier=Tier.FOUNDATION,
+        prompt=prompt,
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=fmt_num(solution),
+    )
+
+
+def _modelled_consecutive_foundation(rng: random.Random) -> ModelledExample:
+    x_val = rng.randint(1, 40)
+    total = x_val + (x_val + 1) + (x_val + 2)
+    coeff, const = 3, 3
+
+    equation_line = "x + (x + 1) + (x + 2) = " + str(total)
+    collect_line = f"{fmt_linear(coeff, const)} = {total}"
+    solve_steps, solution = solve_linear_with_steps(coeff, const, 0, total)
+    computed = solution + (solution + 1) + (solution + 2)
+    if computed != total:
+        raise ValueError("modelled example forming_equations consecutive (foundation) verification failed")
+
+    teaching_steps = [
+        "Consecutive numbers just mean one after another, each 1 more than the last - so if "
+        "the first is x, the next two are x + 1 and x + 2.",
+        f"They add up to the given total, so: {equation_line}. Collecting like terms gives "
+        f"{collect_line}.",
+        f"Solve for x to get x = {fmt_num(solution)}.",
+        f"So the three numbers are {solution}, {solution + 1}, and {solution + 2} - check "
+        f"they really do add up to {total}.",
+    ]
+    worked_calculation = [equation_line, collect_line, f"x = {fmt_num(solution)}"]
+    return ModelledExample(
+        topic_id="forming_equations_F",
+        tier=Tier.FOUNDATION,
+        prompt=(
+            f"The sum of three consecutive numbers is {total}. Form an equation (using x for "
+            "the first number) and solve it to find the three numbers."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=f"{solution}, {solution + 1}, {solution + 2}",
     )
 
 
@@ -595,9 +1009,13 @@ def _modelled_area_foundation(rng: random.Random) -> ModelledExample:
 
 
 def generate_modelled_example_forming_equations_foundation(tier: Tier, rng: random.Random) -> ModelledExample:
-    context = rng.choice(["words", "angles", "area"])
+    context = rng.choice(["words", "people", "consecutive", "angles", "area"])
     if context == "words":
         example = _modelled_words_foundation(rng)
+    elif context == "people":
+        example = _modelled_people_foundation(rng)
+    elif context == "consecutive":
+        example = _modelled_consecutive_foundation(rng)
     elif context == "angles":
         example = _modelled_angles_foundation(rng)
     else:
@@ -650,6 +1068,108 @@ def _modelled_words_higher(rng: random.Random) -> ModelledExample:
         worked_calculation=tuple(worked_calculation),
         teaching_steps=tuple(teaching_steps),
         final_answer=fmt_num(solution),
+    )
+
+
+def _modelled_people_higher(rng: random.Random) -> ModelledExample:
+    name1, name2, name3 = rng.sample(_PEOPLE_NAMES, 3)
+    ctx = rng.choice(_TWO_PERSON_CONTEXTS)
+    k = rng.randint(1, 20)
+    is_more = rng.random() < 0.5
+    second_word = ctx["more_word"] if is_more else ctx["less_word"]
+    second_const = k if is_more else -k
+    m = rng.choice([2, 3, 4])
+    mult_word = _MULTIPLE_WORDS[m]
+
+    x_val = rng.randint(max(5, k + 1), 30)
+    second_val = x_val + second_const
+    third_val = m * x_val
+    total = x_val + second_val + third_val
+    coeff, const = 2 + m, second_const
+
+    equation_line = f"x + ({fmt_linear(1, second_const)}) + {m}x = {total}"
+    collect_line = f"{fmt_linear(coeff, const)} = {total}"
+    solve_steps, solution = solve_linear_with_steps(coeff, const, 0, total)
+    computed = solution + (solution + second_const) + m * solution
+    if computed != total:
+        raise ValueError("modelled example forming_equations people (higher) verification failed")
+
+    teaching_steps = [
+        f"{name1}'s {ctx['item']} is unknown, so call it x. {name2}'s is additive (x plus or "
+        f"minus a number) and {name3}'s is multiplicative ({mult_word} x) - both need writing "
+        "in terms of x before anything can be added together.",
+        f"{name2} is {k} {ctx['diff_unit']} {second_word} than {name1}, so {name2}'s {ctx['item']} "
+        f"is {fmt_linear(1, second_const)}. {name3} has {mult_word} {name1}'s {ctx['item']}, "
+        f"so {name3}'s is {m}x.",
+        f"All three add up to the given total: {equation_line}. Collecting like terms gives "
+        f"{collect_line}.",
+        f"Solve for x to get x = {fmt_num(solution)}.",
+        "Check by substituting back into each person's own expression and confirming they "
+        "genuinely add up to the given total.",
+    ]
+    worked_calculation = [equation_line, collect_line, f"x = {fmt_num(solution)}"]
+    prompt = (
+        f"{name1} is x {ctx['unit']}.\n"
+        f"{name2} is {k} {ctx['diff_unit']} {second_word} than {name1}.\n"
+        f"{name3} has {mult_word} {name1}'s {ctx['item']}.\n"
+        f"The total of their {ctx['item_plural']} is {total}.\n"
+        "Form an equation and solve it to find x."
+    )
+    return ModelledExample(
+        topic_id="forming_equations_H",
+        tier=Tier.HIGHER,
+        prompt=prompt,
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=fmt_num(solution),
+    )
+
+
+def _modelled_consecutive_higher(rng: random.Random) -> ModelledExample:
+    kind = rng.choice(["five", "even"])
+    if kind == "five":
+        n, step, desc = 5, 1, "five consecutive numbers"
+    else:
+        n, step, desc = 3, 2, "three consecutive even numbers"
+
+    x_val = rng.randint(1, 40)
+    if kind == "even" and x_val % 2 != 0:
+        x_val += 1
+
+    total = sum(x_val + i * step for i in range(n))
+    coeff = n
+    const = total - coeff * x_val
+
+    equation_line = " + ".join(_fmt_xk(i * step) for i in range(n)) + f" = {total}"
+    collect_line = f"{fmt_linear(coeff, const)} = {total}"
+    solve_steps, solution = solve_linear_with_steps(coeff, const, 0, total)
+    computed = sum(solution + i * step for i in range(n))
+    if computed != total:
+        raise ValueError("modelled example forming_equations consecutive (higher) verification failed")
+
+    values = [solution + i * step for i in range(n)]
+    step_desc = "1 more than the last" if step == 1 else f"{step} more than the last"
+    teaching_steps = [
+        f"Consecutive{' even' if kind == 'even' else ''} numbers each go up by {step} from "
+        f"the last, so if the first is x, the rest are x + {step}, x + {2 * step}, and so on "
+        f"({step_desc}).",
+        f"They all add up to the given total, so: {equation_line}. Collecting like terms "
+        f"gives {collect_line}.",
+        f"Solve for x to get x = {fmt_num(solution)}.",
+        f"So the numbers are {', '.join(str(v) for v in values)} - check they really do add "
+        f"up to {total}.",
+    ]
+    worked_calculation = [equation_line, collect_line, f"x = {fmt_num(solution)}"]
+    return ModelledExample(
+        topic_id="forming_equations_H",
+        tier=Tier.HIGHER,
+        prompt=(
+            f"The sum of {desc} is {total}. Form an equation (using x for the first number) "
+            "and solve it to find the numbers."
+        ),
+        worked_calculation=tuple(worked_calculation),
+        teaching_steps=tuple(teaching_steps),
+        final_answer=", ".join(str(v) for v in values),
     )
 
 
@@ -725,35 +1245,22 @@ def _modelled_angles_higher(rng: random.Random) -> ModelledExample:
 def _modelled_area_higher(rng: random.Random) -> ModelledExample:
     shape = rng.choice(["perimeter", "area"])
     if shape == "perimeter":
-        m = rng.randint(3, 15)
-        n = rng.randint(3, 15)
-        k = rng.randint(1, 10)
-        x_val = rng.randint(2, 20)
-        total = 2 * m + 2 * n + 2 * (x_val + k)
-
-        coeff, const = 2, 2 * m + 2 * n + 2 * k
-        solve_steps, solution = solve_linear_with_steps(coeff, const, 0, total)
-        computed = 2 * m + 2 * n + 2 * (solution + k)
-        if computed != total:
-            raise ValueError("modelled example forming_equations area (higher, perimeter) verification failed")
-
-        prompt = f"The perimeter of the L-shape shown is {total} cm. Form an equation and solve it to find x."
-        equation_line = f"2(x + {k}) + 2({m} + {n}) = {total}"
+        _shape, shape_desc, equation_line, expand_step, coeff, const, total, _solve_steps, solution, _dedup_key, diagram = (
+            _build_perimeter_higher(rng)
+        )
+        prompt = f"The perimeter of the {shape_desc} shown is {total} cm. Form an equation and solve it to find x."
         expanded_line = f"{fmt_linear(coeff, const)} = {total}"
         teaching_steps = [
-            "An L-shape's perimeter is still just the sum of the side lengths around the "
-            "outside - and because opposite sides are equal, that's always 2 × the outer "
-            "width plus 2 × the outer height, whatever size the notch is.",
+            f"A {shape_desc}'s perimeter is just the sum of its side lengths - here some of "
+            "those sides are algebraic expressions instead of plain numbers, but the idea is "
+            "exactly the same.",
             f"Write down that perimeter sum and set it equal to the total we're given: "
             f"{equation_line}.",
-            f"Expand the bracket (2 × x and 2 × {k}) and collect all the plain-number terms "
-            f"together, leaving a simple equation: {expanded_line}.",
+            f"{expand_step} {expanded_line}.",
             f"Solve for x to get x = {fmt_num(solution)}.",
-            f"Check by substituting back into the original, unexpanded formula: "
-            f"2×({fmt_num(solution)} + {k}) + 2×({m} + {n}) = {total}.",
+            "Check by substituting back into the original, unexpanded formula for each side.",
         ]
         worked_calculation = [equation_line, expanded_line, f"x = {fmt_num(solution)}"]
-        diagram = _l_shape_perimeter_diagram(m, n, k, x_val)
     else:
         m = rng.randint(3, 12)
         k = rng.randint(1, 10)
@@ -800,9 +1307,13 @@ def _modelled_area_higher(rng: random.Random) -> ModelledExample:
 
 
 def generate_modelled_example_forming_equations_higher(tier: Tier, rng: random.Random) -> ModelledExample:
-    context = rng.choice(["words", "angles", "area"])
+    context = rng.choice(["words", "people", "consecutive", "angles", "area"])
     if context == "words":
         example = _modelled_words_higher(rng)
+    elif context == "people":
+        example = _modelled_people_higher(rng)
+    elif context == "consecutive":
+        example = _modelled_consecutive_higher(rng)
     elif context == "angles":
         example = _modelled_angles_higher(rng)
     else:
