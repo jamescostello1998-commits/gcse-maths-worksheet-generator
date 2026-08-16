@@ -25,16 +25,12 @@ scheme. The full chronology below still uses the *old* ids in its historical ent
 tier suffix if you go looking for one. See step 44 for the exact rename rule and how the
 migration was done safely.
 
-**CURRENT STATE:** **323 topics**, backend suite **1032/1032**, frontend **65/65**, all 60
-Practice Test papers exactly 100 marks (rebuilt twice during step 61 - see below). Steps 54-59 are
-all committed & pushed (steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`, step 58 in `dbda953`, step
-59 across seven commits ending `91048ec`). **Nothing since then is committed yet** - step 60 (tree
-diagrams + `frequency_tree_F`, including all five of its same-session follow-ups) and step 61
-(probability/loci/construction/bearings fixes, including the two new bearings topics) are both
-still sitting in the working tree, ready to commit. **A new session should commit this work FIRST
-(the user has already reviewed and approved every piece of it - see the two steps below for what's
-included) before doing anything else**, then continue the review process by asking the user for the
-next batch (see "Next natural step" below). No known bugs.
+**CURRENT STATE:** **323 topics**, backend suite **1039/1039**, frontend **65/65**, all 60
+Practice Test papers exactly 100 marks (rebuilt twice during step 61). Steps 54-59 are committed
+(steps 54-56 in `c6cce8f`, step 57 in `9ba81d8`, step 58 in `dbda953`, step 59 across seven commits
+ending `91048ec`); steps 60-61 (tree diagrams/`frequency_tree_F` + probability/loci/construction/
+bearings fixes, described below) are committed in `8abaf98`; step 62 (a Solving Linear Equations
+review batch — see chronology) is committed in the session that wrote this line. No known bugs.
 
 **What the recent sessions did — an ongoing aesthetic-review process (steps 34-59).** The user
 works through the two `all_topics_review_*.pdf` documents and sends feedback, mostly as per-topic
@@ -259,10 +255,9 @@ items (occasionally by page range). Steps 34-53 are in the chronology; the most 
 
 See chronology step 59 (and its numbered follow-up sub-entries) for the full technical detail.
 
-**Next natural step:** commit and push steps 60-61 first (see "CURRENT STATE" above — nothing since
-step 59 is committed yet; the user has already reviewed and approved this work across the session
-it was built in, so this isn't waiting on further confirmation). Then ask the user for the next
-chunk of review feedback (the review is NOT confirmed finished — recent batches have been per-topic
+**Next natural step:** steps 60-62 are all committed and pushed (see "CURRENT STATE" above). Ask the
+user for the next chunk of review feedback (the review is NOT confirmed finished — recent batches
+have been per-topic
 items the user sends directly, sometimes several in one message, occasionally a page range; they
 may equally have a new one-off feature in mind, as steps 45-46 and 61's bearings topics were). The
 review workflow each batch: read the named items → fix them (render
@@ -4893,6 +4888,95 @@ fixes), is committed and pushed (see `git log`).
     **This closed out every review item sent this session** - graphs (coordinate + stats + bar +
     pie), histograms (step 58), cumulative frequency, and frequency tables. See "Where to pick up
     next" at the top of this file for the current handoff.
+
+60-61. Tree diagrams (`frequency_tree_F` + `draw_tree_diagram` overhaul, real gap-separated
+    stages matching hand-drawn exam trees) and a probability/loci/constructions/bearings batch
+    (`bearings_back_bearing_F`/`bearings_angle_facts_F`, `loci_regions_H`/`loci_constructions_F`
+    grid removal, `construction_triangle_F`/`construction_perpendicular_bisector_F` diagrams,
+    `probability_listing_outcomes_F` two-object diagrams). Full detail in the "What the recent
+    sessions did" section near the top of this file (these two steps were written up there
+    rather than as numbered chronology entries, then committed in `8abaf98`). 321 → 323 topics.
+
+62. New session, a Solving Linear Equations review batch driven entirely by direct user requests
+    (no `all_topics_review_*.pdf` batch this time) across `linear_equations.py`/
+    `fractional_equations.py`, several cross-checked against real Corbett Maths worksheets the
+    user linked (read via `fitz` page rendering, not text extraction — Corbett's equations are
+    embedded as images/glyphs, so `get_text()` returns nothing useful; used only to confirm
+    structure/variety, never to copy question text). Each item below is independent; several
+    were preceded by an `AskUserQuestion` round since the user explicitly asked for it, or because
+    an example the user typed had a genuine ambiguity (a stray `x` or `+` that read as a likely
+    typo for a number/`-`, resolved by asking rather than guessing).
+
+    **`linear_one_step_F`** now covers all four one-step forms (`x+a=c`, `x-a=c`, `ax=c`,
+    `x/a=c`) at an even 25% each (previously `ax=c` only) — confirmed against Corbett's own
+    "Solving Equations" Question 1, which turned out to use exactly these four forms. The
+    division form uses the existing `\frac{}{}` marker for a true vinculum. Fixed a real
+    latent bug in `algebra_utils.solve_linear_with_steps` while building the `x+a=c`/`x-a=c`
+    forms: whenever the equation's coefficient was already 1 (skipping the division step), the
+    final `"x = {solution}"` line was appended TWICE — one from the constant-clearing step,
+    one from the final `else` branch. This was already reachable by existing callers (`angles.py`,
+    `forming_equations.py`, `linear_both_sides_*`) whenever their coefficient happened to reduce
+    to 1, not just by the new forms — fixed at the shared-helper level (skip the second append
+    if it would exactly repeat the last line already written), benefiting every caller at once.
+
+    **`linear_two_step_F`** similarly reworked to all four Corbett-matching forms (`ax+b=c`,
+    `ax-b=c`, `b+ax=c`, `b-ax=c`) — confirmed against Corbett's Question 2 (`2x+3=9`, `3w-1=14`,
+    plus the `x/3+1=5`-style fraction forms, which were deliberately NOT duplicated here — see
+    below). Then, per a later direct request, reweighted via `rng.choices` so the coefficient-
+    first forms (`ax±b=c`) are ~80% combined vs ~20% for the constant-first forms (`b±ax=c`),
+    since a question starting with the coefficient is the far more common style.
+
+    **`fractional_equations_F` repurposed** (per an `AskUserQuestion`-confirmed decision) into
+    "Two-Step Equations (Fractions)" — its `_build_fractional_F` shape pool dropped the pure
+    one-step `x/a=b` branch (that content already lives on `linear_one_step_F` post-rework, so
+    keeping it here would have been a straight duplicate) and now only builds `x/a±b=c`,
+    `(x+p)/a=b`, `mx/a=c` — closing the overlap this created with the reworked `linear_two_step_F`
+    (its own `x/a±b=c` "2 step 2" mix, confirmed via `AskUserQuestion` to repurpose the existing
+    topic rather than build a second, near-duplicate one).
+
+    **`linear_multi_step_F`** reworked so its 4 terms (two x-terms, two constants) appear in a
+    randomly shuffled order (previously always `coeff1x + const1 + coeff2x ± const2`), and the
+    second x-coefficient can now be negative (~30% of the time, magnitude capped below the first
+    coefficient so the collected result always stays positive - per the user's explicit "don't
+    increase the difficulty too much") while the first-drawn coefficient always stays positive,
+    per direct request. The leading term is always either the (always-positive) first coefficient
+    or first constant, so the equation never starts with a bare `-`.
+
+    **`linear_brackets_F`** gained a ~30% chance of a negative constant INSIDE the bracket
+    (`3(2x - 5) = 6`, coefficient `b` stays positive, magnitude capped so the bracket's own value
+    stays positive) and a ~10% chance of the equation being written target-number-first
+    (`33 = 3(3x + 8)`), matching the reordering pattern already established for two-step/
+    multi-step this session.
+
+    **`linear_brackets_H`**, per an `AskUserQuestion`-confirmed design: double-bracket questions
+    (`a(bx+c) ± e(fx+g) = d`, always different numbers in each bracket) now make up ~70% of
+    questions (previously 0% - single-bracket only), and the solution is weighted ~80%
+    positive/~20% negative (was an unweighted ~50/50 split). **A real bug was found and fixed
+    via this session's own regression testing, not visual inspection**: the "Expand both
+    brackets"/"Collect like terms" DISPLAY text for the subtraction case (`a(...) - e(...)`)
+    only flipped the sign of the second bracket's leading x-term, not its constant too - e.g.
+    showed `"...− 12x + 42"` when the true expansion is `"...− 12x − 42"`. The final numeric
+    answer was always correct (computed independently of the display string via `combined_coeff`/
+    `combined_const`), so this class of bug is invisible to any check that only verifies the
+    final answer - caught by a new regression test that parses the displayed expansion text
+    with `sympy.parsing.sympy_parser.parse_expr` and compares it against the true original
+    expression symbolically, not just by rendering and eyeballing.
+
+    All six generators were refactored around a shared `_build_xxx(rng)` helper (returning every
+    intermediate value the practice/modelled-example pair both need) rather than duplicating the
+    random-number-drawing logic twice per topic, matching the pattern already used elsewhere in
+    this file (`_build_fractional_F`, `_build_advanced`). No topic count change (still 323 - every
+    change this step was to existing topics' content mix, not a new/retired topic). Backend suite
+    grew from 1036 to 1039 across the six items (new operation-mix/order/sign-variety tests per
+    topic, plus the sympy-parse regression test for the brackets bug). Frontend unaffected (65/65
+    - no frontend files touched). Every change was verified by rendering real worksheet + worked-
+    solution PDFs (and, for `linear_brackets_H`, a real modelled-example PDF) and reading them
+    closely, per this project's standing "render and look closely" discipline - not just trusting
+    the unit tests. No Practice Test rebuild needed - `linear_two_step_F` (10 papers) and
+    `fractional_equations_F` (2 papers) do appear in frozen papers, but none of these six topics
+    have a diagram, so their already-generated static JSON content is unaffected by any of this
+    step's changes (only future re-generations of those specific questions would use the new
+    behaviour).
 
 ## Environment gotchas (Windows, this machine specifically)
 

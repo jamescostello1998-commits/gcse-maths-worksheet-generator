@@ -1,7 +1,10 @@
 """Solving equations that involve fractions - three topics:
 
-- fractional_equations_F  : single fractional term (Corbett V111 style) - clears
-  one denominator to a linear equation (x/a = b, x/a +- c = d, (x+p)/a = b, mx/a = c).
+- fractional_equations_F  : "Two-Step Equations (Fractions)" - a single
+  fractional term combined with one other step (Corbett V111 style) - clears
+  one denominator to a linear equation (x/a +- c = d, (x+p)/a = b, mx/a = c).
+  The pure one-step x/a = b form deliberately lives on linear_one_step_F
+  instead (dividing by a is the only step there), not here.
 - fractional_equations_H   : two fractional terms combined over a common
   denominator (x/a + x/b = c, (x+p)/a +- (x+q)/b = c) - still reduces to linear.
 - fractional_equations_advanced_H : fractions with the unknown in the
@@ -54,15 +57,8 @@ def _signed(p: int) -> str:
 
 
 def _build_fractional_F(rng: random.Random):
-    shape = rng.choice(["single", "add_sub", "bracket", "coeff"])
-    if shape == "single":  # x/a = b
-        a = rng.randint(2, 12)
-        b = rng.randint(2, 15)
-        x_sol = a * b
-        disp = f"{_frac('x', a)} = {b}"
-        steps = [f"Multiply both sides by {a}: x = {b} × {a}", f"x = {x_sol}"]
-        lhs, rhs = X / a, b
-    elif shape == "add_sub":  # x/a +- c = d
+    shape = rng.choice(["add_sub", "bracket", "coeff"])
+    if shape == "add_sub":  # x/a +- c = d
         a = rng.randint(2, 10)
         c = rng.randint(1, 12)
         k = rng.randint(2, 12)  # value of x/a
@@ -396,8 +392,11 @@ def generate_modelled_example_fractional_equations_advanced(tier: Tier, rng: ran
 
 TOPIC_FRACTIONAL_EQUATIONS_F = TopicDefinition(
     id="fractional_equations_F",
-    display_name="Equations Involving Fractions",
-    description="Solve a linear equation containing a fractional term by clearing the denominator.",
+    display_name="Two-Step Equations (Fractions)",
+    description=(
+        "Solve a two-step equation with a fractional term, of the form x/a + b = c, "
+        "x/a - b = c, (x + p)/a = b, or (mx)/a = c."
+    ),
     generate=generate_fractional_equations_F,
     section=SECTION,
     group=GROUP_LINEAR,

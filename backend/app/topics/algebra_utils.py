@@ -80,6 +80,8 @@ def solve_linear_with_steps(
         steps.append(f"x = {fmt_num(solution)}")
     else:
         solution = rhs_const
-        steps.append(f"x = {fmt_num(solution)}")
+        final_line = f"x = {fmt_num(solution)}"
+        if steps[-1] != final_line:
+            steps.append(final_line)
 
     return steps, solution
