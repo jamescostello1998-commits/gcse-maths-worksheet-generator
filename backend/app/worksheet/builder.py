@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 from app.core.errors import WorksheetGenerationError
 from app.core.models import Question, Tier, Worksheet
 from app.core.registry import get_topic
+from app.topics.phrasing import AMOUNT_VERBS, CONVERT_PHRASINGS, EVALUATE_VERBS, SIMPLIFY_VERBS
 
 DEFAULT_COUNT = 20
 DEFAULT_MAX_ATTEMPTS = 400
@@ -68,6 +69,152 @@ def _apply_shared_instruction(topic_id: str, questions: list[Question]) -> tuple
     return rewritten, instr
 
 
+_FRACTION_SIMPLEST_FORM_SUFFIX = ". Give your answer as a fraction in its simplest form."
+_FRACTION_SIMPLEST_FORM_TITLE = "{v} the following, giving your answer as a fraction in its simplest form."
+_MIXED_NUMBER_SUFFIX = ". Give your answer as a mixed number."
+_MIXED_NUMBER_TITLE = "{v} the following, giving your answer as a mixed number."
+_BARE_PERIOD_SUFFIX = "."
+_BARE_PERIOD_TITLE = "{v} the following."
+_STANDARD_FORM_ANSWER_SUFFIX = ". Give your answer in standard form."
+_STANDARD_FORM_ANSWER_TITLE = "{v} the following, giving your answer in standard form."
+_EVALUATE_OR_SIMPLIFY_VERBS = EVALUATE_VERBS + SIMPLIFY_VERBS
+_CONVERT_VERBS = [v for v, _ in CONVERT_PHRASINGS]
+
+
+def _titles(template: str, verbs: list[str]) -> list[str]:
+    """Expand a "{v} ..." title template across a verb pool into the list of
+    complete title strings _apply_shared_verb_instruction picks from."""
+    return [template.format(v=v) for v in verbs]
+
+
+def _colon_titles(verbs: list[str]) -> list[str]:
+    """Sibling to _titles for "verb_only"-style entries, whose title is
+    always just "{verb}:" with nothing else appended."""
+    return [f"{v}:" for v in verbs]
+
+
+# Topics whose questions each independently vary their OWN leading verb (see
+# app/topics/phrasing.py's verb pools), rather than repeating one fixed
+# instruction string throughout the worksheet (that simpler case is
+# HOISTED_INSTRUCTIONS above). On a single-topic worksheet, ONE title is
+# chosen ONCE from title_choices (equal chance per choice, not per question)
+# for a shared bold header, rather than repeating a randomly-varying verb on
+# every question - see _apply_shared_verb_instruction. title_choices is
+# usually just a verb pool expanded across one template (via _titles/
+# _colon_titles above), but is a plain list so a topic whose verb and
+# preposition are paired (e.g. "Write ... in" vs "Convert ... to") can supply
+# genuinely different full titles rather than one template shared by every
+# verb.
+#
+# style="full": every question's own trailing text (after its own verb) is
+# identical boilerplate (e.g. always "Give your answer as a fraction in its
+# simplest form.") - both the verb AND that boilerplate collapse into one
+# combined title, leaving a bare expression per question.
+# style="verb_only": the trailing text genuinely varies per question (e.g.
+# "giving your answer as a single power of {base}", where {base} differs by
+# question) - only the leading verb hoists; each question keeps its own full
+# remainder, including its own trailing clause, unchanged.
+#
+# Each entry: (candidate verb pool [used to recognise/strip each question's
+# own leading verb - not necessarily the same wording as title_choices],
+# style, suffix to also strip [only used for "full"], title_choices to pick
+# the shared header from).
+HOISTED_VERB_INSTRUCTIONS: dict[str, tuple[list[str], str, str, list[str]]] = {
+    "fractions_add_subtract_F": (
+        EVALUATE_VERBS, "full", _FRACTION_SIMPLEST_FORM_SUFFIX, _titles(_FRACTION_SIMPLEST_FORM_TITLE, EVALUATE_VERBS)
+    ),
+    "fractions_multiply_F": (
+        EVALUATE_VERBS, "full", _FRACTION_SIMPLEST_FORM_SUFFIX, _titles(_FRACTION_SIMPLEST_FORM_TITLE, EVALUATE_VERBS)
+    ),
+    "fractions_divide_F": (
+        EVALUATE_VERBS, "full", _FRACTION_SIMPLEST_FORM_SUFFIX, _titles(_FRACTION_SIMPLEST_FORM_TITLE, EVALUATE_VERBS)
+    ),
+    "fractions_divide_H": (
+        EVALUATE_VERBS, "full", _FRACTION_SIMPLEST_FORM_SUFFIX, _titles(_FRACTION_SIMPLEST_FORM_TITLE, EVALUATE_VERBS)
+    ),
+    "fractions_mixed_number_arithmetic_H": (
+        EVALUATE_VERBS, "full", _MIXED_NUMBER_SUFFIX, _titles(_MIXED_NUMBER_TITLE, EVALUATE_VERBS)
+    ),
+    "decimals_add_subtract_F": (EVALUATE_VERBS, "full", _BARE_PERIOD_SUFFIX, _titles(_BARE_PERIOD_TITLE, EVALUATE_VERBS)),
+    "decimals_multiply_F": (EVALUATE_VERBS, "full", _BARE_PERIOD_SUFFIX, _titles(_BARE_PERIOD_TITLE, EVALUATE_VERBS)),
+    "decimals_divide_F": (EVALUATE_VERBS, "full", _BARE_PERIOD_SUFFIX, _titles(_BARE_PERIOD_TITLE, EVALUATE_VERBS)),
+    "number_powers_of_ten_F": (EVALUATE_VERBS, "full", _BARE_PERIOD_SUFFIX, _titles(_BARE_PERIOD_TITLE, EVALUATE_VERBS)),
+    "fractions_of_amount_F": (AMOUNT_VERBS, "full", _BARE_PERIOD_SUFFIX, _titles(_BARE_PERIOD_TITLE, AMOUNT_VERBS)),
+    "bidmas_F": (EVALUATE_VERBS, "full", _BARE_PERIOD_SUFFIX, _titles(_BARE_PERIOD_TITLE, EVALUATE_VERBS)),
+    "bidmas_two_three_F": (EVALUATE_VERBS, "full", _BARE_PERIOD_SUFFIX, _titles(_BARE_PERIOD_TITLE, EVALUATE_VERBS)),
+    "fractions_improper_mixed_F": (_CONVERT_VERBS, "verb_only", "", _colon_titles(_CONVERT_VERBS)),
+    "powers_F": (_EVALUATE_OR_SIMPLIFY_VERBS, "verb_only", "", _colon_titles(_EVALUATE_OR_SIMPLIFY_VERBS)),
+    "powers_H": (EVALUATE_VERBS, "verb_only", "", _colon_titles(EVALUATE_VERBS)),
+    "roots_H": (SIMPLIFY_VERBS, "verb_only", "", _colon_titles(SIMPLIFY_VERBS)),
+    "negative_indices_F": (_EVALUATE_OR_SIMPLIFY_VERBS, "verb_only", "", _colon_titles(_EVALUATE_OR_SIMPLIFY_VERBS)),
+    "simplifying_indices_challenging_H": (SIMPLIFY_VERBS, "verb_only", "", _colon_titles(SIMPLIFY_VERBS)),
+    "surds_multiply_divide_H": (_EVALUATE_OR_SIMPLIFY_VERBS, "verb_only", "", _colon_titles(_EVALUATE_OR_SIMPLIFY_VERBS)),
+    # "Write {n} in standard form." - the generator always says "Write", but
+    # the displayed title varies across a small Write/Convert/Express pool
+    # (each paired with its own natural preposition, since "Convert in" and
+    # "Write to" don't read naturally - see CONVERT_PHRASINGS' precedent).
+    "standard_form_to_F": (
+        ["Write"], "full", " in standard form.",
+        ["Write in standard form:", "Convert to standard form:", "Express in standard form:"],
+    ),
+    "standard_form_to_small_F": (
+        ["Write"], "full", " in standard form.",
+        ["Write in standard form:", "Convert to standard form:", "Express in standard form:"],
+    ),
+    # "Write {a} × 10^{n} as an ordinary number." - the reverse direction;
+    # kept to one fixed title rather than a pool, per direct confirmation.
+    "standard_form_from_large_F": (["Write"], "full", " as an ordinary number.", ["Write as an ordinary number:"]),
+    "standard_form_from_small_F": (["Write"], "full", " as an ordinary number.", ["Write as an ordinary number:"]),
+    # "Work out (...) op (...). Give your answer in standard form." - an
+    # arithmetic topic, not a conversion, so it reuses the EVALUATE_VERBS
+    # pool/template pattern rather than the Write/Convert/Express one above.
+    "standard_form_multiply_divide_F": (
+        EVALUATE_VERBS, "full", _STANDARD_FORM_ANSWER_SUFFIX, _titles(_STANDARD_FORM_ANSWER_TITLE, EVALUATE_VERBS)
+    ),
+    "standard_form_multiply_divide_H": (
+        EVALUATE_VERBS, "full", _STANDARD_FORM_ANSWER_SUFFIX, _titles(_STANDARD_FORM_ANSWER_TITLE, EVALUATE_VERBS)
+    ),
+    "standard_form_add_subtract_H": (
+        EVALUATE_VERBS, "full", _STANDARD_FORM_ANSWER_SUFFIX, _titles(_STANDARD_FORM_ANSWER_TITLE, EVALUATE_VERBS)
+    ),
+}
+
+
+def _apply_shared_verb_instruction(
+    topic_id: str, questions: list[Question], rng: random.Random
+) -> tuple[list[Question], str | None]:
+    """Sibling to _apply_shared_instruction, for topics in
+    HOISTED_VERB_INSTRUCTIONS whose questions vary their own leading verb
+    per-question rather than sharing one fixed instruction string. Fail-safe
+    exactly like _apply_shared_instruction: if any question's prompt doesn't
+    start with a pool verb (or, for "full" style, end with the expected
+    suffix), the match fails and the full prompts are shown as before."""
+    entry = HOISTED_VERB_INSTRUCTIONS.get(topic_id)
+    if not entry:
+        return questions, None
+    verbs, style, suffix, title_choices = entry
+
+    items: list[str] = []
+    for q in questions:
+        verb = next((v for v in verbs if q.prompt.startswith(v + " ")), None)
+        if verb is None:
+            return questions, None
+        rest = q.prompt[len(verb) + 1 :]
+        if style == "full":
+            if not rest.endswith(suffix) or len(rest) <= len(suffix):
+                return questions, None
+            item = rest[: len(rest) - len(suffix)].strip()
+        else:
+            item = rest.strip()
+        if not item:
+            return questions, None
+        items.append(item)
+
+    instr = rng.choice(title_choices)
+    rewritten = [replace(q, shared_instruction=instr, item_text=item) for q, item in zip(questions, items)]
+    return rewritten, instr
+
+
 def build_worksheet(
     topic_id: str,
     tier: Tier,
@@ -99,6 +246,8 @@ def build_worksheet(
         )
 
     questions, shared_instruction = _apply_shared_instruction(topic.id, questions)
+    if shared_instruction is None:
+        questions, shared_instruction = _apply_shared_verb_instruction(topic.id, questions, rng)
 
     return Worksheet(
         topic_id=topic.id,

@@ -299,9 +299,19 @@ def generate_recurring_decimal_two_digit(tier: Tier, rng: random.Random) -> Ques
     )
 
 
-def _rand_decimal(rng: random.Random, dp: int, int_lo: int = 1, int_hi: int = 99) -> Decimal:
+def _rand_decimal(
+    rng: random.Random, dp: int, int_lo: int = 1, int_hi: int = 99, no_trailing_zero: bool = False
+) -> Decimal:
     int_part = rng.randint(int_lo, int_hi)
-    frac_part = rng.randint(0, 10**dp - 1)
+    if no_trailing_zero:
+        # Exclude a fractional part whose last digit is 0 (e.g. "3.0",
+        # "12.50") - a real trailing zero, not just a value near a round
+        # number, so the decimal genuinely needs every one of its dp places.
+        frac_part = rng.randint(1, 10**dp - 1)
+        while frac_part % 10 == 0:
+            frac_part = rng.randint(1, 10**dp - 1)
+    else:
+        frac_part = rng.randint(0, 10**dp - 1)
     return Decimal(f"{int_part}.{str(frac_part).zfill(dp)}")
 
 
@@ -340,8 +350,8 @@ def generate_decimals_add_subtract(tier: Tier, rng: random.Random) -> Question:
 def generate_decimals_multiply(tier: Tier, rng: random.Random) -> Question:
     dp1 = rng.choice([1, 2])
     dp2 = rng.choice([1, 2])
-    v1 = _rand_decimal(rng, dp1, int_lo=1, int_hi=20)
-    v2 = _rand_decimal(rng, dp2, int_lo=1, int_hi=20)
+    v1 = _rand_decimal(rng, dp1, int_lo=1, int_hi=20, no_trailing_zero=True)
+    v2 = _rand_decimal(rng, dp2, int_lo=1, int_hi=20, no_trailing_zero=True)
 
     result = v1 * v2
 
@@ -826,8 +836,8 @@ def generate_modelled_example_decimals_add_subtract(tier: Tier, rng: random.Rand
 def generate_modelled_example_decimals_multiply(tier: Tier, rng: random.Random) -> ModelledExample:
     dp1 = rng.choice([1, 2])
     dp2 = rng.choice([1, 2])
-    v1 = _rand_decimal(rng, dp1, int_lo=1, int_hi=20)
-    v2 = _rand_decimal(rng, dp2, int_lo=1, int_hi=20)
+    v1 = _rand_decimal(rng, dp1, int_lo=1, int_hi=20, no_trailing_zero=True)
+    v2 = _rand_decimal(rng, dp2, int_lo=1, int_hi=20, no_trailing_zero=True)
 
     result = v1 * v2
 

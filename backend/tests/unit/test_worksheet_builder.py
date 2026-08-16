@@ -33,6 +33,31 @@ def test_hoisted_instruction_topics_set_shared_instruction_and_item_text():
             assert instruction not in q.item_text, topic_id
 
 
+def test_hoisted_verb_instruction_topics_set_shared_instruction_and_item_text():
+    # A topic in HOISTED_VERB_INSTRUCTIONS varies its own leading verb (and,
+    # for "full"-style topics, a trailing clause too) per question via
+    # app/topics/phrasing.py's pools - hoisting picks ONE verb ONCE per
+    # worksheet (not per question) for a shared bold title, leaving each
+    # question with just its own bare item.
+    from app.core.registry import get_topic
+
+    for topic_id, (verbs, style, suffix, title_choices) in builder.HOISTED_VERB_INSTRUCTIONS.items():
+        topic = get_topic(topic_id)
+        for seed in range(5):
+            ws = builder.build_worksheet(topic_id, topic.fixed_tier, count=8, rng=random.Random(seed))
+            assert ws.shared_instruction is not None, (topic_id, seed)
+            assert ws.shared_instruction in title_choices, (topic_id, seed)
+            for q in ws.questions:
+                assert q.shared_instruction == ws.shared_instruction, topic_id
+                assert q.item_text, topic_id
+                # The leading verb (and, for "full" style, the shared
+                # trailing clause) moved to the title - never repeated
+                # in the per-question item.
+                assert not any(q.item_text.startswith(v + " ") for v in verbs), topic_id
+                if style == "full":
+                    assert not q.item_text.endswith(suffix), topic_id
+
+
 def test_non_hoisted_topic_has_no_shared_instruction():
     ws = builder.build_worksheet("linear_one_step_F", Tier.FOUNDATION, count=6, rng=random.Random(3))
     assert ws.shared_instruction is None

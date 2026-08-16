@@ -15,6 +15,7 @@ Run manually from `backend/`:
     .venv\\Scripts\\python.exe -m scripts.generate_review_pdfs
 """
 
+import argparse
 import io
 import random
 
@@ -39,7 +40,7 @@ def _topic_count() -> int:
     return sum(len(group.topics) for section in sections_tree() for group in section.groups)
 
 
-def _build_doc(*, include_solutions: bool) -> bytes:
+def _build_doc(*, include_solutions: bool, count: int = 1) -> bytes:
     styles = build_styles()
     total = _topic_count()
     buffer = io.BytesIO()
@@ -79,8 +80,7 @@ def _build_doc(*, include_solutions: bool) -> bytes:
                 story.append(Paragraph(f"Topic {index} of {total} &nbsp;•&nbsp; id: {topic.id}", styles["Meta"]))
                 story.append(HRFlowable(width="100%", thickness=0.75, color=RULE, spaceAfter=14))
 
-                worksheet = build_worksheet(topic.id, topic.fixed_tier, count=1, rng=rng)
-                question = worksheet.questions[0]
+                worksheet = build_worksheet(topic.id, topic.fixed_tier, count=count, rng=rng)
                 # Show the topic's formula preamble box (if any) exactly as a
                 # real worksheet does - otherwise a topic whose formulas are
                 # only given up front (cone/sphere/frustum/pyramid/etc.) looks
@@ -92,27 +92,39 @@ def _build_doc(*, include_solutions: bool) -> bytes:
                 if hoist:
                     story.append(_instruction_line(worksheet.shared_instruction, styles))
                     story.append(Spacer(1, 8))
-                story.append(_question_block(1, question, styles, hoist=hoist))
-                if include_solutions:
-                    story.append(Spacer(1, 12))
-                    story.append(_solution_block(1, question, styles, hoist=hoist))
+                for q_num, question in enumerate(worksheet.questions, start=1):
+                    if q_num > 1:
+                        story.append(Spacer(1, 14))
+                    story.append(_question_block(q_num, question, styles, hoist=hoist))
+                    if include_solutions:
+                        story.append(Spacer(1, 12))
+                        story.append(_solution_block(q_num, question, styles, hoist=hoist))
 
     doc.build(story)
     return buffer.getvalue()
 
 
 def main() -> None:
-    print("Generating questions PDF...")
-    questions_pdf = _build_doc(include_solutions=False)
-    with open("all_topics_review_questions.pdf", "wb") as f:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--count", type=int, default=1, help="Questions per topic (default: 1, the standard review-PDF format)."
+    )
+    args = parser.parse_args()
+    suffix = f"_x{args.count}" if args.count != 1 else ""
+    q_name = f"all_topics_review_questions{suffix}.pdf"
+    a_name = f"all_topics_review_answers{suffix}.pdf"
+
+    print(f"Generating questions PDF ({args.count} question(s) per topic)...")
+    questions_pdf = _build_doc(include_solutions=False, count=args.count)
+    with open(q_name, "wb") as f:
         f.write(questions_pdf)
 
-    print("Generating answers PDF...")
-    answers_pdf = _build_doc(include_solutions=True)
-    with open("all_topics_review_answers.pdf", "wb") as f:
+    print(f"Generating answers PDF ({args.count} question(s) per topic)...")
+    answers_pdf = _build_doc(include_solutions=True, count=args.count)
+    with open(a_name, "wb") as f:
         f.write(answers_pdf)
 
-    print("Done: all_topics_review_questions.pdf, all_topics_review_answers.pdf")
+    print(f"Done: {q_name}, {a_name}")
 
 
 if __name__ == "__main__":

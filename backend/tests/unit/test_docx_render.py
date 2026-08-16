@@ -22,9 +22,13 @@ from app.worksheet.builder import build_worksheet
 _DOCX_MEDIA_TYPE = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
 
 # A fractional-power topic (native superscripts + stacked fractions), a plain
-# fraction topic, and a diagram-bearing topic.
+# (non-hoisted) fraction topic, and a diagram-bearing topic.
+# NB: several other fractions.py topics are hoisted (see app/worksheet/
+# builder.py's HOISTED_VERB_INSTRUCTIONS) - deliberately not used here, since
+# this file's "plain worksheet" structural assertions assume an un-hoisted
+# Q1./Q2./... layout. fractions_simplify_F is not in that registry.
 _FRAC_POWER_TOPIC = "algebraic_indices_H"
-_FRACTION_TOPIC = "fractions_add_subtract_F"
+_FRACTION_TOPIC = "fractions_simplify_F"
 _DIAGRAM_TOPIC = "area_triangle_F"
 _VECTOR_TOPIC = "vectors_arithmetic_H"
 _GEOMETRIC_VECTOR_TOPIC = "geometric_vectors_H"
